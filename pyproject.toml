@@ -18,6 +18,9 @@ dev = [
   "pytest>=8.4,<9",
 ]
 
+[tool.setuptools]
+packages = ["app"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1035 | ACTIVE | 2026-10-04 18:52 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1036 | ACTIVE | 2026-10-04 19:03 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -74,3 +74,4 @@
 | 2026-10-04 18:35 | AI 1 | 1032 | +1 | 1033 | OutRun 한글화 B Recovery07: B1696633 exact-HD 한글 후보 9개 제작, hosted CPU worker PASS, 9/9 bbox·clean/final mask·readable/raw self-QA PASS, source 효과 복원, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-RECOVERY07-20261004) |
 | 2026-10-04 18:35 | AI 1 | 1033 | +1 | 1034 | CONVERSION-DX11-00365 R246 programmable constant-slot binding receipt 구현, exact-SHA Backend Conversion Gate #1962·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00365; material=0616da4d1a1a79b1eb0f6e512b9b16d73464f64f) |
 | 2026-10-04 18:52 | AI 1 | 1034 | +1 | 1035 | CONVERSION-DXVK-00366 F120 canonical 0x18398E..0x1839CE raw provenance material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00366; material=c6ee6cf465b8e1dda47f70a142ec57112b49e514) |
+| 2026-10-04 19:03 | AI 1 | 1035 | +1 | 1036 | OutRun 한글화 A Production12: 43B07A77 authoritative 2048x256 HD 후보 제작·hosted worker PASS·1/1 exact bbox/clean/final/visual self-QA PASS, A11 2EA557B4 DXT5 exact-bbox 불가 조건 fail-closed 기록, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION12-20261004) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1061 | ACTIVE | 2026-10-05 02:30 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1062 | ACTIVE | 2026-10-05 02:31 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -112,3 +112,4 @@
 | 2026-10-05 02:12 | AI 1 | 1058 | +1 | 1059 | OutRun 한글화 1차 수동검수 패키지: 최신 정적 PASS 27자산을 현행 사용자 정책 기준으로 확정하고 1~27 번호 좌우 비교 JPG 4장 생성, 별도 review 브랜치 commit/push 및 GitHub 원격 4파일 readback 검증 완료 (RUN_KEY=OUTRUN-KOR-PASS27-REVIEW-20261005-0200; review HEAD=c84ee17c2a13c918054f76517ab20763c539bcbb) |
 | 2026-10-05 02:14 | AI 1 | 1059 | +1 | 1060 | OutRun 한글화 C117: A_PRODUCTION19 313DB8CB와 B_PRODUCTION30 53CE39D5 독립 machine/controller 최종 QA PASS, C114 53CE clean-plate residue 반환 해소, 788CE557만 producer REWORK 유지, 4F68708E/F6811E94 DXT5 exact-safe HOLD 정합화, queue/artwork_plan/resume/progress/WORKLOG/STATUS commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C117-20261005-0150; OutRun HEAD=e97d183c37b6f03f9d8ecaaa8215463101ab75f4) |
 | 2026-10-05 02:30 | AI 1 | 1060 | +1 | 1061 | VR 컨트롤러 직렬 실행 결함 진단 및 수정: DX11/DXVK/DX9Ex를 독립 active lane으로 전환, DX9Ex 우선 dispatch, 구형 active_by_lane 안전 폐기 마이그레이션, 결합 컴파일·회귀 테스트 6/6 PASS (RUN_KEY=OUTRUN-CONTROLLER-VR-PARALLEL-FIX-20261005-0230) |
+| 2026-10-05 02:31 | AI 1 | 1061 | +1 | 1062 | OutRun 한글화 C118: B_PRODUCTION32 788CE557 최종 교차 QA에서 direct SHA/header·4/4 bbox/size·producer zero-residue/outside/protected/overlap/guard 검증과 SOURCE/CLEAN/FINAL/row/TOP_PAIR/raw 시각 QA PASS, C108/B31 source residue 해소 및 producer REWORK 0건으로 정합화, queue/artwork_plan/resume/progress/WORKLOG/STATUS commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C118-20261005-0220; OutRun HEAD=e9f26f14fae3d8e975a45f5669044ad5d2c507a4) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1086 | ACTIVE | 2026-10-05 06:29 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1087 | ACTIVE | 2026-10-05 06:45 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -137,3 +137,4 @@
 | 2026-10-05 06:06 | AI 1 | 1083 | +1 | 1084 | CONVERSION-DXVK-00387 F128 canonical 0x183A8A..0x183ACA raw provenance capture 구현, validation-bearing SHA 67ad4cb6539fa3dfde0fd348f6742f85015062b5 exact-SHA DXVK Canonical Disassembly Evidence 37234273970·Backend Conversion Gate 37234273980 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00387; initial=a492e26b4dbb50a57810c59839e592ee789d3a58; final_state=2eb123161bc9d65fde91a62989d1967783a7c556) |
 | 2026-10-05 06:20 | AI 1 | 1084 | +1 | 1085 | CONVERSION-DX9EX-00388 post-1000 R34 source-shim retirement: material SHA d45764f10c0810b9d815ed1b8748ec14f3366477에서 zero-owner stereo_renderer_r34.cpp 삭제, cmkr/generated CMake·CI source graph·구조 verifier를 R33 final-owner/retired-R34 계약으로 정리. exact-SHA DX9Ex Active 37235159510·Domain Isolation 37235159354·HUD Inspector 37235159352 및 N100 정적 검증 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX9EX-00388; material=d45764f10c0810b9d815ed1b8748ec14f3366477; final_state=1f1efb64d806a1bcd9a21c8f658e39f90b348d5f) |
 | 2026-10-05 06:29 | AI 1 | 1085 | +1 | 1086 | OutRun 한글화 C135: B48/B49/B50에서 미완료로 남은 EBFC709F를 C134 exact-source line scan으로 4개 물리 JOIN/CREATE 발생 위치 재측정 후 C135에서 verified Noto CJK로 모두 렌더링, hosted C machine 4/4 bbox·size/positive-margin 및 zero residue/outside/alpha/protected/target/overlap/touch PASS, controller SOURCE/CLEAN/FINAL/row/raw visual PASS, queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화 및 commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C135-20261005-0620; candidate=7404fa227035e2fa003f4fa13f1bd348a050317757d7761c9d638f5fc1a01da4; OutRun HEAD=6407b2d3fb71c4a4f3434b93830f0f626411b604) |
+| 2026-10-05 06:45 | AI 1 | 1086 | +1 | 1087 | CONVERSION-DX11-00389 R256 programmable draw-candidate union 구현, material SHA 98f8532a46ef9c0d0945e23618203c08a924418e exact-SHA Backend Conversion Gate 37236655046 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00389-E006; material=98f8532a46ef9c0d0945e23618203c08a924418e; final_state=d38c75d39b7a195e6b65928a5482d9789e0ef48b) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1036 | ACTIVE | 2026-10-04 21:14 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1037 | ACTIVE | 2026-10-04 21:20 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -86,3 +86,5 @@
 | 2026-10-04 20:55 | AI 1 | 1033 | +1 | 1034 | CONVERSION-DXVK-00370 F122 canonical 0x1839CD..0x183A0D exact raw overlap provenance, F121 0x8B three-way cut-edge lineage 및 unresolved target debt fail-closed 보존, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00370; material=664b1b97a8654c44601ff2dfa03449809815b6c7) |
 | 2026-10-04 21:09 | AI 1 | 1034 | +1 | 1035 | OutRun 한글화 C OVERLAP05: 리뷰 2/5/6 zero-overlap 최종 QA, 39229D64·C075FB49 machine PASS 뒤 controller visual source-residue/overlap 결함 검출·불량 C 후보 롤백, A064FDFC no-safe-placement fail-closed REWORK 반환, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C-OVERLAP05-20261004-2050; OutRun HEAD=c88701d061ca3ecafd87b360c5591eb7a4de8a06) |
 | 2026-10-04 21:14 | AI 1 | 1035 | +1 | 1036 | CONVERSION-DX11-00371 R249 programmable indexed IA geometry binding receipt 구현, exact-SHA Backend Conversion Gate #37200718420·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00371; material=1e3fb4fd7d3b891a5f633c43e31d67ea2a82a727; final_state=f3fcd2a905324e45e38acea50032f743c03ce326) |
+
+| 2026-10-04 21:20 | AI 1 | 1036 | +1 | 1037 | VR Docker controller에 DX9Ex 개선 lane C 추가: vr-d3d9ex-focus 전용 프롬프트·3번째 슬롯·3-lane 동시 실행·A/B→A/B/C 상태 마이그레이션·Docker 패키징·배포 문서 반영 및 결합 Python 정적 검증 PASS (RUN_KEY=OUTRUN-CONTROLLER-DX9EX-LANE-20261004-2120) |

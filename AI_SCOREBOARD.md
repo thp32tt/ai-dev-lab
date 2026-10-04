@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1042 | ACTIVE | 2026-10-04 22:23 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1043 | ACTIVE | 2026-10-04 23:04 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -93,3 +93,4 @@
 | 2026-10-04 21:55 | AI 1 | 1039 | +1 | 1040 | VR DX9Ex lane 우선순위 정책 수정: 현재 진행 중인 구조 개선/리팩터링을 0순위로 강제, 최신 VR_REFACTOR_STATE/커밋 successor 연속 처리 규칙 및 회귀 테스트 5/5 PASS 반영 (RUN_KEY=OUTRUN-CONTROLLER-DX9EX-PRIORITY0-20261004-2155) |
 | 2026-10-04 21:56 | AI 1 | 1040 | +1 | 1041 | CONVERSION-DX11-00373 R250 programmable non-indexed IA geometry binding receipt 구현, exact-SHA Backend Conversion Gate #37203246583·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT E004 정합화 완료 (RUN_KEY=CONVERSION-DX11-00373; material=03b8dc06f483b985bfe2df74103093c6c3977330; final_state=1906404c2046228c1de14b1b4cd352805a94cf7f) |
 | 2026-10-04 22:23 | AI 1 | 1041 | +1 | 1042 | DX11 R250 최신 Windows Release artifact와 DX9Ex 최신 구조개선 source 44322402의 DX9Ex Active Validation artifact를 원격 run/해시/ZIP 구성으로 검증·전달 파일로 확보하고 DX9Ex 런타임 테스트 provenance/build trigger를 기록함 (RUN_KEY=OUTRUN-TEST-BUILD-DX11-DX9EX-20261004-2216) |
+| 2026-10-04 23:04 | AI 1 | 1042 | +1 | 1043 | OutRun 한글화 A Recovery09: C_OVERLAP05 반환 39229D64를 authoritative 4096x4096 HD에서 전면 clean 재구성·16개 발생(중복 SPECIAL REQUEST 포함) source-family 한글 재렌더, 16/16 exact bbox·size ceiling·positive margin, source residue 0, localized overlap 0, clean/final/visual self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY09-20261004-2300) |

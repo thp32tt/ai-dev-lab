@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1013 | ACTIVE | 2026-10-04 15:29 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1014 | ACTIVE | 2026-10-04 15:34 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -52,3 +52,4 @@
 | 2026-10-04 15:00 | AI 1 | 1010 | +1 | 1011 | CONVERSION-DXVK-00354 F113 exact-decode, exact-SHA 두 핵심 게이트 PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00354-E002; producer=CONVERSION-DX11-00353-E002) |
 | 2026-10-04 15:18 | AI 1 | 1011 | +1 | 1012 | OutRun 한글화 C87: 신규 A/B 3자산 교차 QA, A064FDFC·411827E 정적 PASS, 39229D64 구조/품질증거 REWORK 판정, 상태/QA SSOT 커밋 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C87-20261004-1509) |
 | 2026-10-04 15:29 | AI 1 | 1012 | +1 | 1013 | OutRun 한글화 A Recovery05: C075FB49 C85 9개 실패 재작업, 17/17 bbox·clean/final mask·visual self-QA PASS, 상태/QA SSOT 커밋·push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY05-20261004) |
+| 2026-10-04 15:34 | AI 1 | 1013 | +1 | 1014 | CONVERSION-DX11-00355 R242 translated-object attachment receipt 구현, exact-SHA Backend Conversion Gate #1938·DX11 readiness smoke PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00355; rollover=E008, material origin=E002) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1052 | ACTIVE | 2026-10-05 00:50 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1054 | ACTIVE | 2026-10-05 01:02 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -104,3 +104,4 @@
 | 2026-10-05 00:48 | AI 1 | 1050 | +1 | 1051 | OutRun 한글화 A: A_RECOVERY11 BF3EE5C6 C109 slant 반환 결과 정합화 및 A_RECOVERY12 C075FB49 상단 8개 source-slant 재작업, hosted worker PASS, 17/17 exact bbox·size ceiling·positive margin·zero overlap/touch·source residue 0·visual self-QA PASS, 상태/QA SSOT commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY11-12-20261005-0030) |
 | 2026-10-05 00:50 | AI 1 | 1051 | +1 | 1052 | DX9Ex Sumo UI replay semantic 보존 수정 및 테스트빌드 확정: material SHA 36f0f3949bd18993cba3f46585659874e3d7a89f에서 explicit RenderScope를 replay fresh SpriteNode에 복원, VR_PROBLEM_HISTORY 기록, DX9Ex Active Validation 37214068592·Domain Isolation 37214068427·HUD Inspector 37214068417 전부 SUCCESS, runtime ZIP SHA256 337dc279f58cb66056646a9edc127a343c362b2bc3222eeb48020555d5f70948, Issue #13 BUILD_VERIFIED 기록 완료 (RUN_KEY=OUTRUN-DX9EX-SUMO-SEMANTIC-TESTBUILD-20261005-0050) |
 | 2026-10-05 00:52 | AI 1 | 1052 | +1 | 1053 | OutRun DX11 HUD 크기/성능 런타임 교정: 사용자 c82db0cd 세션에서 XR 90Hz 대비 평균 ~60.94Hz, R28 lower-Present 최대 ~30-37ms·약 1.4k-2.75k draws/Present 확인. HUD 균일 scale 1.00→0.55 복원, per-eye aspect contain 제거 유지, CORRECTNESS의 HUD Inspector·shader fingerprint·DX11 census 진단 오버헤드 기본 비활성화, 회귀 정책 PASS, exact-SHA PC Fast Build 37214520926 SUCCESS 및 Issue #14 기록 완료 (RUN_KEY=OUTRUN-DX11-HUD-SIZE-PERF-20261005-0052; material=b81c2281fc9b25e2c3d437baa1131714bf3c39ac) |
+| 2026-10-05 01:02 | AI 1 | 1053 | +1 | 1054 | OutRun 한글화 C111: BF3EE5C6·C075FB49 독립 machine/controller 최종 QA PASS, C109 source-slant 반환 2건 해소, queue/resume/progress/WORKLOG 정합화, commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C111-20261005-0050; OutRun HEAD=dd479022a3554baff84e5ca8ac53f2ab7dff109b) |

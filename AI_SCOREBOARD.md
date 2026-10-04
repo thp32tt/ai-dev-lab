@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1071 | ACTIVE | 2026-10-05 03:55 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1072 | ACTIVE | 2026-10-05 03:58 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -122,3 +122,4 @@
 | 2026-10-05 03:40 | AI 1 | 1068 | +1 | 1069 | CONVERSION-DXVK-00378 F125 canonical 0x183A0C..0x183A4A exact control-flow + 0x183A4A 8B4D cut-edge proof, material SHA 23a8876603aba4aae576c2ddb833dc63c6d323e7 exact-SHA DXVK Canonical Disassembly Evidence 37224906160 + Backend Conversion Gate 37224906204 PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00378-E002; material=23a8876603aba4aae576c2ddb833dc63c6d323e7; final_state=2fe4870699cdf8c099d6f9eb3c3831bd94fe77e5) |
 | 2026-10-05 03:48 | AI 1 | 1069 | +1 | 1070 | OutRun 한글화 B Production40: 42E618FD exact-HD DXT5 한글 후보 제작, hosted worker PASS, 1/1 exact/decoded bbox·size ceiling·zero outside/residue/patch escape, controller readable/raw self-QA PASS, queue/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION40-20261005-0340; OutRun HEAD=22367af7c598987738b260de226f5f309c46a184) |
 | 2026-10-05 03:55 | AI 1 | 1070 | +1 | 1071 | OutRun 한글화 C126: B_PRODUCTION40 42E618FD 독립 hosted DXT5 QA에서 header/decode·1/1 exact bbox/size·positive margins·zero clean/source-residue/outside/alpha/protected/target PASS, controller SOURCE/CLEAN/FINAL·2x row visual PASS, c126 pixel/visual PASS pending in-game로 정합화, producer REWORK 0 유지, commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C126-20261005-0350; OutRun HEAD=3b9ca87413b10c91475fef5836d3b8af8cb775eb) |
+| 2026-10-05 03:58 | AI 1 | 1071 | +1 | 1072 | CONVERSION-DX9EX-00379 post-1000 R34 worker ownership fold: R34 polling worker 제거, initial replay-health/terminal compatibility publication을 R33로 일원화, descendant verifier repair 후 exact-SHA DX9Ex Active 37225909401·Domain Isolation 37225909385 PASS, C0-C6·Issue #14·GitHub SSOT 정합화 완료 (RUN_KEY=CONVERSION-DX9EX-00379-E003; source=a641273826b164cb49b17dac11a6d2bc3c5af3d9; result=9ec83f6b1269e3438e6430fa6a6efb2076103182; final_state=3d7ef52351719ac14920eac94058efb4575874c1) |

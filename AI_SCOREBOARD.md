@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1079 | ACTIVE | 2026-10-05 05:28 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1080 | ACTIVE | 2026-10-05 05:34 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -130,3 +130,4 @@
 | 2026-10-05 05:00 | AI 1 | 1076 | +1 | 1077 | CONVERSION-DX9EX-00382 post-1000 R34 compatibility registration fold: material SHA f189d27a76e161eb00f52107e668690a91380475에서 R34 compatibility Hook 등록을 R33로 이관하고 R34를 include-only final-TU shim으로 축소, exact-SHA DX9Ex Active 37229862542·Domain Isolation 37229862557·HUD Inspector 37229862561 및 N100 로컬 정책 검증 PASS, C0-C6·GitHub SSOT E002 retry/ATTEMPT 1/3 정합화 완료 (RUN_KEY=CONVERSION-DX9EX-00382-E002; material=f189d27a76e161eb00f52107e668690a91380475; final_state=9e89ca4607e0fa0672e17900aa1baa3e04f4d822) |
 | 2026-10-05 05:13 | AI 1 | 1077 | +1 | 1078 | CONVERSION-DX11-00383 R254 programmable indexed live IA reobservation readiness 구현, exact-SHA Backend Conversion Gate 37230629027 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00383; material=0371aed8d49aca454a49ea6697bbd727f5425633; final_state=70f4ee5435eb5c456b308a5f3267cd7c3df63794) |
 | 2026-10-05 05:28 | AI 1 | 1078 | +1 | 1079 | CONVERSION-DXVK-00384 F127 canonical 0x183A4A..0x183A8A exact control-flow boundary material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00384; material=6d8cee375ce4854c53213fb913da286dcc25721c; final_state=9acbbc71e2fb93cc1b17537b80f5a5f4b0f61590) |
+| 2026-10-05 05:34 | AI 1 | 1079 | +1 | 1080 | OutRun 한글화 C132: C130 반환 12519155의 source-effect fringe를 exact-source alpha/effect bbox 재측정으로 C 소규모 corrective rework, hosted worker machine 7/7 bbox·size/positive-margin 및 zero residue/outside/alpha/overlap/touch PASS, controller SOURCE/CLEAN/FINAL/row/raw visual PASS, queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화 및 commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C132-20261005-0508; candidate=14bc44a69775206c5771023408d0752ee925542fda48359c14c4e5b2f767119d; OutRun HEAD=e56edac2044243e1554cc77af8f28318d055540c) |

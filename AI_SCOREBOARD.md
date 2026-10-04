@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1031 | ACTIVE | 2026-10-04 18:20 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1032 | ACTIVE | 2026-10-04 18:25 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -70,3 +70,4 @@
 | 2026-10-04 17:46 | AI 1 | 1028 | +1 | 1029 | CONVERSION-DXVK-00362 F118 canonical 0x18394E..0x18398E raw provenance material commit, exact-SHA canonical + Backend Conversion Gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00362; material=1fa312c41cbafaccf750ea3e635b12f0f0807e67) |
 | 2026-10-04 18:08 | AI 1 | 1029 | +1 | 1030 | CONVERSION-DX11-00363 XR-native source-resolution A/B 정책 material commit, exact-SHA Backend Conversion Gate #1955 attempt 2·DX11 readiness smoke PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00363; material=e55de3a0ecb443f18a5e51330345070ac9352ff8) |
 | 2026-10-04 18:20 | AI 1 | 1030 | +1 | 1031 | OutRun 한글화 A Recovery08: C92 반환 FD90AA9 4개 시각 결함 재작업, hosted CPU worker PASS, 4/4 repaired bbox·25/25 unaffected layer exact·clean/final validator·readable/raw visual self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY08-20261004) |
+| 2026-10-04 18:25 | AI 1 | 1031 | +1 | 1032 | CONVERSION-DXVK-00364 F119 canonical 0x18394E..0x18398E exact control-flow proof, repair chain 후 exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00364; material=467937f9be4c350ea158f2b083e674372676d62d) |

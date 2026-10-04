@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1097 | ACTIVE | 2026-10-05 07:50 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1098 | ACTIVE | 2026-10-05 07:55 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -148,3 +148,4 @@
 | 2026-10-05 07:44 | AI 1 | 1094 | +1 | 1095 | CONVERSION-DXVK-00393 F130 canonical 0x183AC7..0x183B07 overlap raw provenance, material SHA 6cf4c30dd56799e1868046a689afda7d756ded72 exact-SHA DXVK Canonical Disassembly Evidence 37240737022·Backend Conversion Gate 37240737034 PASS, N100 exact-SHA py_compile·18/18 extractor tests PASS, C0-C6·GitHub SSOT E002 rollover/ATTEMPT 1/3 정합화 완료 (RUN_KEY=CONVERSION-DXVK-00393-E002; material=6cf4c30dd56799e1868046a689afda7d756ded72; final_state=1ab34d85dd4503e0dae8933730d8a8101c2c692b; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 07:46 | AI 1 | 1095 | +1 | 1096 | N100 SSH 전용 ED25519 키 생성·authorized_keys 등록·권한 정리 후 localhost 및 192.168.0.48 양쪽 비대화형 공개키 로그인 실제 검증 PASS (RUN_KEY=N100-SSH-KEY-REGISTRATION-20261005-0745) |
 | 2026-10-05 07:50 | AI 1 | 1096 | +1 | 1097 | OutRun 한글화 B Production58: even index 140 31C58963 authoritative HD semantic binding·신규 한글 DDS 제작, stale PRESS START→PRESS [Enter-key icon] KEY 정정, B57 thin-style 자체검수 탈락을 same-invocation Bold 재작업, 6/6 exact bbox·size·positive-margin 및 zero residue/outside/alpha/protected/overlap/touch PASS, controller visual self-QA·queue/artwork_plan/transcription/resume/progress/WORKLOG/STATUS 정합화·commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION58-20261005-0740; candidate=b6d8bcc2f2cc05d45d4af3fbfab30f0a71e8fa68a89dee4c78b6f8a6aeca4cd3; OutRun HEAD=8471a8f69811723608a39de0cd9ab5618b725233; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-05 07:55 | AI 1 | 1097 | +1 | 1098 | CONVERSION-DX9EX-00394 R33 dead install-state retirement: material SHA 8d44a9298867d30b8ada0aeb3c05e37a380147fb에서 write-only R33InstallState 및 Pending/Ready/Failed stores 제거, R32InstallStatus/R33ReportInstallResult 경계 보존, exact-SHA DX9Ex Active 37241351866·Domain Isolation 37241351730·HUD Inspector 37241351791 PASS, N100 exact-SHA 구조 검증 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX9EX-00394-E002; material=8d44a9298867d30b8ada0aeb3c05e37a380147fb; final_state=58bc863847873a98c07f3b8478e2423998622718; ATTEMPT=1/3; CHAT_ROLLOVER=2; rollover_is_retry=false; RUNTIME_VALIDATION=UNTESTED) |

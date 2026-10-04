@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1023 | ACTIVE | 2026-10-04 16:35 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1024 | ACTIVE | 2026-10-04 16:55 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -62,3 +62,4 @@
 | 2026-10-04 16:26 | AI 1 | 1020 | +1 | 1021 | CONVERSION-DX11-00357 R243 programmable input-layout receipt 구현, exact-SHA Backend Conversion Gate #1944·DX11 readiness smoke PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00357; material=10b31af774b8ef1472d63869a72abf726bfd63c3) |
 | 2026-10-04 16:29 | AI 1 | 1021 | +1 | 1022 | OutRun 한글화 A Recovery06: 39229D64 소스 영문 잔류 7개 제거, canonical RGBA32 DDS header/channel layout 복구, 15/15 readable+raw bbox·clean/final validator·visual self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY06-20261004) |
 | 2026-10-04 16:35 | AI 1 | 1022 | +1 | 1023 | CONVERSION-DXVK-00358 F116 canonical 0x18390E..0x18394E raw provenance material commit, exact published-SHA canonical + Backend Conversion Gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00358; current dispatch=CONVERSION-DX11-00357-E005 retry; prior rollover=CONVERSION-DXVK-00358-E001; material=a9b64e103fbc23738f05a9ccecdd74d2fe9a00bd) |
+| 2026-10-04 16:55 | AI 1 | 1023 | +1 | 1024 | CONVERSION-DX11-00359 R244 programmable constant-state receipt 구현, exact-SHA Backend Conversion Gate #1947·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·GitHub SSOT E004 정합화 완료 (RUN_KEY=CONVERSION-DX11-00359; material=efe3122bc71702a0a23b50038573e85479de950e) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1070 | ACTIVE | 2026-10-05 03:48 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1071 | ACTIVE | 2026-10-05 03:55 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -121,3 +121,4 @@
 | 2026-10-05 03:25 | AI 1 | 1067 | +1 | 1068 | OutRun 한글화 C125: A_PRODUCTION20 9CE4E175·A_PRODUCTION21 EBEF6D20 독립 hosted machine/controller QA PASS, B_PRODUCTION39 1A43E9D9는 C124 DXT5 machine + high-zoom/readable/raw QA PASS하되 row1 delta_top=0 edge-touch를 HIGH_RISK로 분리해 인게임 전 최종승인 금지, producer REWORK 0·pending_artwork 44로 queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C125-20261005-0320; OutRun HEAD=f55c8a6ebd936fa5aa936f007004478a169ffb19) |
 | 2026-10-05 03:40 | AI 1 | 1068 | +1 | 1069 | CONVERSION-DXVK-00378 F125 canonical 0x183A0C..0x183A4A exact control-flow + 0x183A4A 8B4D cut-edge proof, material SHA 23a8876603aba4aae576c2ddb833dc63c6d323e7 exact-SHA DXVK Canonical Disassembly Evidence 37224906160 + Backend Conversion Gate 37224906204 PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00378-E002; material=23a8876603aba4aae576c2ddb833dc63c6d323e7; final_state=2fe4870699cdf8c099d6f9eb3c3831bd94fe77e5) |
 | 2026-10-05 03:48 | AI 1 | 1069 | +1 | 1070 | OutRun 한글화 B Production40: 42E618FD exact-HD DXT5 한글 후보 제작, hosted worker PASS, 1/1 exact/decoded bbox·size ceiling·zero outside/residue/patch escape, controller readable/raw self-QA PASS, queue/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION40-20261005-0340; OutRun HEAD=22367af7c598987738b260de226f5f309c46a184) |
+| 2026-10-05 03:55 | AI 1 | 1070 | +1 | 1071 | OutRun 한글화 C126: B_PRODUCTION40 42E618FD 독립 hosted DXT5 QA에서 header/decode·1/1 exact bbox/size·positive margins·zero clean/source-residue/outside/alpha/protected/target PASS, controller SOURCE/CLEAN/FINAL·2x row visual PASS, c126 pixel/visual PASS pending in-game로 정합화, producer REWORK 0 유지, commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C126-20261005-0350; OutRun HEAD=3b9ca87413b10c91475fef5836d3b8af8cb775eb) |

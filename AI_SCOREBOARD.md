@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1037 | ACTIVE | 2026-10-04 19:03 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1038 | ACTIVE | 2026-10-04 19:18 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -76,3 +76,4 @@
 | 2026-10-04 18:52 | AI 1 | 1034 | +1 | 1035 | CONVERSION-DXVK-00366 F120 canonical 0x18398E..0x1839CE raw provenance material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00366; material=c6ee6cf465b8e1dda47f70a142ec57112b49e514) |
 | 2026-10-04 19:03 | AI 1 | 1035 | +1 | 1036 | OutRun 한글화 A Production12: 43B07A77 authoritative 2048x256 HD 후보 제작·hosted worker PASS·1/1 exact bbox/clean/final/visual self-QA PASS, A11 2EA557B4 DXT5 exact-bbox 불가 조건 fail-closed 기록, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION12-20261004) |
 | 2026-10-04 19:03 | AI 1 | 1036 | +1 | 1037 | CONVERSION-DX11-00367 R247 programmable pipeline-object binding receipt 구현, exact-SHA Backend Conversion Gate #37193568418·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00367; material=f2bd299a1d40b276cb8d4b213415f6e57f6aed76; final_state=ac5eec19a3856246b6a427a3c1e171f31f8d3339) |
+| 2026-10-04 19:18 | AI 1 | 1037 | +1 | 1038 | CONVERSION-DXVK-00368 F121 canonical 0x18398E..0x1839CD exact control-flow + explicit 0x1839CD cut-edge proof, repair 후 exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00368; material=334a7537fdd86cfbddeb6f85aaccb6956c7abb42) |

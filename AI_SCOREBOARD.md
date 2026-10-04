@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1072 | ACTIVE | 2026-10-05 03:58 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1073 | ACTIVE | 2026-10-05 04:24 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -123,3 +123,4 @@
 | 2026-10-05 03:48 | AI 1 | 1069 | +1 | 1070 | OutRun 한글화 B Production40: 42E618FD exact-HD DXT5 한글 후보 제작, hosted worker PASS, 1/1 exact/decoded bbox·size ceiling·zero outside/residue/patch escape, controller readable/raw self-QA PASS, queue/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION40-20261005-0340; OutRun HEAD=22367af7c598987738b260de226f5f309c46a184) |
 | 2026-10-05 03:55 | AI 1 | 1070 | +1 | 1071 | OutRun 한글화 C126: B_PRODUCTION40 42E618FD 독립 hosted DXT5 QA에서 header/decode·1/1 exact bbox/size·positive margins·zero clean/source-residue/outside/alpha/protected/target PASS, controller SOURCE/CLEAN/FINAL·2x row visual PASS, c126 pixel/visual PASS pending in-game로 정합화, producer REWORK 0 유지, commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C126-20261005-0350; OutRun HEAD=3b9ca87413b10c91475fef5836d3b8af8cb775eb) |
 | 2026-10-05 03:58 | AI 1 | 1071 | +1 | 1072 | CONVERSION-DX9EX-00379 post-1000 R34 worker ownership fold: R34 polling worker 제거, initial replay-health/terminal compatibility publication을 R33로 일원화, descendant verifier repair 후 exact-SHA DX9Ex Active 37225909401·Domain Isolation 37225909385 PASS, C0-C6·Issue #14·GitHub SSOT 정합화 완료 (RUN_KEY=CONVERSION-DX9EX-00379-E003; source=a641273826b164cb49b17dac11a6d2bc3c5af3d9; result=9ec83f6b1269e3438e6430fa6a6efb2076103182; final_state=3d7ef52351719ac14920eac94058efb4575874c1) |
+| 2026-10-05 04:24 | AI 1 | 1072 | +1 | 1073 | OutRun 한글화 B Production43: D41D0B1 exact-HD DXT5 후보 제작, 잘못된 포맷 가정 fail-closed 및 B42 1줄 시각결함을 같은 실행에서 2줄 원문구조로 재작업, 2/2 exact/decoded bbox·size·zero overlap/outside/residue PASS, readable/raw self-QA·상태 정합화·commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION43-20261005-0410; OutRun HEAD=26f47dd17a0cd35539c39c42575c6ebc60c7573c) |

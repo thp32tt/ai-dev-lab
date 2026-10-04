@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1026 | ACTIVE | 2026-10-04 17:09 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1027 | ACTIVE | 2026-10-04 17:12 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -65,3 +65,4 @@
 | 2026-10-04 16:55 | AI 1 | 1023 | +1 | 1024 | CONVERSION-DX11-00359 R244 programmable constant-state receipt 구현, exact-SHA Backend Conversion Gate #1947·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·GitHub SSOT E004 정합화 완료 (RUN_KEY=CONVERSION-DX11-00359; material=efe3122bc71702a0a23b50038573e85479de950e) |
 | 2026-10-04 16:55 | AI 1 | 1024 | +1 | 1025 | OutRun 한글화 B Recovery06: AA04D779 신규 exact-HD 한글 후보 제작, hosted CPU worker PASS, 21/21 bbox·clean/final mask·readable/raw self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-RECOVERY06-20261004) |
 | 2026-10-04 17:09 | AI 1 | 1025 | +1 | 1026 | CONVERSION-DXVK-00360 F117 continuation_92 exact control-flow decode material commit, exact-SHA canonical + Backend Conversion Gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00360-E006; current dispatch=CONVERSION-DX11-00359-E006 rollover; prior concurrent rollover=CONVERSION-DXVK-00360-E004; material=0cccce4b7191fecd1967a88dbaae7b4cbdda52d9) |
+| 2026-10-04 17:12 | AI 1 | 1026 | +1 | 1027 | OutRun 한글화 C90: AA04D779·19CEDB9·2DA43E41·39229D64 hosted cross-lane final QA 4/4 정적 PASS, C87/C88 반환 결함 해소 확인, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C90-20261004-1650) |

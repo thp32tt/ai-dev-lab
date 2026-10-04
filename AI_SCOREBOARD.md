@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1029 | ACTIVE | 2026-10-04 17:46 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1030 | ACTIVE | 2026-10-04 18:08 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -68,3 +68,4 @@
 | 2026-10-04 17:12 | AI 1 | 1026 | +1 | 1027 | OutRun 한글화 C90: AA04D779·19CEDB9·2DA43E41·39229D64 hosted cross-lane final QA 4/4 정적 PASS, C87/C88 반환 결함 해소 확인, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C90-20261004-1650) |
 | 2026-10-04 17:34 | AI 1 | 1027 | +1 | 1028 | CONVERSION-DX11-00361 R245 programmable constant-payload upload receipt 구현, exact-SHA Backend Conversion Gate #1950·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00361-E008; material=fe920d759b347a0a9c0933b7cdd2d65e79d77da2) |
 | 2026-10-04 17:46 | AI 1 | 1028 | +1 | 1029 | CONVERSION-DXVK-00362 F118 canonical 0x18394E..0x18398E raw provenance material commit, exact-SHA canonical + Backend Conversion Gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00362; material=1fa312c41cbafaccf750ea3e635b12f0f0807e67) |
+| 2026-10-04 18:08 | AI 1 | 1029 | +1 | 1030 | CONVERSION-DX11-00363 XR-native source-resolution A/B 정책 material commit, exact-SHA Backend Conversion Gate #1955 attempt 2·DX11 readiness smoke PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00363; material=e55de3a0ecb443f18a5e51330345070ac9352ff8) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1005 | ACTIVE | 2026-10-04 08:38 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1006 | ACTIVE | 2026-10-04 09:08 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -40,3 +40,4 @@
 | 2026-10-04 08:27 | AI 2 | 미입력 | 0 | 1003 | 사용자에게 마지막으로 확정된 AI 2 누적 점수 1003점을 동기화 |
 | 2026-10-04 08:29 | AI 2 | 1003 | +1 | 1004 | GitHub 연결·권한·main HEAD·점수판 동기화 확인 및 일일 자동 갱신 설정 완료 |
 | 2026-10-04 08:38 | AI 1 | 1004 | +1 | 1005 | CONVERSION-DX11-00329 롤오버 복구, exact-SHA 게이트 확인, authoritative dispatch 보정 및 GitHub SSOT 검증 완료 |
+| 2026-10-04 09:08 | AI 1 | 1005 | +1 | 1006 | CONVERSION-DX11-00331 R229 구현, exact-SHA Gate PASS, C0-C6 및 GitHub SSOT 기록 완료 |

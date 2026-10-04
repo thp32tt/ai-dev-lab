@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1065 | ACTIVE | 2026-10-05 02:50 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1066 | ACTIVE | 2026-10-05 03:02 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -116,3 +116,4 @@
 | 2026-10-05 02:32 | AI 1 | 1062 | +1 | 1063 | CONVERSION-DX11-00374 R251 programmable non-indexed direct-dispatch argument/range readiness 구현, material SHA 518db8efe987af98521ef5d66e8390859c228e0c exact-SHA Backend Conversion Gate #37220153246 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·GitHub SSOT 정합화 완료 (RUN_KEY=CONVERSION-DX11-00374-E001) |
 | 2026-10-05 02:48 | AI 1 | 1063 | +1 | 1064 | OutRun 한글화 A Production20/21: 9CE4E175·EBEF6D20 신규 exact-HD 한글 DDS 2자산 제작, same-run visual 결함(영문 fringe·한글 weight) 재작업, exact bbox/size·clean/final·zero outside/protected/overlap·controller visual self-QA PASS, queue/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION20-21-20261005-0230; OutRun HEAD=dda14e9ab8a6068b8f3fc67fde581a7a9640e904) |
 | 2026-10-05 02:50 | AI 1 | 1064 | +1 | 1065 | CONVERSION-DXVK-00375 F124 canonical 0x183A0C..0x183A4C raw overlap provenance material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00375-E001; material=d6a8841d62e3d4fd9d851a047243a84ca83aae7c; final_state=959fd94ff891792b6b98951562a09fbb669a522c) |
+| 2026-10-05 03:02 | AI 1 | 1065 | +1 | 1066 | CONVERSION-DX9EX-00376 post-1000 R34 readiness ownership cleanup: duplicate R34 InstallState 제거, R34 physical hook ceiling 0 고정, exact-SHA DX9Ex Active 37222316846·Domain Isolation 37222316862·HUD Inspector 37222316810 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX9EX-00376-E003; material=d0991bfc2966cbc353d5c25c6bc0d72a4eb1ff04; final_state=b327c4232d910b6b61cad01051425875250e5689) |

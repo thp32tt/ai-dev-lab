@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1009 | ACTIVE | 2026-10-04 14:31 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1010 | ACTIVE | 2026-10-04 14:49 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -48,3 +48,4 @@
 | 2026-10-04 09:39 | AI 1 | 1006 | +1 | 1007 | 활성 자동작업 2개에 실행별 점수판 직접 갱신·RUN_KEY 중복방지 적용, 일일 점수판 작업을 감사 전용으로 수정 |
 | 2026-10-04 14:00 | AI 1 | 1007 | +1 | 1008 | CONVERSION-DXVK-00350 F111 exact-decode, exact-SHA 두 핵심 게이트 PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00350-E002) |
 | 2026-10-04 14:31 | AI 1 | 1008 | +1 | 1009 | CONVERSION-DXVK-00352 F112 canonical provenance, exact-SHA 두 핵심 게이트 PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00352-E002; material origin=CONVERSION-DX11-00351-E001) |
+| 2026-10-04 14:49 | AI 1 | 1009 | +1 | 1010 | OutRun K4 한글 표시 런타임 포맷 안전화·중복 문자열 보호·Win32 Release CI 복구/빌드 PASS·GitHub SSOT 기록 완료 (RUN_KEY=OUTRUN-K4-RUNTIME-20261004) |

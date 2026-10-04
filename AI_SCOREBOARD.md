@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1020 | ACTIVE | 2026-10-04 16:17 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1021 | ACTIVE | 2026-10-04 16:26 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -59,3 +59,4 @@
 | 2026-10-04 15:45 | AI 1 | 1017 | +1 | 1018 | OutRun 한글화 404 경로 수정: 잘못된 progress 경로 교정, stale approved_dds_root 해제 및 historical 보존, 필수 시작 경로 8개 원격 재검증 완료 (RUN_KEY=OUTRUN-KOR-404-FIX-20261004) |
 | 2026-10-04 16:11 | AI 1 | 1018 | +1 | 1019 | OutRun 한글화 CPU 오프로드: N100 orchestration-first 정책, GitHub-hosted Python worker 구축, 4096x4096 Pillow/NumPy 스모크 PASS 및 자동 branch write-back 검증 완료 (RUN_KEY=OUTRUN-KOR-CPU-OFFLOAD-20261004) |
 | 2026-10-04 16:17 | AI 1 | 1019 | +1 | 1020 | OutRun 한글화 C89: 568D3696 C88 clean-plate protected 856px 결함 corrective rework, mask overlap 856→0, clean/final validator PASS, corrected pipeline→현 후보 decoded 0px diff 재현, 상태/QA SSOT 커밋·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C89-20261004-1600) |
+| 2026-10-04 16:26 | AI 1 | 1020 | +1 | 1021 | CONVERSION-DX11-00357 R243 programmable input-layout receipt 구현, exact-SHA Backend Conversion Gate #1944·DX11 readiness smoke PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00357; material=10b31af774b8ef1472d63869a72abf726bfd63c3) |

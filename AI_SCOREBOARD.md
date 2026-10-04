@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1021 | ACTIVE | 2026-10-04 16:26 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1022 | ACTIVE | 2026-10-04 16:29 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -60,3 +60,4 @@
 | 2026-10-04 16:11 | AI 1 | 1018 | +1 | 1019 | OutRun 한글화 CPU 오프로드: N100 orchestration-first 정책, GitHub-hosted Python worker 구축, 4096x4096 Pillow/NumPy 스모크 PASS 및 자동 branch write-back 검증 완료 (RUN_KEY=OUTRUN-KOR-CPU-OFFLOAD-20261004) |
 | 2026-10-04 16:17 | AI 1 | 1019 | +1 | 1020 | OutRun 한글화 C89: 568D3696 C88 clean-plate protected 856px 결함 corrective rework, mask overlap 856→0, clean/final validator PASS, corrected pipeline→현 후보 decoded 0px diff 재현, 상태/QA SSOT 커밋·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C89-20261004-1600) |
 | 2026-10-04 16:26 | AI 1 | 1020 | +1 | 1021 | CONVERSION-DX11-00357 R243 programmable input-layout receipt 구현, exact-SHA Backend Conversion Gate #1944·DX11 readiness smoke PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00357; material=10b31af774b8ef1472d63869a72abf726bfd63c3) |
+| 2026-10-04 16:29 | AI 1 | 1021 | +1 | 1022 | OutRun 한글화 A Recovery06: 39229D64 소스 영문 잔류 7개 제거, canonical RGBA32 DDS header/channel layout 복구, 15/15 readable+raw bbox·clean/final validator·visual self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY06-20261004) |

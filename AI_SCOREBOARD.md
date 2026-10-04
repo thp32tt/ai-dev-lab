@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1047 | ACTIVE | 2026-10-05 00:04 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1048 | ACTIVE | 2026-10-05 00:13 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -98,3 +98,4 @@
 | 2026-10-04 23:29 | AI 1 | 1044 | +1 | 1045 | OutRun 한글화 C108: 39229D64·5B65E08C 최종 정적 PASS, 788CE557 시각 source-residue 및 53CE39D5 clean source-residue 242px REWORK 반환, queue/resume/progress/WORKLOG 정합화, GitHub 원격 commit/push 및 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C108-20261004-2250; OutRun HEAD=5651f951e5a6405539d87c5c2a68e38192f45b2f) |
 | 2026-10-04 23:59 | AI 1 | 1045 | +1 | 1046 | OutRun 한글화 A Recovery10: C_OVERLAP05 반환 C075FB49 dense-top source residue/overlap 재구성, hosted worker run 37210866034 PASS, 17/17 bbox·size ceiling·positive margin, clean/final validator, zero residue/overlap/protected-change, controller visual self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY10-C075FB49-20261004) |
 | 2026-10-05 00:04 | AI 1 | 1046 | +1 | 1047 | OutRun 한글화 C109: 미완료 C 승인 5자산 hosted 독립 QA 및 controller 시각 QA 수행, AD720950·2B0863D6 최종 정적 PASS, BF3EE5C6·C075FB49·FD90AA9 source-style slant/italic 불일치 REWORK 반환, queue/resume/progress/WORKLOG 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C109-20261004-2349; OutRun HEAD=c79d6963a7b39e0983c6752ee846997dc070dcef) |
+| 2026-10-05 00:13 | AI 1 | 1047 | +1 | 1048 | 사용자 HMD 피드백/로그 기반 VR 런타임 교정: DX11 portrait 2496x2688 game-source 회귀를 소스에서 fail-safe Desktop aspect로 차단하고 PC Fast/Backend/OpenXR 빌드 PASS, DX9Ex NONMASKABLE AA를 명시 4x→2x MSAA 정책으로 수정·Windows compile repair 후 PC Fast 및 DX9Ex Active Validation 전 단계 PASS, 기존 DXVK 테스트 ZIP의 SHA256 manifest 불일치 패키징 오류를 확인해 pristine core+별도 launcher 교정 패키지로 재구성/무결성 검증 완료 (RUN_KEY=OUTRUN-VR-RUNTIME-FEEDBACK-FIX-20261005-0013) |

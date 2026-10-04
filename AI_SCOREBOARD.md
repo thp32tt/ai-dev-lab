@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1017 | ACTIVE | 2026-10-04 15:43 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1018 | ACTIVE | 2026-10-04 15:45 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -56,3 +56,4 @@
 | 2026-10-04 15:37 | AI 1 | 1014 | +1 | 1015 | OutRun 한글화 B Recovery03: 2DA43E41 C85 실패 7개 clean-plate/native 재작업, 11/11 bbox·mask·visual self-QA PASS, 상태/QA 커밋·push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-RECOVERY03-20261004) |
 | 2026-10-04 15:39 | AI 1 | 1015 | +1 | 1016 | OutRun 한글화 작업 중 404 경로 감사: 자동화 필수 경로 및 상태/작업로그 참조를 원격 HEAD에서 교차검증하여 실제 404 2건과 정상 경로를 구분·정리 완료 (RUN_KEY=OUTRUN-KOR-404-AUDIT-20261004) |
 | 2026-10-04 15:42 | AI 1 | 1016 | +1 | 1017 | CONVERSION-DXVK-00356 F114 canonical overlap provenance, transport repair, exact-SHA 두 핵심 gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00356; current rollover=E004; material origin=CONVERSION-DX11-00355-E011) |
+| 2026-10-04 15:45 | AI 1 | 1017 | +1 | 1018 | OutRun 한글화 404 경로 수정: 잘못된 progress 경로 교정, stale approved_dds_root 해제 및 historical 보존, 필수 시작 경로 8개 원격 재검증 완료 (RUN_KEY=OUTRUN-KOR-404-FIX-20261004) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1084 | ACTIVE | 2026-10-05 06:11 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1085 | ACTIVE | 2026-10-05 06:20 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -135,3 +135,4 @@
 | 2026-10-05 05:55 | AI 1 | 1081 | +1 | 1082 | CONVERSION-DX11-00386 R255 final dormant programmable indexed pre-Draw receipt 구현, material SHA 6c20bd422b8ff00c031b1a1ff5cb60ec6c1a8533 exact-SHA Backend Conversion Gate 37233244860 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00386; final_state=54c2393d07f587144549f95d5d527ab1e1084cdd) |
 | 2026-10-05 06:03 | AI 1 | 1082 | +1 | 1083 | OutRun 한글화 C133: 최신 B46 1762489B를 독립 QA하고 mirror_y/semantic placement 확인 후, OUTRUN2SP COURSE 행의 오검출 slant 0.32를 source shared-upright style 0.00으로 C 소규모 corrective rework. hosted C machine 5/5 bbox·size/positive-margin 및 zero residue/outside/alpha/protected/overlap/touch PASS, controller SOURCE/B46/C133/full/raw visual PASS, queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화 및 commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C133-20261005-0535; candidate=324f677c4afc482ef3dbcf0cd226514a68847ee872d1eeda75b9311a9cb7a871; OutRun HEAD=d1e1c9ca62d65fdb7b815cbb19b3d2136a965909) |
 | 2026-10-05 06:06 | AI 1 | 1083 | +1 | 1084 | CONVERSION-DXVK-00387 F128 canonical 0x183A8A..0x183ACA raw provenance capture 구현, validation-bearing SHA 67ad4cb6539fa3dfde0fd348f6742f85015062b5 exact-SHA DXVK Canonical Disassembly Evidence 37234273970·Backend Conversion Gate 37234273980 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00387; initial=a492e26b4dbb50a57810c59839e592ee789d3a58; final_state=2eb123161bc9d65fde91a62989d1967783a7c556) |
+| 2026-10-05 06:20 | AI 1 | 1084 | +1 | 1085 | CONVERSION-DX9EX-00388 post-1000 R34 source-shim retirement: material SHA d45764f10c0810b9d815ed1b8748ec14f3366477에서 zero-owner stereo_renderer_r34.cpp 삭제, cmkr/generated CMake·CI source graph·구조 verifier를 R33 final-owner/retired-R34 계약으로 정리. exact-SHA DX9Ex Active 37235159510·Domain Isolation 37235159354·HUD Inspector 37235159352 및 N100 정적 검증 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX9EX-00388; material=d45764f10c0810b9d815ed1b8748ec14f3366477; final_state=8ad90c49ba0abdbed94aa885a897248633d50fc3) |

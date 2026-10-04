@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1042 | ACTIVE | 2026-10-04 20:23 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1032 | ACTIVE | 2026-10-04 20:23 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -81,3 +81,4 @@
 | 2026-10-04 19:44 | AI 1 | 1039 | +1 | 1040 | OutRun 한글화 B Recovery08: CBF8ECBF exact-HD 후보의 미완료 producer self-QA/상태 정합화 완료, 7/7 exact bbox·원문 크기 ceiling·clean/final mask·readable/white/raw/row-contact PASS, C99 same-SHA machine PASS 확인, 상태/QA SSOT commit/push 및 원격 ancestor/row 검증 완료 (RUN_KEY=OUTRUN-KOR-B-RECOVERY08-20261004) |
 | 2026-10-04 19:55 | AI 1 | 1040 | +1 | 1041 | OutRun 한글화 A Production13: AD720950 authoritative 4096x1024 HD 키보드 라벨 후보 제작, hosted worker PASS, 14/14 exact bbox·size ceiling·positive margin·clean/final validator·visual self-QA PASS, Shift/비대상 글리프 보존, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION13-20261004) |
 | 2026-10-04 20:23 | AI 1 | 1041 | +1 | 1042 | OutRun 한글화 A 실행: Production14 BF3EE5C6(13개 스프라이트) + Production15 2B0863D6(10개 라벨) authoritative HD 후보 제작, exact bbox/size ceiling/clean-final/visual self-QA PASS, CLASS 잔류 같은 실행 내 재작업, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION14-15-20261004-2000) |
+| 2026-10-04 20:23 | AI 1 | 1042 | -10 | 1032 | GitHub/원격 작업 도구가 실제로 연결되어 있는데 확인 없이 “연결되어 있지 않다”고 잘못 단정함. 사용자 명시 벌점 반영 (RUN_KEY=USER-PENALTY-GITHUB-CONNECTION-20261004-2023) |

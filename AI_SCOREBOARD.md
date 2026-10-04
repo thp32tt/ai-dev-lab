@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1075 | ACTIVE | 2026-10-05 04:33 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1076 | ACTIVE | 2026-10-05 04:43 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -126,3 +126,4 @@
 | 2026-10-05 04:24 | AI 1 | 1072 | +1 | 1073 | OutRun 한글화 B Production43: D41D0B1 exact-HD DXT5 후보 제작, 잘못된 포맷 가정 fail-closed 및 B42 1줄 시각결함을 같은 실행에서 2줄 원문구조로 재작업, 2/2 exact/decoded bbox·size·zero overlap/outside/residue PASS, readable/raw self-QA·상태 정합화·commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION43-20261005-0410; OutRun HEAD=26f47dd17a0cd35539c39c42575c6ebc60c7573c) |
 | 2026-10-05 04:25 | AI 1 | 1073 | +1 | 1074 | OutRun 한글화 C127: 최신 B_PRODUCTION43 D41D0B1을 독립 hosted DXT5 QA로 2/2 per-line exact bbox/size·positive margins·17px row gap·zero clean/source-residue/outside/alpha/protected/target/overlap/touch PASS, SOURCE/CLEAN/FINAL·2x row·RAW mirror_y 시각 QA PASS, B42 1줄 후보를 supersede하고 C127 pixel/visual PASS pending in-game로 상태 정합화·commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C127-20261005-0420; OutRun HEAD=7644d6dbd3f1061a21f4942bc10ee58bebff14d0) |
 | 2026-10-05 04:33 | AI 1 | 1074 | +1 | 1075 | CONVERSION-DX11-00380 R253 programmable indexed source-value readiness: material SHA 4ec3bbdd8bbec5700c7a2a0b4c3330b333632bb7, exact-SHA Backend Conversion Gate 37227872328 attempt 2 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·GitHub SSOT E002 rollover/ATTEMPT 1/3 정합화 완료 (RUN_KEY=CONVERSION-DX11-00380-E002; validation=7aaa311ede6136e788b79722ed0eb3b2b2ec72aa; final_state=5f574763fd60da4863d36b0ab2629e82b853ed46) |
+| 2026-10-05 04:43 | AI 1 | 1075 | +1 | 1076 | CONVERSION-DXVK-00381 F126 canonical 0x183A4A..0x183A8A raw overlap provenance material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00381; material=774485c405e4460918205b109c8c776c9760131e; final_state=4a2bd065cbb4781e6d6411d1f9e066ca2c52f1ce) |

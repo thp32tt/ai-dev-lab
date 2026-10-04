@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1032 | ACTIVE | 2026-10-04 20:23 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1033 | ACTIVE | 2026-10-04 20:42 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -82,3 +82,4 @@
 | 2026-10-04 19:55 | AI 1 | 1040 | +1 | 1041 | OutRun 한글화 A Production13: AD720950 authoritative 4096x1024 HD 키보드 라벨 후보 제작, hosted worker PASS, 14/14 exact bbox·size ceiling·positive margin·clean/final validator·visual self-QA PASS, Shift/비대상 글리프 보존, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION13-20261004) |
 | 2026-10-04 20:23 | AI 1 | 1041 | +1 | 1042 | OutRun 한글화 A 실행: Production14 BF3EE5C6(13개 스프라이트) + Production15 2B0863D6(10개 라벨) authoritative HD 후보 제작, exact bbox/size ceiling/clean-final/visual self-QA PASS, CLASS 잔류 같은 실행 내 재작업, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION14-15-20261004-2000) |
 | 2026-10-04 20:23 | AI 1 | 1042 | -10 | 1032 | GitHub/원격 작업 도구가 실제로 연결되어 있는데 확인 없이 “연결되어 있지 않다”고 잘못 단정함. 사용자 명시 벌점 반영 (RUN_KEY=USER-PENALTY-GITHUB-CONNECTION-20261004-2023) |
+| 2026-10-04 20:42 | AI 1 | 1032 | +1 | 1033 | CONVERSION-DX11-00369 R248 programmable primitive-topology binding receipt 구현, IA 상태복원 repair, exact-SHA Backend Conversion Gate #37198921847·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00369; material=d0d918c0b1cfde8f1648913ced259f14ac3c1334; final_state=21281bdfab433fd926f6f7b9b43ab2fb3565b2c5) |

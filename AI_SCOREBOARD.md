@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1054 | ACTIVE | 2026-10-05 01:02 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1055 | ACTIVE | 2026-10-05 01:09 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -105,3 +105,4 @@
 | 2026-10-05 00:50 | AI 1 | 1051 | +1 | 1052 | DX9Ex Sumo UI replay semantic 보존 수정 및 테스트빌드 확정: material SHA 36f0f3949bd18993cba3f46585659874e3d7a89f에서 explicit RenderScope를 replay fresh SpriteNode에 복원, VR_PROBLEM_HISTORY 기록, DX9Ex Active Validation 37214068592·Domain Isolation 37214068427·HUD Inspector 37214068417 전부 SUCCESS, runtime ZIP SHA256 337dc279f58cb66056646a9edc127a343c362b2bc3222eeb48020555d5f70948, Issue #13 BUILD_VERIFIED 기록 완료 (RUN_KEY=OUTRUN-DX9EX-SUMO-SEMANTIC-TESTBUILD-20261005-0050) |
 | 2026-10-05 00:52 | AI 1 | 1052 | +1 | 1053 | OutRun DX11 HUD 크기/성능 런타임 교정: 사용자 c82db0cd 세션에서 XR 90Hz 대비 평균 ~60.94Hz, R28 lower-Present 최대 ~30-37ms·약 1.4k-2.75k draws/Present 확인. HUD 균일 scale 1.00→0.55 복원, per-eye aspect contain 제거 유지, CORRECTNESS의 HUD Inspector·shader fingerprint·DX11 census 진단 오버헤드 기본 비활성화, 회귀 정책 PASS, exact-SHA PC Fast Build 37214520926 SUCCESS 및 Issue #14 기록 완료 (RUN_KEY=OUTRUN-DX11-HUD-SIZE-PERF-20261005-0052; material=b81c2281fc9b25e2c3d437baa1131714bf3c39ac) |
 | 2026-10-05 01:02 | AI 1 | 1053 | +1 | 1054 | OutRun 한글화 C111: BF3EE5C6·C075FB49 독립 machine/controller 최종 QA PASS, C109 source-slant 반환 2건 해소, queue/resume/progress/WORKLOG 정합화, commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C111-20261005-0050; OutRun HEAD=dd479022a3554baff84e5ca8ac53f2ab7dff109b) |
+| 2026-10-05 01:09 | AI 1 | 1054 | +1 | 1055 | DX9Ex 최신 CURRENT_FOCUS 런타임 검증에서 explicit MSAA 코드가 CORRECTNESS 기본 VSync 때문에 미실행되는 원인을 확인하고, native d3d9 reference에서는 VSync 기본값과 무관하게 AA hook이 설치되도록 수정. material SHA feddc3615c3bfbc8ba178c2930686bac70264077, PC Fast Build 37215469422 SUCCESS, 최신 36f0 Sumo UI semantic replay fix 포함 패키지 확보 (RUN_KEY=OUTRUN-DX9EX-MSAA-ACTIVATION-FIX-20261005-0109) |

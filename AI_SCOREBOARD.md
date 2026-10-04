@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1081 | ACTIVE | 2026-10-05 05:45 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1082 | ACTIVE | 2026-10-05 05:55 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -132,3 +132,4 @@
 | 2026-10-05 05:28 | AI 1 | 1078 | +1 | 1079 | CONVERSION-DXVK-00384 F127 canonical 0x183A4A..0x183A8A exact control-flow boundary material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00384; material=6d8cee375ce4854c53213fb913da286dcc25721c; final_state=9acbbc71e2fb93cc1b17537b80f5a5f4b0f61590) |
 | 2026-10-05 05:34 | AI 1 | 1079 | +1 | 1080 | OutRun 한글화 C132: C130 반환 12519155의 source-effect fringe를 exact-source alpha/effect bbox 재측정으로 C 소규모 corrective rework, hosted worker machine 7/7 bbox·size/positive-margin 및 zero residue/outside/alpha/overlap/touch PASS, controller SOURCE/CLEAN/FINAL/row/raw visual PASS, queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화 및 commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C132-20261005-0508; candidate=14bc44a69775206c5771023408d0752ee925542fda48359c14c4e5b2f767119d; OutRun HEAD=e56edac2044243e1554cc77af8f28318d055540c) |
 | 2026-10-05 05:45 | AI 1 | 1080 | +1 | 1081 | CONVERSION-DX9EX-00385 post-1000 R34 compile-owner fold: 기존 753d8d8f material을 롤오버에서 중복 구현하지 않고 복구한 뒤 cmkr SSOT인 cmake.toml의 R34 owner 회귀 위험을 발견·보정, material SHA 87fa5d9df5c8588082dbb848b4a9e02ad4719efe에서 R33 최종 owner를 생성 원본/생성 CMake 양쪽에 고정하고 verifier 가드 추가, exact-SHA DX9Ex Active 37232918277·Domain Isolation 37232918278·HUD Inspector 37232918286 및 N100 로컬 정책 검증 PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX9EX-00385-E002; material=87fa5d9df5c8588082dbb848b4a9e02ad4719efe; final_state=be0b0e857722504894e36fafbe53b47d5c33d078) |
+| 2026-10-05 05:55 | AI 1 | 1081 | +1 | 1082 | CONVERSION-DX11-00386 R255 final dormant programmable indexed pre-Draw receipt 구현, material SHA 6c20bd422b8ff00c031b1a1ff5cb60ec6c1a8533 exact-SHA Backend Conversion Gate 37233244860 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00386; final_state=54c2393d07f587144549f95d5d527ab1e1084cdd) |

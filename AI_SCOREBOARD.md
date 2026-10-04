@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1045 | ACTIVE | 2026-10-04 23:29 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1046 | ACTIVE | 2026-10-04 23:59 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -96,3 +96,4 @@
 | 2026-10-04 23:04 | AI 1 | 1042 | +1 | 1043 | OutRun 한글화 A Recovery09: C_OVERLAP05 반환 39229D64를 authoritative 4096x4096 HD에서 전면 clean 재구성·16개 발생(중복 SPECIAL REQUEST 포함) source-family 한글 재렌더, 16/16 exact bbox·size ceiling·positive margin, source residue 0, localized overlap 0, clean/final/visual self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY09-20261004-2300) |
 | 2026-10-04 23:12 | AI 1 | 1043 | +1 | 1044 | DX11 XR_NATIVE_2496X2688·DX9Ex CURRENT_FOCUS·DXVK 3.1.1 dxvk-safe를 최신 성공 Actions 산출물에서 각각 독립 테스트 ZIP으로 재구성, 전용 실행 경로 고정·압축 무결성·백엔드/해상도 배선 검증 완료 (RUN_KEY=OUTRUN-SEPARATE-TEST-PACKAGES-DX11-DX9EX-DXVK-20261004-2312) |
 | 2026-10-04 23:29 | AI 1 | 1044 | +1 | 1045 | OutRun 한글화 C108: 39229D64·5B65E08C 최종 정적 PASS, 788CE557 시각 source-residue 및 53CE39D5 clean source-residue 242px REWORK 반환, queue/resume/progress/WORKLOG 정합화, GitHub 원격 commit/push 및 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C108-20261004-2250; OutRun HEAD=5651f951e5a6405539d87c5c2a68e38192f45b2f) |
+| 2026-10-04 23:59 | AI 1 | 1045 | +1 | 1046 | OutRun 한글화 A Recovery10: C_OVERLAP05 반환 C075FB49 dense-top source residue/overlap 재구성, hosted worker run 37210866034 PASS, 17/17 bbox·size ceiling·positive margin, clean/final validator, zero residue/overlap/protected-change, controller visual self-QA PASS, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-RECOVERY10-C075FB49-20261004) |

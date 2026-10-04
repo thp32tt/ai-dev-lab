@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1067 | ACTIVE | 2026-10-05 03:23 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1068 | ACTIVE | 2026-10-05 03:25 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -118,3 +118,4 @@
 | 2026-10-05 02:50 | AI 1 | 1064 | +1 | 1065 | CONVERSION-DXVK-00375 F124 canonical 0x183A0C..0x183A4C raw overlap provenance material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00375-E001; material=d6a8841d62e3d4fd9d851a047243a84ca83aae7c; final_state=959fd94ff891792b6b98951562a09fbb669a522c) |
 | 2026-10-05 03:02 | AI 1 | 1065 | +1 | 1066 | CONVERSION-DX9EX-00376 post-1000 R34 readiness ownership cleanup: duplicate R34 InstallState 제거, R34 physical hook ceiling 0 고정, exact-SHA DX9Ex Active 37222316846·Domain Isolation 37222316862·HUD Inspector 37222316810 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX9EX-00376-E003; material=d0991bfc2966cbc353d5c25c6bc0d72a4eb1ff04; final_state=b327c4232d910b6b61cad01051425875250e5689) |
 | 2026-10-05 03:23 | AI 1 | 1066 | +1 | 1067 | CONVERSION-DX11-00377 R252 programmable indexed dispatch/source-range readiness 구현, exact-SHA Backend Conversion Gate #37223558242·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00375-E003; material=ebc894fb2e23245a5370b2876990126c4dd07d5c; final_state=c67144b511c267912a3accfa9bbdc75b8a8fd315) |
+| 2026-10-05 03:25 | AI 1 | 1067 | +1 | 1068 | OutRun 한글화 C125: A_PRODUCTION20 9CE4E175·A_PRODUCTION21 EBEF6D20 독립 hosted machine/controller QA PASS, B_PRODUCTION39 1A43E9D9는 C124 DXT5 machine + high-zoom/readable/raw QA PASS하되 row1 delta_top=0 edge-touch를 HIGH_RISK로 분리해 인게임 전 최종승인 금지, producer REWORK 0·pending_artwork 44로 queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C125-20261005-0320; OutRun HEAD=f55c8a6ebd936fa5aa936f007004478a169ffb19) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1048 | ACTIVE | 2026-10-05 00:13 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1050 | ACTIVE | 2026-10-05 00:34 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -100,3 +100,4 @@
 | 2026-10-05 00:04 | AI 1 | 1046 | +1 | 1047 | OutRun 한글화 C109: 미완료 C 승인 5자산 hosted 독립 QA 및 controller 시각 QA 수행, AD720950·2B0863D6 최종 정적 PASS, BF3EE5C6·C075FB49·FD90AA9 source-style slant/italic 불일치 REWORK 반환, queue/resume/progress/WORKLOG 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C109-20261004-2349; OutRun HEAD=c79d6963a7b39e0983c6752ee846997dc070dcef) |
 | 2026-10-05 00:13 | AI 1 | 1047 | +1 | 1048 | 사용자 HMD 피드백/로그 기반 VR 런타임 교정: DX11 portrait 2496x2688 game-source 회귀를 소스에서 fail-safe Desktop aspect로 차단하고 PC Fast/Backend/OpenXR 빌드 PASS, DX9Ex NONMASKABLE AA를 명시 4x→2x MSAA 정책으로 수정·Windows compile repair 후 PC Fast 및 DX9Ex Active Validation 전 단계 PASS, 기존 DXVK 테스트 ZIP의 SHA256 manifest 불일치 패키징 오류를 확인해 pristine core+별도 launcher 교정 패키지로 재구성/무결성 검증 완료 (RUN_KEY=OUTRUN-VR-RUNTIME-FEEDBACK-FIX-20261005-0013) |
 | 2026-10-05 00:27 | AI 1 | 1048 | +1 | 1049 | OutRun DX11 UI Scaling SSOT 적용: 원본 hooks_uiscaling 640x480→game-canvas 배치를 authoritative로 고정, VR HudScale 기본 0.55→1.00, full R30의 추가 OpenXR eye-aspect contain 보정 제거, 정책 회귀검사 PASS 및 exact-SHA PC Fast Build run 37212891770 SUCCESS, Issue #14 기록 완료 (RUN_KEY=OUTRUN-DX11-UI-SCALING-SSOT-20261005; material=c82db0cd69de6f2f2528b3af6f19d2876ac1a75d) |
+| 2026-10-05 00:34 | AI 1 | 1049 | +1 | 1050 | DX9Ex 남은 HUD 2중 표시 및 렌즈플레어 원본/현재 경로 교차검토: vr-d3d9ex-focus 최신 HEAD와 hooks_uiscaling·hud_semantics·SumoUISpriteReplay·R26+R30 활성 빌드 경로를 확인해 UIScaling-derived ScreenHud 생산 연결 부재와 replay semantic 유실을 정적 결함으로 확인하고, 렌즈플레어 원본 z-near 처리·과거 exact 0xCABE/12-component 분석과 현재 focus 미통합 상태를 구분하여 수정 우선순위를 확정함 (RUN_KEY=OUTRUN-DX9EX-UISCALING-HUD-FLARE-REVIEW-20261005-0034) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1059 | ACTIVE | 2026-10-05 02:12 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1060 | ACTIVE | 2026-10-05 02:14 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -110,3 +110,4 @@
 | 2026-10-05 01:28 | AI 1 | 1056 | +1 | 1057 | DX9Ex 사용자 회귀 로그 기반 refactor 분기 누락 복구: 36f0 세션이 최신 SHA이나 R65-R74 HUD 계열과 2c1d787에서 diverged한 것을 확인, 2097 UNKNOWN/all exact semantic NOT_OBSERVED 및 90Hz XR 대비 CORRECTNESS 60Hz 강제 cached-frame 저더를 근거로 exact 옵션 <>·result clip·glyph·TimeAttack·0xBB796 rival ownership을 현재 R30 semantic 구조에 복구하고 CORRECTNESS를 XR cadence=1/unlock+interpolation ON으로 수정. material 526931d985f3b932b5fdb5995e4acb74da10fb91 + policy 0c3b01ca385782d8ec79bf6c51a121b0b0f29faf, Policy/Domain/PC Fast/DX9Ex Active(game/full-chain/host/package) 전부 SUCCESS, runtime ZIP SHA256 cca6d3da8acb4d76c8fbd267060258d50a7df3ea934b22e69809437705d66e15, Issue #13 기록 완료 (RUN_KEY=OUTRUN-DX9EX-DIVERGED-HUD-CADENCE-RECOVERY-20261005-0128) |
 | 2026-10-05 01:42 | AI 1 | 1057 | +1 | 1058 | OutRun 한글화 C114: FD90AA9 A_RECOVERY13 scoped independent machine/controller 최종 QA PASS로 C109 source-slant 반환 해소, 53CE39D5 B_PRODUCTION28은 exact CLEAN plate의 반복 dark dash/source-shadow 잔류로 REWORK 반환, 788CE557 기존 REWORK 유지, queue/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C114-20261005-0120; OutRun HEAD=e7352e4639168e3a44e6a71838793e09eb021000) |
 | 2026-10-05 02:12 | AI 1 | 1058 | +1 | 1059 | OutRun 한글화 1차 수동검수 패키지: 최신 정적 PASS 27자산을 현행 사용자 정책 기준으로 확정하고 1~27 번호 좌우 비교 JPG 4장 생성, 별도 review 브랜치 commit/push 및 GitHub 원격 4파일 readback 검증 완료 (RUN_KEY=OUTRUN-KOR-PASS27-REVIEW-20261005-0200; review HEAD=c84ee17c2a13c918054f76517ab20763c539bcbb) |
+| 2026-10-05 02:14 | AI 1 | 1059 | +1 | 1060 | OutRun 한글화 C117: A_PRODUCTION19 313DB8CB와 B_PRODUCTION30 53CE39D5 독립 machine/controller 최종 QA PASS, C114 53CE clean-plate residue 반환 해소, 788CE557만 producer REWORK 유지, 4F68708E/F6811E94 DXT5 exact-safe HOLD 정합화, queue/artwork_plan/resume/progress/WORKLOG/STATUS commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C117-20261005-0150; OutRun HEAD=e97d183c37b6f03f9d8ecaaa8215463101ab75f4) |

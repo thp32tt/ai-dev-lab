@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1038 | ACTIVE | 2026-10-04 21:30 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1039 | ACTIVE | 2026-10-04 21:36 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -89,3 +89,4 @@
 
 | 2026-10-04 21:20 | AI 1 | 1036 | +1 | 1037 | VR Docker controller에 DX9Ex 개선 lane C 추가: vr-d3d9ex-focus 전용 프롬프트·3번째 슬롯·3-lane 동시 실행·A/B→A/B/C 상태 마이그레이션·Docker 패키징·배포 문서 반영 및 결합 Python 정적 검증 PASS (RUN_KEY=OUTRUN-CONTROLLER-DX9EX-LANE-20261004-2120) |
 | 2026-10-04 21:30 | AI 1 | 1037 | +1 | 1038 | CONVERSION-DXVK-00372 F123 canonical 0x1839CD..0x183A0C exact control-flow + 0x183A0C cut-edge proof, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00372; material=f50232515d2247c7279ca33e5ea14eecc7326036; final_state=8775763aa54b1334f52ae90f78e76bdb1d3a0bb7) |
+| 2026-10-04 21:36 | AI 1 | 1038 | +1 | 1039 | OutRun 한글화 C103: 신규 A_PRODUCTION16 841E796B 및 C_OVERLAP05 반환 후 B_RECOVERY09 v2 A064FDFC를 hosted 독립 C QA + controller 시각 QA로 2/2 정적 PASS, A064FDFC zero-overlap/source-residue 반환 해소, queue/resume/progress/WORKLOG 상태 정합화, commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C103-20261004-2124; OutRun HEAD=927a0125bc18810610ecf0b734ee36c1a909655f) |

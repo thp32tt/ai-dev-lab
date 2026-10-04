@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1011 | ACTIVE | 2026-10-04 15:00 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1012 | ACTIVE | 2026-10-04 15:18 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -50,3 +50,4 @@
 | 2026-10-04 14:31 | AI 1 | 1008 | +1 | 1009 | CONVERSION-DXVK-00352 F112 canonical provenance, exact-SHA 두 핵심 게이트 PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00352-E002; material origin=CONVERSION-DX11-00351-E001) |
 | 2026-10-04 14:49 | AI 1 | 1009 | +1 | 1010 | OutRun K4 한글 표시 런타임 포맷 안전화·중복 문자열 보호·Win32 Release CI 복구/빌드 PASS·GitHub SSOT 기록 완료 (RUN_KEY=OUTRUN-K4-RUNTIME-20261004) |
 | 2026-10-04 15:00 | AI 1 | 1010 | +1 | 1011 | CONVERSION-DXVK-00354 F113 exact-decode, exact-SHA 두 핵심 게이트 PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00354-E002; producer=CONVERSION-DX11-00353-E002) |
+| 2026-10-04 15:18 | AI 1 | 1011 | +1 | 1012 | OutRun 한글화 C87: 신규 A/B 3자산 교차 QA, A064FDFC·411827E 정적 PASS, 39229D64 구조/품질증거 REWORK 판정, 상태/QA SSOT 커밋 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C87-20261004-1509) |

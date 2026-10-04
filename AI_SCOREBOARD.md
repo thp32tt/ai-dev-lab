@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1034 | ACTIVE | 2026-10-04 20:55 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1035 | ACTIVE | 2026-10-04 21:09 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -84,3 +84,4 @@
 | 2026-10-04 20:23 | AI 1 | 1042 | -10 | 1032 | GitHub/원격 작업 도구가 실제로 연결되어 있는데 확인 없이 “연결되어 있지 않다”고 잘못 단정함. 사용자 명시 벌점 반영 (RUN_KEY=USER-PENALTY-GITHUB-CONNECTION-20261004-2023) |
 | 2026-10-04 20:42 | AI 1 | 1032 | +1 | 1033 | CONVERSION-DX11-00369 R248 programmable primitive-topology binding receipt 구현, IA 상태복원 repair, exact-SHA Backend Conversion Gate #37198921847·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00369; material=d0d918c0b1cfde8f1648913ced259f14ac3c1334; final_state=21281bdfab433fd926f6f7b9b43ab2fb3565b2c5) |
 | 2026-10-04 20:55 | AI 1 | 1033 | +1 | 1034 | CONVERSION-DXVK-00370 F122 canonical 0x1839CD..0x183A0D exact raw overlap provenance, F121 0x8B three-way cut-edge lineage 및 unresolved target debt fail-closed 보존, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00370; material=664b1b97a8654c44601ff2dfa03449809815b6c7) |
+| 2026-10-04 21:09 | AI 1 | 1034 | +1 | 1035 | OutRun 한글화 C OVERLAP05: 리뷰 2/5/6 zero-overlap 최종 QA, 39229D64·C075FB49 machine PASS 뒤 controller visual source-residue/overlap 결함 검출·불량 C 후보 롤백, A064FDFC no-safe-placement fail-closed REWORK 반환, 상태/QA SSOT commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C-OVERLAP05-20261004-2050; OutRun HEAD=c88701d061ca3ecafd87b360c5591eb7a4de8a06) |

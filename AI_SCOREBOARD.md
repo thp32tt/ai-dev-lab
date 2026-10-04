@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1089 | ACTIVE | 2026-10-05 07:04 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1090 | ACTIVE | 2026-10-05 07:17 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -140,3 +140,4 @@
 | 2026-10-05 06:45 | AI 1 | 1086 | +1 | 1087 | CONVERSION-DX11-00389 R256 programmable draw-candidate union 구현, material SHA 98f8532a46ef9c0d0945e23618203c08a924418e exact-SHA Backend Conversion Gate 37236655046 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00389-E006; material=98f8532a46ef9c0d0945e23618203c08a924418e; final_state=d38c75d39b7a195e6b65928a5482d9789e0ef48b) |
 | 2026-10-05 07:04 | AI 1 | 1087 | +1 | 1088 | OutRun 한글화 C138: 최신 B_PRODUCTION51 1F5FE6E9를 독립 재검증. mirror_y/4개 semantic row는 확인했으나 B51 alpha-aware row1 mask가 [638,140,770,179]로 measurement edge에 닿고 C136/C137 historical-row diagnostics가 exact source bbox가 아님을 확인, C138 hosted attempt 37238289961도 첫 인접행 경계에서 clean alpha separator 부재(min y169=87 active pixels)로 fail-closed. zero-pixel-overflow proof 불가하므로 PASS 강행 없이 REWORK_REQUIRED 반환, queue/artwork_plan/resume/progress/WORKLOG/STATUS 및 controller QA 기록 commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C138-20261005-0650; OutRun HEAD=6f2b1979ac324e39451817e85e5405935306096d) |
 | 2026-10-05 07:04 | AI 1 | 1088 | +1 | 1089 | CONVERSION-DXVK-00390 F129 canonical 0x183A8A..0x183AC7 exact control-flow + 0x183AC7 cut-edge proof, material SHA eb11ad636cd9fa322c55f5d55f50647ff92c1f39 exact-SHA DXVK Canonical Disassembly Evidence 37238129844·Backend Conversion Gate 37238129902 PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00390; material=eb11ad636cd9fa322c55f5d55f50647ff92c1f39; final_state=c07bc5ecd56b00cb32e3f4f7f25619906ef6a4d9; current_event=CONVERSION-DXVK-00390-E004; CHAT_ROLLOVER=3) |
+| 2026-10-05 07:17 | AI 1 | 1089 | +1 | 1090 | CONVERSION-DX9EX-00391 post-1000 R34 compatibility observer/status alias retirement: material SHA eaddb4da311c8942b57a5caed7706b96a3f55c4e에서 VRStereoR34ResetGuardHook·R33InstallStatus·OpenXRVRStereoR34ResetGuard 중복 상태 발행 제거, exact-SHA DX9Ex Active 37238918151·Domain Isolation 37238918252·HUD Inspector 37238918123 및 N100 정적 검증 PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX9EX-00391-E002; final_state=82900c1fc029b09a0e80ba3fa38fc4cd285d37ad; ATTEMPT=1/3; rollover_is_retry=false) |

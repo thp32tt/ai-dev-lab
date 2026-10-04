@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1016 | ACTIVE | 2026-10-04 15:39 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1017 | ACTIVE | 2026-10-04 15:42 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -55,3 +55,4 @@
 | 2026-10-04 15:34 | AI 1 | 1013 | +1 | 1014 | CONVERSION-DX11-00355 R242 translated-object attachment receipt 구현, exact-SHA Backend Conversion Gate #1938·DX11 readiness smoke PASS, C0-C6·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00355; rollover=E008, material origin=E002) |
 | 2026-10-04 15:37 | AI 1 | 1014 | +1 | 1015 | OutRun 한글화 B Recovery03: 2DA43E41 C85 실패 7개 clean-plate/native 재작업, 11/11 bbox·mask·visual self-QA PASS, 상태/QA 커밋·push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-RECOVERY03-20261004) |
 | 2026-10-04 15:39 | AI 1 | 1015 | +1 | 1016 | OutRun 한글화 작업 중 404 경로 감사: 자동화 필수 경로 및 상태/작업로그 참조를 원격 HEAD에서 교차검증하여 실제 404 2건과 정상 경로를 구분·정리 완료 (RUN_KEY=OUTRUN-KOR-404-AUDIT-20261004) |
+| 2026-10-04 15:42 | AI 1 | 1016 | +1 | 1017 | CONVERSION-DXVK-00356 F114 canonical overlap provenance, transport repair, exact-SHA 두 핵심 gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00356-E011) |

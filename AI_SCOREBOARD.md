@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1064 | ACTIVE | 2026-10-05 02:48 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1065 | ACTIVE | 2026-10-05 02:50 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -115,3 +115,4 @@
 | 2026-10-05 02:31 | AI 1 | 1061 | +1 | 1062 | OutRun 한글화 C118: B_PRODUCTION32 788CE557 최종 교차 QA에서 direct SHA/header·4/4 bbox/size·producer zero-residue/outside/protected/overlap/guard 검증과 SOURCE/CLEAN/FINAL/row/TOP_PAIR/raw 시각 QA PASS, C108/B31 source residue 해소 및 producer REWORK 0건으로 정합화, queue/artwork_plan/resume/progress/WORKLOG/STATUS commit/push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C118-20261005-0220; OutRun HEAD=e9f26f14fae3d8e975a45f5669044ad5d2c507a4) |
 | 2026-10-05 02:32 | AI 1 | 1062 | +1 | 1063 | CONVERSION-DX11-00374 R251 programmable non-indexed direct-dispatch argument/range readiness 구현, material SHA 518db8efe987af98521ef5d66e8390859c228e0c exact-SHA Backend Conversion Gate #37220153246 validate·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·GitHub SSOT 정합화 완료 (RUN_KEY=CONVERSION-DX11-00374-E001) |
 | 2026-10-05 02:48 | AI 1 | 1063 | +1 | 1064 | OutRun 한글화 A Production20/21: 9CE4E175·EBEF6D20 신규 exact-HD 한글 DDS 2자산 제작, same-run visual 결함(영문 fringe·한글 weight) 재작업, exact bbox/size·clean/final·zero outside/protected/overlap·controller visual self-QA PASS, queue/resume/progress/WORKLOG/STATUS 정합화 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-A-PRODUCTION20-21-20261005-0230; OutRun HEAD=dda14e9ab8a6068b8f3fc67fde581a7a9640e904) |
+| 2026-10-05 02:50 | AI 1 | 1064 | +1 | 1065 | CONVERSION-DXVK-00375 F124 canonical 0x183A0C..0x183A4C raw overlap provenance material commit, exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00375-E001; material=d6a8841d62e3d4fd9d851a047243a84ca83aae7c; final_state=959fd94ff891792b6b98951562a09fbb669a522c) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1039 | ACTIVE | 2026-10-04 19:39 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1040 | ACTIVE | 2026-10-04 19:44 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -78,3 +78,4 @@
 | 2026-10-04 19:03 | AI 1 | 1036 | +1 | 1037 | CONVERSION-DX11-00367 R247 programmable pipeline-object binding receipt 구현, exact-SHA Backend Conversion Gate #37193568418·DX11 readiness smoke/constant-buffer probe PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DX11-00367; material=f2bd299a1d40b276cb8d4b213415f6e57f6aed76; final_state=ac5eec19a3856246b6a427a3c1e171f31f8d3339) |
 | 2026-10-04 19:18 | AI 1 | 1037 | +1 | 1038 | CONVERSION-DXVK-00368 F121 canonical 0x18398E..0x1839CD exact control-flow + explicit 0x1839CD cut-edge proof, repair 후 exact-SHA DXVK Canonical Disassembly Evidence + Backend Conversion Gate PASS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00368; material=334a7537fdd86cfbddeb6f85aaccb6956c7abb42) |
 | 2026-10-04 19:39 | AI 1 | 1038 | +1 | 1039 | OutRun 한글화 USERPOLICY02: 스테이지명 음차·곡명 영문보존·원문 글자 bbox +1px 금지·다줄 원문스타일 규칙을 생성/QA 정책에 반영, 기존 8개 authoritative 재QA 8/8 PASS, AA04D779 정책 불일치 재생성·hosted worker PASS·상태/QA SSOT push 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-USERPOLICY02-20261004; OutRun HEAD=ea824572a8304cccc580d5ec29da5a43b47253cd) |
+| 2026-10-04 19:44 | AI 1 | 1039 | +1 | 1040 | OutRun 한글화 B Recovery08: CBF8ECBF exact-HD 후보의 미완료 producer self-QA/상태 정합화 완료, 7/7 exact bbox·원문 크기 ceiling·clean/final mask·readable/white/raw/row-contact PASS, C99 same-SHA machine PASS 확인, 상태/QA SSOT commit/push 및 원격 ancestor/row 검증 완료 (RUN_KEY=OUTRUN-KOR-B-RECOVERY08-20261004) |

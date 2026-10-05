@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1224 | ACTIVE | 2026-10-06 08:06 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1228 | ACTIVE | 2026-10-06 08:35 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -287,3 +287,4 @@
 | 2026-10-06 08:12 | AI 1 | 1224 | +1 | 1225 | OutRun DX9Ex CONVERSION-DX9EX-00431: R32 fast-submit ACK cache/pending EVENT/fault state를 transport generation 단독이 아니라 Frame.v2 complete run identity(transport generation + run generation + game PID)에 결속. verifier false-negative를 same TASK에서 수정한 exact validation-bearing SHA 57899f49f7fed02b396e0e609e4b51cff153db49, DX9Ex Active 37384420695 및 Domain Isolation 37384420959 SUCCESS, C0-C6/run record 완료. (RUN_KEY=CONVERSION-DX9EX-00431; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 08:12 | AI 1 | 1225 | +1 | 1226 | OutRun DX9Ex CONVERSION-DX9EX-00432: EndFrame의 double-ReadFresh 사이 game restart TOCTOU를 막기 위해 ArmConsumptionFence가 실제 보호할 exact frame identity에 ACK cache를 재바인딩한 뒤 reuse/fence 판단하도록 수정. exact validation-bearing SHA d6fa7888816be18ea5938d854f586224f622ca64, DX9Ex Active 37385251884 및 Domain Isolation 37385251721 SUCCESS, C0-C6/run record 완료. (RUN_KEY=CONVERSION-DX9EX-00432; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 08:12 | AI 1 | 1226 | +1 | 1227 | OutRun DX9Ex CONVERSION-DX9EX-00433: host SafeEye fallback cache key를 frameId + transport generation + run generation + game PID로 확장해 fast restart 시 prior-run eye texture 재사용 가능성을 차단. exact validation-bearing SHA cf40acf570b4bac218eab73beea4ca1ded8ce696, DX9Ex Active 37386030371 및 Domain Isolation 37386030104 SUCCESS, artifact 11379770901, C0-C6/run record 완료. (RUN_KEY=CONVERSION-DX9EX-00433; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 08:35 | AI 1 | 1227 | +1 | 1228 | OutRun 한글화 A99: 최신 계약/상태를 재확인해 A-owned active in-game backlog=0, C-return REWORK=0 상태에서 다음 odd-shard zoom_review index27 8B52FEEC를 실제 처리. GitHub-hosted worker가 exact Sonic-TV source SHA a11b32753655d25dbf95baf808af90a3cc3f65fb1083db0bb1db8fad80cdcf47를 1024x512 RGBA32/mip1/raw mirror_y로 디코드했고 readable/raw controller 검수에서 세 character portrait/pose sprite만 존재하며 language-bearing text=0임을 확정. entire DDS PRESERVE_ORIGINAL/no candidate로 queue/transcriptions/artwork_plan/progress/resume/WORKLOG/STATUS/QA를 동기화하고 원격 HEAD 2677479e65226c50672b85bcef5b2dfc54b23b90 확인. 다음 A 일반 대상 index29 F043316B. VR/FFB/DX11/DXVK 미작업 (RUN_KEY=OUTRUN-KOR-A99-ZOOM27-20261006-0830; RUNTIME_VALIDATION=NOT_REQUIRED_FOR_LOCALIZATION) |

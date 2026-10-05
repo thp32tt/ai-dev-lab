@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1121 | ACTIVE | 2026-10-05 11:55 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1122 | ACTIVE | 2026-10-05 12:03 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -178,3 +178,4 @@
 | 2026-10-05 11:39 | AI 1 | 1118 | +1 | 1119 | OutRun A RDS-free 경로 실제 검증: n100_server+GitHub만 사용, A.py 원격 갱신→GitHub-hosted CPU worker 실행→30CF0D source/hash/atlas/visual evidence 생성→bot commit→원격 diff 확인 PASS (RUN_KEY=OUTRUN-A-RDSFREE-MCPTEST-20261005-1135) |
 | 2026-10-05 11:53 | AI 1 | 1119 | +1 | 1120 | OutRun 한글화 B: C151-returned even index 86 C598919A exact DXT5 rework를 우선 수행해 ordinary 4x4 block-splice가 10 stage 중 8개에서 exact decoded-pixel bbox를 위반할 수 있음을 실제 경계 1,435 source-alpha pixel로 fail-closed 증명하고 candidate 미생성 상태를 정밀화. 이어 even index 236 FEF70E85 authoritative 2048x2048 RGBA32/BGRA HD에서 canonical phonetic stage-name 14개 한글 DDS 후보 e6d12ebf9b48192067c3f31bad0ffcb81f5f77c7370f7d43dfd9a4d04df5d086 제작, 14/14 bbox·size·positive-margin와 zero residue/outside/alpha/protected/render-outside/preserved/overlap/touch 및 controller SOURCE/CLEAN/FINAL·row·raw mirror_y PASS, queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION80-20261005-1140; B80 candidate=e6d12ebf9b48192067c3f31bad0ffcb81f5f77c7370f7d43dfd9a4d04df5d086; OutRun B-state commit=6086574ee7f1be330d16106c8a90415554d3dcf2; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 11:55 | AI 1 | 1120 | +1 | 1121 | OutRun A_PRODUCTION22 RDS-free 실제 생산 완료: 30CF0D 6개 물리 라벨 한글 DDS 생성, 정적/시각 self-QA PASS, queue/progress/resume/worklog/status/artwork plan 갱신, 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-A-PRODUCTION22-RDSFREE-20261005-1153) |
+| 2026-10-05 12:03 | AI 1 | 1121 | +1 | 1122 | OutRun 한글화 C153/C156 cross-lane final QA: 신규 B80 FEF70E85 candidate e6d12ebf9b48192067c3f31bad0ffcb81f5f77c7370f7d43dfd9a4d04df5d086를 C153에서 independent CLEAN diff=0, 14/14 bbox·size·positive-margin, zero outside/alpha/protected/render-residue/overlap/touch/target-protected 및 stage-name 음차/REVERSED exact visual/raw PASS로 승인. 동시 신규 A22 30CF0D candidate 6d58a2c39020629daa995d01cdaf09ad50b3d62a92dd9d8db68a1978b4ac812b도 C156에서 canonical source/candidate hash+header와 producer geometry evidence를 독립 재검산해 6/6 bbox·size·positive-margin 및 clean/final/protected/overlap zero gates, SOURCE/CLEAN/FINAL·row·raw visual PASS로 승인. C598919A는 B78 증거대로 1,435 DXT5 boundary source pixels 때문에 endpoint/index-constrained solver REWORK 유지. queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화, N100 verify_state LOCALIZATION_STATE_OK 및 원격 HEAD 38867f8472373248a2e6b54067b99b6908266019 검증 완료. C152/C154/C155는 동일 자산 fail-closed retry라 중복 점수 없음 (RUN_KEY=OUTRUN-KOR-C153-C156-20261005-1150; RUNTIME_VALIDATION=UNTESTED) |

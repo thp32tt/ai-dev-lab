@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1125 | ACTIVE | 2026-10-05 12:53 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1126 | ACTIVE | 2026-10-05 12:56 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -182,3 +182,4 @@
 | 2026-10-05 12:27 | AI 1 | 1122 | +1 | 1123 | OutRun 한글화 B Production81/B82: even index 188 8C259C68 신규 한글 DDS 실제 생산. B81 machine PASS 후 controller가 mirror_y 문장 역매핑·과소/얇은 글꼴을 시각 FAIL로 잡아 같은 작업 내 B82로 교정, candidate 03f52892acd091496c53c19a0a48c2f9c2d1acf9b05d9f96801ff4032e756b03 6/6 bbox·size·positive-margin 및 zero residue/outside/alpha/protected/render/overlap/touch, SOURCE/CLEAN/FINAL·row·raw visual self-QA PASS. C157 independent machine QA도 동일 SHA PASS. queue/artwork_plan/resume/progress/WORKLOG/STATUS 반영 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION81-20261005-1210; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 12:32 | AI 1 | 1123 | +1 | 1124 | OutRun 한글화 C157: 신규 B82 8C259C68 후보를 pinned canonical DDS+atlas에서 producer mask 없이 독립 재구성 QA해 6/6 exact bbox·size·positive-margin, clean/final/protected/residue/overlap/touch zero gates, SOURCE/CLEAN/FINAL·row·raw mirror_y controller visual PASS로 승인. queue/artwork_plan/resume/progress/WORKLOG/STATUS 및 C157 controller QA 기록을 같은 브랜치에 반영하고 원격 HEAD 9ab2b96b2ce973faadff9951164d839d3fc73bc4 검증 완료. C598919A REWORK와 strict HOLD는 유지, VR/FFB/DX11/DXVK 미작업 (RUN_KEY=OUTRUN-KOR-C157-20261005-1220; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 12:53 | AI 1 | 1124 | +1 | 1125 | OutRun 한글화 B Production83/84/85: even index 212 BA0147DA를 B83 canonical atlas semantic preflight부터 같은 호출 안에서 실제 DDS까지 완주. B84 machine PASS 뒤 controller가 PROFESSIONAL/프로 좌측 배치의 source-alignment 불일치를 잡아 B85에서 우측 anchor로 교정. 최종 candidate 869cf1bea8b27dcc89f5b2ab68f9dd163e4bf41fa6de4b53c7b3f19b3b1c74ad, 12/12 exact bbox·size·positive-margin 및 zero residue/outside/alpha/protected/render/overlap/touch, SOURCE/CLEAN/FINAL·row·raw mirror_y self-QA PASS. queue/artwork_plan/resume/progress/WORKLOG/STATUS 반영 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION85-20261005-1240; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-05 12:56 | AI 1 | 1125 | +1 | 1126 | OutRun 한글화 C158: 신규 B85 BA0147DA 후보를 pinned canonical DDS+atlas에서 producer mask 없이 독립 재구성 QA해 12/12 exact bbox·size·positive-margin·alignment anchor, clean/final/protected/residue/overlap/touch zero gates, 6개 style-family exact fill median 및 SOURCE/CLEAN/FINAL·12 row·raw mirror_y controller visual PASS로 승인. queue/artwork_plan/resume/progress/WORKLOG/STATUS 및 C158 controller QA를 반영하고 원격 HEAD 05f190016ff2fd214bc38c05139f4fba651b4690 검증 완료. C598919A REWORK와 strict HOLD 유지, VR/FFB/DX11/DXVK 미작업 (RUN_KEY=OUTRUN-KOR-C158-20261005-1250; RUNTIME_VALIDATION=UNTESTED) |

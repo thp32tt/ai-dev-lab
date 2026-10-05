@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1118 | ACTIVE | 2026-10-05 11:20 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1119 | ACTIVE | 2026-10-05 11:39 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -175,3 +175,4 @@
 | 2026-10-05 11:25 | AI 1 | 1115 | +1 | 1116 | N100 Secure MCP Tunnel OAuth discovery 오류 수정 후 tunnel-client 재기동, /readyz 200 OK 및 원격 재검증 ready 확인으로 ChatGPT 연결 준비 완료 (RUN_KEY=N100-MCP-TUNNEL-READY-20261005-1124) |
 | 2026-10-05 11:26 | AI 1 | 1116 | +1 | 1117 | OutRun 한글화 C151: unfinished B75 index 86 C598919A를 canonical source/atlas로 재검증. B75의 raw-RGBA 오판을 교정해 GitHub-hosted C에서 실제 4096x4096 DXT5 source SHA 9caaf9d94bb853f8cc00faad6bf03fb6460e893a726c5e200fe4a7826768f3bf를 정상 decode하고 106-region ranking/mode/stage semantic binding 완료. canonical stage-name 음차 유지, Ferrari/MT/AT 보호 및 OutRun2/OutRun2SP product token 원문 보존으로 transcription 교정. candidate가 없으므로 exact decoded glyph/effect mask + clean plate + exact-safe DXT5 encode를 REWORK_REQUIRED로 producer에 반환하고 queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화, N100 verify_state LOCALIZATION_STATE_OK 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C151-20261005-1120; OutRun HEAD=328b2823cabc30f511adb9bd6a5aa58b670479fd; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 11:20 | AI 1 | 1117 | +1 | 1118 | N100 Secure MCP Tunnel을 통한 ChatGPT 직접 연결 완료. 새 n100_server 도구 네임스페이스 확인 후 server_info/list_dir 직접 호출 PASS (RUN_KEY=N100-MCP-TUNNEL-ENDTOEND-20261005-1119) |
+| 2026-10-05 11:39 | AI 1 | 1118 | +1 | 1119 | OutRun A RDS-free 경로 실제 검증: n100_server+GitHub만 사용, A.py 원격 갱신→GitHub-hosted CPU worker 실행→30CF0D source/hash/atlas/visual evidence 생성→bot commit→원격 diff 확인 PASS (RUN_KEY=OUTRUN-A-RDSFREE-MCPTEST-20261005-1135) |

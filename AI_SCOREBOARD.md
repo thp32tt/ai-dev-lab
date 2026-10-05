@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1109 | ACTIVE | 2026-10-05 09:50 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1110 | ACTIVE | 2026-10-05 09:55 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -165,3 +165,4 @@
 | 2026-10-05 09:48 | AI 1 | 1108 | +1 | 1109 | CONVERSION-DXVK-00399 F132 canonical 0x183B07..0x183B47 raw provenance 구현: clean validation-bearing SHA 4709bd7172b91611348d612337715217f7984802에서 exact canonical bytes·F131 predecessor boundary·raw inbound=0·outbound rel32 0x183B39->0x180340·trailing overlap 0x183B44 FF 0D 44를 fail-closed 고정. N100 exact-SHA py_compile·30/30 tests·backend contract·frontier PASS, DXVK Canonical Evidence 37248479057 및 Backend Conversion Gate 37248479049 SUCCESS, C0-C6·Issue #14·GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00399; final_state=94b0241c1063b618972b22e4d71695f0b26122e4; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 09:50 | AI 1 | 1109 | +0 | 1109 | CONVERSION-DXVK-00399-E003-FINAL 상태 정합화: 동시 E002 rollover bookkeeping을 현재 사용자 자동큐 E003 retry 메타데이터로 run/lane에 복원. material/result 4709bd7172b91611348d612337715217f7984802 및 gate evidence 불변, 동일 TASK_ID 상태 재보고이므로 중복 가산 없음 (final_state=a211abf58be5121b983e55104a75d68d5d34fdfe; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 09:52 | AI 1 | 1109 | +0 | 1109 | CONVERSION-DX11-00398 E003 retry: 요청된 중간 SHA Gate 37246345353 cancelled를 직접 확인해 SUPERSEDED로 분류하고 기존 R259 반복 없이 R260 geometry resource-behavior proof를 신규 구현. material/validation-bearing SHA cb4275d9964e90e90d8ce548b8b2f4249c423000에서 current MANAGED VB/IB descriptor·mutation-plan·Reset lifetime·snapshot identity를 재검증하고 texture/output F18 scope는 0x6 fail-closed, F21·NativeDrawPath/Draw 권한은 미활성 유지. exact-SHA Backend Conversion Gate 37248409424 validate 111570853955·DX11 readiness smoke/constant-buffer R260 probe 111571735439 PASS, C0-C6·Issue #14·run/lane GitHub SSOT 영속화 완료. 동일 TASK_ID retry이므로 중복 가산 없음 (RUN_KEY=CONVERSION-DX11-00398-E003; material=cb4275d9964e90e90d8ce548b8b2f4249c423000; final_state=9af0352af265a12268e637a022ec8222b7c2e81e; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-05 09:55 | AI 1 | 1109 | +1 | 1110 | OutRun 한글화 B Production68: even index 228 E7F6E9B7 authoritative 2048x2048 RGBA32 HD 메뉴명 13개 한글 DDS 후보 제작, 13/13 exact bbox·size·positive-margin 및 zero residue/outside/alpha/protected/overlap/touch PASS, controller SOURCE/CLEAN/FINAL·row·raw mirror_y self-QA, queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화와 commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION68-20261005-0940; candidate=6e880cb7614531a95b5dcc8cda311423b8a6cbeaf6b7f6c2d0fc5befcca6d607; OutRun HEAD=1ec4245daec9de22862f337cc838cc93aa2eed39; RUNTIME_VALIDATION=UNTESTED) |

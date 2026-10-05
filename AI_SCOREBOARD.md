@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1228 | ACTIVE | 2026-10-06 08:35 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1232 | ACTIVE | 2026-10-06 08:41 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -291,3 +291,4 @@
 | 2026-10-06 08:37 | AI 1 | 1228 | +1 | 1229 | OutRun DX9Ex CONVERSION-DX9EX-00434: R32 opened shared-resource cache를 DirectGPU transport generation + Frame.v2 run generation + game PID + shared HANDLE/size/format의 완전한 run/resource identity에 결속해 fast game restart에서 재활용된 HANDLE 숫자가 prior-run D3D11 resource를 재사용하는 경로를 차단. exact material/validation-bearing SHA 3dfa54a970ea5e105758296d9b16f9edc3859820, DX9Ex Active 37386938248 전 job SUCCESS, Domain Isolation 37386938189 SUCCESS, artifact 11379507612 digest sha256:c1450bdfda5731d6e525870944d8343abd2d9339e2c7c6df092a52b6fa2fbbec. (RUN_KEY=CONVERSION-DX9EX-00434; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 08:37 | AI 1 | 1229 | +1 | 1230 | OutRun DX9Ex CONVERSION-DX9EX-00435: R23/R24의 host-owned SafeEye 재사용 우회 경로가 frameId + transport generation만 보던 구조를 complete Frame.v2 run identity(frameId + transport generation + run generation + game PID)로 강화해 fast producer restart 시 prior-run eye content 재사용 가능성을 차단. exact material/validation-bearing SHA 0f8106283050766668bd757ad44e915aa128600d, DX9Ex Active 37388011236 및 Domain Isolation 37388011403 SUCCESS, artifact 11378989182 digest sha256:c338cc7d318fb3274c51ec4a0ef406da91e530403890e516fbc24b9ba4d2a935. (RUN_KEY=CONVERSION-DX9EX-00435; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 08:37 | AI 1 | 1230 | +1 | 1231 | OutRun DX9Ex CONVERSION-DX9EX-00436: SafeEye complete run-identity 판단을 SafeEyesOwnFrame(frame) 단일 owner predicate로 중앙화하고 legacy EnsureSafeFrame, R32 A/B staging, R23 committed-direct, R24 direct-safe projection이 모두 동일 owner를 사용하도록 구조 개선. verifier가 consumer-side 중복 partial identity predicate 재도입을 금지하며 VR_REFACTOR_STATE successor 0019로 기록. exact material/validation-bearing SHA 8640959e4b946a2051664e4e210f266663eb67f3, DX9Ex Active 37388705425 및 Domain Isolation 37388705508 SUCCESS, artifact 11380845227 digest sha256:3008eee3daa77dea4f7af5df291f3488ab978ce4706bf7f6a4319e3ed65e135e. (RUN_KEY=CONVERSION-DX9EX-00436; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 08:41 | AI 1 | 1231 | +1 | 1232 | OutRun VR 최신 연구 기록 체계화: OpenXR 1.1.63 frame synchronization, Khronos VK_EXT_present_timing 계측 철학, DXVK 3.1.1 A/B, VDXR 1.34.8 resolution 변수의 적용 포인트를 thp32tt/OutRun2006Tweaks Issue #100에 공식 근거·개발 체크리스트로 영속화하고 주간 VR 브리핑 자동작업이 유의미한 신규 자료를 같은 Issue에 중복 없이 누적하도록 연동 완료. 코드 변경 없이 연구/개발 참고 SSOT만 갱신. (RUN_KEY=VR-RESEARCH-WATCH-ISSUE100-20261006-0841) |

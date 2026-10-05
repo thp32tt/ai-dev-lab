@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1115 | ACTIVE | 2026-10-05 10:58 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1116 | ACTIVE | 2026-10-05 11:25 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -172,3 +172,4 @@
 | 2026-10-05 10:32 | AI 1 | 1112 | +1 | 1113 | OutRun 한글화 B Production73: even index 230 E95DA5 authoritative 2048x1024 RGBA32 HD source/atlas binding 후 11개 물리 텍스트 한글 DDS 후보 제작. B70 thin-Regular·B71 pill AA residue·B72 gate-accounting fail-closed는 동일 작업 retry로 중복 가산하지 않고 B73에서 해결. 최종 candidate d039f8d01ea744224caff7bb6c4f5d72233cd9bde48555dcb642008df91ac92b, 11/11 bbox·size·positive-margin 및 zero residue/outside/alpha/protected/preserved-change/overlap/touch, controller SOURCE/CLEAN/FINAL·row·raw mirror_y PASS, queue/artwork_plan/resume/progress/WORKLOG/STATUS 정합화·commit/push·원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-B-PRODUCTION73-20261005-1010; OutRun HEAD=f0dfcf83ee1a0d9e9d39eb16a9ac8d8480e549de; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 10:39 | AI 1 | 1113 | +1 | 1114 | OutRun 한글화 C149: 신규 B_PRODUCTION73 E95DA5를 독립 canonical-source QA로 재검증. GitHub-hosted C 출력 지연으로 계약상 N100 fallback을 사용해 independent CLEAN diff=0, 11/11 bbox·size·positive-margin, zero outside/alpha/protected/preserved/render-outside-target/source-residue/overlap/touch/target-preserved-near 및 SOURCE/CLEAN/FINAL·row·RAW mirror_y visual PASS를 확정하고 candidate unchanged static PASS pending in-game로 queue/artwork_plan/resume/progress/WORKLOG/STATUS를 정합화. B73 전사 확장에 따른 segment 725→726 불일치도 verify_state로 발견·수정 후 LOCALIZATION_STATE_OK 확인 (RUN_KEY=OUTRUN-KOR-C149-20261005-1020; candidate=d039f8d01ea744224caff7bb6c4f5d72233cd9bde48555dcb642008df91ac92b; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 10:58 | AI 1 | 1114 | +1 | 1115 | OutRun 한글화 C150: 신규 B_PRODUCTION77 9FC88069에서 song-title 보호 정책 위반을 발견해 (GUITAR MIX)/(INSTRUMENTAL)/(PROTOTYPE) 3개 영역을 canonical source로 pixel-exact 복원하는 C-small corrective rework 수행. corrected candidate 34e7a924b46c98b0b714d6bebd40f7e94d352a26de269816e421db5242ad819c, RANDOM/RANDOM PLAY/INTERMEDIATE B/A 4개 기능 라벨만 한글 유지, 4/4 bbox·size·positive-margin 및 zero outside/alpha/protected/render-residue/overlap/touch/preserved/card-art PASS, SOURCE/B77/CLEAN/FINAL·row·raw mirror_y visual PASS. transcription/artwork/queue/resume/progress/WORKLOG/STATUS 정합화 및 segment 726→723 조정 후 LOCALIZATION_STATE_OK, 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C150-20261005-1050; OutRun HEAD=60eae21e1fb8d3c4374b88c392378c1b3112b942; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-05 11:25 | AI 1 | 1115 | +1 | 1116 | N100 Secure MCP Tunnel OAuth discovery 오류 수정 후 tunnel-client 재기동, /readyz 200 OK 및 원격 재검증 ready 확인으로 ChatGPT 연결 준비 완료 (RUN_KEY=N100-MCP-TUNNEL-READY-20261005-1124) |

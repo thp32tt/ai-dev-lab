@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1183 | ACTIVE | 2026-10-05 22:39 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1184 | ACTIVE | 2026-10-05 23:33 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -241,3 +241,4 @@
 | 2026-10-05 22:52 | AI 1 | 1180 | +1 | 1181 | N100 MCP 새로고침 후 실연결 검증 완료: server_info/list_dir/process_list 정상, 임시 파일 write→Python 실행(N100_MCP_OK)→삭제 PASS, OutRun worktree git status 및 origin fetch 성공. 테스트 파일은 삭제해 잔여 변경 없음 (RUN_KEY=N100-MCP-REFRESH-TEST-20261005-2249) |
 | 2026-10-05 23:01 | AI 1 | 1181 | +1 | 1182 | OutRun 한글화 C209: 신규 B154 index34 B7E25BAD HOLL rank 후보를 hosted 독립 C QA로 검증하고 zoom_review Total Rank→종합 랭킹을 정식 localize_text로 승격. canonical 4096x2048 RGBA32/header/raw mirror_y, 독립 localized bbox [2172,1198,2404,1262]·source core [2036,1194,2541,1266] containment/size/positive-margin PASS, decoded/alpha/introduced-visible outside=0·source-title residue=0. C202-approved same-family template와 HOLL 차이는 title/effect 240px + alpha1 white AA 1px로 제한됨을 확인하고 SOURCE/CLEAN/FINAL/raw visual PASS 승인. queue/transcription/artwork_plan/progress/resume/WORKLOG/STATUS 및 C209 QA 기록 반영, OutRun HEAD bc833533927084da2372ea0652f780e4d6cfb501 원격 검증 완료. 기존 37759842/97E863AD REWORK는 새 후보가 없어 재검수하지 않음. VR/FFB/DX11/DXVK 미작업 (RUN_KEY=OUTRUN-KOR-C209-20261005-2250; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-05 22:39 | AI 1 | 1182 | +1 | 1183 | N100 MCP v0.2 refresh 후 신규 도구 전체 실사용 검증 PASS: file/binary/image/Python/Node/process/git fetch/add/commit/push/pull/log/switch/remove까지 RDS 없이 확인 (RUN_KEY=N100-MCP-V02-FULL-SELFTEST-20261005) |
+| 2026-10-05 23:33 | AI 1 | 1183 | +1 | 1184 | OutRun 한글화 C210/C211: 최신 A67/A69만 교차 최종 QA하고 완료 자산 반복 없음. 97E863AD A67은 hosted C canonical 재다운로드로 13/13 source/localized bbox exact·size·positive-margin 및 outside/alpha/residue/overlap/touch/protected 0을 확인했으나, 쇼룸 132px·멀티플레이 33.25px·환영합니다 38.75px·Goal 41-48px의 width-ratio-driven 과도한 Hangul tracking이 source condensed 연속 spacing과 불일치하여 C210 REWORK_REQUIRED 반환. A9ABD877 A69는 17/17 exact bbox/size/margin, canonical stage 음차, Night Bird/Radiation pixel-exact, 모든 zero-pixel gate 0 및 readable/raw mirror_y visual PASS로 C211 승인. queue/artwork_plan/progress/resume/WORKLOG/STATUS 및 C210/C211 개별+batch QA 반영, C 동기화 HEAD 472d767eb52e6f961283d03fac8a2125c561c56b 확인. VR/FFB/DX11/DXVK 미작업 (RUN_KEY=OUTRUN-KOR-C210-C211-20261005-2320; RUNTIME_VALIDATION=UNTESTED) |

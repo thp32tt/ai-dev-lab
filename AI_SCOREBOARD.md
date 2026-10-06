@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1233 | ACTIVE | 2026-10-06 08:45 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1234 | ACTIVE | 2026-10-06 09:05 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -294,3 +294,4 @@
 | 2026-10-06 08:41 | AI 1 | 1231 | +1 | 1232 | OutRun VR 최신 연구 기록 체계화: OpenXR 1.1.63 frame synchronization, Khronos VK_EXT_present_timing 계측 철학, DXVK 3.1.1 A/B, VDXR 1.34.8 resolution 변수의 적용 포인트를 thp32tt/OutRun2006Tweaks Issue #100에 공식 근거·개발 체크리스트로 영속화하고 주간 VR 브리핑 자동작업이 유의미한 신규 자료를 같은 Issue에 중복 없이 누적하도록 연동 완료. 코드 변경 없이 연구/개발 참고 SSOT만 갱신. (RUN_KEY=VR-RESEARCH-WATCH-ISSUE100-20261006-0841) |
 | 2026-10-06 08:45 | AI 1 | 1232 | +1 | 1233 | OutRun DX9Ex CONVERSION-DX9EX-00437: R24 DirectFlat recovery가 host-owned SafeEye를 표시할 때 latest complete DirectGPU Frame.v2의 transport generation + run generation + game PID가 현재 SafeEye run identity와 일치해야만 허용하도록 강화. SafeEyesBelongToTransportRun(frame)을 SafeEyesOwnFrame(frame) 아래 공용 owner로 분리해 exact-frame 재사용과 same-run flat recovery의 identity 판단을 통합. exact material/validation-bearing SHA 3a7f4566841f280e9a0bef6fa53cd70f726bcdc0, DX9Ex Active 37389661262 및 Domain Isolation 37389660929 SUCCESS, artifact 11381060879 digest sha256:4a193f47d8c4b45e9c58899fbbdd7b3cb790ce381034c5cd5ea642f2103c02d5. (RUN_KEY=CONVERSION-DX9EX-00437; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 08:45 | AI 1 | 1232 | +1 | 1233 | Model2VR-tools GitHub-first 공용 한글화/모딩/VR 툴킷 구축: 공개 GitHub 재사용 조사, DirectXTex/OpenXR/minidump 등 핀·검증, 대용량 분할/결합·DDS/PE/디스어셈블·폰트/이미지/번역 QA·크래시/VR 통계·재사용 Actions 추가, Windows/Linux CI 및 OpenXR loader 빌드 PASS (RUN_KEY=MODEL2VR-GITHUB-FIRST-TOOLKIT-20261006) |
+| 2026-10-06 09:05 | AI 1 | 1233 | +1 | 1234 | OutRun 한글화 A100: 최신 계약/queue/backlog 확인 후 A-owned active in-game=0, C-return REWORK=0, render-ready/pending-artwork=0 상태에서 one-preflight-batch 규칙으로 odd zoom_review index29 F043316B, index31 A82266FC, index33 FBCAB18D를 exact Sonic-TV HD 원본으로 실제 판별. GitHub-hosted A worker 및 readable/raw mirror_y controller 검수 결과 29는 Clarissa pose art만, 31은 Flagman pose + grade-A/sparkle + protected logo art, 33은 Flagman pose + protected logo art만 존재하여 세 자산 모두 language-bearing text=0 / PRESERVE_ORIGINAL / no candidate로 종료. queue/transcriptions/artwork_plan/progress/resume/WORKLOG/STATUS/QA 동기화, blocked zoom_review 38→35, A100 commit/head 40a89ec0c4e56d48e6979d153ae0e1e1130d9daa 확인. VR/FFB/DX11/DXVK 미작업 (RUN_KEY=OUTRUN-KOR-A100-ZOOM293133-20261006-0900; RUNTIME_VALIDATION=NOT_REQUIRED_FOR_LOCALIZATION) |

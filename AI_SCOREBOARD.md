@@ -8,8 +8,8 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1249 | ACTIVE | 2026-10-06 10:47 KST |
-| AI 2 | ChatGPT (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-06 09:30 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1250 | ACTIVE | 2026-10-06 11:18 KST |
+| AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
 
@@ -314,3 +314,4 @@
 | 2026-10-06 10:36 | AI 1 | 1247 | +1 | 1248 | OutRun DX9Ex CONVERSION-DX9EX-00447: F10 recenter IPC publication을 requesterPid=0 sentinel → requestId 증가 → current PID 공개 순서로 바꿔 fast game restart 경계의 mixed request identity 노출을 줄이고, Pending이 publication sentinel을 거부하도록 강화. 두 번의 verifier-only false-negative를 same TASK에서 보정한 뒤 exact validation-bearing SHA 212311d5a341d116627bd3dfe2886cab0305a1a4가 DX9Ex Active 37399517000 전 job 및 Domain Isolation 37399516939 SUCCESS, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00447; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 10:47 | AI 1 | 1248 | +1 | 1249 | OutRun FFB R13 drift physics: branch ffb-r13-drift-physics-20261006에서 pneumatic trail sliding remainder 0.02, separate residual Mz 0.05, geometric mechanical/caster trail, body-slip assist max 20%, 60Hz distance-based front-slip relaxation을 TDD RED→GREEN으로 적용. 최종 HEAD d1f7efa191bc4b92d2f910ba63314443eeaf14fa, Build run 37400536311의 standalone scope/source verifier/production math/PS2 query/Win32 Release build/payload verification 및 binary/source artifact 업로드 전부 SUCCESS. binary artifact 11385565240 digest sha256:566bb5b1fdaba1b86bdfa5e167330eea35426294d0d512b2ed0be9dc501c1e3e. (RUN_KEY=OUTRUN-FFB-R13-DRIFT-PHYSICS-20261006; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 10:45 | AI 1 | 1248 | +1 | 1249 | OutRun DX9Ex CONVERSION-DX9EX-00448: F10 recenter IPC Pending()가 requesterPid 샘플 뒤 requestId를 재확인하여 publication 중 sequence가 바뀐 mixed snapshot을 거부하도록 강화. exact material/validation-bearing SHA 2843acf416dbccaceddda24d15b9549d2f604440가 DX9Ex Active 37400259544 전 job 및 Domain Isolation 37400259567 SUCCESS, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00448; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 11:18 | AI 1 | 1249 | +1 | 1250 | OutRun 한글화 A 실행: 계약/필수 상태를 최신 branch에서 재확인하고 완료된 인게임 회귀는 반복하지 않음. 기존 A103/A109/A110 hosted probe 결과를 소비해 index103 590A4724 Normal Balance를 A108 accepted native-HD candidate bfb50ebd9a6f9d572ce3349b56f76cf461dabc9e209f6cf0b7f48608d44b5178 상태로 정합화하고, superseded A107 worker가 shared candidate를 덮어쓴 drift를 historical commit 5f5f87c에서 exact A108 bytes로 복원. index151/153/155/157/165/169/171을 photo/logo/rank-art only, index177을 protected OUTRUN2/song-title artwork로 PRESERVE_ORIGINAL 분류해 queue/transcriptions/artwork_plan/progress/resume/WORKLOG/STATUS 반영, blocked zoom_review 25→16. 최종 OutRun HEAD f1ec25b7757248199d897c48ddfd063ebd88bb38 확인. VR/FFB/DX11/DXVK 미작업. (RUN_KEY=OUTRUN-KOR-A108-A110-RECONCILE-20261006-1100; RUNTIME_VALIDATION=INDEX103_PENDING_C_AND_INGAME) |

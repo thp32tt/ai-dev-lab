@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1237 | ACTIVE | 2026-10-06 09:14 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1238 | ACTIVE | 2026-10-06 09:15 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -298,3 +298,4 @@
 | 2026-10-06 09:10 | AI 1 | 1234 | +1 | 1235 | OutRun DX9Ex CONVERSION-DX9EX-00438: classic fallback freshness를 frameId 단독이 아니라 runGeneration + game PID까지 포함한 producer-run identity에 결속해 fast restart 저 frameId 재사용 시 prior-run 만료 타이머 상속을 차단. exact validation-bearing SHA a3d85775f285fa7b91ecabb3c607ce1c552b3238, DX9Ex Active 37390481200 및 Domain Isolation 37390481335 SUCCESS, artifact 11381401559, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00438; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 09:10 | AI 1 | 1235 | +1 | 1236 | OutRun DX9Ex CONVERSION-DX9EX-00439: R24 released DirectGPU projection/DirectFlat theater cache를 transport generation + run generation + game PID provenance에 결속하고 live/emergency theater가 DirectGPU provenance를 명시적으로 해제하도록 수정. exact validation-bearing SHA 1e7179978068a5b5243e03621cfda86cf22293ea, DX9Ex Active 37391455930 및 Domain Isolation 37391455942 SUCCESS, artifact 11381930784, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00439; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 09:14 | AI 1 | 1236 | +1 | 1237 | 금융권 자체점검 2-3·5-3 개선계획 양식 확인, 최신 공식자료 교차검증, IT자산관리 자동화·침해사고 대응 SLA 구축 예산 범위 및 예산 필요성·예산부서 메일 초안 작성 완료 (RUN_KEY=FINSEC-ITAM-IR-BUDGET-20261006-0910) |
+| 2026-10-06 09:15 | AI 1 | 1237 | +1 | 1238 | OutRun DX9Ex CONVERSION-DX9EX-00440: R19 LastStereoFrame fallback cache를 Frame.v2 producer run generation + game PID에 결속해 host가 살아있는 fast game restart에서 새 run의 미완성 첫 Frame.v2를 관측하는 즉시 prior-run 500ms gameplay cache를 폐기. exact material/validation-bearing SHA 4e55afb95b74f32b5f79520b70c1c52ed7b1614c, DX9Ex Active 37392336892 및 Domain Isolation 37392336922 SUCCESS, artifact 11382136467, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00440; RUNTIME_VALIDATION=UNTESTED) |

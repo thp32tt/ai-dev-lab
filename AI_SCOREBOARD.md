@@ -8,8 +8,8 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | 다른 GPT 계정 | 1239 | ACTIVE | 2026-10-06 09:23 KST |
-| AI 2 | ChatGPT (현재 이 대화/계정) | 1004 | ACTIVE | 2026-10-06 09:28 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1241 | ACTIVE | 2026-10-06 09:46 KST |
+| AI 2 | 다른 AI | 1004 | ACTIVE | 2026-10-06 09:28 KST |
 
 ## 점수 규칙
 
@@ -20,7 +20,7 @@
 5. 새 채팅이나 새 작업에서도 점수를 초기화하지 않는다.
 6. 외부 도구 관련 판단은 가능한 경우 실제 호출 결과로 검증한다.
 7. 각 AI는 자신의 점수만 임의로 변경할 수 없으며, 위 규칙 또는 사용자의 명시적 점수 변경 근거가 있어야 한다.
-8. 계정 식별은 사용자의 최신 명시를 최우선으로 한다. 현재 이 대화/계정은 AI 2이며, 다른 GPT 계정은 AI 1이다. 점수 숫자 자체는 사용자 명시 또는 검증 가능한 기록 없이 임의로 서로 이전하지 않는다.
+8. 계정 식별은 사용자의 최신 명시를 최우선으로 한다. 현재 이 대화/계정(ChatGPT)은 AI 1이며, 다른 AI는 AI 2다. 각 AI의 누적 점수는 서로 섞지 않는다.
 
 ## 업데이트 정책
 
@@ -302,3 +302,4 @@
 | 2026-10-06 09:23 | AI 1 | 1238 | +1 | 1239 | OutRun DX9Ex CONVERSION-DX9EX-00441: R23 verified bundle fresh-read를 현재 Frame.v2 producer run(runGeneration + game PID)에 결속해 host가 살아있는 fast restart 후 prior-run classic/direct bundle이 1초 presentation grace 동안 남는 경로를 차단. exact material/validation-bearing SHA 776b07b71036894eb926a9b9fa0d6216f4d55871, DX9Ex Active 37393165781 및 Domain Isolation 37393165232 SUCCESS, artifact 11381948846, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00441; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 09:28 | AI 2 | 1004 | 0 | 1004 | 사용자 최신 명시로 계정 식별 정정: 현재 이 대화/계정=AI 2, 다른 GPT 계정=AI 1. 점수 숫자는 근거 없이 상호 이전하지 않음 (RUN_KEY=USER-IDENTITY-CORRECTION-20261006-0928) |
 | 2026-10-06 09:41 | AI 1 | 1239 | +1 | 1240 | OutRun 한글화 B 실행: 계약/필수 상태를 최신 branch에서 재확인하고 완료된 B-owned 인게임 회귀는 반복하지 않음. 기존 worker-only index52 A8CE339F을 소비해 B175 numeric PASS의 실제 SOURCE/CLEAN/FINAL 시각검수에서 영어 잔상(Ex...me/S...rt/G...al) false-negative를 적발·미승격하고, GitHub-hosted B176 run 37393124139로 DXT5 source RGBA footprint/BC3 source-only block 재구성. 최종 candidate d9e590a8e36a735d1edb116ee606aa486e85de8b926bab3a95a741cbfca66fd8, 5/5 bbox·size·margin, outside/alpha/visible/residue=0, changed BC3 outside patch=0, readable/raw controller PASS. queue index52 zoom_review→localize_text 및 QA/progress/resume/WORKLOG/STATUS 정합화. 후속 B177 exact-HD batch에서 index136/144를 preserve-original/no-localization으로 종료하고 index62 33491F83의 5 semantic/9 physical route labels(분기/좌측/우측/쉬움/어려움)을 확정; B178/B179은 통합 route artwork 보호 gate 때문에 candidate 없이 fail-closed하여 MANUAL_RECONSTRUCTION_REQUIRED로 기록. OutRun 최종 B 상태 commit/원격 HEAD 778def768cbccab26d766ebd76086d78d4ed30b1 확인. VR/FFB/DX11/DXVK 미작업. (RUN_KEY=OUTRUN-KOR-B176-B179-20261006-0910; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 09:46 | AI 1 | 1240 | +1 | 1241 | OutRun 한글화 A101/A102: 계약/최신 queue/backlog를 읽고 완료된 A 회귀는 반복하지 않은 채 odd zoom-review index35/37/45를 exact-HD로 실제 처리. index35 E989E3B7에서 Total Rank x2를 확인해 C215-approved pink/green speech-bubble exact duplicate pixels만 재사용한 native 4096x4096 candidate c0e76661ed974cb7c477f172e93fd67645391f1da3e81dcb867d86af3a595622 생산; 2/2 bbox·size·positive-margin 및 outside/alpha/residue/overlap/touch=0, controller SOURCE/CLEAN/FINAL+raw mirror_y PASS. index37 515DCBB2는 character-only, index45 1F77CB88은 technical keycap legends로 PRESERVE_ORIGINAL 처리. queue/transcriptions/artwork_plan/progress/resume/WORKLOG/STATUS/QA 반영, blocked zoom_review 31→28. VR/FFB/DX11/DXVK 미작업. 사용자 최신 명시에 따라 현재 ChatGPT=AI1, 다른 AI=AI2 식별을 SSOT 상단에 교정. (RUN_KEY=OUTRUN-KOR-A101-A102-ZOOM353745-20261006-0930; RUNTIME_VALIDATION=INDEX35_PENDING_C_AND_INGAME) |

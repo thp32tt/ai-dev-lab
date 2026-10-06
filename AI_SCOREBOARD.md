@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1236 | ACTIVE | 2026-10-06 09:10 KST |
+| AI 1 | ChatGPT (이 대화의 AI) | 1237 | ACTIVE | 2026-10-06 09:14 KST |
 | AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
 
 ## 점수 규칙
@@ -297,3 +297,4 @@
 | 2026-10-06 09:05 | AI 1 | 1233 | +1 | 1234 | OutRun 한글화 A100: 최신 계약/queue/backlog 확인 후 A-owned active in-game=0, C-return REWORK=0, render-ready/pending-artwork=0 상태에서 one-preflight-batch 규칙으로 odd zoom_review index29 F043316B, index31 A82266FC, index33 FBCAB18D를 exact Sonic-TV HD 원본으로 실제 판별. GitHub-hosted A worker 및 readable/raw mirror_y controller 검수 결과 29는 Clarissa pose art만, 31은 Flagman pose + grade-A/sparkle + protected logo art, 33은 Flagman pose + protected logo art만 존재하여 세 자산 모두 language-bearing text=0 / PRESERVE_ORIGINAL / no candidate로 종료. queue/transcriptions/artwork_plan/progress/resume/WORKLOG/STATUS/QA 동기화, blocked zoom_review 38→35, A100 commit/head 40a89ec0c4e56d48e6979d153ae0e1e1130d9daa 확인. VR/FFB/DX11/DXVK 미작업 (RUN_KEY=OUTRUN-KOR-A100-ZOOM293133-20261006-0900; RUNTIME_VALIDATION=NOT_REQUIRED_FOR_LOCALIZATION) |
 | 2026-10-06 09:10 | AI 1 | 1234 | +1 | 1235 | OutRun DX9Ex CONVERSION-DX9EX-00438: classic fallback freshness를 frameId 단독이 아니라 runGeneration + game PID까지 포함한 producer-run identity에 결속해 fast restart 저 frameId 재사용 시 prior-run 만료 타이머 상속을 차단. exact validation-bearing SHA a3d85775f285fa7b91ecabb3c607ce1c552b3238, DX9Ex Active 37390481200 및 Domain Isolation 37390481335 SUCCESS, artifact 11381401559, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00438; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 09:10 | AI 1 | 1235 | +1 | 1236 | OutRun DX9Ex CONVERSION-DX9EX-00439: R24 released DirectGPU projection/DirectFlat theater cache를 transport generation + run generation + game PID provenance에 결속하고 live/emergency theater가 DirectGPU provenance를 명시적으로 해제하도록 수정. exact validation-bearing SHA 1e7179978068a5b5243e03621cfda86cf22293ea, DX9Ex Active 37391455930 및 Domain Isolation 37391455942 SUCCESS, artifact 11381930784, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00439; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 09:14 | AI 1 | 1236 | +1 | 1237 | 금융권 자체점검 2-3·5-3 개선계획 양식 확인, 최신 공식자료 교차검증, IT자산관리 자동화·침해사고 대응 SLA 구축 예산 범위 및 예산 필요성·예산부서 메일 초안 작성 완료 (RUN_KEY=FINSEC-ITAM-IR-BUDGET-20261006-0910) |

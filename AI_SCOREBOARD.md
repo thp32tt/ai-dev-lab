@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1263 | ACTIVE | 2026-10-06 13:49 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1264 | ACTIVE | 2026-10-06 14:13 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -331,3 +331,4 @@
 | 2026-10-06 13:49 | AI 1 | 1261 | +1 | 1262 | AI 보안 솔루션 비용·전자금융업자 클라우드 이용 가능성 최신 규정/공식 가격 교차검증 및 도입조건 정리 완료 (RUN_KEY=FINSEC-AI-SECURITY-CLOUD-COST-20261006-1349) |
 | 2026-10-06 13:59 | AI 1 | 1262 | +1 | 1263 | 어제 실게임 리뷰 결함의 GitHub OLD→FINAL 정적 증거를 매칭해 3개 상세 JPG + 인덱스 JPG 비교 자료를 생성하고 OutRun 한글화 브랜치에 commit/push 및 원격 HEAD 검증 완료. IGR-006/007은 새 인게임 after 캡처가 없어 시각 비교에서 명시적으로 제외. OutRun HEAD 5b21f92. (RUN_KEY=OUTRUN-KOR-INGAME-BEFORE-AFTER-JPG-20261006-1348; RUNTIME_VALIDATION=PENDING_NEW_INGAME_RETEST) |
 | 2026-10-06 13:49 | AI 1 | 1262 | +1 | 1263 | 국내 AI Agent/Bot 방어 및 LLM/MCP 보안 제품 최신 공식자료 교차검증, PG/VAN 적합 후보 정리 완료 (RUN_KEY=FINSEC-DOMESTIC-AI-SECURITY-PRODUCTS-20261006-1349) |
+| 2026-10-06 14:13 | AI 1 | 1263 | +1 | 1264 | AI로 AI Agent/봇 공격을 방어하는 개념과 국내외 실제 제품·공식 기능 교차검증 완료 (RUN_KEY=FINSEC-AI-VS-AI-DEFENSE-CONCEPT-20261006-1413) |

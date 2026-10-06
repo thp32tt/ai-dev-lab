@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1266 | ACTIVE | 2026-10-06 14:26 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1267 | ACTIVE | 2026-10-06 15:02 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -334,3 +334,4 @@
 | 2026-10-06 14:13 | AI 1 | 1263 | +1 | 1264 | AI로 AI Agent/봇 공격을 방어하는 개념과 국내외 실제 제품·공식 기능 교차검증 완료 (RUN_KEY=FINSEC-AI-VS-AI-DEFENSE-CONCEPT-20261006-1413) |
 | 2026-10-06 14:14 | AI 1 | 1264 | +1 | 1265 | 외부 AI Agent 공격 방어 전문 솔루션 추가 조사: Arkose Agent Trust Manager/Titan, HUMAN AgenticTrust, Cequence Agent Trust 및 최신 F5/Akamai 기능 교차검증 완료 (RUN_KEY=FINSEC-AI-AGENT-DEFENSE-VENDORS-20261006-1414) |
 | 2026-10-06 14:26 | AI 1 | 1265 | +1 | 1266 | 국산 물리형 AI/봇 공격 방어 장비 조사: MONITORAPP AIWAAP Physical Appliance, Penta WAPPLES Appliance 및 STCLab MBUSTER 온프레미스 형태 교차검증 완료 (RUN_KEY=FINSEC-DOMESTIC-AI-DEFENSE-APPLIANCE-20261006-1426) |
+| 2026-10-06 15:02 | AI 1 | 1266 | +1 | 1267 | OutRun 한글화 B194: 진행 중이던 index214 BF229CF4 START→출발/GOAL→골을 완료. clean residue를 fail-closed 재작업하고, numeric PASS 초안의 traffic-light scene-red 침범을 controller visual QA에서 적발·폐기한 뒤 sign-body mask를 수정하여 exact-HD DXT5 후보 3d292729007cacb909782ad6c38fe463ba1ff4705772c69f930d4a30f14a839b의 2/2 bbox·size·positive-margin, outside/alpha/introduced-visible/residue-color/overlap=0 및 SOURCE/CLEAN/FINAL+raw visual PASS 달성. queue/transcriptions/artwork_plan/progress/resume/WORKLOG/STATUS/QA 동기화, OutRun HEAD 6d9b5cd9eee5fd44f0ae9339374807e98b8fa832 push·원격 검증 완료. VR/FFB/DX11/DXVK 미작업. (RUN_KEY=OUTRUN-KOR-B194-BF229CF4-20261006-1440; RUNTIME_VALIDATION=UNTESTED) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1275 | ACTIVE | 2026-10-06 16:20 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1276 | ACTIVE | 2026-10-06 16:50 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -347,3 +347,4 @@
 | 2026-10-06 16:24 | AI 1 | 1275 | +1 | 1276 | OutRun DX9Ex CONVERSION-DX9EX-00473: R26 recenter DestroySession을 transactional하게 변경해 downstream parent destroy 실패 시 accepted/pending recenter ownership과 application/fallback anchor 상태를 보존하고 성공 시에만 ResetSessionState를 수행하도록 보완. exact material/validation-bearing SHA 06bc9a82a71dc3430246cc15c2311525e758aecd, DX9Ex Active 37428755174 policy/game/host/full-chain/package, Domain Isolation 37428755333, Autodev Coordination 37428755231 전부 SUCCESS, durable run record COMPLETE/PASS 확인. (RUN_KEY=CONVERSION-DX9EX-00473; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 16:33 | AI 1 | 1276 | +1 | 1277 | OutRun DX9Ex CONVERSION-DX9EX-00472 누락 점수 정합화: D3D9ExDirectPassthrough::DestroySession을 transactional하게 전파해 downstream session destroy 실패 시 R13 SafeEye/CopyFence/direct-ACK/read mappings 및 capture freshness를 보존하고 성공 후에만 reset. exact material/validation-bearing SHA 7642b5c227df689e67bbb95509ce0e762bd8f0b7, DX9Ex Active 37427445400·Domain Isolation 37427445392·Autodev Coordination 37427445426 SUCCESS, durable COMPLETE/PASS 확인. (RUN_KEY=CONVERSION-DX9EX-00472; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 16:33 | AI 1 | 1277 | +1 | 1278 | OutRun DX9Ex CONVERSION-DX9EX-00474: R24 BlackScreenGuard::DestroySession을 transactional하게 변경해 downstream parent destroy 실패 시 submission counters와 Projection/Theater committed generation/run provenance를 보존하고 XR_SUCCESS 후에만 reset. exact material/validation-bearing SHA d81a30d5828712b02b3a3fc59738810339f7d2a4, DX9Ex Active 37429651061 policy/host/game/full-chain/package, Domain Isolation 37429651035, Autodev Coordination 37429651079 전부 SUCCESS, artifact 11396791140 digest sha256:41d0496715802413428ed402c553c6c1519959e5de06a18bef087fea21f3351e. (RUN_KEY=CONVERSION-DX9EX-00474; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 16:50 | AI 1 | 1275 | +1 | 1276 | OutRun 한글화 B202-B204: pending user-slant worker output c3b3ca49를 소비해 index106 IGR-017 788CE557, index48 IGR-009 Slipstream, index60 IGR-010 Stage를 controller visual QA까지 완료. 후보 a9c10f00..., 259153b9..., a8ffc1f0...의 bbox/size/protected/residue/overlap gate와 readable top-vs-bottom slant-direction + raw mirror_y PASS를 확인하고 queue/artwork/backlog/progress/resume/STATUS/WORKLOG/controller QA를 동기화. OutRun HEAD 0c53c9cb39c6c3b1efdde937f7ef7427f2f442b0 push·원격 검증 완료. VR/FFB/DX11/DXVK 미작업. (RUN_KEY=OUTRUN-KOR-B202-B204-SLANT-20261006-1645; PENDING_C_AND_NEW_INGAME_RETEST) |

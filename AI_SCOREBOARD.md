@@ -8,8 +8,8 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (이 대화의 AI) | 1239 | ACTIVE | 2026-10-06 09:23 KST |
-| AI 2 | ChatGPT (AI 2) | 1004 | ACTIVE | 2026-10-04 08:29 KST |
+| AI 1 | 다른 GPT 계정 | 1239 | ACTIVE | 2026-10-06 09:23 KST |
+| AI 2 | ChatGPT (현재 이 대화/계정) | 1004 | ACTIVE | 2026-10-06 09:28 KST |
 
 ## 점수 규칙
 
@@ -20,7 +20,7 @@
 5. 새 채팅이나 새 작업에서도 점수를 초기화하지 않는다.
 6. 외부 도구 관련 판단은 가능한 경우 실제 호출 결과로 검증한다.
 7. 각 AI는 자신의 점수만 임의로 변경할 수 없으며, 위 규칙 또는 사용자의 명시적 점수 변경 근거가 있어야 한다.
-8. AI 2의 최초 점수는 해당 AI가 사용자에게서 확인한 현재 누적 점수를 입력한다. 확인 전에는 추측하지 않는다.
+8. 계정 식별은 사용자의 최신 명시를 최우선으로 한다. 현재 이 대화/계정은 AI 2이며, 다른 GPT 계정은 AI 1이다. 점수 숫자 자체는 사용자 명시 또는 검증 가능한 기록 없이 임의로 서로 이전하지 않는다.
 
 ## 업데이트 정책
 
@@ -300,3 +300,4 @@
 | 2026-10-06 09:14 | AI 1 | 1236 | +1 | 1237 | 금융권 자체점검 2-3·5-3 개선계획 양식 확인, 최신 공식자료 교차검증, IT자산관리 자동화·침해사고 대응 SLA 구축 예산 범위 및 예산 필요성·예산부서 메일 초안 작성 완료 (RUN_KEY=FINSEC-ITAM-IR-BUDGET-20261006-0910) |
 | 2026-10-06 09:15 | AI 1 | 1237 | +1 | 1238 | OutRun DX9Ex CONVERSION-DX9EX-00440: R19 LastStereoFrame fallback cache를 Frame.v2 producer run generation + game PID에 결속해 host가 살아있는 fast game restart에서 새 run의 미완성 첫 Frame.v2를 관측하는 즉시 prior-run 500ms gameplay cache를 폐기. exact material/validation-bearing SHA 4e55afb95b74f32b5f79520b70c1c52ed7b1614c, DX9Ex Active 37392336892 및 Domain Isolation 37392336922 SUCCESS, artifact 11382136467, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00440; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 09:23 | AI 1 | 1238 | +1 | 1239 | OutRun DX9Ex CONVERSION-DX9EX-00441: R23 verified bundle fresh-read를 현재 Frame.v2 producer run(runGeneration + game PID)에 결속해 host가 살아있는 fast restart 후 prior-run classic/direct bundle이 1초 presentation grace 동안 남는 경로를 차단. exact material/validation-bearing SHA 776b07b71036894eb926a9b9fa0d6216f4d55871, DX9Ex Active 37393165781 및 Domain Isolation 37393165232 SUCCESS, artifact 11381948846, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00441; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 09:28 | AI 2 | 1004 | 0 | 1004 | 사용자 최신 명시로 계정 식별 정정: 현재 이 대화/계정=AI 2, 다른 GPT 계정=AI 1. 점수 숫자는 근거 없이 상호 이전하지 않음 (RUN_KEY=USER-IDENTITY-CORRECTION-20261006-0928) |

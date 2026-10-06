@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1246 | ACTIVE | 2026-10-06 10:13 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1249 | ACTIVE | 2026-10-06 10:47 KST |
 | AI 2 | ChatGPT (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -312,3 +312,4 @@
 | 2026-10-06 09:30 | AI 2 | 1004 | +196 | 1200 | 사용자 직접 지정: "그래도 한 게 있으니까 1200점으로 시작"을 최우선 반영해 AI 2 기준 누적 점수를 1200으로 재설정 (RUN_KEY=USER-SCORE-RESET-AI2-20261006-0930) |
 | 2026-10-06 10:25 | AI 1 | 1246 | +1 | 1247 | OutRun DX9Ex CONVERSION-DX9EX-00446: OpenXR session teardown가 accepted-but-not-applied F10 요청의 host-local 상태만 지우고 shared receivedId를 남겨 새 세션에서 영구 유실될 수 있던 경로를 차단. Channel::RequeueReceived CAS와 R26 teardown 재큐잉을 추가하고 exact material/validation-bearing SHA f9018c61891823c797d2a5e63b41ec4c453f8f8a가 DX9Ex Active 37398523213 전 job 및 Domain Isolation 37398522991 SUCCESS, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00446; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 10:36 | AI 1 | 1247 | +1 | 1248 | OutRun DX9Ex CONVERSION-DX9EX-00447: F10 recenter IPC publication을 requesterPid=0 sentinel → requestId 증가 → current PID 공개 순서로 바꿔 fast game restart 경계의 mixed request identity 노출을 줄이고, Pending이 publication sentinel을 거부하도록 강화. 두 번의 verifier-only false-negative를 same TASK에서 보정한 뒤 exact validation-bearing SHA 212311d5a341d116627bd3dfe2886cab0305a1a4가 DX9Ex Active 37399517000 전 job 및 Domain Isolation 37399516939 SUCCESS, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00447; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 10:47 | AI 1 | 1248 | +1 | 1249 | OutRun FFB R13 drift physics: branch ffb-r13-drift-physics-20261006에서 pneumatic trail sliding remainder 0.02, separate residual Mz 0.05, geometric mechanical/caster trail, body-slip assist max 20%, 60Hz distance-based front-slip relaxation을 TDD RED→GREEN으로 적용. 최종 HEAD d1f7efa191bc4b92d2f910ba63314443eeaf14fa, Build run 37400536311의 standalone scope/source verifier/production math/PS2 query/Win32 Release build/payload verification 및 binary/source artifact 업로드 전부 SUCCESS. binary artifact 11385565240 digest sha256:566bb5b1fdaba1b86bdfa5e167330eea35426294d0d512b2ed0be9dc501c1e3e. (RUN_KEY=OUTRUN-FFB-R13-DRIFT-PHYSICS-20261006; RUNTIME_VALIDATION=UNTESTED) |

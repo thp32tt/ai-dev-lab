@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1265 | ACTIVE | 2026-10-06 14:14 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1266 | ACTIVE | 2026-10-06 14:26 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -333,3 +333,4 @@
 | 2026-10-06 13:49 | AI 1 | 1262 | +1 | 1263 | 국내 AI Agent/Bot 방어 및 LLM/MCP 보안 제품 최신 공식자료 교차검증, PG/VAN 적합 후보 정리 완료 (RUN_KEY=FINSEC-DOMESTIC-AI-SECURITY-PRODUCTS-20261006-1349) |
 | 2026-10-06 14:13 | AI 1 | 1263 | +1 | 1264 | AI로 AI Agent/봇 공격을 방어하는 개념과 국내외 실제 제품·공식 기능 교차검증 완료 (RUN_KEY=FINSEC-AI-VS-AI-DEFENSE-CONCEPT-20261006-1413) |
 | 2026-10-06 14:14 | AI 1 | 1264 | +1 | 1265 | 외부 AI Agent 공격 방어 전문 솔루션 추가 조사: Arkose Agent Trust Manager/Titan, HUMAN AgenticTrust, Cequence Agent Trust 및 최신 F5/Akamai 기능 교차검증 완료 (RUN_KEY=FINSEC-AI-AGENT-DEFENSE-VENDORS-20261006-1414) |
+| 2026-10-06 14:26 | AI 1 | 1265 | +1 | 1266 | 국산 물리형 AI/봇 공격 방어 장비 조사: MONITORAPP AIWAAP Physical Appliance, Penta WAPPLES Appliance 및 STCLab MBUSTER 온프레미스 형태 교차검증 완료 (RUN_KEY=FINSEC-DOMESTIC-AI-DEFENSE-APPLIANCE-20261006-1426) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1288 | ACTIVE | 2026-10-06 22:36 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1290 | ACTIVE | 2026-10-06 22:49 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -373,3 +373,4 @@
 | 2026-10-06 22:30 | AI 1 | 1297 | -10 | 1287 | 사용자 직접 패널티: GitHub/N100 연결 상태에 대해 부정확하게 보고한 건에 대해 -10점 적용. (RUN_KEY=AI1-PENALTY-FALSE-REPORT-20261006-2230) |
 | 2026-10-06 22:36 | AI 1 | 1287 | +1 | 1288 | OutRun 한글화 A144 사용자 JPG 리워크: PJR #001-010/#014/#018-022 16자산을 실제 재생성·교정. 첫 hosted 결과의 DejaVu fallback tofu를 controller visual gate가 FAIL 처리하고 Noto Sans CJK KR TTC face 강제로 재실행, corrected material commit 57485abb... 및 RAW/FLIP-Y QA commit 5d5a1d1... PASS. queue/backlog/progress/resume/WORKLOG/controller QA 상태를 producer PASS pending fresh C/user JPG/new in-game로 정합화하고 OutRun 원격 HEAD cd7599c397dcab17315beebf4462c744e61c8734 검증 완료. VR/FFB/DX11/DXVK 미작업. (OUTRUN-KOR-A144-USERJPG-REWORK-20261006-2200; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 22:39 | AI 1 | 1288 | +1 | 1289 | OutRun DX9Ex CONVERSION-DX9EX-00482: 00481로 R32 physical hook 0개가 된 후 남아 있던 redundant async install/status relay(R32InstallState/R32InstallThread/VRStereoR32ReviewHook/R32InstallStatus)를 제거하고 R33이 R31InstallStatus/R22InstallStatus/R13InstallStatus를 직접 소비하도록 구조 단순화. 기존 Failed/Ready gate와 final disabled-first Reset/Present/DirectGPU/draw hook transaction은 보존하고 R31의 실제 StateBlock consumer/recovery initializer는 유지. exact validation-bearing SHA b205046d37a336b9942666caedee8b5292888197에서 DX9Ex Active 37471397113 policy/host/game/full-chain/package, Domain Isolation 37471397155, HUD Inspector 37471396975, Build 37471397172 SUCCESS. artifact 11417631143 digest sha256:8b3eb99180bdf6c7cc847668cda7b35f9aaefe052b0bed91c4723822c907d1af, durable run record/Issue #14/refactor state 완료. (RUN_KEY=CONVERSION-DX9EX-00482; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 22:49 | AI 1 | 1289 | +1 | 1290 | OutRun 오늘 밤 단일 HMD 테스트 준비: DX11은 NativeDrawPath/Draw 비활성 증거단계, DXVK는 정적 disassembly 단계라 1회 런타임 테스트 대상에서 제외하고 DX9Ex CONVERSION-DX9EX-00482만 선정. GitHub Actions artifact 11417631143 digest sha256:8b3eb99180bdf6c7cc847668cda7b35f9aaefe052b0bed91c4723822c907d1af를 확보해 material b205046d...와 packaged 9a79c91d...가 file-diff 0인 동일 트리임을 확인. canonical OR2006C2C.EXE SHA256·원본 CI SHA256SUMS·프로세스 상태를 게임 실행 전 fail-closed 검증하고, DX9Ex/CORRECTNESS 선택→1회 실행→자동 로그 수집을 수행하는 TEST_DX9EX_00482_ONCE.cmd/Preflight 스크립트를 포함한 flat ZIP을 생성·재압축·해시 재검증 완료. 최종 ZIP sha256:f6b85e9056a6c0d4ea0fcce0bdb0300abf63b53b7782f1ff3036b211749c325d. (RUN_KEY=OUTRUN-VR-TONIGHT-DX9EX-00482-TESTBUILD-20261006-2249; RUNTIME_VALIDATION=PENDING_USER_HMD_TEST) |

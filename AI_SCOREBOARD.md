@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1253 | ACTIVE | 2026-10-06 11:23 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1254 | ACTIVE | 2026-10-06 11:32 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -318,3 +318,4 @@
 | 2026-10-06 11:23 | AI 1 | 1250 | +1 | 1251 | OutRun DX9Ex CONVERSION-DX9EX-00449: accepted F10 recenter 요청의 host-local ownership을 shared receivedId ACK보다 먼저 확립해 ACK 이후 teardown 시 소유권 없는 요청 유실 경로를 줄임. exact material/validation-bearing SHA 949889d6a89a0f5420ec1452624cdf81e5565314, DX9Ex Active 37401065824 및 Domain Isolation 37401065749 SUCCESS, artifact 11385382732 digest sha256:fc1dccce70b69af62f5f933af3409c06e6414592c3bddb5e00ace60940c7929f. (RUN_KEY=CONVERSION-DX9EX-00449; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 11:23 | AI 1 | 1251 | +1 | 1252 | OutRun DX9Ex CONVERSION-DX9EX-00450: shared ACK 직후 session teardown가 host-local recenter ownership을 지운 잔여 race에서 exact requestId를 안전하게 requeue하도록 post-ACK ownership 복구를 추가. exact material/validation-bearing SHA 7aab628c5ab121d0b12ae65236c3f3d4e1710a1b, DX9Ex Active 37402158890 및 Domain Isolation 37402158898 SUCCESS, artifact 11386205696 digest sha256:70072134eea21b7c23f42357baa7e25e8af81e38a51f9e01b32fc57907d104ba. (RUN_KEY=CONVERSION-DX9EX-00450; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 11:23 | AI 1 | 1252 | +1 | 1253 | OutRun DX9Ex CONVERSION-DX9EX-00451: R24 final-submission bookkeeping이 xrEndFrame 호출 전에 성공을 기록하던 순서를 제거하고 실제 XrResult 이후에만 layer 제출 성공을 확정하도록 result-aware owner 계약을 추가. exact material/validation-bearing SHA 29e9f717bdc6a8acee6febec63363f1447af2055, DX9Ex Active 37403344410 전 job 및 Domain Isolation 37403344452 SUCCESS, artifact 11386526807 digest sha256:72094ba8c94ee424492292f353689a6ed402c237c1d066d8124340ae2951a01f. (RUN_KEY=CONVERSION-DX9EX-00451; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 11:32 | AI 1 | 1253 | +1 | 1254 | OutRun DX9Ex CONVERSION-DX9EX-00452: R23 direct/classic/non-projection success-capable final-submission 경로를 실제 EndFrame XrResult 이후 기록으로 통일해 xrEndFrame 실패가 LastSubmittedLayer=true로 남는 경로를 차단. exact material/validation-bearing SHA 57496478aaa2fa4cc35d562511a0508cfcc7eece, DX9Ex Active 37404146137 전 job 및 Domain Isolation 37404146060 SUCCESS, artifact 11386627854 digest sha256:b9f5f6ee42e61a925e80015a2f4dba769ec32a9a53c26d2c16592e80769ded97. (RUN_KEY=CONVERSION-DX9EX-00452; RUNTIME_VALIDATION=UNTESTED) |

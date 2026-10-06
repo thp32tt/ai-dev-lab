@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1271 | ACTIVE | 2026-10-06 15:34 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1272 | ACTIVE | 2026-10-06 15:41 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -339,3 +339,4 @@
 | 2026-10-06 15:09 | AI 1 | 1268 | +1 | 1269 | OutRun DX9Ex CONVERSION-DX9EX-00467: R24 emergency ClearRenderTargetView의 OpenXR swapchain GPU-work provenance를 owner에 기록해 live Destroy가 completion fence를 우회할 수 있던 수명주기 결함을 보완. exact validation-bearing SHA b290361d2abd2b2ac03b94cca9b89c62b89e51f1, DX9Ex Active 37421595884·Domain Isolation 37421595899 SUCCESS, C0-C6/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00467; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 15:24 | AI 1 | 1269 | +1 | 1270 | OutRun DX9Ex CONVERSION-DX9EX-00468: 성공한 D3D11 event-query swapchain drain proof를 transient live xrDestroySwapchain 실패 뒤에도 보존해 retry의 중복 GPU completion wait를 제거. verifier false-negative 2회를 같은 TASK 3/3 안에서 보정한 뒤 exact validation-bearing SHA fd9b2ac9c75a0ececdb7dcace46910643934f775, DX9Ex Active 37422950809·Domain Isolation 37422950914 SUCCESS, C0-C6/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00468; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 15:33 | AI 1 | 1270 | +1 | 1271 | OutRun DX9Ex CONVERSION-DX9EX-00469: R24 DirectGPU projection/direct-flat RenderTo에 실제 Projection/Theater swapchain owner를 전달해 Draw가 gpuWorkSubmitted를 기록하고 이후 live Destroy가 GPU completion fence를 우회하지 못하도록 보완. exact material/validation-bearing SHA 133402e75327efd9159f0582577951c21578f97a, DX9Ex Active 37423862114·Domain Isolation 37423862161 SUCCESS, C0-C6/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00469; RUNTIME_VALIDATION=UNTESTED) |
+| 2026-10-06 15:41 | AI 1 | 1271 | +1 | 1272 | OutRun 한글화 A133: 계약/필수 상태를 최신 브랜치에서 재확인하고 완료된 A132 및 C/실게임 대기 자산을 반복하지 않음. A odd 직접 이미지 작업이 소진된 상태에서 남아 있던 blocked_runtime_font index15/17/19/21/23을 현재 K4 아키텍처와 정합화: hooks_localization.cpp가 stock English glyph를 숨기고 ImGui UTF-8 overlay로 한글을 재렌더하며 Overlay::rebuild_fonts가 Malgun/Gulim/Batang/Segoe Windows 시스템 폰트를 사용하므로 stock spr_font_xst DDS는 원본 보존/no candidate가 정답임을 확정. 5/5 queue 상태를 k4_overlay_preserve_original_no_candidate_required로 반영하고 font README/progress/resume/WORKLOG/STATUS/A133 report 동기화. B 작업 중 index176과 B-owned 16/18/20/22 및 name-entry24는 미작업. verify_state는 기존 transcription/artwork-plan/legacy visual-review drift로 FAIL이며 A133 비기인으로 명시 기록. OutRun 최종 HEAD 9d193eb73303852f76936c922cd2ff04951ce074 확인. VR/FFB/DX11/DXVK 미작업. (RUN_KEY=OUTRUN-KOR-A133-RUNTIME-FONT-20261006; RUNTIME_VALIDATION=UNTESTED) |

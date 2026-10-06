@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1293 | ACTIVE | 2026-10-06 20:00 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1288 | ACTIVE | 2026-10-06 22:36 KST |
 | AI 2 | 다른 AI | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
@@ -371,3 +371,4 @@
 
 | 2026-10-06 22:10 | AI 1 | 1296 | +1 | 1297 | Titanfall 2 VR 최신 구현 비교 검토: CircuitLord 풀컨버전은 installer만 공개되고 mod 본체는 closed source임을 확인하고, TinyBlkDog v0.1.1 공개 DX11/OpenXR 구현의 alternate-eye·HUD semantic tuning·in-headset live settings·OpenXR stall provenance를 OutRun 현재 구조와 대조. alternate-eye/scene re-entry는 퇴보·deadlock 위험으로 명시 거부하고, semantic HUD별 scale/offset/space policy·향후 HMD 설정패널·기존 per-phase timing 유지 항목을 `docs/VR_REFERENCE_HARVEST.md`에 근거와 함께 기록. OutRun commit a2d026e184dc6f44d9c786cfa49ce48ec97d448d, 소스 복사 없음, runtime 변경 없음. (RUN_KEY=OUTRUN-VR-TITANFALL2-REFERENCE-20261006; RUNTIME_VALIDATION=NOT_APPLICABLE_REFERENCE_REVIEW) |
 | 2026-10-06 22:30 | AI 1 | 1297 | -10 | 1287 | 사용자 직접 패널티: GitHub/N100 연결 상태에 대해 부정확하게 보고한 건에 대해 -10점 적용. (RUN_KEY=AI1-PENALTY-FALSE-REPORT-20261006-2230) |
+| 2026-10-06 22:36 | AI 1 | 1287 | +1 | 1288 | OutRun 한글화 A144 사용자 JPG 리워크: PJR #001-010/#014/#018-022 16자산을 실제 재생성·교정. 첫 hosted 결과의 DejaVu fallback tofu를 controller visual gate가 FAIL 처리하고 Noto Sans CJK KR TTC face 강제로 재실행, corrected material commit 57485abb... 및 RAW/FLIP-Y QA commit 5d5a1d1... PASS. queue/backlog/progress/resume/WORKLOG/controller QA 상태를 producer PASS pending fresh C/user JPG/new in-game로 정합화하고 OutRun 원격 HEAD cd7599c397dcab17315beebf4462c744e61c8734 검증 완료. VR/FFB/DX11/DXVK 미작업. (OUTRUN-KOR-A144-USERJPG-REWORK-20261006-2200; RUNTIME_VALIDATION=UNTESTED) |

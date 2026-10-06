@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1246 | ACTIVE | 2026-10-06 10:13 KST |
-| AI 2 | 다른 AI | 1004 | ACTIVE | 2026-10-06 09:28 KST |
+| AI 2 | ChatGPT (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-06 09:30 KST |
 
 ## 점수 규칙
 
@@ -308,3 +308,5 @@
 | 2026-10-06 09:44 | AI 1 | 1243 | +1 | 1244 | OutRun DX9Ex CONVERSION-DX9EX-00443: R26 OpenXR session teardown에서 pending focus/game recenter, application/target generation, fallback LOCAL anchor를 초기화해 재생성 세션으로 stale recenter 상태가 넘어가는 경로 차단. exact material/validation SHA e85edc9fa75a5ca52c61227ac00b112a2e3dc466, DX9Ex Active 37395009660 및 Domain Isolation 37395009656 SUCCESS, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00443; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 09:55 | AI 1 | 1244 | +1 | 1245 | OutRun DX9Ex CONVERSION-DX9EX-00444: F10 recenter IPC requesterPid를 현재 live OR2006C2C 프로세스 PID와 수락 전에 검증해 host-surviving fast restart에서 이전 게임 프로세스의 stale 요청이 새 프로세스에 적용되는 경로 차단. exact material/validation SHA 5ac8c4184e39482dee9977779ac993e6514fa51d, DX9Ex Active 37396013645 및 Domain Isolation 37396013737 SUCCESS, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00444; RUNTIME_VALIDATION=UNTESTED) |
 | 2026-10-06 10:12 | AI 1 | 1245 | +1 | 1246 | OutRun DX9Ex CONVERSION-DX9EX-00445: 수락된 F10 requester PID를 LOCAL 적용/visible-submit 완료까지 보존·재검증하고 game/focus recenter source ownership을 분리해 게임 교체 후 stale accepted request가 새 프로세스에 적용·완료되는 경로 차단. material 6dc36719fb7b6079c51c870a93fadb7b0361a73f, 최종 validation-bearing 5faeeea1d642254d5187f5d5bff37ad876810e93, DX9Ex Active 37397417136 및 Domain Isolation 37397417094 SUCCESS, C0-C6/run record/Issue #14 영속화 완료. (RUN_KEY=CONVERSION-DX9EX-00445; RUNTIME_VALIDATION=UNTESTED) |
+
+| 2026-10-06 09:30 | AI 2 | 1004 | +196 | 1200 | 사용자 직접 지정: "그래도 한 게 있으니까 1200점으로 시작"을 최우선 반영해 AI 2 기준 누적 점수를 1200으로 재설정 (RUN_KEY=USER-SCORE-RESET-AI2-20261006-0930) |

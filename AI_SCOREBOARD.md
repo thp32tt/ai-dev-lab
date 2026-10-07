@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1383 | ACTIVE | 2026-10-07 16:15 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1384 | ACTIVE | 2026-10-07 16:49 KST |
 | AI 2 | ChatGPT (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-07 09:19 KST |
 
 ## 점수 규칙
@@ -469,3 +469,4 @@
 | 2026-10-07 15:42 | AI 1 | 1380 | +1 | 1381 | OutRun 한글화 B233: 최신 CONTRACT/필수 정책·backlog/queue/live HEAD를 재확인해 B-owned P0/P1은 이미 material/build PASS 후 C/user/실게임 대기이며 B-even 직접 REWORK/RENDER_READY/ONE_STAGE가 없음을 확인. PRE_INGAME #005 q100 53CE39D5에서 C117/B30의 18개 mode-card 한글 행이 각 English glyph bbox 안에서 일괄 중앙정렬되어 원문의 left/stagger line hierarchy가 안쪽으로 밀리는 current-policy placement false-negative를 재오픈. GitHub-hosted B run 37582528994 SUCCESS / worker output 8a2555a0...로 C117-accepted orange/dark-outline/right-slanted Korean raster/effects와 B30 clean plate를 pixel-exact 재사용하고 18행을 source-left+2로 수평 이동해 candidate 7235731a2add8e947476cd22b971e5b57a7de390ae134609f4254a2f493a557d 생성. 18/18 bbox·source-size·positive-margin PASS, previous-candidate changed/alpha outside rework=0, source-vs-final outside all 19 source boxes=0, overlap=0, RANDOM/protected art exact, RGBA32 header/mip1/raw mirror_y/persisted decode PASS. SOURCE/OLD/CLEAN/FINAL, RAW, practical 100/50/25 controller visual QA PASS. queue/artwork_plan/progress/resume/WORKLOG/STATUS/controller QA 동기화 후 OutRun 원격 HEAD 0c62dea19d2f5f235e5af747e6cc4121e3f1c14b 확인. Fresh independent C + exact-SHA C3 + regenerated JPG/user review + actual-game validation pending, RUNTIME_VALIDATION=UNTESTED; VR/FFB/DX11/DXVK 미작업. (RUN_KEY=OUTRUN-KOR-B233-Q100-SOURCE-ANCHOR-20261007-1530) |
 | 2026-10-07 15:53 | AI 1 | 1381 | +1 | 1382 | 앱 취약점 진단 결과(minSdk=21 구형 Android 지원) 관련 사업팀 협의 요청 메일 초안 작성: 사용량이 적으면 앱 종료/내림, 사용량이 많으면 별도 외주업체 활용 또는 내부 개선 방향 검토 요청으로 정리. (RUN_KEY=APP-VULN-BIZ-TEAM-MAIL-20261007-1553) |
 | 2026-10-07 16:15 | AI 1 | 1382 | +1 | 1383 | OutRun 한글화 A163R q51 FF2462BB: C239이 반환한 source-target mismatch와 PJR-014 clipping/style 결함의 최신 hosted worker 결과 0dccb6318fafa20725427227fddf00c451bfdab814de5dc2da497d79d13b862e를 controller 시각 QA로 최종 확인하고, 잘못된 상단 중복 삽입 복원·실제 lower/right source cell 렌더·source-family white/navy/yellow effect·8px 이상 effect margin을 PASS 처리. asset_queue/backlog/artwork_plan/resume/WORKLOG/STATUS/controller QA를 정합화하고 commit/push 후 OutRun 원격 HEAD 2f6980ef3894ca1f2b09c150116ede88c8d85ec8 검증 완료. Fresh C+C3/user JPG/actual-game은 pending, RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 미작업. (RUN_KEY=OUTRUN-KOR-A163R-Q051-RECONCILE-20261007-1600) |
+| 2026-10-07 16:49 | AI 1 | 1383 | +1 | 1384 | N100 MCP `server_info` 직접 실행으로 연결 상태와 서버 식별 정보를 확인하고 요청 항목 `mcp_version=0.3.0`, `root=/home/chatgpt-runner2`, `port=8765`를 검증. (RUN_KEY=N100-SERVER-INFO-20261007-1649) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1434 | ACTIVE | 2026-10-08 08:19 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1435 | ACTIVE | 2026-10-08 08:24 KST |
 | AI 2 | ChatGPT (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-07 09:19 KST |
 
 ## 점수 규칙
@@ -534,3 +534,4 @@
 | 2026-10-08 08:20 | AI 1 | 1432 | +1 | 1433 | OutRun 한글화 A181R q219 D263B3F1 C265 hierarchy REWORK 실제 완료: A113 27.0% source-width underfill을 exact NotoSansCJK-Bold native 4x rerender로 1174x103 / source 1467x118 = 80.03%까지 복원. hosted A181의 DejaVu fallback은 producer reject하고 fonts-noto-cjk 설치 후 A181R exact candidate 41cf4c15853ec7df777c622cd3d3190e3e7d7a8ed1757902158525cb69d8da19 생성. containment/size/positive-margin, changed+alpha outside=0, header/mip1/persisted decode/RAW mirror_y PASS; controller SOURCE/rejected/CLEAN/A181R+practical+RAW PASS. queue/backlog/resume/progress/WORKLOG/STATUS 및 controller QA를 같은 브랜치에 반영하고 one-off worker 제거, remote HEAD 검증. Fresh C1/C3/PRE_INGAME/actual-game pending, RUNTIME_VALIDATION=UNTESTED. 계산: 이전 확정 누적점수 1432 + 이번 +1 = 새로운 누적점수 1433. (RUN_KEY=OUTRUN-KOR-A181R-Q219-TECHNO-HIERARCHY-20261008-0820) |
 
 | 2026-10-08 08:19 | AI 1 | 1433 | +1 | 1434 | 사용자 요청한 한글화 자동 생산·검수 개선 실제 적용: evidence gate/PNG 영역 증거 도구/17개 회귀시험/계약·품질 규칙·CI·현재 상태 집계 반영. 문자열 C3 PASS 우회와 후보 없음의 암묵적 보존 PASS 차단; q154 native-DDS 재검수 HOLD, 기존 JPG 67개 파일을 이력 보관하고 현행 export는 새 증거 대기. 원격 HEAD 2f4e22c116c7ead2f62e246d9ff085468b8bd2ee 일치 확인; 로컬 17/17 및 exporter 통합시험 PASS, hosted CPU run 37701563026 PENDING. 실제 시각 calibration 및 게임 검증은 완료 주장하지 않음. RUNTIME_VALIDATION=UNTESTED. 계산: 이전 확정 누적점수 1433 + 이번 +1 = 새로운 누적점수 1434. (RUN_KEY=OUTRUN-KOR-QA-EVIDENCE-GATE-20261008) |
+| 2026-10-08 08:24 | AI 1 | 1434 | +1 | 1435 | OutRun 한글화 C268 C1: 최신 CONTRACT/필수 상태 및 슬롯별 HEAD/queue를 갱신하고 ODD fresh-C q59/q89/q135를 실제 독립 검수. q59 7CE1CFC5 cc8745c3...는 exact DXT5 decode에서 source bbox union 밖 changed/alpha 7px + readable protected-source 7px로 zero-pixel hard FAIL -> REWORK_REQUIRED/C3 BLOCKED. q89 43B07A77 741a05cb...는 1/1 exact bbox·zero outside/protected + source hierarchy/right-lean/effect practical/RAW review PASS, q135 2B0863D6 8657a59f...는 10/10 exact bbox·zero outside/protected + strengthened native Korean hierarchy/practical/RAW review PASS로 둘 다 exact-SHA C3_STRICT_PASS. queue/backlog/resume/progress/WORKLOG/STATUS/QA evidence와 PRE_INGAME trigger를 commit 7cbc675c02fa61d1735a447387d4d58a9bcb71d5에 반영하고 원격 HEAD 동일 SHA 확인. RUNTIME_VALIDATION=UNTESTED; VR/FFB/DX11/DXVK 미작업. 계산: 이전 확정 누적점수 1434 + 이번 +1 = 새로운 누적점수 1435. (RUN_KEY=OUTRUN-KOR-C268-C1-Q059-Q089-Q135-20261008) |

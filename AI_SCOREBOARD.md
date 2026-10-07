@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1402 | ACTIVE | 2026-10-07 21:49 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1404 | ACTIVE | 2026-10-07 22:08 KST |
 | AI 2 | ChatGPT (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-07 09:19 KST |
 
 ## 점수 규칙
@@ -490,3 +490,5 @@
 | 2026-10-07 21:05 | AI 1 | 1400 | +1 | 1401 | OutRun DX9Ex CONVERSION-DX9EX-00519 테스트 빌드 준비: GitHub artifact 11477748359를 다운로드해 artifact digest sha256:e5761753a9e2d0889cabfda738269863d7d1c46a0a5a06394e69f8d0a387df6 일치 확인, 실제 내부 배포 ZIP 추출, SOURCE_SHA 9a3e08cc62b6a36a8196936eacead8cc08fcc756 및 BUILD_INPUTS/패키지 파일 SHA256 전수 검증 PASS 후 사용자 전달 파일 생성. RUNTIME_VALIDATION은 사용자 실기 전까지 UNTESTED 유지. (RUN_KEY=OUTRUN-DX9EX-00519-TEST-BUILD-20261007-2105) |
 
 | 2026-10-07 21:49 | AI 1 | 1401 | +1 | 1402 | OutRun DX9Ex CONVERSION-DX9EX-00520: rollover E003에서 ATTEMPT 1/3 유지, R32 DirectGPU host-identity invalidation release ownership을 R30 support facade로 추출하고 stale reset/transport verifier를 새 facade 경계에 정합화. material/validation-bearing SHA 2c252f17943fdeac048bb53c16964319adafa380에서 DX9Ex Active Validation 37622962600의 policy/game/host/full-chain-compile/package 모두 SUCCESS, Domain Isolation 37622962564 SUCCESS, package artifact 11482788198 digest sha256:165d01bc86edd8615d0b0ab5cbf431829fea4f476cdd92161c622baabc5a6105. C6 bookkeeping HEAD be1f8657a96b356156cce6c7b2f3a7642bddc961, Issue #14 및 run record 영속화 완료. RUNTIME_VALIDATION=UNTESTED. (RUN_KEY=CONVERSION-DX9EX-00520) |
+| 2026-10-07 22:03 | AI 1 | 1402 | +1 | 1403 | OutRun DX9Ex CONVERSION-DX9EX-00521: R32 shader identity read/exchange/restore를 R30 support facade로 이동하고 stale retirement guard 정합화. validation-bearing SHA 9a1d47fdc00f88c118ca7ec1cc96a13bbc8fd91b, DX9Ex Active Validation 37624503650 및 Domain Isolation 37624503676 PASS, package artifact 11483149605 생성. RUNTIME_VALIDATION=UNTESTED, HUD/Reset/Present 정책 변경 없음. (RUN_KEY=CONVERSION-DX9EX-00521) |
+| 2026-10-07 22:08 | AI 1 | 1403 | +1 | 1404 | OutRun DX9Ex 00519 사용자 HMD 로그 실기 분석: source 9a3e08cc62b6a36a8196936eacead8cc08fcc756에서 메뉴/차량선택 텍스처 누락, HUD/라이벌/순위/+TIME/메뉴 화살표/YES-NO/lens flare 복시·head-follow 회귀를 RUNTIME_VALIDATION=FAIL로 판정. hudtrace runtime semantic gate UNVERIFIED_UNKNOWN·unknown_rows=3953·AssetSemantics MISSING, R51 generic ScreenOverlay2D 편중, MANAGED texture CPU-shadow/LockRect 실패, 90Hz 목표 대비 약 83Hz를 근거로 Issue #13/#14에 재발 방지 기록 완료. 00521은 HUD 정책 미변경이므로 대체 해결책으로 오판하지 않음. (RUN_KEY=OUTRUN-DX9EX-00519-HMD-FAIL-ANALYSIS-20261007-2205) |

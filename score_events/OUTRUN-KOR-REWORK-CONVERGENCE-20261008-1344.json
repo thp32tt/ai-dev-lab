@@ -1,0 +1,13 @@
+{
+  "run_key": "OUTRUN-KOR-REWORK-CONVERGENCE-20261008-1344",
+  "ai": "AI 1",
+  "date_kst": "2026-10-08",
+  "previous_confirmed": 1465,
+  "delta": 1,
+  "resulting": 1466,
+  "achievement": "Added tested read-only repeat-defect triage, nine synthetic regression tests, initial evidenced q219 escalation and convergence documentation to thp32tt/OutRun2006Tweaks branch korean-localization-recovery-20260928",
+  "evidence_head": "2caeb62321506a0c51d9ab370283a71f3a290306",
+  "scoreboard_main_file_sync": "PENDING_UPDATE_TOOL_BLOCKED",
+  "deduplicate_by": "run_key",
+  "note": "Sidecar audit receipt only; current AI_SCOREBOARD.md aggregate remains 1465 until reconciled."
+}

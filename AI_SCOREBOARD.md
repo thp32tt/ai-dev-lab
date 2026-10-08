@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1462 | ACTIVE | 2026-10-08 13:00 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1463 | ACTIVE | 2026-10-08 13:10 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1208 | ACTIVE | 2026-10-08 12:01 KST |
 
 ## 점수 규칙
@@ -572,3 +572,4 @@
 | 2026-10-08 12:57 | AI 1 | 1460 | +1 | 1461 | OutRun C279 C1 q059 PJR-019 independent native DXT5 machine QA: canonical source/actual A184R persisted candidate SHA verified, 4 source region union 밖 decoded RGBA+alpha 0px, CLEAN outside 0px, RAW/FLIP-Y and neutral composite checked; HOLD maintained due calibration/C3 and lossless region PNG GitHub-publish incomplete. Report/queue/progress/resume/WORKLOG/STATUS commit 0ae270866066ce2a00e35ef17e50bb62b7304483 HEAD verified. No DDS produced, no game retest. Previous 1460 + 1 = 1461. (RUN_KEY=OUTRUN-KOR-C279-C1-Q059-NATIVE-PIXEL-SCOPE-20261008) |
 
 | 2026-10-08 13:00 | AI 1 | 1461 | +1 | 1462 | OutRun 한글화 C279 C2 EVEN q176 신규 독립 실물 DDS QA: SHA 검증 canonical 8ba40915... vs candidate 494d42c0..., 2048×2048 DDS 4개 실제 텍스트 bbox/크기·양의 여백 4/4 PASS, 원문 4개 허용 영역 밖 변경 RGBA/alpha 각 0px, RAW→FLIP-Y 4/4 byte-exact, protected question mark/루트 아트 원본 그대로. Native source/current, RAW, 75/50 실기 축소, B/W/G 증거 26개+controller JSON GitHub에 게시. C PASS/C3/APPROVAL은 blind calibration+source CLEAN+family 검수 증거 부족으로 HOLD_STRICT_RECHECK 유지, DDS 바이트 수정 없음, RUNTIME_VALIDATION=UNTESTED. OutRun QA HEAD 44d5ae7d56fc110b9023cfe12801d94362365ba3 verified, N100 전용 task scratch 정리. VR/FFB/DX11/DXVK 미작업. 계산: 이전 1461점 + 1점 = 누적 1462점. (RUN_KEY=OUTRUN-KOR-C279-C2-Q176-NATIVE-PIXEL-QA-20261008) |
+| 2026-10-08 13:10 | AI 1 | 1462 | +1 | 1463 | OutRun 한글화 A186R q219 사용자 IGR-025 연관 SOURCE_STYLE REWORK 실물 DDS 생성. C272가 거절한 강제 80% 영문 폭 A181R SHA 41cf4c15... 대신 NanumSquareRound 네이티브 한글 원본 높이 기준 메탈/베벨/다크 깊이감 재생성. 첫 A186 90/118px 높이 초안 ecc2bca...는 자체 시각 반려 후 A186R exact SHA 8310a1e62adb6e742c7c44e489f0169c3e6139548b316d53112e9606f01a7f46로 실물 재생성 (110/118px); 1/1 원문 bbox/size/양수 마진 및 SHA/DDS raw-mirror-Y PASS, SOURCE 대비 bbox 밖 RGBA/alpha 변경 0. SOURCE/CLEAN/FINAL, RAW, 100/75/50 비교 이미지 직접 검토. 복합영역 slant proxy 원문 -16/후보 +19가 정확한 glyph anchor가 아니므로 style/slant 가족 원문 검증은 **HOLD**로 fail-close, C/C3 승인 및 PRE_INGAME/실게임 합격 미주장. queue/resume/progress/WORKLOG/STATUS/IGR-025/QA 기록 커밋 6721de725dbd1b351604a32ec4a44f25a039f05c GitHub 원격 HEAD 검증. GitHub Actions 37725817654 SUCCESS, N100 미사용, VR/FFB/DX11/DXVK 미작업, RUNTIME_VALIDATION=UNTESTED. 계산: 이전 1462 + 이번 +1 = 누적 1463. (RUN_KEY=OUTRUN-KOR-A186R-Q219-CHROME-20261008-1301) |

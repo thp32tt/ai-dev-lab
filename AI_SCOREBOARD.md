@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1504 | ACTIVE | 2026-10-08 22:00 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1505 | ACTIVE | 2026-10-08 22:09 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1232 | ACTIVE | 2026-10-08 20:27 KST |
 
 ## 점수 규칙
@@ -38,6 +38,7 @@
 
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|
+| 2026-10-08 22:09 | AI 1 | 1504 | +1 | 1505 | OutRun A195 ODD q237 FF514CEB C1 반려된 붉은 베벨/밀린 그림자를 원본 flat-red/gray family로 재구성하여 새 persisted DDS SHA256 `39f66e75e8e2e4e9f57b12dc2bc75d44dfee9ccdd5b95ee4be1c98ba1034f8d2` 생산. 원본 SHA `570fff6b...`, CLEAN 플레이트 선독립검증·합성 단독 검증, 9/9 원본 bbox·1px 보호·겹침·source residue 0, 실제 DDS roundtrip/RAW·FLIPY·100/75/50 컨트롤러 시각 자체 QA PASS. Worker Actions 37781517255 SUCCESS, GitHub A195 결과와 queue/resume/progress/WORKLOG/STATUS/QA 원격 커밋 `739b4226e59899674e0328352eebcefb465d4f40`. Fresh independent C1/C3/APPROVAL/user JPG/실게임 테스트 미완료, `RUNTIME_VALIDATION=UNTESTED`; 새 DDS 성과 1회만 +1. 계산: 이전 1504점 + 이번 +1점 = 누적 1505점. RUN_KEY=OUTRUN-KOR-A195-Q237-FLAT-EFFECT-20261008-2200 |
 | 2026-10-08 22:00 | AI 1 | 1503 | +1 | 1504 | OutRun C305 C2 EVEN q154 신규 원본·authored CLEAN·후보 실픽셀 8영역 × 검정·회색·흰색 확인, 실제 3종 비교 JPG/QA JSON 영속화, queue/status/WORKLOG push 및 remote HEAD 검증, N100 35.5MB 임시삭제 (RUN_KEY=OUTRUN-KOR-C305-C2-Q154-AUTHORED-CLEAN-BGW-20261008-2150) |
 | 2026-10-08 21:29 | AI 1 | 1501 | +1 | 1502 | OutRun 한글화 C304 C2 EVEN q236 기존 4/14에서 원본/현 DDS exact-SHA native 14/14 독립 픽셀/안전 여백 검증 완료, 14행 영문-한글 비교 JPG와 JSON GitHub 영속화, C3 HOLD 상태·기록 반영 및 remote HEAD 검증, N100 임시 약33.7MB 정리 (RUN_KEY=OUTRUN-KOR-C304-C2-Q236-COMPLETE-14-NATIVE-20261008-2125) |
 | 2026-10-08 21:00 | AI 1 | 1500 | +1 | 1501 | OutRun 한글화 C302 C2 EVEN q236: SHA256 원본·후보 독립 4영역 native RAW 검증, source-bbox/protected 영역 확인, C3 HOLD 기록, queue/progress/resume/STATUS/WORKLOG 커밋 및 원격 HEAD 확인, N100 임시 스크래치 안전 삭제 (RUN_KEY=OUTRUN-KOR-C302-C2-Q236-FOUR-NATIVE-REGIONS-20261008-2056) |

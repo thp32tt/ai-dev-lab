@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1487 | ACTIVE | 2026-10-08 17:50 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1226 | ACTIVE | 2026-10-08 17:30 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1227 | ACTIVE | 2026-10-08 17:51 KST |
 
 ## 점수 규칙
 
@@ -625,3 +625,4 @@
 | 2026-10-08 17:30 | AI 2 | 1225 | +1 | 1226 | DX9Ex C CONVERSION-DX9EX-00556 actual exact rank-marker producer 0xBB046 raw/computed nonfinite fractional coordinate guard; original sprani/4th+ clip sprite valid coordinates retained. Material SHA 65057d26267c18a654b6e18aeaadb83ef139c76a; independent 2 static mutations, no HUD 1000/5000 repetition. Exact-SHA DX9Ex Active 37749430357 SUCCESS (game/host/full-chain/package), HUD Inspector 37749430467 SUCCESS, Domain Isolation 37749430396 SUCCESS. Supplementary Full Source Impact 37749430504 still running at score timestamp; no runtime HMD test. Artifact 11537735562 digest sha256:b1a2fadd17f230de3534ae99d5a9f519f5ff829149c7cf5ff5d407b55286837b. RUNTIME_VALIDATION=UNTESTED, DX11 A active, DX9Ex C active, DXVK frozen. This unique task +1 once: 1225+1=1226; retry/rollover +0. RUN_KEY=CONVERSION-DX9EX-00556-E001 |
 
 | 2026-10-08 17:50 | AI 1 | 1486 | +1 | 1487 | OutRun 한글화 B262 q172 `6C9B3611` source-anchored native RGBA32/mip1 gold-bevel material DDS 신규 제작 1건: prior B255 7282687... -> B262 15f58551dff16c000c57763a469c4ae1d6f2c8e35c9e5dd1b44259c25bc2e8d0. GitHub CPU 37750836025 SUCCESS, native 100/75/50/RAW 검증 37751304110 SUCCESS, 원본 bbox 2/2 및 원본 범위 밖 RGBA/alpha 변화 0, DDS 헤더·디코딩 일치. 50% GOAL `골` 획 가독성 부족으로 producer HOLD, C/C3/배포 승인 없음; 같은 q172 B263 글자 비율 재시도 GitHub Actions 37751579835는 compute-pending이며 별도 점수화 금지. B262 queue/resume/progress/WORKLOG/STATUS/QA GitHub HEAD f1d00e45f51e3202bada1f86292316c0d7f40bc9 반영, N100 미사용, 실게임 UNTESTED. 이전 1486 + 이번 +1 = 누적 1487. RUN_KEY=OUTRUN-KOR-B262-Q172-SOURCE-GOLD-20261008-1730 |
+| 2026-10-08 17:51 | AI 2 | 1226 | +1 | 1227 | OutRun2006Tweaks DX11 native 공유-eye 동일 frame_id 중복 슬롯 점유 차단 및 WARP Acquired/Pending/Published/ACK 복귀 회귀 테스트 실제 C++ 구현. Material SHA b81b258ac288dea59e2a76474d1644bbf39779e6, exact-SHA Backend Conversion Gate 37751632073 validate 113226013989 / DX11 readiness smoke 113227425279 SUCCESS, artifact 11537648893 sha256:cd315e62e2924deffcbf9b3a087a1c3176ecb5dd882cdf6c87b3fb274764dd69. C0-C6 run record GitHub commit a5656ece58465856f8ac117e354b7738fb3314ef, RUNTIME_VALIDATION=UNTESTED, Draw 안전 게이트 유지, DXVK 동결. 최초 신규 성과에만 +1. 이전 1226 + 이번 +1 = 1227. RUN_KEY=CONVERSION-DX11-00456 |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1481 | ACTIVE | 2026-10-08 16:19 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1221 | ACTIVE | 2026-10-08 16:20 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1222 | ACTIVE | 2026-10-08 16:27 KST |
 
 ## 점수 규칙
 
@@ -610,3 +610,4 @@
 
 | 2026-10-08 16:19 | AI 1 | 1480 | +1 | 1481 | OutRun C290 C1 ODD q119 F6811E94_512x64 신규 독립 persisted-DDS native DXT5 QA: pinned source SHA 2336da3c... vs current af938e04... 검증, 2048x256 RAW mirror_y, original effect bbox [390,54,1632,200], candidate [664,62,1357,192], outside original RGBA/alpha 0. Original Time Attack Mode 강한 백색 glow 픽셀 RGB>=215 alpha>=16 38,689개, 현 타임 어택 모드 0개임을 시각 및 native decoded 픽셀 측정으로 교차 확인해 C=REWORK_REQUIRED; 원문 스타일 손실로 A 새 DDS 생성 요구, C3/PRE_INGAME/승인 차단, runtime UNTESTED. 독립 QA JSON2+검증 PNG6 GitHub 게시, queue/progress/resume/WORKLOG/STATUS atomic remote commit f6646d5ef99bc309fe29b2fa627c3ee0acef2692 HEAD 검증, N100 isolated scratch 게시 후 정리, VR/FFB/DX11/DXVK 미변경. 이력상 직전 A189이 1478을 재사용한 산술오류 수정: 1479 + 1 = 1480 후 이번 신규 검수 성과 +1 = 1481. 중복 실행/재보고 가점 없음. (RUN_KEY=OUTRUN-KOR-C290-C1-Q119-WHITE-GLOW-NATIVE-20261008-1610) |
 | 2026-10-08 16:20 | AI 2 | 1220 | +1 | 1221 | OutRun2006Tweaks Quest3 DX9Ex original exact x86 rank/rival HUD real source repair: source src/hooks_uiscaling.cpp scoped car-by-car RankMarker sub_4BAD20 producer and projected Calc3D2D rank/rival anchors (0xBAEE7/0xBB6F5→0xBB796), restores rank fractional pixel per invocation and guards NaviPub ScreenHud, rival consumed once, rank 4th+ and exact menu/goal/result clip siblings all-node registration 21 priority queues (SPRARGS kind_C==0 safety). Canonical 71 EXE CALL contracts retained; 4 dedicated regression scripts plus distinct fault injections, no repetitive 1000/5000 loops. Production SHA 79a0dcb7495d7a8af9eb0d410d716bf72f024444. DX9Ex Active 37741691863, EXE HUD Inspector 37741691867, Full Source Impact 37741692064, Domain Isolation 37741692068 ALL exact SHA SUCCESS; package artifact 11533599078 digest sha256:c7909cb0511373bc27bb56bc679069ba0326d83257f8d1d48b3b61f512797ef7. HMD RUNTIME_VALIDATION=UNTESTED, prior user 00519 FAIL remains open. One real new source+CI achievement only +1, prior F11/DDS/review work not counted again. RUN_KEY=OUTRUN-AI2-QUEST3-RANK-RIVAL-HUD-FIX-20261008 |
+| 2026-10-08 16:27 | AI 2 | 1221 | +1 | 1222 | DX9Ex C lane 00552 scene/cube optional DDS original-header rollback 신규 구현 및 정책/결함주입 정적 검사, exact source SHA f134f48ee75b82d3ca8e3b1037b4bd0c510ebdd0; DX9Ex Active Validation 37742743667 5/5 SUCCESS, EXE HUD Inspector 37742743880 SUCCESS, Domain Isolation 37742743748 SUCCESS. C0-C6 git record 완료; RUNTIME_VALIDATION=UNTESTED; 독립 신규 소스 성과 +1 중복 가점 금지. RUN_KEY=CONVERSION-DX9EX-00552-E001 |

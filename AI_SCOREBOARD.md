@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1519 | ACTIVE | 2026-10-09 01:23 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1232 | ACTIVE | 2026-10-08 20:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1233 | ACTIVE | 2026-10-09 01:25 KST |
 
 ## 점수 규칙
 
@@ -38,6 +38,7 @@
 
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|
+| 2026-10-09 01:25 | AI 2 | 1232 | +1 | 1233 | f490f047f640 사용자 Quest3 HMD FAIL 로그/정확 SHA 검증, 게임 슬롯 선택기 WinForms Point 생성자 실제 수정 커밋 9709f73e472163d79b3b1e0195b3685d81d130d4, GUI 로컬 패치 제공, 리그레션 GitHub 기록 e26909c9cb0b6ca85f89e45acdcc5bffe9159c2a. 실제 GUI/HUD 광학 회귀는 미통과; 이미 실패한 f490 HUD 경로 수정 성공으로 점수 가산하지 않음. **이전 1232점 + 이번 +1점 = 누적 1233점**. RUN_KEY=OUTRUN-VR-HMD-F490-POINT-SCRIPT-20261009 |
 | 2026-10-09 01:23 | AI 1 | 1518 | +1 | 1519 | 새 실게임 스크린샷 19개 IGR-026..044 OPEN_USER_INGAME_FAIL로 등록, q49/q60/q121/q137/q193/q201/q205/q212/q228 9개 기존 C3 PASS 상태를 실사용자 근거 REWORK_REQUIRED로 재오픈, q175/q219/q227 기존 리워크 보존. 14개 발표/런타임 QA 게이트와 family별 native 검증 정책, GitHub qa_evidence_gate.py 현행 OPEN 결함 veto, 4개 회귀 테스트, USER_REVIEW_NOT_APPROVED 빌드 exclusion 차단, QA/CONTRACT/EVIDENCE 정책, resume/progress/WORKLOG 업데이트 commit. GH Actions QA 37807917192 SUCCESS (기존 triage 9 tests, evidence 21 tests); Windows QA build 37807469564 SUCCESS, QA preview 기존 62→52 DDS, file missing 0, approved DDS 0, gameplay repair/closure 0, RUNTIME_VALIDATION=UNTESTED. 사용자 스크린샷 검은 테두리는 위치표시로 구분. 실물 DDS 수리 아닌 정책/리워크 등록 성과만 +1; 반복 확인·retry 중복 +0. 계산: 이전 1518점 + 이번 +1점 = 누적 1519점. RUN_KEY=OUTRUN-KOR-USER-INGAME-REWORK-POLICY-20261009-0104 |
 | 2026-10-09 01:20 | AI 1 | 1517 | +1 | 1518 | OutRun C314 C1 ODD q161 A157 현행 DXT5 DDS 신규 정확 SHA 고정 독립 38-region 원문/후보 디코드 QA: GitHub Actions 37807237283 SUCCESS, 원본/현행 RAW/READABLE/흑백회색/50% **신규 무손실 PNG 190개**+SHA manifest 최초 생성. 전체 원문 bbox 38개 합집합 밖 RGBA/alpha0이지만 직접 이미지 검수에서 04 PISCES→물고기자리 및 06 LEO→사자자리 내부 글자 획 구멍/점상 빈 픽셀 확정; q161 06의 4음절을 영문 LEO 너비로 압축한 factor0.5682로 글자형태 심각한 축소 확인. 이전 C273 불확실 HOLD를 실제 신규 증거 기반 C `REWORK_REQUIRED`로 변경. 생성 DDS0·C3/승인/JPG/실게임 차단, RUNTIME_VALIDATION=UNTESTED. QA/queue/resume/progress/WORKLOG/STATUS 게시 GitHub commit `73ac2506e0245fdeccb1998f6b03bf849ea63d7f` 원격 HEAD 확인. 동일 스크립트 retry/상태 재확인 +0, 신규 원본대조 증거/신규 결함 판정 단일 성과 +1. **이전 1517점 + 이번 +1점 = 누적 1518점**. RUN_KEY=OUTRUN-KOR-C314-C1-Q161-NATIVE-BC3-GLYPH-PINHOLES-20261009 |
 | 2026-10-09 01:01 | AI 1 | 1516 | +1 | 1517 | OutRun C313 C2 EVEN q236 새 시각적 원문 서체 패밀리 결함 검출 및 정식 `REWORK_REQUIRED` 상태 전환: 같은 SHA 후보 e0a01c50..., 영문 SOURCE a1c7f7d6..., B80 CLEAN c202f55e... 유지. Native100 및 50% SOURCE/CLEAN/FINAL 3개 대표행(INDUSTRIAL COMPLEX, SKYSCRAPERS, LEGEND)의 영문 초굵은 압축체 대비 한글 획 밀도·시각적 무게가 부족한 현상 직접 판정. 3개 원문→한글 영역 점유율 0.49467→0.37591 / 0.50059→0.33906 / 0.54108→0.39007은 보조 자료이며 한글/영문 글자 차이를 고려해 단독 하드 FAIL 기준으로 쓰지 않음. C308 기존 HOLD보다 새로 확인된 SOURCE_FAMILY_STROKE_UNDERWEIGHT 실결함, C2 FAIL 확정. 원본 CLEAN, 14행 바깥 영역, 보호 리버스 텍스트 유지 조건으로 B 재작업 요청; QA+계량 보고서+queue+resume+progress+WORKLOG+STATUS GitHub 단일 커밋 `5b37449d57bb37aa7ce35076673288565d19f58a` 원격 HEAD 확인. C3/approval/pre-ingame 승인 없음, 새로운 DDS 0, 실게임 `RUNTIME_VALIDATION=UNTESTED`. 단순 재검증이 아닌 새로운 구체적 시각 결함 발견과 상태 실변경 1건에만 +1점, 중복 +0. 계산 **이전 1516점 + 이번 +1점 = 누적 1517점**. RUN_KEY=OUTRUN-KOR-C313-C2-Q236-STROKE-FAMILY-VISUAL-REWORK-20261009 |

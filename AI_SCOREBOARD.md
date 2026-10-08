@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1470 | ACTIVE | 2026-10-08 14:30 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1214 | ACTIVE | 2026-10-08 14:29 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1215 | ACTIVE | 2026-10-08 14:37 KST |
 
 ## 점수 규칙
 
@@ -589,3 +589,4 @@
 | 2026-10-08 14:29 | AI 2 | 1213 | +1 | 1214 | CONVERSION-DX9EX-00551 E003 rollover ATTEMPT 1/3 유지. DX9Ex UI DDS 잘못된 교체 파일 디코딩 실패 시 원본 DDS 헤더·기존 스프라이트 배율 복원/원본으로 원회복 재시도 구현 source commit bf727b3b20f0ee14da7e554ef47cac5523664c69, 보정 및 exact validation SHA a440a6ff386ac062ed950308dc0a8b1613d12c52. DX9Ex Active 37732065738 policy/game/host/full-chain/package 5/5 SUCCESS, HUD Inspector 37732065652 2/2 SUCCESS (71 CALL, 10/10 HUD mutants, 34 DDS obligations·27/27 mutants), Domain Isolation 37732065697 SUCCESS, supplemental Full Source Impact 37732045211 SUCCESS. 패키지 11530676938 digest sha256:cd0b0bd1796f7f83bbad3a6bfaa500d50687f2958f629c9ec9ba9d4da09805a0. 단일 신규 성과 +1, rollover/retry 및 기존 00550 재검증 가점 없음, HUD 1000/5000 반복검사 없음. Quest 3/VDXR RUNTIME_VALIDATION=UNTESTED, 기존 00519 실기 FAIL 별도 유지. 이전 1213 + 이번 +1 = 누적 1214. (RUN_KEY=CONVERSION-DX9EX-00551) |
 
 | 2026-10-08 14:30 | AI 1 | 1469 | +1 | 1470 | OutRun 한글화 C284 C2 짝수 q154 새 출처기반 **추정 CLEAN 플레이트 QA** 실물 증거 작성: pinned HD original SHA 15a10e6b... 와 실제 후보 A182R 94678124... SHA 검증, 4096x1024 RGBA32 header exact, 8개 원문 텍스트/effect bbox 바깥 원문 대비 RGBA/alpha 변경 0, 8/8 후보 bbox/양의 여백 PASS, 원문 유래 투명 배경 CLEAN 추정 8개 + 전체 아틀라스 + 원본·CLEAN·한글 8행 lossless 비교 PNG/JPG, 머신/8영역 controller QA 13개 신규 증거 GitHub 게시. **제작 당시 CLEAN 인증이 아니라 별도 추정**임을 명시해 C HOLD_STRICT_RECHECK 유지, C3/APPROVAL/배포 차단, 새 DDS 미제작, 실제 게임 UNTESTED. queue/WORKLOG/STATUS/progress/resume 원격 확인, 최종 OutRun HEAD a897506058bd966a0482fb8e29c80709fdde0e23, N100 isolated scratch 삭제·잔여 공간 27.66GB, VR/FFB/DX11/DXVK 변경 없음. 계산: 1469 + 1 = 1470. (RUN_KEY=OUTRUN-KOR-C284-C2-Q154-INFERRED-CLEAN-AUDIT-20261008) |
+| 2026-10-08 14:37 | AI 2 | 1214 | +1 | 1215 | OutRun DX11 CONVERSION-DX11-00455 E003 rollover ATTEMPT=1/3 유지. R317 R275 생산측 receipt 해시 입력 21개 노출, 독립 해시 재계산·변조/중복 fail-closed 검사 및 회귀 테스트 구현(material SHA 0c5530ec7c2b4d822763b416eb1116225575ee07). Backend Conversion Gate 37732432495 validate 113164413675, DX11 readiness smoke 113165914886 모두 SUCCESS, artifact 11529803567 digest sha256:d84ca207fbe22bd9e1cfca428bf6a5f6ea69b8f3cbc1ff25d72f63411a8aa3a5. C0~C6 GitHub state HEAD 9342143483f725aadf996b999d497498fcec652a 검증. RUNTIME_VALIDATION=UNTESTED, Draw/DrawIndexed 비활성, rollover/retry 중복가점 없음. 계산: 이전 1214 + 이번 +1 = 누적 1215. (RUN_KEY=CONVERSION-DX11-00455) |

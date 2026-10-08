@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1487 | ACTIVE | 2026-10-08 17:50 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1488 | ACTIVE | 2026-10-08 17:52 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1227 | ACTIVE | 2026-10-08 17:51 KST |
 
 ## 점수 규칙
@@ -626,3 +626,5 @@
 
 | 2026-10-08 17:50 | AI 1 | 1486 | +1 | 1487 | OutRun 한글화 B262 q172 `6C9B3611` source-anchored native RGBA32/mip1 gold-bevel material DDS 신규 제작 1건: prior B255 7282687... -> B262 15f58551dff16c000c57763a469c4ae1d6f2c8e35c9e5dd1b44259c25bc2e8d0. GitHub CPU 37750836025 SUCCESS, native 100/75/50/RAW 검증 37751304110 SUCCESS, 원본 bbox 2/2 및 원본 범위 밖 RGBA/alpha 변화 0, DDS 헤더·디코딩 일치. 50% GOAL `골` 획 가독성 부족으로 producer HOLD, C/C3/배포 승인 없음; 같은 q172 B263 글자 비율 재시도 GitHub Actions 37751579835는 compute-pending이며 별도 점수화 금지. B262 queue/resume/progress/WORKLOG/STATUS/QA GitHub HEAD f1d00e45f51e3202bada1f86292316c0d7f40bc9 반영, N100 미사용, 실게임 UNTESTED. 이전 1486 + 이번 +1 = 누적 1487. RUN_KEY=OUTRUN-KOR-B262-Q172-SOURCE-GOLD-20261008-1730 |
 | 2026-10-08 17:51 | AI 2 | 1226 | +1 | 1227 | OutRun2006Tweaks DX11 native 공유-eye 동일 frame_id 중복 슬롯 점유 차단 및 WARP Acquired/Pending/Published/ACK 복귀 회귀 테스트 실제 C++ 구현. Material SHA b81b258ac288dea59e2a76474d1644bbf39779e6, exact-SHA Backend Conversion Gate 37751632073 validate 113226013989 / DX11 readiness smoke 113227425279 SUCCESS, artifact 11537648893 sha256:cd315e62e2924deffcbf9b3a087a1c3176ecb5dd882cdf6c87b3fb274764dd69. C0-C6 run record GitHub commit a5656ece58465856f8ac117e354b7738fb3314ef, RUNTIME_VALIDATION=UNTESTED, Draw 안전 게이트 유지, DXVK 동결. 최초 신규 성과에만 +1. 이전 1226 + 이번 +1 = 1227. RUN_KEY=CONVERSION-DX11-00456 |
+
+| 2026-10-08 17:52 | AI 1 | 1487 | +1 | 1488 | OutRun C294 C1 홀수 q119 F6811E94 신규 A191 정확 SHA 4e971f32fd0b5367ec0e91167900d83b097e67f16f72a67b1264f114ee2ba3ca에 대한 신규 독립 시각 REWORK 판정. 원본 2336da3c2d08d1bfb99e3a8612a3fe7d39f9c852d7da433204c8d4a19b49c552와 현재 DXT5 실물 SHA/header 확인, SOURCE/CLEAN/FINAL 및 RAW 영문/한글 직접 비교. A191 흰색 glow 회복은 확인하였으나 한글 첫 글자 왼쪽 알파 발광에서 x705 기준 106개 연속 행의 수직 하드에지(앞 열 x704 투명) 확인하여 C=REWORK_REQUIRED; 이전 숫자 bbox PASS를 현재 시각 승인으로 혼동하지 않음. 신규 무손실 원문/현재 PNG2 및 머신-한정 pixel probe, C QA JSON, queue/resume/progress/WORKLOG/STATUS 기록 commit 909ce4a2fccfb70a7808cfed8dbf2de80df9ad59 원격 HEAD 검증. 현 DDS 변경 없음, C3/승인/PRE_INGAME 차단, 실제 게임 UNTESTED, C1 TEMP_BACKLOG_RELIEF=ODD. 원격 push 경쟁 충돌은 최신 HEAD 재기준으로 안전 재커밋, N100 소량 검증용 scratch 삭제 완료; VR/FFB/DX11/DXVK 제외. 새 QA 성과 1회만 +1: 1487 + 1 = 1488. RUN_KEY=OUTRUN-KOR-C294-C1-Q119-LEFT-HALO-FAIL-20261008-1740 |

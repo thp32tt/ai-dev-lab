@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1486 | ACTIVE | 2026-10-08 17:20 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1487 | ACTIVE | 2026-10-08 17:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1226 | ACTIVE | 2026-10-08 17:30 KST |
 
 ## 점수 규칙
@@ -623,3 +623,5 @@
 | 2026-10-08 17:20 | AI 1 | 1485 | +1 | 1486 | OutRun 한글화 C1 홀수 q225 `E3C455FA` 신규 독립 원문-후보 시각 검수: 현재 DDS SHA 37b8236f06fcec8c8c64c1076f9bf0f3c8c56ea3638b8a4582a513a40bbcb18d / pinned 영문 원문 a0c8c67f88dfdc93385b821452f0175a6a951c238f5f3d8b012afa113ef37fc9. 기존 A95R 숫자 9/9 PASS 대비 실제 RAW/FLIP-Y 비교에서 GAME LOBBY 및 9개 글꼴의 원문 굵기·응축된 비례/시각적 계층 손실 신규 확인. 사용자/인게임 승인 없이 정확한 현 후보를 C1 REWORK_REQUIRED로 재개방하고 QA JSON/queue/WORKLOG/progress/resume 반영, 원격 HEAD 419f7603a71e1a9276d46da26045702839a57a73 확인. C3/APPROVAL/PRE_INGAME 차단, RUNTIME_VALIDATION=UNTESTED; N100 MCP 후보 해시·참고 이미지 확인, DDS 새 생산 없음. 신규 C 검수 성과 +1(중복 수행 가점 없음): 1485 + 1 = 1486. RUN_KEY=OUTRUN-KOR-C1-20261008-1716-Q225-SOURCE-FAMILY-FAIL |
 
 | 2026-10-08 17:30 | AI 2 | 1225 | +1 | 1226 | DX9Ex C CONVERSION-DX9EX-00556 actual exact rank-marker producer 0xBB046 raw/computed nonfinite fractional coordinate guard; original sprani/4th+ clip sprite valid coordinates retained. Material SHA 65057d26267c18a654b6e18aeaadb83ef139c76a; independent 2 static mutations, no HUD 1000/5000 repetition. Exact-SHA DX9Ex Active 37749430357 SUCCESS (game/host/full-chain/package), HUD Inspector 37749430467 SUCCESS, Domain Isolation 37749430396 SUCCESS. Supplementary Full Source Impact 37749430504 still running at score timestamp; no runtime HMD test. Artifact 11537735562 digest sha256:b1a2fadd17f230de3534ae99d5a9f519f5ff829149c7cf5ff5d407b55286837b. RUNTIME_VALIDATION=UNTESTED, DX11 A active, DX9Ex C active, DXVK frozen. This unique task +1 once: 1225+1=1226; retry/rollover +0. RUN_KEY=CONVERSION-DX9EX-00556-E001 |
+
+| 2026-10-08 17:50 | AI 1 | 1486 | +1 | 1487 | OutRun 한글화 B262 q172 `6C9B3611` source-anchored native RGBA32/mip1 gold-bevel material DDS 신규 제작 1건: prior B255 7282687... -> B262 15f58551dff16c000c57763a469c4ae1d6f2c8e35c9e5dd1b44259c25bc2e8d0. GitHub CPU 37750836025 SUCCESS, native 100/75/50/RAW 검증 37751304110 SUCCESS, 원본 bbox 2/2 및 원본 범위 밖 RGBA/alpha 변화 0, DDS 헤더·디코딩 일치. 50% GOAL `골` 획 가독성 부족으로 producer HOLD, C/C3/배포 승인 없음; 같은 q172 B263 글자 비율 재시도 GitHub Actions 37751579835는 compute-pending이며 별도 점수화 금지. B262 queue/resume/progress/WORKLOG/STATUS/QA GitHub HEAD f1d00e45f51e3202bada1f86292316c0d7f40bc9 반영, N100 미사용, 실게임 UNTESTED. 이전 1486 + 이번 +1 = 누적 1487. RUN_KEY=OUTRUN-KOR-B262-Q172-SOURCE-GOLD-20261008-1730 |

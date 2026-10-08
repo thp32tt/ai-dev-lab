@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1483 | ACTIVE | 2026-10-08 16:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1224 | ACTIVE | 2026-10-08 17:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1225 | ACTIVE | 2026-10-08 17:18 KST |
 
 ## 점수 규칙
 
@@ -618,3 +618,4 @@
 | 2026-10-08 17:04 | AI 2 | 1223 | +1 | 1224 | DX9Ex C CONVERSION-DX9EX-00554 실제 Calc3D2D rank/rival x/y finite 역변환 방어 구현, 원본 emoose/캐노니컬 EXE 근거, HUD Inspector 감시 경로 보완, 정적 계약 검사 및 독립 결함주입 2건. 최종 material SHA 581626914691d1b8a6cd074dde7e78b60cab68f0에서 DX9Ex Active 37746475125(5/5), HUD Inspector 37746475111, Domain Isolation 37746475189, Full Source Impact 37746475098 ALL SUCCESS; artifact 11536655758 sha256:7ad4888244cdaa6d49f5f891f204bb50b1de4edb79a0f068cd4134dd631a801c. C0-C6 기록 19eec56947a7a5729f3f0f59ea20fd4de025b190; Quest3/VDXR 미실시 RUNTIME_VALIDATION=UNTESTED. DX11 A 활성, DX9Ex C 활성, DXVK B 동결. 이전 1223 + 새 성과 1 = 누적 1224; 동일 작업 retry/rollover 중복 가점 금지. RUN_KEY=CONVERSION-DX9EX-00554-E001 |
 
 | 2026-10-08 17:17 | AI 1 | 1484 | +1 | 1485 | OutRun 한글화 A191 q119 F6811E94 신규 소재 DDS 직접 생산 성과 1건: 독립 C290이 확인한 기존 타임 어택 모드 흰색 발광 이탈(기존 SHA af938e... / 근백색0)을 정확한 2048×256 DXT5 원본 2336da...로 재구성. 첫 A190 새 후보 d7e137... 는 검은색·회색 원본 대조에서 흰색 링이 지나치게 딱딱하여 제작자 시각 FAIL, 동일 작업 재시도로 중복점수 없음. A191은 별도 재구성으로 부드러운 확산 백색 글로/0.25 shear를 적용해 최종 새 DDS SHA `4e971f32fd0b5367ec0e91167900d83b097e67f16f72a67b1264f114ee2ba3ca`; GitHub Actions 37748043382 SUCCESS, 원본 bbox [390,54,1632,200]→현재 [705,58,1316,196], 변경/알파 외부0, 잔상/보호 침범0, 근백색 20641, RAW mirror-y 확인. 원본/CLEAN/최종 흑·회·백 시각·RAW 검토 결과 발광 누락 수정 확인하였으나 원문 font-family/per-glyph lean anchors 미해결로 **PRODUCER_HOLD** 처리; C1/C3/APPROVAL/PRE_INGAME/실게임 미승인, RUNTIME_VALIDATION=UNTESTED. QA/queue/resume/progress/WORKLOG/STATUS를 원격 브랜치 HEAD 9ccf897764fceb5a50d2e54e88d58bd25f6bfd09 검증 후 반영, GitHub Actions ephemeral, N100 이미지 확인용 소규모 보조 사용. VR/FFB/DX11/DXVK 미변경. 이번 q119 실물 신규 DDS 성과만 +1: **1484 + 1 = 1485**. RUN_KEY=OUTRUN-KOR-A191-Q119-WHITE-HALO-MATERIAL-20261008-1700 |
+| 2026-10-08 17:18 | AI 2 | 1224 | +1 | 1225 | OutRun DX9Ex C CONVERSION-DX9EX-00555 신규 DDS fast decoder 원본 크기와 explicit requested 크기 불일치 fail-closed, native D3DX fallback 보존, 폭·높이 독립 변조 검증 및 ordering guard 실제 소스 구현. Material SHA b13cc088462e6335b06c5ef10cf5c605a46599b9; exact-SHA DX9Ex Active 37747986400 (policy/game/host/full-chain/package 모두 SUCCESS), EXE HUD Inspector 37747986465, Domain Isolation 37747986399, Full Source Impact 37747986421 각 SUCCESS, artifact 11537192529 sha256:d1c1c12bbe6396b4335a6dd2c39d8838266348d2928691ac2bf9f0bb9ddea6de. Quest 3/VDXR RUNTIME_VALIDATION=UNTESTED, HUD 1000/5000 반복 없음, DX11 A·DX9Ex C 유지 DXVK B FROZEN. 동일 Task/E001 retry·재보고 +0. 이전 1224 + 이번 +1 = 누적 1225. (RUN_KEY=CONVERSION-DX9EX-00555-E001) |

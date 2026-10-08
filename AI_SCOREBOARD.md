@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1506 | ACTIVE | 2026-10-08 23:10 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1507 | ACTIVE | 2026-10-09 00:12 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1232 | ACTIVE | 2026-10-08 20:27 KST |
 
 ## 점수 규칙
@@ -38,6 +38,7 @@
 
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|
+| 2026-10-09 00:12 | AI 1 | 1506 | +1 | 1507 | OutRun A197 ODD q103 590A4724 기존 C1 반려 Normal Balance/일반 밸런스 196×40 작은 정자체를 2048×2048 native 349×64px 원본 오른쪽 이탤릭으로 실제 변경하여 새 DDS SHA256 `9702957a9c6498877433bb6ff2e112647445d271ddce27bb3e37f3a076c8b1ed` 생산. 원본 source pinned `76b6f6d8...`, 예전 후보 `bfb50ebd...`, 정본 CLEAN 7439 픽셀 제거 확인, source 글자 bbox390×72 이내 20/21/4/4 마진; outside/protected/alpha/원문 잔여/foreign composite=0. Native WHITE/BLACK/GRAY 100/75/50+RAW/FLIP-Y 컨트롤러 독립 확인, 저장 DDS 재디코드 자체 QA PASS. Actions `37797628313` SUCCESS, GitHub queue/resume/progress/WORKLOG/STATUS/QA 커밋 및 원격 HEAD `c969574665f117e9e38cae0576213a6ecbc16d9c` 확인. 별도 C1/C3, evidence approval, JPG, 사용자/게임 테스트 미완료, RUNTIME_VALIDATION=UNTESTED. 새 물적 DDS 1건만 +1, 실패한 상태 기록 push의 retry/재보고 중복 +0. 계산: 이전 1506점 + 이번 +1점 = 누적 1507점. RUN_KEY=OUTRUN-KOR-A197-Q103-ITALIC-20261009-0000 |
 | 2026-10-08 23:10 | AI 1 | 1505 | +1 | 1506 | OutRun A196 홀수 q035 E989E3B7 새 native 4096x4096 DDS 물적 성과 1회: C1 반려 Total Rank 제목 2개 원문 대비 크기 부족 원인에 대해 동일 DDS 재검사만 하지 않고 새 Korean `종합 랭킹` native italic white/navy 소스패밀리 재렌더. 이전 c0e76661... → 신규 persisted `cc8df5b4bd44d1251dd4703b109ec4e9c45e16cef62a9af53719215c78eb0254`. 두 폭 232/227px → 327/327px, 영어 source 504/505px의 엄격 bbox 내 높이 1px 여백(고위험 C1 필수). Pinned source b4f0146b..., clean 2지역 68,587픽셀 독립검증, composite 밖/보호/알파/영어 잔여/겹침 0, actual DDS roundtrip, readable/RAW와 실용 크기 100/75/50 컨트롤러 시각 자체 QA PASS. GitHub Actions 37789511758 SUCCESS, queue/resume/progress/WORKLOG/STATUS/QA commit 원격 HEAD `75b79a01a7ca3f9b5edea5fb4a08bf922ade8736` 재확인. 독립 C1/C3/current APPROVAL/JPG/실게임 UNTESTED, VR/FFB/DX11/DXVK 제외. 한 개 신규 DDS 성과로만 +1, 실행 retry나 증거 재보고 중복점수 없음. AI 1 이전 1505점 + 이번 +1점 = 누적 1506점. RUN_KEY=OUTRUN-KOR-A196-Q035-TOTAL-RANK-20261008-2301 |
 | 2026-10-08 22:09 | AI 1 | 1504 | +1 | 1505 | OutRun A195 ODD q237 FF514CEB C1 반려된 붉은 베벨/밀린 그림자를 원본 flat-red/gray family로 재구성하여 새 persisted DDS SHA256 `39f66e75e8e2e4e9f57b12dc2bc75d44dfee9ccdd5b95ee4be1c98ba1034f8d2` 생산. 원본 SHA `570fff6b...`, CLEAN 플레이트 선독립검증·합성 단독 검증, 9/9 원본 bbox·1px 보호·겹침·source residue 0, 실제 DDS roundtrip/RAW·FLIPY·100/75/50 컨트롤러 시각 자체 QA PASS. Worker Actions 37781517255 SUCCESS, GitHub A195 결과와 queue/resume/progress/WORKLOG/STATUS/QA 원격 커밋 `739b4226e59899674e0328352eebcefb465d4f40`. Fresh independent C1/C3/APPROVAL/user JPG/실게임 테스트 미완료, `RUNTIME_VALIDATION=UNTESTED`; 새 DDS 성과 1회만 +1. 계산: 이전 1504점 + 이번 +1점 = 누적 1505점. RUN_KEY=OUTRUN-KOR-A195-Q237-FLAT-EFFECT-20261008-2200 |
 | 2026-10-08 22:00 | AI 1 | 1503 | +1 | 1504 | OutRun C305 C2 EVEN q154 신규 원본·authored CLEAN·후보 실픽셀 8영역 × 검정·회색·흰색 확인, 실제 3종 비교 JPG/QA JSON 영속화, queue/status/WORKLOG push 및 remote HEAD 검증, N100 35.5MB 임시삭제 (RUN_KEY=OUTRUN-KOR-C305-C2-Q154-AUTHORED-CLEAN-BGW-20261008-2150) |

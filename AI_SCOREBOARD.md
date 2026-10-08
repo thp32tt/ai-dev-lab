@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1491 | ACTIVE | 2026-10-08 18:25 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1492 | ACTIVE | 2026-10-08 18:51 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1231 | ACTIVE | 2026-10-08 18:48 KST |
 
 ## 점수 규칙
@@ -637,3 +637,5 @@
 
 | 2026-10-08 18:25 | AI 1 | 1490 | +1 | 1491 | OutRun C295 C2 q172 NEW B263 exact material candidate 812373b09831dd2886ab5e6f3a74adc5d357e9e5871ac37752e91b24871a950a vs pinned English d5f4a36d5ef1285555ca8fc045e54d160876d1b3e33c6fbc45668c24566c2cf8 independent native source/CLEAN/FINAL 8x/50%/RAW first-look SHA and header verification; compared prior C291 B255 distinct SHA 7282687..., found persistent cream-white italic bevel/source visual hierarchy defect despite producer bbox PASS. C295 REWORK_REQUIRED and q172 METHOD_CHANGE_REQUIRED with two evidence-cited independent C rejections in REWORK_ESCALATIONS.json; C3/PRE_INGAME/game blocked, RUNTIME_VALIDATION=UNTESTED. QA/queue/resume/progress/WORKLOG/STATUS commit and verified remote HEAD eacc592cc4a2d164146f32788bae09215406bf65. Local raw download DNS failed, N100 small SHA/header fallback scratch removed, forbidden domains untouched. Scoreboard current row was stale 1489 vs newest confirmed ledger 1490; reconciled to last confirmed ledger before adding this new unique QA result. RUN_KEY=OUTRUN-KOR-C295-C2-Q172-B263-SOURCE-BEVEL-FAIL-20261008 |
 | 2026-10-08 18:48 | AI 2 | 1230 | +1 | 1231 | OUTRUN DX9Ex 기존 Quest3 실기 회귀 통합 딥리서치: 원본 emoose 훅/오리지널 EXE 103 계약·71 exact HUD CALL·disassembly producer, 실제 R26+R30/overlay/texture/host/경과 기록을 대조한 10영역 원인·반증·검증 행렬 문서를 C0~C4 다섯 단계 GitHub 커밋(350fe18b/54cd080c/49b78f08/39e88dd9/02208f63)으로 영속화하고 P0 개발 기준에서 참조하도록 a42c5cbb 커밋 연결, 원격 내용 재확인. C++/렌더 소스 변경·실기·CI 재수행 없음. 이전 1230 + 이번 +1 = 1231. 동일 조사 재보고 중복가산 금지. RUN_KEY=OUTRUN-AI2-DX9EX-RUNTIME-DEEP-RESEARCH-20261008 |
+
+| 2026-10-08 18:51 | AI 1 | 1491 | +1 | 1492 | OutRun C297 C1 홀수 q119 신규 A192R exact persisted DDS `b29c0bb092f94f39b424ebf7af631b265f7059519edf56bd28fb5a319bbf9907` / Sonic-TV 원문 `2336da3c2d08d1bfb99e3a8612a3fe7d39f9c852d7da433204c8d4a19b49c552` 독립 Pillow BC3 디코딩과 NumPy 바이트 고정 픽셀 QA 완료. FLIP-Y 후보/영문 SOURCE 캐시 PNG 각각 디코딩 픽셀차 0, 원본 텍스트 bbox 밖 RGBA·alpha 변동 0/0, C294 구 후보 106-row 첫 글자 흰색 발광 수직 절단은 신규 바이트 x710..712 밝은 픽셀0, x713..716 17/24/29/34 행 점진적 증가로 재발하지 않음. GitHub 브랜치 C297 독립 source/current native/RAW/4×/100/75/50/흑백회 배경 lossless PNG15+기계증거/컨트롤러 보고/queue/resume/progress/WORKLOG/STATUS commit `00a22264f5ae38c7987dddd699d5e464589a804a`, 원격 HEAD 재확인, 실제 원본 바이트 변경 없음. 읽기순서 blind calibration/음영 family per-glyph slant/C3가 미완성임을 정직하게 `HOLD_STRICT_RECHECK` 처리, PASS/PRE_INGAME/user/인게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. N100 최소 0.5MB DDS/PNG fallback은 ChatGPT 로컬 raw GitHub DNS 실패 후만 수행했고 재사용 scratch 삭제, VR/FFB/DX11/DXVK 무변경. 이전 1491+이번 1 = 1492; 동일 RUN_KEY 중복 가산 금지. RUN_KEY=OUTRUN-KOR-C297-C1-Q119-A192R-NATIVE-EVIDENCE-20261008-1840 |

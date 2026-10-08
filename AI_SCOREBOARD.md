@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1535 | ACTIVE | 2026-10-09 08:29 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1536 | ACTIVE | 2026-10-09 08:38 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1243 | ACTIVE | 2026-10-09 08:33 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 08:38 | AI 1 | 1535 | +1 | 1536 | OutRun 한글화 A201 q161 C319 세 글리프 내부 깨짐 실제 BC3 DDS 신규 수정. 원본 A200 후보 `2d0fe080...`→새 persisted `8ded856536184ab0a91e2ee014e8dcfaa5f8e21a5400a4891f459e4a195dda65`; 08 CAPRICORN/염소자리, 10 ARIES/양자리, 12 THAILAND/태국 자연 비율 재렌더. A200 04/06 포함 35개 영역 압축 블록 보존, 저장 DDS 3/3 bbox/alpha/색상 중심 구멍0, 3바운딩 밖/소스잔여/보호/겹침 0, SOURCE/CLEAN/FINAL·RAW/50% producer visual PASS. Actions 37860107761 SUCCESS; 동일 브랜치 큐/resume/progress/WORKLOG/STATUS/QA 갱신 commit `dd5d294b150d5d54d9e324a0fcc5d6432e4bb530` remote HEAD 검증. C1 38영역/C3/현재 승인/사용자 재검증/실게임 보류, RUNTIME_VALIDATION=UNTESTED. 재시도/재보고는 +0; 신규 DDS 성과 1건에만 +1. AI 점수 이전 1535점 + 이번 +1점 = 누적 1536점. RUN_KEY=OUTRUN-KOR-A201-Q161-C319-FACE-20261009-0830 |
 | 2026-10-09 08:33 | AI 2 | 1242 | +1 | 1243 | OutRun2006Tweaks DX9Ex 골인 HUD 원본 WVP 소유권 누락을 신규 수정한 단일 성과. 원본 EXE GOAL 두 함수 `0xBEA5A→0xBE020`, `0xBEA5F→0xBE150` 모두 보존(코스명/기록시간 개별 출력 가설; 매핑 미확정). `R30BuildScreenSpaceEyeConstants`의 정확한 `Hud2D`가 이미 head/eye 보정된 live GPU c64를 재사용할 위험을 원본 같은 shader-epoch·128 draw age 검증된 WVP만 통과하도록 보완 material `e57501f8cb411422b2a7ac6a89fb7459976bed52`; P0 정적 회귀 및 음성 결함 주입 `5bf17d991085b459fbad39c6d0ffe1f35ab2175a`, 진단 두 경로 검증 `308bf647211f670974fb53ad7d60d398dea4667c`. 원본 EXE HUD Inspector run `37859508345` SUCCESS, Domain `37859508246` SUCCESS, DX9Ex Active `37859508332` policy SUCCESS, x64 host job SUCCESS; 그외 Win32/fullchain/package CI 진행 중이며 `RUNTIME_VALIDATION=UNTESTED`, 골인 복시/+TIME 시각 해결 여부 미확정. 이슈 #13/#14 및 회귀 지식/복구 런북 기록, 다른 작업·재검증 중복 가점 없음. **이전 1242점 + 이번 +1점 = 누적 1243점**. RUN_KEY=OUTRUN-DX9EX-ORTHO-HUD-RAW-WVP-20261009-AI2 |
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|

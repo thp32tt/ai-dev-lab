@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1501 | ACTIVE | 2026-10-08 21:00 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1502 | ACTIVE | 2026-10-08 21:29 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1232 | ACTIVE | 2026-10-08 20:27 KST |
 
 ## 점수 규칙
@@ -38,6 +38,7 @@
 
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|
+| 2026-10-08 21:29 | AI 1 | 1501 | +1 | 1502 | OutRun 한글화 C304 C2 EVEN q236 기존 4/14에서 원본/현 DDS exact-SHA native 14/14 독립 픽셀/안전 여백 검증 완료, 14행 영문-한글 비교 JPG와 JSON GitHub 영속화, C3 HOLD 상태·기록 반영 및 remote HEAD 검증, N100 임시 약33.7MB 정리 (RUN_KEY=OUTRUN-KOR-C304-C2-Q236-COMPLETE-14-NATIVE-20261008-2125) |
 | 2026-10-08 21:00 | AI 1 | 1500 | +1 | 1501 | OutRun 한글화 C302 C2 EVEN q236: SHA256 원본·후보 독립 4영역 native RAW 검증, source-bbox/protected 영역 확인, C3 HOLD 기록, queue/progress/resume/STATUS/WORKLOG 커밋 및 원격 HEAD 확인, N100 임시 스크래치 안전 삭제 (RUN_KEY=OUTRUN-KOR-C302-C2-Q236-FOUR-NATIVE-REGIONS-20261008-2056) |
 | 2026-10-08 20:30 | AI 1 | 1498 | +1 | 1499 | OutRun 한글화 C301 C2 EVEN q230 신규 독립 native 원본/후보 2도움말 SHA256 픽셀검증과 C3 HOLD 근거 기록, queue·QA·progress·WORKLOG·STATUS push 및 HEAD 검증, N100 임시 파일 안전정리 (RUN_KEY=OUTRUN-KOR-C301-C2-Q230-EXACT-NATIVE-REGION-QA-20261008-2027) |
 | 2026-10-08 19:50 | AI 1 | 1497 | +1 | 1498 | OutRun 한글화 C300 C2 짝수 q098 새 엄격 C3 실픽셀 대조: BC3 한글 내부 점선/줄무늬를 원본 대비 결함으로 확인하고 기존 정적 PASS를 REWORK로 재개방, QA/queue/resume/progress/WORKLOG 커밋 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C300-C2-Q098-NATIVE-GLYPH-FAIL-20261008-1950) |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1496 | ACTIVE | 2026-10-08 19:31 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1497 | ACTIVE | 2026-10-08 19:43 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1231 | ACTIVE | 2026-10-08 18:48 KST |
 
 ## 점수 규칙
@@ -645,3 +645,4 @@
 
 | 2026-10-08 19:21 | AI 1 | 1494 | +1 | 1495 | OutRun C298 C1 홀수 q225 새로운 A193 정확 SHA `f054219a427ea91ae1f5230eb1842fc05edb8900e2a6da08f67e4afbd81c2333` vs Sonic-TV 원본 `a0c8c67f88dfdc93385b821452f0175a6a951c238f5f3d8b012afa113ef37fc9`를 independently RGBA32 native Pillow/NumPy 픽셀 검증. 원본 9개 영어 source bbox 밖 RGBA/alpha changed 0/0, CLEAN↔SOURCE 밖 0/0, source/current PNG decoded exact, 전체 변경 66385 pixels within 9 text bboxes. A193 실제 Black font로 C1 과거 구후보 A95R 지나친 얇기 문제는 개선 확인, native source/CLEAN/current per-row PNG9 + 50%/gray/RAW 총12개 GitHub 게시, 상태 HOLD_STRICT_RECHECK 유지(보정 blind calibration, within-bbox CLEAN 보호, 원문 폰트 패밀리·기울임과 C3 독립 검수 불충족), 승인/배포/인게임 PASS 미허용, RUNTIME_VALIDATION=UNTESTED. QA/queue/WORKLOG/STATUS/progress/resume GitHub commit `c97d7e3e6e28c2cee8e7b2ca98150e5a39f935e7` 원격 HEAD 확인, N100 소량 BMP/DDS 검증 보조 후 scratch 제거, VR/FFB/DX11/DXVK 미작업. 이번 새로운 독립 물리 픽셀 QA 성과 1회만 반영: 1494 + 1 = 1495. RUN_KEY=OUTRUN-KOR-C298-C1-Q225-A193-BLACK-FAMILY-NATIVE-20261008-1910 |
 | 2026-10-08 19:31 | AI 1 | 1495 | +1 | 1496 | C299 C2 q176 NEW independent exact SHA B201 authored CLEAN `0fd5d51864ad9564f33c703140c4cff9ef7b58fabd51ff0d34bcdf299d9fc5cc` vs pinned original `8ba40915...` and candidate `494d42c0...` RGBA32 persisted DDS, all 4 source text bboxes CLEAN source-alpha 0, three pairwise SOURCE/CLEAN/CURRENT RGBA/alpha 0 outside 4 source boxes, 4/4 positive margins/RAW, 8 newly rendered lossless source-clean-current native/50% images and C controller QA machine report. Actual new CLEAN evidence missing from prior C279, exact assets unchanged, C HOLD_STRICT_RECHECK, C/C3/PRE_INGAME/game NOT APPROVED, RUNTIME_VALIDATION=UNTESTED. QA/worklog/queue/progress/resume/STATUS commit `fe71ba25ed652a8b89af2cb9bad217178c74bcbf` published and remote HEAD verified; temporary N100 fallback scratch cleaned; VR/FFB/DX11/DXVK untouched. Unique outcome once; 1495 +1 = 1496. RUN_KEY=OUTRUN-KOR-C299-C2-Q176-B201-EXACT-CLEAN-20261008-1930 |
+| 2026-10-08 19:43 | AI 1 | 1496 | +1 | 1497 | 사용자 인게임 검증 선행용 UNAPPROVED 시험 빌드 워크플로 실제 구현·CI 검증. OutRun2006Tweaks branch dcbec6c9a49cad8dcfc8ee7e550ac067368efaf3, Actions run 37764605669 SUCCESS, C3 과거 통과 DDS 62개(누락 0) SHA-256 매니페스트 포함 아티팩트 11544202380(73,611,265B) 업로드 성공. 기존 최종 evidence-gate 유지, 승인 DDS 0과 사용자 인게임 검증 UNTESTED를 명확히 분리. QA 문서 커밋 1c843acf24a50be2bfd10cb0aec50027e87c4ba3. 반복 실패했던 YAML 생성 실수 수정 후 최종 성공한 작업만 +1. RUN_KEY=OUTRUN-KOR-USER-REVIEW-C3-BUILD-20261008-1943 |

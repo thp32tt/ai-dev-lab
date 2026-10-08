@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1460 | ACTIVE | 2026-10-08 12:35 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1461 | ACTIVE | 2026-10-08 12:57 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1208 | ACTIVE | 2026-10-08 12:01 KST |
 
 ## 점수 규칙
@@ -569,3 +569,4 @@
 | 2026-10-08 12:14 | AI 1 | 1458 | +1 | 1459 | OutRun 한글화 C278 C1 q175 A185R current SHA cac88b8553e36b2... 신규 교차 시각 QA: 원본 chrome bevel/deep shadow 대비 한글 Noto Regular 평면 효과 불일치 3행 발견, 수치 PASS보다 시각 FAIL 우선 REWORK_REQUIRED 반환. queue/resume/progress/WORKLOG/STATUS/QA JSON 원격 commit 9f5c74bba61f76f978b41d3ddc57fe6e4f1379db 검증. C/C3 승인 및 PRE_INGAME 차단, 런타임 UNTESTED. 이전 1458+1=1459. (RUN_KEY=OUTRUN-KOR-C278-C1-Q175-VISUAL-FIDELITY-RETURN) |
 
 | 2026-10-08 12:35 | AI 1 | 1459 | +1 | 1460 | OutRun 한글화 C2 EVEN q154 새 독립 persisted-DDS 원본/후보 픽셀 감사: canonical English 15a10e6b... / B225 815f0112... / current A182R 94678124... 실제 SHA256 검증. 4096x1024 8/8 source bbox/size PASS, 원본 대비 8 원문영역 외 RGBA·alpha 변경 0px, B225 대비 회색 3행 밖 변경 0px, 회색 내부 실변경 29377px, 빨강 5행/보호영역 pixel-exact 보존. 16개 원본/현재 RAW-to-FLIPY 무손실 crop PNG, 8행 비교 contact, 기계 QA 및 C controller report GitHub 게시. blind calibration/clean/family/C3 근거 부족으로 최종 C 승인 날조하지 않고 HOLD_STRICT_RECHECK 유지, q154 DDS 바이트 무변경, 실제 게임 UNTESTED. OutRun HEAD f7b9943f0de31bd5ac5209b284d31537323829fe remote 검증, N100 지정 일회성 scratch 삭제 후 남은 공간 34.33GB. VR/FFB/DX11/DXVK 미변경. 계산: 1459+1=1460. (RUN_KEY=OUTRUN-KOR-C2-Q154-NATIVE-EIGHT-REGION-QA-20261008-1220) |
+| 2026-10-08 12:57 | AI 1 | 1460 | +1 | 1461 | OutRun C279 C1 q059 PJR-019 independent native DXT5 machine QA: canonical source/actual A184R persisted candidate SHA verified, 4 source region union 밖 decoded RGBA+alpha 0px, CLEAN outside 0px, RAW/FLIP-Y and neutral composite checked; HOLD maintained due calibration/C3 and lossless region PNG GitHub-publish incomplete. Report/queue/progress/resume/WORKLOG/STATUS commit 0ae270866066ce2a00e35ef17e50bb62b7304483 HEAD verified. No DDS produced, no game retest. Previous 1460 + 1 = 1461. (RUN_KEY=OUTRUN-KOR-C279-C1-Q059-NATIVE-PIXEL-SCOPE-20261008) |

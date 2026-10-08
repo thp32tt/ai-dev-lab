@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1483 | ACTIVE | 2026-10-08 16:57 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1486 | ACTIVE | 2026-10-08 17:20 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1225 | ACTIVE | 2026-10-08 17:18 KST |
 
 ## 점수 규칙
@@ -619,3 +619,5 @@
 
 | 2026-10-08 17:17 | AI 1 | 1484 | +1 | 1485 | OutRun 한글화 A191 q119 F6811E94 신규 소재 DDS 직접 생산 성과 1건: 독립 C290이 확인한 기존 타임 어택 모드 흰색 발광 이탈(기존 SHA af938e... / 근백색0)을 정확한 2048×256 DXT5 원본 2336da...로 재구성. 첫 A190 새 후보 d7e137... 는 검은색·회색 원본 대조에서 흰색 링이 지나치게 딱딱하여 제작자 시각 FAIL, 동일 작업 재시도로 중복점수 없음. A191은 별도 재구성으로 부드러운 확산 백색 글로/0.25 shear를 적용해 최종 새 DDS SHA `4e971f32fd0b5367ec0e91167900d83b097e67f16f72a67b1264f114ee2ba3ca`; GitHub Actions 37748043382 SUCCESS, 원본 bbox [390,54,1632,200]→현재 [705,58,1316,196], 변경/알파 외부0, 잔상/보호 침범0, 근백색 20641, RAW mirror-y 확인. 원본/CLEAN/최종 흑·회·백 시각·RAW 검토 결과 발광 누락 수정 확인하였으나 원문 font-family/per-glyph lean anchors 미해결로 **PRODUCER_HOLD** 처리; C1/C3/APPROVAL/PRE_INGAME/실게임 미승인, RUNTIME_VALIDATION=UNTESTED. QA/queue/resume/progress/WORKLOG/STATUS를 원격 브랜치 HEAD 9ccf897764fceb5a50d2e54e88d58bd25f6bfd09 검증 후 반영, GitHub Actions ephemeral, N100 이미지 확인용 소규모 보조 사용. VR/FFB/DX11/DXVK 미변경. 이번 q119 실물 신규 DDS 성과만 +1: **1484 + 1 = 1485**. RUN_KEY=OUTRUN-KOR-A191-Q119-WHITE-HALO-MATERIAL-20261008-1700 |
 | 2026-10-08 17:18 | AI 2 | 1224 | +1 | 1225 | OutRun DX9Ex C CONVERSION-DX9EX-00555 신규 DDS fast decoder 원본 크기와 explicit requested 크기 불일치 fail-closed, native D3DX fallback 보존, 폭·높이 독립 변조 검증 및 ordering guard 실제 소스 구현. Material SHA b13cc088462e6335b06c5ef10cf5c605a46599b9; exact-SHA DX9Ex Active 37747986400 (policy/game/host/full-chain/package 모두 SUCCESS), EXE HUD Inspector 37747986465, Domain Isolation 37747986399, Full Source Impact 37747986421 각 SUCCESS, artifact 11537192529 sha256:d1c1c12bbe6396b4335a6dd2c39d8838266348d2928691ac2bf9f0bb9ddea6de. Quest 3/VDXR RUNTIME_VALIDATION=UNTESTED, HUD 1000/5000 반복 없음, DX11 A·DX9Ex C 유지 DXVK B FROZEN. 동일 Task/E001 retry·재보고 +0. 이전 1224 + 이번 +1 = 누적 1225. (RUN_KEY=CONVERSION-DX9EX-00555-E001) |
+
+| 2026-10-08 17:20 | AI 1 | 1485 | +1 | 1486 | OutRun 한글화 C1 홀수 q225 `E3C455FA` 신규 독립 원문-후보 시각 검수: 현재 DDS SHA 37b8236f06fcec8c8c64c1076f9bf0f3c8c56ea3638b8a4582a513a40bbcb18d / pinned 영문 원문 a0c8c67f88dfdc93385b821452f0175a6a951c238f5f3d8b012afa113ef37fc9. 기존 A95R 숫자 9/9 PASS 대비 실제 RAW/FLIP-Y 비교에서 GAME LOBBY 및 9개 글꼴의 원문 굵기·응축된 비례/시각적 계층 손실 신규 확인. 사용자/인게임 승인 없이 정확한 현 후보를 C1 REWORK_REQUIRED로 재개방하고 QA JSON/queue/WORKLOG/progress/resume 반영, 원격 HEAD 419f7603a71e1a9276d46da26045702839a57a73 확인. C3/APPROVAL/PRE_INGAME 차단, RUNTIME_VALIDATION=UNTESTED; N100 MCP 후보 해시·참고 이미지 확인, DDS 새 생산 없음. 신규 C 검수 성과 +1(중복 수행 가점 없음): 1485 + 1 = 1486. RUN_KEY=OUTRUN-KOR-C1-20261008-1716-Q225-SOURCE-FAMILY-FAIL |

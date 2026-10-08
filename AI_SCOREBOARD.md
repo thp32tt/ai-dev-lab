@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1439 | ACTIVE | 2026-10-08 09:08 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1440 | ACTIVE | 2026-10-08 09:10 KST  |
 | AI 2 | ChatGPT (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-07 09:19 KST |
 
 ## 점수 규칙
@@ -539,3 +539,4 @@
 | 2026-10-08 08:43 | AI 1 | 1436 | +1 | 1437 | OutRun 한글화 C268 C2 q154 evidence-gate native 재검수: 최신 evidence gate/CONTRACT와 live HEAD/queue를 확인하고 명시 HOLD q154 4D38BBB0을 우선 처리. hosted C worker가 장시간 pending/cancelled라 exact candidate/source SHA를 검증한 N100 memory-stream fallback으로 persisted DDS를 native 1x/2x/50%/RAW 재디코드. blind known-defect calibration 5/5 PASS. machine outside/alpha/protected=0 PASS였으나 gray SINGLE PLAYER/SHOWROOM/MULTIPLAYER가 원문 대비 과도하게 두껍고 counter-space가 막히며 50% practical에서 가독성 저하가 확인되어 visual override REWORK_REQUIRED, C3 BLOCKED. q154 queue/resume/progress/WORKLOG/STATUS/QA 상태를 OutRun commit 430743f1a143893a2c02b31458f8834c940e0fbc에 반영하고 remote HEAD 동일 확인. RUNTIME_VALIDATION=UNTESTED; VR/FFB/DX11/DXVK 미작업. 계산: 이전 확정 누적점수 1436 + 이번 +1 = 새로운 누적점수 1437. (RUN_KEY=OUTRUN-KOR-C268-C2-Q154-NATIVE-EVIDENCE-20261008-0820) |
 | 2026-10-08 08:52 | AI 1 | 1437 | +1 | 1438 | OutRun DX9Ex HUD 10개 독립 검토 관점 정적 감사 완료: 원본 EXE 71 CALL 및 10/10 음성변조 차단/P0 static PASS를 material SHA 1c86d479dcd5de97f3bf8bee1abb386b11b2de02에서 확인, DX9Ex Active Validation 37703763263(policy/game/host/full-chain/package), HUD Inspector 37703763411 및 Domain Isolation 37703763317 exact-SHA SUCCESS. 발견한 잠재 리스크 3건(F1 순위 sprani 단일 tail, F2 ScreenOverlay2D 문서-활성 정책, F3 메뉴 DDS 픽셀/로드 증거 공백)을 확정 오류와 구별하여 OutRun docs/automation/reviews/DX9EX_HUD_10PASS_20261008.md commit ccf4b0dbc771c138ac91e680985e06ace912fe74에 영속화. 기확인 00519 시각 FAIL 유지, RUNTIME_VALIDATION=UNTESTED, 실기 반복 요청 없음. 이전 확정 1437 + 이번 +1 = 누적 1438. (RUN_KEY=DX9EX-HUD-REVIEW-10PASS-20261008) |
 | 2026-10-08 09:08 | AI 1 | 1438 | +1 | 1439 | N100 현재 계정(UID 1001) 디스크 정리 완료: npm 캐시/오래된 로그/Python 캐시 제거 및 변경사항 없는 구형 worktree 2개(package-kor-test, localization-policy-check)를 안전하게 제거해 일반계정 가용공간 0B→3,013,943,296B 복구. 다른 소유자·실행중 서비스·미커밋 작업 보존, 사후 재확인 완료. 이전 확정 1438 + 이번 +1 = 누적 1439. (RUN_KEY=N100-DISK-CLEANUP-20261008-0859) |
+| 2026-10-08 09:10 | AI 1 | 1439 | +1 | 1440 | N100 현재 계정 /home/chatgpt-runner2(UID 1002) 디스크 공간 확보: npm/pip 캐시와 로그 3곳, 이전 작업의 변경사항 없는 Git worktree 8개를 force 없이 안전 제거. 최초 사용 가능 공간 0B에서 최종 31,990,910,976B(29.79GiB) 확인, n100 MCP 0.3.0 정상, 미커밋/로컬 고유 커밋/현재 프로젝트 및 활성 서비스 보존. 다른 계정의 기존 UID1001 정리 성과와 중복하지 않는 별도 작업. 계산: 이전 확정 누적점수 1439 + 이번 +1 = 새로운 누적점수 1440. (RUN_KEY=N100-RUNNER2-DISK-CLEANUP-20261008-0900) |

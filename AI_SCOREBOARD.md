@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1488 | ACTIVE | 2026-10-08 17:52 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1228 | ACTIVE | 2026-10-08 17:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1229 | ACTIVE | 2026-10-08 18:00 KST |
 
 ## 점수 규칙
 
@@ -629,3 +629,4 @@
 
 | 2026-10-08 17:52 | AI 1 | 1487 | +1 | 1488 | OutRun C294 C1 홀수 q119 F6811E94 신규 A191 정확 SHA 4e971f32fd0b5367ec0e91167900d83b097e67f16f72a67b1264f114ee2ba3ca에 대한 신규 독립 시각 REWORK 판정. 원본 2336da3c2d08d1bfb99e3a8612a3fe7d39f9c852d7da433204c8d4a19b49c552와 현재 DXT5 실물 SHA/header 확인, SOURCE/CLEAN/FINAL 및 RAW 영문/한글 직접 비교. A191 흰색 glow 회복은 확인하였으나 한글 첫 글자 왼쪽 알파 발광에서 x705 기준 106개 연속 행의 수직 하드에지(앞 열 x704 투명) 확인하여 C=REWORK_REQUIRED; 이전 숫자 bbox PASS를 현재 시각 승인으로 혼동하지 않음. 신규 무손실 원문/현재 PNG2 및 머신-한정 pixel probe, C QA JSON, queue/resume/progress/WORKLOG/STATUS 기록 commit 909ce4a2fccfb70a7808cfed8dbf2de80df9ad59 원격 HEAD 검증. 현 DDS 변경 없음, C3/승인/PRE_INGAME 차단, 실제 게임 UNTESTED, C1 TEMP_BACKLOG_RELIEF=ODD. 원격 push 경쟁 충돌은 최신 HEAD 재기준으로 안전 재커밋, N100 소량 검증용 scratch 삭제 완료; VR/FFB/DX11/DXVK 제외. 새 QA 성과 1회만 +1: 1487 + 1 = 1488. RUN_KEY=OUTRUN-KOR-C294-C1-Q119-LEFT-HALO-FAIL-20261008-1740 |
 | 2026-10-08 17:54 | AI 2 | 1227 | +1 | 1228 | CONVERSION-DX9EX-00557 기존 material SHA 0f349f4b6b62d41bdb61d8a53dba3ce3a1815e4f SceneEffect nested near-plane restoration 및 집중형 정적 결함주입 구현의 검증 완료 성과를 최초 1회 가산. Original focus-branch Active 37750869490 cancelled; isolated exact material SHA CI 37752011583 policy/game/host/full-chain/package SUCCESS, HUD Inspector 37752011570 SUCCESS, Domain Isolation 37750869349 SUCCESS, Full Source Impact 37750869517 SUCCESS. Artifact 11538577746 digest sha256:595778efe7d425ab07aaafbaff0e1814cd1023c8b76ede1101658b1ff6b1a2b2; HMD/VDXR RUNTIME_VALIDATION=UNTESTED. EVENT=CONVERSION-DX9EX-00557-E003, retry itself +0 and original unique source+CI completion +1 only once. AI2 previous 1227 +1 = cumulative 1228. RUN_KEY=CONVERSION-DX9EX-00557 |
+| 2026-10-08 18:00 | AI 2 | 1228 | +1 | 1229 | DX9Ex C CONVERSION-DX9EX-00558 실제 R57 투영 clipW 음수/후방 rank·rival 마커 거부 C++ 소스+검증 도구 수정. Material SHA b14901f8b70b1b6fda8a9aded1e340147a453e68, 정적 계약 및 결함주입 2종 PASS, exact-SHA DX9Ex Active 37752619285(정책/게임/호스트/R33 체인/패키지 5/5 SUCCESS), HUD Inspector 37752619496 SUCCESS, Domain Isolation 37752619334 SUCCESS, Full Source Impact 37752619267 3/3 SUCCESS. GitHub artifact 11538619117 sha256:6085109d2fb0664d4e6cd645d1cf72b2b21e20a5910580c4ddf4e4eeadb75ad1. Quest3/VDXR 미실시 RUNTIME_VALIDATION=UNTESTED, DX11 A·DX9Ex C 병행, DXVK B 동결. 실제 독립 성과 +1회: 1228+1=1229; 동일 TASK_ID retry/rollover 중복 가점 금지. RUN_KEY=CONVERSION-DX9EX-00558-E001 |

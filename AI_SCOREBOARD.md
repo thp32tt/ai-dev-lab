@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1465 | ACTIVE | 2026-10-08 13:30 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1212 | ACTIVE | 2026-10-08 13:28 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1213 | ACTIVE | 2026-10-08 13:35 KST |
 
 ## 점수 규칙
 
@@ -580,3 +580,4 @@
 | 2026-10-08 13:28 | AI 2 | 1211 | +1 | 1212 | OutRun Chat 장시간 작업 중복/일률 롤오버 방지 계약 신규 적용: DX11 vr-dx11-native-r71 c7242f7087c52ad663e846fa7c28da7e236cf810, DXVK vr-dxvk-r71-disasm 623a0db85999cbc3bb877fbde432bb1ef8ffef38, DX9Ex vr-d3d9ex-focus d7519ed9a42d69877baa7b6e18eb49e55324f230의 docs/automation/QUEUE_CONTROLLER_CONTRACT.md를 실제 GitHub에 수정하고 세 브랜치 원격 재조회로 새 판단 규칙(ALREADY_DONE/RECONCILING/HOLD_OWNER_UNCERTAIN, 업무 충돌 키/lease fencing/동일 TASK_ID 복구/채팅 진행 보고) 존재 검증. 단일 신규 정책 성과 +1, 별도 Docker 컨트롤러 실제 hot-reload/시행은 미검증이며 소스 개발·HMD 검증 성과로 계산하지 않음. 계산: 이전 1211 + 이번 +1 = 누적 1212. (RUN_KEY=AI2-OUTRUN-ROLLOVER-DEDUP-CONTRACT-20261008) |
 
 | 2026-10-08 13:30 | AI 1 | 1464 | +1 | 1465 | OutRun 한글화 C281 C2 EVEN q172 이전 C277 HOLD 재검수에서 독립적인 신규 source-typography 결함 확정: canonical START/GOAL 오른쪽 경사형(cream/orange)과 B251 한글 출발/골 거의 수직/네모형의 visible right-slant mismatch. Canonical source d5f4a36d... 및 B251 candidate 05aee26d... DDS SHA256 검증, 1024x1024 header, original-vs-current source box 밖 RGB/alpha diff=0, 내부 3541px, RAW/FLIPY 정확. Native/zoom x6, 50/75%, full atlas & synthetic QA calibration 이미지 16개 등 C281 증거 저장; synthetic normal은 불승인 후보 기반이므로 PASS calibration으로 인정하지 않음. q172 queue HOLD->REWORK_REQUIRED, B 원문 오른쪽 기울임 재제작 요구, C3/export blocked, WORKLOG/STATUS/progress/resume 반영, OutRun HEAD c71f0deca0bbd6821c6700aa9fc7d15dc47488e9 원격 확인, N100 지정 task scratch 정리, 실제 게임 UNTESTED, VR/FFB/DX11/DXVK 무변경. 이전 1464 + 이번 +1 = 누적 1465. (RUN_KEY=OUTRUN-KOR-C281-C2-Q172-SOURCE-SLANT-VISUAL-FAIL-20261008) |
+| 2026-10-08 13:35 | AI 2 | 1212 | +1 | 1213 | OutRun Docker Portainer VR 컨트롤러 실제 GitHub 배포 소스 chat-controller-downloads/tools/chat-controller/v0.4/src-vr-v2/controller.py.part03의 10분 응답 없음 및 안정화된 중간답변/무커밋 상태를 자동 롤오버·retry로 오판하여 중복 작업을 만드는 경로를 fail-closed HOLD_UNCONFIRMED로 수정(9c8dfea81c4dcc3fdd2062e532c9b7b2449fae49). 롤오버는 명시적 UI 길이 제한·반복 Retry 실패만 허용. 실동작 회귀 3건 추가(ed95c8c8d730287ba95ab8f51d3f1141d8d2df71), Chat Controller Selftest 정확 SHA 37728078599 SUCCESS. DX11/DXVK/DX9Ex 채팅 진행 표시·TASK_ID 보존 지침 실제 Docker 프롬프트 반영 9df61c5c,772fbb77,7e17b325; 최종 HEAD 7e17b325f06c6c645dd7718342408754666f09ff GitHub Actions Chat Controller Selftest 37728145577 SUCCESS. Portainer 신규 image build/redeploy는 사용자가 수행해야 함; 현재 실행 중 Docker 중복방지 반영 여부/다중 컨트롤러 간 전역 lease 미검증. 신규 코드 성과 1회만 가산, 이전 정책 문서 반영과는 별도, rollover/retry 추가 가산 없음. 1212 + 1 = 1213. (RUN_KEY=AI2-OUTRUN-CONTROLLER-SAFE-ROLLOVER-CODE-20261008) |

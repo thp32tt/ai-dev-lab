@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1478 | ACTIVE | 2026-10-08 15:53 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1479 | ACTIVE | 2026-10-08 16:15 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1220 | ACTIVE | 2026-10-08 16:03 KST |
 
 ## 점수 규칙
@@ -606,3 +606,4 @@
 | 2026-10-08 15:58 | AI 1 | 1478 | +1 | 1479 | OutRun 한글화 C289 C2 짝수 q214 BF229CF4 신규 B259 후보 SHA ace42cb3d539df7c538c6d93b6c3f001e3d18e4f41aaa29bdab1466fe412fc30 신규 독립 persisted DDS C2 검수 완료. GitHub CPU 37740304700 exact source/clean/final DXT5 decoded RAW/FLIP-Y/native/zoom4x/practical75/50/black-white-gray PNG, 영문 source 2개 효과영역 밖 RGBA/alpha 0/0, CLEAN 중간이미지 394 RGBA 예외는 미분류로 정직하게 보류. 시각적으로 영문 금색 입체 italic 대비 한글 출발/골 여전히 납작한 수평 획+골 내부 붉은 배경선 관통으로 REWORK_REQUIRED, C3/배포/실게임 승인 차단. QA/queue/WORKLOG/STATUS/progress/resume 원격 OutRun HEAD c7948554368fbfcab3522030bce7b5d9273a8b3b 확인. 중간 실패 GitHub CPU 37740076285 원인은 rework_triage.py 기존 CSV 내부 UTF8 BOM, triage 정상화 fix commit 46d78180... 후 재실행 성공; 17/17 evidence-gate unittest PASS. N100 미사용, VR/FFB/DX11/DXVK 미변경, 실게임 UNTESTED. 하나의 신규 C2 검수 성과만 +1점, retry 중복점수 없음. 1478+1=1479. (RUN_KEY=OUTRUN-KOR-C289-C2-Q214-B259-NEW-SHA-VISUAL-20261008-1550) |
 
 | 2026-10-08 16:03 | AI 2 | 1219 | +1 | 1220 | N100 배포 점검에서 A(DX11)+C(DX9Ex) 병행 및 B(DXVK) 동결 확인. CI PASS 완료 기록 `attempt="1/3"`를 int() 처리하다 RUN_RECORD_NOT_FOUND로 잠김. GitHub Controller v2 counter parser와 strict C6 task selection/restore 버그 수정 및 DX11/DX9Ex 회귀 테스트 추가. Source SHA 0414c8b272b2aa2e9c10de7d36d35bce745ddac6; Chat Controller Selftest 37741093458 SUCCESS. Portainer 변경 적용은 사용자 재배포 대기, HMD=UNTESTED. RUN_KEY=CONTROLLER-VR-C6-ATTEMPT-PARSE-20261008 |
+| 2026-10-08 16:15 | AI 1 | 1478 | +1 | 1479 | OutRun A189 신규 실물 q217 D1039D6F native 2048x2048 BGRA32/mip1 오른쪽 기울임 크림골드 START→출발 GOAL→골 DDS 생성. C288에서 화면 부적합 판정된 A116 SHA 68bd2219...를 실제 새 SHA a4d817db51c31ba6e7d22121add4dfee8bc151cdb229a6091c5ea324bca78204로 교체. Source SHA d3d2d155... 대조, source-bbox/positive margin 2/2 PASS, original banner outside RGBA/alpha 0, 원문 색 잔상 0, overlaps 0, exact persisted DDS RAW mirror_y/roundtrip PASS. 4x/100/75/50 SOURCE CLEAN FINAL & RAW 직접 시각검수 후 짧은 한글 문구 상대적 폭/원문 글리프 기울임 정밀 검증 미충족으로 PRODUCER_HOLD, C1/C3/USER/실게임 합격 미주장, RUNTIME_VALIDATION=UNTESTED. rework_triage --index 217 --require-safe-rerender MATERIAL_REWORK exit 0, GitHub Actions 최초 37741184700 Python import 오류 재시도, 37741430790 SUCCESS. QA·queue·resume·progress·WORKLOG·STATUS 동일 브랜치 반영, 원격 HEAD feead9b7c04677c13b14c4fa1d69efccc5562a46 검증. GPT local raw Github DNS 불가로 hosted fallback, N100 미사용, 호스트 runner 임시 디렉터리 자동 정리. VR/FFB/DX11/DXVK 변경 없음. 이전 1478 + 이번 +1 = 누적 1479. RUN_KEY=OUTRUN-KOR-A189-Q217-GOLD-20261008-1600 |

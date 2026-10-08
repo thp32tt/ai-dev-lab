@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1498 | ACTIVE | 2026-10-08 19:50 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1499 | ACTIVE | 2026-10-08 20:30 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1232 | ACTIVE | 2026-10-08 20:27 KST |
 
 ## 점수 규칙
@@ -38,6 +38,7 @@
 
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|
+| 2026-10-08 20:30 | AI 1 | 1498 | +1 | 1499 | OutRun 한글화 C301 C2 EVEN q230 신규 독립 native 원본/후보 2도움말 SHA256 픽셀검증과 C3 HOLD 근거 기록, queue·QA·progress·WORKLOG·STATUS push 및 HEAD 검증, N100 임시 파일 안전정리 (RUN_KEY=OUTRUN-KOR-C301-C2-Q230-EXACT-NATIVE-REGION-QA-20261008-2027) |
 | 2026-10-08 19:50 | AI 1 | 1497 | +1 | 1498 | OutRun 한글화 C300 C2 짝수 q098 새 엄격 C3 실픽셀 대조: BC3 한글 내부 점선/줄무늬를 원본 대비 결함으로 확인하고 기존 정적 PASS를 REWORK로 재개방, QA/queue/resume/progress/WORKLOG 커밋 및 원격 HEAD 검증 완료 (RUN_KEY=OUTRUN-KOR-C300-C2-Q098-NATIVE-GLYPH-FAIL-20261008-1950) |
 | 2026-10-04 | AI 1 | 1003 | 0 | 1003 | 점수판 최초 생성. 기존 누적 점수 1003점 등록 |
 | 2026-10-04 | AI 2 | - | - | 미입력 | 현재 누적 점수 정보가 없어 최초 입력 대기 |

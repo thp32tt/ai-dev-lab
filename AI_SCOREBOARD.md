@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1519 | ACTIVE | 2026-10-09 01:23 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1520 | ACTIVE | 2026-10-09 01:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1233 | ACTIVE | 2026-10-09 01:25 KST |
 
 ## 점수 규칙
@@ -38,6 +38,7 @@
 
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|
+| 2026-10-09 01:25 | AI 1 | 1519 | +1 | 1520 | OutRun A 신규 1개 실제 한글 DDS 생산 확정: C1 q227 `E596B7AC` 원본 대비 굵기/높이 FAIL에 대응하여 2048x2048 native 16영역을 재생성. 첫 A198 실물 SHA `502bc3ba...`는 Black+획 확장으로 한글 내부 획이 막혀 **자체 시각 QA FAIL** 반려, retry 점수 +0. A198R에서 native Bold/비확장 소스 계열로 재제작하여 최종 DDS SHA256 `83120095e3ff960939c0b413dd85d1633314f23dcde0192f0cf68a7a47776595`, PROFESSIONAL→프로 51→72px(원본75), source/CLEAN 복원 531382px, 16/16 원본 bbox, 외부/보호/원문잔여/겹침0, RAW/FLIPY/native/50% 자체 QA PASS. Actions 37807100084 SUCCESS, queue/resume/progress/WORKLOG/STATUS 및 A198 시각FAIL/A198R PASS 증거 커밋 `900d1478b3aca36f2798ba8cddbc7c9139e24f9a`; 원격 HEAD 후속 `c20043341c1b10ddbe18b9bab4ec9c1ebe441f9d`와 비교하여 A198R ancestry 확인. C1/C3/current approval/user actual game 여전히 미검증, RUNTIME_VALIDATION=UNTESTED. 최종 채택된 새로운 DDS 1개만 성과 +1, 동일 retry 및 이전 A198 trial 중복 점수 없음. 이전 1519점 + 이번 +1점 = 누적 1520점. RUN_KEY=OUTRUN-KOR-A198R-Q227-COUNTER-REPAIR-20261009-0118 |
 | 2026-10-09 01:25 | AI 2 | 1232 | +1 | 1233 | f490f047f640 사용자 Quest3 HMD FAIL 로그/정확 SHA 검증, 게임 슬롯 선택기 WinForms Point 생성자 실제 수정 커밋 9709f73e472163d79b3b1e0195b3685d81d130d4, GUI 로컬 패치 제공, 리그레션 GitHub 기록 e26909c9cb0b6ca85f89e45acdcc5bffe9159c2a. 실제 GUI/HUD 광학 회귀는 미통과; 이미 실패한 f490 HUD 경로 수정 성공으로 점수 가산하지 않음. **이전 1232점 + 이번 +1점 = 누적 1233점**. RUN_KEY=OUTRUN-VR-HMD-F490-POINT-SCRIPT-20261009 |
 | 2026-10-09 01:23 | AI 1 | 1518 | +1 | 1519 | 새 실게임 스크린샷 19개 IGR-026..044 OPEN_USER_INGAME_FAIL로 등록, q49/q60/q121/q137/q193/q201/q205/q212/q228 9개 기존 C3 PASS 상태를 실사용자 근거 REWORK_REQUIRED로 재오픈, q175/q219/q227 기존 리워크 보존. 14개 발표/런타임 QA 게이트와 family별 native 검증 정책, GitHub qa_evidence_gate.py 현행 OPEN 결함 veto, 4개 회귀 테스트, USER_REVIEW_NOT_APPROVED 빌드 exclusion 차단, QA/CONTRACT/EVIDENCE 정책, resume/progress/WORKLOG 업데이트 commit. GH Actions QA 37807917192 SUCCESS (기존 triage 9 tests, evidence 21 tests); Windows QA build 37807469564 SUCCESS, QA preview 기존 62→52 DDS, file missing 0, approved DDS 0, gameplay repair/closure 0, RUNTIME_VALIDATION=UNTESTED. 사용자 스크린샷 검은 테두리는 위치표시로 구분. 실물 DDS 수리 아닌 정책/리워크 등록 성과만 +1; 반복 확인·retry 중복 +0. 계산: 이전 1518점 + 이번 +1점 = 누적 1519점. RUN_KEY=OUTRUN-KOR-USER-INGAME-REWORK-POLICY-20261009-0104 |
 | 2026-10-09 01:20 | AI 1 | 1517 | +1 | 1518 | OutRun C314 C1 ODD q161 A157 현행 DXT5 DDS 신규 정확 SHA 고정 독립 38-region 원문/후보 디코드 QA: GitHub Actions 37807237283 SUCCESS, 원본/현행 RAW/READABLE/흑백회색/50% **신규 무손실 PNG 190개**+SHA manifest 최초 생성. 전체 원문 bbox 38개 합집합 밖 RGBA/alpha0이지만 직접 이미지 검수에서 04 PISCES→물고기자리 및 06 LEO→사자자리 내부 글자 획 구멍/점상 빈 픽셀 확정; q161 06의 4음절을 영문 LEO 너비로 압축한 factor0.5682로 글자형태 심각한 축소 확인. 이전 C273 불확실 HOLD를 실제 신규 증거 기반 C `REWORK_REQUIRED`로 변경. 생성 DDS0·C3/승인/JPG/실게임 차단, RUNTIME_VALIDATION=UNTESTED. QA/queue/resume/progress/WORKLOG/STATUS 게시 GitHub commit `73ac2506e0245fdeccb1998f6b03bf849ea63d7f` 원격 HEAD 확인. 동일 스크립트 retry/상태 재확인 +0, 신규 원본대조 증거/신규 결함 판정 단일 성과 +1. **이전 1517점 + 이번 +1점 = 누적 1518점**. RUN_KEY=OUTRUN-KOR-C314-C1-Q161-NATIVE-BC3-GLYPH-PINHOLES-20261009 |

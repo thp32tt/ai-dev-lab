@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1535 | ACTIVE | 2026-10-09 08:29 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1242 | ACTIVE | 2026-10-09 07:59 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1243 | ACTIVE | 2026-10-09 08:33 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 08:33 | AI 2 | 1242 | +1 | 1243 | OutRun2006Tweaks DX9Ex 골인 HUD 원본 WVP 소유권 누락을 신규 수정한 단일 성과. 원본 EXE GOAL 두 함수 `0xBEA5A→0xBE020`, `0xBEA5F→0xBE150` 모두 보존(코스명/기록시간 개별 출력 가설; 매핑 미확정). `R30BuildScreenSpaceEyeConstants`의 정확한 `Hud2D`가 이미 head/eye 보정된 live GPU c64를 재사용할 위험을 원본 같은 shader-epoch·128 draw age 검증된 WVP만 통과하도록 보완 material `e57501f8cb411422b2a7ac6a89fb7459976bed52`; P0 정적 회귀 및 음성 결함 주입 `5bf17d991085b459fbad39c6d0ffe1f35ab2175a`, 진단 두 경로 검증 `308bf647211f670974fb53ad7d60d398dea4667c`. 원본 EXE HUD Inspector run `37859508345` SUCCESS, Domain `37859508246` SUCCESS, DX9Ex Active `37859508332` policy SUCCESS, x64 host job SUCCESS; 그외 Win32/fullchain/package CI 진행 중이며 `RUNTIME_VALIDATION=UNTESTED`, 골인 복시/+TIME 시각 해결 여부 미확정. 이슈 #13/#14 및 회귀 지식/복구 런북 기록, 다른 작업·재검증 중복 가점 없음. **이전 1242점 + 이번 +1점 = 누적 1243점**. RUN_KEY=OUTRUN-DX9EX-ORTHO-HUD-RAW-WVP-20261009-AI2 |
 | 일시 (KST) | AI | 이전 점수 | 변동 | 새 점수 | 사유 |
 |---|---|---:|---:|---:|---|
 | 2026-10-09 08:29 | AI 1 | 1534 | +1 | 1535 | OutRun C321 C2 EVEN q212 B299 기존 C318 q212 실패 이후 **새 후보 정확 SHA `efe1750f9cd9d20a147c96fdf20aa729667a93a9982e5d932e645ac2dfc3b089` 처음 독립 C2 검수**. GitHub 실제 DDS blob `cdf9a9690f1f17921141f2d3be209454563420ed` 확인, 원문 f83f5848... / 기존 01c7aded... 분리, GitHub 최신 triage 212 FRESH_C_REVIEW 실실행. SHOWROOM→차량 전시장(이전248x136→신규712x140), ENTER NAME→이름 입력(184x56→266x68), 4px source-region margins, 원본 레드/회색 family/native/50/RAW/CLEAN 독립 시각 검수, 2개 native lossless 4분할 SOURCE/CLEAN/OLD/CURRENT PNG 새 생성 및 GitHub 게시, RGB gray sample masks 자체 측정 84586/20000/39724 및 22724/6384/8351. 2/2 수정 영역 SCOPED_VISUAL_PASS, 하지만 다른10/현재 전체 DDS independent decode/clip protected/소스 폰트 calibration 미완료라 **전체 C=HOLD_STRICT_RECHECK**, C3/APPROVAL/사용자 게임 미완료, IGR-029 suspected mapping OPEN, 새로운 C DDS0, RUNTIME_VALIDATION=UNTESTED. QA JSON/2 PNG/asset_queue/resume/progress/WORKLOG/STATUS 게시 및 원격 HEAD `206b33ca65b2f1e6ed0a81a869bf5bdc79f9ce26` 확인; N100 small Python PNG+triage 보조 사용 후 scratch 삭제, VR/FFB/DX11/DXVK 미변경. 최초 신규 SHA 독립 판정 및 신규 증거 1회만 +1, 이전 C318과 중복 없음. 이전 1534점 + 이번 +1점 = 누적 1535점. RUN_KEY=OUTRUN-KOR-C321-C2-Q212-B299-FRESH-NATIVE-20261009-0820 |

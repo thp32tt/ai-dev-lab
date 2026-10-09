@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1588 | ACTIVE | 2026-10-10 02:54 KST |
+| AI 1 | ChatGPT (AI 1) | 1589 | ACTIVE | 2026-10-10 03:02 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 03:02 | AI 1 | 1588 | +1 | 1589 | OutRun C338 C2 EVEN q212 최신 B329 후보 **독립 전체 12영역 DDS 검증** 신규 성과. 정확 persisted 2048x2048 RGBA32 mip1 SHA256 e22ad5c46e81489123467783176dba1a040e0d2a36b6e6820349a9fcd87e9fea, 기존 C325와 다른 이후 새 후보. C158 검증 CLEAN 대비 12개 원문 박스 union 밖 RGBA/alpha 0/0, C158 보호 마스크 변동 0/0, CLEAN alpha 잔상 12/12 0. 현재 DDS RAW/FLIPY 및 소스·CLEAN·최종 native/75/50, BLACK/WHITE **신규 무손실 PNG 76개 + 기계/앵커/판정 JSON 3개** 생성·검수. 과거 C329 단일영역 HOLD보다 확대해 영문 원본 가시 글자 시작점 r43 x241→한글 x5(-236px), r44 x1→x62(+61px) 소스 대비 정렬 오류를 새 확정, C2 REWORK_REQUIRED. 정본 원문 DDS는 이번 호출에서 직접 재인증하지 못하여 C3/APPROVAL/사용자 실기 BLOCKED, DDS 추가0, RUNTIME_VALIDATION=UNTESTED. GitHub 같은 브랜치 commit c15c7a100c37e29dcc82a4ef56dc0dab491935cf 푸시·원격 HEAD와 QA 원격 확인. q212 짝수만 큐 상태 수정, 홀수/C1 미수정, VR/FFB/DX11/DXVK 제외. 이전 C325/C329 동일 SHA 반복 승인과 별개의 새 전체 실증·결함 확정 한 번 +1, retry 이중 가점 없음. **AI 점수: 이전 1588점 + 이번 +1점 = 누적 1589점**. RUN_KEY=OUTRUN-KOR-C338-C2-Q212-ALL12-ANCHOR-20261010 |
 
 | 2026-10-10 02:54 | AI 1 | 1587 | +1 | 1588 | OutRun C338 C1 **홀수 q205 최신 B306 대상 신규 독립 확정 DDS 픽셀 검증**. B303 `fba4037f...` vs B306 `d309c8b5...` 현재 4096×2048 RGBA32 실제 저장 DDS 2개 원격 SHA 확인·독립 native decode, 전 아틀라스 RGBA 변경 25,528/alpha 23,123, 원문 두 제목 박스 밖 변경 RGB/alpha 0, 2/2 정확 alpha 경계 최소 6px 마진. B303 뾰족한 서체→B306 굵은 산세리프 실제 픽셀/FLIP-Y100·50·RAW75/BGW 시각 확인; 신규 GitHub lossless PNG10개+machine JSON2+controller HOLD 보고서 1, asset_queue/resume/progress/WORKLOG/STATUS 동기화, 원격 HEAD 검증 `7e92e629`. 원문 DDS/CLEAN/21 나머지 영역/독립 블라인드 C3 미완료이므로 whole-atlas C1=HOLD_STRICT_RECHECK, APPROVAL/실게임 X, IGR026/027/028 OPEN, DDS0, RUNTIME_VALIDATION=UNTESTED. 새 exact-B303→B306 전체 델타 실측 성과에만 +1, 과거 C324 및 q137 중복 아님. **이전 1587점 + 이번 +1점 = 누적 1588점**. RUN_KEY=OUTRUN-KOR-C338-C1-Q205-B306-EXACT-DDS-PIXEL-DIFF-20261010-0250 |
 

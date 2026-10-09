@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1567 | ACTIVE | 2026-10-09 20:14 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1568 | ACTIVE | 2026-10-09 20:29 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1270 | ACTIVE | 2026-10-09 20:11 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 20:29 | AI 1 | 1567 | +1 | 1568 | OutRun C331 C2 짝수 q098 B330 새 DDS **이전 C328 실패 후보와 다른 현재 정확 SHA** `27a1f95d3b81d0a68404aea6f3d7a3ab4cc7328e57f04abc6882c38041785c51` GitHub 실물 독립 SHA 및 Pillow DXT5 저장 DDS 2048x128 검증. FLIP-Y lossless PNG 전체 RGBA 불일치0, raw/flip 구분 및 영문 원래 Cl/ord. 위치 x431..474/x1580..1673 가시 alpha 0/0 확인; uncomposited PNG hidden RGB를 영문 잔상 결함으로 오인하지 않도록 신규 독립 C2 증거기록. q098 C2 HOLD_STRICT_RECHECK (원문/CLEAN/기울기·blind calibration/C3/승인/게임 차단), 신규 DDS/PNG0, 사용자 인게임 OPEN/RUNTIME_VALIDATION=UNTESTED. QA+queue+resume+progress+WORKLOG+STATUS 6개 파일 브랜치 commit `faf3ad4147bcc2505ef3a408dfe61698afe60e08` 원격 HEAD 재검증. N100에는 GitHub/로컬 접근 제약으로 소규모 262KB 판독만 실시, VR/FFB/DX11/DXVK 제외. 동일 B330 제작·C328 전 후보 검사와 다른 **현재 새 바이트 독립 C2 검증 성과 1건만** +1, 중복 실행/재보고 0. **AI 1 이전 1567점 + 이번 +1점 = 누적 1568점**. RUN_KEY=OUTRUN-KOR-C331-C2-Q098-PERSISTED-VISIBLE-ALPHA-20261009-2020 |
 
 | 2026-10-09 20:14 | AI 1 | 1566 | +1 | 1567 | OutRun 한글화 외부 스킬 `mcpads/create-retro-game-kr-patch` 3.4.0 현행 안정 문서 직접 검토 후 OutRun 맞춤 신규 소비경로/공유 아틀라스/실게임 루트 증거 정책 1건 실제 반영. `docs/KOREAN_LOCALIZATION_END_TO_END_PLAYTEST_GATE.md` 신규 및 자동화 계약/QA 파이프라인 2개 연계; 원격 HEAD `732fe68a114b40c056aad315035a06e13fa508d0` 확인, 변경 파일 3개 확인. 실제 DDS 생산·빌드·실게임 검증 0, RUNTIME_VALIDATION=UNTESTED. 동일 작업 점수 중복 방지. **AI 1 이전 1566점 + 이번 +1점 = 누적 1567점**. RUN_KEY=OUTRUN-KOR-RETRO-SKILL-END-TO-END-ADOPTION-20261009-2010 |
 

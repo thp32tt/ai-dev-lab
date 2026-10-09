@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1574 | ACTIVE | 2026-10-09 21:59 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1575 | ACTIVE | 2026-10-09 22:05 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1272 | ACTIVE | 2026-10-09 21:50 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 22:05 | AI 1 | 1574 | +1 | 1575 | GPT-6.1 Sol / GPT-5.6 Sol / GPT-6 Astra 2026-10-09 공식 최신 벤치마크(DeepSWE, OSWorld, Terminal-Bench, 가격/출시/지원), OpenAI 원문과 API 모델 문서 교차검증 및 비교·OutRun 작업별 모델 권장안 제공. 새 독립 리서치 응답 성과 1회만 +1, 반복 확인/재보고 0, 저장소 개발 변경 없음. **AI 1 이전 1574점 + 이번 +1점 = 누적 1575점**. RUN_KEY=MODEL-COMPARE-GPT61SOL-56SOL-ASTRA-20261009-2203 |
 
 | 2026-10-09 21:59 | AI 1 | 1573 | +1 | 1574 | OutRun C333 C2 EVEN q060 B332R exact changed persisted DDS SHA256 `d81d0d144f2c4b8192021f9e0b49c7ad44f753da68d6f5dd66f18fe907d06b01` 신규 독립 QA: 4096x2048 RGBA32 GitHub 진본과 실제 DDS 재디코딩, readable 779x190 ROI와 제작자 lossless 0차이, C332가 반려한 주황 BEST TIME 보호 아트 source 8892 vs 현재 8892 픽셀 **동일 RGBA 0불일치**로 복구 검증; 골드 원문 CLEAN 글자 셀 y20..129 남은 alpha0, 아래 별도 번역된 셀 y160..189 이전 후보 대비 변경0. 예전 C332/B331와 다른 B332R 신규 후보 대상으로 **새 독립 손실 회복 증거** 4개 PNG와 C2 HOLD_STRICT_RECHECK 판정(전체 원본/서체/C3/approval/user actual game 미완료) queue/resume/progress/WORKLOG/STATUS 업데이트, GitHub commit 원격 HEAD `fa838e2178959fb3ccf7ac408ba9132139b101aa` 검증. 신규 DDS0, runtime UNTESTED, IGR044 OPEN; N100 fallback은 DDS 판독 및 국소 증거 생성, VR/FFB/DX11/DXVK 제외. 동일 성과 가점 1번만, 재검증/재보고 +0. **AI 1 이전 1573점 + 이번 +1점 = 누적 1574점**. RUN_KEY=OUTRUN-KOR-C333-C2-Q060-B332R-PROTECTED-PLATE-PERSISTED-20261009-2150 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1568 | ACTIVE | 2026-10-09 20:29 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1569 | ACTIVE | 2026-10-09 20:49 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1270 | ACTIVE | 2026-10-09 20:11 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 20:49 | AI 1 | 1568 | +1 | 1569 | OutRun B331 EVEN P0 q060 IGR044 2026-10-09 새 네이티브 4096x2048 RGBA32 한글 DDS 실제 물성 1개 제작/승격: 기존 C326 반려 후보 be8afff...를 새로운 Noto Bold 개별 실루엣·readable right italic +0.65 source cream-gold navy 윤곽 새 SHA256 3480bef0369677d9e0b8d3d7b334d6a261de7bc2539c225a939843325a3e36a2 로 대체; English source SHA 6a33c7307e33..., 원본 [2081,250,2860,370] 이내 신규 [2133,256,2807,363] 마진52/53/6/7, 밖 RGBA/alpha 0변경, HUD Stage/white Miles 원본 바이트 보존. GH Actions 37925545922 SUCCESS, FLIPY/RAW native75/50 BGW 18종 증거 제작 B 자체 100/50/RAW75 실제 비교 개선 판정. 브랜치 queue/backlog/progress/resume/WORKLOG/STATUS/QA 및 DDS GitHub HEAD e34eab0b1ff22a3cb448bd0e35f8e26e0bd803c8 push·검증. C2/C3/USER_IN_GAME 실제 검증 미실행, IGR044 OPEN_USER_INGAME_FAIL RUNTIME_VALIDATION=UNTESTED. N100 heavy 0, 임시 PNG 5개만 안전 삭제; VR/FFB/DX11/DXVK 미수정. B331 유일 신규 승격 1회 +1, trial 검증·retry·상태 재보고 +0. **이전 1568점 + 이번 +1점 = 누적 1569점**. RUN_KEY=OUTRUN-KOR-B331-Q060-IGR044-SOURCE-ITALIC-METHOD-CHANGE-20261009-2040 |
 
 | 2026-10-09 20:29 | AI 1 | 1567 | +1 | 1568 | OutRun C331 C2 짝수 q098 B330 새 DDS **이전 C328 실패 후보와 다른 현재 정확 SHA** `27a1f95d3b81d0a68404aea6f3d7a3ab4cc7328e57f04abc6882c38041785c51` GitHub 실물 독립 SHA 및 Pillow DXT5 저장 DDS 2048x128 검증. FLIP-Y lossless PNG 전체 RGBA 불일치0, raw/flip 구분 및 영문 원래 Cl/ord. 위치 x431..474/x1580..1673 가시 alpha 0/0 확인; uncomposited PNG hidden RGB를 영문 잔상 결함으로 오인하지 않도록 신규 독립 C2 증거기록. q098 C2 HOLD_STRICT_RECHECK (원문/CLEAN/기울기·blind calibration/C3/승인/게임 차단), 신규 DDS/PNG0, 사용자 인게임 OPEN/RUNTIME_VALIDATION=UNTESTED. QA+queue+resume+progress+WORKLOG+STATUS 6개 파일 브랜치 commit `faf3ad4147bcc2505ef3a408dfe61698afe60e08` 원격 HEAD 재검증. N100에는 GitHub/로컬 접근 제약으로 소규모 262KB 판독만 실시, VR/FFB/DX11/DXVK 제외. 동일 B330 제작·C328 전 후보 검사와 다른 **현재 새 바이트 독립 C2 검증 성과 1건만** +1, 중복 실행/재보고 0. **AI 1 이전 1567점 + 이번 +1점 = 누적 1568점**. RUN_KEY=OUTRUN-KOR-C331-C2-Q098-PERSISTED-VISIBLE-ALPHA-20261009-2020 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1584 | ACTIVE | 2026-10-10 01:50 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1282 | ACTIVE | 2026-10-10 01:49 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 02:23 | AI 2 | 1282 | +1 | 1283 | 사용자 요청 DX9Ex 화면 복시/헤드락 10개 시각·원본 소스 검토체계 구축 및 실질 코드 수정 1회 성과. GitHub master `.github/workflows/dx9ex-visual-overnight.yml` 5분 cron (2026-10-11 08:00 KST 자동 종료), 전용 `automation/dx9ex-visual-audit-20261010` 브랜치 기록. 실제 최초 workflow run [37965437265](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37965437265) SUCCESS 및 [37965838892](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37965838892) SUCCESS, ledger remote 확인. DX9Ex `vr-d3d9ex-focus` [7bc3262d](https://github.com/thp32tt/OutRun2006Tweaks/commit/7bc3262df00cde476e51daac7b54885ec668f763) 중앙 lens WorldBillboard 활성 범위에서 VR 비활성 전환 시 복원 누락 방지 + 독립 negative mutation. source visual static verifier PASS, Domain Isolation Guard [37965655107](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37965655107) SUCCESS, DX9Ex Active/HUD Inspector/Full Source CI는 당시 진행 중. HMD 실제 복시 해결 검증 `RUNTIME_VALIDATION=UNTESTED`; 자동 체크만으로 optical PASS 아님. 5분마다 같은 성과를 재가산하지 않음. **AI 점수: 이전 1282점 + 이번 +1점 = 누적 1283점**. RUN_KEY=DX9EX-OVERNIGHT-VISUAL-AUDIT-AND-CENTRE-SCOPE-20261010 | 
 
 | 2026-10-10 01:50 | AI 1 | 1583 | +1 | 1584 | OutRun C336 C2 q154 **최신 B298 DDS 내 기존 빨간 텍스트 5개 현행바이트 최초 독립 확인**: 현재 원격 DDS 4096×1024 BGRA32 SHA256 c4d6c1515716476123b69dfb645dcc27a3cc7a69f31a1368a831004a0b40d524 내려받아 이전 C292 독립 무손실 PNG 5개와 RAW/FLIP-Y 정확 픽셀 비교. FLIP-Y **5/5 제로 차이**, RAW는 의도한 차이. 알파합성 표시 검토에서 뚜렷한 파손·영문 유령 없음; 첫 영역 보호 빨간 분리선 7860px은 원문 RGBA/alpha 동일. 새 현행 후보 증거 1건, 과거 C292 중복 가점 아님. C323의 신규 회색 3종 보류·독립 계열 검수/C3/사용자 게임 여전히 미완: C2=HOLD_STRICT_RECHECK, DDS0, RUNTIME_VALIDATION=UNTESTED. QA·asset_queue·resume_state·progress·WORKLOG·STATUS [fd2fdf8e](https://github.com/thp32tt/OutRun2006Tweaks/commit/fd2fdf8ebcade24519dad2a28e37516cee6e761e) 게시, remote SHA 확인, N100는 로컬 DNS 미해결로 최소 검사 보조만 사용하고 무거운 제작 미실행, VR/FFB/DX11/DXVK 제외. **이전 1583점 + 이번 +1점 = 누적 1584점**. RUN_KEY=OUTRUN-KOR-C336-C2-Q154-B298-FIVE-RED-EXACT-CURRENT-20261010-0150 |
 

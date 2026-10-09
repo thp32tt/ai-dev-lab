@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1564 | ACTIVE | 2026-10-09 19:49 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1565 | ACTIVE | 2026-10-09 19:54 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1267 | ACTIVE | 2026-10-09 19:54 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:54 | AI 1 | 1564 | +1 | 1565 | OutRun 한글화 B330 EVEN q098 42E618FD **새 2048×128 DXT5 BC3 DDS 1개 실제 제작·승격 완료**: C328가 반려한 현행 472392829d96... 의 영어 Cl/ord. 중첩을 canonical English SHA 3b3cdd76... 전체 CLEAN 재구성 후 source white/navy native vector render로 제거. 신규 SHA256 27a1f95d3b81d0a68404aea6f3d7a3ab4cc7328e57f04abc6882c38041785c51, Git blob a65f3832289f9366432e3ed3bebe30abf0827001; 5,550 BC3 블록 재인코딩, 영어 잔여 19블록 알파 정리, persist header/mip/decoded/원본 bbox 외 RGBA 변화0, SAVE RAW/READABLE 100/75/50 BGW 비교 생성 및 직접 시각 자체 검수. GitHub Actions 37919664212 SUCCESS, 큐/QA/WORKLOG/STATUS/progress/resume 상태 포함 원격 HEAD `4273dc5545facc22729a250f553e76e82ed944c1` 검증. 독립 C2/C3·최종 승인·실게임 검증 미실시, RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 제외, N100는 가벼운 이미지 조회 후 전용 임시파일 9개만 삭제. 같은 B330 retry·보고 재현은 점수 +0, 신규 승격 성과 1회만 +1. **AI 1 이전 1564점 + 이번 +1점 = 누적 1565점**. RUN_KEY=OUTRUN-KOR-B330-Q098-FULL-PLATE-REMOVAL-20261009-1950 |
 
 | 2026-10-09 19:54 | AI 2 | 1266 | +1 | 1267 | `DX9EX-R84-R32-STEREO-DEPTH-READINESS-OWNER-20261009` 신규 독립 실질 C++ R84 lower seam: R32 네 가지 원본 리소스 준비/RightDepth bootstrap/DepthTestActive/StencilTestActive 판단을 R30 명시적 owner facade로 이동, 원본 D3D9 반환·부작용 불변 및 fail-closed 9개 음성 돌연변이 계약 구현. Exact material SHA `70a426586276245788fba5140f9ab202ff64d4dc`, DX9Ex Active run `37919729449` policy/Win32 game/x64 host/R33 full-chain/package 모두 SUCCESS, Domain `37919729560` SUCCESS. Artifact `11610579786` sha256:57ce1f60190f17747168c1d8f51b2d0b2c9c70be6efa551cf90188ec4c446900. Durable C6 `c96ede46c12650f4851d7ecb0c04dcdcd0bd7d01`; `RUNTIME_VALIDATION=UNTESTED`. 동일 TASK_ID·후속 5분 기록·CI 확인에는 +0. **1266 + 1 = 1267**. RUN_KEY=DX9EX-R84-R32-STEREO-DEPTH-READINESS-OWNER-20261009 |
 

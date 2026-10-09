@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1566 | ACTIVE | 2026-10-09 20:01 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1567 | ACTIVE | 2026-10-09 20:14 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1270 | ACTIVE | 2026-10-09 20:11 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 20:14 | AI 1 | 1566 | +1 | 1567 | OutRun 한글화 외부 스킬 `mcpads/create-retro-game-kr-patch` 3.4.0 현행 안정 문서 직접 검토 후 OutRun 맞춤 신규 소비경로/공유 아틀라스/실게임 루트 증거 정책 1건 실제 반영. `docs/KOREAN_LOCALIZATION_END_TO_END_PLAYTEST_GATE.md` 신규 및 자동화 계약/QA 파이프라인 2개 연계; 원격 HEAD `732fe68a114b40c056aad315035a06e13fa508d0` 확인, 변경 파일 3개 확인. 실제 DDS 생산·빌드·실게임 검증 0, RUNTIME_VALIDATION=UNTESTED. 동일 작업 점수 중복 방지. **AI 1 이전 1566점 + 이번 +1점 = 누적 1567점**. RUN_KEY=OUTRUN-KOR-RETRO-SKILL-END-TO-END-ADOPTION-20261009-2010 |
+
 
 | 2026-10-09 20:11 | AI 2 | 1269 | +1 | 1270 | `DX9EX-R84-R32-RAW-DRAW-PRESENT-OWNER-20261009` DX9Ex R84 신규 독립 실질 C++ 하위 소유 API: R32의 raw D3D9 DrawPrimitive/Indexed/UP/IndexedUP/Present 원본 훅 5개를 R30으로 이동, 원본 파라미터/HRESULT 및 스테레오 정책 유지, 음성 결함 주입 10개. Material `837780fb8ba3d5eede7d042d6713febc99df8ad4`; exact SHA DX9Ex Active `37921472914` policy/game/host/R33 full-chain/package 모두 SUCCESS, Domain `37921472887` SUCCESS. Package artifact `11612467410` sha256:bdd7827ed40faeb44fa859e7d3a5d8e1880e61da37084b678362ffae3484db24, C6 `dec63b0f04d670507c8c2623470721f38ca65c6b`. Quest3/VDXR runtime UNTESTED; 상태 조회/5분 기록/동일 작업 재개 +0. **직전 SSOT 1269 + 신규 1 = 1270점**. RUN_KEY=DX9EX-R84-R32-RAW-DRAW-PRESENT-OWNER-20261009 |
 

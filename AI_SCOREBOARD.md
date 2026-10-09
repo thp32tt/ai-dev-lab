@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1561 | ACTIVE | 2026-10-09 18:43 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1562 | ACTIVE | 2026-10-09 19:04 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1264 | ACTIVE | 2026-10-09 19:02 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:04 | AI 1 | 1561 | +1 | 1562 | OutRun C328 C2 EVEN q098 B327R newly promoted exact DXT5 sha256 `472392829d96cc1dc6ed980d942c56df883758f2777490ac6e7f6dafb5f86028` **fresh independent saved-DDS full-frame READABLE and RAW visual hard failure discovered**: cropped producer QA PASS but original English `Cl` and `ord.` remain along the edges of Korean. SOURCE_RESIDUE_UNDER_KOREAN numeric false-negative; `REWORK_REQUIRED` transition, exact SHA/hash/header proof, C QA JSON, asset_queue/resume/progress/WORKLOG/STATUS GitHub published; remote HEAD `f2f878b6bcf41e73ce7e4772bbc38fc70ae150d7` verified. C3/approval/user-game still blocked; RUNTIME_VALIDATION=UNTESTED, no DDS generated, no VR/FFB/DX11/DXVK. One genuine new QA defect and state repair achievement +1 only; push retries/commit count scored 0 extra. **AI 1 이전 1561점 + 이번 +1점 = 누적 1562점**. RUN_KEY=OUTRUN-KOR-C328-C2-Q098-B327R-PERSISTED-ENGLISH-RESIDUE-20261009-1850 |
 
 | 2026-10-09 19:02 | AI 2 | 1263 | +1 | 1264 | `DX9EX-R84-R32-RIGHT-DEPTH-OWNER-20261009` 단일 신규 R84 실질 C++ R30 borrowed right-eye Depth owner API 및 R32 포워딩, 하위 원본 포인터·COM 수명 보존, alias/NULL/bypass 음성 변경 검증 3건 구현. Material/validation SHA `7d0cf86673f5d8155a6e50d4a5caa3e7c2f239cd`; 정확 SHA DX9Ex Active `37914282253` 정책/Win32 게임/x64 host/full-chain/package 전부 SUCCESS, Domain `37914282205` SUCCESS, artifact `11608682185` sha256:c989f297f4a828013e13b8c10c53b0e4ebd98d75d436c08426777e79398b6b83; C6 기록 `7d2eb7a0771db07638b64a41c4b4418c25eea027`. RUNTIME_VALIDATION=UNTESTED. 체크포인트/재검증/종료 재보고는 +0. **AI 2 이전 1263점 + 이번 +1점 = 누적 1264점**. RUN_KEY=DX9EX-R84-R32-RIGHT-DEPTH-OWNER-20261009 |
 

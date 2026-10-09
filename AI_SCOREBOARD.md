@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1599 | ACTIVE | 2026-10-10 05:02 KST |
+| AI 1 | ChatGPT (AI 1) | 1600 | ACTIVE | 2026-10-10 05:13 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 05:13 | AI 1 | 1599 | +1 | 1600 | OutRun A217 P1 홀수 q219 (IGR025) 독립 C280 확정 `SOURCE_CHROME_FAMILY` 문제에 **기존 판독 가능한 코스 선택 자형을 유지한 별도 원본 금속 계열 변형** 실제 16,777,344바이트 DDS trial SHA256 622f4f9178cc8150672127aa2196f63cb018b52ab10e6df942581486e0c7800d 신규 제작. 원본 6cb45f18.../CLEAN 8acd881d.../현행 정식 후보 8310a1e6... SHA 확인, 2회 경계/글자 면 측정 P3 fail-closed 후 같은 작업 안에서 103px 한글면에 맞춘 9px 진짜 돌출로 전환하여 GitHub Actions #37985025669 SUCCESS. 저장 DDS 실제 디코드와 RAW/FLIPY, 원문 [6,1011,1473,1129] 대 trial [13,1013,533,1128], 여백 [7,940,2,1], 원문·기존 DDS 영역 밖 RGBA/alpha 변경 0. 독자 SOURCE/CLEAN/PRIOR/TRIAL gray100, black50, white75 첫눈 시각 검수: 읽힘은 유지되나 금속 효과가 과하게 층져 보이고 영어 원본 연결된 둥근 크롬과 자형이 다름. **엄격 PRODUCER_VISUAL_REJECT**, 잘못된 정식 승격 방지. 신규 시험본1, 정식 DDS승격0, C280 REWORK와 IGR025 OPEN, C3/승인/사용자 실기 없음, RUNTIME_VALIDATION=UNTESTED. 신규 코드와 QA/asset_queue/IGR/WORKLOG/resume/progress/STATUS 동일 한글화 브랜치 commit 4f881ffa38e11736f499f80aeedafb9430bb9f25, 원격 HEAD 직접 확인. VR/FFB/DX11/DXVK 제외, 중복 retry 가점없음. **AI 점수: 이전 1599점 + 이번 +1점 = 누적 1600점**. RUN_KEY=OUTRUN-KOR-A217-Q219-CANONICAL-CHROME-DEPTH-PILOT-20261010-0500 |
 
 | 2026-10-10 04:46 | AI 1 | 1597 | +1 | 1598 | OutRun B342 EVEN q212 previously stalled exact source contract recovered: B342 initial wrongly referenced Sonic-TV `3da797...` with actual SHA mismatch; traced historical B329 GitHub B.py to correct pinned revision `3ce344e7ed6b1b535f5e4d34c1192071ff7afbe6`, independently downloaded canonical English 2048x2048 RGB32 DDS (16,777,344 bytes, mip1) and verified exact SHA256 `f83f58483aab7a99ffe230c86eaa0527d9b7323be36808bdf69f2817e29c9f61` and header/masks via lightweight N100 MCP. Corrected GitHub producer script URL + new hash-bound evidence QA / queue / resume / progress / WORKLOG / STATUS, remote HEAD `af5a97407fecffdefe0eb0b3824d32ecd1ebab56` verified. Old GH worker `37981170322` in-progress at dependency install, corrected worker `37982259716` pending, SOURCE/CLEAN pixel stage, candidate promoter C2/C3 and real-game **NOT PASSED**; B341 trial untouched, new DDS0, runtime UNTESTED, VR/FFB/DX11/DXVK untouched. New independently established correct source-revision provenance + repaired deterministic job one accomplishment, not bonus for retry/status. **AI 1 이전 1597점 + 이번 +1점 = 누적 1598점**. RUN_KEY=OUTRUN-KOR-B342-Q212-CANONICAL-REV-PIN-IDENTITY-20261010-0445 |
 

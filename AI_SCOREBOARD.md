@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1573 | ACTIVE | 2026-10-09 21:40 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1574 | ACTIVE | 2026-10-09 21:59 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1272 | ACTIVE | 2026-10-09 21:50 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 21:59 | AI 1 | 1573 | +1 | 1574 | OutRun C333 C2 EVEN q060 B332R exact changed persisted DDS SHA256 `d81d0d144f2c4b8192021f9e0b49c7ad44f753da68d6f5dd66f18fe907d06b01` 신규 독립 QA: 4096x2048 RGBA32 GitHub 진본과 실제 DDS 재디코딩, readable 779x190 ROI와 제작자 lossless 0차이, C332가 반려한 주황 BEST TIME 보호 아트 source 8892 vs 현재 8892 픽셀 **동일 RGBA 0불일치**로 복구 검증; 골드 원문 CLEAN 글자 셀 y20..129 남은 alpha0, 아래 별도 번역된 셀 y160..189 이전 후보 대비 변경0. 예전 C332/B331와 다른 B332R 신규 후보 대상으로 **새 독립 손실 회복 증거** 4개 PNG와 C2 HOLD_STRICT_RECHECK 판정(전체 원본/서체/C3/approval/user actual game 미완료) queue/resume/progress/WORKLOG/STATUS 업데이트, GitHub commit 원격 HEAD `fa838e2178959fb3ccf7ac408ba9132139b101aa` 검증. 신규 DDS0, runtime UNTESTED, IGR044 OPEN; N100 fallback은 DDS 판독 및 국소 증거 생성, VR/FFB/DX11/DXVK 제외. 동일 성과 가점 1번만, 재검증/재보고 +0. **AI 1 이전 1573점 + 이번 +1점 = 누적 1574점**. RUN_KEY=OUTRUN-KOR-C333-C2-Q060-B332R-PROTECTED-PLATE-PERSISTED-20261009-2150 |
 
 | 2026-10-09 21:50 | AI 2 | 1271 | +1 | 1272 | `DX9EX-HUD-NIGHT-GOAL-TRACE-AND-PACKAGE-20261009` 실제 HUD 테스트 진단 및 Windows 배포 기능 개발: R30 GOAL/TIMEUP/LINK_TIMEUP 세 화면 상태 전환마다 Shader/XYZRHW/FVF142와 조기 스테레오 게이트의 원본 출처 검증 로깅 재무장(기존 게임 프로세스 1회 이후 누락 결함 개선), HUD_SCREEN/MENU/WORLD 프로필 패키지 매니페스트·동봉 안내서·ZIP 자체 검사 보완, 음성 결함 주입 4건. 최종 material SHA `94b4984aab299bec0e0876dfc15b95599ca4d5b3`, 정확 SHA DX9Ex Active `37931813668` policy/Win32 game/x64 host/R33 full-chain/package 전부 SUCCESS, EXE HUD Inspector `37931813626` SUCCESS, Domain `37931813756` SUCCESS, Full Source Impact `37931813766` SUCCESS. Package artifact `11617186671` sha256:daf30705449017b19f0040bd75ca8acfdca4d14499adfe8550db4ca17cf69975, C6 `e79ecc1bf3d4763e946b748d6f17290786cd68f6`; 패키지 내부 ZIP sha256:47f32e204bcafd0f7c5d7103e866f0d6ff76113d30faa956f3f44dac1f56ed66. **광학 GOAL/+TIME/lens 화면오류는 실기기 확인 전 미해결·UNTESTED**, CI는 source/build proof only. 앞선 동일 TASK_ID verifier 복구·재실행, 체크포인트와 패키지 다운로드는 +0. **AI 2 이전 1271점 + 신규 1점 = 누적 1272점**. RUN_KEY=DX9EX-HUD-NIGHT-GOAL-TRACE-AND-PACKAGE-20261009 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1600 | ACTIVE | 2026-10-10 05:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1601 | ACTIVE | 2026-10-10 05:24 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 05:24 | AI 1 | 1600 | +1 | 1601 | OutRun C341 C1 홀수 q193 현행 A208 Goal A 독립 원본 정본 DDS `d308bf05...` SHA와 producer CLEAN PNG `1da47a8e...`, 전/현 DDS `d90dada6...`→`9ea15d13...` 직접 SHA 검증 및 native 2048x1024 RGBA 전수 비교: 이전→현재 4,948 변경 픽셀 **원본 Goal A 박스 밖 0 RGBA/alpha**, CLEAN 해당 원문 alpha0, 현행 bbox [953,223,1075,265] 양의 여백 [3,40,2,3]. Source/CLEAN/OLD/FINAL 무손실 BGW 100/50과 영어/한글 전체 아틀라스 비교 PNG5 + machine/controller JSON2 실제 게시, commit `b2673b6a...`, queue/resume/progress/WORKLOG/STATUS 갱신 및 원격 HEAD `82954921cab913e3b198642a1e9895cec78d8e75` 재확인. 13영역 중 여전히 미수정 6개, 독립 블라인드 캘리브레이션/C3/실게임 미완 → C1=HOLD_STRICT_RECHECK, DDS0, IGR003/019/033 OPEN, RUNTIME_VALIDATION=UNTESTED. 이전 C1 작업의 동일 SHA/같은 후보 반복 완료 아님; q193 정본 source-CLEAN-current 신규 실제 검증 1회 성과. **이전 1600점 + 이번 +1점 = 누적 1601점**. RUN_KEY=OUTRUN-KOR-C341-C1-Q193-A208-EXACT-SOURCE-PILOT-20261010 |
+
 
 | 2026-10-10 05:13 | AI 1 | 1599 | +1 | 1600 | OutRun A217 P1 홀수 q219 (IGR025) 독립 C280 확정 `SOURCE_CHROME_FAMILY` 문제에 **기존 판독 가능한 코스 선택 자형을 유지한 별도 원본 금속 계열 변형** 실제 16,777,344바이트 DDS trial SHA256 622f4f9178cc8150672127aa2196f63cb018b52ab10e6df942581486e0c7800d 신규 제작. 원본 6cb45f18.../CLEAN 8acd881d.../현행 정식 후보 8310a1e6... SHA 확인, 2회 경계/글자 면 측정 P3 fail-closed 후 같은 작업 안에서 103px 한글면에 맞춘 9px 진짜 돌출로 전환하여 GitHub Actions #37985025669 SUCCESS. 저장 DDS 실제 디코드와 RAW/FLIPY, 원문 [6,1011,1473,1129] 대 trial [13,1013,533,1128], 여백 [7,940,2,1], 원문·기존 DDS 영역 밖 RGBA/alpha 변경 0. 독자 SOURCE/CLEAN/PRIOR/TRIAL gray100, black50, white75 첫눈 시각 검수: 읽힘은 유지되나 금속 효과가 과하게 층져 보이고 영어 원본 연결된 둥근 크롬과 자형이 다름. **엄격 PRODUCER_VISUAL_REJECT**, 잘못된 정식 승격 방지. 신규 시험본1, 정식 DDS승격0, C280 REWORK와 IGR025 OPEN, C3/승인/사용자 실기 없음, RUNTIME_VALIDATION=UNTESTED. 신규 코드와 QA/asset_queue/IGR/WORKLOG/resume/progress/STATUS 동일 한글화 브랜치 commit 4f881ffa38e11736f499f80aeedafb9430bb9f25, 원격 HEAD 직접 확인. VR/FFB/DX11/DXVK 제외, 중복 retry 가점없음. **AI 점수: 이전 1599점 + 이번 +1점 = 누적 1600점**. RUN_KEY=OUTRUN-KOR-A217-Q219-CANONICAL-CHROME-DEPTH-PILOT-20261010-0500 |
 

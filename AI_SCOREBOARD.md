@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1564 | ACTIVE | 2026-10-09 19:49 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1266 | ACTIVE | 2026-10-09 19:18 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1267 | ACTIVE | 2026-10-09 19:54 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:54 | AI 2 | 1266 | +1 | 1267 | `DX9EX-R84-R32-STEREO-DEPTH-READINESS-OWNER-20261009` 신규 독립 실질 C++ R84 lower seam: R32 네 가지 원본 리소스 준비/RightDepth bootstrap/DepthTestActive/StencilTestActive 판단을 R30 명시적 owner facade로 이동, 원본 D3D9 반환·부작용 불변 및 fail-closed 9개 음성 돌연변이 계약 구현. Exact material SHA `70a426586276245788fba5140f9ab202ff64d4dc`, DX9Ex Active run `37919729449` policy/Win32 game/x64 host/R33 full-chain/package 모두 SUCCESS, Domain `37919729560` SUCCESS. Artifact `11610579786` sha256:57ce1f60190f17747168c1d8f51b2d0b2c9c70be6efa551cf90188ec4c446900. Durable C6 `c96ede46c12650f4851d7ecb0c04dcdcd0bd7d01`; `RUNTIME_VALIDATION=UNTESTED`. 동일 TASK_ID·후속 5분 기록·CI 확인에는 +0. **1266 + 1 = 1267**. RUN_KEY=DX9EX-R84-R32-STEREO-DEPTH-READINESS-OWNER-20261009 |
 
 | 2026-10-09 19:49 | AI 1 | 1563 | +1 | 1564 | OutRun 한글화 A205 **실제 신규 q193 97E863AD RGBA32 DDS 1개, 3개 제목 네이티브 글꼴·영문 원본 RGB·굵기 재구성**: 현행 전 SHA256 e21851f5... → 새 SHA256 1cea9015c02bfe80efb1538ba69218c2b505438c78eb31ff64b7677f883824a6, 영문 WELCOME/MULTIPLAYER/SHOWROOM의 한국어 환영합니다/멀티플레이어/쇼룸. GitHub CPU worker 37919114543 SUCCESS, 100/75/50/RAW SOURCE/CLEAN/OLD/NEW 실제 제작·검토, 3개 본문 원래 바운드/양수 여백과 배경/보호/알파 밖 픽셀 변경0, 원본 128바이트 DDS 헤더·RGBA 채널·Y 방향과 저장 후 디코드 일치. 다른 10개 레거시 영역 미수정, whole atlas REWORK_REQUIRED, IGR003/019/033 OPEN/C1·C3·USER_GAME 미통과, RUNTIME_VALIDATION=UNTESTED. q193 queue/backlog/artwork_plan/resume/progress/WORKLOG/STATUS/QA + binary GitHub [원격 HEAD 6f65e59a](https://github.com/thp32tt/OutRun2006Tweaks/commit/6f65e59af4ab3ce64945342f5391684e3626456a) 실제 push/검증. 원본 A171/C262 실패 재검증 또는 A205 실패한 worker 재시도에 별도 가점 없이 새 DDS 물성·증거 성과 하나만 +1. **AI 1 이전 1563점 + 이번 +1점 = 누적 1564점**. RUN_KEY=OUTRUN-KOR-A205-Q193-3TITLE-NATIVE-20261009-1948 |
 

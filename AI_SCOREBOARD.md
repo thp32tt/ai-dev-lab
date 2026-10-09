@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1593 | ACTIVE | 2026-10-10 03:41 KST |
+| AI 1 | ChatGPT (AI 1) | 1594 | ACTIVE | 2026-10-10 03:53 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 03:53 | AI 1 | 1593 | +1 | 1594 | OutRun C340 C1 홀수 q201 신규 독립 실제 DDS 성과. 이전 B305 후보 `a7a4ea10...` vs 신규 `d9b2a67b...` GitHub 역사/현행 SHA 직접 다운로드 검증, 2048x2048 BGRA32 mip1 전체 픽셀 전수 델타: RGBA 2505/alpha 1912 전부 GOALS 원문 bbox 안, 변경범위 밖 RGBA/alpha 0; 현행 목표 한글 alpha bbox [1084,1739,1160,1780] 양의 5/95/5/5 여백, FLIP-Y 100/50 RAW75 및 흑·백 배경 무손실 PNG 검증. 독립 PNG7+검증 JSON3 게시(증거 커밋 `c37aba25b17af58bfa2eefc13cc5f4d884d32975`), queue/resume/progress/worklog/status 반영 remote HEAD `5b92721c5233f8bb122e43769a72ecf572bc372b`. canonical English/CLEAN/캘리브레이션/C3 미완성에 따른 q201 C1 HOLD_STRICT_RECHECK, IGR037 OPEN_USER_INGAME_FAIL 및 RUNTIME_VALIDATION=UNTESTED, DDS 생산0. 이전 검사 SHA 중복가산 아님. **이전 1593점 + 이번 +1점 = 누적 1594점**. RUN_KEY=OUTRUN-KOR-C340-C1-Q201-B305-EXACT-NATIVE-DELTA-20261010 |
+
 
 | 2026-10-10 03:41 | AI 1 | 1592 | +1 | 1593 | OutRun B341 EVEN q212 C338 independently confirmed r43 PROFESSIONAL -236px / r44 OUTRUN +61px source-relative misplacement: **actual materially new native 2048x2048 RGBA32 trial DDS** SHA256 fa0acb5629318d772eb6e7cb989e5d6840c63b3e699f51073ac201f1210b43e7 on exact current candidate e22ad5c4... and C158 clean plate, reusable existing Hangul pixels repositioned to C2-sourced original glyph starts. Worker GitHub Actions 37974641232 SUCCESS, 12 RAW/FLIPY 100/75/50 lossless comparisons, decoded saved byte roundtrip exact, 10 other text regions and outside two source boxes pixel-identical. B controller direct visual scoped improvement native/50 and RAW50; 1 new trial DDS, **0 promoted**, C338 current candidate remains REWORK_REQUIRED, canonical full source/masks/final production guard and fresh C2/C3/user game NOT done; RUNTIME_VALIDATION=UNTESTED. QA+queue/progress/resume/WORKLOG/STATUS committed and remote HEAD efd7896994087d9d52ccdbf669c68bd227825603 verified. Unique new material trial accomplishment +1 once; initial failed runner retry and mere state re-report not separately scored. **AI 1 이전 1592점 + 이번 +1점 = 누적 1593점.** RUN_KEY=OUTRUN-KOR-B341-Q212-TWO-ANCHORED-MATERIAL-TRIAL-20261010-0341 |
 

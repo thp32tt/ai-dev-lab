@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1544 | ACTIVE | 2026-10-09 10:50 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1252 | ACTIVE | 2026-10-09 10:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1253 | ACTIVE | 2026-10-09 11:02 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 11:02 | AI 2 | 1252 | +1 | 1253 | OutRun2006Tweaks DX11 독립 신규 성과 CONVERSION-DX11-00472: R167 네이티브 C++ 진단용 현재 세대 색상+깊이 페어 readback 검증(즉시 context, 동일 device, 정확 OM RTV/DSV), WARP DrawIndexed 뒤 DSV 탈착/동규격 외부 DSV 교체/wrong-depth-role fail-closed 및 정확한 표면 쌍 복원·스테이징 BGRA 검사. 실제 변경 3파일 Material SHA [0f7875c4383de9b731cd342e5600b7598c6b163e](https://github.com/thp32tt/OutRun2006Tweaks/commit/0f7875c4383de9b731cd342e5600b7598c6b163e) [AUTO:CONVERSION-DX11-00472], exact-SHA Backend Conversion Gate [37871806221](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37871806221) SUCCESS, Win32 validate 113631376254 및 DX11 readiness smoke 113632585215 모두 SUCCESS (새 R167 WARP probe 실제 실행). Artifact 11590533927 sha256:5cddbfe97dc395f2eee82ed554b80a87f0d7e7347f3a6dd1e59e418dab3824ae. C0~C6 Github 실행 기록 및 브랜치 상태 영구 저장 HEAD 5932c5dc3e04c0c43fd862874167955c2630c5bd 재확인; Issue #14 변경/검증 코멘트 6072632666/6072728195. Rollover E002 ATTEMPT=1/3 불변, 00471 중복 없음, native gameplay Draw dormant, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. **AI 2 이전 1252점 + 이번 +1점 = 누적 1253점**. RUN_KEY=CONVERSION-DX11-00472 |
 
 | 2026-10-09 10:50 | AI 1 | 1543 | +1 | 1544 | OutRun B307 C325에서 신규 독립 발견된 q212 EVEN 7개 저해상도 외형 REWORK 중 3개 SELECT STAR SIGN/별자리 선택, SELECT PHOTO/사진 선택, SELECT NATIONALITY/국적 선택 **신규 실물 DDS 1개 생산**. SOURCE f83f58483aab7a99ffe230c86eaa0527d9b7323be36808bdf69f2817e29c9f61, 이전 B299 efe1750f9cd9d20a147c96fdf20aa729667a93a9982e5d932e645ac2dfc3b089 -> 새로운 sha256 73e4ba0127c4fce7157da3463062aa165525ca1e43f48b8716a73df13d871914. 독립 C325 확인한 CLEAN/source exact 기준 native Black 회색 [63,71,74], 3/3 bbox 여백 >=5px, 9개 기존/보호 영역 픽셀 exact, 변경/alpha 외부0, DDS header/mip1/RAW/persisted decode exact. GitHub Actions [37871305365](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37871305365) SUCCESS, 54 BGW/100/75/50/RAW lossless 원본/CLEAN/기존/신규 PNG 및 컨트롤러 100/50/RAW 직접 scoped 시각 QA PASS. 첫 실행 37871117625는 C325 큐 `rework_7` triage 파싱 버그로 생산 전 중단, `rework_required` 정정 재실행 1회로 중복 성과 없음. q212 나머지 ID30/43/44/53 REWORK 유지, 사용자 IGR029 mapping SUSPECTED/OPEN, 새 C2/C3/승인/실게임 UNTESTED. queue/backlog/resume/progress/WORKLOG/STATUS 원격 HEAD `91a1b5c806b3a844fc4fc7b5f7d3cc05b19afb8e` 확인, VR/FFB/DX11/DXVK 변경 없음. 신규 생산 성과 1회만 +1. **이전 1543점 + 이번 +1점 = 누적 1544점**. RUN_KEY=OUTRUN-KOR-B307-Q212-C325-THREE-SELECT-NATIVE-20261009-1040 |
 

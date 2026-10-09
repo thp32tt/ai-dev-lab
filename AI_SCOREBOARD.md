@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1541 | ACTIVE | 2026-10-09 10:01 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1542 | ACTIVE | 2026-10-09 10:18 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1249 | ACTIVE | 2026-10-09 10:03 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 10:18 | AI 1 | 1541 | +1 | 1542 | OutRun 한글화 B306 P0 사용자 인게임 IGR026/027 q205 두 붉은 OPTIONS/옵션·RANKINGS/랭킹 제목 원본 대조 **신규 물리적 DDS 1개** 제작 성과. 원본 영어 SHA 58a75fe75b5672169dcc2ed1f9993d462d80b700d4e12dad453b70f2ab701a5f, C324 independent FAIL B303 이전 fba4037f93f825a51834c306e8a4821791ce1ed72fc2f4304e74fd732a1891ae → native CJK BLACK block-sans **신규** d309c8b5243e901642e640eb3b9f3593e5c5b60981156ce11901f88ab8279b70. 영문 블록 산세리프 대비 선명한 고딕 원본 계열 복구, 2/2 원문 bbox 마진 >=6px, SOURCE/CLEAN alpha0, 바깥 RGBA/alpha0, 기타 보호 그림/글자 exact, DDS 4096x2048 RGBA32 header/RAW/mip1 persisted reverse decode exact. 36 lossless BGW native/75/50 RAW proof, scoped B producer 직접 QA PASS; GitHub Actions [37868593802](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37868593802) SUCCESS. QA/queue/IGR backlog/resume/progress/WORKLOG/STATUS 실제 원격 HEAD `1c343a5a9456e3ce5468462d1f9a975c4b2f9458` 확인. **C1/C3/USER/REAL_GAME 아직 미완료**, IGR026/027 OPEN, IGR028 mixed open, RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 변경 없음. 이전 B303과 같은 자산이지만 **독립 C324 반려 후 새 원본 스타일 재구성으로 신규 SHA 성과**, 단순 retry/상태 보고 아닌 +1 단일. **이전 1541점 + 이번 +1점 = 누적 1542점**. RUN_KEY=OUTRUN-KOR-B306-Q205-P0-BLOCK-SANS-20261009-1010 |
 
 | 2026-10-09 10:03 | AI 2 | 1248 | +1 | 1249 | OutRun2006Tweaks DX11 CONVERSION-DX11-00468 R163 신규 C++ 소재: WARP 전용 DrawIndexed preflight에서 늦은 GS/HS/DS 오염 fail-closed, 외부 Geometry Shader 주입 거부·정확 복원 WARP 회귀 검증. Material SHA [351ee1d3b19b027566935b9404c51101f6c2af67](https://github.com/thp32tt/OutRun2006Tweaks/commit/351ee1d3b19b027566935b9404c51101f6c2af67), exact-SHA Backend Conversion Gate [37867010098](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37867010098), Win32 validate 113616323914 SUCCESS 및 DX11 readiness smoke 113617821873 SUCCESS (R163 constant-buffer probe PASS), artifact 11589335256 digest sha256:cd461b3a21c9d4b0c452f59ed077916592f5b4e9688698075d3dc79b85ffb54d. C0-C6 GitHub run/lane persisted HEAD baf96a0c2ddea76fbfef945cf11c8e28f34d5729, source Issue#14 기록. Native in-game Draw 비활성, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. E002 rollover ATTEMPT=1/3 증가·중복 가산 없음. 새 독립 성과 1회만 +1. **AI 2 이전 1248점 + 이번 +1점 = 누적 1249점**. RUN_KEY=CONVERSION-DX11-00468 |
 

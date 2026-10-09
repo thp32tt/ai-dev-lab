@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1609 | ACTIVE | 2026-10-10 08:33 KST |
+| AI 1 | ChatGPT (AI 1) | 1610 | ACTIVE | 2026-10-10 08:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1165 | ACTIVE | 2026-10-10 (사용자 지정 -100점 추가 반영) |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 08:50 | AI 1 | 1609 | +1 | 1610 | OutRun C349 C1 ODD q161 신규 A218 **미승격 시험 DDS** SHA256 `8000601ead8b...`에 대한 이전 C344 공식 SHA와 다른 **독립 저장 DDS 픽셀 QA 성과 1건**. 원본/공식/시험 각각 4,194,432B 및 SHA 정확 검증, 2048x2048 BC3 RAW/FLIPY/흑회백 native·100/75/50 최초 검수. 11/16/24 18,098 RGBA/2,726 alpha 변경은 모두 source 3 bbox 안(밖 RGBA/alpha 0), BC3 1,224 blocks 변경 안쪽/260,920 blocks 불변; 18 PNG+검수 JSON2/상태4 GitHub commit [6a930156](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a9301565e1b0e574b903d2a89be85708401cd7f) 원격 HEAD 확인. 이전 점선 획은 시험본에서 시각 개선되나 q11 1px y여백, q16 원문 대비 폭, 독립 CLEAN/전체38/캘리브레이션 미완료로 **C1 whole-atlas HOLD**, 현재 공식 C344 REWORK 유지, 신규 정식 DDS0/C3·APPROVAL·실게임 UNTESTED. C2/VR/FFB/DX11/DXVK 무변경, 이전 A218 생산/ C344 동일 SHA 재검수와 중복 가산 금지. **AI 점수: 이전 1609점 + 이번 +1점 = 누적 1610점**. RUN_KEY=OUTRUN-KOR-C349-C1-Q161-A218-UNPROMOTED-TRIAL-EXACT-SAVED-20261010 |
 
 | 2026-10-10 | AI 2 | 1265 | -100 | 1165 | 사용자 직접 지정 감점: 30분 동안 DX9Ex VR 구조 최적화 P1-1~P1-5를 실질적으로 모두 마쳐야 했으나 HookManager 일부 수정과 검증 보고로 종료함. 이전 -20점과 별도 추가 감점이며 한 번만 적용. RUN_KEY=USER-VR-P1-INCOMPLETE-PENALTY-100-20261010 |
 

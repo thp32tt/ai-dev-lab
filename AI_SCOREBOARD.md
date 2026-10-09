@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1562 | ACTIVE | 2026-10-09 19:04 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1563 | ACTIVE | 2026-10-09 19:33 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1266 | ACTIVE | 2026-10-09 19:18 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:33 | AI 1 | 1562 | +1 | 1563 | OutRun C329 C2 EVEN q212 **신규 B329 정확한 실제 저장 DDS SHA256 e22ad5c46e81489123467783176dba1a040e0d2a36b6e6820349a9fcd87e9fea 독립 원문/후보 무손실 FLIP-Y/RAW/50% 시각 확인 및 SHA/header 검증**. C327 반려 PROFESSIONAL→프로 120px right513를 새 프로페셔널 316px left5로 개선 검증, 저장소 새 QA C329 기록과 queue/INGAME backlog/resume/progress/WORKLOG/STATUS를 HOLD_STRICT_RECHECK로 일관 반영 (총 7파일 commit e1bd0cb1d7928335f21ca42a2c5559e0bc07ec68). 전체 12 native source/clean/final QA·C3/게임 미완료로 독립 C PASS 또는 USER_GAME 성공 주장 금지. IGR029 OPEN, RUNTIME_VALIDATION=UNTESTED; 새 DDS0. 완성된 이전 A/B 작업의 재생산 점수 0, 새 exact-SHA C2 증거 처리 성과 +1 단일 가산. AI 1 이전 1562점 + 이번 +1점 = 누적 1563점. RUN_KEY=OUTRUN-KOR-C329-C2-Q212-B329-EXACT-SHA-SCOPED-HOLD-20261009-1920 |
 
 | 2026-10-09 19:18 | AI 2 | 1265 | +1 | 1266 | `DX9EX-R84-R32-R9-MONO-FAILURE-OWNER-20261009` 실질 독립 DX9Ex R84 C++ 신뢰성 경계 수정: R32 모노 백업 미보유 알림 및 스테레오 실패 poison 기록을 R30 owner API로 이동, 원본 R9 draw count/backup-gap, failure reason/site/HRESULT 원형 유지 및 6개 음성 mutation guard. Material SHA `866e813837f614967cc599c32b129e72162d86c4`; exact SHA DX9Ex Active `37916012519` policy/game/host/R33 full-chain/package 전부 SUCCESS, Domain `37916012536` SUCCESS; artifact `11609259134` sha256:b0c71ea0e0eb1cc72fa5ba3b385063509272b7c0cf9aca4ad5a3d3e163fb36ad. C6 commit `08295cea7b0eafb358ced0e1e4604d9439b54506`; Quest3/VDXR `RUNTIME_VALIDATION=UNTESTED`. 5분 체크포인트·CI·동일 TASK_ID 재보고는 +0. **이전 1265점 + 이번 +1점 = 누적 1266점**. RUN_KEY=DX9EX-R84-R32-R9-MONO-FAILURE-OWNER-20261009 |
 

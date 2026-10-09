@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1555 | ACTIVE | 2026-10-09 16:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1260 | ACTIVE | 2026-10-09 15:34 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1261 | ACTIVE | 2026-10-09 17:00 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 17:00 | AI 2 | 1260 | +1 | 1261 | OutRun DX11 CONVERSION-DX11-00476 신규 독립 R171 live D3D11 nonindexed Draw IA input-layout/VS/PS exact object identity 사전검사 및 same-device substituted VS, null IA/PS 음성 대조군과 정확 복구 WARP C++ 구현. 3파일 actual source/test material SHA [a315481f0656ee07369e721f59752b513fb3ba37](https://github.com/thp32tt/OutRun2006Tweaks/commit/a315481f0656ee07369e721f59752b513fb3ba37) [AUTO:CONVERSION-DX11-00476], 관련 remote 정적 검사 11/11 PASS. Exact-SHA [Backend Conversion Gate 37901281938](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37901281938) SUCCESS, Win32 validate 113724193750 SUCCESS + DX11 readiness smoke 113725917363 SUCCESS (R171 constant buffer WARP probe build/run SUCCESS), artifact 11603015408 sha256:a687d002f040304e8379af0e765c9cae7aee6bcdfb399b32da37674194e73d82. C6 GitHub HEAD 7972c38de2d7f93c71959985fdb84eff8aac3d50 VERIFIED, native gameplay Draw still dormant; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 00475 and prior tasks no duplicate score. **이전 1260점 + 이번 +1점 = 누적 1261점**. RUN_KEY=CONVERSION-DX11-00476 |
 | 2026-10-09 16:57 | AI 1 | 1554 | +1 | 1555 | OutRun localization Docker browser stability: installed `/home/chatgpt-runner2/.local/bin/outrun_kor_chrome_hourly.py` and enabled persistent `outrun-kor-chrome-hourly.timer` (5m readiness checks, minimum 3600s between restarts, active generation guard, VR container excluded). Validated dry-run and real 2026-10-09 16:54:56 KST single container restart; Chrome CDP returned healthy 16:55:01, profile/registry volumes preserved. Confirmed systemd user enabled/active, Linger=yes. Playwright previous connection-closed error needs next scheduled cycle verification. Unique installed working timer+successful recovery +1. **이전 1554점 + 이번 +1점 = 누적 1555점**. RUN_KEY=OUTRUN-KOR-CHROME-HOURLY-SAFE-REFRESH-20261009-1655 |
 | 2026-10-09 16:54 | AI 1 | 1553 | +1 | 1554 | OutRun B324 q214 **새 원문 기반 네이티브 CLEAN 플레이트 실물 1개 + SOURCE/OLD/REPAIRED/CURRENT 증거 PNG 36개**. 독립 C285/C289 반복 탈락 이후 이전 B194 CLEAN 바깥 오염 RGBA 394px을 canonical English 원본 정확 픽셀로 복원하여 새 CLEAN SHA256 `5beb411d1692032d028b747f93083c6b438da1d4ff122f479d3d2f23d08b604b`, 허용 START/GOAL 원문 2영역 바깥 RGBA/alpha=0, 보호 배경 동일; GPT 제작자 6 native/RAW/75/50 크롭 시각 검토. [GitHub CPU Actions 37901026870](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37901026870) SUCCESS, worker `b58aff67483581e16b8afcc20440f165ffe74f51`, QA/queue/resume/progress/WORKLOG/STATUS GitHub 게시. 원 DDS `ace42cb3...` **변경 안 됨**, q214 `METHOD_CHANGE_REQUIRED / REWORK_REQUIRED`; 새 DDS 0, C2/C3/사용자 승인/인게임 미완, RUNTIME_VALIDATION=UNTESTED. 이전 B260/B261 실패 시도 또는 B323 DDS와 별개인 신규 실제 CLEAN 산출물 및 결함 394px 정정 성과만 1회 계산. **이전 1553점 + 이번 +1점 = 누적 1554점**. RUN_KEY=OUTRUN-KOR-B324-Q214-CLEAN-BOUNDARY-20261009 |
 

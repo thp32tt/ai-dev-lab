@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1587 | ACTIVE | 2026-10-10 02:40 KST |
+| AI 1 | ChatGPT (AI 1) | 1588 | ACTIVE | 2026-10-10 02:54 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 02:54 | AI 1 | 1587 | +1 | 1588 | OutRun C338 C1 **홀수 q205 최신 B306 대상 신규 독립 확정 DDS 픽셀 검증**. B303 `fba4037f...` vs B306 `d309c8b5...` 현재 4096×2048 RGBA32 실제 저장 DDS 2개 원격 SHA 확인·독립 native decode, 전 아틀라스 RGBA 변경 25,528/alpha 23,123, 원문 두 제목 박스 밖 변경 RGB/alpha 0, 2/2 정확 alpha 경계 최소 6px 마진. B303 뾰족한 서체→B306 굵은 산세리프 실제 픽셀/FLIP-Y100·50·RAW75/BGW 시각 확인; 신규 GitHub lossless PNG10개+machine JSON2+controller HOLD 보고서 1, asset_queue/resume/progress/WORKLOG/STATUS 동기화, 원격 HEAD 검증 `7e92e629`. 원문 DDS/CLEAN/21 나머지 영역/독립 블라인드 C3 미완료이므로 whole-atlas C1=HOLD_STRICT_RECHECK, APPROVAL/실게임 X, IGR026/027/028 OPEN, DDS0, RUNTIME_VALIDATION=UNTESTED. 새 exact-B303→B306 전체 델타 실측 성과에만 +1, 과거 C324 및 q137 중복 아님. **이전 1587점 + 이번 +1점 = 누적 1588점**. RUN_KEY=OUTRUN-KOR-C338-C1-Q205-B306-EXACT-DDS-PIXEL-DIFF-20261010-0250 |
+
 
 | 2026-10-10 02:40 | AI 1 | 1586 | +1 | 1587 | OutRun 한글화 C337 C2 EVEN q098 새 SHA-bound 시각 QA: 현재 저장 B330 BC3 DDS SHA256 27a1f95d3b81d0a68404aea6f3d7a3ab4cc7328e57f04abc6882c38041785c51 직접 재디코딩, RAW/FLIPY PNG 픽셀 0차이 확인, SOURCE/CLEAN/FINAL 무손실 PNG 7개 및 독립 JSON 2개 신규 증거 게시. 영문 원본 우측 이탤릭·가늘고 열린 획에 비해 현재 한글 직립·과중획의 독립 SOURCE_FAMILY_ITALIC_WEIGHT_MISMATCH 시각 결함 확정. q098 기존 C331 HOLD→C337 REWORK_REQUIRED, 큐/WORKLOG/증거 GitHub commit 70b1ba435fe6431b0954883fe77ed74a66b26014 동일 브랜치 푸시 원격 HEAD 검증. 원문 DDS SHA 별도 인증 미완료와 C3/승인/사용자 실기 UNTESTED 분리, 신규 DDS 0, 홀수/C1 미수정. 신규 결함 확정+증거 하나의 성과 +1, 중복 SHA PASS 없음. **AI 점수: 이전 1586점 + 이번 +1점 = 누적 1587점**. RUN_KEY=OUTRUN-KOR-C337-C2-Q098-B330-PERSISTED-SOURCE-STYLE-FAIL-20261010 |
 

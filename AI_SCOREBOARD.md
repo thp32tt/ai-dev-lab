@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1545 | ACTIVE | 2026-10-09 11:18 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1547 | ACTIVE | 2026-10-09 13:01 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1255 | ACTIVE | 2026-10-09 11:33 KST |
 
 ## 점수 규칙
@@ -35,6 +35,10 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 13:01 | AI 1 | 1546 | +1 | 1547 | OutRun B313 q060 P0 IGR-044 GOLD OUTRUN MILES **신규 소재 수정 DDS** SHA256 be8afff998310126cf681d302e07a50faae076be0b3dc2ffb41a951c373b72e0 (B310 7c05f2fe... 대체), 골드 원문 bbox [2081,250,2860,370] 내만 새 네이티브 개별 한글 기울임·크림골드/남색 깊이 수정. B311 FAIL/B312 HOLD 실패 시험은 승격·중복 채점하지 않음. GitHub Actions [37881553982](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37881553982) SUCCESS, 18 SOURCE/CLEAN/OLD/NEW BGW/RAW/75/50 증거와 controller scoped QA 기록, 원본 헤더·RAW·mip1 역디코딩 PASS, 외부 RGBA/alpha 수정0, 기존 B310 Stage/B296 white HUD 정확 보존. [승격 commit 5421dafcb117223a1ab2a2106fbadcac9877290a](https://github.com/thp32tt/OutRun2006Tweaks/commit/5421dafcb117223a1ab2a2106fbadcac9877290a), QA/queue/backlog/resume/progress/WORKLOG/STATUS remote HEAD [4017f7817b507d14d65ccf5fe6e134836c415ebf](https://github.com/thp32tt/OutRun2006Tweaks/commit/4017f7817b507d14d65ccf5fe6e134836c415ebf). Fresh C2/C3/actual-game IGR044 OPEN, RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 제외. 독립 새 금색 자산 수정 성과만 +1. **AI 1 이전 1546점 + 이번 +1점 = 누적 1547점**. RUN_KEY=OUTRUN-KOR-B313-Q060-IGR044-GOLD-MILES-20261009-1240 |
+
+| 2026-10-09 13:01 | AI 1 | 1545 | +1 | 1546 | OutRun B310 q060 P0 IGR-044 STAGE 원문 금색/남색/흰색 충전 글자 **선행 별도 실제 신규 DDS** SHA256 7c05f2fe3f8e9e51a6ca79871e23b35f7bb7e5a1622fa52c69b2a0bf96d14295 (B296 d938fdd1... 대체). Source bbox [455,245,690,350] 및 5px+ 여백, source-clean/final native·75·50·RAW BGW 확인, 영역 밖 픽셀/알파0, 보호 HUD 유지, 독립 C2/C3/실게임 검수 미완료. [GitHub Actions 37876487786](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37876487786) + [37877008622](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37877008622) SUCCESS, [승격 commit 99ea0dae0ade99883e53ea82f389a41e983e1111](https://github.com/thp32tt/OutRun2006Tweaks/commit/99ea0dae0ade99883e53ea82f389a41e983e1111), QA B310_CONTROLLER_SELF_QA_FINAL.json. 앞선 세션 완료였으나 점수판 미반영이므로 사후 단 한 번 +1, B313과 다른 원문 STAGE 영역 성과. **AI 1 이전 1545점 + 이번 +1점 = 누적 1546점**. RUN_KEY=OUTRUN-KOR-B310-Q060-P0-STAGE-GOLD-20261009-1140 |
 
 | 2026-10-09 11:33 | AI 2 | 1254 | +1 | 1255 | OutRun2006Tweaks 신규 독립 DX11 CONVERSION-DX11-00474 E002 rollover (ATTEMPT=1/3 유지): R169 WARP 16x16 BGRA 명시적 deterministic indexed triangle + red pixel shader, Draw 없이 검은 중앙/4모서리 음성 대조군과 DrawIndexed 후 중앙 red/4모서리 black 스테이징 실픽셀 proof 구현. Material [4fed41657a1326d2096eef106f7de7776a71a295](https://github.com/thp32tt/OutRun2006Tweaks/commit/4fed41657a1326d2096eef106f7de7776a71a295) [AUTO:CONVERSION-DX11-00474]; exact-SHA Backend Conversion Gate [37874345940](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37874345940) SUCCESS, Windows validate 113639358546 SUCCESS 및 DX11 readiness smoke 113640671415 SUCCESS, 실행 로그 `DX11 WARP fragment coverage R169: PASS`, artifact 11591766840 sha256:86cb5ad1235d6f590d7ca51edf6fd509c1796fbb7f50d45e6ef5a63d65cad804. C6 GitHub HEAD [26983fd5caaf0564e430aaac16bb3b6e01d11122](https://github.com/thp32tt/OutRun2006Tweaks/commit/26983fd5caaf0564e430aaac16bb3b6e01d11122) 재조회 COMPLETE. Native gameplay Draw 여전히 dormant, Quest 3/VDXR RUNTIME_VALIDATION=UNTESTED. 00473 재가산 없음. **AI 2 이전 1254점 + 이번 +1점 = 누적 1255점**. RUN_KEY=CONVERSION-DX11-00474 |
 

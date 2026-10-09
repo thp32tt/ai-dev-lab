@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | 다른 AI | 1583 | ACTIVE | 2026-10-10 00:20 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1278 | ACTIVE | 2026-10-10 01:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1279 | ACTIVE | 2026-10-10 01:04 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 01:15 | AI 2 | 1278 | +1 | 1279 | 사용자 명시 정책 A/B/C1/C2 총 4개 한글화 병렬 작업자 회복 신규 개발: chat-controller-downloads의 v0.4 production source가 3 슬롯/동시2 작업으로 제한된 결함 수정(4 슬롯/동시4), C QA를 C1/C2 독립 큐 consumer로 분리, exact candidate asset+SHA 중복 할당 방지, 기존 C 슬롯 채팅 URL/실행 횟수/QA 진행 중 상태를 C1으로 무손실 이전, C2 독립 QA 프롬프트 식별자, 기존 탭 오류 자동복구 4개 lane 적용. v2 Dockerfile/Compose CHAT_SLOTS=4, mem_limit 4g·shm1g, 회귀 4개 신규·기존 수정. [source+docs exact SHA 07c8f391](https://github.com/thp32tt/OutRun2006Tweaks/commit/07c8f391748caa1310907fdc1c617680027e8fb1)의 Localization Controller v2 [37957433384](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37957433384) 컴파일/회귀/Compose/이미지 빌드/컨테이너 시작 SUCCESS, Controller Selftest [37957386590](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37957386590) SUCCESS. C2 개별 crash 격리 회귀 1개 추가 [4b895467](https://github.com/thp32tt/OutRun2006Tweaks/commit/4b8954677720e993224d5354bf1cd46932887f54) 및 해당 QA-CI compile/regression SUCCESS 단계 확인. Portainer 실제 재배포는 수행하지 않았으므로 라이브 Docker는 미검증. 기존 탭 복구 성과 점수와 별개의 4-worker 시스템 복구 성과에 한 번만 가산, CI 재확인 재가산 없음. **이전 1278점 + 이번 +1점 = 누적 1279점**. RUN_KEY=LOCALIZATION-FOUR-WORKER-C1C2-20261010 |
 
 | 2026-10-10 01:03 | AI 2 | 1277 | +1 | 1278 | 한글화 Controller v2의 Chrome A/B/C 탭 장애 복구 실제 소스 수정: 누락/닫힘/renderer crash/Chrome Aw Snap 오류 화면/연속 응답 실패 탐지, 큐와 독립 30초 감시, 최초 복구 cooldown 차단 버그 수정, 해당 탭만 기존 프로젝트 대화 URL로 재생성하며 TASK/phase/attempt/자동 전송 상태는 불변. Production v0.4 src/Compose/v2 문서/집중 회귀테스트 GitHub 변경, 최종 HEAD [bb259cf](https://github.com/thp32tt/OutRun2006Tweaks/commit/bb259cfbb03f1528af1335bbdddb344cb2e2d69f). Localization Controller v2 exact HEAD CI [37956037816](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37956037816) SUCCESS (컴파일·6개 탭복구 테스트·Compose·이미지 빌드·컨테이너 시작), 동일 소스 Chat Controller Selftest [37956018073](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37956018073) SUCCESS. Portainer live stack/Chrome runtime 배포·실측은 미검증; 세 worker는 기존 A/B/C 의도된 구성이고 D 작업자는 추가하지 않음. 신규 독립 성과 1회만 가산, 테스트 재실행/README 후속 +0. **이전 1277점 + 이번 +1점 = 누적 1278점**. RUN_KEY=LOCALIZATION-CHROME-TAB-AUTORECOVERY-20261010 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1562 | ACTIVE | 2026-10-09 19:04 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1265 | ACTIVE | 2026-10-09 19:10 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1266 | ACTIVE | 2026-10-09 19:18 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:18 | AI 2 | 1265 | +1 | 1266 | `DX9EX-R84-R32-R9-MONO-FAILURE-OWNER-20261009` 실질 독립 DX9Ex R84 C++ 신뢰성 경계 수정: R32 모노 백업 미보유 알림 및 스테레오 실패 poison 기록을 R30 owner API로 이동, 원본 R9 draw count/backup-gap, failure reason/site/HRESULT 원형 유지 및 6개 음성 mutation guard. Material SHA `866e813837f614967cc599c32b129e72162d86c4`; exact SHA DX9Ex Active `37916012519` policy/game/host/R33 full-chain/package 전부 SUCCESS, Domain `37916012536` SUCCESS; artifact `11609259134` sha256:b0c71ea0e0eb1cc72fa5ba3b385063509272b7c0cf9aca4ad5a3d3e163fb36ad. C6 commit `08295cea7b0eafb358ced0e1e4604d9439b54506`; Quest3/VDXR `RUNTIME_VALIDATION=UNTESTED`. 5분 체크포인트·CI·동일 TASK_ID 재보고는 +0. **이전 1265점 + 이번 +1점 = 누적 1266점**. RUN_KEY=DX9EX-R84-R32-R9-MONO-FAILURE-OWNER-20261009 |
 
 | 2026-10-09 19:10 | AI 2 | 1264 | +1 | 1265 | `DX9EX-R84-R32-LEFT-DEPTH-STENCIL-ELIGIBILITY-20261009` DX9Ex R84 새 독립 C++ 실질 구현: R32 left Depth/Stencil write eligibility를 각 원래 lower predicate 유지한 채 R30 경계 API로 분리, 조건 상수화/순서 교환/R32 우회 음성 검증 5개 추가. Material SHA `e4591e47d94cb1d15e2f8dc59892f90041868330`; 정확 SHA DX9Ex Active `37915228266` 정책·Win32 game·x64 host·R33 full-chain·패키지 전부 SUCCESS, Domain `37915228205` SUCCESS. Art `11609298076` sha256:770907980be079fadd0fa83345902ab921c2bdc48ace858c492e336a91dcfaaa, C6 `7e2c84dd7d24c79bb7ba85a6208d578b949e2514`; HMD `RUNTIME_VALIDATION=UNTESTED`. 동일 TASK_ID 반복/5분 체크포인트/CI 재보고는 +0. **이전 1264점 + 이번 +1점 = 누적 1265점**. RUN_KEY=DX9EX-R84-R32-LEFT-DEPTH-STENCIL-ELIGIBILITY-20261009 |
 

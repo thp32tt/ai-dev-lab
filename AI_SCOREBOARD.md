@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1566 | ACTIVE | 2026-10-09 20:01 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1268 | ACTIVE | 2026-10-09 19:58 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1269 | ACTIVE | 2026-10-09 20:03 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 20:03 | AI 2 | 1268 | +1 | 1269 | `DX9EX-R84-R32-RT-DS-HOOK-OWNER-20261009` 신규 독립 DX9Ex R84 C++ lower-owner 변경: R32 RenderTarget/DepthStencil 원본 hook 호출을 R30 명시 API로 이동, RT 인덱스·surface·HRESULT 및 DS 훅 없을 때 D3D9 직접호출 폴백 원형 보존, 음성 mutation 7개. Exact material SHA `1f100d8c5b7f19ea8a52b173e52b6baa54116ef7`, DX9Ex Active `37920527590` policy/game/host/R33 full-chain/package 모두 SUCCESS, Domain `37920527605` SUCCESS. Package artifact `11612600875` sha256:0d1959957d290215c8748c050c78f5ea0a6d6cceaa388c84e4adeec57d79646d, C6 `651c1f375de12c46b0947d3622b0b9c60be5a487`. RUNTIME_VALIDATION=UNTESTED. 이전 다른 컨트롤러 작업 득점 1268점을 실제 SSOT에서 반영하여 **1268+1=1269점**, 동일 TASK_ID 중복 점수 0. RUN_KEY=DX9EX-R84-R32-RT-DS-HOOK-OWNER-20261009 |
 
 | 2026-10-09 20:01 | AI 1 | 1565 | +1 | 1566 | OutRun C330 C2 EVEN q236 신규 독립 저장 DDS 알파 검증 성과. B302 현행 SHA256 `9e2069ebe7eda210b2b9a0e39436724efc53932b3af7ba624b918056b24b6337` 및 native BGRA/2048/1mip verified, 14/14 source-bounded ROI 실물 alpha-bbox 재계산 producer 기록과 EXACT, 여백 최소4px. 기존 C322 미검수 q236 row09 METROPOLIS / row13 IMPERIAL AVENUE 100/50/RAW 실제 비교 추가 검수. Full independent English SOURCE/CLEAN/FINAL, protected-art/calibration/C3/user-game 아직 미충족, 정확히 HOLD_STRICT_RECHECK 유지, DDS 생산0, RUNTIME_VALIDATION=UNTESTED. QA+queue+resume+progress+WORKLOG+STATUS commit `44c0f0485eb7dcfbb8dee0ecfe76659e0d2892f3` push/HEAD verified. 1개 신규 성과 +1; 조회/재시도는 추가 0. **AI 1 이전 1565점 + 이번 +1점 = 누적 1566점**. RUN_KEY=OUTRUN-KOR-C330-C2-Q236-PERSISTED-14-ALPHA-20261009-1950 |
 

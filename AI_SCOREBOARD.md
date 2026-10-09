@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1565 | ACTIVE | 2026-10-09 19:54 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1267 | ACTIVE | 2026-10-09 19:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1268 | ACTIVE | 2026-10-09 19:58 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:58 | AI 2 | 1267 | +1 | 1268 | OutRun VR 컨트롤러 실질 신규 자동화 개발: `chat-controller-downloads`의 `src-vr-v2/controller.py.part03`에 작업 진행 중 5분 간격 공개 데이터 최소화 GitHub checkpoint(PUT·중복 확인·실패 재시도·체크포인트 저장 성공 후 롤오버), 30분 강제 chat rollover, 동일 TASK_ID/ATTEMPT 연속, 완성 material commit 중복 방지를 구현. `part00` config/Portainer VR compose/ DX11·DX9Ex 지침/회귀 테스트와 이전 selftest 오탐 수정. HEAD [be774f8d](https://github.com/thp32tt/OutRun2006Tweaks/commit/be774f8d99c5a6c7e5366aa8b7b1edb2d84f0a36), [Controller CI 37920769936 SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37920769936). Docker 소켓 사용자 접근 제한으로 Portainer 실제 재빌드/재배포 미실시; 실컨테이너 체크포인트 쓰기·연속 30분 롤오버 런타임 미검증. 이미 수행한 상태조회·중복 CI 실행은 +0. **AI 2 이전 1267점 + 이번 +1점 = 누적 1268점**. RUN_KEY=VR-CONTROLLER-30M-ROLL-5M-DURABLE-CHECKPOINT-20261009-AI2 |
 
 | 2026-10-09 19:54 | AI 1 | 1564 | +1 | 1565 | OutRun 한글화 B330 EVEN q098 42E618FD **새 2048×128 DXT5 BC3 DDS 1개 실제 제작·승격 완료**: C328가 반려한 현행 472392829d96... 의 영어 Cl/ord. 중첩을 canonical English SHA 3b3cdd76... 전체 CLEAN 재구성 후 source white/navy native vector render로 제거. 신규 SHA256 27a1f95d3b81d0a68404aea6f3d7a3ab4cc7328e57f04abc6882c38041785c51, Git blob a65f3832289f9366432e3ed3bebe30abf0827001; 5,550 BC3 블록 재인코딩, 영어 잔여 19블록 알파 정리, persist header/mip/decoded/원본 bbox 외 RGBA 변화0, SAVE RAW/READABLE 100/75/50 BGW 비교 생성 및 직접 시각 자체 검수. GitHub Actions 37919664212 SUCCESS, 큐/QA/WORKLOG/STATUS/progress/resume 상태 포함 원격 HEAD `4273dc5545facc22729a250f553e76e82ed944c1` 검증. 독립 C2/C3·최종 승인·실게임 검증 미실시, RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 제외, N100는 가벼운 이미지 조회 후 전용 임시파일 9개만 삭제. 같은 B330 retry·보고 재현은 점수 +0, 신규 승격 성과 1회만 +1. **AI 1 이전 1564점 + 이번 +1점 = 누적 1565점**. RUN_KEY=OUTRUN-KOR-B330-Q098-FULL-PLATE-REMOVAL-20261009-1950 |
 

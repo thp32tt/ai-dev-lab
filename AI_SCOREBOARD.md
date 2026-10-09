@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1585 | ACTIVE | 2026-10-10 02:24 KST |
+| AI 1 | ChatGPT (AI 1) | 1586 | ACTIVE | 2026-10-10 02:24 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-10 02:24 | AI 1 | 1585 | +1 | 1586 | OutRun A214 q227 P1 작업: 독립 C320에서 부족했던 13/16 텍스트 셀의 저장된 원본 SOURCE, CLEAN, 한글 DDS 정확 바이트로 네이티브 RGBA 투명 증거, B/G/W 100/75/50, RAW 검수 패키지 실물 13세트 신규 제작. Github Actions #37963658586 첫 job 113932490703 인프라 setup 실패 후 같은 작업 failed-job-only retry 113937285379 SUCCESS, 작업자 결과 a442f226863a9ebe25a3e764bab464940346623d. 기존 C320 3개+이번 13개로 16셀 기계 검증: CLEAN alpha ghost0, source/CLEAN/final 16 source text union 바깥 RGBA/alpha 손상0, 양수 픽셀 여백. 제작자 직접 13셀 50% 실물 검토. 정식 DDS는 SHA256 83120095e3ff960939c0b413dd85d1633314f23dcde0192f0cf68a7a47776595 보존 (신규 DDS0). C320 C1 HOLD, C3/승인/실게임 검증 아직 미완료; IGR034/035/036 OPEN, RUNTIME_VALIDATION=UNTESTED. 이번 신규 QA 실증 성과 1회만 +1, 1585 + 1 = 1586; retry/롤오버 중복 가산 금지. VR/FFB/DX11/DXVK 제외. RUN_KEY=OUTRUN-KOR-A214-Q227-C320-13CELL-LOSSLESS-EVIDENCE-20261010-0200 |
 | 2026-10-10 02:24 | AI 1 | 1584 | +1 | 1585 | OutRun C337 C1 ODD q137 현행 B320 후보 정확 SHA `cdd4a34879b7dce582db643c8e4f9494ef8cb19d533634aef23eb4ecfd186a92` 독립 DDS 디코드(2048x1024 BGRA32 mip1), 원본 소스 좌표 경계와 한글 실제 alpha bbox [1340,99,1516,125] 일치, 자체 새 FLIP-Y100/50·RAW 무손실 PNG 3개/2개 JSON GitHub 영구 게시. q137 HOLD_STRICT_RECHECK(정본 SOURCE/CLEAN, 전체 6영역/캘리브레이션 부족) 정직 기록, IGR041 OPEN, C3/APPROVAL/실게임 미승인, DDS 생산0. queue/resume/progress/WORKLOG/STATUS 동기화 및 HEAD 검증, N100 재현용 scratch만 삭제. 신규 정확바이트 독립 증거 성과 1회만 가산. **이전 1584점 + 이번 +1점 = 누적 1585점**. RUN_KEY=OUTRUN-KOR-C337-C1-Q137-B320-CURRENT-NATIVE-20261010 |
 
 

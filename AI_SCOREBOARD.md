@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1549 | ACTIVE | 2026-10-09 13:58 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1550 | ACTIVE | 2026-10-09 14:18 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1256 | ACTIVE | 2026-10-09 13:45 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 14:18 | AI 1 | 1549 | +1 | 1550 | OutRun 한글화 B319 P0 q137 IGR-041 정확 원본·A22 CLEAN 기반 네이티브 `SELECT TRANSMISSION → 변속 방식을 선택하세요` **새 실물 DDS 1개 제작·승격**, prior SHA256 `b9366dd4...` → current `0c988e8b06010a0f003445d8b068a45871202bf0c3bcbf61dd5c203954458d22`. 변경은 상단 1 source bbox, 남은 5개와 보호 패널 픽셀 정확 불변, 원본 bbox 및 4px+ margin, outside RGBA/alpha0, BGRA32 2048x1024 RAW/mip1 재디코드 정확. 플레이트/합성/실물 네이티브·50·RAW 제작자 범위 PASS; [GitHub Actions 37887573842](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37887573842) 성공, [원격 HEAD 96a6bc09](https://github.com/thp32tt/OutRun2006Tweaks/commit/96a6bc09bb753423f28e2e08674bb9fbbe224fc2) 확인. 작은 TRANSMISSION REWORK, C1/C3/APPROVAL/인게임 재검증 미완료, IGR-041 OPEN, RUNTIME_VALIDATION=UNTESTED. 기존 B318과 다른 제목 영역의 신규 바이트 성과로 최초 1회 +1. **이전 1549점 + 이번 +1점 = 누적 1550점**. RUN_KEY=OUTRUN-KOR-B319-Q137-P0-LONGFORM-TOP-TITLE-20261009 |
 
 | 2026-10-09 13:58 | AI 1 | 1548 | +1 | 1549 | OutRun B318 P0 q137 IGR-041 **actual new partial native DDS** SHA256 `b9366dd4a66a015ce98e30cab29e92b92aa60aed2c5445fc6b35d4410671ec14` replaces B315 `1d684aaceeef4487bb6605cf8b4779950683970e6c18e1d5b175a25642409d68` ONLY in two small MANUAL/ AUTOMATIC source cells. Small MANUAL -> 수동 변속, AUTOMATIC -> 자동 변속; native per-character face/source gray170, header BGRA32 2048x1024 mip1 persisted DDS/RAW mirror-y exact, source sha256 11c90e063e83e485d15da16a157a7da7f4c99144b0ee9004205ef4ee724d21cc and clean b128a8fd82f3ccae6300511c22e63bf40e2938e114b8417aada19bbd49bc9098 pinned; 3579 plate protected pixels untouched, changed/alpha outside 2 bbox 0, original 4px margins. 24 exact SOURCE/CLEAN/B315/B318 BGW RAW/FLIPY 100/50 comparisons with direct controller visual on native gray100 and RAW black50. B316 and B317 failed/held title trials NOT promoted and NOT counted. GitHub Actions [37886011092](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37886011092) SUCCESS, [promote commit a09864e893d7c4ffbb03d571bcf78758e3a99ff2](https://github.com/thp32tt/OutRun2006Tweaks/commit/a09864e893d7c4ffbb03d571bcf78758e3a99ff2), final state [remote HEAD c08fc421154095022c2066f53fdd4355ec20669a](https://github.com/thp32tt/OutRun2006Tweaks/commit/c08fc421154095022c2066f53fdd4355ec20669a). TOP+TRANSMISSION-small remain REWORK_REQUIRED, fresh exact C1/C3 and IGR041 user game OPEN, RUNTIME_VALIDATION=UNTESTED. N100 unused, VR/FFB/DX11/DXVK excluded. **AI 1 이전 1548점 + 이번 +1점 = 누적 1549점**. RUN_KEY=OUTRUN-KOR-B318-Q137-IGR041-LOWER-MODE-TEXT-20261009 |
 

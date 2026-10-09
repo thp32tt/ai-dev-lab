@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1583 | ACTIVE | 2026-10-10 00:20 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1276 | ACTIVE | 2026-10-10 00:32 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1277 | ACTIVE | 2026-10-10 01:10 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 01:10 | AI 2 | 1276 | +1 | 1277 | DX9Ex P0 Quest3 2개 실제 로그+93% GOAL 스크린샷 소스·원본 CALL 경로·OpenXR/D3D9Ex 공식 문서 딥리서치. **실제 코드 수정**: ordinal Calc3D2D exact RankMarkerSub parent OR authority (source b9e26c25; NaviPub·rival 보호), rank negative-verifier 8403708c; DX9Ex CORRECTNESS launcher `SkyGlowFactor=1`(전체) 강제 문제를 기본4(1/16 블러 텍스처 픽셀)로 수정 09977381/73fe0c86 및 VR Test Policy 37955227606 SUCCESS, Domain Isolation 37955374940 SUCCESS, 646c243e exact policy 및 x64 host SUCCESS; 원본 +TIME/stage printf, progress, lens centre 개별 오브젝트에 실질 안전 진단 코드/회귀 테스트, 원격 docs DX9EX_DEEPRESEARCH_P0_20261010.md 및 AGENTS.md 반영. Win32 전체 활성 빌드 37955374766 진행 중, 광학 HMD `RUNTIME_VALIDATION=UNTESTED`; 결과 진행률·렌즈 중앙 출력 수정과 XR 해상도 자동 연계는 미완료를 명시. 하나의 독립 복합 연구/개발 성과에만 +1, retries 및 bookkeeping/CI 진행 재조회 추가 점수 없음. RUN_KEY=DX9EX-DEEP-RESEARCH-20261010 |
 
 | 2026-10-10 00:32 | AI 2 | 1275 | +1 | 1276 | OutRun Quest3 93%-GOAL 사용자 실기기 스크린샷(1388x780, 전경 대형 기록 1'05\"283, 후경 Stage/Palm Beach, 빨간 진행막대 93%)을 최종 완료 결과와 분리하고 기존 a6f8497 업로드 로그와 원본 DX9Ex exact result E8 경로 재검토. `src/hooks_uiscaling.cpp`에 결과 진행률 0x97BE4/0x97DEC 호출이 남긴 queue priority/호출수/게임상태를 기하급수적 제한으로 기록하는 실제 read-only telemetry 구현(실제 픽셀·타이머·렌즈/순위 세계좌표 변경 없음); `tools/verify_vr_visual_composition_p0.py`에 두 개의 독립 결함주입 회귀검증 추가 및 CI 37952168602 policy job 113893502499 P0 PASS, Domain Isolation 37952168618 SUCCESS. C++ game+host package CI 당시 진행 중 및 RUNTIME_VALIDATION=UNTESTED, 광학적 수정 완료 주장 없음. 스크린샷·수정범위 GitHub 문서 `docs/automation/reviews/DX9EX_HMD_FEEDBACK_20261009_2348_RANK_TIME_PERF_RESOLUTION.md` 기록. material commits `08ce6ad77c2f`, `72a0d674b9ac`, documents `a5622e0c2156`; 원격 검증 이후 신규 진단 기능 구현에 +1 단 1회. RUN_KEY=DX9EX-GOAL-PROGRESS-93-20261010 |
 

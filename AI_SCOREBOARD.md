@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1606 | ACTIVE | 2026-10-10 07:02 KST |
+| AI 1 | ChatGPT (AI 1) | 1607 | ACTIVE | 2026-10-10 07:10 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1284 | ACTIVE | 2026-10-10 07:12 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 07:10 | AI 1 | 1606 | +1 | 1607 | OutRun 한글화 A218 홀수 q161 C344 실제 저장 후보 BC3/DXT5 점선/구멍 결함 3개(11 물병자리 / 16 대한민국 / 24 이탈리아) **신규 네이티브 4,194,432바이트 material trial DDS SHA256 8000601ead8b2858b36f8078b92898405b9621ca5b03b553918df8acdf38e05e** 제작. GitHub Actions #37997128618 SUCCESS, 원본 SHA a74d3101.../기존 정식 A201 SHA 8ded8565... 검증; C344 실패 셀 11/16/24만 고유 native Hangul+원문 RGB565/BC3 alpha로 재구성, 다른 35개 압축 셀 동일, source-bbox 밖 변경 RGBA/alpha0, 디코드 alpha 누락/추가0, 글자면 색/알파 pinhole0. ChatGPT 제작자가 실제 SOURCE/CLEAN/저장 trial PNG 검정·회색·흰색 100% 및 회색50% 직접 확인하여 이전 점선 결함이 보이지 않고 3개 한국어 문구 판독되는 **SCOPED_PRODUCER_VISUAL_PASS** 신규 성과. 제작 recipe/QA/queue/WORKLOG/resume/progress/STATUS SSOT GitHub 반영 commit 1ea945cd3fbf2eeea368e149dc8117650ee58ec5 및 원격 HEAD 확인. 현재 정식 DDS는 불변, 기존 C344 REWORK 미해결; pixel-guard final manifest/폰트 SHA/신규 정확 후보 독립 C1 전체38/C3/게임 및 사용자 승인은 미완료, RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 제외. 이 A218 신규 세 셀 생산 증거 성과만 +1회; 이전 q161 작업이나 동일 코드 실행 retry 중복 가점 없음. **AI 점수: 이전 1606점 + 이번 +1점 = 누적 1607점**. RUN_KEY=OUTRUN-KOR-A218-Q161-C344-THREE-PERSISTED-GLYPH-REPAIR-20261010-0700 |
 
 | 2026-10-10 07:12 | AI 2 | 1283 | +1 | 1284 | 신규 독립 DX9Ex 화면 C++ 소스 수정 [958f1cb3](https://github.com/thp32tt/OutRun2006Tweaks/commit/958f1cb3be3310e72825c31cc19591848ad159e0): GOAL 진행 19개의 원본 B9200 결과 문자 호출 및 +TIME 원본 sprite3+숫자3 호출에서 기존 post-call SpriteNode 태그만 있던 공백을 해당 E8 호출 진행 중 exact ScreenHud 임시 스코프 저장/복원으로 보완. 안전한 복원 부정변이 P0 verifier 추가; source 관련 Inspector 원본 정적 검사와 DX9Ex 정책 검사 SUCCESS, Win32/host 전체 빌드 및 HMD는 점수 시점 대기·UNTESTED. 별개 미검증 렌더 변경 없이 Sumo no-tick rank view anchor/producer/valid 체크 4종 독립 mutation guard [ebff1812](https://github.com/thp32tt/OutRun2006Tweaks/commit/ebff1812d01db5b2a374b0549728a0fff0a8be05) 추가, 원본과 근거 문서는 [397ffbb3](https://github.com/thp32tt/OutRun2006Tweaks/commit/397ffbb3ddde0a3dcd7b8acc3b210f1e0cc5d5fb). GitHub 5분 감사 스케줄 누락 사실 확인 후 300초 장기 runner/self-chain [9b53e47d](https://github.com/thp32tt/OutRun2006Tweaks/commit/9b53e47db4c5434580ba2a4992ba77ba554989fa), 07:02→07:07 실제 ledger 간격 5분 확인, 2026-10-11 08:00 KST 예정 종료. 이 세 소스·테스트·자동화 변경은 하나의 신규 작업 성과로 **+1점 단 한 번** 적용, 이전 렌즈 scope 성과/정적 재검증과 중복 계산하지 않음. **AI 점수: 이전 1283점 + 이번 +1점 = 누적 1284점**. RUN_KEY=DX9EX-P0-IMMEDIATE-DRAW-AND-NOTICK-20261010 |
 

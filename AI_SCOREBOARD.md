@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1581 | ACTIVE | 2026-10-09 23:28 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1582 | ACTIVE | 2026-10-10 00:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1274 | ACTIVE | 2026-10-09 23:09 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 00:00 | AI 1 | 1581 | +1 | 1582 | OutRun B336 B lane P0 q060 **new actual production prerequisite completed**: strict source/CLEAN/font P2 probe identified missing renderer NotoSansCJK Bold on GitHub runner; corrected integer RGB overflow, installed licensed `fonts-noto-cjk` and `fonttools` as explicit reproducible dependency, verified actual TTC SHA256 `faa5f3656a78b2e2d450d27fe8382c778bc2b6bb5ea29c986664a6a435056ceb` and package license SHA `849f4ea9c214fa4ac3593b770c699f387534b11ce671264c1b10d85bdcb5997b`, confirmed translation `아웃런 마일:` 7/7 required glyphs by Unicode cmap, exact canonical-source and persisted candidate DDS SHA bound; source/CLEAN/final FLIPY/RAW practical PNG 6 and negative slant-proxy proof generated. Initial failing Actions 37946726893 corrected; 37947059867 and final font-qualified 37947992059 SUCCESS. **No new DDS**; C334 C2 HOLD and matched-stroke source-family slope/other C3/user IGR044 remain pending, RUNTIME_VALIDATION=UNTESTED. Production workflow + role B exact evidence, queue/resume/progress/WORKLOG/STATUS in Git commit [1a7b557](https://github.com/thp32tt/OutRun2006Tweaks/commit/1a7b5571371c994646532512bcd7bc3dd8efb5ad), remote HEAD verified at sync; unrelated DX11/DXVK/VR/FFB untouched. This first-time verified P2 **font precondition** is distinct from prior B335 P1 full clean plate success; same-run retry and republishing SHA do not earn duplicates. **이전 1581점 + 이번 +1점 = 누적 1582점**. RUN_KEY=OUTRUN-KOR-B336-Q060-SOURCE-FONT-SLANT-P2-20261009-2340 |
 
 | 2026-10-09 23:28 | AI 1 | 1580 | +1 | 1581 | OutRun B335 P0 q060 **새 실제 품질 성과(P1 전체 native CLEAN 원본보호 차단기 통과)**: Canonical source 6a33c730... / B331 전 후보 3480bef0... / B332R 현재 d81d0d... 해시 각각 바이트 고정, 재현 가능한 원본 기반 4096x2048 SOURCE-REMOVAL/PROTECTED/EDIT/TRANSPARENT/RESTORE PNG 다섯 개 + 전체 CLEAN PNG + P1 manifest + recipe.json 새로 생성, GitHub Actions 37943166709 SUCCESS, mechanical guard 7/7 위반 0. Orange BEST TIME 핵심 source 8892개+인접보호 17879개 SOURCE→CLEAN/CURRENT RGBA 일치, 18종 원문/CLEAN/기존/현재 RAW/FLIP-Y 네이티브/75/50 배경 비교 신규 생성하고 컨트롤러 3가지 직접 시각확인. **DDS 새로 승격한 것이 아니라 정확 동일 q060 B332R SHA 유지, 신규 P1 게이트 근거 1건으로만 +1**. P2 font SHA/readable anchors/C334 C2 HOLD/C3/IGR044 user-game 진행 미완료, RUNTIME_VALIDATION=UNTESTED. SSOT branch QA/asset_queue/ingame backlog/progress/resume/WORKLOG/STATUS commit [43ca6e600845](https://github.com/thp32tt/OutRun2006Tweaks/commit/43ca6e60084505f702fbc7d5c7cf23274e534ca0) 원격 HEAD 재확인. VR/FFB/DX11/DXVK 변경 없음. retry/이전 C334 source 확인/같은 DDS는 중복 가점 0. **AI 1 이전 1580점 + 이번 +1점 = 누적 1581점**. RUN_KEY=OUTRUN-KOR-B335-Q060-FULL-NATIVE-SOURCE-PLATE-P1-20261009-2310 |
 

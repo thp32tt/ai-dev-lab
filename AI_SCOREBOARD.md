@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1589 | ACTIVE | 2026-10-10 03:02 KST |
+| AI 1 | ChatGPT (AI 1) | 1590 | ACTIVE | 2026-10-10 03:12 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 03:12 | AI 1 | 1589 | +1 | 1590 | OutRun 한글화 A215 P0 홀수 q121 신규 검증 성과: 기존 A212/A213 제목 3영역 판정이 전체 아틀라스 원문 제거를 보호 그래픽 손상으로 오인하는 문제를 확인하고, 정확 4096x4096 SHA 고정 원본 f7847db9... / CLEAN 88e85995... / 현재 DDS 38d5c2c3... 의 179개 원본-CLEAN 변경 연결영역 중 상위 30개 **새 SOURCE/CLEAN/저장 DDS 무손실 RGBA 각 3장, RAW 첫 12 및 회색/흑/백 실효 크기 비교 증거** GitHub Actions #37970761977 SUCCESS로 제작. 실제 13개 대표 영역 소스/플레이트/한글 50% 시각 검증, SOURCE→CLEAN 전체 2,134,661픽셀 vs CLEAN→FINAL 133,085픽셀, 실제 한글 번역 셀의 정상 픽셀 교체를 확인. GitHub QA/큐/IGR-030·031·040/WORKLOG/resume/progress/STATUS 커밋·원격 기록, 최종 후보 DDS0 변경 없음, C335 HOLD·C3/승인·실게임 OPEN, RUNTIME_VALIDATION=UNTESTED; VR/FFB/DX11/DXVK 제외. 한 번의 새로운 30영역 생산 증거 성과만 +1, 과거 A212/A213 중복 아니며 새 게임 패치 완성으로 계산하지 않음. **이전 1589점 + 이번 +1점 = 누적 1590점**. RUN_KEY=OUTRUN-KOR-A215-Q121-30-REGION-SOURCE-CLEAN-PERSISTED-20261010-0300 |
 
 | 2026-10-10 03:02 | AI 1 | 1588 | +1 | 1589 | OutRun C338 C2 EVEN q212 최신 B329 후보 **독립 전체 12영역 DDS 검증** 신규 성과. 정확 persisted 2048x2048 RGBA32 mip1 SHA256 e22ad5c46e81489123467783176dba1a040e0d2a36b6e6820349a9fcd87e9fea, 기존 C325와 다른 이후 새 후보. C158 검증 CLEAN 대비 12개 원문 박스 union 밖 RGBA/alpha 0/0, C158 보호 마스크 변동 0/0, CLEAN alpha 잔상 12/12 0. 현재 DDS RAW/FLIPY 및 소스·CLEAN·최종 native/75/50, BLACK/WHITE **신규 무손실 PNG 76개 + 기계/앵커/판정 JSON 3개** 생성·검수. 과거 C329 단일영역 HOLD보다 확대해 영문 원본 가시 글자 시작점 r43 x241→한글 x5(-236px), r44 x1→x62(+61px) 소스 대비 정렬 오류를 새 확정, C2 REWORK_REQUIRED. 정본 원문 DDS는 이번 호출에서 직접 재인증하지 못하여 C3/APPROVAL/사용자 실기 BLOCKED, DDS 추가0, RUNTIME_VALIDATION=UNTESTED. GitHub 같은 브랜치 commit c15c7a100c37e29dcc82a4ef56dc0dab491935cf 푸시·원격 HEAD와 QA 원격 확인. q212 짝수만 큐 상태 수정, 홀수/C1 미수정, VR/FFB/DX11/DXVK 제외. 이전 C325/C329 동일 SHA 반복 승인과 별개의 새 전체 실증·결함 확정 한 번 +1, retry 이중 가점 없음. **AI 점수: 이전 1588점 + 이번 +1점 = 누적 1589점**. RUN_KEY=OUTRUN-KOR-C338-C2-Q212-ALL12-ANCHOR-20261010 |
 

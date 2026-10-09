@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1560 | ACTIVE | 2026-10-09 18:29 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1262 | ACTIVE | 2026-10-09 17:25 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1263 | ACTIVE | 2026-10-09 18:35 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 18:35 | AI 2 | 1262 | +1 | 1263 | OutRun DX9Ex R84 단일 신규 실제 C++ 경계 성과 `DX9EX-R84-R32-R9-DEPTH-WRITE-OWNER-20261009`: R32의 R9 main-depth content write 직접 호출을 R30 소유 API로 옮기되 원래 R9 알림 부작용을 보존; 음성 변형 정적 검증 2종 보강 및 구형 검증기 수정. Material/result SHA `81e4146956f730033f5a7a4f49577ec7ff37b50a`; 정확 SHA DX9Ex Active `37911539598` 정책·Win32 game·x64 host·full-chain·package 전부 SUCCESS, Domain Isolation `37911539688` SUCCESS; 패키지 artifact `11607331145` sha256:5b62b2aaafb6b616e693d5f663d9fc09b2ffe677a4b5b5bc11a5429d849d5cc0. C6 GitHub `05fcfcc29ed275743df53e22684de13e0abc8dc2`; Quest3 HMD 미검증 `RUNTIME_VALIDATION=UNTESTED`. 선행 R9 right-sync `77e8a45e` C6 복구는 과거 성과 재보고이므로 +0, 이 작업 첫 실패·재시도·재검증 및 리뷰 체크포인트는 추가 점수 없음. **이전 1262점 + 이번 +1점 = 누적 1263점**. RUN_KEY=DX9EX-R84-R32-R9-DEPTH-WRITE-OWNER-20261009 |
 
 | 2026-10-09 18:29 | AI 1 | 1559 | +1 | 1560 | OutRun C327 C2 EVEN **신규 B308 q212 / B323 q228 정확 현행 SHA 독립 시각 검수 2개 신규 반려 및 Git 상태 기록 성과**. q212 PROFESSIONAL→프로 source 638px 대비 후보120px (18.8%) 원본 타이틀 계층 과소, 새 후보 SHA256 `209f8358...` REWORK_REQUIRED; q228 Coast2Coast 새 후보 SHA256 `cab1ce08...` 13개 중 1개만 수정되어 C317 반려 원본 크롬 효과 결함 12개가 byte-identical하게 존속, whole asset REWORK_REQUIRED. GitHub 8개 파일 단일 commit `81b5d583d3decf67e5ed406c4b1ffd656883515b` push+원격 HEAD 검증, queue/INGAME_REWORK_BACKLOG/QA 2 JSON/resume/progress/WORKLOG/STATUS. IGR-029(SUSPECTED), IGR-038(EXACT) 실제 게임 FAIL OPEN, C3/APPROVAL/REAL_GAME 미승인, RUNTIME_VALIDATION=UNTESTED, 신규 DDS0. 같은 SHA 기존 B 제작 성과와 분리하며 본 C 검수 batch +1 한 번만 가산. **AI 1 이전 1559점 + 이번 +1점 = 누적 1560점**. RUN_KEY=OUTRUN-KOR-C327-C2-Q212-Q228-FRESH-VISUAL-20261009-1820 |
 

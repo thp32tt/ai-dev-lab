@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1551 | ACTIVE | 2026-10-09 14:44 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1257 | ACTIVE | 2026-10-09 14:50 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1258 | ACTIVE | 2026-10-09 15:19 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 15:19 | AI 2 | 1257 | +1 | 1258 | DX9Ex R84 independent R32 frame-pose getter owner seam DX9EX-R84-R32-POSE-SEQ-OWNER-20261009. Material cf7e41af29b3a344360e39161e3485cc705b2e68, verifier corrected SHA 52252466307813913bacc5ba208b6205651da81b; exact CI [37892353101](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892353101) policy/game/host/R33-full-chain/package SUCCESS, [Domain 37892353086](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892353086) SUCCESS, artifact 11599171847 digest sha256:9eb3d1e818950dd88c658780c8925548977408f603e47a59ae22eac90db5120a. Durable run commit 6eb8118cd39683b511d72d7a3d8dd6ef99197f9d; initial failed regex CI not separately counted. User HMD UNTESTED, R84 overall open. Previously 1257 +1 = 1258. Retry/checkpoint +0, once per TASK. |
 | 2026-10-09 14:50 | AI 2 | 1256 | +1 | 1257 | New unique DX9Ex R84 owner seam DX9EX-R84-R32-TRACKED-SURFACES-20261009: C++ material 11b71a236af4b0112900061d7130875c4ae6d1e1, DX9Ex Active 37889666629 policy/game/host/R33 full-chain/package SUCCESS, Domain 37889666717 SUCCESS; artifact 11597627361 digest sha256:fe453efb6402db8a2dee63989f682d20023e7e42120e4439fa6f5558137fa216, C6 record commit 810ff0451ce78d03bdfea62b38dc8d109208acaa, HMD UNTESTED. Same TASK score once; queue/5m checkpoints excluded. 1256 + 1 = 1257. |
 | 2026-10-09 14:44 | AI 1 | 1550 | +1 | 1551 | OutRun B320 P0 IGR-041 q137 **새 네이티브 DDS 1개 제작·승격**: 마지막 미완성 작은 `TRANSMISSION`을 `변속기 유형 선택`으로 native 2048×1024 BGRA32 마스크 재구성; B319 prior SHA256 `0c988e8b...` → new `cdd4a34879b7dce582db643c8e4f9494ef8cb19d533634aef23eb4ecfd186a92`, 기존 다섯 텍스트와 보호그래픽 그대로. 원문 bbox 281×32 안 한글 176×26, 여백 52/53/3/3px, 외부 RGB(A)/alpha 변경0, clean plate/RAW/100·75·50 이미지 증거 18개. [GitHub Actions 37889829462](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37889829462) SUCCESS, [원격 commit 7d7eb6e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/7d7eb6e5ca51b4f8dc64406af64b4a1270b460ef) 확인; 현재 6개 모두 제작자 scoped QA만 PASS, C1/C3/사용자 실게임 미완, IGR041 OPEN, RUNTIME_VALIDATION=UNTESTED. B319과 다른 소형 영역 새 바이트 성과 최초 1회 +1. **이전 1550점 + 이번 +1점 = 누적 1551점**. RUN_KEY=OUTRUN-KOR-B320-Q137-P0-SMALL-TRANSMISSION-20261009 |
 

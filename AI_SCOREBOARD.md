@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1606 | ACTIVE | 2026-10-10 07:02 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1284 | ACTIVE | 2026-10-10 07:12 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 07:12 | AI 2 | 1283 | +1 | 1284 | 신규 독립 DX9Ex 화면 C++ 소스 수정 [958f1cb3](https://github.com/thp32tt/OutRun2006Tweaks/commit/958f1cb3be3310e72825c31cc19591848ad159e0): GOAL 진행 19개의 원본 B9200 결과 문자 호출 및 +TIME 원본 sprite3+숫자3 호출에서 기존 post-call SpriteNode 태그만 있던 공백을 해당 E8 호출 진행 중 exact ScreenHud 임시 스코프 저장/복원으로 보완. 안전한 복원 부정변이 P0 verifier 추가; source 관련 Inspector 원본 정적 검사와 DX9Ex 정책 검사 SUCCESS, Win32/host 전체 빌드 및 HMD는 점수 시점 대기·UNTESTED. 별개 미검증 렌더 변경 없이 Sumo no-tick rank view anchor/producer/valid 체크 4종 독립 mutation guard [ebff1812](https://github.com/thp32tt/OutRun2006Tweaks/commit/ebff1812d01db5b2a374b0549728a0fff0a8be05) 추가, 원본과 근거 문서는 [397ffbb3](https://github.com/thp32tt/OutRun2006Tweaks/commit/397ffbb3ddde0a3dcd7b8acc3b210f1e0cc5d5fb). GitHub 5분 감사 스케줄 누락 사실 확인 후 300초 장기 runner/self-chain [9b53e47d](https://github.com/thp32tt/OutRun2006Tweaks/commit/9b53e47db4c5434580ba2a4992ba77ba554989fa), 07:02→07:07 실제 ledger 간격 5분 확인, 2026-10-11 08:00 KST 예정 종료. 이 세 소스·테스트·자동화 변경은 하나의 신규 작업 성과로 **+1점 단 한 번** 적용, 이전 렌즈 scope 성과/정적 재검증과 중복 계산하지 않음. **AI 점수: 이전 1283점 + 이번 +1점 = 누적 1284점**. RUN_KEY=DX9EX-P0-IMMEDIATE-DRAW-AND-NOTICK-20261010 |
 
 | 2026-10-10 05:42 | AI 1 | 1602 | +1 | 1603 | OutRun B343 EVEN P0 q060: C342 independently confirmed exact native 4096x2048 saved DDS English BEST TIME overlapping localized 최고 기록. First new materially different SOURCE-identified removal **trial DDS** SHA256 `8774e3993fc5a13f455f2c95ea5b358b2f75eae0634ab54bed137aeea819c9f6` generated via GitHub Actions 37987984654 SUCCESS, 19,243 original English/source-identical pixels cleared, 0 Korean pixels changed, 0 outside permitted ROI, exact DDS saved decode/raw mirror-y. Direct source/old/trial FLIPY native gray100, black50, RAW gray75 verified large English overlap removed but small navy flecks persist. **NOT promoted**: current candidate `d81d0d14...` unchanged, C342 REWORK/C3/IGR044/user-game OPEN, P1/P3 HOLD, RUNTIME_VALIDATION=UNTESTED. 12 preview PNG + masks + QA/queue/resume/progress/WORKLOG/STATUS committed; remote HEAD `8d3761be7cd8917fdc0d7fa12e42cb4123ab578e` verified (timestamp metadata finalization). One new material trial accomplishment +1; status recheck/worker commit/controller commit not separate. **AI 1 이전 1602점 + 이번 +1점 = 누적 1603점.** RUN_KEY=OUTRUN-KOR-B343-Q060-C342-ENGLISH-RESIDUE-NATIVE-TRIAL-20261010-0535 |
 

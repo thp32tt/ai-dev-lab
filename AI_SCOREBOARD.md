@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1607 | ACTIVE | 2026-10-10 07:10 KST |
+| AI 1 | ChatGPT (AI 1) | 1608 | ACTIVE | 2026-10-10 07:28 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1285 | ACTIVE | 2026-10-10 07:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 07:28 | AI 1 | 1607 | +1 | 1608 | OutRun C347 C2 EVEN q060 새 B343 미승격 시험 DDS `8774e3993f...`를 현재 공식 `d81d0d144...`, 정본 원문 `6a33c7307e...`와 **세 개 실제 4096×2048 RGBA32 원본 SHA-256 확인 및 독립 네이티브 픽셀/시각 QA**. 공식 BEST TIME 원문 겹침 확인, trial 정확 19,243 RGBA 픽셀만 bounded alpha0 제거/박스 밖0, 영문 face 정본과 동일한 가시 픽셀 17,039→84 개 별도 계측. 현재 trial 작은 검붉은 source-outline 찌꺼기 첫손 검수로 **INCOMPLETE_CLEAN_PLATE FAIL**, 새 5 무손실 PNG/기계 JSON 2/독립 C2 기록 및 queue/resume/progress/WORKLOG GitHub commit [85d268b7](https://github.com/thp32tt/OutRun2006Tweaks/commit/85d268b72f7c925782ad14475d43497cf793ddc4) 원격 HEAD 검증. **기존 공식 DDS 및 C342 REWORK 유지**, trial 승격0, C/C3/승인·IGR044 사용자 실기 UNTESTED; C1 홀수/VR/FFB/DX11/DXVK 비접촉. 기존 C342 공식 SHA 중복 PASS가 아니라 **B343 새 별도 시험 바이트 독립 3자 소스 실증·신규 84픽셀 경계/시각 결함 기록** 한 번만 +1, 재검수 +0. **AI 점수: 이전 1607점 + 이번 +1점 = 누적 1608점**. RUN_KEY=OUTRUN-KOR-C347-C2-Q060-B343-INDEPENDENT-SOURCE-GHOST-20261010-0720 |
 
 | 2026-10-10 07:10 | AI 1 | 1606 | +1 | 1607 | OutRun 한글화 A218 홀수 q161 C344 실제 저장 후보 BC3/DXT5 점선/구멍 결함 3개(11 물병자리 / 16 대한민국 / 24 이탈리아) **신규 네이티브 4,194,432바이트 material trial DDS SHA256 8000601ead8b2858b36f8078b92898405b9621ca5b03b553918df8acdf38e05e** 제작. GitHub Actions #37997128618 SUCCESS, 원본 SHA a74d3101.../기존 정식 A201 SHA 8ded8565... 검증; C344 실패 셀 11/16/24만 고유 native Hangul+원문 RGB565/BC3 alpha로 재구성, 다른 35개 압축 셀 동일, source-bbox 밖 변경 RGBA/alpha0, 디코드 alpha 누락/추가0, 글자면 색/알파 pinhole0. ChatGPT 제작자가 실제 SOURCE/CLEAN/저장 trial PNG 검정·회색·흰색 100% 및 회색50% 직접 확인하여 이전 점선 결함이 보이지 않고 3개 한국어 문구 판독되는 **SCOPED_PRODUCER_VISUAL_PASS** 신규 성과. 제작 recipe/QA/queue/WORKLOG/resume/progress/STATUS SSOT GitHub 반영 commit 1ea945cd3fbf2eeea368e149dc8117650ee58ec5 및 원격 HEAD 확인. 현재 정식 DDS는 불변, 기존 C344 REWORK 미해결; pixel-guard final manifest/폰트 SHA/신규 정확 후보 독립 C1 전체38/C3/게임 및 사용자 승인은 미완료, RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 제외. 이 A218 신규 세 셀 생산 증거 성과만 +1회; 이전 q161 작업이나 동일 코드 실행 retry 중복 가점 없음. **AI 점수: 이전 1606점 + 이번 +1점 = 누적 1607점**. RUN_KEY=OUTRUN-KOR-A218-Q161-C344-THREE-PERSISTED-GLYPH-REPAIR-20261010-0700 |
 

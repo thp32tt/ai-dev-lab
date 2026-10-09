@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1592 | ACTIVE | 2026-10-10 03:36 KST |
+| AI 1 | ChatGPT (AI 1) | 1593 | ACTIVE | 2026-10-10 03:41 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 03:41 | AI 1 | 1592 | +1 | 1593 | OutRun B341 EVEN q212 C338 independently confirmed r43 PROFESSIONAL -236px / r44 OUTRUN +61px source-relative misplacement: **actual materially new native 2048x2048 RGBA32 trial DDS** SHA256 fa0acb5629318d772eb6e7cb989e5d6840c63b3e699f51073ac201f1210b43e7 on exact current candidate e22ad5c4... and C158 clean plate, reusable existing Hangul pixels repositioned to C2-sourced original glyph starts. Worker GitHub Actions 37974641232 SUCCESS, 12 RAW/FLIPY 100/75/50 lossless comparisons, decoded saved byte roundtrip exact, 10 other text regions and outside two source boxes pixel-identical. B controller direct visual scoped improvement native/50 and RAW50; 1 new trial DDS, **0 promoted**, C338 current candidate remains REWORK_REQUIRED, canonical full source/masks/final production guard and fresh C2/C3/user game NOT done; RUNTIME_VALIDATION=UNTESTED. QA+queue/progress/resume/WORKLOG/STATUS committed and remote HEAD efd7896994087d9d52ccdbf669c68bd227825603 verified. Unique new material trial accomplishment +1 once; initial failed runner retry and mere state re-report not separately scored. **AI 1 이전 1592점 + 이번 +1점 = 누적 1593점.** RUN_KEY=OUTRUN-KOR-B341-Q212-TWO-ANCHORED-MATERIAL-TRIAL-20261010-0341 |
 
 | 2026-10-10 03:36 | AI 1 | 1591 | +1 | 1592 | OutRun C339 C2 EVEN q154: exact Sonic-TV canonical English DDS SHA256 15a10e6b44ca5f1267fdf24eebbe902bb18a77b3903896370e183fea8a401bcf separately downloaded and independently authenticated; verified persisted current B298 SHA c4d6c1515716476123b69dfb645dcc27a3cc7a69f31a1368a831004a0b40d524. Native 4096x1024 all eight English source/target regions, incl newly independent gray three versus exact canonical source; source-to-final 8-region union outside RGBA/alpha 0/0 and 8/8 positive margins; authored single mip and RAW/FLIPY plus practical 100/75/50 black/white/gray evidence. **73 new lossless PNG and 2 JSON** in role_C C339 + QA/worklog/STATUS/queue current bounded HOLD record committed/pushed; remote HEAD `e077f99b3186a1f3e5d89bb42ed8465a132b4b9e` checked. Full producer CLEAN plate identity, blind family anchors and C3 still absent, therefore HOLD_STRICT_RECHECK; no approved C PASS or actual-game claim; DDS0, RUNTIME_VALIDATION=UNTESTED. ODD/unindexed untouched, VR/FFB/DX11/DXVK excluded; new independently verified source provenance + full-region evidence one accomplishment only, repeat same-SHA status/approval +0. **AI 점수: 이전 1591점 + 이번 +1점 = 누적 1592점.** RUN_KEY=OUTRUN-KOR-C339-C2-Q154-SOURCE-ALL8-20261010 |
 

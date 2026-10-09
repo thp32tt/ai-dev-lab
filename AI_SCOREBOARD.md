@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1569 | ACTIVE | 2026-10-09 20:49 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1570 | ACTIVE | 2026-10-09 21:03 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1270 | ACTIVE | 2026-10-09 20:11 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 21:03 | AI 1 | 1569 | +1 | 1570 | OutRun C332 C2 EVEN P0 q060 B331 새 DDS 3480bef0369677d9e0b8d3d7b334d6a261de7bc2539c225a939843325a3e36a2 **신규 독립 저장 DDS 시각 QA 결함 확정**: 4096x2048 RGBA32 실제 33.5MB SHA+헤더 확인, source/old/current native·50/RAW75 비교, saved crop B331 시안 RGBA0차이·이전본 56571 차이. 기존 bbox 수치 PASS가 놓친 동일 아틀라스 하단 주황 BEST... 인접 보존 아트워크가 source 8892px→clean/current 0px로 삭제(기존 주황픽셀 6917개 투명화). C2 REWORK_REQUIRED PROTECTED_ART_LOSS/INCOMPLETE_CLEAN_PLATE, 새 DDS0·무손실 신규 증거 PNG6개·C 보고 및 큐/상태/WORKLOG/STATUS 12파일 GitHub HEAD `d1e3469099c385476166fdd4039fa8ed6bceb41d` push/재확인. P0 IGR044 OPEN, B 원문 아트 복원 후 새 후보/C2/C3/사용자 실제게임 재검 필요, RUNTIME_VALIDATION=UNTESTED. 기존 B331 생산과 다른 신규 확정 결함 검수 성과 1건만 가산, 동일 키 재시도0. **AI 1 이전 1569점 + 이번 +1점 = 누적 1570점**. RUN_KEY=OUTRUN-KOR-C332-C2-Q060-B331-LOST-ORANGE-ART-20261009-2050 |
 
 | 2026-10-09 20:49 | AI 1 | 1568 | +1 | 1569 | OutRun B331 EVEN P0 q060 IGR044 2026-10-09 새 네이티브 4096x2048 RGBA32 한글 DDS 실제 물성 1개 제작/승격: 기존 C326 반려 후보 be8afff...를 새로운 Noto Bold 개별 실루엣·readable right italic +0.65 source cream-gold navy 윤곽 새 SHA256 3480bef0369677d9e0b8d3d7b334d6a261de7bc2539c225a939843325a3e36a2 로 대체; English source SHA 6a33c7307e33..., 원본 [2081,250,2860,370] 이내 신규 [2133,256,2807,363] 마진52/53/6/7, 밖 RGBA/alpha 0변경, HUD Stage/white Miles 원본 바이트 보존. GH Actions 37925545922 SUCCESS, FLIPY/RAW native75/50 BGW 18종 증거 제작 B 자체 100/50/RAW75 실제 비교 개선 판정. 브랜치 queue/backlog/progress/resume/WORKLOG/STATUS/QA 및 DDS GitHub HEAD e34eab0b1ff22a3cb448bd0e35f8e26e0bd803c8 push·검증. C2/C3/USER_IN_GAME 실제 검증 미실행, IGR044 OPEN_USER_INGAME_FAIL RUNTIME_VALIDATION=UNTESTED. N100 heavy 0, 임시 PNG 5개만 안전 삭제; VR/FFB/DX11/DXVK 미수정. B331 유일 신규 승격 1회 +1, trial 검증·retry·상태 재보고 +0. **이전 1568점 + 이번 +1점 = 누적 1569점**. RUN_KEY=OUTRUN-KOR-B331-Q060-IGR044-SOURCE-ITALIC-METHOD-CHANGE-20261009-2040 |
 

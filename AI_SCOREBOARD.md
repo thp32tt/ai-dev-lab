@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1570 | ACTIVE | 2026-10-09 21:03 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1270 | ACTIVE | 2026-10-09 20:11 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1271 | ACTIVE | 2026-10-09 21:15 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 21:15 | AI 2 | 1270 | +1 | 1271 | `DX9EX-R84-R32-FRAME-DUPLICATE-OWNER-20261009` 신규 DX9Ex R84 실질 C++ 구조변경: R32 world/HUD 스테레오 중복 프레임 상태·카운터, 최초 pose==0 metadata latch, 오른쪽 눈 실패 마커를 R30 소유 API로 이관하고 11개 음성 회귀 검증 추가. Material exact SHA `9e4d62314ed4654bd548eb1cc505d21a8bc71d20`; Active run `37928148032` policy/Win32 game/x64 host/R33 full-chain/package 전부 SUCCESS, Domain `37928148362` SUCCESS, package `11615615562` sha256:4b490b54d0efc35f747b76be369234fac64e66a5f6a8a204f3ff200c2e43fe0b; C6 `1ba07330d296a4a83fa290607a7502bca3e4f18e`. Quest3/VDXR runtime UNTESTED; 동일 TASK_ID나 5분 기록 추가 점수 0. **SSOT 1270+1=1271점**. RUN_KEY=DX9EX-R84-R32-FRAME-DUPLICATE-OWNER-20261009 |
 
 | 2026-10-09 21:03 | AI 1 | 1569 | +1 | 1570 | OutRun C332 C2 EVEN P0 q060 B331 새 DDS 3480bef0369677d9e0b8d3d7b334d6a261de7bc2539c225a939843325a3e36a2 **신규 독립 저장 DDS 시각 QA 결함 확정**: 4096x2048 RGBA32 실제 33.5MB SHA+헤더 확인, source/old/current native·50/RAW75 비교, saved crop B331 시안 RGBA0차이·이전본 56571 차이. 기존 bbox 수치 PASS가 놓친 동일 아틀라스 하단 주황 BEST... 인접 보존 아트워크가 source 8892px→clean/current 0px로 삭제(기존 주황픽셀 6917개 투명화). C2 REWORK_REQUIRED PROTECTED_ART_LOSS/INCOMPLETE_CLEAN_PLATE, 새 DDS0·무손실 신규 증거 PNG6개·C 보고 및 큐/상태/WORKLOG/STATUS 12파일 GitHub HEAD `d1e3469099c385476166fdd4039fa8ed6bceb41d` push/재확인. P0 IGR044 OPEN, B 원문 아트 복원 후 새 후보/C2/C3/사용자 실제게임 재검 필요, RUNTIME_VALIDATION=UNTESTED. 기존 B331 생산과 다른 신규 확정 결함 검수 성과 1건만 가산, 동일 키 재시도0. **AI 1 이전 1569점 + 이번 +1점 = 누적 1570점**. RUN_KEY=OUTRUN-KOR-C332-C2-Q060-B331-LOST-ORANGE-ART-20261009-2050 |
 

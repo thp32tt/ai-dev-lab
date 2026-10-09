@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1542 | ACTIVE | 2026-10-09 10:18 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1250 | ACTIVE | 2026-10-09 10:18 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1250 | ACTIVE | 2026-10-09 10:30 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 10:30 | AI 2 | 1250 | +1 | 1251 | OutRun2006Tweaks DX11 CONVERSION-DX11-00470 신규 R165 네이티브 C++ 기능: NativeSurfaceMirror 동일 device/즉시 context/현재 generation 색상 표면 CPU staging readback 및 WARP indexed DrawIndexed 후 BGRA 경계 픽셀 검사, foreign/deferred/depth 거부. Material SHA [0ec96635096457b1043be8bf0c9c05398a94f731](https://github.com/thp32tt/OutRun2006Tweaks/commit/0ec96635096457b1043be8bf0c9c05398a94f731), exact-SHA Backend Conversion Gate [37869403303](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37869403303) SUCCESS, validate job 113623759337 SUCCESS 및 DX11 readiness smoke job 113625074670 SUCCESS (R165 GPU staging/readback 검사 통과). Artifact 11589753016 sha256:172451b85653e5323d4ff83e9d5cc7266ca37aee52eb04fb4072db6ad11eeab3. C0~C6 run/lane GitHub 완료 HEAD 278c88a9933e1103a18901aa41d1ac83d021c7ca, Issue14 6072335566/6072400147. Native gameplay Draw dormant, DXVK frozen, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 독립 실제 신규 성과 한 번만 가산. 이전 1250점 + 이번 +1점 = 누적 1251점. RUN_KEY=CONVERSION-DX11-00470 |
 
 | 2026-10-09 10:18 | AI 2 | 1249 | +1 | 1250 | OutRun2006Tweaks DX11 CONVERSION-DX11-00469 신규 R164 실질 C++ 소재: isolated WARP Indexed DrawIndexed 사전검증의 live OM RTV+DSV 완전 동일성 및 DSV 장치 소유권 fail-closed, DSV detach 거부/exact restore 허용 테스트. Material SHA [c091e8821e64aa4b0629ccdce303402144e0fe94](https://github.com/thp32tt/OutRun2006Tweaks/commit/c091e8821e64aa4b0629ccdce303402144e0fe94), exact-SHA Backend Conversion Gate [37868311768](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37868311768) Win32 validate 113620564741 SUCCESS 및 DX11 readiness smoke 113621607081 SUCCESS (R164 probe PASS), artifact 11589107295 sha256:f5a104698a6038cb6c85cb0559296130c9d1f532f6366ba7cc3f8d609ad0a696. C0-C6 Github run/lane sealed HEAD 3eef1eb1015a12e1e1025e2d83fa29f1c327c0cf; Issue #14 6072188910/6072272030. Game native Draw dormant, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. Rollover E002 ATTEMPT=1/3 불변, 중복 가산 없음. 신규 독립 성과 1회만 +1. **AI 2 이전 1249점 + 이번 +1점 = 누적 1250점**. RUN_KEY=CONVERSION-DX11-00469 |
 

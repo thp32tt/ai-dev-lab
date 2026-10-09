@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1603 | ACTIVE | 2026-10-10 05:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1603 | ACTIVE | 2026-10-10 05:42 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -36,7 +36,7 @@
 
 ## 변경 이력
 
-| 2026-10-10 05:45 | AI 1 | 1602 | +1 | 1603 | OutRun B343 EVEN P0 q060: C342 independently confirmed exact native 4096x2048 saved DDS English BEST TIME overlapping localized 최고 기록. First new materially different SOURCE-identified removal **trial DDS** SHA256 `8774e3993fc5a13f455f2c95ea5b358b2f75eae0634ab54bed137aeea819c9f6` generated via GitHub Actions 37987984654 SUCCESS, 19,243 original English/source-identical pixels cleared, 0 Korean pixels changed, 0 outside permitted ROI, exact DDS saved decode/raw mirror-y. Direct source/old/trial FLIPY native gray100, black50, RAW gray75 verified large English overlap removed but small navy flecks persist. **NOT promoted**: current candidate `d81d0d14...` unchanged, C342 REWORK/C3/IGR044/user-game OPEN, P1/P3 HOLD, RUNTIME_VALIDATION=UNTESTED. 12 preview PNG + masks + QA/queue/resume/progress/WORKLOG/STATUS committed; remote HEAD `14d4ec16a792051a0b3c64838dbc6f31e3a7851d` verified. One new material trial accomplishment +1; status recheck/worker commit/controller commit not separate. **AI 1 이전 1602점 + 이번 +1점 = 누적 1603점.** RUN_KEY=OUTRUN-KOR-B343-Q060-C342-ENGLISH-RESIDUE-NATIVE-TRIAL-20261010-0535 |
+| 2026-10-10 05:42 | AI 1 | 1602 | +1 | 1603 | OutRun B343 EVEN P0 q060: C342 independently confirmed exact native 4096x2048 saved DDS English BEST TIME overlapping localized 최고 기록. First new materially different SOURCE-identified removal **trial DDS** SHA256 `8774e3993fc5a13f455f2c95ea5b358b2f75eae0634ab54bed137aeea819c9f6` generated via GitHub Actions 37987984654 SUCCESS, 19,243 original English/source-identical pixels cleared, 0 Korean pixels changed, 0 outside permitted ROI, exact DDS saved decode/raw mirror-y. Direct source/old/trial FLIPY native gray100, black50, RAW gray75 verified large English overlap removed but small navy flecks persist. **NOT promoted**: current candidate `d81d0d14...` unchanged, C342 REWORK/C3/IGR044/user-game OPEN, P1/P3 HOLD, RUNTIME_VALIDATION=UNTESTED. 12 preview PNG + masks + QA/queue/resume/progress/WORKLOG/STATUS committed; remote HEAD `8d3761be7cd8917fdc0d7fa12e42cb4123ab578e` verified (timestamp metadata finalization). One new material trial accomplishment +1; status recheck/worker commit/controller commit not separate. **AI 1 이전 1602점 + 이번 +1점 = 누적 1603점.** RUN_KEY=OUTRUN-KOR-B343-Q060-C342-ENGLISH-RESIDUE-NATIVE-TRIAL-20261010-0535 |
 
 | 2026-10-10 05:24 | AI 1 | 1600 | +1 | 1601 | OutRun C341 C1 홀수 q193 현행 A208 Goal A 독립 원본 정본 DDS `d308bf05...` SHA와 producer CLEAN PNG `1da47a8e...`, 전/현 DDS `d90dada6...`→`9ea15d13...` 직접 SHA 검증 및 native 2048x1024 RGBA 전수 비교: 이전→현재 4,948 변경 픽셀 **원본 Goal A 박스 밖 0 RGBA/alpha**, CLEAN 해당 원문 alpha0, 현행 bbox [953,223,1075,265] 양의 여백 [3,40,2,3]. Source/CLEAN/OLD/FINAL 무손실 BGW 100/50과 영어/한글 전체 아틀라스 비교 PNG5 + machine/controller JSON2 실제 게시, commit `b2673b6a...`, queue/resume/progress/WORKLOG/STATUS 갱신 및 원격 HEAD `82954921cab913e3b198642a1e9895cec78d8e75` 재확인. 13영역 중 여전히 미수정 6개, 독립 블라인드 캘리브레이션/C3/실게임 미완 → C1=HOLD_STRICT_RECHECK, DDS0, IGR003/019/033 OPEN, RUNTIME_VALIDATION=UNTESTED. 이전 C1 작업의 동일 SHA/같은 후보 반복 완료 아님; q193 정본 source-CLEAN-current 신규 실제 검증 1회 성과. **이전 1600점 + 이번 +1점 = 누적 1601점**. RUN_KEY=OUTRUN-KOR-C341-C1-Q193-A208-EXACT-SOURCE-PILOT-20261010 |
 

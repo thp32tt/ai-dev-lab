@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1540 | ACTIVE | 2026-10-09 09:49 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1541 | ACTIVE | 2026-10-09 10:01 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1248 | ACTIVE | 2026-10-09 09:48 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 10:01 | AI 1 | 1540 | +1 | 1541 | OutRun C324 C1 ODD P0 q205 B303 **기존 B303 신규 DDS의 첫 독립 C1 소스 서체 결함 적발**. B303 후보 `fba4037f93f825a51834c306e8a4821791ce1ed72fc2f4304e74fd732a1891ae` GitHub 실제 4096x2048 RGBA32 mip1 저장 DDS 새 독립 SHA 검증, SOURCE/CLEAN PNG 원본 pin 및 RAW/readable decoded native/75/50 두 영역 **신규 무손실 PNG 14개**. OPTIONS/옵션·RANKINGS/랭킹 영문 원본은 매우 굵은 블록 산세리프, 후보 한글은 끝이 가늘고 뾰족한 NotoSerifCJK 계열로 일치하지 않는 **SOURCE_FAMILY_MISMATCH 확정 시각 FAIL**, 2/2 bbox/clean alpha0 PASS여도 현재 C `REWORK_REQUIRED`로 신규 반려. IGR-026/027 OPEN 유지, 별도 혼합 IGR028 미해결. QA machine/controller JSON, queue, in-game backlog 2건, resume/progress/WORKLOG/STATUS 총 22파일 GitHub HEAD `53b1f4e6be3d1ab98492c026967b30478be6f624` 원격 검증, N100 fallback 임시 작업 scratch 정리, 신규 DDS0·C3/APPROVAL/USER_GAME 미승인·RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 제외. B303 신규 생산 자체 +1과 다른 별도 독립 C1 발견 성과 단일 +1, 동일 TASK retry/재보고 0. **이전 1540점 + 이번 +1점 = 누적 1541점**. RUN_KEY=OUTRUN-KOR-C324-C1-Q205-B303-P0-ORIGINAL-STYLE-REJECT-20261009 |
 | 2026-10-09 09:49 | AI 1 | 1539 | +1 | 1540 | OutRun 한글화 B305 q201 P1 IGR-037 신규 실물 2048x2048 DDS 1개: source 영어 GOALS, 한국어 과소 음차 골→네이티브 목표. Native English SHA 6ac5ffd02c9162499f09f0b476176b56f0b144789f546ef34147d94e0a8451e5, prior a7a4ea10fead816cd5bc8fe4011f31b9b2c308f61ab2bdbf0de233bc557a03c8 → new d9b2a67baf772409da91c4a8c0d0b275f33f6d7a4546a6030b8065566f5ea5f8. Source-native clean verified, GOALS 원본 bbox 내 마진 5/95/5/5, 바깥 RGBA/alpha 변경 0, 나머지 16부위 및 원곡/스테이지 원본 보호 exact, BGRA header/RAW/mip1 saved DDS roundtrip exact; Github Actions 37866268182 SUCCESS, 18 lossless native·100/75/50·RAW source/clean/prior/final 비교. B 제작자 시각 scoped QA PASS, 독립 C1/C3/사용자 인게임 미완료, IGR037 OPEN, RUNTIME_VALIDATION=UNTESTED. QA GitHub `role_B/20261009-B305-Q201-IGR037-GOALS-NATIVE/B305_CONTROLLER_SELF_QA_FINAL.json`; 실제 저장소 HEAD `cd0fb594359b1b65b24aba6c9206dedc29b1de46` 원격 확인. 과거 B168 및 B304 실패 시험과 다른 **신규 생산 DDS 성과 1회**만 +1. **이전 1539점 + 이번 +1점 = 누적 1540점**. RUN_KEY=OUTRUN-KOR-B305-Q201-IGR037-GOALS-NATIVE-20261009-0940 |
 
 | 2026-10-09 09:48 | AI 2 | 1247 | +1 | 1248 | OutRun2006Tweaks DX11 CONVERSION-DX11-00467 R162 신규 실질 C++ 변경: WARP 오프스크린 Indexed DrawIndexed 사전검증에 R126 live RS/OM 출력상태 정확 동일성 재검증 추가, 뒤늦은 Viewport 제거·Scissor 범위 변경 fail-closed 및 복원 회귀 테스트. Material SHA [8e269997d75f62e89e28d3268db564627e19fa98](https://github.com/thp32tt/OutRun2006Tweaks/commit/8e269997d75f62e89e28d3268db564627e19fa98), exact-SHA Backend Conversion Gate [37865717290](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37865717290) Win32 validate 113612167849 및 DX11 readiness smoke 113613609273 모두 SUCCESS, artifact 11588441141 digest sha256:5c5a9111bdf0543a4890e79653e708fe3028b38981bc3b5fca0787a41770bc28. GitHub C0~C6 완료, DX11 C6 HEAD 9611da5d3ab2cef2950dd30de032600ea267a4fc, 롤오버 E002 ATTEMPT 1/3 불변. Native gameplay Draw dormant, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, DXVK 미변경. 새로운 한 성과만 +1, 동일 TASK_ID 재보고/롤오버 +0. **이전 1247점 + 이번 +1점 = 누적 1248점**. RUN_KEY=CONVERSION-DX11-00467 |

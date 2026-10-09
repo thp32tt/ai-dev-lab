@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1559 | ACTIVE | 2026-10-09 18:10 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1560 | ACTIVE | 2026-10-09 18:29 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1262 | ACTIVE | 2026-10-09 17:25 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 18:29 | AI 1 | 1559 | +1 | 1560 | OutRun C327 C2 EVEN **신규 B308 q212 / B323 q228 정확 현행 SHA 독립 시각 검수 2개 신규 반려 및 Git 상태 기록 성과**. q212 PROFESSIONAL→프로 source 638px 대비 후보120px (18.8%) 원본 타이틀 계층 과소, 새 후보 SHA256 `209f8358...` REWORK_REQUIRED; q228 Coast2Coast 새 후보 SHA256 `cab1ce08...` 13개 중 1개만 수정되어 C317 반려 원본 크롬 효과 결함 12개가 byte-identical하게 존속, whole asset REWORK_REQUIRED. GitHub 8개 파일 단일 commit `81b5d583d3decf67e5ed406c4b1ffd656883515b` push+원격 HEAD 검증, queue/INGAME_REWORK_BACKLOG/QA 2 JSON/resume/progress/WORKLOG/STATUS. IGR-029(SUSPECTED), IGR-038(EXACT) 실제 게임 FAIL OPEN, C3/APPROVAL/REAL_GAME 미승인, RUNTIME_VALIDATION=UNTESTED, 신규 DDS0. 같은 SHA 기존 B 제작 성과와 분리하며 본 C 검수 batch +1 한 번만 가산. **AI 1 이전 1559점 + 이번 +1점 = 누적 1560점**. RUN_KEY=OUTRUN-KOR-C327-C2-Q212-Q228-FRESH-VISUAL-20261009-1820 |
 
 | 2026-10-09 18:10 | AI 1 | 1558 | +1 | 1559 | OutRun A203 P0 IGR-043 **새 실제 localization runtime source attribution/overlap diagnostic**: q49 Rank for this stage와 별도 q44 Stage를 분리하고 opt-in KoreanHudLayoutTrace에 Hangul stage/rank 좌표·실제 화면상 bbox·runtime-vs-runtime 양의 면적 중첩 경고(96개 좌표 키/32개 pair 키 상한)를 새 구현. src/hooks_localization.cpp + q49 queue/IGR043 backlog/resume/progress/WORKLOG/STATUS + A203 QA JSON을 [원격 HEAD 3234d157](https://github.com/thp32tt/OutRun2006Tweaks/commit/3234d15722b4b9dcf92b8bbf30796db8e62238c5)로 commit/push/HEAD 확인. DDS 새 제작0, 임의 DDS 수정 없음, Win32 Build 실행 중, 새 게임 화면 증거·C/C3·사용자 인게임 승인 미완/IGR043 OPEN, RUNTIME_VALIDATION=UNTESTED. 이전 q49 C242나 q121 A202와 별도인 신규 source diagnosis instrumentation 1건 최초 가점; 재검사/기록은 중복 없음. **AI 1 이전 1558점 + 이번 +1점 = 누적 1559점**. RUN_KEY=OUTRUN-KOR-A203-IGR043-RUNTIME-TRACE-20261009-1810 |
 

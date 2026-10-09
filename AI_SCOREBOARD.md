@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1583 | ACTIVE | 2026-10-10 00:20 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1275 | ACTIVE | 2026-10-10 00:23 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1276 | ACTIVE | 2026-10-10 00:32 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 00:32 | AI 2 | 1275 | +1 | 1276 | OutRun Quest3 93%-GOAL 사용자 실기기 스크린샷(1388x780, 전경 대형 기록 1'05\"283, 후경 Stage/Palm Beach, 빨간 진행막대 93%)을 최종 완료 결과와 분리하고 기존 a6f8497 업로드 로그와 원본 DX9Ex exact result E8 경로 재검토. `src/hooks_uiscaling.cpp`에 결과 진행률 0x97BE4/0x97DEC 호출이 남긴 queue priority/호출수/게임상태를 기하급수적 제한으로 기록하는 실제 read-only telemetry 구현(실제 픽셀·타이머·렌즈/순위 세계좌표 변경 없음); `tools/verify_vr_visual_composition_p0.py`에 두 개의 독립 결함주입 회귀검증 추가 및 CI 37952168602 policy job 113893502499 P0 PASS, Domain Isolation 37952168618 SUCCESS. C++ game+host package CI 당시 진행 중 및 RUNTIME_VALIDATION=UNTESTED, 광학적 수정 완료 주장 없음. 스크린샷·수정범위 GitHub 문서 `docs/automation/reviews/DX9EX_HMD_FEEDBACK_20261009_2348_RANK_TIME_PERF_RESOLUTION.md` 기록. material commits `08ce6ad77c2f`, `72a0d674b9ac`, documents `a5622e0c2156`; 원격 검증 이후 신규 진단 기능 구현에 +1 단 1회. RUN_KEY=DX9EX-GOAL-PROGRESS-93-20261010 |
 
 | 2026-10-10 00:20 | AI 1 | 1582 | +1 | 1583 | OutRun C335 C1 ODD P0 q121 **신규 A202 정확 후보 대상으로 새 독립 시각 C 검수 근거 1건**: q121 car source/clean/final gray100/black50, 전체 RAW/FLIP-Y 비교, 원본·합성 범위 마스크 2종을 실제 열람하고 기존 C318 구 후보 판정을 재사용하지 않았다. 원문 대비 '차량을 선택하세요' 가독성/길이 개선 및 검토 범위의 명백한 박스/잘림 미발견, 그러나 생산자 제공 JPG/원본 마스크에 의존해 **독립 정확 DDS native alpha·source/CLEAN 픽셀 검증·블라인드 보정 및 source-typography 계측 누락을 확정하고 C1=HOLD_STRICT_RECHECK** (허위 PASS 방지). 신규 DDS 0, C3/APPROVAL/JPG/실게임 미승인, IGR-030/031/040 OPEN, RUNTIME_VALIDATION=UNTESTED. 새 report/asset_queue/resume/progress/WORKLOG/STATUS를 GitHub HEAD [4fa13396](https://github.com/thp32tt/OutRun2006Tweaks/commit/4fa13396cab02d11fc4a8c6d15df765af0e0874c)에 반영·검증. 로컬 일시 디렉터리 미생성, N100 미사용, VR/FFB/DX11/DXVK 변경 없음. **이전 1582점 + 이번 +1점 = 누적 1583점**. RUN_KEY=OUTRUN-KOR-C335-C1-Q121-A202-SCOPED-FIRSTLOOK-20261010-0020 |
 

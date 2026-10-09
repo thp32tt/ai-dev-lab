@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1543 | ACTIVE | 2026-10-09 10:38 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1544 | ACTIVE | 2026-10-09 10:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1252 | ACTIVE | 2026-10-09 10:46 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 10:50 | AI 1 | 1543 | +1 | 1544 | OutRun B307 C325에서 신규 독립 발견된 q212 EVEN 7개 저해상도 외형 REWORK 중 3개 SELECT STAR SIGN/별자리 선택, SELECT PHOTO/사진 선택, SELECT NATIONALITY/국적 선택 **신규 실물 DDS 1개 생산**. SOURCE f83f58483aab7a99ffe230c86eaa0527d9b7323be36808bdf69f2817e29c9f61, 이전 B299 efe1750f9cd9d20a147c96fdf20aa729667a93a9982e5d932e645ac2dfc3b089 -> 새로운 sha256 73e4ba0127c4fce7157da3463062aa165525ca1e43f48b8716a73df13d871914. 독립 C325 확인한 CLEAN/source exact 기준 native Black 회색 [63,71,74], 3/3 bbox 여백 >=5px, 9개 기존/보호 영역 픽셀 exact, 변경/alpha 외부0, DDS header/mip1/RAW/persisted decode exact. GitHub Actions [37871305365](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37871305365) SUCCESS, 54 BGW/100/75/50/RAW lossless 원본/CLEAN/기존/신규 PNG 및 컨트롤러 100/50/RAW 직접 scoped 시각 QA PASS. 첫 실행 37871117625는 C325 큐 `rework_7` triage 파싱 버그로 생산 전 중단, `rework_required` 정정 재실행 1회로 중복 성과 없음. q212 나머지 ID30/43/44/53 REWORK 유지, 사용자 IGR029 mapping SUSPECTED/OPEN, 새 C2/C3/승인/실게임 UNTESTED. queue/backlog/resume/progress/WORKLOG/STATUS 원격 HEAD `91a1b5c806b3a844fc4fc7b5f7d3cc05b19afb8e` 확인, VR/FFB/DX11/DXVK 변경 없음. 신규 생산 성과 1회만 +1. **이전 1543점 + 이번 +1점 = 누적 1544점**. RUN_KEY=OUTRUN-KOR-B307-Q212-C325-THREE-SELECT-NATIVE-20261009-1040 |
 
 | 2026-10-09 10:46 | AI 2 | 1251 | +1 | 1252 | OutRun2006Tweaks DX11 CONVERSION-DX11-00471 독립 신규 R166 WARP 실질 C++ 개발: NativeSurfaceMirror 색상 staging readback 시 동일 디바이스/즉시 context 및 live OM 슬롯0 RTV exact identity 필수 검증, 늦은 RTV detach·같은 규격 타 RTV substitution fail-closed와 정확 OM 복원 회귀 검사. Material SHA [23ebea86514f0740d045e350234f6ef51e7290da](https://github.com/thp32tt/OutRun2006Tweaks/commit/23ebea86514f0740d045e350234f6ef51e7290da), exact SHA Backend Conversion Gate [37870522643](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37870522643) SUCCESS, Win32 validate 113627307990 SUCCESS, DX11 readiness smoke 113628750454 SUCCESS (신규 WARP probe 실행 통과). Artifact 11590321860 sha256:c997544ed7b1f01f9c109e3e396c8520db891d767162d5cefce942aa9391a773. C0-C6 원격 상태 기록 최종 HEAD 1b239a13ba2d2a69dc9783b654bb6050d1cd972d, Issue #14 comments 6072463686/6072557270. E002 롤오버 ATTEMPT=1/3 불변, 이전 00470 재작업/재채점 없음, native gameplay Draw dormant, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 실제 신규 독립 성과 1회만 가산. **AI 2 이전 1251점 + 이번 +1점 = 누적 1252점**. RUN_KEY=CONVERSION-DX11-00471 |
 

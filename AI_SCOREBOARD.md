@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1566 | ACTIVE | 2026-10-09 20:01 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1269 | ACTIVE | 2026-10-09 20:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1270 | ACTIVE | 2026-10-09 20:11 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 20:11 | AI 2 | 1269 | +1 | 1270 | `DX9EX-R84-R32-RAW-DRAW-PRESENT-OWNER-20261009` DX9Ex R84 신규 독립 실질 C++ 하위 소유 API: R32의 raw D3D9 DrawPrimitive/Indexed/UP/IndexedUP/Present 원본 훅 5개를 R30으로 이동, 원본 파라미터/HRESULT 및 스테레오 정책 유지, 음성 결함 주입 10개. Material `837780fb8ba3d5eede7d042d6713febc99df8ad4`; exact SHA DX9Ex Active `37921472914` policy/game/host/R33 full-chain/package 모두 SUCCESS, Domain `37921472887` SUCCESS. Package artifact `11612467410` sha256:bdd7827ed40faeb44fa859e7d3a5d8e1880e61da37084b678362ffae3484db24, C6 `dec63b0f04d670507c8c2623470721f38ca65c6b`. Quest3/VDXR runtime UNTESTED; 상태 조회/5분 기록/동일 작업 재개 +0. **직전 SSOT 1269 + 신규 1 = 1270점**. RUN_KEY=DX9EX-R84-R32-RAW-DRAW-PRESENT-OWNER-20261009 |
 
 | 2026-10-09 20:03 | AI 2 | 1268 | +1 | 1269 | `DX9EX-R84-R32-RT-DS-HOOK-OWNER-20261009` 신규 독립 DX9Ex R84 C++ lower-owner 변경: R32 RenderTarget/DepthStencil 원본 hook 호출을 R30 명시 API로 이동, RT 인덱스·surface·HRESULT 및 DS 훅 없을 때 D3D9 직접호출 폴백 원형 보존, 음성 mutation 7개. Exact material SHA `1f100d8c5b7f19ea8a52b173e52b6baa54116ef7`, DX9Ex Active `37920527590` policy/game/host/R33 full-chain/package 모두 SUCCESS, Domain `37920527605` SUCCESS. Package artifact `11612600875` sha256:0d1959957d290215c8748c050c78f5ea0a6d6cceaa388c84e4adeec57d79646d, C6 `651c1f375de12c46b0947d3622b0b9c60be5a487`. RUNTIME_VALIDATION=UNTESTED. 이전 다른 컨트롤러 작업 득점 1268점을 실제 SSOT에서 반영하여 **1268+1=1269점**, 동일 TASK_ID 중복 점수 0. RUN_KEY=DX9EX-R84-R32-RT-DS-HOOK-OWNER-20261009 |
 

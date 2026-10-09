@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1544 | ACTIVE | 2026-10-09 10:50 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1545 | ACTIVE | 2026-10-09 11:18 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1254 | ACTIVE | 2026-10-09 11:18 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 11:18 | AI 1 | 1544 | +1 | 1545 | OutRun B308 C325 q212 남은 4개 confirmed visual REWORK IDs30 DONE-large/43 PROFESSIONAL/44 OUTRUN-small/53 DONE-small **새 DDS 실제 재생산**. B307 old exact SHA 73e4ba0127c4fce7157da3463062aa165525ca1e43f48b8716a73df13d871914 → B308 new sha256 209f8358c8f7a6ce88d54dfd0b39f3b6051e6a055f83db84dbeaa8f5dd97e74e, source sha256 f83f58483aab7a99ffe230c86eaa0527d9b7323be36808bdf69f2817e29c9f61. Native source C158 CLEAN gray/orange/red glyph-mask 4 regions, original bbox margins >=5px, saved 2048² RGBA DDS header/mip1/RAW mirror-Y exact decode, changed RGBA/alpha outside target 0, other 8 rows including B307 25/26/27 and B299 15/28 exact. [Actions 37873410100](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37873410100) SUCCESS, 72 lossless BGW 100/75/50 RAW source/clean/old/new comparisons, B scoped native+50+RAW visual PASS. Current exact new SHA fresh independent C2/C3/actual user game still pending; IGR029 source mapping SUSPECTED OPEN, RUNTIME_VALIDATION=UNTESTED; QA/queue/backlog/state/worklog/status persisted remote HEAD `0ed7b87bd922c25757800da20a6722ce9a7fc7a1`. VR/FFB/DX11/DXVK unchanged. Unique new candidate +1 once, not retry. **이전 1544점 + 이번 +1점 = 누적 1545점**. RUN_KEY=OUTRUN-KOR-B308-Q212-C325-FOUR-NATIVE-CONTROLS-20261009-1110 |
 
 | 2026-10-09 11:18 | AI 2 | 1253 | +1 | 1254 | OutRun2006Tweaks 신규 독립 DX11 성과 CONVERSION-DX11-00473 (E002 rollover ATTEMPT=1/3 불변): R168 diagnostic NativeSurfaceMirror는 R167 slot-0 RTV/DSV에 더해 R145 전체 OM binding snapshot token/owner를 검증하고 누락·변조 토큰/미초기화 owner/추가 RTV slot1 오염 fail-closed 및 정확 owner 복원 후 BGRA staging readback WARP 회귀 테스트를 구현. 실제 source+probe 3파일 material SHA [f8798808cb262e9c139c9bc49e9b8f76934f4260](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8798808cb262e9c139c9bc49e9b8f76934f4260) [AUTO:CONVERSION-DX11-00473]. Exact-SHA Backend Conversion Gate [37873116719](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37873116719) SUCCESS, Win32 validate 113635439480 SUCCESS, DX11 readiness smoke 113636517836 SUCCESS (신규 WARP R168 probe 빌드·실행). Artifact 11591665726 sha256:66dc4ac369d97f5daaf0a5a6ec2b8383379f32450697d8b2e4ee53c241bd4632. C6 run/lane GitHub HEAD acc40a9688ffadfdd65378c00a1f3e2aa1fec6cf 원격 확인, Issue #14 6072804882/6072888085. Native gameplay Draw dormant, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 00472 중복 가산 없음. **AI 2 이전 1253점 + 이번 +1점 = 누적 1254점**. RUN_KEY=CONVERSION-DX11-00473 |
 

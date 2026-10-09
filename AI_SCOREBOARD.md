@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1551 | ACTIVE | 2026-10-09 14:44 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1552 | ACTIVE | 2026-10-09 15:21 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1258 | ACTIVE | 2026-10-09 15:19 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 15:21 | AI 1 | 1551 | +1 | 1552 | OutRun B321 P0 IGR-042 unindexed runtime HUD source-attribution real code: `src/hooks_localization.cpp` opt-in bounded `KoreanHudLayoutTrace` captures Korean 하트/시간 text IDs, stock position, logical font size, screen pixel bounds, compact keyline decision; defaults disabled via `OutRun2006Tweaks.ini` (source `c1e591740a892b70c4b5506371480b8d444f561b`, config `bbb586328bcbed6d4a0ba5124510435038cf5554`). Exact Win32 Release Actions [37892438103](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892438103) SUCCESS and Korean Test Build [37892438028](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892438028) SUCCESS. QA/IGR backlog/resume/progress/WORKLOG/STATUS committed to [OutRun HEAD b0c874f4](https://github.com/thp32tt/OutRun2006Tweaks/commit/b0c874f40091dbf9f2f99a2c85578c0783962a37) verified; no new DDS, no claimed runtime visual fix, pending exact gameplay HUD screenshot/log, IGR042 OPEN_USER_INGAME_FAIL, RUNTIME_VALIDATION=UNTESTED. Unique actual code+build diagnostic mapping accomplishment; no repeat B320. **이전 1551점 + 이번 +1점 = 누적 1552점**. RUN_KEY=OUTRUN-KOR-B321-IGR042-RUNTIME-HUD-LAYOUT-PROBE-20261009 |
 
 | 2026-10-09 15:19 | AI 2 | 1257 | +1 | 1258 | DX9Ex R84 independent R32 frame-pose getter owner seam DX9EX-R84-R32-POSE-SEQ-OWNER-20261009. Material cf7e41af29b3a344360e39161e3485cc705b2e68, verifier corrected SHA 52252466307813913bacc5ba208b6205651da81b; exact CI [37892353101](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892353101) policy/game/host/R33-full-chain/package SUCCESS, [Domain 37892353086](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892353086) SUCCESS, artifact 11599171847 digest sha256:9eb3d1e818950dd88c658780c8925548977408f603e47a59ae22eac90db5120a. Durable run commit 6eb8118cd39683b511d72d7a3d8dd6ef99197f9d; initial failed regex CI not separately counted. User HMD UNTESTED, R84 overall open. Previously 1257 +1 = 1258. Retry/checkpoint +0, once per TASK. |
 | 2026-10-09 14:50 | AI 2 | 1256 | +1 | 1257 | New unique DX9Ex R84 owner seam DX9EX-R84-R32-TRACKED-SURFACES-20261009: C++ material 11b71a236af4b0112900061d7130875c4ae6d1e1, DX9Ex Active 37889666629 policy/game/host/R33 full-chain/package SUCCESS, Domain 37889666717 SUCCESS; artifact 11597627361 digest sha256:fe453efb6402db8a2dee63989f682d20023e7e42120e4439fa6f5558137fa216, C6 record commit 810ff0451ce78d03bdfea62b38dc8d109208acaa, HMD UNTESTED. Same TASK score once; queue/5m checkpoints excluded. 1256 + 1 = 1257. |

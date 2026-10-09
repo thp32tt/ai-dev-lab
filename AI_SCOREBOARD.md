@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1572 | ACTIVE | 2026-10-09 21:26 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1573 | ACTIVE | 2026-10-09 21:40 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1271 | ACTIVE | 2026-10-09 21:15 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 21:40 | AI 1 | 1572 | +1 | 1573 | 사용자 요청 OutRun 생산계획 실제 개편: 계열 대표 1개 선검증·고정 레시피·PLATE/LETTERING/저장 DDS 분리·동일방법 재시도 제한. 원본 보호영역과 이전본 수정범위를 각각 계산하는 production_pixel_guard 및 CPU 게시전 차단/직접 push CI 연결. 로컬 43 tests PASS; C332/B331 기록의 보호 아트 8892픽셀 손실 재현 검출. material fd6917965e2493586e4cdeeb6c067fe42ce85e4a, guard CI 37931061154 SUCCESS, triage CI 37931060998 SUCCESS. 기존 no-job grep 실패를 수정한 f7bf2790eb43162bae3ebf3b656dcc888821ba69에서 worker CI 37931342189 SUCCESS; 증거 HEAD 5f578bce38b15cb1fb4170df14ea787c762bbefc. 신규 DDS/자산승인/실게임 검증 0, RUNTIME_VALIDATION=UNTESTED. 정책+실행검사 한 성과만 가산, CI 수정/재시도/증거커밋은 추가0. AI 1 이전 1572점 + 이번 +1점 = 누적 1573점. RUN_KEY=OUTRUN-KOR-PRODUCTION-RESET-20261009-2123 |
+
 
 | 2026-10-09 21:26 | AI 1 | 1571 | +1 | 1572 | OutRun B332R EVEN q060 P0 IGR044 새로운 4096×2048 RGBA32 DDS **1개 실제 제작·승격**. 독립 C332가 확정한 C2 PROTECTED_ART_LOSS (금색 제목 아래 원본 오렌지 BEST TIME 소실) 수정: 원문 8892 픽셀 RGBA 100% 원본복원, 보호 마스크 12px 확대 내부 차이0, 바깥 아틀라스 변경0. 기존 B331 후보 SHA256 3480bef0...→ B332R 최종 SHA256 **d81d0d144f2c4b8192021f9e0b49c7ad44f753da68d6f5dd66f18fe907d06b01**, Git blob e1e0f27a621762dd69086fc4b0e97f6a2ddcda6f. 이전 영어 남색 상단 잔상 제거 범위 확장, 한글 [2133,235,2807,332]로 원문-family italic 재배치, 원본 골드와 오렌지 FLIPY/RAW 검정·회색·흰색/100·75·50 lossless 18종 생성, B 생산자 직접 실물 비교. Actions 37929215714 성공; 초도 B332 유효 후보 자동생성도 같은 단일 성과에 합산(+0 중복), git q060 queue/IGR/backlog/QA/progress/resume/WORKLOG/STATUS 원격 HEAD 162320cc992c852e20363e22607dcff7a11f958f 검증. 독립 C2/C3 미실시, 실제 게임 IGR044 OPEN, RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 미작업, N100 초경량 원본 비교 PNG 조회만 사용. **이전 1571점 + 이번 +1점 = 누적 1572점**. RUN_KEY=OUTRUN-KOR-B332-Q060-C332-ORANGE-PROTECTED-ART-20261009-2110 |
 

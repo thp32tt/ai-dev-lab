@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1573 | ACTIVE | 2026-10-09 21:40 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1271 | ACTIVE | 2026-10-09 21:15 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1272 | ACTIVE | 2026-10-09 21:50 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 21:50 | AI 2 | 1271 | +1 | 1272 | `DX9EX-HUD-NIGHT-GOAL-TRACE-AND-PACKAGE-20261009` 실제 HUD 테스트 진단 및 Windows 배포 기능 개발: R30 GOAL/TIMEUP/LINK_TIMEUP 세 화면 상태 전환마다 Shader/XYZRHW/FVF142와 조기 스테레오 게이트의 원본 출처 검증 로깅 재무장(기존 게임 프로세스 1회 이후 누락 결함 개선), HUD_SCREEN/MENU/WORLD 프로필 패키지 매니페스트·동봉 안내서·ZIP 자체 검사 보완, 음성 결함 주입 4건. 최종 material SHA `94b4984aab299bec0e0876dfc15b95599ca4d5b3`, 정확 SHA DX9Ex Active `37931813668` policy/Win32 game/x64 host/R33 full-chain/package 전부 SUCCESS, EXE HUD Inspector `37931813626` SUCCESS, Domain `37931813756` SUCCESS, Full Source Impact `37931813766` SUCCESS. Package artifact `11617186671` sha256:daf30705449017b19f0040bd75ca8acfdca4d14499adfe8550db4ca17cf69975, C6 `e79ecc1bf3d4763e946b748d6f17290786cd68f6`; 패키지 내부 ZIP sha256:47f32e204bcafd0f7c5d7103e866f0d6ff76113d30faa956f3f44dac1f56ed66. **광학 GOAL/+TIME/lens 화면오류는 실기기 확인 전 미해결·UNTESTED**, CI는 source/build proof only. 앞선 동일 TASK_ID verifier 복구·재실행, 체크포인트와 패키지 다운로드는 +0. **AI 2 이전 1271점 + 신규 1점 = 누적 1272점**. RUN_KEY=DX9EX-HUD-NIGHT-GOAL-TRACE-AND-PACKAGE-20261009 |
 
 | 2026-10-09 21:40 | AI 1 | 1572 | +1 | 1573 | 사용자 요청 OutRun 생산계획 실제 개편: 계열 대표 1개 선검증·고정 레시피·PLATE/LETTERING/저장 DDS 분리·동일방법 재시도 제한. 원본 보호영역과 이전본 수정범위를 각각 계산하는 production_pixel_guard 및 CPU 게시전 차단/직접 push CI 연결. 로컬 43 tests PASS; C332/B331 기록의 보호 아트 8892픽셀 손실 재현 검출. material fd6917965e2493586e4cdeeb6c067fe42ce85e4a, guard CI 37931061154 SUCCESS, triage CI 37931060998 SUCCESS. 기존 no-job grep 실패를 수정한 f7bf2790eb43162bae3ebf3b656dcc888821ba69에서 worker CI 37931342189 SUCCESS; 증거 HEAD 5f578bce38b15cb1fb4170df14ea787c762bbefc. 신규 DDS/자산승인/실게임 검증 0, RUNTIME_VALIDATION=UNTESTED. 정책+실행검사 한 성과만 가산, CI 수정/재시도/증거커밋은 추가0. AI 1 이전 1572점 + 이번 +1점 = 누적 1573점. RUN_KEY=OUTRUN-KOR-PRODUCTION-RESET-20261009-2123 |
 

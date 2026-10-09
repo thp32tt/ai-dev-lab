@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1609 | ACTIVE | 2026-10-10 08:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1265 | ACTIVE | 2026-10-10 (사용자 지정 -20점 반영) |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1165 | ACTIVE | 2026-10-10 (사용자 지정 -100점 추가 반영) |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 | AI 2 | 1265 | -100 | 1165 | 사용자 직접 지정 감점: 30분 동안 DX9Ex VR 구조 최적화 P1-1~P1-5를 실질적으로 모두 마쳐야 했으나 HookManager 일부 수정과 검증 보고로 종료함. 이전 -20점과 별도 추가 감점이며 한 번만 적용. RUN_KEY=USER-VR-P1-INCOMPLETE-PENALTY-100-20261010 |
 
 | 2026-10-10 08:33 | AI 1 | 1608 | +1 | 1609 | OutRun C348 C2 EVEN q214 BF229CF4 신규 독립 exact persisted BC3 검수. SHA 검증한 현재 공식 DDS `ace42cb3d539...`와 서로 다른 B339 신규 시험 DDS `d273a208d521...`를 2048×2048 RAW/FLIPY 100/75/50/400% 무손실 직접 검증. 저장 RGB 변화 1,821픽셀, 원본 지시 2 bbox 밖0, **전 아틀라스 알파 변화0** 및 START/GOAL 두 opaque panel 원래/시험 전부 alpha255 → 기존 B339 `alpha core coverage=1.0`가 문자 가독성 QA 지표로 무효인 신규 원인 규명. GOAL 골 획 50%에서 막대처럼 뭉개진 visual FAIL, B339 시험본 C2 반려·기존 C289/정식 REWORK 유지, METHOD_CHANGE_REQUIRED. NEW 10 PNG + 독립 기계2 JSON+QA JSON, queue/resume/progress/WORKLOG 지정 브랜치 commit [e33d71b7](https://github.com/thp32tt/OutRun2006Tweaks/commit/e33d71b7f31115f542c3f12598480512e3ac67bd) 원격 HEAD 검증. 새 정식 DDS0, 정확 영문 SOURCE/CLEAN 독립 인증·blind family/C3/APPROVAL/사용자 실기 UNTESTED, 홀수 C1 및 VR/FFB/DX11/DXVK 변경 없음. 다른 C2 공식 SHA 과거 반려 반복 PASS가 아닌 **새 시험 DDS의 독립 실측·잘못된 알파 QA 지표 검출 1건**만 +1, 동일 RUN_KEY 재실행 추가점 없음. AI 1 이전 1608 + 이번 +1 = 누적 1609. RUN_KEY=OUTRUN-KOR-C348-C2-Q214-B339-OPAQUE-ALPHA-20261010-0820 |
 

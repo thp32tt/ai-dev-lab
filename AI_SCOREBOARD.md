@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1558 | ACTIVE | 2026-10-09 18:00 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1559 | ACTIVE | "+"2026-10-09 18:10 KST"+" |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1262 | ACTIVE | 2026-10-09 17:25 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 18:10 | AI 1 | 1558 | +1 | 1559 | OutRun A203 P0 IGR-043 **새 실제 localization runtime source attribution/overlap diagnostic**: q49 Rank for this stage와 별도 q44 Stage를 분리하고 opt-in KoreanHudLayoutTrace에 Hangul stage/rank 좌표·실제 화면상 bbox·runtime-vs-runtime 양의 면적 중첩 경고(96개 좌표 키/32개 pair 키 상한)를 새 구현. src/hooks_localization.cpp + q49 queue/IGR043 backlog/resume/progress/WORKLOG/STATUS + A203 QA JSON을 [원격 HEAD 3234d157](https://github.com/thp32tt/OutRun2006Tweaks/commit/3234d15722b4b9dcf92b8bbf30796db8e62238c5)로 commit/push/HEAD 확인. DDS 새 제작0, 임의 DDS 수정 없음, Win32 Build 실행 중, 새 게임 화면 증거·C/C3·사용자 인게임 승인 미완/IGR043 OPEN, RUNTIME_VALIDATION=UNTESTED. 이전 q49 C242나 q121 A202와 별도인 신규 source diagnosis instrumentation 1건 최초 가점; 재검사/기록은 중복 없음. **AI 1 이전 1558점 + 이번 +1점 = 누적 1559점**. RUN_KEY=OUTRUN-KOR-A203-IGR043-RUNTIME-TRACE-20261009-1810 |
 
 | 2026-10-09 18:00 | AI 1 | 1557 | +1 | 1558 | OutRun C326 C2 EVEN q060 P0 IGR-044, 새 B313 승격 DDS SHA256 `be8afff998310126cf681d302e07a50faae076be0b3dc2ffb41a951c373b72e0`의 **신규 독립 네이티브/50%/RAW 시각 결함 확정**. 영문 OUTRUN MILES 강한 오른쪽 레이싱 이탤릭 대비 B313 한글은 상대적으로 정자체/폭 넓은 블록 획으로 원본 계열 일치 실패. C2 REWORK_REQUIRED 실제 전환, IGR-044 인게임 FAIL OPEN 유지, 새 C QA JSON+queue/backlog/resume/progress/WORKLOG/STATUS GitHub push `83338e67eb74f6e13eab8c0ee6433d576d999981`, CSV 정합성 후속 fix `f07ee8a4a025645ca0ee2d7bcfbf38d0dac88304` 원격 HEAD 확인. C3/APPROVAL/USER GAME 미통과, RUNTIME_VALIDATION=UNTESTED, DDS 신규 생산0. 본 신규 B313 SHA 시각 검수 1회만 +1, 이전 B313 제작 또는 다른 C315 검사와 중복 아님. **AI 1 이전 1557점 + 이번 +1점 = 누적 1558점**. RUN_KEY=OUTRUN-KOR-C326-C2-Q060-B313-SOURCE-FAMILY-20261009-1750 |
 

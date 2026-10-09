@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1608 | ACTIVE | 2026-10-10 07:28 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1285 | ACTIVE | 2026-10-10 07:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1265 | ACTIVE | 2026-10-10 (사용자 지정 -20점 반영) |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 | AI 2 | 1285 | -20 | 1265 | 사용자 직접 지정 감점: 완료된 FFB v0.2의 DX9Ex VR 통합 개발을 요청받았으나 실질 구현 대신 검증·설명 위주로 반복한 작업에 대한 -20점. 이 감점은 한 번만 적용하며 AI 1 점수는 변경하지 않음. RUN_KEY=USER-FFB-VR-INTEGRATION-PENALTY-20-20261010 |
 
 | 2026-10-10 07:28 | AI 1 | 1607 | +1 | 1608 | OutRun C347 C2 EVEN q060 새 B343 미승격 시험 DDS `8774e3993f...`를 현재 공식 `d81d0d144...`, 정본 원문 `6a33c7307e...`와 **세 개 실제 4096×2048 RGBA32 원본 SHA-256 확인 및 독립 네이티브 픽셀/시각 QA**. 공식 BEST TIME 원문 겹침 확인, trial 정확 19,243 RGBA 픽셀만 bounded alpha0 제거/박스 밖0, 영문 face 정본과 동일한 가시 픽셀 17,039→84 개 별도 계측. 현재 trial 작은 검붉은 source-outline 찌꺼기 첫손 검수로 **INCOMPLETE_CLEAN_PLATE FAIL**, 새 5 무손실 PNG/기계 JSON 2/독립 C2 기록 및 queue/resume/progress/WORKLOG GitHub commit [85d268b7](https://github.com/thp32tt/OutRun2006Tweaks/commit/85d268b72f7c925782ad14475d43497cf793ddc4) 원격 HEAD 검증. **기존 공식 DDS 및 C342 REWORK 유지**, trial 승격0, C/C3/승인·IGR044 사용자 실기 UNTESTED; C1 홀수/VR/FFB/DX11/DXVK 비접촉. 기존 C342 공식 SHA 중복 PASS가 아니라 **B343 새 별도 시험 바이트 독립 3자 소스 실증·신규 84픽셀 경계/시각 결함 기록** 한 번만 +1, 재검수 +0. **AI 점수: 이전 1607점 + 이번 +1점 = 누적 1608점**. RUN_KEY=OUTRUN-KOR-C347-C2-Q060-B343-INDEPENDENT-SOURCE-GHOST-20261010-0720 |
 

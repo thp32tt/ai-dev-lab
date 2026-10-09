@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1562 | ACTIVE | 2026-10-09 19:04 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1264 | ACTIVE | 2026-10-09 19:02 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1265 | ACTIVE | 2026-10-09 19:10 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:10 | AI 2 | 1264 | +1 | 1265 | `DX9EX-R84-R32-LEFT-DEPTH-STENCIL-ELIGIBILITY-20261009` DX9Ex R84 새 독립 C++ 실질 구현: R32 left Depth/Stencil write eligibility를 각 원래 lower predicate 유지한 채 R30 경계 API로 분리, 조건 상수화/순서 교환/R32 우회 음성 검증 5개 추가. Material SHA `e4591e47d94cb1d15e2f8dc59892f90041868330`; 정확 SHA DX9Ex Active `37915228266` 정책·Win32 game·x64 host·R33 full-chain·패키지 전부 SUCCESS, Domain `37915228205` SUCCESS. Art `11609298076` sha256:770907980be079fadd0fa83345902ab921c2bdc48ace858c492e336a91dcfaaa, C6 `7e2c84dd7d24c79bb7ba85a6208d578b949e2514`; HMD `RUNTIME_VALIDATION=UNTESTED`. 동일 TASK_ID 반복/5분 체크포인트/CI 재보고는 +0. **이전 1264점 + 이번 +1점 = 누적 1265점**. RUN_KEY=DX9EX-R84-R32-LEFT-DEPTH-STENCIL-ELIGIBILITY-20261009 |
 
 | 2026-10-09 19:04 | AI 1 | 1561 | +1 | 1562 | OutRun C328 C2 EVEN q098 B327R newly promoted exact DXT5 sha256 `472392829d96cc1dc6ed980d942c56df883758f2777490ac6e7f6dafb5f86028` **fresh independent saved-DDS full-frame READABLE and RAW visual hard failure discovered**: cropped producer QA PASS but original English `Cl` and `ord.` remain along the edges of Korean. SOURCE_RESIDUE_UNDER_KOREAN numeric false-negative; `REWORK_REQUIRED` transition, exact SHA/hash/header proof, C QA JSON, asset_queue/resume/progress/WORKLOG/STATUS GitHub published; remote HEAD `f2f878b6bcf41e73ce7e4772bbc38fc70ae150d7` verified. C3/approval/user-game still blocked; RUNTIME_VALIDATION=UNTESTED, no DDS generated, no VR/FFB/DX11/DXVK. One genuine new QA defect and state repair achievement +1 only; push retries/commit count scored 0 extra. **AI 1 이전 1561점 + 이번 +1점 = 누적 1562점**. RUN_KEY=OUTRUN-KOR-C328-C2-Q098-B327R-PERSISTED-ENGLISH-RESIDUE-20261009-1850 |
 

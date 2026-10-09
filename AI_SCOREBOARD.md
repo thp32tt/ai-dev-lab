@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1560 | ACTIVE | 2026-10-09 18:29 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1561 | ACTIVE | 2026-10-09 18:43 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1263 | ACTIVE | 2026-10-09 18:35 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 18:43 | AI 1 | 1560 | +1 | 1561 | OutRun 한글화 A204 q175 IGR-032 신규 **OFL Orbit 한국어 3개 글꼴형 source-derived chrome 재구성 trial + 네이티브 100/75/50 원본·CLEAN·과거·신규 9종 비교 및 RAW 증거** 실제 산출/QA. [GitHub CPU worker 37912323889](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37912323889) SUCCESS, q175 source exact SHA 93143725..., old DDS b9f60b... 유지; 3/3 original bbox/positive margin 및 source/clean/trial outside RGBA·alpha 모두 0이나 controller first-hand visual에서 **angular detached Hangul vs English rounded connected chrome**, source title hierarchy width underfill 명확해 3개 모두 **PRODUCER VISUAL FAIL, 후보 DDS 승격 차단 0개**. 최초 source-conditioned alternate method 실제 GPU/CPU visual QA failure evidence and manual-vector followup established; queue/backlog/resume/progress/WORKLOG/STATUS + QA JSON [GitHub HEAD 71069fd6](https://github.com/thp32tt/OutRun2006Tweaks/commit/71069fd6c2e5984601630903991d50348cdfadaf) push/검증. q175 REWORK_REQUIRED, IGR032 OPEN, C/C3/USER_GAME/RUNTIME_VALIDATION=UNTESTED. 이전 A188 실패반복 또는 C286 검사 결과를 다시 점수화하지 않고 이 새 재구성 method trial + independent producer reject 한 성과만 1회 인정; 앞선 A203 C++ 구문 교정은 동일 작업 재검증으로 별도 점수 없음. **AI 1 이전 1560점 + 이번 +1점 = 누적 1561점**. RUN_KEY=OUTRUN-KOR-A204-Q175-GEOMETRIC-CHROME-PRODUCER-REJECT-20261009 |
+
 
 | 2026-10-09 18:35 | AI 2 | 1262 | +1 | 1263 | OutRun DX9Ex R84 단일 신규 실제 C++ 경계 성과 `DX9EX-R84-R32-R9-DEPTH-WRITE-OWNER-20261009`: R32의 R9 main-depth content write 직접 호출을 R30 소유 API로 옮기되 원래 R9 알림 부작용을 보존; 음성 변형 정적 검증 2종 보강 및 구형 검증기 수정. Material/result SHA `81e4146956f730033f5a7a4f49577ec7ff37b50a`; 정확 SHA DX9Ex Active `37911539598` 정책·Win32 game·x64 host·full-chain·package 전부 SUCCESS, Domain Isolation `37911539688` SUCCESS; 패키지 artifact `11607331145` sha256:5b62b2aaafb6b616e693d5f663d9fc09b2ffe677a4b5b5bc11a5429d849d5cc0. C6 GitHub `05fcfcc29ed275743df53e22684de13e0abc8dc2`; Quest3 HMD 미검증 `RUNTIME_VALIDATION=UNTESTED`. 선행 R9 right-sync `77e8a45e` C6 복구는 과거 성과 재보고이므로 +0, 이 작업 첫 실패·재시도·재검증 및 리뷰 체크포인트는 추가 점수 없음. **이전 1262점 + 이번 +1점 = 누적 1263점**. RUN_KEY=DX9EX-R84-R32-R9-DEPTH-WRITE-OWNER-20261009 |
 

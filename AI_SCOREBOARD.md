@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1552 | ACTIVE | 2026-10-09 15:21 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1259 | ACTIVE | 2026-10-09 15:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1260 | ACTIVE | 2026-10-09 15:34 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 15:34 | AI 2 | 1259 | +1 | 1260 | Unique DX9Ex R84 R32/R9 main-depth generation+tracked stencil R30 owner read-only facade DX9EX-R84-R32-R9-DEPTH-READ-OWNER-20261009, source/validation SHA 4074cab65b99a8712946b1956504565d8a24bb0c, three deliberate negative regression mutations. Exact [DX9Ex Active #37893718755](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37893718755) policy, Win32 game, x64 host, R33 full-chain and package SUCCESS; [Domain #37893718738](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37893718738) SUCCESS; artifact 11598894677 sha256:d47de70b6d232f7e2ccf0d78ab199079229fe0eeb146eba91af63789ce02cdf1; durable C6 commit 23a7555e5442d98c68d769ed97943b776edcea25. No HMD result, R84 CMake still incomplete. 1259 +1 = 1260. Same task retry/log not scored. |
 | 2026-10-09 15:27 | AI 2 | 1258 | +1 | 1259 | Independent DX9Ex R84 R32/R29 stereo/effect owner split DX9EX-R84-R32-R29-EFFECT-OWNER-20261009: new R30 public APIs preserve stereo readiness, bool& fragile effect classification and once-per-two-eye telemetry; 4 negative mutation tests; source/validation-bearing SHA 7a994353ffcc02f0cc5ff083f2cbed777337e89c. Exact DX9Ex Active [37893034464](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37893034464) policy Win32 game host R33 full-chain package all SUCCESS and Domain [37893034433](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37893034433) SUCCESS, artifact 11599581925 sha256:3963bec4725bcf8715d01d842a1cdadebae63b52c93c7e3bcf6ea428283a1b44. C6 record commit 51ba04b1a0bced7159cf463e9376645826f24c77. HMD=UNTESTED, R84 CMake split not done, retry/status +0; prior 1258 +1 => 1259. |
 | 2026-10-09 15:21 | AI 1 | 1551 | +1 | 1552 | OutRun B321 P0 IGR-042 unindexed runtime HUD source-attribution real code: `src/hooks_localization.cpp` opt-in bounded `KoreanHudLayoutTrace` captures Korean 하트/시간 text IDs, stock position, logical font size, screen pixel bounds, compact keyline decision; defaults disabled via `OutRun2006Tweaks.ini` (source `c1e591740a892b70c4b5506371480b8d444f561b`, config `bbb586328bcbed6d4a0ba5124510435038cf5554`). Exact Win32 Release Actions [37892438103](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892438103) SUCCESS and Korean Test Build [37892438028](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37892438028) SUCCESS. QA/IGR backlog/resume/progress/WORKLOG/STATUS committed to [OutRun HEAD b0c874f4](https://github.com/thp32tt/OutRun2006Tweaks/commit/b0c874f40091dbf9f2f99a2c85578c0783962a37) verified; no new DDS, no claimed runtime visual fix, pending exact gameplay HUD screenshot/log, IGR042 OPEN_USER_INGAME_FAIL, RUNTIME_VALIDATION=UNTESTED. Unique actual code+build diagnostic mapping accomplishment; no repeat B320. **이전 1551점 + 이번 +1점 = 누적 1552점**. RUN_KEY=OUTRUN-KOR-B321-IGR042-RUNTIME-HUD-LAYOUT-PROBE-20261009 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1539 | ACTIVE | 2026-10-09 09:32 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1247 | ACTIVE | 2026-10-09 09:31 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1248 | ACTIVE | 2026-10-09 09:48 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 09:48 | AI 2 | 1247 | +1 | 1248 | OutRun2006Tweaks DX11 CONVERSION-DX11-00467 R162 신규 실질 C++ 변경: WARP 오프스크린 Indexed DrawIndexed 사전검증에 R126 live RS/OM 출력상태 정확 동일성 재검증 추가, 뒤늦은 Viewport 제거·Scissor 범위 변경 fail-closed 및 복원 회귀 테스트. Material SHA [8e269997d75f62e89e28d3268db564627e19fa98](https://github.com/thp32tt/OutRun2006Tweaks/commit/8e269997d75f62e89e28d3268db564627e19fa98), exact-SHA Backend Conversion Gate [37865717290](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37865717290) Win32 validate 113612167849 및 DX11 readiness smoke 113613609273 모두 SUCCESS, artifact 11588441141 digest sha256:5c5a9111bdf0543a4890e79653e708fe3028b38981bc3b5fca0787a41770bc28. GitHub C0~C6 완료, DX11 C6 HEAD 9611da5d3ab2cef2950dd30de032600ea267a4fc, 롤오버 E002 ATTEMPT 1/3 불변. Native gameplay Draw dormant, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, DXVK 미변경. 새로운 한 성과만 +1, 동일 TASK_ID 재보고/롤오버 +0. **이전 1247점 + 이번 +1점 = 누적 1248점**. RUN_KEY=CONVERSION-DX11-00467 |
 
 | 2026-10-09 09:32 | AI 1 | 1538 | +1 | 1539 | OutRun 한글화 C323 C2 EVEN q154 B298 **신규 저장 DDS 독립 픽셀 증거**: GitHub 실물 native 4096x1024 RGBA32 DDS SHA256 `c4d6c1515716476123b69dfb645dcc27a3cc7a69f31a1368a831004a0b40d524` N100 MCP fallback으로 내려받아 실제 SHA/header/mip/RAW 거울Y 검증, 좁은 ROI 3개 실제 DDS 디코드로 독립 native RAW/FLIPY/50% **신규 무손실 PNG 9개**와 측정 QA 생성·GitHub 게시. SINGLE PLAYER 실제 xleft1611 vs B298 리포트 xleft1612의 1픽셀 정밀도 차이 발견; 소스 xleft1610 안 1px margin이라 재작업 결함은 아님. 3/3 원문 bbox 포함, 시각적으로 이전 가는 획 개선 확인. 정확 영문 DDS 독립 SOURCE/CLEAN+전체 8셀·빨강 보호·블라인드 교정 C3 부족하므로 `HOLD_STRICT_RECHECK`, 현재 C PASS/APPROVAL/사용자 인게임 승인 아님. 큐/QA/진행/WORKLOG/STATUS 및 새 9 PNG 합계 16파일 GitHub 원격 HEAD `5d69f37e706c25c03d0e9aea3c267135bd4c0603` 검증, 새 DDS0, RUNTIME_VALIDATION=UNTESTED. N100 scratch 검증 후 정리, VR/FFB/DX11/DXVK 미변경. 이전 B298 새 DDS 생산이나 이전 C322 q236과 다른 독립 성과 1회만 +1. **이전 1538점 + 이번 +1점 = 누적 1539점**. RUN_KEY=OUTRUN-KOR-C323-C2-Q154-B298-PERSISTED-THREE-NATIVE-20261009-0920 |
 | 2026-10-09 09:31 | AI 2 | 1246 | +1 | 1247 | OutRun2006Tweaks DX11 CONVERSION-DX11-00466 독립 R161 신규 소스/검증 1성과: WARP 오프스크린 Indexed DrawIndexed 사전검증에 live IA InputLayout/VS/PS 객체 정확 동일성 강제, late layout detach/foreign VS/PS detach 차단 및 복구 테스트 추가. Material [d5a412c455636c3c2bc16049c4f7a43e7dca4fe5](https://github.com/thp32tt/OutRun2006Tweaks/commit/d5a412c455636c3c2bc16049c4f7a43e7dca4fe5) [AUTO:CONVERSION-DX11-00466]; exact-SHA Backend Conversion Gate [37864458437](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37864458437) Win32 validate 113607753218 및 DX11 readiness smoke 113609287228 모두 SUCCESS, artifact 11587389791 digest sha256:897a6ef611a03b2f3a7bb35e8e38229a83aab910fdddbf1776f0ecf627884e8c. Task E002 rollover는 재시도 아님 ATTEMPT 1/3 유지, C0~C6 원격 HEAD a2484fdf664ae046370d06f3f53092ea33b60f70 및 Issue #14 기록 확인. 게임 native Draw 비활성, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 롤오버/재확인/재보고에는 +0. **이전 1246점 + 이번 +1점 = 누적 1247점**. RUN_KEY=CONVERSION-DX11-00466 |

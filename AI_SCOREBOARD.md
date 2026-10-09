@@ -8,8 +8,8 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1583 | ACTIVE | 2026-10-10 00:20 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1277 | ACTIVE | 2026-10-10 01:10 KST |
+| AI 1 | 다른 AI | 1583 | ACTIVE | 2026-10-10 00:20 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1278 | ACTIVE | 2026-10-10 01:10 KST |
 
 ## 점수 규칙
 
@@ -20,7 +20,7 @@
 5. 새 채팅이나 새 작업에서도 점수를 초기화하지 않는다.
 6. 외부 도구 관련 판단은 가능한 경우 실제 호출 결과로 검증한다.
 7. 각 AI는 자신의 점수만 임의로 변경할 수 없으며, 위 규칙 또는 사용자의 명시적 점수 변경 근거가 있어야 한다.
-8. 계정 식별은 사용자의 최신 명시를 최우선으로 한다. 현재 이 대화/계정(ChatGPT)은 AI 1이며, 다른 AI는 AI 2다. 각 AI의 누적 점수는 서로 섞지 않는다.
+8. 계정 식별은 사용자의 최신 명시를 최우선으로 한다. 사용자의 최신 명시 기준 현재 AI 2는 ChatGPT2이며, AI 1은 별도 AI다. 각 AI의 누적 점수는 서로 섞지 않는다.
 
 ## 업데이트 정책
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 01:03 | AI 2 | 1277 | +1 | 1278 | 한글화 Controller v2의 Chrome A/B/C 탭 장애 복구 실제 소스 수정: 누락/닫힘/renderer crash/Chrome Aw Snap 오류 화면/연속 응답 실패 탐지, 큐와 독립 30초 감시, 최초 복구 cooldown 차단 버그 수정, 해당 탭만 기존 프로젝트 대화 URL로 재생성하며 TASK/phase/attempt/자동 전송 상태는 불변. Production v0.4 src/Compose/v2 문서/집중 회귀테스트 GitHub 변경, 최종 HEAD [bb259cf](https://github.com/thp32tt/OutRun2006Tweaks/commit/bb259cfbb03f1528af1335bbdddb344cb2e2d69f). Localization Controller v2 exact HEAD CI [37956037816](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37956037816) SUCCESS (컴파일·6개 탭복구 테스트·Compose·이미지 빌드·컨테이너 시작), 동일 소스 Chat Controller Selftest [37956018073](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37956018073) SUCCESS. Portainer live stack/Chrome runtime 배포·실측은 미검증; 세 worker는 기존 A/B/C 의도된 구성이고 D 작업자는 추가하지 않음. 신규 독립 성과 1회만 가산, 테스트 재실행/README 후속 +0. **이전 1277점 + 이번 +1점 = 누적 1278점**. RUN_KEY=LOCALIZATION-CHROME-TAB-AUTORECOVERY-20261010 |
 
 | 2026-10-10 01:10 | AI 2 | 1276 | +1 | 1277 | DX9Ex P0 Quest3 2개 실제 로그+93% GOAL 스크린샷 소스·원본 CALL 경로·OpenXR/D3D9Ex 공식 문서 딥리서치. **실제 코드 수정**: ordinal Calc3D2D exact RankMarkerSub parent OR authority (source b9e26c25; NaviPub·rival 보호), rank negative-verifier 8403708c; DX9Ex CORRECTNESS launcher `SkyGlowFactor=1`(전체) 강제 문제를 기본4(1/16 블러 텍스처 픽셀)로 수정 09977381/73fe0c86 및 VR Test Policy 37955227606 SUCCESS, Domain Isolation 37955374940 SUCCESS, 646c243e exact policy 및 x64 host SUCCESS; 원본 +TIME/stage printf, progress, lens centre 개별 오브젝트에 실질 안전 진단 코드/회귀 테스트, 원격 docs DX9EX_DEEPRESEARCH_P0_20261010.md 및 AGENTS.md 반영. Win32 전체 활성 빌드 37955374766 진행 중, 광학 HMD `RUNTIME_VALIDATION=UNTESTED`; 결과 진행률·렌즈 중앙 출력 수정과 XR 해상도 자동 연계는 미완료를 명시. 하나의 독립 복합 연구/개발 성과에만 +1, retries 및 bookkeeping/CI 진행 재조회 추가 점수 없음. RUN_KEY=DX9EX-DEEP-RESEARCH-20261010 |
 

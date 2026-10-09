@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1571 | ACTIVE | 2026-10-09 21:13 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1572 | ACTIVE | 2026-10-09 21:26 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1271 | ACTIVE | 2026-10-09 21:15 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 21:26 | AI 1 | 1571 | +1 | 1572 | OutRun B332R EVEN q060 P0 IGR044 새로운 4096×2048 RGBA32 DDS **1개 실제 제작·승격**. 독립 C332가 확정한 C2 PROTECTED_ART_LOSS (금색 제목 아래 원본 오렌지 BEST TIME 소실) 수정: 원문 8892 픽셀 RGBA 100% 원본복원, 보호 마스크 12px 확대 내부 차이0, 바깥 아틀라스 변경0. 기존 B331 후보 SHA256 3480bef0...→ B332R 최종 SHA256 **d81d0d144f2c4b8192021f9e0b49c7ad44f753da68d6f5dd66f18fe907d06b01**, Git blob e1e0f27a621762dd69086fc4b0e97f6a2ddcda6f. 이전 영어 남색 상단 잔상 제거 범위 확장, 한글 [2133,235,2807,332]로 원문-family italic 재배치, 원본 골드와 오렌지 FLIPY/RAW 검정·회색·흰색/100·75·50 lossless 18종 생성, B 생산자 직접 실물 비교. Actions 37929215714 성공; 초도 B332 유효 후보 자동생성도 같은 단일 성과에 합산(+0 중복), git q060 queue/IGR/backlog/QA/progress/resume/WORKLOG/STATUS 원격 HEAD 162320cc992c852e20363e22607dcff7a11f958f 검증. 독립 C2/C3 미실시, 실제 게임 IGR044 OPEN, RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 미작업, N100 초경량 원본 비교 PNG 조회만 사용. **이전 1571점 + 이번 +1점 = 누적 1572점**. RUN_KEY=OUTRUN-KOR-B332-Q060-C332-ORANGE-PROTECTED-ART-20261009-2110 |
 
 | 2026-10-09 21:13 | AI 1 | 1570 | +1 | 1571 | OutRun 한글화 A206 ODD q193 **실제 신규 한글 DDS 1개 영문 잔상 3개 랭킹 안내 셀 클린→네이티브 렌더**: 화면상 SOURCE/OLD/CLEAN/NEW 3행×검정/회색/흰색×100/75/50 원본 비교 JPG + FULL RAW FLIPY, 직전 A205 DDS SHA256 1cea9015...→신규 d90dada6007b0bba719889e8025c8aff332ddd21da296be540485536981859aa, Git blob 38e786929458cf6c27d55434408a863f200f501a, 영문이 한글 밑에 남은 기존 source ghost 3개 완전 투명 CLEAN 제거 후 온라인 멀티플레이어/OutRun2SP 아케이드/OutRun 싱글 플레이 랭킹 보기 한글로 원본 굵기 네이티브 재합성. SOURCE 3/3 bbox positive margins+기존/보호/alpha outside0+clean→final glyph outside0, saved DDS exact 128byte header/디코드/RAW 성공. GitHub CPU worker [37927821799](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37927821799) SUCCESS(첫 좁은 source-descender 검사는 FAIL-CLOSED 재시도, 추가 가점 없음). 본 A206 신품 DDS+queue/INGAME_BACKLOG/QA GitHub commit [ba3ac6ca](https://github.com/thp32tt/OutRun2006Tweaks/commit/ba3ac6ca8d4608b334ecee6cb9e291ed48025be1) 후 artwork_plan/resume/progress/WORKLOG/STATUS [475a15d0](https://github.com/thp32tt/OutRun2006Tweaks/commit/475a15d0065a80a10f3a6d87f4613ae268b9609e) 원격 HEAD 확인. 누적 6/13 아틀라스 셀 재제작, 나머지 Goal 5개/15Cont/ONLINE 7셀 영문 잔상 그대로이고 whole atlas REWORK_REQUIRED, C1/C3/user real-game IGR003/019/033 OPEN, build/asset selection/actual draw NOT_TESTED, RUNTIME_VALIDATION=UNTESTED. 이전 A205 제목 3개와 **다른** 3개의 실제 DDS 물성 개선 성과 1개만 +1; 별도 preflight/재시도/검증 0. **AI 1 이전 1570점 + 이번 +1점 = 누적 1571점**. RUN_KEY=OUTRUN-KOR-A206-Q193-RANK-HELP-SOURCE-GHOST-20261009-2110 |
 

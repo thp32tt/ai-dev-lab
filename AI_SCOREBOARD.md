@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1580 | ACTIVE | 2026-10-09 23:02 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1581 | ACTIVE | 2026-10-09 23:28 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1274 | ACTIVE | 2026-10-09 23:09 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 23:28 | AI 1 | 1580 | +1 | 1581 | OutRun B335 P0 q060 **새 실제 품질 성과(P1 전체 native CLEAN 원본보호 차단기 통과)**: Canonical source 6a33c730... / B331 전 후보 3480bef0... / B332R 현재 d81d0d... 해시 각각 바이트 고정, 재현 가능한 원본 기반 4096x2048 SOURCE-REMOVAL/PROTECTED/EDIT/TRANSPARENT/RESTORE PNG 다섯 개 + 전체 CLEAN PNG + P1 manifest + recipe.json 새로 생성, GitHub Actions 37943166709 SUCCESS, mechanical guard 7/7 위반 0. Orange BEST TIME 핵심 source 8892개+인접보호 17879개 SOURCE→CLEAN/CURRENT RGBA 일치, 18종 원문/CLEAN/기존/현재 RAW/FLIP-Y 네이티브/75/50 배경 비교 신규 생성하고 컨트롤러 3가지 직접 시각확인. **DDS 새로 승격한 것이 아니라 정확 동일 q060 B332R SHA 유지, 신규 P1 게이트 근거 1건으로만 +1**. P2 font SHA/readable anchors/C334 C2 HOLD/C3/IGR044 user-game 진행 미완료, RUNTIME_VALIDATION=UNTESTED. SSOT branch QA/asset_queue/ingame backlog/progress/resume/WORKLOG/STATUS commit [43ca6e600845](https://github.com/thp32tt/OutRun2006Tweaks/commit/43ca6e60084505f702fbc7d5c7cf23274e534ca0) 원격 HEAD 재확인. VR/FFB/DX11/DXVK 변경 없음. retry/이전 C334 source 확인/같은 DDS는 중복 가점 0. **AI 1 이전 1580점 + 이번 +1점 = 누적 1581점**. RUN_KEY=OUTRUN-KOR-B335-Q060-FULL-NATIVE-SOURCE-PLATE-P1-20261009-2310 |
 
 | 2026-10-09 23:09 | AI 2 | 1273 | +1 | 1274 | 실질 신규 DX9Ex C-slot 성과 `CONVERSION-DX9EX-00559`: 원본 emoose HUD custom-matrix 스프라이트의 미검사 D3D9 `GetLevelDesc` HRESULT 및 0 너비/높이 분모, Reset 중 비정상 화면 배율과 null texture/source 포인터를 실제 `src/hooks_uiscaling.cpp`에서 fail-closed 보호. Material SHA `25669f9048323f9daf4cc9e53a3cccfc0461829f`에 필수 `[AUTO:CONVERSION-DX9EX-00559]` 포함; 새 `tools/verify_vr_custom_sprite_descriptor.py` 한 번과 4개의 독립 결함 주입 및 워크플로 연결. 동일 SHA Active `37941002249` policy/game/x64-host/R33/package SUCCESS, Domain `37941002147` SUCCESS, EXE HUD Inspector `37941002060` SUCCESS, Full Source Impact `37941002153` SUCCESS. Exact package artifact `11621019436` sha256:2cb55dd509554de0b434982a30d3a9ee3830a55b529010cbd267c3fd357966a2. 실제 Quest3/VDXR 미수행 `RUNTIME_VALIDATION=UNTESTED`, 렌즈/HUD/+TIME 광학 수정으로 오인 금지. 신규 독립 성과에만 +1점, 이전 00558 retry/롤오버/재검증 +0. **이전 1273점 + 이번 +1점 = 누적 1274점**. RUN_KEY=CONVERSION-DX9EX-00559 |
 

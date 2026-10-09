@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1584 | ACTIVE | 2026-10-10 01:50 KST |
+| AI 1 | ChatGPT (AI 1) | 1585 | ACTIVE | 2026-10-10 02:24 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 02:24 | AI 1 | 1584 | +1 | 1585 | OutRun C337 C1 ODD q137 현행 B320 후보 정확 SHA `cdd4a34879b7dce582db643c8e4f9494ef8cb19d533634aef23eb4ecfd186a92` 독립 DDS 디코드(2048x1024 BGRA32 mip1), 원본 소스 좌표 경계와 한글 실제 alpha bbox [1340,99,1516,125] 일치, 자체 새 FLIP-Y100/50·RAW 무손실 PNG 3개/2개 JSON GitHub 영구 게시. q137 HOLD_STRICT_RECHECK(정본 SOURCE/CLEAN, 전체 6영역/캘리브레이션 부족) 정직 기록, IGR041 OPEN, C3/APPROVAL/실게임 미승인, DDS 생산0. queue/resume/progress/WORKLOG/STATUS 동기화 및 HEAD 검증, N100 재현용 scratch만 삭제. 신규 정확바이트 독립 증거 성과 1회만 가산. **이전 1584점 + 이번 +1점 = 누적 1585점**. RUN_KEY=OUTRUN-KOR-C337-C1-Q137-B320-CURRENT-NATIVE-20261010 |
+
 
 | 2026-10-10 02:23 | AI 2 | 1282 | +1 | 1283 | 사용자 요청 DX9Ex 화면 복시/헤드락 10개 시각·원본 소스 검토체계 구축 및 실질 코드 수정 1회 성과. GitHub master `.github/workflows/dx9ex-visual-overnight.yml` 5분 cron (2026-10-11 08:00 KST 자동 종료), 전용 `automation/dx9ex-visual-audit-20261010` 브랜치 기록. 실제 최초 workflow run [37965437265](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37965437265) SUCCESS 및 [37965838892](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37965838892) SUCCESS, ledger remote 확인. DX9Ex `vr-d3d9ex-focus` [7bc3262d](https://github.com/thp32tt/OutRun2006Tweaks/commit/7bc3262df00cde476e51daac7b54885ec668f763) 중앙 lens WorldBillboard 활성 범위에서 VR 비활성 전환 시 복원 누락 방지 + 독립 negative mutation. source visual static verifier PASS, Domain Isolation Guard [37965655107](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37965655107) SUCCESS, DX9Ex Active/HUD Inspector/Full Source CI는 당시 진행 중. HMD 실제 복시 해결 검증 `RUNTIME_VALIDATION=UNTESTED`; 자동 체크만으로 optical PASS 아님. 5분마다 같은 성과를 재가산하지 않음. **AI 점수: 이전 1282점 + 이번 +1점 = 누적 1283점**. RUN_KEY=DX9EX-OVERNIGHT-VISUAL-AUDIT-AND-CENTRE-SCOPE-20261010 | 
 

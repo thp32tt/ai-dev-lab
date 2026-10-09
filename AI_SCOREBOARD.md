@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1596 | ACTIVE | 2026-10-10 04:15 KST |
+| AI 1 | ChatGPT (AI 1) | 1597 | ACTIVE | 2026-10-10 04:28 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 04:28 | AI 1 | 1596 | +1 | 1597 | OutRun C341 C2 EVEN q230 새 전체 아틀라스 SOURCE/CLEAN/persisted delta 실증. pinned Sonic-TV 원본 DDS SHA33077919771f580491b8ea1011401dc22df640f87b5b0e6f602b112dbdb07b81 독립 다운로드 및 정확한 현재 DDS SHAa680ae4b7b7c48e2e6200ca766431a725e189297c6acf31badf677b98270428f, existing B228 CLEAN SHA738530a50ac1331ebdf3e7ed13b6ddc1dfa6d16064a089fffc3dc89dcf5a1914 각각 실바이트 검사. 2048x1024 RAW/FLIPY 두 도움말 정본 ROI [1,182,618,232] / [867,182,1422,232] 사용해 3쌍 전체 맵 검증: CLEAN→FINAL ROI 밖 RGBA0/alpha0, SOURCE→CLEAN ROI 밖 RGBA137224/alpha125019은 B228 기준 이전 B73 한글화 내용이고 새 q230 침범으로 허위 판정하지 않음. 독립 무손실 BGW native/75/50, RAW 및 전체 source/clean/target delta mask 등 PNG26+JSON2 커밋; 시각 native/50 검사에서 glyph rupture 신규 확정 없음, blind family calibration/C3 미완료로 HOLD_STRICT_RECHECK 그대로, 신규 DDS 0, RUNTIME_VALIDATION=UNTESTED. 저장소 같은 브랜치 git commit 948cdce96d7cf89540bbc53ca7e94142abda7e55 푸시/원격 HEAD/QA 재확인. 짝수 q230 큐만 반영, ODD/C1 untouched, VR/FFB/DX11/DXVK 제외. 동일 후보 SHA는 새 PASS/완료로 점수화하지 않으며 새 독립 SOURCE-CLEAN-FINAL 전체 보호 영역 증거 성과만 1회 +1. **AI 점수: 이전 1596점 + 이번 +1점 = 누적 1597점.** RUN_KEY=OUTRUN-KOR-C341-C2-Q230-SOURCE-CLEAN-DELTA-20261010 |
 
 | 2026-10-10 04:15 | AI 1 | 1595 | +1 | 1596 | OutRun A216 q175 P1 기존 독립 C286 거부된 SHOWROOM source-chrome 계열에 대해 과거 A211 작은 일반폰트 및 A209/210 수평 레일과 다른 수동 한글 벡터+원본 금속 효과 **신규 실제 8,388,736바이트 DDS 시험본 1개**와 RAW/FLIPY/100·75·50/BGW QA 생성. 첫 P3 원문 밖 22px/아래2px 적발·차단 후 동일 TASK 교정, GitHub Actions #37977929319 성공 및 persisted trial SHA256 a5e921ab2563a1ec6a3a1954a247a07d0a9adb9e101c4d73682600476e39323c 검증. 후보 글자 bbox [56,400,866,527] 원본 [6,397,956,529] 안, 밖 변경0, 가로 길이 원문 85.3%. ChatGPT 제작자가 원본/CLEAN/OLD/NEW 비교 native gray100·black50·white75 실물 직접 검사하여 **쇼룸 음절이 기와지붕·수평 레일처럼 보여 판독 불가**라는 새 명확한 시각 FAIL 확정; 기계 통과해도 진입 금지. 원격 QA+queue/IGR-032/WORKLOG/resume/progress/STATUS commit f8535f15d448652423a49a60738d4d7c9a39ff37 푸시·HEAD 직접 검증. 정식 승격 DDS **0**, 기존 SHA b9f60b... 보존, C1/C3/게임/사용자 승인 없음, `RUNTIME_VALIDATION=UNTESTED`; VR/FFB/DX11/DXVK 제외. 작업의 신규 실제 방법 시험과 엄격 FAIL 확정 단일 성과에만 +1; 같은 작업 2회 기계시도·다른 이전 A211이나 QA 반복은 가산하지 않음. **AI 점수: 이전 1595점 + 이번 +1점 = 누적 1596점**. RUN_KEY=OUTRUN-KOR-A216-Q175-SOURCE-CONTOUR-WELDED-CHROME-PILOT-20261010-0400 |
 

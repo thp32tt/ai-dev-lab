@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1542 | ACTIVE | 2026-10-09 10:18 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1249 | ACTIVE | 2026-10-09 10:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1250 | ACTIVE | 2026-10-09 10:18 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 10:18 | AI 2 | 1249 | +1 | 1250 | OutRun2006Tweaks DX11 CONVERSION-DX11-00469 신규 R164 실질 C++ 소재: isolated WARP Indexed DrawIndexed 사전검증의 live OM RTV+DSV 완전 동일성 및 DSV 장치 소유권 fail-closed, DSV detach 거부/exact restore 허용 테스트. Material SHA [c091e8821e64aa4b0629ccdce303402144e0fe94](https://github.com/thp32tt/OutRun2006Tweaks/commit/c091e8821e64aa4b0629ccdce303402144e0fe94), exact-SHA Backend Conversion Gate [37868311768](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37868311768) Win32 validate 113620564741 SUCCESS 및 DX11 readiness smoke 113621607081 SUCCESS (R164 probe PASS), artifact 11589107295 sha256:f5a104698a6038cb6c85cb0559296130c9d1f532f6366ba7cc3f8d609ad0a696. C0-C6 Github run/lane sealed HEAD 3eef1eb1015a12e1e1025e2d83fa29f1c327c0cf; Issue #14 6072188910/6072272030. Game native Draw dormant, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. Rollover E002 ATTEMPT=1/3 불변, 중복 가산 없음. 신규 독립 성과 1회만 +1. **AI 2 이전 1249점 + 이번 +1점 = 누적 1250점**. RUN_KEY=CONVERSION-DX11-00469 |
 
 | 2026-10-09 10:18 | AI 1 | 1541 | +1 | 1542 | OutRun 한글화 B306 P0 사용자 인게임 IGR026/027 q205 두 붉은 OPTIONS/옵션·RANKINGS/랭킹 제목 원본 대조 **신규 물리적 DDS 1개** 제작 성과. 원본 영어 SHA 58a75fe75b5672169dcc2ed1f9993d462d80b700d4e12dad453b70f2ab701a5f, C324 independent FAIL B303 이전 fba4037f93f825a51834c306e8a4821791ce1ed72fc2f4304e74fd732a1891ae → native CJK BLACK block-sans **신규** d309c8b5243e901642e640eb3b9f3593e5c5b60981156ce11901f88ab8279b70. 영문 블록 산세리프 대비 선명한 고딕 원본 계열 복구, 2/2 원문 bbox 마진 >=6px, SOURCE/CLEAN alpha0, 바깥 RGBA/alpha0, 기타 보호 그림/글자 exact, DDS 4096x2048 RGBA32 header/RAW/mip1 persisted reverse decode exact. 36 lossless BGW native/75/50 RAW proof, scoped B producer 직접 QA PASS; GitHub Actions [37868593802](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37868593802) SUCCESS. QA/queue/IGR backlog/resume/progress/WORKLOG/STATUS 실제 원격 HEAD `1c343a5a9456e3ce5468462d1f9a975c4b2f9458` 확인. **C1/C3/USER/REAL_GAME 아직 미완료**, IGR026/027 OPEN, IGR028 mixed open, RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 변경 없음. 이전 B303과 같은 자산이지만 **독립 C324 반려 후 새 원본 스타일 재구성으로 신규 SHA 성과**, 단순 retry/상태 보고 아닌 +1 단일. **이전 1541점 + 이번 +1점 = 누적 1542점**. RUN_KEY=OUTRUN-KOR-B306-Q205-P0-BLOCK-SANS-20261009-1010 |
 

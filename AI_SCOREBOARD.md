@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1555 | ACTIVE | 2026-10-09 16:57 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1556 | ACTIVE | 2026-10-09 17:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1261 | ACTIVE | 2026-10-09 17:00 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 17:25 | AI 1 | 1555 | +1 | 1556 | OutRun B325/B326 q214 **원본 DXT5 금속 색상 블록 실제 전이 방식 신규 개발·실험 및 수치 QA 거짓양성 차단 성과**. B324 CLEAN 원본 픽셀-정합 2048x2048에서 2개의 새 trial DDS (`eb5017ba4...`, `e714053c...`)와 72개 FLIPY/RAW/BGW/100·75·50 무손실 비교를 신규 생산. [Actions B325 37903716224](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37903716224), [B326 37904119145](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37904119145) 모두 SUCCESS. BC3/mip/원본 영역 밖 RGBA·alpha0과 bright-core 1.0 수치 PASS에도 실물 `골`의 수평 단절·강한 금속 베벨/기울임 미구현을 제작자 직접 시각 QA로 **두 번 FAIL**, 통과/승격 허위 주장 차단. `B325_CONTROLLER_VISUAL_REJECT.json` / `B326_CONTROLLER_VISUAL_REJECT.json`, queue/progress/resume/WORKLOG/STATUS 기록을 [OutRun remote HEAD c816bf8b](https://github.com/thp32tt/OutRun2006Tweaks/commit/c816bf8b0819e820f50854482597128d192f9a46) 게시·재확인. **승격 DDS 0**, 기존 B259 byte SHA `ace42cb3...` 그대로, q214 C289 REWORK_REQUIRED, C/C3/user/real game 미승인, RUNTIME_VALIDATION=UNTESTED. 두 trial은 동일 q214 한 가지 source-block material 방법 성과로 **단 한 번 +1**, 이전 B324 clean 복원 성과/기존 SDF 재시도와 중복 가산 없음. **이전 1555점 + 이번 +1점 = 누적 1556점**. RUN_KEY=OUTRUN-KOR-B325-B326-Q214-SOURCE-MATERIAL-VISUAL-FAIL-20261009 |
 
 | 2026-10-09 17:00 | AI 2 | 1260 | +1 | 1261 | OutRun DX11 CONVERSION-DX11-00476 신규 독립 R171 live D3D11 nonindexed Draw IA input-layout/VS/PS exact object identity 사전검사 및 same-device substituted VS, null IA/PS 음성 대조군과 정확 복구 WARP C++ 구현. 3파일 actual source/test material SHA [a315481f0656ee07369e721f59752b513fb3ba37](https://github.com/thp32tt/OutRun2006Tweaks/commit/a315481f0656ee07369e721f59752b513fb3ba37) [AUTO:CONVERSION-DX11-00476], 관련 remote 정적 검사 11/11 PASS. Exact-SHA [Backend Conversion Gate 37901281938](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37901281938) SUCCESS, Win32 validate 113724193750 SUCCESS + DX11 readiness smoke 113725917363 SUCCESS (R171 constant buffer WARP probe build/run SUCCESS), artifact 11603015408 sha256:a687d002f040304e8379af0e765c9cae7aee6bcdfb399b32da37674194e73d82. C6 GitHub HEAD 7972c38de2d7f93c71959985fdb84eff8aac3d50 VERIFIED, native gameplay Draw still dormant; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 00475 and prior tasks no duplicate score. **이전 1260점 + 이번 +1점 = 누적 1261점**. RUN_KEY=CONVERSION-DX11-00476 |
 | 2026-10-09 16:57 | AI 1 | 1554 | +1 | 1555 | OutRun localization Docker browser stability: installed `/home/chatgpt-runner2/.local/bin/outrun_kor_chrome_hourly.py` and enabled persistent `outrun-kor-chrome-hourly.timer` (5m readiness checks, minimum 3600s between restarts, active generation guard, VR container excluded). Validated dry-run and real 2026-10-09 16:54:56 KST single container restart; Chrome CDP returned healthy 16:55:01, profile/registry volumes preserved. Confirmed systemd user enabled/active, Linger=yes. Playwright previous connection-closed error needs next scheduled cycle verification. Unique installed working timer+successful recovery +1. **이전 1554점 + 이번 +1점 = 누적 1555점**. RUN_KEY=OUTRUN-KOR-CHROME-HOURLY-SAFE-REFRESH-20261009-1655 |

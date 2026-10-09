@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1590 | ACTIVE | 2026-10-10 03:12 KST |
+| AI 1 | ChatGPT (AI 1) | 1591 | ACTIVE | 2026-10-10 03:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 03:25 | AI 1 | 1590 | +1 | 1591 | OutRun C339 C1 홀수 q227 **기존 C320 3개와 중복 없는 A214 신규 13개 영역 실제 저장 DDS 독립 검증**: GitHub 현행 2048x2048 RGBA32/mip1 SHA256 `83120095e3ff960939c0b413dd85d1633314f23dcde0192f0cf68a7a47776595` 직접 검사, 신규 13개 A214 게시 FINAL PNG vs DDS 저장 FLIP-Y 13/13 RGBA 차이0, CLEAN alpha0 13/13, 전체16 alpha-positive counts/bbox 독립 재계산 일치 16/16·최소1px 양의 마진; RAW 13 영역 반전 검증. GitHub C339 증거 JSON2, 별도 무손실 PNG4, JPG2 게시(커밋 `0e2c3ef925bd0e71bf4ea68c60e1ca153020e0d3`), asset_queue/resume_state/progress/WORKLOG/STATUS 갱신 최종 branch `4578b54f`. 원본 DDS/CLEAN 독립 SHA·블라인드 계열 캘리브레이션/C3/사용자실기 미완 => C1=HOLD_STRICT_RECHECK, IGR034/035/036 OPEN, RUNTIME_VALIDATION=UNTESTED, 신규 DDS0. 이는 **새 13개 정확 현재바이트 증거** 성과에만 +1, 이전 C320 증거·동일 A214 재검수 재가산 아님. **이전 1590점 + 이번 +1점 = 누적 1591점**. RUN_KEY=OUTRUN-KOR-C339-C1-Q227-A214-13-FRESH-SAVED-PIXEL-20261010-0310 |
+
 
 | 2026-10-10 03:12 | AI 1 | 1589 | +1 | 1590 | OutRun 한글화 A215 P0 홀수 q121 신규 검증 성과: 기존 A212/A213 제목 3영역 판정이 전체 아틀라스 원문 제거를 보호 그래픽 손상으로 오인하는 문제를 확인하고, 정확 4096x4096 SHA 고정 원본 f7847db9... / CLEAN 88e85995... / 현재 DDS 38d5c2c3... 의 179개 원본-CLEAN 변경 연결영역 중 상위 30개 **새 SOURCE/CLEAN/저장 DDS 무손실 RGBA 각 3장, RAW 첫 12 및 회색/흑/백 실효 크기 비교 증거** GitHub Actions #37970761977 SUCCESS로 제작. 실제 13개 대표 영역 소스/플레이트/한글 50% 시각 검증, SOURCE→CLEAN 전체 2,134,661픽셀 vs CLEAN→FINAL 133,085픽셀, 실제 한글 번역 셀의 정상 픽셀 교체를 확인. GitHub QA/큐/IGR-030·031·040/WORKLOG/resume/progress/STATUS 커밋·원격 기록, 최종 후보 DDS0 변경 없음, C335 HOLD·C3/승인·실게임 OPEN, RUNTIME_VALIDATION=UNTESTED; VR/FFB/DX11/DXVK 제외. 한 번의 새로운 30영역 생산 증거 성과만 +1, 과거 A212/A213 중복 아니며 새 게임 패치 완성으로 계산하지 않음. **이전 1589점 + 이번 +1점 = 누적 1590점**. RUN_KEY=OUTRUN-KOR-A215-Q121-30-REGION-SOURCE-CLEAN-PERSISTED-20261010-0300 |
 

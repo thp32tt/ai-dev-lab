@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1566 | ACTIVE | 2026-10-09 20:04 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1566 | ACTIVE | 2026-10-09 20:01 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1268 | ACTIVE | 2026-10-09 19:58 KST |
 
 ## 점수 규칙
@@ -36,7 +36,7 @@
 
 ## 변경 이력
 
-| 2026-10-09 20:04 | AI 1 | 1565 | +1 | 1566 | OutRun C330 C2 EVEN q236 신규 독립 저장 DDS 알파 검증 성과. B302 현행 SHA256 `9e2069ebe7eda210b2b9a0e39436724efc53932b3af7ba624b918056b24b6337` 및 native BGRA/2048/1mip verified, 14/14 source-bounded ROI 실물 alpha-bbox 재계산 producer 기록과 EXACT, 여백 최소4px. 기존 C322 미검수 q236 row09 METROPOLIS / row13 IMPERIAL AVENUE 100/50/RAW 실제 비교 추가 검수. Full independent English SOURCE/CLEAN/FINAL, protected-art/calibration/C3/user-game 아직 미충족, 정확히 HOLD_STRICT_RECHECK 유지, DDS 생산0, RUNTIME_VALIDATION=UNTESTED. QA+queue+resume+progress+WORKLOG+STATUS commit `44c0f0485eb7dcfbb8dee0ecfe76659e0d2892f3` push/HEAD verified. 1개 신규 성과 +1; 조회/재시도는 추가 0. **AI 1 이전 1565점 + 이번 +1점 = 누적 1566점**. RUN_KEY=OUTRUN-KOR-C330-C2-Q236-PERSISTED-14-ALPHA-20261009-1950 |
+| 2026-10-09 20:01 | AI 1 | 1565 | +1 | 1566 | OutRun C330 C2 EVEN q236 신규 독립 저장 DDS 알파 검증 성과. B302 현행 SHA256 `9e2069ebe7eda210b2b9a0e39436724efc53932b3af7ba624b918056b24b6337` 및 native BGRA/2048/1mip verified, 14/14 source-bounded ROI 실물 alpha-bbox 재계산 producer 기록과 EXACT, 여백 최소4px. 기존 C322 미검수 q236 row09 METROPOLIS / row13 IMPERIAL AVENUE 100/50/RAW 실제 비교 추가 검수. Full independent English SOURCE/CLEAN/FINAL, protected-art/calibration/C3/user-game 아직 미충족, 정확히 HOLD_STRICT_RECHECK 유지, DDS 생산0, RUNTIME_VALIDATION=UNTESTED. QA+queue+resume+progress+WORKLOG+STATUS commit `44c0f0485eb7dcfbb8dee0ecfe76659e0d2892f3` push/HEAD verified. 1개 신규 성과 +1; 조회/재시도는 추가 0. **AI 1 이전 1565점 + 이번 +1점 = 누적 1566점**. RUN_KEY=OUTRUN-KOR-C330-C2-Q236-PERSISTED-14-ALPHA-20261009-1950 |
 
 | 2026-10-09 19:58 | AI 2 | 1267 | +1 | 1268 | OutRun VR 컨트롤러 실질 신규 자동화 개발: `chat-controller-downloads`의 `src-vr-v2/controller.py.part03`에 작업 진행 중 5분 간격 공개 데이터 최소화 GitHub checkpoint(PUT·중복 확인·실패 재시도·체크포인트 저장 성공 후 롤오버), 30분 강제 chat rollover, 동일 TASK_ID/ATTEMPT 연속, 완성 material commit 중복 방지를 구현. `part00` config/Portainer VR compose/ DX11·DX9Ex 지침/회귀 테스트와 이전 selftest 오탐 수정. HEAD [be774f8d](https://github.com/thp32tt/OutRun2006Tweaks/commit/be774f8d99c5a6c7e5366aa8b7b1edb2d84f0a36), [Controller CI 37920769936 SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37920769936). Docker 소켓 사용자 접근 제한으로 Portainer 실제 재빌드/재배포 미실시; 실컨테이너 체크포인트 쓰기·연속 30분 롤오버 런타임 미검증. 이미 수행한 상태조회·중복 CI 실행은 +0. **AI 2 이전 1267점 + 이번 +1점 = 누적 1268점**. RUN_KEY=VR-CONTROLLER-30M-ROLL-5M-DURABLE-CHECKPOINT-20261009-AI2 |
 

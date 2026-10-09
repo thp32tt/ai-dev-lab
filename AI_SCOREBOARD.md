@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1580 | ACTIVE | 2026-10-09 23:02 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1273 | ACTIVE | 2026-10-09 22:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1274 | ACTIVE | 2026-10-09 23:09 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 23:09 | AI 2 | 1273 | +1 | 1274 | 실질 신규 DX9Ex C-slot 성과 `CONVERSION-DX9EX-00559`: 원본 emoose HUD custom-matrix 스프라이트의 미검사 D3D9 `GetLevelDesc` HRESULT 및 0 너비/높이 분모, Reset 중 비정상 화면 배율과 null texture/source 포인터를 실제 `src/hooks_uiscaling.cpp`에서 fail-closed 보호. Material SHA `25669f9048323f9daf4cc9e53a3cccfc0461829f`에 필수 `[AUTO:CONVERSION-DX9EX-00559]` 포함; 새 `tools/verify_vr_custom_sprite_descriptor.py` 한 번과 4개의 독립 결함 주입 및 워크플로 연결. 동일 SHA Active `37941002249` policy/game/x64-host/R33/package SUCCESS, Domain `37941002147` SUCCESS, EXE HUD Inspector `37941002060` SUCCESS, Full Source Impact `37941002153` SUCCESS. Exact package artifact `11621019436` sha256:2cb55dd509554de0b434982a30d3a9ee3830a55b529010cbd267c3fd357966a2. 실제 Quest3/VDXR 미수행 `RUNTIME_VALIDATION=UNTESTED`, 렌즈/HUD/+TIME 광학 수정으로 오인 금지. 신규 독립 성과에만 +1점, 이전 00558 retry/롤오버/재검증 +0. **이전 1273점 + 이번 +1점 = 누적 1274점**. RUN_KEY=CONVERSION-DX9EX-00559 |
 
 | 2026-10-09 23:02 | AI 1 | 1579 | +1 | 1580 | OutRun C334 C2 EVEN q060 기존 C333 보류의 **미확인 정본 원본 DDS 출처** 신규 독립 증거 완결. GitHub 원본 `A064FDFC` 풀 native 4096×2048 RGBA32 DDS SHA256 `6a33c7307e33337af085f0fffea081de8659ed1806f4ef4d2a8809d4120cadbc`, 현행 B332R DDS SHA256 `d81d0d144f2c4b8192021f9e0b49c7ad44f753da68d6f5dd66f18fe907d06b01` 각각 독립 실물 검증, 영문 원본 DDS↔기존 생산 원본 PNG 및 저장 최종 DDS↔생산 최종 PNG 양쪽 ROI 픽셀 차이0. 정본 주황 인접 그림 8892px CLEAN·현재 후보 RGBA 0차이, 골드 영어 제거 CLEAN alpha 잔여0. 최초로 정본 본체를 독립 검증했으며 C333 반복 진술 아님. C2 보류 `HOLD_STRICT_RECHECK` (전체 셀·blind 서체·C3·approval·사용자 실게임 IGR044 OPEN); 신규 DDS0, 새 원본·비교 PNG 4개 및 QA/queue/resume/progress/WORKLOG/STATUS 10파일 원격 GitHub 커밋 `5c1f81b685f8724c1d96a23fce3945d806b722fd` push/HEAD 재확인. RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 제외. 기존 B332R 후보 성과 또는 C333 동일 검수 중복 가점 없음; 신규 원본 정본 미검수 해소 실질 증거 1건만 +1. **AI 1 이전 1579점 + 이번 +1점 = 누적 1580점**. RUN_KEY=OUTRUN-KOR-C334-C2-Q060-INDEPENDENT-CANONICAL-SOURCE-20261009-2250 |
 

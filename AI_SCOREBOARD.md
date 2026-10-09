@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1557 | ACTIVE | 2026-10-09 17:49 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1558 | ACTIVE | 2026-10-09 18:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1262 | ACTIVE | 2026-10-09 17:25 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 18:00 | AI 1 | 1557 | +1 | 1558 | OutRun C326 C2 EVEN q060 P0 IGR-044, 새 B313 승격 DDS SHA256 `be8afff998310126cf681d302e07a50faae076be0b3dc2ffb41a951c373b72e0`의 **신규 독립 네이티브/50%/RAW 시각 결함 확정**. 영문 OUTRUN MILES 강한 오른쪽 레이싱 이탤릭 대비 B313 한글은 상대적으로 정자체/폭 넓은 블록 획으로 원본 계열 일치 실패. C2 REWORK_REQUIRED 실제 전환, IGR-044 인게임 FAIL OPEN 유지, 새 C QA JSON+queue/backlog/resume/progress/WORKLOG/STATUS GitHub push `83338e67eb74f6e13eab8c0ee6433d576d999981`, CSV 정합성 후속 fix `f07ee8a4a025645ca0ee2d7bcfbf38d0dac88304` 원격 HEAD 확인. C3/APPROVAL/USER GAME 미통과, RUNTIME_VALIDATION=UNTESTED, DDS 신규 생산0. 본 신규 B313 SHA 시각 검수 1회만 +1, 이전 B313 제작 또는 다른 C315 검사와 중복 아님. **AI 1 이전 1557점 + 이번 +1점 = 누적 1558점**. RUN_KEY=OUTRUN-KOR-C326-C2-Q060-B313-SOURCE-FAMILY-20261009-1750 |
 
 | 2026-10-09 17:49 | AI 1 | 1556 | +1 | 1557 | OutRun A202 P0 q121 실제 신규 DDS 1건 `38d5c2c30ea813202051b191dc01de9d7804e52c1cbab0f46c5372b59ed6c844`, A199 이전 `4e84afccc41dcb221a9c6eb164f0f82b15c52277647f122555e05e445a3de4d8` supersede. 영문 Select your car 의미를 원문 충실한 `차량을 선택하세요`로 복원, 436×108→824×108px(영문 바운드913×164) 자연 글꼴 구성, 강제 가로 늘림 없음. GitHub Actions `37906362368` 성공, 실제 디코딩 DDS·SOURCE/CLEAN/FINAL/RAW/50·75·100 생산자 시각 QA 통과, 원본 car 셀 54161 픽셀 변경, 다른 제목·보호 아트 변경 0. Queue/INGAME_REWORK_BACKLOG/resume/progress/WORKLOG/STATUS/QA 상태 commit `a95a8490df8110211a22efb6e3d60675f87bdb06` 원격 HEAD 재검증. C1/C3/USER_GAME 인게임 IGR030/031/040 계속 OPEN, RUNTIME_VALIDATION=UNTESTED. 동일 재시도/검증 가점 0; 단일 실제 성과만 +1. AI 1 이전 1556점 + 이번 +1점 = 누적 1557점. RUN_KEY=OUTRUN-KOR-A202-P0-Q121-CAR-FOOTPRINT-20261009-1730 |
 | 2026-10-09 17:25 | AI 2 | 1261 | +1 | 1262 | GUI Chrome/noVNC 유지 OutRun Portainer VR·한글화 자동실행 컨트롤러 탭 충돌 복구 신규 구현. [소스 및 배포 설정](https://github.com/thp32tt/OutRun2006Tweaks/tree/chat-controller-downloads/tools/chat-controller/v0.4) VR/Localization controller.py.part03 각 1건, 두 Docker Compose에 30s probe·3회 timeout debounce·60s cooldown 적용, Playwright crash/closed/응답없음 감지·기존 chat URL로 슬롯 탭만 재생성·TASK_ID/queue 전송 기록 무변경·스크린샷/로그 저장. GitHub 코드/compose/테스트/문서 commit [34ab89f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/34ab89f3bb847027b1ee656c5608e93df6b5c8db) 이후 [cae45f7f](https://github.com/thp32tt/OutRun2006Tweaks/commit/cae45f7ff25c708379c951bb9891aa2e759b20e4) 및 [0610165a](https://github.com/thp32tt/OutRun2006Tweaks/commit/0610165ab048f754978eac7a234610749d0cf9e6) 반영. 2개 조립 전체 Python 문법 검사 PASS, 12/12 집중 모의 계약 PASS (renderer crash, closed, hang, URL navigation retry, CDP disconnect, no double send). Docker 소켓 권한 부족으로 Portainer 실제 재배포/실제 탭 크래시 테스트 미실시; RUNTIME_VALIDATION=UNTESTED. 이 GitHub 코딩+검증 독립 성과 최초 +1; 동일 RUN_KEY 재확인 0. **이전 1261점 + 이번 +1점 = 누적 1262점**. RUN_KEY=CHAT-CONTROLLER-GUI-TAB-RECOVERY-20261009-AI2 |

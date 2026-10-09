@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1597 | ACTIVE | 2026-10-10 04:28 KST |
+| AI 1 | ChatGPT (AI 1) | 1598 | ACTIVE | 2026-10-10 04:46 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 04:46 | AI 1 | 1597 | +1 | 1598 | OutRun B342 EVEN q212 previously stalled exact source contract recovered: B342 initial wrongly referenced Sonic-TV `3da797...` with actual SHA mismatch; traced historical B329 GitHub B.py to correct pinned revision `3ce344e7ed6b1b535f5e4d34c1192071ff7afbe6`, independently downloaded canonical English 2048x2048 RGB32 DDS (16,777,344 bytes, mip1) and verified exact SHA256 `f83f58483aab7a99ffe230c86eaa0527d9b7323be36808bdf69f2817e29c9f61` and header/masks via lightweight N100 MCP. Corrected GitHub producer script URL + new hash-bound evidence QA / queue / resume / progress / WORKLOG / STATUS, remote HEAD `af5a97407fecffdefe0eb0b3824d32ecd1ebab56` verified. Old GH worker `37981170322` in-progress at dependency install, corrected worker `37982259716` pending, SOURCE/CLEAN pixel stage, candidate promoter C2/C3 and real-game **NOT PASSED**; B341 trial untouched, new DDS0, runtime UNTESTED, VR/FFB/DX11/DXVK untouched. New independently established correct source-revision provenance + repaired deterministic job one accomplishment, not bonus for retry/status. **AI 1 이전 1597점 + 이번 +1점 = 누적 1598점**. RUN_KEY=OUTRUN-KOR-B342-Q212-CANONICAL-REV-PIN-IDENTITY-20261010-0445 |
 
 | 2026-10-10 04:28 | AI 1 | 1596 | +1 | 1597 | OutRun C341 C2 EVEN q230 새 전체 아틀라스 SOURCE/CLEAN/persisted delta 실증. pinned Sonic-TV 원본 DDS SHA33077919771f580491b8ea1011401dc22df640f87b5b0e6f602b112dbdb07b81 독립 다운로드 및 정확한 현재 DDS SHAa680ae4b7b7c48e2e6200ca766431a725e189297c6acf31badf677b98270428f, existing B228 CLEAN SHA738530a50ac1331ebdf3e7ed13b6ddc1dfa6d16064a089fffc3dc89dcf5a1914 각각 실바이트 검사. 2048x1024 RAW/FLIPY 두 도움말 정본 ROI [1,182,618,232] / [867,182,1422,232] 사용해 3쌍 전체 맵 검증: CLEAN→FINAL ROI 밖 RGBA0/alpha0, SOURCE→CLEAN ROI 밖 RGBA137224/alpha125019은 B228 기준 이전 B73 한글화 내용이고 새 q230 침범으로 허위 판정하지 않음. 독립 무손실 BGW native/75/50, RAW 및 전체 source/clean/target delta mask 등 PNG26+JSON2 커밋; 시각 native/50 검사에서 glyph rupture 신규 확정 없음, blind family calibration/C3 미완료로 HOLD_STRICT_RECHECK 그대로, 신규 DDS 0, RUNTIME_VALIDATION=UNTESTED. 저장소 같은 브랜치 git commit 948cdce96d7cf89540bbc53ca7e94142abda7e55 푸시/원격 HEAD/QA 재확인. 짝수 q230 큐만 반영, ODD/C1 untouched, VR/FFB/DX11/DXVK 제외. 동일 후보 SHA는 새 PASS/완료로 점수화하지 않으며 새 독립 SOURCE-CLEAN-FINAL 전체 보호 영역 증거 성과만 1회 +1. **AI 점수: 이전 1596점 + 이번 +1점 = 누적 1597점.** RUN_KEY=OUTRUN-KOR-C341-C2-Q230-SOURCE-CLEAN-DELTA-20261010 |
 

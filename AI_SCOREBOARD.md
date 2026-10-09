@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1551 | ACTIVE | 2026-10-09 14:44 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1256 | ACTIVE | 2026-10-09 13:45 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1257 | ACTIVE | 2026-10-09 14:50 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 14:50 | AI 2 | 1256 | +1 | 1257 | New unique DX9Ex R84 owner seam DX9EX-R84-R32-TRACKED-SURFACES-20261009: C++ material 11b71a236af4b0112900061d7130875c4ae6d1e1, DX9Ex Active 37889666629 policy/game/host/R33 full-chain/package SUCCESS, Domain 37889666717 SUCCESS; artifact 11597627361 digest sha256:fe453efb6402db8a2dee63989f682d20023e7e42120e4439fa6f5558137fa216, C6 record commit 810ff0451ce78d03bdfea62b38dc8d109208acaa, HMD UNTESTED. Same TASK score once; queue/5m checkpoints excluded. 1256 + 1 = 1257. |
 | 2026-10-09 14:44 | AI 1 | 1550 | +1 | 1551 | OutRun B320 P0 IGR-041 q137 **새 네이티브 DDS 1개 제작·승격**: 마지막 미완성 작은 `TRANSMISSION`을 `변속기 유형 선택`으로 native 2048×1024 BGRA32 마스크 재구성; B319 prior SHA256 `0c988e8b...` → new `cdd4a34879b7dce582db643c8e4f9494ef8cb19d533634aef23eb4ecfd186a92`, 기존 다섯 텍스트와 보호그래픽 그대로. 원문 bbox 281×32 안 한글 176×26, 여백 52/53/3/3px, 외부 RGB(A)/alpha 변경0, clean plate/RAW/100·75·50 이미지 증거 18개. [GitHub Actions 37889829462](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37889829462) SUCCESS, [원격 commit 7d7eb6e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/7d7eb6e5ca51b4f8dc64406af64b4a1270b460ef) 확인; 현재 6개 모두 제작자 scoped QA만 PASS, C1/C3/사용자 실게임 미완, IGR041 OPEN, RUNTIME_VALIDATION=UNTESTED. B319과 다른 소형 영역 새 바이트 성과 최초 1회 +1. **이전 1550점 + 이번 +1점 = 누적 1551점**. RUN_KEY=OUTRUN-KOR-B320-Q137-P0-SMALL-TRANSMISSION-20261009 |
 
 | 2026-10-09 14:18 | AI 1 | 1549 | +1 | 1550 | OutRun 한글화 B319 P0 q137 IGR-041 정확 원본·A22 CLEAN 기반 네이티브 `SELECT TRANSMISSION → 변속 방식을 선택하세요` **새 실물 DDS 1개 제작·승격**, prior SHA256 `b9366dd4...` → current `0c988e8b06010a0f003445d8b068a45871202bf0c3bcbf61dd5c203954458d22`. 변경은 상단 1 source bbox, 남은 5개와 보호 패널 픽셀 정확 불변, 원본 bbox 및 4px+ margin, outside RGBA/alpha0, BGRA32 2048x1024 RAW/mip1 재디코드 정확. 플레이트/합성/실물 네이티브·50·RAW 제작자 범위 PASS; [GitHub Actions 37887573842](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37887573842) 성공, [원격 HEAD 96a6bc09](https://github.com/thp32tt/OutRun2006Tweaks/commit/96a6bc09bb753423f28e2e08674bb9fbbe224fc2) 확인. 작은 TRANSMISSION REWORK, C1/C3/APPROVAL/인게임 재검증 미완료, IGR-041 OPEN, RUNTIME_VALIDATION=UNTESTED. 기존 B318과 다른 제목 영역의 신규 바이트 성과로 최초 1회 +1. **이전 1549점 + 이번 +1점 = 누적 1550점**. RUN_KEY=OUTRUN-KOR-B319-Q137-P0-LONGFORM-TOP-TITLE-20261009 |

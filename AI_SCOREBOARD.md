@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (현재 이 대화/계정) | 1582 | ACTIVE | 2026-10-10 00:00 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1274 | ACTIVE | 2026-10-09 23:09 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1275 | ACTIVE | 2026-10-10 00:23 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 00:23 | AI 2 | 1274 | +1 | 1275 | 사용자 2차 Quest3 실기기 정정: 동일 a6f8497 결과 진행률 상승 중 맵 이름·시간 복시/헤드락, 완료 후 정상, 렌즈 4~5개 중 중앙 1개만 복시/헤드락으로 광학 판정 구체화. 2차 업로드 `20261009T150616372Z-f33c5859` state19 GOAL의 generic SCREEN_OVERLAY_2D→exact TEXT_GLYPH SCREEN_HUD 시간순서 근거와 0xCABE 렌즈 hook 식별한계 명시, AGENTS.md/리그레션 런북/검토문서 GitHub 영구 수정. 실질 `Analyze-OutRunVRSession.ps1`에 GOAL 혼재된 소유권 증거 및 centre-flare 광학 미판정 표시 추가, `Test-OutRunVRAnalysisContract.ps1` 신규 독립 회귀 픽스처 작성, 정확 commit 53431fe406d (CI DX9Ex Active 37951117275 policy job 113889886189: `PASS goal-progress-versus-completed-result : NEEDS_GOAL_PHASE_VISUAL_REVIEW` 및 기존 검증 PASS); 후속 문서 HEAD d743ccc02acf. **사용자 실기기 광학 수정 자체 미완료**, C++ GPU 행동 변경 0, 새로운 HMD build/runtime UNTESTED. 독립 진단기 구현·회귀 검증 성과에만 +1 한 번 반영; 동일 정정 재보고/CI 재시도는 +0. **AI 2 이전 1274점 + 이번 +1점 = 누적 1275점**. RUN_KEY=DX9EX-HMD-PHASE-CORRECTION-20261010 |
 
 | 2026-10-10 00:00 | AI 1 | 1581 | +1 | 1582 | OutRun B336 B lane P0 q060 **new actual production prerequisite completed**: strict source/CLEAN/font P2 probe identified missing renderer NotoSansCJK Bold on GitHub runner; corrected integer RGB overflow, installed licensed `fonts-noto-cjk` and `fonttools` as explicit reproducible dependency, verified actual TTC SHA256 `faa5f3656a78b2e2d450d27fe8382c778bc2b6bb5ea29c986664a6a435056ceb` and package license SHA `849f4ea9c214fa4ac3593b770c699f387534b11ce671264c1b10d85bdcb5997b`, confirmed translation `아웃런 마일:` 7/7 required glyphs by Unicode cmap, exact canonical-source and persisted candidate DDS SHA bound; source/CLEAN/final FLIPY/RAW practical PNG 6 and negative slant-proxy proof generated. Initial failing Actions 37946726893 corrected; 37947059867 and final font-qualified 37947992059 SUCCESS. **No new DDS**; C334 C2 HOLD and matched-stroke source-family slope/other C3/user IGR044 remain pending, RUNTIME_VALIDATION=UNTESTED. Production workflow + role B exact evidence, queue/resume/progress/WORKLOG/STATUS in Git commit [1a7b557](https://github.com/thp32tt/OutRun2006Tweaks/commit/1a7b5571371c994646532512bcd7bc3dd8efb5ad), remote HEAD verified at sync; unrelated DX11/DXVK/VR/FFB untouched. This first-time verified P2 **font precondition** is distinct from prior B335 P1 full clean plate success; same-run retry and republishing SHA do not earn duplicates. **이전 1581점 + 이번 +1점 = 누적 1582점**. RUN_KEY=OUTRUN-KOR-B336-Q060-SOURCE-FONT-SLANT-P2-20261009-2340 |
 

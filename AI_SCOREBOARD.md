@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1554 | ACTIVE | 2026-10-09 16:54 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1555 | ACTIVE | 2026-10-09 16:57 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1260 | ACTIVE | 2026-10-09 15:34 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-09 16:57 | AI 1 | 1554 | +1 | 1555 | OutRun localization Docker browser stability: installed `/home/chatgpt-runner2/.local/bin/outrun_kor_chrome_hourly.py` and enabled persistent `outrun-kor-chrome-hourly.timer` (5m readiness checks, minimum 3600s between restarts, active generation guard, VR container excluded). Validated dry-run and real 2026-10-09 16:54:56 KST single container restart; Chrome CDP returned healthy 16:55:01, profile/registry volumes preserved. Confirmed systemd user enabled/active, Linger=yes. Playwright previous connection-closed error needs next scheduled cycle verification. Unique installed working timer+successful recovery +1. **이전 1554점 + 이번 +1점 = 누적 1555점**. RUN_KEY=OUTRUN-KOR-CHROME-HOURLY-SAFE-REFRESH-20261009-1655 |
 | 2026-10-09 16:54 | AI 1 | 1553 | +1 | 1554 | OutRun B324 q214 **새 원문 기반 네이티브 CLEAN 플레이트 실물 1개 + SOURCE/OLD/REPAIRED/CURRENT 증거 PNG 36개**. 독립 C285/C289 반복 탈락 이후 이전 B194 CLEAN 바깥 오염 RGBA 394px을 canonical English 원본 정확 픽셀로 복원하여 새 CLEAN SHA256 `5beb411d1692032d028b747f93083c6b438da1d4ff122f479d3d2f23d08b604b`, 허용 START/GOAL 원문 2영역 바깥 RGBA/alpha=0, 보호 배경 동일; GPT 제작자 6 native/RAW/75/50 크롭 시각 검토. [GitHub CPU Actions 37901026870](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37901026870) SUCCESS, worker `b58aff67483581e16b8afcc20440f165ffe74f51`, QA/queue/resume/progress/WORKLOG/STATUS GitHub 게시. 원 DDS `ace42cb3...` **변경 안 됨**, q214 `METHOD_CHANGE_REQUIRED / REWORK_REQUIRED`; 새 DDS 0, C2/C3/사용자 승인/인게임 미완, RUNTIME_VALIDATION=UNTESTED. 이전 B260/B261 실패 시도 또는 B323 DDS와 별개인 신규 실제 CLEAN 산출물 및 결함 394px 정정 성과만 1회 계산. **이전 1553점 + 이번 +1점 = 누적 1554점**. RUN_KEY=OUTRUN-KOR-B324-Q214-CLEAN-BOUNDARY-20261009 |
 
 | 2026-10-09 16:30 | AI 1 | 1552 | +1 | 1553 | B323 OutRun q228 IGR-038 **new persisted source-conditioned native silver chrome DDS 1 actual byte achievement**: old SHA256 `28e81459...` → promoted `cab1ce0802739fdbe9f40df412bd3d469fe16630dad25a28873ccb81016df473`. B322 `ffb982af...` 7-horizontal-band trial was visually REJECTED, never double-scored. Distinct B323 repairs material from source sampled continuous silver effect on Korean native original-size glyph; GitHub CPU Actions [37898688054](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37898688054) SUCCESS; byte-exact header, BGRA32 2048x2048 MIP1, mirror-Y persisted roundtrip PASS, outside one source title box RGBA/alpha0, other 12 rows pixel-identical. FLIPY native100, 50% and RAW75 SOURCE/CLEAN/OLD/NEW visual producer scoped PASS. Only 1/13 rows repaired; remaining 12 REWORK, fresh C2 then C3 and new user gameplay retest pending; IGR038 OPEN_USER_INGAME_FAIL, RUNTIME_VALIDATION=UNTESTED. [Remote B HEAD 7228da65](https://github.com/thp32tt/OutRun2006Tweaks/commit/7228da65b462fb1fb248e2402c955bf4147fe0a1) confirmed. One unique promoted DDS = one score; **이전 1552점 + 이번 +1점 = 누적 1553점**. RUN_KEY=OUTRUN-KOR-B323-Q228-CONTINUOUS-SOURCE-CHROME-20261009 |

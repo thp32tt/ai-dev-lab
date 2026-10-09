@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1591 | ACTIVE | 2026-10-10 03:25 KST |
+| AI 1 | ChatGPT (AI 1) | 1592 | ACTIVE | 2026-10-10 03:36 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1283 | ACTIVE | 2026-10-10 02:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 03:36 | AI 1 | 1591 | +1 | 1592 | OutRun C339 C2 EVEN q154: exact Sonic-TV canonical English DDS SHA256 15a10e6b44ca5f1267fdf24eebbe902bb18a77b3903896370e183fea8a401bcf separately downloaded and independently authenticated; verified persisted current B298 SHA c4d6c1515716476123b69dfb645dcc27a3cc7a69f31a1368a831004a0b40d524. Native 4096x1024 all eight English source/target regions, incl newly independent gray three versus exact canonical source; source-to-final 8-region union outside RGBA/alpha 0/0 and 8/8 positive margins; authored single mip and RAW/FLIPY plus practical 100/75/50 black/white/gray evidence. **73 new lossless PNG and 2 JSON** in role_C C339 + QA/worklog/STATUS/queue current bounded HOLD record committed/pushed; remote HEAD `e077f99b3186a1f3e5d89bb42ed8465a132b4b9e` checked. Full producer CLEAN plate identity, blind family anchors and C3 still absent, therefore HOLD_STRICT_RECHECK; no approved C PASS or actual-game claim; DDS0, RUNTIME_VALIDATION=UNTESTED. ODD/unindexed untouched, VR/FFB/DX11/DXVK excluded; new independently verified source provenance + full-region evidence one accomplishment only, repeat same-SHA status/approval +0. **AI 점수: 이전 1591점 + 이번 +1점 = 누적 1592점.** RUN_KEY=OUTRUN-KOR-C339-C2-Q154-SOURCE-ALL8-20261010 |
 
 | 2026-10-10 03:25 | AI 1 | 1590 | +1 | 1591 | OutRun C339 C1 홀수 q227 **기존 C320 3개와 중복 없는 A214 신규 13개 영역 실제 저장 DDS 독립 검증**: GitHub 현행 2048x2048 RGBA32/mip1 SHA256 `83120095e3ff960939c0b413dd85d1633314f23dcde0192f0cf68a7a47776595` 직접 검사, 신규 13개 A214 게시 FINAL PNG vs DDS 저장 FLIP-Y 13/13 RGBA 차이0, CLEAN alpha0 13/13, 전체16 alpha-positive counts/bbox 독립 재계산 일치 16/16·최소1px 양의 마진; RAW 13 영역 반전 검증. GitHub C339 증거 JSON2, 별도 무손실 PNG4, JPG2 게시(커밋 `0e2c3ef925bd0e71bf4ea68c60e1ca153020e0d3`), asset_queue/resume_state/progress/WORKLOG/STATUS 갱신 최종 branch `4578b54f`. 원본 DDS/CLEAN 독립 SHA·블라인드 계열 캘리브레이션/C3/사용자실기 미완 => C1=HOLD_STRICT_RECHECK, IGR034/035/036 OPEN, RUNTIME_VALIDATION=UNTESTED, 신규 DDS0. 이는 **새 13개 정확 현재바이트 증거** 성과에만 +1, 이전 C320 증거·동일 A214 재검수 재가산 아님. **이전 1590점 + 이번 +1점 = 누적 1591점**. RUN_KEY=OUTRUN-KOR-C339-C1-Q227-A214-13-FRESH-SAVED-PIXEL-20261010-0310 |
 

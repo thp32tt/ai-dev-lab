@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | 다른 AI | 1583 | ACTIVE | 2026-10-10 00:20 KST |
+| AI 1 | ChatGPT (AI 1) | 1584 | ACTIVE | 2026-10-10 01:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1282 | ACTIVE | 2026-10-10 01:49 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 01:50 | AI 1 | 1583 | +1 | 1584 | OutRun C336 C2 q154 **최신 B298 DDS 내 기존 빨간 텍스트 5개 현행바이트 최초 독립 확인**: 현재 원격 DDS 4096×1024 BGRA32 SHA256 c4d6c1515716476123b69dfb645dcc27a3cc7a69f31a1368a831004a0b40d524 내려받아 이전 C292 독립 무손실 PNG 5개와 RAW/FLIP-Y 정확 픽셀 비교. FLIP-Y **5/5 제로 차이**, RAW는 의도한 차이. 알파합성 표시 검토에서 뚜렷한 파손·영문 유령 없음; 첫 영역 보호 빨간 분리선 7860px은 원문 RGBA/alpha 동일. 새 현행 후보 증거 1건, 과거 C292 중복 가점 아님. C323의 신규 회색 3종 보류·독립 계열 검수/C3/사용자 게임 여전히 미완: C2=HOLD_STRICT_RECHECK, DDS0, RUNTIME_VALIDATION=UNTESTED. QA·asset_queue·resume_state·progress·WORKLOG·STATUS [fd2fdf8e](https://github.com/thp32tt/OutRun2006Tweaks/commit/fd2fdf8ebcade24519dad2a28e37516cee6e761e) 게시, remote SHA 확인, N100는 로컬 DNS 미해결로 최소 검사 보조만 사용하고 무거운 제작 미실행, VR/FFB/DX11/DXVK 제외. **이전 1583점 + 이번 +1점 = 누적 1584점**. RUN_KEY=OUTRUN-KOR-C336-C2-Q154-B298-FIVE-RED-EXACT-CURRENT-20261010-0150 |
 
 | 2026-10-10 01:49 | AI 2 | 1281 | +1 | 1282 | 운영 중 원복한 진짜 한글화 컨트롤러 브랜치 `localization-controller-recovery-20260928`의 `tools/chat-controller/localization-recovery-v1/`에 Chrome 안정성 기능 및 4-worker 정확히 이식. 이전 v0.4 채널의 자산 큐·event ID/production ID 엔진을 배제하고 원복 v1 정시 6회 A :00, C1 :10/:40(홀수), C2 :20/:50(짝수), B :30 스케줄; C→C1 구 URL/횟수 상태 승계, 일자 변경 시 기록 보존 및 손상 레지스트리 파괴 방지. 30초 독립 오류 탭 복구, 2시간 Chrome+컨테이너 교체(최대 30분 busy 유예), 프로필 인증 데이터 보존 및 캐시만 삭제, N100 원래 Portainer 6082/8788/볼륨과 AUTO_SEND=false 유지. Github material branch HEAD [6e3c2529](https://github.com/thp32tt/OutRun2006Tweaks/commit/6e3c252955b94b9401fd9965edea676d74a3cfbf), Recovery v1 CI [37961424119](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37961424119) Python compile, 4-worker regression, authentication retention shell test, original Compose contract 모두 PASS; final 추가 마이그레이션 회귀 [37961581516](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37961581516) 당시 queue 대기. 컨테이너 배포 미수행, Windows/장시간 로그인 실동작 미검증, 동일 작업 후속 retry·CI 점검 재가산 안 함. 사용자 요구 구조 복원 및 실질 기능 개발 +1 1회. 1281+1=1282. RUN_KEY=LOCALIZATION-RECOVERY-V1-RESTORE-20261010 |
 

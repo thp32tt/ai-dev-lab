@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (현재 이 대화/계정) | 1563 | ACTIVE | 2026-10-09 19:33 KST |
+| AI 1 | ChatGPT (현재 이 대화/계정) | 1564 | ACTIVE | 2026-10-09 19:49 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1266 | ACTIVE | 2026-10-09 19:18 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-09 19:49 | AI 1 | 1563 | +1 | 1564 | OutRun 한글화 A205 **실제 신규 q193 97E863AD RGBA32 DDS 1개, 3개 제목 네이티브 글꼴·영문 원본 RGB·굵기 재구성**: 현행 전 SHA256 e21851f5... → 새 SHA256 1cea9015c02bfe80efb1538ba69218c2b505438c78eb31ff64b7677f883824a6, 영문 WELCOME/MULTIPLAYER/SHOWROOM의 한국어 환영합니다/멀티플레이어/쇼룸. GitHub CPU worker 37919114543 SUCCESS, 100/75/50/RAW SOURCE/CLEAN/OLD/NEW 실제 제작·검토, 3개 본문 원래 바운드/양수 여백과 배경/보호/알파 밖 픽셀 변경0, 원본 128바이트 DDS 헤더·RGBA 채널·Y 방향과 저장 후 디코드 일치. 다른 10개 레거시 영역 미수정, whole atlas REWORK_REQUIRED, IGR003/019/033 OPEN/C1·C3·USER_GAME 미통과, RUNTIME_VALIDATION=UNTESTED. q193 queue/backlog/artwork_plan/resume/progress/WORKLOG/STATUS/QA + binary GitHub [원격 HEAD 6f65e59a](https://github.com/thp32tt/OutRun2006Tweaks/commit/6f65e59af4ab3ce64945342f5391684e3626456a) 실제 push/검증. 원본 A171/C262 실패 재검증 또는 A205 실패한 worker 재시도에 별도 가점 없이 새 DDS 물성·증거 성과 하나만 +1. **AI 1 이전 1563점 + 이번 +1점 = 누적 1564점**. RUN_KEY=OUTRUN-KOR-A205-Q193-3TITLE-NATIVE-20261009-1948 |
 
 | 2026-10-09 19:33 | AI 1 | 1562 | +1 | 1563 | OutRun C329 C2 EVEN q212 **신규 B329 정확한 실제 저장 DDS SHA256 e22ad5c46e81489123467783176dba1a040e0d2a36b6e6820349a9fcd87e9fea 독립 원문/후보 무손실 FLIP-Y/RAW/50% 시각 확인 및 SHA/header 검증**. C327 반려 PROFESSIONAL→프로 120px right513를 새 프로페셔널 316px left5로 개선 검증, 저장소 새 QA C329 기록과 queue/INGAME backlog/resume/progress/WORKLOG/STATUS를 HOLD_STRICT_RECHECK로 일관 반영 (총 7파일 commit e1bd0cb1d7928335f21ca42a2c5559e0bc07ec68). 전체 12 native source/clean/final QA·C3/게임 미완료로 독립 C PASS 또는 USER_GAME 성공 주장 금지. IGR029 OPEN, RUNTIME_VALIDATION=UNTESTED; 새 DDS0. 완성된 이전 A/B 작업의 재생산 점수 0, 새 exact-SHA C2 증거 처리 성과 +1 단일 가산. AI 1 이전 1562점 + 이번 +1점 = 누적 1563점. RUN_KEY=OUTRUN-KOR-C329-C2-Q212-B329-EXACT-SHA-SCOPED-HOLD-20261009-1920 |
 

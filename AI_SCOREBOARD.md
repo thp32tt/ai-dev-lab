@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | 다른 AI | 1583 | ACTIVE | 2026-10-10 00:20 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1280 | ACTIVE | 2026-10-10 01:30 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1281 | ACTIVE | 2026-10-10 01:45 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 01:45 | AI 2 | 1280 | +1 | 1281 | OutRun2006 DX9Ex Quest3 P0 원본 모드 + 공식 SHA 고정 EXE Capstone x86 실제 디스어셈블리 연구 결과 실질 렌더링 개발. GOAL 0~99% 결과시간/맵텍스트 별도 원본 B9200 E8 **19곳** SpriteNode ScreenHud 원본 자식 전체 소유권 구현 (`b1d957ce`, `6bae69e5`); original centre lens `0x570002 @0xD3A5->0xC980` vs 정상 outer `0xD5F5...->0xC9A0` 분리해 central-only WorldBillboard 렌더 수정 (`9f9d7f46`); in-game +TIME 원본 0x989xx sprani 3곳 외 별도 **number/text** `0x989AD/0x98A10/0x98A89 ->0x973C0/0x974E0` 확인 후 total 6원본E8 atomic owner + rollback (`ed17a5ea`), 최종 source `18ab73948c989628486579a527d8ff8d1dfdd965`; 세 기능 static EXE/visual composition exact SHA HUD Inspector `37961146268` static-exe-analysis SUCCESS 및 DX9Ex Active `37961146271` policy SUCCESS, 전체 x86/x64 build queued/pending, HMD `RUNTIME_VALIDATION=UNTESTED`. 원본 E8 하드체크·분야별 부정변이 CI/AGENTS.md/디스어셈블리 문서 저장. 독립 실제 개발+검증 성과 1회만 가산, CI 재시도·문서 재조회 무점수. RUN_KEY=DX9EX-P0-DEEP-DISASM-20261010 |
 
 | 2026-10-10 01:30 | AI 2 | 1279 | +1 | 1280 | 사용자 요청 한글화 v2 Chrome 로그인 보존 주기적 초기화 신규 구현: 4-worker A/B/C1/C2 유지, 2시간마다 Chrome/컨트롤러 Docker restart:unless-stopped 통한 재순환, 바쁠 때 30분 이내 유예, 재시작 전 chat_registry·chrome_recycle 원자 체크포인트, 중복 전송 금지. 시작 전 Chrome 정지 확인 후 명시된 14개 임시 캐시 경로만 삭제, Cookies/Login Data/Local Storage/IndexedDB/Session Storage/Sessions/Service Worker 및 GitHub 상태 보존; symlink 프로필 경로 거부 및 이전 Chrome 잔존 시 프로필 잠금 파일 조작 방지. 독립 단위 테스트와 auth 파일 보존 shell QA, CI 구성·문서 GitHub chat-controller-downloads 최종 변경 HEAD [82b75044](https://github.com/thp32tt/OutRun2006Tweaks/commit/82b750447295ff088d2747bb3e6f4af75c2fdc23). 기능 포함 CI [37958842934](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/37958842934) Python/Cache tests·Compose·v2 Docker 빌드/시작 SUCCESS; 최종 profile-lock 후속 커밋의 CI는 점수 시점 별도 진행/대기. 실제 Portainer 라이브 재배포·로그인 유지 장시간 런타임은 미검증, 외부 인증 만료시 재로그인 가능. 독립 신규 성과 1회만 가산, 후속 재확인·retry +0. 이전 1279점 + 이번 +1점 = 누적 1280점. RUN_KEY=LOCALIZATION-CHROME-PERIODIC-RECYCLE-20261010 |
 

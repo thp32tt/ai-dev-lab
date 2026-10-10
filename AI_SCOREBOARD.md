@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1676 | ACTIVE | 2026-10-11 02:34:00 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 956 | ACTIVE | 2026-10-11 01:36:53 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 02:45:30 KST | AI 2 | 956 | +1 | 957 | OutRun DX9Ex 전체 R84 렌더러 구조 분리 **CONVERSION-DX9EX-00591**의 최초 실제 독립 Win32 x86 R29-R33 게임 DLL 컴파일·링크, x64 OpenXR 호스트 및 smoke, 보호 R26 기준 x86 게임 빌드, 통합 ZIP/manifest/collector/PE/SHA 검증. 원본 구현 [97a2c676](https://github.com/thp32tt/OutRun2006Tweaks/commit/97a2c6769d92963b8ad5410c4e774e399a62f4ae)에서 [Actions #38071953016](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38071953016) 5개 작업(r84-local, r84-win32, r84-host, r84-baseline-game, r84-bundle) 모두 SUCCESS, 통합 ZIP artifact `11677164470` (5,142,744 bytes). GitHub [FEATURE_READY 기록 9e0e6764](https://github.com/thp32tt/OutRun2006Tweaks/commit/9e0e676480b125c4a57a50f6a52c3237533f771e) 및 R84-OWNERS/ABI/BUILD-GRAPH/REGRESSION/TEST-BUNDLE 5개 feature CI acceptance PASS 저장. **별도 DX9Ex Active Validation/Domain Isolation의 대상 SHA 필수 게이트는 PENDING, controller-only 타깃 배포 미실시, Quest3/VDXR `RUNTIME_VALIDATION=UNTESTED`, `DONE_BUILD_VERIFIED` 아님.** 신규 실제 전체 기능 빌드·바이너리·테스트 번들 성과를 최초 1회만 +1; 같은 TASK_ID의 롤오버·재보고·단순 승격 반복은 +0. **AI 점수: 이전 956점 + 이번 +1점 = 누적 957점.** RUN_KEY=CONVERSION-DX9EX-00591 |
 
 | 2026-10-11 02:34:00 KST | AI 1 | 1675 | +1 | 1676 | OutRun 한글화 자동개발 Docker/Portainer 컨테이너 이름 충돌 신규 원인 검증 및 코드 재발 방지. N100 실제 Docker에서 컨테이너 5111d7869c33 상태 healthy, 이름 outrun-chat-controller-localization-recovery, 이미지 bc3696af9dbf 및 /data·/logs 별도 볼륨 확인. 기존 배포 스크립트가 Portainer Compose 대신 standalone docker run -d로 동일 이름을 생성해 Portainer 재배포가 실패하는 실제 충돌 원인 확인. [GitHub 배포 스크립트 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/e21d1861f30a113b446ec105a47445b6f32052ef) 에서 신규 standalone 실행을 제거하고 Portainer-owned stage-only, 기존 컨테이너 handoff 안내, 볼륨 보호, 정확한 원격 HEAD 및 Python --help 구문 실행 확인. **현재 healthy 컨테이너는 유지**, Portainer 소유 전환 및 최종 재배포는 **미실시**, 게임 검증 UNTESTED. 중복 retry는 +0. **AI 점수: 이전 1675점 + 이번 +1점 = 누적 1676점.** RUN_KEY=OUTRUN-KOR-PORTAINER-DEPLOY-NAME-CONFLICT-20261011-0226 |
 

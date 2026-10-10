@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1627 | ACTIVE | 2026-10-10 13:12 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1073 | ACTIVE | 2026-10-10 13:00 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1074 | ACTIVE | 2026-10-10 13:14 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 13:14 | AI 2 | 1073 | +1 | 1074 | DX9Ex C 신규 CONVERSION-DX9EX-00568 P1 HostState.v3 QPC age signed overflow 방지, negative/future clock fail-closed C++ 소스와 Release-active 경계/극단값 스모크 9건 수정. [material bdb70182](https://github.com/thp32tt/OutRun2006Tweaks/commit/bdb701823e93b62e28c831d2b16258655d6ab915), exact-SHA DX9Ex Active #38022817051, Domain #38022817046, Full Source Impact #38022817082 전부 SUCCESS; CI artifact 11659400100 sha256:63b70528015ab2925fbd560963f274cc23f89250946dc3bd619cbd666cc9ca89; C6 [cbeaa6d5](https://github.com/thp32tt/OutRun2006Tweaks/commit/cbeaa6d525c48479b0fd36e0d0ac4df76576f67f). 동결 DX9Ex baseline/FFB v0.2 보호, DX11 A/DXVK B 미변경. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 120FPS NOT_MEASURED. 재실행·롤오버·재보고 중복 +0. **AI 점수: 이전 1073점 + 이번 +1점 = 누적 1074점**. RUN_KEY=CONVERSION-DX9EX-00568 |
 
 | 2026-10-10 13:12 | AI 1 | 1626 | +1 | 1627 | OutRun A223 ODD q103 latest independent C1 A222 strict SOURCE_EFFECT_HEIGHT +15px REWORK; source original 354x45 verified vs A222 325x60, native Regular49px new outlines rather than scaling old pixels, GitHub CPU Actions #38022895710 SUCCESS real new UNPROMOTED DDS SHA256 a36359f1d7f030ef25345ffc9437ccb6e71654690edc7de322f0285d68a531b9; new glyph 284x45 0px height violation, 10548 changed RGBA pixels/31642 bytes within original source region only/outside 0, protected yellow clean plate + RAW verified. New material trial1 official0. Producer controller visual 50pct says SMALL_OPTIC_AND_TOO_LOOSE_TRACKING thus HOLD not PASS or C1/C3 approval. Queue/resume/progress/QA/recipe/WORKLOG commit 000ad6d8ca5ac7e2195e9ebf022b9df5e295b427 and remote HEAD confirmed. +1 for 1 distinct actual material DDS saved and hard 15px ceiling fix, no award for first failed CI, retry, intermediate code commits or prior A222. C1/C3/game NOT_TESTED, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1626점 + 이번 +1점 = 누적 1627점. RUN_KEY=OUTRUN-KOR-A223-Q103-C1-EXACT-SOURCE-HEIGHT45-20261010-1300 |
 | 2026-10-10 13:00 | AI 2 | 1072 | +1 | 1073 | DX9Ex C 신규 `CONVERSION-DX9EX-00567` OpenXR per-eye FOV 음수 span 반전 거부 및 비정상 projection 원자적 발행 C++ 수정, Release-active host core_math negative smoke (reversed x/y, NaN, Infinity, 정상 asymmetric). [material 54cc213f](https://github.com/thp32tt/OutRun2006Tweaks/commit/54cc213f19da1f5d010bb80e288d1be8a73f9f49), exact-SHA DX9Ex Active #38022025928 (policy/host/game/R33 full-chain/package), Domain #38022025870, Full Source Impact #38022025968 모두 SUCCESS; artifact 11658119002 sha256:54172d11d86168d6bc860606e7bfeebc573b3944aeac974fe653c072dc099b17; C6 [975e1bcc](https://github.com/thp32tt/OutRun2006Tweaks/commit/975e1bcc86a7032d9798663cf19d4e0f083cb729). FFB v0.2 / DX9Ex 불변 베이스라인 보호, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 120FPS NOT_MEASURED. 롤오버 및 retry 동일 성과 재가산 금지. **AI 2 이전 1072점 + 이번 +1점 = 누적 1073점**. RUN_KEY=CONVERSION-DX9EX-00567 |

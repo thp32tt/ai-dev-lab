@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1617 | ACTIVE | 2026-10-10 10:41 KST |
+| AI 1 | ChatGPT (AI 1) | 1618 | ACTIVE | 2026-10-10 10:53 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1067 | ACTIVE | 2026-10-10 09:58 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 10:53 | AI 1 | 1617 | +1 | 1618 | OutRun C353 C1 **홀수 q121 신규 A220 SHA `6db7c408...` 독립 저장 DDS QA**. A219는 이미 C351 검수된 별개 SHA `9f5039da...`; 이전 정식 `38d5c2c3...` 및 영문 원본 `f7847db9...`와 총 4개 DDS SHA 정확 검증. 공식→A219 `goal.` 33픽셀/132바이트 삭제 보존, A219→A220 **the** 24픽셀/95바이트(23 흰색+1 남색, 모두 원본 동일 alpha255→0), 공식→A220 57픽셀/227바이트; 두 지역 밖 변경0, A220 the 전체 알파 양성 0. 실제 저장 RAW/FLIPY·BGW native/75/50 및 A215 SOURCE/CLEAN/FINAL 동형 검증, 13 신규 lossless PNG+기계/독립 C1 JSON2 및 queue/resume/progress/WORKLOG 4개 commit [703b948d](https://github.com/thp32tt/OutRun2006Tweaks/commit/703b948da217d015956cbbe4285abb153e6a594f) 원격 HEAD 확인. **두 영역 국소 오염 제거만 검증**, 나머지 29개 전체 C1=HOLD_STRICT_RECHECK; 공식 REWORK 유지, C3/APPROVAL/IGR030/031/040 실기 UNTESTED, promoted DDS0. C2/VR/FFB/DX11/DXVK 무변경. A220 생산자 기록이나 기존 A219 SHA와 중복 가점이 아닌 신규 SHA 독립 성과 **1건**에만 +1. **AI 점수: 이전 1617점 + 이번 +1점 = 누적 1618점.** RUN_KEY=OUTRUN-KOR-C353-C1-Q121-A220-NEW-THE24-PLUS-GOAL33-20261010 |
 
 | 2026-10-10 10:41 | AI 1 | 1616 | +1 | 1617 | OutRun C352 C2 EVEN q176 **기존 C343 공식 SHA 494d42c0... 재검수 가점이 아닌** B346 **새 미승격 시험 SHA eea9f4b6...의 최초 독립 저장 바이트·CLEAN·시각 QA**. Sonic-TV 원문 SHA 8ba40915... 실제 다운로드 해시 확인, 공식·시험 2048x2048 RGBA32 DDS 해시·헤더, 4 영역 SOURCE/CLEAN/TRIAL FLIP-Y/RAW·native/50 및 3배경 시각검토. SOURCE→CLEAN, CLEAN→TRIAL, 정본→TRIAL RGBA/alpha 범위 밖 0, CLEAN 네 영역 알파0, 네 글자 source bbox/양수여백 PASS, 공식→시험 215,951 변경픽셀; 서체 계열 블라인드 캘리브레이션 미확립으로 **전체 HOLD_STRICT_RECHECK**, 정식 DDS0, C3/APPROVAL/사용자 실게임 모두 UNTESTED. 새로운 PNG13+JSON2+queue/resume/progress/WORKLOG 4개 GitHub 커밋 [c4407474](https://github.com/thp32tt/OutRun2006Tweaks/commit/c44074741438ab0b35e4e9e70cb9df3c32d26cc7) 원격 HEAD 확인. ODD C1·VR/FFB/DX11/DXVK 미수정. **AI 점수: 이전 1616점 + 이번 +1점 = 누적 1617점.** RUN_KEY=OUTRUN-KOR-C352-C2-Q176-B346-INDEPENDENT-NATIVE-20261010-1020 |
 | 2026-10-10 10:23 | AI 1 | 1615 | +1 | 1616 | OutRun C352 C1 홀수 q175 A216 **새 시험본 SHA a5e921ab...** 독립 저장 DDS/시각 QA. 정본 SOURCE 93143725...·기존 정식 b9f60b45...·시험본 a5e921ab... 직접 SHA 인증, native 2048×1024 RGBA32/mip1·RAW/FLIP-Y·BGW 100/75/50 + 2배 실측. 정식→시험본 변경 73,078 RGBA/69,961 alpha, 원문 제목 bbox 밖 변경0, 그러나 **시험본 쇼룸 획이 지붕/가로레일로 무너져 50%에서도 음절 즉독 불가**, 원문 showroom 연결된 둥근 금속 글자 스타일과 불일치. 머신 범위 통과보다 확실한 독립 시각 반려 우선. 신규 13 lossless PNG + 기계/판정 JSON2 + queue/progress/resume/WORKLOG 4 = 19 files, commit [bae4f6ce](https://github.com/thp32tt/OutRun2006Tweaks/commit/bae4f6cee6e09dd2c1343efb800e1963d5e0a146) 원격 HEAD 재조회. C352 새 시험 SHA REWORK_REQUIRED; 기존 C286 공식 SHA REWORK_REQUIRED 유지, promoted DDS0, C3/APPROVAL/IGR032 사용자 실기 UNTESTED. 같은 공식 SHA C286 이전 반려 재점수화 아님; A216 생산자 반려 재보고 아닌 **새 정확 SHA 독립 C1 평가/증거 작업 1건**만 +1. 짝수 C2/VR/FFB/DX11/DXVK/별도 큐 무변경. **AI 점수: 이전 1615점 + 이번 +1점 = 누적 1616점**. RUN_KEY=OUTRUN-KOR-C352-C1-Q175-A216-NEW-WELDED-TRIAL-VISUAL-REJECT-20261010 |

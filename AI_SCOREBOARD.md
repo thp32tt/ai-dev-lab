@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1667 | ACTIVE | 2026-10-10 22:35:48 KST |
+| AI 1 | ChatGPT (AI 1) | 1668 | ACTIVE | 2026-10-10 22:39:17 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 953 | ACTIVE | 2026-10-10 22:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 22:39:17 KST | AI 1 | 1667 | +1 | 1668 | OutRun C1 ODD q121 new A230 SHA `339966365e33d70c7518a5c12375ca0b14ae2de3eedf4bd98816a42febe3a21e` **first independent C1 persisted DDS QA**. Canonical English `f7847db9...`, official `38d5c2c3...`, prior A220 `6db7c408...` full native SHA256 verified. Independently streamed 67,108,992-byte RAW and source ROI: 30 pixels/120 bytes removed, remaining exact source 266→236, outside0/header unchanged; native gray100/white75/black50 & RAW original/current/new visual source ghost and opposite style-family fail. **C1 REWORK_REQUIRED_UNPROMOTED**, official/queue REWORK preserved, C3/APPROVAL=0, IGR030/031/040 OPEN, game UNTESTED. [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/00aa3ed8c5197c67cdce2bd7026010c9ddba12bb). No production DDS credit or duplicate C353 A220 review. **AI 점수: 이전 1667점 + 이번 +1점 = 누적 1668점**. RUN_KEY=OUTRUN-KOR-C1-Q121-A230-NEW-SHA-INDEPENDENT-PERSISTED-20261010-2234 |
 
 | 2026-10-10 22:35:48 KST | AI 1 | 1666 | +1 | 1667 | OutRun 한글화 C369 C2 EVEN q230 **이전 C366 12개 분포대조와 구분되는 신규 13개 실명 텍스트 세그먼트 전영역 픽셀 증거**: SHA 고정 영문 SOURCE 33077919…, B228 CLEAN 738530a5…, 보존 공식 DDS a680ae4b…를 원본 RAW/FLIP-Y 2048x1024 실제 디코드하여 SOURCE→CLEAN 159051/159051 변경 픽셀을 13개 대응 영어/한국어 세그먼트에 할당하고 미분류0, 도움말 밖 이전 137224, CLEAN→최종 도움말 밖0/안15398 확인. UNAVAILABLE/SOLD 개별 세그먼트 분리, 원본 네이티브 경계 PNG, source/CLEAN/final 실제 50% 비교 PNG, 픽셀 마스크 및 머신·C2 HOLD JSON 신규 작성. [원격 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/c3d82fced2ce7acf5ef3a4571310398fa854e86b) 검증, queue/resume/WORKLOG 동기화. 동일 DDS SHA 독립 C PASS/완료 반복가점은 0, **새로 증명한 13영역 전수 매핑 한 성과에만 +1**; q230 HOLD, C3/사용자 실게임 UNTESTED, 신규 DDS0/승인0. **AI 점수: 이전 1666점 + 이번 +1점 = 누적 1667점**. RUN_KEY=OUTRUN-KOR-C369-C2-Q230-13-SEGMENT-DIFF-COVERAGE-20261010-2220 |
 

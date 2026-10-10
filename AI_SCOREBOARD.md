@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1611 | ACTIVE | 2026-10-10 09:09 KST |
+| AI 1 | ChatGPT (AI 1) | 1612 | ACTIVE | 2026-10-10 09:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1066 | ACTIVE | 2026-10-10 09:14 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 09:25 | AI 1 | 1611 | +1 | 1612 | OutRun C350 C1 홀수 q035 공식 A196 후보 SHA cc8df5b4...는 C308과 동일하여 DDS 생산·반복 PASS는 **0건**. 하지만 새로 별도 성과인 정본 SOURCE→CLEAN 전체 4096x4096 RAW 전수 픽셀 분석으로 과거 C308의 bbox 안팎0 주장보다 범위 넓은 **원문 효과/AA 14,182 변경 픽셀**(SOURCE→FINAL 밖14,182·알파13,551; CLEAN→FINAL 밖0)을 독립 발견, 15 컴포넌트로 구분하여 글자 원문 효과인지 보호 아트인지 과장 없이 엄격 HOLD. 정본 SOURCE/CLEAN/현재 DDS 각 SHA 검증, 새로운 15 lossless PNG + 3 JSON 및 queue/resume/progress/WORKLOG 같은 브랜치 commit [d2a41b18](https://github.com/thp32tt/OutRun2006Tweaks/commit/d2a41b18ca5b9da1bfcbf3453647602837bb1414), 원격 HEAD 검증. 전체 C1=HOLD_STRICT_RECHECK, C3/APPROVAL/사용자 실기=UNTESTED, 신규 DDS0, C2/VR/FFB/DX11/DXVK 변경 없음. 새 증거 1건만 점수 +1로 인정, 이전 C308 동일 SHA 검수/재보고 중복 가점 아님. **AI 점수: 이전 1611점 + 이번 +1점 = 누적 1612점**. RUN_KEY=OUTRUN-KOR-C350-C1-Q035-A196-SOURCE-EFFECT-FOOTPRINT-20261010-0910 |
 
 | 2026-10-10 09:14 | AI 2 | 1065 | +1 | 1066 | DX9Ex C 신규 독립 P1 소스 성과: R31 per-eye cache가 poseSequence 재사용/recenter/host 재연결에서 raw eyeOrientation/eyeOffset/eyeFov/inverseProjection 변경을 누락하지 않도록 C++ source와 7개 부정변이 검증 및 canonical workflow 수정. [material fa4a0de5](https://github.com/thp32tt/OutRun2006Tweaks/commit/fa4a0de51e1d9ea7efa584bbd59a4e1f423f9f91) 정확 GitHub Active #38007553953 policy/game/host/full-chain/package SUCCESS, Domain #38007553975 SUCCESS, Full Source #38007553915 game/host/cross-domain SUCCESS; artifact 11652370352. FFB v0.2 release nine imported blobs preserved, baseline immutable, Quest 3/VDXR runtime UNTESTED, P1 all-complete 미선언. **AI 점수: 이전 1065점 + 이번 +1점 = 누적 1066점**. RUN_KEY=CONVERSION-DX9EX-00560 |
 

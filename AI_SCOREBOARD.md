@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1696 | ACTIVE | 2026-10-11 06:47 KST |
+| AI 1 | ChatGPT (AI 1) | 1697 | ACTIVE | 2026-10-11 06:56 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 06:56 KST | AI 1 | 1696 | +1 | 1697 | OutRun C1 홀수 **q121 A234R 새로운 시험 DDS SHA `e87c570f754a79e22126ae9240ba19828637f7f63e22e8a17f6e8b0e3da90ca1` 최초 독립 실측 QA**. 영문 SOURCE f7847db9, 기존 공식 38d5c2c3 및 신규 저장 DDS 각각 67,108,992B 전체 SHA 일치. 4096² RGBA32/MIP1 RAW/FLIP-Y 해석, 원본/신규 저장 DDS의 producer PNG와 독립 디코드 0픽셀 차이; Gas Pedal→가속 페달 232×49 원문 범위에서 공식→시험 변경 RGBA 9,174 / alpha 4,835, **외부0/기타29 아틀라스 셀 불변**. SOURCE→CLEAN 원문 알파 6,334 제거, CLEAN 잔상0, CLEAN→FINAL 한국어 알파 6,672; BLACK/GRAY/WHITE 100/75/50과 RAW **12개 새 무손실 PNG** 직접 검수에서 새 한글 글자는 보이나 원본보다 두껍고 각진 남색 윤곽·서체 차이 때문에 **REWORK_REQUIRED_UNPROMOTED**. 이전 A230 SHA 반복 검수 가점 없음; 공식 후보 DDS0, C3/APPROVAL/실게임 UNTESTED, IGR030/031/040 OPEN. [검수 커밋 f8685c64](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8685c648e4d046892bb8bdcda34ae3570a1309b) 원격 HEAD 확인. 신규 독립 저장 DDS 검수 성과 +1. **AI 점수: 이전 1696점 + 이번 +1점 = 누적 1697점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A234R-INDEPENDENT-SAVED-STYLE-20261011-0640 |
 
 | 2026-10-11 06:47 KST | AI 1 | 1695 | +1 | 1696 | OutRun B365 EVEN q176 **신규 한글 DDS 시험 성과 단일 1건**: B346 Noto Bold stroke 동일 방식 반복 없이 NanumGothicBold 본래 벡터 글리프 153ppem 신규 원본 기반 서체 시험. canonical English SHA 8ba40915/CLEAN29e77ca7/unchanged official494d42c0, genuinely NEW unapproved persisted 2048x2048 RGBA32 DDS SHA 13e0c5418209c4686984302366dfeef4fbd5fac2b4aba23357f56674c7ad38e7. flagman4 80387 native RGBA pixel changes entirely inside source bbox / outside0, other3 protected exact, persisted decode mismatch0. 실제 source/clean/current/trial native100/white50/RAW 시각 QA는 글자 가로 706px vs source980px, 얇은 획으로 **PRODUCER_VISUAL_REWORK_REQUIRED_UNPROMOTED**; official C343 REWORK/독립 C2, C3, 사용자 실제 게임 UNTESTED 유지, 공식 승격0. 처음 두 worker preflight는 CLEAN SHA 및 RGBA/BGRA encoder 오류로 신규 DDS 없이 실패, GitHub Actions 성공 #38088552871으로 신규 trial 1개만 확정. [원격 HEAD b194ee0a](https://github.com/thp32tt/OutRun2006Tweaks/commit/b194ee0a8db0245be825c3461379d49b4b096cb8) 확인, [B365 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B365-Q176-NANUM-GEOMETRIC-RED-PILOT/B365_CONTROLLER_PRODUCER_VISUAL_REJECT.json), queue/resume/progress/WORKLOG/STATUS 기록 완료. retries/QA는 별도 +0; genuine one new saved DDS trial outcome +1. **AI 점수: 이전 1695점 + 이번 +1점 = 누적 1696점**. RUN_KEY=OUTRUN-KOR-B365-Q176-NANUM-ALT-FAMILY-20261011-0644 |
 

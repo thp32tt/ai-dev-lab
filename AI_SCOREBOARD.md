@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1644 | ACTIVE | 2026-10-10 17:04:54 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1087 | ACTIVE | 2026-10-10 16:51 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1088 | ACTIVE | 2026-10-10 17:06:33 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 17:06 KST | AI 2 | 1087 | +1 | 1088 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00582: FFB v0.2 릴리스 9개 불변 보존, VR SDL 기본 패드 교체·분리·종료 시 1초 잔류 럼블 취소 C++ 구현과 4개 부정 변이 검증. [첫 소스 02a3edf4](https://github.com/thp32tt/OutRun2006Tweaks/commit/02a3edf447616f618143cb7792bf116a24cdc73e), 검증기 false-failure 국소 수리 및 최종 [material f7994652](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7994652bbb481ba71ddda3bc2445211533cd079); exact-SHA [DX9Ex Active #38036272627](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38036272627) + [Domain #38036272628](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38036272628) SUCCESS, 최초 소스 SHA [Full Source Impact #38036184163](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38036184163) SUCCESS (최종 verifier-only SHA와 동일 SHA 아님). [C6 64dd98b8](https://github.com/thp32tt/OutRun2006Tweaks/commit/64dd98b834cf858720d4d3fb4b583e77f0217bc8), artifact 11664526820, Issue #14 comment 6095514918. RUNTIME_VALIDATION=UNTESTED, Quest3/VDXR/MOZA 실기 PASS 아님, 동일 TASK retry/rollover 재보고 +0. **AI 점수: 이전 1087점 + 이번 +1점 = 누적 1088점.** RUN_KEY=CONVERSION-DX9EX-00582 |
 
 | 2026-10-10 16:55 KST | AI 1 | 1642 | +1 | 1643 | OutRun C1 홀수 q219 신규 독립 검사에서 A217 **최초 신규 시제품 SHA** `622f4f9178cc8150672127aa2196f63cb018b52ab10e6df942581486e0c7800d`를 고정 영문 원본·CLEAN·공식본과 모두 저장바이트 인증하고 SOURCE→CLEAN 96,041/외부0, CLEAN→A217 28,219/외부0, 공식→A217 29,487/외부0 확인. 실제 RAW/FLIP-Y/100/75/50 무손실 PNG 11개로 글꼴 연결·크롬 깊이 결함 재현: 새 시제품 `REWORK_REQUIRED`; 원본 공식 후보 불변/C3·실기 `UNTESTED`. [QA·증거 커밋 d0e58581](https://github.com/thp32tt/OutRun2006Tweaks/commit/d0e58581d470623e0f0ea4156873640ae23e2cad). 이전 A217 생산점수 및 기존 C280 공식 SHA 판정 중복 가산하지 않고 **새 후보 최초 독립 검수 성과**만 +1. **AI 점수: 이전 1642점 + 이번 +1점 = 누적 1643점.** RUN_KEY=OUTRUN-KOR-C1-Q219-A217-EXACT-CHROME-OPTICAL-REWORK-20261010-1650 |
 

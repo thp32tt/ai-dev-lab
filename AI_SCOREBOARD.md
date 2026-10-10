@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-11 06:39 KST |
+| AI 1 | ChatGPT (AI 1) | 1696 | ACTIVE | 2026-10-11 06:47 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 06:47 KST | AI 1 | 1695 | +1 | 1696 | OutRun B365 EVEN q176 **신규 한글 DDS 시험 성과 단일 1건**: B346 Noto Bold stroke 동일 방식 반복 없이 NanumGothicBold 본래 벡터 글리프 153ppem 신규 원본 기반 서체 시험. canonical English SHA 8ba40915/CLEAN29e77ca7/unchanged official494d42c0, genuinely NEW unapproved persisted 2048x2048 RGBA32 DDS SHA 13e0c5418209c4686984302366dfeef4fbd5fac2b4aba23357f56674c7ad38e7. flagman4 80387 native RGBA pixel changes entirely inside source bbox / outside0, other3 protected exact, persisted decode mismatch0. 실제 source/clean/current/trial native100/white50/RAW 시각 QA는 글자 가로 706px vs source980px, 얇은 획으로 **PRODUCER_VISUAL_REWORK_REQUIRED_UNPROMOTED**; official C343 REWORK/독립 C2, C3, 사용자 실제 게임 UNTESTED 유지, 공식 승격0. 처음 두 worker preflight는 CLEAN SHA 및 RGBA/BGRA encoder 오류로 신규 DDS 없이 실패, GitHub Actions 성공 #38088552871으로 신규 trial 1개만 확정. [원격 HEAD b194ee0a](https://github.com/thp32tt/OutRun2006Tweaks/commit/b194ee0a8db0245be825c3461379d49b4b096cb8) 확인, [B365 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B365-Q176-NANUM-GEOMETRIC-RED-PILOT/B365_CONTROLLER_PRODUCER_VISUAL_REJECT.json), queue/resume/progress/WORKLOG/STATUS 기록 완료. retries/QA는 별도 +0; genuine one new saved DDS trial outcome +1. **AI 점수: 이전 1695점 + 이번 +1점 = 누적 1696점**. RUN_KEY=OUTRUN-KOR-B365-Q176-NANUM-ALT-FAMILY-20261011-0644 |
 
 | 2026-10-11 06:39 KST | AI 1 | 1694 | +1 | 1695 | OutRun C378 C2 EVEN q230 **신규 13영역 독립 원본 해상도 시각·전경 여백 증거 완료**: 기존 C369가 변경 위치만 집계한 동일 공식 DDS SHA a680ae4b…를 **재승인하거나 이전 성과 중복 기록하지 않고**, 실제 Git SHA 고정 SOURCE 33077919, B228 CLEAN 738530a5, 현재 저장 DDS a680ae4b 원본/플레이트/최종 2048×1024 실물 재인증·디코드. 13개 각 영역 SOURCE/CLEAN/FINAL native gray100/white50 비교, 6영역 RAW, RGB threshold 소스 영역내 한글 전경 LTRB 여백 **13/13 양수** 최초 기록; 기존 한글이 포함된 누적 CLEAN 11영역과 신규 HELP blank 2영역을 구분해 full-atlas PLATE_ONLY 승인 불가로 HOLD 유지. 7개 무손실 PNG 시트, 두 머신 JSON, 13×8 항목 상세 보고와 queue/resume/progress/WORKLOG 커밋 및 원격 HEAD에서 조상 연속 확인. 새 DDS0, C PASS0, C3/실게임 UNTESTED. [C378 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/de7e5597f1aaf9c990d186099108623186fb312a). **AI 점수: 이전 1694점 + 이번 +1점 = 누적 1695점**. RUN_KEY=OUTRUN-KOR-C378-C2-Q230-13REGION-OPTICAL-20261011-0636 |
 

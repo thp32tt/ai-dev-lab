@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1688 | ACTIVE | 2026-10-11 04:58 KST |
+| AI 1 | ChatGPT (AI 1) | 1689 | ACTIVE | 2026-10-11 05:34 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 05:34 KST | AI 1 | 1688 | +1 | 1689 | OutRun C376 C2 EVEN q060 **PSD 신규 독립 PLATE_ONLY P1 실제 검증**: 이전 C374 동일 시험 DDS 완료 재보고가 아니라 원본 `6a33c730`, 공식 `d81d0d14`, 시험 `bab8dc25`, canonical CLEAN `a03687d4`, 제거 MASK `25a89817`, PSD plate PNG `a07ce4cc` SHA 실인증 후 실제 source/mask/plate DDS 픽셀 4096×2048 비교. 원문 제거 마스크 정확히 89,391픽셀, PSD 범위 밖 마스크 0, 영역 안 보호 원본 알파 손실 0, 공유 CLEAN 및 PSD plate 둘 다 영역 알파 잔상 0. 이전 2px 잔존 의심은 실제 마스크 bbox와 padded 비교 bbox 혼동으로 **반증**. **새 위험**: PSD plate와 canonical CLEAN의 투명 RGB 89,343픽셀 불일치, 블랙/그레이/화이트 100/75/50에선 광학 잔상0이나 GPU 필터링·런타임 미검증으로 재사용 승인 HOLD. P1 alpha clean만 SCOPED_PASS, 기존 C342/C374 서체 REWORK, C3/APPROVAL/IGR044 사용자 실기 UNTESTED 유지. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/81eb901ef7f19049107d9ccf7d7e7f1bc42eccc4), 무손실 PNG5장 및 머신/8-check JSON 2장, queue/resume/progress/WORKLOG 업데이트 후 원격 HEAD 확인. 실제 신규 P1 검증 성과 1건만 +1, 후보 승인/새 DDS 가점0. **AI 점수: 이전 1688점 + 이번 +1점 = 누적 1689점**. RUN_KEY=OUTRUN-KOR-C376-C2-Q060-PSD-PLATE-CLEAN-P1-FIRST-20261011-0532 |
 
 | 2026-10-11 04:58 KST | AI 1 | 1687 | +1 | 1688 | OutRun C375 C2 짝수 q092 신규 B363 실물 저장 BC3 DDS SHA `f113c3aafff77ef3ace10246975dbf199188077a3b08541dddae8a612ba028c3` **최초 독립 QA 성과 1건**. 이전 official SHA `c2388834…`와 모두 524416B/2048x256/DXT5 원시 저장물 해시 확인, RAW/FLIPY native·white75·black50 직접 디코딩 시각 QA; 2274 BC3 블록/31867 RGBA/29698 alpha 변경, 원본 첫 제목 범위 밖 변경0, 두 번째 제목 손상0. B363 확산 흰 후광만 개선되었고 한글 안쪽 주황·남색 여전히 얇고 점상/속 빈 획으로 원본 레이싱 이탤릭 서체와 달라 **REWORK_REQUIRED_UNPROMOTED** 독립 반려. 5장 lossless PNG + 8항목 평가 JSON 및 SSOT 큐/WORKLOG/progress/resume 기록, [검수 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/44a029bb7c4b8c085bfc80e434d2398d66675e17) 원격 HEAD 인증. 이전 B363 생산점수·기존 공식 SHA 검사 중복가산0. 현재 공식 C364 REWORK, C3/APPROVAL/실기 UNTESTED. **AI 점수: 이전 1687점 + 이번 +1점 = 누적 1688점**. RUN_KEY=OUTRUN-KOR-C375-C2-Q092-B363-EXACT-BC3-FIRST-INDEPENDENT-20261011-0457 |
 

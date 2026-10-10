@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1689 | ACTIVE | 2026-10-11 05:34 KST |
+| AI 1 | ChatGPT (AI 1) | 1690 | ACTIVE | 2026-10-11 05:43 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 05:43 KST | AI 1 | 1689 | +1 | 1690 | OutRun B364 EVEN **q236 스카이스크레이퍼스(row05) 첫 네이티브 소스 높이 재구성 산출물 1건**: 기존 공식 C358 REWORK DDS SHA 9e2069eb를 보존하고 정본 영어 a1c7f7d6/CLEAN c202f55e에서 독립 원본 2048² BGRA32 시험 DDS SHA `ad4f1f81f5708d6d97638f6e2902dbaaef33b93761ef31ad03790325f594fc41` 생성. 신규 Bold TTC ppem94+1px 원본 높이 맞춤: 옛87→새91px (영문95px), 수정56558 RGBA 전부 row05 범위, 13개 이웃 행 변화0, persisted DDS RAW/FLIPY decode mismatch0. 자체 native100/white50/RAW 시각 검토 및 10단계/8항목 QA **범위 제한 HOLD**, 소스 계열 독립 C2/C3/실게임 UNTESTED와 원래 14행 REWORK는 유지. GitHub worker #38084528610 성공, [시험 DDS/QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B364-Q236-ROW05-SOURCE-NATIVE-PILOT/B364_CONTROLLER_FIRST_HAND_QA.json) 및 asset_queue/progress/resume/STATUS/WORKLOG 실제 반영. 동일 1개 신규 trial 성과로만 +1, 승인 DDS0. **AI 점수: 이전 1689점 + 이번 +1점 = 누적 1690점.** RUN_KEY=OUTRUN-KOR-B364-Q236-ROW05-NATIVE-FAMILY-PILOT-20261011-0541 |
 
 | 2026-10-11 05:34 KST | AI 1 | 1688 | +1 | 1689 | OutRun C376 C2 EVEN q060 **PSD 신규 독립 PLATE_ONLY P1 실제 검증**: 이전 C374 동일 시험 DDS 완료 재보고가 아니라 원본 `6a33c730`, 공식 `d81d0d14`, 시험 `bab8dc25`, canonical CLEAN `a03687d4`, 제거 MASK `25a89817`, PSD plate PNG `a07ce4cc` SHA 실인증 후 실제 source/mask/plate DDS 픽셀 4096×2048 비교. 원문 제거 마스크 정확히 89,391픽셀, PSD 범위 밖 마스크 0, 영역 안 보호 원본 알파 손실 0, 공유 CLEAN 및 PSD plate 둘 다 영역 알파 잔상 0. 이전 2px 잔존 의심은 실제 마스크 bbox와 padded 비교 bbox 혼동으로 **반증**. **새 위험**: PSD plate와 canonical CLEAN의 투명 RGB 89,343픽셀 불일치, 블랙/그레이/화이트 100/75/50에선 광학 잔상0이나 GPU 필터링·런타임 미검증으로 재사용 승인 HOLD. P1 alpha clean만 SCOPED_PASS, 기존 C342/C374 서체 REWORK, C3/APPROVAL/IGR044 사용자 실기 UNTESTED 유지. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/81eb901ef7f19049107d9ccf7d7e7f1bc42eccc4), 무손실 PNG5장 및 머신/8-check JSON 2장, queue/resume/progress/WORKLOG 업데이트 후 원격 HEAD 확인. 실제 신규 P1 검증 성과 1건만 +1, 후보 승인/새 DDS 가점0. **AI 점수: 이전 1688점 + 이번 +1점 = 누적 1689점**. RUN_KEY=OUTRUN-KOR-C376-C2-Q060-PSD-PLATE-CLEAN-P1-FIRST-20261011-0532 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1675 | ACTIVE | 2026-10-11 00:56:55 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 955 | ACTIVE | 2026-10-10 23:30 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 956 | ACTIVE | 2026-10-11 01:36:53 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 01:36:53 KST | AI 2 | 955 | +1 | 956 | OutRun DX11 신기능 **CONVERSION-DX11-00537**에 대해 실제 게임 R30 Draw/DrawIndexed/UP→DX11 native Draw 연결과 데스크톱 프레임 진단 경로를 바탕으로, 무초기화 인덱스 설명자 선행 읽기 2곳 수정 및 회귀 부정변이/안전 경계 검사, opt-in 게임 Draw·native Draw·가시 화면 횟수 로그를 GitHub FEATURE 브랜치에 구현. Win32 실제 게임 DLL·x64 OpenXR 호스트 및 선택기·로그 수집기·PE 아키텍처·SHA256 무결성 검사 포함 테스트 ZIP을 **GitHub Build [38067788260](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38067788260) SUCCESS, OpenXR [38067788205](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38067788205) SUCCESS, artifact 11676470530**로 독립 실물 산출 검증. 최종 FEATURE material HEAD [f8a5a44e](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8a5a44e3bbdec38102bec9a8994154bf0d8ffbb), ZIP SHA256 `78ccba17e7ef4001cdf69da3a856f93240437909461881e19a1f8d988ca3387d`. **기능 FEATURE_READY/실게임 native 화면/HMD 판정은 아직 미완료, RUNTIME_VALIDATION=UNTESTED, TARGET 브랜치 변경 없음**; 신규 독립 코드·CI 바이너리·패키지 성과 한 번만 +1점, 동일 TASK_ID retry/rollover/추후 단순 검증·재보고는 0. **AI 점수: 이전 955점 + 이번 +1점 = 누적 956점.** RUN_KEY=CONVERSION-DX11-00537 |
 
 | 2026-10-10 23:53:00 KST | AI 1 | 1673 | +1 | 1674 | OutRun C1 ODD q227 **기존 C339의 원본 인증 미완료 문제를 해결한 새로운 검수 성과**. 기존 공식 저장 DDS `83120095e3ff960939c0b413dd85d1633314f23dcde0192f0cf68a7a47776595`는 변함없이 유지. Sonic-TV 고정 영문 원본 `769308121df7229766b50eea1d43c68703e1720df4147ec8f34b735e2a9527f3`와 A96R CLEAN PNG `a6c8b4a921654e144e9580057c391fedc8cfc84e24e16a50a4697b971b76f984` 각각 실제 바이너리 SHA256 검증. Native 2048×2048 mip1 RAW/FLIP-Y 16개 전부 독립 source-clean-final 측정: source→clean 531382, clean→final 269362, source→final 540060 변경, 원문 16개 영역 밖 RGBA/alpha0, CLEAN visible alpha 16/16=0, 최종 16개 bbox 실측 일치 및 최소 여백1px. 독립 BGW/native/50/RAW 11 lossless PNG 게시. 타이포그래피 맹검/1px 위험 별도 C3·실기 미검증이므로 **HOLD_STRICT_RECHECK, C PASS0, 승인0, DDS 신규0**, IGR034/035/036 OPEN, `RUNTIME_VALIDATION=UNTESTED`. 이 성과는 동일 후보 SHA의 재완료가 아닌 처음 확보한 독립 SOURCE/CLEAN 인증과 전수 픽셀 근거. [GitHub 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/68af8f35611f6a50a59435b93e4f6d5a08ed2cad) · [증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261010-C1-Q227-CANONICAL-16-SOURCE-CLEAN-VERIFY/C1_Q227_INDEPENDENT_CONTROLLER_HOLD.json). **AI 점수: 이전 1673점 + 이번 +1점 = 누적 1674점.** RUN_KEY=OUTRUN-KOR-C1-Q227-16-INDEPENDENT-CANONICAL-SOURCE-CLEAN-20261010-2340 |
 

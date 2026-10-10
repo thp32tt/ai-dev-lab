@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1642 | ACTIVE | 2026-10-10 16:44:27 KST |
+| AI 1 | ChatGPT (AI 1) | 1643 | ACTIVE | 2026-10-10 16:55 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1087 | ACTIVE | 2026-10-10 16:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 16:55 KST | AI 1 | 1642 | +1 | 1643 | OutRun C1 홀수 q219 신규 독립 검사에서 A217 **최초 신규 시제품 SHA** `622f4f9178cc8150672127aa2196f63cb018b52ab10e6df942581486e0c7800d`를 고정 영문 원본·CLEAN·공식본과 모두 저장바이트 인증하고 SOURCE→CLEAN 96,041/외부0, CLEAN→A217 28,219/외부0, 공식→A217 29,487/외부0 확인. 실제 RAW/FLIP-Y/100/75/50 무손실 PNG 11개로 글꼴 연결·크롬 깊이 결함 재현: 새 시제품 `REWORK_REQUIRED`; 원본 공식 후보 불변/C3·실기 `UNTESTED`. [QA·증거 커밋 d0e58581](https://github.com/thp32tt/OutRun2006Tweaks/commit/d0e58581d470623e0f0ea4156873640ae23e2cad). 이전 A217 생산점수 및 기존 C280 공식 SHA 판정 중복 가산하지 않고 **새 후보 최초 독립 검수 성과**만 +1. **AI 점수: 이전 1642점 + 이번 +1점 = 누적 1643점.** RUN_KEY=OUTRUN-KOR-C1-Q219-A217-EXACT-CHROME-OPTICAL-REWORK-20261010-1650 |
 
 | 2026-10-10 16:51 KST | AI 2 | 1086 | +1 | 1087 | 신규 TASK_ID=CONVERSION-DX9EX-00581 P0 VR SDL/XInput 럼블 배타성 및 SDL->XInput 이전 타임드 진동 정지 소스/부정변이 회귀 보강. 원본 FFB v0.2 9개 보호. source material [23f0b9f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/23f0b9f352dc00bba6427e7a172f98d089078f2f), negative-mutation fail-closed verifier repair/최종 validation-bearing [34a25dce](https://github.com/thp32tt/OutRun2006Tweaks/commit/34a25dcece954619362b9e4c562a39aeccf68977); exact-SHA [DX9Ex Active #38035379682](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38035379682) 및 [Domain #38035379693](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38035379693) SUCCESS, 첫 소스 SHA에서 [Full Source Impact #38035318052](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38035318052) SUCCESS (최종 verifier-only SHA의 exact-SHA run 아님). C6 별도 bookkeeping [59b4fa3d](https://github.com/thp32tt/OutRun2006Tweaks/commit/59b4fa3d075d82515d6a9c1544c1d56518b48ddf), artifact 11664096554. Quest3/VDXR/MOZA R3 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 재시도/재보고 +0. **AI 점수: 이전 1086점 + 이번 +1점 = 누적 1087점.** RUN_KEY=CONVERSION-DX9EX-00581 |
 | 2026-10-10 16:38 KST | AI 2 | 1085 | +1 | 1086 | 신규 독립 P0 DX9Ex C TASK_ID=CONVERSION-DX9EX-00580: Wheel FFB v0.2 원본 9개 불변, VR XInput→SDL 럼블 전환 시 기존 XInput 모터 해제·disabled 최초 레거시 zero 유지·휠 소유권 회귀 보호. src/hooks_forcefeedback.cpp 및 tools/verify_vr_ffb_controller_routing.py 실질 소스/4개 부정변이 회귀검증, material SHA 779ff96361c70a70709e8f36c38680b13c78e646, exact-SHA DX9Ex Active #38034625458 / Domain Isolation #38034625492 / Full Source Impact #38034625521 모두 SUCCESS, C6 문서 SHA b35e39f7011d7234bfb8fd2d7cc95057cf511e70, 패키지 아티팩트 11663840398; Quest3/VDXR/MOZA R3 실기 RUNTIME_VALIDATION=UNTESTED, 120FPS 미측정. 동일 TASK_ID 후속 retry/rollover/재보고 +0. **AI2 이전 1085점 + 이번 +1점 = 누적 1086점.** RUN_KEY=CONVERSION-DX9EX-00580 |

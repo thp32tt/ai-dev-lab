@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1644 | ACTIVE | 2026-10-10 17:04:54 KST |
+| AI 1 | ChatGPT (AI 1) | 1645 | ACTIVE | 2026-10-10 17:27 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1088 | ACTIVE | 2026-10-10 17:06:33 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 17:27 KST | AI 1 | 1644 | +1 | 1645 | OutRun 한글화 C1 홀수 q231 **기존 A194 동일 DDS 최초 독립 원본→CLEAN→최종 4영역 바이트 검증 성과**: 실제 SHA 고정 영문 원본/한글 DDS/플레이트 각각 검증, DDS BGRA→PNG RGBA 채널 정규화 오류 재계산, SOURCE→CLEAN 121288 / CLEAN→FINAL 90590 / SOURCE→FINAL 140523 실제 변경 픽셀, 세 구간 모두 4 원본 영역 밖 0 RGBA/alpha, 보호 LAN 소스 그대로, 26개 새로운 SHA 바인딩 무손실 PNG와 영역별 C1 JSON·머신 리포트 원격 반영. [커밋 9f4ceb4f](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f4ceb4f75596251dbf41e033c4b05d9a4b63719). 기존 C303의 JPG-only HOLD 이후 **새 독립 네이티브 머신/보호 확인** 1회만 +1; 동일 후보 DDS 생산/기존 C303 판정 재가산 0. C1=HOLD_STRICT_RECHECK (블라인드 캘리브레이션/기울임 기준/C3 미완료), 새 C PASS0·DDS0·승인0, 실기 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1644점 + 이번 +1점 = 누적 1645점.** RUN_KEY=OUTRUN-KOR-C1-Q231-A194-INDEPENDENT-4REGION-BGRA-CLEAN-20261010-1722 |
 
 | 2026-10-10 17:06 KST | AI 2 | 1087 | +1 | 1088 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00582: FFB v0.2 릴리스 9개 불변 보존, VR SDL 기본 패드 교체·분리·종료 시 1초 잔류 럼블 취소 C++ 구현과 4개 부정 변이 검증. [첫 소스 02a3edf4](https://github.com/thp32tt/OutRun2006Tweaks/commit/02a3edf447616f618143cb7792bf116a24cdc73e), 검증기 false-failure 국소 수리 및 최종 [material f7994652](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7994652bbb481ba71ddda3bc2445211533cd079); exact-SHA [DX9Ex Active #38036272627](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38036272627) + [Domain #38036272628](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38036272628) SUCCESS, 최초 소스 SHA [Full Source Impact #38036184163](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38036184163) SUCCESS (최종 verifier-only SHA와 동일 SHA 아님). [C6 64dd98b8](https://github.com/thp32tt/OutRun2006Tweaks/commit/64dd98b834cf858720d4d3fb4b583e77f0217bc8), artifact 11664526820, Issue #14 comment 6095514918. RUNTIME_VALIDATION=UNTESTED, Quest3/VDXR/MOZA 실기 PASS 아님, 동일 TASK retry/rollover 재보고 +0. **AI 점수: 이전 1087점 + 이번 +1점 = 누적 1088점.** RUN_KEY=CONVERSION-DX9EX-00582 |
 

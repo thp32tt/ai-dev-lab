@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1697 | ACTIVE | 2026-10-11 06:56 KST |
+| AI 1 | ChatGPT (AI 1) | 1698 | ACTIVE | 2026-10-11 07:12 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 07:12 KST | AI 1 | 1697 | +1 | 1698 | OutRun 한글화 A235/A235R **q121 P0 원본 기반 신규 제작법 네이티브 저장 DDS 1건 확정**: 이전 C1 반려 A234R Bold 굵은 남색 외곽선 방식을 재생산하지 않고 canonical SOURCE f7847db9에서 실제 흰색 글자 3901픽셀·남색 테두리 1729픽셀·G 윤곽 기울임 dx4.94를 측정해 native Regular + 1px rim 재구성. A235 첫 신규 SHA 571bf039는 저장본 자체 시각 QA에서 영문 글자면 46px 대비 한글34px 과소 크기 FAIL, **같은 TASK에서만** A235R 높이 보정 후 신규 DDS SHA `1c13618efccaf572ed6214aff2e8bde410049b51679e9192689e22d48e40ca98` 생산. 4096×4096 RGBA32 mip1, 한글 가속 페달 210×39px/원문232×49px, 가시 알파6352 vs SOURCE6334, 변경범위 밖0/기타29셀 동일, 헤더·저장 DDS 재디코드 일치. Gray100/White75/Black50/RAW 직접 시각 검수에서 글자 가시성·원문 제거 확인, 다만 원본보다 각진 외곽선과 source-homologous italic 앵커 미인증으로 **SCOPED_MATERIAL_IMPROVEMENT_HOLD**, 전체 producer/C1/C3/게임 승인 아님; 공식 38d5c2c3 그대로, IGR030/031/040 OPEN, RUNTIME_VALIDATION=UNTESTED. GitHub Actions [A235R #38090213884](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38090213884) SUCCESS, 큐·resume·progress·WORKLOG·STATUS·[시각 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A235R-Q121-SOURCE-CONTOUR-NATIVE-HEIGHT-REFIT/A235R_CONTROLLER_OPTICAL_QA.json) 원격 반영. 신규 방법론에 따른 저장 DDS 실제 산출 단일 성과만 +1; 첫 반려·같은 작업 보정 중복점수0. **AI 점수: 이전 1697점 + 이번 +1점 = 누적 1698점.** RUN_KEY=OUTRUN-KOR-A235-Q121-REGULAR-SOURCE-CONTOUR-VECTOR-20261011-0700 |
 
 | 2026-10-11 06:56 KST | AI 1 | 1696 | +1 | 1697 | OutRun C1 홀수 **q121 A234R 새로운 시험 DDS SHA `e87c570f754a79e22126ae9240ba19828637f7f63e22e8a17f6e8b0e3da90ca1` 최초 독립 실측 QA**. 영문 SOURCE f7847db9, 기존 공식 38d5c2c3 및 신규 저장 DDS 각각 67,108,992B 전체 SHA 일치. 4096² RGBA32/MIP1 RAW/FLIP-Y 해석, 원본/신규 저장 DDS의 producer PNG와 독립 디코드 0픽셀 차이; Gas Pedal→가속 페달 232×49 원문 범위에서 공식→시험 변경 RGBA 9,174 / alpha 4,835, **외부0/기타29 아틀라스 셀 불변**. SOURCE→CLEAN 원문 알파 6,334 제거, CLEAN 잔상0, CLEAN→FINAL 한국어 알파 6,672; BLACK/GRAY/WHITE 100/75/50과 RAW **12개 새 무손실 PNG** 직접 검수에서 새 한글 글자는 보이나 원본보다 두껍고 각진 남색 윤곽·서체 차이 때문에 **REWORK_REQUIRED_UNPROMOTED**. 이전 A230 SHA 반복 검수 가점 없음; 공식 후보 DDS0, C3/APPROVAL/실게임 UNTESTED, IGR030/031/040 OPEN. [검수 커밋 f8685c64](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8685c648e4d046892bb8bdcda34ae3570a1309b) 원격 HEAD 확인. 신규 독립 저장 DDS 검수 성과 +1. **AI 점수: 이전 1696점 + 이번 +1점 = 누적 1697점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A234R-INDEPENDENT-SAVED-STYLE-20261011-0640 |
 

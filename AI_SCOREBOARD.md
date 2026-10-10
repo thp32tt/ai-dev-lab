@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1671 | ACTIVE | 2026-10-10 23:19 KST |
+| AI 1 | ChatGPT (AI 1) | 1672 | ACTIVE | 2026-10-10 23:23 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 953 | ACTIVE | 2026-10-10 22:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 23:23 KST | AI 1 | 1671 | +1 | 1672 | OutRun **C1 홀수 q103 신규 A224 첫 독립 저장 DDS 검수**. SHA `2ad5e25e03bc1c9598548ef64ec397be91eae86f0b4f8d4cc161438c9e354c31`는 이전 C1 A223 SHA `a36359f1...`와 다른 새로운 시험 후보. SOURCE `76b6f6d8...`, 공식 A197 `9702957a...`, A223/A224 4개 2048x2048 RGBA32 DDS 16,777,344B 실제 SHA 검증·native/75/50 BGW+RAW 10 lossless PNG 독립 비교. Source354×45 vs candidate315×43/positive margins, official->A224 changed11089 within broad bounded edit; original olive-dark ink proxy6665, A2232868, A2243773/15930 (heuristic); 저장된 50% 새 한글 획이 여전히 원문의 굵은 응축 이탤릭 시각 계층보다 얇음. **C1_REWORK_REQUIRED_UNPROMOTED**, 공식 변경0, 승인/C3/실게임0. [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e8a53054f837f9732b8f3dbe9960e57ff5198f2e). 1회 신규 SHA 독립 시각 QA +1, 이전 A223 및 다른 작업 중복없음. **AI 점수: 이전 1671점 + 이번 +1점 = 누적 1672점**. RUN_KEY=OUTRUN-KOR-C1-Q103-A224-NEW-SHA-INDEPENDENT-OPTICAL-20261010-2317 |
 
 | 2026-10-10 23:19 KST | AI 1 | 1670 | +1 | 1671 | OutRun q212 BA0147DA 외부 PSD 실제 파일(7,838,153B SHA be5095d2) 확보; Photoshop PSD 레이어 레코드 110개 직접 파싱, 4개 개별 레이어(배경 2/캡슐/OR)를 RGBA PNG로 복원해 SHA 검증. 외부 Release 영문 DDS 정본 SHA f83f5848... 직접 다운로드 후 2048x2048 PSD merged FLIP-Y 4,194,304 픽셀 완전 일치 및 원본 DDS 헤더/채널마스크로 DDS **16,777,344바이트 재생성 차이 0** 실제 실행. 외부 PSD/원본과 재현 스크립트·QA 보고·PNG 8파일을 [프로젝트 브랜치](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_B/20261010-B-PSD-Q212-EXACT-SOURCE-ROUNDTRIP)에 게시·원격 HEAD 50bac4ea 확인, 게시 스크립트 독립 재실행 PASS. **생산 방법 source 단계 시험만 합격**: 한글 DDS 생성0, 승격0, C2/C3/실기 UNTESTED, 오리지널 타이틀 CLEAN 미완료; q212 queue/official 변경 없음. 별도 2 no-op 중간 Git 커밋은 산출물로 계산하지 않음. 신규 실물 제작 파이프라인 시험 성과 1회 +1. AI1 이전 1670 + 1 = 1671. RUN_KEY=OUTRUN-KOR-PSD-Q212-EXACT-ENGLISH-DDS-ROUNDTRIP-20261010-2319 |
 | 2026-10-10 23:08:45 KST | AI 1 | 1669 | +1 | 1670 | OutRun 한글화 **C370 C2 짝수 q060 신규 B360 SHA 최초 독립 검수**. 원본 `6a33c730`, B348 CLEAN `a03687d4`, 공식 `d81d0d14`, 기존 C2 검수 B359 `6551bdf1`, 신규 B360 `93022210` 모두 전체 SHA 인증 및 실제 4096×2048 DDS RAW/FLIP-Y native/BGW100·75·50 PNG 12장 독립 시각검수. SOURCE→CLEAN 89391 원래 ROI 내, OFFICIAL→B360 93196 RGBA, B359→B360 39026 RGBA 변경 모두 worker ROI 밖 0; alpha32 bbox 원문 내 양수 여백. **신규 B360 원문 레이싱 이탤릭 입체 그라데이션 대비 수평 오렌지 띠·윤곽/깊이 불일치**로 독립 C2 `REWORK_REQUIRED_UNPROMOTED`, C3/APPROVAL/실게임 0, IGR044 OPEN, 공식 C342 유지. 증거 12 PNG+머신/8항목 QA·queue/resume/progress/WORKLOG 원격 [커밋 72e4bdea](https://github.com/thp32tt/OutRun2006Tweaks/commit/72e4bdea60e9f109c62061f96e6d2bf31da1950e), HEAD 확인. B360 제작 및 이전 B359 검수는 중복 점수 0; **새 후보 SHA의 독립 실제 QA 한 성과만 +1**. **AI 점수: 이전 1669점 + 이번 +1점 = 누적 1670점.** RUN_KEY=OUTRUN-KOR-C370-C2-Q060-B360-SOURCE-LAYER-INDEPENDENT-20261010-2250 |

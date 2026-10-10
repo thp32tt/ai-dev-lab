@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1658 | ACTIVE | 2026-10-10 20:39:00 KST |
+| AI 1 | ChatGPT (AI 1) | 1659 | ACTIVE | 2026-10-10 20:5x KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 952 | ACTIVE | 2026-10-10 19:37 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 20:5x KST | AI 1 | 1658 | +1 | 1659 | OutRun C1 q201 (ODD) **실제 신규 독립 증거 성과**: C340에서 못한 canonical English source verification을 SHA `6ac5ffd02c9162499f09f0b476176b56f0b144789f546ef34147d94e0a8451e5` 원본 DDS 직접 다운로드·검증으로 해결. Current DDS SHA `d9b2a67baf772409da91c4a8c0d0b275f33f6d7a4546a6030b8065566f5ea5f8`와 producer SOURCE/FINAL crop 각각 176×51=8,976/8,976 FLIP-Y RGBA exact 일치; 원문 alpha bbox [1079,1734,1255,1785] 안쪽 신규 [1084,1739,1160,1780], CLEAN 알파0. 주변 다른 번역 stage glyph 393px(x1039..1048) 명시, 과장된 full atlas outside0 주장 없음. 독립 source/CLEAN/final BGW native/RAW/context PNG **10장** + JSON2 및 queue/resume/progress/WORKLOG 커밋 [a87d8620](https://github.com/thp32tt/OutRun2006Tweaks/commit/a87d8620a3ba4d01710def35903d1d07e0e08b87) 원격 HEAD 확인. **HOLD** full17 blind/C3/game 미완료, IGR037 OPEN, runtime UNTESTED, DDS0, C1 PASS0/approval0, 이전 C340 동일 SHA 재승인 아님. 기존 점수 1658 +1 = **1659**. RUN_KEY=OUTRUN-KOR-C1-Q201-EXACT-ENGLISH-ROI-20261010-2040 |
 
 | 2026-10-10 20:39:00 KST | AI 1 | 1657 | +1 | 1658 | OutRun B358 q212 사용자 인게임 P1 IGR029: 독립 C2에서 신규 발견된 B357 OLD_KOREAN_OVERLAP 원인을 **실제 P3 합성 순서 오류**로 규명, 본래 생성만 하고 사용하지 않은 source-transparent CLEAN을 q212 r43/r44 **전체 셀**에 먼저 적용한 후 한글을 합성하도록 GitHub B worker 코드를 수정. [worker 38048868897](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38048868897) SUCCESS, 신규 저장 비승인 DDS SHA `38aac182b8691062259b0c758173f19c790b04afbb8e84d241f0b9023c2478a8` 생성. 기존 alpha source bbox 외 **5832+741 → 0+0**, 29668 변경 RGBA 2셀 내부만, 다른 10셀/원격 헤더/디코드0 보존. [B358 controller](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261010-B358-Q212-OLD-GLYPH-CLEAN-REBUILD/B358_CONTROLLER_QA.json) SOURCE/CLEAN/FINAL 100/50 RAW 실제 보고 **q212 글꼴 hierarchy 284/395, 71.9% 미흡으로 optical HOLD**, 공식 C338 REWORK 그대로·C2/C3/실기 UNTESTED, 신규 후보1/공식승격0. 이번 +1은 B356/B357 동일 trial 재보고가 아닌 독립 C2 결함에 대한 신규 실제 pixel-stage 수정 성과 1건. **AI 점수: 이전 1657점 + 이번 +1점 = 누적 1658점**. RUN_KEY=OUTRUN-KOR-B358-Q212-C2-OLD-GLYPH-ROIs-CLEAN-P3-20261010-2030 |
 

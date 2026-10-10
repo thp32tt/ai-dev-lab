@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1662 | ACTIVE | 2026-10-10 21:15 KST |
+| AI 1 | ChatGPT (AI 1) | 1663 | ACTIVE | 2026-10-10 21:xx KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 952 | ACTIVE | 2026-10-10 19:37 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 21:xx KST | AI 1 | 1662 | +1 | 1663 | OutRun C1 odd q059 distinct A228 **new trial SHA `8150213897f4dc7b74e2d6273d703be3a9d6ac780627f8747059d25ec1ef9f2e` independently reviewed against source `9c35216873d617ed68df55be424f35ddf50b1eacc8ee86072068745aea166f9f`, official `261108cd26b2a83037162b17de08286ed1ded2634650709370c81c2a353eb83a`; source/CLEAN 4 exact source crop and CLEAN alpha0, DXT5 decoded A228 changed 534 RGBA, alpha0, original 4-region outside0. Visual gold-face stipple still in Race Rivals and effect mismatch in two score labels; **independent trial REWORK_REQUIRED**, official unchanged, user PJR019/C3/runtime UNTESTED; produced new C1 DDS0, approval0. Published source/official/trial 13 lossless PNG, QA/machine/plate JSON and queue/WORKLOG/progress/resume to [commit 3cc3cf74](https://github.com/thp32tt/OutRun2006Tweaks/commit/3cc3cf749936a30c0e7fdcb96c23f4a7210574a5), remote HEAD verified. New distinct SHA was first C1 review; no duplicate older official same-SHA award. **AI 점수: 이전 1662점 + 이번 +1점 = 누적 1663점**. RUN_KEY=OUTRUN-KOR-C1-Q059-A228-INDEPENDENT-BC3-VISUAL-20261010-2120 |
 
 | 2026-10-10 21:15 KST | AI 1 | 1661 | +1 | 1662 | 신규 요청 OutRun DDS 생산 방식 대안 독립 조사: Github OR2006Sprites main 실제 34,110 경로 및 Working Sources 389파일 조사, PSD 144/SVG 43/AI 22 확인; q060 A064FDFC, q154 4D38BBB0, q212 BA0147DA, q121 FD90AA9, q049 BF3EE5C6 등 정확 asset-key PSD/AI/SVG 제작 소스 확인. FontForge/FreeType/resvg/psd-tools/DirectXTex 공식 문서 교차검증, 원본 레이어 우선→벡터 가족 대표→native 작은 글자→persisted DDS →독립 QA 파일별 프로토콜 설계. 미검증 PSD 레이어/라이선스와 런타임 구분, 실게임 검증 UNTESTED. 연구 성과 1회 가점; 신규 DDS/승인/게임수정 수행 주장 없음. **AI 점수: 이전 1661점 + 이번 +1점 = 누적 1662점.** RUN_KEY=OUTRUN-KOR-PRODUCTION-ALTERNATIVE-SOURCE-ASSET-RESEARCH-20261010-2115 |
 | 2026-10-10 21:11 KST | AI 1 | 1660 | +1 | 1661 | OutRun A228 q059 기존 C1 확정 BC3 내부 금색 글자 어두운 도트 결함에 대한 **신규 저장 DXT5 시험 DDS** SHA `8150213897f4dc7b74e2d6273d703be3a9d6ac780627f8747059d25ec1ef9f2e` 생성. 정확한 소스/공식 바이트 검사 및 4x4 BC3 색 인덱스만 수정하여 실측 534픽셀(151+182+201), 514바이트 개선; 원문 영역 외 변경0·알파/헤더 변화0, native100/50 source/official/trial 직접 시각 QA로 일부 핀도트 감소 확인. 독립 선행 C1 반려 원인에 대한 새 방식의 실제 픽셀 개선은 **1회 성과**, 전체 이미지/서체 결함 남아 **trial-only REWORK_REQUIRED, 정식 승격0/C1/C3/실기 UNTESTED**, 다른 C 재검·같은 SHA 반복/QA 메타 업데이트는 +0. [작업 원격 HEAD](https://github.com/thp32tt/OutRun2006Tweaks/commit/30783448b9e1529030bc26880c0f112988bf6c42), [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261010-A228-Q059-BC3-INDEX-INTERIOR-REPAIR-TRIAL/A228_CONTROLLER_VISUAL_QA.json). **AI 점수: 이전 1660점 + 이번 +1점 = 누적 1661점**. RUN_KEY=OUTRUN-KOR-A228-Q059-C1-BC3-FACE-INDEX-SCOPED-20261010-2100 |

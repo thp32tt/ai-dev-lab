@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1614 | ACTIVE | 2026-10-10 09:50 KST |
+| AI 1 | ChatGPT (AI 1) | 1615 | ACTIVE | 2026-10-10 10:13 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1067 | ACTIVE | 2026-10-10 09:58 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-10 10:13 | AI 1 | 1614 | +1 | 1615 | OutRun A220 ODD q121 P0의 기존 A219 GOAL 33픽셀 성과와 **서로 다른** 영문 THE CLEAN 플레이트 원문 잔상 **24픽셀 추가 실물 수정**. English 정본 f7847db97bed...와 A215 SOURCE/CLEAN/FINAL rank24 149×92 원본 좌표를 인증했고, 오래된 CLEAN/official에 남은 원문 픽셀 정확 일치를 실제 시각 및 저장 DDS 검증. GitHub CPU worker [#38011800333](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38011800333) SUCCESS, 4096×4096 RGBA32 새 **미승격 시험 DDS** SHA256 6db7c40864f44dcb1a07568ae1717b7ecf4720b253f963fe5fbb38e90b1ede06: A219 대비 수정 24픽셀/95바이트, 다른 픽셀 변화 0, 이전 33픽셀 유지=총 57픽셀 제거. RAW 및 SOURCE/CLEAN/OFFICIAL/TRIAL gray100와 black/gray/white 100/75/50 근거, producer scoped QA JSON, queue/resume/progress/WORKLOG 기록 [9acf2ce3](https://github.com/thp32tt/OutRun2006Tweaks/commit/9acf2ce34b296171cfec09e848d14041e51eeec5) 원격 HEAD 확인. 공식 DDS0, 전체 29셀/보호아트/C1/C3/실게임 미검증, IGR030/031/040 OPEN 및 RUNTIME_VALIDATION=UNTESTED. **실제로 새로 고친 24픽셀 시험 DDS 성과에만 +1**, 동일 A219 33px나 검증 재보고 중복 점수 0. **AI 점수: 이전 1614점 + 이번 +1점 = 누적 1615점.** RUN_KEY=OUTRUN-KOR-A220-Q121-THE-SOURCE-ORPHAN-20261010-1000 |
 | 2026-10-10 09:58 | AI 2 | 1066 | +1 | 1067 | DX9Ex C 독립 C++ source R31 live-verified WVP 복원/양안 입력 일치성 수정, 검증 스크립트 5개 부정변이와 Active CI policy PASS. [material 34ec2991](https://github.com/thp32tt/OutRun2006Tweaks/commit/34ec299128d54fae63dc0ed5cbf1c18e9f75434e) exact-SHA DX9Ex Active #38010727507 policy/game/host/full-chain/package SUCCESS, Domain #38010727422 SUCCESS, Full Source #38010727437 SUCCESS, artifact 11652074805 SHA256 fb4da184bb6018f641b426d76ee75b9b0943b7601e17d94d7f771838979f2c3f. FFB v0.2 release 아홉 이식 파일/동결 기준 브랜치 변경 없음. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, P1 전체 완료 또는 120FPS 달성 미선언. **AI 2 점수: 이전 1066점 + 이번 +1점 = 누적 1067점**. RUN_KEY=CONVERSION-DX9EX-00561 |
 | 2026-10-10 09:50 | AI 1 | 1613 | +1 | 1614 | OutRun C351 C1 홀수 q121 신규 A219 **미승격 다른 SHA 시험 DDS** 9f5039dae7ee...를 영문 정본 f7847db97bed...·정식 38d5c2c30ea...와 독립 저장 바이트/디코드 검증. 세 파일 모두 4096×4096 RGBA32/mip1 67,108,992B, 33픽셀/132바이트만 변경·16,777,183픽셀 그대로 및 변경 범위 밖 0. A215 기존 CLEAN과 공식본 모두 source-identical 영문 goal. 잔상 33개 알파255였고 trial에서 모두 0/투명화 확인, 같은 영역 다른 원문 일치 가시픽셀 0. N100 MCP 원격 DDS 실제 다운로드·해시 검증, ChatGPT RAW FLIPY·흑회백 native100/75/50 직접 시각검토, 신규 12 무손실 PNG+2 검수 JSON 및 queue/progress/resume/WORKLOG commit [6abb166f](https://github.com/thp32tt/OutRun2006Tweaks/commit/6abb166f8862ceee360766fc2dbd46f3841b149e), remote HEAD 재검증. **신규 후보 독립 증거 1건**에만 +1. 전체 29개 셀/블라인드 캘리브레이션/C3/APPROVAL/실게임 보류, 공식 REWORK_REQUIRED 유지, C1 전체 HOLD_STRICT_RECHECK, 새 정식 DDS0, IGR030/031/040 OPEN/RUNTIME_VALIDATION=UNTESTED. C2/VR/FFB/DX11/DXVK·별도 큐 변경 없음, A219 생산 성과나 기존 C335 공식 SHA 반복 가점 없음. **AI 점수: 이전 1613점 + 이번 +1점 = 누적 1614점.** RUN_KEY=OUTRUN-KOR-C351-C1-Q121-A219-NEW-TRIAL-33-EXACT-SOURCE-20261010 |
 

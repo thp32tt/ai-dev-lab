@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1701 | ACTIVE | 2026-10-11 08:21 KST |
+| AI 1 | ChatGPT (AI 1) | 1702 | ACTIVE | 2026-10-11 08:28 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 08:28 KST | AI 1 | 1701 | +1 | 1702 | 글자 형태/효과 분리 공통 합성기와 기존 새 DDS 게시 검사 연결, 계약·A/B/C 지침·CI 적용. 로컬 결함주입/회귀 20 tests PASS. 원격 결과 80191166f93895ef2f872be284b704378e1ac8a1. 신규 DDS/게임 승인0, RUNTIME_VALIDATION=UNTESTED. RUN_KEY=OUTRUN-KOR-LETTERING-ENGINE-20261011-082313 |
 
 | 2026-10-11 08:21 KST | AI 1 | 1700 | +1 | 1701 | OutRun 한글화 **C1 홀수 q161 새 A236 3셀 SOURCE/CLEAN 공유 플레이트 최초 독립 완전 검증**. 동일 기존 A218 후보 SHA `8000601e...` 반복 검수는 제외. 정본 Sonic-TV 영어 DDS `a74d3101...` 2048² BC3/MIP1 SHA 직접 인증, FLIP-Y 원본 저장 DDS 디코딩 vs SOURCE PNG 0픽셀 불일치; 공유 CLEAN `60f5b092...`, MASK `dee1f143...` SHA 확인. SOURCE→CLEAN 29,650 RGBA/23,886 alpha 모두 11(AQUARIUS),16(SOUTH KOREA),24(ITALY) 세 영문 bbox 마스크 43,827 안에 한정, 마스크 밖0/0, 잔존 영어 알파0, 다른35셀 원본 보존. 100/75/50% BGW 및 실제 RAW 12개 무손실 비교 PNG 직접 검수. 독립 PLATE_PASS `caf59675...` 리뷰 공개 등록; **3/38 CLEAN만 PASS**, 38셀 공식 DDS `8ded8565...` C344 REWORK 유지, A218 C349 HOLD 유지, 한글 DDS 새 제작/승인0, C3/실게임 UNTESTED. [커밋 e9d1ba6f](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9d1ba6f119d1b00df1a10e3512dddd645ef2c88) 원격 HEAD 확인. 최초 독립 공유 CLEAN 리뷰 성과 +1. **AI 점수: 이전 1700점 + 이번 +1점 = 누적 1701점.** RUN_KEY=OUTRUN-KOR-C1-Q161-A236-INDEPENDENT-SOURCE-CLEAN-P1-20261011-0810 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1615 | ACTIVE | 2026-10-10 10:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1616 | ACTIVE | 2026-10-10 10:23 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1067 | ACTIVE | 2026-10-10 09:58 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 10:23 | AI 1 | 1615 | +1 | 1616 | OutRun C352 C1 홀수 q175 A216 **새 시험본 SHA a5e921ab...** 독립 저장 DDS/시각 QA. 정본 SOURCE 93143725...·기존 정식 b9f60b45...·시험본 a5e921ab... 직접 SHA 인증, native 2048×1024 RGBA32/mip1·RAW/FLIP-Y·BGW 100/75/50 + 2배 실측. 정식→시험본 변경 73,078 RGBA/69,961 alpha, 원문 제목 bbox 밖 변경0, 그러나 **시험본 쇼룸 획이 지붕/가로레일로 무너져 50%에서도 음절 즉독 불가**, 원문 showroom 연결된 둥근 금속 글자 스타일과 불일치. 머신 범위 통과보다 확실한 독립 시각 반려 우선. 신규 13 lossless PNG + 기계/판정 JSON2 + queue/progress/resume/WORKLOG 4 = 19 files, commit [bae4f6ce](https://github.com/thp32tt/OutRun2006Tweaks/commit/bae4f6cee6e09dd2c1343efb800e1963d5e0a146) 원격 HEAD 재조회. C352 새 시험 SHA REWORK_REQUIRED; 기존 C286 공식 SHA REWORK_REQUIRED 유지, promoted DDS0, C3/APPROVAL/IGR032 사용자 실기 UNTESTED. 같은 공식 SHA C286 이전 반려 재점수화 아님; A216 생산자 반려 재보고 아닌 **새 정확 SHA 독립 C1 평가/증거 작업 1건**만 +1. 짝수 C2/VR/FFB/DX11/DXVK/별도 큐 무변경. **AI 점수: 이전 1615점 + 이번 +1점 = 누적 1616점**. RUN_KEY=OUTRUN-KOR-C352-C1-Q175-A216-NEW-WELDED-TRIAL-VISUAL-REJECT-20261010 |
 
 | 2026-10-10 10:13 | AI 1 | 1614 | +1 | 1615 | OutRun A220 ODD q121 P0의 기존 A219 GOAL 33픽셀 성과와 **서로 다른** 영문 THE CLEAN 플레이트 원문 잔상 **24픽셀 추가 실물 수정**. English 정본 f7847db97bed...와 A215 SOURCE/CLEAN/FINAL rank24 149×92 원본 좌표를 인증했고, 오래된 CLEAN/official에 남은 원문 픽셀 정확 일치를 실제 시각 및 저장 DDS 검증. GitHub CPU worker [#38011800333](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38011800333) SUCCESS, 4096×4096 RGBA32 새 **미승격 시험 DDS** SHA256 6db7c40864f44dcb1a07568ae1717b7ecf4720b253f963fe5fbb38e90b1ede06: A219 대비 수정 24픽셀/95바이트, 다른 픽셀 변화 0, 이전 33픽셀 유지=총 57픽셀 제거. RAW 및 SOURCE/CLEAN/OFFICIAL/TRIAL gray100와 black/gray/white 100/75/50 근거, producer scoped QA JSON, queue/resume/progress/WORKLOG 기록 [9acf2ce3](https://github.com/thp32tt/OutRun2006Tweaks/commit/9acf2ce34b296171cfec09e848d14041e51eeec5) 원격 HEAD 확인. 공식 DDS0, 전체 29셀/보호아트/C1/C3/실게임 미검증, IGR030/031/040 OPEN 및 RUNTIME_VALIDATION=UNTESTED. **실제로 새로 고친 24픽셀 시험 DDS 성과에만 +1**, 동일 A219 33px나 검증 재보고 중복 점수 0. **AI 점수: 이전 1614점 + 이번 +1점 = 누적 1615점.** RUN_KEY=OUTRUN-KOR-A220-Q121-THE-SOURCE-ORPHAN-20261010-1000 |
 | 2026-10-10 09:58 | AI 2 | 1066 | +1 | 1067 | DX9Ex C 독립 C++ source R31 live-verified WVP 복원/양안 입력 일치성 수정, 검증 스크립트 5개 부정변이와 Active CI policy PASS. [material 34ec2991](https://github.com/thp32tt/OutRun2006Tweaks/commit/34ec299128d54fae63dc0ed5cbf1c18e9f75434e) exact-SHA DX9Ex Active #38010727507 policy/game/host/full-chain/package SUCCESS, Domain #38010727422 SUCCESS, Full Source #38010727437 SUCCESS, artifact 11652074805 SHA256 fb4da184bb6018f641b426d76ee75b9b0943b7601e17d94d7f771838979f2c3f. FFB v0.2 release 아홉 이식 파일/동결 기준 브랜치 변경 없음. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, P1 전체 완료 또는 120FPS 달성 미선언. **AI 2 점수: 이전 1066점 + 이번 +1점 = 누적 1067점**. RUN_KEY=CONVERSION-DX9EX-00561 |

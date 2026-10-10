@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1702 | ACTIVE | 2026-10-11 08:28 KST |
+| AI 1 | ChatGPT (AI 1) | 1703 | ACTIVE | 2026-10-11 08:49 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 958 | ACTIVE | 2026-10-11 08:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 08:49 KST | AI 1 | 1702 | +1 | 1703 | OutRun 한글화 C1 홀수 q099 **기존 HOLD 동일 DDS에 대한 새로운 독립 네이티브 글꼴/기울임 결함 확정**: 정본 원본 DXT5 SHA d97206d8 및 현재 후보 SHA 70970da7 실제 524,416바이트 각각 인증, 2048×256 DDS 원본·후보 저장본 별도 디코딩, 제작 RAW/FLIPY PNG와 원본/후보 알파 0픽셀 불일치, 100/75/50%·200% 2줄 SOURCE/CLEAN/FINAL 손실 없는 PNG, RAW/배경 흰색·회색·검정 검수. 영어 원문 강한 가는 이탤릭 대비 한글이 각진/약한 이탤릭이고 전체 원본 비례와 양줄 간 배치가 원문과 다름을 시각 FAIL로 증거화, C1 REWORK_REQUIRED (과거 C345 플레이트 HOLD와 다른 신규 독립 판정), C3 NOT_RUN, 실게임 UNTESTED, 새 DDS/승인 0. [C383 GitHub 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/2783169cbf83338a3ee23a60fe5cd0bdd221f1b3), 원격 HEAD 동일 확인. 같은 후보 SHA를 재승인하지 않으며 새로운 독립 스타일 결함 성과 한 건에만 +1. **AI 점수: 이전 1702점 + 이번 +1점 = 누적 1703점.** RUN_KEY=OUTRUN-KOR-C1-Q099-NATIVE-STYLE-REWORK-FIRST-20261011-0840 |
 
 | 2026-10-11 08:29 KST | AI 2 | 957 | +1 | 958 | 사용자 요청에 따라 OutRun DX9Ex GitHub 정책의 실질 충돌 2건 수정: 완료된 FFB v0.2를 실행 최상위 P0로 잘못 분류하던 실행 메타데이터를 P0 optics/HUD로 교체하고, R84를 전역 차단 사유로 기록했던 `DX9EX-P0-VISUAL-COMPOSITION-20261007`을 소유권·파일 중첩 제한 조건부 READY로 복원. R84 `CONVERSION-DX9EX-00591` 및 HMD 게이트 불변. 상태/큐 JSON 동기화, 컨트롤러 계약 갱신, `verify_vr_policy_alignment.py` 부정변이 검사 7→11건 강화. GitHub material policy SHA [e7ed9937](https://github.com/thp32tt/OutRun2006Tweaks/commit/e7ed9937de4fc4ed8fd9e18cc82d7d105b598881), 독립 저장 소스 기반 Python 정책 테스트 PASS(11개), [VR Test Policy #38095146212](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38095146212) SUCCESS, [VR Autodev #38095146171](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38095146171) SUCCESS, [Domain #38095146185](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38095146185) SUCCESS. DX9Ex Active #38095146176는 **기존 R84 refactor contract 미해결 문제로 FAIL**, R84 기능 완료/Quest3 실기 PASS는 주장하지 않음; 사용자 Docker 배포 미실행. 하나의 신규 독립 정책·회귀 가드 성과에 +1, 동일 00591 retry/rollover 가점0. **AI 점수: 이전 957점 + 이번 +1점 = 누적 958점.** RUN_KEY=DX9EX-POLICY-P0-FFB-QUEUE-GUARD-20261011-0825 |
 

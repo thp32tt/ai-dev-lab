@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1684 | ACTIVE | 2026-10-11 04:29:50 KST |
+| AI 1 | ChatGPT (AI 1) | 1685 | ACTIVE | 2026-10-11 04:35:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 04:35 KST | AI 1 | 1684 | +1 | 1685 | OutRun C2 EVEN q060 **외부 PSD 시험본 독립 저장 DDS QA 신규 성과**: 기존 생산 DDS `bab8dc25bc900d6806adf0462adb2046321353b78e29bdc82885ec9feef33255` SHA를 최초 C2 독립 인증하고 canonical 영어원본 6a33c730, 정식 d81d0d14 4096x2048 DDS 실제 RAW/FLIPY/native100/black75/white50 디코딩. 정식→시험 104704 RGBA/48402 alpha 변동, 원본 BEST_TIME 밖 RGBA/alpha 0/0, OUTRUN MILES/HOLLY WOLF 보호 범위 변경 0. 저장본 시각에서 레이싱 이탤릭 응축·금색/남색 원본 입체 효과 불일치를 확인해 **REWORK_REQUIRED_UNPROMOTED**로 반려; 기존 공식 C342 REWORK/IGR044 OPEN/C3 및 실게임 UNTESTED 유지. [독립 C2 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/bef2e1b48ee0407a95f7888b51d5d9203f309871), lossless RAW/FLIPY 4 PNG+8-check QA JSON, queue/WORKLOG 갱신, 원격 HEAD 검증. 이전 PSD 제작 성과 1675점 이력과 중복 아님(신규 독립 C2 QA 결과 1회). **AI 점수: 이전 1684점 + 이번 +1점 = 누적 1685점**. RUN_KEY=OUTRUN-KOR-C374-C2-Q060-PSD-FIRST-INDEPENDENT-SAVED-QA-20261011-0430 |
 
 | 2026-10-11 04:29:50 KST | AI 1 | 1683 | +1 | 1684 | OutRun C1 홀수 q225 **새 블라인드 시각 결함 판별 교정 5/5 성공**(원본 q101 기준 합성 정상·역기울임·획 잘림·잔상·과도한 두께); 답지 확인 전 판별 저장과 실제 q225 9개 원본/CLEAN/후보 네이티브 그레이 패널 추가 광학 검수. [QA 증거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/c44d6578fadc9d86651eef253581bed7d2d4f2f5) 원격 HEAD 재인증. q225 기존 official SHA f054219a 그대로, C1 HOLD_STRICT_RECHECK, C/C3 승인0, 신규 DDS0, 실게임 UNTESTED. 구 C345 픽셀 결과와 같은 SHA 반복 검사에는 별도 가점 없음. 이번 독립 블라인드 교정 및 증거·큐·resume·progress·WORKLOG 신규 성과 한 건만 +1. **AI 점수: 이전 1683점 + 이번 +1점 = 누적 1684점**. RUN_KEY=OUTRUN-KOR-C1-Q225-FIVE-BLIND-CALIBRATION-20261011-0424 |
 

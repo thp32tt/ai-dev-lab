@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1678 | ACTIVE | 2026-10-11 03:12 KST |
+| AI 1 | ChatGPT (AI 1) | 1679 | ACTIVE | 2026-10-11 03:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-11 03:25 KST | AI 1 | 1678 | +1 | 1679 | OutRun C1 ODD q217 **distinct A231 current trial SHA 8043bd79... independently examined**, separate from previously scored A231 production and old C1 official SHA; SHA256-authenticated exact original 2048² DDS RAW↔FLIPY/PNG mismatch0, new CLEAN/source change 3496 bounded original English pixels outside0, verified 425 opaque badge RGB source-exact restoration (START195/GOAL230), saved trial DDS/official changed425/alpha0, independent four lossless source/CLEAN/official/trial panels + per-region eight checks. **Scoped PLATE pixel QA PASS only**, library HOLD due missing blind calibration; new trial inherited pale narrow Hangul source-style optical **C1 REWORK_REQUIRED**, official preserved, C/C3/export/game not approved/UNTESTED. Published 11 QA/evidence/state files [GitHub HEAD 065cfe2](https://github.com/thp32tt/OutRun2006Tweaks/commit/065cfe2bfd31dbe6ef7d26ad655cdb42ae33b870) and [QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C1-Q217-A231-INDEPENDENT/C1_Q217_A231_INDEPENDENT_QA.json). **AI 점수: 이전 1678점 + 이번 +1점 = 누적 1679점.** RUN_KEY=OUTRUN-KOR-C1-Q217-A231-NEW-CLEAN-TRIAL-INDEPENDENT-20261011-0321 |
 | 2026-10-11 03:12 KST | AI 1 | 1677 | +1 | 1678 | OutRun A231 ODD q217 첫 실제 P1 원본-보호 픽셀 복원 성과: C1 C348/20261011 독립 판정의 START195+GOAL230 **불투명 RED 배지 색상 425픽셀**을 이전 한국어 DDS에서 영문 정본 그대로 재구성. 원본/source-clean, source-final 바깥 수정 0, 다른 atlas 및 기존 한글/alpha 변경0, 저장 후 DDS 재디코딩 PASS. 신규 임시 DDS SHA `8043bd79fe6b5b235c5e7c119e64c8f11e65f34c77b9d69071bfd2ca37b11f1b` 및 재사용 CLEAN SHA `015e07de...` / 공유 [플레이트 manifest](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/plate_library/entries/d924332dbb5cb52b72dc0fa31b3d0277135a5d6fcbc35e306ac1bcdde69e1d1c.json) GitHub 기록; native BGW/50/75 RAW 생산자 시각에서 범위 한정 복원 PASS. 기존 official DDS 보존, C1 독립 플레이트 검증/C3/소스 글꼴 비율·기울기/실기 UNTESTED, 승인·승격0. GitHub [작업 SHA ecd010f](https://github.com/thp32tt/OutRun2006Tweaks/commit/ecd010f078cccd864128bf6c9be40bd9d86196cd) 검증, [A231 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A231-Q217-SOURCE-RED-RIM-RESTORE/A231_CONTROLLER_VISUAL_QA.json). 동일 A231 캐시 차단 첫 시행과 재실행·메타데이터·같은 SHA 반복은 +0, 최초 원본 픽셀 수정 성과만 +1. **AI 점수: 이전 1677점 + 이번 +1점 = 누적 1678점**. RUN_KEY=OUTRUN-KOR-A231-Q217-C1-RED-BADGE-425-PROTECTED-RGB-RESTORE-20261011-0310 |
 
 

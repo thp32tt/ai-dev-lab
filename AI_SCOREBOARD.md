@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1672 | ACTIVE | 2026-10-10 23:23 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 954 | ACTIVE | 2026-10-10 23:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 955 | ACTIVE | 2026-10-10 23:30 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 23:30 KST | AI 2 | 954 | +1 | 955 | DX9Ex R29 Apply-generation effect-cache 기능 CONVERSION-DX9EX-00590 기존 완료 소스를 중복 구현하지 않고, 기존 R31 검증기의 잘못된 `static` 필수조건을 고친 기능 후보를 최신 `vr-d3d9ex-focus` HEAD `23aa36ea17cc`와 정확히 결합. 소스/StateBlock tracker 정적 18개 계약과 결함 주입 6/6 탐지, HUD B/C 테스트 슬롯 후속 커밋 보존, 원격 기능 브랜치 [통합 커밋 a93b38d90](https://github.com/thp32tt/OutRun2006Tweaks/commit/a93b38d90c092a5eecab5f1e399b92f0d03440f0) 검증. target→feature ahead 3/behind 0으로 controller fast-forward 가능 상태. **대상 게시·exact-SHA CI·실기 검증은 미완료**, `RUNTIME_VALIDATION=UNTESTED`. 같은 TASK_ID 롤오버·재시도·추후 단순 FF 결과는 중복 점수 0. **AI 점수: 이전 954점 + 이번 +1점 = 누적 955점**. RUN_KEY=CONVERSION-DX9EX-00590 |
 
 | 2026-10-10 23:27 KST | AI 2 | 953 | +1 | 954 | 사용자가 직접 발견한 DX9Ex HUD 테스트 선택기 B HUD 클릭 불가 결함 수정: 단독 ACTIVE ZIP에 slots/B_HUD가 없어도 backends/d3d9 공통 x86 DLL + x64 호스트를 사용하도록 GUI 버튼 활성 조건을 실제 페이로드 기반으로 교체. [게임 브랜치 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/23aa36ea17cc26e89e7333e7754eb2962b8d88aa) 원격 HEAD/내용 재확인, 수정된 로컬 HUD 패키지 ZIP 21개 파일 해시/무결성 PASS, B HUD 원클릭 CMD 추가. 기존 게임 바이너리 SHA 9e393cfd 불변. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 새 exact-SHA Active 실패는 기존 R29/R31 StateBlock 검사 오류로 이 GUI 수정과 별개. **AI 점수: 이전 953점 + 이번 +1점 = 누적 954점**. RUN_KEY=DX9EX-HUD-SLOT-SELECTOR-FIX-20261010-2320 |
 

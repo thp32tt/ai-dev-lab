@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1691 | ACTIVE | 2026-10-11 05:53 KST |
+| AI 1 | ChatGPT (AI 1) | 1692 | ACTIVE | 2026-10-11 05:58 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 05:58 KST | AI 1 | 1691 | +1 | 1692 | OutRun C377 C2 짝수 **q236 B364 신규 SHA `ad4f1f81f5708d6d97638f6e2902dbaaef33b93761ef31ad03790325f594fc41` 최초 독립 저장 DDS 검수**. 기존 공식 `9e2069eb…`와 새 시험본 각 16,777,344B SHA 인증, 2048x2048 BGRA32 mip1 RAW/FLIPY, 100/75/50% 및 200% 독립 디코딩 시각 검수; 변경 56,558 RGBA/29,512 alpha 모두 source row05 경계 안(영역 밖0), 다른13행 변경0. 스카이스크레이퍼스 old 739x87→new 774x91 vs 영문 source ROI 801x95, 완전한 한글·양의 여백·가독성 개선. **SCOPED_ROW05_IMPROVED_FAMILY_PILOT_HOLD**만 기록; source/CLEAN 새 바이트 재인증·blind slant calibration 및 이전 C358 다른 13행 리워크가 남아 C/C3/실게임 PASS0, RUNTIME_VALIDATION=UNTESTED. 독립 PNG5+machine+8+ check report, 큐/resume/progress/WORKLOG, [원격 HEAD 검증 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/35ac7f86d34947ab8b6492caaadf4268bfa54fc0). 이전 B364 생산 점수와 C358 old SHA 중복가점 없음. **AI 점수: 이전 1691점 + 이번 +1점 = 누적 1692점**. RUN_KEY=OUTRUN-KOR-C377-C2-Q236-B364-FIRST-INDEPENDENT-20261011-0556 |
 
 | 2026-10-11 05:53 KST | AI 1 | 1690 | +1 | 1691 | OutRun C1 odd q217 **A233 신규 SHA 84753cf3 첫 독립 실제 DDS 픽셀 QA**. Canonical SOURCE d3d2d155, CLEAN 015e07de, A231 8043bd79, A233 84753cf3 각각 SHA 확인; native 2048x2048 직접 디코딩, SOURCE→CLEAN 3496 RGBA within two English bboxes0 outside, A231→A233 1352 RGBA (START838 GOAL514), alpha0 changed, source bbox outside0, RAW/FLIP-Y mismatch0. Native BGW100/75/50와 4x/RAW **24 lossless PNG**으로 기존 START 81x23→한글38x19, GOAL77x24→19x20, 크기·레이어 스트라이프·가독계층 실패 독립 판단. **C1 REWORK_REQUIRED_UNPROMOTED**, 원래 공식 a4d817db 그대로, C3/사용자 실기 미검증, 새 DDS 제작0. 이전 A231 QA 동일 SHA 반복 가산0, 신규 A233만 성과1. [C1 evidence commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/dc2200bdfdbb1d20964244c13020bffdb183fe29) HEAD 재조회 확인. **AI 점수: 이전 1690점 + 이번 +1점 = 누적 1691점**. REVIEW_ID=C1-Q217-A233-FIRST-INDEPENDENT-20261011-0541 |
 

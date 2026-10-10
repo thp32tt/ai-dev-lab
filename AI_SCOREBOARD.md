@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1672 | ACTIVE | 2026-10-10 23:23 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 953 | ACTIVE | 2026-10-10 22:29 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 954 | ACTIVE | 2026-10-10 23:27 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 23:27 KST | AI 2 | 953 | +1 | 954 | 사용자가 직접 발견한 DX9Ex HUD 테스트 선택기 B HUD 클릭 불가 결함 수정: 단독 ACTIVE ZIP에 slots/B_HUD가 없어도 backends/d3d9 공통 x86 DLL + x64 호스트를 사용하도록 GUI 버튼 활성 조건을 실제 페이로드 기반으로 교체. [게임 브랜치 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/23aa36ea17cc26e89e7333e7754eb2962b8d88aa) 원격 HEAD/내용 재확인, 수정된 로컬 HUD 패키지 ZIP 21개 파일 해시/무결성 PASS, B HUD 원클릭 CMD 추가. 기존 게임 바이너리 SHA 9e393cfd 불변. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 새 exact-SHA Active 실패는 기존 R29/R31 StateBlock 검사 오류로 이 GUI 수정과 별개. **AI 점수: 이전 953점 + 이번 +1점 = 누적 954점**. RUN_KEY=DX9EX-HUD-SLOT-SELECTOR-FIX-20261010-2320 |
 
 | 2026-10-10 23:23 KST | AI 1 | 1671 | +1 | 1672 | OutRun **C1 홀수 q103 신규 A224 첫 독립 저장 DDS 검수**. SHA `2ad5e25e03bc1c9598548ef64ec397be91eae86f0b4f8d4cc161438c9e354c31`는 이전 C1 A223 SHA `a36359f1...`와 다른 새로운 시험 후보. SOURCE `76b6f6d8...`, 공식 A197 `9702957a...`, A223/A224 4개 2048x2048 RGBA32 DDS 16,777,344B 실제 SHA 검증·native/75/50 BGW+RAW 10 lossless PNG 독립 비교. Source354×45 vs candidate315×43/positive margins, official->A224 changed11089 within broad bounded edit; original olive-dark ink proxy6665, A2232868, A2243773/15930 (heuristic); 저장된 50% 새 한글 획이 여전히 원문의 굵은 응축 이탤릭 시각 계층보다 얇음. **C1_REWORK_REQUIRED_UNPROMOTED**, 공식 변경0, 승인/C3/실게임0. [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e8a53054f837f9732b8f3dbe9960e57ff5198f2e). 1회 신규 SHA 독립 시각 QA +1, 이전 A223 및 다른 작업 중복없음. **AI 점수: 이전 1671점 + 이번 +1점 = 누적 1672점**. RUN_KEY=OUTRUN-KOR-C1-Q103-A224-NEW-SHA-INDEPENDENT-OPTICAL-20261010-2317 |
 

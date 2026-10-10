@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1657 | ACTIVE | 2026-10-10 20:31:31 KST |
+| AI 1 | ChatGPT (AI 1) | 1658 | ACTIVE | 2026-10-10 20:39:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 952 | ACTIVE | 2026-10-10 19:37 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 20:39:00 KST | AI 1 | 1657 | +1 | 1658 | OutRun B358 q212 사용자 인게임 P1 IGR029: 독립 C2에서 신규 발견된 B357 OLD_KOREAN_OVERLAP 원인을 **실제 P3 합성 순서 오류**로 규명, 본래 생성만 하고 사용하지 않은 source-transparent CLEAN을 q212 r43/r44 **전체 셀**에 먼저 적용한 후 한글을 합성하도록 GitHub B worker 코드를 수정. [worker 38048868897](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38048868897) SUCCESS, 신규 저장 비승인 DDS SHA `38aac182b8691062259b0c758173f19c790b04afbb8e84d241f0b9023c2478a8` 생성. 기존 alpha source bbox 외 **5832+741 → 0+0**, 29668 변경 RGBA 2셀 내부만, 다른 10셀/원격 헤더/디코드0 보존. [B358 controller](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261010-B358-Q212-OLD-GLYPH-CLEAN-REBUILD/B358_CONTROLLER_QA.json) SOURCE/CLEAN/FINAL 100/50 RAW 실제 보고 **q212 글꼴 hierarchy 284/395, 71.9% 미흡으로 optical HOLD**, 공식 C338 REWORK 그대로·C2/C3/실기 UNTESTED, 신규 후보1/공식승격0. 이번 +1은 B356/B357 동일 trial 재보고가 아닌 독립 C2 결함에 대한 신규 실제 pixel-stage 수정 성과 1건. **AI 점수: 이전 1657점 + 이번 +1점 = 누적 1658점**. RUN_KEY=OUTRUN-KOR-B358-Q212-C2-OLD-GLYPH-ROIs-CLEAN-P3-20261010-2030 |
 
 | 2026-10-10 20:31:31 KST | AI 1 | 1656 | +1 | 1657 | OutRun C2 짝수 q060 **신규 B353 저장 DDS SHA `a44bf0ade48f6f82dc50e2df739ba9ee7339ac1b5d3557e5ea6e30f8d798e9cc` 첫 독립 시각·픽셀 QA**. 영문 원본 SOURCE SHA `6a33c730...`/B348 CLEAN `a03687d4...`/공식 `d81d0d14...`/B353 실제 4096×2048 RGBA32 DDS SHA 직접 인증, SOURCE/CLEAN/OFFICIAL/TRIAL BGW 100/75/50 RAW/FLIP-Y 신규 PNG24장. 원문→CLEAN 89391px 전부 원문 849×134 영역 내 외부0, alpha0. 기존 공식→B353 88852 RGBA/56629 alpha 수정, 작업 ROI 외 0. 독립 실제 시각에서 원문 BEST TIME 굵은 고급 금색·주황색 우측 기울임/입체 베벨 대비 B353 최고 기록의 얇은 깊이·기울기·가독 계층 불일치로 **C2 REWORK_REQUIRED_UNPROMOTED**. 기계적 범위 PASS와 optical FAIL 분리, 기존 공식 C342 REWORK/IGR044 OPEN/C3·approval·실기 UNTESTED 유지, 공식 DDS 승격0. [QA 커밋 aba2ef9dc](https://github.com/thp32tt/OutRun2006Tweaks/commit/aba2ef9dc), [독립 C2 증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261010-C2-Q060-B353-EXACT-SOURCE-FAMILY/C2_Q060_B353_CONTROLLER_INDEPENDENT_REWORK.json). 이전 B353 생산 성과 또는 이전 B351 C2 QA와 중복 가산 없음; 신규 SHA에 대한 별도 독립 C2 성과만 +1. **AI 점수: 이전 1656점 + 이번 +1점 = 누적 1657점**. RUN_KEY=OUTRUN-KOR-C2-Q060-B353-NEW-SHA-SOURCE-FAMILY-20261010-2020 |
 | 2026-10-10 20:10 | AI 1 | 1655 | +1 | 1656 | OutRun 한글화 A227 q101 C1 HOLD에 남아 있던 원본 계열 first-glyph 실제 native 소스-한글 획 기준점 신규 생성: 영문 E와 한글 이 동일 y44..66 / alpha128 23-row OLS left-edge slope -0.33202 vs -0.31126, |차이|0.02076; alpha64/128/220 × 2 y창의 실제 12개 측정치, 재현 가능 Python 소스와 원본/한글 4x 표시 PNG, QA JSON 작성. [작업 HEAD 4bf240c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/4bf240c40f9140b18001abc2a8eed36625e20c5f) 검증. 기작성 A226 same-SHA 재생산 아님; 신규 DDS0/정식 승격0, C1/HOLD·원본 DDS 독립 인증/전원문 폰트 비교·C3·실기 미완료. 이번 점수는 새로 완성된 원본 근거 기반 분석 증거 1건에만 +1, 상태 갱신·같은 SHA 재검증 별도 +0. RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1655점 + 이번 +1점 = 누적 1656점**. RUN_KEY=OUTRUN-KOR-A227-Q101-FIRSTGLYPH-SOURCE-ANCHOR-20261010-2000 |

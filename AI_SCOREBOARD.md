@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1651 | ACTIVE | 2026-10-10 19:25 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 950 | ACTIVE | 2026-10-10 19:11 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 951 | ACTIVE | 2026-10-10 19:31 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 19:31 KST | AI 2 | 950 | +1 | 951 | 신규 독립 DX9Ex C 작업 `CONVERSION-DX9EX-00587`: R84 하위 DirectGPU R32 개인 슬롯/펜스 접근을 R30 경계 ABI로 실제 C++ 구조 개선, 내부 패스 가드 좌/우 눈 복사·EVENT·ACK·fail-close 보존, 기존 리셋/전송 정적 계약을 실제 소유권으로 이전하고 부정변이 회귀 검사. 검증 결과물 [material dad4caf9](https://github.com/thp32tt/OutRun2006Tweaks/commit/dad4caf970d3007ad4908f064c01c247cd085de3) 동일 SHA [DX9Ex Active #38044724538](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38044724538), [Domain Isolation #38044724528](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38044724528) SUCCESS; Win32 game/R33 full-chain/host/package 성공, [Full Source Impact #38044185446](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38044185446)는 초기 C++ 소스 SHA에서 SUCCESS(최종 exact 아님). C6 분리 기록 [3399ca05](https://github.com/thp32tt/OutRun2006Tweaks/commit/3399ca0516b3355e464a8aee9c2d2d24a8b32bb7), Issue #14 이벤트 6096586194, 아티팩트 11667732101. **전체 R84 TU/CMake 수렴은 미완료**, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, native120FPS 미측정. 동일 TASK retry/rollover +0. **AI 점수: 이전 950점 + 이번 +1점 = 누적 951점.** RUN_KEY=CONVERSION-DX9EX-00587 |
 
 | 2026-10-10 19:25 KST | AI 1 | 1650 | +1 | 1651 | OutRun C1 홀수 q101 A226 **새 후보 SHA** `ea145aa51bdadd676bb7275c2d254bdc9562b72e3b7905867bc9c13ff3160d06`를 C1 최초 독립 실측. GitHub 공식 DDS `939ac217...` 및 신규 DDS 모두 SHA 재확인; native 4096×4096 RGBA32 persist 디코드와 1246×210 가독 PNG **0px 불일치**, RAW/FLIP-Y 일치, 두 원문 bbox 2/2, 공식 대비 변경 121345 RGBA/65934 alpha 전부 경계 내(밖 0), 보호 아이콘·3/2 불변. 블랙·그레이·화이트 100/75/50 등 **13개 새 lossless PNG**, per-region 8-check HOLD/기계 QA, queue·resume·progress·WORKLOG를 [commit c79da1c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/c79da1c7f7c6525536237337dab38f87166774f4) 반영 후 원격 HEAD 확인. 공식 후보 무변경, C1 `HOLD_STRICT_RECHECK`(영문 전체 원본 SHA 독립 검증/블라인드 보정/원문 기울임 기준 불완전); C3·실게임 `UNTESTED`, 신규 DDS·APPROVAL 0. 이전 A226 생산 성과와 별개의 첫 C1 저장 DDS 증거 성과로 +1 한 번, 반복 SHA 재검수 가점 없음. **AI 점수: 이전 1650점 + 이번 +1점 = 누적 1651점**. RUN_KEY=OUTRUN-KOR-C1-Q101-A226-EXACT-SAVED-PROTECTED-20261010-1920 |
 

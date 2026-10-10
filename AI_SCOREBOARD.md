@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1687 | ACTIVE | 2026-10-11 04:59 KST |
+| AI 1 | ChatGPT (AI 1) | 1687 | ACTIVE | 2026-10-11 04:57 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -36,7 +36,7 @@
 
 ## 변경 이력
 
-| 2026-10-11 04:59 KST | AI 1 | 1686 | +1 | 1687 | OutRun C1 odd q121 **A230 새 비승인 SHA 33996636 첫 독립 최종 검수**. A220 6db7c408와 A230 33996636 persisted native 4096x4096 DDS 실제 재다운로드/독립 SHA 검증·디코드, 원문 A215 rank20 SOURCE SHA ad0b0a2f, 변경 30 RGBA/alpha 픽셀 rank20 내부·외부0, 원본일치 불투명 픽셀 266→236, RAW/FLIPY 일치0, native/75/50 black/gray/white 비교에서 왼쪽 영문 잔상·한글 기울기/서체 불일치 및 A215 이름만 CLEAN인 합성상태 확인. A230 C1 `REWORK_REQUIRED`, 공식 DDS/C3/게임 승인0·IGR030/031/040 OPEN. [신규 C1 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/119badeb300017fdfbf0004b80c722902fa5ab17) 및 [큐 CSV 수정 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e8a89542b80b815866bfc5a1ca95e97d28c8d1ef) 원격 확인, 기 생산 A220 및 이전 SHA 반복 검수는 +0. 새로운 A230 독립 QA 결과 단 한 건만 +1. **AI 점수: 이전 1686점 + 이번 +1점 = 누적 1687점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A230-FIRST-INDEPENDENT-EXACT-DDS-20261011 |
+| 2026-10-11 04:57 KST | AI 1 | 1686 | +1 | 1687 | OutRun C1 odd q121 **A230 새 비승인 SHA 33996636 첫 독립 최종 검수**. A220 6db7c408와 A230 33996636 persisted native 4096x4096 DDS 실제 재다운로드/독립 SHA 검증·디코드, 원문 A215 rank20 SOURCE SHA ad0b0a2f, 변경 30 RGBA/alpha 픽셀 rank20 내부·외부0, 원본일치 불투명 픽셀 266→236, RAW/FLIPY 일치0, native/75/50 black/gray/white 비교에서 왼쪽 영문 잔상·한글 기울기/서체 불일치 및 A215 이름만 CLEAN인 합성상태 확인. A230 C1 `REWORK_REQUIRED`, 공식 DDS/C3/게임 승인0·IGR030/031/040 OPEN. [신규 C1 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/119badeb300017fdfbf0004b80c722902fa5ab17) 및 [큐 CSV 수정 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e8a89542b80b815866bfc5a1ca95e97d28c8d1ef) 원격 확인, 기 생산 A220 및 이전 SHA 반복 검수는 +0. 새로운 A230 독립 QA 결과 단 한 건만 +1. **AI 점수: 이전 1686점 + 이번 +1점 = 누적 1687점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A230-FIRST-INDEPENDENT-EXACT-DDS-20261011 |
 
 | 2026-10-11 04:49 KST | AI 1 | 1685 | +1 | 1686 | OutRun 한글화 B363 짝수 q092 기존 C364 C2/C3 strict source glow stipple visual REWORK에 대한 실제 신규 제작법/물리 DDS 성과 1회. SHA-pinned 원본 English `d19e5191...`, 이전 공식 `c2388834...`, B221 CLEAN `1a06b6ce...` 검증 및 새 source-white Gaussian 3.5 sigma diffuse halo, BC3 실제 4x4 endpoint+alpha 재압축 시험 DDS SHA `f113c3aafff77ef3ace10246975dbf199188077a3b08541dddae8a612ba028c3` 제작. 첫 QA preflight RAW 블록좌표 오류는 DDS0이며 재시도 점수 제외; 수정 후 [GitHub Actions #38080848707](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38080848707) SUCCESS. 새 DDS 2048×256 DXT5 mip1, 2274 BC3 블록/31867 RGBA 변경, source bbox 밖 0, 다른 한국어 2번째 줄 정확, 원본 source translucent 16391 대비 기존 4480→새 24156 검증. 실제 native100/50/RAW SOURCE/CLEAN/기존/새 이미지 비교에서 **흰 발광 확산 개선**, 그러나 점선·빈 윤곽의 주황색/남색 본문은 원문과 다름 ⇒ 생산자 visual REWORK_REQUIRED, **공식 DDS 승격0·C2/C3 PASS0·사용자 실기 UNTESTED**. 정직한 HOLD 및 동일 Gaussian 반복 금지, 추가 원본 수작업 벡터계열 권고; q092 공식 C364 REWORK 상태/queue/resume/progress/worklog/status 갱신, 외부 VR/FFB 작업 없음. [B363 producer visual QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B363-Q092-SOURCE-GLOW-BC3-PILOT/B363_CONTROLLER_PRODUCER_VISUAL_REWORK.json). 실물 신규 DDS와 QA/원격 반영이라는 단일 신성과에만 +1, 첫 실패 preflight는 중복 집계하지 않음. **AI 점수: 이전 1685점 + 이번 +1점 = 누적 1686점**. RUN_KEY=OUTRUN-KOR-B363-Q092-SOURCE-DIFFUSE-GLOW-FIRST-20261011-0432 |
 

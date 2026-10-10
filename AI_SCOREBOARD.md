@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1690 | ACTIVE | 2026-10-11 05:43 KST |
+| AI 1 | ChatGPT (AI 1) | 1691 | ACTIVE | 2026-10-11 05:53 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 05:53 KST | AI 1 | 1690 | +1 | 1691 | OutRun C1 odd q217 **A233 신규 SHA 84753cf3 첫 독립 실제 DDS 픽셀 QA**. Canonical SOURCE d3d2d155, CLEAN 015e07de, A231 8043bd79, A233 84753cf3 각각 SHA 확인; native 2048x2048 직접 디코딩, SOURCE→CLEAN 3496 RGBA within two English bboxes0 outside, A231→A233 1352 RGBA (START838 GOAL514), alpha0 changed, source bbox outside0, RAW/FLIP-Y mismatch0. Native BGW100/75/50와 4x/RAW **24 lossless PNG**으로 기존 START 81x23→한글38x19, GOAL77x24→19x20, 크기·레이어 스트라이프·가독계층 실패 독립 판단. **C1 REWORK_REQUIRED_UNPROMOTED**, 원래 공식 a4d817db 그대로, C3/사용자 실기 미검증, 새 DDS 제작0. 이전 A231 QA 동일 SHA 반복 가산0, 신규 A233만 성과1. [C1 evidence commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/dc2200bdfdbb1d20964244c13020bffdb183fe29) HEAD 재조회 확인. **AI 점수: 이전 1690점 + 이번 +1점 = 누적 1691점**. REVIEW_ID=C1-Q217-A233-FIRST-INDEPENDENT-20261011-0541 |
 
 | 2026-10-11 05:43 KST | AI 1 | 1689 | +1 | 1690 | OutRun B364 EVEN **q236 스카이스크레이퍼스(row05) 첫 네이티브 소스 높이 재구성 산출물 1건**: 기존 공식 C358 REWORK DDS SHA 9e2069eb를 보존하고 정본 영어 a1c7f7d6/CLEAN c202f55e에서 독립 원본 2048² BGRA32 시험 DDS SHA `ad4f1f81f5708d6d97638f6e2902dbaaef33b93761ef31ad03790325f594fc41` 생성. 신규 Bold TTC ppem94+1px 원본 높이 맞춤: 옛87→새91px (영문95px), 수정56558 RGBA 전부 row05 범위, 13개 이웃 행 변화0, persisted DDS RAW/FLIPY decode mismatch0. 자체 native100/white50/RAW 시각 검토 및 10단계/8항목 QA **범위 제한 HOLD**, 소스 계열 독립 C2/C3/실게임 UNTESTED와 원래 14행 REWORK는 유지. GitHub worker #38084528610 성공, [시험 DDS/QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B364-Q236-ROW05-SOURCE-NATIVE-PILOT/B364_CONTROLLER_FIRST_HAND_QA.json) 및 asset_queue/progress/resume/STATUS/WORKLOG 실제 반영. 동일 1개 신규 trial 성과로만 +1, 승인 DDS0. **AI 점수: 이전 1689점 + 이번 +1점 = 누적 1690점.** RUN_KEY=OUTRUN-KOR-B364-Q236-ROW05-NATIVE-FAMILY-PILOT-20261011-0541 |
 

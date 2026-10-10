@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1639 | ACTIVE | 2026-10-10 16:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1084 | ACTIVE | 2026-10-10 16:02 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1085 | ACTIVE | 2026-10-10 16:17 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 16:17 KST | AI 2 | 1084 | +1 | 1085 | 신규 독립 DX9Ex C `CONVERSION-DX9EX-00579`: 정식 FFB v0.2 원본 9개 불변, VR SDL 게임패드 rumble 포인터 조회·사용·종료를 동일 hotplug mutex로 직렬화해 분리 시 잠재 use-after-close 차단, 2개 부정 변이 회귀테스트 추가. [material 88b8a216](https://github.com/thp32tt/OutRun2006Tweaks/commit/88b8a21602f1043c1b88d4186feaa4c4a877c7c5), exact-SHA [Active #38033357737](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38033357737), [Domain #38033357782](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38033357782), [Full Source #38033357724](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38033357724) 3개 SUCCESS, artifact 11663108018, 독립 C6 [ac7e36a5](https://github.com/thp32tt/OutRun2006Tweaks/commit/ac7e36a5e3eca7283321907582b920eb0ddd49ec), Issue #14. Quest3/VDXR/휠 `RUNTIME_VALIDATION=UNTESTED`, native 120FPS 미측정, 기준 브랜치 보존, DX11 A 병행 DXVK B 동결. 중복 retry/rollover/재보고 +0. **AI 점수: 이전 1084점 + 이번 +1점 = 누적 1085점.** RUN_KEY=CONVERSION-DX9EX-00579 |
 
 | 2026-10-10 16:06 | AI 1 | 1638 | +1 | 1639 | OutRun 한글화 A225 q101 실제 신규 비승격 DDS `5b6bcfd83c39aebbe46f2cbdb8d95cfa584a4955ec9a84d9039480a77a709a86` 4096x4096 RGBA32 native source-conditioned italic warning 생성 [GitHub CPU #38029810272](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38029810272) SUCCESS, 영어 원본/클린/기존/최종 GRAY100 BLACK50 RAW 실물 직접 확인, 수정 114661픽셀은 원본 경고문 안에만 있고 밖 0, 기존 후보 변경 0. [QA/상태 커밋 d9be77a1](https://github.com/thp32tt/OutRun2006Tweaks/commit/d9be77a175349250c5369a08af65e012d7016dbd) 원격 HEAD 확인. 새 실물 DDS 1건만 최초 +1 인정, 이전 동일 생산 실행 재시도·새 상태 기록·동일 작업 재보고 +0; 한국어 정본 문구 드리프트와 원문 수치 기울기/클린-아이콘 경계 미확정으로 생산 QA HOLD, 정식 승격/C1/C3/게임 승인 전부 0, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1638점 + 이번 +1점 = 누적 1639점. RUN_KEY=OUTRUN-KOR-A225-Q101-C1-ITALIC-SOURCE-CONTOUR-20261010-1500 |
 

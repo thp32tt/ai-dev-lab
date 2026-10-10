@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1685 | ACTIVE | 2026-10-11 04:34 KST |
+| AI 1 | ChatGPT (AI 1) | 1686 | ACTIVE | 2026-10-11 04:49 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 04:49 KST | AI 1 | 1685 | +1 | 1686 | OutRun 한글화 B363 짝수 q092 기존 C364 C2/C3 strict source glow stipple visual REWORK에 대한 실제 신규 제작법/물리 DDS 성과 1회. SHA-pinned 원본 English `d19e5191...`, 이전 공식 `c2388834...`, B221 CLEAN `1a06b6ce...` 검증 및 새 source-white Gaussian 3.5 sigma diffuse halo, BC3 실제 4x4 endpoint+alpha 재압축 시험 DDS SHA `f113c3aafff77ef3ace10246975dbf199188077a3b08541dddae8a612ba028c3` 제작. 첫 QA preflight RAW 블록좌표 오류는 DDS0이며 재시도 점수 제외; 수정 후 [GitHub Actions #38080848707](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38080848707) SUCCESS. 새 DDS 2048×256 DXT5 mip1, 2274 BC3 블록/31867 RGBA 변경, source bbox 밖 0, 다른 한국어 2번째 줄 정확, 원본 source translucent 16391 대비 기존 4480→새 24156 검증. 실제 native100/50/RAW SOURCE/CLEAN/기존/새 이미지 비교에서 **흰 발광 확산 개선**, 그러나 점선·빈 윤곽의 주황색/남색 본문은 원문과 다름 ⇒ 생산자 visual REWORK_REQUIRED, **공식 DDS 승격0·C2/C3 PASS0·사용자 실기 UNTESTED**. 정직한 HOLD 및 동일 Gaussian 반복 금지, 추가 원본 수작업 벡터계열 권고; q092 공식 C364 REWORK 상태/queue/resume/progress/worklog/status 갱신, 외부 VR/FFB 작업 없음. [B363 producer visual QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B363-Q092-SOURCE-GLOW-BC3-PILOT/B363_CONTROLLER_PRODUCER_VISUAL_REWORK.json). 실물 신규 DDS와 QA/원격 반영이라는 단일 신성과에만 +1, 첫 실패 preflight는 중복 집계하지 않음. **AI 점수: 이전 1685점 + 이번 +1점 = 누적 1686점**. RUN_KEY=OUTRUN-KOR-B363-Q092-SOURCE-DIFFUSE-GLOW-FIRST-20261011-0432 |
 
 | 2026-10-11 04:34 KST | AI 1 | 1684 | +1 | 1685 | OutRun C2 EVEN q060 **외부 PSD 시험본 독립 저장 DDS QA 신규 성과**: 기존 생산 DDS `bab8dc25bc900d6806adf0462adb2046321353b78e29bdc82885ec9feef33255` SHA를 최초 C2 독립 인증하고 canonical 영어원본 6a33c730, 정식 d81d0d14 4096x2048 DDS 실제 RAW/FLIPY/native100/black75/white50 디코딩. 정식→시험 104704 RGBA/48402 alpha 변동, 원본 BEST_TIME 밖 RGBA/alpha 0/0, OUTRUN MILES/HOLLY WOLF 보호 범위 변경 0. 저장본 시각에서 레이싱 이탤릭 응축·금색/남색 원본 입체 효과 불일치를 확인해 **REWORK_REQUIRED_UNPROMOTED**로 반려; 기존 공식 C342 REWORK/IGR044 OPEN/C3 및 실게임 UNTESTED 유지. [독립 C2 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/bef2e1b48ee0407a95f7888b51d5d9203f309871), lossless RAW/FLIPY 4 PNG+8-check QA JSON, queue/WORKLOG 갱신, 원격 HEAD 검증. 이전 PSD 제작 성과 1675점 이력과 중복 아님(신규 독립 C2 QA 결과 1회). **AI 점수: 이전 1684점 + 이번 +1점 = 누적 1685점**. RUN_KEY=OUTRUN-KOR-C374-C2-Q060-PSD-FIRST-INDEPENDENT-SAVED-QA-20261011-0430 |
 

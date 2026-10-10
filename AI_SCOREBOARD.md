@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1675 | ACTIVE | 2026-10-11 00:56:55 KST |
+| AI 1 | ChatGPT (AI 1) | 1676 | ACTIVE | 2026-10-11 02:34:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 956 | ACTIVE | 2026-10-11 01:36:53 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 02:34:00 KST | AI 1 | 1675 | +1 | 1676 | OutRun 한글화 자동개발 Docker/Portainer 컨테이너 이름 충돌 신규 원인 검증 및 코드 재발 방지. N100 실제 Docker에서 컨테이너 5111d7869c33 상태 healthy, 이름 outrun-chat-controller-localization-recovery, 이미지 bc3696af9dbf 및 /data·/logs 별도 볼륨 확인. 기존 배포 스크립트가 Portainer Compose 대신 standalone docker run -d로 동일 이름을 생성해 Portainer 재배포가 실패하는 실제 충돌 원인 확인. [GitHub 배포 스크립트 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/e21d1861f30a113b446ec105a47445b6f32052ef) 에서 신규 standalone 실행을 제거하고 Portainer-owned stage-only, 기존 컨테이너 handoff 안내, 볼륨 보호, 정확한 원격 HEAD 및 Python --help 구문 실행 확인. **현재 healthy 컨테이너는 유지**, Portainer 소유 전환 및 최종 재배포는 **미실시**, 게임 검증 UNTESTED. 중복 retry는 +0. **AI 점수: 이전 1675점 + 이번 +1점 = 누적 1676점.** RUN_KEY=OUTRUN-KOR-PORTAINER-DEPLOY-NAME-CONFLICT-20261011-0226 |
 
 | 2026-10-11 01:36:53 KST | AI 2 | 955 | +1 | 956 | OutRun DX11 신기능 **CONVERSION-DX11-00537**에 대해 실제 게임 R30 Draw/DrawIndexed/UP→DX11 native Draw 연결과 데스크톱 프레임 진단 경로를 바탕으로, 무초기화 인덱스 설명자 선행 읽기 2곳 수정 및 회귀 부정변이/안전 경계 검사, opt-in 게임 Draw·native Draw·가시 화면 횟수 로그를 GitHub FEATURE 브랜치에 구현. Win32 실제 게임 DLL·x64 OpenXR 호스트 및 선택기·로그 수집기·PE 아키텍처·SHA256 무결성 검사 포함 테스트 ZIP을 **GitHub Build [38067788260](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38067788260) SUCCESS, OpenXR [38067788205](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38067788205) SUCCESS, artifact 11676470530**로 독립 실물 산출 검증. 최종 FEATURE material HEAD [f8a5a44e](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8a5a44e3bbdec38102bec9a8994154bf0d8ffbb), ZIP SHA256 `78ccba17e7ef4001cdf69da3a856f93240437909461881e19a1f8d988ca3387d`. **기능 FEATURE_READY/실게임 native 화면/HMD 판정은 아직 미완료, RUNTIME_VALIDATION=UNTESTED, TARGET 브랜치 변경 없음**; 신규 독립 코드·CI 바이너리·패키지 성과 한 번만 +1점, 동일 TASK_ID retry/rollover/추후 단순 검증·재보고는 0. **AI 점수: 이전 955점 + 이번 +1점 = 누적 956점.** RUN_KEY=CONVERSION-DX11-00537 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1699 | ACTIVE | 2026-10-11 07:21 KST |
+| AI 1 | ChatGPT (AI 1) | 1700 | ACTIVE | 2026-10-11 08:26 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 08:26 KST | AI 1 | 1699 | +1 | 1700 | OutRun A236 ODD q161 C344 REWORK의 기존 A218 DDS 반복 제작 대신 **신규 정본 SOURCE 기반 CLEAN 플레이트 1건 완성**. 원본 BC3 SHA a74d31016e9ab38da4f6bd9a37196848534b9a1c8ac04db3f071000030681c4d 직접 검증, AQUARIUS/물병자리(11), SOUTH KOREA/대한민국(16), ITALY/이탈리아(24) 세 원본 bbox를 제거한 2048² RGBA CLEAN PNG SHA `60f5b09266bad5f517c06cdd23b02576ec493b5149fc03dea59ee8d1843f1720` 신규 게시. 29,650 RGBA source→CLEAN 변경 전부 43,827 제거 마스크 안, 밖0/남은 영문 알파0/다른35 atlas cells exact. 불변 q161 plate_library manifest SHA caf59675820b65b4ded62b05e463bfb66c77878a4ba24a4f9ff810e36ff2b9f8 신규, 3 manifest 전체 audit PASS; 실제 native100/75/50, RAW SOURCE/CLEAN/OFFICIAL/A218 시각 확인. 기존 공식 8ded8565와 A218 trial 8000601a 변화0, 신규 한국어 DDS0, P1 scoped producer plate PASS지만 독립 C1 PLATE_PASS/C3/실게임 PASS 없음, q161 공식 C344 REWORK 유지, RUNTIME_VALIDATION=UNTESTED. 기존 q161 CSV의 미이스케이프 내부 따옴표를 복구하고 q161 상태/queue/resume/progress/WORKLOG/STATUS 실반영, [GitHub Actions #38093919316](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38093919316) 및 [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A236-Q161-THREE-SOURCE-AUTHENTICATED-CLEAN/A236_CONTROLLER_PLATE_OPTICAL_QA.json) 검증. 최초 ModuleNotFoundError 실패는 동일 TASK 재시도 가점0. 신규 실제 CLEAN/공유 플레이트 한 성과에만 +1. **AI 점수: 이전 1699점 + 이번 +1점 = 누적 1700점.** RUN_KEY=OUTRUN-KOR-A236-Q161-CANONICAL-THREE-CELL-CLEAN-PLATE-20261011-0800 |
 
 | 2026-10-11 07:21 KST | AI 1 | 1698 | +1 | 1699 | OutRun C1 ODD **q121 A235R 전혀 다른 신규 시험 DDS SHA `1c13618efccaf572ed6214aff2e8bde410049b51679e9192689e22d48e40ca98` 최초 독립 저장 DDS 검증**. GitHub 영문 SOURCE f7847db9 / 공식 DDS 38d5c2c3 / 신규 A235R 1c13618e 실제 각 67,108,992B SHA 인증, RGBA32 4096² MIP1 동일 헤더. SOURCE 및 A235R 저장 DDS 독립 RAW→FLIPY 픽셀 디코딩 원본 PNG 불일치0. 공식→A235R 9,275 RGBA/5,824 알파 변경 전부 원문 Gas Pedal [3490,391,3722,440] 내부(외부0). SOURCE→CLEAN 영어 알파 6,334 제거/잔존0, 최종 한글 알파 6,352. 실제 저장 DDS 효과 포함 bbox [7,2,225,48], 생산자 주장 상자 밖 **420 알파 픽셀** 및 아래 여백 1px. 독립 BGW100/75/50 RAW 12개 새 무손실 PNG에서 원문 near-white 획3,504 vs 한글1,426(40.7%)로 흰 글자면 부족과 과도한 청남색 윤곽 새 결함 확정, C1 **REWORK_REQUIRED_UNPROMOTED**, 공식0 DDS 변경/C3/사용자 실게임 UNTESTED 유지. 이전 A234R SHA 반복검증이 아니며 새 A235R 첫 독립 QA +1. [증거와 SHA 검증 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/ddd9b2b556b37fecfd2b4464ad0ac6ed2fae6dc7). **AI 점수: 이전 1698점 + 이번 +1점 = 누적 1699점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A235R-NEW-SHA-NATIVE-WHITE-FACE-20261011-0710 |
 

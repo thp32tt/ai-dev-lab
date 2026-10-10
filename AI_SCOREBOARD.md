@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1687 | ACTIVE | 2026-10-11 04:57 KST |
+| AI 1 | ChatGPT (AI 1) | 1688 | ACTIVE | 2026-10-11 04:58 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 04:58 KST | AI 1 | 1687 | +1 | 1688 | OutRun C375 C2 짝수 q092 신규 B363 실물 저장 BC3 DDS SHA `f113c3aafff77ef3ace10246975dbf199188077a3b08541dddae8a612ba028c3` **최초 독립 QA 성과 1건**. 이전 official SHA `c2388834…`와 모두 524416B/2048x256/DXT5 원시 저장물 해시 확인, RAW/FLIPY native·white75·black50 직접 디코딩 시각 QA; 2274 BC3 블록/31867 RGBA/29698 alpha 변경, 원본 첫 제목 범위 밖 변경0, 두 번째 제목 손상0. B363 확산 흰 후광만 개선되었고 한글 안쪽 주황·남색 여전히 얇고 점상/속 빈 획으로 원본 레이싱 이탤릭 서체와 달라 **REWORK_REQUIRED_UNPROMOTED** 독립 반려. 5장 lossless PNG + 8항목 평가 JSON 및 SSOT 큐/WORKLOG/progress/resume 기록, [검수 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/44a029bb7c4b8c085bfc80e434d2398d66675e17) 원격 HEAD 인증. 이전 B363 생산점수·기존 공식 SHA 검사 중복가산0. 현재 공식 C364 REWORK, C3/APPROVAL/실기 UNTESTED. **AI 점수: 이전 1687점 + 이번 +1점 = 누적 1688점**. RUN_KEY=OUTRUN-KOR-C375-C2-Q092-B363-EXACT-BC3-FIRST-INDEPENDENT-20261011-0457 |
 
 | 2026-10-11 04:57 KST | AI 1 | 1686 | +1 | 1687 | OutRun C1 odd q121 **A230 새 비승인 SHA 33996636 첫 독립 최종 검수**. A220 6db7c408와 A230 33996636 persisted native 4096x4096 DDS 실제 재다운로드/독립 SHA 검증·디코드, 원문 A215 rank20 SOURCE SHA ad0b0a2f, 변경 30 RGBA/alpha 픽셀 rank20 내부·외부0, 원본일치 불투명 픽셀 266→236, RAW/FLIPY 일치0, native/75/50 black/gray/white 비교에서 왼쪽 영문 잔상·한글 기울기/서체 불일치 및 A215 이름만 CLEAN인 합성상태 확인. A230 C1 `REWORK_REQUIRED`, 공식 DDS/C3/게임 승인0·IGR030/031/040 OPEN. [신규 C1 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/119badeb300017fdfbf0004b80c722902fa5ab17) 및 [큐 CSV 수정 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e8a89542b80b815866bfc5a1ca95e97d28c8d1ef) 원격 확인, 기 생산 A220 및 이전 SHA 반복 검수는 +0. 새로운 A230 독립 QA 결과 단 한 건만 +1. **AI 점수: 이전 1686점 + 이번 +1점 = 누적 1687점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A230-FIRST-INDEPENDENT-EXACT-DDS-20261011 |
 

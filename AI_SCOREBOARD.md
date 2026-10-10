@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1694 | ACTIVE | 2026-10-11 06:23 KST |
+| AI 1 | ChatGPT (AI 1) | 1694 | ACTIVE | 2026-10-11 06:21 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -36,7 +36,7 @@
 
 ## 변경 이력
 
-| 2026-10-11 06:23 KST | AI 1 | 1693 | +1 | 1694 | OutRun 한글화 C1 **홀수 q195 신규 독립 upright-family 블라인드 QA 교정(5/5) + 실제 저장 DDS 재디코딩 원문/CLEAN/FINAL 범위 검사**. 동일 후보 SHA `b4b8655e9805b897ab17249112db6c5536bab34f03d445b7722bc5222476c72c` 재승인·신규 DDS로 중복 세지 않음. 기울임 역전/글자 잘림/영문 잔상/과도한 획과 정상 대조를 답지 확인 전 개별 기록하여 **5/5**; native 1024×128 BGRA32 mip1 persisted FLIP-Y 바이트 디코드 이전 정확 PNG 불일치0, SOURCE→CLEAN 8042 / CLEAN→FINAL 4999 / SOURCE→FINAL 10396 RGBA 변화가 모두 원문 bbox 내부(외부0), 알파0. 신규 lossless PNG 2 + 기존 원본 인증 PNG/블라인드 신규 증거, 8항목 독립 C1 판정을 [QA commit 9ef1a8f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/9ef1a8f35bf0e9efff6678aec368ec183d8c3c18) 원격 HEAD로 검증. **C1 HOLD_STRICT_RECHECK**, 별도 기울임 앵커/C3/실게임 검수 남음, 승인DDS 0, 제작DDS 0, RUNTIME_VALIDATION=UNTESTED. 기존 C284 반복 머신 검증은 별도 가점0; 신규 q195 블라인드 교정+결함 민감도 판정만 +1. **AI 점수: 이전 1693점 + 이번 +1점 = 누적 1694점.** RUN_KEY=OUTRUN-KOR-C1-Q195-UPRIGHT-BLIND-EXACT-DDS-20261011-0610 |
+| 2026-10-11 06:21 KST | AI 1 | 1693 | +1 | 1694 | OutRun 한글화 C1 **홀수 q195 신규 독립 upright-family 블라인드 QA 교정(5/5) + 실제 저장 DDS 재디코딩 원문/CLEAN/FINAL 범위 검사**. 동일 후보 SHA `b4b8655e9805b897ab17249112db6c5536bab34f03d445b7722bc5222476c72c` 재승인·신규 DDS로 중복 세지 않음. 기울임 역전/글자 잘림/영문 잔상/과도한 획과 정상 대조를 답지 확인 전 개별 기록하여 **5/5**; native 1024×128 BGRA32 mip1 persisted FLIP-Y 바이트 디코드 이전 정확 PNG 불일치0, SOURCE→CLEAN 8042 / CLEAN→FINAL 4999 / SOURCE→FINAL 10396 RGBA 변화가 모두 원문 bbox 내부(외부0), 알파0. 신규 lossless PNG 2 + 기존 원본 인증 PNG/블라인드 신규 증거, 8항목 독립 C1 판정을 [QA commit 9ef1a8f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/9ef1a8f35bf0e9efff6678aec368ec183d8c3c18) 원격 HEAD로 검증. **C1 HOLD_STRICT_RECHECK**, 별도 기울임 앵커/C3/실게임 검수 남음, 승인DDS 0, 제작DDS 0, RUNTIME_VALIDATION=UNTESTED. 기존 C284 반복 머신 검증은 별도 가점0; 신규 q195 블라인드 교정+결함 민감도 판정만 +1. **AI 점수: 이전 1693점 + 이번 +1점 = 누적 1694점.** RUN_KEY=OUTRUN-KOR-C1-Q195-UPRIGHT-BLIND-EXACT-DDS-20261011-0610 |
 
 | 2026-10-11 06:19 KST | AI 1 | 1692 | +1 | 1693 | OutRun A234R ODD q121 P0 IGR030/031/040 **신규 source-derived CLEAN + 네이티브 한글 가속 페달 저장 DDS 실제 산출** 1건. 원본 English f7847db9 / 공식 38d5c2c3 엄격 보존. 초기 A234 DDS dd1cb811은 알파0 광학 FAIL로 반려하고 동일 TASK 내 보정(별도 점수0). A234R 신규 unpromoted 4096x4096 DDS SHA e87c570f754a79e22126ae9240ba19828637f7f63e22e8a17f6e8b0e3da90ca1 실제 6672 alpha visible; source region 밖0/다른29셀 정확/헤더·저장 DDS 재디코드 일치; 네이티브와 50%/RAW 실제 시각 확인. 원문 대비 획 굵기·기울기 유사성은 HOLD, 공식 DDS 승격0·C1/C3/게임승인0·IGR open·RUNTIME_VALIDATION=UNTESTED. Actions [#38086752101](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38086752101), [A234R optical QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A234R-Q121-RANK20-SOURCE-PLATE-VISIBLE-ALPHA/A234R_CONTROLLER_OPTICAL_QA.json), queue/resume/progress/STATUS/WORKLOG 반영. 신규 저장 DDS 시험 생성 성과 한 번만 +1, 첫 실패·재시도·후속 동일 SHA 재확인은 0. **AI 점수: 이전 1692점 + 이번 +1점 = 누적 1693점.** RUN_KEY=OUTRUN-KOR-A234-Q121-RANK20-SOURCE-DERIVED-PLATE-NATIVE-ITALIC-20261011-0600 |
 

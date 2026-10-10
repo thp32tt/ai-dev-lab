@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1629 | ACTIVE | 2026-10-10 14:03 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1075 | ACTIVE | 2026-10-10 13:57 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1076 | ACTIVE | 2026-10-10 14:09 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 14:09 | AI 2 | 1075 | +1 | 1076 | DX9Ex C 독립 신규 `CONVERSION-DX9EX-00570` P1 HostPose.v3의 실패 시 출력 초기화 및 무효 optional position/stereo 값 차단 C++/Release 스모크 배치 구현. [material f1b3aceb](https://github.com/thp32tt/OutRun2006Tweaks/commit/f1b3aceb0443ae3e82a83d88d50122ce9b93284f), exact-SHA DX9Ex Active [#38026029077](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026029077), Domain [#38026029010](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026029010), Full Source Impact [#38026028984](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026028984) SUCCESS; artifact 11660705476 sha256:f32d65faa79b2b22a79c030c1326e79c8d3f6ccb47616e98e2ccacca6e0a54d0; C6 [f2460621](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2460621c77a25c425f1f77bbbac40d1ee4c4fa6). FFB v0.2 및 DX9Ex baseline 동결, DX11/DXVK/한글화 무변경. RUNTIME_VALIDATION=UNTESTED, 120FPS NOT_MEASURED. 동일 TASK_ID retry/rollover +0. **AI 점수: 이전 1075점 + 이번 +1점 = 누적 1076점**. RUN_KEY=CONVERSION-DX9EX-00570 |
 
 | 2026-10-10 13:57 | AI 2 | 1074 | +1 | 1075 | DX9Ex C 신규 독립 `CONVERSION-DX9EX-00569` P1 HostState.v3 Reader 부분 복사/이전 pose 재사용 fail-closed C++ 구현과 named-mapping 잘못된 버전·홀수 seqlock·복구 스모크 추가(두 소스/테스트 파일). [material 0ca29f74](https://github.com/thp32tt/OutRun2006Tweaks/commit/0ca29f74884f8da067400357666de0f512d2e7e1); exact-SHA DX9Ex Active #38025447169, Domain #38025447103, Full Source Impact #38025447104 모두 SUCCESS; CI artifact 11659303540 digest sha256:8a1a1fb26557d50dfbf83df9c3402de609eb2c9a1b90a8ea90d99e785c768062; [C6 b92875a4](https://github.com/thp32tt/OutRun2006Tweaks/commit/b92875a48176c2b244484bdac6a0a8a7cc961615) 별도 기록. baseline fcd18ddd/FFB v0.2 보호; DX11 A/DXVK B/한글화 무변경. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, native120FPS NOT_MEASURED. 동일 TASK_ID retry/rollover/재보고 중복 +0. **AI 점수: 이전 1074점 + 이번 +1점 = 누적 1075점**. RUN_KEY=CONVERSION-DX9EX-00569 |
 

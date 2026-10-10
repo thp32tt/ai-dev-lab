@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1613 | ACTIVE | 2026-10-10 09:47 KST |
+| AI 1 | ChatGPT (AI 1) | 1614 | ACTIVE | 2026-10-10 09:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1066 | ACTIVE | 2026-10-10 09:14 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 09:50 | AI 1 | 1613 | +1 | 1614 | OutRun C351 C1 홀수 q121 신규 A219 **미승격 다른 SHA 시험 DDS** 9f5039dae7ee...를 영문 정본 f7847db97bed...·정식 38d5c2c30ea...와 독립 저장 바이트/디코드 검증. 세 파일 모두 4096×4096 RGBA32/mip1 67,108,992B, 33픽셀/132바이트만 변경·16,777,183픽셀 그대로 및 변경 범위 밖 0. A215 기존 CLEAN과 공식본 모두 source-identical 영문 goal. 잔상 33개 알파255였고 trial에서 모두 0/투명화 확인, 같은 영역 다른 원문 일치 가시픽셀 0. N100 MCP 원격 DDS 실제 다운로드·해시 검증, ChatGPT RAW FLIPY·흑회백 native100/75/50 직접 시각검토, 신규 12 무손실 PNG+2 검수 JSON 및 queue/progress/resume/WORKLOG commit [6abb166f](https://github.com/thp32tt/OutRun2006Tweaks/commit/6abb166f8862ceee360766fc2dbd46f3841b149e), remote HEAD 재검증. **신규 후보 독립 증거 1건**에만 +1. 전체 29개 셀/블라인드 캘리브레이션/C3/APPROVAL/실게임 보류, 공식 REWORK_REQUIRED 유지, C1 전체 HOLD_STRICT_RECHECK, 새 정식 DDS0, IGR030/031/040 OPEN/RUNTIME_VALIDATION=UNTESTED. C2/VR/FFB/DX11/DXVK·별도 큐 변경 없음, A219 생산 성과나 기존 C335 공식 SHA 반복 가점 없음. **AI 점수: 이전 1613점 + 이번 +1점 = 누적 1614점.** RUN_KEY=OUTRUN-KOR-C351-C1-Q121-A219-NEW-TRIAL-33-EXACT-SOURCE-20261010 |
 
 | 2026-10-10 09:47 | AI 1 | 1612 | +1 | 1613 | OutRun B346 EVEN q176 독립 신규 MATERIAL DDS 시험 성과 **1건만** 점수화 (B345 실패/재시도/코드 기록 별도 점수0). C343 최초 독립 현재 official 494d42c0... SOURCE_FAMILY_STROKE_UNDERWEIGHT 반려 후 canonical English 8ba40915..., source-derived CLEAN 및 원문 빨강 [186,0,0], Noto CJK Bold SHA faa5f365... 네이티브 2048² 투명 글자층으로 4개 한글 이름 실제 재구성. 3px 1차 persisted B345 DDS SHA 34edd2aa... 는 홀리/클라리사 내부공간 좁힘 결함을 자체 QA에서 반려; 1px 벡터 정정 B346 GitHub Actions #38009996777 SUCCESS로 16,777,344-byte **새 material persisted DDS SHA eea9f4b6228d4261845712634c404abe171f39bcc54c60f318bdbf13a8d5ee45** 별도 생성, 원본 SOURCE/CLEAN/FINAL/old 밖 변화0, 4/4 원문 bbox·양수여백·RAW/FLIPY 디코드 PASS. 네 영역 source/CLEAN/official/B346 native 및 RAW 흑50/회50/백75 픽셀 직접 보고 획/내부공간 개선 자체 QA scoped visual ACCEPT, C2/C3/실게임 승인이라고 주장하지 않음. QA·queue·resume·progress·WORKLOG·STATUS 동일 브랜치 commit 56d2395aa7b45c95a3a9e0cf977094e9b972989e 원격 HEAD 재확인. **promoted DDS0** / C343 공식 REWORK_REQUIRED / final manifest pixel guard·fresh C2·C3·user game OPEN / RUNTIME_VALIDATION=UNTESTED. 금지 영역 무변경. **AI 1 이전 1612점 + 이번 +1점 = 누적 1613점.** RUN_KEY=OUTRUN-KOR-B346-Q176-SOURCE-CALIBRATED-COUNTERS-20261010 |
 | 2026-10-10 09:25 | AI 1 | 1611 | +1 | 1612 | OutRun C350 C1 홀수 q035 공식 A196 후보 SHA cc8df5b4...는 C308과 동일하여 DDS 생산·반복 PASS는 **0건**. 하지만 새로 별도 성과인 정본 SOURCE→CLEAN 전체 4096x4096 RAW 전수 픽셀 분석으로 과거 C308의 bbox 안팎0 주장보다 범위 넓은 **원문 효과/AA 14,182 변경 픽셀**(SOURCE→FINAL 밖14,182·알파13,551; CLEAN→FINAL 밖0)을 독립 발견, 15 컴포넌트로 구분하여 글자 원문 효과인지 보호 아트인지 과장 없이 엄격 HOLD. 정본 SOURCE/CLEAN/현재 DDS 각 SHA 검증, 새로운 15 lossless PNG + 3 JSON 및 queue/resume/progress/WORKLOG 같은 브랜치 commit [d2a41b18](https://github.com/thp32tt/OutRun2006Tweaks/commit/d2a41b18ca5b9da1bfcbf3453647602837bb1414), 원격 HEAD 검증. 전체 C1=HOLD_STRICT_RECHECK, C3/APPROVAL/사용자 실기=UNTESTED, 신규 DDS0, C2/VR/FFB/DX11/DXVK 변경 없음. 새 증거 1건만 점수 +1로 인정, 이전 C308 동일 SHA 검수/재보고 중복 가점 아님. **AI 점수: 이전 1611점 + 이번 +1점 = 누적 1612점**. RUN_KEY=OUTRUN-KOR-C350-C1-Q035-A196-SOURCE-EFFECT-FOOTPRINT-20261010-0910 |

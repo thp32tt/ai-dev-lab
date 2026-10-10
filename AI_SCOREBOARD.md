@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1633 | ACTIVE | 2026-10-10 15:01 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1080 | ACTIVE | 2026-10-10 15:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1081 | ACTIVE | 2026-10-10 15:18 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 15:18 KST | AI 2 | 1080 | +1 | 1081 | 신규 독립 DX9Ex C `CONVERSION-DX9EX-00575`: P1 XR rigid pose 비정상 위치/배율 NaN·Inf 조기 거부와 계산 오버플로 이후 finite matrix 검증 및 identity fail-closed, Release 활성 부정/정상 6조건 회귀 C++ 구현. [material 3a4d5067](https://github.com/thp32tt/OutRun2006Tweaks/commit/3a4d5067f7834fc17f305f4e85767990ad46acc2); exact-SHA [Active 38029868493](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38029868493), [Domain 38029868511](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38029868511), [Full Source 38029868445](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38029868445) 모두 SUCCESS; package 11661014184; C6 [0257d4c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/0257d4c496fa77dc2fed5be0d4fe5151dd55e3fd), Issue #14 기록. FFB v0.2 릴리스 불변·DXVK 동결·DX11 A 별도·Quest3/VDXR `RUNTIME_VALIDATION=UNTESTED`, native120FPS 미측정. 같은 TASK retry/recheck +0. **AI 점수: 이전 1080점 + 이번 +1점 = 누적 1081점.** RUN_KEY=CONVERSION-DX9EX-00575 |
 
 | 2026-10-10 15:03 | AI 2 | 1079 | +1 | 1080 | 독립 DX9Ex C `CONVERSION-DX9EX-00574` P1 matrix inversion 안전성 구현: NaN/Inf 입력 선거부, 실패 시 유효한 기존 eye matrix 보존을 위한 transactional inverse, Release 활성 회귀테스트 4종. [material 24d78674](https://github.com/thp32tt/OutRun2006Tweaks/commit/24d786743cbc60dec2b98387fbc5e5e4bcc1cab8), exact-SHA DX9Ex Active [#38029120918](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38029120918), Domain [#38029120957](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38029120957), Full Source [#38029120912](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38029120912) 모두 SUCCESS; artifact 11661541084. C6 기록 [494b11af](https://github.com/thp32tt/OutRun2006Tweaks/commit/494b11afc9593a70f8afbe69395083c6d920fad5), Issue #14 기록. FFB v0.2/동결 baseline 유지, DX11 A·DXVK B·한글화 불변, Quest3/VDXR 실기 `RUNTIME_VALIDATION=UNTESTED`, native120FPS NOT_MEASURED. 동일 TASK_ID 재시도/롤오버/결과 재보고 +0. **AI 점수: 이전 1079점 + 이번 +1점 = 누적 1080점.** RUN_KEY=CONVERSION-DX9EX-00574 |
 | 2026-10-10 14:51 | AI 2 | 1078 | +1 | 1079 | 신규 독립 DX9Ex C `CONVERSION-DX9EX-00573`: FFB v0.2 원본 유지, VR XInput legacy rumble float-to-int NaN/Inf/overflow fail-closed 안전 변환 C++ 및 x64 경계·악성값 회귀 smoke 신규 구현. [material 1ebf87e2](https://github.com/thp32tt/OutRun2006Tweaks/commit/1ebf87e2c61b9d9be18e01526f59319e921b9682), exact-SHA DX9Ex Active [#38028376322](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38028376322), Domain [#38028376147](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38028376147), Full Source [#38028376145](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38028376145) 모두 SUCCESS, CI 패키지 artifact 11660977351; C6 [538fe1fa](https://github.com/thp32tt/OutRun2006Tweaks/commit/538fe1fadbc9ac40eb6347444807d86a3164aae1), Issue #14 ledger 등록. FFB tag/SHA·DX9Ex baseline 보존, DX11 A/DXVK B/한글화 무수정, Quest3/VDXR/MOZA 실기 `RUNTIME_VALIDATION=UNTESTED`, native120FPS NOT_MEASURED. 동일 TASK_ID retry/rollover/재보고 +0. **AI 점수: 이전 1078점 + 이번 +1점 = 누적 1079점.** RUN_KEY=CONVERSION-DX9EX-00573 |

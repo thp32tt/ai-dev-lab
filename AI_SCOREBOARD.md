@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1650 | ACTIVE | 2026-10-10 18:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 949 | ACTIVE | 2026-10-10 (KST) |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 950 | ACTIVE | 2026-10-10 19:11 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 19:11 KST | AI 2 | 949 | +1 | 950 | DX9Ex R84 C 슬롯 독립 TASK CONVERSION-DX9EX-00586: R32 오른쪽 눈 RT/depth 복구의 R30 hook facade 전환, R7 WVP c64..c67 명시 API, CI 정적 회귀 검사와 실제 C++ material commit. Exact source-ancestor Full Source Impact [#38043424994](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38043424994) SUCCESS; 최종 material SHA [1d2699c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/1d2699c7ca071f061610c883a339d8d2cf8f7945)에서 DX9Ex Active [#38043620313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38043620313) SUCCESS, Domain Isolation [#38043620301](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38043620301) SUCCESS, Win32 R33/game/host/package 성공. 전체 R84 TU/CMake 수렴은 INCOMPLETE, HMD RUNTIME_VALIDATION=UNTESTED. Retry/rollover +0. **AI 점수: 이전 949점 + 이번 +1점 = 누적 950점**. RUN_KEY=CONVERSION-DX9EX-00586 |
 
 | 2026-10-10 18:57 KST | AI 1 | 1649 | +1 | 1650 | OutRun C1 독립 QA 홀수 q237 기존 A195 exact DDS SHA `39f66e75e8e2e4e9f57b12dc2bc75d44dfee9ccdd5b95ee4be1c98ba1034f8d2`를 변경 없이 다시 native BGRA 디코드 검증: 영문 SOURCE/원문 제거 CLEAN/현재 FINAL **9/9 원문 글자 bbox 내부**, source-clean-final 전체 영역 밖 RGBA·alpha 0, CLEAN alpha0, 9 native GRAY100 + 대표 BLACK50/WHITE75 + RAW·FLIPY 총 **15개 신규 손실 없는 PNG** 및 머신·독립 QA 결과를 [commit f20bbe38](https://github.com/thp32tt/OutRun2006Tweaks/commit/f20bbe38223c44ca437b570ac8280ffce8bd2b6a) 반영, 원격 HEAD 검증. 기존 C306 HOLD의 미완료 증거를 실제 신규 실측/시각 증거로 확장한 독립 성과 1건만 +1; 동일 후보 재승인/신규 DDS 실적 없음. 엄격 캘리브레이션/별도 C3/실기 미완료 **HOLD_STRICT_RECHECK, RUNTIME_VALIDATION=UNTESTED**, approved0, DDS0. **AI 점수: 이전 1649점 + 이번 +1점 = 누적 1650점**. RUN_KEY=OUTRUN-KOR-C1-Q237-NATIVE-9REGION-BGW-20261010-1855 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1650 | ACTIVE | 2026-10-10 18:57 KST |
+| AI 1 | ChatGPT (AI 1) | 1651 | ACTIVE | 2026-10-10 19:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 950 | ACTIVE | 2026-10-10 19:11 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 19:25 KST | AI 1 | 1650 | +1 | 1651 | OutRun C1 홀수 q101 A226 **새 후보 SHA** `ea145aa51bdadd676bb7275c2d254bdc9562b72e3b7905867bc9c13ff3160d06`를 C1 최초 독립 실측. GitHub 공식 DDS `939ac217...` 및 신규 DDS 모두 SHA 재확인; native 4096×4096 RGBA32 persist 디코드와 1246×210 가독 PNG **0px 불일치**, RAW/FLIP-Y 일치, 두 원문 bbox 2/2, 공식 대비 변경 121345 RGBA/65934 alpha 전부 경계 내(밖 0), 보호 아이콘·3/2 불변. 블랙·그레이·화이트 100/75/50 등 **13개 새 lossless PNG**, per-region 8-check HOLD/기계 QA, queue·resume·progress·WORKLOG를 [commit c79da1c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/c79da1c7f7c6525536237337dab38f87166774f4) 반영 후 원격 HEAD 확인. 공식 후보 무변경, C1 `HOLD_STRICT_RECHECK`(영문 전체 원본 SHA 독립 검증/블라인드 보정/원문 기울임 기준 불완전); C3·실게임 `UNTESTED`, 신규 DDS·APPROVAL 0. 이전 A226 생산 성과와 별개의 첫 C1 저장 DDS 증거 성과로 +1 한 번, 반복 SHA 재검수 가점 없음. **AI 점수: 이전 1650점 + 이번 +1점 = 누적 1651점**. RUN_KEY=OUTRUN-KOR-C1-Q101-A226-EXACT-SAVED-PROTECTED-20261010-1920 |
 
 | 2026-10-10 19:11 KST | AI 2 | 949 | +1 | 950 | DX9Ex R84 C 슬롯 독립 TASK CONVERSION-DX9EX-00586: R32 오른쪽 눈 RT/depth 복구의 R30 hook facade 전환, R7 WVP c64..c67 명시 API, CI 정적 회귀 검사와 실제 C++ material commit. Exact source-ancestor Full Source Impact [#38043424994](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38043424994) SUCCESS; 최종 material SHA [1d2699c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/1d2699c7ca071f061610c883a339d8d2cf8f7945)에서 DX9Ex Active [#38043620313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38043620313) SUCCESS, Domain Isolation [#38043620301](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38043620301) SUCCESS, Win32 R33/game/host/package 성공. 전체 R84 TU/CMake 수렴은 INCOMPLETE, HMD RUNTIME_VALIDATION=UNTESTED. Retry/rollover +0. **AI 점수: 이전 949점 + 이번 +1점 = 누적 950점**. RUN_KEY=CONVERSION-DX9EX-00586 |
 

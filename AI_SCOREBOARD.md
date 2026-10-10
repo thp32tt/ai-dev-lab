@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1647 | ACTIVE | 2026-10-10 17:48 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1089 | ACTIVE | 2026-10-10 17:53 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1069 | ACTIVE | 2026-10-10 (KST) |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 KST | AI 2 | 1089 | -20 | 1069 | 사용자 명시 감점 2회(-10점씩): R84 전체 구조 최적화·통합 컴파일·디버깅 요청을 실제 완료하지 않고 정책·계획·부분 소스 수정 보고로 종료. 이전 두 감점 요청을 이번에 일괄 반영하며 중복 차감하지 않음. RUN_KEY=USER-PENALTY-R84-INCOMPLETE-20261010-TWICE |
 
 | 2026-10-10 17:53 KST | AI 2 | 1088 | +1 | 1089 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00583: DX9Ex SDL 후속 hotplug 이벤트가 종료 후 해제된 SDL gamepad/joystick 핸들을 재생성하지 못하도록 종료 플래그·mutex 원자성 소스 개선과 부정 변이 4개를 구현. [material 0d8f92a2](https://github.com/thp32tt/OutRun2006Tweaks/commit/0d8f92a2c31fcc8d90bfdc15c65f5d93b42184cd), 동일 SHA [DX9Ex Active #38038968852](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38038968852), [Domain #38038968893](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38038968893), [Full Source Impact #38038968844](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38038968844) 모두 SUCCESS. 패키지 artifact 11664663025. v0.2 원본 9개·기준선 보존, Quest3/VDXR 및 휠 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 중복 0. **AI 점수: 이전 1088점 + 이번 +1점 = 누적 1089점.** RUN_KEY=CONVERSION-DX9EX-00583 |
 

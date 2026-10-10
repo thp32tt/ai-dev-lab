@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1663 | ACTIVE | 2026-10-10 21:xx KST |
+| AI 1 | ChatGPT (AI 1) | 1664 | ACTIVE | 2026-10-10 21:27 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 952 | ACTIVE | 2026-10-10 19:37 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-10 21:27 KST | AI 1 | 1663 | +1 | 1664 | OutRun 외부 편집 원본 자산 전수 파일명 교차 대조(기존 발견 조사와 구별한 243/137/94 카탈로그 새 성과). GitHub 실제 main tree 34,110건과 우리 브랜치 inventory 243건, asset_queue 137건 csv quote-aware 정확 key 매칭: 전체 243 중 PSD 92/편집 원본 107/PC 원본 덤프 229; 작업 큐 137 중 PSD 63/편집 원본 64/원본 PC덤프 127; 실제 한글 제작 localize_text 94 중 PSD 55/작업 원본 55/원본 PC덤프 87. 예시 q060 q154 q212 PSD는 존재, q172 q214 q217은 editable PSD 미발견(일부 working PNG 존재). 외부 PSD는 커뮤니티 리메이크/경로 대응의 후보로 내부 레이어·소스 등가성/사용권 미검증, 실제 게임 UNTESTED, DDS 신규 생산/승인 0. 이 자료 대조 성과 1회 +1, 이전 외부 원본 발견 작업 반복 가산 아님. **AI 점수: 이전 1663점 + 이번 +1점 = 누적 1664점.** RUN_KEY=OUTRUN-KOR-EXTERNAL-PSD-243-137-94-COVERAGE-AUDIT-20261010-2127 |
 | 2026-10-10 21:xx KST | AI 1 | 1662 | +1 | 1663 | OutRun C1 odd q059 distinct A228 **new trial SHA `8150213897f4dc7b74e2d6273d703be3a9d6ac780627f8747059d25ec1ef9f2e` independently reviewed against source `9c35216873d617ed68df55be424f35ddf50b1eacc8ee86072068745aea166f9f`, official `261108cd26b2a83037162b17de08286ed1ded2634650709370c81c2a353eb83a`; source/CLEAN 4 exact source crop and CLEAN alpha0, DXT5 decoded A228 changed 534 RGBA, alpha0, original 4-region outside0. Visual gold-face stipple still in Race Rivals and effect mismatch in two score labels; **independent trial REWORK_REQUIRED**, official unchanged, user PJR019/C3/runtime UNTESTED; produced new C1 DDS0, approval0. Published source/official/trial 13 lossless PNG, QA/machine/plate JSON and queue/WORKLOG/progress/resume to [commit 3cc3cf74](https://github.com/thp32tt/OutRun2006Tweaks/commit/3cc3cf749936a30c0e7fdcb96c23f4a7210574a5), remote HEAD verified. New distinct SHA was first C1 review; no duplicate older official same-SHA award. **AI 점수: 이전 1662점 + 이번 +1점 = 누적 1663점**. RUN_KEY=OUTRUN-KOR-C1-Q059-A228-INDEPENDENT-BC3-VISUAL-20261010-2120 |
 
 | 2026-10-10 21:15 KST | AI 1 | 1661 | +1 | 1662 | 신규 요청 OutRun DDS 생산 방식 대안 독립 조사: Github OR2006Sprites main 실제 34,110 경로 및 Working Sources 389파일 조사, PSD 144/SVG 43/AI 22 확인; q060 A064FDFC, q154 4D38BBB0, q212 BA0147DA, q121 FD90AA9, q049 BF3EE5C6 등 정확 asset-key PSD/AI/SVG 제작 소스 확인. FontForge/FreeType/resvg/psd-tools/DirectXTex 공식 문서 교차검증, 원본 레이어 우선→벡터 가족 대표→native 작은 글자→persisted DDS →독립 QA 파일별 프로토콜 설계. 미검증 PSD 레이어/라이선스와 런타임 구분, 실게임 검증 UNTESTED. 연구 성과 1회 가점; 신규 DDS/승인/게임수정 수행 주장 없음. **AI 점수: 이전 1661점 + 이번 +1점 = 누적 1662점.** RUN_KEY=OUTRUN-KOR-PRODUCTION-ALTERNATIVE-SOURCE-ASSET-RESEARCH-20261010-2115 |

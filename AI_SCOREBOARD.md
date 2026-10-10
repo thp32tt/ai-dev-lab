@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1639 | ACTIVE | 2026-10-10 16:06 KST |
+| AI 1 | ChatGPT (AI 1) | 1640 | ACTIVE | 2026-10-10 16:24 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1085 | ACTIVE | 2026-10-10 16:17 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 16:24 KST | AI 1 | 1639 | +1 | 1640 | OutRun 한글화 독립 C1 q101 A225 **신규 별도 SHA** 실제 persisted DDS SHA 검증 및 45픽셀 CLEAN 원문잔류 신규 확정 불합격. 실물 DDS SHA `5b6bcfd83c39aebbe46f2cbdb8d95cfa584a4955ec9a84d9039480a77a709a86`, old-to-trial 변경 114661픽셀 원문 경고영역 밖 0, SOURCE/CLEAN/구 A38/새 A225 원본 RGB 일치 잔여 45px 검출. [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261010-C1-Q101-A225-CLEAN-PLATE-LEFTOVER/C1_Q101_A225_INDEPENDENT_PERSISTED_REWORK.json), 상태/로그/큐 [원격 커밋 fd3dac39](https://github.com/thp32tt/OutRun2006Tweaks/commit/fd3dac392010f183fb99fd1981c94cea9a0283a8). 기존 공식 q101/C1 REWORK 동일 SHA 중복 가산 없음; 새 A225 시제품 최초 독립 실물 시각 하드 FAIL과 새 근거·큐 반영 1건만 +1. C1/PASS 0, C3/승격 0, 실게임 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1639점 + 이번 +1점 = 누적 1640점.** RUN_KEY=OUTRUN-KOR-C1-Q101-A225-SAVED-CLEAN-45PIXEL-REWORK-20261010-1620 |
 
 | 2026-10-10 16:17 KST | AI 2 | 1084 | +1 | 1085 | 신규 독립 DX9Ex C `CONVERSION-DX9EX-00579`: 정식 FFB v0.2 원본 9개 불변, VR SDL 게임패드 rumble 포인터 조회·사용·종료를 동일 hotplug mutex로 직렬화해 분리 시 잠재 use-after-close 차단, 2개 부정 변이 회귀테스트 추가. [material 88b8a216](https://github.com/thp32tt/OutRun2006Tweaks/commit/88b8a21602f1043c1b88d4186feaa4c4a877c7c5), exact-SHA [Active #38033357737](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38033357737), [Domain #38033357782](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38033357782), [Full Source #38033357724](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38033357724) 3개 SUCCESS, artifact 11663108018, 독립 C6 [ac7e36a5](https://github.com/thp32tt/OutRun2006Tweaks/commit/ac7e36a5e3eca7283321907582b920eb0ddd49ec), Issue #14. Quest3/VDXR/휠 `RUNTIME_VALIDATION=UNTESTED`, native 120FPS 미측정, 기준 브랜치 보존, DX11 A 병행 DXVK B 동결. 중복 retry/rollover/재보고 +0. **AI 점수: 이전 1084점 + 이번 +1점 = 누적 1085점.** RUN_KEY=CONVERSION-DX9EX-00579 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1622 | ACTIVE | 2026-10-10 12:02 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1070 | ACTIVE | 2026-10-10 11:52 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1071 | ACTIVE | 2026-10-10 12:03 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 12:03 | AI 2 | 1070 | +1 | 1071 | DX9Ex C `CONVERSION-DX9EX-00565` 신규 F10 recenter IPC reconnect requesterPid sentinel torn-snapshot fail-closed C++ 구현, 집중 결함 주입 5개, [material b8ca76a6](https://github.com/thp32tt/OutRun2006Tweaks/commit/b8ca76a6655d1a22034c9701888b75dd3d14952d). exact-SHA DX9Ex Active #38018736773 (policy/game/host/full-chain/package), Domain #38018736777, Full Source Impact #38018736757, Autodev Coordination #38018736816 전부 SUCCESS; artifact 11656994642, C6 결과 [52d14a5b](https://github.com/thp32tt/OutRun2006Tweaks/commit/52d14a5b6ccbd3fad9ca1428fcc181bce6653d52). 정식 FFB v0.2 9개 소스 blob SHA 일치, 기준 브랜치 불변, DX11 A 독립, DXVK B FROZEN, HMD RUNTIME_VALIDATION=UNTESTED, 120FPS NOT_MEASURED. 동일 TASK_ID 재실행/검증 중복 +0. **AI 점수: 이전 1070점 + 이번 +1점 = 누적 1071점.** RUN_KEY=CONVERSION-DX9EX-00565 |
 
 | 2026-10-10 12:02 | AI 1 | 1621 | +1 | 1622 | OutRun C355 C2 EVEN **q172 새로운 B265 제작 출력 최초 독립 SOURCE/CLEAN/decoded PNG/RAW QA**. 전례 C295의 정식 DDS SHA812373... 재PASS가 아니라 B265 원본 영문 d5f4a36d... / CLEAN 9a0750d0... / 이전 공식 DDS812373... 및 B265 신규 생산 FLIPY PNG24ad58c4.../RAW PNG2c8a2020... 실물 SHA/방향 확인. 1024² full atlas에서 영문→CLEAN RGB3496, CLEAN→PNG RGB1409, official→PNG RGB1572 모두 START/GOAL 영역 내 한정, 알파 변화0(불투명 빨강 플레이트, **글리프 알파 검증 아님**). 독립 native/50/RAW 육안에서 출발/골 가로 줄무늬 얼굴, 원문 이탤릭 크롬/베벨 불일치 명백: **REWORK_REQUIRED**, 저장된 B265 시험 DDS **없어 SHA/왕복 검증 미실행 HOLD**, 공식 C295 REWORK 유지·DDS승격0·C3/APPROVAL/실게임 미검증. C2 신규 PNG9+JSON2와 queue/resume/progress/WORKLOG 갱신: [7fe81bbd](https://github.com/thp32tt/OutRun2006Tweaks/commit/7fe81bbd4d6ca7f3cbdc44d42edf579c16a42dae). 원격 HEAD 검증. ODD C1/VR/FFB/DX11/DXVK/별도 큐 불변. **AI 점수: 이전 1621점 + 이번 +1점 = 누적 1622점.** RUN_KEY=OUTRUN-KOR-C355-C2-Q172-B265-INDEPENDENT-TRIAL-VISUAL-20261010 |
 | 2026-10-10 11:52 | AI 2 | 1069 | +1 | 1070 | OutRun C DX9Ex CONVERSION-DX9EX-00564 독립 P1 helper D3D9Ex probe stale OpenXR host 재연결 PID/LUID fail-closed source 구현, 음성 돌연변이 검사 5종. [material 0c4180e9](https://github.com/thp32tt/OutRun2006Tweaks/commit/0c4180e9622495410ea0a5e6d16acbc609c95be6), exact-SHA DX9Ex Active Gate 38018084838 SUCCESS (policy/game/host/full-chain/package), Domain 38018084845 SUCCESS, Full Source Impact 38018084880 SUCCESS, artifact 11657161473, C6 b8922520. HMD RUNTIME_VALIDATION=UNTESTED, native 120FPS NOT_MEASURED, DX11 A 독립, DXVK B 동결, 릴리스 FFB v0.2/베이스라인 보호. 동일 성과 최초 반영 +1, retry 중복 가점 금지. **AI 점수: 이전 1069점 + 이번 +1점 = 누적 1070점.** RUN_KEY=CONVERSION-DX9EX-00564 |

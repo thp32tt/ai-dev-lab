@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1611 | ACTIVE | 2026-10-10 09:09 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1065 | ACTIVE | 2026-10-10 (추가 -100점 반영) |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1066 | ACTIVE | 2026-10-10 09:14 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 09:14 | AI 2 | 1065 | +1 | 1066 | DX9Ex C 신규 독립 P1 소스 성과: R31 per-eye cache가 poseSequence 재사용/recenter/host 재연결에서 raw eyeOrientation/eyeOffset/eyeFov/inverseProjection 변경을 누락하지 않도록 C++ source와 7개 부정변이 검증 및 canonical workflow 수정. [material fa4a0de5](https://github.com/thp32tt/OutRun2006Tweaks/commit/fa4a0de51e1d9ea7efa584bbd59a4e1f423f9f91) 정확 GitHub Active #38007553953 policy/game/host/full-chain/package SUCCESS, Domain #38007553975 SUCCESS, Full Source #38007553915 game/host/cross-domain SUCCESS; artifact 11652370352. FFB v0.2 release nine imported blobs preserved, baseline immutable, Quest 3/VDXR runtime UNTESTED, P1 all-complete 미선언. **AI 점수: 이전 1065점 + 이번 +1점 = 누적 1066점**. RUN_KEY=CONVERSION-DX9EX-00560 |
+
 
 | 2026-10-10 09:09 | AI 1 | 1610 | +1 | 1611 | OutRun C349 C2 EVEN q212 공식 SHA `e22ad5c4...`와 구분되는 **B341 미승격 시험 DDS SHA `fa0acb56...` 신규 독립 실물 검증**. Sonic-TV canonical English DDS SHA `f83f5848...`, C158 CLEAN PNG `c13a2492...`, 공식 DDS, 신규 시험 DDS 총 4종 원본 SHA256 재검증, 2048² RGBA32 mip1 실제 RAW/FLIP-Y·100/50·흑회백 소스/CLEAN/공식/시험 이미지 직접 평가, 최초 독립 12개 ROI SOURCE/CLEAN/FINAL outside RGBA/alpha 0; 공식→시험 37,978 RGBA 변경 r43/r44 내부만, 다른 10 ROI 픽셀 동일. 기존 원문 대비 글자 시작 좌표 오류 r43 −235px→+1px, r44 +63px→+2px 개선 검증. 신규 핵심 리스크: 원문 alpha>32 본문 45px 대비 시험 글자 r43 55px/r44 52px, 그러나 원문 alpha>0 63px 외곽 효과 안쪽이므로 확정 1px 침범 과장하지 않고 **high-opacity hierarchy HOLD**. 신규 무손실 PNG10+픽셀 JSON2+독립 C2 판정 JSON, 큐/resume/progress/WORKLOG 지정 브랜치 GitHub [33f0d3fb](https://github.com/thp32tt/OutRun2006Tweaks/commit/33f0d3fb3514a7a4732527bbe4eb298ae7f9148e) 커밋·원격 HEAD 인증. 시험본은 부분 배치 개선 SCOPED PASS / 전체 C2 HOLD, 공식 C338 REWORK 불변, 정식 DDS0, C3/APPROVAL/IGR029 실게임 UNTESTED; C1 ODD 및 VR/FFB/DX11/DXVK 미수정. **이전 C346 공식 SHA 반복 검수 점수 아님**, 별개 신규 시험 SHA 독립 소스·CLEAN·후보 체인 검수 성과 한 번만 +1. AI 1 이전 1610점 + 이번 +1점 = 누적 1611점. RUN_KEY=OUTRUN-KOR-C349-C2-Q212-B341-SOURCE-CLEAN-PERSISTED-20261010-0850 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1642 | ACTIVE | 2026-10-10 16:44:27 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1086 | ACTIVE | 2026-10-10 16:38 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1087 | ACTIVE | 2026-10-10 16:51 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-10 16:51 KST | AI 2 | 1086 | +1 | 1087 | 신규 TASK_ID=CONVERSION-DX9EX-00581 P0 VR SDL/XInput 럼블 배타성 및 SDL->XInput 이전 타임드 진동 정지 소스/부정변이 회귀 보강. 원본 FFB v0.2 9개 보호. source material [23f0b9f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/23f0b9f352dc00bba6427e7a172f98d089078f2f), negative-mutation fail-closed verifier repair/최종 validation-bearing [34a25dce](https://github.com/thp32tt/OutRun2006Tweaks/commit/34a25dcece954619362b9e4c562a39aeccf68977); exact-SHA [DX9Ex Active #38035379682](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38035379682) 및 [Domain #38035379693](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38035379693) SUCCESS, 첫 소스 SHA에서 [Full Source Impact #38035318052](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38035318052) SUCCESS (최종 verifier-only SHA의 exact-SHA run 아님). C6 별도 bookkeeping [59b4fa3d](https://github.com/thp32tt/OutRun2006Tweaks/commit/59b4fa3d075d82515d6a9c1544c1d56518b48ddf), artifact 11664096554. Quest3/VDXR/MOZA R3 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 재시도/재보고 +0. **AI 점수: 이전 1086점 + 이번 +1점 = 누적 1087점.** RUN_KEY=CONVERSION-DX9EX-00581 |
 | 2026-10-10 16:38 KST | AI 2 | 1085 | +1 | 1086 | 신규 독립 P0 DX9Ex C TASK_ID=CONVERSION-DX9EX-00580: Wheel FFB v0.2 원본 9개 불변, VR XInput→SDL 럼블 전환 시 기존 XInput 모터 해제·disabled 최초 레거시 zero 유지·휠 소유권 회귀 보호. src/hooks_forcefeedback.cpp 및 tools/verify_vr_ffb_controller_routing.py 실질 소스/4개 부정변이 회귀검증, material SHA 779ff96361c70a70709e8f36c38680b13c78e646, exact-SHA DX9Ex Active #38034625458 / Domain Isolation #38034625492 / Full Source Impact #38034625521 모두 SUCCESS, C6 문서 SHA b35e39f7011d7234bfb8fd2d7cc95057cf511e70, 패키지 아티팩트 11663840398; Quest3/VDXR/MOZA R3 실기 RUNTIME_VALIDATION=UNTESTED, 120FPS 미측정. 동일 TASK_ID 후속 retry/rollover/재보고 +0. **AI2 이전 1085점 + 이번 +1점 = 누적 1086점.** RUN_KEY=CONVERSION-DX9EX-00580 |
 | 2026-10-10 16:24 KST | AI 1 | 1639 | +1 | 1640 | OutRun 한글화 독립 C1 q101 A225 **신규 별도 SHA** 실제 persisted DDS SHA 검증 및 45픽셀 CLEAN 원문잔류 신규 확정 불합격. 실물 DDS SHA `5b6bcfd83c39aebbe46f2cbdb8d95cfa584a4955ec9a84d9039480a77a709a86`, old-to-trial 변경 114661픽셀 원문 경고영역 밖 0, SOURCE/CLEAN/구 A38/새 A225 원본 RGB 일치 잔여 45px 검출. [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261010-C1-Q101-A225-CLEAN-PLATE-LEFTOVER/C1_Q101_A225_INDEPENDENT_PERSISTED_REWORK.json), 상태/로그/큐 [원격 커밋 fd3dac39](https://github.com/thp32tt/OutRun2006Tweaks/commit/fd3dac392010f183fb99fd1981c94cea9a0283a8). 기존 공식 q101/C1 REWORK 동일 SHA 중복 가산 없음; 새 A225 시제품 최초 독립 실물 시각 하드 FAIL과 새 근거·큐 반영 1건만 +1. C1/PASS 0, C3/승격 0, 실게임 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1639점 + 이번 +1점 = 누적 1640점.** RUN_KEY=OUTRUN-KOR-C1-Q101-A225-SAVED-CLEAN-45PIXEL-REWORK-20261010-1620 |
 

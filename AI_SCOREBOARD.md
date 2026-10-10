@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1653 | ACTIVE | 2026-10-10 19:51 KST |
+| AI 1 | ChatGPT (AI 1) | 1654 | ACTIVE | 2026-10-10 19:54 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 952 | ACTIVE | 2026-10-10 19:37 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 19:54 KST | AI 1 | 1653 | +1 | 1654 | OutRun C1 q119 fresh independent native DXT5 saved-byte contour measured from SHA-pinned source `2336da3c` and candidate `b29c0bb0`: English first T right-lean +13px/34px, Korean 타 +9px/34px, native orange-face row sample and **two new marked lossless anchor PNG**. Source→FINAL original bbox outside rgba/alpha 0/0; source→CLEAN outside 2484 alpha0-only hidden RGB (visible0). `EVIDENCE_ONLY_HOLD`; C1 HOLD, no duplicate C297/C346 approval, no new DDS, no C3 or user actual-game success. QA JSON/WORKLOG/queue/resume/progress and PNG commit [aac73e02](https://github.com/thp32tt/OutRun2006Tweaks/commit/aac73e02c4262075799cc85023955e01190d89f9) verified remote. Distinct new independent first-glyph pixel evidence is one new QA work product; no additional completion award for older same SHA. **AI 점수: 이전 1653점 + 이번 +1점 = 누적 1654점**. RUN_KEY=OUTRUN-KOR-C1-Q119-FIRSTGLYPH-LEAN-20261010-1949 |
 
 | 2026-10-10 19:43:33 KST | AI 1 | 1651 | +1 | 1652 | OutRun C2 짝수 q154 **B355 신규 비승격 persisted DDS SHA** `4db18d96b359a0bd916a2f6bb8cd3537c5cead769b189da6cded4c5fb899ad87` 최초 독립 저장바이트 QA. 공식 `c4d6c151...`/B354 `190462fb...`와 전부 SHA256 실측, 4096×1024 BGRA32 RAW/FLIP-Y 디코드. 공식→B355 22,195 RGBA/alpha 변화는 회색 3영역 안에만 존재, 밖 0/0; B354 65,222 변경도 밖0. 세 행 독립 native100 검정/흰색/회색, practical50, RAW 실물 렌더로 반픽셀 알파 보정이 근본 글꼴 내부 공간·원문 condensed family 불일치를 수리하지 못했음을 시각 확인하여 **C2 REWORK_REQUIRED_UNPROMOTED_B355**, 공식 C356 REWORK 유지, 신규 DDS 승격0/C·C3 PASS0/실게임 UNTESTED. [커밋 9a9042ad4](https://github.com/thp32tt/OutRun2006Tweaks/commit/9a9042ad4), [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261010-C2-Q154-B355-NEW-SHA-INDEPENDENT-VISUAL/C2_Q154_CONTROLLER_INDEPENDENT_VISUAL_REWORK.json). B354/B355 원래 제작 성과 또는 이미 C241 완료된 q232 SHA의 재검증은 +0; B355 신규 **독립 C2 판정 성과만 +1**. **AI 점수: 이전 1651점 + 이번 +1점 = 누적 1652점**. RUN_KEY=OUTRUN-KOR-C2-Q154-B355-NEW-SHA-INDEPENDENT-VISUAL-20261010-1935 |
 | 2026-10-10 19:37 KST | AI 2 | 951 | +1 | 952 | 신규 독립 DX9Ex C `CONVERSION-DX9EX-00588`: R31 Reset/ResetEx 이후 이전 디바이스의 5초 성능 계측값이 복구 세대에 혼입되지 않도록 R31Window 재초기화 C++ 소스 및 eye-tail/Reset 국소 9개 부정 변이 검증기 실구현. Target material [2e6b4057](https://github.com/thp32tt/OutRun2006Tweaks/commit/2e6b4057f7ad6d16976a696a4424be159d351456), 동일 SHA [DX9Ex Active #38045087810](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38045087810), [Domain Isolation #38045087849](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38045087849), [Full Source Impact #38045087768](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38045087768) 모두 SUCCESS; Win32 R33/game/host/package 빌드 SUCCESS, 패키지 artifact 11667722942, C6 [ab33a120](https://github.com/thp32tt/OutRun2006Tweaks/commit/ab33a12011d2e53ff3b9f42a4fe06898e0d27958). 전체 R84 CMake/TU split 아직 INCOMPLETE, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, native120FPS 미측정. 고유 성과 +1 최초 한 번, retry/rollover/중복 결과 재보고 +0. **AI 점수: 이전 951점 + 이번 +1점 = 누적 952점**. RUN_KEY=CONVERSION-DX9EX-00588 |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1660 | ACTIVE | 2026-10-10 21:00:53 KST |
+| AI 1 | ChatGPT (AI 1) | 1661 | ACTIVE | 2026-10-10 21:11 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 952 | ACTIVE | 2026-10-10 19:37 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 21:11 KST | AI 1 | 1660 | +1 | 1661 | OutRun A228 q059 기존 C1 확정 BC3 내부 금색 글자 어두운 도트 결함에 대한 **신규 저장 DXT5 시험 DDS** SHA `8150213897f4dc7b74e2d6273d703be3a9d6ac780627f8747059d25ec1ef9f2e` 생성. 정확한 소스/공식 바이트 검사 및 4x4 BC3 색 인덱스만 수정하여 실측 534픽셀(151+182+201), 514바이트 개선; 원문 영역 외 변경0·알파/헤더 변화0, native100/50 source/official/trial 직접 시각 QA로 일부 핀도트 감소 확인. 독립 선행 C1 반려 원인에 대한 새 방식의 실제 픽셀 개선은 **1회 성과**, 전체 이미지/서체 결함 남아 **trial-only REWORK_REQUIRED, 정식 승격0/C1/C3/실기 UNTESTED**, 다른 C 재검·같은 SHA 반복/QA 메타 업데이트는 +0. [작업 원격 HEAD](https://github.com/thp32tt/OutRun2006Tweaks/commit/30783448b9e1529030bc26880c0f112988bf6c42), [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261010-A228-Q059-BC3-INDEX-INTERIOR-REPAIR-TRIAL/A228_CONTROLLER_VISUAL_QA.json). **AI 점수: 이전 1660점 + 이번 +1점 = 누적 1661점**. RUN_KEY=OUTRUN-KOR-A228-Q059-C1-BC3-FACE-INDEX-SCOPED-20261010-2100 |
+
 
 | 2026-10-10 21:00:53 KST | AI 1 | 1659 | +1 | 1660 | OutRun C2 EVEN q212 신규 B358 **독립 persisted-DDS SHA** `38aac182b8691062259b0c758173f19c790b04afbb8e84d241f0b9023c2478a8` 첫 독립 검수. 정확한 영문 SOURCE `f83f5848...`, C158 CLEAN `c13a2492...`, 공식 `e22ad5c4...`, 기존 B357 `6d0098dc...` SHA를 인증하고 실제 2048×2048 RGBA32 저장 DDS 원본/CLEAN/공식/B357/B358 5자 비교, RAW/FLIP-Y·검정/회색/흰색 100/75/50 신규 PNG 30장 생성. 이전 B357의 **영문 글자 경계 밖 잔존 한글 r43 5,638픽셀/r44 712픽셀 → B358 0/0** 독립 실측: P3 CLEAN 합성 중첩 결함 수정 확인. 공식→B358 29,668 RGBA/17,044 alpha 변화 2개 셀 외부0. 하지만 r43 PROFESSIONAL 원본 395px 대비 한글 284px=71.9%, 무게/응축된 원본 서체·50% 계층 부적합, r44 `모드` 의미 확장 미승인으로 **C2 REWORK_REQUIRED_UNPROMOTED**. 공식 C338 REWORK 그대로, C3/approval/IGR029 게임 재검증 UNTESTED, DDS 승격0. GitHub [독립 QA 커밋 02b5b17de](https://github.com/thp32tt/OutRun2006Tweaks/commit/02b5b17de), [보고서](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261010-C2-Q212-B358-PERSISTED-PLATE-FAMILY/C2_Q212_B358_CONTROLLER_C2_VISUAL_REWORK.json). B358 생산 성과 또는 B357 동일 SHA 재검증은 +0, B358 신규 SHA 첫 독립 C2 실측 성과에만 +1. **AI 점수: 이전 1659점 + 이번 +1점 = 누적 1660점**. RUN_KEY=OUTRUN-KOR-C2-Q212-B358-NEW-SHA-GHOST-REPAIR-STYLE-REWORK-20261010 |
 | 2026-10-10 20:5x KST | AI 1 | 1658 | +1 | 1659 | OutRun C1 q201 (ODD) **실제 신규 독립 증거 성과**: C340에서 못한 canonical English source verification을 SHA `6ac5ffd02c9162499f09f0b476176b56f0b144789f546ef34147d94e0a8451e5` 원본 DDS 직접 다운로드·검증으로 해결. Current DDS SHA `d9b2a67baf772409da91c4a8c0d0b275f33f6d7a4546a6030b8065566f5ea5f8`와 producer SOURCE/FINAL crop 각각 176×51=8,976/8,976 FLIP-Y RGBA exact 일치; 원문 alpha bbox [1079,1734,1255,1785] 안쪽 신규 [1084,1739,1160,1780], CLEAN 알파0. 주변 다른 번역 stage glyph 393px(x1039..1048) 명시, 과장된 full atlas outside0 주장 없음. 독립 source/CLEAN/final BGW native/RAW/context PNG **10장** + JSON2 및 queue/resume/progress/WORKLOG 커밋 [a87d8620](https://github.com/thp32tt/OutRun2006Tweaks/commit/a87d8620a3ba4d01710def35903d1d07e0e08b87) 원격 HEAD 확인. **HOLD** full17 blind/C3/game 미완료, IGR037 OPEN, runtime UNTESTED, DDS0, C1 PASS0/approval0, 이전 C340 동일 SHA 재승인 아님. 기존 점수 1658 +1 = **1659**. RUN_KEY=OUTRUN-KOR-C1-Q201-EXACT-ENGLISH-ROI-20261010-2040 |

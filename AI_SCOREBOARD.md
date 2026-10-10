@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1694 | ACTIVE | 2026-10-11 06:21 KST |
+| AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-11 06:39 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 06:39 KST | AI 1 | 1694 | +1 | 1695 | OutRun C378 C2 EVEN q230 **신규 13영역 독립 원본 해상도 시각·전경 여백 증거 완료**: 기존 C369가 변경 위치만 집계한 동일 공식 DDS SHA a680ae4b…를 **재승인하거나 이전 성과 중복 기록하지 않고**, 실제 Git SHA 고정 SOURCE 33077919, B228 CLEAN 738530a5, 현재 저장 DDS a680ae4b 원본/플레이트/최종 2048×1024 실물 재인증·디코드. 13개 각 영역 SOURCE/CLEAN/FINAL native gray100/white50 비교, 6영역 RAW, RGB threshold 소스 영역내 한글 전경 LTRB 여백 **13/13 양수** 최초 기록; 기존 한글이 포함된 누적 CLEAN 11영역과 신규 HELP blank 2영역을 구분해 full-atlas PLATE_ONLY 승인 불가로 HOLD 유지. 7개 무손실 PNG 시트, 두 머신 JSON, 13×8 항목 상세 보고와 queue/resume/progress/WORKLOG 커밋 및 원격 HEAD에서 조상 연속 확인. 새 DDS0, C PASS0, C3/실게임 UNTESTED. [C378 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/de7e5597f1aaf9c990d186099108623186fb312a). **AI 점수: 이전 1694점 + 이번 +1점 = 누적 1695점**. RUN_KEY=OUTRUN-KOR-C378-C2-Q230-13REGION-OPTICAL-20261011-0636 |
 
 | 2026-10-11 06:21 KST | AI 1 | 1693 | +1 | 1694 | OutRun 한글화 C1 **홀수 q195 신규 독립 upright-family 블라인드 QA 교정(5/5) + 실제 저장 DDS 재디코딩 원문/CLEAN/FINAL 범위 검사**. 동일 후보 SHA `b4b8655e9805b897ab17249112db6c5536bab34f03d445b7722bc5222476c72c` 재승인·신규 DDS로 중복 세지 않음. 기울임 역전/글자 잘림/영문 잔상/과도한 획과 정상 대조를 답지 확인 전 개별 기록하여 **5/5**; native 1024×128 BGRA32 mip1 persisted FLIP-Y 바이트 디코드 이전 정확 PNG 불일치0, SOURCE→CLEAN 8042 / CLEAN→FINAL 4999 / SOURCE→FINAL 10396 RGBA 변화가 모두 원문 bbox 내부(외부0), 알파0. 신규 lossless PNG 2 + 기존 원본 인증 PNG/블라인드 신규 증거, 8항목 독립 C1 판정을 [QA commit 9ef1a8f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/9ef1a8f35bf0e9efff6678aec368ec183d8c3c18) 원격 HEAD로 검증. **C1 HOLD_STRICT_RECHECK**, 별도 기울임 앵커/C3/실게임 검수 남음, 승인DDS 0, 제작DDS 0, RUNTIME_VALIDATION=UNTESTED. 기존 C284 반복 머신 검증은 별도 가점0; 신규 q195 블라인드 교정+결함 민감도 판정만 +1. **AI 점수: 이전 1693점 + 이번 +1점 = 누적 1694점.** RUN_KEY=OUTRUN-KOR-C1-Q195-UPRIGHT-BLIND-EXACT-DDS-20261011-0610 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1677 | ACTIVE | 2026-10-11 02:55 KST |
+| AI 1 | ChatGPT (AI 1) | 1678 | ACTIVE | 2026-10-11 03:12 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 03:12 KST | AI 1 | 1677 | +1 | 1678 | OutRun A231 ODD q217 첫 실제 P1 원본-보호 픽셀 복원 성과: C1 C348/20261011 독립 판정의 START195+GOAL230 **불투명 RED 배지 색상 425픽셀**을 이전 한국어 DDS에서 영문 정본 그대로 재구성. 원본/source-clean, source-final 바깥 수정 0, 다른 atlas 및 기존 한글/alpha 변경0, 저장 후 DDS 재디코딩 PASS. 신규 임시 DDS SHA `8043bd79fe6b5b235c5e7c119e64c8f11e65f34c77b9d69071bfd2ca37b11f1b` 및 재사용 CLEAN SHA `015e07de...` / 공유 [플레이트 manifest](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/plate_library/entries/d924332dbb5cb52b72dc0fa31b3d0277135a5d6fcbc35e306ac1bcdde69e1d1c.json) GitHub 기록; native BGW/50/75 RAW 생산자 시각에서 범위 한정 복원 PASS. 기존 official DDS 보존, C1 독립 플레이트 검증/C3/소스 글꼴 비율·기울기/실기 UNTESTED, 승인·승격0. GitHub [작업 SHA ecd010f](https://github.com/thp32tt/OutRun2006Tweaks/commit/ecd010f078cccd864128bf6c9be40bd9d86196cd) 검증, [A231 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A231-Q217-SOURCE-RED-RIM-RESTORE/A231_CONTROLLER_VISUAL_QA.json). 동일 A231 캐시 차단 첫 시행과 재실행·메타데이터·같은 SHA 반복은 +0, 최초 원본 픽셀 수정 성과만 +1. **AI 점수: 이전 1677점 + 이번 +1점 = 누적 1678점**. RUN_KEY=OUTRUN-KOR-A231-Q217-C1-RED-BADGE-425-PROTECTED-RGB-RESTORE-20261011-0310 |
+
 
 | 2026-10-11 02:55 KST | AI 1 | 1676 | +1 | 1677 | OutRun C1 ODD q217 **C348 기존 425 RGB 변동 HOLD를 실제 보호 그래픽 결함으로 새로 분류한 독립 시각·수치 QA**. 같은 A189 후보 SHA `a4d817db51c31ba6e7d22121add4dfee8bc151cdb229a6091c5ea324bca78204` 반복 완료/신규 DDS로 중복 계상하지 않음. canonical 영문 DDS `d3d2d155...`, authored CLEAN `f937fbaa...`, 최종 DDS 모두 SHA256 실검증. 바른 RAW/READABLE 3단계 SOURCE→CLEAN3921 / CLEAN→FINAL1141 / SOURCE→FINAL3940, 좁은 영문 텍스트 박스 밖 **425 alpha255 빨간 배지 RGB 색상 변조** 정확히 재현 START195 (상단69 하단80) / GOAL230 (하단75 우측137). CLEAN에 의한 배경색 변화가 최종 DDS까지 남으며 단순 투명 RGB 잔여물이 아님. 독립 native 4x/50/BGW/RAW·변경범위 마스크 12 PNG + machine/8-check 보고서 2 JSON + queue/resume/progress/WORKLOG 실제 갱신. q217 **REWORK_REQUIRED**, C3·APPROVAL·user game=UNTESTED, DDS 수정0. [GitHub 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/bc84c4f70ca641a2d5e90ceb302e1a1097762c08). AI 점수: 이전 1676점 + 이번 +1점 = 누적 1677점. RUN_KEY=OUTRUN-KOR-C1-Q217-OUTER-RED-BADGE-PROTECTED-425-20261011-0240 |
 

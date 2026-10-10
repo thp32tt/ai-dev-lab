@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1692 | ACTIVE | 2026-10-11 05:58 KST |
+| AI 1 | ChatGPT (AI 1) | 1693 | ACTIVE | 2026-10-11 06:19 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 06:19 KST | AI 1 | 1692 | +1 | 1693 | OutRun A234R ODD q121 P0 IGR030/031/040 **신규 source-derived CLEAN + 네이티브 한글 가속 페달 저장 DDS 실제 산출** 1건. 원본 English f7847db9 / 공식 38d5c2c3 엄격 보존. 초기 A234 DDS dd1cb811은 알파0 광학 FAIL로 반려하고 동일 TASK 내 보정(별도 점수0). A234R 신규 unpromoted 4096x4096 DDS SHA e87c570f754a79e22126ae9240ba19828637f7f63e22e8a17f6e8b0e3da90ca1 실제 6672 alpha visible; source region 밖0/다른29셀 정확/헤더·저장 DDS 재디코드 일치; 네이티브와 50%/RAW 실제 시각 확인. 원문 대비 획 굵기·기울기 유사성은 HOLD, 공식 DDS 승격0·C1/C3/게임승인0·IGR open·RUNTIME_VALIDATION=UNTESTED. Actions [#38086752101](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38086752101), [A234R optical QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A234R-Q121-RANK20-SOURCE-PLATE-VISIBLE-ALPHA/A234R_CONTROLLER_OPTICAL_QA.json), queue/resume/progress/STATUS/WORKLOG 반영. 신규 저장 DDS 시험 생성 성과 한 번만 +1, 첫 실패·재시도·후속 동일 SHA 재확인은 0. **AI 점수: 이전 1692점 + 이번 +1점 = 누적 1693점.** RUN_KEY=OUTRUN-KOR-A234-Q121-RANK20-SOURCE-DERIVED-PLATE-NATIVE-ITALIC-20261011-0600 |
 
 | 2026-10-11 05:58 KST | AI 1 | 1691 | +1 | 1692 | OutRun C377 C2 짝수 **q236 B364 신규 SHA `ad4f1f81f5708d6d97638f6e2902dbaaef33b93761ef31ad03790325f594fc41` 최초 독립 저장 DDS 검수**. 기존 공식 `9e2069eb…`와 새 시험본 각 16,777,344B SHA 인증, 2048x2048 BGRA32 mip1 RAW/FLIPY, 100/75/50% 및 200% 독립 디코딩 시각 검수; 변경 56,558 RGBA/29,512 alpha 모두 source row05 경계 안(영역 밖0), 다른13행 변경0. 스카이스크레이퍼스 old 739x87→new 774x91 vs 영문 source ROI 801x95, 완전한 한글·양의 여백·가독성 개선. **SCOPED_ROW05_IMPROVED_FAMILY_PILOT_HOLD**만 기록; source/CLEAN 새 바이트 재인증·blind slant calibration 및 이전 C358 다른 13행 리워크가 남아 C/C3/실게임 PASS0, RUNTIME_VALIDATION=UNTESTED. 독립 PNG5+machine+8+ check report, 큐/resume/progress/WORKLOG, [원격 HEAD 검증 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/35ac7f86d34947ab8b6492caaadf4268bfa54fc0). 이전 B364 생산 점수와 C358 old SHA 중복가점 없음. **AI 점수: 이전 1691점 + 이번 +1점 = 누적 1692점**. RUN_KEY=OUTRUN-KOR-C377-C2-Q236-B364-FIRST-INDEPENDENT-20261011-0556 |
 

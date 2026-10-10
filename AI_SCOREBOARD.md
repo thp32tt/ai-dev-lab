@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1630 | ACTIVE | 2026-10-10 14:14 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1076 | ACTIVE | 2026-10-10 14:09 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1077 | ACTIVE | 2026-10-10 14:19 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 14:19 | AI 2 | 1076 | +1 | 1077 | 신규 독립 DX9Ex C `CONVERSION-DX9EX-00571` P1 IPC seqlock atomic snapshot + fail-closed 수정과 Release 프로토콜 smoke 구현. [material 920b1d47](https://github.com/thp32tt/OutRun2006Tweaks/commit/920b1d47296157f8879287aa15504ef18cfdfd27); exact-SHA Active [#38026686752](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026686752), Domain [#38026686762](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026686762), Full Source [#38026686747](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026686747) SUCCESS. CI artifact 11660271989, [C6 cfea26b8](https://github.com/thp32tt/OutRun2006Tweaks/commit/cfea26b8cb7a50b1bdcbdbdd7686ebb3c29522a5); HMD RUNTIME_VALIDATION=UNTESTED, DXVK FROZEN, baseline/FFB unchanged. 재시도·롤오버 +0. **AI 점수: 이전 1076점 + 이번 +1점 = 누적 1077점**. RUN_KEY=CONVERSION-DX9EX-00571 |
 
 | 2026-10-10 14:14 | AI 1 | 1629 | +1 | 1630 | OutRun 한글화 A224 q103 신규 실제 DDS 시제품 SHA256 `2ad5e25e03bc1c9598548ef64ec397be91eae86f0b4f8d4cc161438c9e354c31`. 지난 A223 얇고 넓은 자간의 284x45 시제품과 다른 원본 기반 Regular 65ppem 2px 자간/1회 원본 높이 맞춤으로 315x43 실물 DDS 생성, 영문 엄격 354x45 bbox 및 원본 바깥 변경 0px. [GitHub CPU Worker #38026411248](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026411248) SUCCESS, [상태/QA 원격 커밋 234bc8c9](https://github.com/thp32tt/OutRun2006Tweaks/commit/234bc8c9778075ec02a576961449d408e07fda07) HEAD 확인. C1 독립 승인·전체 final pixel manifest·정식후보 반영·C3·실기 전부 미완료, 공식 q103 REWORK 유지, RUNTIME_VALIDATION=UNTESTED. +1은 구별되는 신규 물리 DDS 시제품 1건에만 적용, 첫 실패 GitHub CI 재시도 및 상태보고 별도 +0. **AI 점수: 이전 1629점 + 이번 +1점 = 누적 1630점.** RUN_KEY=OUTRUN-KOR-A224-Q103-SOURCE-OPTICAL-DENSITY-20261010-1400 |
 

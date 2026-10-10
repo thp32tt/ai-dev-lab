@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1669 | ACTIVE | 2026-10-10 22:42:00 KST |
+| AI 1 | ChatGPT (AI 1) | 1670 | ACTIVE | 2026-10-10 23:08:45 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 953 | ACTIVE | 2026-10-10 22:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 23:08:45 KST | AI 1 | 1669 | +1 | 1670 | OutRun 한글화 **C370 C2 짝수 q060 신규 B360 SHA 최초 독립 검수**. 원본 `6a33c730`, B348 CLEAN `a03687d4`, 공식 `d81d0d14`, 기존 C2 검수 B359 `6551bdf1`, 신규 B360 `93022210` 모두 전체 SHA 인증 및 실제 4096×2048 DDS RAW/FLIP-Y native/BGW100·75·50 PNG 12장 독립 시각검수. SOURCE→CLEAN 89391 원래 ROI 내, OFFICIAL→B360 93196 RGBA, B359→B360 39026 RGBA 변경 모두 worker ROI 밖 0; alpha32 bbox 원문 내 양수 여백. **신규 B360 원문 레이싱 이탤릭 입체 그라데이션 대비 수평 오렌지 띠·윤곽/깊이 불일치**로 독립 C2 `REWORK_REQUIRED_UNPROMOTED`, C3/APPROVAL/실게임 0, IGR044 OPEN, 공식 C342 유지. 증거 12 PNG+머신/8항목 QA·queue/resume/progress/WORKLOG 원격 [커밋 72e4bdea](https://github.com/thp32tt/OutRun2006Tweaks/commit/72e4bdea60e9f109c62061f96e6d2bf31da1950e), HEAD 확인. B360 제작 및 이전 B359 검수는 중복 점수 0; **새 후보 SHA의 독립 실제 QA 한 성과만 +1**. **AI 점수: 이전 1669점 + 이번 +1점 = 누적 1670점.** RUN_KEY=OUTRUN-KOR-C370-C2-Q060-B360-SOURCE-LAYER-INDEPENDENT-20261010-2250 |
 
 | 2026-10-10 22:42:00 KST | AI 1 | 1668 | +1 | 1669 | OutRun B360 EVEN q060 **P0 IGR044**의 독립 B359 C2 optical FAIL 이후 신규 소스 원본 4색 재료층(오렌지·아이보리·금색·남색) 네이티브 한글 제작법 실제 구현. 영문 canonical SHA `6a33c730...`, B348 CLEAN `a03687d4...`, 공식 `d81d0d14...` 실제 인증, 영문 소스 RGBA 픽셀에서 orange [255,134,0], cream [255,223,180], gold [255,210,95] 추출해 B359 contour-normal-only 대신 분리 재구성. 첫 syntax preflight 실패는 DDS0이며 재시도 중복가점 없음. [GitHub hosted run 38056393386](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38056393386) SUCCESS, 신규 독립 비승격 DDS SHA `930222103b57a3ecf6b1ea1eca86a8a639809e8ad80020313c14a9adce13bb1d` 실저장, native RAW/FLIPY·100/75/50 BGW, 93,196 RGBA 변경 정확 ROI 내부만/원본 보호0, roundtrip0. [제작 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261010-B360-Q060-SOURCE-PALETTE-LAYER-VECTOR/B360_CONTROLLER_PRODUCER_VISUAL_REJECT.json)에서 영문 racing 계열 대비 **한글 주황색 가로 슬랩·입체 깊이·기울임 가족 불일치 시각 FAIL** 명시 → 공식 승격0, C2/C3 PASS0, q060 C342 REWORK·IGR044 OPEN·게임 UNTESTED 유지. 큐/resume/progress/WORKLOG/STATUS 원격 반영. 한 번의 새로운 DDS+재현 가능한 실패 QA 실성과만 **+1점**, B359 재검과 B360 실패 preflight 중복 미가산. **AI 점수: 이전 1668점 + 이번 +1점 = 누적 1669점**. RUN_KEY=OUTRUN-KOR-B360-Q060-P0-SOURCE-FOUR-LAYER-MANUAL-20261010-2230 |
 

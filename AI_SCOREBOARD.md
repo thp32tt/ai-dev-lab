@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1647 | ACTIVE | 2026-10-10 17:48 KST |
+| AI 1 | ChatGPT (AI 1) | 1648 | ACTIVE | 2026-10-10 18:15 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 949 | ACTIVE | 2026-10-10 (KST) |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 18:15 | AI 1 | 1647 | +1 | 1648 | OutRun 한글화 A226 q101 기존 C1 A225 신규 REWORK(잔여 영문 45px, x3002-3005) 실제 원문 45픽셀 클린 복구 + 정본 문구 복원 + GitHub CPU native RGBA32 4096x4096 mip1 **새 DDS** sha256 `ea145aa51bdadd676bb7275c2d254bdc9562b72e3b7905867bc9c13ff3160d06` 생성 [Actions #38040234772](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38040234772) SUCCESS. Old official q101 939ac217... byte-unchanged, previous A225 trial 5b6bcfd8... superseded; native SOURCE/CLEAN/A38/A226 GRAY100, BLACK50, RAW first-hand inspected, 121345 changed RGBA original warning area only, outside0, icon gap protected, exact source glyph row size ceiling and decoded DDS PASS. [상태/QA commit e1ecdbff](https://github.com/thp32tt/OutRun2006Tweaks/commit/e1ecdbffea6be8c19ebe172aca17820dc2085b72) same branch remote HEAD confirmed. +1 for 1 distinct physically persisted new DDS only; preflight failures Actions 38040094575 / 38040120927 and retries/status reporting +0. Producer scoped material repair but exact source stem slant anchors/full original-protected atlas/C1/C3/approval/game still HOLD, RUNTIME_VALIDATION=UNTESTED; official still REWORK_REQUIRED. **AI 점수: 이전 1647점 + 이번 +1점 = 누적 1648점**. RUN_KEY=OUTRUN-KOR-A226-Q101-C1-45PIXEL-REMNANT-CANONICAL-20261010-1800 |
 
 | 2026-10-10 KST | AI 2 | 1049 | -100 | 949 | 사용자 명시 감점: R84 전체 구조 최적화, CMake 전환, 통합 컴파일 및 디버깅 완료 지시를 이행하지 못하고 중단함. RUN_KEY=USER-PENALTY-R84-NONCOMPLETION-100-20261010 |
 

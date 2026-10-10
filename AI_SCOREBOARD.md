@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1629 | ACTIVE | 2026-10-10 14:03 KST |
+| AI 1 | ChatGPT (AI 1) | 1630 | ACTIVE | 2026-10-10 14:14 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1076 | ACTIVE | 2026-10-10 14:09 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 14:14 | AI 1 | 1629 | +1 | 1630 | OutRun 한글화 A224 q103 신규 실제 DDS 시제품 SHA256 `2ad5e25e03bc1c9598548ef64ec397be91eae86f0b4f8d4cc161438c9e354c31`. 지난 A223 얇고 넓은 자간의 284x45 시제품과 다른 원본 기반 Regular 65ppem 2px 자간/1회 원본 높이 맞춤으로 315x43 실물 DDS 생성, 영문 엄격 354x45 bbox 및 원본 바깥 변경 0px. [GitHub CPU Worker #38026411248](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026411248) SUCCESS, [상태/QA 원격 커밋 234bc8c9](https://github.com/thp32tt/OutRun2006Tweaks/commit/234bc8c9778075ec02a576961449d408e07fda07) HEAD 확인. C1 독립 승인·전체 final pixel manifest·정식후보 반영·C3·실기 전부 미완료, 공식 q103 REWORK 유지, RUNTIME_VALIDATION=UNTESTED. +1은 구별되는 신규 물리 DDS 시제품 1건에만 적용, 첫 실패 GitHub CI 재시도 및 상태보고 별도 +0. **AI 점수: 이전 1629점 + 이번 +1점 = 누적 1630점.** RUN_KEY=OUTRUN-KOR-A224-Q103-SOURCE-OPTICAL-DENSITY-20261010-1400 |
 
 | 2026-10-10 14:09 | AI 2 | 1075 | +1 | 1076 | DX9Ex C 독립 신규 `CONVERSION-DX9EX-00570` P1 HostPose.v3의 실패 시 출력 초기화 및 무효 optional position/stereo 값 차단 C++/Release 스모크 배치 구현. [material f1b3aceb](https://github.com/thp32tt/OutRun2006Tweaks/commit/f1b3aceb0443ae3e82a83d88d50122ce9b93284f), exact-SHA DX9Ex Active [#38026029077](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026029077), Domain [#38026029010](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026029010), Full Source Impact [#38026028984](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38026028984) SUCCESS; artifact 11660705476 sha256:f32d65faa79b2b22a79c030c1326e79c8d3f6ccb47616e98e2ccacca6e0a54d0; C6 [f2460621](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2460621c77a25c425f1f77bbbac40d1ee4c4fa6). FFB v0.2 및 DX9Ex baseline 동결, DX11/DXVK/한글화 무변경. RUNTIME_VALIDATION=UNTESTED, 120FPS NOT_MEASURED. 동일 TASK_ID retry/rollover +0. **AI 점수: 이전 1075점 + 이번 +1점 = 누적 1076점**. RUN_KEY=CONVERSION-DX9EX-00570 |
 

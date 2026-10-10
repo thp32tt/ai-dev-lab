@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1673 | ACTIVE | 2026-10-10 23:39:53 KST |
+| AI 1 | ChatGPT (AI 1) | 1674 | ACTIVE | 2026-10-10 23:53:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 955 | ACTIVE | 2026-10-10 23:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 23:53:00 KST | AI 1 | 1673 | +1 | 1674 | OutRun C1 ODD q227 **기존 C339의 원본 인증 미완료 문제를 해결한 새로운 검수 성과**. 기존 공식 저장 DDS `83120095e3ff960939c0b413dd85d1633314f23dcde0192f0cf68a7a47776595`는 변함없이 유지. Sonic-TV 고정 영문 원본 `769308121df7229766b50eea1d43c68703e1720df4147ec8f34b735e2a9527f3`와 A96R CLEAN PNG `a6c8b4a921654e144e9580057c391fedc8cfc84e24e16a50a4697b971b76f984` 각각 실제 바이너리 SHA256 검증. Native 2048×2048 mip1 RAW/FLIP-Y 16개 전부 독립 source-clean-final 측정: source→clean 531382, clean→final 269362, source→final 540060 변경, 원문 16개 영역 밖 RGBA/alpha0, CLEAN visible alpha 16/16=0, 최종 16개 bbox 실측 일치 및 최소 여백1px. 독립 BGW/native/50/RAW 11 lossless PNG 게시. 타이포그래피 맹검/1px 위험 별도 C3·실기 미검증이므로 **HOLD_STRICT_RECHECK, C PASS0, 승인0, DDS 신규0**, IGR034/035/036 OPEN, `RUNTIME_VALIDATION=UNTESTED`. 이 성과는 동일 후보 SHA의 재완료가 아닌 처음 확보한 독립 SOURCE/CLEAN 인증과 전수 픽셀 근거. [GitHub 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/68af8f35611f6a50a59435b93e4f6d5a08ed2cad) · [증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261010-C1-Q227-CANONICAL-16-SOURCE-CLEAN-VERIFY/C1_Q227_INDEPENDENT_CONTROLLER_HOLD.json). **AI 점수: 이전 1673점 + 이번 +1점 = 누적 1674점.** RUN_KEY=OUTRUN-KOR-C1-Q227-16-INDEPENDENT-CANONICAL-SOURCE-CLEAN-20261010-2340 |
 
 | 2026-10-10 23:39:53 KST | AI 1 | 1672 | +1 | 1673 | OutRun C2 q176 B346 **기존 C352 HOLD와 구별되는 신규 4개 동일 한국어 문구의 SHA 고정 광학적 결함 검증**. source `8ba40915`, CLEAN `29e77ca7`, official `494d42c0`, B346 trial `eea9f4b6` 전부 정확한 SHA 확인, native 2048² mip1 RAW/FLIP-Y 실제 디코드. 4영역 한국어 official→B346 alpha>16 잉크 점유량 제니퍼 -9.96%, 클라리사 -10.24%, 홀리 -11.14%, 플래그맨4 -9.74%, alpha>128/240에서도 모두 감소. 원본 굵은 적색 서체와 실측 native/50 광학 대비 부족; scope 밖 모든 비교 RGBA/alpha0, 깨끗한 원본 배경·경계 PASS이나 시각 원본 서체 미달로 B346 trial `REWORK_REQUIRED_UNPROMOTED`. C352 HOLD는 이전 임시 기록, 같은 후보 SHA를 새로운 완수/승인으로 중복 계산하지 않음. 검수자 신규 17개 무손실 PNG+머신/8항목 QA, queue/resume/progress/WORKLOG [GitHub HEAD 379745951](https://github.com/thp32tt/OutRun2006Tweaks/commit/3797459517485f2df9cbd8e0cbbde46e3a97754e) 반영·원격 재확인, DDS 신규0/C PASS0/C3·게임 UNTESTED. **동일 SHA라도 이전과 다른 실제 결함 증명 1건만 +1**. **AI 점수: 이전 1672점 + 이번 +1점 = 누적 1673점.** RUN_KEY=OUTRUN-KOR-C371-C2-Q176-B346-NEW-OPTICAL-SAME-KOREAN-UNDERFILL-20261010-2321 |
 

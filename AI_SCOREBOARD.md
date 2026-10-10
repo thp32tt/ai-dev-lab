@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-10 22:01:06 KST |
+| AI 1 | ChatGPT (AI 1) | 1667 | ACTIVE | 2026-10-10 22:35:48 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 953 | ACTIVE | 2026-10-10 22:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 22:35:48 KST | AI 1 | 1666 | +1 | 1667 | OutRun 한글화 C369 C2 EVEN q230 **이전 C366 12개 분포대조와 구분되는 신규 13개 실명 텍스트 세그먼트 전영역 픽셀 증거**: SHA 고정 영문 SOURCE 33077919…, B228 CLEAN 738530a5…, 보존 공식 DDS a680ae4b…를 원본 RAW/FLIP-Y 2048x1024 실제 디코드하여 SOURCE→CLEAN 159051/159051 변경 픽셀을 13개 대응 영어/한국어 세그먼트에 할당하고 미분류0, 도움말 밖 이전 137224, CLEAN→최종 도움말 밖0/안15398 확인. UNAVAILABLE/SOLD 개별 세그먼트 분리, 원본 네이티브 경계 PNG, source/CLEAN/final 실제 50% 비교 PNG, 픽셀 마스크 및 머신·C2 HOLD JSON 신규 작성. [원격 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/c3d82fced2ce7acf5ef3a4571310398fa854e86b) 검증, queue/resume/WORKLOG 동기화. 동일 DDS SHA 독립 C PASS/완료 반복가점은 0, **새로 증명한 13영역 전수 매핑 한 성과에만 +1**; q230 HOLD, C3/사용자 실게임 UNTESTED, 신규 DDS0/승인0. **AI 점수: 이전 1666점 + 이번 +1점 = 누적 1667점**. RUN_KEY=OUTRUN-KOR-C369-C2-Q230-13-SEGMENT-DIFF-COVERAGE-20261010-2220 |
 
 | 2026-10-10 22:29 KST | AI 2 | 952 | +1 | 953 | 사용자 요청 DX11 실기테스트용 신규 진단 패키지 직접 완성: GitHub DX11 브랜치 HEAD `8fb3d8607f9b5295bc022af8e26ed5dfb99fc1ba`와 동일 PR 합성 SHA `8bcf3d9f763be9b387ff77270ca50b94636a7cf1`의 CI Build #38055198011 SUCCESS(게임 x86 `dinput8.dll` 포함) 및 OpenXR architecture #38055197918 SUCCESS(호스트 x64 `outrun-vr-host.exe` 포함)를 실물 ZIP에서 추출·결합, 고립 테스트 폴더용 DX11 census+shader fingerprint 자동 실행/로그 ZIP 수집 PowerShell, 명시적 DX9Ex fallback INI, 설치/복원 지침, 전체 SHA256 매니페스트, ZIP CRC 및 x86/x64 PE 검사 완료. 사용자에 전달한 `OutRun2006_DX11_Diagnostic_20261010_8fb3d860.zip` SHA256 `a44faeb1676af7f34c6df28872b58ef731555e8e9c88b79d689f17c99ffa1711`. 이 패키지는 새로운 **유저 테스트 준비 성과** 1건이며 네이티브 게임 DX11 Draw는 미활성, VR 하드웨어 `RUNTIME_VALIDATION=UNTESTED`, GitHub 소스코드 기능추가/실기검증 완료 주장은 없음. **AI 점수: 이전 952점 + 이번 +1점 = 누적 953점**. RUN_KEY=DX11-HARDWARE-DIAGNOSTIC-BUNDLE-20261010-2224 |
 

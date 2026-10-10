@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1676 | ACTIVE | 2026-10-11 02:34:00 KST |
+| AI 1 | ChatGPT (AI 1) | 1677 | ACTIVE | 2026-10-11 02:55 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 02:55 KST | AI 1 | 1676 | +1 | 1677 | OutRun C1 ODD q217 **C348 기존 425 RGB 변동 HOLD를 실제 보호 그래픽 결함으로 새로 분류한 독립 시각·수치 QA**. 같은 A189 후보 SHA `a4d817db51c31ba6e7d22121add4dfee8bc151cdb229a6091c5ea324bca78204` 반복 완료/신규 DDS로 중복 계상하지 않음. canonical 영문 DDS `d3d2d155...`, authored CLEAN `f937fbaa...`, 최종 DDS 모두 SHA256 실검증. 바른 RAW/READABLE 3단계 SOURCE→CLEAN3921 / CLEAN→FINAL1141 / SOURCE→FINAL3940, 좁은 영문 텍스트 박스 밖 **425 alpha255 빨간 배지 RGB 색상 변조** 정확히 재현 START195 (상단69 하단80) / GOAL230 (하단75 우측137). CLEAN에 의한 배경색 변화가 최종 DDS까지 남으며 단순 투명 RGB 잔여물이 아님. 독립 native 4x/50/BGW/RAW·변경범위 마스크 12 PNG + machine/8-check 보고서 2 JSON + queue/resume/progress/WORKLOG 실제 갱신. q217 **REWORK_REQUIRED**, C3·APPROVAL·user game=UNTESTED, DDS 수정0. [GitHub 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/bc84c4f70ca641a2d5e90ceb302e1a1097762c08). AI 점수: 이전 1676점 + 이번 +1점 = 누적 1677점. RUN_KEY=OUTRUN-KOR-C1-Q217-OUTER-RED-BADGE-PROTECTED-425-20261011-0240 |
 
 | 2026-10-11 02:45:30 KST | AI 2 | 956 | +1 | 957 | OutRun DX9Ex 전체 R84 렌더러 구조 분리 **CONVERSION-DX9EX-00591**의 최초 실제 독립 Win32 x86 R29-R33 게임 DLL 컴파일·링크, x64 OpenXR 호스트 및 smoke, 보호 R26 기준 x86 게임 빌드, 통합 ZIP/manifest/collector/PE/SHA 검증. 원본 구현 [97a2c676](https://github.com/thp32tt/OutRun2006Tweaks/commit/97a2c6769d92963b8ad5410c4e774e399a62f4ae)에서 [Actions #38071953016](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38071953016) 5개 작업(r84-local, r84-win32, r84-host, r84-baseline-game, r84-bundle) 모두 SUCCESS, 통합 ZIP artifact `11677164470` (5,142,744 bytes). GitHub [FEATURE_READY 기록 9e0e6764](https://github.com/thp32tt/OutRun2006Tweaks/commit/9e0e676480b125c4a57a50f6a52c3237533f771e) 및 R84-OWNERS/ABI/BUILD-GRAPH/REGRESSION/TEST-BUNDLE 5개 feature CI acceptance PASS 저장. **별도 DX9Ex Active Validation/Domain Isolation의 대상 SHA 필수 게이트는 PENDING, controller-only 타깃 배포 미실시, Quest3/VDXR `RUNTIME_VALIDATION=UNTESTED`, `DONE_BUILD_VERIFIED` 아님.** 신규 실제 전체 기능 빌드·바이너리·테스트 번들 성과를 최초 1회만 +1; 같은 TASK_ID의 롤오버·재보고·단순 승격 반복은 +0. **AI 점수: 이전 956점 + 이번 +1점 = 누적 957점.** RUN_KEY=CONVERSION-DX9EX-00591 |
 

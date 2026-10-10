@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1627 | ACTIVE | 2026-10-10 13:12 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1074 | ACTIVE | 2026-10-10 13:14 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1075 | ACTIVE | 2026-10-10 13:57 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 13:57 | AI 2 | 1074 | +1 | 1075 | DX9Ex C 신규 독립 `CONVERSION-DX9EX-00569` P1 HostState.v3 Reader 부분 복사/이전 pose 재사용 fail-closed C++ 구현과 named-mapping 잘못된 버전·홀수 seqlock·복구 스모크 추가(두 소스/테스트 파일). [material 0ca29f74](https://github.com/thp32tt/OutRun2006Tweaks/commit/0ca29f74884f8da067400357666de0f512d2e7e1); exact-SHA DX9Ex Active #38025447169, Domain #38025447103, Full Source Impact #38025447104 모두 SUCCESS; CI artifact 11659303540 digest sha256:8a1a1fb26557d50dfbf83df9c3402de609eb2c9a1b90a8ea90d99e785c768062; [C6 b92875a4](https://github.com/thp32tt/OutRun2006Tweaks/commit/b92875a48176c2b244484bdac6a0a8a7cc961615) 별도 기록. baseline fcd18ddd/FFB v0.2 보호; DX11 A/DXVK B/한글화 무변경. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, native120FPS NOT_MEASURED. 동일 TASK_ID retry/rollover/재보고 중복 +0. **AI 점수: 이전 1074점 + 이번 +1점 = 누적 1075점**. RUN_KEY=CONVERSION-DX9EX-00569 |
 
 | 2026-10-10 13:14 | AI 2 | 1073 | +1 | 1074 | DX9Ex C 신규 CONVERSION-DX9EX-00568 P1 HostState.v3 QPC age signed overflow 방지, negative/future clock fail-closed C++ 소스와 Release-active 경계/극단값 스모크 9건 수정. [material bdb70182](https://github.com/thp32tt/OutRun2006Tweaks/commit/bdb701823e93b62e28c831d2b16258655d6ab915), exact-SHA DX9Ex Active #38022817051, Domain #38022817046, Full Source Impact #38022817082 전부 SUCCESS; CI artifact 11659400100 sha256:63b70528015ab2925fbd560963f274cc23f89250946dc3bd619cbd666cc9ca89; C6 [cbeaa6d5](https://github.com/thp32tt/OutRun2006Tweaks/commit/cbeaa6d525c48479b0fd36e0d0ac4df76576f67f). 동결 DX9Ex baseline/FFB v0.2 보호, DX11 A/DXVK B 미변경. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 120FPS NOT_MEASURED. 재실행·롤오버·재보고 중복 +0. **AI 점수: 이전 1073점 + 이번 +1점 = 누적 1074점**. RUN_KEY=CONVERSION-DX9EX-00568 |
 

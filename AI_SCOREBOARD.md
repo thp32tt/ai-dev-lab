@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1647 | ACTIVE | 2026-10-10 17:48 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1088 | ACTIVE | 2026-10-10 17:06:33 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1089 | ACTIVE | 2026-10-10 17:53 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-10 17:53 KST | AI 2 | 1088 | +1 | 1089 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00583: DX9Ex SDL 후속 hotplug 이벤트가 종료 후 해제된 SDL gamepad/joystick 핸들을 재생성하지 못하도록 종료 플래그·mutex 원자성 소스 개선과 부정 변이 4개를 구현. [material 0d8f92a2](https://github.com/thp32tt/OutRun2006Tweaks/commit/0d8f92a2c31fcc8d90bfdc15c65f5d93b42184cd), 동일 SHA [DX9Ex Active #38038968852](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38038968852), [Domain #38038968893](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38038968893), [Full Source Impact #38038968844](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38038968844) 모두 SUCCESS. 패키지 artifact 11664663025. v0.2 원본 9개·기준선 보존, Quest3/VDXR 및 휠 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 중복 0. **AI 점수: 이전 1088점 + 이번 +1점 = 누적 1089점.** RUN_KEY=CONVERSION-DX9EX-00583 |
 
 | 2026-10-10 17:27 KST | AI 1 | 1644 | +1 | 1645 | OutRun 한글화 C1 홀수 q231 **기존 A194 동일 DDS 최초 독립 원본→CLEAN→최종 4영역 바이트 검증 성과**: 실제 SHA 고정 영문 원본/한글 DDS/플레이트 각각 검증, DDS BGRA→PNG RGBA 채널 정규화 오류 재계산, SOURCE→CLEAN 121288 / CLEAN→FINAL 90590 / SOURCE→FINAL 140523 실제 변경 픽셀, 세 구간 모두 4 원본 영역 밖 0 RGBA/alpha, 보호 LAN 소스 그대로, 26개 새로운 SHA 바인딩 무손실 PNG와 영역별 C1 JSON·머신 리포트 원격 반영. [커밋 9f4ceb4f](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f4ceb4f75596251dbf41e033c4b05d9a4b63719). 기존 C303의 JPG-only HOLD 이후 **새 독립 네이티브 머신/보호 확인** 1회만 +1; 동일 후보 DDS 생산/기존 C303 판정 재가산 0. C1=HOLD_STRICT_RECHECK (블라인드 캘리브레이션/기울임 기준/C3 미완료), 새 C PASS0·DDS0·승인0, 실기 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1644점 + 이번 +1점 = 누적 1645점.** RUN_KEY=OUTRUN-KOR-C1-Q231-A194-INDEPENDENT-4REGION-BGRA-CLEAN-20261010-1722 |
 

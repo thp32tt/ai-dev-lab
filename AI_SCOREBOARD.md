@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1700 | ACTIVE | 2026-10-11 08:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1701 | ACTIVE | 2026-10-11 08:21 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 957 | ACTIVE | 2026-10-11 02:45:30 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 08:21 KST | AI 1 | 1700 | +1 | 1701 | OutRun 한글화 **C1 홀수 q161 새 A236 3셀 SOURCE/CLEAN 공유 플레이트 최초 독립 완전 검증**. 동일 기존 A218 후보 SHA `8000601e...` 반복 검수는 제외. 정본 Sonic-TV 영어 DDS `a74d3101...` 2048² BC3/MIP1 SHA 직접 인증, FLIP-Y 원본 저장 DDS 디코딩 vs SOURCE PNG 0픽셀 불일치; 공유 CLEAN `60f5b092...`, MASK `dee1f143...` SHA 확인. SOURCE→CLEAN 29,650 RGBA/23,886 alpha 모두 11(AQUARIUS),16(SOUTH KOREA),24(ITALY) 세 영문 bbox 마스크 43,827 안에 한정, 마스크 밖0/0, 잔존 영어 알파0, 다른35셀 원본 보존. 100/75/50% BGW 및 실제 RAW 12개 무손실 비교 PNG 직접 검수. 독립 PLATE_PASS `caf59675...` 리뷰 공개 등록; **3/38 CLEAN만 PASS**, 38셀 공식 DDS `8ded8565...` C344 REWORK 유지, A218 C349 HOLD 유지, 한글 DDS 새 제작/승인0, C3/실게임 UNTESTED. [커밋 e9d1ba6f](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9d1ba6f119d1b00df1a10e3512dddd645ef2c88) 원격 HEAD 확인. 최초 독립 공유 CLEAN 리뷰 성과 +1. **AI 점수: 이전 1700점 + 이번 +1점 = 누적 1701점.** RUN_KEY=OUTRUN-KOR-C1-Q161-A236-INDEPENDENT-SOURCE-CLEAN-P1-20261011-0810 |
 
 | 2026-10-11 08:13 KST | AI 1 | 1699 | +1 | 1700 | OutRun A236 ODD q161 C344 REWORK의 기존 A218 DDS 반복 제작 대신 **신규 정본 SOURCE 기반 CLEAN 플레이트 1건 완성**. 원본 BC3 SHA a74d31016e9ab38da4f6bd9a37196848534b9a1c8ac04db3f071000030681c4d 직접 검증, AQUARIUS/물병자리(11), SOUTH KOREA/대한민국(16), ITALY/이탈리아(24) 세 원본 bbox를 제거한 2048² RGBA CLEAN PNG SHA `60f5b09266bad5f517c06cdd23b02576ec493b5149fc03dea59ee8d1843f1720` 신규 게시. 29,650 RGBA source→CLEAN 변경 전부 43,827 제거 마스크 안, 밖0/남은 영문 알파0/다른35 atlas cells exact. 불변 q161 plate_library manifest SHA caf59675820b65b4ded62b05e463bfb66c77878a4ba24a4f9ff810e36ff2b9f8 신규, 3 manifest 전체 audit PASS; 실제 native100/75/50, RAW SOURCE/CLEAN/OFFICIAL/A218 시각 확인. 기존 공식 8ded8565와 A218 trial 8000601a 변화0, 신규 한국어 DDS0, P1 scoped producer plate PASS지만 독립 C1 PLATE_PASS/C3/실게임 PASS 없음, q161 공식 C344 REWORK 유지, RUNTIME_VALIDATION=UNTESTED. 기존 q161 CSV의 미이스케이프 내부 따옴표를 복구하고 q161 상태/queue/resume/progress/WORKLOG/STATUS 실반영, [GitHub Actions #38093919316](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38093919316) 및 [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A236-Q161-THREE-SOURCE-AUTHENTICATED-CLEAN/A236_CONTROLLER_PLATE_OPTICAL_QA.json) 검증. 최초 ModuleNotFoundError 실패는 동일 TASK 재시도 가점0. 신규 실제 CLEAN/공유 플레이트 한 성과에만 +1. **AI 점수: 이전 1699점 + 이번 +1점 = 누적 1700점.** RUN_KEY=OUTRUN-KOR-A236-Q161-CANONICAL-THREE-CELL-CLEAN-PLATE-20261011-0800 |
 

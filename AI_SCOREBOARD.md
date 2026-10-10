@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1616 | ACTIVE | 2026-10-10 10:23 KST |
+| AI 1 | ChatGPT (AI 1) | 1617 | ACTIVE | 2026-10-10 10:41 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1067 | ACTIVE | 2026-10-10 09:58 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-10 10:41 | AI 1 | 1616 | +1 | 1617 | OutRun C352 C2 EVEN q176 **기존 C343 공식 SHA 494d42c0... 재검수 가점이 아닌** B346 **새 미승격 시험 SHA eea9f4b6...의 최초 독립 저장 바이트·CLEAN·시각 QA**. Sonic-TV 원문 SHA 8ba40915... 실제 다운로드 해시 확인, 공식·시험 2048x2048 RGBA32 DDS 해시·헤더, 4 영역 SOURCE/CLEAN/TRIAL FLIP-Y/RAW·native/50 및 3배경 시각검토. SOURCE→CLEAN, CLEAN→TRIAL, 정본→TRIAL RGBA/alpha 범위 밖 0, CLEAN 네 영역 알파0, 네 글자 source bbox/양수여백 PASS, 공식→시험 215,951 변경픽셀; 서체 계열 블라인드 캘리브레이션 미확립으로 **전체 HOLD_STRICT_RECHECK**, 정식 DDS0, C3/APPROVAL/사용자 실게임 모두 UNTESTED. 새로운 PNG13+JSON2+queue/resume/progress/WORKLOG 4개 GitHub 커밋 [c4407474](https://github.com/thp32tt/OutRun2006Tweaks/commit/c44074741438ab0b35e4e9e70cb9df3c32d26cc7) 원격 HEAD 확인. ODD C1·VR/FFB/DX11/DXVK 미수정. **AI 점수: 이전 1616점 + 이번 +1점 = 누적 1617점.** RUN_KEY=OUTRUN-KOR-C352-C2-Q176-B346-INDEPENDENT-NATIVE-20261010-1020 |
 | 2026-10-10 10:23 | AI 1 | 1615 | +1 | 1616 | OutRun C352 C1 홀수 q175 A216 **새 시험본 SHA a5e921ab...** 독립 저장 DDS/시각 QA. 정본 SOURCE 93143725...·기존 정식 b9f60b45...·시험본 a5e921ab... 직접 SHA 인증, native 2048×1024 RGBA32/mip1·RAW/FLIP-Y·BGW 100/75/50 + 2배 실측. 정식→시험본 변경 73,078 RGBA/69,961 alpha, 원문 제목 bbox 밖 변경0, 그러나 **시험본 쇼룸 획이 지붕/가로레일로 무너져 50%에서도 음절 즉독 불가**, 원문 showroom 연결된 둥근 금속 글자 스타일과 불일치. 머신 범위 통과보다 확실한 독립 시각 반려 우선. 신규 13 lossless PNG + 기계/판정 JSON2 + queue/progress/resume/WORKLOG 4 = 19 files, commit [bae4f6ce](https://github.com/thp32tt/OutRun2006Tweaks/commit/bae4f6cee6e09dd2c1343efb800e1963d5e0a146) 원격 HEAD 재조회. C352 새 시험 SHA REWORK_REQUIRED; 기존 C286 공식 SHA REWORK_REQUIRED 유지, promoted DDS0, C3/APPROVAL/IGR032 사용자 실기 UNTESTED. 같은 공식 SHA C286 이전 반려 재점수화 아님; A216 생산자 반려 재보고 아닌 **새 정확 SHA 독립 C1 평가/증거 작업 1건**만 +1. 짝수 C2/VR/FFB/DX11/DXVK/별도 큐 무변경. **AI 점수: 이전 1615점 + 이번 +1점 = 누적 1616점**. RUN_KEY=OUTRUN-KOR-C352-C1-Q175-A216-NEW-WELDED-TRIAL-VISUAL-REJECT-20261010 |
 
 | 2026-10-10 10:13 | AI 1 | 1614 | +1 | 1615 | OutRun A220 ODD q121 P0의 기존 A219 GOAL 33픽셀 성과와 **서로 다른** 영문 THE CLEAN 플레이트 원문 잔상 **24픽셀 추가 실물 수정**. English 정본 f7847db97bed...와 A215 SOURCE/CLEAN/FINAL rank24 149×92 원본 좌표를 인증했고, 오래된 CLEAN/official에 남은 원문 픽셀 정확 일치를 실제 시각 및 저장 DDS 검증. GitHub CPU worker [#38011800333](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38011800333) SUCCESS, 4096×4096 RGBA32 새 **미승격 시험 DDS** SHA256 6db7c40864f44dcb1a07568ae1717b7ecf4720b253f963fe5fbb38e90b1ede06: A219 대비 수정 24픽셀/95바이트, 다른 픽셀 변화 0, 이전 33픽셀 유지=총 57픽셀 제거. RAW 및 SOURCE/CLEAN/OFFICIAL/TRIAL gray100와 black/gray/white 100/75/50 근거, producer scoped QA JSON, queue/resume/progress/WORKLOG 기록 [9acf2ce3](https://github.com/thp32tt/OutRun2006Tweaks/commit/9acf2ce34b296171cfec09e848d14041e51eeec5) 원격 HEAD 확인. 공식 DDS0, 전체 29셀/보호아트/C1/C3/실게임 미검증, IGR030/031/040 OPEN 및 RUNTIME_VALIDATION=UNTESTED. **실제로 새로 고친 24픽셀 시험 DDS 성과에만 +1**, 동일 A219 33px나 검증 재보고 중복 점수 0. **AI 점수: 이전 1614점 + 이번 +1점 = 누적 1615점.** RUN_KEY=OUTRUN-KOR-A220-Q121-THE-SOURCE-ORPHAN-20261010-1000 |

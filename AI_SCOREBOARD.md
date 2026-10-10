@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1618 | ACTIVE | 2026-10-10 10:53 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1067 | ACTIVE | 2026-10-10 09:58 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1068 | ACTIVE | 2026-10-10 10:57 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-10 10:57 | AI 2 | 1067 | +1 | 1068 | OutRun VR 오래된 정책 충돌 정리 독립 성과: GitHub PR [#113](https://github.com/thp32tt/OutRun2006Tweaks/pull/113) merge SHA [4a714c45](https://github.com/thp32tt/OutRun2006Tweaks/commit/4a714c454294fbabdf52aa9b6f9a07a365c166b6). AGENTS/우선순위/VR_AUTODEV_STATE/VR_WORK_QUEUE/Docker 컨트롤러 계약 5개 authoritative 정책 동기화, DX11 A first ACTIVE+DX9Ex C ACTIVE 50% 병렬, DXVK B FROZEN, R84 P1, ARC-v3 DX9Ex runtime gate 범위 제한, immut baseline 보존. 신규 코드 verifier 7개 부정변이 및 canonical DX9Ex Active GitHub policy 단계 exact merge SHA #38015103062 SUCCESS, PR prior exact SHA #38014462901 policy/game/host/full-chain/package SUCCESS와 Domain #38014462948 SUCCESS. 최종 merge SHA 전체 빌드/Source Impact 단계 진행 중이며 Quest3 HMD RUNTIME_VALIDATION=UNTESTED, 컨트롤러 Docker 실기 실행 여부 미검증. 정책 독립 실질 성과 단 한 번 +1, 00562 FFB 변경 재점수 없음. **AI 2 점수: 이전 1067점 + 이번 +1점 = 누적 1068점**. RUN_KEY=DX9EX-POLICY-ALIGNMENT-20261010-PR113 |
 | 2026-10-10 10:53 | AI 1 | 1617 | +1 | 1618 | OutRun C353 C1 **홀수 q121 신규 A220 SHA `6db7c408...` 독립 저장 DDS QA**. A219는 이미 C351 검수된 별개 SHA `9f5039da...`; 이전 정식 `38d5c2c3...` 및 영문 원본 `f7847db9...`와 총 4개 DDS SHA 정확 검증. 공식→A219 `goal.` 33픽셀/132바이트 삭제 보존, A219→A220 **the** 24픽셀/95바이트(23 흰색+1 남색, 모두 원본 동일 alpha255→0), 공식→A220 57픽셀/227바이트; 두 지역 밖 변경0, A220 the 전체 알파 양성 0. 실제 저장 RAW/FLIPY·BGW native/75/50 및 A215 SOURCE/CLEAN/FINAL 동형 검증, 13 신규 lossless PNG+기계/독립 C1 JSON2 및 queue/resume/progress/WORKLOG 4개 commit [703b948d](https://github.com/thp32tt/OutRun2006Tweaks/commit/703b948da217d015956cbbe4285abb153e6a594f) 원격 HEAD 확인. **두 영역 국소 오염 제거만 검증**, 나머지 29개 전체 C1=HOLD_STRICT_RECHECK; 공식 REWORK 유지, C3/APPROVAL/IGR030/031/040 실기 UNTESTED, promoted DDS0. C2/VR/FFB/DX11/DXVK 무변경. A220 생산자 기록이나 기존 A219 SHA와 중복 가점이 아닌 신규 SHA 독립 성과 **1건**에만 +1. **AI 점수: 이전 1617점 + 이번 +1점 = 누적 1618점.** RUN_KEY=OUTRUN-KOR-C353-C1-Q121-A220-NEW-THE24-PLUS-GOAL33-20261010 |
 
 | 2026-10-10 10:41 | AI 1 | 1616 | +1 | 1617 | OutRun C352 C2 EVEN q176 **기존 C343 공식 SHA 494d42c0... 재검수 가점이 아닌** B346 **새 미승격 시험 SHA eea9f4b6...의 최초 독립 저장 바이트·CLEAN·시각 QA**. Sonic-TV 원문 SHA 8ba40915... 실제 다운로드 해시 확인, 공식·시험 2048x2048 RGBA32 DDS 해시·헤더, 4 영역 SOURCE/CLEAN/TRIAL FLIP-Y/RAW·native/50 및 3배경 시각검토. SOURCE→CLEAN, CLEAN→TRIAL, 정본→TRIAL RGBA/alpha 범위 밖 0, CLEAN 네 영역 알파0, 네 글자 source bbox/양수여백 PASS, 공식→시험 215,951 변경픽셀; 서체 계열 블라인드 캘리브레이션 미확립으로 **전체 HOLD_STRICT_RECHECK**, 정식 DDS0, C3/APPROVAL/사용자 실게임 모두 UNTESTED. 새로운 PNG13+JSON2+queue/resume/progress/WORKLOG 4개 GitHub 커밋 [c4407474](https://github.com/thp32tt/OutRun2006Tweaks/commit/c44074741438ab0b35e4e9e70cb9df3c32d26cc7) 원격 HEAD 확인. ODD C1·VR/FFB/DX11/DXVK 미수정. **AI 점수: 이전 1616점 + 이번 +1점 = 누적 1617점.** RUN_KEY=OUTRUN-KOR-C352-C2-Q176-B346-INDEPENDENT-NATIVE-20261010-1020 |

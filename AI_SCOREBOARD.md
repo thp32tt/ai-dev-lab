@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1803 | ACTIVE | 2026-10-12 07:51 KST |
+| AI 1 | ChatGPT (AI 1) | 1804 | ACTIVE | 2026-10-12 08:03 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1046 | ACTIVE | 2026-10-12 08:01 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 08:03 KST | AI 1 | 1803 | +1 | 1804 | 신규 C2 q048 B407 고유 DDS SHA `b17750c7bee787be04bd62d553e2cbe8f08c82ffaffdd272dd673fb3cd92c8a7`를 원본 SOURCE 3c58bf95/기존 259153b9와 각각 실물 SHA 검증 및 저장 RAW/FLIP-Y/네이티브·75·50/새 CLEAN 독립 픽셀 QA. 청록 속도선 415픽셀 원본대로 복원, ROI 밖 RGBA·알파 변경0, OLD CLEAN/NEW CLEAN 차분 마스크도 415픽셀 정확 일치, DDS 저장 디코딩 불일치0. **신규 보호아트 복원 C2 SCOPED PASS**만 인정하고 q048 영문 대비 기존 한글 형태 REWORK와 IGR009 실게임 OPEN 유지. 신규 q030 영문 입력 2개도 검사했지만 정본 DDS 불일치 미확인 PLATE HOLD라 추가 점수 없음. [OutRun HEAD af33e9cf](https://github.com/thp32tt/OutRun2006Tweaks/commit/af33e9cfcc7177f4419d155c8e891543b54eb0c9) QA JSON 4/비교 PNG 7/queue·WORKLOG 원격 기록. C2 신규 제작 DDS0, 전체승인0, C3/런타임 UNTESTED. **AI 점수: 이전 1803점 + 이번 +1점 = 누적 1804점.** REVIEW_KEY=C2-Q048-B407-FIRST-NATIVE-AUDIT-20261012 |
 
 | 2026-10-12 08:01 KST | AI 2 | 1045 | +1 | 1046 | 신규 독립 CONVERSION-DX9EX-00640: DX9Ex R23 스테레오 오른쪽 눈/모노 private depth-stencil 초기화 D3D9 GPU Clear 2→1 통합 C++ 실소스 수정, 스텐실 안전·포맷 실패 시 깊이 전용 경로 보존, 11개 부정변이 회귀 및 정확한 [material/validation-bearing d3ad2ab7e6cd](https://github.com/thp32tt/OutRun2006Tweaks/commit/d3ad2ab7e6cd769665904eb4847831b7d59a8ae5) 검증. GitHub Actions DX9Ex Active #38182133592 5/5 SUCCESS, Domain Isolation #38182133595 SUCCESS, Full Source Impact #38182133608 3/3 SUCCESS. C6 bookkeeping 327c9726 별도 [skip ci] +0, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 실측 FPS/p95/p99 개선 미측정. **AI 점수: 이전 1045점 + 이번 +1점 = 누적 1046점.** RUN_KEY=CONVERSION-DX9EX-00640 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1757 | ACTIVE | 2026-10-11 21:51 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 981 | ACTIVE | 2026-10-11 21:55 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 982 | ACTIVE | 2026-10-11 22:00 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:00 KST | AI 2 | 981 | +1 | 982 | 신규 사용자 요청: DX9Ex/DX11 최신 검증 Windows 바이너리 각각 독립 1회 Quest3/VDXR 테스트 가능한 2개 ZIP 구성. GitHub exact source DX9Ex 6bec563751d5529ea895df4978dac04aabb1c8d5 [DX9Ex Active #38140991618](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991618) SUCCESS, DX11 16d778226d9ce5de053938169df3f61ac828eda1 [OpenXR #38140413888](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140413888) SUCCESS 및 [Win32 Build #38140416697](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140416697) SUCCESS. GitHub Actions 원본 artifact SHA256SUMS 21+10 파일 검증, DLL PE x86/host x64 확인, 별도 폴더 설치 한국어 단발 테스트 가이드, 진단 로그 업로드 안내 보존; 실행 파일 재컴파일이 아닌 원본 CI 바이너리 검증·최신 소스 테스트 ZIP 재패키징 성과 1건, HMD 미검증 RUNTIME_VALIDATION=UNTESTED, DX11 FIRST_GAME_FRAME 실험용. DX9Ex ZIP sha256 2868f2a10715e5c23d34624b36ead08d73bab8cbaf122b162a68820e0cc40098, DX11 ZIP SHA256 d16b803906555216bd7d9c65c9c226d20a52fb531e4a30655767a8017c0d074d. **AI 점수: 이전 981점 + 이번 +1점 = 누적 982점.** RUN_KEY=OUTRUN-DUAL-TESTPACK-20261011-2151-AI2 |
 
 | 2026-10-11 21:55 KST | AI 2 | 980 | +1 | 981 | DX11 신규 독립 TASK_ID=CONVERSION-DX11-00544: 실제 OutRun 게임 원본 D3D9 R5G6B5/A1R5G5B5/A4R4G4B4 16-bit LockRect texel → CPU BGRA8 decode 및 행별 format dispatch → D3D11 immutable texture/SRV/PSSetShaderResources → 기존 실게임 Draw/DrawIndexed 진단 데스크톱 inset까지 연결하는 C++ material 기능과 포맷/피치/알파/Draw 12부정변이 회귀. 첫 exact e6e4f768 Gate #38140075244 실패는 구식 동기 Map source verifier가 현재 event-fenced 비동기 GPU readback을 거부한 오라클 불일치였고, 검증기 연동을 실제 비동기 경로에 맞게 복구 후 [최종 material 16d77822](https://github.com/thp32tt/OutRun2006Tweaks/commit/16d778226d9ce5de053938169df3f61ac828eda1) exact-SHA [Backend Gate #38140413857](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140413857) validate/readiness 2/2 SUCCESS, [Win32 Build #38140416697](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140416697) SUCCESS, [OpenXR #38140416646](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140416646) SUCCESS, [DX11 Fast #38140413916](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140413916) SUCCESS, [분리된 C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/dfa7c54f8464ee8aa5297632f25154945d92e636). 게임 메뉴/차량선택/레이스 화면 및 게임패드/Quest3/VDXR 실기 미실행 RUNTIME_VALIDATION=UNTESTED, native 정식 승격 없음. 이 TASK_ID 전체 구현·retry/C6는 최초 +1만, 향후 재보고 +0. **AI 점수: 이전 980점 + 이번 +1점 = 누적 981점.** RUN_KEY=CONVERSION-DX11-00544 |
 

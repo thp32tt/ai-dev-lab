@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1744 | ACTIVE | 2026-10-11 18:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1744 | ACTIVE | 2026-10-11 18:37 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 966 | ACTIVE | 2026-10-11 17:50 KST |
 
 ## 점수 규칙
@@ -36,7 +36,7 @@
 
 ## 변경 이력
 
-| 2026-10-11 18:45 KST | AI 1 | 1743 | +1 | 1744 | OutRun C2 신규 A242 q121 P0 이전 A241 dba874...와 다른 실제 저장 DDS SHA 3a4f71ce... 첫 독립 최종 게이트. 원본 f7847db9..., 공식 38d5c2c3..., A241, A242 4096² RGBA32/mip1 DDS 직접 전체 SHA 확인, RAW/FLIPY 100/75/50 및 CLEAN/lettering 분리층 실물 검수. 공식→A242 변경 RGBA9351 전부 Gas Pedal ROI 내(밖0), A241→A242 변경6715 ROI 밖0, 다른 29 UI 보존. 정본 가속 페달: 읽기/콜론 확인. 원본 서체/기울기 기준·전체 CLEAN/게임 증거 부족으로 C2 HOLD_STRICT_RECHECK, 기존 P0 실게임 IGR030/031/040 REWORK OPEN, 독립 PASS0, C3 NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 새로운 DDS 제작 C2 0. q161 A237은 기존 동일 SHA C1 REWORK를 C2로 재확인한 것이라 별도 점수 +0. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e841aea2795f66e6ad51959682bc6e6eed4ef857), [A242 독립 근거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q121-A242-FIRST-PERSISTED/C2_Q121_A242_INDEPENDENT_HOLD.json). AI 점수: 이전 1743점 + 이번 +1점 = 누적 1744점. RUN_KEY=OUTRUN-KOR-C2-A242-NEW-SHA-INDEPENDENT-20261011-1820 |
+| 2026-10-11 18:37 KST | AI 1 | 1743 | +1 | 1744 | OutRun C2 신규 A242 q121 P0 이전 A241 dba874...와 다른 실제 저장 DDS SHA 3a4f71ce... 첫 독립 최종 게이트. 원본 f7847db9..., 공식 38d5c2c3..., A241, A242 4096² RGBA32/mip1 DDS 직접 전체 SHA 확인, RAW/FLIPY 100/75/50 및 CLEAN/lettering 분리층 실물 검수. 공식→A242 변경 RGBA9351 전부 Gas Pedal ROI 내(밖0), A241→A242 변경6715 ROI 밖0, 다른 29 UI 보존. 정본 가속 페달: 읽기/콜론 확인. 원본 서체/기울기 기준·전체 CLEAN/게임 증거 부족으로 C2 HOLD_STRICT_RECHECK, 기존 P0 실게임 IGR030/031/040 REWORK OPEN, 독립 PASS0, C3 NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 새로운 DDS 제작 C2 0. q161 A237은 기존 동일 SHA C1 REWORK를 C2로 재확인한 것이라 별도 점수 +0. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e841aea2795f66e6ad51959682bc6e6eed4ef857), [A242 독립 근거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q121-A242-FIRST-PERSISTED/C2_Q121_A242_INDEPENDENT_HOLD.json). AI 점수: 이전 1743점 + 이번 +1점 = 누적 1744점. RUN_KEY=OUTRUN-KOR-C2-A242-NEW-SHA-INDEPENDENT-20261011-1820 |
 
 | 2026-10-11 18:29 KST | AI 1 | 1742 | +1 | 1743 | OutRun A242 ODD P0 q121 source-family manual-rejected A241 `dba8745f...` **new genuinely different licensed native Noto CJK Bold contour** with optical source italic, exact `가속 페달:` colon; new persisted RGBA32 DDS `3a4f71ce3fc9628192d56c971c69f5c8cf8ff3bb18b53bf991e0c8e27d238b4d` (ONE new unpromoted). Original/source & official unchanged, A241/A242 silhouette XOR2320, official->trial inside9351/outside0, other29 byte exact, saved decode mismatch0. True lossless native100/white75/black50/RAW visual inspection first-hand: clearer Korean connected contours than manually fragmented A241, **source-family typography remains HOLD_STRICT_RECHECK**, C2/C3/game UNTESTED, IGR030/031/040 OPEN, approved DDS0. Same work CI fail-closed retries 38127262909/38127513395/38127782871 score0; **only final** [Actions 38128069313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38128069313) produced candidate, [QA + state commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2d626a25b6e3020b890d71c5af554300828226f) remote HEAD verified. **AI 점수: 이전 1742점 + 이번 +1점 = 누적 1743점.** RUN_KEY=OUTRUN-KOR-A242-Q121-P0-BOLD-ITALIC-NATIVE-FONT-20261011-1800 |
 

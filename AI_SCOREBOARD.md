@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1765 | ACTIVE | 2026-10-11 23:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 990 | ACTIVE | 2026-10-11 23:09 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 991 | ACTIVE | 2026-10-11 23:17 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:17 KST | AI 2 | 990 | +1 | 991 | 신규 독립 TASK_ID=CONVERSION-DX11-00548: 실제 OutRun 게임 D3D9 TEX2 이중 UV 정점 레이아웃/stride와 stage-0 TEXCOORDINDEX 0/1를 DX11 네이티브 textured Draw/DrawIndexed 진단 화면에 연결. TEX1 UV1, TEX3, 비기본 좌표 크기, 단축 stride fail-closed C++/Python 회귀 변경 및 원래 DX9Ex Draw/Present·게임패드 보호. [material/validation-bearing SHA 897b6949](https://github.com/thp32tt/OutRun2006Tweaks/commit/897b6949ea9ca3ce5fa16c44e8c32db8bc10e444), exact-SHA [Backend Conversion Gate #38145871363](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145871363) validate+readiness smoke 전체 SUCCESS, [Win32 Build #38145874488](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145874488) SUCCESS, [DX11 Fast #38145871361](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145871361) SUCCESS, [OpenXR #38145871337/#38145874489](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145874489) SUCCESS. 실제 OutRun 메뉴/차량/레이스 HMD 픽셀과 Quest3/VDXR 입력 미검증, RUNTIME_VALIDATION=UNTESTED. 이번 독립 material 성과만 +1, 이전 00547 및 체크포인트 재검증 중복 가산 없음. **AI 점수: 이전 990점 + 이번 +1점 = 누적 991점.** RUN_KEY=CONVERSION-DX11-00548 |
+
 
 | 2026-10-11 23:09 KST | AI 2 | 989 | +1 | 990 | 독립 OutRun DX9Ex 실기 90→30~40 FPS 밀집 관중 패널 구간 급락 재현 보고 기반 **실제 R28 활성 Present 정밀 성능계측 C++ 구현**. 평균 XR 82.2/90.3Hz와 R28 최대 43.488/25.545ms·기존 R32 spikeCount=0 무효 관측 진단. 확인된 R28 활성 render Present에서 저비용 QPC frame interval, 25/33ms 이벤트, 5초 avg/P95/P99/max, drawSerial delta 계측 추가, 분석기 R28 dip CSV/threshold 카운트, 3부정변이 정적 회귀 및 CI policy 연결. [material SHA 7164d0c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/7164d0c7c22311cb8ad49a36e83ffb36180c0e13), 정확 SHA [DX9Ex Active Validation #38145559426](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145559426) policy/game/host/full-chain/package 5 jobs SUCCESS, [Domain #38145559452](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145559452) SUCCESS, [HUD #38145559421](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145559421) SUCCESS, [실기 regression issue #13](https://github.com/thp32tt/OutRun2006Tweaks/issues/13#issuecomment-6109863228) 기록. HMD GPU bottleneck 실기 미확정 RUNTIME_VALIDATION=UNTESTED. 독립 material 개선만 +1 (retry/bookkeeping 아님). **AI 점수: 이전 989점 + 이번 +1점 = 누적 990점.** RUN_KEY=OUTRUN-DX9EX-R28-ACTIVE-FRAME-PACING-20261011-AI2 |
 

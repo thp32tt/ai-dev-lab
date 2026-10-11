@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1773 | ACTIVE | 2026-10-12 01:18 KST |
+| AI 1 | ChatGPT (AI 1) | 1774 | ACTIVE | 2026-10-12 01:33 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1003 | ACTIVE | 2026-10-12 01:15 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 01:33 KST | AI 1 | 1773 | +1 | 1774 | OutRun C2 **최초 독립 신규 QA** (A248 제작과 별개의 C2 판정): q121 P0 Gas Pedal : → 가속 페달: 시험 DDS SHA eb9eeadbf1fec2be2976c9d3c579e119e1431e55fc83859878f3501469c09512. GitHub 영문 원본·공식본·시험본 3 DDS 실물 SHA 직접 확인, 저장 DDS 4096x4096 RGBA32 mip1 RAW/FLIPY, SOURCE/CLEAN/글자층/저장 후보 100/75/50 실제 픽셀 비교, 한글/콜론 readable, 원문 bbox 밖 공식→시험 변경0, 수정9662 픽셀 안쪽만, CLEAN alpha0, 저장 글자층 일치0 차이. 근접 1px margin 고위험을 유지하고 q121 한 레이블 **scoped STATIC_PASS + PLATE_PASS**일 뿐 전체 C2 PASS는 HOLD, C3 NOT_RUN, IGR-018/030/031/040 OPEN, RUNTIME_VALIDATION=UNTESTED. 생산 새 DDS 0개(같은 A248 생산 SHA 중복 집계 없음), 사용자 실게임 승인0. 독립 증거·큐·WORKLOG·진행 [커밋 cf7f5ba9](https://github.com/thp32tt/OutRun2006Tweaks/commit/cf7f5ba96b5952ca99cb302de66e9cecd42d23a4) push 및 원격 HEAD 확인. **AI 점수: 이전 1773점 + 이번 +1점 = 누적 1774점.** RUN_KEY=OUTRUN-KOR-C2-Q121-A248-NEW-SAVED-INDEPENDENT-20261012-0120 |
+
 
 | 2026-10-12 01:18 KST | AI 1 | 1772 | +1 | 1773 | 신규 독립 TASK_ID=OUTRUN-KOR-A248-Q121-P0-NATIVE-ITALIC-FONT-20261012-0100: q121 사용자 실게임 P0 가속 페달: 기존 A241 angular-spline 반려와 다른 실제 native-right-italic font white-face/navy-rim 제작법으로 저장된 4096×4096 RGBA32 DDS 시험본 1건 **SHA eb9eeadbf1fec2be2976c9d3c579e119e1431e55fc83859878f3501469c09512**. Canonical English source f7847db9.../official 38d5c2c3... 보존, 저장 DDS 변경9662픽셀 모두 원본 bbox 내/outside0, 인접 29셀 동일, 저장 디코드 불일치0, RAW/FLIPY/100·75·50 firsthand. GitHub-hosted [Actions #38154623179](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38154623179) SUCCESS, [new native DDS+producer QA](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A248-Q121-NATIVE-ITALIC-FONT-NEW-METHOD) 및 큐/상태/WORKLOG [remote HEAD c9170576](https://github.com/thp32tt/OutRun2006Tweaks/commit/c9170576711822bce0b1c935f2cfbec74be31050) 확인. 동일 A248 실행 전 실패·변수 수정 retry 별도 점수0. 공식 승격0, C2/C3/실게임 OPEN, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1772점 + 이번 +1점 = 누적 1773점.** RUN_KEY=OUTRUN-KOR-A248-Q121-P0-NATIVE-ITALIC-FONT-20261012-0100 |
 

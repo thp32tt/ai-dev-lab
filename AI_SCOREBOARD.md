@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1774 | ACTIVE | 2026-10-12 01:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1003 | ACTIVE | 2026-10-12 01:15 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1004 | ACTIVE | 2026-10-12 01:38 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 01:38 KST | AI 2 | 1003 | +1 | 1004 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00613: R30 FlatPerspectiveEffect 스테레오 HUD/오버레이의 반복 base projection 역행렬, 양안 eye pose 역행렬, eye FOV 투영 생성 비용을 정확한 pose/projection/eye key 캐시 미스에만 수행하도록 실제 C++ 최적화 및 무효화. 사용하지 않던 D3D9 per-HUD GetScissorRect/GetRenderState 제거, tracked viewport 우선+원래 GetViewport fallback, 기존 SkyGlow scene-before-HUD 및 오른쪽 눈 복원·행렬 곱셈 순서 유지. [최초 material SHA 8f15e87a](https://github.com/thp32tt/OutRun2006Tweaks/commit/8f15e87a6f98a6e77ef0b55c328d9ef98011f0cb), 동일 TASK 회귀 검사기 범위 수리 SHA 55b5fc7b/0942a891(12 부정변이). 별도 작업자의 XR 해상도 수정 후속 [정확한 validation-bearing SHA 6ca24333](https://github.com/thp32tt/OutRun2006Tweaks/commit/6ca24333720c321179fd066d2d6f9eed69c81a28)에서 [DX9Ex Active #38155723497](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38155723497) attempt2 policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38155723441](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38155723441) SUCCESS, [Full Source Impact #38155723421](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38155723421) 3/3 SUCCESS. 외부 병렬 commit은 src/hooks_misc.cpp 및 vrhost/src/main*.cpp 3개 파일만 변경, 이번 R30 C++·테스트·워크플로 불변. [C6 bookkeeping ce208d93](https://github.com/thp32tt/OutRun2006Tweaks/commit/ce208d936fb6c37c0a587502930bc56d964f6690). 취소된 초기 CI 재실행/동일 TASK 검증기 보정/C6/병렬 독립 변경은 추가 성과0. Quest3/VDXR/FPS/p95/p99 실기 미실행 RUNTIME_VALIDATION=UNTESTED, 실제 FPS 개선 미확정. **AI 점수: 이전 1003점 + 이번 +1점 = 누적 1004점.** RUN_KEY=CONVERSION-DX9EX-00613 |
 
 | 2026-10-12 01:33 KST | AI 1 | 1773 | +1 | 1774 | OutRun C2 **최초 독립 신규 QA** (A248 제작과 별개의 C2 판정): q121 P0 Gas Pedal : → 가속 페달: 시험 DDS SHA eb9eeadbf1fec2be2976c9d3c579e119e1431e55fc83859878f3501469c09512. GitHub 영문 원본·공식본·시험본 3 DDS 실물 SHA 직접 확인, 저장 DDS 4096x4096 RGBA32 mip1 RAW/FLIPY, SOURCE/CLEAN/글자층/저장 후보 100/75/50 실제 픽셀 비교, 한글/콜론 readable, 원문 bbox 밖 공식→시험 변경0, 수정9662 픽셀 안쪽만, CLEAN alpha0, 저장 글자층 일치0 차이. 근접 1px margin 고위험을 유지하고 q121 한 레이블 **scoped STATIC_PASS + PLATE_PASS**일 뿐 전체 C2 PASS는 HOLD, C3 NOT_RUN, IGR-018/030/031/040 OPEN, RUNTIME_VALIDATION=UNTESTED. 생산 새 DDS 0개(같은 A248 생산 SHA 중복 집계 없음), 사용자 실게임 승인0. 독립 증거·큐·WORKLOG·진행 [커밋 cf7f5ba9](https://github.com/thp32tt/OutRun2006Tweaks/commit/cf7f5ba96b5952ca99cb302de66e9cecd42d23a4) push 및 원격 HEAD 확인. **AI 점수: 이전 1773점 + 이번 +1점 = 누적 1774점.** RUN_KEY=OUTRUN-KOR-C2-Q121-A248-NEW-SAVED-INDEPENDENT-20261012-0120 |
 

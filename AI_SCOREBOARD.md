@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1778 | ACTIVE | 2026-10-12 02:27 KST |
+| AI 1 | ChatGPT (AI 1) | 1779 | ACTIVE | 2026-10-12 02:32 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1009 | ACTIVE | 2026-10-12 02:37 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 02:32 KST | AI 1 | 1778 | +1 | 1779 | OutRun B q104 신규 원본 글자 제작 성과: 미러 PSD 단일 영어 글자 레이어 606606B/ SHA256 eefb1c6a 검증, 원본 배경 없이 965x149 영문 글자 투명 PNG SHA256 6d88374a 신규 제작, PSD-only 무색 CLEAN 제안 native2048x256 PNG SHA256 0d3f46b6 생성. 원본/글자/QA manifest/WORKLOG [커밋 3bb109b5](https://github.com/thp32tt/OutRun2006Tweaks/commit/3bb109b5c1a273833dc03e27e9c14bd80d078f10) 게시 및 HEAD 검증. 이미지 생성기 입력 첨부는 불확정 SOURCE_REFERENCE_NOT_BOUND; 실제 한글 생성 PNG0/신규 DDS0, C2/C3/실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 다른 q092 결과 중복 가산 아님. **AI 점수: 이전 1778점 + 이번 +1점 = 누적 1779점.** RUN_KEY=OUTRUN-KOR-B-Q104-PSD-GLYPH-INPUT-PREP-20261012-0220 |
+
 
 | 2026-10-12 02:37 KST | AI 2 | 1008 | +1 | 1009 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00617: R30 XYZRHW HUD 정점별 OpenXR recommended eye extent 및 FOV tan() 보정 함수를 latched eye draw당 1회로 이동한 실제 C++ CPU hotpath 수정. 기존 world effect/양안 FOV/HUD X·Y와 Z/RHW·SkyGlow 불변, 6개 파괴변이 검사기와 Active 정책 통합. [material/validation-bearing SHA 33cd81fe](https://github.com/thp32tt/OutRun2006Tweaks/commit/33cd81feb77870763fa707968c3964c009e78e33), [DX9Ex Active #38159739259](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159739259) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain Isolation #38159739221](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159739221) SUCCESS, [Full Source Impact #38159739250](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159739250) 3/3 SUCCESS. 별도 [C6 bookkeeping 4d38fe2c](https://github.com/thp32tt/OutRun2006Tweaks/commit/4d38fe2c6ed4b76832bf5a08946b9d3549924ed6) 중복 가점 0. Quest3/VDXR 실기·FPS/p95/p99 미측정, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1008점 + 이번 +1점 = 누적 1009점.** RUN_KEY=CONVERSION-DX9EX-00617 |
 

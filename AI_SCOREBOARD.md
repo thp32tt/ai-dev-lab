@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1721 | ACTIVE | 2026-10-11 12:48 KST |
+| AI 1 | ChatGPT (AI 1) | 1722 | ACTIVE | 2026-10-11 12:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 961 | ACTIVE | 2026-10-11 12:35 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 12:50 KST | AI 1 | 1721 | +1 | 1722 | OutRun B369 짝수 P0 q060 원본 색·네이티브 자소별 수동 곡면/폴리곤 윤곽 변경으로 기존 B368 C2 반려 실루엣과 다른 **실제 신규 비승인 저장 DDS 1개** SHA `5b42316d777eb08c41f97e665b38e510c1df1820ecd74d78402efead26daddee` 완성. P2 실루엣 차이 10457px, P3 저장 DDS 알파 변화 5119px, RAW/FLIPY/100/50 직접 검토, 원본 bbox 안·외부 RGBA 변화0·저장 재디코딩 오차0. 광학 원본 이탤릭 가족 불일치로 정직한 **REWORK_REQUIRED_UNPROMOTED**; 공식 DDS 승격0, 독립 C2/C3/실게임 미검증, IGR044 OPEN. GitHub CPU [성공 실행](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38109144572), [실제 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B369-Q060-SOURCE-CONDITIONED-HEAVY-CONTOURS/B369_CONTROLLER_SAVED_VISUAL_QA.json), 상태·WORKLOG 반영 완료. 초회 P3 실패 재실행은 중복 점수0. AI 점수: 이전 1721점 + 이번 +1점 = 누적 1722점. RUN_KEY=`OUTRUN-KOR-B369-Q060-SOURCE-CONTOUR-HEAVY-20261011-1230` |
 
 | 2026-10-11 12:48 KST | AI 1 | 1720 | +1 | 1721 | OutRun C1 홀수 q121 **A238 신규 수동 자소 실저장 DDS 최초 독립 QA**. SHA 78806f6d... 신규/기존 A235R 1c13618e... 별도; 정본 f7847db9/공식 38d5c2c3 함께 4096² RAW/FLIPY 실제 SHA256 재검증·native/4x/75/50 5개 손실 없는 PNG와 수치 JSON+8-check QA 생성. 원본 대비 흰색 면적 96.65% 회복 확인했지만 강한 English racing italic에 비해 수동 한글 거의 직립·직각 glyph topology **C1 SOURCE_FAMILY REWORK_REQUIRED**; 원본 글자 영역 밖 RGBA/alpha0, 공식 DDS 승격0, C3/실게임 UNTESTED, IGR030/031/040 OPEN. [독립 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/7684697a713aa32ca285d2f14cdd6e9f55d5f0df), 원격 HEAD 검증. 반복 동일 SHA·이전 A235R 중복 아님. **AI 점수: 이전 1720점 + 이번 +1점 = 누적 1721점**. RUN_KEY=`OUTRUN-KOR-C1-Q121-A238-INDEPENDENT-MANUAL-ITALIC-20261011` |
 | 2026-10-11 12:48 KST | AI 1 | 1719 | +1 | 1720 | 신규 q060 ChatGPT 이미지 생성물의 실제 원본 글자영역 849x134 축소 QA 1회: 투명 RGBA 2172x724 원본 가시 글자 면적 bbox [67,188,2111,572] 정확히 식별하고 alpha 먼지 제거·프리멀티플라이드 알파 리샘플링. 원본 비율 유지 671x126 및 넓이 맞춤 800x126 두 개의 별도 SHA-bound 투명 PNG를 생성, 회색 native100·흰색 75·검정 50 비교 이미지도 직접 검사. 두 안 모두 원본 849x134 경계 바깥 가시 알파 픽셀 0, 가장자리 여백 A=89/4/89/4, B=24/4/25/4, 글자 및 콜론 읽힘. B가 시각적 꽉찬 배치에 더 적절하나 원본 정확 스타일/실제 CLEAN 합성과 인게임 확인은 미완료; 공식 DDS 0개, 독립 C2/C3 미실시, IGR044 OPEN, RUNTIME_VALIDATION=UNTESTED. 검사물 sandbox q060_imagegen_side_by_side_QA.png, q060_imagegen_fit_native_849x134.png; PNG SHA 21f6f26258cf40ca3bf949ba14098c3bbc28c726251fe6869e76416d3813200b. 이전 B368 검사 반복이 아닌 이미지 생성 방식의 첫 실제 리샘플링/알파 검증 성과에 +1, 별도 추가 승인 점수0. **AI 점수: 이전 1719점 + 이번 +1점 = 누적 1720점.** RUN_KEY=OUTRUN-KOR-Q060-IMAGEGEN-RESIZE-NATIVE-STATIC-QA-20261011-1247 |

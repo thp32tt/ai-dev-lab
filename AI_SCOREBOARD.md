@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1804 | ACTIVE | 2026-10-12 08:03 KST |
+| AI 1 | ChatGPT (AI 1) | 1805 | ACTIVE | 2026-10-12 08:11 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1046 | ACTIVE | 2026-10-12 08:01 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 08:11 KST | AI 1 | 1804 | +1 | 1805 | OutRun 한글화 A254 q175 P1 **신규 실제 저장 DDS 1개**: C286/C352 검수에서 REWORK 확정한 과거 쇼룸 roof/rail 글자 방식 폐기 후 네이티브 실제 한글 쇼룸 윤곽과 SOURCE 영어 금속 세로색 프로필·림·그림자 분리 방식으로 생산. 원문 SHA 9314372585b8309f2f8b3e714076ef1ad1999d770422a570398ef20a80ac10a5, 구 A216 반려 SHA a5e921ab2563a1ec6a3a1954a247a07d0a9adb9e101c4d73682600476e39323c, 새 DDS SHA d5789dc2eb173ad670eb0a5e80ec9e5cd174a66485d4afb3c05dc8571fce5855, 93,589 변경 RGBA 원본 bbox 밖0, 저장 DDS 디코딩 차0. [GitHub Actions #38182999125](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38182999125) SUCCESS, 생산자 FIRSTHAND native 100/white75/black50/RAW QA 기록 및 queue/progress/resume/WORKLOG/STATUS [원격 HEAD b0d6766a](https://github.com/thp32tt/OutRun2006Tweaks/commit/b0d6766a1b1cf677b12e41b13981ff82e5a45388). **시험 DDS 1개만 생산, 정식 승격0; C2/C3/사용자 게임 별개로 PENDING, IGR032 OPEN, RUNTIME_VALIDATION=UNTESTED**. 동일 작업 CPU 스크립트·시각 QA·상태 갱신은 1건으로 점수 중복 없음. **AI 점수: 이전 1804점 + 이번 +1점 = 누적 1805점.** RUN_KEY=OUTRUN-KOR-A254-Q175-P1-REAL-GLYPH-SOURCE-METAL-20261012-0800 |
 
 | 2026-10-12 08:03 KST | AI 1 | 1803 | +1 | 1804 | 신규 C2 q048 B407 고유 DDS SHA `b17750c7bee787be04bd62d553e2cbe8f08c82ffaffdd272dd673fb3cd92c8a7`를 원본 SOURCE 3c58bf95/기존 259153b9와 각각 실물 SHA 검증 및 저장 RAW/FLIP-Y/네이티브·75·50/새 CLEAN 독립 픽셀 QA. 청록 속도선 415픽셀 원본대로 복원, ROI 밖 RGBA·알파 변경0, OLD CLEAN/NEW CLEAN 차분 마스크도 415픽셀 정확 일치, DDS 저장 디코딩 불일치0. **신규 보호아트 복원 C2 SCOPED PASS**만 인정하고 q048 영문 대비 기존 한글 형태 REWORK와 IGR009 실게임 OPEN 유지. 신규 q030 영문 입력 2개도 검사했지만 정본 DDS 불일치 미확인 PLATE HOLD라 추가 점수 없음. [OutRun HEAD af33e9cf](https://github.com/thp32tt/OutRun2006Tweaks/commit/af33e9cfcc7177f4419d155c8e891543b54eb0c9) QA JSON 4/비교 PNG 7/queue·WORKLOG 원격 기록. C2 신규 제작 DDS0, 전체승인0, C3/런타임 UNTESTED. **AI 점수: 이전 1803점 + 이번 +1점 = 누적 1804점.** REVIEW_KEY=C2-Q048-B407-FIRST-NATIVE-AUDIT-20261012 |
 

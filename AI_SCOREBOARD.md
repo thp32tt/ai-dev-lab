@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1730 | ACTIVE | 2026-10-11 14:31 KST |
+| AI 1 | ChatGPT (AI 1) | 1731 | ACTIVE | 2026-10-11 15:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 15:00 KST | AI 1 | 1730 | +1 | 1731 | OutRun C2 짝수 q102 기존 C261 C3_PASS 동일 DDS SHA `d5ef9adb659e3013d9d3e581d89366a28599f250be1883e13c35c0f88d9338db` 대비 **새로운 독립 저장 DDS optical QA 결함** 발견: canonical SOURCE `17ee051e59d23c741c9df428dccd3ee2f7863c19a038f02db250001f44b6c121`, Native BC3/DXT5 2048×256 RAW/FLIPY 100% gray/75% white/50% black lossless 8 PNG. 두 한글 행 사이 단독 밝은 외곽선 파편, 거친 source-inconsistent white/navy stipple 확인. 원격 [커밋 638603f](https://github.com/thp32tt/OutRun2006Tweaks/commit/638603f12891f7944ec086d81eef688aa0da349d) 및 [evidence](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q102-NATIVE-ORPHAN-FRINGE/C2_Q102_INDEPENDENT_NATIVE_ORPHAN_REWORK.json) SHA 검증; C2 REWORK_REQUIRED로 역사적 같은-SHA C3 PASS 무효화. 증명되지 않은 CLEAN/slant/보호 마스크/캘리브레이션 HOLD, 새 C3 NOT_RUN, 신규 DDS0, 사용자 실기/RUNTIME_VALIDATION=UNTESTED. 동일 SHA 반복 PASS 보상 아니고 신발견 명백한 픽셀 결함 및 실증 증거에 1회만 가산. **AI 점수: 이전 1730점 + 이번 +1점 = 누적 1731점.** RUN_KEY=OUTRUN-KOR-C2-Q102-NEW-NATIVE-FRINGE-20261011-1456 |
 
 | 2026-10-11 14:31 KST | AI 1 | 1729 | +1 | 1730 | OutRun C393 C2 짝수 q048 **새로 발견한 실제 원본 보호 수평 속도선 누락** 및 원본 이탤릭 서체 불일치 QA. SHA-256 인증된 Sonic-TV SOURCE `3c58bf95…`, B_RECOVERY07 CLEAN `c83a87f6…`, 현재 공식 `259153b9…`를 2048² 저장 RGBA DDS/PNG로 실제 디코딩. 영문 텍스트 bbox 밖 x830..889에 원본 419 알파 픽셀 중 415 알파/RGBA 픽셀 SOURCE→CLEAN 제거 후 FINAL에서도 미복원, 오른쪽 대조 영역 변경0. 신규 실제 SOURCE/CLEAN/FINAL 100/75/50과 RAW 무손실 PNG4장 및 독립 8체크로 판정. 기존 동일 candidate C249 C/C3 PASS는 결함 발견으로 **REWORK_REQUIRED**로 무효화, 새 DDS/재승인/사용자 실기 통과0, 새 C3 NOT_RUN, IGR009 OPEN, RUNTIME_VALIDATION=UNTESTED. [QA 원격 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/2c894a7c1c6916d326219d7b05ff57de08319dc1). 동일 후보를 다시 PASS 처리하거나 동일 작업을 재가산하지 않음. **AI 점수: 이전 1729점 + 이번 +1점 = 누적 1730점**. RUN_KEY=OUTRUN-KOR-C393-C2-Q048-NEW-STREAK-AND-MORPHOLOGY-20261011-1430 |
 

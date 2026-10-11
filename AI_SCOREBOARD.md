@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1703 | ACTIVE | 2026-10-11 08:49 KST |
+| AI 1 | ChatGPT (AI 1) | 1704 | ACTIVE | 2026-10-11 09:13 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 958 | ACTIVE | 2026-10-11 08:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 09:13 KST | AI 1 | 1703 | +1 | 1704 | OutRun A237 ODD q161 **새 SHA의 BC3 실물 시험 DDS 1개**: C1 검증된 A236 정본 SOURCE/CLEAN caf59675820b65b4ded62b05e463bfb66c77878a4ba24a4f9ff810e36ff2b9f8 재사용, q161 R11 AQUARIUS→물병자리 한 영역만 새로운 네이티브 Nanum 윤곽→RAW geometry PNG→개별 face PNG→공통 `compose_lettering.py` 로 합성, 2048×2048 BC3 원본 포맷 그대로 실물 DDS SHA `fd1273493b52c39da0f858ca956d402e86b0b2f04f17987ca2cbf1878a2c68d0` 생성·GitHub 게시, 기존 A218 SHA8000601a·공식 SHA8ded8565 보존. 저장 DDS 재디코딩 alpha silhouette 완전 일치, 새 시험 차이11,552 RGBA 픽셀·936 BC3 블록 모두 원본 R11 이내/영역 밖0/다른37셀 원본 보존. 실제 gray100/white75/black50/RAW 비교에서 새 서체 180×48px vs 영문296×54px, A218 기존 폭189px보다 **오히려 과소·원문보다 약함**을 발견하여 **생산자 REWORK_REQUIRED_UNPROMOTED**, 품질 PASS0·공식 DDS 승격0·C1 신규 SHA/C3/실게임 미검수(RUNTIME_VALIDATION=UNTESTED). 제작법 분리 및 다른 SHA 실물 시험 생성 성과만 +1, 실패한 54px 크기 첫 실행·동일 TASK 재시도·동일 DDS 확인 점수0. [실제 자체 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A237-Q161-R11-NANUM-SEPARATED-GLYPH/A237_CONTROLLER_SAVED_DDS_VISUAL_REWORK.json), [Action #38097309315](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38097309315) 및 큐/resume/progress/WORKLOG/STATUS 반영. **AI 점수: 이전 1703점 + 이번 +1점 = 누적 1704점.** RUN_KEY=OUTRUN-KOR-A237-Q161-R11-NATIVE-NANUM-SEPARATED-GLYPH-20261011-0900 |
 
 | 2026-10-11 08:49 KST | AI 1 | 1702 | +1 | 1703 | OutRun 한글화 C1 홀수 q099 **기존 HOLD 동일 DDS에 대한 새로운 독립 네이티브 글꼴/기울임 결함 확정**: 정본 원본 DXT5 SHA d97206d8 및 현재 후보 SHA 70970da7 실제 524,416바이트 각각 인증, 2048×256 DDS 원본·후보 저장본 별도 디코딩, 제작 RAW/FLIPY PNG와 원본/후보 알파 0픽셀 불일치, 100/75/50%·200% 2줄 SOURCE/CLEAN/FINAL 손실 없는 PNG, RAW/배경 흰색·회색·검정 검수. 영어 원문 강한 가는 이탤릭 대비 한글이 각진/약한 이탤릭이고 전체 원본 비례와 양줄 간 배치가 원문과 다름을 시각 FAIL로 증거화, C1 REWORK_REQUIRED (과거 C345 플레이트 HOLD와 다른 신규 독립 판정), C3 NOT_RUN, 실게임 UNTESTED, 새 DDS/승인 0. [C383 GitHub 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/2783169cbf83338a3ee23a60fe5cd0bdd221f1b3), 원격 HEAD 동일 확인. 같은 후보 SHA를 재승인하지 않으며 새로운 독립 스타일 결함 성과 한 건에만 +1. **AI 점수: 이전 1702점 + 이번 +1점 = 누적 1703점.** RUN_KEY=OUTRUN-KOR-C1-Q099-NATIVE-STYLE-REWORK-FIRST-20261011-0840 |
 

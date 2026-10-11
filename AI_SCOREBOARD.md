@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1782 | ACTIVE | 2026-10-12 03:33 KST |
+| AI 1 | ChatGPT (AI 1) | 1783 | ACTIVE | 2026-10-12 03:41 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1017 | ACTIVE | 2026-10-12 03:38 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 03:41 KST | AI 1 | 1782 | +1 | 1783 | OutRun B q205 **신규 실제 영문 글자 독립 소스 준비**: 정확한 캐노니컬 SOURCE DDS SHA256 `58a75fe75b...` 33,554,560B 재검증, 실제 P0 두 레이블 OPTIONS/RANKINGS를 RAW→FLIPY 네이티브 [1591,1423,2316,1568]/[33,1245,930,1388]로 2개 영문 글자만 실제 분리. 원문과 동일한 alpha 픽셀 56371/68359 확인, alpha0 RGB 정리 및 투명 24px 테두리, 실제 신규 773x193/945x191 PNG와 독립 회색 QA JPG가 아닌 PNG 2장 총 4개, GitHub 원본/원격 base64 byte-identical 확인. 원본 PSD 76층 검토 후 직접 캐노니컬 DDS에서 분리. [q205 B 신규 source/QA/queue/resume/WORKLOG/STATUS 커밋 3a1af8ec](https://github.com/thp32tt/OutRun2006Tweaks/commit/3a1af8ece788c77e19b6c35db79177b035da7bdc) HEAD 확인. ImageGen 도구에 이 PNG가 실제 첨부됐다는 증거 없음 → 계약에 따라 SOURCE_REFERENCE_NOT_BOUND HOLD, 한글 생성 PNG0/DDS0, C2/C3/실게임 승인 없음 RUNTIME_VALIDATION=UNTESTED. q092/q104 준비 반복과는 다른 신규 P0 q205 두 원본; DDS 생산으로 점수 과대계산하지 않음. **AI 점수: 이전 1782점 + 이번 +1점 = 누적 1783점.** RUN_KEY=OUTRUN-KOR-B-Q205-P0-CANONICAL-ENGLISH-LETTERS-20261012-0330 |
+
 
 | 2026-10-12 03:38 KST | AI 2 | 1016 | +1 | 1017 | 신규 독립 TASK_ID=CONVERSION-DX11-00560: OutRun 실제 D3D9 DEFAULT 비-MSAA A8/X8 렌더타깃 텍스처를 GPU RT→정확 형식 GetRenderTargetData→CPU readback→D3D11 SRV/게임 네이티브 Draw/DrawIndexed/진단 inset에 연결한 C++ 신규 구현. unsupported DEFAULT 비RT·MSAA·형식/크기 불일치 fail-closed 및 DX9Ex Draw/Present/gamepad 유지. [material 95c4493c](https://github.com/thp32tt/OutRun2006Tweaks/commit/95c4493cf5574d3c8410b36b469c803d744a897f), 초기 CI의 source mutation 검사기 중복 형식 문자열 결함을 동일 TASK 내 수정하여 [정확한 validation-bearing 05546c43](https://github.com/thp32tt/OutRun2006Tweaks/commit/05546c433e56d72fc966c45424cfbf5fd8df671c)에서 [Backend Conversion Gate #38163791658](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163791658) 2/2 SUCCESS, [Win32 Release Build #38163796456](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163796456) SUCCESS, [OpenXR #38163796491](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163796491) SUCCESS, [DX11 Fast #38163791732](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163791732) SUCCESS. [C6 bookkeeping ab3b8e60](https://github.com/thp32tt/OutRun2006Tweaks/commit/ab3b8e60db50bb0d6c44d9ff827bed28ba0ff00b) 별도 [skip ci] +0 중복. HUD Inspector #38163796394 정적 EXE 분석 IN_PROGRESS(기록 시점); Quest3/VDXR 실제 메뉴/차량/레이스/패드 미실행 RUNTIME_VALIDATION=UNTESTED, 화면/성능 승격 미확정. **AI 점수: 이전 1016점 + 이번 +1점 = 누적 1017점.** RUN_KEY=CONVERSION-DX11-00560 |
 

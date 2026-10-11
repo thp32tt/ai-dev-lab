@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1766 | ACTIVE | 2026-10-11 23:25 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 991 | ACTIVE | 2026-10-11 23:17 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 992 | ACTIVE | 2026-10-11 23:29 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:29 KST | AI 2 | 991 | +1 | 992 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00606: D3D9Ex DirectGPU 호스트 per-frame D3D11 GetDesc 중복 COM 호출 4→2회 축소, R23 원본 양안 descriptors 1회 검증 후 immutable validatedDesc를 hold staging에 재사용하도록 실제 C++ 수정. D3D11 양안 크기/format/MSAA/mip/array parity 및 CPU→GPU 복사·XR stereo fail-closed 보존. [material validation-bearing SHA b50f22bb](https://github.com/thp32tt/OutRun2006Tweaks/commit/b50f22bb7740f44821a33c6428bd9a5a00da8e48), 새 Python 검증기 5부정변이와 정확 SHA [DX9Ex Active #38146069484](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38146069484) attempt3 policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38146069480](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38146069480) SUCCESS, [Full Source Impact #38146069499](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38146069499) 3/3 SUCCESS. 첫 2 attempts 동시 Git push 취소 이후 같은 SHA로 gate 재실행; retries/C6 추가 점수 없음. [C6 별도 기록](https://github.com/thp32tt/OutRun2006Tweaks/commit/4ed02ebba7368341816ddfbc9eb06a02ca622eea). Quest3/VDXR 실기·GPU/FPS P95/P99 미측정 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 991점 + 이번 +1점 = 누적 992점.** RUN_KEY=CONVERSION-DX9EX-00606 |
 
 | 2026-10-11 23:25 KST | AI 1 | 1765 | +1 | 1766 | OutRun 한글화 C1 q102 **신규 실물 SOURCE→CLEAN 플레이트 후보 3개** GitHub 게시. Canonical DXT5 원본 SHA17ee051e...에서 native 2048×256 원본 PNG SHA7c51a742... 정본 alpha 194236픽셀/194236 마스킹, 정확히 두 EFFECT 영역 합집합 밖0, CLEAN 내부 alpha0, 실제 CLEAN PNG SHAae251bdb..., removal mask SHAa6fc3f0a..., native SOURCE/CLEAN 비교 SHA5e2e1e00... 3건 GitHub 원격 binary fetch와 제작 원본 바이트 동일. [실물 material commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/bfd98bb0be8b8f69583c6e4605ab571631a4e039), [C1 QA 기록](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/plate_candidates/q102_20261011_native_clean/C1_Q102_CLEAN_AND_IMAGEGEN_FAIL_EVIDENCE.json). 별도 실제 ImageGen gen f147f11a는 타임 어택 모드 요청 대신 15코스 연속을 반환하여 오문구 FAIL, **이미지 생성 글자 생산 인정0**. 신규 3종 플레이트 준비 **하나의 성과** +1; C2 독립 PLATE_PASS 미완료, valid Hangul 새 PNG0, 시험 DDS0, 공식DDS0, C2/C3/game PASS0, RUNTIME_VALIDATION=UNTESTED, 원래 q102 C2 REWORK 유지. 동일 작업 관련 메타데이터·큐·로그 업데이트 중복 가점0. **AI 점수: 이전 1765점 + 이번 +1점 = 누적 1766점.** RUN_KEY=OUTRUN-KOR-C1-Q102-CLEAN-SOURCE-PLATE-20261011-2320 |
 

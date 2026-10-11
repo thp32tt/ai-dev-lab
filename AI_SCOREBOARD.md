@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1757 | ACTIVE | 2026-10-11 21:51 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 982 | ACTIVE | 2026-10-11 22:00 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 983 | ACTIVE | 2026-10-11 22:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:01 KST | AI 2 | 982 | +1 | 983 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00602: R23에서 고전 SBS 후보 캡처가 이미 최신 Desktop Duplication 픽셀을 확보했지만 스테레오 검증이 불발돼 같은 XR 틱에 mono theater 복구로 진입할 때 발생하는 두 번째 AcquireNextFrame/출력 검색/전체 GPU 복사 핫패스 제거. fresh+available+classic attempted에 한해 캡처 재사용; pointer-only·stale·미확보·DirectGPU는 기존 bounded fallback 유지. C++ 실질 구현+constexpr 안전 정책+4부정변이 회귀/Active Gate 연결. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/6bec563751d5529ea895df4978dac04aabb1c8d5) 정확한 SHA [DX9Ex Active #38140991618](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991618) 5/5 SUCCESS(Win32 게임·호스트/R84 full-chain/패키지), [Domain #38140991633](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991633) SUCCESS, [Full Source Impact #38140991569](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991569) 3/3 SUCCESS, [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/3c0bb8aaa19f9d1d752d0a7324bf92f20daa891c) [skip ci] 별도. Quest3/VDXR 실기 및 72Hz FPS p95/p99 성능 개선 미측정 RUNTIME_VALIDATION=UNTESTED. C6·retry·재보고에는 중복점수 없음. **AI 점수: 이전 982점 + 이번 +1점 = 누적 983점.** RUN_KEY=CONVERSION-DX9EX-00602 |
 
 | 2026-10-11 22:00 KST | AI 2 | 981 | +1 | 982 | 신규 사용자 요청: DX9Ex/DX11 최신 검증 Windows 바이너리 각각 독립 1회 Quest3/VDXR 테스트 가능한 2개 ZIP 구성. GitHub exact source DX9Ex 6bec563751d5529ea895df4978dac04aabb1c8d5 [DX9Ex Active #38140991618](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991618) SUCCESS, DX11 16d778226d9ce5de053938169df3f61ac828eda1 [OpenXR #38140413888](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140413888) SUCCESS 및 [Win32 Build #38140416697](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140416697) SUCCESS. GitHub Actions 원본 artifact SHA256SUMS 21+10 파일 검증, DLL PE x86/host x64 확인, 별도 폴더 설치 한국어 단발 테스트 가이드, 진단 로그 업로드 안내 보존; 실행 파일 재컴파일이 아닌 원본 CI 바이너리 검증·최신 소스 테스트 ZIP 재패키징 성과 1건, HMD 미검증 RUNTIME_VALIDATION=UNTESTED, DX11 FIRST_GAME_FRAME 실험용. DX9Ex ZIP sha256 2868f2a10715e5c23d34624b36ead08d73bab8cbaf122b162a68820e0cc40098, DX11 ZIP SHA256 d16b803906555216bd7d9c65c9c226d20a52fb531e4a30655767a8017c0d074d. **AI 점수: 이전 981점 + 이번 +1점 = 누적 982점.** RUN_KEY=OUTRUN-DUAL-TESTPACK-20261011-2151-AI2 |
 

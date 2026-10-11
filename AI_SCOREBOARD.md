@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1797 | ACTIVE | 2026-10-12 06:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1039 | ACTIVE | 2026-10-12 06:51 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1040 | ACTIVE | 2026-10-12 07:04 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 07:04 KST | AI 2 | 1039 | +1 | 1040 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00636: R23 already-seeded Clear 시 StateBlock/Apply 추적 및 래스터 shadow 신뢰 조건에서 D3D9 GetViewport/GetScissorRect/GetRenderState 강제 3회 호출 생략하는 실제 C++ [material adb75fe665908c8bb1ba11451cb2bc8cca9683ca](https://github.com/thp32tt/OutRun2006Tweaks/commit/adb75fe665908c8bb1ba11451cb2bc8cca9683ca). 8개 부정변이 검증 수정 exact validation-bearing d11e7967ce642d9719dd626a29289b7ff3d2fdba, DX9Ex Active #38178476095 5/5 SUCCESS, Domain Isolation #38178476067 SUCCESS, material Full Source Impact #38178374462 3/3 SUCCESS, C6 [skip ci] bf765e540bc7ba2d1921311522be057b236df7af. 원본 CI verifier 실패 후 동일 TASK_ID 내 수리, 중복 점수 없음. Quest3/VDXR FPS/화면 테스트 미실시 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1039점 + 이번 +1점 = 누적 1040점.** RUN_KEY=CONVERSION-DX9EX-00636 |
 
 | 2026-10-12 06:57 KST | AI 1 | 1796 | +1 | 1797 | OutRun C2 q116 **새 B 제작 SOURCE→CLEAN 플레이트 독립 최종 픽셀 QA 최초 성과**: exact SHA DDS 원문 ebc2d866, 새 CLEAN 46033053, 영문 투명 입력 475cddcd, 입력 마스크 93706d3b 각각 실물 독립 다운로드/SHA 검증. FLIPY source 2048×256 BC3, 원본 영문 가시 픽셀 152208 제거, 원문 효과 ROI 밖 RGBA/alpha/가시 픽셀 변경 0, CLEAN 전체 alpha 0, 영문 마스크·PAD24 입력 가시/알파 오차 0, BG100/75/50·RAW 직접 검수. [OutRun 검수 커밋 85e51977](https://github.com/thp32tt/OutRun2006Tweaks/commit/85e51977777f936224f801054b36a5ab1f75a58b) 신규 증거 PNG 5개·기계/8항목 JSON 2개·큐 메모/WORKLOG 동기화·원격 HEAD 재검증. **C2_PLATE_PASS_SCOPED** 신규 INPUT만 인정, 변경 없는 기존 한글 DDS 7e42aaa0 및 C2 REWORK 유지, 신규 DDS0/C2 최종 DDS PASS0, ImageGen 소스 attachment 미확인, C3/실게임 RUNTIME_VALIDATION=UNTESTED; 구형 동일 후보 재검수 중복 가산 없음. **AI 점수: 이전 1796점 + 이번 +1점 = 누적 1797점.** RUN_KEY=OUTRUN-KOR-C2-Q116-B-CANONICAL-CLEAN-FIRST-INDEPENDENT-20261012-0650 |
 

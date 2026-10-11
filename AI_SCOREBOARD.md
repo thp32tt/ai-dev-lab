@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1720 | ACTIVE | 2026-10-11 12:48 KST |
+| AI 1 | ChatGPT (AI 1) | 1721 | ACTIVE | 2026-10-11 12:48 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 961 | ACTIVE | 2026-10-11 12:35 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-11 12:48 KST | AI 1 | 1720 | +1 | 1721 | OutRun C1 홀수 q121 **A238 신규 수동 자소 실저장 DDS 최초 독립 QA**. SHA 78806f6d... 신규/기존 A235R 1c13618e... 별도; 정본 f7847db9/공식 38d5c2c3 함께 4096² RAW/FLIPY 실제 SHA256 재검증·native/4x/75/50 5개 손실 없는 PNG와 수치 JSON+8-check QA 생성. 원본 대비 흰색 면적 96.65% 회복 확인했지만 강한 English racing italic에 비해 수동 한글 거의 직립·직각 glyph topology **C1 SOURCE_FAMILY REWORK_REQUIRED**; 원본 글자 영역 밖 RGBA/alpha0, 공식 DDS 승격0, C3/실게임 UNTESTED, IGR030/031/040 OPEN. [독립 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/7684697a713aa32ca285d2f14cdd6e9f55d5f0df), 원격 HEAD 검증. 반복 동일 SHA·이전 A235R 중복 아님. **AI 점수: 이전 1720점 + 이번 +1점 = 누적 1721점**. RUN_KEY=`OUTRUN-KOR-C1-Q121-A238-INDEPENDENT-MANUAL-ITALIC-20261011` |
 | 2026-10-11 12:48 KST | AI 1 | 1719 | +1 | 1720 | 신규 q060 ChatGPT 이미지 생성물의 실제 원본 글자영역 849x134 축소 QA 1회: 투명 RGBA 2172x724 원본 가시 글자 면적 bbox [67,188,2111,572] 정확히 식별하고 alpha 먼지 제거·프리멀티플라이드 알파 리샘플링. 원본 비율 유지 671x126 및 넓이 맞춤 800x126 두 개의 별도 SHA-bound 투명 PNG를 생성, 회색 native100·흰색 75·검정 50 비교 이미지도 직접 검사. 두 안 모두 원본 849x134 경계 바깥 가시 알파 픽셀 0, 가장자리 여백 A=89/4/89/4, B=24/4/25/4, 글자 및 콜론 읽힘. B가 시각적 꽉찬 배치에 더 적절하나 원본 정확 스타일/실제 CLEAN 합성과 인게임 확인은 미완료; 공식 DDS 0개, 독립 C2/C3 미실시, IGR044 OPEN, RUNTIME_VALIDATION=UNTESTED. 검사물 sandbox q060_imagegen_side_by_side_QA.png, q060_imagegen_fit_native_849x134.png; PNG SHA 21f6f26258cf40ca3bf949ba14098c3bbc28c726251fe6869e76416d3813200b. 이전 B368 검사 반복이 아닌 이미지 생성 방식의 첫 실제 리샘플링/알파 검증 성과에 +1, 별도 추가 승인 점수0. **AI 점수: 이전 1719점 + 이번 +1점 = 누적 1720점.** RUN_KEY=OUTRUN-KOR-Q060-IMAGEGEN-RESIZE-NATIVE-STATIC-QA-20261011-1247 |
 
 | 2026-10-11 12:35 KST | AI 2 | 960 | +1 | 961 | OutRun DX11/DX9Ex 컨트롤러 **AI 자체 검증·직접 승격 개발 루프 전환**: 기본 VR_FEATURE_PROMOTION_MODE=ai, ChatGPT 작업자가 feature/target 최신 SHA compare·expected_sha 비강제 fast-forward로 승격하고 exact-SHA 필수 CI·아티팩트를 점검하도록 작업/롤오버 프롬프트와 Docker 설정 수정. 컨트롤러는 승인 대신 자기 승격 결과 감시·작업 충돌 보호·다음 FEATURE 배정을 수행; stale target marker가 feature SHA로 오인되지 않도록 검증. [핵심 구현](https://github.com/thp32tt/OutRun2006Tweaks/commit/8beef3f06fc43676f01e4b780e13c1f26228438c), [최종 회귀 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a42c02f282251741c1c4a5cd9fbfc962d42d85c), 정확한 SHA [Chat Controller Selftest #38108872218](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38108872218) SUCCESS, [VR progression #38108872193](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38108872193) SUCCESS. Docker 실행 인스턴스 재배포/실사용 새 컨트롤러 동작 미검증; 실제 게임/HMD RUNTIME_VALIDATION=UNTESTED. 기존 00591·00592 점수와 별개인 새로운 컨트롤러 구현 성과 1건만 +1. **AI 점수: 이전 960점 + 이번 +1점 = 누적 961점.** RUN_KEY=VR-AI-SELF-PROMOTION-20261011-1230 |

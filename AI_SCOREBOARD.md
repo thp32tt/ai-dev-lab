@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1777 | ACTIVE | 2026-10-12 02:11 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1007 | ACTIVE | 2026-10-12 02:22 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1008 | ACTIVE | 2026-10-12 02:24 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 02:24 KST | AI 2 | 1007 | +1 | 1008 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00616: 부분 Dynamic D3D9 VB/IB CPU shadow 유효 구간 병합 중 연속 vector::erase로 발생하는 이차 배열 이동을 sorted lower_bound + 단일 연속 erase로 변경하고 스테레오 draw당 선형 유효범위 탐색을 이진 탐색으로 대체한 실제 C++ 성능 hotpath 구현. 기존 Lock/Unlock, DISCARD, Release/Reset, shadow fail-open과 인접 구간 결합 보존; 회귀 검사기에서 8개 부정변이 및 8640 결정적 범위 쓰기 모델 수행(기존 descriptor 11개 유지). [material 및 validation-bearing SHA e83aa1ac](https://github.com/thp32tt/OutRun2006Tweaks/commit/e83aa1ace67723458fef51a6f05eda2fd8938195), 정확한 SHA [DX9Ex Active #38158762887](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158762887) policy/host/game/full-chain-compile/package 5/5 SUCCESS, [Domain Isolation #38158762857](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158762857) SUCCESS, [Full Source Impact #38158762868](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158762868) game/host MSVC + cross-domain 3/3 SUCCESS. 별도 [C6 bookkeeping 671224b2](https://github.com/thp32tt/OutRun2006Tweaks/commit/671224b27003bea828a48bc9dd3fc47c7ab328c3) 추가 가점 0. Quest3/VDXR 실기, FPS/p95/p99 미측정, RUNTIME_VALIDATION=UNTESTED, 성능 향상 실측 미확정. **AI 점수: 이전 1007점 + 이번 +1점 = 누적 1008점.** RUN_KEY=CONVERSION-DX9EX-00616 |
 
 | 2026-10-12 02:22 KST | AI 2 | 1006 | +1 | 1007 | 독립 TASK_ID=CONVERSION-DX11-00556: 실제 게임 D3D9 stage0 RGB MODULATE와 alpha SELECTARG1(TEXTURE)/SELECTARG2(DIFFUSE/CURRENT) 분리 연산을 진단 전용 네이티브 D3D11 PS 2종, 소유·Reset·Draw/DrawIndexed까지 C++로 구현. 19개 파괴변이 연결 검사 및 RGBA 수치 회귀 추가. [material SHA d5136c0b](https://github.com/thp32tt/OutRun2006Tweaks/commit/d5136c0b19430263fd34ab068eac4ae512a202fb) 최초 CI 실패의 오래된 테스트 source predicate 3곳 수리 후 [정확한 validation-bearing SHA 91e12fb3](https://github.com/thp32tt/OutRun2006Tweaks/commit/91e12fb3065544aa9f67bc9c337464f8b8b5effc). 동일 SHA [Backend Conversion Gate #38158602935](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158602935) validate/readiness 2/2 SUCCESS, [Build #38158608392](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158608392) SUCCESS, [OpenXR #38158608423](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158608423) SUCCESS, [HUD #38158608412](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158608412) SUCCESS, [DX11 Fast #38158602958](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158602958) SUCCESS. 별도 [C6 bookkeeping f3af8989](https://github.com/thp32tt/OutRun2006Tweaks/commit/f3af89893aa62e7c2950d933e593ce2f18c87fde) 추가 가점0, 게임/HMD/Quest3/VDXR/패드 미실행 RUNTIME_VALIDATION=UNTESTED, 네이티브 게임 정상동작 확정 아님. **AI 점수: 이전 1006점 + 이번 +1점 = 누적 1007점.** RUN_KEY=CONVERSION-DX11-00556 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1767 | ACTIVE | 2026-10-11 23:34 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 993 | ACTIVE | 2026-10-11 23:41 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 994 | ACTIVE | 2026-10-11 23:45 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:45 KST | AI 2 | 993 | +1 | 994 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00607: DX9Ex R33/R31 고밀도 드로우 StateBlockRecovery::FlushPendingResync()에서 실제 pending resync가 없고 provider가 정상 설정된 프레임마다 실행하던 두 callback atomic acquire·확인 핫패스를 스레드별 pending predicate + provider-ready 단축 경로로 줄이는 C++ 원본 수정. callback 미설정/부분 설정, Clear, pending 복구 및 복구 실패 fail-closed 보존. [최초 소스 material SHA 50d71dfb](https://github.com/thp32tt/OutRun2006Tweaks/commit/50d71dfbc8b9b9def4a339e284d05656d3fb967a)와 부정변이 검증기 오류 수리 후 [validation-bearing SHA f338851f](https://github.com/thp32tt/OutRun2006Tweaks/commit/f338851fae0776acdc6422d3b3bcce7c033fea6e) 확정. 새 Python 5 negative mutation PASS, 정확 SHA [DX9Ex Active #38147928203](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147928203) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38147928221](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147928221) SUCCESS, 소스 material SHA [Full Source Impact #38147847041](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147847041) 3/3 SUCCESS. 1차 부정 변이 테스트 예외 검사 문제로 CI 실패했으나 동일 TASK_ID에서 정상 수정, retry·C6 추가점수0. C6 [별도 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/af71925d7bd6833adf15d31f71a670d1b28dac99). 실제 Quest3/VDXR p95/p99 FPS·시각 실기 미측정 RUNTIME_VALIDATION=UNTESTED, FPS 향상량 확정 아님. **AI 점수: 이전 993점 + 이번 +1점 = 누적 994점.** RUN_KEY=CONVERSION-DX9EX-00607 |
 
 | 2026-10-11 23:41 KST | AI 2 | 992 | +1 | 993 | 독립 신규 TASK_ID=CONVERSION-DX11-00549: 실제 OutRun D3D9 TEX3 게임 정점의 세 번째 UV2를 안전한 FVF stride 디코더→stage0 TEXCOORDINDEX=2→DX11 네이티브 textured Draw/DrawIndexed→진단 Present inset 경로에 연결. TEX4·39바이트 미달 stride·존재하지 않는 UV3 거부 및 C++/Python 회귀 추가, 원본 DX9Ex Draw/Present·게임패드 유지. [material/validation-bearing SHA 9dca2d1a](https://github.com/thp32tt/OutRun2006Tweaks/commit/9dca2d1a47aa2fbb17135334063996187b5d7ae6), 정확한 SHA [Backend Gate #38147382287](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147382287) validate+readiness smoke SUCCESS, [Win32 Build #38147385492](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147385492) SUCCESS, [DX11 Fast #38147382281](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147382281) SUCCESS, OpenXR #38147382314/#38147385532 SUCCESS, HUD #38147385549 SUCCESS. [C6 별도 SHA 1714e61d](https://github.com/thp32tt/OutRun2006Tweaks/commit/1714e61d9321eb5e555f401dec586ee98f7e3a71) 기록, actual Quest3/VDXR 메뉴·차량·레이스·게임패드 UNTESTED, Native gameplay promotion 미실시. 동일 TASK 재검증/보고 중복 가산 없음. **AI 점수: 이전 992점 + 이번 +1점 = 누적 993점.** RUN_KEY=CONVERSION-DX11-00549 |
 

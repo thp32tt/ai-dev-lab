@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1710 | ACTIVE | 2026-10-11 10:29 KST |
+| AI 1 | ChatGPT (AI 1) | 1711 | ACTIVE | 2026-10-11 10:44 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 959 | ACTIVE | 2026-10-11 10:42 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 10:44 KST | AI 1 | 1710 | +1 | 1711 | OutRun B367 EVEN q060 새 분리형 글자면·측면·하이라이트 방식으로 신규 SHA-bound 4096×2048 RGBA32 DDS `52d97f845b7b3e588ebe5136cd299882001d509320fd4f8cc910270f314142d9` 첫 생산 및 실제 저장 DDS FLIPY 100/50, RAW 비교 증거; CLEAN 원문 89,391px, ROI 밖 변경0·저장 roundtrip0, B360 수평 띠 개선 확인. 동시에 소스 레이싱 금속 서체와 차이 확인해 생산 시각 REWORK_REQUIRED_UNPROMOTED 보류, 공식 C342·IGR044 유지, C2/C3/게임 미검증으로 허위 승인 없음. [CPU SUCCESS #38102408802](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38102408802), [B367 증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B367-Q060-SOURCE-CONDITIONED-CONTINUOUS-METAL-PILOT/B367_CONTROLLER_NATIVE_VISUAL_QA.json). 새 distinct 1개 실제 생산/QA 성과만 +1, 과거 B360 반복 검증 점수 없음. **AI 점수: 이전 1710점 + 이번 +1점 = 누적 1711점**. RUN_KEY=OUTRUN-KOR-B367-Q060-SMOOTH-SEPARATED-METAL-FIRST-SAVED-20261011-1030 |
 
 | 2026-10-11 10:42 KST | AI 2 | 958 | +1 | 959 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00592: DX9Ex FRAME_PACING_DIAGNOSTICS 기능의 실제 x86 게임 BeginScene/Present QPC 연결, Frame.v2 호환, x64 host 검증된 XR 제출 frameId 상관관계, 기본 OFF 제한 버퍼, CSV 수집기 및 실행형 회귀 테스트 최초 구현. [구현 material e9431196](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9431196afdbf02288d24545eb1a5f637801cb25), [validation-bearing ea890461](https://github.com/thp32tt/OutRun2006Tweaks/commit/ea890461b445f01903e690fc6fc4c13622292079), TARGET vr-d3d9ex-focus exact-SHA [DX9Ex Active #38102179453](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38102179453) 필수 jobs5·PACING-STAGES/REGRESSION/BUNDLE SUCCESS, [Domain #38102179485](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38102179485) SUCCESS, 동일 SHA의 게임+host+collector artifact 확인. C6 [별도 bookkeeping de511b3f](https://github.com/thp32tt/OutRun2006Tweaks/commit/de511b3fa6c508b624b6d63e3c2f84d4a6dd6244)은 FEATURE_BRANCH 저장; TARGET 인계 기록 반영은 컨트롤러 대기이며 추가 점수 없음. RUNTIME_VALIDATION=UNTESTED, 네이티브 FPS 보장하지 않음. AI 점수: 이전 958점 + 이번 +1점 = 누적 959점. RUN_KEY=CONVERSION-DX9EX-00592 |
 | 2026-10-11 10:29 KST | AI 1 | 1709 | +1 | 1710 | OutRun 독립 C2 짝수 q060 B360 최초 실제 저장 DDS 검수: 신규 SHA 930222103b57a3...는 기존 C374 PSD bab8dc25/C367 B351/C2 B359와 다름. 정본 SOURCE/공식/저장 B360 DDS와 CLEAN exact SHA 4종 검증, 네이티브 4096x2048 RGBA32 RAW/FLIPY·100/75/50 별도 생성·직접 확인. 원문→CLEAN 영어 89,391px 정확히 제거, 신규 글꼴 bbox source 이내. 공식→B360 93,196 RGBA 중 원문 좁은 bbox 밖 9,027 변경은 기존 공식 한글 오버플로 제거(기존 6,357 알파 가시→후보0, 새 외부 가시 픽셀0)로 검증. 새 B360는 원본과 불일치하는 획별 수평 오렌지 줄무늬·부족한 입체감으로 C2 REWORK_REQUIRED_UNPROMOTED, C3/실게임 UNTESTED, 공식 DDS 보존, C2 승인0. [실제 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/4f5769ee91cd605a1418d25b2689b5a4a66cbd4b) 원격 HEAD 일치 확인. 첫 독립 SHA 시각 검수 1성과만 +1, 이전 검수 재보고·재점수 없음. **AI 점수: 이전 1709점 + 이번 +1점 = 누적 1710점**. RUN_KEY=OUTRUN-KOR-C2-Q060-B360-FIRST-SAVED-NATIVE-20261011-1027 |

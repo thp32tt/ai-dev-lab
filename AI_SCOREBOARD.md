@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1753 | ACTIVE | 2026-10-11 20:50 KST |
+| AI 1 | ChatGPT (AI 1) | 1754 | ACTIVE | 2026-10-11 21:05 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 976 | ACTIVE | 2026-10-11 20:45 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 21:05 KST | AI 1 | 1753 | +1 | 1754 | OutRun C2 P0 q121 최초 NEW 독립 원본 PSD 정합성 검수: `FD90AA9` 실제 복사한 v02 PSD SHA `9531a50d9c080e5743373225405c4ade85284e25a6e9135c27101e19962f7d8a`, canonical English DDS SHA `f7847db97bedbe2168d545664b39eea77367a667dad6dbd95646888c241d4b3e` 직접 인증 후 PSD 합성 RGBA와 정본 DDS FLIP-Y **4096² 전체 16,777,216 픽셀 일치**, 변경 RGBA 0/alpha 0/보호 영역0. GitHub [C2 SHA-bound QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q121-PSD-V02-ENGLISH-CANONICAL-COMPARISON/C2_Q121_PSD_MATCH_CANONICAL_SOURCE_ONLY_QA.json) [commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/4f27a8fda99061d87640169101ad4f2655acd035); 영문 타입 레이어 식별, 원문 증명 SOURCE_REFERENCE_PASS만 신규 성과. CLEAN 추출/독립 PLATE_PASS와 한국어 DDS 재검수·C2 full/C3/사용자 게임은 미승인, official unchanged, IGR030/031/040 OPEN, RUNTIME_VALIDATION=UNTESTED. 기존 A242 저장 후보 SHA 재검수/신규 DDS 생산으로 계상하지 않음. **AI 점수: 이전 1753점 + 이번 +1점 = 누적 1754점.** RUN_KEY=OUTRUN-KOR-C2-Q121-PSD-V02-CANONICAL-FULLPIXEL-20261011 |
 
 | 2026-10-11 20:50 KST | AI 1 | 1752 | +1 | 1753 | OutRun 한글화 PSD 확대 조사 및 실파일 복사 신규 성과: Sonic-TV/OR2006Sprites pinned HEAD에서 PSD 184개 발견, 현재 큐 매칭 81개/65 자산/약 1.84GB 전체 카탈로그 생성. P0/P1 10개 q060/q121/q049/q205/q227/q212/q135/q230/q188/q176 실제 132,176,274 byte PSD 바이너리를 `localization/graphics/source_psd_upstream/`에 복사, Actions [38136463576](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136463576) SUCCESS, 원격 HEAD 656b3db6 10/10 Git blob SHA exact verified. 후속 복사본 PSD 실제 레이어 조사 [38136740911](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136740911) SUCCESS q060 81층/q121 204층/q049 56층; q121 독립 typed 'Gas Pedal:' 레이어 존재 확인. 독립 C2 CLEAN/DDS/실게임 승인 미실시·미주장, 제3자 라이선스 미확인. score unique +1, 추가 상태조회/재검증 중복 가점 없음. **AI 점수: 이전 1752점 + 이번 +1점 = 누적 1753점.** RUN_KEY=OUTRUN-KOR-PSD-MIRROR-81MATCH-10COPIES-20261011-2038 |
 

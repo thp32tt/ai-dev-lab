@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1767 | ACTIVE | 2026-10-11 23:34 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 992 | ACTIVE | 2026-10-11 23:29 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 993 | ACTIVE | 2026-10-11 23:41 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:41 KST | AI 2 | 992 | +1 | 993 | 독립 신규 TASK_ID=CONVERSION-DX11-00549: 실제 OutRun D3D9 TEX3 게임 정점의 세 번째 UV2를 안전한 FVF stride 디코더→stage0 TEXCOORDINDEX=2→DX11 네이티브 textured Draw/DrawIndexed→진단 Present inset 경로에 연결. TEX4·39바이트 미달 stride·존재하지 않는 UV3 거부 및 C++/Python 회귀 추가, 원본 DX9Ex Draw/Present·게임패드 유지. [material/validation-bearing SHA 9dca2d1a](https://github.com/thp32tt/OutRun2006Tweaks/commit/9dca2d1a47aa2fbb17135334063996187b5d7ae6), 정확한 SHA [Backend Gate #38147382287](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147382287) validate+readiness smoke SUCCESS, [Win32 Build #38147385492](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147385492) SUCCESS, [DX11 Fast #38147382281](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147382281) SUCCESS, OpenXR #38147382314/#38147385532 SUCCESS, HUD #38147385549 SUCCESS. [C6 별도 SHA 1714e61d](https://github.com/thp32tt/OutRun2006Tweaks/commit/1714e61d9321eb5e555f401dec586ee98f7e3a71) 기록, actual Quest3/VDXR 메뉴·차량·레이스·게임패드 UNTESTED, Native gameplay promotion 미실시. 동일 TASK 재검증/보고 중복 가산 없음. **AI 점수: 이전 992점 + 이번 +1점 = 누적 993점.** RUN_KEY=CONVERSION-DX11-00549 |
 
 | 2026-10-11 23:34 KST | AI 1 | 1766 | +1 | 1767 | OutRun C2 q102 **신규 C1 원본 SOURCE/CLEAN 2행 독립 PLATE_PASS**: 정본 BC3 DXT5 SHA17ee051e..., 실제 제작 CLEAN SHAae251bdb..., 원본 유효 알파 194236개 정확 제거·제거 마스크 밖 RGBA 0·영어 잔상/보호 픽셀 변경0, RAW/FLIPY 네이티브/75/50 검수. 초기 68379 불일치 분석은 raw/읽기방향 비교 오류로 정정, 실제 SOURCE-READABLE CLEAN 밖0 확인. **불변 plate_library 객체 2개·entry/review 등록, 독립 무손실 PNG4·기계/QA JSON·큐/resume/worklog** 동일 브랜치 [commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/a0ab4c32e51879a75d6e4dd499d364af6169678e) 원격 HEAD 확인. CLEAN 선행 조건 1건만 새 성과, 신규 한글 DDS0/전체 C2_PASS0/C3/game OPEN/RUNTIME_VALIDATION=UNTESTED, 재검수/재보고 +0. AI 점수: 이전 1766점 + 이번 +1점 = 누적 1767점. RUN_KEY=OUTRUN-KOR-C2-Q102-C1-NATIVE-CLEAN-FIRST-20261011-2320 |
 

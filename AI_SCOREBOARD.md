@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1729 | ACTIVE | 2026-10-11 14:17 KST |
+| AI 1 | ChatGPT (AI 1) | 1730 | ACTIVE | 2026-10-11 14:31 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 14:31 KST | AI 1 | 1729 | +1 | 1730 | OutRun C393 C2 짝수 q048 **새로 발견한 실제 원본 보호 수평 속도선 누락** 및 원본 이탤릭 서체 불일치 QA. SHA-256 인증된 Sonic-TV SOURCE `3c58bf95…`, B_RECOVERY07 CLEAN `c83a87f6…`, 현재 공식 `259153b9…`를 2048² 저장 RGBA DDS/PNG로 실제 디코딩. 영문 텍스트 bbox 밖 x830..889에 원본 419 알파 픽셀 중 415 알파/RGBA 픽셀 SOURCE→CLEAN 제거 후 FINAL에서도 미복원, 오른쪽 대조 영역 변경0. 신규 실제 SOURCE/CLEAN/FINAL 100/75/50과 RAW 무손실 PNG4장 및 독립 8체크로 판정. 기존 동일 candidate C249 C/C3 PASS는 결함 발견으로 **REWORK_REQUIRED**로 무효화, 새 DDS/재승인/사용자 실기 통과0, 새 C3 NOT_RUN, IGR009 OPEN, RUNTIME_VALIDATION=UNTESTED. [QA 원격 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/2c894a7c1c6916d326219d7b05ff57de08319dc1). 동일 후보를 다시 PASS 처리하거나 동일 작업을 재가산하지 않음. **AI 점수: 이전 1729점 + 이번 +1점 = 누적 1730점**. RUN_KEY=OUTRUN-KOR-C393-C2-Q048-NEW-STREAK-AND-MORPHOLOGY-20261011-1430 |
 
 | 2026-10-11 14:17 KST | AI 1 | 1728 | +1 | 1729 | OutRun C1 홀수 q121 **신규 A239 후보 SHA e3111774... 최초 독립 실제 저장 DDS QA**. 직전 A238 78806f6d... 별개 신규 4,916RGBA/785실루엣 변형, canonical source f7847db9 / official 38d5c2c3 / A238 / A239 4종 SHA256 인증, RAW/FLIPY/native100/white75/black50/400% 5개 PNG + machine/8-gate QA 생성. Source smooth fluid racing italic 대비 A239 한글 glyph square/segmented/effect style **REWORK_REQUIRED**, 보호 ROI 밖 RGBA/alpha0, 정식 DDS 무변경, C3/실게임 미검증. [원격 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/ec5f0c7c7c323ce7e9b4b4f3bb7ba0ffa9905420) HEAD 검증. 과거 q89, A238 및 동일 SHA 재승인/재보고 중복 가산하지 않음. **AI 점수: 이전 1728점 + 이번 +1점 = 누적 1729점**. RUN_KEY=`OUTRUN-KOR-C1-Q121-A239-FIRST-INDEPENDENT-OPTICAL-20261011-1410` |
 | 2026-10-11 14:07 KST | AI 1 | 1727 | +1 | 1728 | OutRun C392 C2 짝수 q028/q030 **새 강화 시각 QA에서 독립적으로 영문 원본-한글 후보 서체 불일치 확정** 및 기존 C246 C3 PASS 2건 무효화. 고정 Sonic-TV SOURCE q028 52cb2a56/q030 e8125cb5와 현재 DDS q028 1ced3cfa/q030 fa294ef9 SHA 검증, native 100/75/50 + RAW 총 12장 무손실 PNG, 원문 영역 밖 source→candidate RGBA/alpha 0. 글꼴 각진 네모 형태와 원본 둥글고 굵은 레이싱 이탤릭의 불일치가 실제 실픽셀·실용 50%에서 명백, 동일 SHA 재승인 금지. q028 과거 C175 CLEAN은 현재 A165R2 후보의 정식 플레이트가 아니며 구 CLEAN→CURRENT 목표 ROI 외 57,748 차이로 HOLD, q030 B148 CLEAN 원문 ROI 외0. q028/q030 모두 C3_STRICT_REWORK_REQUIRED, 신규 DDS0/신규 승인0/실게임 UNTESTED. [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/0f912bc6d6dfe3c671ea2f85a4518aa73701a164) 원격 HEAD 검증. 같은 QA 실행 묶음의 새 결함 발견/상태 시정 성과를 **1회만** +1. AI 점수: 이전 1727점 + 이번 +1점 = 누적 1728점. RUN_KEY=OUTRUN-KOR-C392-C2-Q028-Q030-STRICT-MORPHOLOGY-20261011-1405 |

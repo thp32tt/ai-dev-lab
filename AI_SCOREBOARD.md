@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1735 | ACTIVE | 2026-10-11 15:48 KST |
+| AI 1 | ChatGPT (AI 1) | 1736 | ACTIVE | 2026-10-11 15:55 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 15:55 KST | AI 1 | 1735 | +1 | 1736 | OutRun C2 짝수 q116의 과거 C263 동일 SHA 7e42aaa0f8aec535...C3 PASS에 대해 **새로 발견한 원본 서체·형태 시각 결함**을 실제 DDS 디코딩으로 증명. 영문 source ebc2d866... 및 공식 2048x256 BC3/DXT5 7e42aaa0... 각각 SHA 검증, RAW/FLIP-Y 100/75/50 lossless PNG 6장과 C2 팔항목 QA. Source rounded smooth racing italic Heart Attack Mode 대비 저장 후보 하트 어택 모드 각진 획/거친 외곽선, 폭 source1233px 대 candidate722px=58.6%, 높이144 대138=95.8%로 원본 시각 위계 불일치. C2 REWORK_REQUIRED, 역사적 같은-SHA C3 PASS 무효화, CLEAN/블라인드 검수/마스크 HOLD, 새 C3 NOT_RUN, 신규 DDS/승인0, 실제 게임 UNTESTED. 증거 [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/885143abc535ccdb744704030cf6396f8c966145)과 [JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q116-SOURCE-FAMILY-STRICT/C2_Q116_FIRST_STRICT_SOURCE_FAMILY_REWORK.json), 원격 HEAD SHA 인증. 동일 SHA 재승인이 아닌 신규 시각 결함 한 성과만 점수화. **AI 점수: 이전 1735점 + 이번 +1점 = 누적 1736점.** RUN_KEY=OUTRUN-KOR-C2-Q116-FIRST-STRICT-FAMILY-20261011-1550 |
 
 | 2026-10-11 15:48 KST | AI 1 | 1734 | +1 | 1735 | OutRun 홀수 q121 **새 A240 실저장 DDS 최초 독립 시각검증**. 이전 C1 검수된 A239 `e3111774...`와 달리 신규 SHA `4be07b63e3bc1bee32d5f5192e95c24f9e709512c03e7074e679a93551cd6936`; 영어/공식/이전/신규 4096² RAW/FLIPY 100·75·50% 4개 무손실 PNG, 직접 SHA 인증과 8체크+머신 JSON GitHub 반영. 기존 생산자 source-style REWORK와 독립으로 **신규 정확한 원문 문장부호 누락 발견**: 원본 Gas Pedal : / 공식 가속 페달:의 끝 콜론(:)이 A239/A240에서 사라짐. A239→A240 차이 RGBA 5797/가시알파 XOR738, 원문 ROI 밖 전체 RGBA/alpha0. **QA REWORK_REQUIRED**로 확정; 신규 C1 DDS0·승격0, C2/C3 PASS0, 사용자 실기 UNTESTED. [원격 증거 HEAD](https://github.com/thp32tt/OutRun2006Tweaks/commit/95a8384490f20f0f2492fa59ac1175c9130bbaa2); 같은 SHA 반복 C PASS나 A240 생산 성과 중복 아님. **AI 점수: 이전 1734점 + 이번 +1점 = 누적 1735점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A240-NEW-SHA-PUNCTUATION-STYLE-20261011-1540 |
 

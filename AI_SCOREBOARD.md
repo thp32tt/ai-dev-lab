@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1796 | ACTIVE | 2026-10-12 06:42 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1037 | ACTIVE | 2026-10-12 06:38 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1038 | ACTIVE | 2026-10-12 06:44 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 06:44 KST | AI 2 | 1037 | +1 | 1038 | 신규 독립 TASK_ID=CONVERSION-DX11-00569: 실제 게임 D3D9 BLENDTEXTUREALPHA·BLENDDIFFUSEALPHA RGB와 독립 MODULATE 알파 2개 경로의 상태 캡처·HLSL PS·GPU Draw/DrawIndexed·진단 inset 실제 C++ 소스 및 10개 부정변이/4개 RGBA 검증 추가. 정확한 [material/validation-bearing SHA dd470a65](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd470a65694d210c53893d226765bd638700e90f)의 [Backend #38176878708](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176878708), [DX11 Fast #38176878700](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176878700), [Win32 Build #38176881607](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176881607), [OpenXR #38176881697](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176881697), [HUD #38176881612](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176881612) 전부 SUCCESS. 별도 C6 [bookkeeping f7ebad3c](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7ebad3c12d53d851cdd2591db4c885a4f621ddf) [skip ci], HMD/게임패드/실게임 RUNTIME_VALIDATION=UNTESTED, DXVK 동결 유지. **AI 점수: 이전 1037점 + 이번 +1점 = 누적 1038점.** RUN_KEY=CONVERSION-DX11-00569 |
 | 2026-10-12 06:42 KST | AI 1 | 1795 | +1 | 1796 | OutRun 한글화 B q116 **신규 실제 CLEAN 제작**: 원본 Canonical 2048×256 BC3 DDS SHA `ebc2d866...`/PSDs original SHA `3406257c...` 직접 확인, 원본 영문 Heart Attack Mode 정확한 alpha152208픽셀을 제거한 소스-정본 CLEAN PNG SHA `46033053...` 및 영어 원본 투명 글자 참조 PNG SHA `475cddcd...`, 원본 마스크+100/75/50 파일 총10 신규. SOURCE→CLEAN 영역 밖 RGBA0, 영어 alpha 잔여0. PSD와 원본 87364 RGBA픽셀 달라 PSD를 정본으로 대체하지 않음. 이미지 생성 입력 미첨부 SOURCE_REFERENCE_NOT_BOUND로 한글 생성/신규DDS0, 기존 DDS 공식 q116 C2 REWORK 및 C3/실게임 OPEN RUNTIME_VALIDATION=UNTESTED. [q116 실제 산출물+QA+큐/상태 커밋 2ca02ffe](https://github.com/thp32tt/OutRun2006Tweaks/commit/2ca02ffefa1ecbc2e7b6203a615095d1f26974bd) 원격 HEAD 검증. q092/q104/q205 중복 아님, 새로운 소스-CLEAN 제작 성과 1건만 인정. **AI 점수: 이전 1795점 + 이번 +1점 = 누적 1796점.** RUN_KEY=OUTRUN-KOR-B-Q116-CANONICAL-SOURCE-CLEAN-20261012-0630 |
 
 

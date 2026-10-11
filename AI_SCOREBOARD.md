@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1740 | ACTIVE | 2026-10-11 17:42 KST |
+| AI 1 | ChatGPT (AI 1) | 1741 | ACTIVE | 2026-10-11 17:45 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 965 | ACTIVE | 2026-10-11 16:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 17:45 KST | AI 1 | 1740 | +1 | 1741 | 사용자 요청 B/C1 전체 자산 공통 ImageGen 프롬프트 작성 지침 추가 및 계약/레인 문서 필수 참조 연결. 원본별 명세·단일 crop·정본 문구·실패별 수정·실제 호출 기록 규칙. 동시 C2 변경 보존, 4개 문서 원격 내용 일치 및 HEAD [afc64eb](https://github.com/thp32tt/OutRun2006Tweaks/commit/afc64eb9a66b8f07b3f66258bc9c892e62f94f1d) 확인. 정책 구현 단일 성과; 신규 이미지/DDS/QA PASS 0, 개선효과 미시험, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1740점 + 이번 +1점 = 누적 1741점. RUN_KEY=OUTRUN-KOR-IMAGEGEN-PROMPT-GUIDE-20261011-1741 |
 
 | 2026-10-11 17:42 KST | AI 1 | 1739 | +1 | 1740 | OutRun C2 P0 홀수 q121 **A241 신규 SHA** dba8745f… 첫 독립 실제 4096² DDS 검수: source f7847db9… / official 38d5c2c3… / trial dba8745f… 각각 전체 SHA 인증, 동일 DDS 헤더/RAW·FLIPY·100/75/50 PNG4종 생성. 공식→시험본 실제 변경 RGBA 9558픽셀 전부 Gas Pedal ROI 내, 외부 RGBA·alpha0, 다른 UI 29셀 변경0. 콜론 2점 복구 확인하지만 영문 부드러운 레이싱 이탤릭 대비 한글 각진 획·좁은 페달 자간을 독립 시각 FAIL로 확정. **C2 REWORK_REQUIRED_UNPROMOTED**, SOURCE/CLEAN 완전 독립 승인 HOLD, 공식 DDS·C2 PASS·C3·게임 승인0, IGR030/031/040 OPEN, RUNTIME_VALIDATION=UNTESTED. [원격 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/cd07f766c4b17b88c22e6b34bf55263aab1df2c5), [검수 JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q121-A241-FIRST-NATIVE-REWORK/C2_Q121_A241_SAVED_NATIVE_INDEPENDENT_REWORK.json). 생산자가 이미 실패로 판정한 SHA를 PASS/생산 성과로 중복 계산하지 않고 **첫 독립 C2 실제 바이트·시각 검수 완료** 1회만 가산. AI 점수: 이전 1739점 + 이번 +1점 = 누적 1740점. RUN_KEY=OUTRUN-KOR-C2-Q121-A241-FIRST-INDEPENDENT-20261011-1720 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1761 | ACTIVE | 2026-10-11 22:25 KST |
+| AI 1 | ChatGPT (AI 1) | 1762 | ACTIVE | 2026-10-11 22:38 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 987 | ACTIVE | 2026-10-11 22:34 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:38 KST | AI 1 | 1761 | +1 | 1762 | OutRun C2 q193 A246 새로운 통합 시험 DDS SHA98066203... 최초 독립 직접 저장픽셀/영문원본/CLEAN/글자층/RAW·FLIPY 검증: 6원문 ROI 내부 변경 33,979, 외부0/alpha0, 4 Goal CLEAN source-alpha0와 실제 합성 일치, 기존 깨진 한글 교체를 원문/이전본/50%에서 확인. 증거 이미지3·기계/단계 JSON·큐/resume/WORKLOG 원격 반영 [QA commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/f707d62b4a79dc64bb5894eeb5cd556b33ab055b). 전체 q193 C2 HOLD, C3/사용자 IGR003/019/033 OPEN, 공식 DDS0, RUNTIME_VALIDATION=UNTESTED. 동일 SHA 이전 개별 A243/A245 검수는 성과로 중복 가산하지 않음. **AI 점수: 이전 1761점 + 이번 +1점 = 누적 1762점.** RUN_KEY=OUTRUN-KOR-C2-Q193-A246-INTEGRATED-INDEPENDENT-20261011-2235 |
 
 | 2026-10-11 22:34 KST | AI 2 | 986 | +1 | 987 | 신규 독립 TASK_ID=CONVERSION-DX11-00546: 실제 게임 원본 D3D9 TRIANGLEFAN VB/IB/UP P+2 스냅샷을 R30/R26-safe에 구현하고 인덱스 중심점·와인딩 보존 P*3 D3D11 TRIANGLELIST Native DrawIndexed에 연결, 원본 DX9Ex Draw/Present 및 게임패드 변경 없이 진단 inset 확장. 독립 C++17 정상·오입력 부정 검증 PASS, 소스 변이 회귀 포함. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/251c158a2381f07011ea1c76aad733fdf36c79ea) 정확한 SHA [Backend Conversion Gate #38143028095](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143028095) 2/2 SUCCESS, [Win32 Build #38143031425](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143031425) SUCCESS, OpenXR #38143031385/#38143028114 SUCCESS, [DX11 Fast #38143028109](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143028109) SUCCESS, [HUD Inspector #38143031414](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143031414) SUCCESS. [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/35db625a5bb5d14ba2627bf1550bea7fd82625bc) [skip ci]로 분리. 실제 메뉴/차량/레이스 픽셀 및 Quest3/VDXR·게임패드 실기 미검증 RUNTIME_VALIDATION=UNTESTED, 정식 네이티브 활성화 없음. 같은 TASK retry/C6/재보고 중복 +0. **AI 점수: 이전 986점 + 이번 +1점 = 누적 987점.** RUN_KEY=CONVERSION-DX11-00546 |
 

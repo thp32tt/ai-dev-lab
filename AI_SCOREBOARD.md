@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1734 | ACTIVE | 2026-10-11 15:28 KST |
+| AI 1 | ChatGPT (AI 1) | 1735 | ACTIVE | 2026-10-11 15:48 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 15:48 KST | AI 1 | 1734 | +1 | 1735 | OutRun 홀수 q121 **새 A240 실저장 DDS 최초 독립 시각검증**. 이전 C1 검수된 A239 `e3111774...`와 달리 신규 SHA `4be07b63e3bc1bee32d5f5192e95c24f9e709512c03e7074e679a93551cd6936`; 영어/공식/이전/신규 4096² RAW/FLIPY 100·75·50% 4개 무손실 PNG, 직접 SHA 인증과 8체크+머신 JSON GitHub 반영. 기존 생산자 source-style REWORK와 독립으로 **신규 정확한 원문 문장부호 누락 발견**: 원본 Gas Pedal : / 공식 가속 페달:의 끝 콜론(:)이 A239/A240에서 사라짐. A239→A240 차이 RGBA 5797/가시알파 XOR738, 원문 ROI 밖 전체 RGBA/alpha0. **QA REWORK_REQUIRED**로 확정; 신규 C1 DDS0·승격0, C2/C3 PASS0, 사용자 실기 UNTESTED. [원격 증거 HEAD](https://github.com/thp32tt/OutRun2006Tweaks/commit/95a8384490f20f0f2492fa59ac1175c9130bbaa2); 같은 SHA 반복 C PASS나 A240 생산 성과 중복 아님. **AI 점수: 이전 1734점 + 이번 +1점 = 누적 1735점.** RUN_KEY=OUTRUN-KOR-C1-Q121-A240-NEW-SHA-PUNCTUATION-STYLE-20261011-1540 |
 
 | 2026-10-11 15:28 KST | AI 1 | 1733 | +1 | 1734 | OutRun C2 짝수 q104의 이전 C263 동일 후보 C3 PASS에서 누락한 **독립 새 시각 결함 확정**. Canonical English SOURCE SHA `f0a8491585dd4f225c4707b63bd61ae43869cb9d243d9de881258add023c06e2`, 공식 DDS SHA `c84a2703d0a22b36384e07ce72d4e761e651a1a23219cd78153b4a0aff022505` 실제 저장 2048×256 BC3/DXT5 RAW/FLIPY 100/75/50를 SHA-256 결합 무손실 PNG8장으로 검수. English OutRun Mode의 둥근 굵은 레이싱 이탤릭 대비 Korean 아웃런 모드의 각진 글리프/거친 가장자리/과소 가로 폭(원문961px 대비597px=62.1%; 높이147→141) **원본 서체 계열 FAIL**. 과거 동일 SHA C3 PASS 무효화, 이번 C2 REWORK_REQUIRED, 새로운 C3 NOT_RUN, CLEAN/보호-mask/블라인드 교정 HOLD, 신규 DDS0/승인0/실게임 RUNTIME_VALIDATION=UNTESTED. [원격 QA SHA 확인](https://github.com/thp32tt/OutRun2006Tweaks/commit/1d8fcba2ce6ad8f8353794d453a09daf2e8ab59b), [증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q104-STRICT-NATIVE-SOURCE-FAMILY/C2_Q104_INDEPENDENT_STRICT_NATIVE_STYLE_REWORK.json). 동일 SHA 반복 PASS 점수 아님. **AI 점수: 이전 1733점 + 이번 +1점 = 누적 1734점.** RUN_KEY=OUTRUN-KOR-C2-Q104-SAVED-SOURCE-FAMILY-20261011-1526 |
 

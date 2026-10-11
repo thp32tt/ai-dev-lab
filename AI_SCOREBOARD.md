@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1770 | ACTIVE | 2026-10-12 00:33 KST |
+| AI 1 | ChatGPT (AI 1) | 1771 | ACTIVE | 2026-10-12 00:42 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 999 | ACTIVE | 2026-10-12 00:38 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:42 KST | AI 1 | 1770 | +1 | 1771 | OutRun C2 독립 신규 검수 1회: A247 q193 P1 신규 SOURCE 기반 세 CLEAN 영역 독립 PLATE_PASS (194236 원본 atlas 중 새 3영역 55717 영어 알파 제거, 바깥 변경0, 잔상0, 실제 CLEAN/저장 비교 native/50/RAW/FLIPY 확인); 불변 CLEAN 라이브러리와 증거/큐/WORKLOG 실제 [커밋 ddf8bc51](https://github.com/thp32tt/OutRun2006Tweaks/commit/ddf8bc5133de99eacd3ca46044d9c69f4031447c). 이후 C1 q102 새 BC3 시험 DDS SHA88f90ce7에 대해 독립 native/75/50/RAW 및 원문/플레이트/영문효과 bbox 첫 QA: 두 한글 문구 readable, visible bbox 초과0, 공식 후보 대비 지정 ROI 밖 RGBA0, alpha0 숨은 RGBA 차이 실측구분, 시각검수 범위 PASS이나 전체 승인은 HOLD, 실제 [커밋 e73a291c](https://github.com/thp32tt/OutRun2006Tweaks/commit/e73a291c126bc96c5a82852758aa634240642fc8). C1 기생산 DDS는 생산 점수로 중복 가산0, q193 같은 SHA 원래 검사 재보고0; 이번 C2 새 플레이트 증거·독립 검수 실행 1회 성과 +1. 전체 q193/q102 C2 최종 PASS0, 공식 승격0, C3/사용자 실게임 UNTESTED. AI 점수: 이전 1770점 + 이번 +1점 = 누적 1771점. RUN_KEY=OUTRUN-C2-20261012-A247-Q193-PLATE-C1-Q102-SAVED-FIRST-REVIEW |
 
 | 2026-10-12 00:38 KST | AI 2 | 998 | +1 | 999 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00610: DX9Ex R30 HUD/XYZRHW asymmetric-FOV 화면 보정의 4회/draw tan() 반복 호출을 poseSequence 및 양안 left/right FOV의 정확한 값 캐시 히트에서 제거하는 실제 C++ 최적화. FOV/pose 변경 시 재계산, NaN/너비/scale/offset 기존 광학 안전조건 보존, C++ 카운팅/숫자 동등성 및 부정변이 회귀 검증. [최초 material SHA a5cd2cea](https://github.com/thp32tt/OutRun2006Tweaks/commit/a5cd2cea5e6d0f0a912bada6a01b77c45cdf8325), 동일 TASK 테스트 기대값 오류 수리 뒤 정확한 [validation-bearing SHA 7f8ecc47](https://github.com/thp32tt/OutRun2006Tweaks/commit/7f8ecc473921b35608ba3b45cdfc7f4814e5e562). [DX9Ex Active #38151606328](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38151606328) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38151606354](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38151606354) SUCCESS. 최초 material SHA의 [Full Source Impact #38151371899](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38151371899) 3/3 SUCCESS (최종 7f8 SHA에서는 별도 실행되지 않았음). [C6 bookkeeping bfa41df2](https://github.com/thp32tt/OutRun2006Tweaks/commit/bfa41df233dca3e27d824248f4732b8b939a93e4). Quest3/VDXR 사용자 실기·FPS p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED, 실제 프레임 개선량 미확정. 동일 TASK retry/C6는 +0, 새 material 성과 1회만 가산. **AI 점수: 이전 998점 + 이번 +1점 = 누적 999점.** RUN_KEY=CONVERSION-DX9EX-00610 |
 

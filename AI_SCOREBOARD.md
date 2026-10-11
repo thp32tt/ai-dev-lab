@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1737 | ACTIVE | 2026-10-11 16:20 KST |
+| AI 1 | ChatGPT (AI 1) | 1738 | ACTIVE | 2026-10-11 16:46 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 965 | ACTIVE | 2026-10-11 16:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 16:46 KST | AI 1 | 1737 | +1 | 1738 | OutRun C2 짝수 q044 실제 원본/CLEAN/저장 DDS 2048² RGBA32 SHA-256 인증 및 **독립 12개 레이블 전체 P1/P2 마스크 재계산**: 영문 SOURCE `2472c7aa...`, B238 CLEAN `fd80f7f6...`, 동일 C249 공식 후보 `2250de2b...`; RAW Y mirror와 READABLE FLIPY 방향 정규화. SOURCE→CLEAN 원문 109604 RGBA/alpha 제거, source-mask 밖/보호 변경0, CLEAN→FINAL 86064 변경 원본 허용 마스크 밖/보호0, 12/12 원문 bbox 범위 내 양의 여백. 실제 저장 이미지 READABLE native100/white75/black50 및 RAW 독립 13장 PNG에서 `Stage→스테이지`, `Rival→라이벌` 원문의 굵고 부드러운 둥근 레이싱 이탤릭과 다른 세로 직립감/각진 가는 한글 서체 **신규 독립 source-family 시각 결함** 발견; 숫자 PASS보다 시각 FAIL 우선. C2 REWORK_REQUIRED, 과거 같은 후보 C249 C3 PASS 무효화, 별도 신규 C3 NOT_RUN, 승인/신규 DDS0, 실제 사용자 실기 UNTESTED. [원격 검증 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/f49fc0be8f0bdb0b34c3c78ab002b4d9e647ac49), [근거 JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q044-STRICT-NATIVE-SOURCE-FAMILY/C2_Q044_NEW_SOURCE_FAMILY_REWORK.json); 동일 SHA 재승인이 아닌 처음 엄격 source-family 독립 재판정 1건에만 +1. **AI 점수: 이전 1737점 + 이번 +1점 = 누적 1738점.** RUN_KEY=OUTRUN-KOR-C2-Q044-STRICT-NEW-STYLE-20261011-1640 |
 
 | 2026-10-11 16:24 KST | AI 2 | 964 | +1 | 965 | 13:00 KST 이후 DX11/DX9Ex 작업 동시 정체 조사: GitHub 최신 게임 HEAD와 13:10~13:19 마지막 컨트롤러 체크포인트로 공통 큐 정체 확인. VR 전용 컨트롤러의 /status HTTP 200 정상 표시 중 event-loop freeze 미감지 보완(독립 프로세스 watchdog, 12m heartbeat stale 후 Docker 자동복구), busy Chrome 탭이 40m 강제 재개를 영구 차단하던 조건 수정(30m 기존 작업 보호 / 40m 강제 회복), Dockerfile/compose 통합, 실행/회귀 테스트 및 워크플로 확장. GitHub 컨트롤러 SHA [aee257c](https://github.com/thp32tt/OutRun2006Tweaks/commit/aee257c899830d5aa0b9d79822bce68db89eea8d), [VR controller progression regression #38121104690](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38121104690) SUCCESS 및 [Chat Controller Selftest #38121174758](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38121174758) SUCCESS. N100 라이브 배포/재개 검증은 미실행이며 배포는 사용자 담당. 신규 컨트롤러 정책·구현 단일 성과 1회. **AI 점수: 이전 964점 + 이번 +1점 = 누적 965점.** RUN_KEY=VR-CONTROLLER-STALLED-SCHEDULER-RECOVERY-20261011 |
 

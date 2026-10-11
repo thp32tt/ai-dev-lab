@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1775 | ACTIVE | 2026-10-12 01:56 KST |
+| AI 1 | ChatGPT (AI 1) | 1776 | ACTIVE | 2026-10-12 02:01 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1005 | ACTIVE | 2026-10-12 01:53 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 02:01 KST | AI 1 | 1775 | +1 | 1776 | OutRun C2 새 영역 2개 **최초 독립 근거 QA**: q193 A246 기존 DDS SHA98066203의 과거 C2 검수 범위에 없던 OutRun2SP Arcade Rank Help / OutRun Single Rank Help에 대해 영문 SOURCE SHA d308bf05, A206 CLEAN SHA be61cd8a, 저장 DDS 실제 2048×1024 RGBA32 mip1 RAW/FLIPY native/75/50 픽셀 검증. 소스 영어 알파 25334/26312개 CLEAN=0, source→clean RGBA 변경 25334/26312 전부 원문 bbox 내부, CLEAN→저장 23801/23559 변경도 bbox 외부 0, 저장 글자 알파 원문 밖 0, 가짜 획/오자 없이 한글 두 줄 가독. 현행 글자별 단문 폭 차이 허용; C2 two scoped static/plate PASS, q193 전체 HOLD, C3 별도 NOT_RUN, 실게임 IGR003/019/033 OPEN, RUNTIME_VALIDATION=UNTESTED. **기존 저장 DDS SHA 재생산 성과0**, 이미 검수한 나머지 10개 영역 중복 점수0, 새 독립적으로 미검수 영역 2개 검증 한 성과만 +1. [GitHub 독립 QA + 큐/WORKLOG/resume/progress 커밋 ff6dc146](https://github.com/thp32tt/OutRun2006Tweaks/commit/ff6dc146bd63a914198d9b19c3460315407a0823) push/HEAD 확인. **AI 점수: 이전 1775점 + 이번 +1점 = 누적 1776점.** RUN_KEY=OUTRUN-C2-20261012-Q193-TWO-UNREVIEWED-RANKHELP-NEW-PIXEL-STAGES |
+
 
 | 2026-10-12 01:56 KST | AI 1 | 1774 | +1 | 1775 | OutRun 한글화 B/C1 ImageGen 참조 입력 교정: 실제 SHA-검증된 q092 938,768B PSD 복사본에서 2048x256 투명 영문 합성본 2줄을 네이티브 PNG 931x119,1070x113으로 분리해 각각 SHA-256/원본좌표/PSD SHA 증거 manifest 생성. 이전 두 ImageGen 화면생성 실패의 근본 취약점(영문 글자 참조 미바인딩)을 사전 차단하도록 계약/프롬프트/B 이미지 생성 지침 변경. [실제 GitHub 커밋 a17eaa34](https://github.com/thp32tt/OutRun2006Tweaks/commit/a17eaa348dbbc37a605783419f0c1ed51d9660ef) 원격 HEAD 확인, DDS0, 새로운 한글 생성 없음, C2/C3/실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 기존 B q092 재렌더 성공으로 부풀리지 않고 별개 실제 PSD/입력 게이트 성과로 +1. **AI 점수: 이전 1774점 + 이번 +1점 = 누적 1775점.** RUN_KEY=OUTRUN-KOR-B-PSD-ENGLISH-ONLY-INPUT-GATE-20261012-0148 |
 

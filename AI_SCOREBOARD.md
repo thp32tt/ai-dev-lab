@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1737 | ACTIVE | 2026-10-11 16:20 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 965 | ACTIVE | 2026-10-11 16:24 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 16:24 KST | AI 2 | 964 | +1 | 965 | 13:00 KST 이후 DX11/DX9Ex 작업 동시 정체 조사: GitHub 최신 게임 HEAD와 13:10~13:19 마지막 컨트롤러 체크포인트로 공통 큐 정체 확인. VR 전용 컨트롤러의 /status HTTP 200 정상 표시 중 event-loop freeze 미감지 보완(독립 프로세스 watchdog, 12m heartbeat stale 후 Docker 자동복구), busy Chrome 탭이 40m 강제 재개를 영구 차단하던 조건 수정(30m 기존 작업 보호 / 40m 강제 회복), Dockerfile/compose 통합, 실행/회귀 테스트 및 워크플로 확장. GitHub 컨트롤러 SHA [aee257c](https://github.com/thp32tt/OutRun2006Tweaks/commit/aee257c899830d5aa0b9d79822bce68db89eea8d), [VR controller progression regression #38121104690](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38121104690) SUCCESS 및 [Chat Controller Selftest #38121174758](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38121174758) SUCCESS. N100 라이브 배포/재개 검증은 미실행이며 배포는 사용자 담당. 신규 컨트롤러 정책·구현 단일 성과 1회. **AI 점수: 이전 964점 + 이번 +1점 = 누적 965점.** RUN_KEY=VR-CONTROLLER-STALLED-SCHEDULER-RECOVERY-20261011 |
+
 
 | 2026-10-11 16:20 KST | AI 1 | 1736 | +1 | 1737 | OutRun 한글화 C1 홀수 q119 기존 A192R 동일 SHA `b29c0bb0...`를 중복 PASS/재생산하지 않고, 과거 C297의 첫 글자 광륜 복구 HOLD와는 **별도의 새로운 실제 원본 서체·시각적 위계 FAIL**을 처음 독립 확정. SHA-256 인증한 실제 DXT5 2048x256 원본 `2336da3...`와 공식 후보 `b29c0bb...` 네이티브/RAW/FLIP-Y/100·75·50% PNG 4장 + 수치/8체크 QA. 원문 Time Attack Mode의 유려하고 넓은 racing italic 대비 한글 타임 어택 모드는 각지고 좁은 글씨: 알파 가시 폭 1239→597(48.18%), 높이144→132(91.67%). 정확한 영문 글자+광륜 RAW 범위 밖 변경 RGBA/alpha=0/0; tight-alpha 범위의 효과 픽셀은 구분하여 보고. **C1 REWORK_REQUIRED** 새로운 증거이며 공식 DDS·C2/C3 승인·실게임 상태 변경 없음. [증거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/d660dbb76959bc616c1816ab7d20674ffadac372), RUNTIME_VALIDATION=UNTESTED. 과거 동일 후보 제조·C297 광륜 PASS 재계상은 +0, 이번 새 광학 결함 판정 단일 성과 +1. **AI 점수: 이전 1736점 + 이번 +1점 = 누적 1737점.** RUN_KEY=OUTRUN-KOR-C1-Q119-NEW-OPTICAL-HIERARCHY-20261011-1617 |
 

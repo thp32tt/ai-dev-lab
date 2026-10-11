@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1782 | ACTIVE | 2026-10-12 03:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1016 | ACTIVE | 2026-10-12 03:37 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1017 | ACTIVE | 2026-10-12 03:38 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 03:38 KST | AI 2 | 1016 | +1 | 1017 | 신규 독립 TASK_ID=CONVERSION-DX11-00560: OutRun 실제 D3D9 DEFAULT 비-MSAA A8/X8 렌더타깃 텍스처를 GPU RT→정확 형식 GetRenderTargetData→CPU readback→D3D11 SRV/게임 네이티브 Draw/DrawIndexed/진단 inset에 연결한 C++ 신규 구현. unsupported DEFAULT 비RT·MSAA·형식/크기 불일치 fail-closed 및 DX9Ex Draw/Present/gamepad 유지. [material 95c4493c](https://github.com/thp32tt/OutRun2006Tweaks/commit/95c4493cf5574d3c8410b36b469c803d744a897f), 초기 CI의 source mutation 검사기 중복 형식 문자열 결함을 동일 TASK 내 수정하여 [정확한 validation-bearing 05546c43](https://github.com/thp32tt/OutRun2006Tweaks/commit/05546c433e56d72fc966c45424cfbf5fd8df671c)에서 [Backend Conversion Gate #38163791658](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163791658) 2/2 SUCCESS, [Win32 Release Build #38163796456](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163796456) SUCCESS, [OpenXR #38163796491](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163796491) SUCCESS, [DX11 Fast #38163791732](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163791732) SUCCESS. [C6 bookkeeping ab3b8e60](https://github.com/thp32tt/OutRun2006Tweaks/commit/ab3b8e60db50bb0d6c44d9ff827bed28ba0ff00b) 별도 [skip ci] +0 중복. HUD Inspector #38163796394 정적 EXE 분석 IN_PROGRESS(기록 시점); Quest3/VDXR 실제 메뉴/차량/레이스/패드 미실행 RUNTIME_VALIDATION=UNTESTED, 화면/성능 승격 미확정. **AI 점수: 이전 1016점 + 이번 +1점 = 누적 1017점.** RUN_KEY=CONVERSION-DX11-00560 |
 
 | 2026-10-12 03:37 KST | AI 2 | 1015 | +1 | 1016 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00621: DX9Ex DirectGPU per-Present D3D9Ex adapter LUID COM 왕복 및 GetDeviceCaps 반복 호출을 장치별 성공결과 캐시로 제거하는 실제 R7 C++ 핫패스 수정. Reset/ResetEx·장치 교체 무효화, 호스트 LUID 실시간 비교·XR per-frame seqlock 보존, 기존 정책 검증기 13개 파괴변이 검사 통합. [정확한 material+validation SHA 6381f12b](https://github.com/thp32tt/OutRun2006Tweaks/commit/6381f12bafd9a3e8a5d7329c797f506ca4e0cdc2); [DX9Ex Active #38163938991](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163938991) policy/game/Win32 full-chain/host/package 5/5 SUCCESS, [Domain #38163938980](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163938980) SUCCESS, [Full Source Impact #38163938969](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163938969) 3/3 SUCCESS. [C6 bookkeeping ab0b94ed](https://github.com/thp32tt/OutRun2006Tweaks/commit/ab0b94ed651b98236b6af8737b02f8aff07072e0) 별도 [skip ci] 기록, 중복 점수 없음. Quest3/VDXR 실기 및 p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1015점 + 이번 +1점 = 누적 1016점.** RUN_KEY=CONVERSION-DX9EX-00621 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1760 | ACTIVE | 2026-10-11 22:23 KST |
+| AI 1 | ChatGPT (AI 1) | 1761 | ACTIVE | 2026-10-11 22:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 985 | ACTIVE | 2026-10-11 22:16 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:25 KST | AI 1 | 1760 | +1 | 1761 | q102 canonical English DDS SHA17ee051e... 직접 읽기 방향 디코딩 및 실제 원본 RGBA/알파 보존 PNG 3개 신규 제작·GitHub 바이너리 게시 (전체, Time Attack Mode, 15 Continuous Course; SHA 7c51a742/218a08ff/73aecc01); [source commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/854c38907c9b6d98f9465c6c2323283f406d5dc2), [evidence](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2211_CANONICAL_SOURCE_RGBA_IMAGEGEN_FAILURE.json). 입력 원본 3개만 1개 성과로 계상, ImageGen 생성 gen ecc9b9e7 wrong text FAIL·DDS0·C2/C3/실게임 미실행은 성과 제외. 이전 1760 +1 = 누적 1761. RUN_KEY=OUTRUN-KOR-C1-Q102-CANONICAL-RGBA-20261011-2211 |
 
 | 2026-10-11 22:23 KST | AI 1 | 1759 | +1 | 1760 | B/C1 ImageGen의 신규 BC3/DXT5 PNG→saved DDS 생산 경로와 실물 기계검수 수정; 변환기 commit [fb295fe3](https://github.com/thp32tt/OutRun2006Tweaks/commit/fb295fe3384517c2cf09fc34afdda6844e6bbb9d), 저장 디코드 시각패널 commit [9115618f](https://github.com/thp32tt/OutRun2006Tweaks/commit/9115618fa933809e6a15f56eb050bdb720172202), 테스트 [cb610c2c](https://github.com/thp32tt/OutRun2006Tweaks/commit/cb610c2ccd6ca2c001428e913689b665b336a5e5), 지침 [433e5b4d](https://github.com/thp32tt/OutRun2006Tweaks/commit/433e5b4d68f3a0f10ef0ac40273fd66df632326f). **합성 RGBA32/BC3 B/C1 시험 12/12 PASS**, 단일-mip 압축 DDS를 변경 블록만 재압축, 1px 보호 바깥 변화시 HOLD, GitHub create_blob(base64) 합성 RGBA PNG 시험 성공(blob f0b9e7ff...). 실생성 PNG 전송은 별도 검증 필요, 공식 DDS0/실게임 UNTESTED, A 미수정. 이 새 도구 구현+테스트 성과만 +1 (합성 DDS를 공식 생산으로 중복 집계 금지). **AI 점수: 이전 1759점 + 이번 +1점 = 누적 1760점.** RUN_KEY=OUTRUN-KOR-IMAGEGEN-BC3-BRIDGE-20261011-2210 |
 

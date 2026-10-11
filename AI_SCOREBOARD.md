@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1781 | ACTIVE | 2026-10-12 03:19 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1014 | ACTIVE | 2026-10-12 03:18 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1015 | ACTIVE | 2026-10-12 03:22 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 03:22 KST | AI 2 | 1014 | +1 | 1015 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00620: DX9Ex R7 매 스테레오 draw 반복 깊이·스텐실 포맷 D3D9 GetDesc COM 호출을 추적 depth 표면 불변 포맷 캐시로 제거하는 실제 C++ 수정, SetDepthStencilSurface/Reset 수명주기 무효화 및 미추적 표면 live fallback 유지. 12개 파괴변이 정책 검사와 Win32 game/full-chain/host/package 검증. [정확한 material+validation SHA 12ea6a5f](https://github.com/thp32tt/OutRun2006Tweaks/commit/12ea6a5f950ffd5434addfeceab163e5dd36f1d5), [DX9Ex Active #38162890165](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38162890165) 5/5 SUCCESS, [Domain #38162890133](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38162890133) SUCCESS, [Full Source Impact #38162890135](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38162890135) 3/3 SUCCESS. [C6 bookkeeping 73519607](https://github.com/thp32tt/OutRun2006Tweaks/commit/7351960760b0c675a01e4d6b9a4838f91ea71698) [skip ci] 별도 기록. Quest3/VDXR FPS 및 optics 미측정 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1014점 + 이번 +1점 = 누적 1015점.** RUN_KEY=CONVERSION-DX9EX-00620 |
 
 | 2026-10-12 03:19 KST | AI 1 | 1780 | +1 | 1781 | A250 실제 신규 별도 작업: A 홀수 q035 영어 `Total Rank` 두 라벨을 원본 CLEAN 위에 신규 네이티브 한글 글자면/선·source-right-italic 스타일로 새 4096x4096 RGBA32 저장 DDS **SHA256 5ac62e3ef33ff39277fcef5bd7b00cc36c99666ccd01ac0f5a022e22e37b2369** 생산, 이전 공식 cc8df5b4... 정확히 보존. 실제 저장 DDS에서 변경37,825픽셀 전부 원본 2개 텍스트 bbox 내부, 밖0, DDS 재디코드0, positive glyph margins 최소3px, BGRA 올바른 색·원본/클린/기존/새 100/75/50/RAW 비교 직접 시각 확인. [GitHub Actions 38162887506](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38162887506) SUCCESS, [A250 DDS 및 SHA-bound 제작 근거](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A250-Q035-NATIVE-ITALIC-TOTAL-RANK) 저장, QA/asset_queue/WORKLOG/resume/progress [최종 HEAD 0e3eab0f](https://github.com/thp32tt/OutRun2006Tweaks/commit/0e3eab0f8274243a75bf83c4d88e150c0fa6662a) 확인. A250 첫 검증 실패와 색상 보정 중간 trial SHA b4c412...는 동일 TASK retry로 중복 +0; 실제 완료 A250 1성과만 +1. 공식 승격0, 독립 C2/C3/실게임 NOT_RUN, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1780점 + 이번 +1점 = 누적 1781점. RUN_KEY=OUTRUN-KOR-A250-Q035-TOTAL-RANK-ITALIC-NATIVE-20261012-0300 |
 

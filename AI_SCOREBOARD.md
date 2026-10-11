@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1776 | ACTIVE | 2026-10-12 02:01 KST |
+| AI 1 | ChatGPT (AI 1) | 1777 | ACTIVE | 2026-10-12 02:11 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1006 | ACTIVE | 2026-10-12 02:08 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 02:11 KST | AI 1 | 1776 | +1 | 1777 | A249 실제 신규 제작 성과: q193 아직 미검증 SHOWROOM 본문 영역의 SHA 인증 원본 English SOURCE→진짜 투명 CLEAN 생성(11,379 alpha pixels erased, residue0, source bbox 밖 변경0) 및 이미 저장된 '쇼룸'만의 한국어 투명 글자층 분리(2,634 alpha pixels), 원본 SOURCE/OFFICIAL/CLEAN/LETTER/SAVED native 및 gray100/white75/black50/RAW 원본 비교를 실제 생성·직접 시각 QA. 기존 A246 DDS SHA98066203 및 다른 UI/영문 OUTRUN 보존; 이전 A247 3영역과 명백히 다른 미완료 SHOWROOM 셀 신규 성과. [GitHub Actions 38158179765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158179765) SUCCESS, [A249 증거](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A249-Q193-SHOWROOM-SOURCE-CLEAN), 큐/QA/WORKLOG/resume/progress [HEAD 51902ff6](https://github.com/thp32tt/OutRun2006Tweaks/commit/51902ff6c9890d40f26f5098849b31843214bc4b) 확인. **신규 DDS 0** (근거/CLEAN 1영역 신규 생산), 독립 C2/C3/실게임 미검증, RUNTIME_VALIDATION=UNTESTED, 동일 성과 재검증은 점수 +0. AI 점수: 이전 1776점 + 이번 +1점 = 누적 1777점. RUN_KEY=OUTRUN-KOR-A249-Q193-SHOWROOM-SOURCE-CLEAN-20261012-0200 |
 
 | 2026-10-12 02:08 KST | AI 2 | 1005 | +1 | 1006 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00615: R30 XYZRHW 스테레오 VB/IB 드로우의 반복 D3D9 GetDesc 및 중복 shadow registry 조회를 실제 C++에서 제거하고 불변 shadow size/indexFormat 직접 재사용. 기존 Lock/Unlock 범위·Release/Reset 수명·범위 경계·R29 fallback 유지, 11개 부정변이 전용 회귀 검사기와 Active Gate 연계. [정확한 material/validation-bearing SHA d2784be3](https://github.com/thp32tt/OutRun2006Tweaks/commit/d2784be3b96fc4d2a98930d21efc2cb9772e56b4), [DX9Ex Active #38157705879](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38157705879) 정책/게임/호스트/전체 Win32 링크/패키지 5/5 SUCCESS, [Domain #38157705977](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38157705977) SUCCESS, [Full Source Impact #38157705897](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38157705897) 3/3 SUCCESS. 별도 [C6 bookkeeping f2e9bcfe](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2e9bcfe6c0a92c7cc6e71c5212df7149e6c0619) 점수 중복 0. Quest3/VDXR 실기 및 FPS/p95/p99 미측정, RUNTIME_VALIDATION=UNTESTED, 실측 성능 향상 미확정. **AI 점수: 이전 1005점 + 이번 +1점 = 누적 1006점.** RUN_KEY=CONVERSION-DX9EX-00615 |
 

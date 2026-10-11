@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1745 | ACTIVE | 2026-10-11 19:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1746 | ACTIVE | 2026-10-11 20:02 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 971 | ACTIVE | 2026-10-11 19:49 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 20:02 KST | AI 1 | 1745 | +1 | 1746 | OutRun C2 q193 A243 최초 독립 신규 SHA `79a831d6d6d9351a442e766e16617d79720f32085640bbf874bcc11d1928799f` 실제 native SOURCE/official/CLEAN/lettering/저장 DDS 픽셀·RAW/FLIPY 검증: 이전 공식→신규 6938 변경 대상 ROI 밖0, official→CLEAN 밖0, CLEAN alpha0, 합성→저장 DDS 차이0. 한글 '15 연속전' 네이티브/50% 글자 읽힘, 2026-10-11 per-glyph policy 적용. q193 **단일 셀 scoped pixel/plate/glyph QA 양호**, 전체 inherited 5+/family blind calibration 미완료로 **독립 전체 C2 PASS는 HOLD**, 공식 DDS 미변경, C3/user IGR003/019/033/런타임 OPEN·UNTESTED. [검수 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e8686fa52f6305e55ebb5fdc04d1df5baba5793c), [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q193-A243-FIRST-PIXEL-INDEPENDENT/C2_Q193_A243_INDEPENDENT_SCOPED_HOLD.json). 같은 후보 SHA 재검수/재보고 점수0. **AI 점수: 이전 1745점 + 이번 +1점 = 누적 1746점.** RUN_KEY=OUTRUN-KOR-C2-Q193-A243-PIXEL-PLATE-20261011-1950 |
 
 | 2026-10-11 19:49 KST | AI 2 | 970 | +1 | 971 | 독립 TASK_ID=CONVERSION-DX9EX-00595: DX9Ex R19 Classic SBS 폴백이 XR stereo array swapchain 크기를 left-eye만 참조하던 결함 실제 C++ 구현으로 수정. 양쪽 눈 최대 영역 사용·0/음수/8192 초과 입력 fail-closed, 기존 SkyGlow/HUD/게임 스테레오·다른 브랜치 불변, 신규 헤더+실제 폴백 통합+회귀 테스트 및 CMake 실제 C1083 빌드 오류 복구. [소스 구현](https://github.com/thp32tt/OutRun2006Tweaks/commit/22003bd8b5f999fe8e2a30763e40b155331b1dcb), [검증 대상 최종 material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/0f5b59ee75e3445781e62e183e29f305b75fcaa0), [DX9Ex Active #38132844513](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38132844513) 5 jobs SUCCESS, [Domain #38132844516](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38132844516) SUCCESS, [Full Source Impact #38132844502](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38132844502) 3 jobs SUCCESS. Game/host/ZIP artifacts exact SHA 확인, C6 기록 [d212991](https://github.com/thp32tt/OutRun2006Tweaks/commit/d2129912c5f395579bae0cc1ecacd66087813808), Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK 재실행·재보고 +0. **AI 점수: 이전 970점 + 이번 +1점 = 누적 971점.** RUN_KEY=CONVERSION-DX9EX-00595 |
 | 2026-10-11 19:34 KST | AI 2 | 969 | +1 | 970 | 독립 DX11 TASK_ID=CONVERSION-DX11-00538: 실게임 D3D9 FVF TEX1 정점/텍스처·상태 캡처를 D3D11 BGRA SRV/샘플러/PS MODULATE/Draw와 기존 게임 진단 인셋에 연결하는 실제 C++ 소스 기능, 상태 거부 경로·RHW/UV·변이 회귀 추가. [material source](https://github.com/thp32tt/OutRun2006Tweaks/commit/1bd83df56645c77166bbe68fd66fc4bafa40e917), [validation-bearing SHA d7617065f68b](https://github.com/thp32tt/OutRun2006Tweaks/commit/d7617065f68b610c500a82b7211c1e0572cff8de), Build #38131817041 SUCCESS, Backend Conversion Gate #38131814063 SUCCESS, OpenXR #38131817073 SUCCESS, DX11 Fast #38131814015 SUCCESS all exact SHA. 게임·Quest3 HMD RUNTIME_VALIDATION=UNTESTED, 네이티브 정식 플레이 승격 없음. 동일 TASK retry/rollover/CI 재조회 점수 중복 금지. **AI 점수: 이전 969점 + 이번 +1점 = 누적 970점**. RUN_KEY=CONVERSION-DX11-00538 |

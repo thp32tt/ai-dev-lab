@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1746 | ACTIVE | 2026-10-11 20:02 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 971 | ACTIVE | 2026-10-11 19:49 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 972 | ACTIVE | 2026-10-11 20:07:44 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 20:07:44 KST | AI 2 | 971 | +1 | 972 | DX9Ex 독립 TASK_ID=CONVERSION-DX9EX-00596 실제 VR R35 OpenXR host frame pacing 코드 개선: 장시간 XR pause/epoch 재시작으로 predictedDisplayTime 크게 이탈 시 기존 O(n) do-while 수백만 회 catch-up을 상수 시간 안전 계산 및 >1s 역행 epoch 복구로 대체, XrTime overflow guard. [소스 material 3892048b](https://github.com/thp32tt/OutRun2006Tweaks/commit/3892048b115a8f662cfcfb1c2856a1f4f25a9f6d), [정확한 검증-bearing material 55f18991](https://github.com/thp32tt/OutRun2006Tweaks/commit/55f18991f6e60dbde143b7d3493775a5d1766e0e)에서 신규 C++ test/CMake+Active CI 실제 실행까지 연결, Windows x64 log CADENCE-SCHEDULE PASS(90/60 phase, 12h pause, XR epoch reset, overflow), Linux g++ C++20 UBSan PASS. Exact SHA [DX9Ex Active #38133932784](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38133932784) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38133932815](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38133932815) SUCCESS, [Full Source Impact #38133932843](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38133932843) 3/3 SUCCESS; game/host/ZIP artifacts verified. Separate bookkeeping C6 [6cc9616](https://github.com/thp32tt/OutRun2006Tweaks/commit/6cc961622a10aaca0bb6897fd3137de2a93f8b1b) retains validation-bearing SHA; HMD Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, no DX11/DXVK/localization change. Same TASK_ID retry/recheck/report scores +0. **AI 점수: 이전 971점 + 이번 +1점 = 누적 972점.** RUN_KEY=CONVERSION-DX9EX-00596 |
 
 | 2026-10-11 20:02 KST | AI 1 | 1745 | +1 | 1746 | OutRun C2 q193 A243 최초 독립 신규 SHA `79a831d6d6d9351a442e766e16617d79720f32085640bbf874bcc11d1928799f` 실제 native SOURCE/official/CLEAN/lettering/저장 DDS 픽셀·RAW/FLIPY 검증: 이전 공식→신규 6938 변경 대상 ROI 밖0, official→CLEAN 밖0, CLEAN alpha0, 합성→저장 DDS 차이0. 한글 '15 연속전' 네이티브/50% 글자 읽힘, 2026-10-11 per-glyph policy 적용. q193 **단일 셀 scoped pixel/plate/glyph QA 양호**, 전체 inherited 5+/family blind calibration 미완료로 **독립 전체 C2 PASS는 HOLD**, 공식 DDS 미변경, C3/user IGR003/019/033/런타임 OPEN·UNTESTED. [검수 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e8686fa52f6305e55ebb5fdc04d1df5baba5793c), [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q193-A243-FIRST-PIXEL-INDEPENDENT/C2_Q193_A243_INDEPENDENT_SCOPED_HOLD.json). 같은 후보 SHA 재검수/재보고 점수0. **AI 점수: 이전 1745점 + 이번 +1점 = 누적 1746점.** RUN_KEY=OUTRUN-KOR-C2-Q193-A243-PIXEL-PLATE-20261011-1950 |
 

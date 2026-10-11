@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1762 | ACTIVE | 2026-10-11 22:38 KST |
+| AI 1 | ChatGPT (AI 1) | 1763 | ACTIVE | 2026-10-11 22:42 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 987 | ACTIVE | 2026-10-11 22:34 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:42 KST | AI 1 | 1762 | +1 | 1763 | OutRun QA 병목 수렴 완화 정책 **실제 브랜치 적용 성과 1건**. 신규 [정본 정책](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/docs/KOREAN_LOCALIZATION_QA_THROUGHPUT_POLICY.md) commit [330f040f](https://github.com/thp32tt/OutRun2006Tweaks/commit/330f040ff939dcf0680952ba07b64642399f9b26), 자동 계약/품질/증거/생산/이미지 생성/글자 크기/실게임 7개 문서 동일 상위 정책 연결 commit [024f9078](https://github.com/thp32tt/OutRun2006Tweaks/commit/024f90780a5555877410ef7be29ac3a29ce0175b)~[1bad22e6](https://github.com/thp32tt/OutRun2006Tweaks/commit/1bad22e693fd0d1b67c711bcec28419d10f9a07b); 8개 원격 문서 SHA 재조회 검증. 경미한 미관 차이 `COSMETIC_VARIANCE_ACCEPTED`, 독립 C2 및 시험용 한정 간소화 C3, 실제 결함/1px/압축/플레이트/오타/실게임 OPEN 불변. 도구 gate bypass/허위 C/C3/게임 승인 없음. 새 DDS·C2 재분류·실게임 검증 0, 정책 구현 1성과만 +1. **AI 점수: 이전 1762점 + 이번 +1점 = 누적 1763점.** RUN_KEY=OUTRUN-KOR-QA-THROUGHPUT-POLICY-20261011-2238 |
 
 | 2026-10-11 22:38 KST | AI 1 | 1761 | +1 | 1762 | OutRun C2 q193 A246 새로운 통합 시험 DDS SHA98066203... 최초 독립 직접 저장픽셀/영문원본/CLEAN/글자층/RAW·FLIPY 검증: 6원문 ROI 내부 변경 33,979, 외부0/alpha0, 4 Goal CLEAN source-alpha0와 실제 합성 일치, 기존 깨진 한글 교체를 원문/이전본/50%에서 확인. 증거 이미지3·기계/단계 JSON·큐/resume/WORKLOG 원격 반영 [QA commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/f707d62b4a79dc64bb5894eeb5cd556b33ab055b). 전체 q193 C2 HOLD, C3/사용자 IGR003/019/033 OPEN, 공식 DDS0, RUNTIME_VALIDATION=UNTESTED. 동일 SHA 이전 개별 A243/A245 검수는 성과로 중복 가산하지 않음. **AI 점수: 이전 1761점 + 이번 +1점 = 누적 1762점.** RUN_KEY=OUTRUN-KOR-C2-Q193-A246-INTEGRATED-INDEPENDENT-20261011-2235 |
 

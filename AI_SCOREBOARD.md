@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1754 | ACTIVE | 2026-10-11 21:05 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 976 | ACTIVE | 2026-10-11 20:45 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 977 | ACTIVE | 2026-10-11 21:09 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 21:09 KST | AI 2 | 976 | +1 | 977 | 신규 독립 TASK_ID=CONVERSION-DX11-00542: 소스에서 실제 게임 D3D9 COLORWRITEENABLE -> D3D11 OM RenderTargetWriteMask 캐시·알파 블렌딩별 유효 BlendState 조합 -> 실제 Draw/DrawIndexed -> opt-in 진단 inset 연결, unsupported/alpha-only 상태 fail-closed 및 원본 DX9Ex Draw/입력 보존. 부분 마스크 비알파 BlendState 기본값 결함도 동일 TASK 내 실질 수리하고 부정변이 회귀 추가. [첫 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/52526a563005d1cbc43401e14a0ee69e7fdd77be), [정확한 최종 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f6dcf2f08933f65f25e00fae4a0ac64fcc34452). [Backend Conversion Gate #38137465086](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38137465086) SUCCESS, [Win32 Build #38137468603](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38137468603) SUCCESS, [OpenXR #38137465098](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38137465098) SUCCESS, [DX11 Fast #38137465096](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38137465096) SUCCESS. HMD/실제 메뉴·차량·레이스·게임패드 화면은 RUNTIME_VALIDATION=UNTESTED, native gameplay 승격 없음. 같은 TASK_ID retry/C6/재보고 +0. **AI 점수: 이전 976점 + 이번 +1점 = 누적 977점.** RUN_KEY=CONVERSION-DX11-00542 |
 
 | 2026-10-11 21:05 KST | AI 1 | 1753 | +1 | 1754 | OutRun C2 P0 q121 최초 NEW 독립 원본 PSD 정합성 검수: `FD90AA9` 실제 복사한 v02 PSD SHA `9531a50d9c080e5743373225405c4ade85284e25a6e9135c27101e19962f7d8a`, canonical English DDS SHA `f7847db97bedbe2168d545664b39eea77367a667dad6dbd95646888c241d4b3e` 직접 인증 후 PSD 합성 RGBA와 정본 DDS FLIP-Y **4096² 전체 16,777,216 픽셀 일치**, 변경 RGBA 0/alpha 0/보호 영역0. GitHub [C2 SHA-bound QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q121-PSD-V02-ENGLISH-CANONICAL-COMPARISON/C2_Q121_PSD_MATCH_CANONICAL_SOURCE_ONLY_QA.json) [commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/4f27a8fda99061d87640169101ad4f2655acd035); 영문 타입 레이어 식별, 원문 증명 SOURCE_REFERENCE_PASS만 신규 성과. CLEAN 추출/독립 PLATE_PASS와 한국어 DDS 재검수·C2 full/C3/사용자 게임은 미승인, official unchanged, IGR030/031/040 OPEN, RUNTIME_VALIDATION=UNTESTED. 기존 A242 저장 후보 SHA 재검수/신규 DDS 생산으로 계상하지 않음. **AI 점수: 이전 1753점 + 이번 +1점 = 누적 1754점.** RUN_KEY=OUTRUN-KOR-C2-Q121-PSD-V02-CANONICAL-FULLPIXEL-20261011 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1732 | ACTIVE | 2026-10-11 15:18 KST |
+| AI 1 | ChatGPT (AI 1) | 1733 | ACTIVE | 2026-10-11 15:27 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 15:27 KST | AI 1 | 1732 | +1 | 1733 | OutRun A240 홀수 P0 q121 **실제 새 저장 비승격 DDS 1개**: 기존 C1 반려 A239 e3111774를 재사용·재승인하지 않고 Catmull-Rom 연결 곡선 및 획 압력 변화 네이티브 한글 가속 페달 신규 SHA `4be07b63e3bc1bee32d5f5192e95c24f9e709512c03e7074e679a93551cd6936` 생성. A239 대비 alpha XOR738 / RGBA5797, 정식 DDS 대비 지정 ROI 내9630 밖0, 다른29셀 바이트 정확, 4096² RGBA32 mip1 디코딩 오차0. GH Actions 초기 차단 38116846292는 +0, 생성 후 Git 게시 실패 38117147612도 +0; CI 스테이징 버그를 [f8f407c9](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8f407c99be55ccdc21a362ec33afdb75367afbf)에서 수정하고 **동일 TASK 1회** [38117535326](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38117535326) 실제 원격 게시 성공. 생산자 실제 SOURCE/CLEAN/OFFICIAL/NEW native100/white75/black50/RAW 직접 확인, 획은 새로워졌으나 영어 원본 racing italic과 형태 불일치 **REWORK_REQUIRED_UNPROMOTED** 판정, 공식 승격0·독립 C2/C3/game PASS0·IGR030/031/040 OPEN. [QA·큐/상태 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/6fa9199fce58301ba931e44d23ce28cc4541e25a) 원격 HEAD 확인. 점수는 새로운 DDS 제작+실저장+증거 게시 1성과로만 +1, 재시도 중복0. **AI 점수: 이전 1732점 + 이번 +1점 = 누적 1733점.** RUN_KEY=OUTRUN-KOR-A240-Q121-P0-CURVED-PRESSURE-STROKES-20261011-1500 |
 
 | 2026-10-11 15:18 KST | AI 1 | 1731 | +1 | 1732 | OutRun C1 홀수 q101 A226 기존 동일 후보 SHA `ea145aa5...`의 과거 HOLD를 다시 PASS 처리한 것이 아니라, 이전 증거에서 **미확인**이던 Sonic-TV Release 원본 4096² DDS 전체 SHA `a29d70ff...`를 독립 인증하고 새 native100/75/50+RAW 4종 SHA-bound PNG·8개 시각 항목으로 원문 부드러운 이탤릭 대비 한글 각진 분절 획 **신규 SOURCE_FAMILY_GLYPH_MORPHOLOGY FAIL**을 확정. 공식 DDS 불변, 밖 픽셀/알파 변화 0, 신규 DDS 0, C2/C3 미승인, 실기 UNTESTED. [C1 자료 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/ebbbd6f50ed91d96a3ba42cfaf3b2c2e03e0fe80), [원본 인증 QA/4 PNG](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C1-Q101-A226-AUTHENTICATED-OPTICAL-REWORK). 중복 SHA 제작/과거 C1 HOLD 승인 없음; 새로운 영문 원본 인증 + 새 결함 근거 1성과만 가산. **AI 점수: 이전 1731점 + 이번 +1점 = 누적 1732점.** RUN_KEY=OUTRUN-KOR-C1-Q101-A226-AUTH-SOURCE-NEW-MORPHOLOGY-20261011-1512 |
 

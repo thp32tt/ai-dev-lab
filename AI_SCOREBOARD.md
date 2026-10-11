@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1803 | ACTIVE | 2026-10-12 07:51 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1045 | ACTIVE | 2026-10-12 07:57 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1046 | ACTIVE | 2026-10-12 08:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 08:01 KST | AI 2 | 1045 | +1 | 1046 | 신규 독립 CONVERSION-DX9EX-00640: DX9Ex R23 스테레오 오른쪽 눈/모노 private depth-stencil 초기화 D3D9 GPU Clear 2→1 통합 C++ 실소스 수정, 스텐실 안전·포맷 실패 시 깊이 전용 경로 보존, 11개 부정변이 회귀 및 정확한 [material/validation-bearing d3ad2ab7e6cd](https://github.com/thp32tt/OutRun2006Tweaks/commit/d3ad2ab7e6cd769665904eb4847831b7d59a8ae5) 검증. GitHub Actions DX9Ex Active #38182133592 5/5 SUCCESS, Domain Isolation #38182133595 SUCCESS, Full Source Impact #38182133608 3/3 SUCCESS. C6 bookkeeping 327c9726 별도 [skip ci] +0, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 실측 FPS/p95/p99 개선 미측정. **AI 점수: 이전 1045점 + 이번 +1점 = 누적 1046점.** RUN_KEY=CONVERSION-DX9EX-00640 |
 
 | 2026-10-12 07:57 KST | AI 2 | 1044 | +1 | 1045 | 신규 독립 TASK_ID=CONVERSION-DX11-00573: 실제 OutRun D3D9 stage0 BLENDFACTORALPHA RGB와 독립 SUBTRACT/ADDSMOOTH alpha -> DX11 전용 HLSL PS 2종 -> Draw/DrawIndexed, opt-in diagnostic inset 실제 C++ 소스 및 긍정/파괴변이·피연산자 회귀 구현. Material [877e7f0](https://github.com/thp32tt/OutRun2006Tweaks/commit/877e7f0f6b985750dfb47cbb5c2c61b703da5228); 기존 00564 테스트 허용목록 및 ADDSMOOTH D3DTOP=11 수정 포함 validation-bearing [bfd86e56](https://github.com/thp32tt/OutRun2006Tweaks/commit/bfd86e5695ed67a70a641a7f0ae680d9f15991d9), 정확 SHA Backend Gate #38181641566, Build #38181644641, OpenXR #38181644530, HUD #38181644478, DX11 Fast #38181641495 **전부 SUCCESS**. C6 별도 bookkeeping [8bd07c7a](https://github.com/thp32tt/OutRun2006Tweaks/commit/8bd07c7a552ced4ea160fd73d1a07c90d79ad879) [skip ci] +0, DXVK 동결, DX9Ex 게임 Draw/input/Present 기본 유지, Quest3/VDXR/gamepad 실기 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/test fix/C6 중복 가산 없음. **AI 점수: 이전 1044점 + 이번 +1점 = 누적 1045점.** RUN_KEY=CONVERSION-DX11-00573 |
 

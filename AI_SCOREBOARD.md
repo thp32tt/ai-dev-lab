@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1795 | ACTIVE | 2026-10-12 06:31 KST |
+| AI 1 | ChatGPT (AI 1) | 1796 | ACTIVE | 2026-10-12 06:44 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1037 | ACTIVE | 2026-10-12 06:38 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 06:44 KST | AI 1 | 1795 | +1 | 1796 | OutRun 한글화 B q116 **신규 실제 CLEAN 제작**: 원본 Canonical 2048×256 BC3 DDS SHA `ebc2d866...`/PSDs original SHA `3406257c...` 직접 확인, 원본 영문 Heart Attack Mode 정확한 alpha152208픽셀을 제거한 소스-정본 CLEAN PNG SHA `46033053...` 및 영어 원본 투명 글자 참조 PNG SHA `475cddcd...`, 원본 마스크+100/75/50 파일 총10 신규. SOURCE→CLEAN 영역 밖 RGBA0, 영어 alpha 잔여0. PSD와 원본 87364 RGBA픽셀 달라 PSD를 정본으로 대체하지 않음. 이미지 생성 입력 미첨부 SOURCE_REFERENCE_NOT_BOUND로 한글 생성/신규DDS0, 기존 DDS 공식 q116 C2 REWORK 및 C3/실게임 OPEN RUNTIME_VALIDATION=UNTESTED. [q116 실제 산출물+QA+큐/상태 커밋 2ca02ffe](https://github.com/thp32tt/OutRun2006Tweaks/commit/2ca02ffefa1ecbc2e7b6203a615095d1f26974bd) 원격 HEAD 검증. q092/q104/q205 중복 아님, 새로운 소스-CLEAN 제작 성과 1건만 인정. **AI 점수: 이전 1795점 + 이번 +1점 = 누적 1796점.** RUN_KEY=OUTRUN-KOR-B-Q116-CANONICAL-SOURCE-CLEAN-20261012-0630 |
+
 
 | 2026-10-12 06:38 KST | AI 2 | 1036 | +1 | 1037 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00634: [실제 R33 mono/aux 스테레오 화면패스 분류 생략 C++ material ae8867b0](https://github.com/thp32tt/OutRun2006Tweaks/commit/ae8867b0302aeeda91403ce9be006611f14e4b34) 구현, R29 fail-closed/StateBlock 복구 경로 보호. 최초 [DX9Ex Active #38176457105](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176457105)는 검증기 정규식 이스케이프 불일치로 FAIL, 동일 TASK [5451921a](https://github.com/thp32tt/OutRun2006Tweaks/commit/5451921a66a871aa6d1bcbe05150cbc5821b1087) 보정 후 [#38176567770](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176567770)은 부정변이 5 대상 오류로 FAIL, 이어 [검증기 수리 및 validation-bearing SHA e7443fe0](https://github.com/thp32tt/OutRun2006Tweaks/commit/e7443fe0111e3c5f9993d24957d7f39e5f25750b)로 동일 TASK 복구. 정확한 검증 SHA의 [DX9Ex Active #38176659772](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176659772) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38176659768](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176659768) SUCCESS; 소스 material SHA의 [Full Source Impact #38176457085](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176457085) 및 [HUD Inspector #38176457101](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176457101) SUCCESS. C6 [별도 bookkeeping 06607521](https://github.com/thp32tt/OutRun2006Tweaks/commit/06607521c9657a1eb42b66ac711e4ef969cf100b) [skip ci] +0. Quest3/VDXR 실기 및 FPS/p95/p99 미측정으로 RUNTIME_VALIDATION=UNTESTED, DXVK 동결 유지. 최초 실패·동일 TASK 재시도·검증 수리·C6는 독립 가점 없음. **AI 점수: 이전 1036점 + 이번 +1점 = 누적 1037점.** RUN_KEY=CONVERSION-DX9EX-00634 |
 | 2026-10-12 06:31 KST | AI 1 | 1794 | +1 | 1795 | **C2 q103 독립 신규 시험 DDS A252 최초 픽셀 QA 성과 +1**. 실제 새로운 A252 persisted SHA `f27215f981457c6448fb7a84348998b525a13092b732b3e7de244e3a0f587fce`를 영어 SOURCE 76b6f6d8, CLEAN 58d90ffa, 과거 A224 2ad5e25e와 각각 SHA 검증하여 저장 RGBA32 2048²/mip1 RAW/FLIPY, 디코딩 라운드트립 0 불일치. SOURCE→CLEAN 7,439픽셀, CLEAN→A252 5,416픽셀, A224→A252 8,405픽셀 변경, 원문 효과 bbox 밖 RGBA/alpha 전부 0. 실제 원본 가늘고 오른쪽으로 뚜렷한 이탤릭 vs A252 직립에 가까운 굵은 정방형 한글 시각 차이를 100/75/50%와 RAW로 확인해 **C2 REWORK_REQUIRED**로 독립 판정(문장 폭 차이는 판정 사유 아님). [OutRun C2 검수 커밋 056dd342](https://github.com/thp32tt/OutRun2006Tweaks/commit/056dd342cc300a6e24939400fa40037cdc76492c) 5 PNG/2 JSON/큐·WORKLOG 갱신, 원격 HEAD 확인. 신규 C2 DDS 0, 후보 최종 PASS 0, C3/실게임 UNTESTED. **AI 점수: 이전 1794점 + 이번 +1점 = 누적 1795점.** RUN_KEY=OUTRUN-KOR-C2-Q103-A252-INDEPENDENT-NATIVE-PIXEL-20261012-0620 |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1788 | ACTIVE | 2026-10-12 04:59 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1026 | ACTIVE | 2026-10-12 04:58 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1027 | ACTIVE | 2026-10-12 05:05 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 05:05 KST | AI 2 | 1026 | +1 | 1027 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00627: DX9Ex R30 XYZRHW 동일 VB/IB CPU shadow 복사에서 동일 버퍼 공유 식별자+offset/size+Lock/Unlock 변경 세대와 범위 유효성의 일치 시 불필요한 std::memcpy를 생략하는 실제 C++ 핫패스 구현. DISCARD/성공 쓰기/Unlock 실패 및 무효 범위 캐시 해제. 정책 검증 13개 신규 copy-cache destructive mutation, 기존 descriptor/range 테스트 보호. [첫 material 0b49032c](https://github.com/thp32tt/OutRun2006Tweaks/commit/0b49032c871a9c3e51609d2bda8da6981bb3ddfb) 검증기 오류를 동일 TASK로 수리하여 [최종 material/validation-bearing ff235b7f](https://github.com/thp32tt/OutRun2006Tweaks/commit/ff235b7fd19f623c111466c9f4b64ddd4e9c59fe) 확정. [DX9Ex Active #38170096606](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38170096606) 5/5 SUCCESS, [Domain #38170096605](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38170096605) SUCCESS, [Full Source Impact #38170096653](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38170096653) 3/3 SUCCESS. [별도 C6 a7e893ab](https://github.com/thp32tt/OutRun2006Tweaks/commit/a7e893abcfdd1544c43d5bf2a2c2d3aab9b5470e) [skip ci] +0. 실제 Quest3/VDXR FPS·광학·p95/p99 실측 없음 RUNTIME_VALIDATION=UNTESTED. 하나의 실제 새 성과만 +1, 초기 CI 실패 수리·retry·C6 중복가산 없음. **AI 점수: 이전 1026점 + 이번 +1점 = 누적 1027점.** RUN_KEY=CONVERSION-DX9EX-00627 |
 
 | 2026-10-12 04:59 KST | AI 1 | 1787 | +1 | 1788 | OutRun C2 q092 **새로 추가된 B PSD 투명 영문 참조 2개 최초 독립 SOURCE/PLATE 입력 자격 픽셀 검증** 1성과. 기존 B363 DDS SHA f113c3aa 반복 생산/검수 성과 아님(+0), 새 DDS0. Canonical BC3 원본 DDS SHA d19e5191, B221 CLEAN SHA1a06b6ce, 기존 공식 c2388834/미승격 B363 f113c3aa 및 PSD 영어 참조 PNG 99a9c4b7/ead573cf 실제 SHA 다운로드·검증. PSD-원본 alpha 지지집합 교집합/합집합 69433/69634(99.71%) 및 104792/105060(99.74%) 이지만 불일치 알파값 18056/27494, 가시 RGBA 불일치 36646/57290 => 원문 **스타일 참조로만 적합, canonical pixel-exact 입력 승인 불가**. SOURCE→CLEAN 174225, CLEAN→저장 DDS 141733 변경픽셀은 두 원문 효과 ROI 안에만 위치, 밖 raw/alpha 0; RAW/FLIP-Y 및 100/75/50 시각 증거. 기존 저장 DDS 자소 테두리 점묘·속 빈 획 REWORK_REQUIRED 유지, 이미지 생성 실제 media attachment 미확인, 독립 C2 최종 PASS/C3/사용자 실게임/승격 아님, RUNTIME_VALIDATION=UNTESTED. QA PNG9/기계1/판정보고1/큐 및 상태4 **[원격 커밋 cee6c3b7](https://github.com/thp32tt/OutRun2006Tweaks/commit/cee6c3b7c438db85d14949c5f3ad436389024fc6)**. **AI 점수: 이전 1787점 + 이번 +1점 = 누적 1788점.** RUN_KEY=OUTRUN-C2-20261012-Q092-PSD-ENGLISH-REF-FIRST-SOURCE-PIXEL-QA |
 

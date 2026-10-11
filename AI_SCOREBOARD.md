@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1748 | ACTIVE | 2026-10-11 20:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1749 | ACTIVE | 2026-10-11 20:28 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 974 | ACTIVE | 2026-10-11 20:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 20:28 KST | AI 1 | 1748 | +1 | 1749 | OutRun C2 q012 P0/PJR001 A244 실제 새 시험 DDS SHA `4f18c54903fce5ad2bb1ca0f65e9b9e90664d7d5ee887df7eb2aa8a32c534633` 첫 독립 SOURCE/CLEAN/글자층/저장 DDS native/75/50 RAW/FLIPY 픽셀 검증. 원본 256x64 English SHA `42aa10e0...` 와 x4 PNG 일치 0픽셀, trial BGRA32 1024x256 이전본 대비 84228 RGBA 변경 모두 원본 영역 내부/외부0, CLEAN 알파0, CLEAN+글자 합성→저장 DDS 0픽셀 차이, RAW mirror-Y 정확, 개별 '계속?' 받침·물음표 native/50 가독성 확인. 전체 영문 대비 문구 폭 짧음은 현행 정책상 FAIL 아님. **C2 신규 증거 scoped pixel/plate/glyph PASS, 전체 C2 HOLD**: source-family italic/bevel blind calibration, 승인 PLATE manifest/C3/user JPG/실게임 재검증 미완료, official DDS 불변, RUNTIME_VALIDATION=UNTESTED. [GitHub QA](https://github.com/thp32tt/OutRun2006Tweaks/commit/ace3eb9cf5c5aaac54aae356b6adb87727a1582c), [C2 JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q012-A244-NEW-SAVED-DDS-INDEPENDENT/C2_Q012_A244_INDEPENDENT_HOLD.json). 새로운 DDS 생산 아님, 동일 후보 반복 리뷰 중복점수0. **AI 점수: 이전 1748점 + 이번 +1점 = 누적 1749점.** RUN_KEY=OUTRUN-KOR-C2-Q012-A244-NEW-SHA-PIXEL-PLATE-20261011-2020 |
 
 | 2026-10-11 20:24 KST | AI 2 | 973 | +1 | 974 | 신규 독립 TASK_ID=CONVERSION-DX11-00540: 기존 실게임 FVF TEX1 진단 Draw 경로의 D3D9 SRCALPHA/INVSRCALPHA/ADD, GREATER/GREATEREQUAL 알파 테스트 상태를 실제 C++ 소스에서 DX11 BlendState/PS 상수버퍼 clip/Draw로 연동, 지원 외 별도알파·비지원 비교·blend 조합 거부와 기존 게임 DX9Ex Draw/입력 원형 보존, 신규 8-bit alpha 경계/부정변이 회귀. [소스 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/98f672f9e0e7ab6def0288ce3c984df35b07d115), [정확한 validation-bearing material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/0921aeb6d45d582d6c2ae7376731ca09d2da4bc6), [Backend Conversion Gate #38134705685](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38134705685) SUCCESS(validate+readiness), [Build #38134708868](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38134708868) Win32 Release+4 DX11 acceptance SUCCESS, [OpenXR #38134708864](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38134708864) SUCCESS, [DX11 Fast #38134705681](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38134705681) SUCCESS; C6 [bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/ea67f0a1f21812aa17e43b04fdd27f651a0c2e04) 별도 [skip ci], 게이트 SHA 유지. 실제 게임 메뉴/차량/레이스 픽셀, Quest3 VDXR 및 게임패드 테스트 미실행이므로 RUNTIME_VALIDATION=UNTESTED, NativeDrawPathActive 정식 승격 없음. 같은 TASK retry/rollover/C6 재보고 +0. **AI 점수: 이전 973점 + 이번 +1점 = 누적 974점.** RUN_KEY=CONVERSION-DX11-00540 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1793 | ACTIVE | 2026-10-12 06:18 KST |
+| AI 1 | ChatGPT (AI 1) | 1794 | ACTIVE | 2026-10-12 06:28 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1035 | ACTIVE | 2026-10-12 06:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 06:28 KST | AI 1 | 1793 | +1 | 1794 | OutRun C1 q098 **PSD 원본과 실제 분리된 영문 글자층 첫 등록**. Sonic-TV/OR2006Sprites pinned v02 PSD 원본 2,067,761바이트 SHA256 `e1444b1b` Git blob `1e376029` 저장소에 복사, 별도 native PSD effect/face 2층과 투명 English glyph composite PNG 3개 원격 SHA 검증. [커밋 563b13c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/563b13c4896c4070e1e3a9e64d403f15769c741e) 10파일 queue/WORKLOG/resume/STATUS/catalog/manifest 변경. Canonical BC3/PSD alpha bbox 일치, alpha support mismatch1085 픽셀·visible RGBA mismatch75278로 PSD를 pixel-exact CLEAN으로 잘못 승인하지 않음. SOURCE_REFERENCE_NOT_BOUND라 ImageGen 미호출/한글 PNG0/DDS0, C2/C3/실게임 UNTESTED. 기존 q098 B 제작·C337 REWORK 유지. 신규 **원본 PSD 및 개별 실제 PSD 레이어** 성과 1건만 +1, 이전 q098 DDS crop 반복가산 없음. **AI 점수: 이전 1793점 + 이번 +1점 = 누적 1794점.** RUN_KEY=OUTRUN-KOR-C1-Q098-PSD-V02-NATIVE-LEAF-FIRST-20261012-0610 |
+
 
 | 2026-10-12 06:24 KST | AI 2 | 1034 | +1 | 1035 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00633: R27 단안/보조 RT/미시드 VR 이펙트 드로우에서 필요 없는 5개 추적 D3D9 렌더 상태 조회를 생략하는 [실제 C++ material 및 validation-bearing SHA 9d251a94](https://github.com/thp32tt/OutRun2006Tweaks/commit/9d251a947d9d69710302eba6f4f6ecdd71747424) 구현. 명시적 셰이더 추적·R13 fallback·R28 stereo 보호, 정책 검증의 7개 부정변이 PASS. 정확한 SHA [DX9Ex Active #38175600444](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175600444) 5/5 SUCCESS, [Domain #38175600418](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175600418) SUCCESS, [Full Source Impact #38175600357](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175600357) 3/3 SUCCESS 및 [HUD #38175600350](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175600350) SUCCESS. 별도 [C6 bookkeeping 75cafcc3](https://github.com/thp32tt/OutRun2006Tweaks/commit/75cafcc313b9defc60593c05af361a153c879081) [skip ci]는 추가 가점 없음. Quest3/VDXR HMD/FPS RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1034점 + 이번 +1점 = 누적 1035점.** RUN_KEY=CONVERSION-DX9EX-00633 |
 

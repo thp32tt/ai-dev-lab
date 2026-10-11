@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1726 | ACTIVE | 2026-10-11 13:33 KST |
+| AI 1 | ChatGPT (AI 1) | 1727 | ACTIVE | 2026-10-11 13:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 963 | ACTIVE | 2026-10-11 13:28 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 13:50 KST | AI 1 | 1726 | +1 | 1727 | OutRun 영문 HD SOURCE DDS 중 정식 asset_queue.csv localize_text 17종을 SHA-bound 원본 RAW RGBA PNG 17장 + 상하반전 참고 PNG 17장, JPG 전체 미리보기·Manifest·README로 변환한 다운로드 ZIP(67.4 MiB)을 실제 제작. GitHub Actions [성공 실행 #38112517105](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38112517105) 결과 Artifact 11692002065 확인, 아카이브 38엔트리·17+17 PNG·손상0 독립 재검증, 채팅에 실파일 첨부 완료. 한글 후보·C PASS·실게임 QA 변화 0. 새로운 사용자 전달용 원본 PNG 번들 성과 +1, 동일 프로세스 최적화/재실행 중복 점수 +0. **AI 점수: 이전 1726점 + 이번 +1점 = 누적 1727점.** RUN_KEY=OUTRUN-KOR-EN-SOURCE-PNG-PACK-20261011-1331 |
 
 | 2026-10-11 13:33 KST | AI 1 | 1725 | +1 | 1726 | OutRun C391 C2 짝수 q060 새로운 B369 **저장 DDS 첫 독립 SHA 고정 QA** 수행. 원본 SOURCE 6a33c730, 기존 C372 CLEAN a03687d4, 변경 안 된 공식 d81d0d14, C389 이전 B368 11e081c7, 신규 B369 5b42316d (모두 전체 SHA 인증) 비교. 실제 4096×2048 DDS RAW/FLIPY·100/75/50 손실 없는 PNG 네 장과 machine/8-check 증거 제작. P1 SOURCE→CLEAN 89,391픽셀 제거·밖0(기존 C372 승인 재계상 없음), B368→B369 RGBA51,595 변경·원문 영역 밖0, 실루엣 변화5,119, 원문 대비 새 위치 36/2/25/1px. 한글 네 글자/콜론 완전하고 베벨/굵기 개선되었으나 원본 둥근 연결형 레이싱 이탤릭 대비 한글 각진 분리형 실루엣으로 **C2 REWORK_REQUIRED_UNPROMOTED** 독립 확정. 정식 q060 C342, IGR044 OPEN, C3 및 실게임 UNTESTED 유지, 새 최종 DDS/C2 PASS 0. B368 같은 후보 재검수/중복점수 아님. [C391 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e2c5b321b97161d8b2a8ae822a9bdc8625a052e1) 원격 HEAD 확인. **AI 점수: 이전 1725점 + 이번 +1점 = 누적 1726점.** RUN_KEY=OUTRUN-KOR-C391-C2-Q060-B369-FIRST-INDEPENDENT-SAVED-20261011-1330 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1759 | ACTIVE | 2026-10-11 22:10 KST |
+| AI 1 | ChatGPT (AI 1) | 1760 | ACTIVE | 2026-10-11 22:23 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 985 | ACTIVE | 2026-10-11 22:16 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:23 KST | AI 1 | 1759 | +1 | 1760 | B/C1 ImageGen의 신규 BC3/DXT5 PNG→saved DDS 생산 경로와 실물 기계검수 수정; 변환기 commit [fb295fe3](https://github.com/thp32tt/OutRun2006Tweaks/commit/fb295fe3384517c2cf09fc34afdda6844e6bbb9d), 저장 디코드 시각패널 commit [9115618f](https://github.com/thp32tt/OutRun2006Tweaks/commit/9115618fa933809e6a15f56eb050bdb720172202), 테스트 [cb610c2c](https://github.com/thp32tt/OutRun2006Tweaks/commit/cb610c2ccd6ca2c001428e913689b665b336a5e5), 지침 [433e5b4d](https://github.com/thp32tt/OutRun2006Tweaks/commit/433e5b4d68f3a0f10ef0ac40273fd66df632326f). **합성 RGBA32/BC3 B/C1 시험 12/12 PASS**, 단일-mip 압축 DDS를 변경 블록만 재압축, 1px 보호 바깥 변화시 HOLD, GitHub create_blob(base64) 합성 RGBA PNG 시험 성공(blob f0b9e7ff...). 실생성 PNG 전송은 별도 검증 필요, 공식 DDS0/실게임 UNTESTED, A 미수정. 이 새 도구 구현+테스트 성과만 +1 (합성 DDS를 공식 생산으로 중복 집계 금지). **AI 점수: 이전 1759점 + 이번 +1점 = 누적 1760점.** RUN_KEY=OUTRUN-KOR-IMAGEGEN-BC3-BRIDGE-20261011-2210 |
 
 | 2026-10-11 22:16 KST | AI 2 | 984 | +1 | 985 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00603: DX9Ex R33의 실제 per-draw 화면/HUD 분류가 Dispatch와 Hud에서 두 번 발생하던 CPU 핫패스 중복 제거, flat-perspective D3D9 GetRenderState 최대 3회 추가 조회 제거. 3개 부정변이 회귀 정책검사/월드 스테레오·R29 폴백 유지. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/6e47fcabfa96bfb921cd018ffcb13ed0492e5f3b) exact-SHA [DX9Ex Active #38141868724](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868724) 정책/host/game/R29-R33 full-chain/package 5/5 SUCCESS, [Domain #38141868716](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868716) SUCCESS, [Full Source Impact #38141868702](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868702) SUCCESS, [HUD Inspector #38141868714](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868714) SUCCESS, [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/edbbbc818993e648fc0dca40013a469af6f8f34c) 별도 [skip ci]. Quest3/VDXR 실기 FPS·p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED, 실측 성능 향상 수치 미주장; 재시도·C6 재보고 중복 0. **AI 점수: 이전 984점 + 이번 +1점 = 누적 985점.** RUN_KEY=CONVERSION-DX9EX-00603 |
 

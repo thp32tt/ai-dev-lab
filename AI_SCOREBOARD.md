@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1790 | ACTIVE | 2026-10-12 05:32 KST |
+| AI 1 | ChatGPT (AI 1) | 1791 | ACTIVE | 2026-10-12 05:51 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1031 | ACTIVE | 2026-10-12 05:44 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 05:51 KST | AI 1 | 1790 | +1 | 1791 | 신규 **C1 q098 영문 글자만 포함한 투명한 정본 소스 PNG**를 실제 BC3 DDS SHA `3b3cdd76`에서 FLIP-Y 디코드하여 최초 제작. 1291×165 RGBA PNG SHA256 `078f6b7de7982c2c95daa7b2131d420160d1aa9c546eabbc5fc9efabdc903b59`, 79913바이트, 원본 가시 알파 92878px 완전 보존/가시 픽셀 오차0/24px 투명 여백. [OutRun 커밋 f097d414](https://github.com/thp32tt/OutRun2006Tweaks/commit/f097d4144806ac9ba4313ac0c239f2a208bb0898): 신설 실물 PNG·SHA 전제 JSON·queue/WORKLOG/resume/STATUS 6파일 동시 반영, 원격 HEAD 및 PNG SHA 다운로드 재확인. **SOURCE_REFERENCE_NOT_BOUND**로 ImageGen 미호출/신규 한글 PNG0·DDS0; 과거 B 후보와 C2/C3/실게임 상태 불변, RUNTIME_VALIDATION=UNTESTED. 점수는 이 새로운 실제 소스 바이너리 1건만 +1, 향후 동일 결과 재확인 +0. **AI 점수: 이전 1790점 + 이번 +1점 = 누적 1791점.** RUN_KEY=OUTRUN-KOR-C1-Q098-SOURCE-REFERENCE-FIRST-20261012-0540 |
+
 
 | 2026-10-12 05:44 KST | AI 2 | 1030 | +1 | 1031 | 신규 독립 TASK_ID=CONVERSION-DX11-00566: 실제 게임 D3D9 MODULATE2X/4X RGB와 독립 SELECTARG1/2 alpha 네 가지를 DX11 HLSL 컴파일·GPU 셰이더 수명·실게임 Draw/DrawIndexed native 경로에 연결한 C++ 코드 및 파괴변이·채널 수학 회귀 테스트. [material/validation-bearing e4a9fb94](https://github.com/thp32tt/OutRun2006Tweaks/commit/e4a9fb9400c2c096243b59bd06e6c1f800c202c9) 정확 SHA의 [Backend Conversion Gate #38172652567](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38172652567) validate/readiness SUCCESS, [Build #38172657371](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38172657371) SUCCESS, [DX11 Fast #38172652550](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38172652550) SUCCESS, [OpenXR #38172657378](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38172657378) SUCCESS, [HUD #38172657373](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38172657373) SUCCESS. [별도 C6 e3d06484](https://github.com/thp32tt/OutRun2006Tweaks/commit/e3d06484eafa827c5c706986f22923551313d17a) [skip ci] 문서 기록 +0. Quest3/VDXR/게임패드 실기 미실시, RUNTIME_VALIDATION=UNTESTED, 생산 네이티브 활성화 없음. 실질 신규 성과 1회만 가산. **AI 점수: 이전 1030점 + 이번 +1점 = 누적 1031점.** RUN_KEY=CONVERSION-DX11-00566 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1765 | ACTIVE | 2026-10-11 23:06 KST |
+| AI 1 | ChatGPT (AI 1) | 1766 | ACTIVE | 2026-10-11 23:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 991 | ACTIVE | 2026-10-11 23:17 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:25 KST | AI 1 | 1765 | +1 | 1766 | OutRun 한글화 C1 q102 **신규 실물 SOURCE→CLEAN 플레이트 후보 3개** GitHub 게시. Canonical DXT5 원본 SHA17ee051e...에서 native 2048×256 원본 PNG SHA7c51a742... 정본 alpha 194236픽셀/194236 마스킹, 정확히 두 EFFECT 영역 합집합 밖0, CLEAN 내부 alpha0, 실제 CLEAN PNG SHAae251bdb..., removal mask SHAa6fc3f0a..., native SOURCE/CLEAN 비교 SHA5e2e1e00... 3건 GitHub 원격 binary fetch와 제작 원본 바이트 동일. [실물 material commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/bfd98bb0be8b8f69583c6e4605ab571631a4e039), [C1 QA 기록](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/plate_candidates/q102_20261011_native_clean/C1_Q102_CLEAN_AND_IMAGEGEN_FAIL_EVIDENCE.json). 별도 실제 ImageGen gen f147f11a는 타임 어택 모드 요청 대신 15코스 연속을 반환하여 오문구 FAIL, **이미지 생성 글자 생산 인정0**. 신규 3종 플레이트 준비 **하나의 성과** +1; C2 독립 PLATE_PASS 미완료, valid Hangul 새 PNG0, 시험 DDS0, 공식DDS0, C2/C3/game PASS0, RUNTIME_VALIDATION=UNTESTED, 원래 q102 C2 REWORK 유지. 동일 작업 관련 메타데이터·큐·로그 업데이트 중복 가점0. **AI 점수: 이전 1765점 + 이번 +1점 = 누적 1766점.** RUN_KEY=OUTRUN-KOR-C1-Q102-CLEAN-SOURCE-PLATE-20261011-2320 |
 
 | 2026-10-11 23:17 KST | AI 2 | 990 | +1 | 991 | 신규 독립 TASK_ID=CONVERSION-DX11-00548: 실제 OutRun 게임 D3D9 TEX2 이중 UV 정점 레이아웃/stride와 stage-0 TEXCOORDINDEX 0/1를 DX11 네이티브 textured Draw/DrawIndexed 진단 화면에 연결. TEX1 UV1, TEX3, 비기본 좌표 크기, 단축 stride fail-closed C++/Python 회귀 변경 및 원래 DX9Ex Draw/Present·게임패드 보호. [material/validation-bearing SHA 897b6949](https://github.com/thp32tt/OutRun2006Tweaks/commit/897b6949ea9ca3ce5fa16c44e8c32db8bc10e444), exact-SHA [Backend Conversion Gate #38145871363](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145871363) validate+readiness smoke 전체 SUCCESS, [Win32 Build #38145874488](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145874488) SUCCESS, [DX11 Fast #38145871361](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145871361) SUCCESS, [OpenXR #38145871337/#38145874489](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145874489) SUCCESS. 실제 OutRun 메뉴/차량/레이스 HMD 픽셀과 Quest3/VDXR 입력 미검증, RUNTIME_VALIDATION=UNTESTED. 이번 독립 material 성과만 +1, 이전 00547 및 체크포인트 재검증 중복 가산 없음. **AI 점수: 이전 990점 + 이번 +1점 = 누적 991점.** RUN_KEY=CONVERSION-DX11-00548 |
 

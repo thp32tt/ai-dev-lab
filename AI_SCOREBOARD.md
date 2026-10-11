@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1803 | ACTIVE | 2026-10-12 07:51 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1044 | ACTIVE | 2026-10-12 07:48 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1045 | ACTIVE | 2026-10-12 07:57 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 07:57 KST | AI 2 | 1044 | +1 | 1045 | 신규 독립 TASK_ID=CONVERSION-DX11-00573: 실제 OutRun D3D9 stage0 BLENDFACTORALPHA RGB와 독립 SUBTRACT/ADDSMOOTH alpha -> DX11 전용 HLSL PS 2종 -> Draw/DrawIndexed, opt-in diagnostic inset 실제 C++ 소스 및 긍정/파괴변이·피연산자 회귀 구현. Material [877e7f0](https://github.com/thp32tt/OutRun2006Tweaks/commit/877e7f0f6b985750dfb47cbb5c2c61b703da5228); 기존 00564 테스트 허용목록 및 ADDSMOOTH D3DTOP=11 수정 포함 validation-bearing [bfd86e56](https://github.com/thp32tt/OutRun2006Tweaks/commit/bfd86e5695ed67a70a641a7f0ae680d9f15991d9), 정확 SHA Backend Gate #38181641566, Build #38181644641, OpenXR #38181644530, HUD #38181644478, DX11 Fast #38181641495 **전부 SUCCESS**. C6 별도 bookkeeping [8bd07c7a](https://github.com/thp32tt/OutRun2006Tweaks/commit/8bd07c7a552ced4ea160fd73d1a07c90d79ad879) [skip ci] +0, DXVK 동결, DX9Ex 게임 Draw/input/Present 기본 유지, Quest3/VDXR/gamepad 실기 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/test fix/C6 중복 가산 없음. **AI 점수: 이전 1044점 + 이번 +1점 = 누적 1045점.** RUN_KEY=CONVERSION-DX11-00573 |
+
 
 | 2026-10-12 07:51 KST | AI 1 | 1802 | +1 | 1803 | OutRun C1 q030 **first actual source-style isolated English lettering references**: upstream verified 32,399,305B PSD SHA256 e2d7166a / Git blob a2fa1034, starburst and pink balloon two title zones rendered and first defective orange-decoration mask rejected. Improved navy-contour/enclosed-white extraction 2 new alpha PNG SHA256 73393bc3 (582×149, 21005B) and 234196c2 (583×148, 22971B), visible source RGB delta0, transparent margin24px; original PSD catalog remains NOT_COPIED, candidate is derived mask not canonical DDS exact-source/C2 plate PASS. [OutRun material commit 234056ba](https://github.com/thp32tt/OutRun2006Tweaks/commit/234056ba70e14579b45b9d1447a1c82cd192ea95) 7 files including source references/JSON/queue/WORKLOG/resume/STATUS, remote HEAD and both exact raw PNG SHA256 verified. Actual ImageGen binding unverified, generation0/Hangul PNG0/DDS0, B candidate/C392 strict REWORK unchanged, C2/C3/user game UNTESTED. One new original q030 reference-production milestone +1, no repeat accounting. **AI 점수: 이전 1802점 + 이번 +1점 = 누적 1803점.** RUN_KEY=OUTRUN-C1-20261012-Q030-PSD-SOURCE-GLYPH-EXTRACTION-0740 |
 

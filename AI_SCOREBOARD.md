@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1792 | ACTIVE | 2026-10-12 05:59 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1032 | ACTIVE | 2026-10-12 05:58 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1033 | ACTIVE | 2026-10-12 06:10 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 06:10 KST | AI 2 | 1032 | +1 | 1033 | 신규 독립 TASK_ID=CONVERSION-DX11-00567: OutRun2006Tweaks DX11 실제 게임 D3D9 stage0 SUBTRACT RGB + MODULATE alpha → HLSL PS / D3D11 네이티브 Draw·DrawIndexed 상태·리소스 연결 C++ 기능 구현과 파괴변이·RGBA 테스트. 최초 material 239fbf272945bed349276bc42c3ee6cbd92218d7의 [Backend Gate #38174105827](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38174105827)는 VISIBLE_FRAME_OUTPUT 작업경로 기록 불일치로 실패; 같은 TASK E003 수리 [material/validation-bearing e33af6e71ec658a8214e4296bdb3ac889cbe00f8](https://github.com/thp32tt/OutRun2006Tweaks/commit/e33af6e71ec658a8214e4296bdb3ac889cbe00f8) 정확한 SHA [Backend Conversion Gate #38174460369](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38174460369) validate+readiness smoke SUCCESS, [DX11 Fast #38174460395](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38174460395) SUCCESS, [Win32 Build #38174463800](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38174463800) SUCCESS, [OpenXR #38174463830](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38174463830) SUCCESS, [HUD #38174463818](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38174463818) SUCCESS. [별도 C6 bookkeeping 641bfa91](https://github.com/thp32tt/OutRun2006Tweaks/commit/641bfa9168158670fce49d5c2872e19e23229814) [skip ci] +0; Quest3/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED, DXVK 동결, DX9Ex fallback 유지. 원본 실패·retry·C6 중복 점수 없음. **AI 점수: 이전 1032점 + 이번 +1점 = 누적 1033점.** RUN_KEY=CONVERSION-DX11-00567 |
 
 | 2026-10-12 05:59 KST | AI 1 | 1791 | +1 | 1792 | 신규 C2 q098 **C1의 이번 회차 새 영문 입력 PNG SHA 078f6b7d 독립 픽셀 검수**: canonical 원문 DXT5 DDS 3b3cdd76과 실제 PNG를 별도 SHA 검증 다운로드해 RAW/FLIPY·SOURCE/CLEAN/현행 DDS native 비교, 92,878 alpha pixel 완전 일치, 가시 RGBA 불일치0, 24px 여백 알파0, CLEAN 알파0, SOURCE 밖 가시/알파 변경0. 신규 PNG 100/75/50/RAW 4개+기계 JSON/8항목 C2 보고서를 [OutRun commit c6ac217f](https://github.com/thp32tt/OutRun2006Tweaks/commit/c6ac217f243328778ae25950f9ba157110e5a1b6)로 확정. **신규 C1 소스 입력 QA 성과만 1회 +1**: 기존 q098 한글 DDS SHA27a1f95d 재생산/승인 아님, 기존 슬랜트·서체 REWORK 유지, C1 generator media 미연결, DDS0/C2_FINAL_PASS0/C3 미실행/실게임 UNTESTED. **AI 점수: 이전 1791점 + 이번 +1점 = 누적 1792점**. RUN_KEY=OUTRUN-KOR-C2-Q098-C1-ENGLISH-MEDIA-SOURCE-PIXELS-20261012-0550 |
 

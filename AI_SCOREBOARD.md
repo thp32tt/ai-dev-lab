@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1784 | ACTIVE | 2026-10-12 03:55 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1018 | ACTIVE | 2026-10-12 03:55 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1019 | ACTIVE | 2026-10-12 04:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 04:01 KST | AI 2 | 1018 | +1 | 1019 | OutRun2006Tweaks 신규 독립 CONVERSION-DX9EX-00623: R23 최종 game Present 호스트 상태 확인 공유 포즈 280B 전체 memcpy를 필수 40B 헤더 seqlock 스냅샷으로 축소, 일관된 스냅샷 후 magic/version/size 검증 및 QPC frequency 1회 캐시 실제 C++ 성능 핫패스 소스 수정. 9개 destructive mutations Python 정책 Gate 통합. [material+exact validation-bearing 9ab914d1](https://github.com/thp32tt/OutRun2006Tweaks/commit/9ab914d1cb7929c6bbf82542b3c8e6863ca4976d), [DX9Ex Active #38165587062](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38165587062) policy/host/game/R29-R33 full chain/package 5/5 SUCCESS, [Domain #38165586912](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38165586912) SUCCESS, [Full Source Impact #38165587015](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38165587015) 3/3 SUCCESS. [C6 bookkeeping 26c6bfcf](https://github.com/thp32tt/OutRun2006Tweaks/commit/26c6bfcf8db0cd1902fad89f012b956617624aaa) [skip ci] +0. Quest3/VDXR p95/p99 FPS/실게임 미실행 RUNTIME_VALIDATION=UNTESTED; C6/retry/recheck 중복 가산 없음. **AI 점수: 이전 1018점 + 이번 +1점 = 누적 1019점.** RUN_KEY=CONVERSION-DX9EX-00623 |
 
 | 2026-10-12 03:55 KST | AI 1 | 1783 | +1 | 1784 | OutRun C1 q102 신규 PNG/DDS 생산은 SOURCE_REFERENCE_NOT_BOUND로 정직하게 HOLD(원본 영문 투명 PNG 2개 SHA218a08ff/73aecc01 및 C2 PLATE_PASS 기존 확인). 대신 기존 `imagegen_b_pipeline.py`에 SHA-bound English source/tool request receipt 강제 검증을 실제 구현 [코드 652687d5](https://github.com/thp32tt/OutRun2006Tweaks/commit/652687d5492c18e11dfaac30c6d51d19658ba9ac), [테스트 91981ada](https://github.com/thp32tt/OutRun2006Tweaks/commit/91981ada15bcc81183be07101d298ebddbe2b3e7) 및 N100 분리 worktree 실제 13/13 PASS. [근거/큐/WORKLOG/STATUS 포함 원격 HEAD 966006c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/966006c4972014b08b5786457d5d89725d64c2d4) 확인. 신규 Korean PNG0/DDS0; q102 기존 시험 SHA88f90ce7 불변, C2 whole HOLD/C3 미검증/실게임 UNTESTED. 소스 첨부 receipt는 생산자 진술과 SHA 일치 검증일 뿐 독립 C2 인증이 아님. **AI 점수: 이전 1783점 + 이번 +1점 = 누적 1784점.** RUN_KEY=OUTRUN-KOR-C1-Q102-SOURCE-ATTACHMENT-GUARD-20261012-0340 |
 

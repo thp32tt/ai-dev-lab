@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1796 | ACTIVE | 2026-10-12 06:42 KST |
+| AI 1 | ChatGPT (AI 1) | 1797 | ACTIVE | 2026-10-12 06:57 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1039 | ACTIVE | 2026-10-12 06:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 06:57 KST | AI 1 | 1796 | +1 | 1797 | OutRun C2 q116 **새 B 제작 SOURCE→CLEAN 플레이트 독립 최종 픽셀 QA 최초 성과**: exact SHA DDS 원문 ebc2d866, 새 CLEAN 46033053, 영문 투명 입력 475cddcd, 입력 마스크 93706d3b 각각 실물 독립 다운로드/SHA 검증. FLIPY source 2048×256 BC3, 원본 영문 가시 픽셀 152208 제거, 원문 효과 ROI 밖 RGBA/alpha/가시 픽셀 변경 0, CLEAN 전체 alpha 0, 영문 마스크·PAD24 입력 가시/알파 오차 0, BG100/75/50·RAW 직접 검수. [OutRun 검수 커밋 85e51977](https://github.com/thp32tt/OutRun2006Tweaks/commit/85e51977777f936224f801054b36a5ab1f75a58b) 신규 증거 PNG 5개·기계/8항목 JSON 2개·큐 메모/WORKLOG 동기화·원격 HEAD 재검증. **C2_PLATE_PASS_SCOPED** 신규 INPUT만 인정, 변경 없는 기존 한글 DDS 7e42aaa0 및 C2 REWORK 유지, 신규 DDS0/C2 최종 DDS PASS0, ImageGen 소스 attachment 미확인, C3/실게임 RUNTIME_VALIDATION=UNTESTED; 구형 동일 후보 재검수 중복 가산 없음. **AI 점수: 이전 1796점 + 이번 +1점 = 누적 1797점.** RUN_KEY=OUTRUN-KOR-C2-Q116-B-CANONICAL-CLEAN-FIRST-INDEPENDENT-20261012-0650 |
 
 | 2026-10-12 06:51 KST | AI 2 | 1038 | +1 | 1039 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00635: R29 스테레오 양안 월드 드로우의 깊이 쓰기 활성 상태에서도 신뢰 가능한 R22/R31 StateBlock/Present 효과 캐시를 재사용하여 두 번의 반복 추적 render-state 판정을 생략하는 [실제 C++ source 및 validation-bearing material SHA 2766f87f](https://github.com/thp32tt/OutRun2006Tweaks/commit/2766f87f7ebb7b7485f5b2d8b1fc34b417f9c307). 무효/기록/불신뢰·depth surface 없음의 fail-closed fallback 보존, 22개 부정변이 [DX9Ex Active #38177504542](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38177504542) 정책·호스트·게임·full-chain·package 5/5 SUCCESS, [Domain #38177504566](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38177504566) SUCCESS, [HUD #38177504435](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38177504435) SUCCESS. Full Source Impact #38177504493는 별도 분석 실행 중으로 아직 PASS 주장 안 함. Quest3/VDXR HMD·게임 FPS 미측정 RUNTIME_VALIDATION=UNTESTED. 동일 TASK CI/C6/retry 중복 가점 금지. **AI 점수: 이전 1038점 + 이번 +1점 = 누적 1039점.** RUN_KEY=CONVERSION-DX9EX-00635 |
 | 2026-10-12 06:44 KST | AI 2 | 1037 | +1 | 1038 | 신규 독립 TASK_ID=CONVERSION-DX11-00569: 실제 게임 D3D9 BLENDTEXTUREALPHA·BLENDDIFFUSEALPHA RGB와 독립 MODULATE 알파 2개 경로의 상태 캡처·HLSL PS·GPU Draw/DrawIndexed·진단 inset 실제 C++ 소스 및 10개 부정변이/4개 RGBA 검증 추가. 정확한 [material/validation-bearing SHA dd470a65](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd470a65694d210c53893d226765bd638700e90f)의 [Backend #38176878708](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176878708), [DX11 Fast #38176878700](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176878700), [Win32 Build #38176881607](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176881607), [OpenXR #38176881697](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176881697), [HUD #38176881612](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38176881612) 전부 SUCCESS. 별도 C6 [bookkeeping f7ebad3c](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7ebad3c12d53d851cdd2591db4c885a4f621ddf) [skip ci], HMD/게임패드/실게임 RUNTIME_VALIDATION=UNTESTED, DXVK 동결 유지. **AI 점수: 이전 1037점 + 이번 +1점 = 누적 1038점.** RUN_KEY=CONVERSION-DX11-00569 |

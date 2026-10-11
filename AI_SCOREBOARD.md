@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1774 | ACTIVE | 2026-10-12 01:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1004 | ACTIVE | 2026-10-12 01:38 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1005 | ACTIVE | 2026-10-12 01:53 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 01:53 KST | AI 2 | 1004 | +1 | 1005 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00614: R29 D3D9 효과 상태 캐시의 불필요한 64-draw 주기 COM GetRenderState 5회 재조회를 신뢰 가능한 StateBlock Apply/Recording 세대 및 Present 단위 캐시로 실제 C++ 소스 최적화. [material SHA 2862cc35](https://github.com/thp32tt/OutRun2006Tweaks/commit/2862cc35ac3c3c39a29bc12455be2bbfc2662b8b), CI 회귀 검사기 부정변이 조건 수리 [validation-bearing SHA ef240697](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef2406978242edd7d967bfa908138c036d4c815c), 14개 파괴변이 검사, [DX9Ex Active #38156829918](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38156829918) 정책/게임/호스트/전체 Win32 링크/패키지 5/5 SUCCESS, [Domain #38156829925](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38156829925) 정확한 SHA SUCCESS. [Full Source Impact #38156740747](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38156740747)은 원본 material SHA에서 3/3 SUCCESS; 후속 SHA는 Python 검사기만 변경하여 C++ 소스 동일. 다른 실행자가 동시 [C6 bookkeeping c6ef2781](https://github.com/thp32tt/OutRun2006Tweaks/commit/c6ef2781c29369844f0f63470640097fc96c0232)을 이미 완료하여 중복 기록 금지. Quest3/VDXR 실기·FPS/p95/p99 RUNTIME_VALIDATION=UNTESTED, 실측 성능 개선 확정 아님. **AI 점수: 이전 1004점 + 이번 +1점 = 누적 1005점.** RUN_KEY=CONVERSION-DX9EX-00614 |
 
 | 2026-10-12 01:38 KST | AI 2 | 1003 | +1 | 1004 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00613: R30 FlatPerspectiveEffect 스테레오 HUD/오버레이의 반복 base projection 역행렬, 양안 eye pose 역행렬, eye FOV 투영 생성 비용을 정확한 pose/projection/eye key 캐시 미스에만 수행하도록 실제 C++ 최적화 및 무효화. 사용하지 않던 D3D9 per-HUD GetScissorRect/GetRenderState 제거, tracked viewport 우선+원래 GetViewport fallback, 기존 SkyGlow scene-before-HUD 및 오른쪽 눈 복원·행렬 곱셈 순서 유지. [최초 material SHA 8f15e87a](https://github.com/thp32tt/OutRun2006Tweaks/commit/8f15e87a6f98a6e77ef0b55c328d9ef98011f0cb), 동일 TASK 회귀 검사기 범위 수리 SHA 55b5fc7b/0942a891(12 부정변이). 별도 작업자의 XR 해상도 수정 후속 [정확한 validation-bearing SHA 6ca24333](https://github.com/thp32tt/OutRun2006Tweaks/commit/6ca24333720c321179fd066d2d6f9eed69c81a28)에서 [DX9Ex Active #38155723497](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38155723497) attempt2 policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38155723441](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38155723441) SUCCESS, [Full Source Impact #38155723421](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38155723421) 3/3 SUCCESS. 외부 병렬 commit은 src/hooks_misc.cpp 및 vrhost/src/main*.cpp 3개 파일만 변경, 이번 R30 C++·테스트·워크플로 불변. [C6 bookkeeping ce208d93](https://github.com/thp32tt/OutRun2006Tweaks/commit/ce208d936fb6c37c0a587502930bc56d964f6690). 취소된 초기 CI 재실행/동일 TASK 검증기 보정/C6/병렬 독립 변경은 추가 성과0. Quest3/VDXR/FPS/p95/p99 실기 미실행 RUNTIME_VALIDATION=UNTESTED, 실제 FPS 개선 미확정. **AI 점수: 이전 1003점 + 이번 +1점 = 누적 1004점.** RUN_KEY=CONVERSION-DX9EX-00613 |
 

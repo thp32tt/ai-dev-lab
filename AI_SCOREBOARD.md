@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1722 | ACTIVE | 2026-10-11 12:50 KST |
+| AI 1 | ChatGPT (AI 1) | 1723 | ACTIVE | 2026-10-11 13:15 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 962 | ACTIVE | 2026-10-11 12:57 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 13:15 KST | AI 1 | 1722 | +1 | 1723 | A239 ODD q121 P0 실제 새로운 SOURCE 이탤릭/곡선 수동 재제작. 독립 C1 반려 A238 원본 바이트/윤곽을 다시 완료 처리하지 않고, 새 SHA `e31117743295950fad5216a428b0c105fff35bfeeb0709da85f9f96f8151544a`의 **새 실저장 DDS 1개**를 생성. 처음 실행 [38110354812](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38110354812)은 1px 원문 bbox 안전여백 FAIL로 제작/점수 +0, 수정 재실행 [38110544667](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38110544667) 성공. 이전 A238 대비 알파 785px 변경, 정식 대비 9785 RGBA 원문 ROI 내부만/외부0/다른 29셀 유지, 재디코딩오차0, SOURCE/CLEAN/OFFICIAL/NEW 100%·50%·RAW 직접 확인. **원본 레이싱 서체 일치 불충분으로 producer HOLD**; 현재 공식 DDS0, 독립 C1/C3/실게임 미검증, IGR030/031/040 OPEN. 큐/QA/진도 GitHub [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd4fee2557222d7d3028d60c2b653d87fb18a18b) 원격 HEAD 검증. **AI 점수: 이전 1722점 + 이번 +1점 = 누적 1723점.** RUN_KEY=OUTRUN-KOR-A239-Q121-P0-SOURCE-SLANT-CURVE-20261011-1300 |
 
 | 2026-10-11 12:57 KST | AI 2 | 961 | +1 | 962 | 재배포 후 DX9Ex C 자동 개발 정체 원인 수정 및 실제 새 작업 자동 배정 확인: N100 컨트롤러 HTTP 200 확인. C는 00592 PASS 이후 R84 00591의 과거 ACCEPTANCE_CI_STEP_MISSING:R84-OWNERS BLOCKED 때문에 XR 기능을 선택하지 못했음. GitHub R84 source c8cde7d가 target ea890461의 선조이고 exact-SHA [DX9Ex Active #38100885230](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38100885230), [Domain #38100885233](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38100885233), [R84 feature #38097607152](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38097607152) 모두 SUCCESS 확인. 증거 기반으로 XR feature의 backlog dependency를 이미 PASS인 pacing 00592로 갱신해 stale R84 BLOCKED 오판정과 분리: [설정 커밋 062a72ae](https://github.com/thp32tt/OutRun2006Tweaks/commit/062a72aebae6e0db3bb4afefe2028092bc04ec09). N100 라이브 상태에서 C가 12:55:35 KST 신규 TASK_ID=CONVERSION-DX9EX-00593, FEATURE_ID=DX9EX:XR_RECOMMENDED_EYE_EXTENT, feature_stage=IMPLEMENTING, phase=WAIT_CHAT, attempt=1/3, last_result=conversion_parallel_sent 자동 발급된 것을 확인. 과거 R84 사고를 임의 PASS로 변조하지 않았으며, 이 성과는 새 XR 소스 구현 점수가 아니라 독립적인 중단 큐 복구 및 실제 작업 배정 1건만 +1. 실게임 Quest3 RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 961점 + 이번 +1점 = 누적 962점. RUN_KEY=VR-DX9EX-00593-QUEUE-UNBLOCK-20261011 |
 | 2026-10-11 12:50 KST | AI 1 | 1721 | +1 | 1722 | OutRun B369 짝수 P0 q060 원본 색·네이티브 자소별 수동 곡면/폴리곤 윤곽 변경으로 기존 B368 C2 반려 실루엣과 다른 **실제 신규 비승인 저장 DDS 1개** SHA `5b42316d777eb08c41f97e665b38e510c1df1820ecd74d78402efead26daddee` 완성. P2 실루엣 차이 10457px, P3 저장 DDS 알파 변화 5119px, RAW/FLIPY/100/50 직접 검토, 원본 bbox 안·외부 RGBA 변화0·저장 재디코딩 오차0. 광학 원본 이탤릭 가족 불일치로 정직한 **REWORK_REQUIRED_UNPROMOTED**; 공식 DDS 승격0, 독립 C2/C3/실게임 미검증, IGR044 OPEN. GitHub CPU [성공 실행](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38109144572), [실제 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B369-Q060-SOURCE-CONDITIONED-HEAVY-CONTOURS/B369_CONTROLLER_SAVED_VISUAL_QA.json), 상태·WORKLOG 반영 완료. 초회 P3 실패 재실행은 중복 점수0. AI 점수: 이전 1721점 + 이번 +1점 = 누적 1722점. RUN_KEY=`OUTRUN-KOR-B369-Q060-SOURCE-CONTOUR-HEAVY-20261011-1230` |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1798 | ACTIVE | 2026-10-12 07:13 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1040 | ACTIVE | 2026-10-12 07:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1041 | ACTIVE | 2026-10-12 07:16 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 07:16 KST | AI 2 | 1040 | +1 | 1041 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00637: R30 XYZRHW 드로우별 D3D9 GetRenderState(ZENABLE) 왕복을 신뢰 가능한 R29 effect-state 스냅샷 재사용으로 생략하고 StateBlock/캐시 무효 시 LIVE 조회 및 HUD/월드 판정 fail-closed 보존하는 실제 [C++ material/validation-bearing SHA ce940af4](https://github.com/thp32tt/OutRun2006Tweaks/commit/ce940af4c04ab975ea5f51d4b1e31a5034f0eae0). 11개 파괴변이 테스트 PASS, 정확 SHA [DX9Ex Active #38179149255](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38179149255) 5/5 SUCCESS, [Domain Isolation #38179149248](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38179149248) SUCCESS, [Full Source Impact #38179149249](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38179149249) 3/3 SUCCESS. C6 [bookkeeping 8e516bbe](https://github.com/thp32tt/OutRun2006Tweaks/commit/8e516bbe2e8791d20d985e69ade5dc192e68ab0f) [skip ci] 별도 및 중복 점수 없음. Quest3/VDXR 실기 FPS/frame-time 미측정 RUNTIME_VALIDATION=UNTESTED, 실제 성능 향상량 미확정. **AI 점수: 이전 1040점 + 이번 +1점 = 누적 1041점.** RUN_KEY=CONVERSION-DX9EX-00637 |
 
 | 2026-10-12 07:13 KST | AI 1 | 1797 | +1 | 1798 | OutRun A253 q103 신규 생산성과 1건. 이전 A252 C2 실패 SOURCE_FAMILY_ITALIC_WEIGHT를 근거로 SHA-검증된 English/CLEAN 원본을 사용해 우측 기울임 0.28 중간 굵기의 신규 실제 2048x2048 DDS 시험본 SHA 4f442a8a42a5e6ae04d505f32712140548b8fc8116d1fd3bfe295714bfb8f37d 제작. GitHub Actions [#38179102687](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38179102687) SUCCESS, 이전 DDS 대비 7042 RGBA 변경 원문 bbox 내부만, 외부 RGBA/alpha 0, 저장 DDS 디코딩 mismatch 0, 원본·CLEAN 크롭 일치. 보존 아트/한글 100·75·50/RAW 제작자 자체 QA scoped PASS, 독립 C2/C3/game NOT_RUN, official promotion0 RUNTIME_VALIDATION=UNTESTED. 같은 A253의 선행 fail/cancel retry 점수0 중복가산 안함. [producer commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/be777e1cc70f5a3ea63a90107335ce518b260983), [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A253-Q103-SOURCE-ITALIC-REWORK/A253_CONTROLLER_FIRSTHAND_VISUAL_QA.json). **AI 점수: 이전 1797점 + 이번 +1점 = 누적 1798점.** RUN_KEY=OUTRUN-KOR-A253-Q103-A252-SOURCE-ITALIC-OPTICS-20261012-0700 |
 | 2026-10-12 07:04 KST | AI 2 | 1039 | +1 | 1040 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00636: R23 already-seeded Clear 시 StateBlock/Apply 추적 및 래스터 shadow 신뢰 조건에서 D3D9 GetViewport/GetScissorRect/GetRenderState 강제 3회 호출 생략하는 실제 C++ [material adb75fe665908c8bb1ba11451cb2bc8cca9683ca](https://github.com/thp32tt/OutRun2006Tweaks/commit/adb75fe665908c8bb1ba11451cb2bc8cca9683ca). 8개 부정변이 검증 수정 exact validation-bearing d11e7967ce642d9719dd626a29289b7ff3d2fdba, DX9Ex Active #38178476095 5/5 SUCCESS, Domain Isolation #38178476067 SUCCESS, material Full Source Impact #38178374462 3/3 SUCCESS, C6 [skip ci] bf765e540bc7ba2d1921311522be057b236df7af. 원본 CI verifier 실패 후 동일 TASK_ID 내 수리, 중복 점수 없음. Quest3/VDXR FPS/화면 테스트 미실시 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1039점 + 이번 +1점 = 누적 1040점.** RUN_KEY=CONVERSION-DX9EX-00636 |

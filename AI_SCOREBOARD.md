@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1747 | ACTIVE | 2026-10-11 20:08 KST |
+| AI 1 | ChatGPT (AI 1) | 1748 | ACTIVE | 2026-10-11 20:13 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 972 | ACTIVE | 2026-10-11 20:07:44 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-11 20:13 KST | AI 1 | 1747 | +1 | 1748 | OutRun A244 P0 q012 C388 independent chrome/morphology REWORK 실제 별도 원본형 윤곽/은색 face/남색 rim/입체 효과 기반 native BGRA32 **신규 저장 시험 DDS** SHA `4f18c54903fce5ad2bb1ca0f65e9b9e90664d7d5ee887df7eb2aa8a32c534633` 제작 (기존 공식 SHA1df64df7 정확 보존, 84,228px actual difference, source bbox 밖0, 저장 decode/RAW/FLIPY PASS). 직접 BGW 100/75/50 픽셀 비교 결과 한글 계·속·물음표 획 정상 및 신규 글자 형태 확인. C2/C3/사용자 실게임 미승인 명시, PJR001 OPEN 유지. GitHub [worker #38134295289](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38134295289), [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A244-Q012-ROUNDED-SOURCE-BEVEL-TRIAL/A244_CONTROLLER_FIRSTHAND_VISUAL_QA.json). 실질 신규 시험 DDS/근거 하나 성과 +1, retry/재보고0. **AI 점수: 이전 1747점 + 이번 +1점 = 누적 1748점.** RUN_KEY=OUTRUN-KOR-A244-Q012-C388-ROUND-BEVEL-NATIVE-20261011-2000 |
 | 2026-10-11 20:08 KST | AI 1 | 1746 | +1 | 1747 | OutRun 한글화의 실제 GitHub 최신 생산/실게임 실패 원인 및 생산 계획의 독립 기술 검토 1건. imagegen BC3/DXT5 consumer 미지원, q060/q102 원본 PNG 미게시와 source-style 불일치, q121 반복 stroke/italic 실패, CLEAN/압축/독립 QA 분리, 최신 per-glyph 규정·영문 대비 폭 단독 반려 무효 원칙을 확인하고 **실행 미적용** 제안 문서 [failure review](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/docs/KOREAN_LOCALIZATION_FAILURE_REVIEW_20261011.md) 원격 HEAD [8f8fed7](https://github.com/thp32tt/OutRun2006Tweaks/commit/8f8fed76584a24af63be8415690a83b4e8fc507d) 게시·검증. 새 DDS/QA PASS/사용자 게임 종결은 주장하지 않음. **AI 점수: 이전 1746점 + 이번 +1점 = 누적 1747점.** RUN_KEY=OUTRUN-KOR-FAILURE-REVIEW-PLAN-20261011-2004 |
 
 | 2026-10-11 20:07:44 KST | AI 2 | 971 | +1 | 972 | DX9Ex 독립 TASK_ID=CONVERSION-DX9EX-00596 실제 VR R35 OpenXR host frame pacing 코드 개선: 장시간 XR pause/epoch 재시작으로 predictedDisplayTime 크게 이탈 시 기존 O(n) do-while 수백만 회 catch-up을 상수 시간 안전 계산 및 >1s 역행 epoch 복구로 대체, XrTime overflow guard. [소스 material 3892048b](https://github.com/thp32tt/OutRun2006Tweaks/commit/3892048b115a8f662cfcfb1c2856a1f4f25a9f6d), [정확한 검증-bearing material 55f18991](https://github.com/thp32tt/OutRun2006Tweaks/commit/55f18991f6e60dbde143b7d3493775a5d1766e0e)에서 신규 C++ test/CMake+Active CI 실제 실행까지 연결, Windows x64 log CADENCE-SCHEDULE PASS(90/60 phase, 12h pause, XR epoch reset, overflow), Linux g++ C++20 UBSan PASS. Exact SHA [DX9Ex Active #38133932784](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38133932784) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38133932815](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38133932815) SUCCESS, [Full Source Impact #38133932843](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38133932843) 3/3 SUCCESS; game/host/ZIP artifacts verified. Separate bookkeeping C6 [6cc9616](https://github.com/thp32tt/OutRun2006Tweaks/commit/6cc961622a10aaca0bb6897fd3137de2a93f8b1b) retains validation-bearing SHA; HMD Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, no DX11/DXVK/localization change. Same TASK_ID retry/recheck/report scores +0. **AI 점수: 이전 971점 + 이번 +1점 = 누적 972점.** RUN_KEY=CONVERSION-DX9EX-00596 |

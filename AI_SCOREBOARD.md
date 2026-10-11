@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1785 | ACTIVE | 2026-10-12 04:02 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1022 | ACTIVE | 2026-10-12 04:22 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1023 | ACTIVE | 2026-10-12 04:28:55 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 04:28:55 KST | AI 2 | 1022 | +1 | 1023 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00625: DX9Ex R30 원근 HUD 렌더상태 드라이버 호출 3종을 R29 유효 StateBlock 세대 캐시로 재사용하고 XYZRHW viewport 상태 조회를 추적된 viewport로 대체, 기존 live fallback 보존. 실제 C++/header source 및 7개 파괴변이 정책 검증 구현. [material/validation-bearing c657aa55](https://github.com/thp32tt/OutRun2006Tweaks/commit/c657aa558b235bf61ac5315ca9e399b54bbea892), [DX9Ex Active #38167640623](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38167640623) policy/game/host/full-chain/package SUCCESS, [Domain #38167640572](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38167640572) SUCCESS, [Full Source Impact #38167640630](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38167640630) source/game MSVC/host MSVC SUCCESS, [C6 bookkeeping a6a6d588](https://github.com/thp32tt/OutRun2006Tweaks/commit/a6a6d5888cdd1936174d5cbb3eea48b4217ef5cc) +0. Quest3/VDXR HMD FPS/p95/p99 실기 미검증 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1022점 + 이번 +1점 = 누적 1023점.** RUN_KEY=CONVERSION-DX9EX-00625 |
 
 | 2026-10-12 04:16:27 KST | AI 2 | 1020 | +1 | 1021 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00624: R31 게임 Draw 상태 분류·5개 진단 카운터와 R32 Present R31 cross-TU route snapshot/QPC 계측을 Telemetry OFF에서 생략하는 실제 C++ 핫패스 수정. disabled→enabled 성능 epoch/프레임 카운터 초기화 보호, 6개 파괴변이 정책 테스트 추가. [material 및 validation-bearing a3e6c8aa](https://github.com/thp32tt/OutRun2006Tweaks/commit/a3e6c8aa3035e18fdad60cdccd399bdbf0f7379a) [DX9Ex Active #38166652643](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38166652643) policy/game/full-chain/host/package 5/5 SUCCESS, [Domain #38166652674](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38166652674) SUCCESS, [Full Source Impact #38166652609](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38166652609) source/game MSVC/host MSVC 3/3 SUCCESS. [C6 bookkeeping e7b0c40d](https://github.com/thp32tt/OutRun2006Tweaks/commit/e7b0c40d34b53105215446258b8274330254a255) [skip ci], 별도 +0. HMD 실기·FPS/p95/p99 개선은 미검증 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1020점 + 이번 +1점 = 누적 1021점.** RUN_KEY=CONVERSION-DX9EX-00624 |
 

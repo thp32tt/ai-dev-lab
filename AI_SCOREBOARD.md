@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1744 | ACTIVE | 2026-10-11 18:37 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 966 | ACTIVE | 2026-10-11 17:50 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 967 | ACTIVE | 2026-10-11 19:07 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 19:07 KST | AI 2 | 966 | +1 | 967 | N100 VR controller 실제 /status에서 A/C 활성0, GitHub 정상, feature_backlog 완료/차단으로 자동디스패치 무기한 정체 원인 확인. 사용자의 지속 개발 우선 방침에 따라 기존 TASK_ID 시스템은 이력만 유지하고 VR A(DX11)/C(DX9Ex)에 30분 단위 독립 새 작업을 강제 배정하는 컨트롤러 수정: 완료/Blocked/FEATURE_CONTRACT 소진·WAIT_CHAT/WAIT_ACTIONS/이전 채팅 busy가 새 개발 발행을 막지 않음. 30분 기존 작업 preempt 시 이전 식별정보와 검증 SHA 감사 보존, 전송 실패 시 기존 owner 유지·15초 자동 재시도, DXVK 동결/비강제 GitHub push·게임 HMD 미검증 UNTESTED 유지. Compose 환경, 신작업 DX11/DX9Ex 소스 변경 중심 프롬프트, Dockerfile, 회귀테스트 수정. [소스 최종 SHA d32e149](https://github.com/thp32tt/OutRun2006Tweaks/commit/d32e149f1f1de10beae10f20966bc3402aefed32), [VR progression #38130770395](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38130770395) SUCCESS 및 [Chat Controller Selftest #38130770407](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38130770407) SUCCESS 확인. 라이브 재배포/전송은 사용자가 배포하기 전 미검증. 이번 새로운 개발자동화 구현+CI 성과 1회만 가산, 이전 resume-v3 watchdog/복구 별개. **AI 점수: 이전 966점 + 이번 +1점 = 누적 967점.** RUN_KEY=VR-CONTINUOUS-30MIN-DEV-LOOP-20261011 |
+
 
 | 2026-10-11 18:37 KST | AI 1 | 1743 | +1 | 1744 | OutRun C2 신규 A242 q121 P0 이전 A241 dba874...와 다른 실제 저장 DDS SHA 3a4f71ce... 첫 독립 최종 게이트. 원본 f7847db9..., 공식 38d5c2c3..., A241, A242 4096² RGBA32/mip1 DDS 직접 전체 SHA 확인, RAW/FLIPY 100/75/50 및 CLEAN/lettering 분리층 실물 검수. 공식→A242 변경 RGBA9351 전부 Gas Pedal ROI 내(밖0), A241→A242 변경6715 ROI 밖0, 다른 29 UI 보존. 정본 가속 페달: 읽기/콜론 확인. 원본 서체/기울기 기준·전체 CLEAN/게임 증거 부족으로 C2 HOLD_STRICT_RECHECK, 기존 P0 실게임 IGR030/031/040 REWORK OPEN, 독립 PASS0, C3 NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 새로운 DDS 제작 C2 0. q161 A237은 기존 동일 SHA C1 REWORK를 C2로 재확인한 것이라 별도 점수 +0. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e841aea2795f66e6ad51959682bc6e6eed4ef857), [A242 독립 근거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q121-A242-FIRST-PERSISTED/C2_Q121_A242_INDEPENDENT_HOLD.json). AI 점수: 이전 1743점 + 이번 +1점 = 누적 1744점. RUN_KEY=OUTRUN-KOR-C2-A242-NEW-SHA-INDEPENDENT-20261011-1820 |
 

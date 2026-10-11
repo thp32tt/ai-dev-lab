@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1800 | ACTIVE | 2026-10-12 07:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1041 | ACTIVE | 2026-10-12 07:16 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1042 | ACTIVE | 2026-10-12 07:35 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 07:35 KST | AI 2 | 1041 | +1 | 1042 | OutRun 2006 DX9Ex CONVERSION-DX9EX-00638 R30 XYZRHW reliable-StateBlock shader getter fastpath: 실제 C++ D3D9 GetVertexShader 핫패스 조건부 생략, 불안정 시 live fail-closed 재조회, 독립 R30 TU StateBlockTracker 헤더 수리. 최초 material c9358b7c105306ac4c1eeebdbc00dcea36ba03a4, 최종 material/validation-bearing 592d39edc0aca3e3f5a5956c6f8dc36865bcf319; 17개 부정변이, exact SHA DX9Ex Active #38180507047 policy/host/game/full-chain/package 5/5 SUCCESS, Domain #38180507059 SUCCESS, Full Source Impact #38180507098 3/3 SUCCESS. C6 bookkeeping 8aadbbbdbcba2838e14e5d48e7567ae0df2bf3f2 [skip ci] 별도(+0), 재시도/검증기 수정 별도 점수 없음. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 72 Hz FPS 향상 계측 없음. 이전 1041 + 1 = 1042. RUN_KEY=CONVERSION-DX9EX-00638 |
 | 2026-10-12 07:33 KST | AI 1 | 1799 | +1 | 1800 | 신규 A253 q103 **C2 최초 독립 저장 DDS 네이티브 픽셀 검수**: SHA 4f442a8a 새 DDS, canonical SOURCE 76b6f6d8, CLEAN 58d90ffa, 기존 반려 A252 f27215f9 각 실물 SHA 확인. SOURCE→CLEAN 7439, CLEAN→A253 5704, A252→A253 7042 RGBA 변화 모두 원문 효과 bbox 밖0; RGBA32 2048² mip1 header/RAW/FLIPY/저장 디코딩0불일치, native100/white75/black50 직접 육안 글자기울기 개선·자소 정상 확인. **C2_STATIC_QA_PASS_SCOPED**, 형식상 FULL APPROVAL/C3/실게임은 HOLD, 공식 DDS 승격0. 추가 C1 q230 새 PSD 출처와 SOLD/UNAVAILABLE PAD24 투명 이미지 SHA 실측, 2건 alpha/PNG PASS지만 원본 DDS 대응 불명으로 PLATE HOLD, 별도 생산·점수 중복 없음. [OutRun HEAD 23358f67](https://github.com/thp32tt/OutRun2006Tweaks/commit/23358f6735052d0e6c3360b54a792d3d352a8091) 이미지 6개/QA·기계 JSON 4개/큐·WORKLOG 반영. C2 신규 DDS0, 사용자 실게임 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1799점 + 이번 +1점 = 누적 1800점.** RUN_KEY=OUTRUN-KOR-C2-Q103-A253-FIRST-NATIVE-SAVED-20261012-0720 |
 
 | 2026-10-12 07:18 KST | AI 1 | 1798 | +1 | 1799 | OutRun Korean C1 q230 **new actual PSD-derived English-only transparent references** for previously unprepared labels SOLD and UNAVAILABLE: SHA verified source mirror PSD E95DA5 Git blob `0ca28fa2` (preexisting, not re-counted), extracted two opaque white-on-red PSD layer scenes and mathematically unmatted white lettering into 24px padded RGBA PNG SHA256 `7f1c3a3e` (169×89, 1847B) and `ba3ea87a` (401×88, 3225B). Original layer is opaque, so derivation caveat recorded; **not** native separate transparent Photoshop leaf / exact canonical DDS / approved CLEAN. SOURCE_REFERENCE_NOT_BOUND, actual ImageGen generation0, Korean PNG0, DDS0; existing B-owned q230 candidate, C380 REWORK, C2/C3/actual game unchanged and RUNTIME_VALIDATION=UNTESTED. [material commit c447c78e](https://github.com/thp32tt/OutRun2006Tweaks/commit/c447c78ebf30b695fecf0b5b2146296ca7e7b930) seven files including 2 new physical PNG plus queue/WORKLOG/resume/status/manifest; remote HEAD + exact PNG SHA both verified. New two q230 English references constitute one newly qualified source-prep milestone; rechecks +0. **AI 점수: 이전 1798점 + 이번 +1점 = 누적 1799점.** RUN_KEY=OUTRUN-C1-20261012-Q230-PSD-SOLD-UNAVAILABLE-ENGLISH-ALPHA-FIRST |

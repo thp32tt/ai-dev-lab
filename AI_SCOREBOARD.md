@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1711 | ACTIVE | 2026-10-11 10:44 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 959 | ACTIVE | 2026-10-11 10:42 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 960 | ACTIVE | 2026-10-11 10:46:36 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-11 10:46:36 KST | AI 2 | 959 | +1 | 960 | 수도권 주말 사용 가능한 연간·시즌·다회권 특가 공식 조회 완료. 기존 씨라이프 79,000원(10/31까지)보다 개선된 신규 조건 미확인; 1일권 할인 제외, 알림 생략. 이전 959점 + 이번 +1점 = 누적 960점. RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-11T10:46:36+09:00 |
 | 2026-10-11 10:44 KST | AI 1 | 1710 | +1 | 1711 | OutRun B367 EVEN q060 새 분리형 글자면·측면·하이라이트 방식으로 신규 SHA-bound 4096×2048 RGBA32 DDS `52d97f845b7b3e588ebe5136cd299882001d509320fd4f8cc910270f314142d9` 첫 생산 및 실제 저장 DDS FLIPY 100/50, RAW 비교 증거; CLEAN 원문 89,391px, ROI 밖 변경0·저장 roundtrip0, B360 수평 띠 개선 확인. 동시에 소스 레이싱 금속 서체와 차이 확인해 생산 시각 REWORK_REQUIRED_UNPROMOTED 보류, 공식 C342·IGR044 유지, C2/C3/게임 미검증으로 허위 승인 없음. [CPU SUCCESS #38102408802](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38102408802), [B367 증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B367-Q060-SOURCE-CONDITIONED-CONTINUOUS-METAL-PILOT/B367_CONTROLLER_NATIVE_VISUAL_QA.json). 새 distinct 1개 실제 생산/QA 성과만 +1, 과거 B360 반복 검증 점수 없음. **AI 점수: 이전 1710점 + 이번 +1점 = 누적 1711점**. RUN_KEY=OUTRUN-KOR-B367-Q060-SMOOTH-SEPARATED-METAL-FIRST-SAVED-20261011-1030 |
 
 | 2026-10-11 10:42 KST | AI 2 | 958 | +1 | 959 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00592: DX9Ex FRAME_PACING_DIAGNOSTICS 기능의 실제 x86 게임 BeginScene/Present QPC 연결, Frame.v2 호환, x64 host 검증된 XR 제출 frameId 상관관계, 기본 OFF 제한 버퍼, CSV 수집기 및 실행형 회귀 테스트 최초 구현. [구현 material e9431196](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9431196afdbf02288d24545eb1a5f637801cb25), [validation-bearing ea890461](https://github.com/thp32tt/OutRun2006Tweaks/commit/ea890461b445f01903e690fc6fc4c13622292079), TARGET vr-d3d9ex-focus exact-SHA [DX9Ex Active #38102179453](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38102179453) 필수 jobs5·PACING-STAGES/REGRESSION/BUNDLE SUCCESS, [Domain #38102179485](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38102179485) SUCCESS, 동일 SHA의 게임+host+collector artifact 확인. C6 [별도 bookkeeping de511b3f](https://github.com/thp32tt/OutRun2006Tweaks/commit/de511b3fa6c508b624b6d63e3c2f84d4a6dd6244)은 FEATURE_BRANCH 저장; TARGET 인계 기록 반영은 컨트롤러 대기이며 추가 점수 없음. RUNTIME_VALIDATION=UNTESTED, 네이티브 FPS 보장하지 않음. AI 점수: 이전 958점 + 이번 +1점 = 누적 959점. RUN_KEY=CONVERSION-DX9EX-00592 |

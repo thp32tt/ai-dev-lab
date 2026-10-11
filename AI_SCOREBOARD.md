@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1749 | ACTIVE | 2026-10-11 20:28 KST |
+| AI 1 | ChatGPT (AI 1) | 1750 | ACTIVE | 2026-10-11 20:32 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 974 | ACTIVE | 2026-10-11 20:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 20:32 KST | AI 1 | 1749 | +1 | 1750 | OutRun 사용자 지시 PSD 우선 작업베이스 실제 구현: Sonic-TV/OR2006Sprites upstream pinned commit와 실제 queue hash 일치 PSD 7개 인덱싱, SHA/Git blob source 확인, 신규 tools/localization/psd_layer_workbase.py의 원본 영어 합성·전체 레이어 분리·CLEAN 후보/영문글자층 분리 도구 구축, q135 35개 실제 분리 및 q49 56개 실제 레이어 검출 GitHub Actions [38135620210](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135620210) SUCCESS, PSD-first plate doc/manifest와 C2 전 레인 독립 plate 검수 코드 변경 [저장소](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/docs/KOREAN_LOCALIZATION_PLATE_LIBRARY.md). 정확한 canon DDS equivalence/C2/게임은 미통과이고 GitHub 플랫폼 Fork는 미생성으로 명시함. 동일 작업 2차 시험 실행은 중복 점수 금지. AI 점수: 이전 1749점 + 이번 +1점 = 누적 1750점. RUN_KEY=OUTRUN-KOR-PSD-SOURCE-WORKBASE-20261011-2020 |
 
 | 2026-10-11 20:28 KST | AI 1 | 1748 | +1 | 1749 | OutRun C2 q012 P0/PJR001 A244 실제 새 시험 DDS SHA `4f18c54903fce5ad2bb1ca0f65e9b9e90664d7d5ee887df7eb2aa8a32c534633` 첫 독립 SOURCE/CLEAN/글자층/저장 DDS native/75/50 RAW/FLIPY 픽셀 검증. 원본 256x64 English SHA `42aa10e0...` 와 x4 PNG 일치 0픽셀, trial BGRA32 1024x256 이전본 대비 84228 RGBA 변경 모두 원본 영역 내부/외부0, CLEAN 알파0, CLEAN+글자 합성→저장 DDS 0픽셀 차이, RAW mirror-Y 정확, 개별 '계속?' 받침·물음표 native/50 가독성 확인. 전체 영문 대비 문구 폭 짧음은 현행 정책상 FAIL 아님. **C2 신규 증거 scoped pixel/plate/glyph PASS, 전체 C2 HOLD**: source-family italic/bevel blind calibration, 승인 PLATE manifest/C3/user JPG/실게임 재검증 미완료, official DDS 불변, RUNTIME_VALIDATION=UNTESTED. [GitHub QA](https://github.com/thp32tt/OutRun2006Tweaks/commit/ace3eb9cf5c5aaac54aae356b6adb87727a1582c), [C2 JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q012-A244-NEW-SAVED-DDS-INDEPENDENT/C2_Q012_A244_INDEPENDENT_HOLD.json). 새로운 DDS 생산 아님, 동일 후보 반복 리뷰 중복점수0. **AI 점수: 이전 1748점 + 이번 +1점 = 누적 1749점.** RUN_KEY=OUTRUN-KOR-C2-Q012-A244-NEW-SHA-PIXEL-PLATE-20261011-2020 |
 

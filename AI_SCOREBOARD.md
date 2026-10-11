@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1767 | ACTIVE | 2026-10-11 23:34 KST |
+| AI 1 | ChatGPT (AI 1) | 1768 | ACTIVE | 2026-10-12 00:06 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 995 | ACTIVE | 2026-10-12 00:05 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:06 KST | AI 1 | 1767 | +1 | 1768 | OutRun C2 q193 기존 A246 DDS 동일 SHA에 **기존 C2 검수에서 제외된 새로운 3개 영역** WELCOME/MULTIPLAYER/RANK_HELP 독립 native/50/raw 정적 실측: 보이는 글자 원문 bbox 밖0, 공식/시험 동일. 새 핵심 결함 근거: 구형 A208 GOAL_A용 CLEAN에 이 3개 한국어 알파 4479/10240/24406픽셀이 그대로 있고 저장 DDS와 완전히 동일→영문제거 CLEAN+글자층 별도 검증 불가, 3영역 CLEAN_STAGE_HOLD, 전체 q193 C2 HOLD/게임 OPEN 유지. 실제 [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/85a2aab9ea1b875181f5305d3c02123fb44a99dc) 11파일(이미지6/기계/판정/큐/진행/WORKLOG), 원격 HEAD 재확인. 신규 DDS 0, 이전 6개 범위 재검수·생산 가산 0; **새 3영역 독립 QA+새 결함 근거** 성과만 +1. AI 점수: 이전 1767점 + 이번 +1점 = 누적 1768점. RUN_KEY=OUTRUN-C2-Q193-3-LEGACY-UNTOUCHED-PLATE-GAP-20261012-0002 |
 
 | 2026-10-12 00:05 KST | AI 2 | 994 | +1 | 995 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00608: DX9Ex R31 실제 게임 월드 스테레오 매 드로우에서 반복하던 verified projection 4x4 inverse 계산을 exact pose/eye geometry/projection/worldScale 캐시 미스에서만 실행하도록 C++ 원본 구조 변경. R31 cache transactional finite/Reset 무효화 보호, 기존 Python 캐시/부정변이 검증기 수정. [material/validation SHA 452e283a](https://github.com/thp32tt/OutRun2006Tweaks/commit/452e283af6c712b385e91fb9859e61170a3deebf), 정확 SHA [DX9Ex Active #38149150444](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149150444) policy/game/host/full-chain/package SUCCESS, [Domain #38149150437](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149150437) SUCCESS, [Full Source Impact #38149150439](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149150439) game/host MSVC-analyze+cross-domain SUCCESS. [C6 별도 bookkeeping SHA bb47e285](https://github.com/thp32tt/OutRun2006Tweaks/commit/bb47e2856603e2a9c7fa9b779965c776713ca7e5). Quest3/VDXR 실제 FPS·P95/P99 측정 없음: RUNTIME_VALIDATION=UNTESTED, 성능 향상량 미확정. **AI 점수: 이전 994점 + 이번 +1점 = 누적 995점.** RUN_KEY=CONVERSION-DX9EX-00608 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1755 | ACTIVE | 2026-10-11 21:15 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 978 | ACTIVE | 2026-10-11 21:16 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 979 | ACTIVE | 2026-10-11 21:28 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 21:28 KST | AI 2 | 978 | +1 | 979 | 신규 독립 TASK_ID=CONVERSION-DX11-00543: 실제 OutRun 게임 D3D9 텍스처 FVF TEX1 LockRect의 DXT1/DXT3/DXT5 블록 단위 row pitch 및 검증된 level-0를 DX11 BC1/BC2/BC3 immutable texture/SRV/PSSetShaderResources로 변환해 기존 **실게임 원본 Draw/DrawIndexed 네이티브 진단 출력**과 연결한 C++ 기능 구현, 원래 DX9Ex Draw·입력 보존, unsupported/default-pool/partial block fail-closed. 압축 포맷/피치/형식/Draw 통합 부정변이 테스트 추가하고 동일 TASK 내 부정 테스트 취약 검출 보강. [최종 material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/43e963cd69c11bcbcdb65fbf3cc3a7ac798a0394), 정확한 SHA [Backend Conversion Gate #38138640785](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138640785) SUCCESS, [Win32 Build #38138645419](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138645419) SUCCESS, [OpenXR #38138645343](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138645343) SUCCESS, [DX11 Fast #38138640770](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138640770) SUCCESS. 실게임 메뉴·차량·레이스·게임패드/Quest3·VDXR 미실행 RUNTIME_VALIDATION=UNTESTED, 네이티브 게임플레이 승격 없음; 동일 TASK retry/C6 중복 점수 0. **AI 점수: 이전 978점 + 이번 +1점 = 누적 979점.** RUN_KEY=CONVERSION-DX11-00543 |
 
 | 2026-10-11 21:16 KST | AI 2 | 977 | +1 | 978 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00600: DX9Ex R23 OpenXR Desktop Duplication 72Hz 캡처 핫패스의 반복 GetFrameDirtyRects/GetFrameMoveRects 및 매 프레임 dirty/move vector heap 할당·검사 실제 제거, 기존 Frame.v2 LastPresentTime/QPC·스테레오 안정성 판정·R19 GPU 소스 복사/프레임 해제 원형 보존, 신규 3부정변이 회귀를 Active CI 정책에 연결. [material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/6466115da2c95ac3f363df643d91842a7bb49b66), exact-SHA [DX9Ex Active #38138163433](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138163433) 정책·host·game·R84 full-chain·package 5/5 SUCCESS, [Domain #38138163387](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138163387) SUCCESS, [Full Source Impact #38138163444](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138163444) 3/3 SUCCESS, [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/61170572466a40f06eeefcb8ccf7ded3b580ee2e). Quest3/VDXR 실기 및 p95/p99 FPS 측정은 미실행 RUNTIME_VALIDATION=UNTESTED; 다른 브랜치 불변, 과장된 FPS 개선 수치 없음. 동일 TASK_ID 재보고·재시도는 +0점. **AI 점수: 이전 977점 + 이번 +1점 = 누적 978점.** RUN_KEY=CONVERSION-DX9EX-00600 |
 

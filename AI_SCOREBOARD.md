@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1757 | ACTIVE | 2026-10-11 21:51 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 980 | ACTIVE | 2026-10-11 21:47 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 981 | ACTIVE | 2026-10-11 21:55 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 21:55 KST | AI 2 | 980 | +1 | 981 | DX11 신규 독립 TASK_ID=CONVERSION-DX11-00544: 실제 OutRun 게임 원본 D3D9 R5G6B5/A1R5G5B5/A4R4G4B4 16-bit LockRect texel → CPU BGRA8 decode 및 행별 format dispatch → D3D11 immutable texture/SRV/PSSetShaderResources → 기존 실게임 Draw/DrawIndexed 진단 데스크톱 inset까지 연결하는 C++ material 기능과 포맷/피치/알파/Draw 12부정변이 회귀. 첫 exact e6e4f768 Gate #38140075244 실패는 구식 동기 Map source verifier가 현재 event-fenced 비동기 GPU readback을 거부한 오라클 불일치였고, 검증기 연동을 실제 비동기 경로에 맞게 복구 후 [최종 material 16d77822](https://github.com/thp32tt/OutRun2006Tweaks/commit/16d778226d9ce5de053938169df3f61ac828eda1) exact-SHA [Backend Gate #38140413857](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140413857) validate/readiness 2/2 SUCCESS, [Win32 Build #38140416697](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140416697) SUCCESS, [OpenXR #38140416646](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140416646) SUCCESS, [DX11 Fast #38140413916](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140413916) SUCCESS, [분리된 C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/dfa7c54f8464ee8aa5297632f25154945d92e636). 게임 메뉴/차량선택/레이스 화면 및 게임패드/Quest3/VDXR 실기 미실행 RUNTIME_VALIDATION=UNTESTED, native 정식 승격 없음. 이 TASK_ID 전체 구현·retry/C6는 최초 +1만, 향후 재보고 +0. **AI 점수: 이전 980점 + 이번 +1점 = 누적 981점.** RUN_KEY=CONVERSION-DX11-00544 |
 
 | 2026-10-11 21:51 KST | AI 1 | 1756 | +1 | 1757 | OutRun C1 q102 독립된 **영문 두 번째 줄 원본 참조 PNG 1개 신규 생성·GitHub 바이너리 게시**: canonical C2 English contact SHA `8aa8b4e5...` 기반 정확한 SOURCE-only 1080×112 crop SHA256 `78a5f16f379684fd964d607c339683d8d0b07f1b0f6bb268017efdc51e695c80`, Git blob `a31215e72bc689f8907547aca5d57c549ea4407b`, 원격 [material commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/e01cc34181e354d72b1eb14ea56f21ae60b82e96) 및 [original source image](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2140_ENGLISH_SECOND_ROW_SOURCE_ONLY.png) 실제 확인. C1 ImageGen gen c2a423c8 SHA 6882dfd6 local PNG는 source-style FAIL, 유효 한글 PNG0/DDS0/C2-C3-게임 PASS0, source crop은 plate/GAME 승인 아님. 새 참조 실물1건에만 +1, 기존 q102 실패 재검증/반복 생성에는 가산0. [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2140_SOURCE_CROP_IMAGEGEN_STYLE_FAIL.json). **AI 점수: 이전 1756점 + 이번 +1점 = 누적 1757점.** RUN_KEY=OUTRUN-KOR-C1-Q102-ENGLISH-SOURCE-SECOND-CROP-20261011-2140 |
 

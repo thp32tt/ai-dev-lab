@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1791 | ACTIVE | 2026-10-12 05:51 KST |
+| AI 1 | ChatGPT (AI 1) | 1792 | ACTIVE | 2026-10-12 05:59 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1032 | ACTIVE | 2026-10-12 05:58 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 05:59 KST | AI 1 | 1791 | +1 | 1792 | 신규 C2 q098 **C1의 이번 회차 새 영문 입력 PNG SHA 078f6b7d 독립 픽셀 검수**: canonical 원문 DXT5 DDS 3b3cdd76과 실제 PNG를 별도 SHA 검증 다운로드해 RAW/FLIPY·SOURCE/CLEAN/현행 DDS native 비교, 92,878 alpha pixel 완전 일치, 가시 RGBA 불일치0, 24px 여백 알파0, CLEAN 알파0, SOURCE 밖 가시/알파 변경0. 신규 PNG 100/75/50/RAW 4개+기계 JSON/8항목 C2 보고서를 [OutRun commit c6ac217f](https://github.com/thp32tt/OutRun2006Tweaks/commit/c6ac217f243328778ae25950f9ba157110e5a1b6)로 확정. **신규 C1 소스 입력 QA 성과만 1회 +1**: 기존 q098 한글 DDS SHA27a1f95d 재생산/승인 아님, 기존 슬랜트·서체 REWORK 유지, C1 generator media 미연결, DDS0/C2_FINAL_PASS0/C3 미실행/실게임 UNTESTED. **AI 점수: 이전 1791점 + 이번 +1점 = 누적 1792점**. RUN_KEY=OUTRUN-KOR-C2-Q098-C1-ENGLISH-MEDIA-SOURCE-PIXELS-20261012-0550 |
 
 | 2026-10-12 05:58 KST | AI 2 | 1031 | +1 | 1032 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00631: R29/R30 borrowed stereo depth/right-eye direct-owner fastpath와 DirectGPU 양안 단일 frame snapshot C++ 최적화, 다섯 파괴변이 회귀 검증. [첫 material e4552699](https://github.com/thp32tt/OutRun2006Tweaks/commit/e4552699ecdde2e90253678d09c2273e1b8ec41d)에서 기존 R29/R32 구조 검증 불일치로 Active #38173778697 실패; [수리 및 validation-bearing SHA 6548c8f1](https://github.com/thp32tt/OutRun2006Tweaks/commit/6548c8f1acd8c0cd87a6b1b97a7304b957f4d5e2)에서 정확한 [DX9Ex Active #38173887819](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38173887819) 정책·호스트·게임·full-chain·패키지 5/5 SUCCESS, [Domain #38173887897](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38173887897) SUCCESS. 원본 material SHA의 [Full Source Impact #38173778696](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38173778696) SUCCESS (수리 SHA에 대한 exact gate로 오인하지 않음). [별도 C6 a47be6c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/a47be6c7feb0df07e94d74e703154adb3be0e5b4) [skip ci] +0. Quest3/VDXR·FPS 실기 UNTESTED. 같은 TASK 재시도·검증기 수리·C6 중복 가산 없이 신규 C++ 성과 +1. **AI 점수: 이전 1031점 + 이번 +1점 = 누적 1032점.** RUN_KEY=CONVERSION-DX9EX-00631 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1777 | ACTIVE | 2026-10-12 02:11 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1006 | ACTIVE | 2026-10-12 02:08 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1007 | ACTIVE | 2026-10-12 02:22 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 02:22 KST | AI 2 | 1006 | +1 | 1007 | 독립 TASK_ID=CONVERSION-DX11-00556: 실제 게임 D3D9 stage0 RGB MODULATE와 alpha SELECTARG1(TEXTURE)/SELECTARG2(DIFFUSE/CURRENT) 분리 연산을 진단 전용 네이티브 D3D11 PS 2종, 소유·Reset·Draw/DrawIndexed까지 C++로 구현. 19개 파괴변이 연결 검사 및 RGBA 수치 회귀 추가. [material SHA d5136c0b](https://github.com/thp32tt/OutRun2006Tweaks/commit/d5136c0b19430263fd34ab068eac4ae512a202fb) 최초 CI 실패의 오래된 테스트 source predicate 3곳 수리 후 [정확한 validation-bearing SHA 91e12fb3](https://github.com/thp32tt/OutRun2006Tweaks/commit/91e12fb3065544aa9f67bc9c337464f8b8b5effc). 동일 SHA [Backend Conversion Gate #38158602935](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158602935) validate/readiness 2/2 SUCCESS, [Build #38158608392](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158608392) SUCCESS, [OpenXR #38158608423](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158608423) SUCCESS, [HUD #38158608412](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158608412) SUCCESS, [DX11 Fast #38158602958](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158602958) SUCCESS. 별도 [C6 bookkeeping f3af8989](https://github.com/thp32tt/OutRun2006Tweaks/commit/f3af89893aa62e7c2950d933e593ce2f18c87fde) 추가 가점0, 게임/HMD/Quest3/VDXR/패드 미실행 RUNTIME_VALIDATION=UNTESTED, 네이티브 게임 정상동작 확정 아님. **AI 점수: 이전 1006점 + 이번 +1점 = 누적 1007점.** RUN_KEY=CONVERSION-DX11-00556 |
 
 | 2026-10-12 02:11 KST | AI 1 | 1776 | +1 | 1777 | A249 실제 신규 제작 성과: q193 아직 미검증 SHOWROOM 본문 영역의 SHA 인증 원본 English SOURCE→진짜 투명 CLEAN 생성(11,379 alpha pixels erased, residue0, source bbox 밖 변경0) 및 이미 저장된 '쇼룸'만의 한국어 투명 글자층 분리(2,634 alpha pixels), 원본 SOURCE/OFFICIAL/CLEAN/LETTER/SAVED native 및 gray100/white75/black50/RAW 원본 비교를 실제 생성·직접 시각 QA. 기존 A246 DDS SHA98066203 및 다른 UI/영문 OUTRUN 보존; 이전 A247 3영역과 명백히 다른 미완료 SHOWROOM 셀 신규 성과. [GitHub Actions 38158179765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38158179765) SUCCESS, [A249 증거](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A249-Q193-SHOWROOM-SOURCE-CLEAN), 큐/QA/WORKLOG/resume/progress [HEAD 51902ff6](https://github.com/thp32tt/OutRun2006Tweaks/commit/51902ff6c9890d40f26f5098849b31843214bc4b) 확인. **신규 DDS 0** (근거/CLEAN 1영역 신규 생산), 독립 C2/C3/실게임 미검증, RUNTIME_VALIDATION=UNTESTED, 동일 성과 재검증은 점수 +0. AI 점수: 이전 1776점 + 이번 +1점 = 누적 1777점. RUN_KEY=OUTRUN-KOR-A249-Q193-SHOWROOM-SOURCE-CLEAN-20261012-0200 |
 

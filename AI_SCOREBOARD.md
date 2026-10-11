@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1723 | ACTIVE | 2026-10-11 13:15 KST |
+| AI 1 | ChatGPT (AI 1) | 1724 | ACTIVE | 2026-10-11 13:19 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 962 | ACTIVE | 2026-10-11 12:57 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 13:19 KST | AI 1 | 1723 | +1 | 1724 | OutRun B imagegen-only workflow implementation: A font/vector unchanged; B controller prompt + Git authoritative contract/quality exceptions, imagegen-only SHA-bound RGBA PNG→CLEAN→DDS deterministic consumer, C2 plate/ROI/pixel/mips/RAW verification, GitHub CPU worker staged imagegen input routing. Native GH Actions [#38110973326](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38110973326) SUCCESS including test_imagegen_b_pipeline 8 tests; synthetic actual DDS BGRA/RGBA channel guard regression detected+fixed, workflow YAML/bash parsed. Worklog/STATUS updated; remote branch HEAD [6798ef85999788b644cf2d62b5e395d0fb457039](https://github.com/thp32tt/OutRun2006Tweaks/commit/6798ef85999788b644cf2d62b5e395d0fb457039). Docker deployment left to user. Genuine ChatGPT B tool invocation in scheduled session and first real candidate/C/C3/game remain UNTESTED; official approved DDS 0; do not count new imagegen production or C PASS. One new automation-policy + validated worker implementation outcome => +1. **AI 점수: 이전 1723점 + 이번 +1점 = 누적 1724점.** RUN_KEY=OUTRUN-KOR-B-IMAGEGEN-LANE-POLICY-20261011-1315 |
 
 | 2026-10-11 13:15 KST | AI 1 | 1722 | +1 | 1723 | A239 ODD q121 P0 실제 새로운 SOURCE 이탤릭/곡선 수동 재제작. 독립 C1 반려 A238 원본 바이트/윤곽을 다시 완료 처리하지 않고, 새 SHA `e31117743295950fad5216a428b0c105fff35bfeeb0709da85f9f96f8151544a`의 **새 실저장 DDS 1개**를 생성. 처음 실행 [38110354812](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38110354812)은 1px 원문 bbox 안전여백 FAIL로 제작/점수 +0, 수정 재실행 [38110544667](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38110544667) 성공. 이전 A238 대비 알파 785px 변경, 정식 대비 9785 RGBA 원문 ROI 내부만/외부0/다른 29셀 유지, 재디코딩오차0, SOURCE/CLEAN/OFFICIAL/NEW 100%·50%·RAW 직접 확인. **원본 레이싱 서체 일치 불충분으로 producer HOLD**; 현재 공식 DDS0, 독립 C1/C3/실게임 미검증, IGR030/031/040 OPEN. 큐/QA/진도 GitHub [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd4fee2557222d7d3028d60c2b653d87fb18a18b) 원격 HEAD 검증. **AI 점수: 이전 1722점 + 이번 +1점 = 누적 1723점.** RUN_KEY=OUTRUN-KOR-A239-Q121-P0-SOURCE-SLANT-CURVE-20261011-1300 |
 

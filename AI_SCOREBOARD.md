@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1764 | ACTIVE | 2026-10-11 22:54 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 988 | ACTIVE | 2026-10-11 22:47 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 989 | ACTIVE | 2026-10-11 22:59 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:59 KST | AI 2 | 988 | +1 | 989 | 독립 TASK_ID=CONVERSION-DX11-00547: 게임 D3D9 TEX1 정점에서 DIFFUSE 없는 XYZ/XYZRHW FVF를 실제 네이티브 D3D11 Draw/DrawIndexed 진단 경로에 안전 통합. D3D9 FVF 오프셋·stride 기반 정점 디코더와 stage0 SELECTARG1(TEXTURE) 검사, 불지원 fallback, portable C++ 검사 코드와 Python 음성 변이 검증 추가. [소스 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/17b3e6351db4a7c49edaab3b28882b845cc61034), [검증기 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7ad0fc316ae55db46d09ccd8b30abbc8312d717), [최종 validation-bearing SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/81ff1fefdfa418f26dc73243df737a84e4bef9cf), exact-SHA [Backend Gate #38144662441](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144662441) validate+smoke SUCCESS, [Win32 Build #38144665237](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144665237) SUCCESS, [OpenXR #38144665228](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144665228) SUCCESS, [DX11 Fast #38144662435](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144662435) SUCCESS, [HUD Inspector #38144665210](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144665210) SUCCESS. [C6 별도](https://github.com/thp32tt/OutRun2006Tweaks/commit/cb43e94ec5e699650b6964eaa77b1dfc8514736f) 기록, validation-bearing 커밋에는 CI-skip 없음. DX9Ex 원본 Draw/Present 및 게임패드 유지, native 정식 승격 없음. 실제 게임/Quest3/VDXR 미검증 RUNTIME_VALIDATION=UNTESTED. 기존 작업 재보고/재검증 추가 0. **AI 점수: 이전 988점 + 이번 +1점 = 누적 989점.** RUN_KEY=CONVERSION-DX11-00547 |
 
 | 2026-10-11 22:54 KST | AI 1 | 1763 | +1 | 1764 | OutRun C1 q102 실제 **ChatGPT ImageGen 생성 원본 1개** GitHub 신규 실물 게시 성과. gen `95eed5de-0b71-4dee-8e4e-aa105a4b0b30`의 투명 2172×724 RGBA 711618바이트 한국어 `15코스 연속` PNG, 로컬 SHA256 `d409c4eba2d50866e24ad7818f4d3cad0bd998b82b78d938bc1ab3a3a8033531`; 임시 전송 후 GitHub base64 **원본 바이트 일치 확인**, Git blob `f0e5b9ef4ce796849c2963327e29a4e057da8c47`, [물리 PNG 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/10642e1c4e9dd21213f37853813091999756a07e), [이미지](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2240_GEN_95eed5de.png), [QA/보류 기록](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2240_REAL_IMAGEGEN_LOCAL_BINARY_HOLD.json). **PNG 출판 성과만** +1; 원본 스타일 검증/독립 C2 CLEAN PLATE_PASS 미완료, saved DDS 0/official 0/C2/C3/user game PASS 0, RUNTIME_VALIDATION=UNTESTED. 이 RUN_KEY의 로컬 생성→바이너리 업로드→메타기록→queue/WORKLOG/status 커밋은 **동일 성과 1회**로 계상, 추후 반복 보고는 +0. **AI 점수: 이전 1763점 + 이번 +1점 = 누적 1764점.** RUN_KEY=OUTRUN-KOR-C1-Q102-15CONTINUOUS-IMAGEGEN-LOCAL-20261011-2240 |
 

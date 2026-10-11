@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1713 | ACTIVE | 2026-10-11 11:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1714 | ACTIVE | 2026-10-11 11:48 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 960 | ACTIVE | 2026-10-11 10:46:36 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 11:48 KST | AI 1 | 1713 | +1 | 1714 | OutRun C1 홀수 q161 **신규 A237 R11 저장 DDS 첫 독립 Native QA**. 정본 SOURCE `a74d31016e9a...`, 새로운 저장 BC3/DXT5 DDS `fd1273493b52...`, 이전 A218 DDS `8000601ead8b...`, 독립 검증된 A236 CLEAN `60f5b09266ba...` 각각 전체 SHA 인증; 실제 DXT5 디코딩 SOURCE/CLEAN/A218/A237 100/75/50 흰색·회색·검정 + RAW 손실 없는 PNG 11개, 8항목 QA. R11 원문 AQUARIUS 296×54 대비 한글 물병자리 180×48, 원본 대비 글꼴 형태/위계 축소 시각 FAIL; A218→A237 RGBA 11,552, 알파 5,930 변경, **R11 밖 RGBA/알파 0**. C1 `REWORK_REQUIRED_UNPROMOTED`, 기존 A236 3셀 CLEAN 재가산 0, 공식 DDS 변경·C3·현재 승인·실게임 0. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/9a01e89d44cbd64458695d1b60413f86adbd2c04) 원격 HEAD 검증. 별도 신규 SHA에 대한 한 번의 독립 결함 확정 성과만 +1. **AI 점수: 이전 1713점 + 이번 +1점 = 누적 1714점.** RUN_KEY=OUTRUN-KOR-C1-Q161-A237-R11-FIRST-INDEPENDENT-20261011-1140 |
 
 | 2026-10-11 11:45 KST | AI 1 | 1712 | +1 | 1713 | OutRun C2 EVEN q012 **현행 강화 C3 시각 QA에서 신규 근본 결함 발견**. 기존 2026-10-07 C237 C3 PASS 동일 후보 SHA1df64df7을 재승인/중복 완료한 것이 아니라, 강화된 2026-10-08 정책으로 원본 English Continue? 둥글고 결합된 이탤릭 테크노 서체 vs 저장 Korean 계속? 평평하고 각진 블록 획/외곽선 불일치를 100/75/50 및 RAW의 신규 무손실 픽셀 증거로 규명, 기존 C3 PASS를 **REWORK_REQUIRED로 무효화**. Canonical English SHA42aa10e0/current SHA1df64df7 각각 진본 확인, 원문 bbox 내 현재 glyph 숫자 PASS지만 시각 FAIL. Source CLEAN/블라인드 보류, 새 DDS0, 추가 승인0, 실제게임 UNTESTED. 독립 QA·q012 큐/상태/증거 [커밋 및 원격 HEAD 확인](https://github.com/thp32tt/OutRun2006Tweaks/commit/1a50e9a31f12116caf3970c437528fdf208edaa1). 새 발견 및 C3 승인 철회 성과 1건만 +1, 동일 SHA 재완료·재점수 없음. **AI 점수: 이전 1712점 + 이번 +1점 = 누적 1713점**. RUN_KEY=OUTRUN-KOR-C388-C2-Q012-NEW-POLICY-OPTICAL-C3-REOPEN-20261011 |
 | 2026-10-11 10:58 KST | AI 1 | 1711 | +1 | 1712 | OutRun C2 짝수 q060 B367 **최초 독립 실제 저장 DDS SHA 52d97f845b7b3e588ebe5136cd299882001d509320fd4f8cc910270f314142d9** 검사. 기검수 B360 93022210과 서로 다른 후보, 정본 SOURCE 6a33c730, CLEAN a03687d4, 공식 d81d0d14, 신규 저장본 모두 SHA 인증. 4096x2048 RGBA32 저장 DDS 직접 디코드 100/75/50/RAW 양방향 손실없는 PNG 6장·머신/후보 delta/8 visual checks JSON 저장. **신규 확정 결함**: B360→B367 30,749 RGBA 색상만 바뀌고 알파 윤곽 전체 0px 변경, 모양이 원본 서체와 맞지 않는 상태에서 색상만 개선, C2 REWORK_REQUIRED. 원문→CLEAN 89,391px 제거, 공식 overflow 9027px(기존 alpha6357→신규0) 정합성 확인. C3 NOT_RUN, IGR044 OPEN, 실게임 UNTESTED, DDS 신규 승인0, 다른 샤드0. 원격 [C2 QA HEAD](https://github.com/thp32tt/OutRun2006Tweaks/commit/d1a835dbf5b599bbc0cdb0f9bccccddcee490823) verified. 동일 B360 이전 검수 점수 재가산 없음. **AI 점수: 이전 1711점 + 이번 +1점 = 누적 1712점**. RUN_KEY=OUTRUN-KOR-C2-Q060-B367-FIRST-INDEPENDENT-SAVED-20261011-1050 |

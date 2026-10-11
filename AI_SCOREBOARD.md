@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1725 | ACTIVE | 2026-10-11 13:18 KST |
+| AI 1 | ChatGPT (AI 1) | 1726 | ACTIVE | 2026-10-11 13:33 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 963 | ACTIVE | 2026-10-11 13:28 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 13:33 KST | AI 1 | 1725 | +1 | 1726 | OutRun C391 C2 짝수 q060 새로운 B369 **저장 DDS 첫 독립 SHA 고정 QA** 수행. 원본 SOURCE 6a33c730, 기존 C372 CLEAN a03687d4, 변경 안 된 공식 d81d0d14, C389 이전 B368 11e081c7, 신규 B369 5b42316d (모두 전체 SHA 인증) 비교. 실제 4096×2048 DDS RAW/FLIPY·100/75/50 손실 없는 PNG 네 장과 machine/8-check 증거 제작. P1 SOURCE→CLEAN 89,391픽셀 제거·밖0(기존 C372 승인 재계상 없음), B368→B369 RGBA51,595 변경·원문 영역 밖0, 실루엣 변화5,119, 원문 대비 새 위치 36/2/25/1px. 한글 네 글자/콜론 완전하고 베벨/굵기 개선되었으나 원본 둥근 연결형 레이싱 이탤릭 대비 한글 각진 분리형 실루엣으로 **C2 REWORK_REQUIRED_UNPROMOTED** 독립 확정. 정식 q060 C342, IGR044 OPEN, C3 및 실게임 UNTESTED 유지, 새 최종 DDS/C2 PASS 0. B368 같은 후보 재검수/중복점수 아님. [C391 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/e2c5b321b97161d8b2a8ae822a9bdc8625a052e1) 원격 HEAD 확인. **AI 점수: 이전 1725점 + 이번 +1점 = 누적 1726점.** RUN_KEY=OUTRUN-KOR-C391-C2-Q060-B369-FIRST-INDEPENDENT-SAVED-20261011-1330 |
 
 | 2026-10-11 13:28 KST | AI 2 | 962 | +1 | 963 | 신규 독립 CONVERSION-DX9EX-00593: DX9Ex XR_RECOMMENDED_EYE_EXTENT 전체 기능 개발. 실제 host OpenXR 각 눈 런타임 권장값·각 눈 한계·renderScale를 반영한 공동 array-slice 타깃 할당, Frame.v2 호환 IPC에 실제 할당 크기 전달, Win32 D3D9Ex DirectGPU shared-eye texture의 크기 정확히 일치·device-cap fail-closed·generation/ResetEx 경로 개선, x64 host/game C++ 스모크, PowerShell 수집기 일치/불일치 실행형 테스트·패키지 구현. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/34b38fe5eee501145a97c1f807273ec5ebbc94a8), [validation-bearing](https://github.com/thp32tt/OutRun2006Tweaks/commit/b02590720fd9f387218af541a71071516c8168db) TARGET vr-d3d9ex-focus 비강제 expected-SHA FF 확인. 정확한 SHA [DX9Ex Active #38111291417](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38111291417) jobs5·XR-EYE-SIZING/RESET/BUNDLE 모두 SUCCESS, [Domain #38111291405](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38111291405) SUCCESS, feature-dx9ex-eye-extent-b0259072 아티팩트 확인, C6 [bookkeeping a08f9d3a](https://github.com/thp32tt/OutRun2006Tweaks/commit/a08f9d3a70de5cb51f5b915da20d50ac100dc6d4) 기록 원격 확인. CPU/빌드 검증일 뿐 VR HMD 실기 및 native render pixel quality/FPS는 UNTESTED. 본 TASK retry/rollover +0점. AI 점수: 이전 962점 + 이번 +1점 = 누적 963점. RUN_KEY=CONVERSION-DX9EX-00593 |
 | 2026-10-11 13:18 KST | AI 1 | 1724 | +1 | 1725 | OutRun C1 ODD q089 **현행 강화 C3 독립 시각 QA에서 기존 C268 동일 DDS 741a05cb의 새로운 근본 불량 확인**. 정본 Game Over 색상·보라 베벨·검정 입체감과 저장 한글 게임 오버 비교: 원본 주황색 14,246px → 후보 8px, 보라톤 proxy 21,075→4,321px. 영어 원본 SHA 906a17ef/후보 741a05cb 직접 인증, CLEAN alpha0, 원본 밖 변경0, RAW/FLIPY 100/75/50 손실 없는 비교 PNG 4개·픽셀/색상 JSON 2개 생성. 역사적 C3 PASS를 REWORK_REQUIRED로 취소, 같은 SHA PASS 중복 가산 금지. GitHub 브랜치 보고서/queue/resume/progress/WORKLOG 커밋 [80bfff87](https://github.com/thp32tt/OutRun2006Tweaks/commit/80bfff87ed29339178a0a38d9a26bc168a058b82) 원격 HEAD 확인. 신규 DDS0·C3 PASS0, 실게임 UNTESTED. **AI 점수: 이전 1724점 + 이번 +1점 = 누적 1725점**. RUN_KEY=`OUTRUN-KOR-C1-Q089-C3-OPTICAL-CHROMA-20261011-1310` |

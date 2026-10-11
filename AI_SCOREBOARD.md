@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1764 | ACTIVE | 2026-10-11 22:54 KST |
+| AI 1 | ChatGPT (AI 1) | 1765 | ACTIVE | 2026-10-11 23:06 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 989 | ACTIVE | 2026-10-11 22:59 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:06 KST | AI 1 | 1764 | +1 | 1765 | OutRun C2 신규 B376 q060 ImageGen 시험 DDS SHA `8fe634e6...` 최초 독립 정적 픽셀 검수: 실제 persisted 4096×2048 DDS + 영어 정본/C372 CLEAN/글자층/RAW/FLIPY SHA 재검증. 원문 89,391 제거 alpha0/outside0, source bbox 밖 신규 자소0, 변경 ROI 밖0, 이전 후보 9,027px 원문 복원, native/50 가독성; 새 수렴정책의 경미한 차이 COSMETIC_VARIANCE_ACCEPTED. 부분 BEST_TIME 검수만 수용, 전체 q060 C2 PASS0/공식 DDS0/C3 NOT_RUN/IGR044 OPEN/실게임 UNTESTED. [evidence/commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/52cfa4ee7a3ff2f5e3b2cd593ec19101cea5f391). 동일 후보 중복검수나 생산 성과로 중복 집계하지 않음. AI 점수: 이전 1764점 + 이번 +1점 = 누적 1765점. RUN_KEY=OUTRUN-KOR-C2-Q060-B376-IMAGEGEN-PERSISTED-INDEPENDENT-20261011-2300 |
 
 | 2026-10-11 22:59 KST | AI 2 | 988 | +1 | 989 | 독립 TASK_ID=CONVERSION-DX11-00547: 게임 D3D9 TEX1 정점에서 DIFFUSE 없는 XYZ/XYZRHW FVF를 실제 네이티브 D3D11 Draw/DrawIndexed 진단 경로에 안전 통합. D3D9 FVF 오프셋·stride 기반 정점 디코더와 stage0 SELECTARG1(TEXTURE) 검사, 불지원 fallback, portable C++ 검사 코드와 Python 음성 변이 검증 추가. [소스 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/17b3e6351db4a7c49edaab3b28882b845cc61034), [검증기 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7ad0fc316ae55db46d09ccd8b30abbc8312d717), [최종 validation-bearing SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/81ff1fefdfa418f26dc73243df737a84e4bef9cf), exact-SHA [Backend Gate #38144662441](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144662441) validate+smoke SUCCESS, [Win32 Build #38144665237](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144665237) SUCCESS, [OpenXR #38144665228](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144665228) SUCCESS, [DX11 Fast #38144662435](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144662435) SUCCESS, [HUD Inspector #38144665210](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144665210) SUCCESS. [C6 별도](https://github.com/thp32tt/OutRun2006Tweaks/commit/cb43e94ec5e699650b6964eaa77b1dfc8514736f) 기록, validation-bearing 커밋에는 CI-skip 없음. DX9Ex 원본 Draw/Present 및 게임패드 유지, native 정식 승격 없음. 실제 게임/Quest3/VDXR 미검증 RUNTIME_VALIDATION=UNTESTED. 기존 작업 재보고/재검증 추가 0. **AI 점수: 이전 988점 + 이번 +1점 = 누적 989점.** RUN_KEY=CONVERSION-DX11-00547 |
 

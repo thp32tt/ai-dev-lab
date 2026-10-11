@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1706 | ACTIVE | 2026-10-11 09:35 KST |
+| AI 1 | ChatGPT (AI 1) | 1707 | ACTIVE | 2026-10-11 09:53 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 958 | ACTIVE | 2026-10-11 08:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 09:53 KST | AI 1 | 1706 | +1 | 1707 | OutRun B366 EVEN q176 **한글 DDS 진짜 신규 저장 시험본 1건**: C379의 B365 Nanum 글꼴 교체/획 두께 불일치와 구별되는 수작업 네이티브 4한글 획 그래프 및 영어 원본 숫자 4 **8,928픽셀 원본 그대로** 보존. Verified source 8ba40915 and clean29e77ca7; unchanged official494d42c0, new unapproved 2048² RGBA32 DDS `ec35b79ce4baa72485f3446559a16dcdc040a2a3f99b99f38c641b549e0e15c5`, source original title980×155 vs new959×150, 112,299 RGBA change all inside exact English bbox; outside 0, other3 glyph regions 0, original numeral 0, saved DDS decode mismatch0. Actual saved native-gray100, practical black50 and RAW100 4-way controller views; separate SHA-bound native geometry/face/code/review/compose_lettering. Producer P2 source hierarchy improved but square Hangul stroke source-family optical concerns require C2 independently; original C343 REWORK unchanged, C3/actual game UNTESTED, promoted DDS0. [GitHub CPU 38099585805](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38099585805) SUCCESS; initial guard/pycache/import-error retries zero extra points. [Verified remote HEAD 5c0b0d69](https://github.com/thp32tt/OutRun2006Tweaks/commit/5c0b0d69b94a32ec2e9cf33fe62b4d934b36b891) after QA, asset_queue, resume, progress, WORKLOG, STATUS updates, [B366 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B366-Q176-SOURCE-NUMERAL-MANUAL-STROKES/B366_CONTROLLER_PERSISTED_QA.json). **AI 점수: 이전 1706점 + 이번 +1점 = 누적 1707점.** RUN_KEY=OUTRUN-KOR-B366-Q176-SOURCE-NUMERAL-MANUAL-VECTOR-20261011-0930 |
 
 | 2026-10-11 09:35 KST | AI 1 | 1705 | +1 | 1706 | OutRun C2 EVEN q212 **독립 원본 PSD/정본 DDS 소스 인증 (최초 C2 source-only evidence)**. B 제작자의 별도 기존 원본 동일성 시험 이후, C2로서 외부 원본 PSD 7,838,153B SHA be5095d2와 canonical DDS 16,777,344B SHA f83f5848를 독립 다운로드·SHA 검증, 전체 2048² **4,194,304 RGBA 픽셀 완전 일치**, 추가 4 raster 레이어 원본 SHA 확인 및 lossless native evidence+8-check HOLD QA 신규 저장. **C373 동일 B362 SHA 검수는 재완료·재점수 아님**. 타이틀 CLEAN 미완성으로 q212 C338 REWORK/IGR029 OPEN, 신규 DDS/C final 승인0/C3/게임 UNTESTED. [원격 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/10ff27e6fc860d741d2d2f6b47d444896a4d2b3f) 실제 게시·HEAD 인증. 새로운 독립 SOURCE 단계 증거 1건만 +1, 단순 동일 후보 재조회+0. **AI 점수: 이전 1705점 + 이번 +1점 = 누적 1706점**. RUN_KEY=OUTRUN-KOR-C2-Q212-PSD-SOURCE-INDEPENDENT-20261011-0930 |
 | 2026-10-11 09:23 KST | AI 1 | 1704 | +1 | 1705 | OutRun C1 홀수 q035 A196 첫 확정 네이티브 SOURCE-family 시각 리워크: 원본과 현재 4096² DDS 및 CLEAN 3개 SHA 인증. 기존 C308/C350 동일 후보 SHA는 HOLD로 남았던 원본 글꼴 검수에 한정했고 이번에는 영어 원본 504/505×72 강한 right-italic 대비 한글 327×70 각진/약한 이탤릭 서체 차이를 실제 저장 DDS SOURCE/CLEAN/FINAL GRAY 100/75/50 BLACK/WHITE50 RAW 총 14 PNG에서 두 영역 각각 확인하여 **REWORK_REQUIRED** 새 결함 확정. 저장 CLEAN PNG BGRA 채널 순서 바로잡아 허위 배경 결함 차단. 독립 전장 RGB 차분 원본→CLEAN 기존 bbox 밖 14,182px(원문 효과), CLEAN→현재 DDS bbox 밖 0px. 신규 DDS/승인/C3/실게임 0, RUNTIME_VALIDATION=UNTESTED. 원격 QA 커밋 [fefe1aea](https://github.com/thp32tt/OutRun2006Tweaks/commit/fefe1aea1b12749dd275405939bc54ac64df5b07) 및 HEAD 확인. 동일 SHA 재승인이 아닌 새 명확한 두 영역 시각 결함 확인 한 건에만 +1. **AI 점수: 이전 1704점 + 이번 +1점 = 누적 1705점.** RUN_KEY=OUTRUN-KOR-C1-Q035-A196-NATIVE-OPTICAL-REWORK-20261011 |

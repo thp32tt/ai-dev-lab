@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1707 | ACTIVE | 2026-10-11 09:53 KST |
+| AI 1 | ChatGPT (AI 1) | 1708 | ACTIVE | 2026-10-11 09:55 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 958 | ACTIVE | 2026-10-11 08:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 09:55 KST | AI 1 | 1707 | +1 | 1708 | OutRun 한글화 **C1 홀수 q111 신규 독립 17영역 네이티브 PLATE 결함 4건 최초 확정**. 과거 C309은 새 A161 네 개 상단 영역만 검수해 HOLD였으나 이번에는 신규 하단13 포함 전체17 영역의 실제 SOURCE/CLEAN/저장된 CURRENT DDS 2048×2048 BGRA32 mip1 SHA 3개 인증, RAW/FLIPY 및 native100/75/50 lossless 110 PNG 검수. original_course_desc 갈색 원문 실루엣 70,948색상픽셀, random 영문 흰잔여물 8,700픽셀, tuned_setting/normal_setting 심각한 플레이트 배경 결손 직접 시각 FAIL, C1 REWORK_REQUIRED. SOURCE→CLEAN 432,291, CLEAN→CURRENT 364,044 RGBA, source17 bbox 밖0이지만 시각 결함 우선; 증거 PNG110개 ZIP SHA 6a173ba2 7분할 GitHub 업로드 및 매니페스트, q111 queue/WORKLOG/progress/resume 갱신. 후보 SHA 3e0507cba9e267388edcabb3168e40f5bd847294fe82eb79e948aa89540dc394 이전 HOLD를 중복 C PASS/승인하지 않음. C3 NOT_RUN, 사용자 인게임 UNTESTED, 신규 DDS0. [증거 커밋 d4f50f51](https://github.com/thp32tt/OutRun2006Tweaks/commit/d4f50f51736dc2dca8bd91e1a3cf9f234c7c8335) 원격 HEAD 확인. **AI 점수: 이전 1707점 + 이번 +1점 = 누적 1708점**. RUN_KEY=OUTRUN-KOR-C1-Q111-SEVENTEEN-NATIVE-PLATE-FAIL-20261011-0941 |
 
 | 2026-10-11 09:53 KST | AI 1 | 1706 | +1 | 1707 | OutRun B366 EVEN q176 **한글 DDS 진짜 신규 저장 시험본 1건**: C379의 B365 Nanum 글꼴 교체/획 두께 불일치와 구별되는 수작업 네이티브 4한글 획 그래프 및 영어 원본 숫자 4 **8,928픽셀 원본 그대로** 보존. Verified source 8ba40915 and clean29e77ca7; unchanged official494d42c0, new unapproved 2048² RGBA32 DDS `ec35b79ce4baa72485f3446559a16dcdc040a2a3f99b99f38c641b549e0e15c5`, source original title980×155 vs new959×150, 112,299 RGBA change all inside exact English bbox; outside 0, other3 glyph regions 0, original numeral 0, saved DDS decode mismatch0. Actual saved native-gray100, practical black50 and RAW100 4-way controller views; separate SHA-bound native geometry/face/code/review/compose_lettering. Producer P2 source hierarchy improved but square Hangul stroke source-family optical concerns require C2 independently; original C343 REWORK unchanged, C3/actual game UNTESTED, promoted DDS0. [GitHub CPU 38099585805](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38099585805) SUCCESS; initial guard/pycache/import-error retries zero extra points. [Verified remote HEAD 5c0b0d69](https://github.com/thp32tt/OutRun2006Tweaks/commit/5c0b0d69b94a32ec2e9cf33fe62b4d934b36b891) after QA, asset_queue, resume, progress, WORKLOG, STATUS updates, [B366 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B366-Q176-SOURCE-NUMERAL-MANUAL-STROKES/B366_CONTROLLER_PERSISTED_QA.json). **AI 점수: 이전 1706점 + 이번 +1점 = 누적 1707점.** RUN_KEY=OUTRUN-KOR-B366-Q176-SOURCE-NUMERAL-MANUAL-VECTOR-20261011-0930 |
 

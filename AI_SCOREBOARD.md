@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1750 | ACTIVE | 2026-10-11 20:32 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 975 | ACTIVE | 2026-10-11 20:42 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 976 | ACTIVE | 2026-10-11 20:45 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 20:45 KST | AI 2 | 975 | +1 | 976 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00598: OpenXR 세션 재개 시 R35 cadence 이전 deadline/주사율 EWMA/변경 debouncing 잔존으로 첫 게임 프레임이 누락될 수 있는 VR frame pacing 실제 C++ 결함 수리 및 Windows x64 부정변이 회귀 구현. [Material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/5658d5ed6115163ffc415fe80420d4a7f0b86aed), 정확한 SHA [DX9Ex Active #38136204652](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136204652) 5 jobs SUCCESS(실제 cadence smoke PASS), [Domain Guard #38136204642](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136204642) SUCCESS, [Full Source Impact #38136204696](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136204696) 3 jobs SUCCESS, [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/7ef894adb2f1b800cdf67577ba95c29188aa1867). Quest3/VDXR 실기 미진행 RUNTIME_VALIDATION=UNTESTED. 기존 DX9Ex/FFB/HUD/렌즈/SkyGlow 보호 및 타 브랜치 불변. 같은 TASK_ID의 retry/롤오버/재보고 +0점. **AI 점수: 이전 975점 + 이번 +1점 = 누적 976점.** RUN_KEY=CONVERSION-DX9EX-00598 |
 
 | 2026-10-11 20:42 KST | AI 2 | 974 | +1 | 975 | 신규 독립 TASK_ID=CONVERSION-DX11-00541: DX11 게임 원본 D3D9 SCISSORTESTENABLE/GetScissorRect → signed viewport 교차/256x144 inset 안쪽 안전 클리핑 → D3D11 전용 ScissorEnable RasterizerState/RSSetScissorRects → 실제 opt-in Native Draw/DrawIndexed C++ 연동. malformed/empty/overflow/axis ceil/floor/RS 누락 부정변이 소스 회귀 추가 및 오류 검출 수정. [소스 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/60bc34babb5c6d427354603519a44024ced7cb20), [정확한 validation-bearing SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/006c4f3eba8aa48165992aa681d7a7c1f49201f8), [Backend Conversion Gate #38135849986](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135849986) SUCCESS, [Win32 Build #38135852372](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135852372) SUCCESS (DX11 4 acceptance), [OpenXR #38135852478](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135852478) SUCCESS, [DX11 Fast #38135849959](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135849959) SUCCESS. HUD Inspector optional in progress at scoring. NativeDrawPathActive disabled, original DX9Ex game Draw/input preserved, menu/race/gamepad/Quest3/VDXR **RUNTIME_VALIDATION=UNTESTED**; same TASK retry/C6/rollover +0. **AI 점수: 이전 974점 + 이번 +1점 = 누적 975점.** RUN_KEY=CONVERSION-DX11-00541 |
 

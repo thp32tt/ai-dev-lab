@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1807 | ACTIVE | 2026-10-12 08:34 KST |
+| AI 1 | ChatGPT (AI 1) | 1808 | ACTIVE | 2026-10-12 08:40 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1050 | ACTIVE | 2026-10-12 08:35 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 08:40 KST | AI 1 | 1807 | +1 | 1808 | OutRun 한글화 B q048 P1 IGR009 **새 실제 SHA 고정 영문 Slipstream 글자 단독 RGBA 참조 PNG** 생성·픽셀/시각 QA 및 원격 바이너리 재다운로드 SHA 확인. 원본 2048x2048 DDS SHA 3c58bf95, B407 CLEAN SHA 099a23f3에서 파생했으며 청록 속도선 혼입 초기 참조 반려, 색상/글자 주변 선택으로 최종 496x155 PNG SHA 8a6aa8d897af573f98e9848ae25d7366a5c759f87b235116d420ac062cf09bcf (39,022B) 신규 등록; [manifest](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/source_references/q048_20261012/q048_B408_SOURCE_MEDIA_PREFLIGHT.json), [material commit 8b718b25](https://github.com/thp32tt/OutRun2006Tweaks/commit/8b718b257e54be091386b9cd34216a3dfaf51117), 원격 HEAD 및 GitHub raw roundtrip 확인. 원본 효과 전체의 픽셀 일치/PSD 글자 leaf/C2 CLEAN PASS는 주장하지 않음. 실제 ImageGen source attachment 미검증 SOURCE_REFERENCE_NOT_BOUND, 새 한글 PNG/DDS 0, B407 기존 시험/공식 불변, IGR009 OPEN, C2/C3 및 게임 UNTESTED. **이전 1807점 + 이번 +1점 = 누적 1808점.** RUN_KEY=OUTRUN-KOR-B-Q048-ENGLISH-LETTER-ONLY-SOURCE-20261012-0830 |
 | 2026-10-12 08:35 KST | AI 2 | 1049 | +1 | 1050 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00641: 실제 R30 스테레오 SkyGlow 축소/blur 렌더타깃에서 동일 크기 RT의 불필요한 D3D9 SetViewport 호출을 생략하는 C++ 핫패스 구현, 전체 눈 합성/비확정 RT 폴백 유지. [material 632c41b0](https://github.com/thp32tt/OutRun2006Tweaks/commit/632c41b0a9d1377a3468574c2cf8d42131e6e003), 검증기 파괴변이 ValueError 수리 후 [validation-bearing beebe5667](https://github.com/thp32tt/OutRun2006Tweaks/commit/beebe5667de8d10250792731a658e33ec6abaee6), 20개 파괴변이 테스트. 후보 브랜치 정확 SHA [DX9Ex Active #38184188008](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38184188008) 정책/게임/호스트/full-chain/package 5/5 SUCCESS, 대상 브랜치 exact SHA Domain #38183001637 SUCCESS, material SHA Full Source Impact #38182930080 3/3 SUCCESS. 메인 동시성 취소 우회 위해 같은 SHA 후보 브랜치 검증(소스 동일). C6 [skip ci] bookkeeping [137eba57](https://github.com/thp32tt/OutRun2006Tweaks/commit/137eba57c2a5bf233589ab4c197184c75dfa801c) +0, RUNTIME_VALIDATION=UNTESTED, 실제 Quest3/VDXR FPS/p95/p99 실측 없음. **AI 점수: 이전 1049점 + 이번 +1점 = 누적 1050점.** RUN_KEY=CONVERSION-DX9EX-00641 |
 
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1761 | ACTIVE | 2026-10-11 22:25 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 986 | ACTIVE | 2026-10-11 22:31 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 987 | ACTIVE | 2026-10-11 22:34 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:34 KST | AI 2 | 986 | +1 | 987 | 신규 독립 TASK_ID=CONVERSION-DX11-00546: 실제 게임 원본 D3D9 TRIANGLEFAN VB/IB/UP P+2 스냅샷을 R30/R26-safe에 구현하고 인덱스 중심점·와인딩 보존 P*3 D3D11 TRIANGLELIST Native DrawIndexed에 연결, 원본 DX9Ex Draw/Present 및 게임패드 변경 없이 진단 inset 확장. 독립 C++17 정상·오입력 부정 검증 PASS, 소스 변이 회귀 포함. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/251c158a2381f07011ea1c76aad733fdf36c79ea) 정확한 SHA [Backend Conversion Gate #38143028095](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143028095) 2/2 SUCCESS, [Win32 Build #38143031425](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143031425) SUCCESS, OpenXR #38143031385/#38143028114 SUCCESS, [DX11 Fast #38143028109](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143028109) SUCCESS, [HUD Inspector #38143031414](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143031414) SUCCESS. [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/35db625a5bb5d14ba2627bf1550bea7fd82625bc) [skip ci]로 분리. 실제 메뉴/차량/레이스 픽셀 및 Quest3/VDXR·게임패드 실기 미검증 RUNTIME_VALIDATION=UNTESTED, 정식 네이티브 활성화 없음. 같은 TASK retry/C6/재보고 중복 +0. **AI 점수: 이전 986점 + 이번 +1점 = 누적 987점.** RUN_KEY=CONVERSION-DX11-00546 |
+
 
 | 2026-10-11 22:31 KST | AI 2 | 985 | +1 | 986 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00604: R32 DirectGPU shared-eye 링에서 호스트 GPU-completion ACK 미도착 published 슬롯을 매 Present마다 D3D9 producer EVENT GetData로 조회하던 CPU/GPU 동기화 핫패스를 ACK-first 검사 후 생략하는 **실제 C++ material 성능 최적화**. unpublished S_FALSE 격리·ACK 이후 producer EVENT·오류 fail-closed·프레임별 슬롯 소유권/세계 스테레오 유지. 5부정변이 회귀 및 기존 구식 순서 검증기 수리. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/a59e549c8949200a7b59b603bdc9b4ffc09dbff4), [최종 validation-bearing 수정 SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/a306411738677af5bbe5dc0d56919063fed14f05) 정확한 SHA [DX9Ex Active #38143054466](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143054466) 정책/host/game/R29-R33 full-chain/package 5/5 SUCCESS, [Domain #38143054470](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38143054470) SUCCESS. [Full Source Impact #38142874035](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38142874035) 3/3 SUCCESS는 material 원본 SHA a59e549c 기준이며 마지막 커밋은 검증기 전용, 두 SHA를 혼동하지 않음. [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/0cdca603d478fd0861328da8b0026e05437aff5c) 별도 [skip ci]. Quest3/VDXR 실기 및 FPS·p95/p99 미실행 RUNTIME_VALIDATION=UNTESTED, 성능 향상 수치 미주장; retry/C6/보고 중복 0. **AI 점수: 이전 985점 + 이번 +1점 = 누적 986점.** RUN_KEY=CONVERSION-DX9EX-00604 |
 

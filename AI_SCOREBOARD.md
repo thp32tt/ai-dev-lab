@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1783 | ACTIVE | 2026-10-12 03:41 KST |
+| AI 1 | ChatGPT (AI 1) | 1784 | ACTIVE | 2026-10-12 03:55 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1018 | ACTIVE | 2026-10-12 03:55 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 03:55 KST | AI 1 | 1783 | +1 | 1784 | OutRun C1 q102 신규 PNG/DDS 생산은 SOURCE_REFERENCE_NOT_BOUND로 정직하게 HOLD(원본 영문 투명 PNG 2개 SHA218a08ff/73aecc01 및 C2 PLATE_PASS 기존 확인). 대신 기존 `imagegen_b_pipeline.py`에 SHA-bound English source/tool request receipt 강제 검증을 실제 구현 [코드 652687d5](https://github.com/thp32tt/OutRun2006Tweaks/commit/652687d5492c18e11dfaac30c6d51d19658ba9ac), [테스트 91981ada](https://github.com/thp32tt/OutRun2006Tweaks/commit/91981ada15bcc81183be07101d298ebddbe2b3e7) 및 N100 분리 worktree 실제 13/13 PASS. [근거/큐/WORKLOG/STATUS 포함 원격 HEAD 966006c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/966006c4972014b08b5786457d5d89725d64c2d4) 확인. 신규 Korean PNG0/DDS0; q102 기존 시험 SHA88f90ce7 불변, C2 whole HOLD/C3 미검증/실게임 UNTESTED. 소스 첨부 receipt는 생산자 진술과 SHA 일치 검증일 뿐 독립 C2 인증이 아님. **AI 점수: 이전 1783점 + 이번 +1점 = 누적 1784점.** RUN_KEY=OUTRUN-KOR-C1-Q102-SOURCE-ATTACHMENT-GUARD-20261012-0340 |
+
 
 | 2026-10-12 03:41 KST | AI 1 | 1782 | +1 | 1783 | OutRun B q205 **신규 실제 영문 글자 독립 소스 준비**: 정확한 캐노니컬 SOURCE DDS SHA256 `58a75fe75b...` 33,554,560B 재검증, 실제 P0 두 레이블 OPTIONS/RANKINGS를 RAW→FLIPY 네이티브 [1591,1423,2316,1568]/[33,1245,930,1388]로 2개 영문 글자만 실제 분리. 원문과 동일한 alpha 픽셀 56371/68359 확인, alpha0 RGB 정리 및 투명 24px 테두리, 실제 신규 773x193/945x191 PNG와 독립 회색 QA JPG가 아닌 PNG 2장 총 4개, GitHub 원본/원격 base64 byte-identical 확인. 원본 PSD 76층 검토 후 직접 캐노니컬 DDS에서 분리. [q205 B 신규 source/QA/queue/resume/WORKLOG/STATUS 커밋 3a1af8ec](https://github.com/thp32tt/OutRun2006Tweaks/commit/3a1af8ece788c77e19b6c35db79177b035da7bdc) HEAD 확인. ImageGen 도구에 이 PNG가 실제 첨부됐다는 증거 없음 → 계약에 따라 SOURCE_REFERENCE_NOT_BOUND HOLD, 한글 생성 PNG0/DDS0, C2/C3/실게임 승인 없음 RUNTIME_VALIDATION=UNTESTED. q092/q104 준비 반복과는 다른 신규 P0 q205 두 원본; DDS 생산으로 점수 과대계산하지 않음. **AI 점수: 이전 1782점 + 이번 +1점 = 누적 1783점.** RUN_KEY=OUTRUN-KOR-B-Q205-P0-CANONICAL-ENGLISH-LETTERS-20261012-0330 |
 

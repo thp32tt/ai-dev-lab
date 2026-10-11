@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1802 | ACTIVE | 2026-10-12 07:40 KST |
+| AI 1 | ChatGPT (AI 1) | 1803 | ACTIVE | 2026-10-12 07:51 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1044 | ACTIVE | 2026-10-12 07:48 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 07:51 KST | AI 1 | 1802 | +1 | 1803 | OutRun C1 q030 **first actual source-style isolated English lettering references**: upstream verified 32,399,305B PSD SHA256 e2d7166a / Git blob a2fa1034, starburst and pink balloon two title zones rendered and first defective orange-decoration mask rejected. Improved navy-contour/enclosed-white extraction 2 new alpha PNG SHA256 73393bc3 (582×149, 21005B) and 234196c2 (583×148, 22971B), visible source RGB delta0, transparent margin24px; original PSD catalog remains NOT_COPIED, candidate is derived mask not canonical DDS exact-source/C2 plate PASS. [OutRun material commit 234056ba](https://github.com/thp32tt/OutRun2006Tweaks/commit/234056ba70e14579b45b9d1447a1c82cd192ea95) 7 files including source references/JSON/queue/WORKLOG/resume/STATUS, remote HEAD and both exact raw PNG SHA256 verified. Actual ImageGen binding unverified, generation0/Hangul PNG0/DDS0, B candidate/C392 strict REWORK unchanged, C2/C3/user game UNTESTED. One new original q030 reference-production milestone +1, no repeat accounting. **AI 점수: 이전 1802점 + 이번 +1점 = 누적 1803점.** RUN_KEY=OUTRUN-C1-20261012-Q030-PSD-SOURCE-GLYPH-EXTRACTION-0740 |
+
 
 | 2026-10-12 07:48 KST | AI 2 | 1043 | +1 | 1044 | OutRun 2006 DX9Ex 독립 CONVERSION-DX9EX-00639 **R29 스테레오 스텐실-disabled 상태 조회 제거 C++ 핫패스**: reliable StateBlock + Present/generation 조건에서 STENCILENABLE 캐시를 통해 multi-state COM readback 생략, enabled/unknown/reset/Apply 시 기존 live fail-closed 유지. Material [2d3aa002](https://github.com/thp32tt/OutRun2006Tweaks/commit/2d3aa002b250e04f7e16f1498732240b303f3d03), 검증기/CI 수리 후 validation-bearing [cf8cb1a4](https://github.com/thp32tt/OutRun2006Tweaks/commit/cf8cb1a4d88d9c4f049f3cd244308468c1f9c1d9); 31개 부정변이(신규 9개), 해당 정확 SHA DX9Ex Active #38181386325 5/5 SUCCESS, Domain #38181386344 SUCCESS, material SHA Full Source Impact #38181187952 3/3 SUCCESS(최종 SHA와 혼동 금지). C6 별도 [1b7c4b39](https://github.com/thp32tt/OutRun2006Tweaks/commit/1b7c4b3951140bc8f4b5c7973e331c11b02a53fc) [skip ci] 점수 +0; 동일 TASK 수리/재검증 중복 가산 없음. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 실제 p95/p99/FPS 개선 미측정. **AI 점수: 이전 1043점 + 이번 +1점 = 누적 1044점.** RUN_KEY=CONVERSION-DX9EX-00639 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1771 | ACTIVE | 2026-10-12 00:42 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1000 | ACTIVE | 2026-10-12 00:52 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1001 | ACTIVE | 2026-10-12 00:54 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:54 KST | AI 2 | 1000 | +1 | 1001 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00611: R22 draw replay 경계에서 viewport/scissor/SCISSORTESTENABLE/StateBlock 변동이 전혀 없을 때 중복 D3D9 SetScissorRect+SetRenderState 제출 2건을 생략하는 실제 C++ 핫패스 수정. 오른쪽 눈 viewport 변경·StateBlock Apply·scissor 변경은 기존 복원 경로 유지. 부정변이 5종 회귀 도구 및 Active policy 연동 [정확한 material/validation-bearing SHA 377c1998](https://github.com/thp32tt/OutRun2006Tweaks/commit/377c1998bb1865d76224d997e1da5c0dfb472982). [DX9Ex Active #38152582544](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38152582544) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38152582554](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38152582554) SUCCESS, [Full Source Impact #38152582588](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38152582588) 3/3 SUCCESS. [C6 별도 bookkeeping SHA 8ba250bd](https://github.com/thp32tt/OutRun2006Tweaks/commit/8ba250bd0ce0e912db6a97184b87f5e84b84eb5c) 점수 중복0. Quest3/VDXR/FPS 실기 미실행, RUNTIME_VALIDATION=UNTESTED, 실제 성능 향상량 미확정. **AI 점수: 이전 1000점 + 이번 +1점 = 누적 1001점.** RUN_KEY=CONVERSION-DX9EX-00611 |
 
 | 2026-10-12 00:42 KST | AI 1 | 1770 | +1 | 1771 | OutRun C2 독립 신규 검수 1회: A247 q193 P1 신규 SOURCE 기반 세 CLEAN 영역 독립 PLATE_PASS (194236 원본 atlas 중 새 3영역 55717 영어 알파 제거, 바깥 변경0, 잔상0, 실제 CLEAN/저장 비교 native/50/RAW/FLIPY 확인); 불변 CLEAN 라이브러리와 증거/큐/WORKLOG 실제 [커밋 ddf8bc51](https://github.com/thp32tt/OutRun2006Tweaks/commit/ddf8bc5133de99eacd3ca46044d9c69f4031447c). 이후 C1 q102 새 BC3 시험 DDS SHA88f90ce7에 대해 독립 native/75/50/RAW 및 원문/플레이트/영문효과 bbox 첫 QA: 두 한글 문구 readable, visible bbox 초과0, 공식 후보 대비 지정 ROI 밖 RGBA0, alpha0 숨은 RGBA 차이 실측구분, 시각검수 범위 PASS이나 전체 승인은 HOLD, 실제 [커밋 e73a291c](https://github.com/thp32tt/OutRun2006Tweaks/commit/e73a291c126bc96c5a82852758aa634240642fc8). C1 기생산 DDS는 생산 점수로 중복 가산0, q193 같은 SHA 원래 검사 재보고0; 이번 C2 새 플레이트 증거·독립 검수 실행 1회 성과 +1. 전체 q193/q102 C2 최종 PASS0, 공식 승격0, C3/사용자 실게임 UNTESTED. AI 점수: 이전 1770점 + 이번 +1점 = 누적 1771점. RUN_KEY=OUTRUN-C2-20261012-A247-Q193-PLATE-C1-Q102-SAVED-FIRST-REVIEW |
 

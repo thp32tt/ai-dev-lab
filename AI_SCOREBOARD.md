@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1714 | ACTIVE | 2026-10-11 11:48 KST |
+| AI 1 | ChatGPT (AI 1) | 1715 | ACTIVE | 2026-10-11 11:59 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 960 | ACTIVE | 2026-10-11 10:46:36 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 11:59 KST | AI 1 | 1714 | +1 | 1715 | OutRun B368 짝수 q060 원문 BEST TIME → 최고 기록: **이전 B360/B367의 동일 글자 실루엣을 재사용하지 않은** 완전 수동 네이티브 한글 벡터 자소 획을 새로 제작하고 2개 콜론 픽셀 결함 수정. 이전 B367과 신규 글자 마스크 원문 범위 34,374px 변화, 저장 B368 DDS SHA `11e081c7f3c12bd13cf100995ec533ce78a557ac97eb1135ff84fc1e0a2d5a6b`는 B367 `52d97f...`와 분리. P2 실제 100/75/50 RAW 검수 후 분리형 5-레이어 SHA recipe로 실제 persisted DDS 4096×2048 RGBA32 mip1 생성·재디코딩0, 공식 대비 RGBA95,569 변경 전부 BEST TIME ROI 안, CLEAN→FINAL 합성 마스크 밖0. 원본 서체 대비 획 무게/베벨 깊이 불일치로 **시각 REWORK_REQUIRED_UNPROMOTED** 정직 반려, 공식 q060 C342/IGR044 유지, C2/C3/실게임 UNTESTED, 승인DDS0. [B368 실제 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B368-Q060-HAND-VECTOR-ITALIC-GLYPH-GEOMETRY/B368_CONTROLLER_SAVED_VISUAL_QA.json) [GitHub Actions 성공 #38106462427](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38106462427) 원격 HEAD `05958f56...` 확인. 새 글자 구조+첫 저장 바이트 시각 QA 결과 단 1성과 +1; 실패한 두 단계 재시도·B367 중복점수0. **AI 점수: 이전 1714점 + 이번 +1점 = 누적 1715점**. RUN_KEY=OUTRUN-KOR-B368-Q060-MANUAL-SOURCE-GLYPH-GEOMETRY-20261011-1130 |
 
 | 2026-10-11 11:48 KST | AI 1 | 1713 | +1 | 1714 | OutRun C1 홀수 q161 **신규 A237 R11 저장 DDS 첫 독립 Native QA**. 정본 SOURCE `a74d31016e9a...`, 새로운 저장 BC3/DXT5 DDS `fd1273493b52...`, 이전 A218 DDS `8000601ead8b...`, 독립 검증된 A236 CLEAN `60f5b09266ba...` 각각 전체 SHA 인증; 실제 DXT5 디코딩 SOURCE/CLEAN/A218/A237 100/75/50 흰색·회색·검정 + RAW 손실 없는 PNG 11개, 8항목 QA. R11 원문 AQUARIUS 296×54 대비 한글 물병자리 180×48, 원본 대비 글꼴 형태/위계 축소 시각 FAIL; A218→A237 RGBA 11,552, 알파 5,930 변경, **R11 밖 RGBA/알파 0**. C1 `REWORK_REQUIRED_UNPROMOTED`, 기존 A236 3셀 CLEAN 재가산 0, 공식 DDS 변경·C3·현재 승인·실게임 0. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/9a01e89d44cbd64458695d1b60413f86adbd2c04) 원격 HEAD 검증. 별도 신규 SHA에 대한 한 번의 독립 결함 확정 성과만 +1. **AI 점수: 이전 1713점 + 이번 +1점 = 누적 1714점.** RUN_KEY=OUTRUN-KOR-C1-Q161-A237-R11-FIRST-INDEPENDENT-20261011-1140 |
 

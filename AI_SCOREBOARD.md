@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1728 | ACTIVE | 2026-10-11 14:07 KST |
+| AI 1 | ChatGPT (AI 1) | 1729 | ACTIVE | 2026-10-11 14:17 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-11 14:17 KST | AI 1 | 1728 | +1 | 1729 | OutRun C1 홀수 q121 **신규 A239 후보 SHA e3111774... 최초 독립 실제 저장 DDS QA**. 직전 A238 78806f6d... 별개 신규 4,916RGBA/785실루엣 변형, canonical source f7847db9 / official 38d5c2c3 / A238 / A239 4종 SHA256 인증, RAW/FLIPY/native100/white75/black50/400% 5개 PNG + machine/8-gate QA 생성. Source smooth fluid racing italic 대비 A239 한글 glyph square/segmented/effect style **REWORK_REQUIRED**, 보호 ROI 밖 RGBA/alpha0, 정식 DDS 무변경, C3/실게임 미검증. [원격 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/ec5f0c7c7c323ce7e9b4b4f3bb7ba0ffa9905420) HEAD 검증. 과거 q89, A238 및 동일 SHA 재승인/재보고 중복 가산하지 않음. **AI 점수: 이전 1728점 + 이번 +1점 = 누적 1729점**. RUN_KEY=`OUTRUN-KOR-C1-Q121-A239-FIRST-INDEPENDENT-OPTICAL-20261011-1410` |
 | 2026-10-11 14:07 KST | AI 1 | 1727 | +1 | 1728 | OutRun C392 C2 짝수 q028/q030 **새 강화 시각 QA에서 독립적으로 영문 원본-한글 후보 서체 불일치 확정** 및 기존 C246 C3 PASS 2건 무효화. 고정 Sonic-TV SOURCE q028 52cb2a56/q030 e8125cb5와 현재 DDS q028 1ced3cfa/q030 fa294ef9 SHA 검증, native 100/75/50 + RAW 총 12장 무손실 PNG, 원문 영역 밖 source→candidate RGBA/alpha 0. 글꼴 각진 네모 형태와 원본 둥글고 굵은 레이싱 이탤릭의 불일치가 실제 실픽셀·실용 50%에서 명백, 동일 SHA 재승인 금지. q028 과거 C175 CLEAN은 현재 A165R2 후보의 정식 플레이트가 아니며 구 CLEAN→CURRENT 목표 ROI 외 57,748 차이로 HOLD, q030 B148 CLEAN 원문 ROI 외0. q028/q030 모두 C3_STRICT_REWORK_REQUIRED, 신규 DDS0/신규 승인0/실게임 UNTESTED. [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/0f912bc6d6dfe3c671ea2f85a4518aa73701a164) 원격 HEAD 검증. 같은 QA 실행 묶음의 새 결함 발견/상태 시정 성과를 **1회만** +1. AI 점수: 이전 1727점 + 이번 +1점 = 누적 1728점. RUN_KEY=OUTRUN-KOR-C392-C2-Q028-Q030-STRICT-MORPHOLOGY-20261011-1405 |
 
 | 2026-10-11 13:51 KST | AI 2 | 963 | +1 | 964 | 사용자 지시에 따라 한글화 C1을 B 방식의 ChatGPT 실제 이미지 생성 생산 큐로 전환. 기존 A 홀수 native 제작 유지, B/C1 신규 짝수 mod4 분리 및 기존 B in-flight 명시적 보호, C2 전 자산 독립 QA, source/CLEAN/QA/실게임 게이트 분리. 컨트롤러 프롬프트·README [993e242](https://github.com/thp32tt/OutRun2006Tweaks/commit/993e242238fb1fde1a064518c1e7d27f660baa22), 게임 Git 계약/생산 프롬프트/후처리/단위테스트 [bc73956](https://github.com/thp32tt/OutRun2006Tweaks/commit/bc73956f992f985ecbfef374224e220572458d17), C1 CPU worker/Actions 연동 및 실행구문 교정 [85cc282](https://github.com/thp32tt/OutRun2006Tweaks/commit/85cc28296ee7da17aeb7084b29c65ec71e94b367), 기존 B 작업 호환 [409ebc2](https://github.com/thp32tt/OutRun2006Tweaks/commit/409ebc2a2b553310ece2594d5c14766e0501b66b) 실제 GitHub 커밋·HEAD 확인. ImageGen 후처리 핵심 변경 [CPU CI #38112654387](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38112654387) SUCCESS; 최종 C1 worker CI #38112875535 pending이므로 아직 완전한 종단 실행 성공 또는 신규 한글 이미지 생성/실게임 검증을 주장하지 않음. 한 정책/구현 성과 1회만 +1, 이전 B-only ImageGen 정책 점수와 별개. **AI 점수: 이전 963점 + 이번 +1점 = 누적 964점.** RUN_KEY=LOCALIZATION-C1-IMAGEGEN-PRODUCER-20261011 |

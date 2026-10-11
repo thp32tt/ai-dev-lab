@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1741 | ACTIVE | 2026-10-11 17:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 965 | ACTIVE | 2026-10-11 16:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 966 | ACTIVE | 2026-10-11 17:50 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 17:50 KST | AI 2 | 965 | +1 | 966 | N100 실시간 VR Controller /status 직접 확인 결과 자동 루프·GitHub 통신 정상이지만 DX9Ex-00593 WAIT_ACTIONS 기록 검증에 ACCEP​TANCE_SOURCE_EVIDENCE_MISSING, DX11-00537은 과거 CI 실패 BLOCKED outcome 때문에 새 기능 dispatch가 전혀 안 되는 실제 원인 확정. GitHub 컨트롤러 VR v2 source: AI 직접 promote 때 누락된 feature_changed_paths를 base→validation-bearing SHA의 GitHub ancestry diff에서 증빙 복구(없으면 실패 유지), 완료 뒤 C6_RESULT 등 제한적 역사 상태 허용 및 고정 exact-SHA CI/필수 job/acceptance/artifact 모두 실제 확인한 DX11 BLOCKED만 PASS로 이관하고 다음 DX11:MENU_TO_RACE_FRAME 배정할 수 있도록 변경, 지난 failure 감사 보존·반복 점수 없음. [컨트롤러 HEAD d635906](https://github.com/thp32tt/OutRun2006Tweaks/commit/d635906fc04ae7d58c9d141a317a31550803f25e) 및 exact-HEAD [VR progression #38125989235](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38125989235) SUCCESS, [Controller Selftest #38125989269](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38125989269) SUCCESS. 배포 식별명 2026-10-11-resume-v3, 라이브 redeploy 적용/실제 새 태스크 전송은 사용자 배포 후 확인 필요. 이번 새 후속 복구 소스·회귀검증 성과 1회, 이전 watchdog 작업과 별개. **AI 점수: 이전 965점 + 이번 +1점 = 누적 966점.** RUN_KEY=VR-DX11-DX9EX-POST-REBUILD-DISPATCH-RECOVERY-20261011 |
+
 
 | 2026-10-11 17:45 KST | AI 1 | 1740 | +1 | 1741 | 사용자 요청 B/C1 전체 자산 공통 ImageGen 프롬프트 작성 지침 추가 및 계약/레인 문서 필수 참조 연결. 원본별 명세·단일 crop·정본 문구·실패별 수정·실제 호출 기록 규칙. 동시 C2 변경 보존, 4개 문서 원격 내용 일치 및 HEAD [afc64eb](https://github.com/thp32tt/OutRun2006Tweaks/commit/afc64eb9a66b8f07b3f66258bc9c892e62f94f1d) 확인. 정책 구현 단일 성과; 신규 이미지/DDS/QA PASS 0, 개선효과 미시험, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1740점 + 이번 +1점 = 누적 1741점. RUN_KEY=OUTRUN-KOR-IMAGEGEN-PROMPT-GUIDE-20261011-1741 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1769 | ACTIVE | 2026-10-12 00:13 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 996 | ACTIVE | 2026-10-12 00:09 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 997 | ACTIVE | 2026-10-12 00:21 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:21 KST | AI 2 | 996 | +1 | 997 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00609: DX9Ex R31 스테레오 월드 드로우에서 4x4 행렬 곱셈 3회→2회 절감하도록 inverseProjection*eyeTail 눈별 합성을 정확한 pose/projection/worldScale/eye geometry 캐시 미스에서만 실행하는 실제 C++ 원본 수정. 기존 live/verified WVP 일치 복원과 Reset 캐시 무효화·finite 검사, Python negative mutation 회귀 검증 추가. [material/validation-bearing SHA cfa84912](https://github.com/thp32tt/OutRun2006Tweaks/commit/cfa84912b001e0573cb34f3bd553e34ca90e99db), 정확 SHA [DX9Ex Active #38150269774](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150269774) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38150269755](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150269755) SUCCESS, [Full Source Impact #38150269846](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150269846) game/host MSVC analyze+cross-domain 3/3 SUCCESS. [C6 별도 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/5cd4f63a887263dd9aeac7ddc82e0253d32c60cd); Quest3/VDXR HMD FPS p95/p99·시각 실기 미측정 RUNTIME_VALIDATION=UNTESTED, 성능 향상량 미확정. 이번 고유 material 성과 1회만 가산, retry/C6는 추가점수0. **AI 점수: 이전 996점 + 이번 +1점 = 누적 997점.** RUN_KEY=CONVERSION-DX9EX-00609 |
 
 | 2026-10-12 00:13 KST | AI 1 | 1768 | +1 | 1769 | A247 독립 신규 실제 제작 성과: C2가 결함으로 지적한 q193 WELCOME_TO_THE/MULTIPLAYER/ONLINE_RANKING_HELP 3개 영역 원본 영어 SOURCE→투명 CLEAN 3건과 이미 저장된 한국어 전용 글자층을 분리 제작. 원본 SHA d308bf05..., 기존 A246 SHA 98066203... 그대로 보존하고 source→CLEAN 변화 55,717픽셀 전부 영문 소스 bbox 내부, 바깥0·CLEAN 알파0, RAW/FLIPY·gray100/white75/black50 시각 확인. [GitHub Actions #38149968227](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149968227) SUCCESS, [A247 제작 증거](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A247-Q193-THREE-SOURCE-CLEAN-RECONSTRUCTION)와 큐/WORKLOG/resume/progress [원격 HEAD 67464057](https://github.com/thp32tt/OutRun2006Tweaks/commit/6746405716de8b4b721eb15217de5f8170f5f0c9) 반영 확인. 새 공식 DDS0, 독립 C2/C3/사용자 실기 PASS 아님, RUNTIME_VALIDATION=UNTESTED. 동일 A247 검증 반복은 +0. **AI 점수: 이전 1768점 + 이번 +1점 = 누적 1769점.** RUN_KEY=OUTRUN-KOR-A247-Q193-C2-THREE-MISSING-CLEAN-20261012-0000 |
 

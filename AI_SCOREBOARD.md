@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1794 | ACTIVE | 2026-10-12 06:28 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1035 | ACTIVE | 2026-10-12 06:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1036 | ACTIVE | 2026-10-12 06:30 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 06:30 KST | AI 2 | 1035 | +1 | 1036 | 신규 독립 TASK_ID=CONVERSION-DX11-00568: 실제 게임 D3D9 BLENDTEXTUREALPHA·BLENDDIFFUSEALPHA RGB와 독립 SELECTARG1/2 알파 4조합을 네이티브 DX11 HLSL PS 생성/재생성/Draw·DrawIndexed/진단 inset에 연결한 C++ 기능 및 파괴변이 16건·CPU RGBA 검증. 최초 [material 6f750d44](https://github.com/thp32tt/OutRun2006Tweaks/commit/6f750d441d4b39a52135f79a598d9d7cb9221b19)에서 Win32 SAFE_RETURN 기존 테스트 불일치로 Build FAIL, 동일 TASK [수리 및 validation-bearing material SHA 181e8780](https://github.com/thp32tt/OutRun2006Tweaks/commit/181e87806713b151bf1436a3ee9237c15a9d3c92)로 기존 회귀 조건 보존. 정확한 SHA [Backend Conversion Gate #38175816279](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175816279) SUCCESS, [DX11 Fast #38175816269](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175816269) SUCCESS, [Win32 Build #38175820734](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175820734) SUCCESS, [OpenXR #38175820716](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175820716) SUCCESS, [HUD #38175820705](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38175820705) SUCCESS. 별도 [C6 bookkeeping d8addd99](https://github.com/thp32tt/OutRun2006Tweaks/commit/d8addd995d5b8e39ee81b9dc30aba315d8b97faa) [skip ci] +0. Quest3/VDXR 실제 메뉴·차량·레이스·패드 미검증, RUNTIME_VALIDATION=UNTESTED, 네이티브 자동 승격 없음, DXVK 동결. 초기 실패·수리·C6 중복 가산 없음. **AI 점수: 이전 1035점 + 이번 +1점 = 누적 1036점.** RUN_KEY=CONVERSION-DX11-00568 |
 | 2026-10-12 06:28 KST | AI 1 | 1793 | +1 | 1794 | OutRun C1 q098 **PSD 원본과 실제 분리된 영문 글자층 첫 등록**. Sonic-TV/OR2006Sprites pinned v02 PSD 원본 2,067,761바이트 SHA256 `e1444b1b` Git blob `1e376029` 저장소에 복사, 별도 native PSD effect/face 2층과 투명 English glyph composite PNG 3개 원격 SHA 검증. [커밋 563b13c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/563b13c4896c4070e1e3a9e64d403f15769c741e) 10파일 queue/WORKLOG/resume/STATUS/catalog/manifest 변경. Canonical BC3/PSD alpha bbox 일치, alpha support mismatch1085 픽셀·visible RGBA mismatch75278로 PSD를 pixel-exact CLEAN으로 잘못 승인하지 않음. SOURCE_REFERENCE_NOT_BOUND라 ImageGen 미호출/한글 PNG0/DDS0, C2/C3/실게임 UNTESTED. 기존 q098 B 제작·C337 REWORK 유지. 신규 **원본 PSD 및 개별 실제 PSD 레이어** 성과 1건만 +1, 이전 q098 DDS crop 반복가산 없음. **AI 점수: 이전 1793점 + 이번 +1점 = 누적 1794점.** RUN_KEY=OUTRUN-KOR-C1-Q098-PSD-V02-NATIVE-LEAF-FIRST-20261012-0610 |
 
 

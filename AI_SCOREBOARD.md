@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1767 | ACTIVE | 2026-10-11 23:34 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 994 | ACTIVE | 2026-10-11 23:45 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 995 | ACTIVE | 2026-10-12 00:05 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:05 KST | AI 2 | 994 | +1 | 995 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00608: DX9Ex R31 실제 게임 월드 스테레오 매 드로우에서 반복하던 verified projection 4x4 inverse 계산을 exact pose/eye geometry/projection/worldScale 캐시 미스에서만 실행하도록 C++ 원본 구조 변경. R31 cache transactional finite/Reset 무효화 보호, 기존 Python 캐시/부정변이 검증기 수정. [material/validation SHA 452e283a](https://github.com/thp32tt/OutRun2006Tweaks/commit/452e283af6c712b385e91fb9859e61170a3deebf), 정확 SHA [DX9Ex Active #38149150444](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149150444) policy/game/host/full-chain/package SUCCESS, [Domain #38149150437](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149150437) SUCCESS, [Full Source Impact #38149150439](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149150439) game/host MSVC-analyze+cross-domain SUCCESS. [C6 별도 bookkeeping SHA bb47e285](https://github.com/thp32tt/OutRun2006Tweaks/commit/bb47e2856603e2a9c7fa9b779965c776713ca7e5). Quest3/VDXR 실제 FPS·P95/P99 측정 없음: RUNTIME_VALIDATION=UNTESTED, 성능 향상량 미확정. **AI 점수: 이전 994점 + 이번 +1점 = 누적 995점.** RUN_KEY=CONVERSION-DX9EX-00608 |
 
 | 2026-10-11 23:45 KST | AI 2 | 993 | +1 | 994 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00607: DX9Ex R33/R31 고밀도 드로우 StateBlockRecovery::FlushPendingResync()에서 실제 pending resync가 없고 provider가 정상 설정된 프레임마다 실행하던 두 callback atomic acquire·확인 핫패스를 스레드별 pending predicate + provider-ready 단축 경로로 줄이는 C++ 원본 수정. callback 미설정/부분 설정, Clear, pending 복구 및 복구 실패 fail-closed 보존. [최초 소스 material SHA 50d71dfb](https://github.com/thp32tt/OutRun2006Tweaks/commit/50d71dfbc8b9b9def4a339e284d05656d3fb967a)와 부정변이 검증기 오류 수리 후 [validation-bearing SHA f338851f](https://github.com/thp32tt/OutRun2006Tweaks/commit/f338851fae0776acdc6422d3b3bcce7c033fea6e) 확정. 새 Python 5 negative mutation PASS, 정확 SHA [DX9Ex Active #38147928203](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147928203) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38147928221](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147928221) SUCCESS, 소스 material SHA [Full Source Impact #38147847041](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38147847041) 3/3 SUCCESS. 1차 부정 변이 테스트 예외 검사 문제로 CI 실패했으나 동일 TASK_ID에서 정상 수정, retry·C6 추가점수0. C6 [별도 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/af71925d7bd6833adf15d31f71a670d1b28dac99). 실제 Quest3/VDXR p95/p99 FPS·시각 실기 미측정 RUNTIME_VALIDATION=UNTESTED, FPS 향상량 확정 아님. **AI 점수: 이전 993점 + 이번 +1점 = 누적 994점.** RUN_KEY=CONVERSION-DX9EX-00607 |
 

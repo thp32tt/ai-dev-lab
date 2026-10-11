@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1736 | ACTIVE | 2026-10-11 15:55 KST |
+| AI 1 | ChatGPT (AI 1) | 1737 | ACTIVE | 2026-10-11 16:20 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 16:20 KST | AI 1 | 1736 | +1 | 1737 | OutRun 한글화 C1 홀수 q119 기존 A192R 동일 SHA `b29c0bb0...`를 중복 PASS/재생산하지 않고, 과거 C297의 첫 글자 광륜 복구 HOLD와는 **별도의 새로운 실제 원본 서체·시각적 위계 FAIL**을 처음 독립 확정. SHA-256 인증한 실제 DXT5 2048x256 원본 `2336da3...`와 공식 후보 `b29c0bb...` 네이티브/RAW/FLIP-Y/100·75·50% PNG 4장 + 수치/8체크 QA. 원문 Time Attack Mode의 유려하고 넓은 racing italic 대비 한글 타임 어택 모드는 각지고 좁은 글씨: 알파 가시 폭 1239→597(48.18%), 높이144→132(91.67%). 정확한 영문 글자+광륜 RAW 범위 밖 변경 RGBA/alpha=0/0; tight-alpha 범위의 효과 픽셀은 구분하여 보고. **C1 REWORK_REQUIRED** 새로운 증거이며 공식 DDS·C2/C3 승인·실게임 상태 변경 없음. [증거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/d660dbb76959bc616c1816ab7d20674ffadac372), RUNTIME_VALIDATION=UNTESTED. 과거 동일 후보 제조·C297 광륜 PASS 재계상은 +0, 이번 새 광학 결함 판정 단일 성과 +1. **AI 점수: 이전 1736점 + 이번 +1점 = 누적 1737점.** RUN_KEY=OUTRUN-KOR-C1-Q119-NEW-OPTICAL-HIERARCHY-20261011-1617 |
 
 | 2026-10-11 15:55 KST | AI 1 | 1735 | +1 | 1736 | OutRun C2 짝수 q116의 과거 C263 동일 SHA 7e42aaa0f8aec535...C3 PASS에 대해 **새로 발견한 원본 서체·형태 시각 결함**을 실제 DDS 디코딩으로 증명. 영문 source ebc2d866... 및 공식 2048x256 BC3/DXT5 7e42aaa0... 각각 SHA 검증, RAW/FLIP-Y 100/75/50 lossless PNG 6장과 C2 팔항목 QA. Source rounded smooth racing italic Heart Attack Mode 대비 저장 후보 하트 어택 모드 각진 획/거친 외곽선, 폭 source1233px 대 candidate722px=58.6%, 높이144 대138=95.8%로 원본 시각 위계 불일치. C2 REWORK_REQUIRED, 역사적 같은-SHA C3 PASS 무효화, CLEAN/블라인드 검수/마스크 HOLD, 새 C3 NOT_RUN, 신규 DDS/승인0, 실제 게임 UNTESTED. 증거 [커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/885143abc535ccdb744704030cf6396f8c966145)과 [JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q116-SOURCE-FAMILY-STRICT/C2_Q116_FIRST_STRICT_SOURCE_FAMILY_REWORK.json), 원격 HEAD SHA 인증. 동일 SHA 재승인이 아닌 신규 시각 결함 한 성과만 점수화. **AI 점수: 이전 1735점 + 이번 +1점 = 누적 1736점.** RUN_KEY=OUTRUN-KOR-C2-Q116-FIRST-STRICT-FAMILY-20261011-1550 |
 

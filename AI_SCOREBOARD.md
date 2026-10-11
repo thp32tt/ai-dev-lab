@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1711 | ACTIVE | 2026-10-11 10:44 KST |
+| AI 1 | ChatGPT (AI 1) | 1712 | ACTIVE | 2026-10-11 10:58 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 960 | ACTIVE | 2026-10-11 10:46:36 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-11 10:58 KST | AI 1 | 1711 | +1 | 1712 | OutRun C2 짝수 q060 B367 **최초 독립 실제 저장 DDS SHA 52d97f845b7b3e588ebe5136cd299882001d509320fd4f8cc910270f314142d9** 검사. 기검수 B360 93022210과 서로 다른 후보, 정본 SOURCE 6a33c730, CLEAN a03687d4, 공식 d81d0d14, 신규 저장본 모두 SHA 인증. 4096x2048 RGBA32 저장 DDS 직접 디코드 100/75/50/RAW 양방향 손실없는 PNG 6장·머신/후보 delta/8 visual checks JSON 저장. **신규 확정 결함**: B360→B367 30,749 RGBA 색상만 바뀌고 알파 윤곽 전체 0px 변경, 모양이 원본 서체와 맞지 않는 상태에서 색상만 개선, C2 REWORK_REQUIRED. 원문→CLEAN 89,391px 제거, 공식 overflow 9027px(기존 alpha6357→신규0) 정합성 확인. C3 NOT_RUN, IGR044 OPEN, 실게임 UNTESTED, DDS 신규 승인0, 다른 샤드0. 원격 [C2 QA HEAD](https://github.com/thp32tt/OutRun2006Tweaks/commit/d1a835dbf5b599bbc0cdb0f9bccccddcee490823) verified. 동일 B360 이전 검수 점수 재가산 없음. **AI 점수: 이전 1711점 + 이번 +1점 = 누적 1712점**. RUN_KEY=OUTRUN-KOR-C2-Q060-B367-FIRST-INDEPENDENT-SAVED-20261011-1050 |
 | 2026-10-11 10:46:36 KST | AI 2 | 959 | +1 | 960 | 수도권 주말 사용 가능한 연간·시즌·다회권 특가 공식 조회 완료. 기존 씨라이프 79,000원(10/31까지)보다 개선된 신규 조건 미확인; 1일권 할인 제외, 알림 생략. 이전 959점 + 이번 +1점 = 누적 960점. RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-11T10:46:36+09:00 |
 | 2026-10-11 10:44 KST | AI 1 | 1710 | +1 | 1711 | OutRun B367 EVEN q060 새 분리형 글자면·측면·하이라이트 방식으로 신규 SHA-bound 4096×2048 RGBA32 DDS `52d97f845b7b3e588ebe5136cd299882001d509320fd4f8cc910270f314142d9` 첫 생산 및 실제 저장 DDS FLIPY 100/50, RAW 비교 증거; CLEAN 원문 89,391px, ROI 밖 변경0·저장 roundtrip0, B360 수평 띠 개선 확인. 동시에 소스 레이싱 금속 서체와 차이 확인해 생산 시각 REWORK_REQUIRED_UNPROMOTED 보류, 공식 C342·IGR044 유지, C2/C3/게임 미검증으로 허위 승인 없음. [CPU SUCCESS #38102408802](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38102408802), [B367 증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B367-Q060-SOURCE-CONDITIONED-CONTINUOUS-METAL-PILOT/B367_CONTROLLER_NATIVE_VISUAL_QA.json). 새 distinct 1개 실제 생산/QA 성과만 +1, 과거 B360 반복 검증 점수 없음. **AI 점수: 이전 1710점 + 이번 +1점 = 누적 1711점**. RUN_KEY=OUTRUN-KOR-B367-Q060-SMOOTH-SEPARATED-METAL-FIRST-SAVED-20261011-1030 |
 

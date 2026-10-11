@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1716 | ACTIVE | 2026-10-11 12:09 KST |
+| AI 1 | ChatGPT (AI 1) | 1717 | ACTIVE | 2026-10-11 12:17 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 960 | ACTIVE | 2026-10-11 10:46:36 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 12:17 KST | AI 1 | 1716 | +1 | 1717 | OutRun A238 A홀수 P0 q121 신규 수동 원본-조건부 한국어 자소 획 4개를 분리 글자/외곽선/깊이 레이어로 제작하고 **새 실저장 비승격 DDS 1개** SHA `78806f6df21a9f7c5a6d155db57c52221f22bad58dd3611c6d9778327b79e66a` 생성. 이전 A235R 글꼴/폭 조절 반복 아님. 최초 RAW 경계 1px 실패 실행은 +0; 동일 작업 보정 재실행 [GH Actions 38107463542](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38107463542) 성공, 원문 흰색 면 3504px/이전1426px/신규3370px, RGBA 변화 9798px 내부만, 밖0, 나머지29셀 완전 보존, 재디코딩 오차0. 저장 RAW 및 100/75/50 실제 첫 시각 검토 후 서체/기울기 불확실하여 **생산자 HOLD / 공식 DDS 승격0 / C1·C3·실게임 미검증**, 사용자 IGR030/031/040 OPEN 유지. GitHub [QA·상태 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/c01d73288b481f10578c4956cda0e9fa624facdd) 원격 HEAD 확인. **AI 점수: 이전 1716점 + 이번 +1점 = 누적 1717점.** RUN_KEY=OUTRUN-KOR-A238-Q121-MANUAL-FOUR-GLYPH-WHITE-FACE-20261011-1200 |
 
 | 2026-10-11 12:09 KST | AI 1 | 1715 | +1 | 1716 | OutRun C2 EVEN q060 B368 SHA `11e081c7f3c12bd13cf100995ec533ce78a557ac97eb1135ff84fc1e0a2d5a6b`의 **첫 독립 저장 DDS 실제 원본·정식·신규 비교 QA**. SOURCE `6a33c730...`/OFFICIAL `d81d0d14...`/B368 각각 원격 바이트 SHA 인증 후 4096×2048 native RAW·FLIPY·100/75/50 독립 재디코딩, 손실 없는 PNG 4개와 픽셀기반 machine/8-check evidence 저장. 원본 849×134 대비 신규 790×129, 한국어 획/이탤릭/금속 입체감 원본 서체 불일치 독립 확인 **REWORK_REQUIRED_UNPROMOTED**; 공식 C342 REWORK, IGR044 OPEN, C3/실게임 UNTESTED, 신규 승인0. [C2 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/33986e778fe886595205cb5ada3926ac683cfd8b) 원격 HEAD 검증, B368 제작 성과와 이 신규 독립 C2 최초 판정은 별개이되 C387 B367 SHA 반복 점수0. **AI 점수: 이전 1715점 + 이번 +1점 = 누적 1716점.** RUN_KEY=OUTRUN-KOR-C2-Q060-B368-FIRST-SAVED-SOURCE-FAMILY-20261011-1205 |
 

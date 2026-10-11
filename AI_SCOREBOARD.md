@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1769 | ACTIVE | 2026-10-12 00:13 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 997 | ACTIVE | 2026-10-12 00:21 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 998 | ACTIVE | 2026-10-12 00:31 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:31 KST | AI 2 | 997 | +1 | 998 | 신규 독립 TASK_ID=CONVERSION-DX11-00551: 실제 게임 오브젝트 공간 FVF XYZ+NORMAL+DIFFUSE+SPECULAR+TEX2 정점의 안전한 NORMAL 12바이트/SPECULAR 4바이트 오프셋 처리, diffuse/다중 UV 디코드, D3D9 SPECULARENABLE/lighting fail-closed 상태에서 DX11 native Draw/DrawIndexed 진단 프레임 연결, C++ 양·음성 샘플과 Python 부정변이 검증 구현. [초기 material SHA 6badb9ff](https://github.com/thp32tt/OutRun2006Tweaks/commit/6badb9ff5dd3636ba8881fb2b6aa25cfcc81df68), 동일 TASK 회귀 검사 수리 뒤 정확한 [validation-bearing SHA 15b56585](https://github.com/thp32tt/OutRun2006Tweaks/commit/15b565856f5d8f0f46dd032f342adb5fa283e5c3). 정확 SHA [Backend Conversion Gate #38150926930](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150926930) validate+readiness smoke SUCCESS, [Win32 Build #38150930205](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150930205), [DX11 Fast #38150926926](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150926926), [OpenXR #38150930172](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150930172), [HUD #38150930187](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150930187) 모두 SUCCESS. [C6 별도 bookkeeping SHA 2b938a44](https://github.com/thp32tt/OutRun2006Tweaks/commit/2b938a44d2caac9dfea75cb6948c08c78bf4aeee), 원래 DX9Ex 게임 Draw/Present·게임패드 유지, native gameplay 기본 비활성. 실기 Quest3/VDXR 화면·입력 미실행 RUNTIME_VALIDATION=UNTESTED; source/CI 성공을 HMD PASS로 승격하지 않음. 같은 TASK 수리/retry/C6 중복 가점0. **AI 점수: 이전 997점 + 이번 +1점 = 누적 998점.** RUN_KEY=CONVERSION-DX11-00551 |
 
 | 2026-10-12 00:21 KST | AI 2 | 996 | +1 | 997 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00609: DX9Ex R31 스테레오 월드 드로우에서 4x4 행렬 곱셈 3회→2회 절감하도록 inverseProjection*eyeTail 눈별 합성을 정확한 pose/projection/worldScale/eye geometry 캐시 미스에서만 실행하는 실제 C++ 원본 수정. 기존 live/verified WVP 일치 복원과 Reset 캐시 무효화·finite 검사, Python negative mutation 회귀 검증 추가. [material/validation-bearing SHA cfa84912](https://github.com/thp32tt/OutRun2006Tweaks/commit/cfa84912b001e0573cb34f3bd553e34ca90e99db), 정확 SHA [DX9Ex Active #38150269774](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150269774) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38150269755](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150269755) SUCCESS, [Full Source Impact #38150269846](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150269846) game/host MSVC analyze+cross-domain 3/3 SUCCESS. [C6 별도 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/5cd4f63a887263dd9aeac7ddc82e0253d32c60cd); Quest3/VDXR HMD FPS p95/p99·시각 실기 미측정 RUNTIME_VALIDATION=UNTESTED, 성능 향상량 미확정. 이번 고유 material 성과 1회만 가산, retry/C6는 추가점수0. **AI 점수: 이전 996점 + 이번 +1점 = 누적 997점.** RUN_KEY=CONVERSION-DX9EX-00609 |
 

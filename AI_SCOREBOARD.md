@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1752 | ACTIVE | 2026-10-11 20:49 KST |
+| AI 1 | ChatGPT (AI 1) | 1753 | ACTIVE | 2026-10-11 20:50 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 976 | ACTIVE | 2026-10-11 20:45 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 20:50 KST | AI 1 | 1752 | +1 | 1753 | OutRun 한글화 PSD 확대 조사 및 실파일 복사 신규 성과: Sonic-TV/OR2006Sprites pinned HEAD에서 PSD 184개 발견, 현재 큐 매칭 81개/65 자산/약 1.84GB 전체 카탈로그 생성. P0/P1 10개 q060/q121/q049/q205/q227/q212/q135/q230/q188/q176 실제 132,176,274 byte PSD 바이너리를 `localization/graphics/source_psd_upstream/`에 복사, Actions [38136463576](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136463576) SUCCESS, 원격 HEAD 656b3db6 10/10 Git blob SHA exact verified. 후속 복사본 PSD 실제 레이어 조사 [38136740911](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136740911) SUCCESS q060 81층/q121 204층/q049 56층; q121 독립 typed 'Gas Pedal:' 레이어 존재 확인. 독립 C2 CLEAN/DDS/실게임 승인 미실시·미주장, 제3자 라이선스 미확인. score unique +1, 추가 상태조회/재검증 중복 가점 없음. **AI 점수: 이전 1752점 + 이번 +1점 = 누적 1753점.** RUN_KEY=OUTRUN-KOR-PSD-MIRROR-81MATCH-10COPIES-20261011-2038 |
 
 | 2026-10-11 20:49 KST | AI 1 | 1751 | +1 | 1752 | 독립 성과 OUTRUN-KOR-UPSTREAM-PSD-BINARY-IMPORT-20261011-2037: Sonic-TV/OR2006Sprites 원본 PSD 184개를 전체 조사하고 DDS 큐와 매칭한 81파일·65해시 전체 인덱스 [PSD_UPSTREAM_FULL_INDEX.json](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/plate_library/PSD_UPSTREAM_FULL_INDEX.json)을 생성·갱신. **실제 PSD 바이너리 25개(130,613,629 bytes)** 상위 소스 Git blob SHA 및 SHA256 검증 후 동일 한글화 브랜치에 직접 복사: [첫 import Actions 38136459684](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136459684), [확대 import Actions 38136668186](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136668186) SUCCESS. 기존 병렬 source mirror와 dedup 시 27개 개별 PSD revision/26개 텍스처해시 커버. P0 q060 원본 PSD 44MB 실복사 및 실제 81레이어 인벤토리, q121 78, q049 56, q212 76, q230 69; [layer inspection run 38136649946](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38136649946) SUCCESS. 생산 문서 PSD local-first 및 C2 gate 반영; SOURCE_ONLY, canonical DDS pixel/CLEAN/C2/게임 미검증 및 서드파티 라이선스 별도 표시. 서로 같은 원본의 두 복사 경로, 중복 SHA 검증/재보고는 중복 가산하지 않음. **AI 점수: 이전 1751점 + 이번 +1점 = 누적 1752점**. RUN_KEY=OUTRUN-KOR-UPSTREAM-PSD-BINARY-IMPORT-20261011-2037 |
 

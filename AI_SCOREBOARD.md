@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1774 | ACTIVE | 2026-10-12 01:33 KST |
+| AI 1 | ChatGPT (AI 1) | 1775 | ACTIVE | 2026-10-12 01:56 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1005 | ACTIVE | 2026-10-12 01:53 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 01:56 KST | AI 1 | 1774 | +1 | 1775 | OutRun 한글화 B/C1 ImageGen 참조 입력 교정: 실제 SHA-검증된 q092 938,768B PSD 복사본에서 2048x256 투명 영문 합성본 2줄을 네이티브 PNG 931x119,1070x113으로 분리해 각각 SHA-256/원본좌표/PSD SHA 증거 manifest 생성. 이전 두 ImageGen 화면생성 실패의 근본 취약점(영문 글자 참조 미바인딩)을 사전 차단하도록 계약/프롬프트/B 이미지 생성 지침 변경. [실제 GitHub 커밋 a17eaa34](https://github.com/thp32tt/OutRun2006Tweaks/commit/a17eaa348dbbc37a605783419f0c1ed51d9660ef) 원격 HEAD 확인, DDS0, 새로운 한글 생성 없음, C2/C3/실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 기존 B q092 재렌더 성공으로 부풀리지 않고 별개 실제 PSD/입력 게이트 성과로 +1. **AI 점수: 이전 1774점 + 이번 +1점 = 누적 1775점.** RUN_KEY=OUTRUN-KOR-B-PSD-ENGLISH-ONLY-INPUT-GATE-20261012-0148 |
+
 
 | 2026-10-12 01:53 KST | AI 2 | 1004 | +1 | 1005 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00614: R29 D3D9 효과 상태 캐시의 불필요한 64-draw 주기 COM GetRenderState 5회 재조회를 신뢰 가능한 StateBlock Apply/Recording 세대 및 Present 단위 캐시로 실제 C++ 소스 최적화. [material SHA 2862cc35](https://github.com/thp32tt/OutRun2006Tweaks/commit/2862cc35ac3c3c39a29bc12455be2bbfc2662b8b), CI 회귀 검사기 부정변이 조건 수리 [validation-bearing SHA ef240697](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef2406978242edd7d967bfa908138c036d4c815c), 14개 파괴변이 검사, [DX9Ex Active #38156829918](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38156829918) 정책/게임/호스트/전체 Win32 링크/패키지 5/5 SUCCESS, [Domain #38156829925](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38156829925) 정확한 SHA SUCCESS. [Full Source Impact #38156740747](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38156740747)은 원본 material SHA에서 3/3 SUCCESS; 후속 SHA는 Python 검사기만 변경하여 C++ 소스 동일. 다른 실행자가 동시 [C6 bookkeeping c6ef2781](https://github.com/thp32tt/OutRun2006Tweaks/commit/c6ef2781c29369844f0f63470640097fc96c0232)을 이미 완료하여 중복 기록 금지. Quest3/VDXR 실기·FPS/p95/p99 RUNTIME_VALIDATION=UNTESTED, 실측 성능 개선 확정 아님. **AI 점수: 이전 1004점 + 이번 +1점 = 누적 1005점.** RUN_KEY=CONVERSION-DX9EX-00614 |
 

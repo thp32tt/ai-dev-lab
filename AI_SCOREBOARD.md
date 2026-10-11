@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1772 | ACTIVE | 2026-10-12 01:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1002 | ACTIVE | 2026-10-12 01:14 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1003 | ACTIVE | 2026-10-12 01:15 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 01:15 KST | AI 2 | 1002 | +1 | 1003 | 신규 독립 TASK_ID=CONVERSION-DX11-00553: 실제 게임 D3D9 FVF stage0 텍스처 ADD RGB/알파 연산 및 CURRENT(stage0=DIFFUSE) 인자 처리를 D3D11 포화합산 Pixel Shader 생성/소유/Draw/DrawIndexed native 경로에 연결하는 C++ 구현과 양/음성 파괴변이·RGBA 수치 회귀 검증. [최초 material SHA 7c2153c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/7c2153c4ccb1ab2b4ca03f3b3d7bcc26b6d5e271) 정책 stage 이름 실패 이후 동일 TASK C++ CURRENT 처리 및 실행기록 수정 [정확한 validation-bearing SHA 76bdb15e](https://github.com/thp32tt/OutRun2006Tweaks/commit/76bdb15ead9209cf0532c64142642b853915fa66). 정확 SHA [Backend Conversion Gate #38153838352](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153838352) validate/readiness 2/2 SUCCESS, [DX11 Fast #38153838356](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153838356) SUCCESS, [Win32 Release #38153841751](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153841751) SUCCESS, [OpenXR #38153838372](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153838372)/[#38153841677](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153841677) SUCCESS, [HUD #38153841685](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153841685) SUCCESS. [C6 별도 bookkeeping bea76495](https://github.com/thp32tt/OutRun2006Tweaks/commit/bea76495da713fa385cf67d651c204069d481c0d). DX11 diagnostic opt-in, 원본 D3D9 Draw/게임패드 보존, 게임/HMD/Quest3/VDXR 실기 미실행 RUNTIME_VALIDATION=UNTESTED, 실제 화면 패리티·승격 미확정. 최초 CI 수리·retry·C6 추가 가산 0. **AI 점수: 이전 1002점 + 이번 +1점 = 누적 1003점.** RUN_KEY=CONVERSION-DX11-00553 |
 
 | 2026-10-12 01:14 KST | AI 2 | 1001 | +1 | 1002 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00612: DX9Ex R30 SkyGlow 양안 후처리에서 per-frame 4개 D3D9 COM GetSurfaceLevel 반복 대신 축소/임시 표면 lifetime 캐시, 한 Present의 전체 화면 패스 FVF/샘플러/깊이 불변 state 초기 1회 적용 및 additive blend 전환 때만 변경하는 실제 C++ GPU-driver 제출 핫패스 최적화. 밝기/블러/합성/Scene-before-HUD/Reset 상태 복원 보호, 7개 부정변이 전용 회귀와 Actions 정책 추가. [원본 material SHA 08d47172](https://github.com/thp32tt/OutRun2006Tweaks/commit/08d47172e9cc632997cb970d053f4c5357ba05f2), 최초 검증기 상수 오타 수리 [동일 TASK material/test SHA 2b2a9d89](https://github.com/thp32tt/OutRun2006Tweaks/commit/2b2a9d89da0a6896246941a2eeb95ffffa5eecf8). 병렬 GPU 측정 PowerShell 독립 커밋이 추가된 정확한 [validation-bearing SHA 3f29f161](https://github.com/thp32tt/OutRun2006Tweaks/commit/3f29f1612e4b051b71f06c6df6b0b46b51dd949b)에서 [DX9Ex Active #38153967458](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153967458) policy/host/game/full-chain/package 5/5 SUCCESS(시도2), [Domain Isolation #38153967577](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153967577) SUCCESS; 원본 material SHA의 [Full Source Impact #38153609004](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153609004) 3/3 SUCCESS. 후속 병렬 변경 파일은 VR 파워셸 2개뿐이며 00612 C++/테스트/워크플로 미변경 확인. [C6 bookkeeping SHA bef01553](https://github.com/thp32tt/OutRun2006Tweaks/commit/bef0155308c1f09dbc50eac73ee3937c1b021ba1), 동일 TASK 재시도·검증기 보정·병렬 타 작업·C6 자체는 추가 성과 0. 실기 Quest3/VDXR·FPS/p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1001점 + 이번 +1점 = 누적 1002점.** RUN_KEY=CONVERSION-DX9EX-00612 |
 

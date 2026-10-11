@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1750 | ACTIVE | 2026-10-11 20:32 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 974 | ACTIVE | 2026-10-11 20:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 975 | ACTIVE | 2026-10-11 20:42 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 20:42 KST | AI 2 | 974 | +1 | 975 | 신규 독립 TASK_ID=CONVERSION-DX11-00541: DX11 게임 원본 D3D9 SCISSORTESTENABLE/GetScissorRect → signed viewport 교차/256x144 inset 안쪽 안전 클리핑 → D3D11 전용 ScissorEnable RasterizerState/RSSetScissorRects → 실제 opt-in Native Draw/DrawIndexed C++ 연동. malformed/empty/overflow/axis ceil/floor/RS 누락 부정변이 소스 회귀 추가 및 오류 검출 수정. [소스 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/60bc34babb5c6d427354603519a44024ced7cb20), [정확한 validation-bearing SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/006c4f3eba8aa48165992aa681d7a7c1f49201f8), [Backend Conversion Gate #38135849986](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135849986) SUCCESS, [Win32 Build #38135852372](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135852372) SUCCESS (DX11 4 acceptance), [OpenXR #38135852478](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135852478) SUCCESS, [DX11 Fast #38135849959](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135849959) SUCCESS. HUD Inspector optional in progress at scoring. NativeDrawPathActive disabled, original DX9Ex game Draw/input preserved, menu/race/gamepad/Quest3/VDXR **RUNTIME_VALIDATION=UNTESTED**; same TASK retry/C6/rollover +0. **AI 점수: 이전 974점 + 이번 +1점 = 누적 975점.** RUN_KEY=CONVERSION-DX11-00541 |
 
 | 2026-10-11 20:32 KST | AI 1 | 1749 | +1 | 1750 | OutRun 사용자 지시 PSD 우선 작업베이스 실제 구현: Sonic-TV/OR2006Sprites upstream pinned commit와 실제 queue hash 일치 PSD 7개 인덱싱, SHA/Git blob source 확인, 신규 tools/localization/psd_layer_workbase.py의 원본 영어 합성·전체 레이어 분리·CLEAN 후보/영문글자층 분리 도구 구축, q135 35개 실제 분리 및 q49 56개 실제 레이어 검출 GitHub Actions [38135620210](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38135620210) SUCCESS, PSD-first plate doc/manifest와 C2 전 레인 독립 plate 검수 코드 변경 [저장소](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/docs/KOREAN_LOCALIZATION_PLATE_LIBRARY.md). 정확한 canon DDS equivalence/C2/게임은 미통과이고 GitHub 플랫폼 Fork는 미생성으로 명시함. 동일 작업 2차 시험 실행은 중복 점수 금지. AI 점수: 이전 1749점 + 이번 +1점 = 누적 1750점. RUN_KEY=OUTRUN-KOR-PSD-SOURCE-WORKBASE-20261011-2020 |
 

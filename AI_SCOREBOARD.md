@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1742 | ACTIVE | 2026-10-11 18:08 KST |
+| AI 1 | ChatGPT (AI 1) | 1743 | ACTIVE | 2026-10-11 18:29 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 966 | ACTIVE | 2026-10-11 17:50 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 18:29 KST | AI 1 | 1742 | +1 | 1743 | OutRun A242 ODD P0 q121 source-family manual-rejected A241 `dba8745f...` **new genuinely different licensed native Noto CJK Bold contour** with optical source italic, exact `가속 페달:` colon; new persisted RGBA32 DDS `3a4f71ce3fc9628192d56c971c69f5c8cf8ff3bb18b53bf991e0c8e27d238b4d` (ONE new unpromoted). Original/source & official unchanged, A241/A242 silhouette XOR2320, official->trial inside9351/outside0, other29 byte exact, saved decode mismatch0. True lossless native100/white75/black50/RAW visual inspection first-hand: clearer Korean connected contours than manually fragmented A241, **source-family typography remains HOLD_STRICT_RECHECK**, C2/C3/game UNTESTED, IGR030/031/040 OPEN, approved DDS0. Same work CI fail-closed retries 38127262909/38127513395/38127782871 score0; **only final** [Actions 38128069313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38128069313) produced candidate, [QA + state commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2d626a25b6e3020b890d71c5af554300828226f) remote HEAD verified. **AI 점수: 이전 1742점 + 이번 +1점 = 누적 1743점.** RUN_KEY=OUTRUN-KOR-A242-Q121-P0-BOLD-ITALIC-NATIVE-FONT-20261011-1800 |
 
 | 2026-10-11 18:08 KST | AI 1 | 1741 | +1 | 1742 | OutRun C2 P0 q137 **새 SOURCE→CLEAN 플레이트 불량 픽셀 617개** 최초 독립 확정. Canonical SOURCE 11c90e06… / CLEAN b128a8fd… / 현재 저장 DDS cdd4a348… 실제 SHA 재검증, BGRA32 2048×1024 RAW/FLIPY/100·75·50, 여섯 레이블 SOURCE→CLEAN 107239 / CLEAN→FINAL 106016 변경 RGBA, 원래 여섯 ROI 밖0. P1 **BACKGROUND_PATCH_INTRUSION**: SOURCE alpha=0인데 CLEAN에서 alpha>0이 된 원래 투명 영역 MANUAL 100px(39+32+29), AUTOMATIC 517px(260+257), 총617px; 617개 전부 저장 DDS에서도 CLEAN과 바이트 완전 동일. 기존 동일 SHA C1 HOLD를 최초 확인된 **새 수평 검은 플레이트 연장 오염** 근거로 C2 REWORK_REQUIRED로 재판정; 기존 공식 DDS 미변경, C2 PASS0, C3 NOT_RUN, 사용자 IGR041 OPEN/RUNTIME_VALIDATION=UNTESTED. [원격 QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/89044d24beed39a8918b26d1b01e30b6cdd9593b), [독립 JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q137-P0-INDEPENDENT-NATIVE-STYLE/C2_Q137_INDEPENDENT_NEW_PLATE_ALPHA_REWORK.json). 기존 SHA의 반복 PASS나 신규 DDS 생산으로 재계산하지 않고 신규 결함 독립 발견 단일 성과만 +1. AI 점수: 이전 1741점 + 이번 +1점 = 누적 1742점. RUN_KEY=OUTRUN-KOR-C2-Q137-P0-617-NEW-PLATE-20261011-1750 |
 

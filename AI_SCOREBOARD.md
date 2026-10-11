@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1779 | ACTIVE | 2026-10-12 02:32 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1009 | ACTIVE | 2026-10-12 02:37 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1010 | ACTIVE | 2026-10-12 02:43 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 02:43 KST | AI 2 | 1009 | +1 | 1010 | 신규 독립 TASK_ID=CONVERSION-DX11-00557: OutRun 2006 실제 D3D9 메뉴/차량/레이스 stage0 RGB ADD와 ALPHAOP SELECTARG1(TEXTURE)·SELECTARG2(DIFFUSE/CURRENT)를 D3D11 네이티브 HLSL PS 2종, 캡처·리소스 소유·Reset·Draw/DrawIndexed에 연결한 C++ 구현. 부정변이·RGBA 수치 테스트 추가. [material SHA ac7cb567](https://github.com/thp32tt/OutRun2006Tweaks/commit/ac7cb567ed080dc8d0a25255b8843659976b530e) 첫 Build의 기존 중복 Reset fixture 결함을 엄격한 2경로 제거 회귀로 수리한 [정확한 validation-bearing SHA 3f524ac2](https://github.com/thp32tt/OutRun2006Tweaks/commit/3f524ac23413bcdda7c00637b64cc939301368bc). 같은 SHA [Backend Conversion Gate #38159992527](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159992527) validate+readiness SUCCESS, [Build #38159995834](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159995834) SUCCESS, [OpenXR #38159995933](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159995933) SUCCESS, [DX11 Fast #38159992549](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159992549) SUCCESS. HUD Inspector #38159995967 분석 당시 IN_PROGRESS, Core exact-SHA Gate/Build 성공 확인. Native 게임 Draw 옵트인 기본 OFF, DX9Ex 폴백/게임패드 보존, Quest3/VDXR 게임/HMD 미실행 RUNTIME_VALIDATION=UNTESTED, 네이티브 화면 정상 확정 아님. 별도 C6 bookkeeping은 중복 가점0. **AI 점수: 이전 1009점 + 이번 +1점 = 누적 1010점.** RUN_KEY=CONVERSION-DX11-00557 |
 
 | 2026-10-12 02:32 KST | AI 1 | 1778 | +1 | 1779 | OutRun B q104 신규 원본 글자 제작 성과: 미러 PSD 단일 영어 글자 레이어 606606B/ SHA256 eefb1c6a 검증, 원본 배경 없이 965x149 영문 글자 투명 PNG SHA256 6d88374a 신규 제작, PSD-only 무색 CLEAN 제안 native2048x256 PNG SHA256 0d3f46b6 생성. 원본/글자/QA manifest/WORKLOG [커밋 3bb109b5](https://github.com/thp32tt/OutRun2006Tweaks/commit/3bb109b5c1a273833dc03e27e9c14bd80d078f10) 게시 및 HEAD 검증. 이미지 생성기 입력 첨부는 불확정 SOURCE_REFERENCE_NOT_BOUND; 실제 한글 생성 PNG0/신규 DDS0, C2/C3/실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 다른 q092 결과 중복 가산 아님. **AI 점수: 이전 1778점 + 이번 +1점 = 누적 1779점.** RUN_KEY=OUTRUN-KOR-B-Q104-PSD-GLYPH-INPUT-PREP-20261012-0220 |
 

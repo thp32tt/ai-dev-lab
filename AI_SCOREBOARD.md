@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1787 | ACTIVE | 2026-10-12 04:46 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1025 | ACTIVE | 2026-10-12 04:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1026 | ACTIVE | 2026-10-12 04:58 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 04:58 KST | AI 2 | 1025 | +1 | 1026 | 신규 독립 TASK_ID=CONVERSION-DX11-00564: 실제 D3D9 stage0 BLENDFACTORALPHA RGB와 별도 SELECTARG2 DIFFUSE 및 ADD(TEXTURE,DIFFUSE) alpha 조합 2종을 게임 Draw 상태 캡처→전용 HLSL PS→D3D11 Draw/DrawIndexed opt-in 프레임 경로로 구현. C++ 셰이더 생성/수명/상태 필터, Python negative regression/수치 벡터 검사, 원본 DX9Ex/입력/Present 유지. [원본 material 6a9b43be](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a9b43be9341f6b7697cb66407a1cd4f9d0524ed), [수리+exact validation-bearing 5c68d459](https://github.com/thp32tt/OutRun2006Tweaks/commit/5c68d4591b706397f228d5a5333b980f8ed668fc), [Backend #38169394317](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169394317) SUCCESS, [Win32 #38169397173](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169397173) SUCCESS, [DX11 Fast #38169394237](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169394237) SUCCESS, [OpenXR #38169397125](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169397125) SUCCESS, [HUD #38169397202](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169397202) SUCCESS. [C6 docs-only a0433d7e](https://github.com/thp32tt/OutRun2006Tweaks/commit/a0433d7ee6280256a21ae2bcb5a1edd838d8f243) [skip ci] +0. Quest3/VDXR/게임패드 미실행 RUNTIME_VALIDATION=UNTESTED, 실기 화면/입력 정상 단정 금지. **AI 점수: 이전 1025점 + 이번 +1점 = 누적 1026점.** RUN_KEY=CONVERSION-DX11-00564 |
 
 | 2026-10-12 04:46 KST | AI 2 | 1024 | +1 | 1025 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00626: R30 XYZRHW VB/IB 세 종류 Lock/Unlock/Release 후크 설치가 완료된 이후 반복 Draw마다 발생하던 R30ShadowHookMutex 획득을 release/acquire 완료 플래그로 제거한 실제 C++ 핫패스 구현. 부분 설치 실패 시 잠금 기반 재설치, Rollback 시 플래그 해제 및 설치 경합 보호, 7개 destructive mutation 정책 검증 추가. [초기 material 66b77b5b](https://github.com/thp32tt/OutRun2006Tweaks/commit/66b77b5b2ac7f9371f726c6ef49bec1b140d256d), [최종 material/validation-bearing 7496b189](https://github.com/thp32tt/OutRun2006Tweaks/commit/7496b1895411ac1d0740dc2eba6d8883b0fb1bc6), [DX9Ex Active #38168945270](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38168945270) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38168945299](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38168945299) SUCCESS, [Full Source Impact #38168945258](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38168945258) source/game MSVC/host MSVC 3/3 SUCCESS, [별도 C6 bookkeeping ab9d315f](https://github.com/thp32tt/OutRun2006Tweaks/commit/ab9d315f907416f66cbb22976a9d5a5ebe3d0202) [skip ci] +0. Quest3/VDXR 인게임 프레임/광학 검증과 FPS/p95/p99 개선 실측 없음 RUNTIME_VALIDATION=UNTESTED. 신규 독립 실제 성과 한 번만 +1, retry 및 C6 중복 가산 금지. **AI 점수: 이전 1024점 + 이번 +1점 = 누적 1025점.** RUN_KEY=CONVERSION-DX9EX-00626 |
 

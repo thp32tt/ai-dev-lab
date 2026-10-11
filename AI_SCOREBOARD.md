@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1798 | ACTIVE | 2026-10-12 07:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1799 | ACTIVE | 2026-10-12 07:18 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1041 | ACTIVE | 2026-10-12 07:16 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 07:18 KST | AI 1 | 1798 | +1 | 1799 | OutRun Korean C1 q230 **new actual PSD-derived English-only transparent references** for previously unprepared labels SOLD and UNAVAILABLE: SHA verified source mirror PSD E95DA5 Git blob `0ca28fa2` (preexisting, not re-counted), extracted two opaque white-on-red PSD layer scenes and mathematically unmatted white lettering into 24px padded RGBA PNG SHA256 `7f1c3a3e` (169×89, 1847B) and `ba3ea87a` (401×88, 3225B). Original layer is opaque, so derivation caveat recorded; **not** native separate transparent Photoshop leaf / exact canonical DDS / approved CLEAN. SOURCE_REFERENCE_NOT_BOUND, actual ImageGen generation0, Korean PNG0, DDS0; existing B-owned q230 candidate, C380 REWORK, C2/C3/actual game unchanged and RUNTIME_VALIDATION=UNTESTED. [material commit c447c78e](https://github.com/thp32tt/OutRun2006Tweaks/commit/c447c78ebf30b695fecf0b5b2146296ca7e7b930) seven files including 2 new physical PNG plus queue/WORKLOG/resume/status/manifest; remote HEAD + exact PNG SHA both verified. New two q230 English references constitute one newly qualified source-prep milestone; rechecks +0. **AI 점수: 이전 1798점 + 이번 +1점 = 누적 1799점.** RUN_KEY=OUTRUN-C1-20261012-Q230-PSD-SOLD-UNAVAILABLE-ENGLISH-ALPHA-FIRST |
+
 
 | 2026-10-12 07:16 KST | AI 2 | 1040 | +1 | 1041 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00637: R30 XYZRHW 드로우별 D3D9 GetRenderState(ZENABLE) 왕복을 신뢰 가능한 R29 effect-state 스냅샷 재사용으로 생략하고 StateBlock/캐시 무효 시 LIVE 조회 및 HUD/월드 판정 fail-closed 보존하는 실제 [C++ material/validation-bearing SHA ce940af4](https://github.com/thp32tt/OutRun2006Tweaks/commit/ce940af4c04ab975ea5f51d4b1e31a5034f0eae0). 11개 파괴변이 테스트 PASS, 정확 SHA [DX9Ex Active #38179149255](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38179149255) 5/5 SUCCESS, [Domain Isolation #38179149248](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38179149248) SUCCESS, [Full Source Impact #38179149249](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38179149249) 3/3 SUCCESS. C6 [bookkeeping 8e516bbe](https://github.com/thp32tt/OutRun2006Tweaks/commit/8e516bbe2e8791d20d985e69ade5dc192e68ab0f) [skip ci] 별도 및 중복 점수 없음. Quest3/VDXR 실기 FPS/frame-time 미측정 RUNTIME_VALIDATION=UNTESTED, 실제 성능 향상량 미확정. **AI 점수: 이전 1040점 + 이번 +1점 = 누적 1041점.** RUN_KEY=CONVERSION-DX9EX-00637 |
 

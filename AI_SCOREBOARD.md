@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1772 | ACTIVE | 2026-10-12 01:08 KST |
+| AI 1 | ChatGPT (AI 1) | 1773 | ACTIVE | 2026-10-12 01:18 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1003 | ACTIVE | 2026-10-12 01:15 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 01:18 KST | AI 1 | 1772 | +1 | 1773 | 신규 독립 TASK_ID=OUTRUN-KOR-A248-Q121-P0-NATIVE-ITALIC-FONT-20261012-0100: q121 사용자 실게임 P0 가속 페달: 기존 A241 angular-spline 반려와 다른 실제 native-right-italic font white-face/navy-rim 제작법으로 저장된 4096×4096 RGBA32 DDS 시험본 1건 **SHA eb9eeadbf1fec2be2976c9d3c579e119e1431e55fc83859878f3501469c09512**. Canonical English source f7847db9.../official 38d5c2c3... 보존, 저장 DDS 변경9662픽셀 모두 원본 bbox 내/outside0, 인접 29셀 동일, 저장 디코드 불일치0, RAW/FLIPY/100·75·50 firsthand. GitHub-hosted [Actions #38154623179](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38154623179) SUCCESS, [new native DDS+producer QA](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A248-Q121-NATIVE-ITALIC-FONT-NEW-METHOD) 및 큐/상태/WORKLOG [remote HEAD c9170576](https://github.com/thp32tt/OutRun2006Tweaks/commit/c9170576711822bce0b1c935f2cfbec74be31050) 확인. 동일 A248 실행 전 실패·변수 수정 retry 별도 점수0. 공식 승격0, C2/C3/실게임 OPEN, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1772점 + 이번 +1점 = 누적 1773점.** RUN_KEY=OUTRUN-KOR-A248-Q121-P0-NATIVE-ITALIC-FONT-20261012-0100 |
 
 | 2026-10-12 01:15 KST | AI 2 | 1002 | +1 | 1003 | 신규 독립 TASK_ID=CONVERSION-DX11-00553: 실제 게임 D3D9 FVF stage0 텍스처 ADD RGB/알파 연산 및 CURRENT(stage0=DIFFUSE) 인자 처리를 D3D11 포화합산 Pixel Shader 생성/소유/Draw/DrawIndexed native 경로에 연결하는 C++ 구현과 양/음성 파괴변이·RGBA 수치 회귀 검증. [최초 material SHA 7c2153c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/7c2153c4ccb1ab2b4ca03f3b3d7bcc26b6d5e271) 정책 stage 이름 실패 이후 동일 TASK C++ CURRENT 처리 및 실행기록 수정 [정확한 validation-bearing SHA 76bdb15e](https://github.com/thp32tt/OutRun2006Tweaks/commit/76bdb15ead9209cf0532c64142642b853915fa66). 정확 SHA [Backend Conversion Gate #38153838352](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153838352) validate/readiness 2/2 SUCCESS, [DX11 Fast #38153838356](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153838356) SUCCESS, [Win32 Release #38153841751](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153841751) SUCCESS, [OpenXR #38153838372](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153838372)/[#38153841677](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153841677) SUCCESS, [HUD #38153841685](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153841685) SUCCESS. [C6 별도 bookkeeping bea76495](https://github.com/thp32tt/OutRun2006Tweaks/commit/bea76495da713fa385cf67d651c204069d481c0d). DX11 diagnostic opt-in, 원본 D3D9 Draw/게임패드 보존, 게임/HMD/Quest3/VDXR 실기 미실행 RUNTIME_VALIDATION=UNTESTED, 실제 화면 패리티·승격 미확정. 최초 CI 수리·retry·C6 추가 가산 0. **AI 점수: 이전 1002점 + 이번 +1점 = 누적 1003점.** RUN_KEY=CONVERSION-DX11-00553 |
 

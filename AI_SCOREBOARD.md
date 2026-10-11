@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1805 | ACTIVE | 2026-10-12 08:11 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1047 | ACTIVE | 2026-10-12 08:17 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1048 | ACTIVE | 2026-10-12 08:18 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 08:18 KST | AI 2 | 1047 | +1 | 1048 | 신규 독립 CHAT-DX9EX-GPU-WATER-20261012: OutRun DX9Ex R33 실제 GPU TIMESTAMP/TIMESTAMPDISJOINT/TIMESTAMPFREQ 비동기 4슬롯 프레임구간 계측, 프레임당 1개 sampled Draw GPU 시간, 1/16 Draw BLEND/ALPHATEST 분류, Reset/device-loss fail-closed, 기본 OFF, 5초별 VR GPU WATER 로그 및 5개 부정변이 정적 회귀. 5파일 GitHub material [faa74c3f](https://github.com/thp32tt/OutRun2006Tweaks/commit/faa74c3fa31529654e2d197c01cde5d862caba71), 정확 SHA DX9Ex Active #38183319472 policy/host/game/full-chain/package SUCCESS, Domain Isolation #38183319454 SUCCESS, Full Source Impact #38183319442 SUCCESS, HUD #38183319444 SUCCESS. Quest3/VDXR 실제 GPU 수치 및 물/알파 병목 인과관계 RUNTIME_VALIDATION=UNTESTED, 별도 실측 필요. 재검증·재보고 +0. **AI 점수: 이전 1047점 + 이번 +1점 = 누적 1048점.** RUN_KEY=CHAT-DX9EX-GPU-WATER-20261012 |
 
 | 2026-10-12 08:17 KST | AI 2 | 1046 | +1 | 1047 | 신규 독립 TASK_ID=CONVERSION-DX11-00574: 실제 OutRun 게임 D3D9 stage0 BLENDFACTORALPHA RGB + 독립 MODULATE2X/4X alpha 를 DX11 HLSL PS와 native Draw/DrawIndexed에 C++ 연결, 실패 방지 입력/알파 가드 및 10+ 파괴변이·수치 회귀 구현. [실제 material 095be67a](https://github.com/thp32tt/OutRun2006Tweaks/commit/095be67aac83a750173f0d5d0aa550ab8a0e46a3), 회귀·정책 수리 후 최종 검증-bearing [a27e1c4a](https://github.com/thp32tt/OutRun2006Tweaks/commit/a27e1c4ac31eb6df4d416b3f3693894c12ada0fc); 정확 SHA GitHub Actions Backend Conversion Gate #38182889673, Build #38182892873, OpenXR VR architecture #38182892960, OutRun EXE HUD Inspector #38182892882, DX11 Fast #38182889707 **필수 5/5 SUCCESS**. C6 [33e2c876](https://github.com/thp32tt/OutRun2006Tweaks/commit/33e2c876008205cce1db4c9ac092cc51182b6100) [skip ci] 문서 체크포인트 별도 +0점. 게임 Draw/Input/Present DX9Ex 유지, Quest3/VDXR/게임패드 실기 미실시 RUNTIME_VALIDATION=UNTESTED, native gameplay 승격 없음. **AI 점수: 이전 1046점 + 이번 +1점 = 누적 1047점.** RUN_KEY=CONVERSION-DX11-00574 |
 

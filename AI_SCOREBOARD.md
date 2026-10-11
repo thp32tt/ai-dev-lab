@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1780 | ACTIVE | 2026-10-12 03:01 KST |
+| AI 1 | ChatGPT (AI 1) | 1781 | ACTIVE | 2026-10-12 03:19 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1014 | ACTIVE | 2026-10-12 03:18 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 03:19 KST | AI 1 | 1780 | +1 | 1781 | A250 실제 신규 별도 작업: A 홀수 q035 영어 `Total Rank` 두 라벨을 원본 CLEAN 위에 신규 네이티브 한글 글자면/선·source-right-italic 스타일로 새 4096x4096 RGBA32 저장 DDS **SHA256 5ac62e3ef33ff39277fcef5bd7b00cc36c99666ccd01ac0f5a022e22e37b2369** 생산, 이전 공식 cc8df5b4... 정확히 보존. 실제 저장 DDS에서 변경37,825픽셀 전부 원본 2개 텍스트 bbox 내부, 밖0, DDS 재디코드0, positive glyph margins 최소3px, BGRA 올바른 색·원본/클린/기존/새 100/75/50/RAW 비교 직접 시각 확인. [GitHub Actions 38162887506](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38162887506) SUCCESS, [A250 DDS 및 SHA-bound 제작 근거](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A250-Q035-NATIVE-ITALIC-TOTAL-RANK) 저장, QA/asset_queue/WORKLOG/resume/progress [최종 HEAD 0e3eab0f](https://github.com/thp32tt/OutRun2006Tweaks/commit/0e3eab0f8274243a75bf83c4d88e150c0fa6662a) 확인. A250 첫 검증 실패와 색상 보정 중간 trial SHA b4c412...는 동일 TASK retry로 중복 +0; 실제 완료 A250 1성과만 +1. 공식 승격0, 독립 C2/C3/실게임 NOT_RUN, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1780점 + 이번 +1점 = 누적 1781점. RUN_KEY=OUTRUN-KOR-A250-Q035-TOTAL-RANK-ITALIC-NATIVE-20261012-0300 |
 
 | 2026-10-12 03:07 KST | AI 2 | 1012 | +1 | 1013 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00619: DX9Ex R13 draw-time 효과 상태 5종을 반복 D3D9 GetRenderState 하던 CPU hot path에서 신뢰 가능한 R22/R31 StateBlock Apply/Begin/End·setter 추적 시 캐시 직접 재사용하도록 실제 C++ 소스 수정, 불신뢰/기록 중/내부 패스에서는 16회 live validation 보존. 12개 파괴변이 전용 검증기·Active 정책 통합, 첫 검증기 fixture 거짓 실패를 같은 TASK_ID로 수정. [material SHA f7a75066](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7a75066cf874a43ac0ee22476191025a779e4f7), [exact validation-bearing SHA f7f522b6](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7f522b6c94d82ff05b1ce7d420305fd0d9f278a). [DX9Ex Active #38161969427](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161969427) policy/host/game/full-chain/package 5/5 SUCCESS 및 [Domain #38161969399](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161969399) exact SHA SUCCESS; [Full Source Impact #38161895802](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161895802) C++ material SHA 3/3 SUCCESS(후속 커밋은 Python 검사기만 수정). 별도 [C6 bookkeeping e85ab6a6](https://github.com/thp32tt/OutRun2006Tweaks/commit/e85ab6a6097f6ec350e5fd61d71bf1343cebca32) [skip ci], 중복 점수 0. Quest3/VDXR HMD 및 FPS/p95/p99 미측정, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1012점 + 이번 +1점 = 누적 1013점.** RUN_KEY=CONVERSION-DX9EX-00619 |
 

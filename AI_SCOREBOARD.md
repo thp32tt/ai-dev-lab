@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1765 | ACTIVE | 2026-10-11 23:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 989 | ACTIVE | 2026-10-11 22:59 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 990 | ACTIVE | 2026-10-11 23:09 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:09 KST | AI 2 | 989 | +1 | 990 | 독립 OutRun DX9Ex 실기 90→30~40 FPS 밀집 관중 패널 구간 급락 재현 보고 기반 **실제 R28 활성 Present 정밀 성능계측 C++ 구현**. 평균 XR 82.2/90.3Hz와 R28 최대 43.488/25.545ms·기존 R32 spikeCount=0 무효 관측 진단. 확인된 R28 활성 render Present에서 저비용 QPC frame interval, 25/33ms 이벤트, 5초 avg/P95/P99/max, drawSerial delta 계측 추가, 분석기 R28 dip CSV/threshold 카운트, 3부정변이 정적 회귀 및 CI policy 연결. [material SHA 7164d0c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/7164d0c7c22311cb8ad49a36e83ffb36180c0e13), 정확 SHA [DX9Ex Active Validation #38145559426](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145559426) policy/game/host/full-chain/package 5 jobs SUCCESS, [Domain #38145559452](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145559452) SUCCESS, [HUD #38145559421](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38145559421) SUCCESS, [실기 regression issue #13](https://github.com/thp32tt/OutRun2006Tweaks/issues/13#issuecomment-6109863228) 기록. HMD GPU bottleneck 실기 미확정 RUNTIME_VALIDATION=UNTESTED. 독립 material 개선만 +1 (retry/bookkeeping 아님). **AI 점수: 이전 989점 + 이번 +1점 = 누적 990점.** RUN_KEY=OUTRUN-DX9EX-R28-ACTIVE-FRAME-PACING-20261011-AI2 |
 
 | 2026-10-11 23:06 KST | AI 1 | 1764 | +1 | 1765 | OutRun C2 신규 B376 q060 ImageGen 시험 DDS SHA `8fe634e6...` 최초 독립 정적 픽셀 검수: 실제 persisted 4096×2048 DDS + 영어 정본/C372 CLEAN/글자층/RAW/FLIPY SHA 재검증. 원문 89,391 제거 alpha0/outside0, source bbox 밖 신규 자소0, 변경 ROI 밖0, 이전 후보 9,027px 원문 복원, native/50 가독성; 새 수렴정책의 경미한 차이 COSMETIC_VARIANCE_ACCEPTED. 부분 BEST_TIME 검수만 수용, 전체 q060 C2 PASS0/공식 DDS0/C3 NOT_RUN/IGR044 OPEN/실게임 UNTESTED. [evidence/commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/52cfa4ee7a3ff2f5e3b2cd593ec19101cea5f391). 동일 후보 중복검수나 생산 성과로 중복 집계하지 않음. AI 점수: 이전 1764점 + 이번 +1점 = 누적 1765점. RUN_KEY=OUTRUN-KOR-C2-Q060-B376-IMAGEGEN-PERSISTED-INDEPENDENT-20261011-2300 |
 

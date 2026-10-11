@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1805 | ACTIVE | 2026-10-12 08:11 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1046 | ACTIVE | 2026-10-12 08:01 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1047 | ACTIVE | 2026-10-12 08:17 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 08:17 KST | AI 2 | 1046 | +1 | 1047 | 신규 독립 TASK_ID=CONVERSION-DX11-00574: 실제 OutRun 게임 D3D9 stage0 BLENDFACTORALPHA RGB + 독립 MODULATE2X/4X alpha 를 DX11 HLSL PS와 native Draw/DrawIndexed에 C++ 연결, 실패 방지 입력/알파 가드 및 10+ 파괴변이·수치 회귀 구현. [실제 material 095be67a](https://github.com/thp32tt/OutRun2006Tweaks/commit/095be67aac83a750173f0d5d0aa550ab8a0e46a3), 회귀·정책 수리 후 최종 검증-bearing [a27e1c4a](https://github.com/thp32tt/OutRun2006Tweaks/commit/a27e1c4ac31eb6df4d416b3f3693894c12ada0fc); 정확 SHA GitHub Actions Backend Conversion Gate #38182889673, Build #38182892873, OpenXR VR architecture #38182892960, OutRun EXE HUD Inspector #38182892882, DX11 Fast #38182889707 **필수 5/5 SUCCESS**. C6 [33e2c876](https://github.com/thp32tt/OutRun2006Tweaks/commit/33e2c876008205cce1db4c9ac092cc51182b6100) [skip ci] 문서 체크포인트 별도 +0점. 게임 Draw/Input/Present DX9Ex 유지, Quest3/VDXR/게임패드 실기 미실시 RUNTIME_VALIDATION=UNTESTED, native gameplay 승격 없음. **AI 점수: 이전 1046점 + 이번 +1점 = 누적 1047점.** RUN_KEY=CONVERSION-DX11-00574 |
 
 | 2026-10-12 08:11 KST | AI 1 | 1804 | +1 | 1805 | OutRun 한글화 A254 q175 P1 **신규 실제 저장 DDS 1개**: C286/C352 검수에서 REWORK 확정한 과거 쇼룸 roof/rail 글자 방식 폐기 후 네이티브 실제 한글 쇼룸 윤곽과 SOURCE 영어 금속 세로색 프로필·림·그림자 분리 방식으로 생산. 원문 SHA 9314372585b8309f2f8b3e714076ef1ad1999d770422a570398ef20a80ac10a5, 구 A216 반려 SHA a5e921ab2563a1ec6a3a1954a247a07d0a9adb9e101c4d73682600476e39323c, 새 DDS SHA d5789dc2eb173ad670eb0a5e80ec9e5cd174a66485d4afb3c05dc8571fce5855, 93,589 변경 RGBA 원본 bbox 밖0, 저장 DDS 디코딩 차0. [GitHub Actions #38182999125](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38182999125) SUCCESS, 생산자 FIRSTHAND native 100/white75/black50/RAW QA 기록 및 queue/progress/resume/WORKLOG/STATUS [원격 HEAD b0d6766a](https://github.com/thp32tt/OutRun2006Tweaks/commit/b0d6766a1b1cf677b12e41b13981ff82e5a45388). **시험 DDS 1개만 생산, 정식 승격0; C2/C3/사용자 게임 별개로 PENDING, IGR032 OPEN, RUNTIME_VALIDATION=UNTESTED**. 동일 작업 CPU 스크립트·시각 QA·상태 갱신은 1건으로 점수 중복 없음. **AI 점수: 이전 1804점 + 이번 +1점 = 누적 1805점.** RUN_KEY=OUTRUN-KOR-A254-Q175-P1-REAL-GLYPH-SOURCE-METAL-20261012-0800 |
 

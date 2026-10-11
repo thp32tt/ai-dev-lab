@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1769 | ACTIVE | 2026-10-12 00:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1770 | ACTIVE | 2026-10-12 00:33 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 998 | ACTIVE | 2026-10-12 00:31 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:33 KST | AI 1 | 1769 | +1 | 1770 | OutRun C1 **신규 진짜 ChatGPT ImageGen 1개 + 원본 기존 생성물 1개 재사용**으로 q102 두 줄 영문→한글 **최초 실제 저장 시험 BC3/DXT5 DDS 1개** 생산 실물 성과. 신규 gen `c3300ff4-5247-4e03-916b-3adc873b15e3` 타임 어택 모드 원본 PNG SHA `c61efa95ba4...`; 기존 gen `95eed5de...` 두 번째 15코스 연속 PNG 동일 SHA 중복 성과 계산 0. 합성 투명 한글 PNG SHA `f4b1ad98...`, 최신 독립 C2 SOURCE/CLEAN PLATE_PASS `e0fa905a...`, C1 원래 소비자 파이프라인이 생성한 **2048×256 524416바이트 새 시험 DDS SHA256 `88f90ce751c33275d8eefaa4891688e025ba7400c8c624cb94afeeb407f3afed`**. BC3 block-aligned 안전 ROI, 저장후 검증 protected/outside pixel0, 실제 RAW/FLIPY/native/75/50 C1 자체시각검사. PNG 2종+시험 DDS 1종 [실물 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/d728c290d70d571e9d8ae7d0dc3e534294c1f4f3) 후 PINNED raw 재다운로드 3/3 SHA256 일치. [자체 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_trials/q102_C1_20261012_0010_2line/C1_Q102_PRODUCER_SELF_QA.json). **공식 DDS 변경0, C2 최종/C3/실게임 NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 원본 소유 q102 C2 REWORK 유지**, 새 고유 DDS 최초 생산 한 성과만 +1; 동일 SHA 재검수/재보고/큐 상태반영 가점0. **AI 점수: 이전 1769점 + 이번 +1점 = 누적 1770점.** RUN_KEY=OUTRUN-KOR-C1-Q102-TWOLINE-IMAGEGEN-BC3-20261012-0010 |
 
 | 2026-10-12 00:31 KST | AI 2 | 997 | +1 | 998 | 신규 독립 TASK_ID=CONVERSION-DX11-00551: 실제 게임 오브젝트 공간 FVF XYZ+NORMAL+DIFFUSE+SPECULAR+TEX2 정점의 안전한 NORMAL 12바이트/SPECULAR 4바이트 오프셋 처리, diffuse/다중 UV 디코드, D3D9 SPECULARENABLE/lighting fail-closed 상태에서 DX11 native Draw/DrawIndexed 진단 프레임 연결, C++ 양·음성 샘플과 Python 부정변이 검증 구현. [초기 material SHA 6badb9ff](https://github.com/thp32tt/OutRun2006Tweaks/commit/6badb9ff5dd3636ba8881fb2b6aa25cfcc81df68), 동일 TASK 회귀 검사 수리 뒤 정확한 [validation-bearing SHA 15b56585](https://github.com/thp32tt/OutRun2006Tweaks/commit/15b565856f5d8f0f46dd032f342adb5fa283e5c3). 정확 SHA [Backend Conversion Gate #38150926930](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150926930) validate+readiness smoke SUCCESS, [Win32 Build #38150930205](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150930205), [DX11 Fast #38150926926](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150926926), [OpenXR #38150930172](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150930172), [HUD #38150930187](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38150930187) 모두 SUCCESS. [C6 별도 bookkeeping SHA 2b938a44](https://github.com/thp32tt/OutRun2006Tweaks/commit/2b938a44d2caac9dfea75cb6948c08c78bf4aeee), 원래 DX9Ex 게임 Draw/Present·게임패드 유지, native gameplay 기본 비활성. 실기 Quest3/VDXR 화면·입력 미실행 RUNTIME_VALIDATION=UNTESTED; source/CI 성공을 HMD PASS로 승격하지 않음. 같은 TASK 수리/retry/C6 중복 가점0. **AI 점수: 이전 997점 + 이번 +1점 = 누적 998점.** RUN_KEY=CONVERSION-DX11-00551 |
 

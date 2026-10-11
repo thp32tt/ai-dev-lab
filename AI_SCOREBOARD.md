@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1738 | ACTIVE | 2026-10-11 16:46 KST |
+| AI 1 | ChatGPT (AI 1) | 1739 | ACTIVE | 2026-10-11 17:12 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 965 | ACTIVE | 2026-10-11 16:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 17:12 KST | AI 1 | 1738 | +1 | 1739 | OutRun A241 홀수 q121 P0 신규 수동 벡터 한글 `가속 페달:` 실저장 DDS 1개 생성. 사용자/독립 C1가 발견한 **원본 콜론 누락 문제 실제 바이트 수정**: GitHub Actions [38123603864](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38123603864) 4096² RGBA32 SHA `dba8745f3cadac8bc35b2ad1d19862d57c3207cb368ac626df0e4aa287ba1659`, saved-encoded top/bottom colon 각각 36px, A240 대비 알파실루엣 1459px 차이, 정식 후보 대비 ROI 내 RGBA9558/외부0/기타29셀 변경0/재디코딩오차0. 앞선 동일 작업 38123395981 문법오류로 DDS0, 재시도 중복점수0. 원본 smooth racing italic 대조 시 한글 획 형태·자간 여전히 FAIL이므로 **REWORK_REQUIRED_UNPROMOTED**, 공식 DDS0, 독립 C2/C3/실게임 UNTESTED 및 IGR030/031/040 OPEN. [실제 새 QA/큐/증거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/a2a4a63e8c2c5ab7d9cc2e65118c0d22d32168d9) 원격 HEAD 확인. **AI 점수: 이전 1738점 + 이번 +1점 = 누적 1739점.** RUN_KEY=OUTRUN-KOR-A241-Q121-P0-COLON-TRACKING-20261011-1700 |
 
 | 2026-10-11 16:46 KST | AI 1 | 1737 | +1 | 1738 | OutRun C2 짝수 q044 실제 원본/CLEAN/저장 DDS 2048² RGBA32 SHA-256 인증 및 **독립 12개 레이블 전체 P1/P2 마스크 재계산**: 영문 SOURCE `2472c7aa...`, B238 CLEAN `fd80f7f6...`, 동일 C249 공식 후보 `2250de2b...`; RAW Y mirror와 READABLE FLIPY 방향 정규화. SOURCE→CLEAN 원문 109604 RGBA/alpha 제거, source-mask 밖/보호 변경0, CLEAN→FINAL 86064 변경 원본 허용 마스크 밖/보호0, 12/12 원문 bbox 범위 내 양의 여백. 실제 저장 이미지 READABLE native100/white75/black50 및 RAW 독립 13장 PNG에서 `Stage→스테이지`, `Rival→라이벌` 원문의 굵고 부드러운 둥근 레이싱 이탤릭과 다른 세로 직립감/각진 가는 한글 서체 **신규 독립 source-family 시각 결함** 발견; 숫자 PASS보다 시각 FAIL 우선. C2 REWORK_REQUIRED, 과거 같은 후보 C249 C3 PASS 무효화, 별도 신규 C3 NOT_RUN, 승인/신규 DDS0, 실제 사용자 실기 UNTESTED. [원격 검증 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/f49fc0be8f0bdb0b34c3c78ab002b4d9e647ac49), [근거 JSON](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q044-STRICT-NATIVE-SOURCE-FAMILY/C2_Q044_NEW_SOURCE_FAMILY_REWORK.json); 동일 SHA 재승인이 아닌 처음 엄격 source-family 독립 재판정 1건에만 +1. **AI 점수: 이전 1737점 + 이번 +1점 = 누적 1738점.** RUN_KEY=OUTRUN-KOR-C2-Q044-STRICT-NEW-STYLE-20261011-1640 |
 

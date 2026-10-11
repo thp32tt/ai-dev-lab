@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1770 | ACTIVE | 2026-10-12 00:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 998 | ACTIVE | 2026-10-12 00:31 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 999 | ACTIVE | 2026-10-12 00:38 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:38 KST | AI 2 | 998 | +1 | 999 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00610: DX9Ex R30 HUD/XYZRHW asymmetric-FOV 화면 보정의 4회/draw tan() 반복 호출을 poseSequence 및 양안 left/right FOV의 정확한 값 캐시 히트에서 제거하는 실제 C++ 최적화. FOV/pose 변경 시 재계산, NaN/너비/scale/offset 기존 광학 안전조건 보존, C++ 카운팅/숫자 동등성 및 부정변이 회귀 검증. [최초 material SHA a5cd2cea](https://github.com/thp32tt/OutRun2006Tweaks/commit/a5cd2cea5e6d0f0a912bada6a01b77c45cdf8325), 동일 TASK 테스트 기대값 오류 수리 뒤 정확한 [validation-bearing SHA 7f8ecc47](https://github.com/thp32tt/OutRun2006Tweaks/commit/7f8ecc473921b35608ba3b45cdfc7f4814e5e562). [DX9Ex Active #38151606328](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38151606328) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38151606354](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38151606354) SUCCESS. 최초 material SHA의 [Full Source Impact #38151371899](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38151371899) 3/3 SUCCESS (최종 7f8 SHA에서는 별도 실행되지 않았음). [C6 bookkeeping bfa41df2](https://github.com/thp32tt/OutRun2006Tweaks/commit/bfa41df233dca3e27d824248f4732b8b939a93e4). Quest3/VDXR 사용자 실기·FPS p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED, 실제 프레임 개선량 미확정. 동일 TASK retry/C6는 +0, 새 material 성과 1회만 가산. **AI 점수: 이전 998점 + 이번 +1점 = 누적 999점.** RUN_KEY=CONVERSION-DX9EX-00610 |
 
 | 2026-10-12 00:33 KST | AI 1 | 1769 | +1 | 1770 | OutRun C1 **신규 진짜 ChatGPT ImageGen 1개 + 원본 기존 생성물 1개 재사용**으로 q102 두 줄 영문→한글 **최초 실제 저장 시험 BC3/DXT5 DDS 1개** 생산 실물 성과. 신규 gen `c3300ff4-5247-4e03-916b-3adc873b15e3` 타임 어택 모드 원본 PNG SHA `c61efa95ba4...`; 기존 gen `95eed5de...` 두 번째 15코스 연속 PNG 동일 SHA 중복 성과 계산 0. 합성 투명 한글 PNG SHA `f4b1ad98...`, 최신 독립 C2 SOURCE/CLEAN PLATE_PASS `e0fa905a...`, C1 원래 소비자 파이프라인이 생성한 **2048×256 524416바이트 새 시험 DDS SHA256 `88f90ce751c33275d8eefaa4891688e025ba7400c8c624cb94afeeb407f3afed`**. BC3 block-aligned 안전 ROI, 저장후 검증 protected/outside pixel0, 실제 RAW/FLIPY/native/75/50 C1 자체시각검사. PNG 2종+시험 DDS 1종 [실물 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/d728c290d70d571e9d8ae7d0dc3e534294c1f4f3) 후 PINNED raw 재다운로드 3/3 SHA256 일치. [자체 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_trials/q102_C1_20261012_0010_2line/C1_Q102_PRODUCER_SELF_QA.json). **공식 DDS 변경0, C2 최종/C3/실게임 NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 원본 소유 q102 C2 REWORK 유지**, 새 고유 DDS 최초 생산 한 성과만 +1; 동일 SHA 재검수/재보고/큐 상태반영 가점0. **AI 점수: 이전 1769점 + 이번 +1점 = 누적 1770점.** RUN_KEY=OUTRUN-KOR-C1-Q102-TWOLINE-IMAGEGEN-BC3-20261012-0010 |
 

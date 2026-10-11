@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1786 | ACTIVE | 2026-10-12 04:31 KST |
+| AI 1 | ChatGPT (AI 1) | 1787 | ACTIVE | 2026-10-12 04:46 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1024 | ACTIVE | 2026-10-12 04:39 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 04:46 KST | AI 1 | 1786 | +1 | 1787 | OutRun C1 q102 **영문 원본 글자 전용 투명 입력 PNG 실물 2개 신규 생성**: 공식 원본 추출 PNG SHA 218a08ff/73aecc01 검증, 원문 알파 실제 픽셀 88694/106029 모두 그대로 유지(불일치 0/0), 24px 투명 패딩, 새 SHA256 affc027f/b14e85c8, GitHub 원격 원본 바이트 SHA256 2/2 일치. [소스 업로드 commit 8066df48](https://github.com/thp32tt/OutRun2006Tweaks/commit/8066df485c57db12b3fd0b4d5329494569efd48), 큐/WORKLOG/STATUS 포함 [원격 HEAD 259a3d1e](https://github.com/thp32tt/OutRun2006Tweaks/commit/259a3d1ed1301e3db0a2c9aca546badea63fb4fe). 실제 ImageGen 원본 첨부 증거 불가 `SOURCE_REFERENCE_NOT_BOUND`, 생성기 호출 없음, 신규 한글 PNG0/시험 DDS0/공식 DDS0, C2 final HOLD/C3 NOT_RUN/실게임 UNTESTED; 기존 q102 시험 DDS SHA 그대로, 과거 동일 후보 재검수/중복 생성 점수 없음. **AI 점수: 이전 1786점 + 이번 +1점 = 누적 1787점.** RUN_KEY=OUTRUN-KOR-C1-Q102-GLYPH-SOURCE-INPUT-20261012-0440 |
+
 
 | 2026-10-12 04:31 KST | AI 1 | 1785 | +1 | 1786 | OutRun C2 신규 P0 q137 IGR041 6셀 **최초 독립 C2 저장 DDS/SOURCE/CLEAN 원본 픽셀 검사** 1개 성과. SHA 검증 SOURCE 11c90e06, A22 CLEAN b128a8fd, 기존 B320 저장 DDS cdd4a348 (DDS 새 생산0); native 2048x1024 BGRA32 mip1 RAW/FLIPY, 6개 원문 bbox의 SOURCE→CLEAN 107239, CLEAN→SAVED 106016, SOURCE→SAVED 140100 변경픽셀, bbox union 밖 세 단계 모두 0. DDS BGRA→CLEAN RGBA 채널 정상화로 허위 920581 색상 차이 수정, 최소 원문 bbox 여백3px, 한글 글자 6개 native100 + 작은 메뉴75/50에서 읽힘; 인접 아트 변화0. **6개 글자 영역 범위 한정 정적 C2 PASS**로만 기록하고 이전 C1 동일 SHA HOLD와 별개인 첫 C2 검수로 +1, 같은 후보 새 생산 점수0. 전체 승인 게이트/독립 C3/실게임 IGR041 OPEN, RUNTIME_VALIDATION=UNTESTED, 공식승격0. 근거 PNG10/기계1/QA1 및 큐/상태/WORKLOG 4파일 [원격 확정 commit 66517eba](https://github.com/thp32tt/OutRun2006Tweaks/commit/66517eba66d81fe023135cb6b4aa44abb2e7c3fa). **AI 점수: 이전 1785점 + 이번 +1점 = 누적 1786점.** RUN_KEY=OUTRUN-C2-20261012-Q137-P0-SIX-REGION-INDEPENDENT-PIXEL |
 

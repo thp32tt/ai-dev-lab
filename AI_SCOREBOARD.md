@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1756 | ACTIVE | 2026-10-11 21:31 KST |
+| AI 1 | ChatGPT (AI 1) | 1757 | ACTIVE | 2026-10-11 21:51 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 980 | ACTIVE | 2026-10-11 21:47 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 21:51 KST | AI 1 | 1756 | +1 | 1757 | OutRun C1 q102 독립된 **영문 두 번째 줄 원본 참조 PNG 1개 신규 생성·GitHub 바이너리 게시**: canonical C2 English contact SHA `8aa8b4e5...` 기반 정확한 SOURCE-only 1080×112 crop SHA256 `78a5f16f379684fd964d607c339683d8d0b07f1b0f6bb268017efdc51e695c80`, Git blob `a31215e72bc689f8907547aca5d57c549ea4407b`, 원격 [material commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/e01cc34181e354d72b1eb14ea56f21ae60b82e96) 및 [original source image](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2140_ENGLISH_SECOND_ROW_SOURCE_ONLY.png) 실제 확인. C1 ImageGen gen c2a423c8 SHA 6882dfd6 local PNG는 source-style FAIL, 유효 한글 PNG0/DDS0/C2-C3-게임 PASS0, source crop은 plate/GAME 승인 아님. 새 참조 실물1건에만 +1, 기존 q102 실패 재검증/반복 생성에는 가산0. [QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2140_SOURCE_CROP_IMAGEGEN_STYLE_FAIL.json). **AI 점수: 이전 1756점 + 이번 +1점 = 누적 1757점.** RUN_KEY=OUTRUN-KOR-C1-Q102-ENGLISH-SOURCE-SECOND-CROP-20261011-2140 |
 
 | 2026-10-11 21:47 KST | AI 2 | 979 | +1 | 980 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00601: R23 Desktop Duplication 포인터 이벤트만 발생하고 화면 픽셀 Present가 없는 경우 기보유 소스/출력 일치 조건으로 전체 화면 D3D11 GPU CopyResource를 생략하는 실제 성능 핫패스 C++ 구현, 첫 획득/재바인드/실제 새 픽셀 프레임은 기존 복사 유지. 신규 constexpr 6부정변이 정책 및 기존 캡처 3부정변이 상호 회귀, 기존 검사 조기해제 경로 적응. 기존 동시 실행 VDXR per-eye 해상도 작업으로 드러난 Win32 min/max macro 충돌을 동일 TASK 내 소스 수정 및 재검증. [첫 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/aa376a4dfa1a58eedadb8e11e20dfc6e5a36bcc9), [마지막 00601 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/30bdb4c337c915267e4878c068fb962b8994cfdf), 정확한 descendant [검증 SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/4340259ed155575e7329c4d31f1265a27bc9482a) [DX9Ex Active #38140005842](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140005842) 5/5 SUCCESS(Win32 game/host/R84 full-chain/package 포함), [Domain #38140005859](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140005859) SUCCESS, [Full Source Impact #38140005850](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140005850) 3/3 SUCCESS, [C6 기록](https://github.com/thp32tt/OutRun2006Tweaks/commit/0ad854895cab62644f832a2535d06d093cca235c) 별도 [skip ci]. 4340259e SHA에 타 작업자의 F11 AA 커밋 포함, 그 변경은 00601 성과에 포함하지 않음. Quest3/VDXR 실기 FPS p95/p99 및 72Hz 실제 효과는 미측정 RUNTIME_VALIDATION=UNTESTED. 동일 TASK/재시도·C6 재보고 가점 0. **AI 점수: 이전 979점 + 이번 +1점 = 누적 980점.** RUN_KEY=CONVERSION-DX9EX-00601 |
 

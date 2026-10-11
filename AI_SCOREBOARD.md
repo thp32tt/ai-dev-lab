@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1807 | ACTIVE | 2026-10-12 08:34 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1048 | ACTIVE | 2026-10-12 08:18 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1049 | ACTIVE | 2026-10-12 08:34 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 08:34 KST | AI 2 | 1048 | +1 | 1049 | 신규 독립 RUN_KEY=CHAT-DX9EX-GPU-OPTIONS-20261012: DX9Ex 테스트 패키지 WinForms GPU 상세 진단 체크박스 기본 OFF → 실행기 -GpuDiagnostics ON/OFF 정확 연결, 세션마다 GPU timestamp+QPC/XR 프레임 페이싱+NVIDIA 1초 whole-GPU sampler 동시 진단, 실행 후 원래 환경 복구. R33 GPU 표본에 ZWRITE/ZENABLE/STENCILENABLE 및 GetPixelShader COM 참조 해제 기반 programmable/fixed PS 통계를 실제 C++ 소스와 부정변이 검증으로 확장. 6개 파일 [material/validation SHA 518796ea](https://github.com/thp32tt/OutRun2006Tweaks/commit/518796eaaef616ec61bef6f47131b94a25d31b03), 같은 SHA DX9Ex Active Validation [#38184144696](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38184144696) policy/host/game/full-chain/package 전부 SUCCESS, Full Source Impact #38184144733 SUCCESS, Domain #38184144689 SUCCESS, HUD #38184144695 SUCCESS, Test Policy #38184144693 SUCCESS. 정확 SHA 사용자 테스트 ZIP artifact 11718713473 생성; HMD/Quest3/VDXR 성능 및 물 반투명 인과관계 RUNTIME_VALIDATION=UNTESTED. 이전 GPU 타임스탬프 본체 작업과 별개 GUI+측정확장 성과만 1회 반영. **AI 점수: 이전 1048점 + 이번 +1점 = 누적 1049점.** |
 
 | 2026-10-12 08:34 KST | AI 1 | 1806 | +1 | 1807 | OutRun C2 신규 독립 q175 A254 P1 쇼룸 신규 저장 DDS SHA d5789dc2eb173ad670eb0a5e80ec9e5cd174a66485d4afb3c05dc8571fce5855를 canonical SOURCE 93143725/A216 a5e921ab/공식 b9f60b45와 실제 바이트 SHA 검증하고 저장 DDS Pillow 디코딩, Native RAW/FLIP-Y/100/75/50 육안 및 93,589 변경 RGBA 전부 원문 RAW bbox 안, 밖0을 독립 측정. 제작자 저장 PNG ROI와 자체 재디코드 0 픽셀 불일치, CLEAN 원문 crop RGBA0. 첫 새 SHA 독립 쇼룸 영역 C2_STATIC_QA_PASS_SCOPED/COSMETIC_VARIANCE_ACCEPTED, 타 아틀라스 inherited source 변경247717 검수 및 C3/실게임 IGR032 OPEN, 공식 DDS 승격0, RUNTIME_VALIDATION=UNTESTED. QA/원본·신규·반려·공식 100/75/50·RAW 비교 PNG 4개/기계 JSON/큐 이력 [OutRun commit ac36090f](https://github.com/thp32tt/OutRun2006Tweaks/commit/ac36090faf28d5dda2f3d0da44f4d4009863b249) 원격 반영 확인. 신규 독립 SHA 픽셀 QA 성과 1회 +1, 재보고 +0. **AI 점수: 이전 1806점 + 이번 +1점 = 누적 1807점.** REVIEW_ID=C2-Q175-A254-FIRST-SAVED-PIXELS-20261012-0820 |
 

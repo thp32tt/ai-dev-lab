@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1757 | ACTIVE | 2026-10-11 21:51 KST |
+| AI 1 | ChatGPT (AI 1) | 1758 | ACTIVE | 2026-10-11 22:05 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 983 | ACTIVE | 2026-10-11 22:01 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:05 KST | AI 1 | 1757 | +1 | 1758 | OutRun C2 P0 q060 신규 upstream 44MB PSD 원본 처음 독립 픽셀 검증: 복사·SHA 인증된 PSD `cb03eb03f6515da0453c0e70d316a89955fa6da9690833354b869145c97a8024` vs canonical source DDS `6a33c7307e33337af085f0fffea081de8659ed1806f4ef4d2a8809d4120cadbc`, native 4096x2048 FLIP-Y 실제 RGBA. **BEST TIME 원본 글자/효과 ROI 차이 0**, full atlas RGB 494 픽셀만 타 영역에서 차이(최대 채널차2, alpha0 차이), PSD 전체 정본 대체 금지. 기존 C372 CLEAN 승인 재검수/중복 성과 아님; CLEAN 제거 대상 89,391 alpha0, 변경 영역 밖0 검증. 한글 신규 DDS 0/C2 전체 최종PASS0/C3/user IGR044 OPEN/RUNTIME_VALIDATION=UNTESTED. [검수 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/b16bcad6affb7176da6f4b2233af9c352e6d62a7), [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q060-PSD-V02-SOURCE-FIDELITY/C2_Q060_PSD_SOURCE_FIDELITY_INDEPENDENT_QA.json). **AI 점수: 이전 1757점 + 이번 +1점 = 누적 1758점.** RUN_KEY=OUTRUN-KOR-C2-Q060-PSD-V02-ROI-CANONICAL-FIDELITY-20261011-2150 |
 
 | 2026-10-11 22:01 KST | AI 2 | 982 | +1 | 983 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00602: R23에서 고전 SBS 후보 캡처가 이미 최신 Desktop Duplication 픽셀을 확보했지만 스테레오 검증이 불발돼 같은 XR 틱에 mono theater 복구로 진입할 때 발생하는 두 번째 AcquireNextFrame/출력 검색/전체 GPU 복사 핫패스 제거. fresh+available+classic attempted에 한해 캡처 재사용; pointer-only·stale·미확보·DirectGPU는 기존 bounded fallback 유지. C++ 실질 구현+constexpr 안전 정책+4부정변이 회귀/Active Gate 연결. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/6bec563751d5529ea895df4978dac04aabb1c8d5) 정확한 SHA [DX9Ex Active #38140991618](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991618) 5/5 SUCCESS(Win32 게임·호스트/R84 full-chain/패키지), [Domain #38140991633](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991633) SUCCESS, [Full Source Impact #38140991569](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140991569) 3/3 SUCCESS, [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/3c0bb8aaa19f9d1d752d0a7324bf92f20daa891c) [skip ci] 별도. Quest3/VDXR 실기 및 72Hz FPS p95/p99 성능 개선 미측정 RUNTIME_VALIDATION=UNTESTED. C6·retry·재보고에는 중복점수 없음. **AI 점수: 이전 982점 + 이번 +1점 = 누적 983점.** RUN_KEY=CONVERSION-DX9EX-00602 |
 

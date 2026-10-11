@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1785 | ACTIVE | 2026-10-12 04:02 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1019 | ACTIVE | 2026-10-12 04:01 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1020 | ACTIVE | 2026-10-12 04:05 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 04:05 KST | AI 2 | 1019 | +1 | 1020 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00622: R30 stereo/HUD/SkyGlow/XYZRHW/Present CPU 핫패스의 R29 POD frame-snapshot 중복 생성 호출 9개 함수에서 63곳→12곳으로 제거한 실제 C++ 개발 및 9개 파괴변이 검사. depth bootstrap 및 left/right-eye 경계 후 재스냅샷 유지, SkyGlow/장치 복원 보호. [material 2f23e3e](https://github.com/thp32tt/OutRun2006Tweaks/commit/2f23e3e615bca69c833ecb7c1f2cc7c7a3481f77), [최종 material 6a3d81ac](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a3d81acbd1129d8b99299e499327a2d64f5aeb5), [exact validation-bearing b08dffad](https://github.com/thp32tt/OutRun2006Tweaks/commit/b08dffadeda9b25f807b9adf956f2dbb898693cd). [DX9Ex Active #38165348036](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38165348036) rerun attempt2 policy/game/full-chain/host/package 5/5 SUCCESS, [Domain #38165347951](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38165347951) SUCCESS, [Full Source Impact #38165189399](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38165189399) material C++ SHA 3/3 SUCCESS. [C6 bookkeeping fdd789ff](https://github.com/thp32tt/OutRun2006Tweaks/commit/fdd789ff8c3b431f6b289d74ec19b6fc1c5af45d) [skip ci] 분리(+0 중복). Quest3/VDXR p95/p99/FPS 및 실제 화면 미검증, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1019점 + 이번 +1점 = 누적 1020점.** RUN_KEY=CONVERSION-DX9EX-00622 |
 
 | 2026-10-12 04:02 KST | AI 1 | 1784 | +1 | 1785 | OutRun 한글화 C2 **새 독립 첫 검수 성과**: P0 q205 B306 정확 SHA d309c8b5243e901642e640eb3b9f3593e5c5b60981156ce11901f88ab8279b70 4096x2048 RGBA32 저장 DDS 및 원본 영어 SOURCE 58a75fe7, A76 CLEAN 2e06b0d1, 이전 B303 fba4037f SHA 인증 다운로드. 새 B q205 원문-only OPTIONS/RANKINGS PNG 실제 가시 원문 RGBA/alpha 픽셀 0불일치, 투명 여백24px; SOURCE/CLEAN/분리 한글 글자층/저장DDS RAW/FLIPY native100/white75/black50 직접 픽셀 검수. '옵션','랭킹' 오자·가짜 획·잘림·다른 UI 신규 침범 없음, B303→B306 25528 변경픽셀 전부 두 원문 bbox 내부·밖0. 이전 B/C1 같은 후보 확인을 새 DDS 생산으로 산입하지 않고 **C2 첫 독립 검수 및 새 영문 입력 2개 최초 C2 판정 1성과만 +1**, 신규 DDS0. 두 제목 C2 범위 정적 PASS, 공유 atlas 나머지21은 HOLD, ImageGen media attachment 미확인, C3/사용자 인게임 IGR026/027/028 OPEN, RUNTIME_VALIDATION=UNTESTED. 증거 PNG12/기계3/QA JSON1/queue/resume/progress/WORKLOG [commit 1044a5ac](https://github.com/thp32tt/OutRun2006Tweaks/commit/1044a5acfeb1258ce692914eb07ee7a257a6a756) push 및 원격 HEAD 확인. **AI 점수: 이전 1784점 + 이번 +1점 = 누적 1785점.** RUN_KEY=OUTRUN-C2-20261012-Q205-P0-ENGLISH-REFERENCE-B306-FIRST-C2-PIXEL |
 

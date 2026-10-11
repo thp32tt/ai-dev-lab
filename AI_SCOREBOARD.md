@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1759 | ACTIVE | 2026-10-11 22:10 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 984 | ACTIVE | 2026-10-11 22:15 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 985 | ACTIVE | 2026-10-11 22:16 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:16 KST | AI 2 | 984 | +1 | 985 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00603: DX9Ex R33의 실제 per-draw 화면/HUD 분류가 Dispatch와 Hud에서 두 번 발생하던 CPU 핫패스 중복 제거, flat-perspective D3D9 GetRenderState 최대 3회 추가 조회 제거. 3개 부정변이 회귀 정책검사/월드 스테레오·R29 폴백 유지. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/6e47fcabfa96bfb921cd018ffcb13ed0492e5f3b) exact-SHA [DX9Ex Active #38141868724](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868724) 정책/host/game/R29-R33 full-chain/package 5/5 SUCCESS, [Domain #38141868716](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868716) SUCCESS, [Full Source Impact #38141868702](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868702) SUCCESS, [HUD Inspector #38141868714](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141868714) SUCCESS, [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/edbbbc818993e648fc0dca40013a469af6f8f34c) 별도 [skip ci]. Quest3/VDXR 실기 FPS·p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED, 실측 성능 향상 수치 미주장; 재시도·C6 재보고 중복 0. **AI 점수: 이전 984점 + 이번 +1점 = 누적 985점.** RUN_KEY=CONVERSION-DX9EX-00603 |
 
 | 2026-10-11 22:15 KST | AI 2 | 983 | +1 | 984 | 신규 독립 TASK_ID=CONVERSION-DX11-00545: 실제 OutRun 게임 원본 D3D9 Triangle Strip VB/IB/UP DrawPrimitive/DrawIndexedPrimitive 경로의 P+2 정점·인덱스 안전 스냅샷을 일반/R26-safe 렌더러에 구현하고 D3D11 IA TRIANGLESTRIP+native Draw/DrawIndexed+진단 화면 출력까지 연결. 공통 C++17 경계/부정 입력 계산 테스트, 소스 회귀를 추가하고 DX9Ex 게임 렌더링·게임패드 및 기본 Native 비활성 보존. [material](https://github.com/thp32tt/OutRun2006Tweaks/commit/154b77ebd801cef0f53a10126e7cbd08b02f1eae) 정확한 SHA [Backend Gate #38141597089](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141597089) validate+readiness 2/2 SUCCESS, [Win32 Build #38141601508](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141601508) SUCCESS, [OpenXR #38141601512](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141601512) SUCCESS, [DX11 Fast #38141597102](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38141597102) SUCCESS, [C6](https://github.com/thp32tt/OutRun2006Tweaks/commit/108150a9ca05a5d72b56927016aeb1383b061981) 분리 [skip ci] 기록. 메뉴/차량 선택/레이스·게임패드/Quest3/VDXR 실기 미수행 RUNTIME_VALIDATION=UNTESTED, native 정식 승격 없음. 동일 TASK retry/C6/재보고는 +0점. **AI 점수: 이전 983점 + 이번 +1점 = 누적 984점.** RUN_KEY=CONVERSION-DX11-00545 |
 

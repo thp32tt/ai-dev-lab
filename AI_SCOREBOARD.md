@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1785 | ACTIVE | 2026-10-12 04:02 KST |
+| AI 1 | ChatGPT (AI 1) | 1786 | ACTIVE | 2026-10-12 04:31 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1023 | ACTIVE | 2026-10-12 04:28:55 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 04:31 KST | AI 1 | 1785 | +1 | 1786 | OutRun C2 신규 P0 q137 IGR041 6셀 **최초 독립 C2 저장 DDS/SOURCE/CLEAN 원본 픽셀 검사** 1개 성과. SHA 검증 SOURCE 11c90e06, A22 CLEAN b128a8fd, 기존 B320 저장 DDS cdd4a348 (DDS 새 생산0); native 2048x1024 BGRA32 mip1 RAW/FLIPY, 6개 원문 bbox의 SOURCE→CLEAN 107239, CLEAN→SAVED 106016, SOURCE→SAVED 140100 변경픽셀, bbox union 밖 세 단계 모두 0. DDS BGRA→CLEAN RGBA 채널 정상화로 허위 920581 색상 차이 수정, 최소 원문 bbox 여백3px, 한글 글자 6개 native100 + 작은 메뉴75/50에서 읽힘; 인접 아트 변화0. **6개 글자 영역 범위 한정 정적 C2 PASS**로만 기록하고 이전 C1 동일 SHA HOLD와 별개인 첫 C2 검수로 +1, 같은 후보 새 생산 점수0. 전체 승인 게이트/독립 C3/실게임 IGR041 OPEN, RUNTIME_VALIDATION=UNTESTED, 공식승격0. 근거 PNG10/기계1/QA1 및 큐/상태/WORKLOG 4파일 [원격 확정 commit 66517eba](https://github.com/thp32tt/OutRun2006Tweaks/commit/66517eba66d81fe023135cb6b4aa44abb2e7c3fa). **AI 점수: 이전 1785점 + 이번 +1점 = 누적 1786점.** RUN_KEY=OUTRUN-C2-20261012-Q137-P0-SIX-REGION-INDEPENDENT-PIXEL |
 
 | 2026-10-12 04:28:55 KST | AI 2 | 1022 | +1 | 1023 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00625: DX9Ex R30 원근 HUD 렌더상태 드라이버 호출 3종을 R29 유효 StateBlock 세대 캐시로 재사용하고 XYZRHW viewport 상태 조회를 추적된 viewport로 대체, 기존 live fallback 보존. 실제 C++/header source 및 7개 파괴변이 정책 검증 구현. [material/validation-bearing c657aa55](https://github.com/thp32tt/OutRun2006Tweaks/commit/c657aa558b235bf61ac5315ca9e399b54bbea892), [DX9Ex Active #38167640623](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38167640623) policy/game/host/full-chain/package SUCCESS, [Domain #38167640572](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38167640572) SUCCESS, [Full Source Impact #38167640630](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38167640630) source/game MSVC/host MSVC SUCCESS, [C6 bookkeeping a6a6d588](https://github.com/thp32tt/OutRun2006Tweaks/commit/a6a6d5888cdd1936174d5cbb3eea48b4217ef5cc) +0. Quest3/VDXR HMD FPS/p95/p99 실기 미검증 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1022점 + 이번 +1점 = 누적 1023점.** RUN_KEY=CONVERSION-DX9EX-00625 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1718 | ACTIVE | 2026-10-11 12:19 KST |
+| AI 1 | ChatGPT (AI 1) | 1719 | ACTIVE | 2026-10-11 12:34 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 960 | ACTIVE | 2026-10-11 10:46:36 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 12:34 KST | AI 1 | 1718 | +1 | 1719 | OutRun C390 C2 EVEN q026 이전 C245/C3 PASS였던 동일 저장 DDS(2dfc6214…) **강화 C3 신규 독립 원본 서체·기울기 엄격 재검수**에서 시각적 morphology mismatch 확정, C3 승인 철회 및 q026 REWORK 재개방. Sonic-TV 고정 SOURCE d44868cb / 실제 current 2dfc6214 / B137 CLEAN 9d9cb6a1 실제 SHA 인증. 저장 DDS/PNG 방향을 구분해 SOURCE_FLIPY/CLEAN_AS_IS/CURRENT_FLIPY 정규화, SOURCE→CLEAN 80,451픽셀, CLEAN→FINAL 61,043픽셀 변경, 보호된 두 원문 영역 밖 RGBA/alpha 모두 0. 실제 native100·white75·black50·RAW 무손실 8장과 8개 독립 C2/C3 관찰·machine 새 증거 게시. 기존 동일 SHA PASS 재가산 아님: 새 독립 시각 결함 + C3 상태 무효화 성과 1회. 새 DDS/승인/사용자 게임 0, 런타임 UNTESTED. [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/bff507055f1b0fba5759cffe87806c8da520abc4) 원격 HEAD 확인. **AI 점수: 이전 1718점 + 이번 +1점 = 누적 1719점.** RUN_KEY=OUTRUN-KOR-C390-C2-Q026-STRICT-SOURCE-FAMILY-PLATE-20261011-1230 |
 
 | 2026-10-11 12:19 KST | AI 1 | 1717 | +1 | 1718 | OutRun C1 홀수 q193 여섯 **기존 미재작업 영역의 최초 독립 원본·현재 저장 DDS Native/RAW/75/50 정밀 QA**. 동일 SHA의 과거 C341 Goal A 범위와 중복하지 않음. 원본 SHA d308bf05/current 9ea15d13 인증, 여섯 SOURCE-FAMILY 저해상도/너비축소 결함(39.5~51.7%)과 CLEAN 동일 한국어 픽셀 증거 확인, C1 REWORK_REQUIRED. 신규 증거 PNG4/JSON2와 queue/resume/progress/WORKLOG 커밋 [f9f1700](https://github.com/thp32tt/OutRun2006Tweaks/commit/f9f17000650761d2c831d304b2e9cd6a81e8386a), 원격 HEAD 확인. 신규 DDS0/승인0, C3/실게임 UNTESTED; 명확한 새 6행 범위 성과 +1, 재검수 중복 가산 아님. **AI 점수: 이전 1717점 + 이번 +1점 = 누적 1718점**. RUN_KEY=`OUTRUN-KOR-C1-Q193-SIX-INHERITED-SOURCE-FAMILY-20261011-1210` |
 | 2026-10-11 12:17 KST | AI 1 | 1716 | +1 | 1717 | OutRun A238 A홀수 P0 q121 신규 수동 원본-조건부 한국어 자소 획 4개를 분리 글자/외곽선/깊이 레이어로 제작하고 **새 실저장 비승격 DDS 1개** SHA `78806f6df21a9f7c5a6d155db57c52221f22bad58dd3611c6d9778327b79e66a` 생성. 이전 A235R 글꼴/폭 조절 반복 아님. 최초 RAW 경계 1px 실패 실행은 +0; 동일 작업 보정 재실행 [GH Actions 38107463542](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38107463542) 성공, 원문 흰색 면 3504px/이전1426px/신규3370px, RGBA 변화 9798px 내부만, 밖0, 나머지29셀 완전 보존, 재디코딩 오차0. 저장 RAW 및 100/75/50 실제 첫 시각 검토 후 서체/기울기 불확실하여 **생산자 HOLD / 공식 DDS 승격0 / C1·C3·실게임 미검증**, 사용자 IGR030/031/040 OPEN 유지. GitHub [QA·상태 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/c01d73288b481f10578c4956cda0e9fa624facdd) 원격 HEAD 확인. **AI 점수: 이전 1716점 + 이번 +1점 = 누적 1717점.** RUN_KEY=OUTRUN-KOR-A238-Q121-MANUAL-FOUR-GLYPH-WHITE-FACE-20261011-1200 |

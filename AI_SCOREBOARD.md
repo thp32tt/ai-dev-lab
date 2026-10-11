@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1782 | ACTIVE | 2026-10-12 03:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1015 | ACTIVE | 2026-10-12 03:22 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1016 | ACTIVE | 2026-10-12 03:37 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 03:37 KST | AI 2 | 1015 | +1 | 1016 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00621: DX9Ex DirectGPU per-Present D3D9Ex adapter LUID COM 왕복 및 GetDeviceCaps 반복 호출을 장치별 성공결과 캐시로 제거하는 실제 R7 C++ 핫패스 수정. Reset/ResetEx·장치 교체 무효화, 호스트 LUID 실시간 비교·XR per-frame seqlock 보존, 기존 정책 검증기 13개 파괴변이 검사 통합. [정확한 material+validation SHA 6381f12b](https://github.com/thp32tt/OutRun2006Tweaks/commit/6381f12bafd9a3e8a5d7329c797f506ca4e0cdc2); [DX9Ex Active #38163938991](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163938991) policy/game/Win32 full-chain/host/package 5/5 SUCCESS, [Domain #38163938980](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163938980) SUCCESS, [Full Source Impact #38163938969](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38163938969) 3/3 SUCCESS. [C6 bookkeeping ab0b94ed](https://github.com/thp32tt/OutRun2006Tweaks/commit/ab0b94ed651b98236b6af8737b02f8aff07072e0) 별도 [skip ci] 기록, 중복 점수 없음. Quest3/VDXR 실기 및 p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1015점 + 이번 +1점 = 누적 1016점.** RUN_KEY=CONVERSION-DX9EX-00621 |
 
 | 2026-10-12 03:33 KST | AI 1 | 1781 | +1 | 1782 | OutRun 한글화 C2 신규 q035 A250 저장 DDS 첫 독립 픽셀 QA. 실제 SHA256 5ac62e3ef33f...e37b2369 DDS 4096x4096 RGBA32 mip1 다운로드/해시 검증, SOURCE/CLEAN SHA 결속 원본 PNG/저장 DDS 100/75/50 및 RAW/FLIP-Y 시각 확인. 원문 영어/효과 SOURCE→CLEAN 82769픽셀은 두 영문 글자+효과 footprint 안만 수정(legacy bbox 바깥 14182픽셀 포함), 그 밖의 보호영역0; CLEAN→저장 DDS 한글 두 레이블 내부 23080픽셀, bbox 밖0. 오탈자/가짜자소/잘림 없이 종합 랭킹 2곳 네이티브 읽기 확인. 이 성과는 **기존 A250 새 DDS 생산과 별개인 독립 첫 시각 QA** 1건이며 DDS 새 생산 0, C2_STATIC_PASS_SCOPED_TWO_TOTAL_RANK_LABELS로만 판정, full-evidence 승인/C3/실게임 아직 미검증, 이전 공식 DDS는 미승격. SHA 고정 QA JSON + PNG 10개 + 기계 보고 + queue/resume/progress/WORKLOG [commit 6ddf58b2](https://github.com/thp32tt/OutRun2006Tweaks/commit/6ddf58b2df9a4a8dbe2aab0dfacb2c883b72b1cc) push와 원격 HEAD 검증. RUNTIME_VALIDATION=UNTESTED. 동일 후보 재보고는 +0. **AI 점수: 이전 1781점 + 이번 +1점 = 누적 1782점.** RUN_KEY=OUTRUN-C2-20261012-Q035-A250-FIRST-PERSISTED-PIXEL-INDEPENDENT |
 

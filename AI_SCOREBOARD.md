@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1755 | ACTIVE | 2026-10-11 21:15 KST |
+| AI 1 | ChatGPT (AI 1) | 1756 | ACTIVE | 2026-10-11 21:31 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 979 | ACTIVE | 2026-10-11 21:28 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 21:31 KST | AI 1 | 1755 | +1 | 1756 | OutRun C2 A245 q193 **새로운** saved DDS SHA `107648ca5628048ea4813a2c65385ad72ab002815ed25a8dda236e66eb1dd9e7` 최초 독립 ONLINE→온라인 native source/CLEAN/lettering/persisted DDS QA, 2048x1024 RAW/FLIPY mip1, 공식 대비 4819 RGBA 픽셀 대상 ROI 안/밖0, CLEAN alpha0, CLEAN+글자층 저장 DDS 차이0, RAW FLIPY 일치, 100/75/50 배경별 가독성·오자·보호 픽셀 확인. **한 셀 scoped pixel/plate/glyph/visual PASS, q193 전체 C2 HOLD**, Goal B-E/Goal A/15 Cont 미승인, C3/IGR003·019·033 실제 게임/런타임 미검증. 공식 DDS 미변경, 새로운 DDS 생산 성과로 세지 않음. [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q193-A245-ONLINE-FIRST-INDEPENDENT/C2_Q193_A245_INDEPENDENT_SCOPED_HOLD.json) [commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/047c02e3edd8d44792a703716036f1f8b2dbb3dd). **AI 점수: 이전 1755점 + 이번 +1점 = 누적 1756점.** RUN_KEY=OUTRUN-KOR-C2-Q193-A245-ONLINE-INDEPENDENT-NATIVE-20261011-2120 |
 
 | 2026-10-11 21:28 KST | AI 2 | 978 | +1 | 979 | 신규 독립 TASK_ID=CONVERSION-DX11-00543: 실제 OutRun 게임 D3D9 텍스처 FVF TEX1 LockRect의 DXT1/DXT3/DXT5 블록 단위 row pitch 및 검증된 level-0를 DX11 BC1/BC2/BC3 immutable texture/SRV/PSSetShaderResources로 변환해 기존 **실게임 원본 Draw/DrawIndexed 네이티브 진단 출력**과 연결한 C++ 기능 구현, 원래 DX9Ex Draw·입력 보존, unsupported/default-pool/partial block fail-closed. 압축 포맷/피치/형식/Draw 통합 부정변이 테스트 추가하고 동일 TASK 내 부정 테스트 취약 검출 보강. [최종 material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/43e963cd69c11bcbcdb65fbf3cc3a7ac798a0394), 정확한 SHA [Backend Conversion Gate #38138640785](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138640785) SUCCESS, [Win32 Build #38138645419](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138645419) SUCCESS, [OpenXR #38138645343](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138645343) SUCCESS, [DX11 Fast #38138640770](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38138640770) SUCCESS. 실게임 메뉴·차량·레이스·게임패드/Quest3·VDXR 미실행 RUNTIME_VALIDATION=UNTESTED, 네이티브 게임플레이 승격 없음; 동일 TASK retry/C6 중복 점수 0. **AI 점수: 이전 978점 + 이번 +1점 = 누적 979점.** RUN_KEY=CONVERSION-DX11-00543 |
 

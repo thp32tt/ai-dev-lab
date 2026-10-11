@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1756 | ACTIVE | 2026-10-11 21:31 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 979 | ACTIVE | 2026-10-11 21:28 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 980 | ACTIVE | 2026-10-11 21:47 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 21:47 KST | AI 2 | 979 | +1 | 980 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00601: R23 Desktop Duplication 포인터 이벤트만 발생하고 화면 픽셀 Present가 없는 경우 기보유 소스/출력 일치 조건으로 전체 화면 D3D11 GPU CopyResource를 생략하는 실제 성능 핫패스 C++ 구현, 첫 획득/재바인드/실제 새 픽셀 프레임은 기존 복사 유지. 신규 constexpr 6부정변이 정책 및 기존 캡처 3부정변이 상호 회귀, 기존 검사 조기해제 경로 적응. 기존 동시 실행 VDXR per-eye 해상도 작업으로 드러난 Win32 min/max macro 충돌을 동일 TASK 내 소스 수정 및 재검증. [첫 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/aa376a4dfa1a58eedadb8e11e20dfc6e5a36bcc9), [마지막 00601 수정](https://github.com/thp32tt/OutRun2006Tweaks/commit/30bdb4c337c915267e4878c068fb962b8994cfdf), 정확한 descendant [검증 SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/4340259ed155575e7329c4d31f1265a27bc9482a) [DX9Ex Active #38140005842](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140005842) 5/5 SUCCESS(Win32 game/host/R84 full-chain/package 포함), [Domain #38140005859](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140005859) SUCCESS, [Full Source Impact #38140005850](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38140005850) 3/3 SUCCESS, [C6 기록](https://github.com/thp32tt/OutRun2006Tweaks/commit/0ad854895cab62644f832a2535d06d093cca235c) 별도 [skip ci]. 4340259e SHA에 타 작업자의 F11 AA 커밋 포함, 그 변경은 00601 성과에 포함하지 않음. Quest3/VDXR 실기 FPS p95/p99 및 72Hz 실제 효과는 미측정 RUNTIME_VALIDATION=UNTESTED. 동일 TASK/재시도·C6 재보고 가점 0. **AI 점수: 이전 979점 + 이번 +1점 = 누적 980점.** RUN_KEY=CONVERSION-DX9EX-00601 |
 
 | 2026-10-11 21:31 KST | AI 1 | 1755 | +1 | 1756 | OutRun C2 A245 q193 **새로운** saved DDS SHA `107648ca5628048ea4813a2c65385ad72ab002815ed25a8dda236e66eb1dd9e7` 최초 독립 ONLINE→온라인 native source/CLEAN/lettering/persisted DDS QA, 2048x1024 RAW/FLIPY mip1, 공식 대비 4819 RGBA 픽셀 대상 ROI 안/밖0, CLEAN alpha0, CLEAN+글자층 저장 DDS 차이0, RAW FLIPY 일치, 100/75/50 배경별 가독성·오자·보호 픽셀 확인. **한 셀 scoped pixel/plate/glyph/visual PASS, q193 전체 C2 HOLD**, Goal B-E/Goal A/15 Cont 미승인, C3/IGR003·019·033 실제 게임/런타임 미검증. 공식 DDS 미변경, 새로운 DDS 생산 성과로 세지 않음. [독립 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q193-A245-ONLINE-FIRST-INDEPENDENT/C2_Q193_A245_INDEPENDENT_SCOPED_HOLD.json) [commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/047c02e3edd8d44792a703716036f1f8b2dbb3dd). **AI 점수: 이전 1755점 + 이번 +1점 = 누적 1756점.** RUN_KEY=OUTRUN-KOR-C2-Q193-A245-ONLINE-INDEPENDENT-NATIVE-20261011-2120 |
 

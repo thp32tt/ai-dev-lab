@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1772 | ACTIVE | 2026-10-12 01:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1001 | ACTIVE | 2026-10-12 00:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1002 | ACTIVE | 2026-10-12 01:14 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 01:14 KST | AI 2 | 1001 | +1 | 1002 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00612: DX9Ex R30 SkyGlow 양안 후처리에서 per-frame 4개 D3D9 COM GetSurfaceLevel 반복 대신 축소/임시 표면 lifetime 캐시, 한 Present의 전체 화면 패스 FVF/샘플러/깊이 불변 state 초기 1회 적용 및 additive blend 전환 때만 변경하는 실제 C++ GPU-driver 제출 핫패스 최적화. 밝기/블러/합성/Scene-before-HUD/Reset 상태 복원 보호, 7개 부정변이 전용 회귀와 Actions 정책 추가. [원본 material SHA 08d47172](https://github.com/thp32tt/OutRun2006Tweaks/commit/08d47172e9cc632997cb970d053f4c5357ba05f2), 최초 검증기 상수 오타 수리 [동일 TASK material/test SHA 2b2a9d89](https://github.com/thp32tt/OutRun2006Tweaks/commit/2b2a9d89da0a6896246941a2eeb95ffffa5eecf8). 병렬 GPU 측정 PowerShell 독립 커밋이 추가된 정확한 [validation-bearing SHA 3f29f161](https://github.com/thp32tt/OutRun2006Tweaks/commit/3f29f1612e4b051b71f06c6df6b0b46b51dd949b)에서 [DX9Ex Active #38153967458](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153967458) policy/host/game/full-chain/package 5/5 SUCCESS(시도2), [Domain Isolation #38153967577](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153967577) SUCCESS; 원본 material SHA의 [Full Source Impact #38153609004](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38153609004) 3/3 SUCCESS. 후속 병렬 변경 파일은 VR 파워셸 2개뿐이며 00612 C++/테스트/워크플로 미변경 확인. [C6 bookkeeping SHA bef01553](https://github.com/thp32tt/OutRun2006Tweaks/commit/bef0155308c1f09dbc50eac73ee3937c1b021ba1), 동일 TASK 재시도·검증기 보정·병렬 타 작업·C6 자체는 추가 성과 0. 실기 Quest3/VDXR·FPS/p95/p99 미측정 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1001점 + 이번 +1점 = 누적 1002점.** RUN_KEY=CONVERSION-DX9EX-00612 |
 
 | 2026-10-12 01:08 KST | AI 1 | 1771 | +1 | 1772 | OutRun C2 q193 NEW not previously inspected Goal A source-derived A208 plate and existing A246 saved DDS SHA98066203 independent native/75/50/RAW/FLIP-Y review: canonical English SHA d308bf05, CLEAN SHA1da47a8e, clean alpha0, SOURCE->CLEAN 3660 actual pixels, candidate bbox original outside0, verified true source vs saved header/format. Scope-only QA PASS; q193 whole C2 HOLD, C3 NOT_RUN, user IGR003/019/033 OPEN, RUNTIME_VALIDATION=UNTESTED. No new DDS or producer score and no repeated A246 six/A247 three re-approval. Evidence and state committed [SHA 0015e272](https://github.com/thp32tt/OutRun2006Tweaks/commit/0015e2724c525d30c903fa5d5cbd6959c0df70b2) and remote HEAD confirmed. **AI 점수: 이전 1771점 + 이번 +1점 = 누적 1772점.** RUN_KEY=OUTRUN-C2-20261012-Q193-GOALA-PLATE-SAVED-FIRST-INDEPENDENT |
 

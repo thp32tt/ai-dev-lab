@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1778 | ACTIVE | 2026-10-12 02:27 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1008 | ACTIVE | 2026-10-12 02:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1009 | ACTIVE | 2026-10-12 02:37 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 02:37 KST | AI 2 | 1008 | +1 | 1009 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00617: R30 XYZRHW HUD 정점별 OpenXR recommended eye extent 및 FOV tan() 보정 함수를 latched eye draw당 1회로 이동한 실제 C++ CPU hotpath 수정. 기존 world effect/양안 FOV/HUD X·Y와 Z/RHW·SkyGlow 불변, 6개 파괴변이 검사기와 Active 정책 통합. [material/validation-bearing SHA 33cd81fe](https://github.com/thp32tt/OutRun2006Tweaks/commit/33cd81feb77870763fa707968c3964c009e78e33), [DX9Ex Active #38159739259](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159739259) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain Isolation #38159739221](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159739221) SUCCESS, [Full Source Impact #38159739250](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159739250) 3/3 SUCCESS. 별도 [C6 bookkeeping 4d38fe2c](https://github.com/thp32tt/OutRun2006Tweaks/commit/4d38fe2c6ed4b76832bf5a08946b9d3549924ed6) 중복 가점 0. Quest3/VDXR 실기·FPS/p95/p99 미측정, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1008점 + 이번 +1점 = 누적 1009점.** RUN_KEY=CONVERSION-DX9EX-00617 |
 
 | 2026-10-12 02:27 KST | AI 1 | 1777 | +1 | 1778 | OutRun C2 q193 P1 A249 **새 SHOWROOM source-derived CLEAN 플레이트 첫 독립 픽셀 QA**: 원본 DDS SHA d308bf05, A249 CLEAN SHA594c8817 신규 공급, 저장 A246 시험 DDS SHA98066203 기존 불변. C2가 source/CLEAN/분리 글자/실제 저장 DDS 2048x1024 RGBA32 native 100/white75/black50/RAW·FLIP-Y를 독립 디코드; SHOWROOM 영어 알파11379→CLEAN0, source-clean RGBA11379, 저장 쇼룸 한글 글자층2634 RGBA 차이0, bbox 밖 RGBA 변경0·새 알파0. 보호 인접 텍스트 기존 알파1244 원본/후보 동일, 보호 OUTRUN artwork 차이0, 한글 형태/위치/여백 PASS. 새 DDS0/공식 승격0/전체 q193 C2 HOLD/C3 NOT_RUN/IGR003·019·033 게임 OPEN/RUNTIME_VALIDATION=UNTESTED. 기존 A246 검수·동일 SHA 생산을 중복 성과로 계산하지 않고 **처음 확보된 A249 CLEAN 증거에 대한 독립 C2 검수 1건**만 가산. [독립 QA commit 55d6ab2d](https://github.com/thp32tt/OutRun2006Tweaks/commit/55d6ab2d6550a403563d355065d2a040aabffb0a) push; GitHub 브랜치 compare identical로 원격 HEAD SHA 확인. **AI 점수: 이전 1777점 + 이번 +1점 = 누적 1778점.** RUN_KEY=OUTRUN-C2-20261012-Q193-A249-SHOWROOM-PLATE-FIRST-REVIEW |
 

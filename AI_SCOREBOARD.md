@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1763 | ACTIVE | 2026-10-11 22:42 KST |
+| AI 1 | ChatGPT (AI 1) | 1764 | ACTIVE | 2026-10-11 22:54 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 988 | ACTIVE | 2026-10-11 22:47 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 22:54 KST | AI 1 | 1763 | +1 | 1764 | OutRun C1 q102 실제 **ChatGPT ImageGen 생성 원본 1개** GitHub 신규 실물 게시 성과. gen `95eed5de-0b71-4dee-8e4e-aa105a4b0b30`의 투명 2172×724 RGBA 711618바이트 한국어 `15코스 연속` PNG, 로컬 SHA256 `d409c4eba2d50866e24ad7818f4d3cad0bd998b82b78d938bc1ab3a3a8033531`; 임시 전송 후 GitHub base64 **원본 바이트 일치 확인**, Git blob `f0e5b9ef4ce796849c2963327e29a4e057da8c47`, [물리 PNG 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/10642e1c4e9dd21213f37853813091999756a07e), [이미지](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2240_GEN_95eed5de.png), [QA/보류 기록](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C1/imagegen_requests/q102_C1_20261011_2240_REAL_IMAGEGEN_LOCAL_BINARY_HOLD.json). **PNG 출판 성과만** +1; 원본 스타일 검증/독립 C2 CLEAN PLATE_PASS 미완료, saved DDS 0/official 0/C2/C3/user game PASS 0, RUNTIME_VALIDATION=UNTESTED. 이 RUN_KEY의 로컬 생성→바이너리 업로드→메타기록→queue/WORKLOG/status 커밋은 **동일 성과 1회**로 계상, 추후 반복 보고는 +0. **AI 점수: 이전 1763점 + 이번 +1점 = 누적 1764점.** RUN_KEY=OUTRUN-KOR-C1-Q102-15CONTINUOUS-IMAGEGEN-LOCAL-20261011-2240 |
 
 | 2026-10-11 22:47 KST | AI 2 | 987 | +1 | 988 | 독립 사용자 실기 피드백 기반 DX9Ex 설정·UI 실제 수정 1건. DX9Ex 6bec5637 2개 실기 로그 분석: VR AA=Off, CLI 설정 INI write 전체 잠금, F11 마우스·창 포커스 실증. [실제 C++/PowerShell/INI/회귀코드 7파일 material commit 44040074](https://github.com/thp32tt/OutRun2006Tweaks/commit/440400746e93ecd624411741050e3ce4258e137f): non-CLI 설정 F11 지속저장·CLI 강제키 쓰기 배제, VR 4x MSAA 디폴트, mirror fit default, F11 WM_SETCURSOR·WA_INACTIVE 수정, launcher hidden/minimize, 정적 계약갱신. [GitHub DX9Ex Active policy 재실행 #38144202750](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144202750) policy SUCCESS, 이후 build jobs concurrency-cancelled(전체 CI 성공 주장 금지), [Domain #38144202717](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38144202717) SUCCESS. [실기 잔여 회귀 문제 #13 댓글](https://github.com/thp32tt/OutRun2006Tweaks/issues/13#issuecomment-6109689699) 지속기록; 실제 Quest3 재검증 없음 RUNTIME_VALIDATION=UNTESTED, 레이스 HUD/마커/렌즈/성능 수정 완료 주장 없음. 신규 실질 GitHub 코드 개선 1회만 +1. **AI 점수: 이전 987점 + 이번 +1점 = 누적 988점.** RUN_KEY=OUTRUN-DX9EX-20261011-FIELDTEST-AA-CURSOR-F11-20261011-AI2 |
 

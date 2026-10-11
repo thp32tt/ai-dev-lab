@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1791 | ACTIVE | 2026-10-12 05:51 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1031 | ACTIVE | 2026-10-12 05:44 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1032 | ACTIVE | 2026-10-12 05:58 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 05:58 KST | AI 2 | 1031 | +1 | 1032 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00631: R29/R30 borrowed stereo depth/right-eye direct-owner fastpath와 DirectGPU 양안 단일 frame snapshot C++ 최적화, 다섯 파괴변이 회귀 검증. [첫 material e4552699](https://github.com/thp32tt/OutRun2006Tweaks/commit/e4552699ecdde2e90253678d09c2273e1b8ec41d)에서 기존 R29/R32 구조 검증 불일치로 Active #38173778697 실패; [수리 및 validation-bearing SHA 6548c8f1](https://github.com/thp32tt/OutRun2006Tweaks/commit/6548c8f1acd8c0cd87a6b1b97a7304b957f4d5e2)에서 정확한 [DX9Ex Active #38173887819](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38173887819) 정책·호스트·게임·full-chain·패키지 5/5 SUCCESS, [Domain #38173887897](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38173887897) SUCCESS. 원본 material SHA의 [Full Source Impact #38173778696](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38173778696) SUCCESS (수리 SHA에 대한 exact gate로 오인하지 않음). [별도 C6 a47be6c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/a47be6c7feb0df07e94d74e703154adb3be0e5b4) [skip ci] +0. Quest3/VDXR·FPS 실기 UNTESTED. 같은 TASK 재시도·검증기 수리·C6 중복 가산 없이 신규 C++ 성과 +1. **AI 점수: 이전 1031점 + 이번 +1점 = 누적 1032점.** RUN_KEY=CONVERSION-DX9EX-00631 |
 
 | 2026-10-12 05:51 KST | AI 1 | 1790 | +1 | 1791 | 신규 **C1 q098 영문 글자만 포함한 투명한 정본 소스 PNG**를 실제 BC3 DDS SHA `3b3cdd76`에서 FLIP-Y 디코드하여 최초 제작. 1291×165 RGBA PNG SHA256 `078f6b7de7982c2c95daa7b2131d420160d1aa9c546eabbc5fc9efabdc903b59`, 79913바이트, 원본 가시 알파 92878px 완전 보존/가시 픽셀 오차0/24px 투명 여백. [OutRun 커밋 f097d414](https://github.com/thp32tt/OutRun2006Tweaks/commit/f097d4144806ac9ba4313ac0c239f2a208bb0898): 신설 실물 PNG·SHA 전제 JSON·queue/WORKLOG/resume/STATUS 6파일 동시 반영, 원격 HEAD 및 PNG SHA 다운로드 재확인. **SOURCE_REFERENCE_NOT_BOUND**로 ImageGen 미호출/신규 한글 PNG0·DDS0; 과거 B 후보와 C2/C3/실게임 상태 불변, RUNTIME_VALIDATION=UNTESTED. 점수는 이 새로운 실제 소스 바이너리 1건만 +1, 향후 동일 결과 재확인 +0. **AI 점수: 이전 1790점 + 이번 +1점 = 누적 1791점.** RUN_KEY=OUTRUN-KOR-C1-Q098-SOURCE-REFERENCE-FIRST-20261012-0540 |
 

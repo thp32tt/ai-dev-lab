@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1768 | ACTIVE | 2026-10-12 00:06 KST |
+| AI 1 | ChatGPT (AI 1) | 1769 | ACTIVE | 2026-10-12 00:13 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 996 | ACTIVE | 2026-10-12 00:09 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 00:13 KST | AI 1 | 1768 | +1 | 1769 | A247 독립 신규 실제 제작 성과: C2가 결함으로 지적한 q193 WELCOME_TO_THE/MULTIPLAYER/ONLINE_RANKING_HELP 3개 영역 원본 영어 SOURCE→투명 CLEAN 3건과 이미 저장된 한국어 전용 글자층을 분리 제작. 원본 SHA d308bf05..., 기존 A246 SHA 98066203... 그대로 보존하고 source→CLEAN 변화 55,717픽셀 전부 영문 소스 bbox 내부, 바깥0·CLEAN 알파0, RAW/FLIPY·gray100/white75/black50 시각 확인. [GitHub Actions #38149968227](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149968227) SUCCESS, [A247 제작 증거](https://github.com/thp32tt/OutRun2006Tweaks/tree/korean-localization-recovery-20260928/localization/graphics/role_A/20261012-A247-Q193-THREE-SOURCE-CLEAN-RECONSTRUCTION)와 큐/WORKLOG/resume/progress [원격 HEAD 67464057](https://github.com/thp32tt/OutRun2006Tweaks/commit/6746405716de8b4b721eb15217de5f8170f5f0c9) 반영 확인. 새 공식 DDS0, 독립 C2/C3/사용자 실기 PASS 아님, RUNTIME_VALIDATION=UNTESTED. 동일 A247 검증 반복은 +0. **AI 점수: 이전 1768점 + 이번 +1점 = 누적 1769점.** RUN_KEY=OUTRUN-KOR-A247-Q193-C2-THREE-MISSING-CLEAN-20261012-0000 |
 
 | 2026-10-12 00:09 KST | AI 2 | 995 | +1 | 996 | 독립 신규 TASK_ID=CONVERSION-DX11-00550: 게임 원본 D3D9 FVF TEX4 네 번째 UV3를 stride 안전 디코더·stage0 TEXCOORDINDEX=3→D3D11 실제 native Draw/DrawIndexed→진단 Present inset 경로에 연결, TEX5·47바이트 부족 stride·잘못된 UV 인덱스/오프셋은 DX9Ex fallback. C++ 텍스처 샘플 코드·Live Bridge 정본 SDK FVF identity·positive/negative C++ probe 및 Python destructive regression 실제 수정. [최초 C++ material SHA 9e5d4ba6](https://github.com/thp32tt/OutRun2006Tweaks/commit/9e5d4ba67a16477e1519d04f98948552f2dd8c2e), 두 경계 조건 변이 테스트의 실패를 실제 수리한 [validation-bearing SHA f464a343](https://github.com/thp32tt/OutRun2006Tweaks/commit/f464a34341e3c302b7e12090dc728ae58f3c180d). 정확한 SHA [Backend Conversion Gate #38149295410](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149295410) validate+readiness smoke SUCCESS, [Win32 Release #38149298288](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149298288) SUCCESS, [DX11 Fast #38149295393](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149295393) SUCCESS, [OpenXR #38149298230](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149298230) 7/7 SUCCESS, [HUD #38149298249](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38149298249) 2/2 SUCCESS. [C6 별도](https://github.com/thp32tt/OutRun2006Tweaks/commit/91628172a43535331cedc9731d150bf2a92830d6), 원본 DX9Ex Draw/Present·게임패드 유지, Native gameplay 전면 승격 없음. 실제 Quest3/VDXR 메뉴·차량·레이스/게임패드 실기 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry·검증 수리·C6는 하나의 성과 +1만 부여. **AI 점수: 이전 995점 + 이번 +1점 = 누적 996점.** RUN_KEY=CONVERSION-DX11-00550 |
 

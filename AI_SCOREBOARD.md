@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1715 | ACTIVE | 2026-10-11 11:59 KST |
+| AI 1 | ChatGPT (AI 1) | 1716 | ACTIVE | 2026-10-11 12:09 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 960 | ACTIVE | 2026-10-11 10:46:36 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 12:09 KST | AI 1 | 1715 | +1 | 1716 | OutRun C2 EVEN q060 B368 SHA `11e081c7f3c12bd13cf100995ec533ce78a557ac97eb1135ff84fc1e0a2d5a6b`의 **첫 독립 저장 DDS 실제 원본·정식·신규 비교 QA**. SOURCE `6a33c730...`/OFFICIAL `d81d0d14...`/B368 각각 원격 바이트 SHA 인증 후 4096×2048 native RAW·FLIPY·100/75/50 독립 재디코딩, 손실 없는 PNG 4개와 픽셀기반 machine/8-check evidence 저장. 원본 849×134 대비 신규 790×129, 한국어 획/이탤릭/금속 입체감 원본 서체 불일치 독립 확인 **REWORK_REQUIRED_UNPROMOTED**; 공식 C342 REWORK, IGR044 OPEN, C3/실게임 UNTESTED, 신규 승인0. [C2 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/33986e778fe886595205cb5ada3926ac683cfd8b) 원격 HEAD 검증, B368 제작 성과와 이 신규 독립 C2 최초 판정은 별개이되 C387 B367 SHA 반복 점수0. **AI 점수: 이전 1715점 + 이번 +1점 = 누적 1716점.** RUN_KEY=OUTRUN-KOR-C2-Q060-B368-FIRST-SAVED-SOURCE-FAMILY-20261011-1205 |
 
 | 2026-10-11 11:59 KST | AI 1 | 1714 | +1 | 1715 | OutRun B368 짝수 q060 원문 BEST TIME → 최고 기록: **이전 B360/B367의 동일 글자 실루엣을 재사용하지 않은** 완전 수동 네이티브 한글 벡터 자소 획을 새로 제작하고 2개 콜론 픽셀 결함 수정. 이전 B367과 신규 글자 마스크 원문 범위 34,374px 변화, 저장 B368 DDS SHA `11e081c7f3c12bd13cf100995ec533ce78a557ac97eb1135ff84fc1e0a2d5a6b`는 B367 `52d97f...`와 분리. P2 실제 100/75/50 RAW 검수 후 분리형 5-레이어 SHA recipe로 실제 persisted DDS 4096×2048 RGBA32 mip1 생성·재디코딩0, 공식 대비 RGBA95,569 변경 전부 BEST TIME ROI 안, CLEAN→FINAL 합성 마스크 밖0. 원본 서체 대비 획 무게/베벨 깊이 불일치로 **시각 REWORK_REQUIRED_UNPROMOTED** 정직 반려, 공식 q060 C342/IGR044 유지, C2/C3/실게임 UNTESTED, 승인DDS0. [B368 실제 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_B/20261011-B368-Q060-HAND-VECTOR-ITALIC-GLYPH-GEOMETRY/B368_CONTROLLER_SAVED_VISUAL_QA.json) [GitHub Actions 성공 #38106462427](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38106462427) 원격 HEAD `05958f56...` 확인. 새 글자 구조+첫 저장 바이트 시각 QA 결과 단 1성과 +1; 실패한 두 단계 재시도·B367 중복점수0. **AI 점수: 이전 1714점 + 이번 +1점 = 누적 1715점**. RUN_KEY=OUTRUN-KOR-B368-Q060-MANUAL-SOURCE-GLYPH-GEOMETRY-20261011-1130 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1779 | ACTIVE | 2026-10-12 02:32 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1011 | ACTIVE | 2026-10-12 02:52 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1012 | ACTIVE | 2026-10-12 03:00 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 03:00 KST | AI 2 | 1011 | +1 | 1012 | 신규 독립 TASK_ID=CONVERSION-DX11-00558: 실제 OutRun D3D9 메뉴/차량/레이스 stage0 BLENDTEXTUREALPHA 및 BLENDDIFFUSEALPHA를 native D3D11 HLSL PS 2종 생성·소유·Reset·Draw/DrawIndexed와 opt-in inset으로 연결하는 C++ 소스와 RGBA 수치/파괴변이 회귀 추가. [material SHA 95dda7de](https://github.com/thp32tt/OutRun2006Tweaks/commit/95dda7deee5ffa23aa1003d561fae28843d09a31) 첫 Win32 Build의 이전 ADD 회귀 문자열 2곳을 수리한 [정확한 validation-bearing SHA d05d5ebc](https://github.com/thp32tt/OutRun2006Tweaks/commit/d05d5ebc5ff661a2308bdab9c31f5589f40fcce3). 같은 SHA [Backend Conversion Gate #38161304245](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161304245) validate+readiness SUCCESS, [Win32 Release Build #38161307475](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161307475) SUCCESS, [OpenXR #38161307483](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161307483) SUCCESS, [HUD #38161307459](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161307459) SUCCESS, [DX11 Fast #38161304254](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38161304254) SUCCESS. 별도 C6 [skip ci] bookkeeping [fddee48b](https://github.com/thp32tt/OutRun2006Tweaks/commit/fddee48b454fb68b6f39a5b9b0f6568e075e06b3), 중복 가점 없음. Native game 활성화 기본 OFF, 원래 DX9Ex Draw/Present/패드 보존, DXVK 미변경; Quest3/VDXR 실제 메뉴/차량/레이스 픽셀·패드 미실행 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1011점 + 이번 +1점 = 누적 1012점.** RUN_KEY=CONVERSION-DX11-00558 |
 
 | 2026-10-12 02:43 KST | AI 2 | 1009 | +1 | 1010 | 신규 독립 TASK_ID=CONVERSION-DX11-00557: OutRun 2006 실제 D3D9 메뉴/차량/레이스 stage0 RGB ADD와 ALPHAOP SELECTARG1(TEXTURE)·SELECTARG2(DIFFUSE/CURRENT)를 D3D11 네이티브 HLSL PS 2종, 캡처·리소스 소유·Reset·Draw/DrawIndexed에 연결한 C++ 구현. 부정변이·RGBA 수치 테스트 추가. [material SHA ac7cb567](https://github.com/thp32tt/OutRun2006Tweaks/commit/ac7cb567ed080dc8d0a25255b8843659976b530e) 첫 Build의 기존 중복 Reset fixture 결함을 엄격한 2경로 제거 회귀로 수리한 [정확한 validation-bearing SHA 3f524ac2](https://github.com/thp32tt/OutRun2006Tweaks/commit/3f524ac23413bcdda7c00637b64cc939301368bc). 같은 SHA [Backend Conversion Gate #38159992527](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159992527) validate+readiness SUCCESS, [Build #38159995834](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159995834) SUCCESS, [OpenXR #38159995933](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159995933) SUCCESS, [DX11 Fast #38159992549](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38159992549) SUCCESS. HUD Inspector #38159995967 분석 당시 IN_PROGRESS, Core exact-SHA Gate/Build 성공 확인. Native 게임 Draw 옵트인 기본 OFF, DX9Ex 폴백/게임패드 보존, Quest3/VDXR 게임/HMD 미실행 RUNTIME_VALIDATION=UNTESTED, 네이티브 화면 정상 확정 아님. 별도 C6 bookkeeping은 중복 가점0. **AI 점수: 이전 1009점 + 이번 +1점 = 누적 1010점.** RUN_KEY=CONVERSION-DX11-00557 |
 

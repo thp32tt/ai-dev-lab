@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1766 | ACTIVE | 2026-10-11 23:25 KST |
+| AI 1 | ChatGPT (AI 1) | 1767 | ACTIVE | 2026-10-11 23:34 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 992 | ACTIVE | 2026-10-11 23:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 23:34 KST | AI 1 | 1766 | +1 | 1767 | OutRun C2 q102 **신규 C1 원본 SOURCE/CLEAN 2행 독립 PLATE_PASS**: 정본 BC3 DXT5 SHA17ee051e..., 실제 제작 CLEAN SHAae251bdb..., 원본 유효 알파 194236개 정확 제거·제거 마스크 밖 RGBA 0·영어 잔상/보호 픽셀 변경0, RAW/FLIPY 네이티브/75/50 검수. 초기 68379 불일치 분석은 raw/읽기방향 비교 오류로 정정, 실제 SOURCE-READABLE CLEAN 밖0 확인. **불변 plate_library 객체 2개·entry/review 등록, 독립 무손실 PNG4·기계/QA JSON·큐/resume/worklog** 동일 브랜치 [commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/a0ab4c32e51879a75d6e4dd499d364af6169678e) 원격 HEAD 확인. CLEAN 선행 조건 1건만 새 성과, 신규 한글 DDS0/전체 C2_PASS0/C3/game OPEN/RUNTIME_VALIDATION=UNTESTED, 재검수/재보고 +0. AI 점수: 이전 1766점 + 이번 +1점 = 누적 1767점. RUN_KEY=OUTRUN-KOR-C2-Q102-C1-NATIVE-CLEAN-FIRST-20261011-2320 |
 
 | 2026-10-11 23:29 KST | AI 2 | 991 | +1 | 992 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00606: D3D9Ex DirectGPU 호스트 per-frame D3D11 GetDesc 중복 COM 호출 4→2회 축소, R23 원본 양안 descriptors 1회 검증 후 immutable validatedDesc를 hold staging에 재사용하도록 실제 C++ 수정. D3D11 양안 크기/format/MSAA/mip/array parity 및 CPU→GPU 복사·XR stereo fail-closed 보존. [material validation-bearing SHA b50f22bb](https://github.com/thp32tt/OutRun2006Tweaks/commit/b50f22bb7740f44821a33c6428bd9a5a00da8e48), 새 Python 검증기 5부정변이와 정확 SHA [DX9Ex Active #38146069484](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38146069484) attempt3 policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38146069480](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38146069480) SUCCESS, [Full Source Impact #38146069499](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38146069499) 3/3 SUCCESS. 첫 2 attempts 동시 Git push 취소 이후 같은 SHA로 gate 재실행; retries/C6 추가 점수 없음. [C6 별도 기록](https://github.com/thp32tt/OutRun2006Tweaks/commit/4ed02ebba7368341816ddfbc9eb06a02ca622eea). Quest3/VDXR 실기·GPU/FPS P95/P99 미측정 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 991점 + 이번 +1점 = 누적 992점.** RUN_KEY=CONVERSION-DX9EX-00606 |
 

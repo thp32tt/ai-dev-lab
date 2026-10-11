@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1733 | ACTIVE | 2026-10-11 15:27 KST |
+| AI 1 | ChatGPT (AI 1) | 1734 | ACTIVE | 2026-10-11 15:28 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 964 | ACTIVE | 2026-10-11 13:51 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 15:28 KST | AI 1 | 1733 | +1 | 1734 | OutRun C2 짝수 q104의 이전 C263 동일 후보 C3 PASS에서 누락한 **독립 새 시각 결함 확정**. Canonical English SOURCE SHA `f0a8491585dd4f225c4707b63bd61ae43869cb9d243d9de881258add023c06e2`, 공식 DDS SHA `c84a2703d0a22b36384e07ce72d4e761e651a1a23219cd78153b4a0aff022505` 실제 저장 2048×256 BC3/DXT5 RAW/FLIPY 100/75/50를 SHA-256 결합 무손실 PNG8장으로 검수. English OutRun Mode의 둥근 굵은 레이싱 이탤릭 대비 Korean 아웃런 모드의 각진 글리프/거친 가장자리/과소 가로 폭(원문961px 대비597px=62.1%; 높이147→141) **원본 서체 계열 FAIL**. 과거 동일 SHA C3 PASS 무효화, 이번 C2 REWORK_REQUIRED, 새로운 C3 NOT_RUN, CLEAN/보호-mask/블라인드 교정 HOLD, 신규 DDS0/승인0/실게임 RUNTIME_VALIDATION=UNTESTED. [원격 QA SHA 확인](https://github.com/thp32tt/OutRun2006Tweaks/commit/1d8fcba2ce6ad8f8353794d453a09daf2e8ab59b), [증거](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_C/20261011-C2-Q104-STRICT-NATIVE-SOURCE-FAMILY/C2_Q104_INDEPENDENT_STRICT_NATIVE_STYLE_REWORK.json). 동일 SHA 반복 PASS 점수 아님. **AI 점수: 이전 1733점 + 이번 +1점 = 누적 1734점.** RUN_KEY=OUTRUN-KOR-C2-Q104-SAVED-SOURCE-FAMILY-20261011-1526 |
 
 | 2026-10-11 15:27 KST | AI 1 | 1732 | +1 | 1733 | OutRun A240 홀수 P0 q121 **실제 새 저장 비승격 DDS 1개**: 기존 C1 반려 A239 e3111774를 재사용·재승인하지 않고 Catmull-Rom 연결 곡선 및 획 압력 변화 네이티브 한글 가속 페달 신규 SHA `4be07b63e3bc1bee32d5f5192e95c24f9e709512c03e7074e679a93551cd6936` 생성. A239 대비 alpha XOR738 / RGBA5797, 정식 DDS 대비 지정 ROI 내9630 밖0, 다른29셀 바이트 정확, 4096² RGBA32 mip1 디코딩 오차0. GH Actions 초기 차단 38116846292는 +0, 생성 후 Git 게시 실패 38117147612도 +0; CI 스테이징 버그를 [f8f407c9](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8f407c99be55ccdc21a362ec33afdb75367afbf)에서 수정하고 **동일 TASK 1회** [38117535326](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38117535326) 실제 원격 게시 성공. 생산자 실제 SOURCE/CLEAN/OFFICIAL/NEW native100/white75/black50/RAW 직접 확인, 획은 새로워졌으나 영어 원본 racing italic과 형태 불일치 **REWORK_REQUIRED_UNPROMOTED** 판정, 공식 승격0·독립 C2/C3/game PASS0·IGR030/031/040 OPEN. [QA·큐/상태 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/6fa9199fce58301ba931e44d23ce28cc4541e25a) 원격 HEAD 확인. 점수는 새로운 DDS 제작+실저장+증거 게시 1성과로만 +1, 재시도 중복0. **AI 점수: 이전 1732점 + 이번 +1점 = 누적 1733점.** RUN_KEY=OUTRUN-KOR-A240-Q121-P0-CURVED-PRESSURE-STROKES-20261011-1500 |
 

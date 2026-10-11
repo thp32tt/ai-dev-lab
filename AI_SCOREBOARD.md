@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1805 | ACTIVE | 2026-10-12 08:11 KST |
+| AI 1 | ChatGPT (AI 1) | 1806 | ACTIVE | 2026-10-12 08:32 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1048 | ACTIVE | 2026-10-12 08:18 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 08:32 KST | AI 1 | 1805 | +1 | 1806 | OutRun 한글화 B/C1 영문 원본 실제 첨부 차단 원인 확인: native ChatGPT imagegen cannot see GitHub tool-result image; SHA-bound English RGBA PNG를 OpenAI Images Edit API의 실제 multipart image=file로 보내도록 신규 Python bridge/test, B q092·C1 q102 real reference manifests, B/C1 PNG→DDS 별도 provider receipt 게이트, GitHub Actions 및 운영문서/계약 추가. GitHub Actions #38183931447 SUCCESS, #38184112569 preflight 100% SUCCESS; live job은 OPENAI_API_KEY GitHub Secret 미구성으로 인증 검사에서 예상대로 FAIL-CLOSED, 서버 생성 호출0·신규 한국어 PNG/DDS0·C2/C3/실게임0, RUNTIME_VALIDATION=UNTESTED. 신규 실코드/검증 작업 성과 1회만 +1; 실서비스 첨부 성공은 주장하지 않음. RUN_KEY=OUTRUN-KOR-IMAGEGEN-MULTIPART-BRIDGE-20261012-0832-AI1 |
 
 | 2026-10-12 08:18 KST | AI 2 | 1047 | +1 | 1048 | 신규 독립 CHAT-DX9EX-GPU-WATER-20261012: OutRun DX9Ex R33 실제 GPU TIMESTAMP/TIMESTAMPDISJOINT/TIMESTAMPFREQ 비동기 4슬롯 프레임구간 계측, 프레임당 1개 sampled Draw GPU 시간, 1/16 Draw BLEND/ALPHATEST 분류, Reset/device-loss fail-closed, 기본 OFF, 5초별 VR GPU WATER 로그 및 5개 부정변이 정적 회귀. 5파일 GitHub material [faa74c3f](https://github.com/thp32tt/OutRun2006Tweaks/commit/faa74c3fa31529654e2d197c01cde5d862caba71), 정확 SHA DX9Ex Active #38183319472 policy/host/game/full-chain/package SUCCESS, Domain Isolation #38183319454 SUCCESS, Full Source Impact #38183319442 SUCCESS, HUD #38183319444 SUCCESS. Quest3/VDXR 실제 GPU 수치 및 물/알파 병목 인과관계 RUNTIME_VALIDATION=UNTESTED, 별도 실측 필요. 재검증·재보고 +0. **AI 점수: 이전 1047점 + 이번 +1점 = 누적 1048점.** RUN_KEY=CHAT-DX9EX-GPU-WATER-20261012 |
 

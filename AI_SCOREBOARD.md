@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1744 | ACTIVE | 2026-10-11 18:37 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 967 | ACTIVE | 2026-10-11 19:07 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 968 | ACTIVE | 2026-10-11 19:08 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-11 19:08 KST | AI 2 | 967 | +1 | 968 | 사용자 요청에 따라 영문/한글 글자수와 문장 전체 폭·높이·aspect ratio/underfill 차이만으로 REWORK 반려 금지, 짧고 작은 한글도 읽히면 크기 항목 PASS, 대신 **각 한글 글자** native/75/50 획·받침·내부 공간·가독성 검사와 영문 glyph/effect bbox 1px 초과 FAIL을 정본 정책으로 구현. A/B/C1 생산 자체검수, C2 독립 QA, C3 엄격검수, imagegen prompt, 품질 파이프라인/증거/실게임·재작업·letting, 전 레인 정책·role prompts 13파일 [실제 소스 커밋 c6f775e](https://github.com/thp32tt/OutRun2006Tweaks/commit/c6f775e9d2423b68b16f6d548fb1ad8edd6aa252), 사전 검수 JPG exporter의 구식 underfill checklist/role metadata 4파일 [cd00948](https://github.com/thp32tt/OutRun2006Tweaks/commit/cd00948ab71ffbef75c223a8bfe07e328db87494), Docker 번들 네 프롬프트/README [32bb70c](https://github.com/thp32tt/OutRun2006Tweaks/commit/32bb70c82359b5d4881baec1081dedff3ff6ddaf) 실제 GitHub 브랜치 HEAD 확인. [Production Guard #38130720331](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38130720331), Plate Library #38130720301, Rework Triage #38130720368 모두 success (정본 정책 SHA), 최종 exporter/CPU #38130848669 pending 및 Docker 라이브/게임 미검증. 기존 underfill-only REWORK는 크기 항목 통과 **재심사 지시**이며 기존 자산 전체 승인/C2/C3/game PASS를 생성하지 않음. 이번 전역 정책·도구변경 1성과 +1점, 재보고 중복 0. **AI 점수: 이전 967점 + 이번 +1점 = 누적 968점**. RUN_KEY=OUTRUN-KOR-GLYPH-SCALE-ALL-LANES-20261011 |
 | 2026-10-11 19:07 KST | AI 2 | 966 | +1 | 967 | N100 VR controller 실제 /status에서 A/C 활성0, GitHub 정상, feature_backlog 완료/차단으로 자동디스패치 무기한 정체 원인 확인. 사용자의 지속 개발 우선 방침에 따라 기존 TASK_ID 시스템은 이력만 유지하고 VR A(DX11)/C(DX9Ex)에 30분 단위 독립 새 작업을 강제 배정하는 컨트롤러 수정: 완료/Blocked/FEATURE_CONTRACT 소진·WAIT_CHAT/WAIT_ACTIONS/이전 채팅 busy가 새 개발 발행을 막지 않음. 30분 기존 작업 preempt 시 이전 식별정보와 검증 SHA 감사 보존, 전송 실패 시 기존 owner 유지·15초 자동 재시도, DXVK 동결/비강제 GitHub push·게임 HMD 미검증 UNTESTED 유지. Compose 환경, 신작업 DX11/DX9Ex 소스 변경 중심 프롬프트, Dockerfile, 회귀테스트 수정. [소스 최종 SHA d32e149](https://github.com/thp32tt/OutRun2006Tweaks/commit/d32e149f1f1de10beae10f20966bc3402aefed32), [VR progression #38130770395](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38130770395) SUCCESS 및 [Chat Controller Selftest #38130770407](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38130770407) SUCCESS 확인. 라이브 재배포/전송은 사용자가 배포하기 전 미검증. 이번 새로운 개발자동화 구현+CI 성과 1회만 가산, 이전 resume-v3 watchdog/복구 별개. **AI 점수: 이전 966점 + 이번 +1점 = 누적 967점.** RUN_KEY=VR-CONTINUOUS-30MIN-DEV-LOOP-20261011 |
 
 

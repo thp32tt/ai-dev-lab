@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1787 | ACTIVE | 2026-10-12 04:46 KST |
+| AI 1 | ChatGPT (AI 1) | 1788 | ACTIVE | 2026-10-12 04:59 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1026 | ACTIVE | 2026-10-12 04:58 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 04:59 KST | AI 1 | 1787 | +1 | 1788 | OutRun C2 q092 **새로 추가된 B PSD 투명 영문 참조 2개 최초 독립 SOURCE/PLATE 입력 자격 픽셀 검증** 1성과. 기존 B363 DDS SHA f113c3aa 반복 생산/검수 성과 아님(+0), 새 DDS0. Canonical BC3 원본 DDS SHA d19e5191, B221 CLEAN SHA1a06b6ce, 기존 공식 c2388834/미승격 B363 f113c3aa 및 PSD 영어 참조 PNG 99a9c4b7/ead573cf 실제 SHA 다운로드·검증. PSD-원본 alpha 지지집합 교집합/합집합 69433/69634(99.71%) 및 104792/105060(99.74%) 이지만 불일치 알파값 18056/27494, 가시 RGBA 불일치 36646/57290 => 원문 **스타일 참조로만 적합, canonical pixel-exact 입력 승인 불가**. SOURCE→CLEAN 174225, CLEAN→저장 DDS 141733 변경픽셀은 두 원문 효과 ROI 안에만 위치, 밖 raw/alpha 0; RAW/FLIP-Y 및 100/75/50 시각 증거. 기존 저장 DDS 자소 테두리 점묘·속 빈 획 REWORK_REQUIRED 유지, 이미지 생성 실제 media attachment 미확인, 독립 C2 최종 PASS/C3/사용자 실게임/승격 아님, RUNTIME_VALIDATION=UNTESTED. QA PNG9/기계1/판정보고1/큐 및 상태4 **[원격 커밋 cee6c3b7](https://github.com/thp32tt/OutRun2006Tweaks/commit/cee6c3b7c438db85d14949c5f3ad436389024fc6)**. **AI 점수: 이전 1787점 + 이번 +1점 = 누적 1788점.** RUN_KEY=OUTRUN-C2-20261012-Q092-PSD-ENGLISH-REF-FIRST-SOURCE-PIXEL-QA |
 
 | 2026-10-12 04:58 KST | AI 2 | 1025 | +1 | 1026 | 신규 독립 TASK_ID=CONVERSION-DX11-00564: 실제 D3D9 stage0 BLENDFACTORALPHA RGB와 별도 SELECTARG2 DIFFUSE 및 ADD(TEXTURE,DIFFUSE) alpha 조합 2종을 게임 Draw 상태 캡처→전용 HLSL PS→D3D11 Draw/DrawIndexed opt-in 프레임 경로로 구현. C++ 셰이더 생성/수명/상태 필터, Python negative regression/수치 벡터 검사, 원본 DX9Ex/입력/Present 유지. [원본 material 6a9b43be](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a9b43be9341f6b7697cb66407a1cd4f9d0524ed), [수리+exact validation-bearing 5c68d459](https://github.com/thp32tt/OutRun2006Tweaks/commit/5c68d4591b706397f228d5a5333b980f8ed668fc), [Backend #38169394317](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169394317) SUCCESS, [Win32 #38169397173](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169397173) SUCCESS, [DX11 Fast #38169394237](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169394237) SUCCESS, [OpenXR #38169397125](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169397125) SUCCESS, [HUD #38169397202](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38169397202) SUCCESS. [C6 docs-only a0433d7e](https://github.com/thp32tt/OutRun2006Tweaks/commit/a0433d7ee6280256a21ae2bcb5a1edd838d8f243) [skip ci] +0. Quest3/VDXR/게임패드 미실행 RUNTIME_VALIDATION=UNTESTED, 실기 화면/입력 정상 단정 금지. **AI 점수: 이전 1025점 + 이번 +1점 = 누적 1026점.** RUN_KEY=CONVERSION-DX11-00564 |
 

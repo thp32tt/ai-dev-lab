@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1704 | ACTIVE | 2026-10-11 09:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1705 | ACTIVE | 2026-10-11 09:23 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 958 | ACTIVE | 2026-10-11 08:29 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-11 09:23 KST | AI 1 | 1704 | +1 | 1705 | OutRun C1 홀수 q035 A196 첫 확정 네이티브 SOURCE-family 시각 리워크: 원본과 현재 4096² DDS 및 CLEAN 3개 SHA 인증. 기존 C308/C350 동일 후보 SHA는 HOLD로 남았던 원본 글꼴 검수에 한정했고 이번에는 영어 원본 504/505×72 강한 right-italic 대비 한글 327×70 각진/약한 이탤릭 서체 차이를 실제 저장 DDS SOURCE/CLEAN/FINAL GRAY 100/75/50 BLACK/WHITE50 RAW 총 14 PNG에서 두 영역 각각 확인하여 **REWORK_REQUIRED** 새 결함 확정. 저장 CLEAN PNG BGRA 채널 순서 바로잡아 허위 배경 결함 차단. 독립 전장 RGB 차분 원본→CLEAN 기존 bbox 밖 14,182px(원문 효과), CLEAN→현재 DDS bbox 밖 0px. 신규 DDS/승인/C3/실게임 0, RUNTIME_VALIDATION=UNTESTED. 원격 QA 커밋 [fefe1aea](https://github.com/thp32tt/OutRun2006Tweaks/commit/fefe1aea1b12749dd275405939bc54ac64df5b07) 및 HEAD 확인. 동일 SHA 재승인이 아닌 새 명확한 두 영역 시각 결함 확인 한 건에만 +1. **AI 점수: 이전 1704점 + 이번 +1점 = 누적 1705점.** RUN_KEY=OUTRUN-KOR-C1-Q035-A196-NATIVE-OPTICAL-REWORK-20261011 |
 
 | 2026-10-11 09:13 KST | AI 1 | 1703 | +1 | 1704 | OutRun A237 ODD q161 **새 SHA의 BC3 실물 시험 DDS 1개**: C1 검증된 A236 정본 SOURCE/CLEAN caf59675820b65b4ded62b05e463bfb66c77878a4ba24a4f9ff810e36ff2b9f8 재사용, q161 R11 AQUARIUS→물병자리 한 영역만 새로운 네이티브 Nanum 윤곽→RAW geometry PNG→개별 face PNG→공통 `compose_lettering.py` 로 합성, 2048×2048 BC3 원본 포맷 그대로 실물 DDS SHA `fd1273493b52c39da0f858ca956d402e86b0b2f04f17987ca2cbf1878a2c68d0` 생성·GitHub 게시, 기존 A218 SHA8000601a·공식 SHA8ded8565 보존. 저장 DDS 재디코딩 alpha silhouette 완전 일치, 새 시험 차이11,552 RGBA 픽셀·936 BC3 블록 모두 원본 R11 이내/영역 밖0/다른37셀 원본 보존. 실제 gray100/white75/black50/RAW 비교에서 새 서체 180×48px vs 영문296×54px, A218 기존 폭189px보다 **오히려 과소·원문보다 약함**을 발견하여 **생산자 REWORK_REQUIRED_UNPROMOTED**, 품질 PASS0·공식 DDS 승격0·C1 신규 SHA/C3/실게임 미검수(RUNTIME_VALIDATION=UNTESTED). 제작법 분리 및 다른 SHA 실물 시험 생성 성과만 +1, 실패한 54px 크기 첫 실행·동일 TASK 재시도·동일 DDS 확인 점수0. [실제 자체 QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/graphics/role_A/20261011-A237-Q161-R11-NANUM-SEPARATED-GLYPH/A237_CONTROLLER_SAVED_DDS_VISUAL_REWORK.json), [Action #38097309315](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38097309315) 및 큐/resume/progress/WORKLOG/STATUS 반영. **AI 점수: 이전 1703점 + 이번 +1점 = 누적 1704점.** RUN_KEY=OUTRUN-KOR-A237-Q161-R11-NATIVE-NANUM-SEPARATED-GLYPH-20261011-0900 |
 

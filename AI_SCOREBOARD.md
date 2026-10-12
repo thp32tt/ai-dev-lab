@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1814 | ACTIVE | 2026-10-12 09:46 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1057 | ACTIVE | 2026-10-12 09:41 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1058 | ACTIVE | 2026-10-12 09:54 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 09:54 KST | AI 2 | 1057 | +1 | 1058 | 독립 RUN_KEY=CONVERSION-DX11-00579: OutRun2006Tweaks DX11 SELECTARG1 RGB + 독립 ADD/SUBTRACT alpha 실제 D3D9→D3D11 opt-in 네이티브 Draw 연동 material a179f75b 후 동일 작업 E003에서 D3DTSS_RESULTARG TEMP fail-closed 실제 C++·2개 부정변이(총 16개) 추가 수리, [validation-bearing material 7785bfe2](https://github.com/thp32tt/OutRun2006Tweaks/commit/7785bfe2ab88ef13144ca17677bef38fa9108721). 정확 SHA [Backend Conversion Gate #38189189406](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189189406) validate/101-step DX11 smoke SUCCESS, [DX11 Fast #38189189347](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189189347), [Build #38189192388](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189192388), [OpenXR #38189192305](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189192305)/[#38189189344](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189189344) SUCCESS. HUD inspector #38189192365 별도 분석 진행 중(해당 기록 시각), HMD/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED. [C6 bookkeeping 2bbbaf6a](https://github.com/thp32tt/OutRun2006Tweaks/commit/2bbbaf6a4dbe984e29252fb4819857134044390c) [skip ci] +0. 동일 TASK repair/retry는 중복 점수 없음. **AI 점수: 이전 1057점 + 이번 +1점 = 누적 1058점.** RUN_KEY=CONVERSION-DX11-00579 |
 
 | 2026-10-12 09:46 KST | AI 1 | 1813 | +1 | 1814 | OutRun 2006 원본 실제 DDS 37759842_1024x1024.dds (`ec69c95e638f6ba1ef2c23db173462adb26ad0d10caed28f1c83b7d1d15658f0`) 원본 Git blob c888e9b1과 N100 SHA 일치 확인, 전체 1024×1024 영어 UI atlas를 readable FLIP-Y RGBA PNG(549865 bytes, sha256 8b78a092b5ca82276076cc5d99b05afd0831651ae2d4afbbcf7486f4693fa7c9)로 변환하여 localization/graphics/reference_packs/full_dds_test/ 에 manifest와 함께 커밋 6b392599e7139a43afe0ac5a1a41e6010f160a91, Git HEAD/blob 재검증 완료. Full atlas ChatGPT 수동 생성 테스트 참고, 실제 번역 PNG/DDS/C2/C3/game FAIL 미승인 RUNTIME_VALIDATION=UNTESTED. RUN_KEY=OUTRUN-KOR-FULLDDS-ORIGINAL-PNG-37759842-20261012-0946-AI1 |
 

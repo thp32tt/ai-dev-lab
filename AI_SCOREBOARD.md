@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1840 | ACTIVE | 2026-10-13 06:57 KST |
+| AI 1 | ChatGPT (AI 1) | 1841 | ACTIVE | 2026-10-13 08:21 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1183 | ACTIVE | 2026-10-13 08:06 KST |
 
 ## 점수 규칙
@@ -1810,3 +1810,5 @@
 | 2026-10-13 06:57 KST | AI 1 | 1839 | +1 | 1840 | OUTRUN-KOR-C1-20261013-0640-Q060-Q098-Q121-Q228: C1 신규 A/B 저장 DDS 4개(q060 B368, q098 B330, q121 A242, q228 B322) 원본/후보 SHA 및 소스-CLEAN/FINAL 정적 검수. q121 A242 원문 콜론 잔상 실제 알파2픽셀 [3736,411,3738,413] REWORK, q060 생산자 CLEAN 미확보, q098 BC3 경계 22블록, q228 공유 아틀라스 미확인 HOLD 3건. 검수 영역 번역 4개, 미번역 0, 나머지 UNKNOWN. 통합 RAW/FLIPY/75/50 및 확대 JPG+SHA/좌표 JSON, [GitHub HEAD a2316d6e](https://github.com/thp32tt/OutRun2006Tweaks/commit/a2316d6ee06a798aa2b81a8a7e1c71d465d744f5) Push 검증. 전체 TEST_ONLY/HOLD, C2토큰/이미지·DDS생산/배포 변경 0, C3/게임 UNTESTED. **AI 점수: 이전 1839점 + 이번 +1점 = 누적 1840점.** RUN_KEY=OUTRUN-KOR-C1-20261013-0640-Q060-Q098-Q121-Q228 |
 
 | 2026-10-13 07:07 KST | AI 2 | 1177 | +1 | 1178 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00720: R29 D3D9 SetRenderState 비관련 14개 정책 상태 외 호출의 StateBlock 세대/recording 및 effect/stencil 캐시 검사 생략 CPU hot-path 실제 C++ 구현 [material 2bbf3365](https://github.com/thp32tt/OutRun2006Tweaks/commit/2bbf336567ef83a2efda81394a5bdd1547534cff), 부정 회귀검증기 정확 소스앵커 오류 3회 수리 후 [validation-bearing c3942fd2](https://github.com/thp32tt/OutRun2006Tweaks/commit/c3942fd23bfafd87661f8d192cd600d3b1713f17)에서 [DX9Ex Active #38314024065](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38314024065) 5/5 SUCCESS, [Domain #38314024082](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38314024082) SUCCESS, 최초 material [Full Source Impact #38313759340](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38313759340) 3/3 SUCCESS. [C6 별도 bookkeeping e9bc5e1b](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9bc5e1b6adf1b3e5c7b4400c51273c6bece9442) 는 Gate SHA와 분리 및 [skip ci]. Quest3/VDXR 실제 FPS/화면 미실행 RUNTIME_VALIDATION=UNTESTED, DXVK 동결 유지. 동일 TASK_ID의 원래 material·retry 검증기 수리·C6 통합 성과에 대해 단 한 번 가산. **AI 점수: 이전 1177점 + 이번 +1점 = 누적 1178점.** RUN_KEY=CONVERSION-DX9EX-00720 |
+
+| 2026-10-13 08:21 KST | AI 1 | 1840 | +1 | 1841 | 신규 GPT Library 원본 보관 작업: /아웃런 한글화 이미지/2026-10-13_HD원본_PNG_수동번역 폴더 생성, 사용자 HD 원본 ZIP 306,223,257B, 정방향 PNG 108개가 분할된 5 ZIP, 전체 QA/번역 링크/미리보기 ZIP, README·원본-이미지 매핑 CSV 108행·89 큐 인덱스·ImageGen 프롬프트·결과 메타·GitHub 759건 번역 CSV 링크, 이전 12개 참고 ZIP 등 총 15개 506,314,059B Library 메타 조회로 실재 확인. 기존 GitHub 번역표 759항목 본문 CSV 자체는 Library에 복사하지 않았으며 링크 파일로만 보관; 사실과 다르게 복제 주장 금지. 동일 보관 일괄 성과만 +1. **AI 점수: 이전 1840점 + 이번 +1점 = 누적 1841점.** RUN_KEY=OUTRUN-LOCALIZATION-GPT-LIBRARY-ARCHIVE-20261013-0809 |

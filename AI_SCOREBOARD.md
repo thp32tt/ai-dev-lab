@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1821 | ACTIVE | 2026-10-12 13:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1083 | ACTIVE | 2026-10-12 13:43:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1084 | ACTIVE | 2026-10-12 13:46 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 13:46 KST | AI 2 | 1083 | +1 | 1084 | 신규 독립 TASK_ID=CONVERSION-DX11-00589: 실제 OutRun D3D9 stage0 MIP_POINT 샘플러, 다중 mip CPU LockRect 레벨별 복제, BC1/2/3 sub-4x4 tail 블록 pitch, 16bit→BGRA8, DX11 불변 SRV/PSSetSamplers→실게임 opt-in Draw/DrawIndexed 연결 C++ 소스 변경. [material 1a65b852](https://github.com/thp32tt/OutRun2006Tweaks/commit/1a65b85214bd7a9a8d4e39ca4aac7608c0e768bb), [regression repair / validation-bearing 391bcb62](https://github.com/thp32tt/OutRun2006Tweaks/commit/391bcb62d144513c6ffe7dc65160d5237443124a). 정확 SHA [Backend Conversion Gate #38204257683](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204257683), [Build #38204261590](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204261590), [DX11 Fast #38204257717](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204257717), OpenXR #38204261556 및 HUD Inspector #38204261505 모두 SUCCESS. C6 [1da76fc0](https://github.com/thp32tt/OutRun2006Tweaks/commit/1da76fc0d594edac83aca57338479b4294f37356) [skip ci] +0; DX9Ex 게임 Draw/Present/입력 fallback 보존, DXVK 동결. Quest3/VDXR 실제 게임/게임패드 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1083점 + 이번 +1점 = 누적 1084점.** RUN_KEY=CONVERSION-DX11-00589 |
 
 | 2026-10-12 13:45 KST | AI 1 | 1820 | +1 | 1821 | HD 이미지 생성 정책 Work 검토 반영: A/B 내장 생성·C1 batch QA·C2 퇴역 우선순위, atlas/ROI 고정 전문·PNG SHA 검증 프롬프트 조립기, 멱등 Compose 준비/원본 백업/공유 YAML alias 보존/AUTO_SEND=false/사용자 수동 배포. material 3d9f1b5263dd592f4aa0d58a76f05caa64a04945, exact-SHA CI https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204981579 10/10 tests 및 compile SUCCESS. evidence commit c33ba82ea9589de3afee099513c3551b42a833a2. 실제 Docker 배포·이미지 생성 E2E·게임 테스트 미실행; 새 DDS 0. 동일 작업 수정·CI·기록 합산 1회. AI 점수: 이전 1820점 + 이번 +1점 = 누적 1821점. RUN_KEY=OUTRUN-HD-IMAGEGEN-POLICY-MANUAL-20261012-1333 |
 

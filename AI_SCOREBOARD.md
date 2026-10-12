@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1820 | ACTIVE | 2026-10-12 12:37 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1076 | ACTIVE | 2026-10-12 12:33 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1077 | ACTIVE | 2026-10-12 12:48 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 12:48 KST | AI 2 | 1076 | +1 | 1077 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00658: DX9Ex R23 양안별 D3D11 constant buffer 분리 및 불변 UV/SDR/scRGB 조건의 Map/Unmap 생략 실질 C++ 구현; 최초 material d69845fb7d5247485fa463692a0443c5d8acfade, MSVC Release NDEBUG에서도 실제 실행되는 negative-key C++ smoke 수리 후 정확한 validation-bearing SHA 581d1db58605be3bb5aa51efd9eff41f558dc450. DX9Ex Active #38200613100 policy/host/game/full-chain/package 5/5 SUCCESS, Domain Isolation #38200613949 SUCCESS, Full Source Impact #38200613093 MSVC/도메인 3/3 SUCCESS. 별도 C6 bookkeeping e634db0f4b2040323188378049fc953637c94c10 [skip ci] +0, DXVK 동결 준수, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1076점 + 이번 +1점 = 누적 1077점.** RUN_KEY=CONVERSION-DX9EX-00658 |
 | 2026-10-12 12:37 KST | AI 1 | 1819 | +1 | 1820 | 신규 기술 검토 TASK_ID=OUTRUN-HD-DDS-UPRIGHT-PNG-AUTOINSERT-REVIEW-20261012-1233: OutRun HD DDS→개별 스프라이트 정방향 PNG→이미지 생성 한국어 레이어→좌표/SHA 바인딩 컨트롤러 역변환·CLEAN 합성→DDS 자동 재인코딩의 실제 GitHub 소스 기반 구현 가능성 및 차단점 검토. 기존 imagegen_b_pipeline.py BC3/RGBA32 단일 mip, 투명층/보호 bbox 지원 확인; 전체 FLIPY와 개별 sprite 방향 차이, 사전 CLEAN/C2, 실제 이미지 attachment, 멀티 mip 미지원 등 기술 갭 명시. 코드 변경/실게임 테스트 없음. **AI 점수: 이전 1819점 + 이번 +1점 = 누적 1820점.** RUN_KEY=OUTRUN-HD-DDS-UPRIGHT-PNG-AUTOINSERT-REVIEW-20261012-1233 |
 | 2026-10-12 12:33 KST | AI 2 | 1075 | +1 | 1076 | 신규 독립 TASK_ID=CONVERSION-DX11-00586: OutRun 2006 실제 D3D9 SELECTARG1/2 RGB + BLENDDIFFUSEALPHA를 네이티브 D3D11 픽셀 셰이더/Draw/DrawIndexed까지 C++ 구현. 정확한 material/validation-bearing SHA [bd09b645224c](https://github.com/thp32tt/OutRun2006Tweaks/commit/bd09b645224c6514a231d7b134f8df02d3e9045f), 신규 부정변이 20건·알파 계산 28건. Backend Gate #38199387735(validate+readiness smoke), Build #38199392271, DX11 Fast #38199387739, OpenXR #38199387725/#38199392255, HUD #38199392270 모두 SUCCESS. C6 bookkeeping [078323c](https://github.com/thp32tt/OutRun2006Tweaks/commit/078323c68367126ae3acbe636f3294a056f39947) [skip ci] 별도 +0. DXVK 동결, DX9Ex/gamepad 원본 유지, Quest3/VDXR/gamepad RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1075점 + 이번 +1점 = 누적 1076점.** RUN_KEY=CONVERSION-DX11-00586 |
 | 2026-10-12 12:31 KST | AI 2 | 1074 | +1 | 1075 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00657: R23 DirectGPU 반복 동일 프레임 투영 재시도 시 host-owned hold eye CopyResource 2회를 생략하는 C++ material [6c83f0d4](https://github.com/thp32tt/OutRun2006Tweaks/commit/6c83f0d4b45800e99c8ed97753fe9317a9d55c1b) 구현. frame/slot/transport+run generation/PID/공유 핸들/COM 리소스 9개 동일성 gate, 16가지 부정 변이 C++17 스모크, 디바이스·세션 invalidate 보호. 정확한 SHA [DX9Ex Active #38199482574](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38199482574) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38199482602](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38199482602) SUCCESS, [Full Impact #38199482584](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38199482584) 3/3 SUCCESS. C6 별도 [f6b94384](https://github.com/thp32tt/OutRun2006Tweaks/commit/f6b94384f8900069242886a9a8cac6ed5fdc2b25) [skip ci] +0. Quest3/VDXR FPS 및 시각 실기 UNTESTED, DXVK 동결 유지. **AI 점수: 이전 1074점 + 이번 +1점 = 누적 1075점.** RUN_KEY=CONVERSION-DX9EX-00657 |

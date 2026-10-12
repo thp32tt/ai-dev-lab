@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-13 00:35 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1145 | ACTIVE | 2026-10-13 01:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1146 | ACTIVE | 2026-10-13 01:13 KST |
 
 ## 점수 규칙
 
@@ -1722,3 +1722,4 @@
 | 2026-10-13 00:35 KST | AI 1 | 1829 | +1 | 1830 | 신규 독립 작업 OUTRUN-HD-FULL-MANUAL-PNG-20261013: 사용자 직접 업로드 OR2-HD-GUI-v0.25.10a.zip 289 DDS를 최신 GitHub graphics/transcriptions.jsonl blob d6c6f80d58f2731b7f1496cb94c1c8faf32316d3 과 대조하여 89 번역 큐 대상의 108 실제 DDS(플랫폼 변형 포함) 전부 원본 해상도 RGBA PNG로 추출하고 5개 독립 분할 ZIP+SHA-256/인덱스/공통 프롬프트/6장 미리보기 패키지 작성; 대상 원본 누락 0, 변환 오류 0, ZIP 검사 PASS. 전체 759 번역 매핑 CSV GitHub 다운로드 브랜치 커밋 412f736ec52a7dbd322db0a4072b5b39107ee9cf 로 게시. 혼합 방향 아틀라스 검증 미완성 명시, RUNTIME_VALIDATION=UNTESTED, 작업 12개 부분 패키지의 단순 재보고가 아님. **AI 점수: 이전 1829점 + 이번 +1점 = 누적 1830점.** RUN_KEY=OUTRUN-HD-FULL-MANUAL-PNG-20261013 |
 
 | 2026-10-13 01:03 KST | AI 2 | 1144 | +1 | 1145 | 신규 독립 DX9Ex 성능 TASK_ID=CONVERSION-DX9EX-00697: 실제 R30 indexed VB 검증된 IB decode mask/used cardinality/재기준화 재사용 C++ material `616a099147386ffb1da6a00de8dfa79d34ed8de7`, 실패 재수리 이후 validation-bearing exact SHA `c1ab867476d6a4055b09d21ce1e54a5a2374cb20`. DX9Ex Active [#38273754040](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38273754040) policy/host/game/full-chain/package 5/5 SUCCESS, Domain [#38273754064](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38273754064) SUCCESS, original material Full Impact [#38272879122](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38272879122) SUCCESS. Retry E004/validator fix/C6 do not add extra credit; real Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1144점 + 이번 +1점 = 누적 1145점.** RUN_KEY=CONVERSION-DX9EX-00697 |
+| 2026-10-13 01:13 KST | AI 2 | 1145 | +1 | 1146 | 동일 TASK_ID=CONVERSION-DX9EX-00698 retry E003 실제 DX9Ex R30 CPU-shadow VB/IB projected-depth memo C++ 성능 구현 [material d6436f68](https://github.com/thp32tt/OutRun2006Tweaks/commit/d6436f68d2481084651d34081b8cdf1cc6c0b84c) 및 토폴로지 검증기 실패 수정 [validation-bearing 7600d58c](https://github.com/thp32tt/OutRun2006Tweaks/commit/7600d58cbc37449b94ef5c76c8c8addb8feb1934). Exact-SHA [DX9Ex Active #38274943951](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38274943951) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38274943942](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38274943942) SUCCESS, original C++ material SHA [Full Source Impact #38274592817](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38274592817) 3/3 SUCCESS; Quest3/VDXR FPS/p95/p99 RUNTIME_VALIDATION=UNTESTED. 최초 TASK 성과 1회 반영, E003 retry·실패 수리 중복 점수 없음. **AI 점수: 이전 1145점 + 이번 +1점 = 누적 1146점.** RUN_KEY=CONVERSION-DX9EX-00698 |

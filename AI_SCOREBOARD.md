@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1840 | ACTIVE | 2026-10-13 06:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1180 | ACTIVE | 2026-10-13 07:22 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1181 | ACTIVE | 2026-10-13 07:32 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 07:32 KST | AI 2 | 1180 | +1 | 1181 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00637`: 실제 게임-authored D3D9 PM RGB + independent MODULATE(TEXTURE, COMPLEMENT(TFACTOR)) alpha 입력을 DX11 네이티브 Draw/DrawIndexed 경로에 C++로 구현, live D3DRS_TEXTUREFACTOR의 8-bit alpha 반전→D3D11 PS constant→기존 native HLSL 연결 및 안전 DX9Ex fallback 유지. [material/validation-bearing 41aa9189](https://github.com/thp32tt/OutRun2006Tweaks/commit/41aa91898428061383d47066d6e2748131b50060), 동일 SHA [Backend Conversion Gate #38316109999](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38316109999) validate+smoke SUCCESS, [DX11 Fast #38316110073](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38316110073), [Windows Build #38316114461](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38316114461), OpenXR push #38316110031/PR #38316114445, HUD #38316114439 모두 SUCCESS. C6 별도 `c0305cfcc4fddc22a829e14cff663acb32d85ccd` [skip ci] 기록; HMD/게임패드 RUNTIME_VALIDATION=UNTESTED, 중복가산 없음. **AI 점수: 이전 1180점 + 이번 +1점 = 누적 1181점.** RUN_KEY=CONVERSION-DX11-00637 |
 
 | 2026-10-13 07:22 KST | AI 2 | 1179 | +1 | 1180 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX9EX-00721`: 실제 DX9Ex R30 moderate-sparse (최대 25% 밀도) indexed XYZRHW 양안 affine/fused/ScreenHud 정점 방문 수 절감 C++ 성능 변경 [material 226c4625](https://github.com/thp32tt/OutRun2006Tweaks/commit/226c4625ecec67e5824eaf499059c5a1f5bd1a8e), 동일 태스크의 기존 파괴적 회귀 소스 조건 및 Python 줄바꿈 검증기 실패 복구 후 [validation-bearing result 281a4f02](https://github.com/thp32tt/OutRun2006Tweaks/commit/281a4f0265bfd7bbb58f935cf38ddfe7f12680f0). 동일 SHA [DX9Ex Active #38315619571](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38315619571) policy/full-chain/game/host/package 5/5 SUCCESS, [Domain Isolation #38315619575](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38315619575) SUCCESS, 원본 material [Full Source Impact #38315207418](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38315207418) 3/3 SUCCESS. Quest3/VDXR 실제 테스트/실측 FPS 미시행 RUNTIME_VALIDATION=UNTESTED. 최초 구현, 회귀 검증 수리, E003 retry는 동일 성과로 정확히 1회만 가산. **AI 점수: 이전 1179점 + 이번 +1점 = 누적 1180점.** RUN_KEY=CONVERSION-DX9EX-00721 |
 

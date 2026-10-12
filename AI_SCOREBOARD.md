@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-13 00:35 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1150 | ACTIVE | 2026-10-13 02:00 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1151 | ACTIVE | 2026-10-13 02:16 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-13 02:16 KST | AI 2 | 1150 | +1 | 1151 | 신규 독립 TASK_ID=CONVERSION-DX11-00622 / RUN_KEY=CONVERSION-DX11-00622 단 1회: OutRun2006Tweaks `vr-dx11-native-r71`에서 게임 D3D9 stage0 BLENDTEXTUREALPHAPM RGB와 독립 SUBTRACT(TEXTURE, DIFFUSE/CURRENT) 알파를 실제 C++/HLSL 네이티브 Draw/DrawIndexed 경로에 신규 구현. [material/validation-bearing SHA 6a2de27e](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a2de27e67abc9c5e68c4c76e6b2aae5f13a365a). Exact-SHA [Backend Conversion Gate #38281748614](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281748614) SUCCESS (validate + readiness smoke), [DX11 Fast #38281748515](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281748515) SUCCESS, [Windows Build #38281753499](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281753499) SUCCESS, [OpenXR push #38281748535](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281748535)·[PR #38281753453](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281753453) SUCCESS. HUD Inspector는 집계 시점 in_progress여서 PASS 주장 없음. Quest3/VDXR 실기·게임패드 RUNTIME_VALIDATION=UNTESTED, 기본 DX9Ex 폴백 및 진단 opt-in 유지. **AI 점수: 이전 1150점 + 이번 +1점 = 누적 1151점.** |
 | 2026-10-13 02:00 KST | AI 2 | 1149 | +1 | 1150 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00701 / RUN_KEY=CONVERSION-DX9EX-00701 단 1회: DX9Ex R30 Indexed-UP sparse mask의 전체 정점 zero-fill 제거(이전 참조 인덱스만 초기화), VB 디코더 분리, C++ 성능 소스 및 파괴적 회귀 검증. [material/validation SHA 63208fea](https://github.com/thp32tt/OutRun2006Tweaks/commit/63208feaa4d55a5f041a4d07ffcef2307a53d27b); DX9Ex Active #38280427215 5/5, Domain #38280427337, Full Source Impact #38280427460 3/3 동일 SHA 모두 SUCCESS. Quest 3 / VDXR RUNTIME_VALIDATION=UNTESTED. |
 | 2026-10-13 01:39 KST | AI 2 | 1148 | +1 | 1149 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00700: `thp32tt/OutRun2006Tweaks` `vr-d3d9ex-focus`에서 실제 R30 stereo SkyGlow `D3DSBT_ALL` per-Present 객체 생성 제거, resource-epoch 캐시 및 매 프레임 `Capture()` 갱신, Reset/resize/실패/모노 전환 안전 해제 C++ 성능 구현과 27개 파괴적 회귀 검사 확장. [material/validation-bearing SHA d01e9d30](https://github.com/thp32tt/OutRun2006Tweaks/commit/d01e9d301153da129ffc653890e52a747a4f64b8). Exact SHA [DX9Ex Active #38277961199](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277961199) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38277961122](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277961122) SUCCESS, [Full Source Impact #38277961226](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277961226) source-domain/game-analyze/host-analyze 3/3 SUCCESS. Quest3/VDXR 및 FPS/p95/p99 실기 검증 미실행 RUNTIME_VALIDATION=UNTESTED. 한 TASK 성과 1회 가산, 동일 SHA 재검증/재보고 0점. **AI 점수: 이전 1148점 + 이번 +1점 = 누적 1149점.** RUN_KEY=CONVERSION-DX9EX-00700 |
 

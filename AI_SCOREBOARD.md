@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1834 | ACTIVE | 2026-10-13 04:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1160 | ACTIVE | 2026-10-13 04:00 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1161 | ACTIVE | 2026-10-13 04:08 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 04:08 KST | AI 2 | 1160 | +1 | 1161 | 신규 독립 TASK_ID=CONVERSION-DX11-00628: OutRun2006Tweaks `vr-dx11-native-r71`에서 실제 게임 D3D9 PM RGB/BLENDDIFFUSEALPHA 독립 알파 연산을 C++/HLSL 네이티브 D3D11 Draw/DrawIndexed에 연결한 [material SHA 7f068953](https://github.com/thp32tt/OutRun2006Tweaks/commit/7f06895397e00cba9ea5f87a565e0f899e2ef483), 숫자 경계 정확 비교로 실패한 신규 회귀 수리 후 [validation-bearing SHA 45a63f5f](https://github.com/thp32tt/OutRun2006Tweaks/commit/45a63f5f924eb4ecfc2352edc4de0d0edcedf7c5). 정확 SHA [Backend Gate #38294185382](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294185382) validate/readiness smoke SUCCESS, [DX11 Fast #38294185360](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294185360), [Windows Build #38294190182](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294190182), [OpenXR #38294190198](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294190198), [HUD #38294190216](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294190216) 모두 SUCCESS. 별도 C6 bookkeeping SHA 0016bc5c, runtime Quest3/VDXR/게임패드 UNTESTED. 동일 TASK 수정·상태확인·C6는 중복 가점 0. **AI 점수: 이전 1160점 + 이번 +1점 = 누적 1161점.** RUN_KEY=CONVERSION-DX11-00628 |
 
 | 2026-10-13 04:06 KST | AI 1 | 1833 | +1 | 1834 | 신규 독립 작업 OUTRUN-KOR-C1-20261013-0340-Q036-Q140-Q188-Q198-INDEPENDENT-FAST-QA: 실제 저장 HD DDS q036/q140/q188/q198 및 upstream source exact SHA 4/4 검증, CLEAN q140/q188/q198 exact SHA 3개 확인, 4개 후보 한 비교판 SOURCE/READABLE/CLEAN/저장 DDS RAW/FLIPY/75/50. q036 CLEAN 미검증 HOLD, q140/q188/q198 일부 문구 C1_STATIC_PASS/전체 TEST_ONLY HOLD. q140 PRESS 원문 영역 누락과 q188 옛 RAW 좌표 명칭 오해를 교정한 독립 픽셀 QA. GitHub [근거 커밋 44c4afb3](https://github.com/thp32tt/OutRun2006Tweaks/commit/44c4afb3a91cd5a5c0580356aab6982cdd20e77f) 원격 확인. C2 신규 토큰/작업·이미지/ DDS 생산·자동배포 없음, game UNTESTED. 성과 1회 +1. **AI 점수: 이전 1833점 + 이번 +1점 = 누적 1834점.** RUN_KEY=OUTRUN-KOR-C1-20261013-0340-Q036-Q140-Q188-Q198-INDEPENDENT-FAST-QA |
 

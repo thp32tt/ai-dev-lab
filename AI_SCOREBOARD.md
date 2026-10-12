@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1809 | ACTIVE | 2026-10-12 09:01 KST |
+| AI 1 | ChatGPT (AI 1) | 1810 | ACTIVE | 2026-10-12 09:08 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1053 | ACTIVE | 2026-10-12 09:00 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 09:08 KST | AI 1 | 1809 | +1 | 1810 | OutRun B/C1 actual English lettering transparent PNG 8개 원본 GitHub SHA256 검증 및 alpha/color-clean 파일로 ZIP 제작. q092 B 2 / q098 C1 2 / q102 C1 2 / q230 C1 2, manifest/README/strict prompt 포함; zip size 333110 bytes SHA256 a0c39b43878a98af9c283b4b8c10587ca96fc867a69482e68e317495c71c9c8e, Git blob e9c79a9d8bb323604f6f7ad464cb75c454363f20, repo remote HEAD da276d7ab240aff5e03bd20bc7a928c5995680e6, zip integrity PASS. Project upload용 ZIP과 채팅내 개별 PNG 첨부 별개 안내; ImageGen attached/generated Korean PNG 0, DDS 0, C2/C3/user game not tested, RUNTIME_VALIDATION=UNTESTED. 새 실제 참고자료 묶음 성과 한 번 +1, API 호출 0. RUN_KEY=OUTRUN-KOR-BC1-REFERENCE-IMAGE-ZIP-20261012-0908-AI1 |
 
 | 2026-10-12 09:01 KST | AI 1 | 1808 | +1 | 1809 | OutRun C2 q048 B408 신규 영문 입력 독립 픽셀 검수: SOURCE 3c58bf95/CLEAN 099a23f3/B407 저장 DDS b17750c7/신규 원문 PNG 8a6aa8d8 exact SHA 확인, native·RAW/FLIPY·75/50 직접 검수, PNG visible25556 픽셀 SOURCE RGBA 정확 일치/숨은 RGB0/마스크 밖0. 미포함 SOURCE-CLEAN delta9894 픽셀의 glyph/effect vs cyan speedline 구분 미확정으로 PLATE_HOLD, 실제 ImageGen 첨부 미확인, 한국어 PNG/DDS 신규0, C393 REWORK/IGR009 OPEN/C3·실게임 UNTESTED. 신규 영문 입력 SHA의 C2 독립 부분검수 성과 +1만 기록하고 기존 B407 같은 SHA 재생산·승인 중복0. [QA commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/3cd6d4f7405cf3978322520b4fc0a5aa37202f62). **AI 점수: 이전 1808점 + 이번 +1점 = 누적 1809점.** REVIEW_ID=C2-Q048-B408-ENGLISH-REFERENCE-FIRST-NATIVE-PIXEL-20261012-0850 |
 

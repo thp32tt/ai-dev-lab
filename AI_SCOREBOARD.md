@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1813 | ACTIVE | 2026-10-12 09:39 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1056 | ACTIVE | 2026-10-12 09:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1057 | ACTIVE | 2026-10-12 09:41 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 09:41 KST | AI 2 | 1056 | +1 | 1057 | 독립 TASK_ID=CONVERSION-DX9EX-00646: OutRun2006Tweaks DX9Ex R31 반복 verified world WVP에서 eyeTail 유지 시 좌/우 눈 4x4 CPU 행렬 곱셈 결과를 안전하게 재사용하는 실제 C++ 최적화. [material 461b24c8](https://github.com/thp32tt/OutRun2006Tweaks/commit/461b24c85ae4392a92b0d72945c4acdf5c4c04bd) 및 회귀 검사 실패를 동일 TASK로 수리한 [최종 validation-bearing de165af5](https://github.com/thp32tt/OutRun2006Tweaks/commit/de165af5524819c086336809fbc1e9d72d734b71). 14개 부정변이와 1,300회 수치 패리티(960 cache hit/340 miss), [DX9Ex Active #38188524583](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38188524583) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38188524584](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38188524584) SUCCESS, material SHA의 [Full Source Impact #38188383648](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38188383648) 3/3 SUCCESS. [C6 bookkeeping 4890fc52](https://github.com/thp32tt/OutRun2006Tweaks/commit/4890fc525639806b7031ee8f608f6c45bfe64eb3) [skip ci] +0. Quest3/VDXR 실제 렌더링·FPS 미실행으로 RUNTIME_VALIDATION=UNTESTED. 신규 독립 성과 +1만 반영, verifier repair/C6/재보고 중복 가산 없음. **AI 점수: 이전 1056점 + 이번 +1점 = 누적 1057점.** RUN_KEY=CONVERSION-DX9EX-00646 |
 | 2026-10-12 09:39 KST | AI 1 | 1812 | +1 | 1813 | OutRun 한글화 B q048 P1 IGR009 기존 영문 SOURCE 참조 PNG를 중복 생성하지 않고 신규 **실제 파일 바이너리 기반 이미지 편집 API 실행 요청/검증 경로** 구현. SHA256 8a6aa8d8... English-only 실제 39,022B 확인, q048 전용 원본 스타일 프롬프트/요청 JSON, B mod4/키 누락 fail-closed 회귀 및 GitHub Actions B_q048 슬롯/경량 sparse checkout 추가. 실측 SOURCE dry-run LOCAL_SOURCE_SHA_VERIFIED_ONLY_NOT_GENERATOR_BOUND, [GitHub #38188455249](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38188455249) 및 [#38188657654](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38188657654) 모두 SUCCESS. WORKLOG/QA 기록 [원격 HEAD f11654db](https://github.com/thp32tt/OutRun2006Tweaks/commit/f11654db5aff8408ba4bbd54d3d28e86aef70656). 실제 유료 API 호출/생성기 소스 첨부 수신 기록 없음, SOURCE_REFERENCE_NOT_BOUND, 신규 한글 PNG/DDS0, q048 기존 B407/정식 변경0, C2/C3/실게임 IGR009 OPEN·RUNTIME_VALIDATION=UNTESTED. B408 원본 소스 추출 이전 성과 재계산 금지; 신규 브리지·CI 검증 성과 한 번만 +1. AI 점수: 이전 1812점 + 이번 +1점 = 누적 1813점. RUN_KEY=OUTRUN-KOR-B-Q048-MULTIPART-BRIDGE-20261012-0931 |
 | 2026-10-12 09:35 KST | AI 1 | 1811 | +1 | 1812 | OutRun 무료 ChatGPT 웹 영문 참조 한 번 클릭 첨부용 Chrome MV3 확장 개발. 원본 PNG 8개 GitHub SHA256 검증, 활성 ChatGPT 탭 파일 입력 change 이벤트 전달/첨부 미리보기 수동 확인, PNG clipboard fallback, 프롬프트 복사 기능; API key/유료 호출 없음. ZIP 7,432 bytes SHA256 61cb88785d00212e23dbbe53f189e0294c8c5cdf41f0fdc18b6f554f62db98a4, GitHub code/ZIP commit c991e0c4a36dc3a59f977390797eb0ba352adc5b, Node static/syntax PASS. Actual ChatGPT browser image upload UNTESTED; generation 0, DDS 0, C2/C3/user game unaffected. RUN_KEY=OUTRUN-KOR-FREE-CHROME-REFERENCE-ATTACH-EXTENSION-20261012-AI1 |
 

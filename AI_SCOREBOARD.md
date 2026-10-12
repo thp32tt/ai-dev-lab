@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1825 | ACTIVE | 2026-10-12 21:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1127 | ACTIVE | 2026-10-12 21:07 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1128 | ACTIVE | 2026-10-12 21:15 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 21:15 KST | AI 2 | 1127 | +1 | 1128 | 신규 독립 TASK_ID=CONVERSION-DX11-00610: OutRun2006Tweaks vr-dx11-native-r71 실제 게임 FVF TEXCOORDSIZE1(0) 단일 U/복수 UV 메모리 오프셋 디코딩, 네이티브 DX11 Draw/DrawIndexed 통합 C++ 구현 및 악성 FVF/stride/offset 부정변이 회귀. 정확한 material/validation-bearing SHA [7000b182](https://github.com/thp32tt/OutRun2006Tweaks/commit/7000b182ee30dde5dfd2d8a64f2802ccf3b9fb81); Backend #38246847305, Build #38246853815, DX11 Fast #38246847420, OpenXR #38246847521, HUD #38246853825 모두 동일 SHA SUCCESS. C6 bookkeeping e20ad6e86898856f466b559e8aae88aec8668d81 별도 [skip ci]. DXVK 미변경, D3D9 fallback·게임패드 경로 보존, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/C6 중복 점수 없음. **AI 점수: 이전 1127점 + 이번 +1점 = 누적 1128점.** RUN_KEY=CONVERSION-DX11-00610 |
 
 | 2026-10-12 21:07 KST | AI 2 | 1126 | +1 | 1127 | 독립 신규 TASK_ID=CONVERSION-DX9EX-00687: R29 활성 스텐실 스테레오 Draw의 반복 최대 8개 D3D9 GetRenderState 조회를 성공한 live snapshot/추적 SetRenderState/StateBlock Apply·recording 세대 및 Present fence로 캐시하는 실제 C++ 성능 변경. Material [2cf14f19](https://github.com/thp32tt/OutRun2006Tweaks/commit/2cf14f19f32fd12429b29960e48c5a09f39bc226), 기존 회귀 검증기의 recording setter mutation fixture 동일 TASK 수리 후 exact validation-bearing [dbf02c58](https://github.com/thp32tt/OutRun2006Tweaks/commit/dbf02c586bd0784d3e2edeb998e75cb9dabb2cd3). 정확한 SHA [DX9Ex Active #38246313940](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38246313940) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38246313916](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38246313916) SUCCESS; 동일한 C++ material을 담은 SHA 2cf14f19 [Full Source Impact #38246149663](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38246149663) 3/3 SUCCESS. 정책 모델 6561 사례+16 파괴적 변이 PASS; Quest3/VDXR FPS/HUD 실기 검증 미수행 RUNTIME_VALIDATION=UNTESTED, retry/C6/재보고 중복 점수 +0. **AI 점수: 이전 1126점 + 이번 +1점 = 누적 1127점.** RUN_KEY=CONVERSION-DX9EX-00687 |
 | 2026-10-12 20:57 KST | AI 2 | 1125 | +1 | 1126 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00686: R30 월드 XYZRHW fullWorldReprojection 불가 시 기존 안전한 affine 양안 처리에서 동일 정점 입력 finite·선택 마스크·NDC 변환을 2회 반복하지 않고 한 CPU 순회로 LEFT/RIGHT 결과를 생성하는 실제 C++ 최적화. Z/RHW/UV/색상 보존 및 정확 풀재투영·양안 실패 fallback 유지. 실질 material [9cf7991e](https://github.com/thp32tt/OutRun2006Tweaks/commit/9cf7991e4f1fc473743632054fb87bd3ff674116), 검증·회귀 수리 후 validation-bearing [35074efd](https://github.com/thp32tt/OutRun2006Tweaks/commit/35074efd887fef0acd0b0828c7f884b45a8663f): [DX9Ex Active #38245205421](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38245205421) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38245205524](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38245205524) SUCCESS, 실질 소스 동일인 [Full Source Impact #38244905433](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38244905433) source SHA 06f304dc 3/3 SUCCESS. 신규 affine 정점 회귀 11개 파괴적 부정변이, 1757개 수치 모델 검사 PASS. HMD/Quest3/VDXR 및 실제 FPS 실측은 RUNTIME_VALIDATION=UNTESTED; 동일 TASK 다중 수리·C6 재실행 중복 가점 없음. **AI 점수: 이전 1125점 + 이번 +1점 = 누적 1126점.** RUN_KEY=CONVERSION-DX9EX-00686 |

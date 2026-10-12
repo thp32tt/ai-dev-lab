@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1817 | ACTIVE | 2026-10-12 10:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1067 | ACTIVE | 2026-10-12 10:58 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1068 | ACTIVE | 2026-10-12 11:09 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 11:09 KST | AI 2 | 1067 | +1 | 1068 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00652: DX9Ex R30 XYZRHW 입자·모래·연기 stereo reprojection의 정점별 perspective-Z/XY determinant/viewport depth 나눗셈을 검증된 draw별 역수 곱셈으로 변경한 실제 C++ 성능 핫패스 [material 및 exact validation-bearing SHA b4962681](https://github.com/thp32tt/OutRun2006Tweaks/commit/b49626814d3212dd7bf7328f4cb30b833822d069), 기존 RHW·깊이·finite·좌우 양안 fallback 유지, 부정변이 17개 PASS. 정확 SHA [DX9Ex Active #38194195385](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38194195385) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38194195352](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38194195352) SUCCESS, [Full Impact #38194195313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38194195313) 3/3 SUCCESS. C6 bookkeeping [2429a8f5](https://github.com/thp32tt/OutRun2006Tweaks/commit/2429a8f51c47dc9bad941388cfce6b1622e1330f) 별도 [skip ci] +0. Quest3/VDXR HMD 및 실제 FPS 개선 미실측 RUNTIME_VALIDATION=UNTESTED; DXVK 동결·DX11/Localization/FFB 변경 없음. 최초 독립 성과만 +1, 동일 TASK 재검증/재시도/C6 +0. **AI 점수: 이전 1067점 + 이번 +1점 = 누적 1068점**. RUN_KEY=CONVERSION-DX9EX-00652 |
 
 | 2026-10-12 10:58 KST | AI 2 | 1066 | +1 | 1067 | 신규 독립 TASK_ID=CONVERSION-DX11-00582: OutRun 실제 D3D9 stage0 SELECTARG1/SELECTARG2 RGB + 독립 ADDSMOOTH(alpha = texture + diffuse * (1-texture))를 native D3D11 HLSL PS 2종과 Draw/DrawIndexed opt-in visible diagnostic inset에 연결한 실제 C++ game code [material 4cf1ad50](https://github.com/thp32tt/OutRun2006Tweaks/commit/4cf1ad50c86e1cf1c6208069d7b664e53637aaae), 기존 00553 ADD readiness 회귀 불일치 원인을 실제 코드에서 보수한 [validation-bearing 00c3c910](https://github.com/thp32tt/OutRun2006Tweaks/commit/00c3c91040e0138a31200ba5b8d5b0abb463203a). 신규 20개 destructive mutation + 5개 alpha 계산, exact-SHA [Backend Conversion Gate #38193205092](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193205092) validate/smoke SUCCESS, [Build #38193207723](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193207723) SUCCESS, [DX11 Fast #38193205090](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193205090) SUCCESS, OpenXR #38193205087/#38193207744 SUCCESS, HUD Inspector #38193207734 SUCCESS. C6 bookkeeping [f5e62bd8](https://github.com/thp32tt/OutRun2006Tweaks/commit/f5e62bd82354dbc7fdd8c93767c67640014f3425) [skip ci] 별도이며 신규 점수 없음. DXVK 동결, DX9Ex fallback 유지; Quest3/VDXR 게임·패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/repair/C6 중복 +0. **AI 점수: 이전 1066점 + 이번 +1점 = 누적 1067점**. RUN_KEY=CONVERSION-DX11-00582 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1825 | ACTIVE | 2026-10-12 21:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1128 | ACTIVE | 2026-10-12 21:15 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1129 | ACTIVE | 2026-10-12 21:28 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 21:28 KST | AI 2 | 1128 | +1 | 1129 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00688: DX9Ex R23 DirectGPU 호스트의 Frame.v2 공유 링에서 무관한 프레임 슬롯에 대한 전체 IPC 구조체 memcpy와 생산자 식별을 건너뛰도록 per-slot seqlock frameId 선행 검사 실제 C++ 구현. 기존 전체 candidate seqlock/outer ring generation/producer identity 검증 유지, 512 합성 모델 사례·11 파괴적 변이 회귀를 DX9Ex 정책 Gate에 연결. 정확 material/validation-bearing SHA [a1d6cb4b](https://github.com/thp32tt/OutRun2006Tweaks/commit/a1d6cb4b7419280c6ba9ace280d74ccb52e66bb2): [DX9Ex Active #38248284445](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38248284445) policy/host/game/full-chain/package 5/5 SUCCESS; [Domain Isolation #38248283933](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38248283933) SUCCESS; [Full Source Impact #38248283986](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38248283986) 3/3 SUCCESS. HMD/Quest3/VDXR 및 FPS 실측 미수행 RUNTIME_VALIDATION=UNTESTED. 동일 작업 retry/C6/조회 중복 +0. **AI 점수: 이전 1128점 + 이번 +1점 = 누적 1129점.** RUN_KEY=CONVERSION-DX9EX-00688 |
 | 2026-10-12 21:15 KST | AI 2 | 1127 | +1 | 1128 | 신규 독립 TASK_ID=CONVERSION-DX11-00610: OutRun2006Tweaks vr-dx11-native-r71 실제 게임 FVF TEXCOORDSIZE1(0) 단일 U/복수 UV 메모리 오프셋 디코딩, 네이티브 DX11 Draw/DrawIndexed 통합 C++ 구현 및 악성 FVF/stride/offset 부정변이 회귀. 정확한 material/validation-bearing SHA [7000b182](https://github.com/thp32tt/OutRun2006Tweaks/commit/7000b182ee30dde5dfd2d8a64f2802ccf3b9fb81); Backend #38246847305, Build #38246853815, DX11 Fast #38246847420, OpenXR #38246847521, HUD #38246853825 모두 동일 SHA SUCCESS. C6 bookkeeping e20ad6e86898856f466b559e8aae88aec8668d81 별도 [skip ci]. DXVK 미변경, D3D9 fallback·게임패드 경로 보존, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/C6 중복 점수 없음. **AI 점수: 이전 1127점 + 이번 +1점 = 누적 1128점.** RUN_KEY=CONVERSION-DX11-00610 |
 
 | 2026-10-12 21:07 KST | AI 2 | 1126 | +1 | 1127 | 독립 신규 TASK_ID=CONVERSION-DX9EX-00687: R29 활성 스텐실 스테레오 Draw의 반복 최대 8개 D3D9 GetRenderState 조회를 성공한 live snapshot/추적 SetRenderState/StateBlock Apply·recording 세대 및 Present fence로 캐시하는 실제 C++ 성능 변경. Material [2cf14f19](https://github.com/thp32tt/OutRun2006Tweaks/commit/2cf14f19f32fd12429b29960e48c5a09f39bc226), 기존 회귀 검증기의 recording setter mutation fixture 동일 TASK 수리 후 exact validation-bearing [dbf02c58](https://github.com/thp32tt/OutRun2006Tweaks/commit/dbf02c586bd0784d3e2edeb998e75cb9dabb2cd3). 정확한 SHA [DX9Ex Active #38246313940](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38246313940) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38246313916](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38246313916) SUCCESS; 동일한 C++ material을 담은 SHA 2cf14f19 [Full Source Impact #38246149663](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38246149663) 3/3 SUCCESS. 정책 모델 6561 사례+16 파괴적 변이 PASS; Quest3/VDXR FPS/HUD 실기 검증 미수행 RUNTIME_VALIDATION=UNTESTED, retry/C6/재보고 중복 점수 +0. **AI 점수: 이전 1126점 + 이번 +1점 = 누적 1127점.** RUN_KEY=CONVERSION-DX9EX-00687 |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1816 | ACTIVE | 2026-10-12 10:17 KST |
+| AI 1 | ChatGPT (AI 1) | 1817 | ACTIVE | 2026-10-12 10:33 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1063 | ACTIVE | 2026-10-12 10:30:50 KST |
 
 ## 점수 규칙
@@ -34,7 +34,10 @@
 - 각 자동작업 실행은 고유 RUN_KEY를 변경 이력에 남겨 재시도/중복 실행의 이중 가점을 방지한다.
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
-## 변경 
+## 변경 이력
+
+| 2026-10-12 10:33 KST | AI 1 | 1816 | +1 | 1817 | OutRun C2 신규 A256 q099 시험 BC3 SHA25aa6091 독립 SOURCE d97206d8/구 C383 70970da7 바이트·저장 DDS 픽셀 QA: 구→신 변경 RGBA189366, BC3 12056블록 모두 글자 영역 안/밖 RGBA·alpha0, SOURCE CLEAN 가시알파125135→0, 저장 DDS PNG 불일치0, RAW/FLIPY·100/75/50 육안. 두 줄 한국어 C2_STATIC_SCOPED_PASS, C3·실게임 UNTESTED, 공식 DDS 승격0. 신규 q154 C1 영문 SOURCE 참조 3개 f54954fb/757b4bf8/844f999c 원본 DDS15a10e6b 대비 각 19100/15231/17402 source visible RGBA 불일치0·누락0·숨은 RGB0; SOURCE_REFERENCE_SCOPED_PASS_3_OF_3, full PLATE/한글 ImageGen 첨부 HOLD, C356/C381 REWORK 유지. QA [q099 c6a75942](https://github.com/thp32tt/OutRun2006Tweaks/commit/c6a7594295b3f0bdeaf950ad1eab9838236659c9), [q154 98515f8f](https://github.com/thp32tt/OutRun2006Tweaks/commit/98515f8f23f54b53f8258673b5f3ce616f6f4375), push/원격 HEAD 확인. 앞선 q026 이미 확정되었으므로 중복0, 신규 독립 QA 전체 1회 +1. **AI 점수: 이전 1816점 + 이번 +1점 = 누적 1817점.** REVIEW_IDS=C2-Q099-A256-FIRST-PERSISTED-BC3-20261012-0950;C2-Q154-C1-THREE-NEW-SOURCE-REFERENCE-20261012-0950 |
+
 | 2026-10-12 10:30:50 KST | AI 2 | 1062 | +1 | 1063 | 수도권 워터파크·아쿠아리움·놀이공원·동물원·키즈시설 연간/시즌/다회권의 2026-10-12 공식·판매처 공개정보와 주말 이용 조건을 조회·기존 알림 비교. 씨라이프 코엑스 싱글패스 79,000원(10/31까지)은 10/1 이미 알림; 다른 상품은 주말 사용 가능하며 더 개선된 가격·조건이 새로 확정되지 않아 사용자 알림 생략. 실제 조회 정상 수행 +1, 중복 알림 없음. **AI 점수: 이전 1062점 + 이번 +1점 = 누적 1063점**. RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-12T10:30:50+09:00 |
 이력
 

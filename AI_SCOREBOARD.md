@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1810 | ACTIVE | 2026-10-12 09:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1054 | ACTIVE | 2026-10-12 09:09 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1055 | ACTIVE | 2026-10-12 09:13 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 09:13 KST | AI 2 | 1054 | +1 | 1055 | 신규 독립 TASK_ID=CONVERSION-DX11-00577: 실제 OutRun 게임 D3D9 textured stage0 SELECTARG2 DIFFUSE/CURRENT RGB에 독립 TEXTURE/DIFFUSE/MODULATE alpha 3종을 네이티브 D3D11 PS/Draw/DrawIndexed opt-in 진단 인셋으로 연결한 C++ 실제 소스, 새 HLSL 픽셀 셰이더 2종·state gating·lifecycle·부정변이 회귀 구현. [material b90bdd23](https://github.com/thp32tt/OutRun2006Tweaks/commit/b90bdd23b6aa9efa69f884b2409bf42fb42b9b31), 동일 TASK 기존 회귀 앵커 실패 수리 4회 후 exact validation-bearing [f6e6cc78](https://github.com/thp32tt/OutRun2006Tweaks/commit/f6e6cc7825e6da28a651176ad1044fa85d663ff4). 동일 SHA Backend Conversion Gate [#38186568446](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38186568446), DX11 Fast [#38186568440](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38186568440), Build [#38186572114](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38186572114), OpenXR [#38186572099](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38186572099), HUD [#38186572096](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38186572096) 모두 SUCCESS. C6 별도 bookkeeping [a2441e36](https://github.com/thp32tt/OutRun2006Tweaks/commit/a2441e36412bc1f5d298f4e5e1bf0c1e23e8cbc6) [skip ci] +0, 원본 D3D9 Draw/input fallback 보존, DXVK 동결. 실기 Quest3/VDXR/gamepad RUNTIME_VALIDATION=UNTESTED. 이번 신규 성과에 한 번만 점수 부여; repair/retry/C6 중복가산 없음. **AI 점수: 이전 1054점 + 이번 +1점 = 누적 1055점.** RUN_KEY=CONVERSION-DX11-00577 |
 | 2026-10-12 09:09 KST | AI 2 | 1053 | +1 | 1054 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-00644: OutRun2006Tweaks DX9Ex R30 XYZRHW smoke/particle/decal 스테레오 전처리에서 eyeInverse × eyeProjection을 눈별 Draw 단위로 합성, 매 정점 4×4 행렬 곱셈 1단계 제거한 실제 C++ hotpath 변경 및 10개 부정변이/300개 수치 동등성 검사. [정확한 material/validation SHA 873eb6ac](https://github.com/thp32tt/OutRun2006Tweaks/commit/873eb6ac1e96bdd59d8679b9007bf1d707cb4d0c) [DX9Ex Active #38186394402](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38186394402) 정책/게임/호스트/전체체인/패키지 5/5 SUCCESS, [Domain Isolation #38186394433](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38186394433) SUCCESS. Full Source Impact #38186394420은 점수판 기록 시 진행 중이므로 성공을 미리 선언하지 않음. Quest3/VDXR 실제 게임 프레임타임·FPS 검증은 RUNTIME_VALIDATION=UNTESTED. 동일 TASK의 별도 C6 checkpoint [skip ci]는 +0, 재실행/재검증 중복 가산 금지. **AI 점수: 이전 1053점 + 이번 +1점 = 누적 1054점.** |
 
 | 2026-10-12 09:08 KST | AI 1 | 1809 | +1 | 1810 | OutRun B/C1 actual English lettering transparent PNG 8개 원본 GitHub SHA256 검증 및 alpha/color-clean 파일로 ZIP 제작. q092 B 2 / q098 C1 2 / q102 C1 2 / q230 C1 2, manifest/README/strict prompt 포함; zip size 333110 bytes SHA256 a0c39b43878a98af9c283b4b8c10587ca96fc867a69482e68e317495c71c9c8e, Git blob e9c79a9d8bb323604f6f7ad464cb75c454363f20, repo remote HEAD da276d7ab240aff5e03bd20bc7a928c5995680e6, zip integrity PASS. Project upload용 ZIP과 채팅내 개별 PNG 첨부 별개 안내; ImageGen attached/generated Korean PNG 0, DDS 0, C2/C3/user game not tested, RUNTIME_VALIDATION=UNTESTED. 새 실제 참고자료 묶음 성과 한 번 +1, API 호출 0. RUN_KEY=OUTRUN-KOR-BC1-REFERENCE-IMAGE-ZIP-20261012-0908-AI1 |

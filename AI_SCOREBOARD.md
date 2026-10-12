@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1828 | ACTIVE | 2026-10-12 16:01 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1099 | ACTIVE | 2026-10-12 16:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1100 | ACTIVE | 2026-10-12 16:17 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 16:17 KST | AI 2 | 1099 | +1 | 1100 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00671: OutRun2006Tweaks DX9Ex R33 비스테레오/보조 RT Draw 4종 XYZRHW 불필요 탐색 우회 및 gameDevice/internalPass 중복 검사 제거 실제 C++ 최적화·회귀 검증. Material 04bf678bc2e8561682efcc546b395553e31cca33, 검증/소스 격리 오류 수리 후 validation-bearing f118e140ef803cfbbd32434cad247ba4eccea3f8. 정확한 GitHub Actions DX9Ex Active #38216126530(정책/host/game/full-chain/package 5/5), Domain Isolation #38216126554, Full Source Impact #38216126569(3/3), HUD Inspector #38216126552 모두 SUCCESS. 실제 Quest3/VDXR 시험 전 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/C6 중복 가산 없음. **AI 점수: 이전 1099점 + 이번 +1점 = 누적 1100점.** RUN_KEY=CONVERSION-DX9EX-00671 |
 | 2026-10-12 16:03 KST | AI 2 | 1098 | +1 | 1099 | 독립 DX11 TASK_ID=CONVERSION-DX11-00596: OutRun 게임이 생성한 D3D9 ONE/ONE 및 SRCALPHA/ONE 가산 블렌드→D3D11 정확 OM RGB/Alpha 블렌드·64개 마스크 상태·네이티브 Draw/DrawIndexed 실제 C++ 연결과 신규 17개 파괴적 변이·수치 회귀 구현. Material [f51a51ca](https://github.com/thp32tt/OutRun2006Tweaks/commit/f51a51ca82650e60964f36b2954fb10bd31eeb76), 정책 단계 수리 cbdda8bb, 중복 알파 회귀 검증 수리, 정확한 validation-bearing SHA [943c5ae8](https://github.com/thp32tt/OutRun2006Tweaks/commit/943c5ae8b37406cd6aad19dfdd8032c7851df960)의 Backend Gate #38214680810, Build #38214685415, DX11 Fast #38214680841, OpenXR #38214685559, HUD #38214685265 전부 SUCCESS. C6 [skip ci] bookkeeping 105ef63e56cbd4a516b615c6aba7f0580543423f 별도. DXVK 동결, DX9Ex Draw/Present/게임패드 폴백 보존, HMD/Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 본 TASK 재시도·수리·C6 중복 점수화 없음. **AI 점수: 이전 1098점 + 이번 +1점 = 누적 1099점.** RUN_KEY=CONVERSION-DX11-00596 |
 | 2026-10-12 16:01 KST | AI 1 | 1827 | +1 | 1828 | 새로운 C1 독립 4건 실저장 DDS 검증 성과: q175/q103/q060/q048 8개 원본·후보 DDS 실 SHA256+헤더 교차검증, native/75/50 비교 JPG 및 품질 판정. q175/q103/q060 cell-scoped PASS TEST_ONLY, q048 protected streak 419px source-equal but font/style REWORK/IGR009 OPEN; C3/game UNTESTED, 신규 한글 생성 0. GitHub [QA 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/b41e912e50406ef8f66e6a01b27f8cbf33d60c64). 앞선 C2 동일 SHA 검수와 한 작업 내 4건은 중복 가산하지 않고 이번 독립 배치 신규 성과 1건만 점수화. **AI 점수: 이전 1827점 + 이번 +1점 = 누적 1828점.** RUN_KEY=C1-BATCH-Q175-Q103-Q060-Q048-SAVED-NATIVE-20261012-1541. |
 | 2026-10-12 15:53:50 KST | AI 1 | 1826 | +1 | 1827 | 새 결함·독립 실물 검증 성과: OutRun q228 13개 영문/한글 DDS 실저장 알파 영역 검사에서 4개 원문 glyph/effect bbox를 2px(positive alpha 1114px) 초과한 신규 근거, q230 FERRARI 브랜드명 영문보호 규칙 위반 2건 식별 및 음악제목 5개 ROI 보호 변경0 확인, q212 underfill 단독 사이즈 불합격 불인정. [evidence commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/e4edc83a585ac316929d8a21c5803df11a2a769e). 기존 동일 DDS SHA 생산 재점수화 안 함; 공식 C2/C3 PASS0, game UNTESTED. **AI 점수: 이전 1826점 + 이번 +1점 = 누적 1827점.** REVIEW_ID=C2-ADHOC-Q212-Q228-Q230-20261012-1520. |

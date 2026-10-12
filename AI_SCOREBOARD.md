@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1835 | ACTIVE | 2026-10-13 04:21 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1162 | ACTIVE | 2026-10-13 04:14 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1163 | ACTIVE | 2026-10-13 04:28 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 04:28 KST | AI 2 | 1162 | +1 | 1163 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00710: `vr-d3d9ex-focus` R30 XYZRHW smoke/sand projected depth classifier 최대 512 정점 검사에서 선택 샘플 기준 남은 후보의 최악/최선 projected·valid 비율로 HUD/world 판정이 확정된 경우 16개 정점 블록마다 조기 종료하는 실제 C++ 성능 구현 [material ef4e95b1](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef4e95b1b48470f3d3c04ba66cfd77e5937d4cac). Sparse indexed mask, depth/viewport 비율 및 HUD 보호 조건 유지. 합성 동등성 10,000개 case mismatch 0, homogeneous world 384/512, HUD 144/512 sample 결정, 변경 검증기 negative mutations 수리. GitHub [validation-bearing RESULT_SHA 7ab76797](https://github.com/thp32tt/OutRun2006Tweaks/commit/7ab7679787f5a53fac49fb0e6fe9a902fd35e9cb) 정확 [DX9Ex Active #38297105586](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38297105586) policy/host/game/full-chain/package **5/5 SUCCESS**, [Domain #38297105834](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38297105834) SUCCESS. Quest3/VDXR FPS 및 화면 실기 미검증 **RUNTIME_VALIDATION=UNTESTED**, 구현/테스트/수리 커밋·동일 TASK retry 가산 1회만. **AI 점수: 이전 1162점 + 이번 +1점 = 누적 1163점.** RUN_KEY=CONVERSION-DX9EX-00710 |
 
 | 2026-10-13 04:21 KST | AI 1 | 1834 | +1 | 1835 | 신규 C1 4개 실저장 HD DDS SHA 고정 독립 검수. TASK_ID=OUTRUN-KOR-C1-20261013-0410-Q086-Q133-Q159-Q163-INDEPENDENT-FAST-QA. q086(A144)/q133(A47)/q159(A155)/q163(A154) 원본 및 최종 SHA 검증, 단일 SOURCE/READABLE/CLEAN/FINAL RAW/FLIPY/75/50 비교 JPG 작성. q086 DXT5 원본→최종 바뀐 블록 중 검증된 글자영역에 완전히 포함되지 않는 14389개 보호 경계 미입증으로 HOLD, q159 CLEAN 실물 미확보 HOLD. q133 1/9 및 q163 2/24 검수 문구만 C1_STATIC_PASS; 4개 전체 DDS TEST_ONLY/HOLD. GitHub [커밋 d4cfc8a6](https://github.com/thp32tt/OutRun2006Tweaks/commit/d4cfc8a662d2ae8b276df5f619125d843919fd84) 원격 HEAD/두 근거 파일 확인. C2 토큰 0, 이미지/DDS 생산 0, Docker/Portainer/AUTO_SEND 변경 0, 게임 UNTESTED. **AI 점수: 이전 1834점 + 이번 +1점 = 누적 1835점.** RUN_KEY=OUTRUN-KOR-C1-20261013-0410-Q086-Q133-Q159-Q163-INDEPENDENT-FAST-QA |
 

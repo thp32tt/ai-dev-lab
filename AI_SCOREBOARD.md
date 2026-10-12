@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1829 | ACTIVE | 2026-10-13 00:26:28 KST |
+| AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-13 00:35 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1143 | ACTIVE | 2026-10-13 00:29:29 KST |
 
 ## 점수 규칙
@@ -1716,3 +1716,5 @@
 | 2026-10-13 00:26:28 KST | AI 1 | 1828 | +1 | 1829 | OutRun C1 새 4개 실제 HD 저장 DDS(q061/q102/q104/q060) 정확 원본/최종 SHA-256 및 Git blob 교차 검증, 한 묶음 RAW·FLIPY·SOURCE·CLEAN(확보 시)·75/50 검수 비교 JPG·독립 픽셀 SHA/좌표/판정 JSON 신규 커밋 d1d23262608fa9b6d036a78020d3f31bd2445ffa. 4 HOLD, 승인 0, 기존 C1 동일 SHA 반복 없음, C2 토큰/이미지 생성/도커/게임 배포 없음, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1828점 + 이번 +1점 = 누적 1829점.** RUN_KEY=OUTRUN-C1-20261013-0010-Q061-Q102-Q104-Q060 |
 
 | 2026-10-13 00:29:29 KST | AI 2 | 1142 | +1 | 1143 | 신규 독립 TASK_ID=CONVERSION-DX11-00617: OutRun2006Tweaks vr-dx11-native-r71에서 실제 게임 D3D9 stage0 D3DTOP_BLENDTEXTUREALPHAPM RGB/알파와 PM RGB+독립 SELECTARG1 텍스처 알파를 DX11 네이티브 픽셀 셰이더/Draw·DrawIndexed 진단 경로에 연결한 실제 C++ 구현. [최초 material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/33c9e4755438ba64bdc27fdc2a75482982ce6032), 동일 TASK 실패 정책·회귀·MSVC C2026 수리 후 [정확한 validation-bearing SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/f0aa360d85119dcd7649c5cefa566c121b1deee1): [Backend Gate #38268673557](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268673557), [Build #38268681588](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268681588), [DX11 Fast #38268672621](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268672621), [OpenXR #38268681594](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268681594), [HUD #38268681630](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268681630) 모두 exact-SHA SUCCESS. C6 bookkeeping별도, DXVK 변경 없음, 진단 opt-in 및 DX9Ex fallback 유지. Quest3/VDXR 실기 미수행 RUNTIME_VALIDATION=UNTESTED. retry E003·C6·수정 커밋을 중복 가산하지 않고 신규 개발 성과에 한 번만 +1. **AI 점수: 이전 1142점 + 이번 +1점 = 누적 1143점.** RUN_KEY=CONVERSION-DX11-00617 |
+
+| 2026-10-13 00:35 KST | AI 1 | 1829 | +1 | 1830 | 신규 독립 작업 OUTRUN-HD-FULL-MANUAL-PNG-20261013: 사용자 직접 업로드 OR2-HD-GUI-v0.25.10a.zip 289 DDS를 최신 GitHub graphics/transcriptions.jsonl blob d6c6f80d58f2731b7f1496cb94c1c8faf32316d3 과 대조하여 89 번역 큐 대상의 108 실제 DDS(플랫폼 변형 포함) 전부 원본 해상도 RGBA PNG로 추출하고 5개 독립 분할 ZIP+SHA-256/인덱스/공통 프롬프트/6장 미리보기 패키지 작성; 대상 원본 누락 0, 변환 오류 0, ZIP 검사 PASS. 전체 759 번역 매핑 CSV GitHub 다운로드 브랜치 커밋 412f736ec52a7dbd322db0a4072b5b39107ee9cf 로 게시. 혼합 방향 아틀라스 검증 미완성 명시, RUNTIME_VALIDATION=UNTESTED, 작업 12개 부분 패키지의 단순 재보고가 아님. **AI 점수: 이전 1829점 + 이번 +1점 = 누적 1830점.** RUN_KEY=OUTRUN-HD-FULL-MANUAL-PNG-20261013 |

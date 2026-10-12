@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1817 | ACTIVE | 2026-10-12 10:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1063 | ACTIVE | 2026-10-12 10:30:50 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1064 | ACTIVE | 2026-10-12 10:36 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 10:36 KST | AI 2 | 1063 | +1 | 1064 | 신규 독립 TASK_ID=CONVERSION-DX11-00581: OutRun 실제 D3D9 stage0 SELECTARG2 diffuse RGB + 독립 MODULATE2X/4X 포화 alpha를 native D3D11 Draw/DrawIndexed/HLSL diagnostic inset에 연결한 C++ 및 회귀 소스 변경. [최초 material SHA ef109825](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef10982567dad5d70d19519d1f4a4a3ad018cfd3) Windows Build C2026 oversized HLSL literal 실패를 동일 TASK로 실수리하고 분리된 두 HLSL literal 결합·21개 destructive regressions를 포함한 [exact validation-bearing SHA 53861a45](https://github.com/thp32tt/OutRun2006Tweaks/commit/53861a4566857fe773fd496e37c7f33e086cec9b) 확정. [Backend Gate #38191856167](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191856167) validate+readiness SUCCESS, [DX11 Fast #38191856178](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191856178), [Win32 Build #38191859606](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191859606), [OpenXR #38191856349](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191856349)/[#38191859648](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191859648), [HUD #38191859597](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191859597) 모두 SUCCESS. 별도 C6 bookkeeping [7b6bbbaf](https://github.com/thp32tt/OutRun2006Tweaks/commit/7b6bbbaf4b0fb61e80e4d3664c50652a768ae2a9) [skip ci] +0. DXVK 동결 및 DX9Ex/게임패드 입력 유지, Quest3/VDXR/실제 메뉴·레이스 RUNTIME_VALIDATION=UNTESTED. 최초 실패 SHA/재시도/C6 결과 별도 가산 없음. **AI 점수: 이전 1063점 + 이번 +1점 = 누적 1064점**. RUN_KEY=CONVERSION-DX11-00581 |
 
 | 2026-10-12 10:33 KST | AI 1 | 1816 | +1 | 1817 | OutRun C2 신규 A256 q099 시험 BC3 SHA25aa6091 독립 SOURCE d97206d8/구 C383 70970da7 바이트·저장 DDS 픽셀 QA: 구→신 변경 RGBA189366, BC3 12056블록 모두 글자 영역 안/밖 RGBA·alpha0, SOURCE CLEAN 가시알파125135→0, 저장 DDS PNG 불일치0, RAW/FLIPY·100/75/50 육안. 두 줄 한국어 C2_STATIC_SCOPED_PASS, C3·실게임 UNTESTED, 공식 DDS 승격0. 신규 q154 C1 영문 SOURCE 참조 3개 f54954fb/757b4bf8/844f999c 원본 DDS15a10e6b 대비 각 19100/15231/17402 source visible RGBA 불일치0·누락0·숨은 RGB0; SOURCE_REFERENCE_SCOPED_PASS_3_OF_3, full PLATE/한글 ImageGen 첨부 HOLD, C356/C381 REWORK 유지. QA [q099 c6a75942](https://github.com/thp32tt/OutRun2006Tweaks/commit/c6a7594295b3f0bdeaf950ad1eab9838236659c9), [q154 98515f8f](https://github.com/thp32tt/OutRun2006Tweaks/commit/98515f8f23f54b53f8258673b5f3ce616f6f4375), push/원격 HEAD 확인. 앞선 q026 이미 확정되었으므로 중복0, 신규 독립 QA 전체 1회 +1. **AI 점수: 이전 1816점 + 이번 +1점 = 누적 1817점.** REVIEW_IDS=C2-Q099-A256-FIRST-PERSISTED-BC3-20261012-0950;C2-Q154-C1-THREE-NEW-SOURCE-REFERENCE-20261012-0950 |
 

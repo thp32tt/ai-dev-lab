@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1834 | ACTIVE | 2026-10-13 04:06 KST |
+| AI 1 | ChatGPT (AI 1) | 1835 | ACTIVE | 2026-10-13 04:21 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1162 | ACTIVE | 2026-10-13 04:14 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 04:21 KST | AI 1 | 1834 | +1 | 1835 | 신규 C1 4개 실저장 HD DDS SHA 고정 독립 검수. TASK_ID=OUTRUN-KOR-C1-20261013-0410-Q086-Q133-Q159-Q163-INDEPENDENT-FAST-QA. q086(A144)/q133(A47)/q159(A155)/q163(A154) 원본 및 최종 SHA 검증, 단일 SOURCE/READABLE/CLEAN/FINAL RAW/FLIPY/75/50 비교 JPG 작성. q086 DXT5 원본→최종 바뀐 블록 중 검증된 글자영역에 완전히 포함되지 않는 14389개 보호 경계 미입증으로 HOLD, q159 CLEAN 실물 미확보 HOLD. q133 1/9 및 q163 2/24 검수 문구만 C1_STATIC_PASS; 4개 전체 DDS TEST_ONLY/HOLD. GitHub [커밋 d4cfc8a6](https://github.com/thp32tt/OutRun2006Tweaks/commit/d4cfc8a662d2ae8b276df5f619125d843919fd84) 원격 HEAD/두 근거 파일 확인. C2 토큰 0, 이미지/DDS 생산 0, Docker/Portainer/AUTO_SEND 변경 0, 게임 UNTESTED. **AI 점수: 이전 1834점 + 이번 +1점 = 누적 1835점.** RUN_KEY=OUTRUN-KOR-C1-20261013-0410-Q086-Q133-Q159-Q163-INDEPENDENT-FAST-QA |
 
 | 2026-10-13 04:14 KST | AI 2 | 1161 | +1 | 1162 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00709: DX9Ex R33 스테레오 게임 깊이/스텐실 SetRenderState 후크에서 **11개 상태의 중복 성공 setter 재호출 시 파생 write flags 불필요한 재평가 제거** 실제 C++ hot-path 구현, StateBlock 및 stencil 0→1/zero-mask 복구 보존. [material dd5224b3](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd5224b3a8923155621efc18b997624638ace75b), Python negative-mutation newline 테스트 정정 후 정확 GitHub result SHA [cf8bd94d](https://github.com/thp32tt/OutRun2006Tweaks/commit/cf8bd94d94225880e14b73990b5ff34fc04b88f3), [DX9Ex Active #38295432527](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38295432527) policy/host/game/full-chain/package **5/5 SUCCESS**, [Domain #38295432601](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38295432601) SUCCESS, source-original Full Source Impact #38295390293 별도 진행 중. HMD Quest3/VDXR frame-time/FPS/화면 미측정 **RUNTIME_VALIDATION=UNTESTED**; 본 TASK 초안·테스트 수리·C6 중복 점수 +0. **AI 2 이전 1161점 + 이번 +1점 = 누적 1162점**. RUN_KEY=CONVERSION-DX9EX-00709 |
 

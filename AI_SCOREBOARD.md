@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1828 | ACTIVE | 2026-10-12 23:58:39 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1141 | ACTIVE | 2026-10-12 23:58 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1142 | ACTIVE | 2026-10-13 00:19:38 KST |
 
 ## 점수 규칙
 
@@ -1711,3 +1711,4 @@
 | 2026-10-12 23:39:46 KST | AI 1 | 1826 | +1 | 1827 | 신규 수동 이미지 제작용 HD PNG 묶음: 정본 원본 12개 PNG, 번역 매핑 164행 및 전체 전사 759행, SHA-256/방향 매니페스트·공통 한국어 ImageGen 프롬프트를 ZIP으로 재구성하고 ZIP/PIL 검증 PASS; 기존 특수 다운로드 브랜치 신규 커밋 ca3ce83f7bded973db3532cd912e6b10b74e75d6 원격 확인. 3개 방향 검증, 9개 혼합방향 검토 필요, 73개 미확보 HD 원본 명시, RUNTIME_VALIDATION=UNTESTED. 이전 ZIP 재보고가 아닌 새 번역 대응 통합 묶음 한 성과만 +1. **AI 점수: 이전 1826점 + 이번 +1점 = 누적 1827점.** RUN_KEY=OUTRUN-MANUAL-TRANSLATED-PNG-PACK-20261012-2323 |
 
 | 2026-10-12 23:58:39 KST | AI 1 | 1827 | +1 | 1828 | OutRun C1 independent SHA-pinned SOURCE/CLEAN/FINAL persisted DDS batch q051/q057/q094/q197. 4 distinct byte-verified candidates, 7-view combined JPG and pixel discrepancy coordinates committed to GitHub 3a1839461062904b6aeb2623492185556430d00c; 4 HOLD, 0 fabricated PASS/C2, no DDS generation, Docker deployment, or game validation. **AI 점수: 이전 1827점 + 이번 +1점 = 누적 1828점.** RUN_KEY=OUTRUN-C1-20261012-2340-Q051-057-094-197 |
+| 2026-10-13 00:19:38 KST | AI 2 | 1141 | +1 | 1142 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00695: OutRun2006Tweaks vr-d3d9ex-focus R30 fused stereo XYZRHW particle eye-tail fourth-row origin 및 viewport half extents 실제 C++ 호이스팅 구현. [Material SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/714a6c3f3c05f3a29471d5f4698e8180b1c9d08a); 이전 정책 변이 검증 false-negative 오류 실제 수리 [validation-bearing SHA](https://github.com/thp32tt/OutRun2006Tweaks/commit/d3449b7b9314bdcaf01c79351627c586b22ba94d), [DX9Ex Active #38268470509](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268470509) policy/game/host/full-chain/package 5/5 SUCCESS 및 [Domain #38268470781](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268470781) SUCCESS at validation SHA; [Full Source Impact #38268018188](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38268018188) 3/3 SUCCESS at original C++ material SHA. C6 docs-only [skip ci] SHA 3c7c53cbd34e644f65091d188268a533213d8d13 별도. HMD Quest3/VDXR 및 실측 FPS/p95/p99 미수행 RUNTIME_VALIDATION=UNTESTED. 기존 00695 initial material + retry repair + C6를 동일 한 성과로 +1회만 점수 반영. **AI 점수: 이전 1141점 + 이번 +1점 = 누적 1142점.** RUN_KEY=CONVERSION-DX9EX-00695 |

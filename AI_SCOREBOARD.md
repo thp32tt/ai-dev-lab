@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1837 | ACTIVE | 2026-10-13 05:21 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1168 | ACTIVE | 2026-10-13 05:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1169 | ACTIVE | 2026-10-13 05:41 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 05:41 KST | AI 2 | 1168 | +1 | 1169 | 독립 TASK_ID=CONVERSION-DX9EX-00715: DX9Ex R23 호스트 Desktop Duplication 캡처 고정 출력 텍스처 GetDesc 반복 호출 생략 및 출력/중복객체/HDR/해상도/소스 무효화 시 실제 설명자 재검증을 수행하는 GPU 복사 보존형 C++ 성능 구현. [material e0a7c4ec](https://github.com/thp32tt/OutRun2006Tweaks/commit/e0a7c4ecb5762bb5396b480109ac95dae53d31dd), 동일 TASK Release assert 제거 및 constexpr/static_assert + 런타임 반환값 검사 수리 후 [validation-bearing d86b495f](https://github.com/thp32tt/OutRun2006Tweaks/commit/d86b495f8e36053964c1dee990a6ffe60befe1e1). 정확한 SHA의 [DX9Ex Active #38304810498](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38304810498) 정책·host Release smoke·game·full-chain·package 5/5 SUCCESS, [Domain #38304810511](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38304810511) SUCCESS, [Full Source Impact #38304810544](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38304810544) 3/3 SUCCESS. Quest3/VDXR 및 FPS/p95/p99 미검증 RUNTIME_VALIDATION=UNTESTED. 동일 TASK 최초 구현+테스트수리+C6는 단일 성과만 가산. **AI 점수: 이전 1168점 + 이번 +1점 = 누적 1169점.** RUN_KEY=CONVERSION-DX9EX-00715 |
 
 | 2026-10-13 04:56 KST | AI 2 | 1164 | +1 | 1165 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00712: DX9Ex R33 fast-world/HUD 드로우의 pose mismatch 가드가 종전 `R29OwnerCaptureFrameSnapshot().poseSequence` 전체 13-field POD 조립을 매 드로우 수행하던 경로를 R29-owned scalar `R29OwnerFrameStereoPoseSequence()` 직접 조회로 대체한 실제 C++ hot-path 성능 수정. 기존 0/일치/불일치 fail-closed 판정과 SkyGlow/FFB/stereo 불변식 유지. 헤더·R29·R30·신규 부정변이 6개 회귀·Actions 게이트 연결 5파일 [material/result SHA 830650c9](https://github.com/thp32tt/OutRun2006Tweaks/commit/830650c9b0ca2b8bb2918d194111a48b46ea6124); exact-SHA [DX9Ex Active #38300156680](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38300156680) policy/host/game/full-chain/package **5/5 SUCCESS**, [Domain Isolation #38300156637](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38300156637) SUCCESS, [HUD Inspector #38300156650](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38300156650) SUCCESS. Full Source Impact #38300156695 추가 분석은 별도 실행 중이며 Quest3/VDXR FPS·화면 실기 검증은 **RUNTIME_VALIDATION=UNTESTED**. 재시도·bookkeeping은 중복 +0. **AI 점수: 이전 1164점 + 이번 +1점 = 누적 1165점.** RUN_KEY=CONVERSION-DX9EX-00712 |
 

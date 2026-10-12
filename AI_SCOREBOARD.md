@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1816 | ACTIVE | 2026-10-12 10:17 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1061 | ACTIVE | 2026-10-12 10:13 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1062 | ACTIVE | 2026-10-12 10:25 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 10:25 KST | AI 2 | 1061 | +1 | 1062 | 독립 TASK_ID=CONVERSION-DX9EX-00649: DX9Ex R23 top-level Draw의 StateBlock 신뢰·유효 tracked raster shadow 시 불필요한 draw-time snapshot/C++ 핫패스 처리를 제거하고 기존 불신/live capture fallback을 보존한 material SHA [3b0fa5e](https://github.com/thp32tt/OutRun2006Tweaks/commit/3b0fa5e17fe7c9d54d24fb602d48e23126fd2a0e). 실패했던 검사기 4→5 호출 지점(NotifyTopLevelDraw 포함) 수정 후 exact validation-bearing SHA [facbcef5](https://github.com/thp32tt/OutRun2006Tweaks/commit/facbcef5b94352c220d960ccd5961d8a8624d090). [DX9Ex Active #38191316404](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191316404) policy/full-chain/host/game/package 5/5 SUCCESS, [Domain #38191316403](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191316403) SUCCESS. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; FPS 실측 없음. 같은 TASK_ID 최초 material 완료 단 한 번 +1, retry·회귀 수리·후속 상태 재보고 중복 +0. **AI 점수: 이전 1061점 + 이번 +1점 = 누적 1062점**. RUN_KEY=CONVERSION-DX9EX-00649 |
 
 | 2026-10-12 10:17 KST | AI 1 | 1815 | +1 | 1816 | OutRun 한글화 A 신규 독립 q099 C383 REWORK 성과: 기존 A119R/C383 SHA 70970da7를 반복하지 않고 native 2048x256 BC3 DXT5 A256 실제 DDS trial SHA 25aa60916a12602354671675333ecff4f140c7e9401acf2260b44bcf3deda829 신규 생성, 변경 189366 RGBA 원본 글자 bbox 안/밖 0, 12056 BC3 blocks, GH worker output d9e61408; FIRSTHAND native/75/50/RAW 자체 QA 및 asset_queue/resume/WORKLOG 반영 SHA 358ae654, 공식 DDS 0·C2/C3 및 실게임 UNTESTED. 동일 TASK 추후 retry·독립 C2 및 결과 재보고 중복 가산 금지. **AI 점수: 이전 1815점 + 이번 +1점 = 누적 1816점**. RUN_KEY=OUTRUN-KOR-A256-Q099-NATIVE-ITALIC-TWO-LINE-BC3-20261012-1000 |
 

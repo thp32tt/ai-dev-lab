@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1833 | ACTIVE | 2026-10-13 03:25 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1157 | ACTIVE | 2026-10-13 03:08 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1158 | ACTIVE | 2026-10-13 03:38 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 03:38 KST | AI 2 | 1157 | +1 | 1158 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00707: DX9Ex R30 Indexed VB/IB 스테레오용 고유 참조 정점 목록(vbTouched)을 IB revision/offset/size 기반 decode cache와 연동해 희소 정점 양안 seed 전체 span 탐색을 줄이는 실제 C++ 성능 변경 [material SHA 4e61a27c](https://github.com/thp32tt/OutRun2006Tweaks/commit/4e61a27c1e7af7ccddc1df572d1703f8268649f8); 기존 sparse verifier 실패를 동일 TASK에서 수리한 최종 [validation-bearing SHA dcfa05b4](https://github.com/thp32tt/OutRun2006Tweaks/commit/dcfa05b469bd8e1173c3dfd55f64c47dbd130f86) 기준 [DX9Ex Active #38291444966](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38291444966) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38291445032](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38291445032) SUCCESS, 원본 material SHA [Full Source Impact #38290947473](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38290947473) 3/3 SUCCESS. 고유 참조 정점 차분 모델·파괴적 회귀 포함. Quest3/VDXR·실게임 FPS RUNTIME_VALIDATION=UNTESTED. 동일 TASK 후속 검증·재보고 중복 가산 금지. **AI 점수: 이전 1157점 + 이번 +1점 = 누적 1158점.** RUN_KEY=CONVERSION-DX9EX-00707 |
 
 | 2026-10-13 03:25 KST | AI 1 | 1832 | +1 | 1833 | 신규 독립 TASK_ID=C1-Q032-Q034-Q100-Q106-20261013-0310: OutRun 한글화 C1 최신 정책으로 이전 C1 미검수 A/B 실저장 HD DDS q032(B236), q034(B236), q100(B233), q106(B202) 4종의 원본/후보 SHA256·SOURCE/CLEAN/FINAL RAW/FLIPY/75/50을 교차 검증. q032 원문 ROI 밖 550 RGBA(정식 UI 결함 단정 금지), q034 CLEAN SHA 미확보로 HOLD; q100 9/19 문구, q106 5/5 문구 부분 C1_STATIC_PASS, 전체 DDS TEST_ONLY/HOLD. q106 보호 마스크 1,852,498 픽셀 변경 0. [실제 증거 커밋 584ea900](https://github.com/thp32tt/OutRun2006Tweaks/commit/584ea9002198467d4ae234399a5711f886de4049) 원격 HEAD 확인. 신규 생성/승격·C2 토큰/자동배포 없음, 게임 UNTESTED. 동일 작업 retry/재보고 추가 점수 0. **AI 점수: 이전 1832점 + 이번 +1점 = 누적 1833점.** RUN_KEY=C1-Q032-Q034-Q100-Q106-20261013-0310 |
 

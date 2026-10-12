@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1811 | ACTIVE | 2026-10-12 09:29 KST |
+| AI 1 | ChatGPT (AI 1) | 1812 | ACTIVE | 2026-10-12 09:35 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1056 | ACTIVE | 2026-10-12 09:27 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 09:35 KST | AI 1 | 1811 | +1 | 1812 | OutRun 무료 ChatGPT 웹 영문 참조 한 번 클릭 첨부용 Chrome MV3 확장 개발. 원본 PNG 8개 GitHub SHA256 검증, 활성 ChatGPT 탭 파일 입력 change 이벤트 전달/첨부 미리보기 수동 확인, PNG clipboard fallback, 프롬프트 복사 기능; API key/유료 호출 없음. ZIP 7,432 bytes SHA256 61cb88785d00212e23dbbe53f189e0294c8c5cdf41f0fdc18b6f554f62db98a4, GitHub code/ZIP commit c991e0c4a36dc3a59f977390797eb0ba352adc5b, Node static/syntax PASS. Actual ChatGPT browser image upload UNTESTED; generation 0, DDS 0, C2/C3/user game unaffected. RUN_KEY=OUTRUN-KOR-FREE-CHROME-REFERENCE-ATTACH-EXTENSION-20261012-AI1 |
 
 | 2026-10-12 09:29 KST | AI 1 | 1810 | +1 | 1811 | OutRun C2 첫 독립 q059 A255 신규 BC3 저장 DDS SHA 742ec2fa0f3867833260ce0794cf8638d3e05883c3e11477625d3310cadda815를 원본 9c352168/A228 81502138/공식 261108cd와 직접 바이트 SHA·Pillow 디코딩 검증. A228→A255 35,959 RGBA, 2,740 BC3 블록이 정확한 원문 글자 bbox 안(밖 RGBA/alpha0), 저장 DDS 재디코딩 대비 생산자 PNG 픽셀불일치0, SOURCE English CLEAN 가시알파39329→0. Native/75/50 검은·회색·흰 배경 및 RAW/FLIPY 육안 PASS: 라이벌과 레이스! 올바른 자소와 기존 구멍/점무늬 개선. **C2_STATIC_SCOPED_PASS q059 Race Rivals 레이블 한정**, 다른 atlas cells 기존 source 대비 252,538픽셀 불일치(기진행 상속), C3/whole evidence gate HOLD, PJR019 OPEN/게임 UNTESTED, 공식 DDS0 승격·C2 신규 제작 DDS0. [QA material commit ba03dcd9](https://github.com/thp32tt/OutRun2006Tweaks/commit/ba03dcd9d1e8d25050539c3d0f4656c1dae706da) JSON2/PNG6/큐 기록 및 원격 HEAD 검증. 기존 A228 SHA 반복이 아닌 새로운 A255 독립 QA 최초 실제 성과 +1 한 번. **AI 점수: 이전 1810점 + 이번 +1점 = 누적 1811점.** REVIEW_ID=C2-Q059-A255-FIRST-EXACT-BC3-20261012-0925 |
 

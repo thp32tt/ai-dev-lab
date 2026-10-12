@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1822 | ACTIVE | 2026-10-12 17:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1104 | ACTIVE | 2026-10-12 16:52 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1105 | ACTIVE | 2026-10-12 17:29 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 17:29 KST | AI 2 | 1104 | +1 | 1105 | DX11 00600: 실게임 알파 비교 8종 C++/회귀 및 MSVC C2026 수리, exact d2c69333 Backend/Build/Fast/OpenXR/HUD SUCCESS. HMD UNTESTED. **AI 점수: 이전 1104점 + 이번 +1점 = 누적 1105점.** RUN_KEY=CONVERSION-DX11-00600 |
 | 2026-10-12 17:06 KST | AI 1 | 1821 | +1 | 1822 | 신규 실물 작업 TASK_ID=OUTRUN-IMAGEGEN-CONTROLLER-PNG-UPLOAD-20261012-USERFIX: GitHub `OutRun2006Tweaks` localization 브랜치에 Playwright 실제 PNG 파일 선택·SHA/PNG CRC·첨부 프리뷰 검증·A/B fail-closed·C2 없는 3슬롯/schedule 소스 패치·수동 Docker 빌드 연결을 신규 구현. 9개 격리 유닛 PASS, N100 기존 base controller.py 추출본 1828줄에 patch/AST/멱등성 PASS; 운영 배포/브라우저 실제 첨부/ImageGen/DDS E2E/게임은 UNTESTED. 기능 구현 성과 1건만 +1. **AI 점수: 이전 1821점 + 이번 +1점 = 누적 1822점.** RUN_KEY=OUTRUN-IMAGEGEN-CONTROLLER-PNG-UPLOAD-20261012-USERFIX |
 | 2026-10-12 17:06 KST | AI 1 | 1831 | -10 | 1821 | 사용자의 최신 명시적 -10점 지시: GitHub가 실제 연결되어 있는데 조회하지 않고 연결 불가라고 주장한 이전 응답에 대한 벌점. 사용자의 점수 수정 우선 원칙을 적용. **AI 점수: 이전 1831점 + 이번 -10점 = 누적 1821점.** RUN_KEY=USER-PENALTY-GITHUB-NOT-CHECKED-20261012 |
 

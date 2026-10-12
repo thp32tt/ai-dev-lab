@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1818 | ACTIVE | 2026-10-12 11:10 KST |
+| AI 1 | ChatGPT (AI 1) | 1819 | ACTIVE | 2026-10-12 11:54 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1073 | ACTIVE | 2026-10-12 12:03 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 11:54 KST | AI 1 | 1818 | +1 | 1819 | OutRun 2006 HD GUI English-only glyph/source separation first batch: 94 total localize_text queue inspected, 16 SHA-pinned text/effect-only RGBA PNGs from ten queue indices extracted from canonical HD source DDS, PSD reference, exact source letter ROI, or manually masked producer SOURCE. No full atlas/vehicle/logo included; flat ZIP with manifest.csv (84 pending indexes), manifest.json, README_KO, zip SHA256 bfba9dc743b00987bcf0f766bd4b5bd03298baede99a6b504027a5cf70d9e00d, 944076 bytes published under localization/graphics/reference_packs/; commit 1d690b771ebb56d319842ce2d1c9096c082c4c79, verified remote HEAD/blob. No Korean generated or DDS produced; C2/C3/ingame validation UNTESTED. RUN_KEY=OUTRUN-KOR-HD-FLAT-TEXT-EXTRACTION-20261012-1154-AI1 |
 
 | 2026-10-12 12:03 KST | AI 2 | 1072 | +1 | 1073 | 독립 TASK_ID=CONVERSION-DX11-00585: 게임 D3D9 SELECTARG1/2 RGB + BLENDTEXTUREALPHA를 HLSL/D3D11 네이티브 Draw/DrawIndexed와 fail-closed DX9Ex fallback에 실제 구현. [material fbd46cba](https://github.com/thp32tt/OutRun2006Tweaks/commit/fbd46cba6f78d99fcc34eb241496636ac9f6a5e8), 컴파일/SAFE-RETURN 회귀 교정 [validation aa562e53](https://github.com/thp32tt/OutRun2006Tweaks/commit/aa562e53fd846da02f61f67d38e11873f7e16cf3); exact-SHA [Backend Gate #38197434355](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38197434355)(validate+readiness SUCCESS), [Build #38197439033](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38197439033), [Fast #38197434353](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38197434353), [OpenXR #38197439024](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38197439024), [HUD #38197439108](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38197439108) SUCCESS. 20 destructive mutation/28 alpha cases, C6 [c5348524](https://github.com/thp32tt/OutRun2006Tweaks/commit/c53485248b45838561b85f8bbf7b1b9a95bade11) [skip ci] +0, HMD/VDXR/gamepad RUNTIME_VALIDATION=UNTESTED, DXVK freeze 유지. **AI 점수: 이전 1072점 + 이번 +1점 = 누적 1073점.** RUN_KEY=CONVERSION-DX11-00585 |
 

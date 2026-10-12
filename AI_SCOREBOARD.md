@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1815 | ACTIVE | 2026-10-12 09:59 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1059 | ACTIVE | 2026-10-12 09:57 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1060 | ACTIVE | 2026-10-12 10:10 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 10:10 KST | AI 2 | 1059 | +1 | 1060 | 독립 TASK_ID=CONVERSION-DX9EX-00648: OutRun2006Tweaks DX9Ex R33 스테레오 Draw의 depth/stencil 쓰기 판정을 매 드로우에서 반복 평가하지 않고 StateBlock 세대가 유효한 경우 snapshot/관련 setter 변경 시에만 갱신하는 실제 C++ 최적화. 스텐실 가능 시 live depth-format 검사와 StateBlock 불신/복구 fallback 보존, 기존 R33 검증기에 신규 부정변이 10개 추가. [material/exact validation SHA 6a12945f](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a12945f810eb74daa6298aec8333d4e5cb72155). [DX9Ex Active #38190315103](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38190315103) 정책/호스트/게임/전체 컴파일/패키지 5/5 SUCCESS, [Domain #38190315083](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38190315083) SUCCESS, [Full Impact #38190315090](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38190315090) 3/3 SUCCESS, [HUD Inspector #38190315147](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38190315147) SUCCESS. 별도 C6 [skip ci] SHA c6fd4883f9b33b07c0947ba79d642429ad5dbea8, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 실기 FPS 수치 미확정. 신규 독립 material 성과 +1 단 한 번, 재보고·C6 중복 +0. **AI 점수: 이전 1059점 + 이번 +1점 = 누적 1060점**. RUN_KEY=CONVERSION-DX9EX-00648 |
 
 | 2026-10-12 09:59 KST | AI 1 | 1814 | +1 | 1815 | OutRun C2 q026 C1 신규 영문 글자층 PNG SHA 4aa319b9(별모양)/46a7cccb(말풍선) 2개에 대해 canonical English DDS d44868cb/CLEAN 9d9cb6a1/기존 저장 DDS 2dfc6214 각각 실물 SHA 확인, native 2048²·75/50·RAW/FLIPY SOURCE/CLEAN/GLYPH/SAVED 독립 이미지와 alpha-mask 실제 픽셀 검사. PNG 원본 RGBA 30360+30535 모두 0불일치/원본 마스크 밖 글자층0/투명 RGB0, SOURCE→CLEAN 및 SOURCE→기존 DDS 두 원문 bbox 밖0; 하지만 SOURCE 효과 마스크 14835+4721 누락, 각각 8px 내 11531/4721 인접 영역에 획 효과·그림자 누락 가능성으로 **C2_SOURCE_REFERENCE_SCOPED_PASS_2, FULL_EFFECT_PLATE_HOLD**. 기존 q026 C390 REWORK/영문 효과 미승인/ImageGen 첨부 미확인/신규 한국어 PNG DDS0/C3 및 실게임 UNTESTED 유지. 새 C2 실제 근거 JSON2·비교 PNG10·큐 기록 [OutRun HEAD fea46a29](https://github.com/thp32tt/OutRun2006Tweaks/commit/fea46a292b06037b38b25e7d3e9190ab7c10e319) 원격 verified. 새로운 두 source-reference SHA에 관한 단일 독립 QA 성과 +1, 이전 q026 한글 DDS SHA 재검증은 +0. **AI 점수: 이전 1814점 + 이번 +1점 = 누적 1815점.** REVIEW_ID=C2-Q026-C1-TWO-NEW-ENGLISH-GLYPH-SHA-20261012-0950 |
 

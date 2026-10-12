@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-13 00:35 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1149 | ACTIVE | 2026-10-13 01:39 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1150 | ACTIVE | 2026-10-13 02:00 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-13 02:00 KST | AI 2 | 1149 | +1 | 1150 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00701 / RUN_KEY=CONVERSION-DX9EX-00701 단 1회: DX9Ex R30 Indexed-UP sparse mask의 전체 정점 zero-fill 제거(이전 참조 인덱스만 초기화), VB 디코더 분리, C++ 성능 소스 및 파괴적 회귀 검증. [material/validation SHA 63208fea](https://github.com/thp32tt/OutRun2006Tweaks/commit/63208feaa4d55a5f041a4d07ffcef2307a53d27b); DX9Ex Active #38280427215 5/5, Domain #38280427337, Full Source Impact #38280427460 3/3 동일 SHA 모두 SUCCESS. Quest 3 / VDXR RUNTIME_VALIDATION=UNTESTED. |
 | 2026-10-13 01:39 KST | AI 2 | 1148 | +1 | 1149 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00700: `thp32tt/OutRun2006Tweaks` `vr-d3d9ex-focus`에서 실제 R30 stereo SkyGlow `D3DSBT_ALL` per-Present 객체 생성 제거, resource-epoch 캐시 및 매 프레임 `Capture()` 갱신, Reset/resize/실패/모노 전환 안전 해제 C++ 성능 구현과 27개 파괴적 회귀 검사 확장. [material/validation-bearing SHA d01e9d30](https://github.com/thp32tt/OutRun2006Tweaks/commit/d01e9d301153da129ffc653890e52a747a4f64b8). Exact SHA [DX9Ex Active #38277961199](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277961199) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38277961122](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277961122) SUCCESS, [Full Source Impact #38277961226](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277961226) source-domain/game-analyze/host-analyze 3/3 SUCCESS. Quest3/VDXR 및 FPS/p95/p99 실기 검증 미실행 RUNTIME_VALIDATION=UNTESTED. 한 TASK 성과 1회 가산, 동일 SHA 재검증/재보고 0점. **AI 점수: 이전 1148점 + 이번 +1점 = 누적 1149점.** RUN_KEY=CONVERSION-DX9EX-00700 |
 
 | 2026-10-13 01:31 KST | AI 2 | 1146 | +1 | 1147 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00699: OutRun2006Tweaks `vr-d3d9ex-focus` 실제 R32 DirectGPU ring busy/ACK fence 동안 중복 cross-owner source-surface snapshot을 지연하고, 안전한 slot+source 확인 후에만 이전 publication을 해제하는 C++ 성능 구현 [material SHA a6a498c](https://github.com/thp32tt/OutRun2006Tweaks/commit/a6a498c0795ded5668e3384101ee9472439c8952). 동일 TASK의 실패 정책·ownership·Reset/transport producer EVENT 검증기 수리 후 [validation-bearing SHA c5aafcb](https://github.com/thp32tt/OutRun2006Tweaks/commit/c5aafcb850bcc0c75e7a7f28e7f5862d48f0bbde); 정확 SHA [DX9Ex Active #38277189177](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277189177) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38277189106](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38277189106) SUCCESS, 원본 C++ SHA [Full Source Impact #38276477612](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38276477612) 3/3 SUCCESS. Quest3/VDXR 실기와 FPS/p95/p99 미실행 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry E003/E004 및 검증기 수리·반복 보고 추가 0점. **AI 점수: 이전 1146점 + 이번 +1점 = 누적 1147점.** RUN_KEY=CONVERSION-DX9EX-00699 |

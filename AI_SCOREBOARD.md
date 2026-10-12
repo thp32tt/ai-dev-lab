@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1822 | ACTIVE | 2026-10-12 17:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1109 | ACTIVE | 2026-10-12 17:56 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1110 | ACTIVE | 2026-10-12 18:20 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 18:20 KST | AI 2 | 1109 | +1 | 1110 | 독립 TASK_ID=CONVERSION-DX9EX-00678: OutRun2006Tweaks vr-d3d9ex-focus R29 alpha/depth/cull fragile-world 스테레오 정책을 매 Draw 대신 live 효과 상태 동기화/정상 Setter 갱신 시 1회 계산하는 실제 C++ 성능 최적화, 신규 10개 파괴적 변이 검사. Validation-bearing material SHA [0fe21852](https://github.com/thp32tt/OutRun2006Tweaks/commit/0fe21852eb530fafb5ebe86c26c1fda0f298cb26), 정확 SHA DX9Ex Active [#38228230131](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230131) 5/5 SUCCESS, Domain [#38228230273](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230273) SUCCESS, Full Source Impact [#38228230361](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230361) 3/3 SUCCESS, HUD Inspector [#38228230230](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230230) 2/2 SUCCESS. C6 bookkeeping 별도 [dc8e5396](https://github.com/thp32tt/OutRun2006Tweaks/commit/dc8e5396f56e0c5b8d27e95cb09c50270574de73) [skip ci], 추가 가산 없음. 실제 Quest3/VDXR 및 FPS/p95/p99 RUNTIME_VALIDATION=UNTESTED; DXVK 동결, 타 브랜치 미변경. 동일 TASK retry/재확인/C6 중복 가산 없음. **AI 점수: 이전 1109점 + 이번 +1점 = 누적 1110점.** RUN_KEY=CONVERSION-DX9EX-00678 |
 
 | 2026-10-12 17:56 KST | AI 2 | 1108 | +1 | 1109 | 신규 독립 TASK_ID=CONVERSION-DX11-00601: OutRun2006Tweaks vr-dx11-native-r71 실제 게임 D3D9 BOTHSRCALPHA/BOTHINVSRCALPHA -> native D3D11 RGB/alpha OM + 역방향 오버 16개 채널 마스크 상태 C++ 구현 material [d76c4c36](https://github.com/thp32tt/OutRun2006Tweaks/commit/d76c4c36c0d51b7bc316105eafd21f3568be4f0a), 신규 19개 파괴적 변이·131072 수치 검사. 기존 00599 검증기 분기 오탐 실패 수리 후 exact validation-bearing [f013416d](https://github.com/thp32tt/OutRun2006Tweaks/commit/f013416de2fe7d331675bfcfd18310b2e8f13478): Backend #38225154188, Build #38225158890, DX11 Fast #38225154190, OpenXR #38225158897, HUD #38225159005 전부 SUCCESS. C6 [127ef4df](https://github.com/thp32tt/OutRun2006Tweaks/commit/127ef4dfa1a108d75f2c77f5832bcbffd3ecde8c) 별도 [skip ci]. DX9Ex Draw/Present/입력 폴백 보존, DXVK 동결, Quest3/VDXR·게임패드 RUNTIME_VALIDATION=UNTESTED. 같은 TASK 재검증·수리·C6 중복 가산 없음. **AI 점수: 이전 1108점 + 이번 +1점 = 누적 1109점.** RUN_KEY=CONVERSION-DX11-00601 |
 | 2026-10-12 17:55 KST | AI 2 | 1107 | +1 | 1108 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00677: OutRun2006Tweaks vr-d3d9ex-focus R30 VB/IB shadow registry epoch-cache C++ 실질 구현 SHA 6a87d2ab113aabf5968992324fae95694bc78489, 기존 DX9Ex Active policy validator 오류를 retry E003에서 실제 수리한 validation-bearing SHA d92299085c2aed692475fefb24259540aff94a2c. 해당 정확 SHA DX9Ex Active #38225944321 policy/host/game/full-chain-compile/package 5/5 SUCCESS 및 Domain Isolation #38225944378 SUCCESS; 초기 실패 #38225566416은 성공 판정이나 별도 가점 아님. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/C6에 추가 점수 없음. **AI 점수: 이전 1107점 + 이번 +1점 = 누적 1108점.** RUN_KEY=CONVERSION-DX9EX-00677 |

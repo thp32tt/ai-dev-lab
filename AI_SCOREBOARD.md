@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1827 | ACTIVE | 2026-10-12 23:39:46 KST |
+| AI 1 | ChatGPT (AI 1) | 1828 | ACTIVE | 2026-10-12 23:58:39 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1140 | ACTIVE | 2026-10-12 23:52 KST |
 
 ## 점수 규칙
@@ -1708,3 +1708,5 @@
 | 2026-10-12 22:19 KST | AI 1 | 1825 | +1 | 1826 | OutRun C1 independent new 4-asset exact SOURCE/CLEAN/final SHA and saved DDS RAW/FLIPY/75/50 contact QA q053/q054/q063/q111; all HOLD (no falsified PASS/REWORK), q063 user P0 remains OPEN, no C2 tokens or Docker/game deploy, RUNTIME_VALIDATION=UNTESTED. [C1 evidence commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f04b0d5cd840194c94a077648c0f06dc8c5af6b). One batch one achievement, repeated user triggers +0. **AI 점수: 이전 1825점 + 이번 +1점 = 누적 1826점.** RUN_KEY=C1-Q053-Q054-Q063-Q111-20261012-2110 |
 
 | 2026-10-12 23:39:46 KST | AI 1 | 1826 | +1 | 1827 | 신규 수동 이미지 제작용 HD PNG 묶음: 정본 원본 12개 PNG, 번역 매핑 164행 및 전체 전사 759행, SHA-256/방향 매니페스트·공통 한국어 ImageGen 프롬프트를 ZIP으로 재구성하고 ZIP/PIL 검증 PASS; 기존 특수 다운로드 브랜치 신규 커밋 ca3ce83f7bded973db3532cd912e6b10b74e75d6 원격 확인. 3개 방향 검증, 9개 혼합방향 검토 필요, 73개 미확보 HD 원본 명시, RUNTIME_VALIDATION=UNTESTED. 이전 ZIP 재보고가 아닌 새 번역 대응 통합 묶음 한 성과만 +1. **AI 점수: 이전 1826점 + 이번 +1점 = 누적 1827점.** RUN_KEY=OUTRUN-MANUAL-TRANSLATED-PNG-PACK-20261012-2323 |
+
+| 2026-10-12 23:58:39 KST | AI 1 | 1827 | +1 | 1828 | OutRun C1 independent SHA-pinned SOURCE/CLEAN/FINAL persisted DDS batch q051/q057/q094/q197. 4 distinct byte-verified candidates, 7-view combined JPG and pixel discrepancy coordinates committed to GitHub 3a1839461062904b6aeb2623492185556430d00c; 4 HOLD, 0 fabricated PASS/C2, no DDS generation, Docker deployment, or game validation. **AI 점수: 이전 1827점 + 이번 +1점 = 누적 1828점.** RUN_KEY=OUTRUN-C1-20261012-2340-Q051-057-094-197 |

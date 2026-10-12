@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1823 | ACTIVE | 2026-10-12 18:30 KST |
+| AI 1 | ChatGPT (AI 1) | 1824 | ACTIVE | 2026-10-12 19:10 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1115 | ACTIVE | 2026-10-12 19:07 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 19:10 KST | AI 1 | 1823 | +1 | 1824 | New unique C1 independently persisted 4-asset QA q059/q161/q193/q176: independently downloaded SHA-confirmed HD English source, official and candidate DDS and CLEAN source artifacts where available; native/75/50 RAW/FLIPY source-clean-final board + exact numeric machine report committed [OutRun C1 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/46ef9c299f1cd5552531ce7b18f1c4b61ae7d19d). q161 C1_STATIC_PASS for exactly 3 bounded cells and 35 others remain HOLD, q059 HOLD 383 pixels outside examined ROI, q193 HOLD CLEAN contamination, q176 HOLD unavailable CLEAN. No Korean asset production, C2 token, C3/runtime/deploy/game change. One new material independent QA result only; no repeat on pre-reviewed same-SHA candidates. **AI 점수: 이전 1823점 + 이번 +1점 = 누적 1824점.** RUN_KEY=C1-Q059-Q161-Q193-Q176-20261012-1840 |
 
 | 2026-10-12 19:07 KST | AI 2 | 1114 | +1 | 1115 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00680: R13 하위 DirectGPU 전송의 host ACK 대기 슬롯에 대한 불필요한 GPU EVENT GetData 조회 제거 및 소비자 ACK → 생산자 EVENT 순서 재정렬(정확 슬롯 ACK·S_FALSE·hard-error fail-closed 보존). 실제 C++ material SHA aedf16d9ffad3065ab7ee37278c16ceaf902c2a8, 기존 reset/transport 검증기 수리 후 exact validation-bearing SHA 27cd8f276e4de446db42e709ab2c25ec2326dcf9. DX9Ex Active #38233151101 5/5 SUCCESS, Domain Isolation #38233151015 SUCCESS, 원본 material Full Source Impact #38232677091 3/3 SUCCESS. 신규 R13 검증 9 모델/11 부정변이 PASS, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 실패 검증기 수리/재실행 중복 가점 없음. **AI 점수: 이전 1114점 + 이번 +1점 = 누적 1115점.** RUN_KEY=CONVERSION-DX9EX-00680 |
 | 2026-10-12 19:06 KST | AI 2 | 1113 | +1 | 1114 | 신규 독립 TASK_ID=CONVERSION-DX11-00604: thp32tt/OutRun2006Tweaks vr-dx11-native-r71 실제 게임 D3D9 INVSRCALPHA/ZERO 및 INVSRCALPHA/ONE 블렌드 → 네이티브 D3D11 RGB/alpha OM, 별도 16종 마스크 캐시 및 실게임 Draw/DrawIndexed 진단 연결 C++ 구현 material [1f70374a](https://github.com/thp32tt/OutRun2006Tweaks/commit/1f70374ae61ed415714839570e761c9963362d85). 기존 00596/00601/00602 부정변이 검사 범위 오탐을 실제 CI 실패 기반 수리한 validation-bearing SHA [c479c503](https://github.com/thp32tt/OutRun2006Tweaks/commit/c479c503fb4fac5093402708c3d03a0ef525cc96): Backend Gate [#38232780981](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38232780981) validate+readiness smoke SUCCESS, Build [#38232788014](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38232788014) SUCCESS, DX11 Fast [#38232781045](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38232781045) SUCCESS, OpenXR [#38232788101](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38232788101) SUCCESS, HUD [#38232788072](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38232788072) SUCCESS. 신규 28개 부정변이, 131,072 수치 검사 통과; C6 별도 [skip ci] 기록. DX9Ex Draw/Present/게임패드 보존, DXVK 동결, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/수리/C6 중복 가점 없음. **AI 점수: 이전 1113점 + 이번 +1점 = 누적 1114점.** RUN_KEY=CONVERSION-DX11-00604 |

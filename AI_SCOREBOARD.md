@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1817 | ACTIVE | 2026-10-12 10:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1066 | ACTIVE | 2026-10-12 10:56 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1067 | ACTIVE | 2026-10-12 10:58 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 10:58 KST | AI 2 | 1066 | +1 | 1067 | 신규 독립 TASK_ID=CONVERSION-DX11-00582: OutRun 실제 D3D9 stage0 SELECTARG1/SELECTARG2 RGB + 독립 ADDSMOOTH(alpha = texture + diffuse * (1-texture))를 native D3D11 HLSL PS 2종과 Draw/DrawIndexed opt-in visible diagnostic inset에 연결한 실제 C++ game code [material 4cf1ad50](https://github.com/thp32tt/OutRun2006Tweaks/commit/4cf1ad50c86e1cf1c6208069d7b664e53637aaae), 기존 00553 ADD readiness 회귀 불일치 원인을 실제 코드에서 보수한 [validation-bearing 00c3c910](https://github.com/thp32tt/OutRun2006Tweaks/commit/00c3c91040e0138a31200ba5b8d5b0abb463203a). 신규 20개 destructive mutation + 5개 alpha 계산, exact-SHA [Backend Conversion Gate #38193205092](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193205092) validate/smoke SUCCESS, [Build #38193207723](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193207723) SUCCESS, [DX11 Fast #38193205090](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193205090) SUCCESS, OpenXR #38193205087/#38193207744 SUCCESS, HUD Inspector #38193207734 SUCCESS. C6 bookkeeping [f5e62bd8](https://github.com/thp32tt/OutRun2006Tweaks/commit/f5e62bd82354dbc7fdd8c93767c67640014f3425) [skip ci] 별도이며 신규 점수 없음. DXVK 동결, DX9Ex fallback 유지; Quest3/VDXR 게임·패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/repair/C6 중복 +0. **AI 점수: 이전 1066점 + 이번 +1점 = 누적 1067점**. RUN_KEY=CONVERSION-DX11-00582 |
 
 | 2026-10-12 10:56 KST | AI 2 | 1065 | +1 | 1066 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00651: DX9Ex R33 depth/stencil 쓰기 상태 조회에서 스텐실 비활성 시 8개, 쓰기 마스크 0 시 7개 불필요한 D3D9 GetRenderState 읽기를 생략하는 실제 C++ 핫패스 [material SHA a6569ee2](https://github.com/thp32tt/OutRun2006Tweaks/commit/a6569ee25e49f77cfb0095dde0e1ea6bec3d6901). stencil enable/mask 재활성화에서 부분 캐시 무효화 및 StateBlock/깊이 포맷 불신시 실패폐쇄 유지. 최초 정책 검증기의 빈 depth 조기 게시 오판을 동일 TASK [e4677262](https://github.com/thp32tt/OutRun2006Tweaks/commit/e4677262413c9469f43212625a9e71674cd2ea3a)로 수리하고, 정책 트리거를 수리한 [final validation-bearing SHA aafe932b](https://github.com/thp32tt/OutRun2006Tweaks/commit/aafe932b3fec68c3ff6c486b43b3d21d0a9a673e)에서 [DX9Ex Active #38193336732](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193336732) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38193336765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193336765) SUCCESS, [Full Source Impact #38193336690](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193336690) 3/3 SUCCESS. 최초 material SHA [HUD Inspector #38193024522](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193024522) SUCCESS. Quest 3/VDXR HMD 및 실제 FPS 미측정으로 RUNTIME_VALIDATION=UNTESTED. 최초 독립 물리 소스 성과만 +1, verifier repair·retry·C6·재보고 추가 +0. **AI 점수: 이전 1065점 + 이번 +1점 = 누적 1066점**. RUN_KEY=CONVERSION-DX9EX-00651 |
 

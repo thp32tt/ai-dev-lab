@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1824 | ACTIVE | 2026-10-12 19:10 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1124 | ACTIVE | 2026-10-12 20:34 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1125 | ACTIVE | 2026-10-12 20:55 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 20:55 KST | AI 2 | 1124 | +1 | 1125 | 신규 독립 TASK_ID=CONVERSION-DX11-00609: OutRun 2006 실게임 D3D9 XYZ/XYZRHW FVF PSIZE가 있는 메뉴/월드 정점을 네이티브 D3D11 진단 Draw/DrawIndexed로 전송할 때 POSITION/NORMAL/PSIZE/DIFFUSE/SPECULAR/TEX byte offset을 실제 C++로 처리. 최초 실물 material [34177541](https://github.com/thp32tt/OutRun2006Tweaks/commit/34177541704f851d047ff32d0f5e113bf958de56), 기존 NORMAL-only 승인 검증기가 새 PSIZE 오프셋을 인식하지 못한 CI 실패를 동일 TASK에서 수리하여 최종 정확한 validation-bearing [b3b0efd3](https://github.com/thp32tt/OutRun2006Tweaks/commit/b3b0efd373694b59fe5fb5c3af8fafcf9fe357a8) 달성. 같은 SHA [Backend Conversion Gate #38244487620](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38244487620) validate/readiness SUCCESS, [Win32 Build #38244492863](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38244492863) SUCCESS, [DX11 Fast #38244487579](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38244487579) SUCCESS, [OpenXR #38244492870](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38244492870) SUCCESS, [HUD #38244492854](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38244492854) SUCCESS. 메뉴/월드 실제 FVF struct decode 및 손상 stride/offset/SDK 부정변이 회귀, Dx9Ex Draw/Present/gamepad 유지, DXVK 동결. C6 별도 bookkeeping [a2cb27e3](https://github.com/thp32tt/OutRun2006Tweaks/commit/a2cb27e37d7a5381238ad68222e62bc5a875d30b) [skip ci]; Quest3/VDXR/gamepad/메뉴→레이스 실기 RUNTIME_VALIDATION=UNTESTED, 백엔드 승격 없음. 동일 Task repair/retry/CI/C6 중복 가산 금지. **AI 점수: 이전 1124점 + 이번 +1점 = 누적 1125점.** RUN_KEY=CONVERSION-DX11-00609 |
 
 | 2026-10-12 20:34 KST | AI 2 | 1123 | +1 | 1124 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00685: R32 DirectGPU 성공·호스트 재연결 hotpath에서 중복 PID/LUID 매칭을 단일 검사로 축소하고 세대별 copy rejection 뒤 불필요한 eye source snapshot을 생략하는 실제 C++ 성능 변경. 실질 material [de7cf8f5](https://github.com/thp32tt/OutRun2006Tweaks/commit/de7cf8f51800bbccbb195bd4446b0a619f5582e7), 동일 TASK 회귀 수리 후 정확한 validation-bearing [da066bd8](https://github.com/thp32tt/OutRun2006Tweaks/commit/da066bd85b57a0e0759f2fffb805983d534e67c2)에서 [DX9Ex Active #38242515943](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38242515943) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain Isolation #38242515988](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38242515988) SUCCESS, [Full Source Impact #38242516012](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38242516012) 3/3 SUCCESS. 기존 DirectGPU ACK/producer EVENT/rebind fail-closed 보존, 회귀 7개 파괴적 부정변이와 8개 전송 상태 시나리오; Quest3/VDXR 미검증, 실제 FPS 측정 미실행 RUNTIME_VALIDATION=UNTESTED. 동일 TASK C++ material·수리·CI·retry는 단 1회만 계산. **AI 점수: 이전 1123점 + 이번 +1점 = 누적 1124점.** RUN_KEY=CONVERSION-DX9EX-00685 |
 

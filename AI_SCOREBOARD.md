@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1822 | ACTIVE | 2026-10-12 17:06 KST |
+| AI 1 | ChatGPT (AI 1) | 1823 | ACTIVE | 2026-10-12 18:30 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1111 | ACTIVE | 2026-10-12 18:20 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 18:30 KST | AI 1 | 1822 | +1 | 1823 | 새로운 C1 독립 4개 A/B 저장 DDS 검증 배치: q035/q026/q154/q098 HD 영문 SOURCE DDS 4개/실저장 DDS 4개 SHA256 실확인, q035/q026/q098 CLEAN PNG 각 실 SHA 확인·SOURCE→CLEAN→FINAL 대조, 정확 RAW/FLIPY/native/75/50 전체 단일 JPG와 픽셀 JSON/범위별 판정 JSON, WORKLOG/기존 큐 4건 GitHub 커밋. q035/q026/q098 scoped C1_STATIC_PASS (실게임/전체 승인 아님), q154 CLEAN/공유 아틀라스 HOLD. q098 원본 14개 1~2 alpha fringe(y122) 정정·CLEAN 제거를 실픽셀 확인. 신규 생성 한국어 PNG/DDS0, C2/C3/게임 승인 없음, 본 배치 1성과만 가산. [GitHub 검증 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/29ce19e56705189951705c9d7ac3b646b320c4ba). 이전 사용자 -10점 수정 뒤 최신 SSOT 1822점을 정확히 기준으로 함. **AI 점수: 이전 1822점 + 이번 +1점 = 누적 1823점.** RUN_KEY=C1-Q035-Q026-Q154-Q098-20261012-1810. |
 | 2026-10-12 18:20 KST | AI 2 | 1110 | +1 | 1111 | 신규 독립 TASK_ID=CONVERSION-DX11-00602: vr-dx11-native-r71 실제 게임 D3D9 SRCALPHA/ZERO -> D3D11 source-alpha attenuated RGB/alpha OM, 별도 16개 마스크 캐시 및 Draw/DrawIndexed C++ 연결 material fca94958e1d652d0bbd787d3486ad5b31701d26a. 00598 multiplicative mutation descriptor 범위 오탐 및 00602 숫자 테스트 source 변수 shadowing TypeError를 실제 수리한 validation-bearing SHA 1900c2f7fe247446f47380e8cd3e867d3d02d7eb: Backend Conversion Gate #38227963330 validate+smoke SUCCESS, Build #38227970912 SUCCESS, DX11 Fast #38227963430 SUCCESS, OpenXR #38227970879 SUCCESS, HUD Inspector #38227970869 SUCCESS. C6 [skip ci] bookkeeping e847cecde8e8b49580c35390519a7bc3ef11a7ac 별도. DXVK 동결, 원본 DX9Ex Draw/Present/입력 보호, Quest3/VDXR·게임패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK 재시도 및 검증 수리·상태 기록은 추가 가점 없음. **AI 점수: 이전 1110점 + 이번 +1점 = 누적 1111점.** RUN_KEY=CONVERSION-DX11-00602 |
 | 2026-10-12 18:20 KST | AI 2 | 1109 | +1 | 1110 | 독립 TASK_ID=CONVERSION-DX9EX-00678: OutRun2006Tweaks vr-d3d9ex-focus R29 alpha/depth/cull fragile-world 스테레오 정책을 매 Draw 대신 live 효과 상태 동기화/정상 Setter 갱신 시 1회 계산하는 실제 C++ 성능 최적화, 신규 10개 파괴적 변이 검사. Validation-bearing material SHA [0fe21852](https://github.com/thp32tt/OutRun2006Tweaks/commit/0fe21852eb530fafb5ebe86c26c1fda0f298cb26), 정확 SHA DX9Ex Active [#38228230131](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230131) 5/5 SUCCESS, Domain [#38228230273](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230273) SUCCESS, Full Source Impact [#38228230361](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230361) 3/3 SUCCESS, HUD Inspector [#38228230230](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38228230230) 2/2 SUCCESS. C6 bookkeeping 별도 [dc8e5396](https://github.com/thp32tt/OutRun2006Tweaks/commit/dc8e5396f56e0c5b8d27e95cb09c50270574de73) [skip ci], 추가 가산 없음. 실제 Quest3/VDXR 및 FPS/p95/p99 RUNTIME_VALIDATION=UNTESTED; DXVK 동결, 타 브랜치 미변경. 동일 TASK retry/재확인/C6 중복 가산 없음. **AI 점수: 이전 1109점 + 이번 +1점 = 누적 1110점.** RUN_KEY=CONVERSION-DX9EX-00678 |
 

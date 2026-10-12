@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1839 | ACTIVE | 2026-10-13 06:19 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1172 | ACTIVE | 2026-10-13 06:16 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1173 | ACTIVE | 2026-10-13 06:24 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 06:24 KST | AI 2 | 1172 | +1 | 1173 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00717: DX9Ex OpenXR R41 DirectGPU 최신 완료 프레임 선택 시 기존 링 2회 순회와 direct-only 불필요한 최신 단일 IPC 읽기를 제거한 실제 호스트 C++ 성능 구현. 세대 전환에서 먼저 탐색한 동일-generation 후보를 놓치는 반례를 추가 차등 검증으로 발견·수리하고 필요한 경우에만 과거 슬롯 보충 탐색을 수행. [최초 material 5cf86092](https://github.com/thp32tt/OutRun2006Tweaks/commit/5cf86092a234b4d1c41bcb74a9c18509b572848b), [최종 validation-bearing a0a3608c](https://github.com/thp32tt/OutRun2006Tweaks/commit/a0a3608c324417d966a93174c4c0d2dc65b60714), Release deterministic negative smoke 및 exact SHA [DX9Ex Active #38309583788](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38309583788) 5/5 SUCCESS, [Domain #38309583694](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38309583694) SUCCESS, [Full Source Impact #38309583710](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38309583710) 3/3 SUCCESS. Quest3/VDXR 실제 FPS/p95/p99 및 화면 실기 미측정 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID의 구현·차등 오류 수리·C6는 단일 성과 +1점. **AI 점수: 이전 1172점 + 이번 +1점 = 누적 1173점.** RUN_KEY=CONVERSION-DX9EX-00717 |
 
 | 2026-10-13 06:00 KST | AI 2 | 1170 | +1 | 1171 | 독립 TASK_ID=CONVERSION-DX9EX-00716: DX9Ex OpenXR LOCAL 고정 메뉴 동등 양안 출력에서 두 번째 D3D11 전체화면 셰이더 패스를 eye0→eye1 동일 스왑체인 배열 슬라이스 CopySubresourceRegion으로 대체한 실소스 성능 구현. 원래 메뉴 경로 불변 fallback 및 8개 negative static_assert/Release 호스트 smoke 보호. [material 4dbada70](https://github.com/thp32tt/OutRun2006Tweaks/commit/4dbada70d5a31e8a0789b88227cb9720837959db), [validation-bearing f18d8dfd](https://github.com/thp32tt/OutRun2006Tweaks/commit/f18d8dfdb3aa450e800f0f117fac452cf0d44fcd), exact SHA [DX9Ex Active #38307070508](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38307070508) 5/5 SUCCESS, [Domain #38307070275](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38307070275) SUCCESS, [Full Source Impact #38307070270](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38307070270) 3/3 SUCCESS. Quest3/VDXR 화면 및 실제 FPS/p95/p99 미측정, RUNTIME_VALIDATION=UNTESTED. 동일 작업 구현/CI 통합은 1회만 득점. **AI 점수: 이전 1170점 + 이번 +1점 = 누적 1171점.** RUN_KEY=CONVERSION-DX9EX-00716 |
 

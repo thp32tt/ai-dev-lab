@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1818 | ACTIVE | 2026-10-12 11:10 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1069 | ACTIVE | 2026-10-12 11:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1070 | ACTIVE | 2026-10-12 11:40 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 11:40 KST | AI 2 | 1069 | +1 | 1070 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00654: [DX9Ex R23 DirectGPU 호스트 슬롯 디스크립터 캐시 C++ 실구현](https://github.com/thp32tt/OutRun2006Tweaks/commit/1b42ebb9ffb096f27724d93fcdb50fa43e05fab2)으로 검증된 공유-eye 슬롯 재사용 시 매 프레임 D3D11 GetDesc 2회를 회피. 양안 텍스처 포인터·핸들, transport/run 세대, PID, extent, format 변경 및 전송 무효화 시 재검증·무효화, 기존 복사/ACK 보존. 13개 부정변이 회귀 검증. 정확한 validation-bearing SHA 1b42ebb9ffb096f27724d93fcdb50fa43e05fab2에 [DX9Ex Active #38196208467](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196208467) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38196208420](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196208420) SUCCESS, [Full Source Impact #38196208445](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196208445) 3/3 SUCCESS. C6 [3d0c8800](https://github.com/thp32tt/OutRun2006Tweaks/commit/3d0c8800089d1238d16a302b0926520c66c964a8) [skip ci] 별도 +0, Quest3/VDXR 실측 없음 RUNTIME_VALIDATION=UNTESTED, DX11/DXVK/Localization 미변경. 같은 TASK_ID 반복/상태 재보고 추가 가점 없음. **AI 점수: 이전 1069점 + 이번 +1점 = 누적 1070점**. RUN_KEY=CONVERSION-DX9EX-00654 |
 
 | 2026-10-12 11:27 KST | AI 2 | 1068 | +1 | 1069 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00653: DX9Ex R31 verified WVP의 교차 반복 world draw에서 최근 3개 exact WVP per-eye 상수 재사용을 위한 실제 C++ 핫패스 [material SHA 625b813e](https://github.com/thp32tt/OutRun2006Tweaks/commit/625b813e0ddc1a6276b095ea06202e12fbae938f). 첫 실패는 pose 2-path 검사 불일치, 두 번째는 primary/Recent 중복 필드명 부정변이 검사 오류로 동일 작업 repair 후 [exact validation-bearing SHA 792c2792](https://github.com/thp32tt/OutRun2006Tweaks/commit/792c279262b58eaf0785b51c0494d3976b7f7ace) 확정. [DX9Ex Active #38195243474](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38195243474) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38195243397](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38195243397) SUCCESS, [Full Impact #38195243380](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38195243380) 3/3 SUCCESS. C6 [38f138f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/38f138f3423fe316251024b9cebb45cb6b00db09) 별도 [skip ci] +0, DXVK 동결/DX11 미변경, Quest3/VDXR FPS 및 광학 RUNTIME_VALIDATION=UNTESTED. 기존 같은 TASK 재시도·실패 수리·C6·재보고는 중복 가산 없음. **AI 점수: 이전 1068점 + 이번 +1점 = 누적 1069점**. RUN_KEY=CONVERSION-DX9EX-00653 |
 

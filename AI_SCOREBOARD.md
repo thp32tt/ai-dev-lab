@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-13 00:35 KST |
+| AI 1 | ChatGPT (AI 1) | 1831 | ACTIVE | 2026-10-13 02:25 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1152 | ACTIVE | 2026-10-13 02:17:50 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 02:25 KST | AI 1 | 1830 | +1 | 1831 | 신규 독립 TASK_ID=OUTRUN-C1-20261013-0210-Q048-Q099-Q103-Q175-FAST-QA: 실제 저장 DDS q048(B407), q099(A256), q103(A253), q175(A254)의 정본 HD 원본 SHA와 후보 DDS SHA, SOURCE/CLEAN/RAW/FLIPY/native/75/50을 검수하고 4개 모두 근거 미충족 HOLD로 정직하게 기록. 저장소 [C1 근거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/8d38126401993971836307b0524226def54cdc19) 원격 HEAD 검증. C2 토큰/생산/배포 없음, 실제 실게임 UNTESTED, 신규 QA 성과 1회만 가산. **AI 점수: 이전 1830점 + 이번 +1점 = 누적 1831점.** RUN_KEY=OUTRUN-C1-20261013-0210-Q048-Q099-Q103-Q175-FAST-QA |
 
 | 2026-10-13 02:16 KST | AI 2 | 1150 | +1 | 1151 | 신규 독립 TASK_ID=CONVERSION-DX11-00622 / RUN_KEY=CONVERSION-DX11-00622 단 1회: OutRun2006Tweaks `vr-dx11-native-r71`에서 게임 D3D9 stage0 BLENDTEXTUREALPHAPM RGB와 독립 SUBTRACT(TEXTURE, DIFFUSE/CURRENT) 알파를 실제 C++/HLSL 네이티브 Draw/DrawIndexed 경로에 신규 구현. [material/validation-bearing SHA 6a2de27e](https://github.com/thp32tt/OutRun2006Tweaks/commit/6a2de27e67abc9c5e68c4c76e6b2aae5f13a365a). Exact-SHA [Backend Conversion Gate #38281748614](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281748614) SUCCESS (validate + readiness smoke), [DX11 Fast #38281748515](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281748515) SUCCESS, [Windows Build #38281753499](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281753499) SUCCESS, [OpenXR push #38281748535](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281748535)·[PR #38281753453](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38281753453) SUCCESS. HUD Inspector는 집계 시점 in_progress여서 PASS 주장 없음. Quest3/VDXR 실기·게임패드 RUNTIME_VALIDATION=UNTESTED, 기본 DX9Ex 폴백 및 진단 opt-in 유지. **AI 점수: 이전 1150점 + 이번 +1점 = 누적 1151점.** |
 | 2026-10-13 02:00 KST | AI 2 | 1149 | +1 | 1150 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00701 / RUN_KEY=CONVERSION-DX9EX-00701 단 1회: DX9Ex R30 Indexed-UP sparse mask의 전체 정점 zero-fill 제거(이전 참조 인덱스만 초기화), VB 디코더 분리, C++ 성능 소스 및 파괴적 회귀 검증. [material/validation SHA 63208fea](https://github.com/thp32tt/OutRun2006Tweaks/commit/63208feaa4d55a5f041a4d07ffcef2307a53d27b); DX9Ex Active #38280427215 5/5, Domain #38280427337, Full Source Impact #38280427460 3/3 동일 SHA 모두 SUCCESS. Quest 3 / VDXR RUNTIME_VALIDATION=UNTESTED. |

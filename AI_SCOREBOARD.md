@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1818 | ACTIVE | 2026-10-12 11:10 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1068 | ACTIVE | 2026-10-12 11:09 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1069 | ACTIVE | 2026-10-12 11:27 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 11:27 KST | AI 2 | 1068 | +1 | 1069 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00653: DX9Ex R31 verified WVP의 교차 반복 world draw에서 최근 3개 exact WVP per-eye 상수 재사용을 위한 실제 C++ 핫패스 [material SHA 625b813e](https://github.com/thp32tt/OutRun2006Tweaks/commit/625b813e0ddc1a6276b095ea06202e12fbae938f). 첫 실패는 pose 2-path 검사 불일치, 두 번째는 primary/Recent 중복 필드명 부정변이 검사 오류로 동일 작업 repair 후 [exact validation-bearing SHA 792c2792](https://github.com/thp32tt/OutRun2006Tweaks/commit/792c279262b58eaf0785b51c0494d3976b7f7ace) 확정. [DX9Ex Active #38195243474](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38195243474) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38195243397](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38195243397) SUCCESS, [Full Impact #38195243380](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38195243380) 3/3 SUCCESS. C6 [38f138f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/38f138f3423fe316251024b9cebb45cb6b00db09) 별도 [skip ci] +0, DXVK 동결/DX11 미변경, Quest3/VDXR FPS 및 광학 RUNTIME_VALIDATION=UNTESTED. 기존 같은 TASK 재시도·실패 수리·C6·재보고는 중복 가산 없음. **AI 점수: 이전 1068점 + 이번 +1점 = 누적 1069점**. RUN_KEY=CONVERSION-DX9EX-00653 |
 
 | 2026-10-12 11:10 KST | AI 1 | 1817 | +1 | 1818 | 신규 작업 OUTRUN-KOR-ZIP-8-20261012-1108: 기존 OutRun 한글화 생성 PNG 8종을 역할·큐 번호 기반 개별 파일명으로 ZIP 아카이브에 통합, 각 PNG RGBA 투명도 확인, ZIP CRC 무결성 검사 통과, 사용자 다운로드 파일 전달. 신규 성과 1회만 +1, 동일 압축파일 재검증 및 재보고는 +0. **AI 점수: 이전 1817점 + 이번 +1점 = 누적 1818점**. RUN_KEY=OUTRUN-KOR-ZIP-8-20261012-1108 |
 

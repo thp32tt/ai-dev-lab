@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1821 | ACTIVE | 2026-10-12 13:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1088 | ACTIVE | 2026-10-12 14:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1089 | ACTIVE | 2026-10-12 14:29 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 14:29 KST | AI 2 | 1088 | +1 | 1089 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00665: DX9Ex R30 인덱스 XYZRHW HUD 좌우 CPU 정점 검증·변환을 한 번의 참조 정점 순회로 통합, 희소 정점 바이트 범위 양안 복사로 실제 C++ 렌더 핫패스 구현 및 검증기 부정변이 확장. 정확한 material/validation-bearing [56ac3d75](https://github.com/thp32tt/OutRun2006Tweaks/commit/56ac3d75656d99c03c382a54a85d94a365dc3f3f), [DX9Ex Active #38207573142](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38207573142) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38207573123](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38207573123) SUCCESS, [Full Source Impact #38207573062](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38207573062) 3/3 SUCCESS. 별도 C6 [62c6ac8e](https://github.com/thp32tt/OutRun2006Tweaks/commit/62c6ac8ebe5f73092d9aaf6cb59b560e3aa2eaf6) [skip ci] bookkeeping +0점. Quest3/VDXR 직접 실기 및 FPS/p95/p99 미측정이므로 RUNTIME_VALIDATION=UNTESTED; DXVK 동결, DX11 및 Localization 코드 미수정. 동일 TASK 재보고·재시도 중복 가산 없음. **AI 점수: 이전 1088점 + 이번 +1점 = 누적 1089점.** RUN_KEY=CONVERSION-DX9EX-00665 |
 
 | 2026-10-12 14:24 KST | AI 2 | 1087 | +1 | 1088 | 신규 독립 TASK_ID=CONVERSION-DX11-00591: OutRun 실제 게임 D3D9 U/V MIRROR·MIRRORONCE 샘플러 상태 → guarded native D3D11 AddressU/V와 Draw/DrawIndexed C++ 연결, 16 U/V 조합·16개 파괴적 부정변이 추가. 정확 validation-bearing [e7d3e270](https://github.com/thp32tt/OutRun2006Tweaks/commit/e7d3e270b6018218d987fe4f6d493c82c7947898) Backend Conversion Gate #38206925877(validate+smoke) SUCCESS, Build #38206928833 SUCCESS, DX11 Fast #38206925894 SUCCESS, OpenXR #38206925768/#38206928906 SUCCESS, HUD Inspector #38206928830 SUCCESS. 별도 C6 [a05616f8](https://github.com/thp32tt/OutRun2006Tweaks/commit/a05616f8cc768aedca569bfc11640838bc34bb13) [skip ci] +0점. DX9Ex 게임 Draw/Present/입력 보존, DXVK 동결, Quest3/VDXR 및 게임패드 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1087점 + 이번 +1점 = 누적 1088점**. RUN_KEY=CONVERSION-DX11-00591 |
 | 2026-10-12 14:15:25 KST | AI 2 | 1086 | +1 | 1087 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00664: DX9Ex R31 빈번한 world Draw에서 투영 4x4 유한성 스캔을 매 Draw마다 반복하지 않고 정확한 pose/eye/FOV/scale/projection 캐시 미스에만 수행하도록 실제 C++ 핫패스 구현. [material/validation-bearing 1c4e1d04](https://github.com/thp32tt/OutRun2006Tweaks/commit/1c4e1d041eb4f058fb71d2472d8e3019f1ae4f80), 기존 R31 검증기 부정변이 15개, WVP 23개, live WVP 5개. 정확 SHA [DX9Ex Active #38206510106](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38206510106) 5/5 SUCCESS, [Domain #38206510128](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38206510128) SUCCESS, [Full Source Impact #38206510072](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38206510072) 3/3 SUCCESS. C6 별도 [db999e92](https://github.com/thp32tt/OutRun2006Tweaks/commit/db999e921d02ce481e1e3889dd70de41bff7652e) [skip ci] bookkeeping +0점. HMD/Quest3 VDXR RUNTIME_VALIDATION=UNTESTED, FPS 개선 실측 주장 없음, DXVK 동결, 동일 TASK 재시도·기록 중복 가산 없음. **AI 점수: 이전 1086점 + 이번 +1점 = 누적 1087점.** RUN_KEY=CONVERSION-DX9EX-00664 |

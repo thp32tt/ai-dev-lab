@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1820 | ACTIVE | 2026-10-12 12:37 KST |
+| AI 1 | ChatGPT (AI 1) | 1821 | ACTIVE | 2026-10-12 13:45 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1083 | ACTIVE | 2026-10-12 13:43:03 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 13:45 KST | AI 1 | 1820 | +1 | 1821 | HD 이미지 생성 정책 Work 검토 반영: A/B 내장 생성·C1 batch QA·C2 퇴역 우선순위, atlas/ROI 고정 전문·PNG SHA 검증 프롬프트 조립기, 멱등 Compose 준비/원본 백업/공유 YAML alias 보존/AUTO_SEND=false/사용자 수동 배포. material 3d9f1b5263dd592f4aa0d58a76f05caa64a04945, exact-SHA CI https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204981579 10/10 tests 및 compile SUCCESS. evidence commit c33ba82ea9589de3afee099513c3551b42a833a2. 실제 Docker 배포·이미지 생성 E2E·게임 테스트 미실행; 새 DDS 0. 동일 작업 수정·CI·기록 합산 1회. AI 점수: 이전 1820점 + 이번 +1점 = 누적 1821점. RUN_KEY=OUTRUN-HD-IMAGEGEN-POLICY-MANUAL-20261012-1333 |
 
 | 2026-10-12 13:43:03 KST | AI 2 | 1082 | +1 | 1083 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00662: DX9Ex R30 CPU-projected XYZRHW sparse indexed smoke/sand/decal 양안 정점 경로에서 64개 이상 span·참조비율 25% 이하인 경우 참조된 연속 정점 run만 CPU 복사하도록 실제 C++ 구현. 밀집·비인덱스 전체 복사와 재투영 실패 시 전체 source 복구 보존; R30 정책검증 120개 희소/밀집 사례 + 원래 부정변이 검증 PASS. [material/validation-bearing 0633a1da](https://github.com/thp32tt/OutRun2006Tweaks/commit/0633a1dafb52d1539851bc2cd1164b2a74942786), [DX9Ex Active #38204305933](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204305933) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38204305949](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204305949) SUCCESS, [Full Impact #38204305955](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204305955) game/host/source-cross-domain 3/3 SUCCESS. C6 별도 [c38b0a40](https://github.com/thp32tt/OutRun2006Tweaks/commit/c38b0a40c223d92e97dc7661a8254ade4253b734) [skip ci] bookkeeping +0점. Quest3/VDXR 실기 RUNTIME_VALIDATION=UNTESTED, FPS 향상 실측 없음, DXVK 동결, 다른 브랜치 미변경. **AI 점수: 이전 1082점 + 이번 +1점 = 누적 1083점.** RUN_KEY=CONVERSION-DX9EX-00662 |
 

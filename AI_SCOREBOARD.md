@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1840 | ACTIVE | 2026-10-13 06:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1182 | ACTIVE | 2026-10-13 07:48 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1183 | ACTIVE | 2026-10-13 08:06 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 08:06 KST | AI 2 | 1182 | +1 | 1183 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00639`: OutRun 게임 D3D9 stage0 BLENDTEXTUREALPHAPM RGB + ADDSIGNED/ADDSIGNED2X(TEXTURE, TFACTOR 또는 COMPLEMENT(TFACTOR)) alpha 실제 C++/HLSL 네이티브 D3D11 Draw/DrawIndexed 구현, 읽기 실패시 DX9Ex 원본 Draw·게임패드 폴백, 20480 수치 및 파괴적 연결 회귀 PASS. [validation-bearing material a0217cf5](https://github.com/thp32tt/OutRun2006Tweaks/commit/a0217cf5c62b3215fd3675131ae51d9f138b435b)에서 [DX11 Fast #38319198547](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38319198547), [Backend Gate #38319198732](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38319198732) validate+readiness, [Windows Build #38319204652](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38319204652), [OpenXR #38319204512](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38319204512), [HUD #38319204451](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38319204451) 정확 SHA 필수 5/5 SUCCESS. C6 bookkeeping [ae075ee8](https://github.com/thp32tt/OutRun2006Tweaks/commit/ae075ee852d221593ba1c02eda579856c1a89e39) 별도 [skip ci], Quest3/VDXR 실게임 화면·게임패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 한 성과 1회만 기록. **AI 점수: 이전 1182점 + 이번 +1점 = 누적 1183점.** RUN_KEY=CONVERSION-DX11-00639 |
+
 
 | 2026-10-13 07:48 KST | AI 2 | 1181 | +1 | 1182 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00638`: 실제 게임-authored D3D9 PM RGB + independent MODULATE2X/4X(TEXTURE, TFACTOR 또는 COMPLEMENT(TFACTOR)) alpha를 네이티브 DX11 C++/HLSL Draw/DrawIndexed 경로에 구현하고, TFACTOR high-byte snapshot 및 2x/4x scale과 alpha saturate-before-test를 통합, DX9Ex/gamepad safe fallback 유지. 기존 00636/00637 정확 소스 회귀 검증기 실패를 원인 수리해 최종 [validation-bearing 6073b00d](https://github.com/thp32tt/OutRun2006Tweaks/commit/6073b00de35367c79912f05d48c0766718ebeb2a)에서 [Backend Gate #38317656085](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38317656085) validate+readiness SUCCESS, [DX11 Fast #38317656091](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38317656091), Windows Build #38317662176, OpenXR #38317662274, HUD #38317662211 모두 SUCCESS. C6 [c15e432e](https://github.com/thp32tt/OutRun2006Tweaks/commit/c15e432e22d6ed69b758834d53237333c773e2b5) 별도 [skip ci] 기록. Quest3/VDXR 게임패드 RUNTIME_VALIDATION=UNTESTED, 중복가산 없음. **AI 점수: 이전 1181점 + 이번 +1점 = 누적 1182점.** RUN_KEY=CONVERSION-DX11-00638 |
 

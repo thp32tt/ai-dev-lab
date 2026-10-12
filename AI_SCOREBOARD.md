@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1808 | ACTIVE | 2026-10-12 08:40 KST |
+| AI 1 | ChatGPT (AI 1) | 1809 | ACTIVE | 2026-10-12 09:01 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1053 | ACTIVE | 2026-10-12 09:00 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 09:01 KST | AI 1 | 1808 | +1 | 1809 | OutRun C2 q048 B408 신규 영문 입력 독립 픽셀 검수: SOURCE 3c58bf95/CLEAN 099a23f3/B407 저장 DDS b17750c7/신규 원문 PNG 8a6aa8d8 exact SHA 확인, native·RAW/FLIPY·75/50 직접 검수, PNG visible25556 픽셀 SOURCE RGBA 정확 일치/숨은 RGB0/마스크 밖0. 미포함 SOURCE-CLEAN delta9894 픽셀의 glyph/effect vs cyan speedline 구분 미확정으로 PLATE_HOLD, 실제 ImageGen 첨부 미확인, 한국어 PNG/DDS 신규0, C393 REWORK/IGR009 OPEN/C3·실게임 UNTESTED. 신규 영문 입력 SHA의 C2 독립 부분검수 성과 +1만 기록하고 기존 B407 같은 SHA 재생산·승인 중복0. [QA commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/3cd6d4f7405cf3978322520b4fc0a5aa37202f62). **AI 점수: 이전 1808점 + 이번 +1점 = 누적 1809점.** REVIEW_ID=C2-Q048-B408-ENGLISH-REFERENCE-FIRST-NATIVE-PIXEL-20261012-0850 |
 
 | 2026-10-12 09:00 KST | AI 2 | 1052 | +1 | 1053 | 신규 독립 RUN_KEY=CHAT-DX9EX-GPU-LAB-20261012: OutRun2006Tweaks DX9Ex 별도 GPU PERFORMANCE LAB GUI 측정 ZIP 신규 생성. 프리셋 A~E + 사용자 지정 반투명 SSAA/반사 1024·512/SkyGlow 4·0/컬링 ON·OFF/물가·모래·건물 scene tag를 GUI에서 선택 후 게임 실행, 환경변수 자동·기록 및 기존 CPU/XR/GPU·NVIDIA GPU 사용률/자동 분석 로그 수집 연동. 별도 일일 DX9Ex ZIP 보존, 7파일 실제 source/CI 스모크/전용 ZIP 생성 SHA [a3dc6b404527](https://github.com/thp32tt/OutRun2006Tweaks/commit/a3dc6b4045278e8de21957408e0f67d9234403c5), 해당 정확 SHA [DX9Ex Active #38185968348](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38185968348) policy/game/host/full-chain/package 5/5 SUCCESS, 전용 측정 artifact ID 11720320057 생성·ZIP 내부 전용 CMD 1개·SOURCE_SHA 검증 PASS, VR Test Policy #38185968347, Domain #38185968363, HUD #38185968349 모두 SUCCESS. Full Source Impact #38185968354 진행 중(이 기록 시점), 사용자 Quest3/VDXR 실측·물가 실제 병목 RUNTIME_VALIDATION=UNTESTED. 기존 GPU profiling/checkbox 작업과 별도 전용측정배포 성과 +1, 중복 가산 없음. **AI 점수: 1052 +1 = 1053점.** |
 

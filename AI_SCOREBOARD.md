@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1816 | ACTIVE | 2026-10-12 10:17 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1062 | ACTIVE | 2026-10-12 10:25 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1063 | ACTIVE | 2026-10-12 10:30:50 KST |
 
 ## 점수 규칙
 
@@ -34,7 +34,9 @@
 - 각 자동작업 실행은 고유 RUN_KEY를 변경 이력에 남겨 재시도/중복 실행의 이중 가점을 방지한다.
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
-## 변경 이력
+## 변경 
+| 2026-10-12 10:30:50 KST | AI 2 | 1062 | +1 | 1063 | 수도권 워터파크·아쿠아리움·놀이공원·동물원·키즈시설 연간/시즌/다회권의 2026-10-12 공식·판매처 공개정보와 주말 이용 조건을 조회·기존 알림 비교. 씨라이프 코엑스 싱글패스 79,000원(10/31까지)은 10/1 이미 알림; 다른 상품은 주말 사용 가능하며 더 개선된 가격·조건이 새로 확정되지 않아 사용자 알림 생략. 실제 조회 정상 수행 +1, 중복 알림 없음. **AI 점수: 이전 1062점 + 이번 +1점 = 누적 1063점**. RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-12T10:30:50+09:00 |
+이력
 
 | 2026-10-12 10:25 KST | AI 2 | 1061 | +1 | 1062 | 독립 TASK_ID=CONVERSION-DX9EX-00649: DX9Ex R23 top-level Draw의 StateBlock 신뢰·유효 tracked raster shadow 시 불필요한 draw-time snapshot/C++ 핫패스 처리를 제거하고 기존 불신/live capture fallback을 보존한 material SHA [3b0fa5e](https://github.com/thp32tt/OutRun2006Tweaks/commit/3b0fa5e17fe7c9d54d24fb602d48e23126fd2a0e). 실패했던 검사기 4→5 호출 지점(NotifyTopLevelDraw 포함) 수정 후 exact validation-bearing SHA [facbcef5](https://github.com/thp32tt/OutRun2006Tweaks/commit/facbcef5b94352c220d960ccd5961d8a8624d090). [DX9Ex Active #38191316404](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191316404) policy/full-chain/host/game/package 5/5 SUCCESS, [Domain #38191316403](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38191316403) SUCCESS. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; FPS 실측 없음. 같은 TASK_ID 최초 material 완료 단 한 번 +1, retry·회귀 수리·후속 상태 재보고 중복 +0. **AI 점수: 이전 1061점 + 이번 +1점 = 누적 1062점**. RUN_KEY=CONVERSION-DX9EX-00649 |
 

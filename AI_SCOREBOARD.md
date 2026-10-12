@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1834 | ACTIVE | 2026-10-13 04:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1161 | ACTIVE | 2026-10-13 04:08 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1162 | ACTIVE | 2026-10-13 04:14 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 04:14 KST | AI 2 | 1161 | +1 | 1162 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00709: DX9Ex R33 스테레오 게임 깊이/스텐실 SetRenderState 후크에서 **11개 상태의 중복 성공 setter 재호출 시 파생 write flags 불필요한 재평가 제거** 실제 C++ hot-path 구현, StateBlock 및 stencil 0→1/zero-mask 복구 보존. [material dd5224b3](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd5224b3a8923155621efc18b997624638ace75b), Python negative-mutation newline 테스트 정정 후 정확 GitHub result SHA [cf8bd94d](https://github.com/thp32tt/OutRun2006Tweaks/commit/cf8bd94d94225880e14b73990b5ff34fc04b88f3), [DX9Ex Active #38295432527](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38295432527) policy/host/game/full-chain/package **5/5 SUCCESS**, [Domain #38295432601](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38295432601) SUCCESS, source-original Full Source Impact #38295390293 별도 진행 중. HMD Quest3/VDXR frame-time/FPS/화면 미측정 **RUNTIME_VALIDATION=UNTESTED**; 본 TASK 초안·테스트 수리·C6 중복 점수 +0. **AI 2 이전 1161점 + 이번 +1점 = 누적 1162점**. RUN_KEY=CONVERSION-DX9EX-00709 |
 
 | 2026-10-13 04:08 KST | AI 2 | 1160 | +1 | 1161 | 신규 독립 TASK_ID=CONVERSION-DX11-00628: OutRun2006Tweaks `vr-dx11-native-r71`에서 실제 게임 D3D9 PM RGB/BLENDDIFFUSEALPHA 독립 알파 연산을 C++/HLSL 네이티브 D3D11 Draw/DrawIndexed에 연결한 [material SHA 7f068953](https://github.com/thp32tt/OutRun2006Tweaks/commit/7f06895397e00cba9ea5f87a565e0f899e2ef483), 숫자 경계 정확 비교로 실패한 신규 회귀 수리 후 [validation-bearing SHA 45a63f5f](https://github.com/thp32tt/OutRun2006Tweaks/commit/45a63f5f924eb4ecfc2352edc4de0d0edcedf7c5). 정확 SHA [Backend Gate #38294185382](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294185382) validate/readiness smoke SUCCESS, [DX11 Fast #38294185360](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294185360), [Windows Build #38294190182](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294190182), [OpenXR #38294190198](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294190198), [HUD #38294190216](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38294190216) 모두 SUCCESS. 별도 C6 bookkeeping SHA 0016bc5c, runtime Quest3/VDXR/게임패드 UNTESTED. 동일 TASK 수정·상태확인·C6는 중복 가점 0. **AI 점수: 이전 1160점 + 이번 +1점 = 누적 1161점.** RUN_KEY=CONVERSION-DX11-00628 |
 

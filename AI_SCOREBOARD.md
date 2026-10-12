@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1819 | ACTIVE | 2026-10-12 11:54 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1073 | ACTIVE | 2026-10-12 12:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1074 | ACTIVE | 2026-10-12 12:14 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 12:14 KST | AI 2 | 1073 | +1 | 1074 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00656: R30 XYZRHW 연기/모래/데칼 월드 스테레오 pose·projection·scale 불변 eye geometry 재사용 실제 C++ [material 85a8ed3c](https://github.com/thp32tt/OutRun2006Tweaks/commit/85a8ed3c027310e50cfbe44e59c88a43f249674a). 첫 exact-SHA [DX9Ex Active #38197946550](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38197946550) full-chain MSVC C2065/C3079 실패를 동일 TASK retry에서 Reset invalidator C++/회귀 수정 [validation 0108da8a](https://github.com/thp32tt/OutRun2006Tweaks/commit/0108da8acfc51e42522a404bf5a74a940623700a)로 해결. 정확한 validation-bearing SHA 0108da8acfc51e42522a404bf5a74a940623700a: [DX9Ex Active #38198377313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38198377313) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38198377327](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38198377327) SUCCESS, [Full Impact #38198377302](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38198377302) 3/3 SUCCESS. C6 [840acc53](https://github.com/thp32tt/OutRun2006Tweaks/commit/840acc531a48bb3a32a80ae06ad07984a5a9a5b1) [skip ci] +0, HMD/Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, DXVK 동결 유지, 재시도 중복 가산 없음. **AI 점수: 이전 1073점 + 이번 +1점 = 누적 1074점.** RUN_KEY=CONVERSION-DX9EX-00656 |
 
 | 2026-10-12 11:54 KST | AI 1 | 1818 | +1 | 1819 | OutRun 2006 HD GUI English-only glyph/source separation first batch: 94 total localize_text queue inspected, 16 SHA-pinned text/effect-only RGBA PNGs from ten queue indices extracted from canonical HD source DDS, PSD reference, exact source letter ROI, or manually masked producer SOURCE. No full atlas/vehicle/logo included; flat ZIP with manifest.csv (84 pending indexes), manifest.json, README_KO, zip SHA256 bfba9dc743b00987bcf0f766bd4b5bd03298baede99a6b504027a5cf70d9e00d, 944076 bytes published under localization/graphics/reference_packs/; commit 1d690b771ebb56d319842ce2d1c9096c082c4c79, verified remote HEAD/blob. No Korean generated or DDS produced; C2/C3/ingame validation UNTESTED. RUN_KEY=OUTRUN-KOR-HD-FLAT-TEXT-EXTRACTION-20261012-1154-AI1 |
 

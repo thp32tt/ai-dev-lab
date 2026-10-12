@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1822 | ACTIVE | 2026-10-12 14:33:50 KST  |
+| AI 1 | ChatGPT (AI 1) | 1823 | ACTIVE | 2026-10-12 14:42 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1089 | ACTIVE | 2026-10-12 14:29 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 14:42 KST | AI 1 | 1822 | +1 | 1823 | OutRun B q104 **새로 제작한 실제 HD 원본 SOURCE 기반 RAW 보존 CLEAN/영문 PNG 성과**: 독립 C2 역사적 q104 검수에서 남긴 PSD-empty CLEAN 원문 bbox 밖 hidden RGB 380503픽셀 삭제 문제를 새로운 생산 CLEAN PNG SHA256 505f82b65bd188f2acdb92a024fbd8764e20f47730de69e26a1d6d1b59a20394로 해결. Source exact BC3 2048x256 SHA f0a84915 확인; 영문 글자 118098 양의 알파 픽셀만 제거, 원문 효과 bbox 외 RGBA/alpha 변화0, 투명 RGB 380503 원본대로 보존. 원본 DDS exact letter-only PNG SHA db39effd 및 full readable PNG SHA 72262a89 신규 생성, native·75·50 SOURCE/CLEAN 비교 및 기존 Korean original/CANDIDATE 비교 JPG/RAW QA, 13개 evidence + queue/resume/progress/WORKLOG [원격 HEAD a2d42531](https://github.com/thp32tt/OutRun2006Tweaks/commit/a2d4253145c0fc4dede484ad0843a8cf1279bd7c) 확인; GitHub raw PNG roundtrip SHA 검증. 동시 C2-ONDEMAND q104/q236 기존 DDS 크기 정책 재검수와 같은 성과로 세지 않음: 이번 점수는 독립적인 **실제 신규 pixel-exact source-derived RAW 보존 CLEAN 제작**에만 +1. 기존 한글 c84a2703 DDS 변경0·크기 항목만 PASS·각진 효과 REWORK 유지, ImageGen 실제 첨부/생성0, 신규 Korean DDS0, C1/C3/실게임 UNTESTED. **AI 점수: 이전 1822점 + 이번 +1점 = 누적 1823점.** RUN_KEY=OUTRUN-KOR-B-Q104-CANONICAL-BC3-RAW-PRESERVE-CLEAN-20261012-1430 |
 | 2026-10-12 14:33:50 KST | AI 1 | 1821 | +1 | 1822 | 이번 신규 근거 성과: OutRun q104/q236 기존 문장 underfill 단독 반려를 최신 글자별 정책으로 재분류. 두 저장 DDS·source exact SHA 재검증, q236 14행 native/75/50·SOURCE/CLEAN/protected 0px 독립측정, q104 비가시 alpha0-RGB 12,345px 분리, [evidence commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/1d1c4cc0ce599edb9bd05ea3c701df95f844d5e8). DDS 신규0, C2 공식 PASS0, C3/실게임 미검증. 동일 SHA 신규 생산으로 가산하지 않고 **새 증거·정책판정 작업 성과 1건에만 +1**. **AI 점수: 이전 1821점 + 이번 +1점 = 누적 1822점.** REVIEW_ID=C2-ONDEMAND-Q104-Q236-GLYPH-SCALE-20261012-1420. |
 | 2026-10-12 14:29 KST | AI 2 | 1088 | +1 | 1089 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00665: DX9Ex R30 인덱스 XYZRHW HUD 좌우 CPU 정점 검증·변환을 한 번의 참조 정점 순회로 통합, 희소 정점 바이트 범위 양안 복사로 실제 C++ 렌더 핫패스 구현 및 검증기 부정변이 확장. 정확한 material/validation-bearing [56ac3d75](https://github.com/thp32tt/OutRun2006Tweaks/commit/56ac3d75656d99c03c382a54a85d94a365dc3f3f), [DX9Ex Active #38207573142](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38207573142) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38207573123](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38207573123) SUCCESS, [Full Source Impact #38207573062](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38207573062) 3/3 SUCCESS. 별도 C6 [62c6ac8e](https://github.com/thp32tt/OutRun2006Tweaks/commit/62c6ac8ebe5f73092d9aaf6cb59b560e3aa2eaf6) [skip ci] bookkeeping +0점. Quest3/VDXR 직접 실기 및 FPS/p95/p99 미측정이므로 RUNTIME_VALIDATION=UNTESTED; DXVK 동결, DX11 및 Localization 코드 미수정. 동일 TASK 재보고·재시도 중복 가산 없음. **AI 점수: 이전 1088점 + 이번 +1점 = 누적 1089점.** RUN_KEY=CONVERSION-DX9EX-00665 |
 

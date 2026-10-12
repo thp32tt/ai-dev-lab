@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-12 16:42 KST |
+| AI 1 | ChatGPT (AI 1) | 1831 | ACTIVE | 2026-10-12 16:55 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1104 | ACTIVE | 2026-10-12 16:52 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 16:55 KST | AI 1 | 1830 | +1 | 1831 | 신규 C1 독립 QA q012/q089/q212/q217 4자산 각각 원본·시험 DDS 총8개 실 SHA 검증, q012 256×64→4배 native 비교 및 새 native/75/50 한영 대비 JPG 4종/기계 JSON/첫 검수 판정 JSON·WORKLOG·큐 증거를 GitHub에 실제 반영. q012 문구 범위 PASS_TEST_ONLY, q089 한글 가독성 PASS/입체 효과 HOLD, q212 글자 가독성 PASS/서체·의미·전체 아틀라스 HOLD, q217 원본 배지 보호0 outside 확인 및 효과 REWORK. 기존 C2 같은 SHA 검수와 앞선 C1 배치 반복 점수 없이 이 새로운 독립 묶음 증거만 +1. 신규 생성 한국어 PNG/DDS0, C3/게임 UNTESTED. [증거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/b84822df7b113cbc7a289828cb5215db4f1d4200). **AI 점수: 이전 1830점 + 이번 +1점 = 누적 1831점.** RUN_KEY=OUTRUN-C1-BATCH-Q012-Q089-Q212-Q217-NATIVE-20261012-1640. |
 | 2026-10-12 16:52 KST | AI 2 | 1103 | +1 | 1104 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00673: OutRun DX9Ex R29 부분 WVP 업로드 C++ hotpath의 두 불필요 4KiB scratch zero-fill 제거, 완전한 WVP/prefix/suffix 범위 초기화·교차·256레지스터·32비트 경계 보호, 32,920개 모델 구간 및 8개 파괴적 변이 회귀 검증. 실제 material/validation-bearing [1849826b](https://github.com/thp32tt/OutRun2006Tweaks/commit/1849826bc3224e8532a545e25f80ac550df68905); 정확 SHA [DX9Ex Active #38219453758](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453758) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38219453708](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453708) SUCCESS, [Full Source Impact #38219453788](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453788) 3/3 SUCCESS. C6 [91539412](https://github.com/thp32tt/OutRun2006Tweaks/commit/915394124a73171dabc910584c040cc0ed6006a3) bookkeeping [skip ci] 별도, Quest3/VDXR 및 p95/p99/FPS 실측 UNTESTED, 성능 수치 미확정. 동일 TASK_ID retry/C6에 중복 가산 없음. **AI 점수: 이전 1103점 + 이번 +1점 = 누적 1104점.** RUN_KEY=CONVERSION-DX9EX-00673 |
 
 | 2026-10-12 16:48 KST | AI 2 | 1102 | +1 | 1103 | 신규 독립 TASK_ID=CONVERSION-DX11-00598: OutRun 실제 D3D9 DESTCOLOR/ZERO 및 ZERO/SRCCOLOR 곱셈 블렌드 상태를 네이티브 D3D11 OM RGB DEST_COLOR/alpha DEST_ALPHA 및 분리 16개 부분 마스크 상태로 연결해 실제 게임 Draw/DrawIndexed 진단 프레임까지 확장한 C++ 소스 [2280cf73](https://github.com/thp32tt/OutRun2006Tweaks/commit/2280cf73865d056bd63ae8fed0c45b37dd851362). 17개 파괴적 변이 및 1,089 수치 비교, exact-SHA Backend Gate #38218722261(validate/readiness), Build #38218727123, DX11 Fast #38218722160, OpenXR #38218727189, HUD #38218727071 모두 SUCCESS. C6 [475690aa](https://github.com/thp32tt/OutRun2006Tweaks/commit/475690aaa0818b9161abc7e8d95fae9f15b7ac75) 별도 bookkeeping [skip ci]. DX9Ex Draw/Present/게임패드 원본 유지; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, DXVK 동결. 동일 작업 retry/C6 중복 점수 없음. **AI 점수: 이전 1102점 + 이번 +1점 = 누적 1103점.** RUN_KEY=CONVERSION-DX11-00598 |

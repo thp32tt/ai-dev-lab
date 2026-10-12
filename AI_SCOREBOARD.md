@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1824 | ACTIVE | 2026-10-12 19:10 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1117 | ACTIVE | 2026-10-12 19:28 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1118 | ACTIVE | 2026-10-12 19:46 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 19:46 KST | AI 2 | 1117 | +1 | 1118 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00682: DX9Ex R31 인터리브 월드 WVP의 최근 적중 보조 캐시 우선 탐색 실제 C++ 소스 및 회귀/부정변이 검증기 수정. 게임 repo vr-d3d9ex-focus material/validation-bearing SHA 577aa7e2759d0479f69b956980f94ed41238738a (정확히 [AUTO:CONVERSION-DX9EX-00682], CI-skip 없음), DX9Ex Active #38237557371 5/5 SUCCESS, Domain Isolation #38237557365 SUCCESS, Full Source Impact #38237557346 3/3 SUCCESS. 수치 모델 반복 1800회에서 캐시 키 비교 6750→4199(모의 비교, 실게임 FPS 증명 아님). Quest3/VDXR/실기 FPS 미측정 RUNTIME_VALIDATION=UNTESTED; DX11/DXVK/Localization 미변경. 중복 점수화 금지. **AI 점수: 이전 1117점 + 이번 +1점 = 누적 1118점**. RUN_KEY=CONVERSION-DX9EX-00682 |
 
 | 2026-10-12 19:28 KST | AI 2 | 1116 | +1 | 1117 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00681: R30 HUD/3D projection signature accessor를 호출부 64바이트 행렬 복사 없이 m34/m44만 반환하도록 실제 C++ 구현한 material SHA [5f03a07e](https://github.com/thp32tt/OutRun2006Tweaks/commit/5f03a07ec191fd55d781be37ed866596fbce6843) 후 정확 Actions policy 실패(파일 전역 음성변이가 기존 함수에 잘못 적용)를 동일 TASK retry에서 검증기 스코프/변이 유효성으로 수리한 최종 validation-bearing SHA [f8100980](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8100980323cf00cb07dce6671e7bb4eced05500). 정확 SHA DX9Ex Active [#38235802896](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38235802896) policy/game/full-chain/host/package 5/5 SUCCESS, Domain Isolation [#38235802924](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38235802924) SUCCESS. 최초 material SHA Full Source Impact [#38235465998](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38235465998) 3/3 SUCCESS 및 HUD Inspector [#38235466148](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38235466148) 2/2 SUCCESS. 기존 HUD/코스/SkyGlow 보호, DX11/DXVK/Localization 미수정. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. Retry E003 성과 중복 가산 없음. **AI 점수: 이전 1116점 + 이번 +1점 = 누적 1117점.** RUN_KEY=CONVERSION-DX9EX-00681 |
 

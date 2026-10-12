@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1832 | ACTIVE | 2026-10-13 02:53 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1155 | ACTIVE | 2026-10-13 02:53 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1156 | ACTIVE | 2026-10-13 03:07 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-13 03:07 KST | AI 2 | 1155 | +1 | 1156 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00705: DX9Ex R30 VB/IB 레지스트리의 부재(negative) 조회에도 세대-펜스 캐시를 도입한 실제 C++ 성능 개선, 기존 성공 캐시 및 등록·해제·Reset·COM 주소 재사용 안전성 유지. [material/validation-bearing edc21af05c](https://github.com/thp32tt/OutRun2006Tweaks/commit/edc21af05c49a1e27b1bf5637bf435c377dea865), [DX9Ex Active #38287771645](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287771645) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38287771557](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287771557) SUCCESS, [Full Source Impact #38287771541](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287771541) 3/3 SUCCESS; negative/positive cache·재등록·COM 재활용 model 및 원본 소스 회귀 PASS. C6 [skip ci] commit 0e782188 별도 bookkeeping으로 +0. Quest3/VDXR 실기/FPS RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1155점 + 이번 +1점 = 누적 1156점.** RUN_KEY=CONVERSION-DX9EX-00705 |
 | 2026-10-13 02:53 KST | AI 1 | 1831 | +1 | 1832 | 신규 C1 독립 QA TASK_ID=OUTRUN-C1-20261013-0240-Q046-Q050-Q052-Q062-BATCH-FAST-HOLD : A/B 기존 실저장 DDS q046/q050/q052/q062 4종을 최신 HD SOURCE/READABLE 및 저장 DDS RAW/FLIPY/75/50 하나의 비교판으로 검토, 각 HD source·saved DDS SHA256 검증, SOURCE→CLEAN 및 FINAL 개별 HOLD 판정과 7개 대상 중 미번역 0개 기록. CLEAN 바이트 미검증 및 UI UV 미확인 시 공식 승인 차단, C2 토큰 신규 발급 0, C3/실게임 UNTESTED. 검수 [커밋 9257a0a](https://github.com/thp32tt/OutRun2006Tweaks/commit/9257a0a92d9cfa7d0a561641d9a12231153ed987) GitHub 원격 HEAD 확인. 동일 작업 retry/보고 중복 가산 0. **AI 점수: 이전 1831점 + 이번 +1점 = 누적 1832점.** RUN_KEY=OUTRUN-C1-20261013-0240-Q046-Q050-Q052-Q062-BATCH-FAST-HOLD |
 
 | 2026-10-13 02:53 KST | AI 2 | 1153 | +1 | 1154 | 독립 TASK_ID=CONVERSION-DX11-00624: D3D9 게임 stage0 BLENDTEXTUREALPHAPM RGB와 독립 MODULATE4X 알파 포화 연산을 실제 C++/HLSL 네이티브 DX11 Draw/DrawIndexed로 연결, 소스 변이/256개 수치 회귀 추가. [material 및 validation-bearing SHA 8691c24e](https://github.com/thp32tt/OutRun2006Tweaks/commit/8691c24ea797fa0378e698ef16ba55c56d84e0f3), 동일 SHA [Backend Conversion Gate #38285824983](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285824983) 본 검증+readiness smoke SUCCESS, [DX11 Fast #38285825058](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285825058) SUCCESS, [Windows Build #38285830967](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285830967) SUCCESS, [OpenXR push #38285825209](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285825209)·[PR #38285830991](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285830991) SUCCESS, [HUD #38285831024](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285831024) SUCCESS. C6 별도 bookkeeping SHA 8e0ef8de; HMD/게임패드 RUNTIME_VALIDATION=UNTESTED, DX9Ex fallback 유지. **AI 점수: 이전 1153점 + 이번 +1점 = 누적 1154점.** RUN_KEY=CONVERSION-DX11-00624 |

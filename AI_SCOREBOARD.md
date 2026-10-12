@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1822 | ACTIVE | 2026-10-12 17:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1107 | ACTIVE | 2026-10-12 17:41 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1108 | ACTIVE | 2026-10-12 17:55 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 17:55 KST | AI 2 | 1107 | +1 | 1108 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00677: OutRun2006Tweaks vr-d3d9ex-focus R30 VB/IB shadow registry epoch-cache C++ 실질 구현 SHA 6a87d2ab113aabf5968992324fae95694bc78489, 기존 DX9Ex Active policy validator 오류를 retry E003에서 실제 수리한 validation-bearing SHA d92299085c2aed692475fefb24259540aff94a2c. 해당 정확 SHA DX9Ex Active #38225944321 policy/host/game/full-chain-compile/package 5/5 SUCCESS 및 Domain Isolation #38225944378 SUCCESS; 초기 실패 #38225566416은 성공 판정이나 별도 가점 아님. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/C6에 추가 점수 없음. **AI 점수: 이전 1107점 + 이번 +1점 = 누적 1108점.** RUN_KEY=CONVERSION-DX9EX-00677 |
 | 2026-10-12 17:41 KST | AI 2 | 1106 | +1 | 1107 | 독립 TASK_ID=CONVERSION-DX9EX-00675: OutRun2006Tweaks vr-d3d9ex-focus 실제 R33 우안 depth/stencil readiness 공유 및 frame pose 조회 단일화 C++ 성능 최적화 material SHA 7b188ca2887ea28909795c4cc83ff04af306c493, 실패한 아키텍처 및 R33 부정변이 검증 정확 대상 수리 후 validation-bearing SHA d5e69b300e23bf2e316d807914b9111279eda8ef. 해당 정확 SHA GitHub DX9Ex Active #38223350818 attempt 2 policy/game/host/full-chain-compile/package 5/5 SUCCESS, Domain Isolation #38223350956 SUCCESS. 중간 CI 실패·retry·00676 병렬 push로 인한 일시 취소는 중복 가산 없음. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1106점 + 이번 +1점 = 누적 1107점.** RUN_KEY=CONVERSION-DX9EX-00675 |
 | 2026-10-12 17:37 KST | AI 2 | 1105 | +1 | 1106 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00676: R27/R28 엄격 월드 WVP·투영·pose 검증 성공 시 D3D9 여섯 GetRenderState 호출을 생략하는 실제 C++ 구현 [e1b83b65](https://github.com/thp32tt/OutRun2006Tweaks/commit/e1b83b65ac489fa863a25964fe4670803ba2aefb). GPL shader 추적 사전 캡처, 모노·보조 RT/실패 보수적 폴백 유지. 신규 정책 검증기 15개 부정변이 PASS. Exact SHA DX9Ex Active #38223685820(정책/host/game/full-chain/package 5/5), Domain #38223685950, Full Source Impact #38223685810(3/3), HUD Inspector #38223686003(2/2) 전부 SUCCESS. C6 [15733b2a](https://github.com/thp32tt/OutRun2006Tweaks/commit/15733b2adbd713ec525210e7565641896b0bf933)는 별도 [skip ci] 기록. 실제 Quest3/VDXR 및 FPS·프레임시간 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/C6에는 중복 가산 없음. **AI 점수: 이전 1105점 + 이번 +1점 = 누적 1106점.** RUN_KEY=CONVERSION-DX9EX-00676 |
 

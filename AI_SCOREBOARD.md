@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1814 | ACTIVE | 2026-10-12 09:46 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1058 | ACTIVE | 2026-10-12 09:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1059 | ACTIVE | 2026-10-12 09:57 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 09:57 KST | AI 2 | 1058 | +1 | 1059 | 독립 TASK_ID=CONVERSION-DX9EX-00647: OutRun2006Tweaks DX9Ex R30 Vertex/Index Buffer shadow 복사에서 (entry, offset, size, revision) 캐시 적중 시 mutex 내부의 중복 이진 범위 검색을 생략하는 C++ 실코드 및 부정변이 검증기 변경. [정확한 material/validation-bearing fb484f6d](https://github.com/thp32tt/OutRun2006Tweaks/commit/fb484f6dea5aeffcd4ecb65fe5355a87480247a9). DX9Ex Active [#38189219559](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189219559) attempt2 policy/game/host/full-chain/package 5/5 SUCCESS, Domain [#38189219513](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189219513) SUCCESS, Full Source Impact [#38189219558](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189219558) 3/3 SUCCESS. C6 bookkeeping SHA 9dcc3d7bc9c89e44941bb0ce1a59f6e48423102d [skip ci] 별도, 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. CI 첫 시도 동시 push 취소, 동일 SHA 재실행 성공만 반영. **AI 점수: 이전 1058점 + 이번 +1점 = 누적 1059점.** RUN_KEY=CONVERSION-DX9EX-00647 |
 | 2026-10-12 09:54 KST | AI 2 | 1057 | +1 | 1058 | 독립 RUN_KEY=CONVERSION-DX11-00579: OutRun2006Tweaks DX11 SELECTARG1 RGB + 독립 ADD/SUBTRACT alpha 실제 D3D9→D3D11 opt-in 네이티브 Draw 연동 material a179f75b 후 동일 작업 E003에서 D3DTSS_RESULTARG TEMP fail-closed 실제 C++·2개 부정변이(총 16개) 추가 수리, [validation-bearing material 7785bfe2](https://github.com/thp32tt/OutRun2006Tweaks/commit/7785bfe2ab88ef13144ca17677bef38fa9108721). 정확 SHA [Backend Conversion Gate #38189189406](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189189406) validate/101-step DX11 smoke SUCCESS, [DX11 Fast #38189189347](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189189347), [Build #38189192388](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189192388), [OpenXR #38189192305](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189192305)/[#38189189344](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38189189344) SUCCESS. HUD inspector #38189192365 별도 분석 진행 중(해당 기록 시각), HMD/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED. [C6 bookkeeping 2bbbaf6a](https://github.com/thp32tt/OutRun2006Tweaks/commit/2bbbaf6a4dbe984e29252fb4819857134044390c) [skip ci] +0. 동일 TASK repair/retry는 중복 점수 없음. **AI 점수: 이전 1057점 + 이번 +1점 = 누적 1058점.** RUN_KEY=CONVERSION-DX11-00579 |
 
 | 2026-10-12 09:46 KST | AI 1 | 1813 | +1 | 1814 | OutRun 2006 원본 실제 DDS 37759842_1024x1024.dds (`ec69c95e638f6ba1ef2c23db173462adb26ad0d10caed28f1c83b7d1d15658f0`) 원본 Git blob c888e9b1과 N100 SHA 일치 확인, 전체 1024×1024 영어 UI atlas를 readable FLIP-Y RGBA PNG(549865 bytes, sha256 8b78a092b5ca82276076cc5d99b05afd0831651ae2d4afbbcf7486f4693fa7c9)로 변환하여 localization/graphics/reference_packs/full_dds_test/ 에 manifest와 함께 커밋 6b392599e7139a43afe0ac5a1a41e6010f160a91, Git HEAD/blob 재검증 완료. Full atlas ChatGPT 수동 생성 테스트 참고, 실제 번역 PNG/DDS/C2/C3/game FAIL 미승인 RUNTIME_VALIDATION=UNTESTED. RUN_KEY=OUTRUN-KOR-FULLDDS-ORIGINAL-PNG-37759842-20261012-0946-AI1 |

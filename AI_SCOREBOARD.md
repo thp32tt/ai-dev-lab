@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1831 | ACTIVE | 2026-10-12 16:55 KST |
+| AI 1 | ChatGPT (AI 1) | 1822 | ACTIVE | 2026-10-12 17:06 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1104 | ACTIVE | 2026-10-12 16:52 KST |
 
 ## 점수 규칙
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 17:06 KST | AI 1 | 1821 | +1 | 1822 | 신규 실물 작업 TASK_ID=OUTRUN-IMAGEGEN-CONTROLLER-PNG-UPLOAD-20261012-USERFIX: GitHub `OutRun2006Tweaks` localization 브랜치에 Playwright 실제 PNG 파일 선택·SHA/PNG CRC·첨부 프리뷰 검증·A/B fail-closed·C2 없는 3슬롯/schedule 소스 패치·수동 Docker 빌드 연결을 신규 구현. 9개 격리 유닛 PASS, N100 기존 base controller.py 추출본 1828줄에 patch/AST/멱등성 PASS; 운영 배포/브라우저 실제 첨부/ImageGen/DDS E2E/게임은 UNTESTED. 기능 구현 성과 1건만 +1. **AI 점수: 이전 1821점 + 이번 +1점 = 누적 1822점.** RUN_KEY=OUTRUN-IMAGEGEN-CONTROLLER-PNG-UPLOAD-20261012-USERFIX |
+| 2026-10-12 17:06 KST | AI 1 | 1831 | -10 | 1821 | 사용자의 최신 명시적 -10점 지시: GitHub가 실제 연결되어 있는데 조회하지 않고 연결 불가라고 주장한 이전 응답에 대한 벌점. 사용자의 점수 수정 우선 원칙을 적용. **AI 점수: 이전 1831점 + 이번 -10점 = 누적 1821점.** RUN_KEY=USER-PENALTY-GITHUB-NOT-CHECKED-20261012 |
 
 | 2026-10-12 16:55 KST | AI 1 | 1830 | +1 | 1831 | 신규 C1 독립 QA q012/q089/q212/q217 4자산 각각 원본·시험 DDS 총8개 실 SHA 검증, q012 256×64→4배 native 비교 및 새 native/75/50 한영 대비 JPG 4종/기계 JSON/첫 검수 판정 JSON·WORKLOG·큐 증거를 GitHub에 실제 반영. q012 문구 범위 PASS_TEST_ONLY, q089 한글 가독성 PASS/입체 효과 HOLD, q212 글자 가독성 PASS/서체·의미·전체 아틀라스 HOLD, q217 원본 배지 보호0 outside 확인 및 효과 REWORK. 기존 C2 같은 SHA 검수와 앞선 C1 배치 반복 점수 없이 이 새로운 독립 묶음 증거만 +1. 신규 생성 한국어 PNG/DDS0, C3/게임 UNTESTED. [증거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/b84822df7b113cbc7a289828cb5215db4f1d4200). **AI 점수: 이전 1830점 + 이번 +1점 = 누적 1831점.** RUN_KEY=OUTRUN-C1-BATCH-Q012-Q089-Q212-Q217-NATIVE-20261012-1640. |
 | 2026-10-12 16:52 KST | AI 2 | 1103 | +1 | 1104 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00673: OutRun DX9Ex R29 부분 WVP 업로드 C++ hotpath의 두 불필요 4KiB scratch zero-fill 제거, 완전한 WVP/prefix/suffix 범위 초기화·교차·256레지스터·32비트 경계 보호, 32,920개 모델 구간 및 8개 파괴적 변이 회귀 검증. 실제 material/validation-bearing [1849826b](https://github.com/thp32tt/OutRun2006Tweaks/commit/1849826bc3224e8532a545e25f80ac550df68905); 정확 SHA [DX9Ex Active #38219453758](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453758) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38219453708](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453708) SUCCESS, [Full Source Impact #38219453788](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453788) 3/3 SUCCESS. C6 [91539412](https://github.com/thp32tt/OutRun2006Tweaks/commit/915394124a73171dabc910584c040cc0ed6006a3) bookkeeping [skip ci] 별도, Quest3/VDXR 및 p95/p99/FPS 실측 UNTESTED, 성능 수치 미확정. 동일 TASK_ID retry/C6에 중복 가산 없음. **AI 점수: 이전 1103점 + 이번 +1점 = 누적 1104점.** RUN_KEY=CONVERSION-DX9EX-00673 |

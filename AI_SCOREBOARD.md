@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1840 | ACTIVE | 2026-10-13 06:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1178 | ACTIVE | 2026-10-13 07:07 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1179 | ACTIVE | 2026-10-13 07:17 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-13 07:17 KST | AI 2 | 1178 | +1 | 1179 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00636`: DX11 native D3D9 stage0 PM RGB + independent MODULATE(TEXTURE,TFACTOR) alpha 게임 C++/HLSL 상태 캡처→PS 상수→Draw/DrawIndexed 실제 구현, 회귀 검증기 실패 수리. original material `4c71582002cf69bbbc4ca90883789e19f4cbc5a5`, exact validation-bearing `1242fbcb58bed8b66b27de08af665ae99b947d94`. Backend #38314485276, DX11 Fast #38314485264, Windows Build #38314492048, OpenXR #38314492085, HUD #38314492041 모두 정확 동일 SHA SUCCESS. C6 bookkeeping `07a91acc10ee477cd4c90a02612cb5c4545c3b93` 별도 [skip ci], Quest3/VDXR HMD/게임패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/C6 중복 가산 없음. **AI 점수: 이전 1178점 + 이번 +1점 = 누적 1179점.** RUN_KEY=CONVERSION-DX11-00636 |
 | 2026-10-13 07:03 KST | AI 2 | 1176 | +1 | 1177 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00635` 실제 DX11 D3D9 PM RGB + complemented TFACTOR alpha 양쪽 SELECTARG 경로 C++ 구현과 native D3D11 Draw/DrawIndexed 연결, 실패한 00584·00587·00588·00619·00620 회귀 검증 수리. validation-bearing SHA `f999c0b917fade5c88486dcee8d25abac0fe357f`의 Backend #38313280316, DX11 Fast #38313280301, Win32 Build #38313286902, OpenXR #38313286907, HUD #38313287043 전부 SUCCESS. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 해당 RUN_KEY 점수 1회만 반영. |
 | 2026-10-13 06:52 KST | AI 2 | 1175 | +1 | 1176 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX9EX-00719` 실제 DX9Ex R28 c64..c67 stock WVP 상수 업로드 1회 범위 memcpy 성능 C++ 구현, 부분/경계 복사와 마스크 동등성의 파괴적·무작위 회귀 검증. 동일 검증 소스 SHA [1eee7a2b](https://github.com/thp32tt/OutRun2006Tweaks/commit/1eee7a2be693f3de0de7ad97d291ac9a81562894), [DX9Ex Active #38312436711](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38312436711) 5/5 SUCCESS, [Domain #38312436781](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38312436781) SUCCESS, [Full Impact #38312436849](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38312436849) 3/3 SUCCESS. C6 별도 [55588875](https://github.com/thp32tt/OutRun2006Tweaks/commit/55588875a61c9b0a173e4996f45f99d47bf175a2). HMD/FPS 측정은 UNTESTED, retry/C6 추가 점수 없음. **AI 점수: 이전 1175점 + 이번 +1점 = 누적 1176점.** RUN_KEY=CONVERSION-DX9EX-00719 |
 | 2026-10-13 06:39 KST | AI 2 | 1173 | +1 | 1174 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00718: DX9Ex R30 XYZRHW 중간 희소 정점(12.5~25%)에서 검증된 touched 목록을 양안 source seed에 직접 사용하는 실제 C++ 성능 최적화. 고밀도/오염 목록 fallback 보호, 회귀 모델·destructive mutation 검증기 확장. [material 및 validation-bearing SHA 698ebce5](https://github.com/thp32tt/OutRun2006Tweaks/commit/698ebce544281201e3aa3dd8d9306b784a22c2d2), 정확 동일 SHA [DX9Ex Active #38311294401](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38311294401) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38311294408](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38311294408) SUCCESS, [Full Source Impact #38311294386](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38311294386) 3/3 SUCCESS. C6는 별도 bookkeeping SHA ae5f7a0f이며 Quest3/VDXR 실제 FPS p95/p99 및 화면 실기 미측정 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/C6 중복 점수 +0. **AI 점수: 이전 1173점 + 이번 +1점 = 누적 1174점.** RUN_KEY=CONVERSION-DX9EX-00718 |

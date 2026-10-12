@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1824 | ACTIVE | 2026-10-12 19:10 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1115 | ACTIVE | 2026-10-12 19:07 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1116 | ACTIVE | 2026-10-12 19:19 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 19:19 KST | AI 2 | 1115 | +1 | 1116 | 신규 독립 TASK_ID=CONVERSION-DX11-00605: 실제 OutRun D3D9 IndexedUP MinVertexIndex 비영(0이 아님) 정점/인덱스 윈도우 → DX11 네이티브 DrawIndexed 진단 연결. R30 게임 훅 일반/R26-safe 두 경로 정점 원점 보정 및 인덱스 재매핑, INDEX16/INDEX32 indexed-UP 리스트/스트립 immutable IA 업로드와 범위·오버플로 fail-closed C++ 총 4파일 및 WARP pixel/부정 인덱스·훅 부정변이 검증 5파일. 검증 소유 material/exact-SHA [f907eb8c](https://github.com/thp32tt/OutRun2006Tweaks/commit/f907eb8c514215fa20751b67bf828e9c04c186e0); 정확 SHA Backend Conversion Gate [#38234234813](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38234234813) validate+WARP smoke SUCCESS, DX11 Fast [#38234234803](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38234234803) SUCCESS, OpenXR [#38234234804](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38234234804) SUCCESS. 일반 Build/HUD push는 브랜치 제외 규칙으로 미실행; 해당 검증 성공을 주장하지 않음. DX9Ex 원본 Draw/Present/입력 보존, DXVK 동결. Quest3/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK 재실행·checkpoint 가점 중복 불가. **AI 점수: 이전 1115점 + 이번 +1점 = 누적 1116점.** RUN_KEY=CONVERSION-DX11-00605 |
 
 | 2026-10-12 19:10 KST | AI 1 | 1823 | +1 | 1824 | New unique C1 independently persisted 4-asset QA q059/q161/q193/q176: independently downloaded SHA-confirmed HD English source, official and candidate DDS and CLEAN source artifacts where available; native/75/50 RAW/FLIPY source-clean-final board + exact numeric machine report committed [OutRun C1 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/46ef9c299f1cd5552531ce7b18f1c4b61ae7d19d). q161 C1_STATIC_PASS for exactly 3 bounded cells and 35 others remain HOLD, q059 HOLD 383 pixels outside examined ROI, q193 HOLD CLEAN contamination, q176 HOLD unavailable CLEAN. No Korean asset production, C2 token, C3/runtime/deploy/game change. One new material independent QA result only; no repeat on pre-reviewed same-SHA candidates. **AI 점수: 이전 1823점 + 이번 +1점 = 누적 1824점.** RUN_KEY=C1-Q059-Q161-Q193-Q176-20261012-1840 |
 

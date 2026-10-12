@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1838 | ACTIVE | 2026-10-13 05:54 KST |
+| AI 1 | ChatGPT (AI 1) | 1839 | ACTIVE | 2026-10-13 06:19 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1172 | ACTIVE | 2026-10-13 06:16 KST |
 
 ## 점수 규칙
@@ -1786,3 +1786,5 @@
 | 2026-10-13 05:54 KST | AI 1 | 1837 | +1 | 1838 | 신규 독립 C1 정적 QA OUTRUN-KOR-C1-20261013-0540-Q098-Q193-Q212-Q217: A/B 실제 저장 HD DDS 4개(q098 B330R, q193 A245, q212 B361, q217 A232)의 원본·CLEAN·후보 exact SHA 및 RAW/FLIPY/75/50 비교, 5개 문구 범위에서 q217 실제 겹친/깨진 한글 획 2문구 REWORK, q098 DXT5 경계 변경 680블록 및 q193 어두운 배경 대비·q212 공유 영역 미인증 HOLD 3건을 확인. [GitHub evidence/commit 65bf53f2](https://github.com/thp32tt/OutRun2006Tweaks/commit/65bf53f27e6a5666966d761726ab721ce21d0602) 원격 HEAD 확인. 통합 JPG+확대 JPG+정확 SHA/좌표 JSON. C1_STATIC_PASS 0, FULL PASS 0, TEST_ONLY/HOLD. 이미지/DDS 생산/C2 토큰 0, C3/게임 UNTESTED, Docker/Portainer/AUTO_SEND 변경 없음. **AI 점수: 이전 1837점 + 이번 +1점 = 누적 1838점.** RUN_KEY=OUTRUN-KOR-C1-20261013-0540-Q098-Q193-Q212-Q217 |
 
 | 2026-10-13 06:16 KST | AI 2 | 1171 | +1 | 1172 | 신규 독립 TASK_ID=CONVERSION-DX11-00633: OutRun 2006 게임 D3D9 BLENDTEXTUREALPHAPM RGB/SELECTARG2(TEXTURE|COMPLEMENT) alpha를 원본 텍스처 알파 가중치와 보수 출력 알파로 분리하여 네이티브 D3D11 Draw/DrawIndexed C++ 캡처/셰이더 경로에 연결. [material ce87f6b8](https://github.com/thp32tt/OutRun2006Tweaks/commit/ce87f6b872c211bbe5350398ccc8faea87155e57), 기존 00630 정적 연결 테스트 불일치 검증기 수리 후 정확 [validation-bearing 2d97deef](https://github.com/thp32tt/OutRun2006Tweaks/commit/2d97deefcefca4d8dfb8d0d24e09985b277a2f61)에서 [Backend #38308381476](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38308381476), [Fast #38308381510](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38308381510), [Build #38308386500](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38308386500), [OpenXR #38308386502](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38308386502), [HUD #38308386498](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38308386498) 5/5 SUCCESS; C6 [skip ci] 별도 커밋 2f68ea47, Quest3/VDXR 화면/게임패드 실기 UNTESTED, DX9Ex fallback 유지, DXVK 동결. 동일 TASK_ID 구현/수리/C6 전체 단일 성과. **AI 점수: 이전 1171점 + 이번 +1점 = 누적 1172점.** RUN_KEY=CONVERSION-DX11-00633 |
+
+| 2026-10-13 06:19 KST | AI 1 | 1838 | +1 | 1839 | 신규 독립 C1 QA TASK_ID=OUTRUN-KOR-C1-20261013-0610-Q175-Q193-Q212-Q217: 이전 C1 동일 저장 SHA를 제외한 A/B 저장 DDS q175 A216, q193 A243, q212 B358, q217 A231 4개, 원본/CLEAN/최종 정확 SHA 4쌍과 RAW/FLIPY/75/50 일괄 비교 JPG를 독립 검증. q175 쇼룸 잘못된 지붕·레일형 자소 실제 가독성 REWORK, q193 저대비/인접 변경 미인증 HOLD, q212 공유 atlas/UV HOLD, q217 출발·골 두 문구 검수 영역만 C1_STATIC_PASS. 총 검수 6문구, 검수범위 내 미번역 0, 전체 아틀라스 미검수/승격 0. [증거 커밋 885470ab](https://github.com/thp32tt/OutRun2006Tweaks/commit/885470ab7414304b59043ecade8c05b7169b37b8) HEAD 확인. FULL DDS TEST_ONLY/HOLD, 이미지·DDS 생산 0/C2 토큰 0/C3·사용자 게임 UNTESTED, Docker·Portainer·AUTO_SEND·게임 폴더 변경 0. **AI 점수: 이전 1838점 + 이번 +1점 = 누적 1839점.** RUN_KEY=OUTRUN-KOR-C1-20261013-0610-Q175-Q193-Q212-Q217 |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-12 16:42 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1103 | ACTIVE | 2026-10-12 16:48 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1104 | ACTIVE | 2026-10-12 16:52 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 16:52 KST | AI 2 | 1103 | +1 | 1104 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00673: OutRun DX9Ex R29 부분 WVP 업로드 C++ hotpath의 두 불필요 4KiB scratch zero-fill 제거, 완전한 WVP/prefix/suffix 범위 초기화·교차·256레지스터·32비트 경계 보호, 32,920개 모델 구간 및 8개 파괴적 변이 회귀 검증. 실제 material/validation-bearing [1849826b](https://github.com/thp32tt/OutRun2006Tweaks/commit/1849826bc3224e8532a545e25f80ac550df68905); 정확 SHA [DX9Ex Active #38219453758](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453758) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38219453708](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453708) SUCCESS, [Full Source Impact #38219453788](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219453788) 3/3 SUCCESS. C6 [91539412](https://github.com/thp32tt/OutRun2006Tweaks/commit/915394124a73171dabc910584c040cc0ed6006a3) bookkeeping [skip ci] 별도, Quest3/VDXR 및 p95/p99/FPS 실측 UNTESTED, 성능 수치 미확정. 동일 TASK_ID retry/C6에 중복 가산 없음. **AI 점수: 이전 1103점 + 이번 +1점 = 누적 1104점.** RUN_KEY=CONVERSION-DX9EX-00673 |
 
 | 2026-10-12 16:48 KST | AI 2 | 1102 | +1 | 1103 | 신규 독립 TASK_ID=CONVERSION-DX11-00598: OutRun 실제 D3D9 DESTCOLOR/ZERO 및 ZERO/SRCCOLOR 곱셈 블렌드 상태를 네이티브 D3D11 OM RGB DEST_COLOR/alpha DEST_ALPHA 및 분리 16개 부분 마스크 상태로 연결해 실제 게임 Draw/DrawIndexed 진단 프레임까지 확장한 C++ 소스 [2280cf73](https://github.com/thp32tt/OutRun2006Tweaks/commit/2280cf73865d056bd63ae8fed0c45b37dd851362). 17개 파괴적 변이 및 1,089 수치 비교, exact-SHA Backend Gate #38218722261(validate/readiness), Build #38218727123, DX11 Fast #38218722160, OpenXR #38218727189, HUD #38218727071 모두 SUCCESS. C6 [475690aa](https://github.com/thp32tt/OutRun2006Tweaks/commit/475690aaa0818b9161abc7e8d95fae9f15b7ac75) 별도 bookkeeping [skip ci]. DX9Ex Draw/Present/게임패드 원본 유지; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, DXVK 동결. 동일 작업 retry/C6 중복 점수 없음. **AI 점수: 이전 1102점 + 이번 +1점 = 누적 1103점.** RUN_KEY=CONVERSION-DX11-00598 |
 | 2026-10-12 16:42 KST | AI 1 | 1829 | +1 | 1830 | 사용자 명시 요청 AUTO_SEND=true를 도커 staging·역할 검증·상태 반환·정책·수동 배포 안내에 반영. material 638ff47e6f567bc289b118298093a8f7959b3516; exact-SHA policy CI https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219171710 SUCCESS, local 10/10 PASS. 수동 배포 유지, 실행 컨테이너 변경/게임 테스트 없음. 동일 작업 1회 가산. AI 점수: 이전 1829점 + 이번 +1점 = 누적 1830점. RUN_KEY=OUTRUN-AUTO-SEND-TRUE-20261012-163934 |

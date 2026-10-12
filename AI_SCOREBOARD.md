@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1832 | ACTIVE | 2026-10-13 02:53 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1156 | ACTIVE | 2026-10-13 03:07 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1157 | ACTIVE | 2026-10-13 03:08 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 03:08 KST | AI 2 | 1156 | +1 | 1157 | 신규 독립 TASK_ID=CONVERSION-DX11-00625: D3D9 게임 stage0 BLENDTEXTUREALPHAPM RGB와 별도 ADDSIGNED 알파 포화 수식을 실제 C++/HLSL 네이티브 D3D11 Draw/DrawIndexed에 연결, 엄격한 상태 캡처·DX9Ex 폴백 유지 및 파괴적·수치 회귀 추가. [material/validation-bearing SHA bc2f8248](https://github.com/thp32tt/OutRun2006Tweaks/commit/bc2f8248ec9ac4151b964e8d7eae00357a286c88) 정확 SHA [Backend Conversion Gate #38287679392](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287679392) 본검증+smoke SUCCESS, [DX11 Fast #38287679296](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287679296), [Windows Build #38287686881](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287686881), OpenXR push #38287679268 및 PR #38287686980, HUD #38287686909 모두 SUCCESS. C6 [skip ci] bookkeeping 별도 SHA 5276ff8bbdc66b47d6be67169419fd2e79433f09. Quest3/VDXR·게임패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/상태확인 중복 가산 금지. **AI 점수: 이전 1156점 + 이번 +1점 = 누적 1157점.** RUN_KEY=CONVERSION-DX11-00625 |
 
 | 2026-10-13 03:07 KST | AI 2 | 1155 | +1 | 1156 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00705: DX9Ex R30 VB/IB 레지스트리의 부재(negative) 조회에도 세대-펜스 캐시를 도입한 실제 C++ 성능 개선, 기존 성공 캐시 및 등록·해제·Reset·COM 주소 재사용 안전성 유지. [material/validation-bearing edc21af05c](https://github.com/thp32tt/OutRun2006Tweaks/commit/edc21af05c49a1e27b1bf5637bf435c377dea865), [DX9Ex Active #38287771645](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287771645) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38287771557](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287771557) SUCCESS, [Full Source Impact #38287771541](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38287771541) 3/3 SUCCESS; negative/positive cache·재등록·COM 재활용 model 및 원본 소스 회귀 PASS. C6 [skip ci] commit 0e782188 별도 bookkeeping으로 +0. Quest3/VDXR 실기/FPS RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1155점 + 이번 +1점 = 누적 1156점.** RUN_KEY=CONVERSION-DX9EX-00705 |
 | 2026-10-13 02:53 KST | AI 1 | 1831 | +1 | 1832 | 신규 C1 독립 QA TASK_ID=OUTRUN-C1-20261013-0240-Q046-Q050-Q052-Q062-BATCH-FAST-HOLD : A/B 기존 실저장 DDS q046/q050/q052/q062 4종을 최신 HD SOURCE/READABLE 및 저장 DDS RAW/FLIPY/75/50 하나의 비교판으로 검토, 각 HD source·saved DDS SHA256 검증, SOURCE→CLEAN 및 FINAL 개별 HOLD 판정과 7개 대상 중 미번역 0개 기록. CLEAN 바이트 미검증 및 UI UV 미확인 시 공식 승인 차단, C2 토큰 신규 발급 0, C3/실게임 UNTESTED. 검수 [커밋 9257a0a](https://github.com/thp32tt/OutRun2006Tweaks/commit/9257a0a92d9cfa7d0a561641d9a12231153ed987) GitHub 원격 HEAD 확인. 동일 작업 retry/보고 중복 가산 0. **AI 점수: 이전 1831점 + 이번 +1점 = 누적 1832점.** RUN_KEY=OUTRUN-C1-20261013-0240-Q046-Q050-Q052-Q062-BATCH-FAST-HOLD |

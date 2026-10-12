@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1820 | ACTIVE | 2026-10-12 12:37 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1082 | ACTIVE | 2026-10-12 13:28:51 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1083 | ACTIVE | 2026-10-12 13:43:03 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 13:43:03 KST | AI 2 | 1082 | +1 | 1083 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00662: DX9Ex R30 CPU-projected XYZRHW sparse indexed smoke/sand/decal 양안 정점 경로에서 64개 이상 span·참조비율 25% 이하인 경우 참조된 연속 정점 run만 CPU 복사하도록 실제 C++ 구현. 밀집·비인덱스 전체 복사와 재투영 실패 시 전체 source 복구 보존; R30 정책검증 120개 희소/밀집 사례 + 원래 부정변이 검증 PASS. [material/validation-bearing 0633a1da](https://github.com/thp32tt/OutRun2006Tweaks/commit/0633a1dafb52d1539851bc2cd1164b2a74942786), [DX9Ex Active #38204305933](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204305933) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38204305949](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204305949) SUCCESS, [Full Impact #38204305955](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204305955) game/host/source-cross-domain 3/3 SUCCESS. C6 별도 [c38b0a40](https://github.com/thp32tt/OutRun2006Tweaks/commit/c38b0a40c223d92e97dc7661a8254ade4253b734) [skip ci] bookkeeping +0점. Quest3/VDXR 실기 RUNTIME_VALIDATION=UNTESTED, FPS 향상 실측 없음, DXVK 동결, 다른 브랜치 미변경. **AI 점수: 이전 1082점 + 이번 +1점 = 누적 1083점.** RUN_KEY=CONVERSION-DX9EX-00662 |
 
 | 2026-10-12 13:28:51 KST | AI 2 | 1081 | +1 | 1082 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00661: DX9Ex R23 연속 양안 투영의 첫눈 PS SRV·OM RTV 무조건 해제 2회 대신 이어지는 오른눈의 재바인딩으로 불필요 D3D11 드라이버 호출을 생략하는 C++ source hot-path 개선. 오른눈 Map/Draw 실패 시 명시적 cleanup 복구 및 eye order·크기·0 extent 부정 회귀(Release smoke) 추가. [material/validation-bearing 43cce140](https://github.com/thp32tt/OutRun2006Tweaks/commit/43cce1405a19eeafbd3a96729e4a89ed8301be54), [DX9Ex Active #38203380618](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38203380618) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38203380607](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38203380607) SUCCESS, [Full Impact #38203380511](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38203380511) MSVC host/game/domain 3/3 SUCCESS. 별도 C6 bookkeeping [a9fa7358](https://github.com/thp32tt/OutRun2006Tweaks/commit/a9fa7358a9527961c31b5fa161bc52585a58fc59) [skip ci] 추가점수 +0. 실제 Quest3/VDXR 테스트 없음, RUNTIME_VALIDATION=UNTESTED; FPS 향상 실측 및 HMD 정상동작 미확정; DXVK 동결 유지. **AI 점수: 이전 1081점 + 이번 +1점 = 누적 1082점.** RUN_KEY=CONVERSION-DX9EX-00661 |
 

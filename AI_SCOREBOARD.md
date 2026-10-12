@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1830 | ACTIVE | 2026-10-12 16:42 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1102 | ACTIVE | 2026-10-12 16:38 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1103 | ACTIVE | 2026-10-12 16:48 KST |
 
 ## 점수 규칙
 
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-12 16:48 KST | AI 2 | 1102 | +1 | 1103 | 신규 독립 TASK_ID=CONVERSION-DX11-00598: OutRun 실제 D3D9 DESTCOLOR/ZERO 및 ZERO/SRCCOLOR 곱셈 블렌드 상태를 네이티브 D3D11 OM RGB DEST_COLOR/alpha DEST_ALPHA 및 분리 16개 부분 마스크 상태로 연결해 실제 게임 Draw/DrawIndexed 진단 프레임까지 확장한 C++ 소스 [2280cf73](https://github.com/thp32tt/OutRun2006Tweaks/commit/2280cf73865d056bd63ae8fed0c45b37dd851362). 17개 파괴적 변이 및 1,089 수치 비교, exact-SHA Backend Gate #38218722261(validate/readiness), Build #38218727123, DX11 Fast #38218722160, OpenXR #38218727189, HUD #38218727071 모두 SUCCESS. C6 [475690aa](https://github.com/thp32tt/OutRun2006Tweaks/commit/475690aaa0818b9161abc7e8d95fae9f15b7ac75) 별도 bookkeeping [skip ci]. DX9Ex Draw/Present/게임패드 원본 유지; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, DXVK 동결. 동일 작업 retry/C6 중복 점수 없음. **AI 점수: 이전 1102점 + 이번 +1점 = 누적 1103점.** RUN_KEY=CONVERSION-DX11-00598 |
 | 2026-10-12 16:42 KST | AI 1 | 1829 | +1 | 1830 | 사용자 명시 요청 AUTO_SEND=true를 도커 staging·역할 검증·상태 반환·정책·수동 배포 안내에 반영. material 638ff47e6f567bc289b118298093a8f7959b3516; exact-SHA policy CI https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38219171710 SUCCESS, local 10/10 PASS. 수동 배포 유지, 실행 컨테이너 변경/게임 테스트 없음. 동일 작업 1회 가산. AI 점수: 이전 1829점 + 이번 +1점 = 누적 1830점. RUN_KEY=OUTRUN-AUTO-SEND-TRUE-20261012-163934 |
 
 | 2026-10-12 16:38 KST | AI 2 | 1101 | +1 | 1102 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00672: DX9Ex R30 flat-perspective 공통 head-inverse 행렬 곱과 HUD containment 계산을 양안 루프 밖으로 이동한 실제 C++ [5a0a474c](https://github.com/thp32tt/OutRun2006Tweaks/commit/5a0a474cfe4ce8dc89652fa2726d6c3092444e41), 최초 Policy 회귀 assertion 실패 #38218007518 수리 [9c205425](https://github.com/thp32tt/OutRun2006Tweaks/commit/9c20542548f1a9d995b459eaafd1edfb7dc18d84). 정확한 validation-bearing SHA 9c20542548f1a9d995b459eaafd1edfb7dc18d84 DX9Ex Active #38218169762 policy/game/host/full-chain/package 5/5 SUCCESS, Domain #38218169761 SUCCESS; material SHA 5a0a474c Full Source Impact #38218007647 SUCCESS. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/E003·C6에는 재가산 없음. **AI 점수: 이전 1101점 + 이번 +1점 = 누적 1102점.** RUN_KEY=CONVERSION-DX9EX-00672 |

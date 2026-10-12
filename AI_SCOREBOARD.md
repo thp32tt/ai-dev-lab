@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1818 | ACTIVE | 2026-10-12 11:10 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1070 | ACTIVE | 2026-10-12 11:40 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1071 | ACTIVE | 2026-10-12 11:43 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 11:43 KST | AI 2 | 1070 | +1 | 1071 | 신규 독립 TASK_ID=CONVERSION-DX11-00584: OutRun 2006 실제 게임 D3D9 SELECTARG1/SELECTARG2 RGB + 독립 BLENDFACTORALPHA를 DX11 네이티브 HLSL/Draw/DrawIndexed 선택 경로로 연결한 material [a2727c12](https://github.com/thp32tt/OutRun2006Tweaks/commit/a2727c125f7f7aa52cb1141a9c2e475dbb7d9c0f). 동일 TASK의 2/3 재시도에서 Win32 C2065 선언 전 참조 실패를 source에서 교정하고 2개 부정 회귀를 추가한 최종 validation-bearing [37611f77](https://github.com/thp32tt/OutRun2006Tweaks/commit/37611f77146da5a83766d13e56643265b8ccfcb8). 정확 SHA [Backend Gate #38196288256](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196288256)(validate+readiness smoke), [Build #38196292202](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196292202), [Fast #38196288230](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196288230), [OpenXR #38196292214](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196292214) 및 [HUD #38196292253](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196292253) 전부 SUCCESS. C6 [ef6a34d2](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef6a34d26c431eb481eb995dbcaa43b13a2ef2fe) 별도 [skip ci] bookkeeping +0. DXVK 동결, DX9Ex Draw/입력 fallback 유지, Quest3/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED; TASK retry/수정/C6 별도 중복 가산 없음. **AI 점수: 이전 1070점 + 이번 +1점 = 누적 1071점.** RUN_KEY=CONVERSION-DX11-00584 |
 
 | 2026-10-12 11:40 KST | AI 2 | 1069 | +1 | 1070 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00654: [DX9Ex R23 DirectGPU 호스트 슬롯 디스크립터 캐시 C++ 실구현](https://github.com/thp32tt/OutRun2006Tweaks/commit/1b42ebb9ffb096f27724d93fcdb50fa43e05fab2)으로 검증된 공유-eye 슬롯 재사용 시 매 프레임 D3D11 GetDesc 2회를 회피. 양안 텍스처 포인터·핸들, transport/run 세대, PID, extent, format 변경 및 전송 무효화 시 재검증·무효화, 기존 복사/ACK 보존. 13개 부정변이 회귀 검증. 정확한 validation-bearing SHA 1b42ebb9ffb096f27724d93fcdb50fa43e05fab2에 [DX9Ex Active #38196208467](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196208467) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38196208420](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196208420) SUCCESS, [Full Source Impact #38196208445](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38196208445) 3/3 SUCCESS. C6 [3d0c8800](https://github.com/thp32tt/OutRun2006Tweaks/commit/3d0c8800089d1238d16a302b0926520c66c964a8) [skip ci] 별도 +0, Quest3/VDXR 실측 없음 RUNTIME_VALIDATION=UNTESTED, DX11/DXVK/Localization 미변경. 같은 TASK_ID 반복/상태 재보고 추가 가점 없음. **AI 점수: 이전 1069점 + 이번 +1점 = 누적 1070점**. RUN_KEY=CONVERSION-DX9EX-00654 |
 

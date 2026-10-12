@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1840 | ACTIVE | 2026-10-13 06:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1181 | ACTIVE | 2026-10-13 07:32 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1182 | ACTIVE | 2026-10-13 07:48 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 07:48 KST | AI 2 | 1181 | +1 | 1182 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00638`: 실제 게임-authored D3D9 PM RGB + independent MODULATE2X/4X(TEXTURE, TFACTOR 또는 COMPLEMENT(TFACTOR)) alpha를 네이티브 DX11 C++/HLSL Draw/DrawIndexed 경로에 구현하고, TFACTOR high-byte snapshot 및 2x/4x scale과 alpha saturate-before-test를 통합, DX9Ex/gamepad safe fallback 유지. 기존 00636/00637 정확 소스 회귀 검증기 실패를 원인 수리해 최종 [validation-bearing 6073b00d](https://github.com/thp32tt/OutRun2006Tweaks/commit/6073b00de35367c79912f05d48c0766718ebeb2a)에서 [Backend Gate #38317656085](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38317656085) validate+readiness SUCCESS, [DX11 Fast #38317656091](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38317656091), Windows Build #38317662176, OpenXR #38317662274, HUD #38317662211 모두 SUCCESS. C6 [c15e432e](https://github.com/thp32tt/OutRun2006Tweaks/commit/c15e432e22d6ed69b758834d53237333c773e2b5) 별도 [skip ci] 기록. Quest3/VDXR 게임패드 RUNTIME_VALIDATION=UNTESTED, 중복가산 없음. **AI 점수: 이전 1181점 + 이번 +1점 = 누적 1182점.** RUN_KEY=CONVERSION-DX11-00638 |
 
 | 2026-10-13 07:32 KST | AI 2 | 1180 | +1 | 1181 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00637`: 실제 게임-authored D3D9 PM RGB + independent MODULATE(TEXTURE, COMPLEMENT(TFACTOR)) alpha 입력을 DX11 네이티브 Draw/DrawIndexed 경로에 C++로 구현, live D3DRS_TEXTUREFACTOR의 8-bit alpha 반전→D3D11 PS constant→기존 native HLSL 연결 및 안전 DX9Ex fallback 유지. [material/validation-bearing 41aa9189](https://github.com/thp32tt/OutRun2006Tweaks/commit/41aa91898428061383d47066d6e2748131b50060), 동일 SHA [Backend Conversion Gate #38316109999](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38316109999) validate+smoke SUCCESS, [DX11 Fast #38316110073](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38316110073), [Windows Build #38316114461](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38316114461), OpenXR push #38316110031/PR #38316114445, HUD #38316114439 모두 SUCCESS. C6 별도 `c0305cfcc4fddc22a829e14cff663acb32d85ccd` [skip ci] 기록; HMD/게임패드 RUNTIME_VALIDATION=UNTESTED, 중복가산 없음. **AI 점수: 이전 1180점 + 이번 +1점 = 누적 1181점.** RUN_KEY=CONVERSION-DX11-00637 |
 

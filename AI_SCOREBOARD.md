@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1831 | ACTIVE | 2026-10-13 02:25 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1153 | ACTIVE | 2026-10-13 02:36:43 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1154 | ACTIVE | 2026-10-13 02:53 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,9 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 02:53 KST | AI 2 | 1153 | +1 | 1154 | 독립 TASK_ID=CONVERSION-DX11-00624: D3D9 게임 stage0 BLENDTEXTUREALPHAPM RGB와 독립 MODULATE4X 알파 포화 연산을 실제 C++/HLSL 네이티브 DX11 Draw/DrawIndexed로 연결, 소스 변이/256개 수치 회귀 추가. [material 및 validation-bearing SHA 8691c24e](https://github.com/thp32tt/OutRun2006Tweaks/commit/8691c24ea797fa0378e698ef16ba55c56d84e0f3), 동일 SHA [Backend Conversion Gate #38285824983](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285824983) 본 검증+readiness smoke SUCCESS, [DX11 Fast #38285825058](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285825058) SUCCESS, [Windows Build #38285830967](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285830967) SUCCESS, [OpenXR push #38285825209](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285825209)·[PR #38285830991](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285830991) SUCCESS, [HUD #38285831024](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38285831024) SUCCESS. C6 별도 bookkeeping SHA 8e0ef8de; HMD/게임패드 RUNTIME_VALIDATION=UNTESTED, DX9Ex fallback 유지. **AI 점수: 이전 1153점 + 이번 +1점 = 누적 1154점.** RUN_KEY=CONVERSION-DX11-00624 |
+
 
 | 2026-10-13 02:25 KST | AI 1 | 1830 | +1 | 1831 | 신규 독립 TASK_ID=OUTRUN-C1-20261013-0210-Q048-Q099-Q103-Q175-FAST-QA: 실제 저장 DDS q048(B407), q099(A256), q103(A253), q175(A254)의 정본 HD 원본 SHA와 후보 DDS SHA, SOURCE/CLEAN/RAW/FLIPY/native/75/50을 검수하고 4개 모두 근거 미충족 HOLD로 정직하게 기록. 저장소 [C1 근거 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/8d38126401993971836307b0524226def54cdc19) 원격 HEAD 검증. C2 토큰/생산/배포 없음, 실제 실게임 UNTESTED, 신규 QA 성과 1회만 가산. **AI 점수: 이전 1830점 + 이번 +1점 = 누적 1831점.** RUN_KEY=OUTRUN-C1-20261013-0210-Q048-Q099-Q103-Q175-FAST-QA |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1817 | ACTIVE | 2026-10-12 10:33 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1065 | ACTIVE | 2026-10-12 10:39 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1066 | ACTIVE | 2026-10-12 10:56 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 10:56 KST | AI 2 | 1065 | +1 | 1066 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00651: DX9Ex R33 depth/stencil 쓰기 상태 조회에서 스텐실 비활성 시 8개, 쓰기 마스크 0 시 7개 불필요한 D3D9 GetRenderState 읽기를 생략하는 실제 C++ 핫패스 [material SHA a6569ee2](https://github.com/thp32tt/OutRun2006Tweaks/commit/a6569ee25e49f77cfb0095dde0e1ea6bec3d6901). stencil enable/mask 재활성화에서 부분 캐시 무효화 및 StateBlock/깊이 포맷 불신시 실패폐쇄 유지. 최초 정책 검증기의 빈 depth 조기 게시 오판을 동일 TASK [e4677262](https://github.com/thp32tt/OutRun2006Tweaks/commit/e4677262413c9469f43212625a9e71674cd2ea3a)로 수리하고, 정책 트리거를 수리한 [final validation-bearing SHA aafe932b](https://github.com/thp32tt/OutRun2006Tweaks/commit/aafe932b3fec68c3ff6c486b43b3d21d0a9a673e)에서 [DX9Ex Active #38193336732](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193336732) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38193336765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193336765) SUCCESS, [Full Source Impact #38193336690](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193336690) 3/3 SUCCESS. 최초 material SHA [HUD Inspector #38193024522](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38193024522) SUCCESS. Quest 3/VDXR HMD 및 실제 FPS 미측정으로 RUNTIME_VALIDATION=UNTESTED. 최초 독립 물리 소스 성과만 +1, verifier repair·retry·C6·재보고 추가 +0. **AI 점수: 이전 1065점 + 이번 +1점 = 누적 1066점**. RUN_KEY=CONVERSION-DX9EX-00651 |
 
 | 2026-10-12 10:39 KST | AI 2 | 1064 | +1 | 1065 | 독립 TASK_ID=CONVERSION-DX9EX-00650: DX9Ex R30 VB/IB XYZRHW 스테레오 인덱스 처리에서 기존 물리 인덱스 범위 스캔+used-mask 구축+16/32비트 rebase 3회 순회를 mask/rebase 결합 2회로 줄인 실제 C++ material [fbeeaabe](https://github.com/thp32tt/OutRun2006Tweaks/commit/fbeeaabe2aad6a2464c43d4cbb5477a167f5d117). 신규 차등 모델 2,403건/부정변이 12종, 누락 guard 변이의 검사기 오류를 fail-closed로 수리한 정확한 validation-bearing SHA [e2858388](https://github.com/thp32tt/OutRun2006Tweaks/commit/e2858388d65b28280ffd0eaa9310a6a1b384832f). [DX9Ex Active #38192223199](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38192223199) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38192223213](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38192223213) SUCCESS, material [Full Impact #38192141522](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38192141522) 3/3 SUCCESS. C6 bookkeeping 38156ce053e4381ee53c583ae67ff1972f37daf5 [skip ci]는 추가점수 +0. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, FPS 실측 없음. 이 TASK 최초 material 성공만 +1, 수리/retry/C6/재보고 중복 +0. **AI 점수: 이전 1064점 + 이번 +1점 = 누적 1065점**. RUN_KEY=CONVERSION-DX9EX-00650 |
 

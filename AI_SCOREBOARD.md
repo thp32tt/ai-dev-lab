@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1821 | ACTIVE | 2026-10-12 13:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1084 | ACTIVE | 2026-10-12 13:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1085 | ACTIVE | 2026-10-12 14:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-12 14:01 KST | AI 2 | 1084 | +1 | 1085 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00663: 실제 DX9Ex R30 비인덱스 XYZRHW HUD CPU 양안 단일 루프 C++ 구현 및 기존 sparse/world 재투영 보존 [material 910a8edd](https://github.com/thp32tt/OutRun2006Tweaks/commit/910a8edd61ac586d3c9fd1438a01633a902148d0). 정확한 HUD 부정변이/Present 캐시 구조 회귀수리 [1e511f02](https://github.com/thp32tt/OutRun2006Tweaks/commit/1e511f02375bd54afb021e886b7c7aada1889b54), [validation-bearing 4a9383e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/4a9383e5681e00498813a0b47fdca0ae702bde73). 최종 정확 SHA [DX9Ex Active #38205632919](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38205632919) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38205632896](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38205632896) SUCCESS. C6 [6708269a](https://github.com/thp32tt/OutRun2006Tweaks/commit/6708269a5d02db1a4fa4a04c44c436c6fa3b0b5b) [skip ci] 별도 +0. Quest3/VDXR 게임 HMD RUNTIME_VALIDATION=UNTESTED, FPS 향상 실측 없음, DXVK 동결, 동일 TASK retry·수리·C6 중복 가산 없음. **AI 점수: 이전 1084점 + 이번 +1점 = 누적 1085점.** RUN_KEY=CONVERSION-DX9EX-00663 |
 
 | 2026-10-12 13:46 KST | AI 2 | 1083 | +1 | 1084 | 신규 독립 TASK_ID=CONVERSION-DX11-00589: 실제 OutRun D3D9 stage0 MIP_POINT 샘플러, 다중 mip CPU LockRect 레벨별 복제, BC1/2/3 sub-4x4 tail 블록 pitch, 16bit→BGRA8, DX11 불변 SRV/PSSetSamplers→실게임 opt-in Draw/DrawIndexed 연결 C++ 소스 변경. [material 1a65b852](https://github.com/thp32tt/OutRun2006Tweaks/commit/1a65b85214bd7a9a8d4e39ca4aac7608c0e768bb), [regression repair / validation-bearing 391bcb62](https://github.com/thp32tt/OutRun2006Tweaks/commit/391bcb62d144513c6ffe7dc65160d5237443124a). 정확 SHA [Backend Conversion Gate #38204257683](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204257683), [Build #38204261590](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204261590), [DX11 Fast #38204257717](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38204257717), OpenXR #38204261556 및 HUD Inspector #38204261505 모두 SUCCESS. C6 [1da76fc0](https://github.com/thp32tt/OutRun2006Tweaks/commit/1da76fc0d594edac83aca57338479b4294f37356) [skip ci] +0; DX9Ex 게임 Draw/Present/입력 fallback 보존, DXVK 동결. Quest3/VDXR 실제 게임/게임패드 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1083점 + 이번 +1점 = 누적 1084점.** RUN_KEY=CONVERSION-DX11-00589 |
 

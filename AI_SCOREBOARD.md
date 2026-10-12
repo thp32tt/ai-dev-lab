@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1825 | ACTIVE | 2026-10-12 21:08 KST |
+| AI 1 | ChatGPT (AI 1) | 1827 | ACTIVE | 2026-10-12 23:39:46 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1139 | ACTIVE | 2026-10-12 23:29 KST |
 
 ## 점수 규칙
@@ -1705,3 +1705,5 @@
 | 2026-10-12 10:13 KST | AI 2 | 1060 | +1 | 1061 | 신규 독립 TASK_ID=CONVERSION-DX11-00580: OutRun 2006 실제 D3D9 stage0 SELECTARG2 정점 RGB + 독립 ADD/SUBTRACT alpha를 신규 HLSL 2종, D3D11 Draw/DrawIndexed 네이티브 C++ 게임 연결로 구현, 17개 파괴적 변이 회귀 및 수리. Material SHA 42915747e667543960806cde51ef1cf9fa560b8f, 정확한 validation-bearing SHA e04b591b6ff56f5c9d45a14d1874a0b3846ab789. Backend Gate #38190299060(validate/smoke) SUCCESS, Build #38190301546 SUCCESS, DX11 Fast #38190299066 SUCCESS, OpenXR #38190301543 SUCCESS, HUD #38190301531 SUCCESS. C6 bookkeeping #806e1c70008ef618d02f91426308285b95d523d9 [skip ci] 별도. DXVK 동결, DX9Ex Draw/Present/게임패드 경로 유지, HMD/Quest3/VDXR/gamepad RUNTIME_VALIDATION=UNTESTED. 재시도 및 회귀수리 중복 가산 없음. **AI 점수: 이전 1060점 + 이번 +1점 = 누적 1061점.** RUN_KEY=CONVERSION-DX11-00580 |
 | 2026-10-12 21:08 KST | AI 1 | 1824 | +1 | 1825 | C1 new independently SHA-pinned native saved DDS inspection q121/q236/q228 scoped, q214 original/CLEAN provenance HOLD; QA evidence published [OutRun C1 commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef7f8b1a9684145bd8e6eb3e1cd6034d8e83ee43). Source/CLEAN and persisted RAW/FLIPY 100/75/50 verified, 0 new DDS/C2 tokens, C3/game UNTESTED. Prior q219 SAME-SHA C1 check excluded; one batch one point, retry no extra points. **AI 점수: 이전 1824점 + 이번 +1점 = 누적 1825점.** RUN_KEY=C1-Q121-Q236-Q228-Q214-20261012-2040 |
 | 2026-10-12 22:19 KST | AI 1 | 1825 | +1 | 1826 | OutRun C1 independent new 4-asset exact SOURCE/CLEAN/final SHA and saved DDS RAW/FLIPY/75/50 contact QA q053/q054/q063/q111; all HOLD (no falsified PASS/REWORK), q063 user P0 remains OPEN, no C2 tokens or Docker/game deploy, RUNTIME_VALIDATION=UNTESTED. [C1 evidence commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f04b0d5cd840194c94a077648c0f06dc8c5af6b). One batch one achievement, repeated user triggers +0. **AI 점수: 이전 1825점 + 이번 +1점 = 누적 1826점.** RUN_KEY=C1-Q053-Q054-Q063-Q111-20261012-2110 |
+
+| 2026-10-12 23:39:46 KST | AI 1 | 1826 | +1 | 1827 | 신규 수동 이미지 제작용 HD PNG 묶음: 정본 원본 12개 PNG, 번역 매핑 164행 및 전체 전사 759행, SHA-256/방향 매니페스트·공통 한국어 ImageGen 프롬프트를 ZIP으로 재구성하고 ZIP/PIL 검증 PASS; 기존 특수 다운로드 브랜치 신규 커밋 ca3ce83f7bded973db3532cd912e6b10b74e75d6 원격 확인. 3개 방향 검증, 9개 혼합방향 검토 필요, 73개 미확보 HD 원본 명시, RUNTIME_VALIDATION=UNTESTED. 이전 ZIP 재보고가 아닌 새 번역 대응 통합 묶음 한 성과만 +1. **AI 점수: 이전 1826점 + 이번 +1점 = 누적 1827점.** RUN_KEY=OUTRUN-MANUAL-TRANSLATED-PNG-PACK-20261012-2323 |

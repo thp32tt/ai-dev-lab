@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1840 | ACTIVE | 2026-10-13 06:57 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1179 | ACTIVE | 2026-10-13 07:17 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1180 | ACTIVE | 2026-10-13 07:22 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 07:22 KST | AI 2 | 1179 | +1 | 1180 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX9EX-00721`: 실제 DX9Ex R30 moderate-sparse (최대 25% 밀도) indexed XYZRHW 양안 affine/fused/ScreenHud 정점 방문 수 절감 C++ 성능 변경 [material 226c4625](https://github.com/thp32tt/OutRun2006Tweaks/commit/226c4625ecec67e5824eaf499059c5a1f5bd1a8e), 동일 태스크의 기존 파괴적 회귀 소스 조건 및 Python 줄바꿈 검증기 실패 복구 후 [validation-bearing result 281a4f02](https://github.com/thp32tt/OutRun2006Tweaks/commit/281a4f0265bfd7bbb58f935cf38ddfe7f12680f0). 동일 SHA [DX9Ex Active #38315619571](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38315619571) policy/full-chain/game/host/package 5/5 SUCCESS, [Domain Isolation #38315619575](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38315619575) SUCCESS, 원본 material [Full Source Impact #38315207418](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38315207418) 3/3 SUCCESS. Quest3/VDXR 실제 테스트/실측 FPS 미시행 RUNTIME_VALIDATION=UNTESTED. 최초 구현, 회귀 검증 수리, E003 retry는 동일 성과로 정확히 1회만 가산. **AI 점수: 이전 1179점 + 이번 +1점 = 누적 1180점.** RUN_KEY=CONVERSION-DX9EX-00721 |
 
 | 2026-10-13 07:17 KST | AI 2 | 1178 | +1 | 1179 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00636`: DX11 native D3D9 stage0 PM RGB + independent MODULATE(TEXTURE,TFACTOR) alpha 게임 C++/HLSL 상태 캡처→PS 상수→Draw/DrawIndexed 실제 구현, 회귀 검증기 실패 수리. original material `4c71582002cf69bbbc4ca90883789e19f4cbc5a5`, exact validation-bearing `1242fbcb58bed8b66b27de08af665ae99b947d94`. Backend #38314485276, DX11 Fast #38314485264, Windows Build #38314492048, OpenXR #38314492085, HUD #38314492041 모두 정확 동일 SHA SUCCESS. C6 bookkeeping `07a91acc10ee477cd4c90a02612cb5c4545c3b93` 별도 [skip ci], Quest3/VDXR HMD/게임패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/C6 중복 가산 없음. **AI 점수: 이전 1178점 + 이번 +1점 = 누적 1179점.** RUN_KEY=CONVERSION-DX11-00636 |
 | 2026-10-13 07:03 KST | AI 2 | 1176 | +1 | 1177 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX11-00635` 실제 DX11 D3D9 PM RGB + complemented TFACTOR alpha 양쪽 SELECTARG 경로 C++ 구현과 native D3D11 Draw/DrawIndexed 연결, 실패한 00584·00587·00588·00619·00620 회귀 검증 수리. validation-bearing SHA `f999c0b917fade5c88486dcee8d25abac0fe357f`의 Backend #38313280316, DX11 Fast #38313280301, Win32 Build #38313286902, OpenXR #38313286907, HUD #38313287043 전부 SUCCESS. Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 해당 RUN_KEY 점수 1회만 반영. |

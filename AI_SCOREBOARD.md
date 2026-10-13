@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1845 | ACTIVE | 2026-10-13 11:11 KST |
+| AI 1 | ChatGPT (AI 1) | 1846 | ACTIVE | 2026-10-13 11:27 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1195 | ACTIVE | 2026-10-13 11:14 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 11:27 KST | AI 1 | 1845 | +1 | 1846 | 신규 TASK_ID/RUN_KEY=`OUTRUN-Q217-N100-INPUT-TRANSFER-20261013-1112`: 2026-10-13 q217 A 단건 영문 원본 PNG 3,735,331바이트를 ChatGPT 로컬 기존 시험 ZIP에서 추출, GPT Library가 아닌 Google Drive 임시 전송 경유→연결된 N100 MCP에 정해진 chunk 오프셋으로 직접 전송. N100 `work/a_q217_smoke_preflight/imagegen/inputs/A/Q217_D1039D6F_BASE_READABLE_FLIPY.png` 저장 및 SHA256 `56b3834649568383293786e862025351d0f2379ec632592cf40d78c532a50b15` 서버 finalize PASS; `imagegen/pending_A.json` 함께 저장 후 N100 Python `load_binding("A")` 실물 CRC/SHA/2048x2048/승인 task_id 검증 PASS. 임시 Drive 원본과 폴더 둘 다 삭제 완료. Portainer 컨테이너 /data named volume 직접 복사·재배포/실제 ChatGPT 생성은 미실시, 서버 home 격리 staging만 완료. 새로운 실물 파일 N100 전송 성과만 +1, 기존 정책/QA 중복 점수 없음. **AI 점수: 이전 1845점 + 이번 +1점 = 누적 1846점.** RUN_KEY=OUTRUN-Q217-N100-INPUT-TRANSFER-20261013-1112 |
 
 | 2026-10-13 11:14 KST | AI 2 | 1194 | +1 | 1195 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX9EX-00736: DX9Ex Issue #119의 실제 F11 Quest3/VDXR XR eye-aspect 경계에서 글꼴 atlas 및 DX9 텍스처를 반복 재생성하는 frame-pacing 병목을 C++ 양방향 hysteresis로 억제, F11/desktop reset 격리와 64회 aspect jitter 수치·파괴적 회귀를 추가. [material 546a94df](https://github.com/thp32tt/OutRun2006Tweaks/commit/546a94df91bbffc9f4ec44f8ba141357520b6971), 첫 policy #38335235270 실패는 테스트에서 양팔의 동일 대입문을 부분 문자열로 오판한 오류로 동일 TASK에서 수리, [validation-bearing 17c611fc](https://github.com/thp32tt/OutRun2006Tweaks/commit/17c611fc7f040226a2fad2e150d8cbcf17ccec36), [DX9Ex Active #38335362243](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38335362243) 5/5 SUCCESS, [Domain #38335362216](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38335362216) SUCCESS, [material Full Source Impact #38335235254](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38335235254) 3/3 SUCCESS, [HUD Inspector #38335235255](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38335235255) SUCCESS. Issue #119 optical acceptance IN_PROGRESS, 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, retry 중복 가산 없음. **AI 점수: 이전 1194점 + 이번 +1점 = 누적 1195점.** RUN_KEY=CONVERSION-DX9EX-00736 |
 | 2026-10-13 11:11 KST | AI 1 | 1844 | +1 | 1845 | 신규 `OUTRUN-Q217-PORTAINER-GIT-POLICY-CORRECTION-20261013-1103` 성과: 사용자 교정에 따라 Docker는 Portainer Git 연결 Stack에서 사용자 수동 Pull and redeploy, GitHub는 정책 SSOT로 계약/HD 정책/기존 배포 가이드를 변경. q217 A 단건과 정상복원에 사용할 기존 service 환경변수만 건드리는 추가 Compose YAML 두 개, 운영 원본 Compose/이미지/PNG 자동 공급 여부 미확인 HOLD 명시한 GitOps 가이드, 실제 GitHub CI 테스트 신규 작성. 최초 sparse checkout 누락으로 실패한 workflow를 수정해 [HD ImageGen Policy #38335600366](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38335600366) 정확 커밋 090e45e439ac681a0eee5c8d8124e0dbcf49362e SUCCESS, 기존 시스템·볼륨 변경/Portainer 자동배포/실제 ChatGPT ImageGen 호출 없음(UNTESTED). 이전 A q217 초기 preflight TASK_ID와는 달리 Portainer Git-source 전달 경로 교정 및 검사 성과 +1회. **AI 점수: 이전 1844점 + 이번 +1점 = 누적 1845점.** RUN_KEY=OUTRUN-Q217-PORTAINER-GIT-POLICY-CORRECTION-20261013-1103 |

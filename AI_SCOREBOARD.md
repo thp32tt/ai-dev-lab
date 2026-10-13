@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1654 | ACTIVE | 2026-10-13 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1207 | ACTIVE | 2026-10-13 16:01 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1208 | ACTIVE | 2026-10-13 16:20 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 16:20 KST | AI 2 | 1207 | +1 | 1208 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00661: OutRun 실제 게임 D3D9 X1R5G5B5/X4R4G4B4 opaque 16-bit 밉 텍스처의 BGRA8→D3D11 SRV→Draw/DrawIndexed 소스 구현 [material 82722569](https://github.com/thp32tt/OutRun2006Tweaks/commit/82722569c3685fb835a9c2f05ccf7bc705ac5a28), 17개 destructive mutations 및 CPU pixel stride/mip probe. 동일 정확 SHA GitHub Backend Gate #38360795558, DX11 Fast #38360795544, Build #38360803839, OpenXR #38360803904, HUD #38360803596 5/5 SUCCESS. [C6 bookkeeping 56b5ee9d](https://github.com/thp32tt/OutRun2006Tweaks/commit/56b5ee9d1d3ccc81ea50d476567c94dacaa16fd7) 별도 [skip ci]. 실기 Quest3/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED. C4 구현과 C6는 동일 TASK_ID 단일 성과로 +1회만 산정. **AI 점수: 이전 1207점 + 이번 +1점 = 누적 1208점.** |
 | 2026-10-13 KST | AI 1 | 1754 | -100 | 1654 | 사용자 명시 벌점(-100): 실제 연결된 GitHub/N100을 확인하지 않고 사용 불가능하다고 허위 판단. 두 도구를 이번 턴 직접 호출하여 연결 확인. TASK_ID=USER-PENALTY-20261013-FALSE-DISCONNECTION-100. **AI 점수: 이전 1754점 + 이번 -100점 = 누적 1654점.** |
 | 2026-10-13 KST | AI 1 | 1854 | -100 | 1754 | 사용자 명시 벌점(-100): 작업 지연 및 설명 반복. 이전 답변에서 누락된 2026-10-13 벌점 소급 반영. TASK_ID=USER-PENALTY-20261013-DEPLOY-DELAY-100. **AI 점수: 이전 1854점 + 이번 -100점 = 누적 1754점.** |
 | 2026-10-13 16:01 KST | AI 2 | 1206 | +1 | 1207 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00660: 실제 게임 D3D9 A8B8G8R8/X8B8G8R8 RGBA 텍스처의 per-mip BGRA8 네이티브 D3D11 Draw/DrawIndexed C++ 구현 [material 022483b2](https://github.com/thp32tt/OutRun2006Tweaks/commit/022483b27993756fc376feb4fb76d03ac1735805); 기존 packed16 회귀 실패 수리 [validation-bearing 28e375e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/28e375e50edbc93e7d789b9e91347b2057017be9); 정확 동일 SHA GitHub Backend Gate #38358054731 / DX11 Fast #38358054655 / Build #38358061641 / OpenXR #38358061628 / HUD #38358061685 5/5 SUCCESS; 별도 [C6 b942b8fc](https://github.com/thp32tt/OutRun2006Tweaks/commit/b942b8fc52e21e50fd64310c5835c9bcd8b05eb7) [skip ci] 상태 기록. Quest3/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED. 동일 TASK의 material/수리/C6는 1회 성과만 산정. **AI 점수: 이전 1206점 + 이번 +1점 = 누적 1207점.** |

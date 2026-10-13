@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1844 | ACTIVE | 2026-10-13 10:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1187 | ACTIVE | 2026-10-13 10:17 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1188 | ACTIVE | 2026-10-13 10:24 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 10:24 KST | AI 2 | 1187 | +1 | 1188 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00645: 게임 D3D9 R30 VB/IB/UP POINTLIST 실제 source 캡처를 단위 포인트에 한정한 안전한 DX11 native POINTLIST Draw/DrawIndexed로 확장, 포인트 크기/스프라이트/스케일/FVF PSIZE fail-closed 및 수치·소스 회귀. [material/result 657f514a](https://github.com/thp32tt/OutRun2006Tweaks/commit/657f514aa2a3e970116b91d3a90dfb7f8ca575d8), 정확한 SHA [Backend Conversion Gate #38331015386](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331015386) validate+smoke SUCCESS, [DX11 Fast #38331015339](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331015339) SUCCESS, [Build #38331018370](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331018370) SUCCESS, [OpenXR #38331015312](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331015312), [OpenXR #38331018562](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331018562), [HUD #38331018323](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331018323) SUCCESS. [C6 별도 bookkeeping bf127496](https://github.com/thp32tt/OutRun2006Tweaks/commit/bf127496bd6c9e05b0c4103231b253faee33c269) 은 검증 소스 SHA와 분리. HMD/게임패드 실기 미실시 RUNTIME_VALIDATION=UNTESTED, DXVK 동결. 동일 TASK_ID 한 번만 가산. **AI 점수: 이전 1187점 + 이번 +1점 = 누적 1188점.** RUN_KEY=CONVERSION-DX11-00645 |
 
 | 2026-10-13 10:17 KST | AI 2 | 1186 | +1 | 1187 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00732: Issue #119 DX9Ex C++ F11 ImGui content rect를 실제 D3D9 EndScene 4:3 letterbox modes와 동기화하여 UILetterboxing=2/gameplay, UIScalingMode=0, portrait/4:3, Reset/invalid source size에서 음수·비정상 배치 방지 구현 [material 199f9402](https://github.com/thp32tt/OutRun2006Tweaks/commit/199f9402f864acba601b9f8c0c8b6cbd66926474). 독립 숫자·파괴적 mode/size 회귀 추가, 초기 테스트 전역 변수 오류 동일 TASK로 수리한 [validation-bearing 6ed76e40](https://github.com/thp32tt/OutRun2006Tweaks/commit/6ed76e40e1d84d0a6c5257104fab8afd3b8e2d59). 정확 SHA [DX9Ex Active #38330788626](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38330788626) 5/5 SUCCESS, [Domain #38330788619](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38330788619) SUCCESS, original material [Full Source Impact #38330734838](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38330734838) 3/3 SUCCESS. Overall Issue #119 IN_PROGRESS, Quest3/VDXR 미실시 RUNTIME_VALIDATION=UNTESTED. 동일 TASK 재시도/검증기 수정 한 번만 가산. **AI 점수: 이전 1186점 + 이번 +1점 = 누적 1187점.** RUN_KEY=CONVERSION-DX9EX-00732 |
 

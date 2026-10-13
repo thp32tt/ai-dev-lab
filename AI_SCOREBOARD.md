@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1851 | ACTIVE | 2026-10-13 13:18 KST |
+| AI 1 | ChatGPT (AI 1) | 1852 | ACTIVE | 2026-10-13 13:34:06 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1203 | ACTIVE | 2026-10-13 13:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 13:34:06 KST | AI 1 | 1851 | +1 | 1852 | 신규 독립 N100 공간 확보 작업: N100 MCP로 작업 전 가용 0B 확인, 미사용 Puppeteer 브라우저 캐시 `.cache/puppeteer` 및 변경 없는 오래된 Git 연결 worktree `work/outrun-c2-1650`, `work/outrun-c2-1720`, `work/outrun-policy-20261004` 3개를 확인 후 `git worktree remove`로 정상 삭제, 이 삭제 직후 가용 2,746,589,184B로 복구. 후속 조사 때 가용 55,147,282,432B로 증가했으나, 동시에 `work/outrun-a`·`work/outrun-a-next` 등 지정하지 않은 주요 트리의 사라짐을 확인하여 추가 삭제 중지; 원인 미확정/외부 동시 변경 의심, 이 삭제는 본 작업 성과로 산정하지 않음. 작업 완료 1건에 한 번만 +1. **AI 점수: 이전 1851점 + 이번 +1점 = 누적 1852점.** RUN_KEY=N100-STORAGE-CLEANUP-20261013-1326 |
 
 | 2026-10-13 13:24 KST | AI 2 | 1202 | +1 | 1203 | 신규 독립 TASK_ID=CONVERSION-DX11-00654: 실제 OutRun D3D9 GREATER/GREATEREQUAL 및 Z-write 0/1 -> native D3D11 4종 DepthStencil OM + isolated diagnostic reversed-depth clear + Draw/DrawIndexed C++ 구현 [material e44ca60b](https://github.com/thp32tt/OutRun2006Tweaks/commit/e44ca60b08d157c9e11d1ab03200c61a2625a643), 이전 equality 회귀 검증기 충돌 원인 수리 [validation-bearing 9856cfd](https://github.com/thp32tt/OutRun2006Tweaks/commit/9856cfdffe1838c80a28da0b9104c9f05da25228). 정확 SHA [Backend Gate #38345249874](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345249874), [DX11 Fast #38345249765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345249765), [Build #38345254052](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345254052), [OpenXR #38345254013](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345254013), [HUD #38345254023](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345254023) 전부 SUCCESS. [C6 1ee2fce7](https://github.com/thp32tt/OutRun2006Tweaks/commit/1ee2fce75deb0c9578b3dd7ff45a4d3459a8a725) [skip ci] 별도. Quest3/VDXR/게임패드 실기 미시행 RUNTIME_VALIDATION=UNTESTED. 동일 TASK의 material/검증기 수리/C6는 +1회만 적용. **AI 점수: 이전 1202점 + 이번 +1점 = 누적 1203점.** RUN_KEY=CONVERSION-DX11-00654 |
 

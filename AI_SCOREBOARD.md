@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1654 | ACTIVE | 2026-10-13 KST |
+| AI 1 | ChatGPT (AI 1) | 1655 | ACTIVE | 2026-10-13 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1210 | ACTIVE | 2026-10-13 17:01 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 17:10 KST | AI 1 | 1654 | +1 | 1655 | 신규 TASK_ID=WAF-ARTEX-UA-GUIDANCE-20261013-1709: ARTEX 공개 소스·국내 보안업체 2026-10 최신 가이드 교차검증, WAF 차단 User-Agent 3종(artex-enrich/1.0, Mozilla/5.0 spa-api-recon 2종)과 매칭 문자열·행위 탐지 한계 실무 안내. 신규 응답 성과 1회 산정. **AI 점수: 이전 1654점 + 이번 +1점 = 누적 1655점.** |
 | 2026-10-13 17:01 KST | AI 2 | 1209 | +1 | 1210 | 신규 독립 RUN_KEY=CONVERSION-DX11-00663 실제 게임 A4L4/L16 LockRect mip→BGRA8 확장→D3D11 SRV 네이티브 Draw/DrawIndexed 기능 [material 17492625](https://github.com/thp32tt/OutRun2006Tweaks/commit/17492625390c30368f034ffebad07d08464713f8); 로컬 C++ pitched/mip 픽셀 회귀 및 22개 파괴적 계약 검증, 정확 SHA Backend #38365053993, Fast #38365053957, Build #38365062129, OpenXR #38365062021, HUD #38365062072 5/5 SUCCESS. [C6 fa47b7f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/fa47b7f3fd340addeab187409b99dd3be4bdfc26) 별도 [skip ci]. RUNTIME_VALIDATION=UNTESTED. TASK_ID 최초 +1, C6 재점수 없음. **AI 점수: 이전 1209점 + 이번 +1점 = 누적 1210점.** |
 | 2026-10-13 17:01 KST | AI 2 | 1208 | +1 | 1209 | 누락된 독립 RUN_KEY=CONVERSION-DX11-00662 성과 소급 확정: 실제 게임 A2R10G10B10/A2B10G10R10 mip 원천→BGRA8→D3D11 SRV→Draw/DrawIndexed [material a4fc3d6d](https://github.com/thp32tt/OutRun2006Tweaks/commit/a4fc3d6d43c0a28139f2892730a44a92e28447e5), exact-SHA Backend #38362800782, Fast #38362800542, Build #38362807689, OpenXR #38362806236, HUD #38362806234 5/5 SUCCESS, [C6 f1161507](https://github.com/thp32tt/OutRun2006Tweaks/commit/f11615070fe272b8a3f5bf171782aa49723530b8) 별도 기록. 실기 RUNTIME_VALIDATION=UNTESTED. 중복 미기록 확인 후 최초 +1. **AI 점수: 이전 1208점 + 이번 +1점 = 누적 1209점.** |
 | 2026-10-13 16:20 KST | AI 2 | 1207 | +1 | 1208 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00661: OutRun 실제 게임 D3D9 X1R5G5B5/X4R4G4B4 opaque 16-bit 밉 텍스처의 BGRA8→D3D11 SRV→Draw/DrawIndexed 소스 구현 [material 82722569](https://github.com/thp32tt/OutRun2006Tweaks/commit/82722569c3685fb835a9c2f05ccf7bc705ac5a28), 17개 destructive mutations 및 CPU pixel stride/mip probe. 동일 정확 SHA GitHub Backend Gate #38360795558, DX11 Fast #38360795544, Build #38360803839, OpenXR #38360803904, HUD #38360803596 5/5 SUCCESS. [C6 bookkeeping 56b5ee9d](https://github.com/thp32tt/OutRun2006Tweaks/commit/56b5ee9d1d3ccc81ea50d476567c94dacaa16fd7) 별도 [skip ci]. 실기 Quest3/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED. C4 구현과 C6는 동일 TASK_ID 단일 성과로 +1회만 산정. **AI 점수: 이전 1207점 + 이번 +1점 = 누적 1208점.** |

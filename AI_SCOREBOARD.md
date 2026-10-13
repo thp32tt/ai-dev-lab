@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1842 | ACTIVE | 2026-10-13 09:38 KST |
+| AI 1 | ChatGPT (AI 1) | 1843 | ACTIVE | 2026-10-13 09:49 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1185 | ACTIVE | 2026-10-13 08:54 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 09:49 KST | AI 1 | 1842 | +1 | 1843 | 신규 요청 `OUTRUN-IMAGEGEN-AUTOUPLOAD-API-RESEARCH-20261013-0943`: GitHub 컨트롤러 실제 Playwright PNG SHA 바인딩 구현·배포/운영 차이 분석, 공식 Playwright/ChatGPT 브라우저 첨부 실패 사례·현행 OpenAI 이미지 API 모델/가격·마스크 주의사항 조사, 로컬 Chromium에서 숨김 input setInputFiles 및 filechooser 실제 PNG 첨부 격리 2/2 PASS, 운영 ChatGPT 업로드·이미지 생성/결과 다운로드는 UNTESTED 유지. 13/89/108/759 작업단위별 가정 비용 비교와 자동화 단계별 권고 도출. API 유료 호출·운영 컨테이너 수정·배포 없음. 독립 조사+재현 성과 +1회. **AI 점수: 이전 1842점 + 이번 +1점 = 누적 1843점.** RUN_KEY=OUTRUN-IMAGEGEN-AUTOUPLOAD-API-RESEARCH-20261013-0943 |
 
 | 2026-10-13 09:38 KST | AI 1 | 1841 | +1 | 1842 | 신규 `OUTRUN-HD-PNG-QA-13-20261013-0931` 독립 사전 QA: GPT Library 저장 `OUTRUN_HD_KO_13_PREVIEW_QA_UNTESTED_20261013.zip` 13 PNG 실물 및 영어 정본 13 PNG 비교, 전수 규격/알파·보호 아트 검토 후 13 REWORK/0 PASS 판정, 12 크기 불일치·2 RGB 알파 상실·7 원본 메타 오기·Q044 보호 가시 픽셀 3,295개 불일치·Q050/Q051/Q053 아틀라스 혼동 확인. ChatGPT 로컬 QA CSV+4 비교 JPG+차분 이미지+보고서 ZIP 제작, DDS/게임 검증 미실시(RUNTIME_VALIDATION=UNTESTED). 신규 13장 일괄 QA 성과만 +1; 기존 개별 확인 재보고 중복가점 없음. **AI 점수: 이전 1841점 + 이번 +1점 = 누적 1842점.** RUN_KEY=OUTRUN-HD-PNG-QA-13-20261013-0931 |
 

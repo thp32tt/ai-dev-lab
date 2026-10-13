@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1843 | ACTIVE | 2026-10-13 09:49 KST |
+| AI 1 | ChatGPT (AI 1) | 1844 | ACTIVE | 2026-10-13 10:08 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1186 | ACTIVE | 2026-10-13 10:04 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 10:08 KST | AI 1 | 1843 | +1 | 1844 | 신규 `OUTRUN-Q217-A-ONE-SHOT-DOCKER-IMAGEGEN-PREFLIGHT-20261013-0956`: OutRun2006Tweaks Korean branch에 A q217(START/GOAL) 정확 원본 PNG SHA·DDS SHA·한국어 승인 번역 바인딩을 고정한 단건 Docker ImageGen 시험 정책과 사용자 수동 배포 단계 추가. `--single-a-smoke` staging(0:A only, AUTO_SEND=true, B/C1/watchdog 전송 차단), 오직 정확 task ID만 업로드, 재발송 차단 및 정상 모드 복원. GitHub 정책/계약/테스트/실행기 가드 문서 반영, N100 별도 임시경로 작은 GitHub 소스 테스트 13/13 PASS, ChatGPT 로컬 Chromium 실 q217 PNG(3,735,331B) 숨겨진 파일 input 첨부 PASS, 실제 원본 SHA 확인, 사용자 전달 ZIP 제작. 실제 운영 Docker 재배포/ChatGPT 서비스 첨부/ImageGen 결과/DDS/게임은 사용자가 수동 배포 전이므로 UNTESTED, 과장 금지. 이전 동일 QA13 작업과 다른 새로운 단건 구현/격리시험 성과 1회 가산. **AI 점수: 이전 1843점 + 이번 +1점 = 누적 1844점.** RUN_KEY=OUTRUN-Q217-A-ONE-SHOT-DOCKER-IMAGEGEN-PREFLIGHT-20261013-0956 |
 
 | 2026-10-13 10:04 KST | AI 2 | 1185 | +1 | 1186 | 신규 작업 CONVERSION-DX9EX-00731: DX9Ex Issue #119 ESC/pause ScreenOverlay2D 전용 viewport-height 세로 배치 C++ 구현+설정+파괴적 수치 회귀, 기존 exact-SHA 정책 검증기 함수 경계 오류 수정. OutRun2006Tweaks vr-d3d9ex-focus material ab06f8fbef2cee5fce3813bdf107d90512e4d905, final validation-bearing 914ed997deaef61f2f6b3e3ccdac38b33f20a013; DX9Ex Active #38329837821 5/5 SUCCESS + Domain #38329837822 SUCCESS. Quest3/VDXR UNTESTED, overall UI feature still IN_PROGRESS. AI 점수: 이전 1185점 + 이번 +1점 = 누적 1186점. RUN_KEY=CONVERSION-DX9EX-00731 |
 

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1852 | ACTIVE | 2026-10-13 13:34:06 KST |
+| AI 1 | ChatGPT (AI 1) | 1853 | ACTIVE | 2026-10-13 14:05 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1205 | ACTIVE | 2026-10-13 14:01 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 14:05 KST | AI 1 | 1852 | +1 | 1853 | TASK_ID/RUN_KEY=OUTRUN-HD-CLEAN-START-20261013-1350: OutRun HD 한국어 UI를 기존 결과 승계 없이 새 브랜치 `korean-localization-clean-start-20261013`에 재출발. 검증된 영문 원본 HD DDS 18개, 영문 PNG 참조 ZIP 1개, HD 번역 매핑 CSV 1개, 문자열 초안 JSON 1개만 정확 Git blob SHA로 이관. 새 이미지 0개, 과거 후보/QA/큐 0개, 새 규칙·상태·원본 SHA manifest 생성. 원격 HEAD [0cf1648](https://github.com/thp32tt/OutRun2006Tweaks/commit/0cf164899f8118dcf6c279971469fe00b57bbc7c) 직접 확인. 원본 289 DDS 전체 복원은 아님, 실게임 UNTESTED, 배포 안 함. **AI 점수: 이전 1852점 + 이번 +1점 = 누적 1853점.** |
+
 
 | 2026-10-13 14:01 KST | AI 2 | 1204 | +1 | 1205 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00656: 실제 게임 D3D9 MIN/MAG=ANISOTROPIC·MIP_LINEAR 2~16 샘플러를 네이티브 D3D11 전체 mip + Draw/DrawIndexed로 연결한 C++ [material f79c98f5](https://github.com/thp32tt/OutRun2006Tweaks/commit/f79c98f544a54d62faa0c85b653654e3312a64ad), 216개 샘플러 조합·14개 음성 mutation 회귀 테스트. 정확한 동일 SHA Backend Conversion Gate·DX11 Fast·Windows Build·OpenXR·HUD 5개 SUCCESS. 별도 C6 [aca84f6d](https://github.com/thp32tt/OutRun2006Tweaks/commit/aca84f6d550277e24d4c3658e338f8aa8d9931b7), Quest3/VDXR·게임패드 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1204점 + 이번 +1점 = 누적 1205점**. RUN_KEY=CONVERSION-DX11-00656 |
 

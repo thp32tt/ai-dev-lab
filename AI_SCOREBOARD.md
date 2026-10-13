@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1660 | ACTIVE | 2026-10-13 20:55:03 KST |
+| AI 1 | ChatGPT (AI 1) | 1661 | ACTIVE | 2026-10-13 21:02:32 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1225 | ACTIVE | 2026-10-13 21:01 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 21:02:32 KST | AI 1 | 1660 | +1 | 1661 | 신규 작업 TASK_ID/RUN_KEY=OUTRUN-Q043-TRANSPARENT-TEXT-LAYER-IMAGEGEN-PROMPT-20261013-2101: 사용자의 Q043 CONTINUE→계속 투명 글자 레이어 전용 ImageGen 프롬프트를 새로 작성하고 실제 대화에서 제공. 원본 보존형 전체 이미지 편집 프롬프트와 달리 텍스트/effect 레이어만 RGBA 투명 생성하고 원본 768×112 영문 글자 영역에 사후 합성하도록 6개 조항 구성. ImageGen 실제 재실행/알파 QA/DDS 합성은 미수행(UNTESTED), 기존 전체 이미지 프롬프트 생성 및 Q043 이미지 QA 재보고에는 중복 가점 없음. **AI 점수: 이전 1660점 + 이번 +1점 = 누적 1661점.** |
 | 2026-10-13 21:01 KST | AI 2 | 1224 | +1 | 1225 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX9EX-00774: Quest3 F11 전체 메뉴 글꼴 설정의 키보드/게임패드·탭 전환·닫기 시 편집 값 저장 및 atlas 재생성 누락을 실제 src/overlay C++ 소스로 수리 [material a64428e4](https://github.com/thp32tt/OutRun2006Tweaks/commit/a64428e4f51043cc4a2bb66ec68f24ac2d7e92ea). 동일 TASK_ID E003에서 기록 누락/순서 검증 실패 수리 [800ad001](https://github.com/thp32tt/OutRun2006Tweaks/commit/800ad001d7e0088127930ae59b590606a91628c9), E004에서 실제 설정 저장 위치만 음성 mutation 검사하도록 수리 [validation-bearing 35e13f13](https://github.com/thp32tt/OutRun2006Tweaks/commit/35e13f13d2ce69d3fd4695cb61aa86d5be50fb7d). 정확 SHA [DX9Ex Active #38393389379](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38393389379) policy/game/host/full-chain/package 5/5 SUCCESS 및 [Domain Isolation #38393389507](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38393389507) SUCCESS; Full Source Impact #38392886654는 원본 material SHA에만 SUCCESS. C6 기록 [61202bb7](https://github.com/thp32tt/OutRun2006Tweaks/commit/61202bb73c19bb580d6916b5f452fc772b04ae6c). 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED 및 NEED_HMD_TEST, runtime PASS 주장 없음. 해당 TASK_ID/FEATURE_ID 실제 독립 F11 기능 성과 1회만 가산하며 dispatch/retry/E003/E004/C6 중복 가산 없음. **AI 점수: 이전 1224점 + 이번 +1점 = 누적 1225점.** |
 | 2026-10-13 20:55:03 KST | AI 1 | 1659 | +1 | 1660 | 신규 독립 TASK_ID/RUN_KEY=OUTRUN-Q043-CONTINUE-IMAGEGEN-PIXEL-QA-20261013-2049: Q043 영문 PNG 768×112 RGBA 및 실제 ImageGen 결과 2종(각 2172×724 RGB)의 바이트/SHA-256/알파/좌표/스타일 실물 비교. CONTINUE→계속 번역 PASS지만 원본 alpha 완전투명 41,733/86,016픽셀 손실, RGB 캔버스 재생성·원본 치수/종횡비 훼손을 확인해 DDS 직접 합성 FAIL 판정. /mnt/data/Q043_CONTINUE_KOR_QA_COMPARISON_20261013.png 시각 비교판 및 Q043_CONTINUE_KOR_QA_REPORT_20261013.md 로컬 신규 생성. DDS 재합성·실게임 실행 미수행(UNTESTED), 기존 Q043 분할/프롬프트 생성 작업은 중복 가점하지 않음. **AI 점수: 이전 1659점 + 이번 +1점 = 누적 1660점.** |
 | 2026-10-13 20:44:02 KST | AI 1 | 1658 | +1 | 1659 | 신규 독립 TASK_ID/RUN_KEY=OUTRUN-TEXT-ONLY-DDS-COMPOSITE-PROMPT-20261013-2041: OutRun HD 원본 PNG에서 번역 대상 영문만 한글로 교체하고 비번역 픽셀/RGBA/해상도/좌표/보호 아트를 유지해 원본 DDS에 재합성하는 상세 ImageGen 프롬프트 신규 작성·사용자 제공. 이미지 생성/DDS 합성/실기 검증 미수행. 동일 프롬프트 과업 +1회. **AI 점수: 이전 1658점 + 이번 +1점 = 누적 1659점.** |

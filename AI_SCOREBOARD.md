@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1849 | ACTIVE | 2026-10-13 12:39 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1200 | ACTIVE | 2026-10-13 12:29 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1201 | ACTIVE | 2026-10-13 12:43 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 12:43 KST | AI 2 | 1200 | +1 | 1201 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00652: OutRun 2006 실제 D3D9 메뉴/레이스 ZFUNC=ALWAYS 깊이 비교를 D3D11 네이티브 진단 Draw/DrawIndexed의 별도 writable/read-only OM DSV 상태에 연결한 C++ 실구현 [material 89712d3e](https://github.com/thp32tt/OutRun2006Tweaks/commit/89712d3ef1c82d79dae2a4b17c5a7aaba86ad070), 기존 00651 회귀 검증기가 새 ALWAYS descriptor 앞부분만 변경해 발생한 CI 오검출을 동일 TASK에서 수리한 [validation-bearing 20ee6e5d](https://github.com/thp32tt/OutRun2006Tweaks/commit/20ee6e5dd4f42aef928f653becabc9e575d1199c). 정확 SHA의 [Backend Gate #38342300734](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38342300734) validate+readiness SUCCESS, [DX11 Fast #38342300766](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38342300766) SUCCESS, [Windows Build #38342304347](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38342304347) SUCCESS, [OpenXR #38342304267](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38342304267) SUCCESS, [HUD #38342304213](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38342304213) SUCCESS. 별도 C6 bookkeeping [826a7d3a](https://github.com/thp32tt/OutRun2006Tweaks/commit/826a7d3a2ce4a0545126e44df0c4eb3b92e995c4) [skip ci]로 원 검증 SHA 보존, Quest3/VDXR 실제 게임/게임패드 실기 미검증 RUNTIME_VALIDATION=UNTESTED, DX9Ex fallback 유지·DXVK 동결. 동일 TASK material·test repair·C6는 단 1회 +1. **AI 점수: 이전 1200점 + 이번 +1점 = 누적 1201점.** RUN_KEY=CONVERSION-DX11-00652 |
 
 | 2026-10-13 12:39 KST | AI 1 | 1848 | +1 | 1849 | 신규 독립 B q044 STAGE 이미지 생성 입력 스테이징 성과: 원본 HD DDS SHA-256 2472c7aa... 16,777,344B, 원본 투명 영문 PNG e53a72db... 242x128 RGBA를 N100 격리 입력 inputs/B에 실제 저장하고 최신 controller_png_attach.py의 load_binding(B)에서 PNG CRC/SHA/원본 SHA manifest PASS, A q217 단건 smoke에서 B의 PILOT_ROLE_BLOCKED 확인. 운영 Portainer 미배포, 실제 ChatGPT 첨부/생성·한글 PNG·DDS 모두 0, REWORK/C1/C3/실기 OPEN/UNTESTED 유지. 새 입력 검증 성과만 +1, 기존 2026-10-12 q044 source prep와 이미지 생산 중복 점수 없음. [GitHub 증거 e9bf3ea7](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9bf3ea718b9468e2d695226207d04dd094b338b). **AI 점수: 이전 1848점 + 이번 +1점 = 누적 1849점.** RUN_KEY=OUTRUN-KOR-B-Q044-STAGE-CONTROLLER-INPUT-20261013-1230 |
 

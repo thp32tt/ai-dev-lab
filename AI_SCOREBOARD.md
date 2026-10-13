@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1659 | ACTIVE | 2026-10-13 20:44:02 KST |
+| AI 1 | ChatGPT (AI 1) | 1660 | ACTIVE | 2026-10-13 20:55:03 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1224 | ACTIVE | 2026-10-13 20:44 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 20:55:03 KST | AI 1 | 1659 | +1 | 1660 | 신규 독립 TASK_ID/RUN_KEY=OUTRUN-Q043-CONTINUE-IMAGEGEN-PIXEL-QA-20261013-2049: Q043 영문 PNG 768×112 RGBA 및 실제 ImageGen 결과 2종(각 2172×724 RGB)의 바이트/SHA-256/알파/좌표/스타일 실물 비교. CONTINUE→계속 번역 PASS지만 원본 alpha 완전투명 41,733/86,016픽셀 손실, RGB 캔버스 재생성·원본 치수/종횡비 훼손을 확인해 DDS 직접 합성 FAIL 판정. /mnt/data/Q043_CONTINUE_KOR_QA_COMPARISON_20261013.png 시각 비교판 및 Q043_CONTINUE_KOR_QA_REPORT_20261013.md 로컬 신규 생성. DDS 재합성·실게임 실행 미수행(UNTESTED), 기존 Q043 분할/프롬프트 생성 작업은 중복 가점하지 않음. **AI 점수: 이전 1659점 + 이번 +1점 = 누적 1660점.** |
 | 2026-10-13 20:44:02 KST | AI 1 | 1658 | +1 | 1659 | 신규 독립 TASK_ID/RUN_KEY=OUTRUN-TEXT-ONLY-DDS-COMPOSITE-PROMPT-20261013-2041: OutRun HD 원본 PNG에서 번역 대상 영문만 한글로 교체하고 비번역 픽셀/RGBA/해상도/좌표/보호 아트를 유지해 원본 DDS에 재합성하는 상세 ImageGen 프롬프트 신규 작성·사용자 제공. 이미지 생성/DDS 합성/실기 검증 미수행. 동일 프롬프트 과업 +1회. **AI 점수: 이전 1658점 + 이번 +1점 = 누적 1659점.** |
 | 2026-10-13 20:44 KST | AI 2 | 1223 | +1 | 1224 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX9EX-00773: OutRun Quest3/VDXR 4:3 메인 메뉴가 데스크톱 캡처 21:9/부분 잘림에서 중앙 확대·위치 변조되던 문제를 실제 x64 VR host C++ authored optical geometry/clip 변환으로 수리 [material 4daa1146](https://github.com/thp32tt/OutRun2006Tweaks/commit/4daa1146145ff27855ae417c32e82f536a0692ea). 동일 TASK retry에서 정책 변경 후 오래된 umbrella READY 가드가 DX9Ex Active policy를 막는 실실패 #38390770385 수리, 분리된 HUD/F11/ESC/MAIN_MENU 독립 work key·중복 claim 방지 음성 5개 추가 [validation-bearing d8d4ac3f](https://github.com/thp32tt/OutRun2006Tweaks/commit/d8d4ac3f44f7270f1ebc6ebda4c990fb7c97a4d6). 정확 SHA [DX9Ex Active #38391280338](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38391280338) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain Isolation #38391280322](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38391280322) SUCCESS, 과거 material SHA [Full Source Impact #38390770392](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38390770392) SUCCESS. C6 [9910804d](https://github.com/thp32tt/OutRun2006Tweaks/commit/9910804dae4e9adc3709b5a3bd5e06e4b58fdad8) 분리 [skip ci]. Quest3/VDXR 실기 미실시 RUNTIME_VALIDATION=UNTESTED/NEED_HMD_TEST; 시각 정상 확정 금지. 동일 TASK 최초 구현·retry·C6 단일 성과 1회만 가점. **AI 점수: 이전 1223점 + 이번 +1점 = 누적 1224점.** RUN_KEY=CONVERSION-DX9EX-00773 |
 | 2026-10-13 20:41 KST | AI 1 | 1657 | +1 | 1658 | 신규 TASK_ID/RUN_KEY=OUTRUN-Q043-CONTINUE-IMG-CROP-SAMPLE-20261013-2040: GPT Library 기존 HD 정방향 영어 원본 5 ZIP 중 Q043_455717B2_BASE_READABLE_FLIPY.png 2048×2048 RGBA를 직접 검증하고, CONTINUE 글자/효과 손상 없이 정확 원본 좌표 (0,240,768,112)로 768×112 무손실 샘플 PNG 제작. alpha 사방 경계 0, 원본 픽셀 identical 확인, 샘플 PNG 제공. 합성/DDS 및 실게임 검증 미수행. **AI 점수: 이전 1657점 + 이번 +1점 = 누적 1658점.** |

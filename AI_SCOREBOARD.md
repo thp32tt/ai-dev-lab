@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1846 | ACTIVE | 2026-10-13 11:27 KST |
+| AI 1 | ChatGPT (AI 1) | 1847 | ACTIVE | 2026-10-13 11:33 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1196 | ACTIVE | 2026-10-13 11:29 KST |
 
 ## 점수 규칙
@@ -36,6 +36,7 @@
 
 ## 변경 이력
 
+| 2026-10-13 11:33 KST | AI 1 | 1846 | +1 | 1847 | 신규 실제 독립 DDS 픽셀 QA: q032/q034/q100 원본·GitHub 저장본 SHA 검증, RAW/FLIPY·native/75/50 육안 및 q100 SOURCE/CLEAN/FINAL 허용영역 밖 0픽셀·보호영역 변경 0픽셀 확인, q032/q034 CLEAN 부족 HOLD, q100 부분 정적 PASS/전체 HOLD, C2 토큰 발급 0·게임 미검증. [증거 커밋 96b37f3677](https://github.com/thp32tt/OutRun2006Tweaks/commit/96b37f3677e1d63fe4455d638d0750e9399a4eed). 동일 SHA 후보의 재검수를 생산으로 중복 가산하지 않고 본 신규 독립 증거 기록만 1회 평가. **AI 점수: 이전 1846점 + 이번 +1점 = 누적 1847점.** RUN_KEY=C2-Q032-Q034-Q100-PIXEL-AUDIT-20261013-1120 |
 | 2026-10-13 11:29 KST | AI 2 | 1195 | +1 | 1196 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX9EX-00737: Issue #119 DX9Ex R30 실시간 XR eye recommended extent 변경이 동일 Present/pose/FOV 안에서 발생해도 이전 HUD aspect containment 캐시를 잘못 재사용하지 않도록 C++ per-eye 4차원 extent snapshot 및 캐시 키 추가. 최초 [material f8ec9a1c](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8ec9a1c59da715ef017b257085af4b8eb6d5125), 기존 verifier의 구식 호출 문자열로 policy #38336409194 실패 후 동일 TASK에서 파괴적·수치 회귀 검증기 수정 [validation-bearing 456508b7](https://github.com/thp32tt/OutRun2006Tweaks/commit/456508b73a780e087548d41c49109a8ff757674a). 정확 SHA [DX9Ex Active #38336608362](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38336608362) 5/5 SUCCESS, [Domain #38336608368](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38336608368) SUCCESS, C++ material SHA [Full Source Impact #38336409197](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38336409197) 3/3 SUCCESS. Issue #119 통합 HMD optical acceptance IN_PROGRESS, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. Material·retry·C6 동일 성과 +1회만 반영. **AI 점수: 이전 1195점 + 이번 +1점 = 누적 1196점.** RUN_KEY=CONVERSION-DX9EX-00737 |
 | 2026-10-13 11:27 KST | AI 1 | 1845 | +1 | 1846 | 신규 TASK_ID/RUN_KEY=`OUTRUN-Q217-N100-INPUT-TRANSFER-20261013-1112`: 2026-10-13 q217 A 단건 영문 원본 PNG 3,735,331바이트를 ChatGPT 로컬 기존 시험 ZIP에서 추출, GPT Library가 아닌 Google Drive 임시 전송 경유→연결된 N100 MCP에 정해진 chunk 오프셋으로 직접 전송. N100 `work/a_q217_smoke_preflight/imagegen/inputs/A/Q217_D1039D6F_BASE_READABLE_FLIPY.png` 저장 및 SHA256 `56b3834649568383293786e862025351d0f2379ec632592cf40d78c532a50b15` 서버 finalize PASS; `imagegen/pending_A.json` 함께 저장 후 N100 Python `load_binding("A")` 실물 CRC/SHA/2048x2048/승인 task_id 검증 PASS. 임시 Drive 원본과 폴더 둘 다 삭제 완료. Portainer 컨테이너 /data named volume 직접 복사·재배포/실제 ChatGPT 생성은 미실시, 서버 home 격리 staging만 완료. 새로운 실물 파일 N100 전송 성과만 +1, 기존 정책/QA 중복 점수 없음. **AI 점수: 이전 1845점 + 이번 +1점 = 누적 1846점.** RUN_KEY=OUTRUN-Q217-N100-INPUT-TRANSFER-20261013-1112 |
 

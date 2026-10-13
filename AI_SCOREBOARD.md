@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1657 | ACTIVE | 2026-10-13 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1211 | ACTIVE | 2026-10-13 17:21 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1212 | ACTIVE | 2026-10-13 17:59 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 17:59 KST | AI 2 | 1211 | +1 | 1212 | 신규 독립 TASK_ID=CONVERSION-DX11-00666: 네이티브 DX11 OpenXR shared-eye EVENT producer가 End 직후 Flush로 GPU 명령을 실제 제출, DONOTFLUSH 완료 폴링/게시를 테스트측 별도 Flush 없이 보장하도록 C++ 수정 및 WARP 회귀/정적 계약 수정. [material 43e74b61](https://github.com/thp32tt/OutRun2006Tweaks/commit/43e74b61a5693a89fe9df07df298cd5ad863a5f7), [repair / validation-bearing d8967d39](https://github.com/thp32tt/OutRun2006Tweaks/commit/d8967d39e426237820dc2d7ec5638bc01966ffed): 정확 SHA Backend Gate #38371543361, DX11 Fast #38371543364, Build #38371548610, OpenXR #38371548658, HUD #38371548624 필수 5/5 SUCCESS, Native Transport Isolated WARP #38371543363 SUCCESS; [C6 bookkeeping e323a02d](https://github.com/thp32tt/OutRun2006Tweaks/commit/e323a02d26d9521d8ddedcce5ee78e1178b2d02e) [skip ci] 별도 +0. 실기 Quest3/VDXR/게임패드 미실시 RUNTIME_VALIDATION=UNTESTED, DXVK 동결, 동일 TASK retry/수리/C6 중복 가산 없음. **AI 점수: 이전 1211점 + 이번 +1점 = 누적 1212점.** RUN_KEY=CONVERSION-DX11-00666 |
 | 2026-10-13 KST | AI 1 | 1656 | +1 | 1657 | TASK_ID=OUTRUN-LEGACY-GITOPS-ROLLBACK-20261013-68E8: Oct 12 실제 한국어 컨트롤러 소스 Git SHA 68e8a437cadd 조사, 깃허브 기존 경량 GitOps 롤백 브랜치 deploy/rollback-localization-20261012-68e8 작성, image outrun-kor-plate-engine:68e8a437cadd 고정, Portainer 6082 단일 슬롯/컨테이너, 원격 HEAD 2deecf70 검증, Actions #38369751166 Compose 정적 검사 PASS; 포테이너 실제 redeploy는 사용자 수행 예정/RUNTIME=UNTESTED. **AI 점수: 이전 1656 +1 = 1657.** |
 | 2026-10-13 17:21 KST | AI 2 | 1210 | +1 | 1211 | 신규 TASK_ID=LOCALIZATION-AI-B-DDS-QA-20261013: B안 한글 생성 PNG 2개로 유효한 테스트 DDS 2개 + 불완전 아틀라스 DDS 생성, 원시 BGRA 및 Pillow 디코드 픽셀 일치 확인. 실제 pinned v0.25.10a 4096x4096 원본 DDS SHA 7b41a04e... 직접 다운로드, 상하 반전·원본 채널 마스크·영문 bbox 실측. 236/278픽셀 범위초과·원본보존 실패 검출로 안전 REWORK_REQUIRED; 설치 금지, RUNTIME_VALIDATION=UNTESTED. [GitHub QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-clean/localization/graphics/ai_lettering/37759842_B_DDS_QA_20261013.json). **AI 점수: 이전 1210점 + 이번 +1점 = 누적 1211점.** RUN_KEY=LOCALIZATION-AI-B-DDS-QA-20261013 |
 | 2026-10-13 17:14 KST | AI 1 | 1655 | +1 | 1656 | 신규 TASK_ID=OUTRUN-10-KOR-FILENAMES-20261013-1713: 기존 ImageGen 한국어 텍스트 레이어 10개를 각각 원본 Q번호/해시/플랫폼 파일명 그대로 _KOR.png로 매핑, 중복 제거 ZIP을 로컬 생성. ZIP 내부 10개 항목 SHA-256 원본 생성 PNG 동일성 검증 완료. 파일 내용 및 해상도 불변, 게임 합성 QA/원본 글자 bbox PASS 미주장. [다운로드](sandbox:/mnt/data/OutRun2006_KOR_Text_Layers_Original_Names.zip) **AI 점수: 이전 1655점 + 이번 +1점 = 누적 1656점.** RUN_KEY=OUTRUN-10-KOR-FILENAMES-20261013-1713 |

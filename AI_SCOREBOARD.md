@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1662 | ACTIVE | 2026-10-13 21:14:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1663 | ACTIVE | 2026-10-13 21:33:32 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1226 | ACTIVE | 2026-10-13 21:20 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 21:33:32 KST | AI 1 | 1662 | +1 | 1663 | 신규 독립 TASK_ID/RUN_KEY=OUTRUN-Q097-ICON-TEXT-OVERLAY-SAMPLE-20261013: GPT Library 실제 HD 원본 Q097_411827E 2048x2048 RGBA 및 GitHub 승인 번역 TUNED→튜닝/NORMAL→일반 확인. 아이콘 내 영문 겹침 사례를 원본 좌표 (790,825)-(1570,1120) 780x295 무손실 RGBA crop, 원본 byte-for-byte 픽셀 QA 성공. 다운로드 PNG/번역·합성 프롬프트/좌표·SHA JSON ZIP 제공. 아이콘 보호→영문 클린플레이트→한글 투명 글자층→DDS 합성 절차 안내. 이미지 생성 및 DDS·실게임 검증 UNTESTED. 동일 신규 샘플 제작 1회 +1. **AI 점수: 이전 1662점 + 이번 +1점 = 누적 1663점.** |
 | 2026-10-13 21:20 KST | AI 2 | 1225 | +1 | 1226 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX9EX-00775: Quest3 DX9Ex ESC 일시정지 메뉴 본체(ScreenOverlay2D)와 원본 EXE의 정확한 옵션 화살표 생산자(ScreenHud/ExactScreenHudClipSprite) 사이에 분리되어 있던 VR 전용 배율 및 세로 위치 변환을 [실제 C++ 소스 1db94e8](https://github.com/thp32tt/OutRun2006Tweaks/commit/1db94e8000c2cd941172b00794f5352fca4a1653)에서 같은 pause state에만 적용하도록 수리. paired XYZRHW/독립 fallback/shader 일치와 gameplay/GOAL/world/F11 음성 회귀 추가. 동일 validation-bearing SHA의 [DX9Ex Active #38395406316](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38395406316) 정책·게임·호스트·full-chain·package 5/5 SUCCESS, [Domain #38395405893](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38395405893) SUCCESS, [Full Source Impact #38395406003](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38395406003) 3/3 SUCCESS. 별도 C6 [b9f30fa7](https://github.com/thp32tt/OutRun2006Tweaks/commit/b9f30fa7c4f11fc452a00b263b044494c061abec), 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED/NEED_HMD_TEST. 별도 Coordination 기존 queue 상태 인식 오류는 미해결로 정확히 분리. 한 TASK 한 기능의 실제 material+CI 성과만 1회 가산, retry/C6 추가 가점 없음. **AI 점수: 이전 1225점 + 이번 +1점 = 누적 1226점.** |
 | 2026-10-13 21:14:45 KST | AI 1 | 1661 | +1 | 1662 | 신규 독립 TASK_ID/RUN_KEY=OUTRUN-CONTINUE-KOR-RESULT-RGBA-PNG-QA-20261013-2113: 사용자가 생성한 OutRun '계속' 이미지 실제 PNG 픽셀 QA(Pillow). RGBA 2172x724, 투명 모서리, 알파≥2 본문 효과 bbox (407,179)-(1404,604), 알파1 외곽 미세 노이즈 검출; 기존 768x112 CONTINUE 분할 참조와 치수 불일치로 DDS 직접 합성 보류·재합성 후처리 권고. 실제 DDS/게임 검증 미실행. 신규 이미지 QA +1 단일 성과. **AI 점수: 이전 1661점 + 이번 +1점 = 누적 1662점.** |
 | 2026-10-13 21:02:32 KST | AI 1 | 1660 | +1 | 1661 | 신규 작업 TASK_ID/RUN_KEY=OUTRUN-Q043-TRANSPARENT-TEXT-LAYER-IMAGEGEN-PROMPT-20261013-2101: 사용자의 Q043 CONTINUE→계속 투명 글자 레이어 전용 ImageGen 프롬프트를 새로 작성하고 실제 대화에서 제공. 원본 보존형 전체 이미지 편집 프롬프트와 달리 텍스트/effect 레이어만 RGBA 투명 생성하고 원본 768×112 영문 글자 영역에 사후 합성하도록 6개 조항 구성. ImageGen 실제 재실행/알파 QA/DDS 합성은 미수행(UNTESTED), 기존 전체 이미지 프롬프트 생성 및 Q043 이미지 QA 재보고에는 중복 가점 없음. **AI 점수: 이전 1660점 + 이번 +1점 = 누적 1661점.** |

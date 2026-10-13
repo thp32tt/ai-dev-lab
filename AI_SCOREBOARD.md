@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1844 | ACTIVE | 2026-10-13 10:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1188 | ACTIVE | 2026-10-13 10:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1189 | ACTIVE | 2026-10-13 10:28 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 10:28 KST | AI 2 | 1188 | +1 | 1189 | 수도권 워터파크·아쿠아리움·놀이공원·동물원·키즈 체험시설의 주말 사용 가능 연간권/시즌권/다회권 특가를 공식 홈페이지 및 판매처로 재조회·기존 알림과 비교. SEA LIFE 코엑스 79,000원(10/31 판매종료)은 기공지, 웅진플레이도시 가을 시즌권은 9/27 판매종료, 신규/실질 조건 개선 상품 검증되지 않아 사용자 알림 생략. 실제 조회·검증 정상 수행 +1, 중복 점수 없음. **AI 점수: 이전 1188점 + 이번 +1점 = 누적 1189점.** RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-13T10:28:13+09:00 |
 
 | 2026-10-13 10:24 KST | AI 2 | 1187 | +1 | 1188 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00645: 게임 D3D9 R30 VB/IB/UP POINTLIST 실제 source 캡처를 단위 포인트에 한정한 안전한 DX11 native POINTLIST Draw/DrawIndexed로 확장, 포인트 크기/스프라이트/스케일/FVF PSIZE fail-closed 및 수치·소스 회귀. [material/result 657f514a](https://github.com/thp32tt/OutRun2006Tweaks/commit/657f514aa2a3e970116b91d3a90dfb7f8ca575d8), 정확한 SHA [Backend Conversion Gate #38331015386](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331015386) validate+smoke SUCCESS, [DX11 Fast #38331015339](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331015339) SUCCESS, [Build #38331018370](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331018370) SUCCESS, [OpenXR #38331015312](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331015312), [OpenXR #38331018562](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331018562), [HUD #38331018323](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331018323) SUCCESS. [C6 별도 bookkeeping bf127496](https://github.com/thp32tt/OutRun2006Tweaks/commit/bf127496bd6c9e05b0c4103231b253faee33c269) 은 검증 소스 SHA와 분리. HMD/게임패드 실기 미실시 RUNTIME_VALIDATION=UNTESTED, DXVK 동결. 동일 TASK_ID 한 번만 가산. **AI 점수: 이전 1187점 + 이번 +1점 = 누적 1188점.** RUN_KEY=CONVERSION-DX11-00645 |
 

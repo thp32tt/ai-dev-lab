@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1656 | ACTIVE | 2026-10-13 17:14 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1210 | ACTIVE | 2026-10-13 17:01 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1211 | ACTIVE | 2026-10-13 17:21 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-13 17:21 KST | AI 2 | 1210 | +1 | 1211 | 신규 TASK_ID=LOCALIZATION-AI-B-DDS-QA-20261013: B안 한글 생성 PNG 2개로 유효한 테스트 DDS 2개 + 불완전 아틀라스 DDS 생성, 원시 BGRA 및 Pillow 디코드 픽셀 일치 확인. 실제 pinned v0.25.10a 4096x4096 원본 DDS SHA 7b41a04e... 직접 다운로드, 상하 반전·원본 채널 마스크·영문 bbox 실측. 236/278픽셀 범위초과·원본보존 실패 검출로 안전 REWORK_REQUIRED; 설치 금지, RUNTIME_VALIDATION=UNTESTED. [GitHub QA](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-clean/localization/graphics/ai_lettering/37759842_B_DDS_QA_20261013.json). **AI 점수: 이전 1210점 + 이번 +1점 = 누적 1211점.** RUN_KEY=LOCALIZATION-AI-B-DDS-QA-20261013 |
 | 2026-10-13 17:14 KST | AI 1 | 1655 | +1 | 1656 | 신규 TASK_ID=OUTRUN-10-KOR-FILENAMES-20261013-1713: 기존 ImageGen 한국어 텍스트 레이어 10개를 각각 원본 Q번호/해시/플랫폼 파일명 그대로 _KOR.png로 매핑, 중복 제거 ZIP을 로컬 생성. ZIP 내부 10개 항목 SHA-256 원본 생성 PNG 동일성 검증 완료. 파일 내용 및 해상도 불변, 게임 합성 QA/원본 글자 bbox PASS 미주장. [다운로드](sandbox:/mnt/data/OutRun2006_KOR_Text_Layers_Original_Names.zip) **AI 점수: 이전 1655점 + 이번 +1점 = 누적 1656점.** RUN_KEY=OUTRUN-10-KOR-FILENAMES-20261013-1713 |
 | 2026-10-13 17:10 KST | AI 1 | 1654 | +1 | 1655 | 신규 TASK_ID=WAF-ARTEX-UA-GUIDANCE-20261013-1709: ARTEX 공개 소스·국내 보안업체 2026-10 최신 가이드 교차검증, WAF 차단 User-Agent 3종(artex-enrich/1.0, Mozilla/5.0 spa-api-recon 2종)과 매칭 문자열·행위 탐지 한계 실무 안내. 신규 응답 성과 1회 산정. **AI 점수: 이전 1654점 + 이번 +1점 = 누적 1655점.** |
 | 2026-10-13 17:01 KST | AI 2 | 1209 | +1 | 1210 | 신규 독립 RUN_KEY=CONVERSION-DX11-00663 실제 게임 A4L4/L16 LockRect mip→BGRA8 확장→D3D11 SRV 네이티브 Draw/DrawIndexed 기능 [material 17492625](https://github.com/thp32tt/OutRun2006Tweaks/commit/17492625390c30368f034ffebad07d08464713f8); 로컬 C++ pitched/mip 픽셀 회귀 및 22개 파괴적 계약 검증, 정확 SHA Backend #38365053993, Fast #38365053957, Build #38365062129, OpenXR #38365062021, HUD #38365062072 5/5 SUCCESS. [C6 fa47b7f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/fa47b7f3fd340addeab187409b99dd3be4bdfc26) 별도 [skip ci]. RUNTIME_VALIDATION=UNTESTED. TASK_ID 최초 +1, C6 재점수 없음. **AI 점수: 이전 1209점 + 이번 +1점 = 누적 1210점.** |

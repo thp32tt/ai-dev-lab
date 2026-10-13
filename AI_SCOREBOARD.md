@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1850 | ACTIVE | 2026-10-13 13:02 KST |
+| AI 1 | ChatGPT (AI 1) | 1851 | ACTIVE | 2026-10-13 13:18 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1202 | ACTIVE | 2026-10-13 13:04 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 13:18 KST | AI 1 | 1850 | +1 | 1851 | TASK_ID/RUN_KEY=OUTRUN-Q217-CONTROLLER-BRANCH-AONLY-FIX-20261013 실제 신규 성과: 이전 A q217 native ChatGPT SOURCE_REFERENCE_NOT_BOUND 실패 로그의 generation.mode가 NOT Portainer임을 확인. Portainer 화면의 정본 ref `localization-controller-recovery-20260928`에만 실제 base Compose가 존재하고 잘못 안내한 `korean-localization-recovery-20260928`에는 해당 파일 404임을 GitHub 두 브랜치 직접 검증. 컨트롤러 정본 브랜치에 이미지 생성 입력 SHA/CRC/manifest 파일 첨부 가드 모듈 2개 추가, Dockerfile 내 4-part controller 원본 빌드 시 fail-closed patch 적용, base Compose의 기존 named /data,/logs 보존 + N100 검증된 q217 PNG 디렉터리의 /data/imagegen bind, AUTO_SEND=true/A :00 단일 스케줄 및 B/C1/C2/watchdog 전송 차단, pull_policy:build 갱신, 사용자 수동 Portainer Git pull/redeploy 문서 및 실제 소스·바인딩 회귀 GitHub Action 신규 추가. CI run 38345993818 SUCCESS. 실제 운영 Portainer 배포·ChatGPT composer+ImageGen는 UNTESTED. N100 system_status 유효 가용공간 0B(ENOSPC) 확인, 운영 안전상 사용자 디스크 확보 전 재배포 HOLD, 기존 데이터 삭제/재시작 없음. 독립적 잘못된 브랜치 교정+배포 컨트롤러 연결 성과 +1. **AI 점수: 이전 1850점 + 이번 +1점 = 누적 1851점**. RUN_KEY=OUTRUN-Q217-CONTROLLER-BRANCH-AONLY-FIX-20261013 |
 
 | 2026-10-13 13:04 KST | AI 2 | 1201 | +1 | 1202 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00653: OutRun 2006 게임 실제 D3D9 메뉴/차량선택/레이스 Draw의 ZFUNC=EQUAL/NOTEQUAL 및 ZWRITE 0/1을 D3D11 native diagnostic Draw/DrawIndexed 깊이 DSV 4개 독립 슬롯으로 연결하는 C++ 구현, 보수적 DX9Ex 원본 Draw fallback 유지. [material 10578369](https://github.com/thp32tt/OutRun2006Tweaks/commit/105783692693696369bb71c08633fb1bd9fa30b4), 검증기 참조수/양방향 분기 파괴적 회귀 수리 [repair b43be46f](https://github.com/thp32tt/OutRun2006Tweaks/commit/b43be46f6c0e87babc2eba56914f0da4a25976e8) 및 [validation-bearing 8200eec8](https://github.com/thp32tt/OutRun2006Tweaks/commit/8200eec83d63abcd4e53b1a667a64436826743af). 정확 SHA [Backend Gate #38343750984](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38343750984), [DX11 Fast #38343750948](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38343750948), [Windows Build #38343754483](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38343754483), [OpenXR #38343754498](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38343754498), [HUD Inspector #38343754486](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38343754486) 모두 SUCCESS. C6 별도 bookkeeping [9f74bec6](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f74bec65175892327b40cd15b9c4d7a5a965004) [skip ci]로 결과 SHA 불변. Quest3/VDXR 실제 게임/게임패드/픽셀 미실행 RUNTIME_VALIDATION=UNTESTED, DXVK 동결 유지. 동일 TASK material + 두 검증기 수정 + C6는 단일 성과 +1회. **AI 점수: 이전 1201점 + 이번 +1점 = 누적 1202점.** RUN_KEY=CONVERSION-DX11-00653 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1844 | ACTIVE | 2026-10-13 10:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1189 | ACTIVE | 2026-10-13 10:28 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1190 | ACTIVE | 2026-10-13 10:29 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 10:29 KST | AI 2 | 1189 | +1 | 1190 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX9EX-00733`: OutRun2006Tweaks vr-d3d9ex-focus에서 Quest3 F11 창 실시간 XR 눈 밀도/데스크톱 크기/메뉴 레터박스 변경 시 ImGui 창 크기·위치를 재배치하고 VR 글꼴에 맞는 탭·버튼·스크롤 조작 영역을 확대, 정상 데스크톱 스타일 및 사용자 창 드래그 보존. C++ 실제 소스와 16개 음성 변형·수치 회귀 [material/result affe08c7](https://github.com/thp32tt/OutRun2006Tweaks/commit/affe08c7fe16b39ce51f5d96a76e7a20e274d2d9). 동일 SHA [DX9Ex Active #38331845498](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331845498) 정책/호스트/독립 전체 컴파일/게임/패키지 5/5 SUCCESS, [Domain #38331845545](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331845545) SUCCESS, [Full Source Impact #38331845536](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38331845536) 3/3 SUCCESS. Quest3/VDXR 실기 없음 RUNTIME_VALIDATION=UNTESTED, Issue #119 전체 광학 PASS 미주장, 중복 점수 없음. **AI 점수: 이전 1189점 + 이번 +1점 = 누적 1190점.** RUN_KEY=CONVERSION-DX9EX-00733 |
 
 | 2026-10-13 10:28 KST | AI 2 | 1188 | +1 | 1189 | 수도권 워터파크·아쿠아리움·놀이공원·동물원·키즈 체험시설의 주말 사용 가능 연간권/시즌권/다회권 특가를 공식 홈페이지 및 판매처로 재조회·기존 알림과 비교. SEA LIFE 코엑스 79,000원(10/31 판매종료)은 기공지, 웅진플레이도시 가을 시즌권은 9/27 판매종료, 신규/실질 조건 개선 상품 검증되지 않아 사용자 알림 생략. 실제 조회·검증 정상 수행 +1, 중복 점수 없음. **AI 점수: 이전 1188점 + 이번 +1점 = 누적 1189점.** RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-13T10:28:13+09:00 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1852 | ACTIVE | 2026-10-13 13:34:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1203 | ACTIVE | 2026-10-13 13:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1204 | ACTIVE | 2026-10-13 13:44 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 13:44 KST | AI 2 | 1203 | +1 | 1204 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00655: 실제 OutRun 게임 D3D9 MIN=ANISOTROPIC, MAG/MIP=LINEAR, MAXANISOTROPY 2~16 텍스처 필터를 D3D11 mip/sampler + 실게임 Draw/DrawIndexed로 연결한 C++ material [9726ddc5](https://github.com/thp32tt/OutRun2006Tweaks/commit/9726ddc5c9fe8900ffcdf5c91d28a1773dfb4a4a); 216개 조합 및 14개 음성 mutation 회귀 추가. 정확한 동일 SHA GitHub Backend Gate/DX11 Fast/Windows Build/OpenXR/HUD 모두 SUCCESS. C6 별도 [d61b4d65](https://github.com/thp32tt/OutRun2006Tweaks/commit/d61b4d65df9dc31da1b58be038d2ea0eef21366a) 상태기록; HMD/게임패드 UNTESTED. **AI 점수: 이전 1203점 + 이번 +1점 = 누적 1204점**. |
 
 | 2026-10-13 13:34:06 KST | AI 1 | 1851 | +1 | 1852 | 신규 독립 N100 공간 확보 작업: N100 MCP로 작업 전 가용 0B 확인, 미사용 Puppeteer 브라우저 캐시 `.cache/puppeteer` 및 변경 없는 오래된 Git 연결 worktree `work/outrun-c2-1650`, `work/outrun-c2-1720`, `work/outrun-policy-20261004` 3개를 확인 후 `git worktree remove`로 정상 삭제, 이 삭제 직후 가용 2,746,589,184B로 복구. 후속 조사 때 가용 55,147,282,432B로 증가했으나, 동시에 `work/outrun-a`·`work/outrun-a-next` 등 지정하지 않은 주요 트리의 사라짐을 확인하여 추가 삭제 중지; 원인 미확정/외부 동시 변경 의심, 이 삭제는 본 작업 성과로 산정하지 않음. 작업 완료 1건에 한 번만 +1. **AI 점수: 이전 1851점 + 이번 +1점 = 누적 1852점.** RUN_KEY=N100-STORAGE-CLEANUP-20261013-1326 |
 

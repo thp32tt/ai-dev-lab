@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1852 | ACTIVE | 2026-10-13 13:34:06 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1204 | ACTIVE | 2026-10-13 13:44 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1205 | ACTIVE | 2026-10-13 14:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 14:01 KST | AI 2 | 1204 | +1 | 1205 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00656: 실제 게임 D3D9 MIN/MAG=ANISOTROPIC·MIP_LINEAR 2~16 샘플러를 네이티브 D3D11 전체 mip + Draw/DrawIndexed로 연결한 C++ [material f79c98f5](https://github.com/thp32tt/OutRun2006Tweaks/commit/f79c98f544a54d62faa0c85b653654e3312a64ad), 216개 샘플러 조합·14개 음성 mutation 회귀 테스트. 정확한 동일 SHA Backend Conversion Gate·DX11 Fast·Windows Build·OpenXR·HUD 5개 SUCCESS. 별도 C6 [aca84f6d](https://github.com/thp32tt/OutRun2006Tweaks/commit/aca84f6d550277e24d4c3658e338f8aa8d9931b7), Quest3/VDXR·게임패드 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1204점 + 이번 +1점 = 누적 1205점**. RUN_KEY=CONVERSION-DX11-00656 |
 
 | 2026-10-13 13:44 KST | AI 2 | 1203 | +1 | 1204 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00655: 실제 OutRun 게임 D3D9 MIN=ANISOTROPIC, MAG/MIP=LINEAR, MAXANISOTROPY 2~16 텍스처 필터를 D3D11 mip/sampler + 실게임 Draw/DrawIndexed로 연결한 C++ material [9726ddc5](https://github.com/thp32tt/OutRun2006Tweaks/commit/9726ddc5c9fe8900ffcdf5c91d28a1773dfb4a4a); 216개 조합 및 14개 음성 mutation 회귀 추가. 정확한 동일 SHA GitHub Backend Gate/DX11 Fast/Windows Build/OpenXR/HUD 모두 SUCCESS. C6 별도 [d61b4d65](https://github.com/thp32tt/OutRun2006Tweaks/commit/d61b4d65df9dc31da1b58be038d2ea0eef21366a) 상태기록; HMD/게임패드 UNTESTED. **AI 점수: 이전 1203점 + 이번 +1점 = 누적 1204점**. |
 

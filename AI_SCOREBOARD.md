@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1844 | ACTIVE | 2026-10-13 10:08 KST |
+| AI 1 | ChatGPT (AI 1) | 1845 | ACTIVE | 2026-10-13 11:11 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1194 | ACTIVE | 2026-10-13 11:00 KST |
 
 ## 점수 규칙
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 11:11 KST | AI 1 | 1844 | +1 | 1845 | 신규 `OUTRUN-Q217-PORTAINER-GIT-POLICY-CORRECTION-20261013-1103` 성과: 사용자 교정에 따라 Docker는 Portainer Git 연결 Stack에서 사용자 수동 Pull and redeploy, GitHub는 정책 SSOT로 계약/HD 정책/기존 배포 가이드를 변경. q217 A 단건과 정상복원에 사용할 기존 service 환경변수만 건드리는 추가 Compose YAML 두 개, 운영 원본 Compose/이미지/PNG 자동 공급 여부 미확인 HOLD 명시한 GitOps 가이드, 실제 GitHub CI 테스트 신규 작성. 최초 sparse checkout 누락으로 실패한 workflow를 수정해 [HD ImageGen Policy #38335600366](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38335600366) 정확 커밋 090e45e439ac681a0eee5c8d8124e0dbcf49362e SUCCESS, 기존 시스템·볼륨 변경/Portainer 자동배포/실제 ChatGPT ImageGen 호출 없음(UNTESTED). 이전 A q217 초기 preflight TASK_ID와는 달리 Portainer Git-source 전달 경로 교정 및 검사 성과 +1회. **AI 점수: 이전 1844점 + 이번 +1점 = 누적 1845점.** RUN_KEY=OUTRUN-Q217-PORTAINER-GIT-POLICY-CORRECTION-20261013-1103 |
 
 | 2026-10-13 11:00 KST | AI 2 | 1193 | +1 | 1194 | 신규 독립 TASK_ID/RUN_KEY=CONVERSION-DX11-00647: 실제 게임 D3D9 R30/R26-safe indexed VB에서 연속 CPU shadow 유효성 구멍으로 dense copy가 실패해도 검증된 물리 인덱스의 개별 epoch-valid sparse VB 재수집을 통해 네이티브 DX11 DrawIndexed opt-in 게임 프레임을 이어가는 C++ 실코드 구현. 잘못된 인덱스·dense 성공시 재시도 방지, C++/Python 회귀·정확 SHA [material/result 6554071d](https://github.com/thp32tt/OutRun2006Tweaks/commit/6554071d98002b32eb6cb104ec519b6ee9202e8a), [Backend Gate #38333960373](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38333960373) validate/readiness smoke SUCCESS, [DX11 Fast #38333960390](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38333960390), [Windows Build #38333964510](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38333964510), [OpenXR push #38333960392](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38333960392), [OpenXR PR #38333964501](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38333964501) SUCCESS. [C6 bookkeeping 173178e6](https://github.com/thp32tt/OutRun2006Tweaks/commit/173178e648f27d7b6bfe688879656800bff7e1fa) 별도 [skip ci]. Quest3/VDXR 레이스·패드 실기 RUNTIME_VALIDATION=UNTESTED, DXVK 동결. 동일 Task 가산 1회. **AI 점수: 이전 1193점 + 이번 +1점 = 누적 1194점.** RUN_KEY=CONVERSION-DX11-00647 |
 | 2026-10-13 10:59 KST | AI 2 | 1192 | +1 | 1193 | 신규 독립 TASK_ID/RUN_KEY=`CONVERSION-DX9EX-00735`: DX9Ex Issue #119 exact-producer peripheral HUD 그룹 화면 안쪽 안전 inset/양안 공통 이동 C++ 구현, 기존 바운딩박스 재사용 및 비정상·화면외 그룹 fail-closed [material e2ce73a7](https://github.com/thp32tt/OutRun2006Tweaks/commit/e2ce73a76b2f0d88fbc2f4493f33e26e911695c4). 기존 검증기 부분 문자열 충돌로 발생한 두 번의 exact-SHA 실패를 동일 TASK의 회귀 검증 수리 [a6e52b27](https://github.com/thp32tt/OutRun2006Tweaks/commit/a6e52b2730632168ff92123c58ba9918a8a67f8b), [validation-bearing 88973619](https://github.com/thp32tt/OutRun2006Tweaks/commit/88973619bfc049306740fc346063c95cbd499072)으로 복구. [DX9Ex Active #38334189466](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38334189466) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38334189377](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38334189377) SUCCESS. Quest3/VDXR HMD 미실시 RUNTIME_VALIDATION=UNTESTED, 동일 TASK retry는 중복 가산하지 않음. **AI 점수: 이전 1192점 + 이번 +1점 = 누적 1193점.** RUN_KEY=CONVERSION-DX9EX-00735 |

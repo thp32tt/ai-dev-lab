@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1851 | ACTIVE | 2026-10-13 13:18 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1202 | ACTIVE | 2026-10-13 13:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1203 | ACTIVE | 2026-10-13 13:24 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 13:24 KST | AI 2 | 1202 | +1 | 1203 | 신규 독립 TASK_ID=CONVERSION-DX11-00654: 실제 OutRun D3D9 GREATER/GREATEREQUAL 및 Z-write 0/1 -> native D3D11 4종 DepthStencil OM + isolated diagnostic reversed-depth clear + Draw/DrawIndexed C++ 구현 [material e44ca60b](https://github.com/thp32tt/OutRun2006Tweaks/commit/e44ca60b08d157c9e11d1ab03200c61a2625a643), 이전 equality 회귀 검증기 충돌 원인 수리 [validation-bearing 9856cfd](https://github.com/thp32tt/OutRun2006Tweaks/commit/9856cfdffe1838c80a28da0b9104c9f05da25228). 정확 SHA [Backend Gate #38345249874](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345249874), [DX11 Fast #38345249765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345249765), [Build #38345254052](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345254052), [OpenXR #38345254013](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345254013), [HUD #38345254023](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38345254023) 전부 SUCCESS. [C6 1ee2fce7](https://github.com/thp32tt/OutRun2006Tweaks/commit/1ee2fce75deb0c9578b3dd7ff45a4d3459a8a725) [skip ci] 별도. Quest3/VDXR/게임패드 실기 미시행 RUNTIME_VALIDATION=UNTESTED. 동일 TASK의 material/검증기 수리/C6는 +1회만 적용. **AI 점수: 이전 1202점 + 이번 +1점 = 누적 1203점.** RUN_KEY=CONVERSION-DX11-00654 |
 
 | 2026-10-13 13:18 KST | AI 1 | 1850 | +1 | 1851 | TASK_ID/RUN_KEY=OUTRUN-Q217-CONTROLLER-BRANCH-AONLY-FIX-20261013 실제 신규 성과: 이전 A q217 native ChatGPT SOURCE_REFERENCE_NOT_BOUND 실패 로그의 generation.mode가 NOT Portainer임을 확인. Portainer 화면의 정본 ref `localization-controller-recovery-20260928`에만 실제 base Compose가 존재하고 잘못 안내한 `korean-localization-recovery-20260928`에는 해당 파일 404임을 GitHub 두 브랜치 직접 검증. 컨트롤러 정본 브랜치에 이미지 생성 입력 SHA/CRC/manifest 파일 첨부 가드 모듈 2개 추가, Dockerfile 내 4-part controller 원본 빌드 시 fail-closed patch 적용, base Compose의 기존 named /data,/logs 보존 + N100 검증된 q217 PNG 디렉터리의 /data/imagegen bind, AUTO_SEND=true/A :00 단일 스케줄 및 B/C1/C2/watchdog 전송 차단, pull_policy:build 갱신, 사용자 수동 Portainer Git pull/redeploy 문서 및 실제 소스·바인딩 회귀 GitHub Action 신규 추가. CI run 38345993818 SUCCESS. 실제 운영 Portainer 배포·ChatGPT composer+ImageGen는 UNTESTED. N100 system_status 유효 가용공간 0B(ENOSPC) 확인, 운영 안전상 사용자 디스크 확보 전 재배포 HOLD, 기존 데이터 삭제/재시작 없음. 독립적 잘못된 브랜치 교정+배포 컨트롤러 연결 성과 +1. **AI 점수: 이전 1850점 + 이번 +1점 = 누적 1851점**. RUN_KEY=OUTRUN-Q217-CONTROLLER-BRANCH-AONLY-FIX-20261013 |
 

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1844 | ACTIVE | 2026-10-13 10:08 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1186 | ACTIVE | 2026-10-13 10:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1187 | ACTIVE | 2026-10-13 10:17 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 10:17 KST | AI 2 | 1186 | +1 | 1187 | 신규 독립 TASK_ID=CONVERSION-DX9EX-00732: Issue #119 DX9Ex C++ F11 ImGui content rect를 실제 D3D9 EndScene 4:3 letterbox modes와 동기화하여 UILetterboxing=2/gameplay, UIScalingMode=0, portrait/4:3, Reset/invalid source size에서 음수·비정상 배치 방지 구현 [material 199f9402](https://github.com/thp32tt/OutRun2006Tweaks/commit/199f9402f864acba601b9f8c0c8b6cbd66926474). 독립 숫자·파괴적 mode/size 회귀 추가, 초기 테스트 전역 변수 오류 동일 TASK로 수리한 [validation-bearing 6ed76e40](https://github.com/thp32tt/OutRun2006Tweaks/commit/6ed76e40e1d84d0a6c5257104fab8afd3b8e2d59). 정확 SHA [DX9Ex Active #38330788626](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38330788626) 5/5 SUCCESS, [Domain #38330788619](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38330788619) SUCCESS, original material [Full Source Impact #38330734838](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38330734838) 3/3 SUCCESS. Overall Issue #119 IN_PROGRESS, Quest3/VDXR 미실시 RUNTIME_VALIDATION=UNTESTED. 동일 TASK 재시도/검증기 수정 한 번만 가산. **AI 점수: 이전 1186점 + 이번 +1점 = 누적 1187점.** RUN_KEY=CONVERSION-DX9EX-00732 |
 
 | 2026-10-13 10:08 KST | AI 1 | 1843 | +1 | 1844 | 신규 `OUTRUN-Q217-A-ONE-SHOT-DOCKER-IMAGEGEN-PREFLIGHT-20261013-0956`: OutRun2006Tweaks Korean branch에 A q217(START/GOAL) 정확 원본 PNG SHA·DDS SHA·한국어 승인 번역 바인딩을 고정한 단건 Docker ImageGen 시험 정책과 사용자 수동 배포 단계 추가. `--single-a-smoke` staging(0:A only, AUTO_SEND=true, B/C1/watchdog 전송 차단), 오직 정확 task ID만 업로드, 재발송 차단 및 정상 모드 복원. GitHub 정책/계약/테스트/실행기 가드 문서 반영, N100 별도 임시경로 작은 GitHub 소스 테스트 13/13 PASS, ChatGPT 로컬 Chromium 실 q217 PNG(3,735,331B) 숨겨진 파일 input 첨부 PASS, 실제 원본 SHA 확인, 사용자 전달 ZIP 제작. 실제 운영 Docker 재배포/ChatGPT 서비스 첨부/ImageGen 결과/DDS/게임은 사용자가 수동 배포 전이므로 UNTESTED, 과장 금지. 이전 동일 QA13 작업과 다른 새로운 단건 구현/격리시험 성과 1회 가산. **AI 점수: 이전 1843점 + 이번 +1점 = 누적 1844점.** RUN_KEY=OUTRUN-Q217-A-ONE-SHOT-DOCKER-IMAGEGEN-PREFLIGHT-20261013-0956 |
 

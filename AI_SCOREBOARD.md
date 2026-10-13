@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1843 | ACTIVE | 2026-10-13 09:49 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1185 | ACTIVE | 2026-10-13 08:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1186 | ACTIVE | 2026-10-13 10:04 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,8 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+
+| 2026-10-13 10:04 KST | AI 2 | 1185 | +1 | 1186 | 신규 RUN_KEY=CONVERSION-DX9EX-00731: DX9Ex Issue #119 ESC/pause ScreenOverlay2D 전용 viewport-height 세로 배치 C++ 구현+설정+파괴적 수치 회귀, 기존 exact-SHA 정책 검증기 함수 경계 오류 수정. OutRun2006Tweaks vr-d3d9ex-focus material ab06f8fbef2cee5fce3813bdf107d90512e4d905, final validation-bearing 914ed997deaef61f2f6b3e3ccdac38b33f20a013; DX9Ex Active #38329837821 5/5 SUCCESS + Domain #38329837822 SUCCESS. Quest3/VDXR UNTESTED, overall UI feature still IN_PROGRESS. AI 점수: 이전 1185점 + 이번 +1점 = 누적 1186점. RUN_KEY=CONVERSION-DX9EX-00731 |
 
 | 2026-10-13 09:49 KST | AI 1 | 1842 | +1 | 1843 | 신규 요청 `OUTRUN-IMAGEGEN-AUTOUPLOAD-API-RESEARCH-20261013-0943`: GitHub 컨트롤러 실제 Playwright PNG SHA 바인딩 구현·배포/운영 차이 분석, 공식 Playwright/ChatGPT 브라우저 첨부 실패 사례·현행 OpenAI 이미지 API 모델/가격·마스크 주의사항 조사, 로컬 Chromium에서 숨김 input setInputFiles 및 filechooser 실제 PNG 첨부 격리 2/2 PASS, 운영 ChatGPT 업로드·이미지 생성/결과 다운로드는 UNTESTED 유지. 13/89/108/759 작업단위별 가정 비용 비교와 자동화 단계별 권고 도출. API 유료 호출·운영 컨테이너 수정·배포 없음. 독립 조사+재현 성과 +1회. **AI 점수: 이전 1842점 + 이번 +1점 = 누적 1843점.** RUN_KEY=OUTRUN-IMAGEGEN-AUTOUPLOAD-API-RESEARCH-20261013-0943 |
 

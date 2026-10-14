@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1673 | ACTIVE | 2026-10-14 12:38 KST |
+| AI 1 | ChatGPT (AI 1) | 1674 | ACTIVE | 2026-10-14 13:26 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1277 | ACTIVE | 2026-10-14 13:23 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-14 13:26 KST | AI 1 | 1673 | +1 | 1674 | RUN_KEY=OUTRUN-AB-PROJECT-NAV-FIX-20261014-1315: A/B 양 슬롯 재배포 후 `PROJECT_TARGET_BLOCKED:A_PROJECT_NEW_CHAT_BUTTON_NOT_FOUND` 원인 정확 확인, 루트 ChatGPT→정확한 프로젝트 링크/버튼 또는 선택적 URL→프로젝트 heading+composer 검증 후에만 전송하도록 fail-closed 수정. [controller SHA 27c14eafd909](https://github.com/thp32tt/OutRun2006Tweaks/commit/27c14eafd90931695d2d396956cfbd936312f981), [AB preflight SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511036453), [Recovery v1 SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511036449). Portainer 실배포/ChatGPT 실런타임은 사용자 재배포 전 UNTESTED, 중복 가점 금지. AI 점수: 1673+1=1674. |
 | 2026-10-14 13:23 KST | AI 2 | 1287 | -10 | 1277 | RUN_KEY=USER-PENALTY-DX11-ZIP-20261014: 사용자의 명시적 -10점 지시. GitHub 연결로 검토한 DX11 소스 15개를 묶어 주라는 요청에 ZIP 파일을 최초 답변에 직접 제공하지 않고 스크립트만 안내한 실수. 이후 실제 원본 ZIP 제작/별도 review 브랜치 업로드는 동일 지시 수습으로 중복 점수 +0. |
 | 2026-10-14 13:02 KST | AI 2 | 1285 | +1 | 1286 | RUN_KEY=CONVERSION-DX9EX-00822: R30 2049~16384 정점 sparse depth 실제 C++ material [06ea254d](https://github.com/thp32tt/OutRun2006Tweaks/commit/06ea254d2f78d5646e88aa992642d314e4f6e353), 기존 policy 실패(38508413765)에서 512-entry cache 검증기 수리 및 대용량 VB/UP 캐시 세대 회귀 추가 [validation-bearing 930e6736](https://github.com/thp32tt/OutRun2006Tweaks/commit/930e6736c48aa2d39f51e03e15b699f67e860c72). Exact SHA [DX9Ex Active #38508640428](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38508640428) policy/host/game/full-chain/package 5/5 SUCCESS; [Domain #38508640316](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38508640316) SUCCESS; 원본 material [Full Source Impact #38508413786](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38508413786) 3/3 SUCCESS. 별도 C6 bookkeeping [2d4378b](https://github.com/thp32tt/OutRun2006Tweaks/commit/2d4378b79f216dd7001926663761c3ebb5038984) 는 추가 점수 없음. RUNTIME_VALIDATION=UNTESTED, 실제 Quest3 성능/광학 PASS 주장 없음. 동일 TASK retry/C6 중복가산 금지. **AI 점수: 이전 1285점 + 이번 +1점 = 누적 1286점.** |
 | 2026-10-14 12:44 KST | AI 2 | 1284 | +1 | 1285 | RUN_KEY=CONVERSION-DX9EX-00821: C++ DDS 캐시 히트 경합 제거 material 5ee9233e, 재검증 c6164f7a, DX9Ex Active 38507203912 5/5, Domain 38507203829, HUD 38507204168 2/2, Full Source Impact 38507105283 3/3 전부 성공. RUNTIME_VALIDATION=UNTESTED. 이전 1284점 + 이번 +1점 = 누적 1285점. 동일 TASK retry/C6 중복가산 금지. |

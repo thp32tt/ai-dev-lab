@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1672 | ACTIVE | 2026-10-14 09:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1272 | ACTIVE | 2026-10-14 10:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1273 | ACTIVE | 2026-10-14 10:12 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-14 10:12 KST | AI 2 | 1272 | +1 | 1273 | 수도권 주말 이용 가능한 연간/시즌/다회권 공식·판매처 확인, 기존 씨라이프 코엑스 79,000원과 비교해 신규 개선 특가 미확인. 조건 미충족 알림 생략. 실제 조회 정상 수행. **AI 점수: 이전 1272점 + 이번 +1점 = 누적 1273점.** RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-14T10:12:47+09:00 |
 | 2026-10-14 10:04 KST | AI 2 | 1271 | +1 | 1272 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-00812: Quest3 ESC/pause 메뉴 전용 광학 확대·비정상/비활성 크기 안전 폴백의 실제 R30 C++ 구현 [material 0b8d84ff](https://github.com/thp32tt/OutRun2006Tweaks/commit/0b8d84ff54cec5bd6da5fe254c37ae71ac6d9829) 및 [material repair 279488cf](https://github.com/thp32tt/OutRun2006Tweaks/commit/279488cf54ca4ddc9e7a5ea9d8301daaa6362efd), 동일 TASK retry에서 responsive ESC/HUD cache/F11 투영 검증기 수리한 [validation-bearing 09a4373b](https://github.com/thp32tt/OutRun2006Tweaks/commit/09a4373b8b04330621c9be508bdab45165350eef). 정확 SHA [DX9Ex Active #38492968313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38492968313) 5/5 SUCCESS, [Domain Isolation #38492968312](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38492968312) SUCCESS, 원본 material [Full Source Impact #38492390036](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38492390036) 3/3 SUCCESS. 실기 Quest3/VDXR 미실행 RUNTIME_VALIDATION=UNTESTED; 동일 작업 retry/C6는 추가 +0. **AI 점수: 이전 1271점 + 이번 +1점 = 누적 1272점.** |
 | 2026-10-14 10:00 KST | AI 2 | 1270 | +1 | 1271 | RUN_KEY=CONVERSION-DX11-00704: DX11 Stage1 COLOROP 18-21 실제 C++/HLSL 통합 material a3e03fc8829cafe510a4ab4d288efd83f686cc81, exact-SHA Fast #38492231485, Backend #38492231534, Build #38492238363, OpenXR #38492238367, HUD #38492238354 전부 SUCCESS. RUNTIME_VALIDATION=UNTESTED, 재시도/체크포인트 중복 가산 없음. |
 | 2026-10-14 09:45 KST | AI 1 | 1671 | +1 | 1672 | RUN_KEY=OUTRUN-AB-STAGGERED-5IMG-20261014: [A/B 한글화 5개 이미지 자동화 실제 구현 062d7cc7](https://github.com/thp32tt/OutRun2006Tweaks/commit/062d7cc7d0d7e4101405424694acc0001a05165c). 원본 행번호 A 1~500/B 501~986, 5분 교차 스케줄, 매 작업 새 채팅, 한 배치 원본 최대 5개 첨부·5개 개별 생성 강제 프롬프트, 공식 번역/정방향/손상 Q046 원본번호 유지, 전송/생성 수량 검증, _k.png N100 후보 후처리, ChatGPT Library outrun_kor 폴더 저장은 *positive evidence 필수 HOLD gate*; 폴더 UI 저장·모델 이미지 실제 생성은 아직 RUNTIME_UNTESTED. [A/B preflight CI SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38491633872), [A/B Chrome smoke CI SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38491633892), 단위검사 15개 및 N100 실물 경계/해시 검증 PASS. 사용자 지시 따라 **Docker/Portainer 실제 배포하지 않음**. 1671+1=1672. |

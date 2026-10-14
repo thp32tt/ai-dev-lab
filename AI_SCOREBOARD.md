@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1672 | ACTIVE | 2026-10-14 09:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1273 | ACTIVE | 2026-10-14 10:12 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1274 | ACTIVE | 2026-10-14 10:16 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-14 10:16 KST | AI 2 | 1273 | +1 | 1274 | 신규 독립 RUN_KEY=CONVERSION-DX11-00705: D3D9 Stage1 MULTIPLYADD/LERP 3입력 COLORARG0/ALPHAARG0 실제 C++/HLSL 네이티브 Draw/DrawIndexed 통합, 3456조합·폴백 회귀 테스트 [material/validation-bearing 7d1c212e](https://github.com/thp32tt/OutRun2006Tweaks/commit/7d1c212e2b02f8a97b3ecce9f2f83d0510dce7a2). 정확 SHA [Fast #38493704073](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38493704073), [Backend #38493704146](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38493704146), [Win32 #38493710003](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38493710003), [OpenXR #38493710006](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38493710006), [HUD #38493710000](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38493710000) 5/5 SUCCESS. C6 [0c39e68a](https://github.com/thp32tt/OutRun2006Tweaks/commit/0c39e68a917d45a17dd3bba66a5cff129f24243f) 기록은 동일 TASK 점수 +0. Quest3/VDXR/게임패드 실기 미실행 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1273점 + 이번 +1점 = 누적 1274점.** |
 | 2026-10-14 10:12 KST | AI 2 | 1272 | +1 | 1273 | 수도권 주말 이용 가능한 연간/시즌/다회권 공식·판매처 확인, 기존 씨라이프 코엑스 79,000원과 비교해 신규 개선 특가 미확인. 조건 미충족 알림 생략. 실제 조회 정상 수행. **AI 점수: 이전 1272점 + 이번 +1점 = 누적 1273점.** RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-14T10:12:47+09:00 |
 | 2026-10-14 10:04 KST | AI 2 | 1271 | +1 | 1272 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-00812: Quest3 ESC/pause 메뉴 전용 광학 확대·비정상/비활성 크기 안전 폴백의 실제 R30 C++ 구현 [material 0b8d84ff](https://github.com/thp32tt/OutRun2006Tweaks/commit/0b8d84ff54cec5bd6da5fe254c37ae71ac6d9829) 및 [material repair 279488cf](https://github.com/thp32tt/OutRun2006Tweaks/commit/279488cf54ca4ddc9e7a5ea9d8301daaa6362efd), 동일 TASK retry에서 responsive ESC/HUD cache/F11 투영 검증기 수리한 [validation-bearing 09a4373b](https://github.com/thp32tt/OutRun2006Tweaks/commit/09a4373b8b04330621c9be508bdab45165350eef). 정확 SHA [DX9Ex Active #38492968313](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38492968313) 5/5 SUCCESS, [Domain Isolation #38492968312](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38492968312) SUCCESS, 원본 material [Full Source Impact #38492390036](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38492390036) 3/3 SUCCESS. 실기 Quest3/VDXR 미실행 RUNTIME_VALIDATION=UNTESTED; 동일 작업 retry/C6는 추가 +0. **AI 점수: 이전 1271점 + 이번 +1점 = 누적 1272점.** |
 | 2026-10-14 10:00 KST | AI 2 | 1270 | +1 | 1271 | RUN_KEY=CONVERSION-DX11-00704: DX11 Stage1 COLOROP 18-21 실제 C++/HLSL 통합 material a3e03fc8829cafe510a4ab4d288efd83f686cc81, exact-SHA Fast #38492231485, Backend #38492231534, Build #38492238363, OpenXR #38492238367, HUD #38492238354 전부 SUCCESS. RUNTIME_VALIDATION=UNTESTED, 재시도/체크포인트 중복 가산 없음. |

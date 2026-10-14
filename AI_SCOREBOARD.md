@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1674 | ACTIVE | 2026-10-14 13:26 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1279 | ACTIVE | 2026-10-14 13:34 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1280 | ACTIVE | 2026-10-14 13:55 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-14 13:55 KST | AI 2 | 1279 | +1 | 1280 | RUN_KEY=OUTRUN2-DECOMP-INTEGRATION-20261014-1337: 독립 신규 성과로 r4dius/outrun2-decomp 15개 파일 및 원본 라이선스/README의 실제 byte-identical blob 스냅샷을 thp32tt/OutRun2006Tweaks review/outrun2-decomp-intake-20261014에 커밋(da07fd7d901e2028e3b8bd472d5264de0495f593). Hud 라이벌 마커 9개 후킹 주소를 단일 계약으로 소스 수정, 기존 HMD-proven baseline 정합 검증기 강화, Python/C++ 검사/Actions, HUD·DX11 FFP·Vulkan 원본 SHA 15개·기술 참고 문서 반영. PR #121, 최신 정확 SHA 참고계약 38513623756 SUCCESS. Windows/OpenXR exact-SHA 및 Quest3 HMD 런타임 UNTESTED/검증 중, production 미병합. 이전 순수 연구 성과와 구별되는 실제 소스·자료 통합 +1(이 동일 작업 후속 수정은 +0). AI 점수 1279+1=1280. |
 | 2026-10-14 13:34 KST | AI 2 | 1278 | +1 | 1279 | RUN_KEY=RESEARCH-OUTRUN2-DECOMP-HUD-DXVK-20261014-1328: r4dius/outrun2-decomp 실제 게임 HUD 복원(`race_hud_navi.cpp`)과 자체 DX11/DXVK 분류 교차 검토. 4BAD20 원본 월드→카메라→2D 스프라이트 투영, 4BBC70 라이벌 마커, 640x480 SPRANI 행렬·글리프 분리, PS1.x/FFP 및 PS5 Vulkan 상태 키 정규화 확인하여 실질적 신규 기술 분석 제공. OutRun2006Tweaks 소스 변경·런타임 검증 없음. AI 점수: 1278+1=1279. |
 | 2026-10-14 13:31:53 KST | AI 2 | 1277 | +1 | 1278 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-00823: R33 D3D9 stereo Draw의 Z-disabled 시 ZWRITEENABLE 읽기와 one-sided stencil 시 CCW 3개 driver getters 생략, 깊이/양면 스텐실 재활성화시 cache invalidate, 상태 실패 fail-closed C++ [material 및 validation-bearing ac8b837f](https://github.com/thp32tt/OutRun2006Tweaks/commit/ac8b837f3f0d121b97f47fe5b5689adbd576c33c), destructive 회귀. 정확 SHA [DX9Ex Active #38511008951](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511008951) policy/host/game/full-chain/package 5/5 SUCCESS, [Domain #38511008887](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511008887) SUCCESS, [Full Source Impact #38511008952](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511008952) 3/3 SUCCESS, [HUD Inspector #38511008963](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511008963) 2/2 SUCCESS. [C6 bookkeeping 998133c6](https://github.com/thp32tt/OutRun2006Tweaks/commit/998133c635780d5460488cf1af606a48665907f2) 별도 기록, 중복 점수 +0. Quest3/VDXR 및 실제 FPS 측정 미실시, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1277점 + 이번 +1점 = 누적 1278점.** |
 | 2026-10-14 13:26 KST | AI 1 | 1673 | +1 | 1674 | RUN_KEY=OUTRUN-AB-PROJECT-NAV-FIX-20261014-1315: A/B 양 슬롯 재배포 후 `PROJECT_TARGET_BLOCKED:A_PROJECT_NEW_CHAT_BUTTON_NOT_FOUND` 원인 정확 확인, 루트 ChatGPT→정확한 프로젝트 링크/버튼 또는 선택적 URL→프로젝트 heading+composer 검증 후에만 전송하도록 fail-closed 수정. [controller SHA 27c14eafd909](https://github.com/thp32tt/OutRun2006Tweaks/commit/27c14eafd90931695d2d396956cfbd936312f981), [AB preflight SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511157313), [Recovery v1 SUCCESS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38511157297). Portainer 실배포/ChatGPT 실런타임은 사용자 재배포 전 UNTESTED, 중복 가점 금지. AI 점수: 1673+1=1674. |

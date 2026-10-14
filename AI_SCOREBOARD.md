@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1673 | ACTIVE | 2026-10-14 12:38 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1287 | ACTIVE | 2026-10-14 13:05 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1277 | ACTIVE | 2026-10-14 13:23 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-14 13:23 KST | AI 2 | 1287 | -10 | 1277 | RUN_KEY=USER-PENALTY-DX11-ZIP-20261014: 사용자의 명시적 -10점 지시. GitHub 연결로 검토한 DX11 소스 15개를 묶어 주라는 요청에 ZIP 파일을 최초 답변에 직접 제공하지 않고 스크립트만 안내한 실수. 이후 실제 원본 ZIP 제작/별도 review 브랜치 업로드는 동일 지시 수습으로 중복 점수 +0. |
 | 2026-10-14 13:02 KST | AI 2 | 1285 | +1 | 1286 | RUN_KEY=CONVERSION-DX9EX-00822: R30 2049~16384 정점 sparse depth 실제 C++ material [06ea254d](https://github.com/thp32tt/OutRun2006Tweaks/commit/06ea254d2f78d5646e88aa992642d314e4f6e353), 기존 policy 실패(38508413765)에서 512-entry cache 검증기 수리 및 대용량 VB/UP 캐시 세대 회귀 추가 [validation-bearing 930e6736](https://github.com/thp32tt/OutRun2006Tweaks/commit/930e6736c48aa2d39f51e03e15b699f67e860c72). Exact SHA [DX9Ex Active #38508640428](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38508640428) policy/host/game/full-chain/package 5/5 SUCCESS; [Domain #38508640316](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38508640316) SUCCESS; 원본 material [Full Source Impact #38508413786](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38508413786) 3/3 SUCCESS. 별도 C6 bookkeeping [2d4378b](https://github.com/thp32tt/OutRun2006Tweaks/commit/2d4378b79f216dd7001926663761c3ebb5038984) 는 추가 점수 없음. RUNTIME_VALIDATION=UNTESTED, 실제 Quest3 성능/광학 PASS 주장 없음. 동일 TASK retry/C6 중복가산 금지. **AI 점수: 이전 1285점 + 이번 +1점 = 누적 1286점.** |
 | 2026-10-14 12:44 KST | AI 2 | 1284 | +1 | 1285 | RUN_KEY=CONVERSION-DX9EX-00821: C++ DDS 캐시 히트 경합 제거 material 5ee9233e, 재검증 c6164f7a, DX9Ex Active 38507203912 5/5, Domain 38507203829, HUD 38507204168 2/2, Full Source Impact 38507105283 3/3 전부 성공. RUNTIME_VALIDATION=UNTESTED. 이전 1284점 + 이번 +1점 = 누적 1285점. 동일 TASK retry/C6 중복가산 금지. |
 | 2026-10-14 12:38 KST | AI 1 | 1672 | +1 | 1673 | RUN_KEY=OUTRUN-PROJECT-LIBRARY-SHA-20261014: 기존 별도 `outrun_kor` 폴더가 작동하지 않는 사용자 피드백 반영. OutRun 이미지생성 성공조건을 `아웃런 한글화 신규` 프로젝트 Library 저장으로 변경, GitHub `localization-controller-recovery-20260928` 브랜치 [3860adb](https://github.com/thp32tt/OutRun2006Tweaks/commit/3860adb5811427ff521044f13f9307f1aa173201) + [CI 레거시 테스트 한줄 수정 9a83dd](https://github.com/thp32tt/OutRun2006Tweaks/commit/9a83dd17b0de7aa75f777d5ea38e0040fb4a08f7). N100 ChatGPT B 배치 #501~505의 생성 PNG 5개와 프로젝트 라이브러리 파일 `libfile_` 5개를 원본 데이터 SHA256 5/5로 실물 교차검증. UI의 지연 이미지 로딩과 Library 20개 단위 무한스크롤을 처리하는 `project_library_gate.py` 도입. 프로젝트 폴더 저장 확인 전 HOLD 유지, 기존 대화 재전송 없음, _k 로컬 후보/QA 분리. [A/B 2슬롯 사전 검사 PASS](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38507200342), 로컬 유닛 24개 PASS. N100 운영 Docker는 이번 작업에서 배포/재시작하지 않음(읽기 전용 확인 시 라이브러리 설정 구버전 상태). DDS 품질검사·실게임 검증 미통과. AI 1 1672+1=1673. |

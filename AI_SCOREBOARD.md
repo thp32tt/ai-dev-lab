@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1687 | ACTIVE | 2026-10-15 13:44 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1352 | ACTIVE | 2026-10-15 09:49 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1353 | ACTIVE | 2026-10-15 14:11 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-15 14:11 KST | AI 2 | 1352 | +1 | 1353 | 신규 독립 RUN_KEY=CONVERSION-DX11-00756: 실제 OutRun DX11 메뉴/차량/레이스 전체 프레임의 D3D9 VB/IB/PrimitiveUP/IndexedUP zero-count Draw 관찰 누락을 R30 C++ 후킹 및 네이티브 브리지에서 수리, 원본 Draw HRESULT/게임패드 폴백 보존 및 C++/negative 회귀 추가. [material b1db6d4e](https://github.com/thp32tt/OutRun2006Tweaks/commit/b1db6d4e450c2c799a1e1d9658704efeace7ec1d), causal legacy test repair 이후 정확 [validation-bearing 74fc2ecb](https://github.com/thp32tt/OutRun2006Tweaks/commit/74fc2ecb05321239bdae59a052900f2a65f19203) [DX11 Fast #38683662017](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38683662017), [Backend #38683661945](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38683661945), [Windows Build #38683665729](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38683665729), [OpenXR #38683665765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38683665765), [HUD #38683665723](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38683665723) 전부 SUCCESS. [C6 04c5ec18](https://github.com/thp32tt/OutRun2006Tweaks/commit/04c5ec18b00ccea9c6554b8b8b0aa44ff9f49cce)는 [skip ci] 상태 기록일 뿐 중복 점수 없음. Quest3/VDXR/HMD RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1352점 + 이번 +1점 = 누적 1353점.** |
 | 2026-10-15 13:44 KST | AI 1 | 1686 | +1 | 1687 | 신규 RUN_KEY=OUTRUN-C-SALVAGE-20261015-Q098-B-R01C01-1333: 한글화 C-SALVAGE Q098 B r01c01 독립 오프라인 실제 생성 PNG SHA b5a0feeb, 영문 원본 PNG SHA 9f35c4fc, PSD SHA e1444b1b 검증; 기존 한국어 코스 레이어 제안 SHA 38c19b83 TEST_ONLY 및 원본 DDS/영문 마스크 부재 CLEAN+DDS HOLD 증빙 [자산 브랜치 커밋 69765fbb](https://github.com/thp32tt/OutRun2006Tweaks/commit/69765fbbacb6897a940609e556fb8aee7b1e12fc). A/B/C1/queue/ImageGen 불변, C1/C3/실게임 UNTESTED, 승격0. 이전 1686 + 신규 +1 = 누적 1687. |
 | 2026-10-15 13:17 KST | AI 1 | 1685 | +1 | 1686 | RUN_KEY=OUTRUN-C-SALVAGE-20261015-Q104-B-R01C01: 신규 미완료 B Q104 r01c01 기존 생성 PNG SHA256 c9d8a572f04bcd54 및 정본 DXT5 DDS SHA256 f0a8491585dd4f22, PSD SHA256 eefb1c6a234e49e1 검증. PNG 2048x768 완전 불투명·우측 글자 잘림·글자/영문 제거 마스크 미검수, PSD 2레이어(Decompressed Image/OutRun Mode) 실제 구조 확인·소스 일치 픽셀 검수 미완료, DXT5 시험 DDS 인코더 비지원. 격리 C worker 최초 1건 HOLD·동일입력 재실행 추가 0, 기존 A/B SHA 불변, C1/C3 NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 생성/CLEAN/DDS 신규 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/554ef4be97dad9279b458ca4c61121e58dbc7abb), 원격 HEAD 확인. 실제 신규 독립 HOLD 조사·기록 성과 1회 +1, **1685 + 1 = 1686점**. |
 | 2026-10-15 12:43 KST | AI 1 | 1684 | +1 | 1685 | TASK_ID=OUTRUN-C-SALVAGE-20261015-Q034-A-R02C02: 실제 미처리 A Q034 r02c02 PNG 단건 격리 C-SALVAGE 실행, 생성 SHA256 a4df93a5b8b57df7 및 영문 원본 PNG 실물 SHA256 2a8c6ad74d1a93ba 검증. 완전 불투명 생성 PNG/글자마스크 미확보·PSD 외부 색인만 존재·정본 DDS 실물 없음으로 안전한 CLEAN/한글층/DDS 승격을 하지 않고 [근거 기록](https://github.com/thp32tt/OutRun2006Tweaks/commit/891a8ddcce840c8a90a6316ee48aeb50592e034d) HOLD 커밋·원격 HEAD 확인. A/B queue 및 탭 불변, 새 이미지 생성 0, C1/C3 NOT_RUN, 게임 UNTESTED. 기존 Q012 중복 재판독은 추가 점수 미반영. **1684 + 1 = 1685점.** |

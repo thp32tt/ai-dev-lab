@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1617 | ACTIVE | 2026-10-16 01:16:00 KST |
+| AI 1 | ChatGPT (AI 1) | 1618 | ACTIVE | 2026-10-16 01:45:43 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1384 | ACTIVE | 2026-10-16 01:43:31 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-16 01:45:43 KST | AI 1 | 1617 | +1 | 1618 | RUN_KEY=C-ROI-SOURCE-Q060-STAGE-CLEAR-20261016T0133KST: 기존 986개 타일을 쓰지 않고 Q060 STAGE CLEAR→스테이지 클리어 문구의 GitHub 고정 PC HD DDS SHA 6a33c730… 및 4096×2048 전체 정방향 원문 PNG SHA c9600e9c…을 독립 픽셀 검증(8,388,608 픽셀 FLIPY 차이 0). 새 ROI [3428,336,3990,480] native 562×144 SHA 53496635… 및 4x 2248×576 SHA 284236a8… 실제 생성·native/upscale 픽셀차이 0. 주황 플레이트 포함으로 reference_crop / 글자층·CLEAN HOLD, ImageGen/C1/C3/실게임 NOT_RUN, TEST_ONLY/RUNTIME_VALIDATION=UNTESTED, 기존 A/B 큐 상태 무변경. [자산 commit 4c9aad6b](https://github.com/thp32tt/OutRun2006Tweaks/commit/4c9aad6b607abc8e54e6daab53ada705240fccc2), 원격 HEAD 확인. **AI 점수: 이전 1617점 + 이번 +1점 = 누적 1618점.** |
 | 2026-10-16 01:43:31 KST | AI 2 | 1383 | +1 | 1384 | RUN_KEY=CONVERSION-DX11-00781: 실제 DX11 native 메뉴/차량/레이스 프레임의 whole-main STENCIL·Z|STENCIL Clear 소유권/Depth 시드 C++ 연결 및 fail-closed DX9Ex/입력 보호 [material 3fa6297a](https://github.com/thp32tt/OutRun2006Tweaks/commit/3fa6297a14db02d0f7fdb03b6b2125d3b34243a4), C++/파괴적 Python 회귀 및 이전 depth 테스트 소유 범위 한정 보정 후 [validation-bearing 0118d718](https://github.com/thp32tt/OutRun2006Tweaks/commit/0118d718871ea9c75e3915a3154c79d6b22e59fc) 정확 SHA [DX11 Fast #38768645897](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38768645897), [Backend #38768646055](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38768646055), [Windows Build #38768718524](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38768718524), [OpenXR #38768657432](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38768657432), [HUD #38768657473](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38768657473) 5/5 SUCCESS. [C6 bookkeeping cfa5e2a3](https://github.com/thp32tt/OutRun2006Tweaks/commit/cfa5e2a3ca6a500f15acb6d9089d3a5dc4014487) [skip ci] 별도; 재시도/검증 기록 점수 중복 없음. Quest3/VDXR/게임패드/실게임 미실행 RUNTIME_VALIDATION=UNTESTED; DXVK 동결. **AI 점수: 이전 1383점 + 이번 +1점 = 누적 1384점.** |
 | 2026-10-16 01:16:00 KST | AI 1 | 1616 | +1 | 1617 | RUN_KEY=C-ROI-SOURCE-Q053-END-20261016T0103KST: 기존 직접 원본 PC HD Q053 DDS 및 FLIPY 전체 PNG SHA 검증을 이어받아 신규 END→종료 참조 ROI 660×330, 2x 1320×660을 실제 추출·픽셀 일치 검증. PLATE 포함으로 글자 분리/CLEAN 미검증 HOLD 정확 분리, ImageGen/C1/C3/game NOT_RUN, A/B 큐·상태 불변. [증빙 commit 793a5c21](https://github.com/thp32tt/OutRun2006Tweaks/commit/793a5c21efd83ac4ac1decbdff160bf0838011f2). **AI 점수: 이전 1616점 + 이번 +1점 = 누적 1617점.** |
 | 2026-10-16 00:51:00 KST | AI 1 | 1615 | +1 | 1616 | RUN_KEY=C-ROI-SOURCE-Q053-ANSWER-20261016T0046KST: OutRun 2006 C-ROI-SOURCE 신규 Q053 ANSWER→정답 1개 직접 원본 DDS 기준 전체 4096×4096 픽셀 일치(FLIPY 차이 0), 1500×355 네이티브 및 3000×710 입력 ROI 실제 추출·SHA256 검증. [증빙 commit 68a6c5e](https://github.com/thp32tt/OutRun2006Tweaks/commit/68a6c5eca53b53505ced052bb43238d0e957fb4e) 원격 HEAD 확인; A/B 큐·상태 무변경, ImageGen·C1·C3·게임 NOT_RUN/UNTESTED. 동일 문구/동일 TASK retry 중복 점수 금지. **AI 점수: 이전 1615점 + 이번 +1점 = 누적 1616점.** |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1616 | ACTIVE | 2026-10-16 00:51:00 KST |
+| AI 1 | ChatGPT (AI 1) | 1617 | ACTIVE | 2026-10-16 01:16:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1383 | ACTIVE | 2026-10-16 00:37:10 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-16 01:16:00 KST | AI 1 | 1616 | +1 | 1617 | RUN_KEY=C-ROI-SOURCE-Q053-END-20261016T0103KST: 기존 직접 원본 PC HD Q053 DDS 및 FLIPY 전체 PNG SHA 검증을 이어받아 신규 END→종료 참조 ROI 660×330, 2x 1320×660을 실제 추출·픽셀 일치 검증. PLATE 포함으로 글자 분리/CLEAN 미검증 HOLD 정확 분리, ImageGen/C1/C3/game NOT_RUN, A/B 큐·상태 불변. [증빙 commit 793a5c21](https://github.com/thp32tt/OutRun2006Tweaks/commit/793a5c21efd83ac4ac1decbdff160bf0838011f2). **AI 점수: 이전 1616점 + 이번 +1점 = 누적 1617점.** |
 | 2026-10-16 00:51:00 KST | AI 1 | 1615 | +1 | 1616 | RUN_KEY=C-ROI-SOURCE-Q053-ANSWER-20261016T0046KST: OutRun 2006 C-ROI-SOURCE 신규 Q053 ANSWER→정답 1개 직접 원본 DDS 기준 전체 4096×4096 픽셀 일치(FLIPY 차이 0), 1500×355 네이티브 및 3000×710 입력 ROI 실제 추출·SHA256 검증. [증빙 commit 68a6c5e](https://github.com/thp32tt/OutRun2006Tweaks/commit/68a6c5eca53b53505ced052bb43238d0e957fb4e) 원격 HEAD 확인; A/B 큐·상태 무변경, ImageGen·C1·C3·게임 NOT_RUN/UNTESTED. 동일 문구/동일 TASK retry 중복 점수 금지. **AI 점수: 이전 1615점 + 이번 +1점 = 누적 1616점.** |
 | 2026-10-16 00:37:10 KST | AI 2 | 1382 | +1 | 1383 | RUN_KEY=CONVERSION-DX11-00779: DX11 native full-resolution actual game offscreen menu/car Draw/DrawIndexed masked auxiliary MRT+zero-write stencil C++ source integration [material d6f44ffb](https://github.com/thp32tt/OutRun2006Tweaks/commit/d6f44ffb6cc5990f8efc8e3e98e6055da4c50d55), destructive+compiled regression, same SHA [DX11 Fast #38760046543](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38760046543), [Backend #38760046639](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38760046639), [Windows Build #38760054652](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38760054652), [OpenXR #38760046388](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38760046388), [HUD #38760054657](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38760054657) five mandatory Gates SUCCESS. Quest3/VDXR/real game not run, RUNTIME_VALIDATION=UNTESTED; C6 bookkeeping [53d4e044](https://github.com/thp32tt/OutRun2006Tweaks/commit/53d4e04452be77b6cb56d4a501458f69faf8b550) [skip ci] separate, no extra score. **AI 점수: 이전 1382점 + 이번 +1점 = 누적 1383점.** |
 | 2026-10-16 00:34:58 KST | AI 1 | 1614 | +1 | 1615 | TASK_ID=OUTRUN-ORIGINAL-HD-PHRASE-CROPS-20261016-0012: 원본 타일 분할 이전 전체 HD PNG Q053/Q057/Q060 3개로부터 온전한 문구 10종 원본 픽셀 크롭 신규 제작. 시각 검토 과정에서 좌표 2차 수정, native PNG 10개 재개방·픽셀 비교 및 SHA256 확인. ZIP 2,597,332 bytes/검토 JPG/manifest [GitHub commit e680f79](https://github.com/thp32tt/OutRun2006Tweaks/commit/e680f79e7d04c0a38fab1c5d5d72ac3307305288) 자산 브랜치 반영 및 HEAD 확인. N100 최종 폴더 보존 및 1·2차 임시 크롭 정리. A/B 큐·986 타일 증빙 미변경, ImageGen·CLEAN·DDS·실게임 미실행. 이전 Q097과 별도 신규 크롭 배치 1회만 +1. **AI 점수: 이전 1614점 + 이번 +1점 = 누적 1615점.** |

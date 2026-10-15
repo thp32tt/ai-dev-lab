@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1620 | ACTIVE | 2026-10-16 02:52:55 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1390 | ACTIVE | 2026-10-16 03:03:29 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1391 | ACTIVE | 2026-10-16 03:36:59 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-16 03:36:59 KST | AI 2 | 1390 | +1 | 1391 | RUN_KEY=CONVERSION-DX9EX-00911: 신규 독립 DX9Ex R84 GOAL 0–99% 결과 화면 원본 Sumo_Printf E8 3곳의 D3DXSprite 직접·지연 GPU 제출 소유권을 단일 ScreenHud 배치로 보존하는 실제 C++ 기능 구현 [material 57437f25](https://github.com/thp32tt/OutRun2006Tweaks/commit/57437f2531a21792d2d7dcf628778cd61d4064cc). 누락된 기능 계약 및 소스 회귀의 대상 함수 변이 충돌은 같은 TASK에서만 수리, 최종 [validation-bearing afcf9ab4](https://github.com/thp32tt/OutRun2006Tweaks/commit/afcf9ab49e7369405cd0c01fd4994d91c634b2a6) 정확 SHA [DX9Ex Active #38785059572](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38785059572) 정책·게임·R84 전체·호스트·패키지 5/5 SUCCESS, [Domain #38785059555](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38785059555), [Full Source #38785059748](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38785059748) 3/3, [HUD Inspector #38785059701](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38785059701) 2/2 모두 SUCCESS. 기존 unsafe B9200 CALL/원본 입력·FFB·SkyGlow·DXVK 동결 보호. 실제 Quest3/VDXR/게임 화면 미실행으로 RUNTIME_VALIDATION=UNTESTED, 시각 개선 실기 미확정. C6·검증기 수리 중복 가점 0. **AI 점수: 이전 1390점 + 이번 +1점 = 누적 1391점.** |
 | 2026-10-16 03:03:29 KST | AI 2 | 1389 | +1 | 1390 | RUN_KEY=CONVERSION-DX9EX-00910: 신규 DX9Ex R84 차량 선택/메뉴의 24-bit BGR DDS가 R8G8B8 GPU 텍스처 생성/3바이트 대상 pitch에 의존하던 실제 C++ 경로를 X8R8G8B8 불투명 4바이트 업로드, 올바른 BGR 순서, mipmap·source/destination pitch 분리 및 D3DX 폴백 보존으로 수리. [material 184a74c](https://github.com/thp32tt/OutRun2006Tweaks/commit/184a74c069401a67c2f0f01192985e017b5942d5), 검증기·계약 연동 [validation-bearing 80c3503](https://github.com/thp32tt/OutRun2006Tweaks/commit/80c3503adbbc57b407d19ba70826c174587f42a0). 같은 정확 SHA [DX9Ex Active #38780354164](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38780354164) 필수 정책·x86 게임·x64 호스트·R84 전체·패키지 5/5 SUCCESS, [Domain #38780354244](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38780354244), [Full Source #38780354219](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38780354219) 3/3, [HUD #38780354162](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38780354162) 2/2 모두 SUCCESS. Quest3/VDXR 및 게임 화면 미실행으로 RUNTIME_VALIDATION=UNTESTED, 실제 흰색 차량선택 픽셀 개선 미확정. C6/검증 수리 별도 가점 0. **AI 점수: 이전 1389점 + 이번 +1점 = 누적 1390점.** |
 | 2026-10-16 02:52:55 KST | AI 1 | 1619 | +1 | 1620 | RUN_KEY=C-ROI-SOURCE-Q053-START-20261016T0233KST: 검증된 PC HD Q053 원본 DDS(고정 SHA 65bc5e88)와 공식 START→시작 매핑을 GitHub Actions 원본 디코드/픽셀 검증으로 확인. 실제 ROI 후보 [2590,2850,3570,3140]의 alpha 2px 경계 접촉을 발견하고 잘린 글자 ImageGen 입력/PNG 공개를 차단, 명시적 HOLD 증빙 [자산 커밋 0c8cd86](https://github.com/thp32tt/OutRun2006Tweaks/commit/0c8cd86adc63bd43c33508391f44af7d0a773381) 반영 및 정확 원격 HEAD 확인. 기존 986 타일·A/B 상태 미수정, ImageGen·C1·C3·게임 NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/CI 수리 중복 가점 0. **AI 점수: 이전 1619점 + 이번 +1점 = 누적 1620점.** |
 

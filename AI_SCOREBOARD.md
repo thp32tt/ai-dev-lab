@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1698 | ACTIVE | 2026-10-15 17:10 KST |
+| AI 1 | ChatGPT (AI 1) | 1699 | ACTIVE | 2026-10-15 17:27:01 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1363 | ACTIVE | 2026-10-15 17:00 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-15 17:27:01 KST | AI 1 | 1698 | +1 | 1699 | TASK_ID=OUTRUN-FULL-HD-TEXT-ROI-AUTOPROD-20261015-1659: 독립 신규 108개 HD source 그룹 재구성/무결성 조사(107개 full PNG SHA 타일·좌표 완전 PASS, Q046 손상 1 HOLD), 759행 번역/88 직접 경로/20 플랫폼 대응 HOLD 색인 및 문구별 12 PNG 제안·Q104 독립 native 원본 ROI 1952x336 PNG READY 실물 바인딩. 컨트롤러 브랜치 기존 986개 타일 자동전송 차단, A/B 분리된 SHA-bound 신규 ROI 자동큐와 1~5개 투명 이미지 ImageGen 입력, 실제 프로젝트 Library SHA 승인·재송신 HOLD·C 탭 보존, Compose 수동 배포 프로필 추가. N100 7/7 단위시험, 실제 3탭 source 패치 AST 재현 PASS, 실물 source-mount와 생산 매니페스트 확인. 소스/검증증빙 [asset 67802106](https://github.com/thp32tt/OutRun2006Tweaks/commit/678021064ecfe3f5c01a5e9df72b3ec5ce25efa4), [controller 2ff55451](https://github.com/thp32tt/OutRun2006Tweaks/commit/2ff55451551f344cbedf2873b11b52eb1e2a80ef). 전체 759 문구별 ROI는 아직 미승인, 새 ImageGen 실행/Portainer 사용자 배포/DDS/실게임은 UNTESTED. 검증된 원본 복구 + 신규 자동큐 통합 신규 성과 한 번만 +1; 이전 1698+1=1699. |
 | 2026-10-15 17:10 KST | AI 1 | 1697 | +1 | 1698 | 신규 TASK_ID=KIWOOMPOSMINI-CREFIA-BUSINESS-MATERIALS-EMAIL-20261015: 키움포스mini 회원가입 여신금융협회 매통조 API 승인 완료 조건에서 사업팀에 발송할 실제 자료 요청 이메일 완성. 계약/승인 동의서, 송수신 필드·다우데이타→협회 식별정보 법적 근거, 자체 동의서 추가 필요 여부, 명의인 확인·전자적 동의 및 증적 보관, 갱신·통보·철회 운영정책 4개 범주와 우선 요청자료 명시. 앞선 법무 검토 자료를 활용하되 새 독립 발송용 문안 성과 1회 점수화, 실제 이메일 발송은 수행하지 않음. **AI 점수: 이전 1697점 + 이번 +1점 = 누적 1698점.** |
 | 2026-10-15 17:00 KST | AI 2 | 1362 | +1 | 1363 | RUN_KEY=CONVERSION-DX11-00762: thp32tt/OutRun2006Tweaks/vr-dx11-native-r71 실 D3D9 뷰포트 경계 밖 Clear 사각형의 클리핑/전 화면 union 판정 C++ 수정과 full-size native Draw/DrawIndexed 연결, 컴파일+파괴 회귀 검증 성공. 실제 material/validation-bearing SHA 86fe0f492a99d771bec6303f6511fca1212c2b03, 정확 SHA DX11 Fast #38700463442, Backend #38700463307, Windows Build #38700469547, OpenXR #38700469544, HUD #38700469584 **5/5 SUCCESS**. C6 bookkeeping 1c4c73341015841061bdcfade163204a35f41e16 [skip ci] 별도. Quest3/VDXR 게임 화면·게임패드 미실행 RUNTIME_VALIDATION=UNTESTED; DXVK 동결. 동일 RUN_KEY 재시도/검증 보완 중복 가산 없음. **AI 점수: 이전 1362점 + 이번 +1점 = 누적 1363점.** |
 | 2026-10-15 16:49 KST | AI 1 | 1696 | +1 | 1697 | 신규 TASK_ID=KIWOOMPOSMINI-OUTBOUND-DATA-LEGAL-REVIEW-20261015: 키움포스mini 여신금융협회 매통조 Open API 관련 사업팀 확인용 우선순위 자료 8종·실제 송수신 개인정보 흐름 검증표를 정리. 첨부 3페이지 협회 양식상 카드사→협회→다우데이타 동의와 불명확한 다우데이타→협회 식별정보 요청 구분; 2026.9.11 기준 개인정보보호법 제15·17·22·26조, 신용정보법 제32·33조, 금융실명법 제4조 및 시행령 제8조, 협회 신용정보 활용체제를 교차 확인. 추가동의 필요/위탁/타당한 별도 근거 분기, 동의 증적·명의인 확인·전송 통제·해지·갱신 및 마스킹 API 처리 보안 방침을 제안. 계약/실제 API 스키마는 사용자가 미제공하여 최종 판단 미확정, 신규 검토 성과 1회 +1, 사용자 시스템 변경 없음. **AI 점수: 이전 1696점 + 이번 +1점 = 누적 1697점.** |

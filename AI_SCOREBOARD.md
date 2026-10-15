@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1624 | ACTIVE | 2026-10-16 05:17:00 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1393 | ACTIVE | 2026-10-16 05:54:39 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1394 | ACTIVE | 2026-10-16 05:55:00 KST |
 
 ## 점수 규칙
 
@@ -2148,3 +2148,4 @@
 
 | 2026-10-16 02:27:41 KST | AI 1 | 1618 | +1 | 1619 | 신규 독립 C-ROI-SOURCE-Q060-PLEASE-WAIT-20261016T0203KST: PC-HD Q060 PLEASE WAIT→잠시만요 온전한 전체 DDS 출처와 SHA-고정 HD 원본 정방향 PNG에서 단일 문구 ROI 신규 추출, 1328×157 네이티브/2656×314 2x RGBA, SHA/manifest/QA/audit 포함 총 7개 아티팩트 [자산 브랜치 e44d86d](https://github.com/thp32tt/OutRun2006Tweaks/commit/e44d86d2651de533d420a86acfbc76a4c2df009c) 원격 HEAD 확인. 글자층/PSD 마스크·CLEAN·UV 未승인으로 REFERENCE_ROI TEST_ONLY/HOLD, ImageGen/C1/C3/게임/Portainer 미실행, A/B 큐·986 타일 변경 없음, RUNTIME_VALIDATION=UNTESTED. 동일 ROI 반복 실행 재채점 금지. **AI 점수: 이전 1618점 + 이번 +1점 = 누적 1619점.** RUN_KEY=C-ROI-SOURCE-Q060-PLEASE-WAIT-20261016T0203KST |
 | 2026-10-16 03:01:00 KST | AI 2 | 1388 | +1 | 1389 | 신규 독립 RUN_KEY=CONVERSION-DX11-00784: 실게임 메뉴/차량선택/레이스 D3D9 Draw/DrawIndexed 네이티브 전체 프레임에서 MRT1~3 쓰기 마스크·read-only stencil을 정확히 구분하고 픽셀 중립 호출 순서 유지 및 쓰기/불확실 상태 D3D9 fallback을 보전한 실제 C++ [material/validation-bearing 76e530a1](https://github.com/thp32tt/OutRun2006Tweaks/commit/76e530a1cc9ab5ef1960ff3f498dcd6d6c8be157). 정확 SHA DX11 Fast #38780428871, Backend #38780429041, Windows Build #38780436163, OpenXR #38780429022, HUD #38780435883 5/5 SUCCESS. 별도 C6 bookkeeping b02e774a, 재검증·기록 이중채점 없음. Quest3/VDXR/게임패드 미실행 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1388점 + 이번 +1점 = 누적 1389점.** RUN_KEY=CONVERSION-DX11-00784 |
+| 2026-10-16 05:55:00 KST | AI 2 | 1393 | +1 | 1394 | 독립 신규 RUN_KEY=CONVERSION-DX11-00790: 실게임 D3D9 백버퍼 CPU LockRect/GetDC의 실제 쓰기 허용 획득을 COM GetBackBuffer 후킹에서 감지하고 게임 소스와 다른 네이티브 전체 화면 프레임을 무효화하여 원본 D3D9 Present/입력·FFB/SkyGlow 폴백을 보존한 실제 C++ [material/validation-bearing 9113a57f](https://github.com/thp32tt/OutRun2006Tweaks/commit/9113a57fe1c03899eeebefe207dc74fe7c979943). 정확 SHA [DX11 Fast #38804107554](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38804107554), [Backend #38804107547](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38804107547), [Windows Build #38804115080](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38804115080), [OpenXR #38804115073](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38804115073), [HUD #38804115075](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38804115075) 필수 5/5 SUCCESS. C6 별도 [bdedc6bf](https://github.com/thp32tt/OutRun2006Tweaks/commit/bdedc6bfc38f4737ff8049485420dd4aadc97634) [skip ci] 이중 가산 없음. Quest3/VDXR/게임패드 실기 미실행 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1393점 + 이번 +1점 = 누적 1394점.** RUN_KEY=CONVERSION-DX11-00790 |

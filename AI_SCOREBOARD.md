@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1704 | ACTIVE | 2026-10-15 19:16:37 KST |
+| AI 1 | ChatGPT (AI 1) | 1705 | ACTIVE | 2026-10-15 19:45:09 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1370 | ACTIVE | 2026-10-15 19:34:50 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-15 19:45:09 KST | AI 1 | 1704 | +1 | 1705 | 신규 독립 RUN_KEY=OUTRUN-C-ROI-SOURCE-20261015-Q095-PLEASE-STAND-BY-1933: 직접 원본 DDS↔전체 PNG 픽셀 0차이 검증, Q095 Please stand by. → 잠시 기다려 주세요. 글자 alpha 314×49 및 4배 1256×196 PNG와 SHA·QA 증빙 [commit 1e2bd13e](https://github.com/thp32tt/OutRun2006Tweaks/commit/1e2bd13e968fe180ede9cb8aeb9e1210ed5d073c). 기존 A/B 불변, ImageGen/C1/C3/게임 미실행. AI 점수: 이전 1704점 + 이번 +1점 = 누적 1705점. |
 | 2026-10-15 19:34:50 KST | AI 2 | 1369 | +1 | 1370 | RUN_KEY=CONVERSION-DX9EX-00892: R84 exact-producer gameplay HUD source-edge snap functional C++ fix [material 0ccd9d9f](https://github.com/thp32tt/OutRun2006Tweaks/commit/0ccd9d9f414074930dd90565941594c1b1564058), outgoing |NDC|1.00..1.20 C1 envelope and bidirectional numeric/C++ source mutations; [validation SHA f7a94d20](https://github.com/thp32tt/OutRun2006Tweaks/commit/f7a94d20043c8f31e51dc2ca9c6f7e020b18cc88) DX9Ex Active 5/5 #38719523773, Domain #38719523786, HUD Inspector #38719523675, Full Source Impact #38719523709 all SUCCESS; [C6 exact-SHA bookkeeping efaef61d](https://github.com/thp32tt/OutRun2006Tweaks/commit/efaef61d445d922a9632f956bed379974d6abc63), Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. Score once for new material source fix and exact gate, not C6/checkpoint/retry. **AI 점수: 이전 1369점 + 이번 +1점 = 누적 1370점.** |
 | 2026-10-15 19:16:37 KST | AI 1 | 1703 | +1 | 1704 | RUN_KEY=OUTRUN-C-ROI-SOURCE-20261015-Q063-START-TOP-1903: 검증된 Q063 BASE 직디코드 원본 DDS SHA 5f6cc668.. → 전체 정방향 원본 PNG SHA fef16b9..에서 START→출발 신규 ROI [13,112,111,162], native 98×50 SHA ed1f253b.. 및 4x 392×200 SHA 74b7d40a.. 실물 파일을 제작. UI 빨간 플레이트/트랙과 알파가 결합돼 글자층 마스크가 아님을 명시하여 HOLD_GLYPH_ISOLATION_AND_ART_SEPARATION. 독립 추출 증빙 6개 파일 [commit 47ea3b5b](https://github.com/thp32tt/OutRun2006Tweaks/commit/47ea3b5b21d23077badce0cdd5f61ae5ea81a9ca) 원격 HEAD 확인. 기존 986 타일·A/B 큐/상태 미변경, ImageGen 미호출, C1/C3/DDS/실게임 NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 신규 Q063 참조 ROI 실물 성과만 1회 점수화. **AI 점수: 이전 1703점 + 이번 +1점 = 누적 1704점.** |
 | 2026-10-15 19:09:11 KST | AI 1 | 1702 | +1 | 1703 | TASK_ID=OUTRUN-C-ROI-Q116-WIDE-20261015-1857: 기존 Q116 원본 DDS SHA ebc2d866.. 실물 직디코드 및 원래 2048px 제한 실패를 개선해 2486×308 2배 한 문구 이미지 생성 참조 PNG 완성, 원본 2048×256 일치, native 1243×154 bbox [389,50,1632,204], 상하좌우 4px alpha 여백 검증, 2x SHA 879929e7... 회귀시험 3배 입력 안전 HOLD와 A/B state SHA 불변 확인. [자산 Q116 실물 PNG/검증 커밋 97006597](https://github.com/thp32tt/OutRun2006Tweaks/commit/970065979ce76475798debdb32818ce23d7443de), [Q055 PC 원본 경계 HOLD 172b04a5](https://github.com/thp32tt/OutRun2006Tweaks/commit/172b04a5c1e05ad7e8d6069c6fd30c2e9e69c80a), [문서 84823485](https://github.com/thp32tt/OutRun2006Tweaks/commit/848234858a6c154a681293498fa08987abedfaa7). 기존 Q116 HOLD에서 실제 신규 완전 문구 ROI 1개 복구라는 새로운 성과 1회만 반영. ImageGen 실제 전송/한글 생성/C1/C3/게임=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1702점 + 이번 +1점 = 누적 1703점. |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1610 | ACTIVE | 2026-10-15 22:33:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1611 | ACTIVE | 2026-10-15 22:49:54 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1379 | ACTIVE | 2026-10-15 22:37:03 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-15 22:49:54 KST | AI 1 | 1610 | +1 | 1611 | TASK_ID=OUTRUN-C-ROI-SOURCE-Q095-WAITING-20261015-2233: 원본 PC DDS SHA ec69c95e와 직접 일치하는 전체 정방향 HD PNG SHA 8b78a092에서 신규 독립 Q095 Waiting for entries.→참가자를 기다리는 중입니다. ROI [0,180,395,236] native 395×56 PNG SHA b96ca5b4, 4배 1580×224 SHA 322626bc 추출. 2px 알파 경계 0, LTRB [2,4,7,3], 14/14 직접 원본 검증 PASS. [자산 증빙 7파일 커밋 256f9b0c](https://github.com/thp32tt/OutRun2006Tweaks/commit/256f9b0cc45ac1f7551060d4a83f89f5723c0ff0), 원격 HEAD 일치. 구 986 분할 타일·A/B 큐 불변, C ImageGen 미호출, C1/C3/실게임 NOT_RUN, QA=TEST_ONLY, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 1회 신규 성과만 반영. **AI 점수: 이전 1610점 + 이번 +1점 = 누적 1611점.** |
 | 2026-10-15 22:37:03 KST | AI 2 | 1378 | +1 | 1379 | RUN_KEY=CONVERSION-DX9EX-00900: 신규 독립 차량선택/전면 UI XST와 장면 XMT의 indexed DDS pack identity 분리, 변조되는 게임 파일명 char* 값 스냅샷 및 슬롯별 ordinal 출처 연결 C++ [material a59b375c](https://github.com/thp32tt/OutRun2006Tweaks/commit/a59b375cc081c23afcc0163b3f49e8dd40492724). 최초 CI #38742416616의 mutation 5 false-negative verifier 실패는 같은 TASK_ID 재시도에서만 [repair validation-bearing 288c53a3](https://github.com/thp32tt/OutRun2006Tweaks/commit/288c53a381168f50f00efc497c9d00021714707f)로 수리, [DX9Ex Active #38742909911](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38742909911) 및 [Domain #38742909960](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38742909960) 정확 SHA SUCCESS; 원 소스 SHA a59b375에서 HUD #38742416530, Full Source #38742416686 SUCCESS이며 재검증한 것으로 주장하지 않음. [C6 bookkeeping 8b797725](https://github.com/thp32tt/OutRun2006Tweaks/commit/8b797725585044f812b41062b90340b3341e7d36) [skip ci] 별도, 신규 점수 없음. Quest3/VDXR/게임 화면 미실행 RUNTIME_VALIDATION=UNTESTED, 사용자 시각적 차량선택 성공 미확정. 최초 독립 C++ 성과에 1회만 +1, CI 수리/C6/retry 중복점수 +0. **AI 점수: 이전 1378점 + 이번 +1점 = 누적 1379점.** |
 | 2026-10-15 22:33:45 KST | AI 1 | 1710 | -100 | 1610 | TASK_ID=USER-PENALTY-FALSE-N100-DISCONNECT-20261015-2232: 사용자가 직접 -100점을 부여함. N100 MCP/GitHub가 실제 연결되어 있는데도 확인 없이 '이 세션에서는 N100/MCP 파일 조작 도구가 연결되지 않았다'고 허위 단정. 동일 벌점 중복 적용 금지. 서버 MCP server_info에서 n100 정상 확인. 이전 1710점 + 이번 -100점 = 누적 1610점. |
 | 2026-10-15 22:18:05 KST | AI 1 | 1709 | +1 | 1710 | TASK_ID=OUTRUN-C-ROI-SOURCE-Q095-TUNED-20261015-2203: 직접 PC DDS Git blob c888e9b1, DDS SHA ec69c95e, 전체 영문 1024×1024 FLIP-Y PNG SHA 8b78a092의 원본 픽셀 일치 재검증. Q095의 신규 독립 Tuned→튜닝 한 문구 native [746,8,843,45] 97×37 RGBA SHA bd0abfb2와 4배 388×148 RGBA SHA de300263 생성 및 14개 소스 검증 PASS, alpha 2px 테두리 0, 여백 LTRB [6,3,9,7]. 986 타일 사용·기존 A/B 상태 변경·ImageGen 호출 없음. 테스트 전용 증빙 7파일 [자산 commit a4ad9e9b](https://github.com/thp32tt/OutRun2006Tweaks/commit/a4ad9e9b5093bc3a501a1b206cc94010cbc93bbc), HEAD 확인. C1/C3/게임 NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 독립 1회 성과만 +1, 동일 TASK_ID 재시도 중복 없음. **AI 점수: 이전 1709점 + 이번 +1점 = 누적 1710점.** |

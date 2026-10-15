@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1620 | ACTIVE | 2026-10-16 02:52:55 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1388 | ACTIVE | 2026-10-16 02:41:18 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1389 | ACTIVE | 2026-10-16 03:01:00 KST |
 
 ## 점수 규칙
 
@@ -2139,3 +2139,4 @@
 | 2026-10-15 23:41:41 KST | AI 2 | 1379 | +1 | 1380 | 독립 신규 RUN_KEY=CONVERSION-DX9EX-00902: R84 GPU original queue의 다음 프레임 HUD/+TIME/순위 SpriteNode 태그가 현재 프레임 Peek/Consume으로 누출되는 것을 차단하는 실제 C++ [material e43570ad](https://github.com/thp32tt/OutRun2006Tweaks/commit/e43570ad72443c92fb6eabf58fe100b7ccbec9eb). 기존 코드 보존, 이전 검증 정규식과 C993 mutation 소유 범위 한정 수리 후 [validation-bearing e0fe0df9](https://github.com/thp32tt/OutRun2006Tweaks/commit/e0fe0df9904e18f0721411719755a553f2c01c36) 정확 SHA [DX9Ex Active #38752561020](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38752561020) 정책/게임/호스트/전체컴파일/패키지 5/5 SUCCESS, [Domain #38752561195](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38752561195) SUCCESS; material SHA [Full Source Impact #38751069901](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38751069901) 3/3 SUCCESS 및 [HUD Inspector #38751069902](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38751069902) SUCCESS. Quest3/VDXR 미실행 RUNTIME_VALIDATION=UNTESTED. 정책/검증/C6 별도 점수 없음, 00902 retry 동일 성과 중복 금지. **AI 점수: 이전 1379점 + 이번 +1점 = 누적 1380점.** RUN_KEY=CONVERSION-DX9EX-00902 |
 
 | 2026-10-16 02:27:41 KST | AI 1 | 1618 | +1 | 1619 | 신규 독립 C-ROI-SOURCE-Q060-PLEASE-WAIT-20261016T0203KST: PC-HD Q060 PLEASE WAIT→잠시만요 온전한 전체 DDS 출처와 SHA-고정 HD 원본 정방향 PNG에서 단일 문구 ROI 신규 추출, 1328×157 네이티브/2656×314 2x RGBA, SHA/manifest/QA/audit 포함 총 7개 아티팩트 [자산 브랜치 e44d86d](https://github.com/thp32tt/OutRun2006Tweaks/commit/e44d86d2651de533d420a86acfbc76a4c2df009c) 원격 HEAD 확인. 글자층/PSD 마스크·CLEAN·UV 未승인으로 REFERENCE_ROI TEST_ONLY/HOLD, ImageGen/C1/C3/게임/Portainer 미실행, A/B 큐·986 타일 변경 없음, RUNTIME_VALIDATION=UNTESTED. 동일 ROI 반복 실행 재채점 금지. **AI 점수: 이전 1618점 + 이번 +1점 = 누적 1619점.** RUN_KEY=C-ROI-SOURCE-Q060-PLEASE-WAIT-20261016T0203KST |
+| 2026-10-16 03:01:00 KST | AI 2 | 1388 | +1 | 1389 | 신규 독립 RUN_KEY=CONVERSION-DX11-00784: 실게임 메뉴/차량선택/레이스 D3D9 Draw/DrawIndexed 네이티브 전체 프레임에서 MRT1~3 쓰기 마스크·read-only stencil을 정확히 구분하고 픽셀 중립 호출 순서 유지 및 쓰기/불확실 상태 D3D9 fallback을 보전한 실제 C++ [material/validation-bearing 76e530a1](https://github.com/thp32tt/OutRun2006Tweaks/commit/76e530a1cc9ab5ef1960ff3f498dcd6d6c8be157). 정확 SHA DX11 Fast #38780428871, Backend #38780429041, Windows Build #38780436163, OpenXR #38780429022, HUD #38780435883 5/5 SUCCESS. 별도 C6 bookkeeping b02e774a, 재검증·기록 이중채점 없음. Quest3/VDXR/게임패드 미실행 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1388점 + 이번 +1점 = 누적 1389점.** RUN_KEY=CONVERSION-DX11-00784 |

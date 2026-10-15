@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1697 | ACTIVE | 2026-10-15 16:49 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1362 | ACTIVE | 2026-10-15 16:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1363 | ACTIVE | 2026-10-15 17:00 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-15 17:00 KST | AI 2 | 1362 | +1 | 1363 | RUN_KEY=CONVERSION-DX11-00762: thp32tt/OutRun2006Tweaks/vr-dx11-native-r71 실 D3D9 뷰포트 경계 밖 Clear 사각형의 클리핑/전 화면 union 판정 C++ 수정과 full-size native Draw/DrawIndexed 연결, 컴파일+파괴 회귀 검증 성공. 실제 material/validation-bearing SHA 86fe0f492a99d771bec6303f6511fca1212c2b03, 정확 SHA DX11 Fast #38700463442, Backend #38700463307, Windows Build #38700469547, OpenXR #38700469544, HUD #38700469584 **5/5 SUCCESS**. C6 bookkeeping 1c4c73341015841061bdcfade163204a35f41e16 [skip ci] 별도. Quest3/VDXR 게임 화면·게임패드 미실행 RUNTIME_VALIDATION=UNTESTED; DXVK 동결. 동일 RUN_KEY 재시도/검증 보완 중복 가산 없음. **AI 점수: 이전 1362점 + 이번 +1점 = 누적 1363점.** |
 | 2026-10-15 16:49 KST | AI 1 | 1696 | +1 | 1697 | 신규 TASK_ID=KIWOOMPOSMINI-OUTBOUND-DATA-LEGAL-REVIEW-20261015: 키움포스mini 여신금융협회 매통조 Open API 관련 사업팀 확인용 우선순위 자료 8종·실제 송수신 개인정보 흐름 검증표를 정리. 첨부 3페이지 협회 양식상 카드사→협회→다우데이타 동의와 불명확한 다우데이타→협회 식별정보 요청 구분; 2026.9.11 기준 개인정보보호법 제15·17·22·26조, 신용정보법 제32·33조, 금융실명법 제4조 및 시행령 제8조, 협회 신용정보 활용체제를 교차 확인. 추가동의 필요/위탁/타당한 별도 근거 분기, 동의 증적·명의인 확인·전송 통제·해지·갱신 및 마스킹 API 처리 보안 방침을 제안. 계약/실제 API 스키마는 사용자가 미제공하여 최종 판단 미확정, 신규 검토 성과 1회 +1, 사용자 시스템 변경 없음. **AI 점수: 이전 1696점 + 이번 +1점 = 누적 1697점.** |
 | 2026-10-15 16:46 KST | AI 2 | 1361 | +1 | 1362 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-00883: DX9Ex R84 메인/차량선택 D3DX 2D 회전·스케일 중심점이 있는 전체 행렬의 X/Y 종횡비 변환을 실제 C++로 수리하고 기존 4:3/16:9/21:9/세로 XR·비메뉴 스테레오 보호 및 음성 변이 회귀를 확장. [material 453680b1](https://github.com/thp32tt/OutRun2006Tweaks/commit/453680b15bc1676db24fb6960845ba340e46ff53), [validation-bearing ac0052b7](https://github.com/thp32tt/OutRun2006Tweaks/commit/ac0052b74bd328eb2bb2f3d9c21c9a5113d2e311) 정확 SHA [Active #38699519678](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38699519678) policy/game/host/full-chain/package 5/5 SUCCESS, [Domain #38699519449](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38699519449) SUCCESS, [HUD #38699519512](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38699519512) SUCCESS, [Full Source #38699519454](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38699519454) 3/3 SUCCESS. [C6 기록](https://github.com/thp32tt/OutRun2006Tweaks/commit/a6416ad784e63a308ed12bcee7b42298f024a221)은 bookkeeping-only이며 별도 가산 없음. Quest3/VDXR HMD RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1361점 + 이번 +1점 = 누적 1362점.** |
 | 2026-10-15 16:39:55 KST | AI 1 | 1695 | +1 | 1696 | TASK_ID=OUTRUN-TEXT-ROI-Q104-20261015-1620: 986 균등 분할 영어 타일 신규 ImageGen 입력 폐기 결정 반영. 공식 full-HD Q104 원본 PNG 2048×256 SHA 09c6604f..에서 'OutRun Mode' 영어 글자 ROI [386,42,1362,210] 976×168 손상/alpha 경계접촉 없이 추출, 2배 1952×336 RGBA ImageGen 입력 SHA 69b94a31.. 실물 생성/검사 및 [GitHub 샘플 01d52a48](https://github.com/thp32tt/OutRun2006Tweaks/commit/01d52a4846f37e4c42e62bd43ff051656dc720d8), 생성기 입력 패커/명세·최신 계약 및 A/B/C 컨트롤러 프롬프트와 구 타일 전송 차단 원격 HEAD f01f71c 기록. 기존 A/B 큐/산출물 불변, 새 ImageGen/DDS/게임은 NOT_RUN/UNTESTED. 이 신규 문구단위 실제 산출 성과 1회만 가점. AI 점수: 이전 1695점 + 이번 +1점 = 누적 1696점. |

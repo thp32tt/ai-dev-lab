@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1633 | ACTIVE | 2026-10-16 09:51:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1634 | ACTIVE | 2026-10-16 09:51:45 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1407 | ACTIVE | 2026-10-16 09:45:17 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-16 KST | AI 1 | 1633 | +1 | 1634 | RUN_KEY=CREFIA-P0-IMPLEMENTATION-DECISION-20261016-0949: 다우데이타/키움포스mini 여신금융협회 오픈API P0 시행 의사결정 4건(협회 표준 3개 영역 보존+추가 제공동의 설계, 실명 확인 전자서명 우선, 필수/선택 UI 분리, 약관 SHA/개별 동의/인증·API 결합 증적) 및 사업·법무·개발 전달 가능 명세 작성. 2026-09-11 시행 현행 개인정보보호법 제15·17·22·26조, 신용정보법 제17·32조와 첨부 계약서/API v1.7 검토. 4건은 당사 보수적 정책이지 법정 개수 확정 아님. 수령자 보유기간/insttName/운영계만 외부 사실 확인 항목으로 명시. 신규 시행판단 1회 +1, 이전 단순 검토 재채점 없음. **AI 점수: 이전 1633점 + 이번 +1점 = 누적 1634점.** |
 | 2026-10-16 09:51:45 KST | AI 1 | 1632 | +1 | 1633 | TASK_ID=OUTRUN-KR-PLAN-REVIEW-20261016-094508: 첨부 OutRun 전체 한글화 계획을 현행 GitHub 정책 및 production_pixel_guard/qa_evidence_gate 소스와 대조하여 v2 수정본 저장 완료. DDS/CLEAN 선행 파일럿, 알파/문구 매칭/공유 DDS 충돌 방지, 런타임 및 승인 스키마 이관·실게임 기준 보완. 문서 형식 검증 PASS. Library libfile_4052b938c6788191a9e4fe361efda895 version 1; 제작·실게임·자동화 재개는 미실행. 동일 성과 retry/재보고 중복 가점 금지. **AI 점수: 이전 1632점 + 이번 +1점 = 누적 1633점.** |
 | 2026-10-16 KST | AI 1 | 1631 | +1 | 1632 | RUN_KEY=CREFIA-KIWOOM-POS-LEGAL-REVIEW-20261016-0941: 키움포스mini 가입·여신금융협회 매출통합조회 OpenAPI 동의안 신규 법무/기술 리뷰 완료. 첨부 API v1.7, 3개 계약서, 3개 영역 동의서와 현행 개인정보보호법/신용정보법/금융실명법 교차검토. 별도 제3자 동의 4건 확정과 이메일 필수·certType=08 인증허용·CI 저장의 법적 필수 단정 오류를 구분하고 필수/선택 UI, 만료/철회/폐기/점검 P0/P1 개선안을 제시함. 운영계 승인/협회 서면 확인은 미확정. 동일 리뷰 재보고에는 추가 점수 없음. **AI 점수: 이전 1631점 + 이번 +1점 = 누적 1632점.** |
 | 2026-10-16 09:45:17 KST | AI 2 | 1406 | +1 | 1407 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-00926: DX9Ex R84 메인/차량선택 3440×1440·16:9 원본 캡처가 OpenXR LOCAL 고정 메뉴에서 지나치게 넓게 보이고 4:3 센터 크롭은 Ferrari·차량목록 실제 픽셀을 유실하던 문제의 C++ 수리. 전체 원본 UV 보존+letterbox 설정과 완전 캡처 증거에 한정한 광학 4:3 표시비 회복, 부분 캡처/원본 4:3·세로·사용자 롤백 유지, host C++ 회귀 [material abb3c455](https://github.com/thp32tt/OutRun2006Tweaks/commit/abb3c45560cf00b57be7fe1b66f1e3998295635f). 동일 TASK의 CI 입력/원인 검사 수리 후 [exact-SHA validation cb95cf1ac776](https://github.com/thp32tt/OutRun2006Tweaks/commit/cb95cf1ac776e45bcbd695900a86d1b7e75ed7fa)에서 [Active #38830196822](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38830196822) 5/5, [Domain #38830196645](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38830196645), [Full Source #38830196639](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38830196639) 3/3, [HUD #38830196755](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38830196755) 2/2 SUCCESS. C6 [b8d71e25](https://github.com/thp32tt/OutRun2006Tweaks/commit/b8d71e2564be6bb55e93f1e533a2d08e007f161d)는 별도 기록만, 재시도/검사수리는 중복 가점 없음. HMD 미실행 RUNTIME_VALIDATION=UNTESTED, 광학 사용자 승인 미확정. **AI 점수: 이전 1406점 + 이번 +1점 = 누적 1407점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1634 | ACTIVE | 2026-10-16 09:51:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1407 | ACTIVE | 2026-10-16 09:45:17 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1408 | ACTIVE | 2026-10-16 10:48:32 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-16 10:48:32 KST | AI 2 | 1407 | +1 | 1408 | 신규 독립 RUN_KEY=CONVERSION-DX11-00801: OutRun native DX11 x64 R23 게임 스테레오 OpenXR DirectGPU 경로의 실제 좌/우 공유 GPU eye canonical IUnknown 리소스 소유권 검사, 동일/누락 eye 거부, RGB10A2 실제 10-bit 소스 비차단 픽셀 디코드와 원래 D3D9 입력/FFB·SBS 안전 폴백 보존을 C++ host 및 WARP 회귀로 구현. [material ab29c214](https://github.com/thp32tt/OutRun2006Tweaks/commit/ab29c214ed1713c88ace17235539b02d0ba04e80); 동일 TASK E003에서 실제 정책 수락 단계 누락만 복구한 [validation-bearing 997aa0ec](https://github.com/thp32tt/OutRun2006Tweaks/commit/997aa0ec23de05afa9f6e04cce3bb6efc52c1ab4) 정확 SHA [DX11 Fast #38835931859](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38835931859), [Backend #38835931845](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38835931845), [Windows Build #38835936086](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38835936086), [OpenXR #38835936039](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38835936039), [HUD #38835936068](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/38835936068) **필수 5/5 SUCCESS**. [C6 af88a10c](https://github.com/thp32tt/OutRun2006Tweaks/commit/af88a10c9541dd9ee180829195bf1b7d89fba84a) [skip ci] 별도, DXVK 동결·원본 DX9Ex 폴백 유지. Quest3/VDXR/게임패드 실기 미실행 RUNTIME_VALIDATION=UNTESTED, 실제 화면 성공 미확정. 기능 material+통합 CI 최초 성과만 +1, 동일 TASK retry/CI 수리/C6에는 중복 가점 없음. **AI 점수: 이전 1407점 + 이번 +1점 = 누적 1408점.** |
 | 2026-10-16 KST | AI 1 | 1633 | +1 | 1634 | RUN_KEY=CREFIA-P0-IMPLEMENTATION-DECISION-20261016-0949: 다우데이타/키움포스mini 여신금융협회 오픈API P0 시행 의사결정 4건(협회 표준 3개 영역 보존+추가 제공동의 설계, 실명 확인 전자서명 우선, 필수/선택 UI 분리, 약관 SHA/개별 동의/인증·API 결합 증적) 및 사업·법무·개발 전달 가능 명세 작성. 2026-09-11 시행 현행 개인정보보호법 제15·17·22·26조, 신용정보법 제17·32조와 첨부 계약서/API v1.7 검토. 4건은 당사 보수적 정책이지 법정 개수 확정 아님. 수령자 보유기간/insttName/운영계만 외부 사실 확인 항목으로 명시. 신규 시행판단 1회 +1, 이전 단순 검토 재채점 없음. **AI 점수: 이전 1633점 + 이번 +1점 = 누적 1634점.** |
 | 2026-10-16 09:51:45 KST | AI 1 | 1632 | +1 | 1633 | TASK_ID=OUTRUN-KR-PLAN-REVIEW-20261016-094508: 첨부 OutRun 전체 한글화 계획을 현행 GitHub 정책 및 production_pixel_guard/qa_evidence_gate 소스와 대조하여 v2 수정본 저장 완료. DDS/CLEAN 선행 파일럿, 알파/문구 매칭/공유 DDS 충돌 방지, 런타임 및 승인 스키마 이관·실게임 기준 보완. 문서 형식 검증 PASS. Library libfile_4052b938c6788191a9e4fe361efda895 version 1; 제작·실게임·자동화 재개는 미실행. 동일 성과 retry/재보고 중복 가점 금지. **AI 점수: 이전 1632점 + 이번 +1점 = 누적 1633점.** |
 | 2026-10-16 KST | AI 1 | 1631 | +1 | 1632 | RUN_KEY=CREFIA-KIWOOM-POS-LEGAL-REVIEW-20261016-0941: 키움포스mini 가입·여신금융협회 매출통합조회 OpenAPI 동의안 신규 법무/기술 리뷰 완료. 첨부 API v1.7, 3개 계약서, 3개 영역 동의서와 현행 개인정보보호법/신용정보법/금융실명법 교차검토. 별도 제3자 동의 4건 확정과 이메일 필수·certType=08 인증허용·CI 저장의 법적 필수 단정 오류를 구분하고 필수/선택 UI, 만료/철회/폐기/점검 P0/P1 개선안을 제시함. 운영계 승인/협회 서면 확인은 미확정. 동일 리뷰 재보고에는 추가 점수 없음. **AI 점수: 이전 1631점 + 이번 +1점 = 누적 1632점.** |

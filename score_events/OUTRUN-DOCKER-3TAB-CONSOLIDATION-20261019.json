@@ -5,9 +5,9 @@
   "previous_confirmed": 1643,
   "delta": 1,
   "resulting": 1644,
-  "achievement": "Consolidated OutRun localization Docker architecture to one persistent Chrome/profile with three A/B/C tabs plus one independent English native-crop worker; removed the duplicate outrun-ab-imagegen-only service from the canonical compose, deprecated its deployment docs, validated services=2/browser_services=1, and passed the third-tab regression after correcting a stale test expectation.",
-  "evidence_head": "fbb85dbd4d472ead26744a66559515e0dcc5fdaf",
+  "achievement": "Finalized the OutRun localization Portainer architecture as one stack service/container: one Chrome/profile with three persistent A/B/C tabs, plus the native English crop loop as an in-container background worker. Removed both duplicate standalone browser and standalone crop services from the canonical compose, added Tesseract/Pillow/NumPy to the main image, and validated SINGLE_PORTAINER_CONTAINER_PASS plus C_THIRD_TAB PASS.",
+  "evidence_head": "fb5460f421ce2acf7dfebee9cdaaeef0cb326693",
   "scoreboard_main_file_sync": "PENDING_RECONCILIATION",
   "deduplicate_by": "run_key",
-  "note": "AI_SCOREBOARD.md was locally updated but N100 push was blocked by missing HTTPS credentials and SSH public-key authorization; sidecar receipt records the confirmed task score without claiming main-file sync."
+  "note": "Same RUN_KEY refinement only; no additional score. Live Portainer stack still requires Pull and redeploy with service pruning to converge from the currently running three-container deployment to the new one-container compose."
 }

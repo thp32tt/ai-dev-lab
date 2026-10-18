@@ -1,0 +1,13 @@
+{
+  "run_key": "OUTRUN-DOCKER-3TAB-CONSOLIDATION-20261019",
+  "ai": "AI 1",
+  "date_kst": "2026-10-19",
+  "previous_confirmed": 1643,
+  "delta": 1,
+  "resulting": 1644,
+  "achievement": "Consolidated OutRun localization Docker architecture to one persistent Chrome/profile with three A/B/C tabs plus one independent English native-crop worker; removed the duplicate outrun-ab-imagegen-only service from the canonical compose, deprecated its deployment docs, validated services=2/browser_services=1, and passed the third-tab regression after correcting a stale test expectation.",
+  "evidence_head": "fbb85dbd4d472ead26744a66559515e0dcc5fdaf",
+  "scoreboard_main_file_sync": "PENDING_RECONCILIATION",
+  "deduplicate_by": "run_key",
+  "note": "AI_SCOREBOARD.md was locally updated but N100 push was blocked by missing HTTPS credentials and SSH public-key authorization; sidecar receipt records the confirmed task score without claiming main-file sync."
+}

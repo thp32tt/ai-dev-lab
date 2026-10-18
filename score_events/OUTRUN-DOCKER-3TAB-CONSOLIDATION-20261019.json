@@ -6,8 +6,8 @@
   "delta": 1,
   "resulting": 1644,
   "achievement": "Finalized the OutRun localization Portainer architecture as one stack service/container: one Chrome/profile with three persistent A/B/C tabs, plus the native English crop loop as an in-container background worker. Removed both duplicate standalone browser and standalone crop services from the canonical compose, added Tesseract/Pillow/NumPy to the main image, and validated SINGLE_PORTAINER_CONTAINER_PASS plus C_THIRD_TAB PASS.",
-  "evidence_head": "11399acc974a13eb7595e80677275eacbe2b92e5",
+  "evidence_head": "208e73335c648d99477249738ec3ce1972fe6a0c",
   "scoreboard_main_file_sync": "PENDING_RECONCILIATION",
   "deduplicate_by": "run_key",
-  "note": "Same RUN_KEY refinement only; no additional score. Portainer build pip step hardened after deployment failure: removed unnecessary pip self-upgrade, added timeout/retries. Package set independently reproduced successfully on N100 Python 3.12. Live redeploy still required."
+  "note": "Same RUN_KEY refinement only; no additional score. Exact Docker build failure reproduced in GitHub Actions: Ubuntu-installed numpy 1.26.4 had no pip RECORD file, so pip could not replace it with numpy 2.3.5. Fixed by removing pip pins for numpy/Pillow and explicitly using distro python3-numpy/python3-pil. N100 static tests PASS; live Portainer redeploy pending."
 }

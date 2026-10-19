@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1650 | ACTIVE | 2026-10-19 19:26 KST |
+| AI 1 | ChatGPT (AI 1) | 1651 | ACTIVE | 2026-10-19 19:59 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1566 | ACTIVE | 2026-10-19 14:20 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-19 19:59 KST | AI 1 | 1650 | +1 | 1651 | 신규 독립 RUN_KEY=OUTRUN-C1-20261019-1945-A0002-B0003-B0004-UNIQUE8: OutRun 2006 C1 미검수 A0002 5건·B0003 2건·B0004 1건 등 한글 RGBA PNG 8 고유 SHA를 N100 원본/후보 실물, 승인 매핑 index 47/106/154/198, export/source SHA, 투명도/알파 외곽 및 좌우 육안으로 독립 QA. **PNG 전용 PASS 7 / FAIL 1** (Space→공백 단일 행 대비 글자 수직 기준선 어긋남). GitHub 자산 브랜치 [QA 증빙 abb36013](https://github.com/thp32tt/OutRun2006Tweaks/commit/abb36013dfd3b36eb46f6cc1ce7dbc761cc16ef4). 동일 SHA/TASK_ID 재검수 금지. ImageGen/A·B 큐 변경 및 DDS/C2/C3/실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1650점 + 이번 +1점 = 누적 1651점.** |
 | 2026-10-19 19:26 KST | AI 1 | 1649 | +1 | 1650 | 신규 독립 RUN_KEY=OUTRUN-C1-20261019-1915-B0008-B0009-UNIQUE7: C1가 2026-10-19 19:15 회차에서 B0008 5건+B0009 2건의 N100 미승인 한글 RGBA PNG 7개를 GitHub 기존 QA 6기록과 SHA 비교, 원본 ROI/내보내기 SHA, transcribed_reviewed index236 매핑, 투명도/가시 가장자리·원문/후보 좌우 육안 검증. C1 **PNG 한정 PASS 7 / FAIL 0**, UI 안전영역/합성/DDS/실게임은 UNTESTED. [QA 증빙 b6b17faf](https://github.com/thp32tt/OutRun2006Tweaks/commit/b6b17fafdb4211613f2e540528cc83821b229776). 동일 TASK_ID/중복 SHA 점수 재가산 금지. **AI 점수: 이전 1649점 + 이번 +1점 = 누적 1650점.** |
 | 2026-10-19 18:58 KST | AI 1 | 1648 | +1 | 1649 | 신규 독립 RUN_KEY=OUTRUN-C1-20261019-1845-A0004-B0007-UNIQUE8: OutRun 2006 C1에서 기존 25 SHA 검수 이력과 중복되지 않는 A 0004 배치 5건·B 0007 배치 3건의 한글 투명 RGBA PNG 총 8 SHA를 N100 후보/원본 실물·GitHub transcribed_reviewed 매핑·원본/생성 export SHA·alpha 1/16 경계·좌우 육안 비교 독립 검수. C1 후보 PNG 한정 **PASS 8 / FAIL 0**; IMPERIAL AVENUE→임페리얼 애비뉴의 left edge alpha=1 픽셀 15개는 합성 전 재확인. [QA 증빙 3aaafcc3](https://github.com/thp32tt/OutRun2006Tweaks/commit/3aaafcc301cae052d404d50e05a2a5ff3668c86b). ImageGen/큐 소비/최종 DDS/C2/C3/실게임 승인 없음. **AI 점수: 이전 1648점 + 이번 +1점 = 누적 1649점.** |
 | 2026-10-19 18:27 KST | AI 1 | 1647 | +1 | 1648 | 신규 독립 RUN_KEY=OUTRUN-C1-20261019-1815-B0005-REMAINDER2-B0006-UNIQUE7: OutRun 2006 C1에서 이전 17:45 검수 SHA와 구분되는 B 0005 잔여 2건 및 B 0006 5건, 총 신규 생성 PNG 7 SHA를 N100 실물·원본/승인 매핑·배치 export SHA·RGBA/알파 가장자리·자소 가독성으로 독립 QA하여 **후보 PNG 전용 PASS 7 / FAIL 0**. 자산 브랜치 [QA 증빙 20001512](https://github.com/thp32tt/OutRun2006Tweaks/commit/20001512c5892fe0c6ca2ccac9e045bee84067a8). ImageGen·A/B 큐 소비·C2/C3·실게임·DDS PASS 아님; UI 셀 합성·Library 바인딩·DDS/게임 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1647점 + 이번 +1점 = 누적 1648점.** |

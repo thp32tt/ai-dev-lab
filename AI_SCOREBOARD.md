@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1667 | ACTIVE | 2026-10-21 08:23 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1602 | ACTIVE | 2026-10-21 08:14 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 08:23 KST | AI 1 | 1666 | +1 | 1667 | C1 신규 독립 QA 8개 A ImageGen PNG SHA 증거 원본 대비 확인, 승인 매핑·RGBA 8/8, 심각한 원본 글꼴/외곽 효과 불일치 6 FAIL, 원본 ROI 배치 미검증 2 HOLD, PASS 0. 신규 [자산 브랜치 f8ea912f](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8ea912f5b1afeba077cd866d39df931a83752d1) 원격 HEAD/보고서 검증, N100 비교 PNG/sha 메트릭 증거 확보. ImageGen 호출, A/B 큐 소비, C2/C3/실게임 PASS, DDS/배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry·재보고 중복 가산 금지. **AI 점수: 이전 1666점 + 이번 +1점 = 누적 1667점.** RUN_KEY=OUTRUN-C1-20261021T0815KST-SHA-UNIQUE-8-A0001-A0003 |
 | 2026-10-21 08:14 KST | AI 2 | 1601 | +1 | 1602 | 수도권 연간·시즌·다회권 특가 검색·검증. 코엑스 79,000원은 기존 공지와 동일하며 추가 혜택은 평일 전용. 신규 주말 특가 없음, 알림 생략. RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-21T08:13:27+09:00. |
 | 2026-10-21 08:08 KST | AI 2 | 1600 | +1 | 1601 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01173: GitHub vr-d3d9ex-focus 원본 REA/semantic/queue/D3DX-native GPU Draw→R30 exact SceneEffect 원본 c64·shader epoch 검증 및 R26 world-fallback→L/R restore→R9 Present→R32 SafeEye→xrEndFrame 경로를 01172 SkyGlow scissor와 별도 범위로 실제 정적 분석. 원본 첫 스테이지 base-sky 간접 셰이더 Draw가 exact SceneEffect 또는 R26 verified-world에 매칭되는지 현재 물리 GPU 증거가 부재하다는 새로운 한정 진단 관측을 [docs-only result ba37916ce59d](https://github.com/thp32tt/OutRun2006Tweaks/commit/ba37916ce59d518ebc5158b7251f08bfe0769ee3)로 기록. 원격 변경 경로 정확히 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01173.md 1개, 필수 [AUTO:CONVERSION-DX9EX-01173] 검증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, 실측 GPU/FPS·HMD 결함 인과 확정 아님. 동일 TASK_ID 추가 커밋·retry·rollover 재가산 금지. **AI 점수: 이전 1600점 + 이번 +1점 = 누적 1601점.** |
 | 2026-10-21 07:51 KST | AI 2 | 1598 | +1 | 1599 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01171: GitHub vr-d3d9ex-focus SOURCE_HEAD de9d1c71a619232dec1b2190b214760b74198b4f에서 원본 순위/라이벌 producer→큐 노드/epoch→D3DX Flush→R62 고정기능 DIP/XYZRHW/R29→R30 L/R·restore→R9 Present→OpenXR 경로를 정적 검토. 기존 01170 XYZRHW scissor 또는 01168 per-eye HRESULT 처리와 달리 일반 R62 FIXEDFN KIND0 로깅이 queue node/epoch, per-eye hr/restore를 생략하고 exact result HUD만 상세 기록하는 신규 진단 관측 한계를 소스 라인으로 분리 확인. [docs-only result 0c9cb59b](https://github.com/thp32tt/OutRun2006Tweaks/commit/0c9cb59b3011cfb5c0fd92e8df9cddeed67c10d4), 변경 파일 정확히 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01171.md 1개 원격 검증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED; 화면 결함/FPS 개선 및 HMD PASS 확정 아님. 동일 TASK_ID 후속 retry/rollover +0. **AI 점수: 이전 1598점 + 이번 +1점 = 누적 1599점.** |

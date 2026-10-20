@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1581 | ACTIVE | 2026-10-21 02:01 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1582 | ACTIVE | 2026-10-21 02:24 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 02:24 KST | AI 2 | 1581 | +1 | 1582 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01115: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `6bb16492808111121e6f4e8f85668b97515d6eac` 기준 GOAL 0–99% outer/inner parent 및 GoalTime 물리 GPU D3DX queue/node/epoch, R30/R62, L/R restore, R9 Present, R32 SafeEyes와 실제 xrEndFrame 원본 경로를 새 범위로 검토. [docs-only 결과 9da47655](https://github.com/thp32tt/OutRun2006Tweaks/commit/9da4765586c371c5f1e5e43d579c6472af6f9ff3) 원격 문서 1개만 변경, 정확한 [AUTO:CONVERSION-DX9EX-01115] 마커/브랜치 HEAD 확인. NEW_FINDING=NONE, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 성공한 독립 리뷰/기록이므로 +1, 재검증/롤오버 중복 가산 금지. **AI 점수: 이전 1581점 + 이번 +1점 = 누적 1582점.** |
 | 2026-10-21 02:01 KST | AI 2 | 1580 | +1 | 1581 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01111: R26+HUD 기준 DX9Ex dense-stage opaque/alpha GPU-cost attribution 정적 검토. 원본 REA, 실제 D3DX/Native Draw 경계, R30/R62 L/R/restore, R9 DirectGPU/Present, R32 SafeEyes 및 xrEndFrame을 분리 점검하고 01082/01085/01110과 중복되지 않는 패치 후보·반증조건을 [docs-only 결과 f670580c](https://github.com/thp32tt/OutRun2006Tweaks/commit/f670580c60280eb778780788b0c0eae73e743c9b)로 기록. GitHub 결과 문서 1개만 변경 및 정확한 [AUTO:CONVERSION-DX9EX-01111] 마커 확인. NEW_FINDING=NONE, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 새 독립 작업의 실제 검토/기록 완료로 +1; 같은 RUN_KEY retry/rollover 중복 가산 금지. **AI 점수: 이전 1580점 + 이번 +1점 = 누적 1581점.** |
 | 2026-10-21 01:56 KST | AI 2 | 1579 | +1 | 1580 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01110: OutRun2006Tweaks `vr-d3d9ex-focus` source HEAD `b146ffa5` 기준 PMT CPU cull-FOV enclosure가 eyeFov 각도만 사용하고 양안 eye orientation/origin/cant와 1.48 rad cap을 보장하지 않는 정적 계약 간극 검토. [docs-only 결과 59ae8b61](https://github.com/thp32tt/OutRun2006Tweaks/commit/59ae8b6154dca8b54200fb31e7d9a3454fea97b9), 부모 `8a456a8a`, 마커/문서 1개 변경 원격 검증, R26+HUD protected, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 실제 HMD 컬링/72Hz 변경 미입증, retry/rollover 중복 가산 금지. **AI 점수: 이전 1579점 + 이번 +1점 = 누적 1580점.** |
 | 2026-10-21 01:49 KST | AI 2 | 1578 | +1 | 1579 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01109: OutRun2006Tweaks `vr-d3d9ex-focus` source HEAD `9b4c331a`에서 R26+HUD SceneEffect 정확한 camera/semantic/queue/원본 c64 WVP → GPU L/R/restore → R9 Present → XR 정적 검토. 활성 R30 SceneEffect WVP shader+draw-age 128 gate와 stricter `scene_effect_wvp_provenance.hpp`의 producer/pose/queue+12 계약 불일치 신규 static finding; 실기 오류 원인 미확정. [docs-only 결과 b146ffa5](https://github.com/thp32tt/OutRun2006Tweaks/commit/b146ffa5577836ea32b7a9326991869255510e34) GitHub 부모 HEAD+문서 1개 변경+필수 [AUTO:CONVERSION-DX9EX-01109] 확인. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED. 중복 가산 없음. **AI 점수: 이전 1578점 + 이번 +1점 = 누적 1579점.** |

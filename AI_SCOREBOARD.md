@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1667 | ACTIVE | 2026-10-21 08:23 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1602 | ACTIVE | 2026-10-21 08:14 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1603 | ACTIVE | 2026-10-21 08:44 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 08:44 KST | AI 2 | 1602 | +1 | 1603 | 신규 독립 RUN_KEY=CONVERSION-DX11-00961: 게임 D3D9 SM3 M4x4/M4x3/M3x4/M3x3/M3x2 상대주소 c[base+a0 또는 aL] 행렬을 네이티브 D3D11 VS/PS Draw 경로에 연결, 실제 원본 shader DEF·상수은행·동적 LOOP i# 범위 검증 및 DX9Ex 입력·FFB 폴백 보존. [material b883152d](https://github.com/thp32tt/OutRun2006Tweaks/commit/b883152dd2887a740284c26b36aa60f760f7cba8), 동일 작업의 기존 검사기 원인 한정 수리 뒤 [validation-bearing dd7c6049](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd7c6049fc20efb1f57e968658c0aabda7eb570c) 정확 SHA 필수 5/5 SUCCESS: [Fast #39515412511](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515412511), [Backend #39515412494](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515412494), [Win32 #39515412534](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515412534), [OpenXR #39515417436](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515417436), [HUD #39515417441](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515417441). [C6 bookkeeping 7388bc35](https://github.com/thp32tt/OutRun2006Tweaks/commit/7388bc35a8f805f33b951b9d2b7a6c0995ee6ac9) 별도 [skip ci] 기록. HMD/실게임 RUNTIME_VALIDATION=UNTESTED, 재검증·C6 중복가산 금지. **AI 점수: 이전 1602점 + 이번 +1점 = 누적 1603점.** |
 | 2026-10-21 08:23 KST | AI 1 | 1666 | +1 | 1667 | C1 신규 독립 QA 8개 A ImageGen PNG SHA 증거 원본 대비 확인, 승인 매핑·RGBA 8/8, 심각한 원본 글꼴/외곽 효과 불일치 6 FAIL, 원본 ROI 배치 미검증 2 HOLD, PASS 0. 신규 [자산 브랜치 f8ea912f](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8ea912f5b1afeba077cd866d39df931a83752d1) 원격 HEAD/보고서 검증, N100 비교 PNG/sha 메트릭 증거 확보. ImageGen 호출, A/B 큐 소비, C2/C3/실게임 PASS, DDS/배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry·재보고 중복 가산 금지. **AI 점수: 이전 1666점 + 이번 +1점 = 누적 1667점.** RUN_KEY=OUTRUN-C1-20261021T0815KST-SHA-UNIQUE-8-A0001-A0003 |
 | 2026-10-21 08:14 KST | AI 2 | 1601 | +1 | 1602 | 수도권 연간·시즌·다회권 특가 검색·검증. 코엑스 79,000원은 기존 공지와 동일하며 추가 혜택은 평일 전용. 신규 주말 특가 없음, 알림 생략. RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-21T08:13:27+09:00. |
 | 2026-10-21 08:08 KST | AI 2 | 1600 | +1 | 1601 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01173: GitHub vr-d3d9ex-focus 원본 REA/semantic/queue/D3DX-native GPU Draw→R30 exact SceneEffect 원본 c64·shader epoch 검증 및 R26 world-fallback→L/R restore→R9 Present→R32 SafeEye→xrEndFrame 경로를 01172 SkyGlow scissor와 별도 범위로 실제 정적 분석. 원본 첫 스테이지 base-sky 간접 셰이더 Draw가 exact SceneEffect 또는 R26 verified-world에 매칭되는지 현재 물리 GPU 증거가 부재하다는 새로운 한정 진단 관측을 [docs-only result ba37916ce59d](https://github.com/thp32tt/OutRun2006Tweaks/commit/ba37916ce59d518ebc5158b7251f08bfe0769ee3)로 기록. 원격 변경 경로 정확히 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01173.md 1개, 필수 [AUTO:CONVERSION-DX9EX-01173] 검증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, 실측 GPU/FPS·HMD 결함 인과 확정 아님. 동일 TASK_ID 추가 커밋·retry·rollover 재가산 금지. **AI 점수: 이전 1600점 + 이번 +1점 = 누적 1601점.** |

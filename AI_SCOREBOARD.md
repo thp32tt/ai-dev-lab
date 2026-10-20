@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1667 | ACTIVE | 2026-10-21 08:23 KST |
+| AI 1 | ChatGPT (AI 1) | 1668 | ACTIVE | 2026-10-21 08:45 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1603 | ACTIVE | 2026-10-21 08:44 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 08:45 KST | AI 1 | 1667 | +1 | 1668 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T0845KST-NEW-SHA-UNIQUE8-A0003-A0006-B0001: C1에서 N100 실제 A0003 2건, A0006 3건, B0001 3건의 미검수 고유 SHA256 한글 PNG 8건을 기존 128 SHA 이력과 중복 제거 후 원본/producer export 해시·승인 번역 매핑·RGBA 알파 경계·원본 대비 시각으로 검수. **PNG 문자 품질 한정 PASS 8 / FAIL 0**. A14 및 B3에는 alpha 1~15 경계 픽셀이 있어 합성 전 확인 요망; alpha>=16 경계는 0건. 8건 전부 **REWORK_DIMENSIONS**, UI 안전영역/DDS/C2/C3/실게임 **UNTESTED**, ImageGen/큐 소비/배포 없음. [QA 증빙 df8dd62b](https://github.com/thp32tt/OutRun2006Tweaks/commit/df8dd62b2101e8ad88d1050b183bf601f01cec5c). 이번 신규 독립 성과에 한 번만 +1, 동일 SHA 재검수·재보고는 +0. **AI 점수: 이전 1667점 + 이번 +1점 = 누적 1668점.** |
 | 2026-10-21 08:44 KST | AI 2 | 1602 | +1 | 1603 | 신규 독립 RUN_KEY=CONVERSION-DX11-00961: 게임 D3D9 SM3 M4x4/M4x3/M3x4/M3x3/M3x2 상대주소 c[base+a0 또는 aL] 행렬을 네이티브 D3D11 VS/PS Draw 경로에 연결, 실제 원본 shader DEF·상수은행·동적 LOOP i# 범위 검증 및 DX9Ex 입력·FFB 폴백 보존. [material b883152d](https://github.com/thp32tt/OutRun2006Tweaks/commit/b883152dd2887a740284c26b36aa60f760f7cba8), 동일 작업의 기존 검사기 원인 한정 수리 뒤 [validation-bearing dd7c6049](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd7c6049fc20efb1f57e968658c0aabda7eb570c) 정확 SHA 필수 5/5 SUCCESS: [Fast #39515412511](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515412511), [Backend #39515412494](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515412494), [Win32 #39515412534](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515412534), [OpenXR #39515417436](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515417436), [HUD #39515417441](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39515417441). [C6 bookkeeping 7388bc35](https://github.com/thp32tt/OutRun2006Tweaks/commit/7388bc35a8f805f33b951b9d2b7a6c0995ee6ac9) 별도 [skip ci] 기록. HMD/실게임 RUNTIME_VALIDATION=UNTESTED, 재검증·C6 중복가산 금지. **AI 점수: 이전 1602점 + 이번 +1점 = 누적 1603점.** |
 | 2026-10-21 08:23 KST | AI 1 | 1666 | +1 | 1667 | C1 신규 독립 QA 8개 A ImageGen PNG SHA 증거 원본 대비 확인, 승인 매핑·RGBA 8/8, 심각한 원본 글꼴/외곽 효과 불일치 6 FAIL, 원본 ROI 배치 미검증 2 HOLD, PASS 0. 신규 [자산 브랜치 f8ea912f](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8ea912f5b1afeba077cd866d39df931a83752d1) 원격 HEAD/보고서 검증, N100 비교 PNG/sha 메트릭 증거 확보. ImageGen 호출, A/B 큐 소비, C2/C3/실게임 PASS, DDS/배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry·재보고 중복 가산 금지. **AI 점수: 이전 1666점 + 이번 +1점 = 누적 1667점.** RUN_KEY=OUTRUN-C1-20261021T0815KST-SHA-UNIQUE-8-A0001-A0003 |
 | 2026-10-21 08:14 KST | AI 2 | 1601 | +1 | 1602 | 수도권 연간·시즌·다회권 특가 검색·검증. 코엑스 79,000원은 기존 공지와 동일하며 추가 혜택은 평일 전용. 신규 주말 특가 없음, 알림 생략. RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:2026-10-21T08:13:27+09:00. |

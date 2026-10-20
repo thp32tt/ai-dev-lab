@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1580 | ACTIVE | 2026-10-21 01:56 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1581 | ACTIVE | 2026-10-21 02:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 02:01 KST | AI 2 | 1580 | +1 | 1581 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01111: R26+HUD 기준 DX9Ex dense-stage opaque/alpha GPU-cost attribution 정적 검토. 원본 REA, 실제 D3DX/Native Draw 경계, R30/R62 L/R/restore, R9 DirectGPU/Present, R32 SafeEyes 및 xrEndFrame을 분리 점검하고 01082/01085/01110과 중복되지 않는 패치 후보·반증조건을 [docs-only 결과 f670580c](https://github.com/thp32tt/OutRun2006Tweaks/commit/f670580c60280eb778780788b0c0eae73e743c9b)로 기록. GitHub 결과 문서 1개만 변경 및 정확한 [AUTO:CONVERSION-DX9EX-01111] 마커 확인. NEW_FINDING=NONE, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 새 독립 작업의 실제 검토/기록 완료로 +1; 같은 RUN_KEY retry/rollover 중복 가산 금지. **AI 점수: 이전 1580점 + 이번 +1점 = 누적 1581점.** |
 | 2026-10-21 01:56 KST | AI 2 | 1579 | +1 | 1580 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01110: OutRun2006Tweaks `vr-d3d9ex-focus` source HEAD `b146ffa5` 기준 PMT CPU cull-FOV enclosure가 eyeFov 각도만 사용하고 양안 eye orientation/origin/cant와 1.48 rad cap을 보장하지 않는 정적 계약 간극 검토. [docs-only 결과 59ae8b61](https://github.com/thp32tt/OutRun2006Tweaks/commit/59ae8b6154dca8b54200fb31e7d9a3454fea97b9), 부모 `8a456a8a`, 마커/문서 1개 변경 원격 검증, R26+HUD protected, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 실제 HMD 컬링/72Hz 변경 미입증, retry/rollover 중복 가산 금지. **AI 점수: 이전 1579점 + 이번 +1점 = 누적 1580점.** |
 | 2026-10-21 01:49 KST | AI 2 | 1578 | +1 | 1579 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01109: OutRun2006Tweaks `vr-d3d9ex-focus` source HEAD `9b4c331a`에서 R26+HUD SceneEffect 정확한 camera/semantic/queue/원본 c64 WVP → GPU L/R/restore → R9 Present → XR 정적 검토. 활성 R30 SceneEffect WVP shader+draw-age 128 gate와 stricter `scene_effect_wvp_provenance.hpp`의 producer/pose/queue+12 계약 불일치 신규 static finding; 실기 오류 원인 미확정. [docs-only 결과 b146ffa5](https://github.com/thp32tt/OutRun2006Tweaks/commit/b146ffa5577836ea32b7a9326991869255510e34) GitHub 부모 HEAD+문서 1개 변경+필수 [AUTO:CONVERSION-DX9EX-01109] 확인. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED. 중복 가산 없음. **AI 점수: 이전 1578점 + 이번 +1점 = 누적 1579점.** |
 | 2026-10-21 01:21 KST | AI 2 | 1577 | +1 | 1578 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01104: OutRun2006Tweaks vr-d3d9ex-focus source HEAD 10392729 기준 R23 전역 비원자적 Draw 시리얼과 R28 TLS QPC/CPU/직전 Draw 시리얼 및 R27 전역 PERF 누적의 스레드 소유권 불일치 정적 검토. 실제 다중 스레드 실행/경합·GPU/HMD 오류는 증명되지 않음. 원본 producer→queue/D3DX native DIP/DP→R30/R62 L/R restore→R9 Present→DirectGPU/SafeEyes→실제 xrEndFrame 경계 [docs-only 결과 380c3be3](https://github.com/thp32tt/OutRun2006Tweaks/commit/380c3be374febd240327b83d84c70b85cf77bea4) 단일 문서 변경, 부모 HEAD/필수 마커 원격 검증. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED; 중복 RUN_KEY 가점 없음. **AI 점수: 이전 1577점 + 이번 +1점 = 누적 1578점.** |

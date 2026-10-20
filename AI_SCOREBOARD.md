@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1665 | ACTIVE | 2026-10-20 23:15 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1569 | ACTIVE | 2026-10-20 18:31 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1570 | ACTIVE | 2026-10-20 23:33 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-20 23:33 KST | AI 2 | 1569 | +1 | 1570 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01087: DX9Ex REVIEW_ONLY에서 R26+HUD 현재 HEAD 원본 REA→effect Draw→R27/R23 scissor/StateBlock 캐시→R30/R62 좌우→Present/DirectGPU→host OpenXR 경로를 독립 분석. 실제 R27의 주기적 `R28EffectDraw` 강제 캡처는 신뢰 가능한 R23 shadow가 있으면 live `GetViewport/GetScissorRect` 대신 캐시를 반환함을 소스 라인 근거로 새로 분리 확인; 신규 정적 경계 발견이지만 재현된 화면 버그·FPS 개선·Quest3 PASS 주장은 없음. [docs-only 검토 커밋 814a3e33](https://github.com/thp32tt/OutRun2006Tweaks/commit/814a3e33bb9bf300d02d7c38f90f50fa92fdf438), 변경 파일 정확히 1개 원격 diff 검증, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 같은 TASK_ID retry/rollover/재보고 추가 점수 금지. **AI 점수: 이전 1569점 + 이번 +1점 = 누적 1570점.** |
 | 2026-10-20 23:15 KST | AI 1 | 1664 | +1 | 1665 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-2315-UNIQUE8: OutRun 2006 C1에서 이전 SHA와 중복되지 않은 미승인 후보 8건(A-34/35/40/50/59/60, B-71/72) 독립 간이 QA; 원본·출력 SHA/승인 번역/PNG RGBA/알파 경계·한글 자소·영문 잔상 확인. **PNG 한정 PASS 8 / FAIL 0**, alpha=1 경계 경고 2건(>=16 0), 전부 원본 대비 치수 불일치로 HOLD_REWORK_DIMENSIONS. UI cell/DDS/C2/C3/실게임 UNTESTED, 배포 없음. [GitHub QA 증빙 50f0edf2](https://github.com/thp32tt/OutRun2006Tweaks/commit/50f0edf2f81627b807b07c4972679c749d441838). 중복 SHA·재검수 가점 없음. **AI 점수: 이전 1664점 + 이번 +1점 = 누적 1665점.** |
 | 2026-10-20 22:45 KST | AI 1 | 1663 | +1 | 1664 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-2245-A0009-A0010-UNIQUE8: OutRun 2006 C1에서 N100 A0009 5건+A0010 미검수 3건, 고유 PNG SHA256 8건을 원격 이전 C1 QA 20개 기록과 대조(중복 0). 원본·export SHA, transcribed_reviewed 매핑, PNG RGBA/alpha와 원문/한글 시각을 독립 확인하여 **PNG 한정 PASS 8 / FAIL 0**. HONG KONG→홍콩 하단 alpha=1 1픽셀 경고(alpha>=16 0); 모두 원본 ROI 대비 차원 불일치로 HOLD_REWORK_DIMENSIONS, UI cell/DDS/C2/C3/실게임 UNTESTED. [GitHub QA 증빙 05a864d8](https://github.com/thp32tt/OutRun2006Tweaks/commit/05a864d8ce8e560eef6de0fef9bc15caf8a9771f). ImageGen/A·B 큐 소비/배포 변경 없음. 동일 SHA/런키 중복 가점 금지. **AI 점수: 이전 1663점 + 이번 +1점 = 누적 1664점.** |
 | 2026-10-20 22:15 KST | AI 1 | 1662 | +1 | 1663 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-2215-A0011-B0017-A0010-UNIQUE8: A0011 5개+B0017 미검수 잔여 2개+A0010 1개, 고유 SHA256 8건을 GitHub 이전 19 C1 QA 파일 SHA와 대조해 중복 0. 원본/후보 SHA, 검토된 EN→KR 매핑, PNG RGBA 알파 및 원문/후보 육안 검사: **PNG 한정 PASS 6 / FAIL 2** (REVERSE→반전 종성 ㄴ 분리, RANKINGS→랭킹 종성 ㅇ 분리). CAPE WAY 상단 alpha=1 3픽셀/REVERSE 하단 alpha=1 21픽셀 경고, alpha>=16 경계 0. 전체 8개 HOLD_REWORK_DIMENSIONS, UI cell/DDS/C2/C3/실게임 UNTESTED. [자산 QA 증빙 1314483c](https://github.com/thp32tt/OutRun2006Tweaks/commit/1314483c21089cddba288fc024e76f10a192c1f3). ImageGen/A/B 큐/배포 변경 없음, 동일 SHA 재점수 금지. **AI 점수: 이전 1662점 + 이번 +1점 = 누적 1663점.** |

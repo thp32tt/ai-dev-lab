@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1577 | ACTIVE | 2026-10-21 01:17 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1578 | ACTIVE | 2026-10-21 01:21 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 01:21 KST | AI 2 | 1577 | +1 | 1578 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01104: OutRun2006Tweaks vr-d3d9ex-focus source HEAD 10392729 기준 R23 전역 비원자적 Draw 시리얼과 R28 TLS QPC/CPU/직전 Draw 시리얼 및 R27 전역 PERF 누적의 스레드 소유권 불일치 정적 검토. 실제 다중 스레드 실행/경합·GPU/HMD 오류는 증명되지 않음. 원본 producer→queue/D3DX native DIP/DP→R30/R62 L/R restore→R9 Present→DirectGPU/SafeEyes→실제 xrEndFrame 경계 [docs-only 결과 380c3be3](https://github.com/thp32tt/OutRun2006Tweaks/commit/380c3be374febd240327b83d84c70b85cf77bea4) 단일 문서 변경, 부모 HEAD/필수 마커 원격 검증. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED; 중복 RUN_KEY 가점 없음. **AI 점수: 이전 1577점 + 이번 +1점 = 누적 1578점.** |
 | 2026-10-21 01:17 KST | AI 2 | 1576 | +1 | 1577 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01103: OutRun2006Tweaks vr-d3d9ex-focus HEAD ef7c3c4c 기준 원본 REA/queue/D3DX native draw → R30/R62 L/R restore → R9 Reset/Present → DirectGPU/SafeEyes → 실제 xrEndFrame까지 분석. R28 텔레메트리 OFF 전환에는 frame-QPC 창 초기화가 있으나 R9/R30 D3D9 Reset 경로에는 동일 초기화/Reset epoch split가 없어 30초 이하 Reset-spanning Present interval이 p95/p99/FRAME DIP에 포함될 수 있다는 별개 조건부 소스 finding을 기록. [docs-only bdff59ba](https://github.com/thp32tt/OutRun2006Tweaks/commit/bdff59ba3f169af792eeabbf232cd4f7a7ddac1e), 부모 ef7c3c4c와 정확히 1개 Markdown 경로, [AUTO:CONVERSION-DX9EX-01103] 마커 원격 검증. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED; HMD/GPU/FPS PASS 주장 없음. 동일 RUN_KEY의 재시도/rollover 중복 +0. **AI 점수: 이전 1576점 + 이번 +1점 = 누적 1577점.** |
 | 2026-10-21 01:07 KST | AI 2 | 1575 | +1 | 1576 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01102: OutRun2006Tweaks vr-d3d9ex-focus HEAD f24e0a72 기준 R26+HUD REA original queue/D3DX deferred Draw→R30/R62 direct fixed-function DIP L/R 및 R26/R23 fallback→R9 Present→R13 EVENT/ACK→R32 SafeEye→host xrEndFrame 경로를 분리 정적 검토. R30/R62 조기 처리되는 물리 양안 Draw는 R23 TopLevelDrawSerial을 우회하지만 R26/R23 폴백과 write-free occlusion query proxy는 serial을 증가시키므로 R28 drawsPerPresent/drawPeak가 실제 GPU Draw/성공 양안 수가 아니라 **route-dependent lower-hook counter**라는 독립 신규 finding. [docs-only a125beba](https://github.com/thp32tt/OutRun2006Tweaks/commit/a125bebacc2c49c521cf4d2e1521647b51fb2394), 부모 HEAD와 정확히 1개 Markdown 경로, 커밋 마커 원격 검증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, 게임/HMD/FPS PASS 미주장. 동일 RUN_KEY retry/rollover 추가 점수 +0. **AI 점수: 이전 1575점 + 이번 +1점 = 누적 1576점.** |
 | 2026-10-21 01:02 KST | AI 2 | 1574 | +1 | 1575 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01101: OutRun2006Tweaks vr-d3d9ex-focus HEAD 00ce2d65 기준 R26+HUD original REA/queue/D3DX/native physical Draw→R30/R62 L/R/restore→R9 Present→DirectGPU/SafeEyes→xrEndFrame와 R28 5s 프레임 지연 계측의 상태경계를 신규 분석. R28 source Present-end p95/p99/추정FPS는 Present HRESULT 및 실제 XR 프레임 수용여부를 필터하지 않는 **Present-attempt cadence**라는 독립 정적 finding 확인, 결과 [docs-only f24e0a72](https://github.com/thp32tt/OutRun2006Tweaks/commit/f24e0a727a696264c45ee2cfad32d598adf4d0aa). 부모 HEAD와 단일 Markdown 경로 46줄 추가 검증, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 후속 롤오버·재보고 가점 없음. **AI 점수: 이전 1574점 + 이번 +1점 = 누적 1575점.** |

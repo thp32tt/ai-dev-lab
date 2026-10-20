@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1590 | ACTIVE | 2026-10-21 04:17 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1591 | ACTIVE | 2026-10-21 05:53 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 05:53 KST | AI 2 | 1590 | +1 | 1591 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01153: `thp32tt/OutRun2006Tweaks` `vr-d3d9ex-focus` SOURCE_HEAD `8b03d4f4c5249d692244cbe773673391af0f5d55` 기준 차량 반사 큐브맵의 face-count midhook QPC/slow-refresh 24-sample re-lock과 게임 Present→R32 SafeEyes→actual xrEndFrame 카운터 경계를 직전 01152 R33 WATER profiler 분석과 독립 검토. [docs-only 결과 0f095d42](https://github.com/thp32tt/OutRun2006Tweaks/commit/0f095d42bbfd8c5d9b9cc6211186a0b27fb5a64a) 검증: 변경 경로는 지정 단일 Markdown, 커밋에 정확한 `[AUTO:CONVERSION-DX9EX-01153]`, CODE_CHANGE=NO, SOURCE_BUILD_GATE=NOT_APPLICABLE_DOCS_ONLY, RUNTIME_VALIDATION=UNTESTED, Quest3 PASS/성능 개선 미주장. 동일 TASK retry/rollover는 +0. **AI 점수: 이전 1590점 + 이번 +1점 = 누적 1591점.** |
 | 2026-10-21 04:17 KST | AI 2 | 1589 | +1 | 1590 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01135: `thp32tt/OutRun2006Tweaks` `vr-d3d9ex-focus` SOURCE_HEAD `0d50347bb795b947eae8507d062c168c9c222e32` 기준 gameplay F11 font atlas 상한과 별도 GlobalFontScale/VR shell 크기 예산 및 native indexed DIP 양안 FOV → R9 Present/R32 SafeEyes/실제 xrEndFrame 경계를 직전 01134와 독립 검토. [docs-only 결과 412e5230](https://github.com/thp32tt/OutRun2006Tweaks/commit/412e5230cacbdb3b9edf5dda4cb9fe51850ed3a2), 지정 review Markdown 단일 파일 변경 검증, 정확 [AUTO:CONVERSION-DX9EX-01135], CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, HMD PASS/게임 수정/성능 개선 미주장. 동일 TASK retry/rollover +0. **AI 점수: 이전 1589점 + 이번 +1점 = 누적 1590점.** |
 | 2026-10-21 04:00 KST | AI 2 | 1588 | +1 | 1589 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01132: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 522027a6cd6ec4ded43aead2f072995e01e9eaf0 기준 non-Reset StateBlock Apply coverage-loss와 valid R22 raster shadow 재사용/R23 sub-16 draw window의 조건부 불일치를 REA, R22/R23, R30/R62, Present, R32 SafeEyes, xrEndFrame 경로로 정적 검토. [docs-only 결과 968839c5](https://github.com/thp32tt/OutRun2006Tweaks/commit/968839c5479b5cc08af33eb50aec25b94ff492c1), 커밋 변경은 지정 review Markdown 단일 파일, CODE_CHANGE=NO, SOURCE_BUILD_GATE=NOT_APPLICABLE_DOCS_ONLY, RUNTIME_VALIDATION=UNTESTED, HMD PASS/성능 개선 미주장. 중복 TASK_ID 점수 +0. **AI 점수: 이전 1588점 + 이번 +1점 = 누적 1589점.** |
 | 2026-10-21 03:50 KST | AI 2 | 1587 | +1 | 1588 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01130: `thp32tt/OutRun2006Tweaks` `vr-d3d9ex-focus` 인증 GitHub SOURCE_HEAD `da6b30285c50761e321f4ce3de197d5cd1d9c6c8` 기준 기존 01129와 다른 A->null DS 상태/지연 D3DX native Flush/End 물리 제출 경계를 원본 REA, queue/session, R9/R30/R62, 두 눈 복원, Present, R32 SafeEyes 및 xrEndFrame까지 정적으로 교차 검토. 확인된 조건부 static control: null DS 허용 helper와 별도로 auxiliary deferred depth veto가 유지되는 경로를 분리 기록. [docs-only 검증 결과 c20f8f2d](https://github.com/thp32tt/OutRun2006Tweaks/commit/c20f8f2df65b3ae3bc1379d3dd8acbd14bcabb44) 정확 `[AUTO:CONVERSION-DX9EX-01130]`, 변경은 검토 Markdown 한 파일, 코드 미수정, source build gate 불필요, RUNTIME_VALIDATION=UNTESTED, Quest3 결과/성능 개선 주장 없음. 다른 TASK 성과나 retry 중복 가산 금지. **AI 점수: 이전 1587점 + 이번 +1점 = 누적 1588점.** |

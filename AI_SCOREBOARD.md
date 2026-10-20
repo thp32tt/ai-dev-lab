@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1584 | ACTIVE | 2026-10-21 02:55 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1585 | ACTIVE | 2026-10-21 02:58 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 02:58 KST | AI 2 | 1584 | +1 | 1585 | 신규 독립 RUN_KEY=CONVERSION-DX11-00954: OutRun2006Tweaks vr-dx11-native-r71 실제 D3D9 SM3 TEXLD/TEXLDP/TEXLDB/TEXLDL/TEXLDD 좌표/gradient source modifier의 native D3D11 Sample* C++ 구현, 샘플러/TEMP 음성 회귀 포함 [material a5592817](https://github.com/thp32tt/OutRun2006Tweaks/commit/a55928173654066c6dd9365c884f08478faf645b). 동일 TASK 원인 한정 CI repair f9e509fe 및 [validation-bearing 33ce4167](https://github.com/thp32tt/OutRun2006Tweaks/commit/33ce4167b8b4e48ebea7bcba8f5dc7732e8c91b2) 필수 exact-SHA Fast #39468557209, Backend #39468557178, Win32 #39468557268, OpenXR #39468557329, HUD #39468557355 **5/5 SUCCESS**. [C6 bookkeeping 31eeeea7](https://github.com/thp32tt/OutRun2006Tweaks/commit/31eeeea7812b9c5456a1ef4730a6870a3a8faf32) 분리; 게임/HMD RUNTIME_VALIDATION=UNTESTED, 전체 DX11 렌더러 완성 주장 아님. **AI 점수: 이전 1584점 + 이번 +1점 = 누적 1585점.** |
 | 2026-10-21 02:55 KST | AI 2 | 1583 | +1 | 1584 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01121: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD e3c793ee9b8bd5f9701bf283721d511d7cb11a98에서 R9RtCalls 사전 증가와 실제 성공 RT0/RT1-3 추적·R23 raster 리샘플·R26 L/R·DirectGPU/Present/OpenXR까지 검토하고 **RT 호출 시도는 실제 성공 RT 전환/성능 계측이 아니라는 정적 경계**를 분리 확정. [docs-only 결과 a276d2cc](https://github.com/thp32tt/OutRun2006Tweaks/commit/a276d2cc6293b3c56899f4b2d62fb3ea94c8e1ef), [AUTO:CONVERSION-DX9EX-01121] 정확 마커, 변경 파일 review Markdown 1개 원격 검증. 실제 수면/반사 병목·GPU FPS·Quest3/HMD 미입증; CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동 RUN_KEY retry/rollover 재가산 금지. **AI 점수: 이전 1583점 + 이번 +1점 = 누적 1584점.** |
 | 2026-10-21 02:27 KST | AI 2 | 1582 | +1 | 1583 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01117: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `4a094a8cd6aa4ab5266afb2c7d8da6f007b1642d`에서 F11 Win32 WndProc completed-EndScene input latch와 차기 EndScene toggle/ImGui ScreenOverlay2D → R30 물리 L/R DIP → R9 Present/R32 SafeEyes → xrEndFrame 정적 경계를 독립 검토. [docs-only 결과 ae7f11ee](https://github.com/thp32tt/OutRun2006Tweaks/commit/ae7f11ee3c552bca3a9d605c87574acb67f2ecaa) 원격 정확한 [AUTO:CONVERSION-DX9EX-01117] 마커와 review Markdown 1개 변경 검증. 정적 순서 finding만 확인, 실제 입력 버그/HMD 미입증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. retry/rollover 중복 가산 금지. **AI 점수: 이전 1582점 + 이번 +1점 = 누적 1583점.** |
 | 2026-10-21 02:24 KST | AI 2 | 1581 | +1 | 1582 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01115: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `6bb16492808111121e6f4e8f85668b97515d6eac` 기준 GOAL 0–99% outer/inner parent 및 GoalTime 물리 GPU D3DX queue/node/epoch, R30/R62, L/R restore, R9 Present, R32 SafeEyes와 실제 xrEndFrame 원본 경로를 새 범위로 검토. [docs-only 결과 9da47655](https://github.com/thp32tt/OutRun2006Tweaks/commit/9da4765586c371c5f1e5e43d579c6472af6f9ff3) 원격 문서 1개만 변경, 정확한 [AUTO:CONVERSION-DX9EX-01115] 마커/브랜치 HEAD 확인. NEW_FINDING=NONE, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 성공한 독립 리뷰/기록이므로 +1, 재검증/롤오버 중복 가산 금지. **AI 점수: 이전 1581점 + 이번 +1점 = 누적 1582점.** |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1654 | ACTIVE | 2026-10-20 16:15 KST |
+| AI 1 | ChatGPT (AI 1) | 1655 | ACTIVE | 2026-10-20 17:15 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1568 | ACTIVE | 2026-10-20 08:41 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-20 17:15 KST | AI 1 | 1654 | +1 | 1655 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-1715-A0005-UNIQUE5: OutRun 2006 C1에서 A0005 신규 생성 한국어 투명 RGBA PNG 5개(Transmission→변속기, Select Game Mode→게임 모드 선택, OutRun2SP Course→아웃런2 SP 코스, Select Transmission→변속 방식 선택, Shortcut Features→바로가기 기능)의 원본/후보 SHA256, reviewed 번역 매핑, RGBA 알파·경계 및 글자 가독성을 독립 검사하여 **PNG 후보 한정 PASS 5 / FAIL 0**. 동일 SHA 재검수 없이 신규 5개만 확인. 원본 ROI와 출력 크기 불일치 `REWORK_DIMENSIONS`, UI 셀/DDS/실게임 UNTESTED·최종 승인 아님. [GitHub QA 증빙 bbf2fd60](https://github.com/thp32tt/OutRun2006Tweaks/commit/bbf2fd60214a68bfbc8e4e79139a2d1acd23df38). **AI 점수: 이전 1654점 + 이번 +1점 = 누적 1655점.** |
 | 2026-10-20 16:15 KST | AI 1 | 1653 | +1 | 1654 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-1615-B0010R1-REMAINDER-2: OutRun 2006 C1에서 직전 15:45 QA의 미검수 SHA 2건만 추가 독립 검수. B0010-R1 source ordinal 46 OutRun2 Course→아웃런2 코스 SHA `3b836b7eb72d`, ordinal 47 Select Course→코스 선택 SHA `51e0fb322a9f`의 원본/후보 이미지, approved 번역 매핑, PNG/RGBA, alpha/border, 철자/가독성을 확인해 **PNG 후보만 PASS 2 / FAIL 0**. 이전 8개 SHA 재검수/중복 가점 없음. 두 출력 모두 원본 ROI와 해상도 불일치로 REWORK_DIMENSIONS 유지, UI 셀/플레이트/DDS/실게임 UNTESTED·최종 승인 없음. [GitHub QA 증빙 c42210fd](https://github.com/thp32tt/OutRun2006Tweaks/commit/c42210fd42b206c7199bb09980089de511a23341). **AI 점수: 이전 1653점 + 이번 +1점 = 누적 1654점.** |
 | 2026-10-20 15:45 KST | AI 1 | 1652 | +1 | 1653 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-1545-A0004R1-B0010R1-UNIQUE8: OutRun 2006 C1에서 N100 저장 PNG 68개 중 기존 검수 SHA 57개와 레거시 1개를 제외하여 새 고유 SHA 10개 확인. A0004-R1 5개 + B0010-R1 3개의 미승인 한글 투명 RGBA 8개를 원본 PNG/SHA, reviewed 매핑, 생성 export SHA, alpha/border 및 원문/결과 시각으로 독립 QA하여 **PNG 후보 한정 PASS 8 / FAIL 0**, 잔여 고유 SHA 2개 다음 회차. 생성물은 원본과 dimensions 불일치 REWORK_DIMENSIONS이므로 UI/DDS 합성·C2/C3·실게임 최종 승인은 생성하지 않음, RUNTIME_VALIDATION=UNTESTED. [GitHub QA 증빙 be1b0ef3](https://github.com/thp32tt/OutRun2006Tweaks/commit/be1b0ef3cd98a1707a67703eaa3c953a15d15317). 동일 8개 SHA 및 RUN_KEY 재검수·롤오버 가산 금지. **AI 점수: 이전 1652점 + 이번 +1점 = 누적 1653점.** |
 | 2026-10-20 08:41 KST | AI 2 | 1567 | +1 | 1568 | 신규 독립 RUN_KEY=DX9EX-STABLE-BACKUP-20261020-0CFF83CF: 사용자 Quest3 안정화 기준 게임 SHA [0cff83cf509c](https://github.com/thp32tt/OutRun2006Tweaks/commit/0cff83cf509c2acd6f3391b3a46c4dec1403a0d9)를 변경 없는 별도 백업 브랜치 [vr-d3d9ex-stable-20261020-0cff83cf](https://github.com/thp32tt/OutRun2006Tweaks/tree/vr-d3d9ex-stable-20261020-0cff83cf)로 생성한 뒤 원격 SHA 재조회 일치. 당시 [성공한 PC Fast 원본 빌드](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39285553660) artifact 12202937605를 별도로 다운로드하고 원본 archive SHA256=5b30c5c64afdda29c8450f119859642e5824b7d7060b203ee37c9b87097e9c8f 확인, 내부 실제 실행 ZIP 추출 SHA256=61579f236bd883f9cec8e2f72f0ea47cd196b0287715924d349973618639a345 및 zip -t 무결성 PASS. 메인 개발 브랜치는 독립 진행 중이므로 본 성과는 안정화 소스+실행 패키지 백업 한 건만 점수화, 개발 빌드 진행/재시도는 별도 중복 가산 없음. AI 점수: 이전 1567점 + 이번 +1점 = 누적 1568점. |

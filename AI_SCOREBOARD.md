@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1572 | ACTIVE | 2026-10-21 00:44 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1573 | ACTIVE | 2026-10-21 00:50 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 00:50 KST | AI 2 | 1572 | +1 | 1573 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01099: GitHub vr-d3d9ex-focus R26+HUD source/REA와 기존 01075~01098 구분 검토. gameplay ScreenHud에 HudScale 0.55 × 16:9 백버퍼 containment가 적용되나, R62 projected rank/rival은 0.55 단독, 외부 F11 ImGui는 gameplay HUD scale 비적용이라는 독립 정적 경계를 확인하고 원본 producer→semantic/queue/D3DX/physical API→R30/R62 양안→Present/DirectGPU→OpenXR까지 [docs-only 결과 a8339fb2](https://github.com/thp32tt/OutRun2006Tweaks/commit/a8339fb24e3cbc3ad5ccf770b3d58c31ef4b2bcc)에 기록. 정확히 1개 리뷰 경로 추가·HEAD 검증. 새 화면 결함/FPS/Quest3 PASS를 주장하지 않음, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY 재보고 점수 +0. **AI 점수: 이전 1572점 + 이번 +1점 = 누적 1573점.** |
 | 2026-10-21 00:44 KST | AI 2 | 1571 | +1 | 1572 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01098: R26+HUD DX9Ex REVIEW_ONLY에서 원본 REA/priority queue/native draw→R30/R62 L/R 복원→R9/R13 DirectGPU→R32 SafeEye→R42 host verified-bundle와 xrEndFrame 실제 제출 사이 상태 경계를 새로 분석. 호스트 R42가 projection render 성공 후 verified bundle/lastProcessedStereoFrame을 xrEndFrame 결과보다 먼저 승격하는 정적 순서 발견을 [docs-only 결과 03e8891a](https://github.com/thp32tt/OutRun2006Tweaks/commit/03e8891a72f7f60f36fd880a9c51431ffb00ae39)에 기록하고 정확히 1개 리뷰 경로만 추가됨을 확인. Quest3/VDXR 실기 및 화면 오류 재현은 UNTESTED; CODE_CHANGE=NO; 같은 TASK_ID 중복 가점 금지. **AI 점수: 이전 1571점 + 이번 +1점 = 누적 1572점.** |
 | 2026-10-21 00:02 KST | AI 2 | 1570 | +1 | 1571 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01092: vr-d3d9ex-focus 최신 HEAD 정적 검토, SBS full-client vs 부분 mono-menu 캡처 조건 신규 finding 문서화, docs-only SHA dee1079528eb7d9f8f8791d4ebd3c01e0de87fac 정확히 1개 변경 경로/커밋 확인. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. |
 | 2026-10-20 23:45 KST | AI 1 | 1665 | +1 | 1666 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-2345-UNIQUE4: OutRun 2006 C1에서 GitHub 22건의 기존 QA 후보 SHA와 N100 A/B export 156개를 대조해 미기록 고유 SHA 4개만 독립 PNG 간이 QA. **PASS_PNG_ONLY 3 / FAIL 0 / HOLD_UNVERIFIED_SOURCE_MAPPING 1** (레거시 OutRun Mode는 reviewed/native manifest 매핑 부재). 후보 4건 모두 `HOLD_REWORK_DIMENSIONS`, UI cell/DDS/C2/C3/실게임 UNTESTED. [자산 브랜치 신규 QA 증빙 99b5fa5a](https://github.com/thp32tt/OutRun2006Tweaks/commit/99b5fa5a8ec01247fd53d1fabaa97fb1be803111). ImageGen·A/B 큐·DDS/배포 변경 없음, 동일 SHA/RUN_KEY 재검수·중복 가점 금지. **AI 점수: 이전 1665점 + 이번 +1점 = 누적 1666점.** |

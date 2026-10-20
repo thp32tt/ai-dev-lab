@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1658 | ACTIVE | 2026-10-20 19:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1659 | ACTIVE | 2026-10-20 20:15 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1569 | ACTIVE | 2026-10-20 18:31 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-20 20:15 KST | AI 1 | 1658 | +1 | 1659 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-2015-B0018-A0012-UNIQUE8: OutRun 2006 C1에서 N100 미승인 후보 B0018 5개 및 A0012 3개, 신규 고유 SHA256 8건을 원본·export SHA·reviewed 매핑·PNG RGBA alpha 경계·좌우 시각으로 독립 QA. **PNG 후보 한정 PASS 4 / FAIL 4**: 랭킹 2개와 반전 2개에 종성 ㅇ/ㄴ의 분리로 음절 구조 파손 확인. 8건 전부 REWORK_DIMENSIONS, UI cell/DDS/C2/C3/실게임은 UNTESTED; 최종 승인이나 A/B 큐 변경 없음. [GitHub QA 증빙 bb2dbb8c](https://github.com/thp32tt/OutRun2006Tweaks/commit/bb2dbb8c872b7ed2a6865393052f5d74a22a9592). 재검수·중복 가점 없음. **AI 점수: 이전 1658점 + 이번 +1점 = 누적 1659점.** |
 | 2026-10-20 19:45 KST | AI 1 | 1657 | +1 | 1658 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-1945-B0013-A0008-UNIQUE8: OutRun 2006 C1가 N100 미승인 한글 PNG B0013 5개·A0008 3개의 고유 SHA256 8건을 원본·export·검증된 번역 매핑과 대조하고 투명 RGBA, 가장자리 alpha, 원문/생성물 시각 QA 완료. **PNG 후보 한정 PASS 7 / FAIL 1**: JUNGLE→정글이 원문 1줄과 다르게 정/글 2줄로 배치된 `FAIL_LAYOUT_TWO_LINES` 반려. 나머지 7개는 글자/형식 한정 PASS. alpha=1 경계 경고 2개, alpha>=16 경계 침범 0개. 전부 원본 대비 출력 크기 불일치 `REWORK_DIMENSIONS` 유지, DDS/UI/C2/C3/실게임 최종 승인은 UNTESTED. [GitHub QA 증빙 1a9e3875](https://github.com/thp32tt/OutRun2006Tweaks/commit/1a9e387565fd1b6c425e5dcbe71cde3420392c12). 기존 SHA/재시도 중복 점수 없음. **AI 점수: 이전 1657점 + 이번 +1점 = 누적 1658점.** |
 | 2026-10-20 19:15 KST | AI 1 | 1656 | +1 | 1657 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-1915-B0012-A0007-UNIQUE8: OutRun 2006 C1에서 B0012 5건 + A0007 3건의 미검수 고유 PNG SHA256 8개를 원본 ROI·생산 export SHA·transcribed_reviewed 승인 매핑과 대조하고, RGBA/알파 1/16/32 경계 및 원본/후보 시각검수하여 **PNG 후보 한정 PASS 8 / FAIL 0**. B0012 ordinal 53 하단 alpha=1 91픽셀, ordinal 56 좌측 alpha=1 13픽셀 경고(모두 alpha>=16 경계 없음). 8개 전부 원본과 출력 크기 불일치 `REWORK_DIMENSIONS`; UI cell/DDS/C2/C3/실게임은 UNTESTED이며 최종 승인·ImageGen·큐 소비 없음. [GitHub QA 증빙 c48eda1f](https://github.com/thp32tt/OutRun2006Tweaks/commit/c48eda1f6d2710a9535d016164e127d241c4c096). 동일 SHA/기존 회차 가산 없음. **AI 점수: 이전 1656점 + 이번 +1점 = 누적 1657점.** |
 | 2026-10-20 18:45 KST | AI 1 | 1655 | +1 | 1656 | 신규 독립 RUN_KEY=OUTRUN-C1-20261020-1845-B0011-A0006-UNIQUE8: OutRun 2006 C1에서 17:45 IDLE 이후 저장된 B0011 5건 + A0006 3건, 고유 PNG SHA256 8개에 대해 승인 번역·원본 SHA·export SHA·RGBA/알파/경계 및 한글 시각 검수를 수행해 **PNG 후보 한정 PASS 8 / FAIL 0**. B0011 ordinal 49 alpha 1 수준 최상단 2픽셀 경고, alpha>=16 경계 없음. 8개 모두 원본 ROI 대비 `REWORK_DIMENSIONS`; UI 안전영역, DDS/C2/C3/실게임은 UNTESTED, 최종 승인은 만들지 않음. [GitHub QA 증빙 6cdd76d4](https://github.com/thp32tt/OutRun2006Tweaks/commit/6cdd76d465a7204eb8bd10d2f957e6d96b717769). 기존 동일 SHA/회차 중복 가점 없음. **AI 점수: 이전 1655점 + 이번 +1점 = 누적 1656점.** |

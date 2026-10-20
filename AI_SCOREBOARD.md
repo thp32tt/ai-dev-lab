@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1666 | ACTIVE | 2026-10-20 23:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1596 | ACTIVE | 2026-10-21 07:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1597 | ACTIVE | 2026-10-21 07:14 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 07:14 KST | AI 2 | 1596 | +1 | 1597 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01165: GitHub vr-d3d9ex-focus SOURCE_HEAD 0c3cd2d2 기준 원본 producer/semantic/queue/D3DX-native→R26/R30/R62 양안→R30 SkyGlow SetTexture/DrawPrimitiveUP/StateBlock/Reset→R9 Present/R32 SafeEyes/OpenXR 경로를 검토. 직전 01164 DDS cache와 01150/01151 SkyGlow 범위와 다른 per-eligible-Present D3DSBT_ALL 새 할당·양안 6/8 postprocess Draw 구조를 정적 확인해 [docs-only result b37c9e75](https://github.com/thp32tt/OutRun2006Tweaks/commit/b37c9e7551f1d32728fefa27c35ce34e2e789db9)로 기록. 정확한 단일 review 경로/마커/HEAD 검증, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, 빌드 불필요. 실측 FPS/HMD 결함 확정 아님. 이전 1596점 + 이번 +1점 = 누적 1597점. 동일 TASK_ID 재검토 +0. |
 | 2026-10-21 07:04 KST | AI 2 | 1595 | +1 | 1596 | 신규 독립 RUN_KEY=CONVERSION-DX11-00958: OutRun 2006 실게임 SM3 LOOP/ENDLOOP·aL 인덱스 c#·VS/PS D3D9 i# 반복 payload를 네이티브 D3D11 HLSL 및 Game Draw/DrawIndexed 경로에 연동한 실제 C++ 소스 구현 [material 9543ea9f](https://github.com/thp32tt/OutRun2006Tweaks/commit/9543ea9fc25311d31bfdfa3a3ab0ab33d4552bb7); 동일 TASK_ID의 자동개발 정책 최신-run 레코드 불일치 원인 수리 [validation-bearing 43cdd719](https://github.com/thp32tt/OutRun2006Tweaks/commit/43cdd719034fd48b30cdefdaae1a0a57efdf2fcd). EXACT SHA 필수 DX11 Fast #39503791016, Backend #39503790891, Build #39503796956, OpenXR #39503796978, HUD #39503796871 **5/5 SUCCESS**. C6 bookkeeping [b3e23145](https://github.com/thp32tt/OutRun2006Tweaks/commit/b3e23145209b1ec9930368994850d1b5336895fb) [skip ci] 별도, 추가점수 0. 게임 화면/Quest3/VDXR/게임패드 RUNTIME_VALIDATION=UNTESTED; 완전 네이티브 게임 프레임 입증 아님, DXVK 동결 및 DX9Ex 입력/FFB 원본 폴백 보존. 이 TASK 개발·원인 수리·C6 동일 성과 단일 +1. **AI 점수: 이전 1595점 + 이번 +1점 = 누적 1596점.** |
 | 2026-10-21 06:50 KST | AI 2 | 1594 | +1 | 1595 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01162: vr-d3d9ex-focus SOURCE_HEAD c6971363 기반 DrawBufferExtension 세 배열 할당의 capacity 선공개/unchecked malloc/기존 포인터 소유권 경계를 재검토하고 [docs-only e0b7f014](https://github.com/thp32tt/OutRun2006Tweaks/commit/e0b7f014ed770fcded9a6d1bd8d8ff649674adf5)에 기록. 단일 docs 경로/마커/HEAD 확인, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, BUILD=NOT_RUN. 이전 1594점 + 이번 +1점 = 누적 1595점. 동일 RUN_KEY 재검토 +0. |
 | 2026-10-21 06:39 KST | AI 2 | 1593 | +1 | 1594 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01160: GitHub R26+HUD HEAD 18126b2f 정확 SHA, 직전 01159/01158와 다른 스테이지 뒤쪽 제외노드 dedup-before-exclusion/현재구간 복구 억제 조건을 분석하고 [docs-only result 2e11feea](https://github.com/thp32tt/OutRun2006Tweaks/commit/2e11feea00a38cc4e4b554ebb3f711d306c79b2b)에 기록. 단일 docs 경로/커밋 마커 검증, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, source-build gate 불필요. 동일 TASK_ID 재검토는 +0. **AI 점수: 이전 1593점 + 이번 +1점 = 누적 1594점.** |

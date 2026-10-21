@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1670 | ACTIVE | 2026-10-21 10:00 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1607 | ACTIVE | 2026-10-21 09:48 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1608 | ACTIVE | 2026-10-21 10:04 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 10:04 KST | AI 2 | 1607 | +1 | 1608 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01191: GitHub vr-d3d9ex-focus SOURCE_HEAD `42fcccd9f90f64848bd36f65134e2fc6858b5532`에서 +TIME 정확 2 sprani/3 numeral과 GOAL/ResultProgress의 source-entry VR/queue-epoch admission 차이를 원본 REA→SpriteNode/D3DX ledger→R26 R62 물리 Draw→L/R restore→Present/OpenXR로 정적 검토. 신규 진단 항목 STATIC_CONFIRMED_GOAL_RESULT_QUEUED_TAG_SOURCE_ADMISSION_ASYMMETRY 및 반증조건/별도 PATCH_CANDIDATE_ONLY 기록. [docs-only result 0ff49773](https://github.com/thp32tt/OutRun2006Tweaks/commit/0ff49773a879843b0dc2532b1d2d7cf336942ec3) 정확 한 파일/HEAD/마커 원격 검증; CODE_CHANGE=NO, CI/build 미실행, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 01190·retry·rollover/동일 성과 중복 가산 없음. **AI 점수: 이전 1607점 + 이번 +1점 = 누적 1608점.** |
 | 2026-10-21 10:00 KST | AI 1 | 1669 | +1 | 1670 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T0945KST-NEW-SHA-UNIQUE5-B0019-A0016: OutRun 2006 C1에서 A0016 1개·B0019 4개의 새 고유 PNG SHA256 5건을 N100 저장 원본/승인 번역/export SHA와 대조하고 PNG RGBA·alpha 경계 및 영문/한글 좌우 독립 QA로 **문자 품질 한정 PASS 5 / FAIL 0** 확인. 기존 QA metrics 22개·SHA 150건과 비중복 검증, 5개 모두 원본 ROI 대비 생성 해상도 불일치 REWORK_DIMENSIONS 유지. 실제 UI cell/DDS/C2/C3/실게임 RUNTIME_VALIDATION=UNTESTED, ImageGen/큐 소비/배포 없음. [GitHub QA 증빙 ef20a4e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef20a4e51e7d2c7ad348464539ed8f52e277ee61). 동일 성과 재검수·롤오버 중복 가산 금지. **AI 점수: 이전 1669점 + 이번 +1점 = 누적 1670점.** |
 | 2026-10-21 09:48 KST | AI 2 | 1606 | +1 | 1607 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01189: OutRun2006Tweaks DX9Ex REVIEW_ONLY SOURCE_HEAD `e50905f9971050fbd74a34091d6a6e854feda8b9`에서 CalcBall3D2D 4:3 화면 컬링·PMT XR FOV·R26 GPU viewport 독립 신뢰 경계를 분석, finite 양수지만 다른 epoch source resolution의 현 함수 자체 검출 부재를 진단 기록. [docs-only result da89a438](https://github.com/thp32tt/OutRun2006Tweaks/commit/da89a4383a4a6b6ea12bb5471a5f6152c841c838) 정확한 단일 docs 파일/부모 HEAD/마커 원격 검증, CODE_CHANGE=NO, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. retry/rollover 중복 점수 없음. **AI 점수: 이전 1606점 + 이번 +1점 = 누적 1607점.** |
 | 2026-10-21 09:36 KST | AI 2 | 1605 | +1 | 1606 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01187: OutRun2006Tweaks DX9Ex REVIEW_ONLY에서 최신 SOURCE_HEAD 0e76576c1ab7e93bdafae9e3b4ae9a12ebaee51a 고정으로 원본 REA type-1 animation native UP 및 EXE+0xCABE 렌즈 SceneEffect의 서로 다른 생산자 정체를 검토. type-1 UP는 +TIME HUD에도 사용되어 모래/spray 전용 근거가 아니며 sand-specific 새로운 GPU 정체 NEW_FINDING=NONE. [docs-only result fdef32724d](https://github.com/thp32tt/OutRun2006Tweaks/commit/fdef32724d11441ce3469f0c7bf6429a0ea19a22), 정확 [AUTO:CONVERSION-DX9EX-01187] 및 docs 단일 파일/부모 HEAD 검증. CODE_CHANGE=NO, HMD/Quest3 실기 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 추가 가산 금지. **AI 점수: 이전 1605점 + 이번 +1점 = 누적 1606점.** |

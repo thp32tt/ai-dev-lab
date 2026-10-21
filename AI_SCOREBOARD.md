@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1687 | ACTIVE | 2026-10-21 19:26 KST |
+| AI 1 | ChatGPT (AI 1) | 1688 | ACTIVE | 2026-10-21 20:22 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1700 | ACTIVE | 2026-10-21 20:18:53 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 20:22 KST | AI 1 | 1687 | +1 | 1688 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261021T2015KST-B0034-B0035-SHA8: OutRun2006Tweaks 자산 브랜치 B0034/B0035 A/B 생성물의 이전 262 SHA와 중복 없는 한국어 PNG 후보 8개를 원본/승인 번역 및 source/export SHA256, RGBA/alpha, 영문 대비 시각 검수. 문구 PNG 한정 PASS 6, FAIL 2(B166 평면 원본 대비 은색 입체 효과, B168 Cape Way 심각한 기울기/크기 불일치). 제작 REWORK_DIMENSIONS 8건 유지. [C1 QA 증빙 6c1d66e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/6c1d66e585530bf892ba532546c598ca605c7d01). ImageGen/생산 큐/DDS/C2/C3/실게임 승인 없음; RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY/SHA 재보고 중복 가점 없음. **AI 점수: 이전 1687점 + 이번 +1점 = 누적 1688점.** |
 | 2026-10-21 20:18:53 KST | AI 2 | 1699 | +1 | 1700 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01282: DX9Ex REVIEW_ONLY R26+HUD protected baseline에서 ResetEx 큐 tag retirement 후 **새 등록 SpriteNode가 기존 TLS serial cutoff에 의해 불필요하게 ScreenOverlay2D로 떨어질 수 있는 경계**를 분리 검토(01236의 '기존 선택 node exact scope 잔류' 가설과 구분). 원본 REA 4 GPU exits, QueueNode/End, D3DX deferred ledger+native Draw, R30/R62 L/R, mono restore, Present, 실제 xrEndFrame까지 정적 경로와 반증 조건을 기록. OutRun2006Tweaks SOURCE_HEAD 51f91510197fa2ab000938b327098c6c4d85f977, [docs-only RESULT_SHA 3e4e2de3](https://github.com/thp32tt/OutRun2006Tweaks/commit/3e4e2de373c1ae7b25ad33d09d8c3011c894f8c1), 정확한 marker [AUTO:CONVERSION-DX9EX-01282], single Markdown + GitHub branch HEAD/readback PASS. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 기존 TASK 재시도/롤오버 +0. **AI 점수: 이전 1699점 + 이번 +1점 = 누적 1700점.** |
 | 2026-10-21 20:03:47 KST | AI 2 | 1698 | +1 | 1699 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01280: DX9Ex REVIEW_ONLY R13 query single-execution vs R9 mono-backup skip 경계 정적 분석, NEW_FINDING=NONE (R13 armed negative control), OutRun2006Tweaks SOURCE_HEAD 550980a60ba2317c814db960d7eaecf0678a9806, docs-only RESULT_SHA [4d3f74705786](https://github.com/thp32tt/OutRun2006Tweaks/commit/4d3f74705786f9a45be29aba6cfc129d518fde7b), single Markdown compare PASS, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/reverification +0. **AI 점수: 이전 1698점 + 이번 +1점 = 누적 1699점.** |
 | 2026-10-21 19:43:03 KST | AI 2 | 1697 | +1 | 1698 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01279: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD fa742420005eea9838f861f606201b47919b9e52, DX9Ex REVIEW_ONLY untracked-occlusion-query R9 mono-shadow static audit; docs-only RESULT_SHA 550980a60ba2317c814db960d7eaecf0678a9806, single Markdown, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. |
@@ -1754,7 +1755,7 @@
 | 2026-10-04 08:29 | AI 2 | 1003 | +1 | 1004 | GitHub 연결·권한·main HEAD·점수판 동기화 확인 및 일일 자동 갱신 설정 완료 |
 | 2026-10-04 08:38 | AI 1 | 1004 | +1 | 1005 | CONVERSION-DX11-00329 롤오버 복구, exact-SHA 게이트 확인, authoritative dispatch 보정 및 GitHub SSOT 검증 완료 |
 | 2026-10-04 09:08 | AI 1 | 1005 | +1 | 1006 | CONVERSION-DX11-00331 R229 구현, exact-SHA Gate PASS, C0-C6 및 GitHub SSOT 기록 완료 |
-| 2026-10-04 09:39 | AI 1 | 1006 | +1 | 1007 | 활성 자동작업 2개에 실행별 점수판 직접 갱신·RUN_KEY 중복방지 적용, 일일 점수판 작업을 감사 전용으로 수정 |
+| 2026-10-04 09:39 | AI 1 | 1006 | +1 | 1007 | 활성 자동작업 2개에 실행별 점수판 직접 갱신·RUN_KEY 중복방지 적용, 일일 점수판 작업을 감사 전용으로수정 |
 | 2026-10-04 14:00 | AI 1 | 1007 | +1 | 1008 | CONVERSION-DXVK-00350 F111 exact-decode, exact-SHA 두 핵심 게이트 PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00350-E002) |
 | 2026-10-04 14:31 | AI 1 | 1008 | +1 | 1009 | CONVERSION-DXVK-00352 F112 canonical provenance, exact-SHA 두 핵심 게이트 PASS, C0-C6 및 GitHub SSOT 영속화 완료 (RUN_KEY=CONVERSION-DXVK-00352-E002; material origin=CONVERSION-DX11-00351-E001) |
 | 2026-10-04 14:49 | AI 1 | 1009 | +1 | 1010 | OutRun K4 한글 표시 런타임 포맷 안전화·중복 문자열 보호·Win32 Release CI 복구/빌드 PASS·GitHub SSOT 기록 완료 (RUN_KEY=OUTRUN-K4-RUNTIME-20261004) |

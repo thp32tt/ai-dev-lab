@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1683 | ACTIVE | 2026-10-21 16:23 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1663 | ACTIVE | 2026-10-21 16:30 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1664 | ACTIVE | 2026-10-21 16:34:33 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 16:34:33 KST | AI 2 | 1663 | +1 | 1664 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01248: DX9Ex REVIEW_ONLY R9ReplayMonoDraw post-native restore 실패에서 R9ExecuteDraw fallback actualDraw 재호출 정적 경계 검토, 기존 01247 pre-draw failed bind와 분리. [docs-only 15c080af](https://github.com/thp32tt/OutRun2006Tweaks/commit/15c080af9eaa2681a1cbb18ebfe20bfb741c15bd), single Markdown + marker + parent/current HEAD 검증 PASS; CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1663점 + 이번 +1점 = 누적 1664점. |
 | 2026-10-21 16:30 KST | AI 2 | 1662 | +1 | 1663 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01247: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD c9ded6ebdeb431b608900289d6f0435cc51512a1, R9BindMonoTarget 부분 바인딩 실패 시 SetRT/SetDepth rollback HRESULT 미확인 뒤 R13DrawMonoShadowOnce 원본 physical GPU Draw 재개를 original REA/queue/D3DX/RT/Present/xrEndFrame 경계에서 REVIEW_ONLY 정적 검토. [docs-only result 2b923e94](https://github.com/thp32tt/OutRun2006Tweaks/commit/2b923e94d33b288182b4670696b8762e806fdf44), 부모 SOURCE_HEAD/신규 단일 Markdown/정확 [AUTO:CONVERSION-DX9EX-01247]/현재 HEAD 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED; 실제 잘못된 target draw/HMD 결함은 미입증. 재시도·롤오버 중복 가점 금지. **AI 점수: 이전 1662점 + 이번 +1점 = 누적 1663점.** |
 | 2026-10-21 16:25 KST | AI 2 | 1661 | +1 | 1662 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01246: DX9Ex R26+HUD REVIEW_ONLY GitHub 최신 HEAD와 직전 리뷰/원본 REA/물리 Draw·D3DX 제출/R30-R62/R13-R9/Present/OpenXR 경로 정적 검토. R13 ClassifyDrawReplay의 ForceMonoShadow 분기가 신규 unsafe MRT/query 분기보다 우선하여 이미 force된 프레임에서 후속 unsafe 전환 진단/poison을 생략하고 단일 mono RT0 draw로 진입할 수 있는 조건부 경계 확인. 실기 영향 가설·반증·회귀조건만 문서화. [docs-only c9ded6eb](https://github.com/thp32tt/OutRun2006Tweaks/commit/c9ded6ebdeb431b608900289d6f0435cc51512a1) 부모/단일 Markdown/커밋 마커/HEAD 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 재확인/재시도/롤오버 추가 가산 없음. **AI 점수: 이전 1661점 + 이번 +1점 = 누적 1662점.** |
 | 2026-10-21 16:23 KST | AI 1 | 1682 | +1 | 1683 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1615KST-A0023-SHA5: OutRun2006Tweaks 자산 브랜치에서 N100 원본/승인 매핑/생산 export SHA 검증 및 기존 225개 SHA 중복 제외 후 A0023 5개를 C1 독립 PNG 간이 QA. 번역 가독성·RGBA/alpha PASS, 원본 평면형 서체 대비 과도한 입체/기울기 효과 FAIL 5; 생산 REWORK_DIMENSIONS 유지. [QA 증빙 d52df4b0](https://github.com/thp32tt/OutRun2006Tweaks/commit/d52df4b0ad6ff5f55c514702424dc9f1f373c7ee), 원격 HEAD 확인. ImageGen/생산 큐/DDS/C2/C3/실게임 PASS 없음; RUNTIME_VALIDATION=UNTESTED. 중복 SHA/RUN_KEY 재가산 금지. **AI 점수: 이전 1682점 + 이번 +1점 = 누적 1683점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1681 | ACTIVE | 2026-10-21 15:15 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1656 | ACTIVE | 2026-10-21 15:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1657 | ACTIVE | 2026-10-21 15:51 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 15:51 KST | AI 2 | 1656 | +1 | 1657 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01241: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 94158150f8a2d6eb93ea3fec669f2493a6946c78에서 DirectGPU shared-eye ring의 두 StretchRect/fence와 HostDirectTransportReady=false일 때 R9 Present 하이브리드 ComposeSbs 중복 실행 가능성을 source/REA/queue/native Draw/eye/Present/actual xrEndFrame까지 정적 검토. [docs-only result e59c43ae](https://github.com/thp32tt/OutRun2006Tweaks/commit/e59c43ae9c581805357387f9ad7c48279f5bfc2b)에서 정확 [AUTO:CONVERSION-DX9EX-01241], 부모 SOURCE_HEAD, 1개 신규 Markdown만 변경, 브랜치 HEAD를 검증 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED, Quest3 FPS/화면결함은 미확정. 동일 RUN_KEY retry/rollover/검증 재보고 +0점. **AI 점수: 이전 1656점 + 이번 +1점 = 누적 1657점.** |
 | 2026-10-21 15:46 KST | AI 2 | 1655 | +1 | 1656 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01240: GitHub OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 576fb64652883b0f9987aa46c752ccc10b9bdb7f 기준 R7 right-eye depth/stencil bootstrap epoch/desc/flags 대 R20/R22 first-seed draw serial/depth generation 정적 검토. [docs-only result 94158150](https://github.com/thp32tt/OutRun2006Tweaks/commit/94158150f8a2d6eb93ea3fec669f2493a6946c78) 정확한 단일 문서/부모 HEAD/커밋 마커/브랜치 HEAD 검증 PASS; CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED. 실제 HMD 결함 미확정. 동일 RUN_KEY retry/rollover 중복 가점 없음. **AI 점수: 이전 1655점 + 이번 +1점 = 누적 1656점.** |
 | 2026-10-21 15:39 KST | AI 2 | 1654 | +1 | 1655 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01239: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD df98e91900048986cc0c21336438a21df6b646fa에서 original masked compositor 0x42A800 → queue/physical GPU Draw → R26 active-query write-free color/depth/stencil 조건 및 one-exec serial accounting vs ordinary R22/R30/R62 L/R → Present/xrEndFrame 경계를 정적 검토. [docs-only result 576fb646](https://github.com/thp32tt/OutRun2006Tweaks/commit/576fb64652883b0f9987aa46c752ccc10b9bdb7f)에서 지정된 단일 Markdown/[AUTO:CONVERSION-DX9EX-01239]/현재 브랜치 HEAD 검증 PASS. 원본 마스크 physical draw/HMD 문제 미확정, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY retry/rollover/재검증은 +0. **AI 점수: 이전 1654점 + 이번 +1점 = 누적 1655점.** |
 | 2026-10-21 15:33 KST | AI 2 | 1653 | +1 | 1654 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01238: GitHub OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 6b708ef78e232e141963e1b6e145b75c2b61a898 기준 type-1 masked/composite SpriteNode 0x42A800 → queue/physical D3D9 Draw → R30/R62 L/R reprojection 대 F11 시저 재투영, R22 restore → Present/xrEndFrame 경계 정적 검토. [docs-only result df98e919](https://github.com/thp32tt/OutRun2006Tweaks/commit/df98e91900048986cc0c21336438a21df6b646fa) 단일 문서·부모 HEAD·[AUTO:CONVERSION-DX9EX-01238]·브랜치 HEAD 검증 PASS. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, 화면 결함은 조건부 가설만 기록. 동일 RUN_KEY retry/rollover/재검증 중복 가점 없음. **AI 점수: 이전 1653점 + 이번 +1점 = 누적 1654점.** |

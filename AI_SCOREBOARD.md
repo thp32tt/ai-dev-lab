@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1687 | ACTIVE | 2026-10-21 19:26 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1698 | ACTIVE | 2026-10-21 19:43:03 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1699 | ACTIVE | 2026-10-21 20:03:47 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 20:03:47 KST | AI 2 | 1698 | +1 | 1699 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01280: DX9Ex REVIEW_ONLY R13 query single-execution vs R9 mono-backup skip 경계 정적 분석, NEW_FINDING=NONE (R13 armed negative control), OutRun2006Tweaks SOURCE_HEAD 550980a60ba2317c814db960d7eaecf0678a9806, docs-only RESULT_SHA [4d3f74705786](https://github.com/thp32tt/OutRun2006Tweaks/commit/4d3f74705786f9a45be29aba6cfc129d518fde7b), single Markdown compare PASS, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/reverification +0. **AI 점수: 이전 1698점 + 이번 +1점 = 누적 1699점.** |
 | 2026-10-21 19:43:03 KST | AI 2 | 1697 | +1 | 1698 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01279: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD fa742420005eea9838f861f606201b47919b9e52, DX9Ex REVIEW_ONLY untracked-occlusion-query R9 mono-shadow static audit; docs-only RESULT_SHA 550980a60ba2317c814db960d7eaecf0678a9806, single Markdown, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. |
 | 2026-10-21 19:39:11 KST | AI 2 | 1696 | +1 | 1697 | 신규 독립 기능 완료 RUN_KEY=CONVERSION-DX11-00970: OutRun2006Tweaks DX11 native 게임 RT 실제 소스 미러링(1080p/2K, current-mip, 16MiB/24MiB 예산, DX9Ex fail-closed) 구현 [material be14e0af](https://github.com/thp32tt/OutRun2006Tweaks/commit/be14e0af3d7963418988cfe4d1ff332d7c92ef6b), CI 수리 후 exact-SHA [55496c5927da](https://github.com/thp32tt/OutRun2006Tweaks/commit/55496c5927daecb4066376997e5943bb0d4cb256) 필수 Actions Fast #39583651989/Backend #39583652005/Build #39583651911/OpenXR #39583651903/HUD #39583651927 **5/5 SUCCESS**, 빌드/backend artifact 검증, compare behind=0 및 expected_sha·force=false로 vr-dx11-native-r71 승격 PASS, [C6 기록 a35efc77](https://github.com/thp32tt/OutRun2006Tweaks/commit/a35efc7740f9ccf5353d9bc101f1b6930c1c8716). 별도 전체 실게임 렌더러 완료/플레이 가능 판정 없음, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry·rollover·CI수리·C6 재보고 중복 가점 금지. **AI 점수: 이전 1696점 + 이번 +1점 = 누적 1697점.** |
 | 2026-10-21 19:37:02 KST | AI 2 | 1695 | +1 | 1696 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01278: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 88c9752e2cfc1226081af515c37542a106250286 정적 DX9Ex REVIEW_ONLY; active occlusion query의 single-eye Draw에서 R7 !occlusionActive 동기화 무효화 guard 생략, R9 mono shadow query skip 대비 main depth/stencil serial 차이, R29/R30 fallback 및 R33 boolean admission 시뮬레이션. NEW_FINDING=QUERY_ACTIVE_SINGLE_EYE_DRAW_SKIPS_RIGHT_DEPTH_STENCIL_SYNC_INVALIDATION (static branch bypass confirmed, 실제 stencil writer/Quest3 화면결함 미증명). [docs-only 결과 fa742420](https://github.com/thp32tt/OutRun2006Tweaks/commit/fa742420005eea9838f861f606201b47919b9e52); 부모/원격/단일 Markdown 변경 검증 PASS, CODE_CHANGE=NO, PATCH_CANDIDATE_ONLY, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재보고 +0. **AI 점수: 이전 1695점 + 이번 +1점 = 누적 1696점.** |

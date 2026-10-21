@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1761 | ACTIVE | 2026-10-22 02:44 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1762 | ACTIVE | 2026-10-22 02:48 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 02:48 KST | AI 2 | 1761 | +1 | 1762 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01336: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 293007cf488116dd33dc41dd645945be2f64b8d7에서 R26+HUD producer→queue→R30 owned WVP rollback→R9 mono gap→D3D9 Present/Frame.v2→host xrEndFrame REVIEW_ONLY 정적 검토. R30 pre-left WVP 실패 복원 성공 후 R9UndoStereoDrawCount가 MonoBackupGap을 복원하지 않는 SOURCE_CONFIRMED 상태 비대칭을 신규 분석, PATCH_CANDIDATE_ONLY; 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, CODE_CHANGE=NO. [docs-only result a49a01fb](https://github.com/thp32tt/OutRun2006Tweaks/commit/a49a01fbc4023a9cc1bd085bef19371d276910cc) 단일 파일/부모 diff 검증 PASS, [AUTO:CONVERSION-DX9EX-01336] 정확 마커. 동일 RUN_KEY retry/재보고 중복 가산 금지. **AI 점수: 이전 1761점 + 이번 +1점 = 누적 1762점.** |
 | 2026-10-22 02:44 KST | AI 2 | 1760 | +1 | 1761 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01335: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD b1b40bbc3d188dc4c867386383401590e73b4e8c에서 producer/semantic/deferred D3DX queue→R30/R62 native draw→R9 모노 백업/임시 depth/RT→D3D9 Present→R23 xrEndFrame 정적 검토. transient depth에서 메인 BackBuffer Draw/Clear가 R9 mono shadow replay 및 local backup gap 표시를 우회할 수 있는 소스 경계 SOURCE_CONFIRMED_LOCAL_CONTROL_FLOW_ASYMMETRY 기록; 실제 화면 결함·Quest3/VDXR/FPS는 미검증, PATCH_CANDIDATE_ONLY. [docs-only result 293007cf](https://github.com/thp32tt/OutRun2006Tweaks/commit/293007cf488116dd33dc41dd645945be2f64b8d7) [AUTO:CONVERSION-DX9EX-01335] 단일 Markdown 45줄 추가, 비교 1 ahead/1 file, source 수정 없음, AUTOMATION_VALIDATION=PASS_DOCS_ONLY, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1760점 + 이번 +1점 = 누적 1761점.** |
 | 2026-10-22 02:43:45 KST | AI 2 | 1759 | +1 | 1760 | 신규 독립 RUN_KEY=CONVERSION-DX11-00980: OutRun2006Tweaks vr-dx11-native-r71 LIVE_SM3_TRIG_SIGN_NATIVE_OPCODE_SEMANTICS 소스 구현 b87a8c95/e409381f 및 CI 원인 수리 fd72bc5d; 5개 필수 exact-SHA Actions PASS (DX11 Fast 39644249459 / Backend 39644249409 / Build 39644259625 / OpenXR 39644259433 / HUD 39644259555), RUNTIME_VALIDATION=UNTESTED; 동일 TASK_ID 중복 가산 금지. |
 | 2026-10-22 02:38 KST | AI 2 | 1758 | +1 | 1759 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01334: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 77f8a115d476b6f4ecc87405725d62ff209e536c에서 원본 REA producer/deferred sprite queue→R30/R62/native 양안 GPU draw→R9 mono shadow/Present Frame.v2→R23 OpenXR final layer를 DX9Ex REVIEW_ONLY 정적 분석. R9RestoreMonoBeforePresent의 StretchRect 실패 bool을 PresentDestR9이 무시하는 SOURCE_CONFIRMED_RESTORE_TO_PRESENT_GUARD_SEAM 발견(실제 백버퍼 화면 결함·Quest3 실기/FPS 영향 미입증), 적용은 PATCH_CANDIDATE_ONLY. [docs-only result b1b40bbc](https://github.com/thp32tt/OutRun2006Tweaks/commit/b1b40bbc3d188dc4c867386383401590e73b4e8c), 정확 [AUTO:CONVERSION-DX9EX-01334], 단일 Markdown +44/-0, parent SHA 및 branch HEAD/readback PASS; CODE_CHANGE=NO; BUILD/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재보고 중복 가점 금지. **AI 점수: 이전 1758점 + 이번 +1점 = 누적 1759점.** |

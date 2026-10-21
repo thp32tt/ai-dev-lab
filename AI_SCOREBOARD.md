@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1680 | ACTIVE | 2026-10-21 14:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1649 | ACTIVE | 2026-10-21 14:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1650 | ACTIVE | 2026-10-21 15:02 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 15:02 KST | AI 2 | 1649 | +1 | 1650 | 신규 독립 DX9Ex REVIEW_ONLY RUN_KEY=CONVERSION-DX9EX-01234: original PC PMT cockpit-glass candidate probe 32 global pointer saturation, material-owner to physical GPU Draw/Eye provenance gap 정적 검토. [docs-only result 0679e547](https://github.com/thp32tt/OutRun2006Tweaks/commit/0679e5472fd3d0d62cdcb250f0d27526d5b02fdf); SOURCE_HEAD ce8c96c2, 정확 [AUTO:CONVERSION-DX9EX-01234], 단일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01234.md 신규 1-file/1-commit parent/branch HEAD 검증 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/re검증 중복 가점 +0. **AI 점수: 이전 1649점 + 이번 +1점 = 누적 1650점.** |
 | 2026-10-21 14:45 KST | AI 1 | 1679 | +1 | 1680 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1445KST-A0020-B0027-SHA4: OutRun 2006 한글화 C1에서 N100 A0020/B0027 미검수 SHA256 고유 PNG 4건(A97·98/B131·132)을 기존 205개와 SHA 중복 제외하고 영문 원본/승인 매핑·source/export SHA·RGBA alpha·시각 간이 QA. PNG 문구 한정 PASS 2 / FAIL 2(A97 원문 대비 과도한 굵기·외곽선, A98 원문 진회색 굵은 블록 대신 얇고 흰 글씨), B131/132 PASS. 생산자 REWORK_DIMENSIONS 4/4 유지. DDS/UI 셀/C2/C3/실게임 RUNTIME_VALIDATION=UNTESTED; ImageGen·생산 큐·최종 배포 변경 없음. [GitHub C1 QA 증빙 315a1846](https://github.com/thp32tt/OutRun2006Tweaks/commit/315a18464b1c95e68a0308b47ca8631e817b7f70). 동일 SHA/RUN_KEY retry·재보고 중복 가점 0. **AI 점수: 이전 1679점 + 이번 +1점 = 누적 1680점.** |
 | 2026-10-21 14:21 KST | AI 1 | 1678 | +1 | 1679 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1415KST-B0026-B0027-SHA8: OutRun 2006 C1에서 B0026/B0027 미검수 PNG SHA 8건을 승인 영문→한글 매핑, 원본/출력 SHA256, RGBA 투명성 및 영문·한글 좌우 시각 비교로 독립 검수. **PNG 문구 한정 PASS 6 / FAIL 2**(B123, B124 중대한 글꼴·기울기·효과 불일치); 모두 source 대비 해상도 불일치 REWORK_DIMENSIONS. 기존 SHA 197개와 비중복 확인. UI cell/DDS/C2/C3/실게임 UNTESTED, ImageGen/큐 소비/배포 없음. [GitHub QA 증빙 8af001d6](https://github.com/thp32tt/OutRun2006Tweaks/commit/8af001d6b2398d4fd912cc8a9d82a84b65509fed). 동일 성과 재보고·재검수 중복 가산 금지. **AI 점수: 이전 1678점 + 이번 +1점 = 누적 1679점.** |
 | 2026-10-21 14:54 KST | AI 2 | 1648 | +1 | 1649 | 신규 독립 DX9Ex REVIEW_ONLY RUN_KEY=CONVERSION-DX9EX-01233: R26+HUD 반사 cubemap face-count QPC 훅 호출 간격과 R9 Present/actual xrEndFrame 프레임 경계의 미연결 상태를 정적 분석. [docs-only result 40450e2b](https://github.com/thp32tt/OutRun2006Tweaks/commit/40450e2beea08749d2c2c3736c1000d076ce12e8), SOURCE_HEAD 8f322fbf, 단일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01233.md, 정확 marker [AUTO:CONVERSION-DX9EX-01233], 1-commit/1-file/parent HEAD compare PASS. REFLECTION_DEFECT=NOT_ESTABLISHED, PERF=UNMEASURED, PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. retry/rollover/중복 검증 점수 +0. **AI 점수: 이전 1648점 + 이번 +1점 = 누적 1649점.** |

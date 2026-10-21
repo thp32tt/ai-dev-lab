@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1685 | ACTIVE | 2026-10-21 18:23 KST |
+| AI 1 | ChatGPT (AI 1) | 1686 | ACTIVE | 2026-10-21 18:55 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1688 | ACTIVE | 2026-10-21 18:52 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 18:55 KST | AI 1 | 1685 | +1 | 1686 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261021T1845KST-B0032-A0027-SHA8: OutRun2006Tweaks 자산 브랜치에서 기존 246 SHA와 중복 없는 실제 A/B ImageGen 후보 8개(B0032 5건, A0027 3건)를 source/export SHA256·승인 번역·PNG RGBA·alpha 경계·영문 원본 좌우 시각으로 검수. PNG 텍스트 한정 PASS 2/FAIL 6(명백한 서체/색상/기울기/입체 효과 차이); 제작 REWORK_DIMENSIONS 8건 유지. [C1 QA GitHub commit be7f24bd](https://github.com/thp32tt/OutRun2006Tweaks/commit/be7f24bd0976c683472a5e8c09ce8fc3bdaf2217). 생산 큐·ImageGen·DDS·C2/C3·실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재보고·롤오버 추가 가점 금지. **AI 점수: 이전 1685점 + 이번 +1점 = 누적 1686점.** |
 | 2026-10-21 18:52 KST | AI 2 | 1687 | +1 | 1688 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01271: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `12586ee77d75f276a574484e66ffe06361272047`에서 DX9Ex REVIEW_ONLY full-main-clear/Reset·D3D9 백버퍼와 XR eye extent 세대·nonzero eye cant 경계 및 producer→D3DX/physical draw→R30/R62→Present/xrEndFrame 정적 검토. NEW_FINDING=NONE(Resize/Reset 우회 화면오류 실기 미입증), PATCH_CANDIDATE_ONLY=READ_ONLY_EXTENT_AND_RESET_GENERATION_CORRELATION, CODE_CHANGE=NO. [docs-only 결과 271bd69c](https://github.com/thp32tt/OutRun2006Tweaks/commit/271bd69c25ddcaaec2874f6223868364c1d1d15b), 변경 파일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01271.md` 단일, parent+diff/marker/readback PASS; HMD/Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; source build gate N/A; 동일 RUN_KEY 재확인 중복 점수 없음. **AI 점수: 이전 1687점 + 이번 +1점 = 누적 1688점.** |
 | 2026-10-21 18:45 KST | AI 2 | 1686 | +1 | 1687 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01270: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `6f716f192410a7387727b75c5b8b7b6b8fb31915`에서 producer/semantic/queue/D3DX/R30/R62→L/R→R9 mono-backup gap/restore→native Present→xrEndFrame 경계의 새로운 DX9Ex REVIEW_ONLY 정적 검토. NEW_FINDING=R30_DIRECT_EYE_MONO_BACKUP_INVALIDATION_VERSUS_PRESENT_FALLBACK_STATUS (CONFIRMED_STATIC_CONTROL_FLOW_ONLY, 실기 결함 미확정). [docs-only 결과 12586ee7](https://github.com/thp32tt/OutRun2006Tweaks/commit/12586ee77d75f276a574484e66ffe06361272047) 는 부모 `6f716f19`, Markdown 단일 추가, 정확 [AUTO:CONVERSION-DX9EX-01270] 및 원격 HEAD/readback/diff PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY 재검증/retry/rollover 중복 가산 금지. **AI 점수: 이전 1686점 + 이번 +1점 = 누적 1687점.** |
 | 2026-10-21 18:38:07 KST | AI 2 | 1685 | +1 | 1686 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01269: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 2319c4ba174ce650aea387e2fac01b1069749335에서 R62 오른쪽 눈 RT0/depth/viewport 복원과 auxiliary RT1+ MRT 진입 차단, D3DX/queue 물리 DIP→R30/R62→L/R→restore→R9 Present→xrEndFrame 경계 정적 REVIEW_ONLY 검토. NEW_FINDING=NONE(정적 진단 공백만 제안, 실기 오류 미입증). [docs-only 결과 6f716f19](https://github.com/thp32tt/OutRun2006Tweaks/commit/6f716f192410a7387727b75c5b8b7b6b8fb31915) 부모 SHA 2319c4ba, 정확 [AUTO:CONVERSION-DX9EX-01269], Markdown 1개만 추가 및 원격 diff/HEAD/readback PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 같은 RUN_KEY retry/rollover 중복 가점 금지. **AI 점수: 이전 1685점 + 이번 +1점 = 누적 1686점.** |

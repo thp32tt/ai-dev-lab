@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1680 | ACTIVE | 2026-10-21 14:45 KST |
+| AI 1 | ChatGPT (AI 1) | 1681 | ACTIVE | 2026-10-21 15:15 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1653 | ACTIVE | 2026-10-21 15:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 15:15 KST | AI 1 | 1680 | +1 | 1681 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1515KST-A0021-B0028-SHA8: OutRun 2006 C1에서 A0021/B0028 후보 PNG 고유 SHA 8개(기존 209개와 중복 없음)를 N100에서 원본/출력 SHA256, 승인 번역 매핑, 투명 RGBA, 가장자리 alpha 및 시각 검수. **문구 PNG 한정 PASS 6 / FAIL 2**(A100/A101 원본 평면 회색 서체 대신 과도한 금속질감/외곽선), producer REWORK_DIMENSIONS 8건 유지. C1 증빙 [c7d1e720](https://github.com/thp32tt/OutRun2006Tweaks/commit/c7d1e720adc190a94140de891fe34e195a4a3aee), DDS/UI cell/C2/C3/실게임 UNTESTED. ImageGen·생산 큐·배포 수정 없음. 동일 SHA/RUN_KEY 중복 가점 0. **AI 점수: 이전 1680점 + 이번 +1점 = 누적 1681점.** |
 | 2026-10-21 15:24 KST | AI 2 | 1652 | +1 | 1653 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01237: GitHub OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 485e077460be95912d0ebc4d2d356111db0db3a7 기준 original type-1 masked Sprite 0x42A800의 최종 GPU Draw 미확정과 R30 XYZRHW viewport/비영점 eye-cant에서 exact result 전용 eye orientation 적용 경계를 REA, source, queue, Draw, Present, xrEndFrame까지 정적 검토. [docs-only result 6b708ef7](https://github.com/thp32tt/OutRun2006Tweaks/commit/6b708ef78e232e141963e1b6e145b75c2b61a898)에서 [AUTO:CONVERSION-DX9EX-01237] 단일 review Markdown 변경과 브랜치 HEAD 검증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, 원본 GPU/Quest3 실기 결과 미입증. 동일 RUN_KEY retry/rollover/재확인은 +0. **AI 점수: 이전 1652점 + 이번 +1점 = 누적 1653점.** |
 | 2026-10-21 15:15 KST | AI 2 | 1651 | +1 | 1652 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01236: GitHub OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 6c097575ab4365568da34bc38ed3dbb63ad2ba58에서 R26+HUD Reset 시 SpriteQueue 태그 만료와 활성 exact semantic queue context 수명의 분리 경계를 확인. 게임 소스 미수정 PATCH_CANDIDATE_ONLY/반증조건/실기 미확정을 [docs-only result 485e0774](https://github.com/thp32tt/OutRun2006Tweaks/commit/485e077460be95912d0ebc4d2d356111db0db3a7)에 기록. 정확 [AUTO:CONVERSION-DX9EX-01236], 부모 HEAD 일치, 한 Markdown 파일 추가만 검증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재검증은 추가 가점 +0. **AI 점수: 이전 1651점 + 이번 +1점 = 누적 1652점.** |
 | 2026-10-21 15:09 KST | AI 2 | 1650 | +1 | 1651 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01235: GitHub OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 0679e5472fd3d0d62cdcb250f0d27526d5b02fdf 기준 R26+HUD StateBlock Apply interception coverage loss 뒤에도 R22의 유효 raster shadow를 재사용하는 조건부 정적 경계 검토. 원본 REA/queue/D3DX/native Draw → R22/R26/R30/R62 L/R restore → R9 Present → xrEndFrame 정적 시뮬레이션과 PATCH_CANDIDATE_ONLY/반증조건을 [docs-only result 6c097575](https://github.com/thp32tt/OutRun2006Tweaks/commit/6c097575ab4365568da34bc38ed3dbb63ad2ba58)에 기록. 정확 [AUTO:CONVERSION-DX9EX-01235], 1-file docs-only / branch HEAD 검증. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED; 실제 HMD 결함·72Hz 개선 미입증. 동일 RUN_KEY retry/rollover/재검증은 추가 가점 없음. **AI 점수: 이전 1650점 + 이번 +1점 = 누적 1651점.** |

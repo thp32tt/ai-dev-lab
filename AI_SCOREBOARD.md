@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1684 | ACTIVE | 2026-10-21 16:52 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1678 | ACTIVE | 2026-10-21 17:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1679 | ACTIVE | 2026-10-21 18:02 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 18:02 KST | AI 2 | 1678 | +1 | 1679 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01263: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD efa2d4f567cc151c100be7d7a652f94b1dabeb73에 대한 DX9Ex REVIEW_ONLY R14 LockRect null/explicit-full-RECT와 R15 UpdateSurface 실패 시 whole-mip fallback 경계 정적 검토. 명시적 full RECT도 lockRectValid=true이므로 R15 부분 업로드 실패 시 전체 복사 fallback이 차단되는 분기 확인. [docs-only 결과 24eef04d](https://github.com/thp32tt/OutRun2006Tweaks/commit/24eef04d016ba31c687faabe4f86f8bb2736f01e) 부모 HEAD/정확 마커/단일 Markdown diff/원격 파일 검증 PASS. CODE_CHANGE=NO; Quest3/VDXR GPU·실기 미검증 RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry·rollover·재검증은 +0. **AI 점수: 이전 1678점 + 이번 +1점 = 누적 1679점.** RUN_KEY=CONVERSION-DX9EX-01263 |
 | 2026-10-21 17:54 KST | AI 2 | 1677 | +1 | 1678 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01262: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD b9cef63c78f62f075c4be41e4f53f930ed5a357c에서 R14 FORMAT/MIP별 shadow byte 추정과 실제 SYS_MEM Pitch/정확 mip 업로드의 별도 정적 검토. R16F/L16 등이 기본 4 Bpp fallback으로 분류되는 조건부 회계 과대 추정 경계 확인, 실제 driver 포맷 지원/화면 결함·GPU/HMD 런타임 미검증. 기존 REA +TIME/GOAL→semantic/queue→D3DX/native draw→R30/R62→R7 L/R→restore/Present→host xrEndFrame 조건부 추적. [docs-only result efa2d4f5](https://github.com/thp32tt/OutRun2006Tweaks/commit/efa2d4f567cc151c100be7d7a652f94b1dabeb73) 커밋 부모 HEAD/단일 Markdown 추가/정확 [AUTO:CONVERSION-DX9EX-01262] 확인. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 같은 TASK_ID retry/rollover/재검증 중복 점수 없음. **AI 점수: 이전 1677점 + 이번 +1점 = 누적 1678점.** |
 | 2026-10-21 17:47 KST | AI 2 | 1676 | +1 | 1677 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01261: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 632968dd 기준 R14 384MiB CPU-shadow 비원자적 preflight와 SYSTEMMEM 선할당 이후 CAS reservation, 성공 allocation/Track 실패 시 DirectOnly 우회 없이 fail-closed가 되는 조건부 정적 경계 검토. 기존 REA 원본 +TIME/GOAL→semantic/queue→D3DX/native draw→R30/R62→R7 L/R→restore/Present→host xrEndFrame 분리 검토. [docs-only result b9cef63c](https://github.com/thp32tt/OutRun2006Tweaks/commit/b9cef63c78f62f075c4be41e4f53f930ed5a357c) 커밋 단일 Markdown 추가/부모-HEAD/정확 [AUTO:CONVERSION-DX9EX-01261] 검증 PASS. 실제 동시 CPU allocation, GPU/HMD 영향 미실증. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재검증 중복 가점 금지. **AI 점수: 이전 1676점 + 이번 +1점 = 누적 1677점.** |
 | 2026-10-21 17:39 KST | AI 2 | 1675 | +1 | 1676 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01260: DX9Ex REVIEW_ONLY R14 AddDirtyRect synthetic HRESULT / R15 GenerateMipSubLevels any-level CPU Lock shadow 경계 정적 검토. OutRun2006Tweaks vr-d3d9ex-focus [docs-only 632968dd](https://github.com/thp32tt/OutRun2006Tweaks/commit/632968dd6307739363ba37b417b285919a5b3539) 결과, 정확한 [AUTO:CONVERSION-DX9EX-01260] 및 단일 Markdown 추가/부모 HEAD 검증. CODE_CHANGE=NO; 빌드 게이트 비대상; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY 재검증/롤오버 중복 가점 없음. **AI 점수: 이전 1675점 + 이번 +1점 = 누적 1676점.** |

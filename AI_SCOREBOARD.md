@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1742 | ACTIVE | 2026-10-22 00:58:01 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1743 | ACTIVE | 2026-10-22 01:05:28 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 01:05:28 KST | AI 2 | 1742 | +1 | 1743 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01319: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `9f1a4866502b71df9e324d7bdbe9db692284c503`에서 R26 트래킹 occlusion-query 쓰기 없는 GPU 프록시의 DP/DIP/UP/DIP-UP 단일 실행→R30/R62 실제 eye Draw/restore→R9 Present/Frame.v2→OpenXR까지 REVIEW_ONLY 정적 검토. 단일 프록시 쿼리와 양안 최종 visibility 간 런타임 검증 공백을 조건부 finding으로 기록(실제 원본 query producer/컬링 분기 미확정). [docs-only result 837e4485](https://github.com/thp32tt/OutRun2006Tweaks/commit/837e44857b86bd75aa21fe43d7b2ad3ee137ce30) 정확 [AUTO:CONVERSION-DX9EX-01319] 단일 Markdown 48라인 추가, parent 9f1a4866와 GitHub compare 1파일/1커밋 및 remote HEAD/readback PASS; CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. retry/rollover/재보고 중복 가점 금지. **AI 점수: 이전 1742점 + 이번 +1점 = 누적 1743점.** |
 | 2026-10-22 00:58:01 KST | AI 2 | 1741 | +1 | 1742 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01318: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `1f0a067d8ae5b7f2ad59931f6ab618fed67169e4`에서 기본 R26+HUD CPU scratch lease·VB/IB shadow staging·좌우 눈 full-window clone·conditional bilateral fallback를 producer/semantic/queue→R30/R62 native UP eye→restore→R9 Present/Frame.v2→OpenXR까지 REVIEW_ONLY 정적 분석. 비인덱스 shadow VB의 최소 3N CPU byte-copy 비용 구조를 정적 finding으로 기록; 실제 sand producer, 실측 병목·HMD/FPS PASS 주장 없음. [docs-only result 9f1a4866](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f1a4866502b71df9e324d7bdbe9db692284c503) 정확 [AUTO:CONVERSION-DX9EX-01318] 마커·단일 Markdown 52라인 diff·대상 브랜치 remote HEAD/readback PASS; CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. retry/rollover/재보고 점수 중복 가산 금지. **AI 점수: 이전 1741점 + 이번 +1점 = 누적 1742점.** |
 | 2026-10-22 00:53:04 KST | AI 2 | 1740 | +1 | 1741 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01317: OutRun2006Tweaks `vr-d3d9ex-focus` pinned SOURCE_HEAD `5b944d6ff42a8daf08cc3f182af530c9592740f0`에서 R84 opt-in WorldParticle dynamic VB 첫 눈 `SetStreamSource` 선-드로우 실패→스테레오 실패 표기→원본 UP 복귀 경계와 보호 R26+HUD 차이를 REVIEW_ONLY 정적 검토. [docs-only result 1f0a067d](https://github.com/thp32tt/OutRun2006Tweaks/commit/1f0a067d8ae5b7f2ad59931f6ab618fed67169e4) 정확 [AUTO:CONVERSION-DX9EX-01317] 단일 Markdown 추가, parent diff/remote readback/target HEAD PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 재시도/롤오버/재보고 중복 가점 금지. **AI 점수: 이전 1740점 + 이번 +1점 = 누적 1741점.** |
 | 2026-10-22 00:45 KST | AI 1 | 1694 | +1 | 1695 | 신규 C1 QA RUN_KEY=OUTRUN-C1-20261022T0045KST-SHA-NEW: 원본·후보 SHA 검증 및 로컬 RGBA 문자 독립 검수 2건(PASS_PNG_TEXT_ONLY 2, 원본과 출력 크기 불일치 REWORK_DIMENSIONS 유지), [QA 증빙 commit 674a8bf8](https://github.com/thp32tt/OutRun2006Tweaks/commit/674a8bf844b424813bfeca17dd7af40842d06efe) 원격 HEAD 확인. DDS/C2/C3/실게임 PASS 아님; RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1694점 + 이번 +1점 = 누적 1695점. |

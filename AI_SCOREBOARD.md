@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1676 | ACTIVE | 2026-10-21 12:52 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1630 | ACTIVE | 2026-10-21 12:54 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1631 | ACTIVE | 2026-10-21 13:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 13:01 KST | AI 2 | 1630 | +1 | 1631 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01218: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD ae84ff2e에서 R26+HUD Indexed-UP sparse declared-window 전체 마스크 초기화/좌우 memcpy·scan CPU 비용을 원본 producer/queue/D3DX 대비 실제 R30 DIPUP·VB/IB shadow range/Discard/Reset·L/R restore·R9 Present·OpenXR 경계로 분리 검토. NEW_FINDING=CONFIRMED_STATIC_R26_INDEXED_UP_SPARSE_WINDOW_FULL_COPY_AND_SCAN_COST(실기 성능 또는 화면 오류 확정 아님). docs-only 커밋 [e2e3dad9](https://github.com/thp32tt/OutRun2006Tweaks/commit/e2e3dad9170b1e850b83b65fdd81f33da6ded4db) 단일 문서, 부모/HEAD/마커 검증, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 같은 RUN_KEY retry/rollover/재확인 중복 +0. **AI 점수: 이전 1630점 + 이번 +1점 = 누적 1631점.** |
 | 2026-10-21 12:54 KST | AI 2 | 1629 | +1 | 1630 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01217: GitHub vr-d3d9ex-focus SOURCE_HEAD 6f92a4b2dacdea3783d9ac3869d4e735ea917fb5에서 R26+HUD 기본 XYZRHW UP 2-eye 직접 제출과 비기본 R84 opt-in WorldParticle DynamicVB ring(환경변수·semantic·alpha/depth·StateBlock·stride·버퍼 경계), pre-draw-only replay/stream restore, 최종 Present/OpenXR 경계를 직전 01216 PMT culling 검토와 분리한 REVIEW_ONLY 정적 분석. NEW_FINDING=CONFIRMED_STATIC_PATH_ATTRIBUTION_GAP_R84_OPTIN_PARTICLE_RING_NOT_DEFAULT_R26(실기 오류/성능 개선 주장 아님). 단일 docs-only [result ae84ff2e](https://github.com/thp32tt/OutRun2006Tweaks/commit/ae84ff2ee72ccf675459044647d87cf75ee60ae5) exact [AUTO:CONVERSION-DX9EX-01217], HEAD/부모/마커/단일 파일 검증. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 같은 RUN_KEY retry/rollover/재확인 중복 +0. **AI 점수: 이전 1629점 + 이번 +1점 = 누적 1630점.** |
 | 2026-10-21 12:52 KST | AI 1 | 1675 | +1 | 1676 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1245KST-NEW-SHA-UNIQUE8-A0019-A0020: A-0019 ord 89~93 및 A-0020 ord 94~96, N100 SHA-unique 한글 PNG 8개 원문/승인번역 매핑·RGBA·alpha·시각 간이 QA 완료(문자 단독 PASS 7, 원문 검정 채움→출력 주황 굵은 효과 불일치 FAIL 1, 생성자 8개 REWORK_DIMENSIONS 유지). [C1 evidence affb8a76](https://github.com/thp32tt/OutRun2006Tweaks/commit/affb8a764f32c91c30ff86d0a07aa6e952d1fcf4), 원격 파일/HEAD 확인. ImageGen·DDS·A/B 큐 소비 없음, C2/C3 및 실게임 PASS 없음, RUNTIME_VALIDATION=UNTESTED. 이전 1675점 + 이번 +1점 = 누적 1676점. |
 | 2026-10-21 12:45 KST | AI 2 | 1628 | +1 | 1629 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01215: GitHub vr-d3d9ex-focus SOURCE_HEAD 7ba88543319d6c74020d918f57c30bd140506512 정적 DX9Ex REVIEW_ONLY 신규 범위 DirectGPU producer EVENT 1ms bounded wait → R13 ACK/slot fence → host R41 latest-frame-wins → R23 L/R hold-copy/R32 deferred GPU-complete ACK → 실제 OpenXR submit 및 pacing QPC 경계 검토. NEW_FINDING=NONE(실기 GPU 병목 단정 없음), docs-only 단일 경로 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01215.md [result 86e96b6c](https://github.com/thp32tt/OutRun2006Tweaks/commit/86e96b6cf851507d6b1a74b1fa64e59ee623a7fc), exact [AUTO:CONVERSION-DX9EX-01215], 원격 HEAD·커밋 marker·부모 compare 1파일 검증, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재보고 중복 가산 금지. **AI 점수: 이전 1628점 + 이번 +1점 = 누적 1629점.** |

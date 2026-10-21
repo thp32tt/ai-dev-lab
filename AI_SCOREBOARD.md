@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1780 | ACTIVE | 2026-10-22 04:25:25 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1781 | ACTIVE | 2026-10-22 04:27:57 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 04:27:57 KST | AI 2 | 1780 | +1 | 1781 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01353: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD f397d035b610fe959be7a905870b08a00e24f898에서 R26+HUD 기본 IndexedUP declared-window 사용 마스크 O(vertexCount) 초기화와 R84 opt-in sparse touched/transform 경계의 소스 차이를 REVIEW_ONLY 정적 검토. NEW_FINDING=R26_SAFE_INDEXED_UP_FULL_DECLARED_WINDOW_MASK_CLEAR_VS_R84_SPARSE_TOUCHED_WORK (SOURCE_CONFIRMED, FPS/HMD UNTESTED). [docs-only 결과 1462188b](https://github.com/thp32tt/OutRun2006Tweaks/commit/1462188b6264c54bc36c1c372374f66b8ccede96) [AUTO:CONVERSION-DX9EX-01353], GitHub 단일 Markdown diff/readback PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN. 동일 RUN_KEY 재검증·retry·rollover 중복 가산 금지. **AI 점수: 이전 1780점 + 이번 +1점 = 누적 1781점.** |
 | 2026-10-22 04:25:25 KST | AI 2 | 1779 | +1 | 1780 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01352: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 85580eb9ae898f4b5c4f2934901d475ffb16e327 차량선택 DDS texture lookup→one-shot mask/parent UV→원본 D3DX/UP GPU→R30/R62/L/R restore→Present/OpenXR REVIEW_ONLY 정적검토. NEW_FINDING=UI_TEXTURE_LOOKUP_SINGLE_SLOT_CROSS_PRODUCER_INTERLEAVE_GAP (source-confirmed single-slot, 실기 occurrence/화면 결함 미확정). [docs-only result f397d035](https://github.com/thp32tt/OutRun2006Tweaks/commit/f397d035b610fe959be7a905870b08a00e24f898) [AUTO:CONVERSION-DX9EX-01352], 단일 경로 diff/readback PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover 중복 가산 금지. **AI 점수: 이전 1779점 + 이번 +1점 = 누적 1780점.** |
 | 2026-10-22 04:14:30 KST | AI 2 | 1778 | +1 | 1779 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01351: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 44244de70c822a79fac031897ae1c2379fcddf1d에서 R26+HUD DriverSeat 원본 CalcCameraMatrix detour의 eligibility 검증과 실제 offset 적용 사이 중복 anchored seat pose 계산을 REVIEW_ONLY 정적 검토. NEW_FINDING=DRIVER_SEAT_ELIGIBILITY_AND_APPLY_DOUBLE_POSE_EVALUATION (SOURCE_CONFIRMED_CONDITIONAL_REDUNDANT_COMPUTATION, 실기/성능 UNTESTED); [docs-only 결과 85580eb9](https://github.com/thp32tt/OutRun2006Tweaks/commit/85580eb9ae898f4b5c4f2934901d475ffb16e327) [AUTO:CONVERSION-DX9EX-01351], 원격 단일 Markdown diff/readback PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN. 동일 RUN_KEY retry/rollover 중복 가산 불가. **AI 점수: 이전 1778점 + 이번 +1점 = 누적 1779점.** |
 | 2026-10-22 04:08:22 KST | AI 2 | 1777 | +1 | 1778 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01350: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 8cea4145878f47d99a2c20f3b3c33ca2ded5e706 R26+HUD SkyGlow clean pre-HUD capture PresentEpoch와 동일 epoch 내부 resource recreation 간 generation 부재를 GitHub 최신 소스에서 REVIEW_ONLY 검증. NEW_FINDING=SKYGLOW_PREHUD_CAPTURE_EPOCH_NOT_BOUND_TO_RECREATED_TEXTURE_GENERATION (source-confirmed conditional, HMD/실기 UNTESTED). [docs-only 결과 44244de7](https://github.com/thp32tt/OutRun2006Tweaks/commit/44244de70c822a79fac031897ae1c2379fcddf1d) [AUTO:CONVERSION-DX9EX-01350], 단일 검토 문서 추가 diff 및 GitHub readback PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN. 동일 RUN_KEY 추가 가산 금지. **AI 점수: 이전 1777점 + 이번 +1점 = 누적 1778점.** |

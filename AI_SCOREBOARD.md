@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1694 | ACTIVE | 2026-10-21 23:53 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1737 | ACTIVE | 2026-10-22 00:36 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1738 | ACTIVE | 2026-10-22 00:41 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 00:41 KST | AI 2 | 1737 | +1 | 1738 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01315: OutRun2006Tweaks `vr-d3d9ex-focus` pinned SOURCE_HEAD `44c6ebd9ed485426a7100fd277d8144c423b0b11`에서 원본 +TIME/GOAL→D3DX Draw 내부 Flush 재진입→Ledger mutationSerial/End 동일 generation→R30/R62 L/R→R9 Present→OpenXR 경로를 REVIEW_ONLY 정적 검토. 같은 세대 End 재진입 Draw 증거/스모크 부재를 조건부 finding으로 분리; [docs-only result f2fc373e](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2fc373e492b0e9101d878f1740b6c33d28f69c3) 정확 [AUTO:CONVERSION-DX9EX-01315] 단일 Markdown 변경(parent 3ae90f8d diff PASS, branch readback PASS). CODE_CHANGE=NO; CI/BUILD=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 재시도/롤오버/중복보고 재가산 금지. **AI 점수: 이전 1737점 + 이번 +1점 = 누적 1738점.** |
 | 2026-10-22 00:36 KST | AI 2 | 1736 | +1 | 1737 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01314: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `77700d9b0e5ec648bc17dea57c74442f560a2335` R64 D3DX queued Begin/Draw/Flush/End 물리 소유권과 0x2DCB4 epilogue 실패/skip 후 native End의 L/R/Present 판정 공백을 REVIEW_ONLY 정적 검토. [docs-only result 44c6ebd9](https://github.com/thp32tt/OutRun2006Tweaks/commit/44c6ebd9ed485426a7100fd277d8144c423b0b11) 단일 지정 Markdown 추가, 정확 [AUTO:CONVERSION-DX9EX-01314] 마커, source baseline 대비 부모 단일 파일/remote readback PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재검증/재보고 중복 가산 금지. **AI 점수: 이전 1736점 + 이번 +1점 = 누적 1737점.** |
 | 2026-10-22 00:32 KST | AI 2 | 1735 | +1 | 1736 | 신규 독립 RUN_KEY=DX9EX-ALL-REVIEWS-TEST-BUILD-20261022: OutRun2006Tweaks `test/dx9ex-all-improvements-20261021`에서 2026-10-21/22 DX9Ex 검토의 구현·적용 가능한 변경을 누적 통합하고, review105 SkyGlow scissor/ScreenOverlay2D 경로 + 최신 라이벌 BB6F0/BB796 exact projector 복구 + exact-SHA 빌더/검증기를 반영. 최종 SOURCE_SHA `badcc1650fc3d5f352b5a042d8d358193fa451b2`, GitHub Actions run 39625384353 전체 PASS, x86 `dinput8.dll` / x64 `outrun-vr-host.exe` 포함 테스트 ZIP artifact 12357421110 생성 및 내부 SHA/PE 형식 검증 완료. Quest3/VDXR 실제 런타임은 아직 UNTESTED. 동일 빌드 재검증·재다운로드·재보고 중복 가산 금지. **AI 점수: 이전 1735점 + 이번 +1점 = 누적 1736점.** |
 | 2026-10-22 00:24 KST | AI 2 | 1734 | +1 | 1735 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01313: OutRun2006Tweaks vr-d3d9ex-focus 최신 SOURCE_HEAD 03038d77b3d6254271ec6b7c0134f708bd0da27c에서 R62 D3DX fixed-function 실제 좌/우 eye Draw 및 RT/Depth/Projection restore → R9 stereo completeness/mono fallback → Present/Frame.v2 → xrEndFrame 경로를 REVIEW_ONLY 정적 검토. left HRESULT 및 R62 hit counter와 실제 L/R 완성/Present 성공 판정의 구분을 별도 finding으로 문서화. [docs-only result 7d941d9c](https://github.com/thp32tt/OutRun2006Tweaks/commit/7d941d9c7ee0526993992b3b1b3b6009830a3fce) 정확 [AUTO:CONVERSION-DX9EX-01313] 마커, 부모 대비 지정 Markdown 단일 추가 원격 compare/readback PASS. CODE_CHANGE=NO; CI/BUILD=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/재보고 중복 가산 금지. **AI 점수: 이전 1734점 + 이번 +1점 = 누적 1735점.** |

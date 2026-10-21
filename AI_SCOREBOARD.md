@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1688 | ACTIVE | 2026-10-21 20:22 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1700 | ACTIVE | 2026-10-21 20:18:53 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1701 | ACTIVE | 2026-10-21 20:25:26 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 20:25:26 KST | AI 2 | 1700 | +1 | 1701 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01283: DX9Ex REVIEW_ONLY D3DXSprite OnLostDevice/OnResetDevice 원본 콜백 종료 후 새 reentrant Begin 세대까지 stale pre-native ownsBatch 판단으로 무효화 가능한 정적 경계 확인(실기 재진입 미증명), OutRun2006Tweaks SOURCE_HEAD 3e4e2de373c1ae7b25ad33d09d8c3011c894f8c1, [docs-only RESULT_SHA 60a4f189](https://github.com/thp32tt/OutRun2006Tweaks/commit/60a4f18942c67089384da53d7b7342f6f05c5e71), exact marker [AUTO:CONVERSION-DX9EX-01283], parent/single Markdown diff/readback/branch HEAD PASS, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 재시도/롤오버 중복 +0. **AI 점수: 이전 1700점 + 이번 +1점 = 누적 1701점.** |
 | 2026-10-21 20:22 KST | AI 1 | 1687 | +1 | 1688 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261021T2015KST-B0034-B0035-SHA8: OutRun2006Tweaks 자산 브랜치 B0034/B0035 A/B 생성물의 이전 262 SHA와 중복 없는 한국어 PNG 후보 8개를 원본/승인 번역 및 source/export SHA256, RGBA/alpha, 영문 대비 시각 검수. 문구 PNG 한정 PASS 6, FAIL 2(B166 평면 원본 대비 은색 입체 효과, B168 Cape Way 심각한 기울기/크기 불일치). 제작 REWORK_DIMENSIONS 8건 유지. [C1 QA 증빙 6c1d66e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/6c1d66e585530bf892ba532546c598ca605c7d01). ImageGen/생산 큐/DDS/C2/C3/실게임 승인 없음; RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY/SHA 재보고 중복 가점 없음. **AI 점수: 이전 1687점 + 이번 +1점 = 누적 1688점.** |
 | 2026-10-21 20:18:53 KST | AI 2 | 1699 | +1 | 1700 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01282: DX9Ex REVIEW_ONLY R26+HUD protected baseline에서 ResetEx 큐 tag retirement 후 **새 등록 SpriteNode가 기존 TLS serial cutoff에 의해 불필요하게 ScreenOverlay2D로 떨어질 수 있는 경계**를 분리 검토(01236의 '기존 선택 node exact scope 잔류' 가설과 구분). 원본 REA 4 GPU exits, QueueNode/End, D3DX deferred ledger+native Draw, R30/R62 L/R, mono restore, Present, 실제 xrEndFrame까지 정적 경로와 반증 조건을 기록. OutRun2006Tweaks SOURCE_HEAD 51f91510197fa2ab000938b327098c6c4d85f977, [docs-only RESULT_SHA 3e4e2de3](https://github.com/thp32tt/OutRun2006Tweaks/commit/3e4e2de373c1ae7b25ad33d09d8c3011c894f8c1), 정확한 marker [AUTO:CONVERSION-DX9EX-01282], single Markdown + GitHub branch HEAD/readback PASS. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 기존 TASK 재시도/롤오버 +0. **AI 점수: 이전 1699점 + 이번 +1점 = 누적 1700점.** |
 | 2026-10-21 20:03:47 KST | AI 2 | 1698 | +1 | 1699 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01280: DX9Ex REVIEW_ONLY R13 query single-execution vs R9 mono-backup skip 경계 정적 분석, NEW_FINDING=NONE (R13 armed negative control), OutRun2006Tweaks SOURCE_HEAD 550980a60ba2317c814db960d7eaecf0678a9806, docs-only RESULT_SHA [4d3f74705786](https://github.com/thp32tt/OutRun2006Tweaks/commit/4d3f74705786f9a45be29aba6cfc129d518fde7b), single Markdown compare PASS, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/reverification +0. **AI 점수: 이전 1698점 + 이번 +1점 = 누적 1699점.** |

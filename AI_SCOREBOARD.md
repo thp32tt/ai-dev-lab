@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1685 | ACTIVE | 2026-10-21 18:23 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1685 | ACTIVE | 2026-10-21 18:32:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1686 | ACTIVE | 2026-10-21 18:38:07 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 18:38:07 KST | AI 2 | 1685 | +1 | 1686 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01269: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 2319c4ba174ce650aea387e2fac01b1069749335에서 R62 오른쪽 눈 RT0/depth/viewport 복원과 auxiliary RT1+ MRT 진입 차단, D3DX/queue 물리 DIP→R30/R62→L/R→restore→R9 Present→xrEndFrame 경계 정적 REVIEW_ONLY 검토. NEW_FINDING=NONE(정적 진단 공백만 제안, 실기 오류 미입증). [docs-only 결과 6f716f19](https://github.com/thp32tt/OutRun2006Tweaks/commit/6f716f192410a7387727b75c5b8b7b6b8fb31915) 부모 SHA 2319c4ba, 정확 [AUTO:CONVERSION-DX9EX-01269], Markdown 1개만 추가 및 원격 diff/HEAD/readback PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 같은 RUN_KEY retry/rollover 중복 가점 금지. **AI 점수: 이전 1685점 + 이번 +1점 = 누적 1686점.** |
 | 2026-10-21 18:32:27 KST | AI 2 | 1684 | +1 | 1685 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01268: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 3f3364c400329770dabc22fc311236a55b413a54 대상으로 R62 per-eye PROJECTION SetTransform 실패와 실제 GPU DrawIndexedPrimitive 실패 구분, R30 rightFailure 분류 및 duplicateCounters, native/queue semantic→L/R/restore→Present/OpenXR를 정적 REVIEW_ONLY 검토. NEW_FINDING=R62_PER_EYE_PROJECTION_UPLOAD_FAILURE_COLLAPSES_INTO_DRAW_FAILURE_DIAGNOSTIC (STATIC_ONLY; HMD 결함 미실증). [docs-only 결과 2319c4ba](https://github.com/thp32tt/OutRun2006Tweaks/commit/2319c4ba174ce650aea387e2fac01b1069749335) 부모 3f3364c4, 정확 [AUTO:CONVERSION-DX9EX-01268], Markdown 파일 1개 추가 및 원격 diff/HEAD/readback PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. retry/rollover/동일 TASK_ID 중복 가점 금지. **AI 점수: 이전 1684점 + 이번 +1점 = 누적 1685점.** |
 | 2026-10-21 18:27:20 KST | AI 2 | 1683 | +1 | 1684 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01267: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 9dc179c2356cc824f48f1ec7e7c8cfc122b354f8에서 R62 fixed-function indexed DIP +TIME/GOAL·projected rank의 physical L/R Draw 및 PROJECTION/RT/depth/viewport 복원 HRESULT 경계를 정적 검토. 결과: exactResult=false일 때 최종 PROJECTION restore 실패를 fallback 경고하되 성공 leftHr로 반환하는 비대칭 CONFIRMED_STATIC, 실기 화면 결함은 HYPOTHESIS_ONLY. [docs-only result 3f3364c4](https://github.com/thp32tt/OutRun2006Tweaks/commit/3f3364c400329770dabc22fc311236a55b413a54), 부모 9dc179c2, 정확 [AUTO:CONVERSION-DX9EX-01267], Markdown 단일 추가 원격 검증. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 같은 RUN_KEY retry/rollover 재검증 중복가산 금지. **AI 점수: 이전 1683점 + 이번 +1점 = 누적 1684점.** |
 | 2026-10-21 18:23 KST | AI 1 | 1684 | +1 | 1685 | 독립 신규 QA RUN_KEY=OUTRUN-C1-20261021T1815KST-B0031-A0026-NEW: OutRun2006Tweaks 자산 브랜치에서 미검수 신규 후보 SHA 8개(B0031 5건, A0026 3건)를 기존 238개 SHA와 중복 제거. 원본 매핑·PNG RGBA·export SHA 검증, 원본/후보 좌우 비교 C1 검수 PASS_PNG_TEXT_ONLY 4, FAIL_MAJOR_STYLE_EFFECT 3, FAIL_MAJOR_COLOR_EFFECT 1. 전 8건 생산 REWORK_DIMENSIONS 보존. [C1 QA commit 3df15029](https://github.com/thp32tt/OutRun2006Tweaks/commit/3df1502912cef1f8fefe7211a4fdbde9add42498). DDS/C2/C3/실게임 승인은 하지 않음, RUNTIME_VALIDATION=UNTESTED. 반복 실행·동일 SHA 중복 가산 금지. **AI 점수: 이전 1684점 + 이번 +1점 = 누적 1685점.** |

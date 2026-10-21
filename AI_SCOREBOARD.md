@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1688 | ACTIVE | 2026-10-21 20:22 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1703 | ACTIVE | 2026-10-21 20:32:08 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1704 | ACTIVE | 2026-10-21 20:39:19 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 20:39:19 KST | AI 2 | 1703 | +1 | 1704 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01285: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 6e5ff5a80748acf2d1f2f2b1e31db19e402a5603 기반 DX9Ex REVIEW_ONLY 원본 D3DXSprite Create/Release XREF 및 frame/conditional queue consumer 검토. NEW_FINDING=NONE (원본 lifetime call graph 부재는 문서 근거 범위만 뜻함); [docs-only RESULT_SHA fbe67f49](https://github.com/thp32tt/OutRun2006Tweaks/commit/fbe67f4919b8be6092771ac5d4cc3b7128ae203c), marker [AUTO:CONVERSION-DX9EX-01285], parent/single Markdown diff/readback PASS. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 중복 retry/rollover/재확인 +0. **AI 점수: 이전 1703점 + 이번 +1점 = 누적 1704점.** |
 | 2026-10-21 20:32:08 KST | AI 2 | 1702 | +1 | 1703 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01284: DX9Ex REVIEW_ONLY GitHub HEAD 60a4f18942c67089384da53d7b7342f6f05c5e71에서 D3DXSprite 동일 주소 객체 재사용(ABA) 시 R64 raw pointer identity/NativeSnapshot에 별도 allocation epoch가 없는 정적 predicate 한계를 확인. 기존 Begin/lifecycle/native D3DX/queue/R30-R62 L/R/Present/xrEndFrame 안전 경계와 반증 조건, PATCH_CANDIDATE_ONLY 기록(실제 객체 재사용/VR 결함 미증명). [docs-only RESULT_SHA 6e5ff5a8](https://github.com/thp32tt/OutRun2006Tweaks/commit/6e5ff5a80748acf2d1f2f2b1e31db19e402a5603) 단일 Markdown 생성, 정확 [AUTO:CONVERSION-DX9EX-01284], GitHub parent/단일 경로 diff/readback/branch HEAD PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/recheck 재가산 금지. **AI 점수: 이전 1702점 + 이번 +1점 = 누적 1703점.** |
 | 2026-10-21 20:29:25 KST | AI 2 | 1701 | +1 | 1702 | 신규 독립 RUN_KEY=CONVERSION-DX11-00971: OutRun2006Tweaks vr-dx11-native-r71 실제 게임 SM3 D3D9 텍스처의 native Draw/DrawIndexed VS/PS 공유 source+sRGB+mip view를 per-Draw 단일 GPU snapshot으로 구현, 각 샘플러는 별도 검증 바인딩. [material fd2437f7](https://github.com/thp32tt/OutRun2006Tweaks/commit/fd2437f7c7ba537be8b5b4737169397c442174e8) C++ 소스/회귀 5파일. 필수 exact-SHA GitHub Actions **5/5 SUCCESS**: Fast #39590592121, Backend #39590592046, Build #39590592025, OpenXR #39590592088, HUD #39590592106. C6 [86a027a3](https://github.com/thp32tt/OutRun2006Tweaks/commit/86a027a329d1076c43394cd7313aea70226cd271) bookkeeping 별도. RUNTIME_VALIDATION=UNTESTED, 실제 게임·Quest3 플레이 및 전체 DX11 전환 미완료. 동일 TASK retry/CI/C6 중복 가점 금지. **AI 점수: 이전 1701점 + 이번 +1점 = 누적 1702점.** |
 | 2026-10-21 20:25:26 KST | AI 2 | 1700 | +1 | 1701 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01283: DX9Ex REVIEW_ONLY D3DXSprite OnLostDevice/OnResetDevice 원본 콜백 종료 후 새 reentrant Begin 세대까지 stale pre-native ownsBatch 판단으로 무효화 가능한 정적 경계 확인(실기 재진입 미증명), OutRun2006Tweaks SOURCE_HEAD 3e4e2de373c1ae7b25ad33d09d8c3011c894f8c1, [docs-only RESULT_SHA 60a4f189](https://github.com/thp32tt/OutRun2006Tweaks/commit/60a4f18942c67089384da53d7b7342f6f05c5e71), exact marker [AUTO:CONVERSION-DX9EX-01283], parent/single Markdown diff/readback/branch HEAD PASS, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 재시도/롤오버 중복 +0. **AI 점수: 이전 1700점 + 이번 +1점 = 누적 1701점.** |

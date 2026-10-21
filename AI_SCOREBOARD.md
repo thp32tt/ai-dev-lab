@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1684 | ACTIVE | 2026-10-21 16:52 KST |
+| AI 1 | ChatGPT (AI 1) | 1685 | ACTIVE | 2026-10-21 18:23 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1683 | ACTIVE | 2026-10-21 18:21:08 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 18:23 KST | AI 1 | 1684 | +1 | 1685 | 독립 신규 QA RUN_KEY=OUTRUN-C1-20261021T1815KST-B0031-A0026-NEW: OutRun2006Tweaks 자산 브랜치에서 미검수 신규 후보 SHA 8개(B0031 5건, A0026 3건)를 기존 238개 SHA와 중복 제거. 원본 매핑·PNG RGBA·export SHA 검증, 원본/후보 좌우 비교 C1 검수 PASS_PNG_TEXT_ONLY 4, FAIL_MAJOR_STYLE_EFFECT 3, FAIL_MAJOR_COLOR_EFFECT 1. 전 8건 생산 REWORK_DIMENSIONS 보존. [C1 QA commit 3df15029](https://github.com/thp32tt/OutRun2006Tweaks/commit/3df1502912cef1f8fefe7211a4fdbde9add42498). DDS/C2/C3/실게임 승인은 하지 않음, RUNTIME_VALIDATION=UNTESTED. 반복 실행·동일 SHA 중복 가산 금지. **AI 점수: 이전 1684점 + 이번 +1점 = 누적 1685점.** |
 | 2026-10-21 18:21:08 KST | AI 2 | 1682 | +1 | 1683 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01266: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 8469072fe11d4ef901c507a6708598933cffcd46에서 R14/R15 외부 GPU 쓰기와 CPU-shadow Lock/Unlock conflict/retirePending/validMask 및 물리 DP/DIP/UP → R30/R62 → L/R 복원 → Present/xrEndFrame 최종경계를 정적 REVIEW_ONLY 검토. NEW_FINDING=NONE(실기 신규 결함 입증 없음), PATCH_CANDIDATE_ONLY/반증조건/후속 R62 범위 기록. [docs-only 결과 9dc179c2](https://github.com/thp32tt/OutRun2006Tweaks/commit/9dc179c2356cc824f48f1ec7e7c8cfc122b354f8) 부모 8469072f, 정확 [AUTO:CONVERSION-DX9EX-01266], Markdown 1개 추가, 원격 HEAD와 내용 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 재검증 중복 가점 없음. **AI 점수: 이전 1682점 + 이번 +1점 = 누적 1683점.** |
 | 2026-10-21 18:16:47 KST | AI 2 | 1681 | +1 | 1682 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01265: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD e33db408bb3cb1c9ac2ccf204a5e5ffde74384a8 기준 DX9Ex REVIEW_ONLY R14 CPU/GPU mip 호환 전제와 signed Pitch 행 이동, DXT 블록 row byte 조건 및 exact native draw→L/R restore→Present/OpenXR 경계를 정적 검토. NEW_FINDING=NONE (새로운 화면 결함 실증 없음), PATCH_CANDIDATE_ONLY 진단 범위·반증조건 기록. [docs-only 결과 8469072f](https://github.com/thp32tt/OutRun2006Tweaks/commit/8469072fe11d4ef901c507a6708598933cffcd46) 원본 부모 SHA/정확 마커/신규 Markdown 1개/현재 HEAD 및 원격 내용 검증 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 재검증 중복 가점 금지. **AI 점수: 이전 1681점 + 이번 +1점 = 누적 1682점.** |
 | 2026-10-21 18:15:36 KST | AI 2 | 1680 | +1 | 1681 | 신규 독립 RUN_KEY=CONVERSION-DX11-00968: OutRun2006Tweaks vr-dx11-native-r71 원본 D3D9 스텐실 항상통과/쓰기없음 2면 Draw를 FVF 및 SM3 네이티브 DX11 경로에 통합. renderer commit ec651a4c0fbd37556a0800f586c3f6a22418e30e, 원인 한정 테스트 수리 e994a7f4fe091c114e847bed6339c548777bb910에서 Fast/Backend/Build/OpenXR/HUD 필수 5 Gate exact-SHA PASS. HMD 및 실기 RUNTIME_VALIDATION=UNTESTED; C6/checkpoint 중복 점수 없음. |

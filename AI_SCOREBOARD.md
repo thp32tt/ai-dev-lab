@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1677 | ACTIVE | 2026-10-21 13:20 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1636 | ACTIVE | 2026-10-21 13:30 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1637 | ACTIVE | 2026-10-21 13:36 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 13:36 KST | AI 2 | 1636 | +1 | 1637 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01224: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD eadc7847 기준 R26+HUD 원본 UI 논리좌표/D3D9 XYZRHW live viewport, game eye RT, x64 host menu 캡처 UV·sourceAspect/XR common eye extent 간 프레임-동일성 정적 검토. NEW_FINDING=NONE; 독립 검토한 3좌표계 및 검증 반증 조건 기록, 실기 mismatch 결함 미입증. [docs-only result 44352019](https://github.com/thp32tt/OutRun2006Tweaks/commit/443520194698c5012df9fc84b77a2bebba8eec24), 정확 [AUTO:CONVERSION-DX9EX-01224], 부모 기준 +1 commit/정확히 1개 Markdown 추가/브랜치 HEAD 검증 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 동일 TASK_ID retry/rollover +0. **AI 점수: 이전 1636점 + 이번 +1점 = 누적 1637점.** |
 | 2026-10-21 13:30 KST | AI 2 | 1635 | +1 | 1636 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01223: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 43da07b2에서 원본 type-1 masked/composite SpriteNode 0x42A800의 1:N 실제 GPU Draw 가능성과 node/queue epoch·R26 four-API·R30/R62 양안/복원·Present/OpenXR 경계를 01222 queued GOAL D3DX 계측과 구분하여 독립 REVIEW_ONLY 정적 검토. NEW_FINDING=NONE(원본 masked 실제 복수 Draw 및 HMD 오류는 미확정). [docs-only result eadc7847](https://github.com/thp32tt/OutRun2006Tweaks/commit/eadc7847cdb2155b194a23d74969b8849e2e0b9e), 정확 [AUTO:CONVERSION-DX9EX-01223], 부모 HEAD 대비 1개 신규 Markdown 및 원격 HEAD/파일 marker 검증 PASS; CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재확인 추가 점수 +0. **AI 점수: 이전 1635점 + 이번 +1점 = 누적 1636점.** |
 | 2026-10-21 13:24 KST | AI 2 | 1634 | +1 | 1635 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01222: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD f848e938 기준 queued GOAL/result D3DXSprite native Flush 경계에서 Stage/Goal 텔레메트리 counter 불일치 정적 검토. 런타임 화면 결함은 미입증. [docs-only result 43da07b2](https://github.com/thp32tt/OutRun2006Tweaks/commit/43da07b2db27c1d3175a1841a581214d7054a3f4); 정확 [AUTO:CONVERSION-DX9EX-01222], 단일 review Markdown 변경, commit range/head 확인. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED, retry/rollover +0. **AI 점수: 이전 1634점 + 이번 +1점 = 누적 1635점.** |
 | 2026-10-21 13:20 KST | AI 1 | 1676 | +1 | 1677 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1315KST-B0022-B0023-SHA8: OutRun2006Tweaks C1에서 N100 B0022/B0023 후보 중 미검수 SHA256 고유 8건(B 순번 103~110)을 영문 원본·승인 번역·로컬/manifest/export SHA·PNG RGBA 알파 및 원본 대비 시각으로 독립 간이 QA. **PNG 글자 품질에 한정 PASS 6 / FAIL 2**: B107/108 SPECIAL REQUEST→스페셜 요청은 원본 흰 이탤릭 대신 노랑/주황 금속 글자로 심각한 스타일·색상 이탈. 8건 생산자 REWORK_DIMENSIONS 유지, UI 합성·DDS·C2/C3·실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. [자산 브랜치 QA 증빙 5bd517c](https://github.com/thp32tt/OutRun2006Tweaks/commit/5bd517c7ba2b4d4fcd9b96cc0b8cd1d55d9d8c87). 동일 SHA/동일 RUN_KEY retry·상태확인 중복 가점 없음. **AI 점수: 이전 1676점 + 이번 +1점 = 누적 1677점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1821 | ACTIVE | 2026-10-22 07:55:43 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1822 | ACTIVE | 2026-10-22 08:00:26 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 08:00:26 KST | AI 2 | 1821 | +1 | 1822 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01389: vr-d3d9ex-focus SOURCE_HEAD 61930c7263bce0f256fb527238d04cf982d9bab7, sand/particle frame-workload R29/R33 cached draw-state reads versus 4-slot DirectGPU two-eye StretchRect, bounded post-Present fence/host ACK 프레임 처리 경계 REVIEW_ONLY 독립 정적 검토. [docs-only result e9541f99](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9541f990c8a78e9701a3b77fab046255d1a0742) 단일 Markdown diff/readback PASS. NEW_FINDING=PER_DRAW_RENDER_STATE_GETTER_AMORTIZATION_AND_DIRECTGPU_RING_BACKPRESSURE_ARE_INDEPENDENT_FRAME_TIME_DOMAINS; CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1821점 + 이번 +1점 = 누적 1822점.** |
 | 2026-10-22 07:55:43 KST | AI 2 | 1820 | +1 | 1821 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01388: vr-d3d9ex-focus SOURCE_HEAD 8c86febe698023ccead9e80016b240783bad4c06, rank/rival projected-marker 원본 source/queue -> R30/R33 깊이·스텐실 캐시/좌우 눈/restore -> Present/OpenXR 경계 REVIEW_ONLY 정적 검토. [docs-only result 61930c72](https://github.com/thp32tt/OutRun2006Tweaks/commit/61930c7263bce0f256fb527238d04cf982d9bab7) 원격 단일파일 diff 및 readback PASS. NEW_FINDING=RANK_RIVAL_SOURCE_STAMP_AND_DEPTH_STENCIL_WRITE_CACHE_ARE_INDEPENDENT_EVIDENCE_DOMAINS; CODE_CHANGE=NO; BUILD/CI=NOT_REQUIRED_DOCS_ONLY; RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1820점 + 이번 +1점 = 누적 1821점.** |
 | 2026-10-22 07:52:29 KST | AI 2 | 1819 | +1 | 1820 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01387: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD f2c9d2c3a4bb867c9f26e0a514499a35a0d4345f에서 type-1 masked DrawPrimitiveUP GPU 경로와 R33/R30/R29 per-primitive stereo route, alpha/stencil/mask composite 증명 경계를 REVIEW_ONLY 정적 검토. NEW_FINDING=TYPE1_MASKED_UP_COMPOSITE_IDENTITY_NOT_IMPLIED_BY_PER_PRIMITIVE_STEREO_ROUTE (조건부 소스 확인, Quest3 결함 미확정). [docs-only 결과 8c86febe](https://github.com/thp32tt/OutRun2006Tweaks/commit/8c86febe698023ccead9e80016b240783bad4c06) MD 단일파일 parent diff 및 readback PASS. CODE_CHANGE=NO; BUILD/CI=NOT_REQUIRED_DOCS_ONLY; RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1819점 + 이번 +1점 = 누적 1820점.** |
 | 2026-10-22 07:46:56 KST | AI 2 | 1818 | +1 | 1819 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01386: vr-d3d9ex-focus SOURCE_HEAD f8a836fd781ba7a49d91dfe2a22b556b92e67c38, R62 고정함수 화면 HUD 유효 viewport vs 전체 눈별 Surface DirectGPU StretchRect vs OpenXR eye extent 조건부 경계를 REVIEW_ONLY 정적 분석. [docs-only 결과 f2c9d2c3](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2c9d2c3a4bb867c9f26e0a514499a35a0d4345f) MD 1개, GitHub commit/readback 확인. NEW_FINDING=R62_POSITIVE_VIEWPORT_GATE_VS_FULL_EYE_SURFACE_RESAMPLE_ARE_SEPARATE_PROOFS; CODE_CHANGE=NO; BUILD/CI=NOT_REQUIRED_DOCS_ONLY; RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1818점 + 이번 +1점 = 누적 1819점.** |

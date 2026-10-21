@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1684 | ACTIVE | 2026-10-21 16:52 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1667 | ACTIVE | 2026-10-21 16:50 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1668 | ACTIVE | 2026-10-21 16:57 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 16:57 KST | AI 2 | 1667 | +1 | 1668 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01252: R26+HUD DX9Ex REVIEW_ONLY, 기존 01251 동일 장치 Reset/ResetEx 쿼리 추적 상태 분석과 구분하여 서로 다른 D3D9 COM device 포인터로의 재생성 시 StereoInstallState=Ready에서 InstallStereoHooks가 포인터 불일치로 즉시 false를 반환하고 훅 재설치·occlusion CreateQuery/Issue 재검증을 건너뛰는 정적 장치 소유권 경계 검토. 실제 장치 교체·Quest3 HMD 문제는 미입증. [docs-only result 0b58f3e6](https://github.com/thp32tt/OutRun2006Tweaks/commit/0b58f3e6fa1c31badc73dfbb9323a2846387d886) 부모 SOURCE_HEAD 79d1a8dc, 새 Markdown 단일 변경, 정확 마커 [AUTO:CONVERSION-DX9EX-01252], 원격 HEAD/compare PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재보고 중복 가산 없음. **AI 점수: 이전 1667점 + 이번 +1점 = 누적 1668점.** |
 | 2026-10-21 16:52 KST | AI 1 | 1683 | +1 | 1684 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1645KST-B0030-A0025-NEW: OutRun2006Tweaks korean-localization-recovery-20260928 B0030 5개/A0025 3개 신규 SHA 후보 8건을 기존 230개 검수 SHA와 중복 제거하고 N100 실제 원본/번역 매핑/후보 export SHA/투명 PNG를 독립 비교. 글자 PNG 수준 PASS 3/FAIL 5(한 줄을 두 줄로 바꾼 레이아웃 2, 원문과 심한 기울기/서체 불일치 1, 과도한 금속 입체 효과 2). 생산자 REWORK_DIMENSIONS 8건 유지. [QA 증빙 79143147](https://github.com/thp32tt/OutRun2006Tweaks/commit/791431476f7a0f5aa5c06c45b357024fbfa3f059), 원격 HEAD 및 파일 확인. ImageGen/생산 큐/DDS/C2/C3/실게임 PASS 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재가산 금지. **AI 점수: 이전 1683점 + 이번 +1점 = 누적 1684점.** |
 | 2026-10-21 16:50 KST | AI 2 | 1666 | +1 | 1667 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01251: R26+HUD DX9Ex REVIEW_ONLY, R7 Reset/R13 ResetEx가 ActiveOcclusionQueries를 0으로 초기화하지만 OcclusionQueryTrackingUnavailable 플래그는 유지하며 최초/다음 occlusion CreateQuery 성공 훅 설치만 이를 해제할 수 있는 수명·복구 경계 정적 검토. 직전 01250의 R9/R7 mono 중복 실행 조건과 분리한 독립 범위. [docs-only result 79d1a8dc](https://github.com/thp32tt/OutRun2006Tweaks/commit/79d1a8dc1361e374acf876272e4542fc3c69e564) 부모 SOURCE_HEAD 0fbb2fc5, 변경 Markdown 단일 파일, 정확 마커 [AUTO:CONVERSION-DX9EX-01251], GitHub branch HEAD 검증 PASS. RUNTIME_VALIDATION=UNTESTED, CODE_CHANGE=NO, CI/BUILD=NOT_RUN, HMD 결함·성능 저하 실증 없음. 같은 TASK_ID retry/rollover/재보고 중복 가산 없음. **AI 점수: 이전 1666점 + 이번 +1점 = 누적 1667점.** |
 | 2026-10-21 16:46 KST | AI 2 | 1665 | +1 | 1666 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01250: R26+HUD DX9Ex REVIEW_ONLY에서 OcclusionQueryTrackingUnavailable=true / ActiveOcclusionQueries=0 일 때 R9ReplayMonoDraw가 mono native Draw를 먼저 수행할 수 있으나 R7 PrepareDuplicatedDraw는 tracking-unavailable로 stereo duplication을 거부하고 real original Draw를 1회 수행하는 보호 조건 불일치 정적 검토. R13 not-ready handoff와 추적 불가 상태 교집합의 잠재적 2개 physical callback은 조건부이며 실제 쿼리 부작용/HMD 증상 미실증. [docs-only result 0fbb2fc5](https://github.com/thp32tt/OutRun2006Tweaks/commit/0fbb2fc5830f69d7a7d7b2d8347aadadce9a2e32) 부모 SOURCE_HEAD 7ab73d59, 추가 Markdown 1개, 정확 [AUTO:CONVERSION-DX9EX-01250], 현재 HEAD PASS; CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재검증 중복 가점 없음. **AI 점수: 이전 1665점 + 이번 +1점 = 누적 1666점.** |

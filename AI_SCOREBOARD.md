@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1669 | ACTIVE | 2026-10-21 09:20 KST |
+| AI 1 | ChatGPT (AI 1) | 1670 | ACTIVE | 2026-10-21 10:00 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1607 | ACTIVE | 2026-10-21 09:48 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 10:00 KST | AI 1 | 1669 | +1 | 1670 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T0945KST-NEW-SHA-UNIQUE5-B0019-A0016: OutRun 2006 C1에서 A0016 1개·B0019 4개의 새 고유 PNG SHA256 5건을 N100 저장 원본/승인 번역/export SHA와 대조하고 PNG RGBA·alpha 경계 및 영문/한글 좌우 독립 QA로 **문자 품질 한정 PASS 5 / FAIL 0** 확인. 기존 QA metrics 22개·SHA 150건과 비중복 검증, 5개 모두 원본 ROI 대비 생성 해상도 불일치 REWORK_DIMENSIONS 유지. 실제 UI cell/DDS/C2/C3/실게임 RUNTIME_VALIDATION=UNTESTED, ImageGen/큐 소비/배포 없음. [GitHub QA 증빙 ef20a4e5](https://github.com/thp32tt/OutRun2006Tweaks/commit/ef20a4e51e7d2c7ad348464539ed8f52e277ee61). 동일 성과 재검수·롤오버 중복 가산 금지. **AI 점수: 이전 1669점 + 이번 +1점 = 누적 1670점.** |
 | 2026-10-21 09:48 KST | AI 2 | 1606 | +1 | 1607 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01189: OutRun2006Tweaks DX9Ex REVIEW_ONLY SOURCE_HEAD `e50905f9971050fbd74a34091d6a6e854feda8b9`에서 CalcBall3D2D 4:3 화면 컬링·PMT XR FOV·R26 GPU viewport 독립 신뢰 경계를 분석, finite 양수지만 다른 epoch source resolution의 현 함수 자체 검출 부재를 진단 기록. [docs-only result da89a438](https://github.com/thp32tt/OutRun2006Tweaks/commit/da89a4383a4a6b6ea12bb5471a5f6152c841c838) 정확한 단일 docs 파일/부모 HEAD/마커 원격 검증, CODE_CHANGE=NO, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. retry/rollover 중복 점수 없음. **AI 점수: 이전 1606점 + 이번 +1점 = 누적 1607점.** |
 | 2026-10-21 09:36 KST | AI 2 | 1605 | +1 | 1606 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01187: OutRun2006Tweaks DX9Ex REVIEW_ONLY에서 최신 SOURCE_HEAD 0e76576c1ab7e93bdafae9e3b4ae9a12ebaee51a 고정으로 원본 REA type-1 animation native UP 및 EXE+0xCABE 렌즈 SceneEffect의 서로 다른 생산자 정체를 검토. type-1 UP는 +TIME HUD에도 사용되어 모래/spray 전용 근거가 아니며 sand-specific 새로운 GPU 정체 NEW_FINDING=NONE. [docs-only result fdef32724d](https://github.com/thp32tt/OutRun2006Tweaks/commit/fdef32724d11441ce3469f0c7bf6429a0ea19a22), 정확 [AUTO:CONVERSION-DX9EX-01187] 및 docs 단일 파일/부모 HEAD 검증. CODE_CHANGE=NO, HMD/Quest3 실기 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 추가 가산 금지. **AI 점수: 이전 1605점 + 이번 +1점 = 누적 1606점.** |
 | 2026-10-21 09:24 KST | AI 2 | 1604 | +1 | 1605 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01185: GitHub `vr-d3d9ex-focus` SOURCE_HEAD `403e9228a5bb53044beef699d237cd23e8405ab7`에서 원본 REA→semantic/queue→R26/R30/R62 양안→R9 Present→R23DirectHold/Device-Context→R32 ACK→OpenXR 경로를 직전 01184와 다른 자원 소유권 범위로 정적 검토. 실제 R23 호스트는 시작 시 D3D11 장치 1회 생성·XR STOPPING에서 Hold 해제, 현재 same-process non-STOPPING rebind 경로 미확인: NEW_FINDING=NONE 및 미래 epoch 가설/반증조건을 [docs-only 55d38d2e71](https://github.com/thp32tt/OutRun2006Tweaks/commit/55d38d2e71d9dcbf9d703403685e05767389d22e)에 남김. docs 단일 변경 경로/정확 [AUTO:CONVERSION-DX9EX-01185]·부모 HEAD 원격 검증, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 추가 가산 금지. **AI 점수: 이전 1604점 + 이번 +1점 = 누적 1605점.** |

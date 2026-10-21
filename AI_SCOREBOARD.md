@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1693 | ACTIVE | 2026-10-21 22:56 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1724 | ACTIVE | 2026-10-21 23:07 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1725 | ACTIVE | 2026-10-21 23:12 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 23:12 KST | AI 2 | 1724 | +1 | 1725 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01303: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 5e0f27df99443f99eb4b8473720a6f61d3c3d310에서 classic SBS capture full-client geometry와 투영-time UV/split seam 재조회 간 unpinned snapshot 경계 REVIEW_ONLY 정적 검토. [docs-only result 6f653f40](https://github.com/thp32tt/OutRun2006Tweaks/commit/6f653f40da903dfb71c5d392fc9877d6b6839ddf); CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. |
 | 2026-10-21 23:07 KST | AI 2 | 1723 | +1 | 1724 | 신규 독립 RUN_KEY=CONVERSION-DX11-00974: 실제 OutRun 네이티브 D3D11 SM3 Draw용 GPU/managed 6-face reflection cube ARGB/XRGB·swapped RGBA·16/10-bit RT mip 색상 읽기 및 BGRA8 디코딩 통합, D3D9 source pitch/네이티브 업로드 pitch 분리, 원본 DX9Ex Draw·입력 폴백 유지. [구현 42d93bec](https://github.com/thp32tt/OutRun2006Tweaks/commit/42d93becb7baceb8713c2b8bdcc9101acd1bf198), 동일 TASK_ID의 00660/00692/00970 기존 destructive 회귀 원인 수리 후 [validation-bearing result d1941608](https://github.com/thp32tt/OutRun2006Tweaks/commit/d194160809d1e024d344bc7ab8052ebffe6fcca0), 정확한 SHA에서 GitHub Actions 5/5 SUCCESS ([Fast](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39611119303), [Backend](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39611119404), [Build](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39611119161), [OpenXR](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39611119173), [HUD](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39611119390)); 대상 브랜치 비강제 승격 및 HEAD 재검증. 실제 OutRun·Quest3/VDXR 게임 입력/프레임은 RUNTIME_VALIDATION=UNTESTED, 전체 플레이 가능 판정 아님. 동일 TASK_ID C6·CI 수리·retry 중복 가점 없음. **AI 점수: 이전 1723점 + 이번 +1점 = 누적 1724점.** |
 | 2026-10-21 23:06:30 KST | AI 2 | 1722 | +1 | 1723 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01302: R26+HUD DX9Ex REVIEW_ONLY에서 classic SBS D3D11 source_/stereoSource_ CopyResource 직렬화, 두 눈 RenderTo 성공 이후 projection release/verified bundle 승인 및 실패 시 cached 권한 유지 경계를 원격 정적 검토. NEW_FINDING=NONE(새로 검토한 경로와 반증/회귀조건 기록). [docs-only result 5e0f27df](https://github.com/thp32tt/OutRun2006Tweaks/commit/5e0f27df99443f99eb4b8473720a6f61d3c3d310) 단일 Markdown 커밋/HEAD/마커/readback PASS. CODE_CHANGE=NO; CI/BUILD=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY 재검증 중복 가점 금지. **AI 점수: 이전 1722점 + 이번 +1점 = 누적 1723점.** |
 | 2026-10-21 23:00 KST | AI 2 | 1721 | +1 | 1722 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01301: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 023892282184e1315c5f646ef67350bf78a20260에서 R26+HUD classic SBS Desktop Duplication output-global LastPresentTime/Frame.v2 100ms QPC 매칭이 실제 OutRun 게임 픽셀 프레임 소유권의 증명은 아님을 별도 REVIEW_ONLY 정적 검토. [docs-only result 888fb3e1](https://github.com/thp32tt/OutRun2006Tweaks/commit/888fb3e17fcd6731aa8553ef9f7da96e95f5d149) target HEAD/1-file diff/marker/readback PASS. CODE_CHANGE=NO; CI/BUILD=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY retry/rollover/재보고 중복 가점 금지. **AI 점수: 이전 1721점 + 이번 +1점 = 누적 1722점.** |

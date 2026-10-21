@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1693 | ACTIVE | 2026-10-21 22:56 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1729 | ACTIVE | 2026-10-21 23:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1730 | ACTIVE | 2026-10-21 23:52 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 23:52 KST | AI 2 | 1729 | +1 | 1730 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01308: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 57df15d0bfccd778f0e9f505115cbcd717d9c0b9에서 R23 opt-in pixel staging이 신규 projection Frame.v2 F1 렌더링 성공 시 verified bundle F1 Publish 이전에 ReadFresh(F0)로 진단 소유권을 찍는 순서를 REVIEW_ONLY 정적 검토. [docs-only result 956a04a2](https://github.com/thp32tt/OutRun2006Tweaks/commit/956a04a29c0a89cd2d79a9e450112a3948dc115e) 단일 Markdown 변경, 정확한 [AUTO:CONVERSION-DX9EX-01308] 마커, parent 1-file compare 및 branch HEAD/readback PASS. CODE_CHANGE=NO; build/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY retry/rollover 재가산 금지. **AI 점수: 이전 1729점 + 이번 +1점 = 누적 1730점.** |
 | 2026-10-21 23:46 KST | AI 2 | 1728 | +1 | 1729 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01307: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 58f3b6e1066a8aa463e71e618b18325a5bc37060에서 R42 cached projection이 post-Acquire 두 눈 렌더링 중 하나 실패 후에도 xrReleaseSwapchainImage를 수행하는 경계, prior cached view와 latest released image 사이의 epoch/내용 불일치 가능성을 REVIEW_ONLY로 정적 검토. [docs-only result 57df15d0](https://github.com/thp32tt/OutRun2006Tweaks/commit/57df15d0bfccd778f0e9f505115cbcd717d9c0b9) 단일 Markdown 변경, 정확한 [AUTO:CONVERSION-DX9EX-01307] 마커, remote readback, parent 1-file compare, target HEAD 검증 PASS. CODE_CHANGE=NO; build/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY retry/rollover 중복 가산 금지. **AI 점수: 이전 1728점 + 이번 +1점 = 누적 1729점.** |
 | 2026-10-21 23:38 KST | AI 2 | 1727 | +1 | 1728 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01306: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 52fe75bf35731d4068b8be90893f383068b157ae의 R46 application LOCAL recenter generation과 R42 cached gameplay stereo eye pose/FOV epoch 불일치 가능성에 관한 REVIEW_ONLY 정적 검토. [docs-only result 9f1c424d](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f1c424d42b7015c9e5ee1e9bc11521e122076db) parent 52fe75bf, 지정 문서 1파일, 정확한 marker, 원격 readback 검증. CODE_CHANGE=NO, build/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 재시도·중복 검토·실기 미검증으로 재가산하지 않음. **AI 점수: 이전 1727점 + 이번 +1점 = 누적 1728점.** |
 | 2026-10-21 23:31 KST | AI 2 | 1726 | +1 | 1727 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01305: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 0b45548921798b8e681bd41ac3b559bd7d74e5c4에서 R42 Classic SBS projection-cached XR layer가 output rebind/producer stall 중 현재 DXGI/HMONITOR epoch와 직접 결합되지 않는 경계 REVIEW_ONLY 정적 검토. [docs-only result 890b0b98](https://github.com/thp32tt/OutRun2006Tweaks/commit/890b0b9874e3c133ab69c4b17b8e1f81ffa2c469) 지정 단일 Markdown 커밋/마커/원격 readback/parent 1-file diff PASS; CODE_CHANGE=NO, build/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover 및 실기 미검증 중복 가점 없음. **AI 점수: 이전 1726점 + 이번 +1점 = 누적 1727점.** |

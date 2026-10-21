@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1678 | ACTIVE | 2026-10-21 13:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1643 | ACTIVE | 2026-10-21 14:12 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1644 | ACTIVE | 2026-10-21 14:19 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 14:19 KST | AI 2 | 1643 | +1 | 1644 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01230: DX9Ex REVIEW_ONLY 원본 +TIME 6개 E8와 현재 5개 exact SCREEN_HUD 분리, mode-2 6C source-to-native GPU dispatch/queue/R30-R62/R9/OpenXR 경로를 정적 검토하여 새 docs-only 기록 [c020e640](https://github.com/thp32tt/OutRun2006Tweaks/commit/c020e640a0e2379d18306630352aea36d8eecc8e) 남김. 대상 SHA `9e3960a6`, 추가 문서 1개만 변경 확인, commit marker [AUTO:CONVERSION-DX9EX-01230], Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, CODE_CHANGE=NO. 동일 TASK_ID retry/rollover 중복 가점 금지. **AI 점수: 이전 1643점 + 이번 +1점 = 누적 1644점.** |
 | 2026-10-21 14:12 KST | AI 2 | 1642 | +1 | 1643 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01229: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD c1b3734a 기준 운전석 View 생성 시 스냅샷과 별도 player-car/driver/vehicle matrix render callback의 eligibility 재평가 경계를 REVIEW_ONLY 독립 정적 검토. NEW_FINDING=CONFIRMED_STATIC_COCKPIT_ELIGIBILITY_DECISION_NOT_FRAME_SCOPED_ACROSS_CAMERA_BODY_OCCUPANT_CALLBACKS (프레임 일치 구조 미확보, 실제 HMD 결함 미확정). [docs-only result 9e3960a6](https://github.com/thp32tt/OutRun2006Tweaks/commit/9e3960a6a11f0215c055fe86f5f64e5a04691f16), 정확 마커 [AUTO:CONVERSION-DX9EX-01229], 부모 c1b3734a 대비 신규 Markdown 1개/현재 branch HEAD/file ref 검증 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED; retry/rollover 재가산 0. **AI 점수: 이전 1642점 + 이번 +1점 = 누적 1643점.** |
 | 2026-10-21 14:05 KST | AI 2 | 1641 | +1 | 1642 | 신규 독립 RUN_KEY=USER-DX9EX-COCKPIT-ZOOM-20261021T1354KST: OutRun2006Tweaks `vr-d3d9ex-focus` 운전석 모드 반복 확대/축소 원인을 DX11 정상 경로와 비교 추적. DX9Ex의 native camera +0x340/+0x344 보조 전환 카운터를 매 프레임 hard veto로 사용해 이미 안정된 운전석 시점이 stock camera와 교대로 해제될 수 있는 경계를 수정하여, 최초 0/0 안정 샘플 뒤에는 동일 native mode/session에서 latch하고 실제 `cam_mode_timer_364`/mode/gameplay 전환 시에만 재무장하도록 변경. GitHub 대상 브랜치 소스 커밋 `9907aac0`, `2a80f4fa`, 회귀 테스트 `4d168c40`, `c1b3734a`; Python verifier PASS, C++17 `driver_seat_camera_smoke` 컴파일/실행 exit 0, 원격 파일 재조회 PASS. Quest3/VDXR 실기 RUNTIME_VALIDATION=UNTESTED, CI run은 확인 시점에 미생성. **AI 점수: 이전 1641점 + 이번 +1점 = 누적 1642점.** |
 | 2026-10-21 14:03 KST | AI 2 | 1640 | +1 | 1641 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01228: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 5c1d3ca8 정적 REVIEW_ONLY. 원본 +TIME/result E8→queue epoch→D3DX native Flush→R62 fixed-function DIP L/R eye HRESULT/restore→R9 completed Present frameId/DirectGPU generation→host actual xrEndFrame를 교차 점검. NEW_FINDING=CONFIRMED_STATIC_DIAGNOSTIC_JOIN_GAP_R62_RESULT_EYES_TO_R9_FRAME_ID (진단 상관키 부재, 실제 VR 시각 결함 미확정). [docs-only result dd2d72e6](https://github.com/thp32tt/OutRun2006Tweaks/commit/dd2d72e67c79c0597c1dbcb78e43e56ac011b2e1), [AUTO:CONVERSION-DX9EX-01228], 부모 5c1d3ca8 대비 단일 Markdown만 추가, HEAD 및 경로·마커 확인 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. retry/rollover +0. **AI 점수: 이전 1640점 + 이번 +1점 = 누적 1641점.** |

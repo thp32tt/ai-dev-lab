@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1692 | ACTIVE | 2026-10-21 22:25 KST |
+| AI 1 | ChatGPT (AI 1) | 1693 | ACTIVE | 2026-10-21 22:56 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1721 | ACTIVE | 2026-10-21 22:52 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 22:56 KST | AI 1 | 1692 | +1 | 1693 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261021T2245KST-OLDER-BACKLOG-SHA8: N100 A/B 생성 후보 export 증빙 중 기존 검수 300 SHA 제외, 미검수 18개 가운데 신규 8개(A 5/B 3)를 원본/후보 SHA256·승인 영문→한글 매핑·투명 RGBA 알파 경계·좌우 시각 비교로 검수. PASS_PNG_TEXT_ONLY 8, FAIL 0, 잔여 미검수 10. [QA commit 9f47bd70](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f47bd70f99569ac74c699592aeddedebbeafc8f) 원격 HEAD/파일 readback PASS. 생산 REWORK_DIMENSIONS 8 유지, UI 합성 안전영역/DDS/C2/C3/실게임 승인 아님, RUNTIME_VALIDATION=UNTESTED; 동일 SHA 및 RUN_KEY 중복 가점 금지. **AI 점수: 이전 1692점 + 이번 +1점 = 누적 1693점.** |
 | 2026-10-21 22:52 KST | AI 2 | 1720 | +1 | 1721 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01300: R26+HUD DX9Ex REVIEW_ONLY R41 DirectGPU Frame.v2 최신 후보 선택/후보 완결성 검사/older-frame skip-ACK 선후 경계를 원격 정적 검토. [docs-only result 02389228](https://github.com/thp32tt/OutRun2006Tweaks/commit/023892282184e1315c5f646ef67350bf78a20260) 단일 Markdown 커밋, 대상 HEAD/readback/marker 확인, CODE_CHANGE=NO, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1720점 + 이번 +1점 = 누적 1721점.** |
 | 2026-10-21 22:41 KST | AI 2 | 1719 | +1 | 1720 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01299: OutRun 2006 R26+HUD R9 Present DirectGPU ring 슬롯 `published` 미전환과 fence 완료/host ACK 이전 슬롯 재사용 가능 경계를 원격 정적 검토; [docs-only result 23d3baca](https://github.com/thp32tt/OutRun2006Tweaks/commit/23d3bacad74cf4220fb44cca1bdf3e91872194b7) 커밋 검증(정확 marker, 부모 SHA, 대상 브랜치 HEAD, 변경 문서 1개), 코드 변경 없음, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1719점 + 이번 +1점 = 누적 1720점. |
 | 2026-10-21 22:25 KST | AI 1 | 1691 | +1 | 1692 | 독립 C1 PNG 간이 QA RUN_KEY=OUTRUN-C1-20261021T2218KST-OLDER-BACKLOG-SHA8: A/B 생성 후보 313개 export 증빙, 기존 중복 검수 292 SHA 제외, 신규 8개(A 3/B 5) 원본 및 후보 SHA256/승인 번역/투명 PNG/알파 경계와 좌우 시각 비교. PASS_PNG_TEXT_ONLY 8, FAIL 0, 잔여 미검수 18. 생산 REWORK_DIMENSIONS 유지, 최종 UI bbox/DDS/C2/C3/실게임 미승인, RUNTIME_VALIDATION=UNTESTED. [QA commit e6dd6fd6](https://github.com/thp32tt/OutRun2006Tweaks/commit/e6dd6fd649cfc110bc7dc631b484bf8203652be9) 원격 readback 완료. 중복 성과 가점 금지. **AI 점수: 이전 1691점 + 이번 +1점 = 누적 1692점.** |

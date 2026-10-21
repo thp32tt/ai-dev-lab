@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1798 | ACTIVE | 2026-10-22 05:51 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1799 | ACTIVE | 2026-10-22 05:57 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 05:57 KST | AI 2 | 1798 | +1 | 1799 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01368: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 2abf50b3399a872665f0f36ac917f35c4117a093에서 GOAL progress/result text 원본 producer 분리 → priority queue kind-0 D3DX End vs kind-1 native UP → R26+HUD R30/R62 실제 GPU candidate → L/R eye restore → Present/host OpenXR 정적 REVIEW_ONLY. NEW_FINDING=NONE (실제 GOAL 물리 draw fingerprint/HMD 증거 없음). [docs-only result 351d874e](https://github.com/thp32tt/OutRun2006Tweaks/commit/351d874ee2edaf81d4dc58af1502f09b9b82172f) [AUTO:CONVERSION-DX9EX-01368]; 단일 MD 추가/HEAD/diff/pinned readback PASS; CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. Retry/rollover 재가산 금지. **AI 점수: 이전 1798점 + 이번 +1점 = 누적 1799점.** |
 | 2026-10-22 05:51 KST | AI 2 | 1797 | +1 | 1798 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01367: thp32tt/OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 67c856bd44eaa7523044adb4bfbc2187941cce8a에서 R26+HUD dense WorldParticle/UP → queue epoch → R30 XYZRHW → R29 effect-StateBlock cache/fragile fallback → R7 L/R restore → Present/host XR 정적 REVIEW_ONLY. NEW_FINDING=NONE (actual sand material/fingerprint 및 FPS 병목/Quest3 실기 미측정). [docs-only result 2abf50b3](https://github.com/thp32tt/OutRun2006Tweaks/commit/2abf50b3399a872665f0f36ac917f35c4117a093) [AUTO:CONVERSION-DX9EX-01367], 원격 단일 Markdown 변경·pinned readback/HEAD PASS; CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. retry/rollover 중복 가산 금지. **AI 점수: 이전 1797점 + 이번 +1점 = 누적 1798점.** |
 | 2026-10-22 05:46 KST | AI 2 | 1796 | +1 | 1797 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01366: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 9ba78512675f48040663d03bf7b7d9df7abb1865 에서 원본 차량부착 순위/라이벌 Calc3D2D→native SpriteNode source/queue epoch→R30/R62 물리 DIP/UP→L/R eye restore→R7 Present/host OpenXR 분리 REVIEW_ONLY 검토. NEW_FINDING=NONE (추가 실기 없이 기존 결함 재단정 금지). [docs-only result 67c856bd](https://github.com/thp32tt/OutRun2006Tweaks/commit/67c856bd44eaa7523044adb4bfbc2187941cce8a) [AUTO:CONVERSION-DX9EX-01366], 단일 Markdown 추가/diff/readback/HEAD PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; retry/rollover 중복 없음. **AI 점수: 이전 1796점 + 이번 +1점 = 누적 1797점.** |
 | 2026-10-22 05:40:15 KST | AI 2 | 1795 | +1 | 1796 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01365: thp32tt/OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD a6bac514b494b9462059b0ba80b70fe7e762657f에서 Reset/temporary create와 F11 font DX9 GPU-object readiness 경계 REVIEW_ONLY 정적 검토. NEW_FINDING=DX9EX_F11_TEMP_RESOURCE_CREATE_CALLBACK_NO_EXPLICIT_IMGUI_GPU_OBJECT_READINESS_CHECK (source-confirmed local result-check absence; 실기 결함 미확정). [docs-only result 9ba78512](https://github.com/thp32tt/OutRun2006Tweaks/commit/9ba78512675f48040663d03bf7b7d9df7abb1865) [AUTO:CONVERSION-DX9EX-01365], 단일 Markdown 추가/pinned readback/parent diff PASS; CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; retry/rollover 중복 가산 금지. **AI 점수: 이전 1795점 + 이번 +1점 = 누적 1796점.** |

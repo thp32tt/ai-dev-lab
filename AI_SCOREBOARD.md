@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1688 | ACTIVE | 2026-10-21 20:22 KST |
+| AI 1 | ChatGPT (AI 1) | 1689 | ACTIVE | 2026-10-21 20:54 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1707 | ACTIVE | 2026-10-21 20:50:22 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 20:54 KST | AI 1 | 1688 | +1 | 1689 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261021T2045KST-NEW-SHA6: OutRun2006Tweaks 자산 브랜치 이전 270 SHA와 중복 없는 A0027/A0028/B0036/B0037 로컬 한국어 PNG 후보 6개 원본/승인 번역 및 source/export SHA256, 투명 RGBA, 실제 자소·효과를 독립 검수. 문구 PNG 한정 PASS 3(A132/A133/A137), FAIL 3(B173/B174 대형 글자 배치, A138 심각한 스타일 불일치), 생산 REWORK_DIMENSIONS 6건 유지. [QA 증빙 2b4fdf58](https://github.com/thp32tt/OutRun2006Tweaks/commit/2b4fdf58b5491ecc437c74a8a08f2041dceb1598). ImageGen/생산 큐/DDS/C2/C3/실게임 승인 없음; RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY/SHA 재검증 중복 가점 없음. **AI 점수: 이전 1688점 + 이번 +1점 = 누적 1689점.** |
 | 2026-10-21 20:50:22 KST | AI 2 | 1706 | +1 | 1707 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01287: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 2833630cf19254987cfd8de64eeb57bfa19b6428, R26+HUD game Present / direct-slot or classic capture / projection copy+ACK / actual xrEndFrame의 cadence freshness provenance 불일치를 독립 REVIEW_ONLY 정적 검토. [docs-only RESULT_SHA 4988e1ab539a](https://github.com/thp32tt/OutRun2006Tweaks/commit/4988e1ab539aec1480436e677799150cdc05c13d), 변경은 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01287.md 단일 파일, [AUTO:CONVERSION-DX9EX-01287] 정확 마커, pinned HEAD 대비 1 commit/1 path compare 및 readback PASS. 코드 변경·빌드 없음, 화면/렌더 성능 개선 확정 아님, RUNTIME_VALIDATION=UNTESTED. 같은 TASK retry/rollover/recheck +0. **AI 점수: 이전 1706점 + 이번 +1점 = 누적 1707점.** |
 | 2026-10-21 20:46:32 KST | AI 2 | 1705 | +1 | 1706 | 신규 독립 RUN_KEY=CONVERSION-DX11-00972: OutRun2006Tweaks vr-dx11-native-r71 실제 게임 SM3 native Draw/DrawIndexed에서 D3D9 2D/6-face cube 동일 이미지의 VS/PS cross-stage SRV 공유, mip/sRGB/dimension 분리 및 별도 sampler 상태 바인딩 C++ 구현·fail-closed 원본 D3D9 fallback·negative regression [material b7c8eb19](https://github.com/thp32tt/OutRun2006Tweaks/commit/b7c8eb19bd14deca30a21d4f0d7eb3711a973416). 필수 exact-SHA **5/5 SUCCESS**: Fast #39593054578, Backend #39593054793, Build #39593054554, OpenXR #39593054612, HUD #39593054600; optional WARP #39593054646 SUCCESS. C6/checkpoint 별도 성과 아님. 실제 OutRun 메뉴/차량/레이스 및 Quest3/VDXR·입력 실기 RUNTIME_VALIDATION=UNTESTED, 전체 네이티브 DX11 완성/승격 미확정. 동일 TASK retry/rollover/후속 C6 중복 가점 금지. **AI 점수: 이전 1705점 + 이번 +1점 = 누적 1706점.** |
 | 2026-10-21 20:45:25 KST | AI 2 | 1704 | +1 | 1705 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01286: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD fbe67f4919b8be6092771ac5d4cc3b7128ae203c, REVIEW_ONLY opt-in R84 WorldParticle first-eye SetStreamSource FAILED-before-physical-Draw 대비 native-UP fallback로 진입하기 전에 generic R29 frame-failure/mono-safety flags가 설정되는 조건부 제어흐름 정적 검증. [docs-only RESULT_SHA 2833630cf192](https://github.com/thp32tt/OutRun2006Tweaks/commit/2833630cf19254987cfd8de64eeb57bfa19b6428) 단일 Markdown, exact marker [AUTO:CONVERSION-DX9EX-01286], source compare/readback/branch HEAD PASS; R26+HUD unchanged, NEW_FINDING conditional, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. retry/rollover/recheck 중복 +0. **AI 점수: 이전 1704점 + 이번 +1점 = 누적 1705점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1684 | ACTIVE | 2026-10-21 16:52 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1682 | ACTIVE | 2026-10-21 18:16:47 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1683 | ACTIVE | 2026-10-21 18:21:08 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 18:21:08 KST | AI 2 | 1682 | +1 | 1683 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01266: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 8469072fe11d4ef901c507a6708598933cffcd46에서 R14/R15 외부 GPU 쓰기와 CPU-shadow Lock/Unlock conflict/retirePending/validMask 및 물리 DP/DIP/UP → R30/R62 → L/R 복원 → Present/xrEndFrame 최종경계를 정적 REVIEW_ONLY 검토. NEW_FINDING=NONE(실기 신규 결함 입증 없음), PATCH_CANDIDATE_ONLY/반증조건/후속 R62 범위 기록. [docs-only 결과 9dc179c2](https://github.com/thp32tt/OutRun2006Tweaks/commit/9dc179c2356cc824f48f1ec7e7c8cfc122b354f8) 부모 8469072f, 정확 [AUTO:CONVERSION-DX9EX-01266], Markdown 1개 추가, 원격 HEAD와 내용 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 재검증 중복 가점 없음. **AI 점수: 이전 1682점 + 이번 +1점 = 누적 1683점.** |
 | 2026-10-21 18:16:47 KST | AI 2 | 1681 | +1 | 1682 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01265: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD e33db408bb3cb1c9ac2ccf204a5e5ffde74384a8 기준 DX9Ex REVIEW_ONLY R14 CPU/GPU mip 호환 전제와 signed Pitch 행 이동, DXT 블록 row byte 조건 및 exact native draw→L/R restore→Present/OpenXR 경계를 정적 검토. NEW_FINDING=NONE (새로운 화면 결함 실증 없음), PATCH_CANDIDATE_ONLY 진단 범위·반증조건 기록. [docs-only 결과 8469072f](https://github.com/thp32tt/OutRun2006Tweaks/commit/8469072fe11d4ef901c507a6708598933cffcd46) 원본 부모 SHA/정확 마커/신규 Markdown 1개/현재 HEAD 및 원격 내용 검증 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 재검증 중복 가점 금지. **AI 점수: 이전 1681점 + 이번 +1점 = 누적 1682점.** |
 | 2026-10-21 18:15:36 KST | AI 2 | 1680 | +1 | 1681 | 신규 독립 RUN_KEY=CONVERSION-DX11-00968: OutRun2006Tweaks vr-dx11-native-r71 원본 D3D9 스텐실 항상통과/쓰기없음 2면 Draw를 FVF 및 SM3 네이티브 DX11 경로에 통합. renderer commit ec651a4c0fbd37556a0800f586c3f6a22418e30e, 원인 한정 테스트 수리 e994a7f4fe091c114e847bed6339c548777bb910에서 Fast/Backend/Build/OpenXR/HUD 필수 5 Gate exact-SHA PASS. HMD 및 실기 RUNTIME_VALIDATION=UNTESTED; C6/checkpoint 중복 점수 없음. |
 | 2026-10-21 18:11:52 KST | AI 2 | 1679 | +1 | 1680 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01264: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD fae544ae968986d327c8e8625848e2171e8b7e79에서 DX9Ex REVIEW_ONLY 단일 mip CPU Shadow whole-level 복구 시 비동적 GPU destination에도 먼저 D3DLOCK_DISCARD Lock을 시도하고 실패하면 flags=0으로 재시도하는 정적 상태 경계 확인. 원본 REA SpriteNode 4분기·+TIME→semantic/queue→D3DX/native draw→R30/R62→R7 L/R/restore→R9 Present→OpenXR 최종 제출 경로는 조건부 검토, 미확정 GPU 실패/HMD 영향은 가설로 분리. [docs-only 결과 e33db408](https://github.com/thp32tt/OutRun2006Tweaks/commit/e33db408bb3cb1c9ac2ccf204a5e5ffde74384a8) 부모 HEAD/정확 마커/단일 Markdown diff/원격 내용 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재검증 중복 가점 없음. **AI 점수: 이전 1679점 + 이번 +1점 = 누적 1680점.** |

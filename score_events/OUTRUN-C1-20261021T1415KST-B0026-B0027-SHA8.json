@@ -1,0 +1,13 @@
+{
+  "run_key": "OUTRUN-C1-20261021T1415KST-B0026-B0027-SHA8",
+  "ai": "AI 1",
+  "date_kst": "2026-10-21",
+  "previous_confirmed": 1678,
+  "delta": 1,
+  "resulting": 1679,
+  "achievement": "Independent C1 QA of eight new unique B0026/B0027 PNG candidate SHA256 values against saved originals, export hashes and approved EN→KR mapping. PNG text-only PASS 6, FAIL major slant/style 2 (B123, B124); all eight retain REWORK_DIMENSIONS; no DDS/C2/C3/ingame approval or A/B queue action.",
+  "evidence_head": "8af001d6b2398d4fd912cc8a9d82a84b65509fed",
+  "scoreboard_main_file_sync": "PENDING_RECONCILIATION",
+  "deduplicate_by": "run_key",
+  "note": "Local full-scoreboard patch produced and validated (1678+1=1679), but N100 HTTPS push lacked Git authentication; GitHub large-file contents update was blocked. Do not add again when reconciling AI_SCOREBOARD.md."
+}

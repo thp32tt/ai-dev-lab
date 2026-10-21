@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1674 | ACTIVE | 2026-10-21 11:52 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1621 | ACTIVE | 2026-10-21 11:56:04 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1622 | ACTIVE | 2026-10-21 12:03:26 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 12:03:26 KST | AI 2 | 1621 | +1 | 1622 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01208: vr-d3d9ex-focus GitHub SOURCE_HEAD 3aaad6f30beb965820d7d689e669a372387ccebc 기준 DirectGPU 생산자 R13 전용 ACK/producer EVENT 이중 슬롯 소유권, host R23 R41 skip ACK와 R32 async GPU EVENT, 게임 PID/runGeneration/transportGeneration/hostPid 장치/컨텍스트 epoch 경계를 기존 01207 shared-resource cache 관점과 구분해 정적 검토. NEW_FINDING=NONE(기존 stale ACK 단독 가설은 source guards로 반증, 새 실기 버그 단정 없음); [docs-only result 29c5454](https://github.com/thp32tt/OutRun2006Tweaks/commit/29c5454eb7d2272bbd039508e9cc1050e757472a), 정확 [AUTO:CONVERSION-DX9EX-01208], 부모 3aaad6f·변경 Markdown 단일 파일·원격 HEAD 검증. CODE_CHANGE=NO, CI/build 없음, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY retry/rollover +0. **AI 점수: 이전 1621점 + 이번 +1점 = 누적 1622점.** |
 | 2026-10-21 11:56:04 KST | AI 2 | 1620 | +1 | 1621 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01207: GitHub vr-d3d9ex-focus SOURCE_HEAD 5ae30949fd72de222fb8daeda1c7bca5b15913c8 기준 DirectGPU 게임 PID/runGeneration 전환 후 캐시 OpenSharedResource 재개방 동등성 판정에 run epoch 미포함 조건부 경계를 R26+HUD original REA→semantic/queue→physical eye draw/restore→Present→host Direct hold→XR 제출로 비중복 정적 검토. NEW_FINDING=STATIC_CONDITIONAL_DIRECTGPU_SHARED_SOURCE_REOPEN_KEY_OMITS_RUN_EPOCH (실기 재현 아님). [docs-only result 3aaad6f](https://github.com/thp32tt/OutRun2006Tweaks/commit/3aaad6f30beb965820d7d689e669a372387ccebc), [AUTO:CONVERSION-DX9EX-01207], 단일 review Markdown·원격 HEAD 확인. CODE_CHANGE=NO, build/CI 없음, RUNTIME_VALIDATION=UNTESTED. Retry/rollover 동일 RUN_KEY +0. **AI 점수: 이전 1620점 + 이번 +1점 = 누적 1621점.** |
 | 2026-10-21 11:52 KST | AI 1 | 1673 | +1 | 1674 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1145KST-NEW-SHA-UNIQUE8-A0017-A0018: N100 A ROI 후보 고유 SHA 8건(A81~A88)을 기존 178 SHA와 중복 제거, 원본 영문/승인 번역/producer SHA·RGBA 투명·알파 테두리 및 비교 JPG 2장을 시각 검수. PNG 문자 품질 한정 PASS 6, FAIL 2: A85/A87 SPECIAL REQUEST 원본 흰 글자가 금·주황 메탈릭 서체로 크게 변경되어 심각한 스타일·색상 불일치. 8/8 REWORK_DIMENSIONS 유지, UI 합성·DDS·C2/C3·실게임 RUNTIME_VALIDATION=UNTESTED. [QA evidence 9fd2c231](https://github.com/thp32tt/OutRun2006Tweaks/commit/9fd2c2313fff8184650729806e267026245d49ea), C1 독립 검수만 수행, ImageGen/원본 큐/VR 비변경. 동일 SHA/RUN_KEY 재검수·retry는 +0. **AI 점수: 이전 1673점 + 이번 +1점 = 누적 1674점.** |
 | 2026-10-21 11:49 KST | AI 2 | 1619 | +1 | 1620 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01206: vr-d3d9ex-focus SOURCE_HEAD 43d2d7aa9bdfb4f6af468524f86eafc489c3ecc8에서 R26+HUD Classic SBS 캡처 직전 클라이언트 RECT/fullVisible 스냅샷과 추후 R23RenderProjection의 live GetGameUv/partial clipping 사이 물리 좌표·출력 epoch 불일치를 별도 REVIEW_ONLY 정적 검토. NEW_FINDING=STATIC_CONFIRMED_CONDITIONAL_CLASSIC_SBS_CAPTURE_RECT_TO_PROJECTION_UV_EPOCH_GAP(Quest3/VDXR 결함 재현 아님). [docs-only result 5ae3094](https://github.com/thp32tt/OutRun2006Tweaks/commit/5ae30949fd72de222fb8daeda1c7bca5b15913c8), 정확 [AUTO:CONVERSION-DX9EX-01206], 부모 43d2d7a·파일 1개·브랜치 HEAD 확인. CODE_CHANGE=NO, build/CI 없음, RUNTIME_VALIDATION=UNTESTED. Retry/rollover 같은 RUN_KEY 중복 가점 없음. **AI 점수: 이전 1619점 + 이번 +1점 = 누적 1620점.** |

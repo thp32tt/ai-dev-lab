@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1692 | ACTIVE | 2026-10-21 22:25 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1719 | ACTIVE | 2026-10-21 22:20 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1720 | ACTIVE | 2026-10-21 22:41 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 22:41 KST | AI 2 | 1719 | +1 | 1720 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01299: OutRun 2006 R26+HUD R9 Present DirectGPU ring 슬롯 `published` 미전환과 fence 완료/host ACK 이전 슬롯 재사용 가능 경계를 원격 정적 검토; [docs-only result 23d3baca](https://github.com/thp32tt/OutRun2006Tweaks/commit/23d3bacad74cf4220fb44cca1bdf3e91872194b7) 커밋 검증(정확 marker, 부모 SHA, 대상 브랜치 HEAD, 변경 문서 1개), 코드 변경 없음, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1719점 + 이번 +1점 = 누적 1720점. |
 | 2026-10-21 22:25 KST | AI 1 | 1691 | +1 | 1692 | 독립 C1 PNG 간이 QA RUN_KEY=OUTRUN-C1-20261021T2218KST-OLDER-BACKLOG-SHA8: A/B 생성 후보 313개 export 증빙, 기존 중복 검수 292 SHA 제외, 신규 8개(A 3/B 5) 원본 및 후보 SHA256/승인 번역/투명 PNG/알파 경계와 좌우 시각 비교. PASS_PNG_TEXT_ONLY 8, FAIL 0, 잔여 미검수 18. 생산 REWORK_DIMENSIONS 유지, 최종 UI bbox/DDS/C2/C3/실게임 미승인, RUNTIME_VALIDATION=UNTESTED. [QA commit e6dd6fd6](https://github.com/thp32tt/OutRun2006Tweaks/commit/e6dd6fd649cfc110bc7dc631b484bf8203652be9) 원격 readback 완료. 중복 성과 가점 금지. **AI 점수: 이전 1691점 + 이번 +1점 = 누적 1692점.** |
 | 2026-10-21 22:20 KST | AI 2 | 1718 | +1 | 1719 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01298: OutRun 2006 DX9Ex R26+HUD SBS fixed-function setup HRESULT와 stereo-success gate 독립 REVIEW_ONLY 정적 검토, [docs-only result 96ebbb12](https://github.com/thp32tt/OutRun2006Tweaks/commit/96ebbb1280b69ff9c478f3019ce32440ddf60662) 대상 vr-d3d9ex-focus에 새 단일 Markdown 기록, 부모 HEAD/marker/원격 단일 파일 검증 PASS; CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. |
 | 2026-10-21 22:14 KST | AI 2 | 1717 | +1 | 1718 | 신규 독립 RUN_KEY=CONVERSION-DX11-00973: OutRun 2006 DX11 실게임 SM3 6면 GPU 큐브 렌더타깃 mip readback→D3D11 cube SRV→Draw/DrawIndexed 구현 및 원인 CI 수리. [material/validation-bearing d06e0c09](https://github.com/thp32tt/OutRun2006Tweaks/commit/d06e0c096f54e1261cf55907f812e721f5a3f23a) target vr-dx11-native-r71 fast-forward expected 28fe8afa force=false 성공; exact-SHA 필수 5/5 SUCCESS: [Fast #39603402957](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39603402957), [Backend #39603402818](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39603402818), [Build #39603403009](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39603403009), [OpenXR #39603403233](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39603403233), [HUD #39603402679](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39603402679). 기존 DX9Ex Draw/Present/input/FFB opt-in fail-closed 유지, 실제 게임 native_draws/desktop frame 및 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 전체 DX11 gameplay 완료 아님. 동일 TASK_ID E005 rollover/CI 수리/C6 재보고 중복 가점 금지. **AI 점수: 이전 1717점 + 이번 +1점 = 누적 1718점.** |

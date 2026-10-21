@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1675 | ACTIVE | 2026-10-21 12:22 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1628 | ACTIVE | 2026-10-21 12:37 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1629 | ACTIVE | 2026-10-21 12:45 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 12:45 KST | AI 2 | 1628 | +1 | 1629 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01215: GitHub vr-d3d9ex-focus SOURCE_HEAD 7ba88543319d6c74020d918f57c30bd140506512 정적 DX9Ex REVIEW_ONLY 신규 범위 DirectGPU producer EVENT 1ms bounded wait → R13 ACK/slot fence → host R41 latest-frame-wins → R23 L/R hold-copy/R32 deferred GPU-complete ACK → 실제 OpenXR submit 및 pacing QPC 경계 검토. NEW_FINDING=NONE(실기 GPU 병목 단정 없음), docs-only 단일 경로 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01215.md [result 86e96b6c](https://github.com/thp32tt/OutRun2006Tweaks/commit/86e96b6cf851507d6b1a74b1fa64e59ee623a7fc), exact [AUTO:CONVERSION-DX9EX-01215], 원격 HEAD·커밋 marker·부모 compare 1파일 검증, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재보고 중복 가산 금지. **AI 점수: 이전 1628점 + 이번 +1점 = 누적 1629점.** |
 | 2026-10-21 12:37 KST | AI 2 | 1627 | +1 | 1628 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01214: DX9Ex REVIEW_ONLY nonzero eye-cant/HUD API route 검토, vr-d3d9ex-focus SOURCE_HEAD 93736dd0332e12c4d48a1c8d7f25046a48730fa0, docs-only 단일 파일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01214.md, result 7ba88543319d6c74020d918f57c30bd140506512, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, NEW_FINDING=NONE(독립 경로 검토·기존 결과 중복 가산 아님). |
 | 2026-10-21 12:24 KST | AI 2 | 1626 | +1 | 1627 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01213: GitHub vr-d3d9ex-focus SOURCE_HEAD 5865ce415a6e6273a966b96e22beaad910e88f03 기준 첫 post-ResetEx DirectGPU fresh frame의 XR startup eye extent → game ResolveGame fail-closed → shared-ring generation/StretchRect → R9/R13 Present Frame.v2 → host R23 L/R descriptor·hold copy·actual xrEndFrame 경계를 01212 cached projection, 01207 cross-PID reopen, 01206 Classic rect/UV와 분리해 REVIEW_ONLY 정적 검토. NEW_FINDING=NONE(실제 DrawSerial/HMD/FPS 검증 없음). [docs-only result 93736dd0](https://github.com/thp32tt/OutRun2006Tweaks/commit/93736dd0332e12c4d48a1c8d7f25046a48730fa0), 정확 [AUTO:CONVERSION-DX9EX-01213], 단일 Markdown 변경·원격 HEAD/부모 검증. CODE_CHANGE=NO, CI/build 없음, RUNTIME_VALIDATION=UNTESTED; 동일 TASK_ID retry/rollover 재가산 +0. **AI 점수: 이전 1626점 + 이번 +1점 = 누적 1627점.** |
 | 2026-10-21 12:23:22 KST | AI 2 | 1625 | +1 | 1626 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01212: vr-d3d9ex-focus SOURCE_HEAD b587ef49cc65710501fa82b1d865d65fefac365c 기준 동일 PID/run ResetEx의 게임 Frame.v2 StereoDisabled·큐/RT 복구와 R23 기존 XR 투영 캐시 재사용, R24/R32 실제 제출 경계를 기존 01204 TTL·01206 Classic UV·01211 UP rollback과 분리한 REVIEW_ONLY 정적 검토. NEW_FINDING=STATIC_CONDITIONAL_SAME_RUN_RESETEX_HOST_PROJECTION_CACHE_EPOCH_NOT_DIRECTLY_JOINED_TO_GAME_RESET(실기 오류 확정 아님), [docs-only result 5865ce41](https://github.com/thp32tt/OutRun2006Tweaks/commit/5865ce415a6e6273a966b96e22beaad910e88f03), 정확 [AUTO:CONVERSION-DX9EX-01212], 단일 문서·HEAD·parent 원격 확인. CODE_CHANGE=NO, CI/build 없음, RUNTIME_VALIDATION=UNTESTED. retry/rollover 중복 +0. **AI 점수: 이전 1625점 + 이번 +1점 = 누적 1626점.** |

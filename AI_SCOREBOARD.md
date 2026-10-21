@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1694 | ACTIVE | 2026-10-21 23:53 KST |
+| AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1740 | ACTIVE | 2026-10-22 00:49 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 00:45 KST | AI 1 | 1694 | +1 | 1695 | 신규 C1 QA RUN_KEY=OUTRUN-C1-20261022T0045KST-SHA-NEW: 원본·후보 SHA 검증 및 로컬 RGBA 문자 독립 검수 2건(PASS_PNG_TEXT_ONLY 2, 원본과 출력 크기 불일치 REWORK_DIMENSIONS 유지), [QA 증빙 commit 674a8bf8](https://github.com/thp32tt/OutRun2006Tweaks/commit/674a8bf844b424813bfeca17dd7af40842d06efe) 원격 HEAD 확인. DDS/C2/C3/실게임 PASS 아님; RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1694점 + 이번 +1점 = 누적 1695점. |
 | 2026-10-22 00:49 KST | AI 2 | 1739 | +1 | 1740 | 신규 독립 RUN_KEY=CONVERSION-DX11-00976: OutRun2006Tweaks `vr-dx11-native-r71` 실제 C++ native D3D11 SM3 Texture3D game Draw/DrawIndexed 경로에 동적 D3D9 볼륨 소스, BGRA/RGBA/X8 변환, R16F/RGBA16F 샘플링 및 24MiB 형식별 mip 상한, 관련 양성·음성 회귀를 결합. [material b34ebdcf](https://github.com/thp32tt/OutRun2006Tweaks/commit/b34ebdcf0ad6ab0022158a614120fbd8e4ca786c), 이전 00975 record 누락으로 실패한 실제 CI 스키마 원인 한정 수리 [validation-bearing 7043309a](https://github.com/thp32tt/OutRun2006Tweaks/commit/7043309a374deca4cbbcb1f949d010cf9be83b37), 해당 SHA 정확 5/5 GitHub Actions SUCCESS (Fast #39626157265, Backend #39626157341, Windows Build #39626157267, OpenXR #39626157325, HUD Inspector #39626157408), 별도 [C6 50d7ee7e](https://github.com/thp32tt/OutRun2006Tweaks/commit/50d7ee7e3354cfa479d2a4a5c82b5f1c6b1a09ac) 기록. 원본 DX9Ex 입력/FFB/SkyGlow 폴백·DXVK 동결 보존. Quest3/VDXR/OutRun 실기 미실행, RUNTIME_VALIDATION=UNTESTED; 00975 스키마 수리·C6·E002 retry 별도 가점 없음. **AI 점수: 이전 1739점 + 이번 +1점 = 누적 1740점.** |
 | 2026-10-22 00:47 KST | AI 2 | 1738 | +1 | 1739 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01316: OutRun2006Tweaks `vr-d3d9ex-focus` pinned SOURCE_HEAD `f2fc373e492b0e9101d878f1740b6c33d28f69c3`의 원본 type1 mask/composite 0x42A800과 unmasked quad 0x42A3A0, producer/queue epoch→R30 UP L/R→R9 Present→OpenXR 경로를 REVIEW_ONLY로 정적 검토. 원본 mask 분기와 physical UP eye draw의 검증 연결 공백을 조건부 finding으로 기록. [docs-only result 5b944d6f](https://github.com/thp32tt/OutRun2006Tweaks/commit/5b944d6ff42a8daf08cc3f182af530c9592740f0) 파일 1개, 정확 [AUTO:CONVERSION-DX9EX-01316] marker, remote branch/readback PASS; CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 중복 retry/rollover/결과 재보고 가산 금지. **AI 점수: 이전 1738점 + 이번 +1점 = 누적 1739점.** |
 | 2026-10-22 00:41 KST | AI 2 | 1737 | +1 | 1738 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01315: OutRun2006Tweaks `vr-d3d9ex-focus` pinned SOURCE_HEAD `44c6ebd9ed485426a7100fd277d8144c423b0b11`에서 원본 +TIME/GOAL→D3DX Draw 내부 Flush 재진입→Ledger mutationSerial/End 동일 generation→R30/R62 L/R→R9 Present→OpenXR 경로를 REVIEW_ONLY 정적 검토. 같은 세대 End 재진입 Draw 증거/스모크 부재를 조건부 finding으로 분리; [docs-only result f2fc373e](https://github.com/thp32tt/OutRun2006Tweaks/commit/f2fc373e492b0e9101d878f1740b6c33d28f69c3) 정확 [AUTO:CONVERSION-DX9EX-01315] 단일 Markdown 변경(parent 3ae90f8d diff PASS, branch readback PASS). CODE_CHANGE=NO; CI/BUILD=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 재시도/롤오버/중복보고 재가산 금지. **AI 점수: 이전 1737점 + 이번 +1점 = 누적 1738점.** |

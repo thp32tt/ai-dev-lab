@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1678 | ACTIVE | 2026-10-21 13:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1648 | ACTIVE | 2026-10-21 14:46 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1649 | ACTIVE | 2026-10-21 14:54 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 14:54 KST | AI 2 | 1648 | +1 | 1649 | 신규 독립 DX9Ex REVIEW_ONLY RUN_KEY=CONVERSION-DX9EX-01233: R26+HUD 반사 cubemap face-count QPC 훅 호출 간격과 R9 Present/actual xrEndFrame 프레임 경계의 미연결 상태를 정적 분석. [docs-only result 40450e2b](https://github.com/thp32tt/OutRun2006Tweaks/commit/40450e2beea08749d2c2c3736c1000d076ce12e8), SOURCE_HEAD 8f322fbf, 단일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01233.md, 정확 marker [AUTO:CONVERSION-DX9EX-01233], 1-commit/1-file/parent HEAD compare PASS. REFLECTION_DEFECT=NOT_ESTABLISHED, PERF=UNMEASURED, PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. retry/rollover/중복 검증 점수 +0. **AI 점수: 이전 1648점 + 이번 +1점 = 누적 1649점.** |
 | 2026-10-21 14:46 KST | AI 2 | 1647 | +1 | 1648 | 신규 독립 DX9Ex REVIEW_ONLY RUN_KEY=CONVERSION-DX9EX-01232: R26+HUD 기본 XYZRHW PrimitiveUP 두 눈의 CPU-backed raw UP 제출과 R84 opt-in WorldParticle DynamicVB ring의 분리된 빌드/성능 경계 정적 분석. [docs-only result 8f322fbf](https://github.com/thp32tt/OutRun2006Tweaks/commit/8f322fbf4f45ded150afef0e91853adde1782bb2), SOURCE_HEAD e1728105, 단일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01232.md 추가, exact marker [AUTO:CONVERSION-DX9EX-01232] 및 1-commit/1-file compare PASS. SCREEN_BUG=NOT_ESTABLISHED, PERF=NOT_MEASURED, PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. retry/rollover/re검증 중복 가점 +0. **AI 점수: 이전 1647점 + 이번 +1점 = 누적 1648점.** |
 | 2026-10-21 14:28 KST | AI 2 | 1646 | +1 | 1647 | 신규 독립 RUN_KEY=USER-R26HUD-DRAWTRACE-SKILLS-20261021T1412KST: OutRun2006Tweaks R26+HUD UniversalTrace 계측 실제 C++ 4종 Draw 훅·R30/R62 eye-pair·5초 집계 구현, 전용 VR 스킬 5개 및 검증 스크립트·CI 추가. [개발 브랜치 PR #145](https://github.com/thp32tt/OutRun2006Tweaks/pull/145), [소스 커밋 a215c942](https://github.com/thp32tt/OutRun2006Tweaks/commit/a215c942c8fd56f5f15d538c29cb3bd7225edec6), [R26 x86 Windows build run #39549277110](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39549277110) 내 game-x86-r26-hud-safe SUCCESS, [독립 스킬/소스 검증 run #39549528765](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/39549528765) PASS. PR은 Draft 유지; 다른 기존 CI guard 실패, Quest3 HMD RUNTIME_VALIDATION=UNTESTED. 같은 성과·retry/rollover 중복 +0. **AI 점수: 이전 1646점 + 이번 +1점 = 누적 1647점.** |
 | 2026-10-21 14:25 KST | AI 2 | 1645 | +1 | 1646 | 신규 독립 DX9Ex REVIEW_ONLY `RUN_KEY=CONVERSION-DX9EX-01231`: 원본 type-1 mask `0x42A800` vs unmasked `0x42A3A0`의 queue one-shot semantic 교차 정적 분석을 문서 1개로 기록. [결과 e1728105](https://github.com/thp32tt/OutRun2006Tweaks/commit/e1728105d21fe28eb304eba5bb222cdb9514c6b7), 변경 파일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01231.md` 단일, SOURCE_HEAD `c020e640`, [AUTO:CONVERSION-DX9EX-01231], CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, docs-only commit/parent/branch 확인. 동일 RUN_KEY retry/rollover/recheck +0. **AI 점수: 이전 1645점 + 이번 +1점 = 누적 1646점.** |

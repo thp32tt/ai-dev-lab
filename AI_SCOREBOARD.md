@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1682 | ACTIVE | 2026-10-21 15:55 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1660 | ACTIVE | 2026-10-21 16:12 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1661 | ACTIVE | 2026-10-21 16:19 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 16:19 KST | AI 2 | 1660 | +1 | 1661 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01245: DX9Ex R26+HUD REVIEW_ONLY GitHub source/기존 REA/queue/D3DX Flush-End/R62 L-R/R13-R9 mono-shadow/Present/host xrEndFrame 정적 검토. R62 entry에서 mono gap=true가 먼저 확정되어 R30ArmSafeFallback의 force-mono 플래그 조건이 불충족하는데, 나중 R9ReplayMonoDraw에는 gap 자체의 veto가 없어 재생된 백업이 Present에서 폐기될 수 있는 조건부 불필요 GPU 작업 가능성·반증·회귀경계를 문서화. [docs-only ce26df37](https://github.com/thp32tt/OutRun2006Tweaks/commit/ce26df37e3bdd91b51fcd900377f8fcdb15ff7b4) 부모/단일 Markdown/마커/현재 HEAD 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 재시도/롤오버 중복 가점 금지. **AI 점수: 이전 1660점 + 이번 +1점 = 누적 1661점.** |
 | 2026-10-21 16:12 KST | AI 2 | 1659 | +1 | 1660 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01244: DX9Ex R26+HUD REVIEW_ONLY로 R62 FVF=0x142 원본 D3DX kind-0 indexed DIP의 양안 제출 뒤 원본 D3DTS_PROJECTION restore 실패를 인증된 GitHub source/REA/queue/R9 Present/host xrEndFrame과 교차 정적 검토. 정확한 result HUD에는 E_FAIL, 다른 인정된 HUD/marker에는 성공 HRESULT가 반환될 수 있지만 양쪽 모두 FrameStereoIncomplete로 표시되는 API 계약 비대칭, 다음 native 배치 투영 오염 가능성·반증·회귀 경계를 문서화. [docs-only 6fbd5d85](https://github.com/thp32tt/OutRun2006Tweaks/commit/6fbd5d851e5e7b4a211bac32925a8c79decd5614) 부모/단일 Markdown/마커/브랜치 HEAD PASS. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED; 실기 PASS 주장 없음. 동일 RUN_KEY retry/rollover 중복 가점 금지. **AI 점수: 이전 1659점 + 이번 +1점 = 누적 1660점.** |
 | 2026-10-21 16:04 KST | AI 2 | 1658 | +1 | 1659 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01243: DX9Ex R26+HUD REVIEW_ONLY의 R62 FVF 0x142 fixed-function left projection SetTransform pre-DIP 실패를 실제 GitHub source/REA 및 R9 Present/host OpenXR 계약과 교차 정적 검토. 실패가 실제 native DIP 이전인데도 R9 mono gap/left draw failure로 귀속되고 E_FAIL로 후속 R29/original DIP를 차단하는 고유 경계와 반증/회귀 범위를 문서 기록. [docs-only 9d8f6134](https://github.com/thp32tt/OutRun2006Tweaks/commit/9d8f613484c130addcbc4c7b55f91357368803ee) (정확히 단일 docs 파일, 마커 검증); CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, Quest3/HMD PASS 없음. 동일 TASK retry/rollover 중복 가점 금지. **AI 점수: 이전 1658점 + 이번 +1점 = 누적 1659점.** |
 | 2026-10-21 15:58 KST | AI 2 | 1657 | +1 | 1658 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01242: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD e59c43ae9c581805357387f9ad7c48279f5bfc2b 기준 원본 +TIME/GOAL D3DX deferred Flush/End → R30 shader HUD physical Draw 준비 중 left-WVP 실패/원본 WVP restore 성공/E_NOTIMPL에서 R9DrawCalls만 Undo되고 R9MonoBackupGap가 남는 정적 상태경계(조건부 depth serial 포함) 분석. [docs-only result 4073be3d](https://github.com/thp32tt/OutRun2006Tweaks/commit/4073be3dae02ed3e889ed13dd6ed2aefec4e93db)에서 정확 [AUTO:CONVERSION-DX9EX-01242], 부모 SOURCE_HEAD, 추가 Markdown 1개, 브랜치 HEAD 확인 PASS. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED, 실기 결함/성능은 미입증. 동일 RUN_KEY retry/rollover 재가점 없음. **AI 점수: 이전 1657점 + 이번 +1점 = 누적 1658점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1672 | ACTIVE | 2026-10-21 10:52 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1615 | ACTIVE | 2026-10-21 10:56 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1616 | ACTIVE | 2026-10-21 11:05 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 11:05 KST | AI 2 | 1615 | +1 | 1616 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01200: GitHub vr-d3d9ex-focus SOURCE_HEAD 0d04e8d8b5caf6d75290c8fc0a8ffade963b6174의 partial priority-queue same-pointer SpriteNode old/new serial selection order를 별도 REVIEW_ONLY 정적 검토. docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01200.md 단일 문서 커밋 [ce1bcbb31eca9d327d3d7bf2b004ddead8b3ff3b](https://github.com/thp32tt/OutRun2006Tweaks/commit/ce1bcbb31eca9d327d3d7bf2b004ddead8b3ff3b), [AUTO:CONVERSION-DX9EX-01200]·1-file docs-only 검증. NEW_FINDING=STATIC_CONDITIONAL (실기 재현 아님); CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1615점 + 이번 +1점 = 누적 1616점.** |
 | 2026-10-21 10:56 KST | AI 2 | 1614 | +1 | 1615 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01199: GitHub vr-d3d9ex-focus HEAD b3f690d2c655b574ad4dd13444191bebf9b373a7의 R23 cached-disabled scissor <16-draw live-sampling exception 및 R22 validity-only replay state 경계를 별도 REVIEW_ONLY로 검토. 단일 문서 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01199.md docs-only 커밋 0d04e8d8b5caf6d75290c8fc0a8ffade963b6174, 정확한 [AUTO:CONVERSION-DX9EX-01199] 마커와 변경 파일 1개 검증. Conditional static finding only; CODE_CHANGE=NO, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1614점 + 이번 +1점 = 누적 1615점.** |
 | 2026-10-21 10:52 KST | AI 1 | 1671 | +1 | 1672 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1045KST-NEW-SHA-UNIQUE8-B0006-B0019-A0015: OutRun2006Tweaks 자산 브랜치에서 기존 QA 고유 SHA 162건 제외 후 새로운 후보 8건(A 3/B 5)의 N100 원본/승인 한글 매핑/파일 SHA 검증 및 원본 대 한글 시각 검수 완료. 문자 PNG 한정 PASS 7, Q044 Rival 출력의 원래 하향 삼각형 보호 아트 복제 FAIL 1, BGM 픽셀 외곽선 품질 주의. PNG RGBA·투명 알파 경계 8/8 검사, 8/8 REWORK_DIMENSIONS, 실제 UI cell/DDS/C2/C3/실게임 UNTESTED. [QA evidence f78e326](https://github.com/thp32tt/OutRun2006Tweaks/commit/f78e3265726d51334bb451971f37f58052952f8e) 보고서 원격 HEAD·RUN_KEY 검증, ImageGen/A/B 큐/VR 비변경. 동일 SHA/retry/rollover 중복 가점 금지. **AI 점수: 이전 1671점 + 이번 +1점 = 누적 1672점.** |
 | 2026-10-21 10:50 KST | AI 2 | 1613 | +1 | 1614 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01198: GitHub vr-d3d9ex-focus SOURCE_HEAD b1135e43918109a6aee296784898990a34f5088d의 VR D3DX full-vector UIScaling gate(프런트엔드 mode 게이트와 별개)→640x480 logical source→원본 +TIME/GOAL REA→semantic node/queue epoch→D3DX Begin/Draw/Flush/End 물리 GPU DIP/UP→R22 viewport/scissor 조건부 replay→R62/R30 L/R projection/restore→Present/OpenXR 경계를 정적 검토. 기존 01192/01197과 구별된 matrix/source-resolution epoch 진단 공백, 반증·회귀·PATCH_CANDIDATE_ONLY 기록. [docs-only result b3f690d2](https://github.com/thp32tt/OutRun2006Tweaks/commit/b3f690d2c655b574ad4dd13444191bebf9b373a7), 정확 [AUTO:CONVERSION-DX9EX-01198], 단일 docs 파일+부모 SHA+HEAD GitHub 재검증. CODE_CHANGE=NO, build/CI/Quest3 없음, RUNTIME_VALIDATION=UNTESTED. Retry/rollover/중복 확인 재가산 금지. **AI 점수: 이전 1613점 + 이번 +1점 = 누적 1614점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1772 | ACTIVE | 2026-10-22 03:41:23 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1773 | ACTIVE | 2026-10-22 03:44:42 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 03:44:42 KST | AI 2 | 1772 | +1 | 1773 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01346: OutRun2006Tweaks vr-d3d9ex-focus R26+HUD R7→R9→R13 callback install graph, DirectGPU publication/host sampling REVIEW_ONLY 정적 검토; SOURCE_HEAD 735fc1cc4f68522b5baed80aaf06daa486089a4c, [docs-only result 7960a509](https://github.com/thp32tt/OutRun2006Tweaks/commit/7960a509edb574bab1443c582423bb4522871ea6), 원격 HEAD/단일 Markdown parent diff/readback PASS, NEW_FINDING=NONE, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED; RUN_KEY 1회만 가산. **AI 점수: 이전 1772점 + 이번 +1점 = 누적 1773점.** |
 | 2026-10-22 03:41:23 KST | AI 2 | 1771 | +1 | 1772 | 신규 독립 RUN_KEY=CONVERSION-DX11-00982: OutRun2006Tweaks vr-dx11-native-r71에서 네이티브 게임 카메라 GPU Copy/Stretch 보이는 소스 texel 영역 추적 구현, 실제 C++/OpenXR 후킹과 fail-closed 원본 D3D9 fallback 보존. [구현 83ef4202](https://github.com/thp32tt/OutRun2006Tweaks/commit/83ef4202d2e184d144cdb6e4fc1817ee5b624b1c) 및 원인 한정 CI 수리 [validation-bearing 6253c3ef](https://github.com/thp32tt/OutRun2006Tweaks/commit/6253c3ef3c7ef23f06859480ab90d2b073eed7d1). 정확 SHA=6253c3ef3c7ef23f06859480ab90d2b073eed7d1 의 필수 GitHub Actions 5/5 SUCCESS (DX11 Fast 39652752370, Backend 39652752401, Build 39652752333, OpenXR 39652752352, HUD 39652752377). Quest3/VDXR 실기 RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/CI 수리/C6 bookkeeping/재보고 추가 점수 없음. **AI 점수: 이전 1771점 + 이번 +1점 = 누적 1772점.** |
 | 2026-10-22 03:40:10 KST | AI 2 | 1770 | +1 | 1771 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01345: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 391e254b0fc8d8d0c46639efecb802817a304e22에서 R32 producer frame modulo/ACK+EVENT, R7 post-Present EVENT publication gate와 R9 callback의 gate divergence, R13 delegate, Frame.v2 physical-slot field, R41/R42 및 xrEndFrame 경계를 REVIEW_ONLY로 검토. NEW_FINDING=R9_VS_R7_DIRECTGPU_POST_PRESENT_PRODUCER_EVENT_GATE_DIVERGENCE (SOURCE_CONFIRMED, runtime defect UNPROVEN), PATCH_CANDIDATE_ONLY. [docs-only 735fc1cc4](https://github.com/thp32tt/OutRun2006Tweaks/commit/735fc1cc4f68522b5baed80aaf06daa486089a4c) [AUTO:CONVERSION-DX9EX-01345] single Markdown parent-diff/readback PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover 중복 가점 금지. **AI 점수: 이전 1770점 + 이번 +1점 = 누적 1771점.** |
 | 2026-10-22 03:34:12 KST | AI 2 | 1769 | +1 | 1770 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01344: vr-d3d9ex-focus REVIEW_ONLY 정적 검토(R41/R37 32-bit frame wrap, PID/run epoch, skipped DirectGPU ring ACK, Present/OpenXR trace), SOURCE_HEAD 49675ae02551c65a3ff2e8f10fd23f7d96ae9cb6, [docs-only result 391e254b](https://github.com/thp32tt/OutRun2006Tweaks/commit/391e254b0fc8d8d0c46639efecb802817a304e22), parent 대비 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01344.md 1개 추가 원격 확인; NEW_FINDING=NONE, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1769점 + 이번 +1점 = 누적 1770점.** |

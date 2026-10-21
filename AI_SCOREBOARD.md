@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1675 | ACTIVE | 2026-10-21 12:22 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1627 | ACTIVE | 2026-10-21 12:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1628 | ACTIVE | 2026-10-21 12:37 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 12:37 KST | AI 2 | 1627 | +1 | 1628 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01214: DX9Ex REVIEW_ONLY nonzero eye-cant/HUD API route 검토, vr-d3d9ex-focus SOURCE_HEAD 93736dd0332e12c4d48a1c8d7f25046a48730fa0, docs-only 단일 파일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01214.md, result 7ba88543319d6c74020d918f57c30bd140506512, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, NEW_FINDING=NONE(독립 경로 검토·기존 결과 중복 가산 아님). |
 | 2026-10-21 12:24 KST | AI 2 | 1626 | +1 | 1627 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01213: GitHub vr-d3d9ex-focus SOURCE_HEAD 5865ce415a6e6273a966b96e22beaad910e88f03 기준 첫 post-ResetEx DirectGPU fresh frame의 XR startup eye extent → game ResolveGame fail-closed → shared-ring generation/StretchRect → R9/R13 Present Frame.v2 → host R23 L/R descriptor·hold copy·actual xrEndFrame 경계를 01212 cached projection, 01207 cross-PID reopen, 01206 Classic rect/UV와 분리해 REVIEW_ONLY 정적 검토. NEW_FINDING=NONE(실제 DrawSerial/HMD/FPS 검증 없음). [docs-only result 93736dd0](https://github.com/thp32tt/OutRun2006Tweaks/commit/93736dd0332e12c4d48a1c8d7f25046a48730fa0), 정확 [AUTO:CONVERSION-DX9EX-01213], 단일 Markdown 변경·원격 HEAD/부모 검증. CODE_CHANGE=NO, CI/build 없음, RUNTIME_VALIDATION=UNTESTED; 동일 TASK_ID retry/rollover 재가산 +0. **AI 점수: 이전 1626점 + 이번 +1점 = 누적 1627점.** |
 | 2026-10-21 12:23:22 KST | AI 2 | 1625 | +1 | 1626 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01212: vr-d3d9ex-focus SOURCE_HEAD b587ef49cc65710501fa82b1d865d65fefac365c 기준 동일 PID/run ResetEx의 게임 Frame.v2 StereoDisabled·큐/RT 복구와 R23 기존 XR 투영 캐시 재사용, R24/R32 실제 제출 경계를 기존 01204 TTL·01206 Classic UV·01211 UP rollback과 분리한 REVIEW_ONLY 정적 검토. NEW_FINDING=STATIC_CONDITIONAL_SAME_RUN_RESETEX_HOST_PROJECTION_CACHE_EPOCH_NOT_DIRECTLY_JOINED_TO_GAME_RESET(실기 오류 확정 아님), [docs-only result 5865ce41](https://github.com/thp32tt/OutRun2006Tweaks/commit/5865ce415a6e6273a966b96e22beaad910e88f03), 정확 [AUTO:CONVERSION-DX9EX-01212], 단일 문서·HEAD·parent 원격 확인. CODE_CHANGE=NO, CI/build 없음, RUNTIME_VALIDATION=UNTESTED. retry/rollover 중복 +0. **AI 점수: 이전 1625점 + 이번 +1점 = 누적 1626점.** |
 | 2026-10-21 12:22 KST | AI 1 | 1674 | +1 | 1675 | 신규 독립 RUN_KEY=OUTRUN-C1-20261021T1215KST-NEW-SHA-UNIQUE8-B0020R1-B0021: 2026-10-21 12:15 C1에서 B0020R1/B0021 신규 고유 SHA256 PNG 8건(B93~B100)을 기존 QA 186개 SHA와 중복 제외 후 원본/승인 번역/producer export SHA·RGBA·alpha·원본 대비 독립 시각 QA. PNG 문자 품질 한정 PASS 6/FAIL 2; B98 FRIEND REQUEST→친구 요청은 원문 흰색 문구와 달리 노란 기울임/진남색 윤곽, B100 REGISTER NEW ACCOUNT→새 계정 등록은 원문 평평한 흰색 산세리프 대비 기울임/굵은 진남색 외곽의 심한 불일치. 8/8 제작자 REWORK_DIMENSIONS 유지, UI cell·DDS/C2/C3/실게임 RUNTIME_VALIDATION=UNTESTED. [QA evidence 1ecf404](https://github.com/thp32tt/OutRun2006Tweaks/commit/1ecf404799e592fd94025c9f0bc2529606aa0288). ImageGen·A/B 큐·DDS·배포·VR 변경 없음. 동일 SHA/RUN_KEY 재검증 및 retry 점수 +0. **AI 점수: 이전 1674점 + 이번 +1점 = 누적 1675점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1694 | ACTIVE | 2026-10-21 23:53 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1733 | ACTIVE | 2026-10-22 00:10 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1734 | ACTIVE | 2026-10-22 00:13 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 00:13 KST | AI 2 | 1733 | +1 | 1734 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01312: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 6bcea920ad435523e1093823571424f427508b93에서 LOCAL-fixed menu R23 D3D11 left RenderMenuPlaneTo→two-slice right CopySubresourceRegion→XR commonFov/zero-virtual-IPD→xrEndFrame 경로를 REVIEW_ONLY로 검토. 우측 눈의 copy enqueue/layout 가드와 실제 전체 픽셀 검증의 구분을 새 진단 한계로 문서화; GPU 오류/HMD 결함 확정 아님. [docs-only result 20c8629a](https://github.com/thp32tt/OutRun2006Tweaks/commit/20c8629a1490db7beef553a38c64b08575cba82f) 단일 지정 Markdown 추가, 정확한 [AUTO:CONVERSION-DX9EX-01312] 마커, 부모 대비 단일 파일, remote HEAD/readback PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재보고 중복 가산 금지. **AI 점수: 이전 1733점 + 이번 +1점 = 누적 1734점.** |
 | 2026-10-22 00:10 KST | AI 2 | 1732 | +1 | 1733 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01311: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 9c0e668c5a0ba9fbeeeb06767ec8419b4979371c에서 R43/R45 LOCAL 고정 메뉴 투영의 capture.fresh와 실제 L/R projection 갱신 결과 사이 불일치 시 fresh/cached 진단 라벨의 잘못된 귀속 가능성을 REVIEW_ONLY 정적 검토. [docs-only result 6bcea920](https://github.com/thp32tt/OutRun2006Tweaks/commit/6bcea920ad435523e1093823571424f427508b93) 정확 [AUTO:CONVERSION-DX9EX-01311] 단일 파일 커밋·원격 readback PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY 재시도·롤오버·재확인 추가 가점 없음. **AI 점수: 이전 1732점 + 이번 +1점 = 누적 1733점.** |
 | 2026-10-22 00:04 KST | AI 2 | 1731 | +1 | 1732 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01310: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD d4c60f7b4dc3e6efe10b9d6ccd095fe06ea55748에서 R23 opt-in source pixel staging Map DO_NOT_WAIT가 WAS_STILL_DRAWING으로 pending일 때 desktop output/monitor 재바인딩 이후 별도 staging F0 샘플이 output F1 epoch에 완료되어 raw 로그 소유권이 모호해질 수 있는 조건부 정적 경계를 REVIEW_ONLY 분석. [docs-only result 9c0e668c](https://github.com/thp32tt/OutRun2006Tweaks/commit/9c0e668c5a0ba9fbeeeb06767ec8419b4979371c) target branch HEAD, exact [AUTO:CONVERSION-DX9EX-01310] marker, 부모 단일 파일 비교, remote readback PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY 재시도/롤오버/재보고 가점 없음. **AI 점수: 이전 1731점 + 이번 +1점 = 누적 1732점.** |
 | 2026-10-21 23:58 KST | AI 2 | 1730 | +1 | 1731 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01309: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 956a04a29c0a89cd2d79a9e450112a3948dc115e에서 opt-in R23 source-game-UV staging 픽셀 진단이 raw Desktop Duplication copy 후 classic Frame.v2 QPC/pose 승인이 확인되기 전에 예약되고 Map 결과에 캡처 세대/수락 여부가 명시되지 않는 조건부 provenance 경계를 REVIEW_ONLY 정적 분석. [docs-only result d4c60f7b](https://github.com/thp32tt/OutRun2006Tweaks/commit/d4c60f7b4dc3e6efe10b9d6ccd095fe06ea55748) 마커 [AUTO:CONVERSION-DX9EX-01309], 부모 956a04a2, 단일 Markdown 추가 및 remote readback 확인. CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 RUN_KEY retry/rollover/재보고 이중 가점 금지. **AI 점수: 이전 1730점 + 이번 +1점 = 누적 1731점.** |

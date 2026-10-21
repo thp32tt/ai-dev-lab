@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1687 | ACTIVE | 2026-10-21 19:26 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1694 | ACTIVE | 2026-10-21 19:23 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1695 | ACTIVE | 2026-10-21 19:30:57 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 19:30:57 KST | AI 2 | 1694 | +1 | 1695 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01277: DX9Ex REVIEW_ONLY 정적 검토, docs-only result [88c9752e2cfc](https://github.com/thp32tt/OutRun2006Tweaks/commit/88c9752e2cfc1226081af515c37542a106250286); `src/vr/d3d9/stereo_renderer_r7.inc` right-stencil same-Present bootstrap/clear generation 분석, 단일 docs 경로 PASS, CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. 기존 TASK_ID 반복 가점 금지. |
 | 2026-10-21 19:26 KST | AI 1 | 1686 | +1 | 1687 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261021T1915KST-B0033-A0028-SHA8: OutRun2006Tweaks 자산 브랜치에서 기존 254 SHA와 중복 없는 실제 A/B ImageGen 후보 8개(B0033 5건, A0028 3건)를 source/export SHA256·승인 번역·PNG RGBA·alpha 경계·영문 원본 좌우 시각으로 검수. PNG 텍스트 한정 PASS 2/FAIL 6(원본과 다른 과도한 색상/서체/입체 효과); 제작 REWORK_DIMENSIONS 8건 유지. [C1 QA GitHub commit 3fc79f2d](https://github.com/thp32tt/OutRun2006Tweaks/commit/3fc79f2dd94f5db47df93745a01ae9a56a735a67). 생산 큐·ImageGen·DDS·C2/C3·실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재보고·롤오버 추가 가점 금지. **AI 점수: 이전 1686점 + 이번 +1점 = 누적 1687점.** |
 | 2026-10-21 19:23 KST | AI 2 | 1693 | +1 | 1694 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01276: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 41be723acf183c4f88f01e8444a2dc4ac254ce94 에서 원본 type-1 애니메이션 0x42A3A0 vs mask/composite 0x42A800 producer→semantic/queue→D3D9 DP/DIP/UP→R30 XYZRHW/ScreenSpace/R62→L/R RT·depth·stencil restore→Present→actual xrEndFrame 검토. NEW_FINDING=R30_XYZRHW_QUEUED_OVERLAY_EARLY_RETURN_PRECEDES_STENCIL_SYNC_GUARD (confirmed static control-flow asymmetry, type-1 mask 실기 영향 미확정). PATCH_CANDIDATE_ONLY; [docs-only 결과 cd61df94](https://github.com/thp32tt/OutRun2006Tweaks/commit/cd61df94793ee07a07ac8112a60b5a672940ddcf) 추가 Markdown 1개, 정확 [AUTO:CONVERSION-DX9EX-01276], parent/remote diff/readback PASS, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/재검증/롤오버 +0. **AI 점수: 이전 1693점 + 이번 +1점 = 누적 1694점.** |
 | 2026-10-21 19:15 KST | AI 2 | 1692 | +1 | 1693 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01275: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 64936125504f9531a10430e3df16b5dc19e08316 기반 original type-0 SpriteNode direct-UP vs D3DX indexed-DIP 경로, +TIME/GOAL producer→queue→R30/R62·UP L/R/restore→Present→actual xrEndFrame 정적 REVIEW_ONLY 검토. NEW_FINDING=DX9EX_RESULT_HUD_DIP_ONLY_EYE_TELEMETRY_HAS_ORIGINAL_UP_ROUTE_COVERAGE_GAP (API별 계측 범위의 정적 차이, HMD 화면결함 미확정); PATCH_CANDIDATE_ONLY. [docs-only 결과 41be723a](https://github.com/thp32tt/OutRun2006Tweaks/commit/41be723acf183c4f88f01e8444a2dc4ac254ce94) 1개 Markdown 새 파일, 정확 [AUTO:CONVERSION-DX9EX-01275], pinned parent/HEAD/원격 readback 및 단일 path PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/재보고 +0. **AI 점수: 이전 1692점 + 이번 +1점 = 누적 1693점.** |

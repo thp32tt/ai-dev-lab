@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1683 | ACTIVE | 2026-10-21 16:23 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1665 | ACTIVE | 2026-10-21 16:40 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1666 | ACTIVE | 2026-10-21 16:46 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-21 16:46 KST | AI 2 | 1665 | +1 | 1666 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01250: R26+HUD DX9Ex REVIEW_ONLY에서 OcclusionQueryTrackingUnavailable=true / ActiveOcclusionQueries=0 일 때 R9ReplayMonoDraw가 mono native Draw를 먼저 수행할 수 있으나 R7 PrepareDuplicatedDraw는 tracking-unavailable로 stereo duplication을 거부하고 real original Draw를 1회 수행하는 보호 조건 불일치 정적 검토. R13 not-ready handoff와 추적 불가 상태 교집합의 잠재적 2개 physical callback은 조건부이며 실제 쿼리 부작용/HMD 증상 미실증. [docs-only result 0fbb2fc5](https://github.com/thp32tt/OutRun2006Tweaks/commit/0fbb2fc5830f69d7a7d7b2d8347aadadce9a2e32) 부모 SOURCE_HEAD 7ab73d59, 추가 Markdown 1개, 정확 [AUTO:CONVERSION-DX9EX-01250], 현재 HEAD PASS; CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재검증 중복 가점 없음. **AI 점수: 이전 1665점 + 이번 +1점 = 누적 1666점.** |
 | 2026-10-21 16:40 KST | AI 2 | 1664 | +1 | 1665 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01249: R26+HUD DX9Ex REVIEW_ONLY, 활성 occlusion query에서 R9ReplayMonoDraw mono-skip이 true를 반환하며 R13 비활성 handoff 중 R9 legacy 경로로 진행 가능한 정적 경계 검토. 기존 01248 post-native restore retry와 중복 없음. [docs-only 7ab73d59](https://github.com/thp32tt/OutRun2006Tweaks/commit/7ab73d59f7da9e1bb2762e99c6497cb043f32e59) source-parent 15c080af, 단일 Markdown 변경, 정확 marker [AUTO:CONVERSION-DX9EX-01249] 및 HEAD 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED; Quest3/HMD 동작 및 GPU 쿼리 중복 실증 없음. 동일 TASK_ID 재시도/재확인 중복 가산 금지. **AI 점수: 이전 1664점 + 이번 +1점 = 누적 1665점.** |
 | 2026-10-21 16:34:33 KST | AI 2 | 1663 | +1 | 1664 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01248: DX9Ex REVIEW_ONLY R9ReplayMonoDraw post-native restore 실패에서 R9ExecuteDraw fallback actualDraw 재호출 정적 경계 검토, 기존 01247 pre-draw failed bind와 분리. [docs-only 15c080af](https://github.com/thp32tt/OutRun2006Tweaks/commit/15c080af9eaa2681a1cbb18ebfe20bfb741c15bd), single Markdown + marker + parent/current HEAD 검증 PASS; CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. AI 점수: 이전 1663점 + 이번 +1점 = 누적 1664점. |
 | 2026-10-21 16:30 KST | AI 2 | 1662 | +1 | 1663 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01247: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD c9ded6ebdeb431b608900289d6f0435cc51512a1, R9BindMonoTarget 부분 바인딩 실패 시 SetRT/SetDepth rollback HRESULT 미확인 뒤 R13DrawMonoShadowOnce 원본 physical GPU Draw 재개를 original REA/queue/D3DX/RT/Present/xrEndFrame 경계에서 REVIEW_ONLY 정적 검토. [docs-only result 2b923e94](https://github.com/thp32tt/OutRun2006Tweaks/commit/2b923e94d33b288182b4670696b8762e806fdf44), 부모 SOURCE_HEAD/신규 단일 Markdown/정확 [AUTO:CONVERSION-DX9EX-01247]/현재 HEAD 검증 PASS. CODE_CHANGE=NO; BUILD/CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED; 실제 잘못된 target draw/HMD 결함은 미입증. 재시도·롤오버 중복 가점 금지. **AI 점수: 이전 1662점 + 이번 +1점 = 누적 1663점.** |

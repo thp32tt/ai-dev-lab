@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1723 | ACTIVE | 2026-10-23 01:53:48 KST |
+| AI 1 | ChatGPT (AI 1) | 1724 | ACTIVE | 2026-10-23 02:25:49 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1907 | ACTIVE | 2026-10-23 02:06:44 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 02:25:49 KST | AI 1 | 1723 | +1 | 1724 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0215KST-A0054-B0069-SHA8: OutRun2006Tweaks A-0054/B-0069 신규 후보 SHA 8개 독립 C1 간이 QA. 원본 전송·매니페스트·후보 출력 SHA256 8/8, RGBA 8/8, 번역 매핑·한글 가독성 8/8, SHA 중복 0건. 문구별 원본 ROI에 다른 원문/보호 이미지가 섞인 입력 위반 3건 FAIL, 생성 캔버스 크기 변경·UI 안전영역 실배치 미입증 5건 HOLD, C1 PASS 0건. [자산 증빙 b451cb7a](https://github.com/thp32tt/OutRun2006Tweaks/commit/b451cb7abb2941b4761f8d86fcc01657bc3f7549) 원격 readback·HEAD 확인. ImageGen/A-B 큐/DDS/C2/C3/실게임 승인·배포 0, RUNTIME_VALIDATION=UNTESTED. 같은 SHA/RUN_KEY 재확인 가점 없음. **AI 점수: 이전 1723점 + 이번 +1점 = 누적 1724점.** |
 | 2026-10-23 02:06:44 KST | AI 2 | 1906 | +1 | 1907 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01448: DX9Ex REVIEW_ONLY에서 R26+HUD SOURCE_HEAD `f8775579449dd9da0dc4f31832aa23d28efc3ce3` 원본 REA/D3DX native DIP→R62 fixed-function L/R→이중 상태 복원→R7 Present→R23 OpenXR 정적 분석. 정확한 R62 post-execute original PROJECTION restore 실패 시 non-result는 성공 leftHr를 반환할 수 있지만 exact result는 E_FAIL을 반환하고 둘 다 frame poison 되는 신규 독립 조건부 경계 문서화. [docs-only result 32056857](https://github.com/thp32tt/OutRun2006Tweaks/commit/32056857b40e73f11466210c6eb30c63c810a74e) 원격 parent/1파일/marker/readback 검증. CODE_CHANGE=NO, PATCH_CANDIDATE_ONLY, SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED; HMD 실패 증상 확정 아님. 동일 TASK_ID retry/rollover/status 재확인은 +0. **AI 점수: 이전 1906점 + 이번 +1점 = 누적 1907점.** |
 | 2026-10-23 01:53:48 KST | AI 1 | 1722 | +1 | 1723 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0145KST-A0053-B0068-SHA8: OutRun2006Tweaks A-0053/B-0068 신규 생성 후보 SHA 8개 독립 C1 검수, 원본·후보 SHA256 8/8, RGBA 8/8, 글자 및 승인 번역 일치 8/8 확인. 원본 UI 셀 배치 미검증·생성 캔버스 크기 차이로 C1 HOLD 8, PASS/FAIL 0. [자산 QA 증빙 3222cbfc](https://github.com/thp32tt/OutRun2006Tweaks/commit/3222cbfc2a526210fbc0ac448c1d751a67f3ada2) 원격 readback/HEAD 확인. ImageGen/A-B 큐/DDS/C2/C3/실게임 작업 없음; RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재확인은 +0. **AI 점수: 이전 1722점 + 이번 +1점 = 누적 1723점.** |
 | 2026-10-23 01:26:11 KST | AI 1 | 1721 | +1 | 1722 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0115KST-A0052-B0067-SHA8: OutRun2006Tweaks A-0052/B-0067 한국어 후보 8개 C1 독립 간이 QA, 신규 후보 SHA 8/8 및 원본/후보 SHA 8/8·PNG RGBA 8/8·승인 번역 8/8 확인. 실제 원본 UI 셀 복귀 배치와 보호 아트 충돌이 검증되지 않아 C1 HOLD 8, PASS/FAIL 0. [자산 QA 증빙 25bec3d6](https://github.com/thp32tt/OutRun2006Tweaks/commit/25bec3d61dd5c186536d438d8e3d3aeefaa67bfc) 원격 readback/HEAD 확인. ImageGen/A-B 생산 큐/DDS/C2/C3/실게임 배포·승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 반복 검증은 +0. **AI 점수: 이전 1721점 + 이번 +1점 = 누적 1722점.** |

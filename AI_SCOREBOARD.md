@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1698 | ACTIVE | 2026-10-22 13:18 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1864 | ACTIVE | 2026-10-22 13:28 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1865 | ACTIVE | 2026-10-22 13:46 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 13:46 KST | AI 2 | 1864 | +1 | 1865 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01419: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD ea1c705077dd2e1453aac10bad4238d2a595701e 기준 R30 SkyGlow pre-HUD L/R capture 이후 same Present stereo TARGET Clear/late-world-draw content provenance REVIEW_ONLY 정적 검토. NEW_FINDING=R30_SKYGLOW_PRESENT_EPOCH_SNAPSHOT_CAN_OUTLIVE_SAME_PRESENT_STEREO_TARGET_COLOR_CLEAR. Docs-only result commit fbe315721c91d0fb4d15e4ed23edf945ccd5b0ac, exact one changed Markdown, parent+marker verified. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED. |
 | 2026-10-22 13:28 KST | AI 2 | 1863 | +1 | 1864 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01418: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `43ca16f39c20b1526e17954ffc11cb819873f44b` 에서 R30 SkyGlow pre-HUD scene capture epoch와 GPU reduced-target resource generation 수명 경계를 REVIEW_ONLY 정적 검토. NEW_FINDING=R30_SKYGLOW_CAPTURE_EPOCH_NOT_BOUND_TO_REDUCED_TEXTURE_RESOURCE_GENERATION; same Present 내 factor/extent 변경으로 재할당된 reduced texture가 capture epoch 일치 때문에 새 StretchRect 없이 bright-pass 입력이 될 수 있는 조건부 소스 경계 확인(실기 발생 미확정). [docs-only ea1c7050](https://github.com/thp32tt/OutRun2006Tweaks/commit/ea1c705077dd2e1453aac10bad4238d2a595701e) 단일 MD 추가, 정확한 [AUTO:CONVERSION-DX9EX-01418] marker 및 원격 branch HEAD/path/readback 검증 PASS. CODE_CHANGE=NO, BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover 재보고 중복 가점 없음. **AI 점수: 이전 1863점 + 이번 +1점 = 누적 1864점.** |
 | 2026-10-22 13:18 KST | AI 1 | 1697 | +1 | 1698 | 신규 독립 RUN_KEY=OUTRUN-C1-20261022T1315KST-NEW-SHA8: B-0041/B-0042 ordinal 190–197의 실제 N100 미검수 한국어 후보 PNG 8개를 SHA256/원본 매핑/RGBA 및 영문·한글 비교 화면으로 독립 간이 QA. 오탈자·가짜 글자·잔상 없음, 8개 `PASS_PNG_TEXT_ONLY`; 8개 모두 원본 ROI와 이미지 캔버스가 달라 `REWORK_DIMENSIONS` 유지, UI-cell 합성/DDS/C2/C3/실게임 승인 없음. [QA evidence](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_evidence/c1/OUTRUN-C1-20261022T1315KST-NEW-SHA8.json), [GitHub material b9179c1a](https://github.com/thp32tt/OutRun2006Tweaks/commit/b9179c1a0b3308c7b9dd69a57ee4dc3afd0d064e), remote HEAD/readback PASS. A/B 큐와 VR/FFB/DX11/DXVK 변경 없음, 신규 QA 성과 단일 +1. **AI 점수: 이전 1697점 + 이번 +1점 = 누적 1698점.** |
 | 2026-10-22 13:11 KST | AI 2 | 1862 | +1 | 1863 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01417: OutRun2006Tweaks `vr-d3d9ex-focus` SOURCE_HEAD `135e4660b6f33e593c37bb2b841408611be9884e` 기준 CABE alpha→R30 L/R GPU eye draw→SkyGlow additive composite→R7 Present/DirectGPU/SBS→R23 OpenXR 정적 검토. 첫 눈 SkyGlow additive write 이후 둘째 눈 실패 시 pixel rollback 없이 `R30ApplyStereoSkyGlow` 실패 bool이 Present caller에서 무시되어 조건부 비대칭 eye frame을 허용할 수 있는 소스 경계 확인. 소스 수정 없이 [docs-only 43ca16f3](https://github.com/thp32tt/OutRun2006Tweaks/commit/43ca16f39c20b1526e17954ffc11cb819873f44b) 단일 MD 추가, 원격 branch HEAD/marker/path 검증 완료. BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/status 재보고 중복 가점 없음. **AI 점수: 이전 1862점 + 이번 +1점 = 누적 1863점.** |

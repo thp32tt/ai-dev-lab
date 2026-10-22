@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1707 | ACTIVE | 2026-10-22 17:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1879 | ACTIVE | 2026-10-22 18:05 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1880 | ACTIVE | 2026-10-22 18:25 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 18:25 KST | AI 2 | 1879 | +1 | 1880 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01432: `thp32tt/OutRun2006Tweaks/vr-d3d9ex-focus` SOURCE_HEAD `38e467d153d082a34a93cf06d23d0d59af55f846` 기준 R26+HUD R62 D3DX FVF142 indexed DIP의 viewport MinZ/MaxZ 검사 비대칭 및 ScreenHud finite plane clip-Z 한계 정적 검토. NEW_FINDING=R26_R62_D3DX_FIXEDFN_VIEWPORT_DEPTH_RANGE_GUARD_ASYMMETRY_AND_UNBOUNDED_FINITE_HUD_PLANE_NDC_Z; 화면/HMD 오류·FPS 증거 미확정. [docs-only 커밋 4076826c](https://github.com/thp32tt/OutRun2006Tweaks/commit/4076826c406a1d3298b245350c7bb8292eba5290), 경로 단일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01432.md, source parent 38e467d1, 정확 marker 및 원격 파일 readback 확인. CODE_CHANGE=NO; BUILD_GATE=NOT_REQUIRED_DOCS_ONLY; CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/status 재보고 +0. **AI 점수: 이전 1879점 + 이번 +1점 = 누적 1880점.** |
 | 2026-10-22 18:05 KST | AI 2 | 1878 | +1 | 1879 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01431: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 873fc1b5df23bbb57163c83833370940235c69e8에서 R26+HUD R62 D3DXSprite FVF 0x142 원본 scissor와 per-eye 투영, L/R RT/viewport/projection 복원, R7 Present 및 R23 OpenXR까지 REVIEW_ONLY 정적 분석. NEW_FINDING=R26_R62_D3DX_FIXEDFN_EYE_PROJECTIVE_CLIP_WITHOUT_SCISSOR_REMAP_IF_ORIGINAL_SCISSOR_ENABLED; 원본 R62 D3DX에서 활성 scissor/실제 클리핑은 미확정. [docs-only 커밋 38e467d1](https://github.com/thp32tt/OutRun2006Tweaks/commit/38e467d153d082a34a93cf06d23d0d59af55f846), 변경 파일 단일 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01431.md, source-parent/정확한 marker/remote readback 확인. CODE_CHANGE=NO; BUILD_GATE=NOT_REQUIRED_DOCS_ONLY; CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/status 재보고 +0. **AI 점수: 이전 1878점 + 이번 +1점 = 누적 1879점.** |
 | 2026-10-22 17:45 KST | AI 1 | 1706 | +1 | 1707 | RUN_KEY=OUTRUN-C1-20261022T1745KST-SHA8: OutRun 2006 C1 신규 8개 독립 QA 실시, 원본 다중 문구/보호 UI 포함과 캔버스 불일치 확인, SHA·RGBA·매핑 검증 후 자산 브랜치 증빙 커밋 13e449c86f0775042b60e33ac14c4b1b26dc6826. 동일 SHA 재보고 중복 가산 금지. |
 | 2026-10-22 17:48 KST | AI 2 | 1877 | +1 | 1878 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01430: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 270b972f48eb25c072789268ea363897c56f1ab1 에서 +TIME/GOAL result 물리 draw provenance에 따른 R26+HUD eye cant quaternion 적용과 일반 HUD identity-eye 차이, 게임 viewport/NDC→D3DX/native/R30/R62 양안/복원→DirectGPU/SBS/OpenXR eye extent 경계를 정적 검토. NEW_FINDING=R26_RESULT_NONZERO_EYE_CANT_IS_GATED_BY_EXACT_PHYSICAL_DRAW_PROVENANCE_WHILE_GENERIC_HUD_USES_IDENTITY_EYE_ORIENTATION; 실제 mixed batch/Quest3 HMD 화면 오류·FPS 변화는 입증되지 않음. [docs-only 결과 873fc1b5](https://github.com/thp32tt/OutRun2006Tweaks/commit/873fc1b5df23bbb57163c83833370940235c69e8), 단일 경로 docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01430.md, GitHub remote marker/readback 검증. CODE_CHANGE=NO; SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY; CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/status 재보고 +0. **AI 점수: 이전 1877점 + 이번 +1점 = 누적 1878점.** |

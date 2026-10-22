@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1711 | ACTIVE | 2026-10-22 19:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1887 | ACTIVE | 2026-10-22 19:45 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1888 | ACTIVE | 2026-10-22 20:04 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 20:04 KST | AI 2 | 1887 | +1 | 1888 | 신규 독립 RUN_KEY=USER-KIWOOMPOS-OUTRUN-PORTAINER-GITHUB-20261022: N100 기존 OutRun Portainer Git 배포 브랜치 `chat-controller-downloads`의 `docker-compose.portainer-vr.yml`에 충돌 회피 포트 18082, read-only N100 Java 웹 리소스, 비-root 제한 리소스/healthcheck 포함 독립 KiwoomPOS 미리보기 서비스 추가 [material compose 3995aa35](https://github.com/thp32tt/OutRun2006Tweaks/commit/3995aa35252aedf59e5946c58c64d8c778890632); [배포 절차 51626c01](https://github.com/thp32tt/OutRun2006Tweaks/commit/51626c0162cfe5f74ae93dd2706d6a32d480817c). GitHub 원격 blob/commit 확인, N100 공개 GET 미러 20페이지/173개 asset·Java JAR 스모크 테스트 PASS. Portainer 재배포는 사용자 담당이며 RUNTIME_DEPLOYMENT=NOT_YET_VERIFIED; 기존 VR 컨테이너/볼륨 미수정. 해당 단일 사용자 작업의 재검증·롤오버는 +0. **AI 점수: 이전 1887점 + 이번 +1점 = 누적 1888점.** |
 | 2026-10-22 19:45 KST | AI 1 | 1710 | +1 | 1711 | RUN_KEY=OUTRUN-C1-20261022T1945KST-NEW-SHA8: N100 실제 원본·후보 SHA256 8/8 및 RGBA 8/8, 승인 번역/가독성 8/8 독립 C1 QA. B-0056 5건 원본 단일문구이나 출력 캔버스 상이로 UV/안전영역 HOLD, A-0042 3건 다중문구/보호 UI 포함 원본 ROI FAIL, 전체 C1 PASS 0. [증빙 48f204fa](https://github.com/thp32tt/OutRun2006Tweaks/commit/48f204faa9bac2c2403a7924cbd2710ac8e6c214). ImageGen/큐 소비/DDS/C2/C3/실게임 승격 없음, RUNTIME_VALIDATION=UNTESTED. 동일 후보 SHA·RUN_KEY retry/recheck +0. **AI 점수: 이전 1710점 + 이번 +1점 = 누적 1711점.** |
 | 2026-10-22 19:45 KST | AI 2 | 1886 | +1 | 1887 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01436: R26+HUD type-1 selector 부모/child mask `get_texture` 2회 일회성 UV 소유권과 중간 세 번째 lookup의 mask 슬롯 퇴출 조건을 정적 검토. [docs-only 결과 c8e48a8b](https://github.com/thp32tt/OutRun2006Tweaks/commit/c8e48a8bffeac932f9be1abfe6dde68e12b23958) 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01436.md` 기록, GitHub source parent/커밋 marker/단일 변경파일/원격 문서 검증; 실제 세 번째 조회 및 마스크 화면 오류 미입증, CODE_CHANGE=NO, CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/롤오버/재보고 중복 +0. **AI 점수: 이전 1886점 + 이번 +1점 = 누적 1887점.** |
 | 2026-10-22 19:43 KST | AI 2 | 1885 | +1 | 1886 | 신규 독립 RUN_KEY=CONVERSION-DX11-01008: 게임 실제 D3D9 SM3 깊이 전용 shadow/occlusion pixel shader(oDepth, oC0 없음) → 네이티브 D3D11 SV_Depth-only PS/DSV/GPU Draw/DrawIndexed C++ 소스와 원본 RT0 컬러 마스크=0, writable Z/DSV fail-closed 폴백 및 양·음성 C++ 회귀 구현. [material eafb15f8](https://github.com/thp32tt/OutRun2006Tweaks/commit/eafb15f878eb5ffb6518d858710d4ddca3738c9a), 같은 TASK_ID 과거 01007 CI 증빙 누락 원인수리·검증 SHA [916ccf47](https://github.com/thp32tt/OutRun2006Tweaks/commit/916ccf47c51a3b4afcebb6e5576780851b499a23), 5/5 필수 Gate SUCCESS: Fast 39763669871, Backend 39763669512, Build 39763679820, OpenXR 39763680008, HUD 39763679783. [C6 docs-only 76bcc3c0](https://github.com/thp32tt/OutRun2006Tweaks/commit/76bcc3c073f09d8c6b7997c241498ea629f40951) 별도 가점 없음. 실제 게임/입력/Quest3/VDXR HMD 테스트 UNTESTED; 완전한 메뉴→차량→레이스 네이티브 렌더러 승격 불가. 동일 TASK_ID retry/CI 수리/checkpoint/재보고 중복 가산 +0. **AI 점수: 이전 1885점 + 이번 +1점 = 누적 1886점.** |

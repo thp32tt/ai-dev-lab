@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1709 | ACTIVE | 2026-10-22 18:55 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1884 | ACTIVE | 2026-10-22 19:06 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1885 | ACTIVE | 2026-10-22 19:27 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 19:27 KST | AI 2 | 1884 | +1 | 1885 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01435: R26+HUD 원본 type-1 masked 0x42A800 direct-UP 대조, R30 HUD/overlay 우안 stencil 동기화 검사 이전 조기 반환 정적 경계 검토. [docs-only 결과 451e5b51](https://github.com/thp32tt/OutRun2006Tweaks/commit/451e5b51e8d56af0927ea2a7e26eddcf7e7bb693), 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01435.md`, 원격 단일 변경 파일/마커/readback 확인. 실제 stencil 활성·화면 오류·FPS 변화 미입증; CODE_CHANGE=NO; SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY; RUNTIME_VALIDATION=UNTESTED. retry/rollover 재보고 중복 +0. **AI 점수: 이전 1884점 + 이번 +1점 = 누적 1885점.** |
 | 2026-10-22 19:06 KST | AI 2 | 1883 | +1 | 1884 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01434: `thp32tt/OutRun2006Tweaks/vr-d3d9ex-focus` SOURCE_HEAD `98ff0b2e52eb2befba16bddb4dadfdc0628d76a7` 기준 R26+HUD D3DX CPU Draw→실제 Flush/End 배치 및 StateBlock 경계 정적 검토. NEW_FINDING=DEFERRED_D3DX_LEDGER_HAS_EXACT_SEMANTIC_AND_EPOCH_OWNER_BUT_NO_CPU_DRAW_PROJECTION_SNAPSHOT_WHILE_R62_SAMPLES_LIVE_PROJECTION_AT_PHYSICAL_DIP; secondary legacy verifier string-contract drift. [docs-only 결과 e682bfe3](https://github.com/thp32tt/OutRun2006Tweaks/commit/e682bfe3613b9164df0b573cac52eb708dcf4ae3) 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01434.md` 기록, commit marker 및 GitHub readback 검증. GPU projection mismatch 및 화면/FPS 실기 결함은 미입증. CODE_CHANGE=NO; SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY; CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/status 재보고 중복 +0. **AI 점수: 이전 1883점 + 이번 +1점 = 누적 1884점.** |
 | 2026-10-22 19:03 KST | AI 2 | 1882 | +1 | 1883 | 신규 독립 RUN_KEY=CONVERSION-DX11-01007: OutRun2006Tweaks vr-dx11-native-r71 게임 실 D3D9 programmable SM3 pixel oDepth.x -> native D3D11 SV_Depth GPU 쓰기와 DSV 소유 상태 확인을 C++ 구현, 잘못된 깊이·조건부·alpha/fog 실패는 원본 게임 Draw/input/FFB 폴백. material/result exact SHA [d084322d](https://github.com/thp32tt/OutRun2006Tweaks/commit/d084322d29856ad29e5368160e403ad147ac4211) GitHub 5/5 필수 Gate SUCCESS (Fast 39758389265, Backend 39758389162, Build 39758389409, OpenXR 39758389182, HUD 39758389262); docs-only C6 [381e41a5](https://github.com/thp32tt/OutRun2006Tweaks/commit/381e41a5016af263ae935fe902683c4d1be879df) 분리, 별도 가점 +0. 실제 게임/Quest3/VDXR/HMD UNTESTED, 전체 네이티브 렌더러 플레이 가능 확정 아님. 동일 TASK_ID 재시도/롤오버/재보고 +0. **AI 점수: 이전 1882점 + 이번 +1점 = 누적 1883점.** |
 | 2026-10-22 18:55 KST | AI 1 | 1708 | +1 | 1709 | RUN_KEY=OUTRUN-C1-20261022T1845KST-NEW-SHA8: 독립 A/B 신규 한글 PNG 8건 C1 QA; 실제 N100 원본/후보 SHA256 8/8, RGBA 8/8, 승인 번역 일치 8/8. B-0054 단일문구 5건 native 안전영역 미검증 HOLD, A-0041 다중문구 원본 ROI 3건 FAIL; 출력 캔버스 불일치 8/8, C1 전체 PASS=0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/4b83ac4edda3dac69169a52ce1deef2a01c98214). DDS/C2/C3/실게임 PASS 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재보고 +0. **AI 점수: 이전 1708점 + 이번 +1점 = 누적 1709점.** |

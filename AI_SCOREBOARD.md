@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1720 | ACTIVE | 2026-10-23 00:29:14 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1904 | ACTIVE | 2026-10-23 00:25 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1905 | ACTIVE | 2026-10-23 00:32 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 00:32 KST | AI 2 | 1904 | +1 | 1905 | 신규 독립 RUN_KEY=USER-DX9EX-COCKPIT-AB-20261023T0028KST: 사용자 Quest3 실기에서 DriverSeatView=false이면 카메라 1/2/3 모두 정상, true이면 전체 심한 떨림 및 운전석 위치 진입 실패 A/B 증거를 받아 DX9Ex R26 source를 재검토. ec7ba91 NativeMode/timer 게이트 제거와 임의 원본 카메라 기준 좌표 보정의 범위 회귀 가능성, finite-only hold 한계, INI 차량스케일 1.15 vs C++ 기본 1.0 불일치를 구분하여 [docs-only 검토 a9fd20c8](https://github.com/thp32tt/OutRun2006Tweaks/commit/a9fd20c8ccee3e49430ec1d9337d88a631fe8149) 단일 신규 Markdown 원격 readback 검증. CODE_CHANGE=NO, BUILD=NOT_RUN, RUNTIME_VALIDATION=PARTIAL_USER_A_B_ONLY; 로그 ZIP 내부 접근 불가로 수치 확정 금지. 재검증/롤오버 중복 가점 없음. **AI 점수: 이전 1904점 + 이번 +1점 = 누적 1905점.** |
 | 2026-10-23 00:29:14 KST | AI 1 | 1719 | +1 | 1720 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0015KST-NEW-SHA8: OutRun2006Tweaks A-0050 indices 0~3+B-0065 indices 0~3 총 신규 SHA 8개 C1 독립 QA. 원본/생성 PNG SHA 검증 8/8, RGBA 8/8, 오번역 교차생성 FAIL 2, 여러 문구 혼합·중복 FAIL 4, 한글 표기 정상이나 원본 UI 셀 배치 미검증 HOLD 2, 최종 C1 PASS 0. [자산 QA 증빙 2e6a2ed8](https://github.com/thp32tt/OutRun2006Tweaks/commit/2e6a2ed80de3a1dc0693d0b469d7da7ac541a104). A/B 큐 소비·ImageGen·DDS·C2/C3·실게임 승인/배포 0, RUNTIME_VALIDATION=UNTESTED. 재검증/기존 SHA 중복 가점 없음. **AI 점수: 이전 1719점 + 이번 +1점 = 누적 1720점.** |
 | 2026-10-23 00:25 KST | AI 2 | 1903 | +1 | 1904 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01446: DX9Ex R26+HUD 최신 SOURCE_HEAD `e1a5dcda30f93b76304716d192c482afa5561ece`에서 F11 external ImGui ScreenOverlay2D -> native DIP -> R30 finite/FOV eye scissor -> R7 Present -> R23 OpenXR 경로를 REVIEW_ONLY 정적 검토. 오른쪽 눈 셋업/Draw 또는 복원 실패 판정 전에 F11 two-eye `hits`가 증가하고 `rightHr`는 right setup 실패와 실제 Draw 실패를 구분하지 못하는 관측 경계를 문서화. [docs-only result f9bd19d5](https://github.com/thp32tt/OutRun2006Tweaks/commit/f9bd19d5f24fc3827b46315a3bb2158871ca9add) 단일 Markdown 원격 readback/marker/변경경로 검증, CODE_CHANGE=NO, SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/status 재보고 중복 가점 금지. **AI 점수: 이전 1903점 + 이번 +1점 = 누적 1904점.** |
 | 2026-10-23 00:21 KST | AI 2 | 1902 | +1 | 1903 | 신규 독립 RUN_KEY=DIRECT-VR-DX9EX-HOURLY-20261023T0012KST: VR Docker 컨트롤러 DX9Ex C 검토 작업 신규 dispatch 및 정기 rollover의 매시 :00 KST 전용 스케줄을 구현. DX11 00/20/40 유지, 기존 TASK_ID 진행상태/체크포인트 보존, 시간대별 dedup 및 회귀 테스트 소스 추가. [material commit 91b0ffb7](https://github.com/thp32tt/OutRun2006Tweaks/commit/91b0ffb719f895dca17e8462ca50ac63f894ddd9) 원격 readback 확인, CI=NOT_RUN, N100_REDEPLOY=NOT_PERFORMED. 동 RUN_KEY retry/status 재보고 가점 금지. **AI 점수: 이전 1902점 + 이번 +1점 = 누적 1903점.** |

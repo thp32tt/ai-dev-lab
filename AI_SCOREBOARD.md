@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1695 | ACTIVE | 2026-10-22 00:45 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1834 | ACTIVE | 2026-10-22 08:53 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1835 | ACTIVE | 2026-10-22 09:10 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 09:10 KST | AI 2 | 1834 | +1 | 1835 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01400: `vr-d3d9ex-focus` SOURCE_HEAD `3be7cd7a2bf33961ce7aa683df5932189b93a70c`에서 IndexedPrimitiveUP sparse declared window / x86 size_t 곱셈 경계 및 L/R/restore/Present/OpenXR 경로를 GitHub SSOT 기준 REVIEW_ONLY 분석. NEW_FINDING=R30_INDEXED_UP_SPARSE_DECLARED_WINDOW_FULL_EYE_CLONE_AND_X86_SIZE_PRODUCT_GUARD_GAP (조건부 소스 위험; 런타임 미검증). [docs-only 결과 4d23aafa](https://github.com/thp32tt/OutRun2006Tweaks/commit/4d23aafa7abfd663c52bf218a08c3ce8dcf14d4f) 단일 파일 parent diff/readback PASS, CODE_CHANGE=NO, BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, RUNTIME_VALIDATION=UNTESTED, 동일 TASK 재시도/롤오버 중복 가점 금지. **AI 점수: 이전 1834점 + 이번 +1점 = 누적 1835점.** |
 | 2026-10-22 08:53 KST | AI 2 | 1833 | +1 | 1834 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01399: `vr-d3d9ex-focus` pinned SOURCE_HEAD `0cbc9c6cf329b0fd79b0b13261006476e93a6d46`에서 불투명/알파 stage `StableDrawSort`의 `CenterZ-radius` 및 nonfinite 비교기 조건부 순서 위반 위험을 실제 GitHub 소스/REA 기준 REVIEW_ONLY 분석, 단일 문서 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01399.md` docs-only [결과 커밋](https://github.com/thp32tt/OutRun2006Tweaks/commit/3be7cd7a2bf33961ce7aa683df5932189b93a70c) 생성·원격 단일파일 diff/커밋마커/readback 검증. CODE_CHANGE=NO, BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, QUEST3/VDXR RUNTIME_VALIDATION=UNTESTED, 동일 RUN_KEY 중복 가산 금지. **AI 점수: 이전 1833점 + 이번 +1점 = 누적 1834점.** |
 | 2026-10-22 08:45 KST | AI 2 | 1832 | +1 | 1833 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01398: vr-d3d9ex-focus SOURCE_HEAD 3aeda9667109e481f0c3a7c54e14162425d510db R26+HUD PMT VR-Wide scoped FOV / fail-open EAX stage-node admission vs actual native physical GPU draw/LEFT+RIGHT/Present/OpenXR REVIEW_ONLY 정적 검토. NEW_FINDING=VR_WIDE_PMT_VISIBILITY_FAILOPEN_ADMISSION_IS_NOT_A_BINOCULAR_DRAW_OR_COST_PROOF (source-confirmed branch; 실제 HMD 원인 및 FPS 비용 미측정). [docs-only result f110c5d4](https://github.com/thp32tt/OutRun2006Tweaks/commit/f110c5d4e813912f7dd352c1a744d86727c38ebd) 단일 문서 parent diff/readback/HEAD PASS, CODE_CHANGE=NO, CI/BUILD NOT_REQUIRED_DOCS_ONLY, RUNTIME_VALIDATION=UNTESTED; 동일 TASK retry/rollover/re보고 중복 가점 금지. **AI 점수: 이전 1832점 + 이번 +1점 = 누적 1833점.** |
 | 2026-10-22 08:39 KST | AI 2 | 1831 | +1 | 1832 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01397: OutRun2006Tweaks vr-d3d9ex-focus SOURCE_HEAD 250b0adb9e203edd8c6d2b477abefa225c850149에서 기본 R26+HUD WorldParticle/XYZRHW UP 양안 scratch 변환 및 native DrawPrimitiveUP 2회 대 비기본 R84 opt-in DynamicVB 진입 조건을 원본 REA→semantic/queue→physical GPU→LEFT/RIGHT/restore→Present/OpenXR 순으로 REVIEW_ONLY 검토. NEW_FINDING=R26_DEFAULT_XYZRHW_PARTICLE_UP_BILATERAL_SUBMIT_SEPARATE_FROM_R84_OPTIN_GPU_RING (source-confirmed compiled path, 실제 모래 병목/FPS 개선 미측정). [docs-only result 3aeda966](https://github.com/thp32tt/OutRun2006Tweaks/commit/3aeda9667109e481f0c3a7c54e14162425d510db) exact single-path parent diff/readback PASS, CODE_CHANGE=NO; CI/BUILD NOT_RUN/NOT_REQUIRED, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/status는 중복 가산 금지. **AI 점수: 이전 1831점 + 이번 +1점 = 누적 1832점.** |

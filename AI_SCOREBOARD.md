@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1722 | ACTIVE | 2026-10-23 01:26:11 KST |
+| AI 1 | ChatGPT (AI 1) | 1723 | ACTIVE | 2026-10-23 01:53:48 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1906 | ACTIVE | 2026-10-23 01:00 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 01:53:48 KST | AI 1 | 1722 | +1 | 1723 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0145KST-A0053-B0068-SHA8: OutRun2006Tweaks A-0053/B-0068 신규 생성 후보 SHA 8개 독립 C1 검수, 원본·후보 SHA256 8/8, RGBA 8/8, 글자 및 승인 번역 일치 8/8 확인. 원본 UI 셀 배치 미검증·생성 캔버스 크기 차이로 C1 HOLD 8, PASS/FAIL 0. [자산 QA 증빙 3222cbfc](https://github.com/thp32tt/OutRun2006Tweaks/commit/3222cbfc2a526210fbc0ac448c1d751a67f3ada2) 원격 readback/HEAD 확인. ImageGen/A-B 큐/DDS/C2/C3/실게임 작업 없음; RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재확인은 +0. **AI 점수: 이전 1722점 + 이번 +1점 = 누적 1723점.** |
 | 2026-10-23 01:26:11 KST | AI 1 | 1721 | +1 | 1722 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0115KST-A0052-B0067-SHA8: OutRun2006Tweaks A-0052/B-0067 한국어 후보 8개 C1 독립 간이 QA, 신규 후보 SHA 8/8 및 원본/후보 SHA 8/8·PNG RGBA 8/8·승인 번역 8/8 확인. 실제 원본 UI 셀 복귀 배치와 보호 아트 충돌이 검증되지 않아 C1 HOLD 8, PASS/FAIL 0. [자산 QA 증빙 25bec3d6](https://github.com/thp32tt/OutRun2006Tweaks/commit/25bec3d61dd5c186536d438d8e3d3aeefaa67bfc) 원격 readback/HEAD 확인. ImageGen/A-B 생산 큐/DDS/C2/C3/실게임 배포·승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 반복 검증은 +0. **AI 점수: 이전 1721점 + 이번 +1점 = 누적 1722점.** |
 | 2026-10-23 01:00 KST | AI 2 | 1905 | +1 | 1906 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01447: `vr-d3d9ex-focus` SOURCE_HEAD `345da0109d09a965c91bb042c67d1f2a2882edec`에서 외부 F11 ImGui per-eye scissor 클램프 zero-area 시 전용 양안 physical DIP 이전 준비 veto → E_NOTIMPL → R62/XYZRHW/R29/native 후보 폴백과 R7 Present·R23 OpenXR source UV 독립 경계를 정적 검토. [docs-only result f8775579](https://github.com/thp32tt/OutRun2006Tweaks/commit/f8775579449dd9da0dc4f31832aa23d28efc3ce3) 1파일 parent/marker/readback 검증, PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 실제 HMD 화면 오류나 성능 영향 미확정; 동 TASK_ID 재검증·retry·rollover는 +0. **AI 점수: 이전 1905점 + 이번 +1점 = 누적 1906점.** |
 | 2026-10-23 00:54:51 KST | AI 1 | 1720 | +1 | 1721 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0045KST-A0051-B0066-SHA8: OutRun2006Tweaks 자산 브랜치에서 A-0051(4), B-0066(4) 미검수 고유 후보 PNG 8개 C1 독립 간이 QA. 정본 영어→한국어 일치 및 원본·출력 SHA256/PNG RGBA 8/8 검증. 비문자 흰색 잔여 픽셀 FAIL 1, 생성 캔버스 복귀/원본 UI 안전영역 미검증 HOLD 7, 최종 C1 PASS 0. [자산 QA 증빙 f18cf965](https://github.com/thp32tt/OutRun2006Tweaks/commit/f18cf965a4f7b1d5b5586b3c9c957a241709943f), 자산 원격 HEAD 확인. A/B 큐/ImageGen/DDS/C2/C3/실게임 변경 없음; RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재검증은 +0점. **AI 점수: 이전 1720점 + 이번 +1점 = 누적 1721점.** |

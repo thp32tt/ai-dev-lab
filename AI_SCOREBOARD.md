@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1714 | ACTIVE | 2026-10-22 21:24:15 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1893 | ACTIVE | 2026-10-22 21:27 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1894 | ACTIVE | 2026-10-22 21:51:12 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 21:51:12 KST | AI 2 | 1893 | +1 | 1894 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01440: R26+HUD SkyGlow 첫 화면 캡처 실패 뒤 R30 직접 eye-draw 호출 경로에서 성공 epoch 기반 재시도가 가능해지는 조건부 pre-HUD 경계 분석. [docs-only 결과 feecd915](https://github.com/thp32tt/OutRun2006Tweaks/commit/feecd91560467d98deb66d3b2a2808a9621e4b89) 단일 검토 문서 GitHub 원격 diff/readback 및 marker 확인, production CODE_CHANGE=NO. GPU/HMD/실제 증상 미확인, PATCH_CANDIDATE_ONLY, CI/BUILD=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover는 +0. **AI 점수: 이전 1893점 + 이번 +1점 = 누적 1894점.** |
 | 2026-10-22 21:27 KST | AI 2 | 1892 | +1 | 1893 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01439: R26+HUD GPU SkyGlow resource/epoch 및 원본 REA 4-way sprite producer→R30 양안→R7 Present→R23 OpenXR 정적 경로 검토에서 동일 RT 축소 크기라도 factor-only cache-key 변화에 따라 4개 render-target 재생성·3개 factor 불변 PS 재컴파일이 발생할 수 있는 독립 resource churn 경계를 분석. [docs-only 결과 9fe20071](https://github.com/thp32tt/OutRun2006Tweaks/commit/9fe20071de77cd0ae3bee9abab475f3f92bf2fac) 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01439.md` remote readback 검증, game source 변경 없음. GPU/HMD/실제 FPS 미측정, PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재검증 중복 가점 금지. **AI 점수: 이전 1892점 + 이번 +1점 = 누적 1893점.** |
 | 2026-10-22 21:24:15 KST | AI 1 | 1713 | +1 | 1714 | 신규 독립 RUN_KEY=OUTRUN-C1-20261022T2115KST-NEW-SHA8: N100 B-0059 5건+A-0045-R1 3건 실제 SHA256 원본/후보/내보내기 기록 8/8 대조, RGBA 8/8, 승인 한글 문구·가독성 8/8 독립 C1 육안 검수. 영문 잔상·불필요한 프레임 없음; 원본과 생성물 캔버스 크기가 달라 UI 셀/배치 안전성 미입증 8건 모두 HOLD, C1 최종 PASS/FAIL=0/0. [자산 브랜치 증빙 fc3ee6bb](https://github.com/thp32tt/OutRun2006Tweaks/commit/fc3ee6bbd2bb8f0b7b6fbf4985993c21bd5e5771). ImageGen·A/B 큐 소비·DDS·C2/C3·실게임 PASS·배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/배치 retry +0. **AI 점수: 이전 1713점 + 이번 +1점 = 누적 1714점.** |
 | 2026-10-22 21:06:54 KST | AI 2 | 1891 | +1 | 1892 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01438: R26+HUD SkyGlow pre-HUD capture/dual-eye additive composite -> R7 Present -> R23 OpenXR 정적 검토에서 **왼쪽 눈 합성 완료 후 오른쪽 눈 실패 시 optional postprocess false가 PresentDestR30에서 무시될 수 있는 조건부 비대칭 경계**를 분리 기록. [docs-only 결과 ea0b1054](https://github.com/thp32tt/OutRun2006Tweaks/commit/ea0b1054915f2db5f2a62e1a8bd321635eb68ab6) 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01438.md` GitHub source parent·marker·원격 파일 확인. 증상/실기/성능 입증 아님, PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover/recheck +0. **AI 점수: 이전 1891점 + 이번 +1점 = 누적 1892점.** |

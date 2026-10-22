@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1718 | ACTIVE | 2026-10-22 23:27:22 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1900 | ACTIVE | 2026-10-22 23:31:13 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1901 | ACTIVE | 2026-10-22 23:42 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 23:42 KST | AI 2 | 1900 | +1 | 1901 | 신규 독립 RUN_KEY=DIRECT-DX9EX-16G-TESTBUILD-20261022T2319KST: 16.57 GiB DX9Ex 로그/evidence와 최신 vr-d3d9ex-focus를 대조해 근거 있는 경로만 유지하고 F11 SOURCE-ASPECT telemetry mode placeholder 누락으로 scissor/LR HRESULT가 밀리는 확정 결함을 실제 소스 수정. CABE R69, native rival, BAEE2 ordinal rank, GOAL/result contract를 회귀검증하고 +TIME은 캡처 부재로 비추측 유지. material SHA `f397ca988c35ebf962ea6e37aedc0593096f19e7`, PC Fast Run #7144 exact-SHA checkout/build/package/artifact upload SUCCESS, artifact id 12432199451, artifact sha256 `d3cb17ea40e928d1d3fe6ac7805374a2162171e9df03f47466cad4b02518dd58`, inner test ZIP sha256 `16ad0fdbda63557c9581c4d72d2eaf6e491acd4182bebef3b7e5517f00c18536`, packaged SOURCE_SHA exact match and dinput8.dll declared hash match verified. Quest3/VDXR runtime remains UNTESTED. 동일 작업 재보고/다운로드 재검증 중복 가점 없음. **AI 점수: 이전 1900점 + 이번 +1점 = 누적 1901점.** |
 | 2026-10-22 23:31:13 KST | AI 2 | 1899 | +1 | 1900 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01444: `vr-d3d9ex-focus` SOURCE_HEAD=`f397ca988c35ebf962ea6e37aedc0593096f19e7`에서 native D3DX End 진입 시점 live sprite 검증과 End 호출 도중 pointer substitution/ScopedExactProducerSemantic TLS 유지 경계를 REVIEW_ONLY 정적 검토. [docs-only result ff06fa03](https://github.com/thp32tt/OutRun2006Tweaks/commit/ff06fa03afe0347810a00e33fb60ee6aaf2f1e2a) 단일 신규 문서, 커밋 parent/marker/remote readback 검증 완료. `CODE_CHANGE=NO`, `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`, `CI=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`; 실제 GPU interleaving/HMD 화면 결함 확정 아님. 동일 TASK_ID retry/rollover 중복 가점 금지. **AI 점수: 이전 1899점 + 이번 +1점 = 누적 1900점.** |
 | 2026-10-22 23:27:22 KST | AI 1 | 1717 | +1 | 1718 | 신규 독립 RUN_KEY=OUTRUN-C1-20261022T2315KST-NEW-SHA8: N100 A-0048 잔여 2건+B-0063-R1 5건+A-0049 1건 신규 8개 독립 C1 QA. 원본·후보·내보내기 SHA256 8/8, 투명 PNG RGBA 8/8, 한글 문구·가독성 8/8, 영문 잔상/불필요 배경 0. JUNGLE 원문 다중 문구/원본 테두리 잘림 및 COURSES 원문 왼쪽 잘림 **소스 ROI FAIL 2**, 출력 크기 변화에 따른 UI 셀 배치 미입증 HOLD 6, 최종 C1 PASS 0. [자산 QA 증빙 9aba7281](https://github.com/thp32tt/OutRun2006Tweaks/commit/9aba728181a2fb40c65780a5f7fb51bcf9691145). ImageGen/A-B 큐 소비/DDS/C2/C3/실게임 승인·배포 0, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/retry/rollover 중복 가산 없음. **AI 점수: 이전 1717점 + 이번 +1점 = 누적 1718점.** |
 | 2026-10-22 23:08:42 KST | AI 2 | 1898 | +1 | 1899 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01443: vr-d3d9ex-focus SOURCE_HEAD=9739a604748b1046df52b189b2af7c2b48972722에서 direct B9200/GOAL native End same-generation mutationSerial guard 정적 검토, 실제 소스 변경 없이 [docs-only result ca7532be](https://github.com/thp32tt/OutRun2006Tweaks/commit/ca7532be35d1a96a28ed6fd86aea0b126f4e4ff0) 원격 1파일/parent/marker 검증 완료. CODE_CHANGE=NO; SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY; RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover 중복 점수 없음. **AI 점수: 이전 1898점 + 이번 +1점 = 누적 1899점.** |

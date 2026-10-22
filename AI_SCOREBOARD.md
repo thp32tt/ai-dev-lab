@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1719 | ACTIVE | 2026-10-23 00:01:00 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1903 | ACTIVE | 2026-10-23 00:21 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1904 | ACTIVE | 2026-10-23 00:25 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 00:25 KST | AI 2 | 1903 | +1 | 1904 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01446: DX9Ex R26+HUD 최신 SOURCE_HEAD `e1a5dcda30f93b76304716d192c482afa5561ece`에서 F11 external ImGui ScreenOverlay2D -> native DIP -> R30 finite/FOV eye scissor -> R7 Present -> R23 OpenXR 경로를 REVIEW_ONLY 정적 검토. 오른쪽 눈 셋업/Draw 또는 복원 실패 판정 전에 F11 two-eye `hits`가 증가하고 `rightHr`는 right setup 실패와 실제 Draw 실패를 구분하지 못하는 관측 경계를 문서화. [docs-only result f9bd19d5](https://github.com/thp32tt/OutRun2006Tweaks/commit/f9bd19d5f24fc3827b46315a3bb2158871ca9add) 단일 Markdown 원격 readback/marker/변경경로 검증, CODE_CHANGE=NO, SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/status 재보고 중복 가점 금지. **AI 점수: 이전 1903점 + 이번 +1점 = 누적 1904점.** |
 | 2026-10-23 00:21 KST | AI 2 | 1902 | +1 | 1903 | 신규 독립 RUN_KEY=DIRECT-VR-DX9EX-HOURLY-20261023T0012KST: VR Docker 컨트롤러 DX9Ex C 검토 작업 신규 dispatch 및 정기 rollover의 매시 :00 KST 전용 스케줄을 구현. DX11 00/20/40 유지, 기존 TASK_ID 진행상태/체크포인트 보존, 시간대별 dedup 및 회귀 테스트 소스 추가. [material commit 91b0ffb7](https://github.com/thp32tt/OutRun2006Tweaks/commit/91b0ffb719f895dca17e8462ca50ac63f894ddd9) 원격 readback 확인, CI=NOT_RUN, N100_REDEPLOY=NOT_PERFORMED. 동 RUN_KEY retry/status 재보고 가점 금지. **AI 점수: 이전 1902점 + 이번 +1점 = 누적 1903점.** |
 | 2026-10-23 00:09:00 KST | AI 2 | 1901 | +1 | 1902 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01445: DX9Ex `vr-d3d9ex-focus` SOURCE_HEAD `b7ca566b0098dba8b7a4746c7950c65a7309006b`에서 +TIME 원본 E8 5개(6번째 mode2 negative control), StageExtension admission/queue/실제 D3DX GPU Draw→R30/R62 양안→Present/OpenXR 경계를 REVIEW_ONLY 정적 검토. `VR P0 STAGE EXTENSION SOURCES` 로그가 `mayPublish=false` 또는 physical Draw 부재여도 완료 호출을 세며 `exactScope=SCREEN_HUD` 고정 문자열을 출력하는 새 진단 관측 한계를 확정. [docs-only result c2e2949f](https://github.com/thp32tt/OutRun2006Tweaks/commit/c2e2949fcc2a1cd445dbadce59c7ec0c01d18026) 단일 Markdown/원격 parent·marker·diff·readback 확인, CODE_CHANGE=NO, SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, CI=NOT_RUN, Quest3/VDXR RUNTIME_VALIDATION=UNTESTED. 같은 RUN_KEY 재검증·롤오버 중복 점수 금지. **AI 점수: 이전 1901점 + 이번 +1점 = 누적 1902점.** |
 | 2026-10-23 00:01:00 KST | AI 1 | 1718 | +1 | 1719 | 신규 독립 RUN_KEY=OUTRUN-C1-20261022T2347KST-NEW-SHA8: OutRun2006Tweaks A-0049 4건+B-0064-R1 4건 신규 SHA256 8개 독립 C1 간이 QA. 원본 매니페스트/전송 SHA 8/8, 후보 로컬/내보내기 SHA 8/8, PNG RGBA 8/8, 승인 번역/가독성 8/8, 영문 잔상/불필요 프레임 0. 원본 UI 셀 합성·안전영역 미검증 HOLD 8, C1 최종 PASS/FAIL 0. [자산 QA 증빙 01a53ea5](https://github.com/thp32tt/OutRun2006Tweaks/commit/01a53ea5ba1c9116d1c23a2ac2d1895123ab742b). ImageGen/A-B 큐 소비/DDS/C2/C3/실게임 승인·배포 0, RUNTIME_VALIDATION=UNTESTED. 기존 SHA/retry 중복 가산 없음. **AI 점수: 이전 1718점 + 이번 +1점 = 누적 1719점.** |

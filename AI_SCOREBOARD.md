@@ -8,8 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1733 | ACTIVE | 2026-10-23 06:52:46 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1909 | ACTIVE | 2026-10-23 07:09:31 KST |
+| AI 1 | ChatGPT (AI 1) | 1734 | ACTIVE | 2026-10-23 07:22:09 KST || AI 2 | ChatGPT2 (현재 이 대화/계정) | 1909 | ACTIVE | 2026-10-23 07:09:31 KST |
 
 ## 점수 규칙
 
@@ -35,6 +34,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 07:22:09 KST | AI 1 | 1733 | +1 | 1734 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0715KST-NEW-SHA: 기존 C1 검수 후보 SHA 463개 제외, 신규 A/B 한글 ROI 후보 8개(A4/B4) 정적 시각 검수. 원본·송신·출력 SHA256 8/8 일치, RGBA 8/8, 한글 매핑/읽힘 8/8. 원본 HD UI 셀 안전영역·합성 fit 미검증으로 HOLD 8, FAIL 0, PASS 0. [자산 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/ebef2aaed7e0989903f62c34a6e4311116b5eec3) 및 원격 HEAD 확인. ImageGen/A-B 큐/DDS/C2/C3/실게임 승인·배포 없음. RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 변경 없음. 동일 SHA/RUN_KEY 재실행 +0. **AI 점수: 이전 1733점 + 이번 +1점 = 누적 1734점.** |
 | 2026-10-23 07:09:31 KST | AI 2 | 1908 | +1 | 1909 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01450: R26+HUD DX9Ex REVIEW_ONLY; SOURCE_HEAD `45e5130549b55b0f4501b2bc400ee3076ad329db` 기준 원본 CalcCameraMatrix/Native camera mode(+0x34A), DriverSeatView persistent gate, 현재 native eye/look를 따르는 좌석 오프셋, player car/driver draw, R30→R7 Present→R23 OpenXR를 정적으로 교차 검토. 유효하지만 시점 모드마다 달라지는 native pose가 last-valid cache를 즉시 교체할 수 있는 조건부 camera-pose continuity 경계 문서화; 실제 Quest3 떨림 원인 검증은 미수행. [docs-only result df4dab2d394](https://github.com/thp32tt/OutRun2006Tweaks/commit/df4dab2d394b212ae5880e3201642b9b4034d791), parent/단일 docs-only 변경/marker/readback 확인. PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 재보고·rollover +0. **AI 점수: 이전 1908점 + 이번 +1점 = 누적 1909점.** |
 | 2026-10-23 06:52:46 KST | AI 1 | 1732 | +1 | 1733 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0645KST-NEW-SHA: 이전 검수 SHA 455개 제외, 신규 한글 ROI 후보 8개(A4/B4) C1 독립 시각 검수. 원본 manifest/송신/export SHA256 일치 8/8, RGBA PNG 8/8, 승인 번역·가독성 정적 확인 8/8. 원본 UI 셀 안전영역 미검증 HOLD 8, PASS 0, FAIL 0 (Jungle→정글 단일행 대비 두 줄 배치 추가 확인 필요). [자산 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/2f5efb8501b93b6f0bd358d3ce42bb783021e955) 및 원격 HEAD 확인. ImageGen/A-B 큐/DDS/C2/C3/실게임 승인·배포 없음, VR/FFB/DX11/DXVK 변경 없음. 동일 SHA/RUN_KEY 재실행 +0. **AI 점수: 이전 1732점 + 이번 +1점 = 누적 1733점.** |
 | 2026-10-23 06:21:50 KST | AI 1 | 1731 | +1 | 1732 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0615KST-NEW-SHA: 기존 검수 이력 447개 SHA 제외, 신규 A/B 한글 후보 8개(A4/B4) 실제 PNG/영문원본 대조·SHA256 원본/송신/후보 8/8 일치·RGBA 8/8. WATERFALLS→워터폴스 후보 왼쪽 경계 유효 alpha 39픽셀 접촉으로 FAIL 1, 나머지 실제 HD UI cell fit 미검증 HOLD 7, PASS 0. [QA JSON](https://github.com/thp32tt/OutRun2006Tweaks/commit/24107411fdecf05f5bd77f9f2b90bd519486b3e5) 커밋 및 원격 HEAD 확인. N100 비교 이미지/metrics 보관. ImageGen·A/B 큐 소비·DDS 작성·C2/C3/실게임 PASS·VR/FFB/DX11/DXVK 변경·배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재실행 +0. **AI 점수: 이전 1731점 + 이번 +1점 = 누적 1732점.** |

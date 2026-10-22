@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1710 | ACTIVE | 2026-10-22 19:30 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1886 | ACTIVE | 2026-10-22 19:43 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1887 | ACTIVE | 2026-10-22 19:45 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 19:45 KST | AI 2 | 1886 | +1 | 1887 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01436: R26+HUD type-1 selector 부모/child mask `get_texture` 2회 일회성 UV 소유권과 중간 세 번째 lookup의 mask 슬롯 퇴출 조건을 정적 검토. [docs-only 결과 c8e48a8b](https://github.com/thp32tt/OutRun2006Tweaks/commit/c8e48a8bffeac932f9be1abfe6dde68e12b23958) 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01436.md` 기록, GitHub source parent/커밋 marker/단일 변경파일/원격 문서 검증; 실제 세 번째 조회 및 마스크 화면 오류 미입증, CODE_CHANGE=NO, CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/롤오버/재보고 중복 +0. **AI 점수: 이전 1886점 + 이번 +1점 = 누적 1887점.** |
 | 2026-10-22 19:43 KST | AI 2 | 1885 | +1 | 1886 | 신규 독립 RUN_KEY=CONVERSION-DX11-01008: 게임 실제 D3D9 SM3 깊이 전용 shadow/occlusion pixel shader(oDepth, oC0 없음) → 네이티브 D3D11 SV_Depth-only PS/DSV/GPU Draw/DrawIndexed C++ 소스와 원본 RT0 컬러 마스크=0, writable Z/DSV fail-closed 폴백 및 양·음성 C++ 회귀 구현. [material eafb15f8](https://github.com/thp32tt/OutRun2006Tweaks/commit/eafb15f878eb5ffb6518d858710d4ddca3738c9a), 같은 TASK_ID 과거 01007 CI 증빙 누락 원인수리·검증 SHA [916ccf47](https://github.com/thp32tt/OutRun2006Tweaks/commit/916ccf47c51a3b4afcebb6e5576780851b499a23), 5/5 필수 Gate SUCCESS: Fast 39763669871, Backend 39763669512, Build 39763679820, OpenXR 39763680008, HUD 39763679783. [C6 docs-only 76bcc3c0](https://github.com/thp32tt/OutRun2006Tweaks/commit/76bcc3c073f09d8c6b7997c241498ea629f40951) 별도 가점 없음. 실제 게임/입력/Quest3/VDXR HMD 테스트 UNTESTED; 완전한 메뉴→차량→레이스 네이티브 렌더러 승격 불가. 동일 TASK_ID retry/CI 수리/checkpoint/재보고 중복 가산 +0. **AI 점수: 이전 1885점 + 이번 +1점 = 누적 1886점.** |
 | 2026-10-22 19:30 KST | AI 1 | 1709 | +1 | 1710 | RUN_KEY=OUTRUN-C1-20261022T1916KST-NEW-SHA8: A/B 생성 신규 한글 PNG 8건 독립 C1 간이 QA. N100 원본 SHA 8/8, 후보 SHA 8/8, RGBA 8/8, 승인 한글 매핑 8/8; B-0055 단일문구 5건 크기/배치 미확정 HOLD, A-0041 2건+A-0042 1건 다중문구 원본 ROI FAIL, C1 PASS 0. [자산 증빙 e9e4b39e](https://github.com/thp32tt/OutRun2006Tweaks/commit/e9e4b39efb8b79d1f3a018a45abe8c16cd3b0662). ImageGen/DDS/C2/C3/실게임 PASS 신규 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY retry·재보고 +0. **AI 점수: 이전 1709점 + 이번 +1점 = 누적 1710점.** |
 | 2026-10-22 19:27 KST | AI 2 | 1884 | +1 | 1885 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01435: R26+HUD 원본 type-1 masked 0x42A800 direct-UP 대조, R30 HUD/overlay 우안 stencil 동기화 검사 이전 조기 반환 정적 경계 검토. [docs-only 결과 451e5b51](https://github.com/thp32tt/OutRun2006Tweaks/commit/451e5b51e8d56af0927ea2a7e26eddcf7e7bb693), 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01435.md`, 원격 단일 변경 파일/마커/readback 확인. 실제 stencil 활성·화면 오류·FPS 변화 미입증; CODE_CHANGE=NO; SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY; RUNTIME_VALIDATION=UNTESTED. retry/rollover 재보고 중복 +0. **AI 점수: 이전 1884점 + 이번 +1점 = 누적 1885점.** |

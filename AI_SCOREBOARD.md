@@ -8,8 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1732 | ACTIVE | 2026-10-23 06:21:50 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1908 | ACTIVE | 2026-10-23 06:07:18 KST |
+| AI 1 | ChatGPT (AI 1) | 1733 | ACTIVE | 2026-10-23 06:52:46 KST || AI 2 | ChatGPT2 (현재 이 대화/계정) | 1908 | ACTIVE | 2026-10-23 06:07:18 KST |
 
 ## 점수 규칙
 
@@ -35,6 +34,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 06:52:46 KST | AI 1 | 1732 | +1 | 1733 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0645KST-NEW-SHA: 이전 검수 SHA 455개 제외, 신규 한글 ROI 후보 8개(A4/B4) C1 독립 시각 검수. 원본 manifest/송신/export SHA256 일치 8/8, RGBA PNG 8/8, 승인 번역·가독성 정적 확인 8/8. 원본 UI 셀 안전영역 미검증 HOLD 8, PASS 0, FAIL 0 (Jungle→정글 단일행 대비 두 줄 배치 추가 확인 필요). [자산 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/2f5efb8501b93b6f0bd358d3ce42bb783021e955) 및 원격 HEAD 확인. ImageGen/A-B 큐/DDS/C2/C3/실게임 승인·배포 없음, VR/FFB/DX11/DXVK 변경 없음. 동일 SHA/RUN_KEY 재실행 +0. **AI 점수: 이전 1732점 + 이번 +1점 = 누적 1733점.** |
 | 2026-10-23 06:21:50 KST | AI 1 | 1731 | +1 | 1732 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0615KST-NEW-SHA: 기존 검수 이력 447개 SHA 제외, 신규 A/B 한글 후보 8개(A4/B4) 실제 PNG/영문원본 대조·SHA256 원본/송신/후보 8/8 일치·RGBA 8/8. WATERFALLS→워터폴스 후보 왼쪽 경계 유효 alpha 39픽셀 접촉으로 FAIL 1, 나머지 실제 HD UI cell fit 미검증 HOLD 7, PASS 0. [QA JSON](https://github.com/thp32tt/OutRun2006Tweaks/commit/24107411fdecf05f5bd77f9f2b90bd519486b3e5) 커밋 및 원격 HEAD 확인. N100 비교 이미지/metrics 보관. ImageGen·A/B 큐 소비·DDS 작성·C2/C3/실게임 PASS·VR/FFB/DX11/DXVK 변경·배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재실행 +0. **AI 점수: 이전 1731점 + 이번 +1점 = 누적 1732점.** |
 | 2026-10-23 06:07:18 KST | AI 2 | 1907 | +1 | 1908 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01449: R26+HUD DX9Ex REVIEW_ONLY, SOURCE_HEAD `32056857b40e73f11466210c6eb30c63c810a74e`에서 원본 REA 4개 sprite physical 경로와 R30 F11 외부 ImGui 초기 cachedVS 비영 VS 거부 / live GetVertexShader 미조회 / R30 SkyGlow StateBlock Apply / R7 SetVertexShader shadow / R31/R33 대비 / R7 Present·R23 OpenXR를 소스 정적으로 분석. `cachedVS!=0 && liveVS==null` 시 F11 유효 후보가 실제 GPU 조회·L/R draw 이전 E_NOTIMPL로 거부 가능한 조건부 경계 문서화. [docs-only result b9fec96f5d](https://github.com/thp32tt/OutRun2006Tweaks/commit/b9fec96f5d2350dbd01915dec21232ee3b31e287) parent/단일 docs-only file/marker/remote readback 검증. CODE_CHANGE=NO, PATCH_CANDIDATE_ONLY, SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED; Quest3 원인 확정 아님. 동일 TASK_ID retry/rollover/status 재보고 +0. **AI 점수: 이전 1907점 + 이번 +1점 = 누적 1908점.** |
 | 2026-10-23 05:52:00 KST | AI 1 | 1730 | +1 | 1731 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0545KST-NEW-SHA: A/B 신규 후보 SHA 8개(A4/B4), 과거 439건 대비 SHA 중복 0, 소스/전송/후보 SHA 8/8 일치, RGBA 8/8, 승인 번역 및 글자 육안 확인 8/8. 원본 UI 안전영역과 native fit 검증 미완료 HOLD 8 (PASS 0 FAIL 0). Q159/Q147 다문구 ROI 및 Q154 차량/복수 UI 보호 영역 추가 확인 필요. [자산 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/e1bc511de936b6dbf4d59a39c0e1a1f8c3a0d021) GitHub 기록, N100 비교 이미지/metrics. A/B 큐 소비·ImageGen·DDS 작성·C2/C3/실게임 PASS·배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 재실행 +0. **AI 점수: 이전 1730점 + 이번 +1점 = 누적 1731점.** |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1714 | ACTIVE | 2026-10-22 21:24:15 KST |
+| AI 1 | ChatGPT (AI 1) | 1715 | ACTIVE | 2026-10-22 21:55:45 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1895 | ACTIVE | 2026-10-22 21:52 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-22 21:55:45 KST | AI 1 | 1714 | +1 | 1715 | 신규 독립 RUN_KEY=OUTRUN-C1-20261022T2145KST-NEW-SHA8: N100 B-0060 5건+A-0046 3건 원본·후보·내보내기 SHA256 8/8, RGBA 8/8, 승인 한글 매핑·글자 가독성 8/8 독립 C1 육안 검수. 이전 20:15/20:45/21:15 검수 24개 SHA와 중복 없음. 원본 ROI와 출력 캔버스 크기가 달라 UI 안전영역 배치 입증 불가로 HOLD 8건, 최종 C1 PASS/FAIL=0/0. [자산 브랜치 증빙 cb7945dd](https://github.com/thp32tt/OutRun2006Tweaks/commit/cb7945dd5a1a08079bcf2ca1da3f6768bbac5dda). ImageGen·A/B 큐 소비·DDS·C2/C3·실게임 PASS·배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/배치 retry +0. **AI 점수: 이전 1714점 + 이번 +1점 = 누적 1715점.** |
 | 2026-10-22 21:52 KST | AI 2 | 1894 | +1 | 1895 | 신규 독립 RUN_KEY=CONVERSION-DX11-01011: 실제 D3D9 SM3 부분 채널 산술의 미초기화 TEMP 채널 HLSL 접근을 C++로 수정하고 native GPU Draw/DrawIndexed 통합·회귀를 구성. [material 9f6ba502](https://github.com/thp32tt/OutRun2006Tweaks/commit/9f6ba50240a8cbc1e00787ce9b57e5cb45a92364), 동일 작업 실패 수리 [validation-bearing 2da592a3](https://github.com/thp32tt/OutRun2006Tweaks/commit/2da592a3558d6399ac8019be0b9f77ed3620dd28), 필수 5 exact-SHA Actions SUCCESS: Fast 39779815949, Backend 39779815777, Build 39779827303, OpenXR 39779827292, HUD 39779827310. Quest3/VDXR 실게임 RUNTIME_VALIDATION=UNTESTED, 전체 DX11 전환 완료 아님, retry/C6 중복 가산 금지. **AI 점수: 이전 1894점 + 이번 +1점 = 누적 1895점.** |
 | 2026-10-22 21:51:12 KST | AI 2 | 1893 | +1 | 1894 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01440: R26+HUD SkyGlow 첫 화면 캡처 실패 뒤 R30 직접 eye-draw 호출 경로에서 성공 epoch 기반 재시도가 가능해지는 조건부 pre-HUD 경계 분석. [docs-only 결과 feecd915](https://github.com/thp32tt/OutRun2006Tweaks/commit/feecd91560467d98deb66d3b2a2808a9621e4b89) 단일 검토 문서 GitHub 원격 diff/readback 및 marker 확인, production CODE_CHANGE=NO. GPU/HMD/실제 증상 미확인, PATCH_CANDIDATE_ONLY, CI/BUILD=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK retry/rollover는 +0. **AI 점수: 이전 1893점 + 이번 +1점 = 누적 1894점.** |
 | 2026-10-22 21:27 KST | AI 2 | 1892 | +1 | 1893 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01439: R26+HUD GPU SkyGlow resource/epoch 및 원본 REA 4-way sprite producer→R30 양안→R7 Present→R23 OpenXR 정적 경로 검토에서 동일 RT 축소 크기라도 factor-only cache-key 변화에 따라 4개 render-target 재생성·3개 factor 불변 PS 재컴파일이 발생할 수 있는 독립 resource churn 경계를 분석. [docs-only 결과 9fe20071](https://github.com/thp32tt/OutRun2006Tweaks/commit/9fe20071de77cd0ae3bee9abab475f3f92bf2fac) 단일 `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01439.md` remote readback 검증, game source 변경 없음. GPU/HMD/실제 FPS 미측정, PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, BUILD/CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/재검증 중복 가점 금지. **AI 점수: 이전 1892점 + 이번 +1점 = 누적 1893점.** |

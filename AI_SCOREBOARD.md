@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1763 | ACTIVE | 2026-10-24 04:53:35 KST |
+| AI 1 | ChatGPT (AI 1) | 1764 | ACTIVE | 2026-10-24 05:23:19 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1930 | ACTIVE | 2026-10-24 01:53:54 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-24 05:23:19 KST | AI 1 | 1763 | +1 | 1764 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0517KST-NEW-SHA8: 기존 SHA 690개를 제외한 신규 A/B PNG 후보 8건(A4/B4) 원본·전송·내보내기 SHA256 8/8 일치, RGBA와 검은·흰 매트로 승인 번역·글자 검증. B ordinal 381 'SORRY! You need more miles!' 원본 2줄이 한글 1줄로 합쳐진 레이아웃 소실 **FAIL 1**; 원본 UI 셀/보호 아트 네이티브 배치 미검증 **HOLD 7**, 정식 PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/e536c81804e460f097a27ad4adfd5631cf6af68d) 원격 HEAD 확인. ImageGen·큐 소비·DDS·C2/C3·실게임 PASS·배포 없음, RUNTIME_VALIDATION=UNTESTED. 실제 신규 8 SHA 독립 검수 성과만 +1, 같은 SHA/retry/re-report는 +0. **AI 점수: 이전 1763점 + 이번 +1점 = 누적 1764점.** |
 | 2026-10-24 04:53:35 KST | AI 1 | 1762 | +1 | 1763 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0445KST-NEW-SHA8: 이전 검수 SHA 682개 제외 후 신규 A/B ImageGen 후보 8건(A4/B4), 원본 manifest/전송/출력 SHA256 8/8 일치 확인, RGBA 투명 PNG 및 검정·흰색 매트로 오탈자·자소·승인 번역 비교. 원래 native UI cell/UV 배치·보호 아트 합성 미검증으로 HOLD 8, FAIL 0, C1 정식 PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/04624e5d6206456a5c194cfbdaebed0c65f10efb) GitHub 원격 확인. ImageGen 호출/A-B 큐 소비/DDS 작성/게임 배포/C2·C3·실게임 승인 없음; RUNTIME_VALIDATION=UNTESTED. 신규 8 SHA의 1회 독립 QA 성과만 +1, 동일 SHA/retry/re-report 중복 +0. **AI 점수: 이전 1762점 + 이번 +1점 = 누적 1763점.** |
 | 2026-10-24 04:25:24 KST | AI 1 | 1761 | +1 | 1762 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0415KST-NEW-SHA8: 직전 674개 SHA를 제외하고 A/B 새로운 후보 8개(A 4, B 4)의 PNG/RGBA·source/전송/출력 SHA 8/8 일치 및 흰/검은 매트 육안 검수. A ordinal 309 영문 Rank for this stage 승인 한글 「이 스테이지 랭크」 대신 「경적을 울리세요!」가 출력된 매핑 불일치 **FAIL 1** 확정, 원래 UV/UI 안전영역·보호 아트 미검증 **HOLD 7**, 정식 PASS 0. [GitHub QA 증빙 1d9d84d](https://github.com/thp32tt/OutRun2006Tweaks/commit/1d9d84d99cad1da2277ed2c825bd80b09846e456) 원격 HEAD 검증. ImageGen/큐소비/DDS/게임 배포/C2/C3 승인 없음, RUNTIME_VALIDATION=UNTESTED. 고유 배치 성과만 +1, 동일 SHA/retry/re-report +0. **AI 점수: 이전 1761점 + 이번 +1점 = 누적 1762점.** |
 | 2026-10-24 03:52:23 KST | AI 1 | 1760 | +1 | 1761 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0345KST-NEW-SHA8: 이전 666개 검수 SHA 제외, 신규 A/B 후보 8개(A4/B4) SHA source/전송/내보내기 8/8 일치, 투명 RGBA 및 검은/흰 배경에서 한글 글리프/승인 번역 확인. A ordinal 323 원본 2줄을 1줄로 합친 줄 배치 손실 **FAIL 1**, 나머지 7개는 원본 ROI 대비 출력 캔버스 차이와 실제 native UI 셀/UV 합성 미확인 **HOLD 7**, 정식 PASS 0. 자산 브랜치 증빙 [757446d](https://github.com/thp32tt/OutRun2006Tweaks/commit/757446dba3e6a4a083b1027b747dc7710d04e5df). 이미지 생성/큐 소비/DDS/C2/C3/실게임 승인/배포 없음; 중복 가점 없음. **AI 점수: 이전 1760점 + 이번 +1점 = 누적 1761점.** |

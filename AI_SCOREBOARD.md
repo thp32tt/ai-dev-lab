@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1766 | ACTIVE | 2026-10-24 06:20:36 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1931 | ACTIVE | 2026-10-24 05:39 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1932 | ACTIVE | 2026-10-24 06:28:24 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-24 06:28:24 KST | AI 2 | 1931 | +1 | 1932 | 신규 독립 RUN_KEY=CONVERSION-DX11-01034: 원본 실게임 D3D9 pre-Draw ColorFill 16-slot 기록에서 후속 사각형에 완전히 덮인 픽셀 기록을 lossless 압축해 native D3D11 첫 Draw 체인으로 전달, 17개 실제 독립 쓰기는 fail-closed 유지. [material C++ da673cdc](https://github.com/thp32tt/OutRun2006Tweaks/commit/da673cdc887a74ab037771964deff60b2610bd09), [exact feature/target source 6260ff35](https://github.com/thp32tt/OutRun2006Tweaks/commit/6260ff35fe72102f846c70b48498068c4c70d341), [C6 bookkeeping 05596194](https://github.com/thp32tt/OutRun2006Tweaks/commit/055961946a655ddcadd42279e971dd4ad07798ba). Exact source SHA 6260ff35 필수 GitHub Actions 5/5 SUCCESS: Fast 40025362025, Backend 40025362170, Build 40025362144, OpenXR 40025362009, HUD 40025362078. 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 게임 플레이가능 미확정. 동일 TASK_ID 롤오버/retry 중복 없음. **AI 점수: 이전 1931점 + 이번 +1점 = 누적 1932점.** |
 | 2026-10-24 06:20:36 KST | AI 1 | 1765 | +1 | 1766 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0615KST-NEW-SHA8: 이전 검수 SHA 706건 제외, A/B 신규 후보 8건(A4/B4) 원본 manifest/전송/출력 SHA256 8/8 일치 및 RGBA 투명 PNG·육안 한글 매핑 확인. UI native cell/UV 안전영역과 인접 보호 아트 배치 미검증으로 **HOLD 8**, FAIL 0, C1 STATIC PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/b6343acbebf24a2773efd1a11af854d2adcca5d9) commit/원격 파일 확인. ImageGen 호출/A-B 큐 소비/DDS 작성/C2·C3·실게임 PASS/게임 배포 없음, RUNTIME_VALIDATION=UNTESTED. 신규 8 SHA 1회만 가산; 동일 SHA/retry/재보고 중복 +0. **AI 점수: 이전 1765점 + 이번 +1점 = 누적 1766점.** |
 | 2026-10-24 05:49:34 KST | AI 1 | 1764 | +1 | 1765 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0545KST-NEW-SHA8: 이전 검수 SHA 698개를 제외하고 신규 A/B 후보 8건(A4/B4)의 source manifest/전송/출력 SHA256 8/8 검증, RGBA 및 검정·흰색 매트에서 번역·글리프·불필요한 프레임 확인. A ordinal 324·325 영문 2줄 경고가 한글 1줄로 병합된 **FAIL 2**, 네이티브 UI cell/보호 아트 배치 미확인 **HOLD 6**, C1 정식 PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/de6f7211a84d7e90c43b673e380a294051eb3ee3) 원격 HEAD 확인. ImageGen 호출/A-B 큐 소비/DDS 작성/C2·C3·실게임 승인·게임 배포 없음, RUNTIME_VALIDATION=UNTESTED. 신규 8 SHA 독립 QA 성과 1회만 +1, 동일 SHA/retry/재보고 중복 +0. **AI 점수: 이전 1764점 + 이번 +1점 = 누적 1765점.** |
 | 2026-10-24 05:39 KST | AI 2 | 1930 | +1 | 1931 | 신규 독립 RUN_KEY=CONVERSION-DX11-01033: DX11 native pre-Draw ColorFill 실제 게임 SM3/FVF GPU 재생 Win32 C2664/C2440 원인 수정 [material 58386db6](https://github.com/thp32tt/OutRun2006Tweaks/commit/58386db6f20d7dd81a7910e93d124081ebca6460); [C6 d4fcfd07](https://github.com/thp32tt/OutRun2006Tweaks/commit/d4fcfd07e4a4f2d685e896f24cc1473c3da921ef). Exact SHA 58386db6 필수 Actions 5/5 SUCCESS: Fast 40018748678, Backend 40018748729, Win32 Build 40018748679, OpenXR 40018748666, HUD 40018748723. 동일 TASK_ID 기능 브랜치 [2cbbc578](https://github.com/thp32tt/OutRun2006Tweaks/commit/2cbbc578891399fcfde6930f85c56049b58d6bf3) Win32 Build PASS, Fast CI 오류 마스킹 방지 개선은 해당 기능 브랜치에만 보존·대상 미승격. Quest3/VDXR/실게임 RUNTIME_VALIDATION=UNTESTED; 플레이 가능 판정 없음. retry/rollover 중복 가점 없음. **AI 점수: 이전 1930점 + 이번 +1점 = 누적 1931점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1751 | ACTIVE | 2026-10-23 15:55:11 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1914 | ACTIVE | 2026-10-23 16:01:55 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1915 | ACTIVE | 2026-10-23 16:08:00 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 16:08:00 KST | AI 2 | 1914 | +1 | 1915 | 독립 DX9Ex REVIEW_ONLY 정적 검토 RUN_KEY=CONVERSION-DX9EX-01455: vr-d3d9ex-focus SOURCE_HEAD bc8c7acfc8345b47419d7baa85bfdd134cb78420에서 x64 HOST GameState 전환 시 Desktop Duplication available=true/fresh=false 이전 픽셀을 새 LOCAL menu crop으로 재투영할 수 있는 조건부 경계 발견, PATCH_CANDIDATE_ONLY 문서 [GitHub RESULT](https://github.com/thp32tt/OutRun2006Tweaks/commit/570f45168ea4178aa79bdce5942c3aa375dedeeb) docs-only 단일 파일·부모·마커·원격 readback 검증. CODE_CHANGE=NO; CI=NOT_RUN; RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1914점 + 이번 +1점 = 누적 1915점.** |
 | 2026-10-23 16:01:55 KST | AI 2 | 1913 | +1 | 1914 | 신규 독립 RUN_KEY=CONVERSION-DX11-01016: 실게임 ps_3_0 vFace 시스템 입력→D3D11 SV_IsFrontFace 네이티브 Draw C++ 구현 [material 08f2aaaf](https://github.com/thp32tt/OutRun2006Tweaks/commit/08f2aaaf392b58dfd1146bdaa7972dd96f2e221f), 동일 TASK_ID 선행 01015 계약 복구·00964/01015 회귀 CI 수리 [79d76afc](https://github.com/thp32tt/OutRun2006Tweaks/commit/79d76afc71b35288ec2dfba08313d4a929b5eb46), [de280a18](https://github.com/thp32tt/OutRun2006Tweaks/commit/de280a187305be3f018a3500f318e222e8a6dade), 최종 validation-bearing [3d0d1fb6](https://github.com/thp32tt/OutRun2006Tweaks/commit/3d0d1fb63b6392f244899760a8e1e9a876b51e12). 필수 exact-SHA Fast 39912972914 / Backend 39912972882 / Build 39912972870 / OpenXR 39912972890 / HUD 39912972994 5/5 PASS, [C6 docs-only b984f11e](https://github.com/thp32tt/OutRun2006Tweaks/commit/b984f11e38835ccd507addbfefa89a1161ea6ca3). 바이너리 번들 11/11 SHA256 PASS. 실게임 가시 프레임·Quest3·FFB RUNTIME_VALIDATION=UNTESTED, FULL_RENDERER_COMPLETE=false. 동일 TASK_ID retry/rollover 추가 가산 금지. **AI 점수: 이전 1913점 + 이번 +1점 = 누적 1914점.** |
 | 2026-10-23 15:55:11 KST | AI 1 | 1750 | +1 | 1751 | 신규 C1 독립 QA RUN_KEY=OUTRUN-C1-20261023T1545KST-NEW-SHA8: 기존 검수 후보 SHA 599개 제외, 신규 A/B PNG 8개(A4/B4) source/전송/출력 SHA256 8/8, RGBA 및 투명 한글/승인 매핑·가독성 검수. 출력 캔버스와 원본 ROI 크기가 다르고 native UI cell/UV 배치 미검증으로 HOLD 8(PASS 0/FAIL 0); B 원본 ROI에 타 문구·보호 아트 포함. [GitHub QA 보고](https://github.com/thp32tt/OutRun2006Tweaks/commit/7a218c7858497ffcddf08f058a5ccc554d8bd0a2). ImageGen·A/B 큐 소비·DDS·게임 배포·C2/C3·실게임 PASS 없음; RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 중복 가점 금지. **AI 점수: 이전 1750점 + 이번 +1점 = 누적 1751점.** |
 | 2026-10-23 15:22:47 KST | AI 1 | 1749 | +1 | 1750 | 신규 C1 QA RUN_KEY=OUTRUN-C1-20261023T1515KST-NEW-SHA8: 미검수 A/B PNG 후보 신규 SHA 8개(A4/B4), 기존 QA SHA 591개 제외, source/전송/출력 SHA256 8/8, RGBA 투명 텍스트/흰 매트 및 승인 한글 매핑·가독성 검수. 출력과 원본 ROI 크기 불일치, native UI cell/UV 및 보호 아트 재통합 검증 부족으로 HOLD 8(PASS 0/FAIL 0). [GitHub QA 결과](https://github.com/thp32tt/OutRun2006Tweaks/commit/d4902c39abd2b3fd10046141505e8856c7755267). ImageGen·A/B 큐 소비·DDS 합성/배포·C2/C3·실게임 PASS 없음; RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 중복 가산 금지. **AI 점수: 이전 1749점 + 이번 +1점 = 누적 1750점.** |

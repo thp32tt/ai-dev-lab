@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1768 | ACTIVE | 2026-10-24 07:19:27 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1932 | ACTIVE | 2026-10-24 06:28:24 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1933 | ACTIVE | 2026-10-24 08:30:01 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-24 08:30:01 KST | AI 2 | 1932 | +1 | 1933 | 신규 독립 수도권 연간권·시즌권·다회권 가격/주말/등록 조건 실제 공식 소스 재검증. 씨라이프 코엑스 79,000원은 가격 동일해 반복 추천 제외, 그러나 [판매처 약관](https://nseoul.smartinfini.com/?pcode=S8510489&pn=product.view)에서 2026-10-31까지 정보등록 및 현장 방문 필수, 고정 종료 2027-09-30을 신규 확정하고 기존 '첫 입장월부터 1년' 일반 FAQ와 프로모션 개별약관 차이를 경고. [공식 연간권](https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/)의 10/22~24 NOL·10/26~28 쿠팡 판매 일정, 주말 무제한, 36개월 미만 무료·증빙 확인. 서울랜드 공식 연간권/프로모션, 웅진플레이도시/키즈 다회권 후보 재검증했으나 신규 추천가 확증 부족으로 제외. 본 실행에서 사용자 알림 가치가 있는 기존 특가 등록조건 확정 발견, +1 1회. **AI 점수: 이전 1932점 + 이번 +1점 = 누적 1933점.** RUN_KEY=AUTO:CAPITAL-ANNUAL-PASS:20261024T083001KST |
 | 2026-10-24 07:19:27 KST | AI 1 | 1767 | +1 | 1768 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0715KST-NEW-SHA6: 이전 SHA 722건 제외, A/B 생성 PNG 신규 6건(A3/B3) SHA 원본 manifest/전송/후보 6/6, RGBA 6/6 및 검정·흰 배경 한글 가독성 확인. 원본 네이티브 UI cell/보호 아트 침범 미검증으로 HOLD 6, FAIL 0, C1 STATIC PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/079fc82d72519761755b3575e4438930cac1c89e) 실제 commit 원격 조회 확인. ImageGen/A-B 큐/DD​​S/게임 배포/C2-C3/실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA·재검증·retry 중복 가점 없음. **AI 점수: 이전 1767점 + 이번 +1점 = 누적 1768점.** |
 | 2026-10-24 06:51:28 KST | AI 1 | 1766 | +1 | 1767 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0647KST-NEW-SHA8: 이전 검수 SHA 714건 제외, A/B 신규 후보 8건(A4/B4) SHA256 원본 manifest/전송/후보 8/8 검증, RGBA 및 검정/흰 배경에서 승인 한글 매핑·기본 글리프 확인. 원본 native UI cell/UV 안전영역과 보호 아트 배치 미검증으로 HOLD 8 / FAIL 0 / C1 STATIC PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/da4145ae24574e1bf84a5ffa55c3a8506cca5c30) GitHub commit·원격 HEAD 확인. ImageGen 호출/A-B 큐 소비/DDS 작성/게임 배포/C2·C3·실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/retry/재보고 중복 가점 없음. **AI 점수: 이전 1766점 + 이번 +1점 = 누적 1767점.** |
 | 2026-10-24 06:28:24 KST | AI 2 | 1931 | +1 | 1932 | 신규 독립 RUN_KEY=CONVERSION-DX11-01034: 원본 실게임 D3D9 pre-Draw ColorFill 16-slot 기록에서 후속 사각형에 완전히 덮인 픽셀 기록을 lossless 압축해 native D3D11 첫 Draw 체인으로 전달, 17개 실제 독립 쓰기는 fail-closed 유지. [material C++ da673cdc](https://github.com/thp32tt/OutRun2006Tweaks/commit/da673cdc887a74ab037771964deff60b2610bd09), [exact feature/target source 6260ff35](https://github.com/thp32tt/OutRun2006Tweaks/commit/6260ff35fe72102f846c70b48498068c4c70d341), [C6 bookkeeping 05596194](https://github.com/thp32tt/OutRun2006Tweaks/commit/055961946a655ddcadd42279e971dd4ad07798ba). Exact source SHA 6260ff35 필수 GitHub Actions 5/5 SUCCESS: Fast 40025362025, Backend 40025362170, Build 40025362144, OpenXR 40025362009, HUD 40025362078. 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 게임 플레이가능 미확정. 동일 TASK_ID 롤오버/retry 중복 없음. **AI 점수: 이전 1931점 + 이번 +1점 = 누적 1932점.** |

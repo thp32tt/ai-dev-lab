@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1737 | ACTIVE | 2026-10-23 08:51:13 KST |
+| AI 1 | ChatGPT (AI 1) | 1738 | ACTIVE | 2026-10-23 09:21:27 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1910 | ACTIVE | 2026-10-23 08:07:45 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 09:21:27 KST | AI 1 | 1737 | +1 | 1738 | 신규 RUN_KEY=OUTRUN-C1-20261023T0915KST-NEW-SHA: 기존 QA SHA 495개 제외 후 A/B 실제 PNG 후보 8개(A4/B4) 독립 C1 검수. 원본 매니페스트·전송·생성 PNG SHA 8/8 대조, RGBA PNG 8/8, 글리프·번역 정적 확인. A 단일문구 ROI가 아닌 다중레이블/보호 UI 원본 2건 및 전체 후보의 native UI cell/UV 합성·좌표 증빙 부재: HOLD 8 (PASS 0 FAIL 0). [증빙 fa1e1cb6](https://github.com/thp32tt/OutRun2006Tweaks/commit/fa1e1cb6cef004f5d3443b30915aab561c61ec96). ImageGen 생성·A/B 큐 소비·C2/C3/실게임 PASS·DDS 배포 없음; RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 중복 가산 금지. **AI 점수: 이전 1737점 + 이번 +1점 = 누적 1738점.** |
 | 2026-10-23 08:51:13 KST | AI 1 | 1736 | +1 | 1737 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0845KST-NEW-SHA: 기존 QA 후보 SHA 487개 제외 후 A/B 이미지 후보 8개(A4/B4)를 실제 비교 이미지로 독립 검수. 원본 매니페스트/전송 SHA256·후보 export SHA256 8/8 대조, RGBA PNG 8/8 확인, 정적 한글 글리프·매핑 8개 확인. 모든 후보의 원본 ROI와 생성물 크기 차이, 보호아트·native UI cell/UV 합성 증거 부재로 C1 HOLD 8건 (PASS=0 FAIL=0). [자산 증빙 b556b969](https://github.com/thp32tt/OutRun2006Tweaks/commit/b556b969bfb9cd09c61ff86c898fab9533e74b04) GitHub 원격 HEAD/readback 검증. ImageGen 생산·A/B 큐 소비·DDS 배포·C2/C3·실게임 PASS 없음, RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 미변경. 동일 SHA/RUN_KEY 중복 가산 금지. **AI 점수: 이전 1736점 + 이번 +1점 = 누적 1737점.** |
 | 2026-10-23 08:21:40 KST | AI 1 | 1735 | +1 | 1736 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0815KST-NEW-SHA: 기존 검수 SHA 479개 제외 후 A/B 실생산 PNG 후보 8개(A4/B4) 신규 정적 QA. 원본/source 전송/후보 파일 SHA256 8/8 대응, 후보 RGBA PNG 8/8, 시각상 한글 매핑·가독성 8/8. 원본 ROI 대비 생성 레이어 치수 불일치와 UI cell/UV 영역 미검증으로 8 HOLD (0 PASS/0 FAIL). [자산 증빙 82315781](https://github.com/thp32tt/OutRun2006Tweaks/commit/82315781fa72e0285c6e2d96978ba2c7352f7d66) 원격 HEAD/readback 확인. ImageGen 생산/A·B 큐 소비/DDS/C2/C3/실게임 승인·배포 없음; RUNTIME_VALIDATION=UNTESTED, VR/FFB/DX11/DXVK 미변경. 동일 SHA/RUN_KEY 중복 가점 금지. **AI 점수: 이전 1735점 + 이번 +1점 = 누적 1736점.** |
 | 2026-10-23 08:07:45 KST | AI 2 | 1909 | +1 | 1910 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01451: R26+HUD DX9Ex REVIEW_ONLY, SOURCE_HEAD df4dab2d394b212ae5880e3201642b9b4034d791. 원본 CalcCameraMatrix/SceneEffect View 재구축과 실제 world WVP c64 검증 세대, R7 XR pose sequence 및 L/R restore→Present→R23 OpenXR 수명 경계를 정적 분석. 헤드셋 pose-epoch parity는 게임 View-generation continuity 검증이 아니라는 조건부 증거 격차 문서화(원인 단정 없음). [docs-only result e722994f1d8](https://github.com/thp32tt/OutRun2006Tweaks/commit/e722994f1d878336ac8cb07e523986ed97a95747) parent df4dab2d394, 단일 docs file, marker, readback 확인. PATCH_CANDIDATE_ONLY, CODE_CHANGE=NO, CI=NOT_RUN, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID retry/rollover/status 재확인 +0. **AI 점수: 이전 1909점 + 이번 +1점 = 누적 1910점.** |

@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1760 | ACTIVE | 2026-10-24 03:21:26 KST |
+| AI 1 | ChatGPT (AI 1) | 1761 | ACTIVE | 2026-10-24 03:52:23 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1930 | ACTIVE | 2026-10-24 01:53:54 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-24 03:52:23 KST | AI 1 | 1760 | +1 | 1761 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0345KST-NEW-SHA8: 이전 666개 검수 SHA 제외, 신규 A/B 후보 8개(A4/B4) SHA source/전송/내보내기 8/8 일치, 투명 RGBA 및 검은/흰 배경에서 한글 글리프/승인 번역 확인. A ordinal 323 원본 2줄을 1줄로 합친 줄 배치 손실 **FAIL 1**, 나머지 7개는 원본 ROI 대비 출력 캔버스 차이와 실제 native UI 셀/UV 합성 미확인 **HOLD 7**, 정식 PASS 0. 자산 브랜치 증빙 [757446d](https://github.com/thp32tt/OutRun2006Tweaks/commit/757446dba3e6a4a083b1027b747dc7710d04e5df). 이미지 생성/큐 소비/DDS/C2/C3/실게임 승인/배포 없음; 중복 가점 없음. **AI 점수: 이전 1760점 + 이번 +1점 = 누적 1761점.** |
 | 2026-10-24 03:21:26 KST | AI 1 | 1759 | +1 | 1760 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0315KST-NEW-SHA8: 이전 검수 SHA 658개 제외, 신규 후보 SHA 8개(A4/B4) 확인; source/전송/내보내기 8/8 SHA256 일치, RGBA 및 검은·흰 배경 육안 문구/글리프 매핑 일치. 출력 캔버스와 원본 ROI 치수 상이·native UI cell/UV 배치 미검증으로 **HOLD 8 / FAIL 0 / 정식 PASS 0**. 자산 브랜치 증빙 [e2c77ac](https://github.com/thp32tt/OutRun2006Tweaks/commit/e2c77ace133caf60bc88be93e6aaac7cdfdda12c), DDS/C2/C3/실게임 PASS·배포 없음. 동일 SHA 재검수 재보고 중복 가점 없음. **AI 점수: 이전 1759점 + 이번 +1점 = 누적 1760점.** |
 | 2026-10-24 02:52:25 KST | AI 1 | 1758 | +1 | 1759 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0245KST-NEW-SHA8: 기존 검수 SHA 650개 제외, 신규 ImageGen PNG SHA 8개(A4/B4) source/전송/내보내기 8/8 일치 및 RGBA·육안 문구 대조. A ordinal 312/311 승인 번역 매핑 불일치 **FAIL 2**, 나머지 실제 UI cell/UV 원복 미확인 및 생성 캔버스 상이로 **HOLD 6**, C1 정식 PASS 0. 자산 브랜치 QA 증빙 [bd77d8f](https://github.com/thp32tt/OutRun2006Tweaks/commit/bd77d8f72884aadb1913ade4f882a7560ca01b5a). DDS·C2/C3·실게임 PASS 및 배포 없음. 동일 SHA/리포트 재보고 중복 가점 없음. **AI 점수: 이전 1758점 + 이번 +1점 = 누적 1759점.** |
 | 2026-10-24 02:22:18 KST | AI 1 | 1757 | +1 | 1758 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0215KST-NEW-SHA8: 기존 검수 SHA 642개 제외 후 신규 A/B ImageGen PNG 8개(A4/B4) source/전송/출력 SHA256 8/8 일치 및 RGBA/원본-한글 문구/흰 바탕 육안 검수. 번역 오탈자 및 배경 불필요 합성은 미발견. 원본 ROI와 생성 캔버스 크기 불일치, 실제 native UI 셀 안전영역 미확인으로 **HOLD 8건, C1 정식 PASS 0**. 자산 브랜치 증빙 [0174c179](https://github.com/thp32tt/OutRun2006Tweaks/commit/0174c179544e2fa4dfce12a38de616d953862994), DDS/게임/C2/C3 PASS 없음. 동일 SHA 재검수·추가 생성·단순 보고는 가산 없음. **AI 점수: 이전 1757점 + 이번 +1점 = 누적 1758점.** |

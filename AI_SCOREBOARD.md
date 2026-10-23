@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1739 | ACTIVE | 2026-10-23 09:48:00 KST |
+| AI 1 | ChatGPT (AI 1) | 1740 | ACTIVE | 2026-10-23 10:20:19 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1910 | ACTIVE | 2026-10-23 08:07:45 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-23 10:20:19 KST | AI 1 | 1739 | +1 | 1740 | 신규 RUN_KEY=OUTRUN-C1-20261023T1015KST-NEW-SHA8: 기존 후보 SHA 511개 제외한 A/B 생성물 8개(A4/B4) 독립 QA. 원본·전송·후보 SHA256 8/8 일치, 투명 RGBA PNG 8/8, 한국어 매핑·가독성 8건 검수. A 4건 다중 영문 문구 포함 및 B 4건 native UI cell/UV 배치/보호 아트 미검증으로 HOLD 8 (PASS 0 FAIL 0). [증빙 76fe0c8a16](https://github.com/thp32tt/OutRun2006Tweaks/commit/76fe0c8a16f400d6c82c0aa46258097951403c2e) 원격 검증. ImageGen 미호출, A/B 큐 미소비, DDS 미배포, C2/C3/실게임 PASS 없음. RUNTIME_VALIDATION=UNTESTED. 동일 SHA·RUN_KEY 중복 금지. **AI 점수: 이전 1739점 + 이번 +1점 = 누적 1740점.** |
 | 2026-10-23 09:48:00 KST | AI 1 | 1738 | +1 | 1739 | 신규 RUN_KEY=OUTRUN-C1-20261023T0945KST-NEW-SHA: 기존 검수 SHA 503개 제외 후 A/B 실제 이미지 후보 SHA 8개(A4/B4) 신규 독립 QA. 원본 매니페스트·전송·후보 출력 SHA256 8/8 일치, 투명 RGBA PNG 8/8 및 승인 한국어 글자 가독성 정적 검수. A 원본 4개 다중 영문 문구 포함, 전 후보 native UI cell/UV 합성·안전영역 검증 부재로 C1 HOLD 8, PASS 0, FAIL 0. [QA 증빙 4feaff4c2e](https://github.com/thp32tt/OutRun2006Tweaks/commit/4feaff4c2e4283dcc540936fa40b9a8f277daa03) GitHub 원격 readback. ImageGen 미호출·A/B 큐 미소비·DDS 미배포; C2/C3/실게임 PASS 없음. RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 중복 가점 금지. **AI 점수: 이전 1738점 + 이번 +1점 = 누적 1739점.** |
 | 2026-10-23 09:21:27 KST | AI 1 | 1737 | +1 | 1738 | 신규 RUN_KEY=OUTRUN-C1-20261023T0915KST-NEW-SHA: 기존 QA SHA 495개 제외 후 A/B 실제 PNG 후보 8개(A4/B4) 독립 C1 검수. 원본 매니페스트·전송·생성 PNG SHA 8/8 대조, RGBA PNG 8/8, 글리프·번역 정적 확인. A 단일문구 ROI가 아닌 다중레이블/보호 UI 원본 2건 및 전체 후보의 native UI cell/UV 합성·좌표 증빙 부재: HOLD 8 (PASS 0 FAIL 0). [증빙 fa1e1cb6](https://github.com/thp32tt/OutRun2006Tweaks/commit/fa1e1cb6cef004f5d3443b30915aab561c61ec96). ImageGen 생성·A/B 큐 소비·C2/C3/실게임 PASS·DDS 배포 없음; RUNTIME_VALIDATION=UNTESTED. 동일 SHA/RUN_KEY 중복 가산 금지. **AI 점수: 이전 1737점 + 이번 +1점 = 누적 1738점.** |
 | 2026-10-23 08:51:13 KST | AI 1 | 1736 | +1 | 1737 | 신규 독립 RUN_KEY=OUTRUN-C1-20261023T0845KST-NEW-SHA: 기존 QA 후보 SHA 487개 제외 후 A/B 이미지 후보 8개(A4/B4)를 실제 비교 이미지로 독립 검수. 원본 매니페스트/전송 SHA256·후보 export SHA256 8/8 대조, RGBA PNG 8/8 확인, 정적 한글 글리프·매핑 8개 확인. 모든 후보의 원본 ROI와 생성물 크기 차이, 보호아트·native UI cell/UV 합성 증거 부재로 C1 HOLD 8건 (PASS=0 FAIL=0). [자산 증빙 b556b969](https://github.com/thp32tt/OutRun2006Tweaks/commit/b556b969bfb9cd09c61ff86c898fab9533e74b04) GitHub 원격 HEAD/readback 검증. ImageGen 생산·A/B 큐 소비·DDS 배포·C2/C3·실게임 PASS 없음, RUNTIME_VALIDATION=UNTESTED. VR/FFB/DX11/DXVK 미변경. 동일 SHA/RUN_KEY 중복 가산 금지. **AI 점수: 이전 1736점 + 이번 +1점 = 누적 1737점.** |

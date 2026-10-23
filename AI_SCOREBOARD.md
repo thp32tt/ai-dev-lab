@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1767 | ACTIVE | 2026-10-24 06:51:28 KST |
+| AI 1 | ChatGPT (AI 1) | 1768 | ACTIVE | 2026-10-24 07:19:27 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1932 | ACTIVE | 2026-10-24 06:28:24 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-24 07:19:27 KST | AI 1 | 1767 | +1 | 1768 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0715KST-NEW-SHA6: 이전 SHA 722건 제외, A/B 생성 PNG 신규 6건(A3/B3) SHA 원본 manifest/전송/후보 6/6, RGBA 6/6 및 검정·흰 배경 한글 가독성 확인. 원본 네이티브 UI cell/보호 아트 침범 미검증으로 HOLD 6, FAIL 0, C1 STATIC PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/079fc82d72519761755b3575e4438930cac1c89e) 실제 commit 원격 조회 확인. ImageGen/A-B 큐/DD​​S/게임 배포/C2-C3/실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA·재검증·retry 중복 가점 없음. **AI 점수: 이전 1767점 + 이번 +1점 = 누적 1768점.** |
 | 2026-10-24 06:51:28 KST | AI 1 | 1766 | +1 | 1767 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0647KST-NEW-SHA8: 이전 검수 SHA 714건 제외, A/B 신규 후보 8건(A4/B4) SHA256 원본 manifest/전송/후보 8/8 검증, RGBA 및 검정/흰 배경에서 승인 한글 매핑·기본 글리프 확인. 원본 native UI cell/UV 안전영역과 보호 아트 배치 미검증으로 HOLD 8 / FAIL 0 / C1 STATIC PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/da4145ae24574e1bf84a5ffa55c3a8506cca5c30) GitHub commit·원격 HEAD 확인. ImageGen 호출/A-B 큐 소비/DDS 작성/게임 배포/C2·C3·실게임 승인 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA/retry/재보고 중복 가점 없음. **AI 점수: 이전 1766점 + 이번 +1점 = 누적 1767점.** |
 | 2026-10-24 06:28:24 KST | AI 2 | 1931 | +1 | 1932 | 신규 독립 RUN_KEY=CONVERSION-DX11-01034: 원본 실게임 D3D9 pre-Draw ColorFill 16-slot 기록에서 후속 사각형에 완전히 덮인 픽셀 기록을 lossless 압축해 native D3D11 첫 Draw 체인으로 전달, 17개 실제 독립 쓰기는 fail-closed 유지. [material C++ da673cdc](https://github.com/thp32tt/OutRun2006Tweaks/commit/da673cdc887a74ab037771964deff60b2610bd09), [exact feature/target source 6260ff35](https://github.com/thp32tt/OutRun2006Tweaks/commit/6260ff35fe72102f846c70b48498068c4c70d341), [C6 bookkeeping 05596194](https://github.com/thp32tt/OutRun2006Tweaks/commit/055961946a655ddcadd42279e971dd4ad07798ba). Exact source SHA 6260ff35 필수 GitHub Actions 5/5 SUCCESS: Fast 40025362025, Backend 40025362170, Build 40025362144, OpenXR 40025362009, HUD 40025362078. 실기 Quest3/VDXR RUNTIME_VALIDATION=UNTESTED, 게임 플레이가능 미확정. 동일 TASK_ID 롤오버/retry 중복 없음. **AI 점수: 이전 1931점 + 이번 +1점 = 누적 1932점.** |
 | 2026-10-24 06:20:36 KST | AI 1 | 1765 | +1 | 1766 | 신규 독립 C1 QA RUN_KEY=OUTRUN-C1-20261024T0615KST-NEW-SHA8: 이전 검수 SHA 706건 제외, A/B 신규 후보 8건(A4/B4) 원본 manifest/전송/출력 SHA256 8/8 일치 및 RGBA 투명 PNG·육안 한글 매핑 확인. UI native cell/UV 안전영역과 인접 보호 아트 배치 미검증으로 **HOLD 8**, FAIL 0, C1 STATIC PASS 0. [자산 브랜치 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/b6343acbebf24a2773efd1a11af854d2adcca5d9) commit/원격 파일 확인. ImageGen 호출/A-B 큐 소비/DDS 작성/C2·C3·실게임 PASS/게임 배포 없음, RUNTIME_VALIDATION=UNTESTED. 신규 8 SHA 1회만 가산; 동일 SHA/retry/재보고 중복 +0. **AI 점수: 이전 1765점 + 이번 +1점 = 누적 1766점.** |

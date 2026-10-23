@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1755 | ACTIVE | 2026-10-24 00:55:03 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1928 | ACTIVE | 2026-10-24 00:21:38 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1929 | ACTIVE | 2026-10-24 01:07:07 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-24 01:07:07 KST | AI 2 | 1928 | +1 | 1929 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01463: DX9Ex REVIEW_ONLY: GitHub 최신 vr-d3d9ex-focus HEAD를 기준으로 직전 01462 C993/CABE 렌즈 검토와 구분하여 Reset/ResetEx R22 자격, R7 리소스·shader epoch, 원본 raw WVP, R30/R62 D3DX→실제 L/R draw/restore→Present/Frame.v2/R23/R24 XR 경계를 추적하고 사실·가설·반증·안전 후보를 [docs-only 결과](https://github.com/thp32tt/OutRun2006Tweaks/commit/ee6afe44871a6d0bad339ac1b00b1f29994499d9)에 정확히 1개 파일로 기록. 실제 소스 변경/CI/HMD 없음, RUNTIME_VALIDATION=UNTESTED. 동일 TASK_ID 재검증·retry·rollover 중복 가점 없음. **AI 점수: 이전 1928점 + 이번 +1점 = 누적 1929점.** |
 | 2026-10-24 00:55:03 KST | AI 1 | 1754 | +1 | 1755 | 신규 독립 RUN_KEY=OUTRUN-C1-20261024T0045KST-NEW-SHA: OutRun 2006 한글화 C1 독립 검수 8개(A 4/B 4) 신규 후보 SHA/원본/전송/내보내기 증빙 정합 8/8 및 흰 배경 글자 시각검수 완료. 8건 모두 실제 UI cell 배치·원본 보호 픽셀 미검증 및 생성 PNG 크기 불일치로 HOLD, 원본 다른 UI 문구 혼입 4건 확인. [C1 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/543f6e83d92a263b75df1cf19f9d44354eab6e92). ImageGen/C2/C3/DDS/실게임 승인·배포 없음, RUNTIME_VALIDATION=UNTESTED. 동일 SHA 재검수는 별도 가점 없음. **AI 점수: 이전 1754점 + 이번 +1점 = 누적 1755점.** |
 | 2026-10-24 00:21:38 KST | AI 2 | 1927 | +1 | 1928 | 신규 독립 RUN_KEY=CONVERSION-DX11-01027: 실제 게임 SM3 native Draw signed DEF/MOVA a0 행렬 참조 및 c#→TEMP 균일성 소스 구현과 실제 실패 원인 수리. [원본 material](https://github.com/thp32tt/OutRun2006Tweaks/commit/dc8c657d67a8acbfe77ad2f7fa9ae62af40d0a2e), [주소 실결함 C++ 수리](https://github.com/thp32tt/OutRun2006Tweaks/commit/4a68cf4908e1c40589e0c9e3801002a1de5772aa), [최종 exact-SHA 결과](https://github.com/thp32tt/OutRun2006Tweaks/commit/3a05796f9e26a75684fd94d44d6f689c35fdc61e), [C6 bookkeeping](https://github.com/thp32tt/OutRun2006Tweaks/commit/85670dc9a3fa25c1e1c664fa156f2dcce8ee2550) 별도 가점 없음. 필수 정확 SHA 5/5 SUCCESS: Fast 39975449830, Backend 39975449745, Build 39975449731, OpenXR 39975449835, HUD 39975449898. Quest3/VDXR 및 실게임/패드/FFB RUNTIME_VALIDATION=UNTESTED; 전체 DX11 플레이 가능 판정 아님. 동일 TASK_ID retry/rollover/C6 중복 +0. **AI 점수: 이전 1927점 + 이번 +1점 = 누적 1928점.** |
 | 2026-10-24 00:04:21 KST | AI 2 | 1926 | +1 | 1927 | 신규 독립 RUN_KEY=DIRECT-VR-CADENCE-20261024T0004KST: OutRun VR 자동 컨트롤러 GitHub `chat-controller-downloads` 신규 생산 스케줄 완화. DX11 매시 :00/:30(48회/일 상한), DX9Ex 짝수시 :00(12회/일 상한), 합계 96→60회/일(-37.5%). Compose [80af9530](https://github.com/thp32tt/OutRun2006Tweaks/commit/80af953074c6263436bdea8606cce961f8cdc969), Controller config [2516a373](https://github.com/thp32tt/OutRun2006Tweaks/commit/2516a373ddfab6054dd8fe5fd0e11953b29e2d74), dispatch gate [ec4ed7e3](https://github.com/thp32tt/OutRun2006Tweaks/commit/ec4ed7e32bad727914c5a9754e43134c18d81247). GitHub 원격 3개 파일 readback 및 KST dispatch edge 5건 PASS, Docker 재배포/실기 검증은 UNTESTED. 기존 진행 중 TASK_ID·retry/rollover 유지. **AI 점수: 이전 1926점 + 이번 +1점 = 누적 1927점.** |

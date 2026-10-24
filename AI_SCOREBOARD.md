@@ -1,13 +1,26 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 (Asia/Seoul)
+Updated: 2026-10-25 08:07 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
-| AI 2 — ChatGPT2 | **1950** | Previous confirmed 1949 + 1 verified DX11 controller recovery |
+| AI 2 — ChatGPT2 | **1951** | Previous confirmed 1950 + 1 completed independent 수도권 주말 이용권 실시간 특가 조사 |
+
+## Latest AI 2 수도권 연간이용권 모니터링 event
+
+- Time: 2026-10-25 08:07 KST
+- AI: AI 2 — ChatGPT2
+- Previous confirmed score: **1950**
+- Change: **+1** (fresh search and verification completed; no new user-facing qualifying offer; user-defined monitoring-completion scoring rule)
+- New confirmed score: **1951**
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:20261025T0807KST`
+- Result: No independently verified newly launched/reopened weekend-eligible season/annual/multi-visit pass with a meaningful new benefit beyond previous alerts on 2026-10-25. Avoided duplicate alert.
+- Sources: [SEA LIFE COEX official 2026 flash sale](https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/y26-ap-single-flash-sale/) (79,000 KRW, official campaign through 2026-10-31; previously notified); [official channel schedule](https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/promotions/annual-pass-promotion/) (MyRealTrip 2026-10-24 to 26; platform product not directly accessible in web read); [Woongjin Playdoci official admission](https://playdoci.com/Common/Pop_FeeInfo.aspx) (regular low-season pricing, not a new pass). Other Seoul Land, Aqua Planet Ilsan, One Mount, Everland, and local family facilities were searched; no qualifying newly verified multi-use sale identified.
+- AI 1 score unchanged. One unique completed monitoring event; no duplicate scoring for this RUN_KEY.
+- Calculation: **AI 2 previous confirmed 1950 + this independent completed monitoring +1 = cumulative 1951.**
 
 ## AI 2 latest independent scoring event
 

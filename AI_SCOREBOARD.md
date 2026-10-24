@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1769 | ACTIVE | 2026-10-25 00:55:35 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1948 | ACTIVE | 2026-10-25 01:02:51 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1949 | ACTIVE | 2026-10-25 01:06:53 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-25 01:06:53 KST | AI 2 | 1948 | +1 | 1949 | 신규 독립 RUN_KEY=DIRECT-KIWOOMPOS-PREVIEW-REMOVAL-20261025: DX9Ex 매시 :00, DX11 매시 :30 시간당 1회 스케줄을 유지하고 VR Docker Compose에서 KiwoomPay Java 복제 홈페이지 서비스(`kiwoompos-java-preview`, 18082)만 삭제함. GitHub readback/HEAD 확인 [c55b7464](https://github.com/thp32tt/OutRun2006Tweaks/commit/c55b7464634923e8dffb8181fb38e2899cac6af9). 실행 중 컨테이너 중지는 미검증(별도 Portainer 조치 필요). **AI 점수: 이전 1948점 + 이번 +1점 = 누적 1949점.** |
 | 2026-10-25 01:02:51 KST | AI 2 | 1947 | +1 | 1948 | 신규 독립 RUN_KEY=DIRECT-VR-CONTROLLER-HOURLY-SCHEDULE-20261025: VR 컨트롤러 GitHub 설정에서 DX9Ex 매시 :00 및 DX11 매시 :30 신규 dispatch로 조정, 시간창 및 원격 HEAD 검증 완료. 커밋 [f1c10763](https://github.com/thp32tt/OutRun2006Tweaks/commit/f1c10763ca2429db48c4fe0a39644ab1921fdf58). Docker 실운영 반영은 Portainer 재배포 전이므로 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1947점 + 이번 +1점 = 누적 1948점.** |
 | 2026-10-25 00:55:35 KST | AI 1 | 1768 | +1 | 1769 | 신규 독립 RUN_KEY=OUTRUN-C1-20261025T0051KST-NEW-SHA4: OutRun 2006 C1 신규 SHA 4건 독립 간이 QA, B-0081 원본/번역 매핑·SHA·RGBA·흰색 매트·원본 대비 검증. PASS=0, FAIL=1(엔터키 안내 원본의 굵은 검정 외곽선 누락), HOLD=3(네이티브 UI cell 배치 미입증). [자산 브랜치 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/f711878fc685c44584dbb55a83a1727230d3ac2e). C2/C3/실게임 PASS·DDS 배포 없음, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1768점 + 이번 +1점 = 누적 1769점.** |
 | 2026-10-25 00:05 KST | AI 2 | 1946 | +1 | 1947 | 신규 독립 RUN_KEY=DIRECT-DX9EX-OFFICIAL-FOCUS-20261024-USER-TEST: 사용자 요청에 따라 test 브랜치의 COMBINED/ALL 실험 소스 없이 정식 `vr-d3d9ex-focus`의 2026-10-22 R26+HUD 복원, GOAL B9200 및 라이벌 최근 소스를 정확 HEAD 기반 재빌드했다. 게임 C++ 변경 없이 포커스 전용 실행기/CI만 추가했고, 소스 INI에 중복된 DriverSeatCarSpaceBasis는 배포 패키지에서만 제거하며 파서로 검증했다. [빌드/검증 SHA 5f47389](https://github.com/thp32tt/OutRun2006Tweaks/commit/5f47389d0ddcf735fcde88db313da603f89f5483), [GitHub Actions #40104570692](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40104570692) Windows R26+HUD Win32 게임 DLL/x64 OpenXR 호스트 Release 및 RelWithDebInfo 디버그 빌드, package INI strict parse/PE header/required launcher+INI 검사, TEST/DEBUG ZIP 2개, 아티팩트 12564491428 등록 모두 SUCCESS. 10/24 기존 test-branch 패키지와 다른 공식 포커스 빌드이며 Quest3/VDXR HMD RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY 재검증 +0. **AI 점수: 이전 1946점 + 이번 +1점 = 누적 1947점.** |

@@ -9,7 +9,7 @@
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
 | AI 1 | ChatGPT (AI 1) | 1769 | ACTIVE | 2026-10-25 00:55:35 KST |
-| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1949 | ACTIVE | 2026-10-25 01:06:53 KST |
+| AI 2 | ChatGPT2 (현재 이 대화/계정) | 1950 | ACTIVE | 2026-10-25 01:55:30 KST |
 
 ## 점수 규칙
 
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-25 01:55:30 KST | AI 2 | 1949 | +1 | 1950 | 신규 독립 RUN_KEY=DIRECT-DX9EX-GOAL-FINAL-SEATOFF-20261025: 사용자 요청 R26 원본 b7ca 기반 DX9Ex GOAL 최종 완료 후 HUD E8 경로 상태 제한, 안전한 B9200 함수 진입점 훅, 운전석 기본 OFF/카메라 모드 전환 안전가드 및 중복 INI 제거. 독립 후보 브랜치 [빌드 SHA 50ea48da](https://github.com/thp32tt/OutRun2006Tweaks/commit/50ea48da3f7308528bd230a250b7e69dc67ca710)에서 Windows GitHub-hosted 정상 Release 및 RelWithDebInfo Win32 DLL+x64 OpenXR 호스트 컴파일, 실행 배치 포함 TEST/DEBUG ZIP 2종 패키지 및 [GitHub Actions #40113067211](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40113067211) SUCCESS, 아티팩트 12567137659 업로드 readback 확인. 원본 APK 바이트코드 미확보로 정확한 이식 주장은 하지 않으며 HMD 실기 RUNTIME_VALIDATION=UNTESTED. P0 종합 정책 정적 검증 중 원본 기존 projected-marker checker 부정합은 별도 미해결, 사용자 실기 GOAL 완료 화면 PASS 미주장. **AI 점수: 이전 1949점 + 신규 독립 완료 +1점 = 누적 1950점.** |
 | 2026-10-25 01:06:53 KST | AI 2 | 1948 | +1 | 1949 | 신규 독립 RUN_KEY=DIRECT-KIWOOMPOS-PREVIEW-REMOVAL-20261025: DX9Ex 매시 :00, DX11 매시 :30 시간당 1회 스케줄을 유지하고 VR Docker Compose에서 KiwoomPay Java 복제 홈페이지 서비스(`kiwoompos-java-preview`, 18082)만 삭제함. GitHub readback/HEAD 확인 [c55b7464](https://github.com/thp32tt/OutRun2006Tweaks/commit/c55b7464634923e8dffb8181fb38e2899cac6af9). 실행 중 컨테이너 중지는 미검증(별도 Portainer 조치 필요). **AI 점수: 이전 1948점 + 이번 +1점 = 누적 1949점.** |
 | 2026-10-25 01:02:51 KST | AI 2 | 1947 | +1 | 1948 | 신규 독립 RUN_KEY=DIRECT-VR-CONTROLLER-HOURLY-SCHEDULE-20261025: VR 컨트롤러 GitHub 설정에서 DX9Ex 매시 :00 및 DX11 매시 :30 신규 dispatch로 조정, 시간창 및 원격 HEAD 검증 완료. 커밋 [f1c10763](https://github.com/thp32tt/OutRun2006Tweaks/commit/f1c10763ca2429db48c4fe0a39644ab1921fdf58). Docker 실운영 반영은 Portainer 재배포 전이므로 RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1947점 + 이번 +1점 = 누적 1948점.** |
 | 2026-10-25 00:55:35 KST | AI 1 | 1768 | +1 | 1769 | 신규 독립 RUN_KEY=OUTRUN-C1-20261025T0051KST-NEW-SHA4: OutRun 2006 C1 신규 SHA 4건 독립 간이 QA, B-0081 원본/번역 매핑·SHA·RGBA·흰색 매트·원본 대비 검증. PASS=0, FAIL=1(엔터키 안내 원본의 굵은 검정 외곽선 누락), HOLD=3(네이티브 UI cell 배치 미입증). [자산 브랜치 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/f711878fc685c44584dbb55a83a1727230d3ac2e). C2/C3/실게임 PASS·DDS 배포 없음, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1768점 + 이번 +1점 = 누적 1769점.** |

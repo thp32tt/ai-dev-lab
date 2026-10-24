@@ -8,7 +8,7 @@
 
 | AI | 담당 | 현재 점수 | 상태 | 최종 확인 |
 |---|---|---:|---|---|
-| AI 1 | ChatGPT (AI 1) | 1768 | ACTIVE | 2026-10-24 07:19:27 KST |
+| AI 1 | ChatGPT (AI 1) | 1769 | ACTIVE | 2026-10-25 00:55:35 KST |
 | AI 2 | ChatGPT2 (현재 이 대화/계정) | 1947 | ACTIVE | 2026-10-25 00:05 KST |
 
 ## 점수 규칙
@@ -35,6 +35,7 @@
 - `AI 점수판 갱신` 자동작업은 정합성 감사용이므로 자기 실행만으로 +1을 부여하지 않고, 다른 자동작업이 이미 기록한 RUN_KEY를 중복 계산하지 않는다.
 
 ## 변경 이력
+| 2026-10-25 00:55:35 KST | AI 1 | 1768 | +1 | 1769 | 신규 독립 RUN_KEY=OUTRUN-C1-20261025T0051KST-NEW-SHA4: OutRun 2006 C1 신규 SHA 4건 독립 간이 QA, B-0081 원본/번역 매핑·SHA·RGBA·흰색 매트·원본 대비 검증. PASS=0, FAIL=1(엔터키 안내 원본의 굵은 검정 외곽선 누락), HOLD=3(네이티브 UI cell 배치 미입증). [자산 브랜치 QA 증빙](https://github.com/thp32tt/OutRun2006Tweaks/commit/f711878fc685c44584dbb55a83a1727230d3ac2e). C2/C3/실게임 PASS·DDS 배포 없음, RUNTIME_VALIDATION=UNTESTED. **AI 점수: 이전 1768점 + 이번 +1점 = 누적 1769점.** |
 | 2026-10-25 00:05 KST | AI 2 | 1946 | +1 | 1947 | 신규 독립 RUN_KEY=DIRECT-DX9EX-OFFICIAL-FOCUS-20261024-USER-TEST: 사용자 요청에 따라 test 브랜치의 COMBINED/ALL 실험 소스 없이 정식 `vr-d3d9ex-focus`의 2026-10-22 R26+HUD 복원, GOAL B9200 및 라이벌 최근 소스를 정확 HEAD 기반 재빌드했다. 게임 C++ 변경 없이 포커스 전용 실행기/CI만 추가했고, 소스 INI에 중복된 DriverSeatCarSpaceBasis는 배포 패키지에서만 제거하며 파서로 검증했다. [빌드/검증 SHA 5f47389](https://github.com/thp32tt/OutRun2006Tweaks/commit/5f47389d0ddcf735fcde88db313da603f89f5483), [GitHub Actions #40104570692](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40104570692) Windows R26+HUD Win32 게임 DLL/x64 OpenXR 호스트 Release 및 RelWithDebInfo 디버그 빌드, package INI strict parse/PE header/required launcher+INI 검사, TEST/DEBUG ZIP 2개, 아티팩트 12564491428 등록 모두 SUCCESS. 10/24 기존 test-branch 패키지와 다른 공식 포커스 빌드이며 Quest3/VDXR HMD RUNTIME_VALIDATION=UNTESTED; 동일 RUN_KEY 재검증 +0. **AI 점수: 이전 1946점 + 이번 +1점 = 누적 1947점.** |
 | 2026-10-24 23:02 KST | AI 2 | 1945 | +1 | 1946 | 신규 독립 RUN_KEY=DIRECT-DX9EX-FINAL-SCREEN-BUILD-20261024: 사용자 요청의 오늘 최종 R26+HUD 화면오류 TEST/DEBUG 실기용 패키지를 기존 DX9Ex REVIEW_ONLY 운영 브랜치와 분리된 [시험 브랜치](https://github.com/thp32tt/OutRun2006Tweaks/tree/test/dx9ex-final-screen-20261024)에서 제작. [배치/호스트 생존 감시·로그 수집·Release/RelWithDebInfo 이중 패키지 material SHA adf7c27](https://github.com/thp32tt/OutRun2006Tweaks/commit/adf7c27fb4145c6545bba4f0b90a2b615b90b8c4), [GitHub Actions #40099795369](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40099795369) R26+HUD Win32 DLL, x64 OpenXR 호스트, 반사/GPU census 회귀, Debug 빌드, 일반/디버그 독립 실행 ZIP 2개, 아티팩트 ID=12561654488 업로드 SUCCESS 및 구성품 검사 통과. 01454..01469 리뷰 광학 추정은 무단 적용하지 않고 DriverSeatView=false 안정 우회, Quest 3/VDXR RUNTIME_VALIDATION=UNTESTED; 01468 기존 7종 A/B 팩을 중복 가산하지 않음. **AI 점수: 이전 1945점 + 이번 +1점 = 누적 1946점.** |
 | 2026-10-24 22:07 KST | AI 2 | 1944 | +1 | 1945 | 신규 독립 RUN_KEY=CONVERSION-DX9EX-01469: DX9Ex vr-d3d9ex-focus 최신 HEAD 8703b5a 정적 검토. 원본 REA SpriteNode 4분기/D3DX Flush vs native DIP, R33 StateBlock scissor restore, R30 일반 shader HUD 원본 scissor 보존(7081b389 기존 remap 부정증거)과 외부 F11 per-eye scissor 실제 좌표변환, dormant R30TransformHudScissor 경계 및 R29/R7 양안 Draw→R23/R24 OpenXR 분리와 반증·회귀 위험을 독립 분석. [docs-only 결과 a045ce46](https://github.com/thp32tt/OutRun2006Tweaks/commit/a045ce46bda3ef161ecd367f55260cfc127f520c) 원격 커밋·부모 SHA·단일 문서 파일 변경·원격 readback 확인. 게임 소스/설정 수정·CI·실기 없음; CODE_CHANGE=NO, PATCH_CANDIDATE_ONLY, RUNTIME_VALIDATION=UNTESTED. 이전 01468·01467과 범위 구별, 동일 TASK retry/rollover/re-report +0. **AI 점수: 이전 1944점 + 이번 +1점 = 누적 1945점.** |

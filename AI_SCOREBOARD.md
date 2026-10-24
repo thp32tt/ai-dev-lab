@@ -6,10 +6,19 @@ Updated: 2026-10-25 (Asia/Seoul)
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1661** | 1660 previously confirmed + 1 new independent C1 QA achievement |
+| AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
 | AI 2 — Other AI | Not recorded in this file | No change or reset asserted |
 
 ## Latest unique scoring event
+
+- Event ID: `OUTRUN-C1-20261025T0615KST-A0069-A0070-NEW-SHA5`
+- Task: SHA-level C1 inventory audit discovered five previously unreviewed N100 Korean RGBA candidate files omitted by the 05:45 file-count-only IDLE conclusion: A-0069 ordinals 341-343 and A-0070 ordinals 347-348. Excluded eight SHA entries already reviewed in the 05:15 GitHub QA record. Independently checked five actual candidate/source SHA-256 pairs, approved mapping and legible glyphs, RGBA alpha/border transparency and unwanted original art.
+- Result: **PASS 0, FAIL 0, HOLD 5**. No obvious standalone text defects, but native UI-cell and protected-art placement unverified. No C2/C3/DDS/game PASS.
+- QA record: `localization/qa_reports/C1_20261025_0615_A0069_A0070_SHA5.json` in `thp32tt/OutRun2006Tweaks@6e5f83c475b8adeee30aa41b33f4f06b9540c15d`; remote asset branch HEAD confirmed.
+- Calculation: **AI 1 previous confirmed 1661 + this new independent SHA5 QA achievement +1 = cumulative 1662**.
+- Duplication rule: This five-SHA QA event counts once; later repeats/reports/status checks of these hashes are +0.
+
+## Previous unique scoring event
 
 - Event ID: `OUTRUN-C1-20261025T0515KST-A0068-A0069-A0074-NEW-SHA8`
 - Task: Independently inspected eight previously unreviewed SHA-256-verified N100 Korean transparent PNG outputs: A-0068 (5), A-0069 (2), A-0074 (1). Checked actual byte SHA-256, source provenance/mapping manifest, Korean visual legibility, image alpha and boundary safety. Excluded B-0087 SHA already reviewed at 04:15.

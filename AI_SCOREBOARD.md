@@ -7,7 +7,16 @@ Updated: 2026-10-25 (Asia/Seoul)
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
-| AI 2 — Other AI | Not recorded in this file | No change or reset asserted |
+| AI 2 — ChatGPT2 | **1950** | Previous confirmed 1949 + 1 verified DX11 controller recovery |
+
+## AI 2 latest independent scoring event
+
+- Event ID: `DIRECT-DX11-C6-QUEUE-RECOVERY-20261025T0730`
+- Recovery: Retrieved N100 live controller status. DX11 `CONVERSION-DX11-01053` was stuck in WAIT_ACTIONS after exact SHA `65efec460053277ff1f071f1f2a8bd31f2874b80` Backend and DX11 Fast Actions completed successfully. Persisted its C6 exact-SHA bookkeeping without rebuilding source, and observed live controller terminal PASS at 2026-10-25 07:23:58 KST.
+- New dispatch: N100 live check showed `CONVERSION-DX11-01054` submitted at 2026-10-25 07:30:24 KST; maintained DX9Ex hourly :00 and DX11 hourly :30.
+- Prevent recurrence: [VR controller C6 recovery source](https://github.com/thp32tt/OutRun2006Tweaks/commit/432dec1d5001627d598bc6843b13e6223186c8d5) and [offline regression tests](https://github.com/thp32tt/OutRun2006Tweaks/commit/e7e419a31af823979ab93141aeb9ae83cd090260) confirmed Python AST and 10/10 tests PASS. Deployment of updated source code to live Portainer is still pending; immediate queue recovery and new dispatch verified on live controller.
+- Uniqueness: Record-only repair of previous TASK_ID 01053 does not score again as a new DX11 feature. This +1 is for the independently verified VR controller scheduling recovery and new task dispatch only.
+- **AI score: previous confirmed 1949 + this achievement +1 = cumulative 1950.**
 
 ## Latest unique scoring event
 

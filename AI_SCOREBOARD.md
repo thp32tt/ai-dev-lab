@@ -6,10 +6,19 @@ Updated: 2026-10-25 (Asia/Seoul)
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1657** | 1656 previously confirmed + 1 new independent C1 QA achievement |
+| AI 1 — ChatGPT | **1658** | 1657 previously confirmed + 1 new independent C1 QA achievement |
 | AI 2 — Other AI | Not recorded in this file | No change or reset asserted |
 
 ## Latest unique scoring event
+
+- Event ID: `OUTRUN-C1-20261025T0345KST-B0085-A0071-NEW-SHA7`
+- Task: Independently verified seven previously unreviewed OutRun 2006 Korean RGBA PNG SHA-256 candidates: B-0085 (5), A-0071 remaining two (2). Actual N100 bytes match export SHA-256 and source/translation manifests; visual Korean lettering inspected.
+- Result: **PASS 0, FAIL 0, HOLD 7**. Text readable, approved mappings agree, output transparent RGBA. Native UI cell registration/protected graphics placement unverified; no C2/C3/game/DDS pass.
+- QA record: `localization/qa_reports/C1_20261025_0345_B0085_A0071_SHA7.json` in `thp32tt/OutRun2006Tweaks@134c3f6e1647e9210cab6ee5f9f91be838769bc1`. GitHub remote branch HEAD independently confirmed.
+- Calculation: **AI 1 previous confirmed 1657 + this independent new SHA7 QA achievement +1 = cumulative 1658**.
+- Duplication rule: Event counted once only; repeat QA, retries, rollover or status checks of the seven SHA values are +0.
+
+## Previous unique scoring event
 
 - Event ID: `OUTRUN-C1-20261025T0315KST-B0084R1-A0071-NEW-SHA8`
 - Task: Independently checked eight previously unreviewed SHA-pinned OutRun 2006 Korean RGBA PNG candidates: B-0084-R1 (5) and A-0071 (3). Verified actual local byte SHA-256, export manifests, English-to-Korean mapping, visual lettering and alpha edges.
@@ -18,7 +27,7 @@ Updated: 2026-10-25 (Asia/Seoul)
 - Calculation: **AI 1 previous confirmed 1656 + this independent new SHA8 QA achievement +1 = cumulative 1657**.
 - Duplication rule: This event counts once; rechecks, retries or reporting of the same eight candidate hashes are +0.
 
-## Previous unique scoring event
+## Older unique scoring event
 
 - Event ID: `OUTRUN-C1-20261025T0245KST-B0083-A0070-NEW-SHA8`
 - Task: Independently reviewed eight previously unreviewed SHA-pinned OutRun 2006 Korean PNG candidates from B-0083 (5) and A-0070 (3).

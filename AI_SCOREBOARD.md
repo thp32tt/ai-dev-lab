@@ -1,13 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 18:03 KST (Asia/Seoul)
+Updated: 2026-10-25 19:52 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1663** | 1662 previously confirmed + 1 direct visual OCR recovery/runtime B dispatch achievement |
-| AI 2 — ChatGPT2 | **1957** | Previous confirmed 1956 + 1 independently completed CONVERSION-DX11-01063 typed native game stereo GPU source handoff/OM preservation source and five exact-SHA gates |
+| AI 1 — ChatGPT | **1663** | Unchanged; no AI 1 scoring event in this task |
+| AI 2 — ChatGPT2 | **1958** | Previous confirmed 1957 + 1 new uniquely verified Quest cockpit glass draw-state reverse-engineering and GitHub report materialization |
+
+## Latest AI 2 unique offline reverse-engineering event (Quest cockpit/glass 2026-10-25)
+
+- Time: 2026-10-25 19:52 KST
+- AI: AI 2 — ChatGPT2
+- RUN_KEY: `DIRECT-QUEST-COCKPIT-GLASS-A64-20261025T1938KST`
+- Novel independent finding: on exact SHA-identified user-owned Quest ARM64 library, extracted previously unexpanded `Flush::draw_404700` condition chain. Entry flag and category, D3D-style source/destination blend getters (19/20), 0.55/0.425 ±0.001 source alpha tests, draw-scoped 0.25 opacity and premult flag, and obligatory 1.0/false post-draw restoration verified through AArch64 assembly. Independently correlated mode-1 cockpit matrix writer and 16-float driver body transform consumer.
+- Material research commit: `thp32tt/OutRun2006Tweaks@eabca21e6c0a0e5944600308b78839afe9a8c7d5` on `vr-d3d9ex-focus`; remote document readback blob `79348f024d2ebd8e6c3e0351ad260610906a42b0`, path `docs/research/QUEST_APK_COCKPIT_GLASS_FULL_TRACE_20261025.md`.
+- Validation: read-only native executable disassembly + material-specific condition verification. `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. Documented remaining glass polygon identity and runtime blend ambiguity rather than claiming in-game patch or success.
+- Duplication: one new independently recovered source-grounded condition set and single committed report = one achievement; disassembler runs, readback, follow-up reports or future retests of this identical finding earn **+0**.
+- Calculation: **AI 2 previously confirmed 1957 + this genuinely novel verified analysis and permanent report +1 = cumulative 1958.** AI 1 remains 1663.
 
 ## Latest AI 2 DX11 source/C6 scoring event (01063)
 

@@ -1,12 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 15:53 KST (Asia/Seoul)
+Updated: 2026-10-25 16:52 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
+| AI 1 — ChatGPT | **1663** | 1662 previously confirmed + 1 direct visual OCR recovery/runtime B dispatch achievement |
 | AI 2 — ChatGPT2 | **1955** | Previous confirmed 1954 + 1 independently completed CONVERSION-DX11-01061 native mip-zero GPU frame source/CI achievement |
 
 ## Latest AI 2 DX11 source/C6 scoring event (01061)
@@ -77,6 +77,16 @@ Updated: 2026-10-25 15:53 KST (Asia/Seoul)
 - Prevent recurrence: [VR controller C6 recovery source](https://github.com/thp32tt/OutRun2006Tweaks/commit/432dec1d5001627d598bc6843b13e6223186c8d5) and [offline regression tests](https://github.com/thp32tt/OutRun2006Tweaks/commit/e7e419a31af823979ab93141aeb9ae83cd090260) confirmed Python AST and 10/10 tests PASS. Deployment of updated source code to live Portainer is still pending; immediate queue recovery and new dispatch verified on live controller.
 - Uniqueness: Record-only repair of previous TASK_ID 01053 does not score again as a new DX11 feature. This +1 is for the independently verified VR controller scheduling recovery and new task dispatch only.
 - **AI score: previous confirmed 1949 + this achievement +1 = cumulative 1950.**
+
+## Latest AI 1 direct OCR recovery event
+
+- Event ID: `OUTRUN-DIRECT-OCR-RECOVERY-20261025T1650KST`
+- Time: 2026-10-25 16:50 KST
+- Task: Recovered the stalled OutRun Korean localization OCR pipeline without an external API by directly inspecting verified original HD PNGs, validating canonical translations/source SHA values, deriving safe text/card bboxes, and atomically injecting 13 missing native ROI entries into the production manifest.
+- Result: production manifest increased **831 → 844**. A was staged as `OUTRUN-ROI-A-0075-E7998BD0` with 5 items. B was staged as `OUTRUN-ROI-B-0088-16DFF698` with 5 items and was runtime-confirmed sent through the existing ChatGPT browser controller at **2026-10-25 16:50:28 KST**, reaching `SENT_AWAITING_GENERATED_IMAGES` with persisted chat URL. Generated-image completion remains pending and is not claimed.
+- Safety/provenance: source PNG SHA/DDS SHA and reviewed Korean mappings were preserved; old 986 split tiles and external OCR/OpenAI APIs were not used. Manifest/state backups were created before direct mutations.
+- Uniqueness: one score for the combined direct-recovery + runtime dispatch achievement; individual recovered phrases, restaging operations, retries, and later status checks are not separately scored.
+- Calculation: **AI 1 previous confirmed 1662 + 1 = cumulative 1663.**
 
 ## Latest unique scoring event
 

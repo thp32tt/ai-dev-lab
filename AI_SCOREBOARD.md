@@ -1,13 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 22:58 KST (Asia/Seoul)
+Updated: 2026-10-26 00:01 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1962** | Previous confirmed 1961 + 1 build-verified independent menu optical scale / game render-source separation |
+| AI 2 — ChatGPT2 | **1963** | Previous confirmed 1962 + 1 PR151 +TIME four-API R26 source/CI/test-package completion |
+
+
+## AI 2 PR151 +TIME four-API R26 test completion (2026-10-26 00:01 KST)
+
+- RUN_KEY / TASK_ID: `USER-DX9EX-PR151-TEST-20261025`; one new independent implementation + exact-SHA build/package outcome, +1. The earlier exploratory queue-root relaxation, CI retries, individual gates and artifact download are not separately scored.
+- User-supplied PR #151 review was incorporated correctly: exact `StageExtensionTime` fixed-function FVF142 rendering now shares the existing R62 finite-HUD stereo transaction across DP/DIP/DPUP/DIPUP while GOAL, rival, lens/F11 and unrelated HUD admission remain bounded. The unvalidated GOAL/rival live-root relaxation was reverted before the validation-bearing SHA.
+- Validation-bearing material SHA on `thp32tt/OutRun2006Tweaks/vr-d3d9ex-focus`: `0f8cfa8b2f64f3063a35d075f0f155bc22ff1aee`.
+- Exact-SHA GitHub Actions SUCCESS: R26 User Test Build `40204229644`; General R26+HUD `40204229626`; Active Validation `40204229653`; HUD Inspector `40204229740`; Domain Isolation `40204229612`; Full Source Impact `40204229603`. The Full Source gate explicitly ran the actual-source four-API +TIME regression. PC Fast remained skipped.
+- Runnable user artifact `12603750588` includes x86 `dinput8.dll`, x64 `outrun-vr-host.exe`, `RUN_DX9EX_TEST.cmd`, PowerShell runner, INIs and exact `SOURCE_SHA.txt`. `RUNTIME_VALIDATION=UNTESTED`; no Quest3 optical fix is claimed before user testing.
+- **AI 2 score: previous confirmed 1962 + 1 = 1963.** AI 1 unchanged at 1666.
 
 ## AI 1 new detailed retro Memories plot research (2026-10-25 22:58 KST)
 

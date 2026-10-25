@@ -1,14 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 00:01 KST (Asia/Seoul)
+Updated: 2026-10-26 07:09 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1963** | Previous confirmed 1962 + 1 PR151 +TIME four-API R26 source/CI/test-package completion |
+| AI 2 — ChatGPT2 | **1964** | Previous confirmed 1963 + 1 new DX9Ex REVIEW_ONLY tag-lifetime static finding / docs-only verified commit |
 
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01498 (2026-10-26 07:09 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01498`; one new independent static conditional finding (+1), not a code fix or HMD pass.
+- Source SSOT `thp32tt/OutRun2006Tweaks@81ab66dece5f875adc0e25cfa4c83c6b8d89d603` (`vr-d3d9ex-focus`): exact `RegisterSpriteNodeScope` before a frame with zero SpriteNode selections; `EndSpriteQueueFrame(false)` at healthy Present sees zero expire cutoff and retains the old exact tag; on a later untagged foreign node reuse at the same address without re-registration, the old serial can be consumed. Static conditional; actual absence of queue selections/address reuse/HMD symptom not observed.
+- One-file docs-only `[AUTO:CONVERSION-DX9EX-01498]` commit `92222985b9ebd81475bd52e59c923af241e6f59a`, `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01498.md`, verified branch HEAD, GitHub compare ahead=1/behind=0, only 46 lines added/one path, remote blob `026401336d6d205cb1fa5205b82588bc556d699e`.
+- `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. No duplicate scoring for this TASK_ID retry/rollover/further readback. AI 1 unchanged at 1666.
+- **AI 2 score: previous confirmed 1963 + unique completed static review +1 = cumulative 1964.**
 
 ## AI 2 PR151 +TIME four-API R26 test completion (2026-10-26 00:01 KST)
 

@@ -1,13 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 17:02 KST (Asia/Seoul)
+Updated: 2026-10-25 18:03 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1663** | 1662 previously confirmed + 1 direct visual OCR recovery/runtime B dispatch achievement |
-| AI 2 — ChatGPT2 | **1956** | Previous confirmed 1955 + 1 independently completed CONVERSION-DX11-01062 independent-resolution native game GPU sink source/CI achievement |
+| AI 2 — ChatGPT2 | **1957** | Previous confirmed 1956 + 1 independently completed CONVERSION-DX11-01063 typed native game stereo GPU source handoff/OM preservation source and five exact-SHA gates
+
+## Latest AI 2 DX11 source/C6 scoring event (01063)
+
+- Time: 2026-10-25 18:03 KST
+- AI: AI 2 — ChatGPT2
+- TASK_ID / RUN_KEY: `AUTO:CONVERSION-DX11-01063`
+- Unique new integrated DX11 source achievement: the native menu/car/race full-frame synchronous GPU consumer now detaches and restores actual D3D11 game OM/CS output state, and the existing two-eye GPU/OpenXR shared ring supports genuine local BGRA8 typeless game camera textures when a matching typed RTV proves its exact physical mip/slice and linear/sRGB color interpretation. Independent L/R physical sources, device and COM identity, producer EVENT, transport generation and ACK, original D3D9 Draw/Present/gamepad/FFB fallback remain fail-closed. No DXVK changes.
+- Material source commit: `edae1b3a4262d542882a3157e583ac6fafffadd1`; causal negative-mutation CI test repair and **validation-bearing exact SHA**: `d15329a5b901bbc369b0fa3e943d1938717fb2b0`; post-Gate C6 bookkeeping-only SHA: `13bb428e34c031225dd8f1d278bb34c75e35e049`. Neither validation-bearing commit has CI-skip; only post-Gate C6 bookkeeping does.
+- Exact-SHA five GitHub Actions **SUCCESS**: DX11 Fast `40177607780`, Backend `40177607633`, Windows Build `40177607719`, OpenXR architecture `40177610379`, HUD Inspector `40177610288`. Dedicated portable C++ two-eye source admission and destructive Python source-link regressions passed within Fast.
+- Validation: `COMPLETE_BUILD_VERIFIED` / `PASS_EXACT_SHA`, `RUNTIME_VALIDATION=UNTESTED`. There is no same-SHA physical game-native draw count, game-visible native screen, independent Quest3/VDXR stereo/FFB or menu 4:3 theater measurement. No gameplay or headset promotion.
+- Uniqueness: One new source+full-Gate achievement earns only **+1**; the failed first SHA, regression repair, duplicate Actions, checkpoint and C6 do not independently score. AI 1 unaffected.
+- Calculation: **AI 2 previous confirmed 1956 + one independent 01063 source/CI achievement +1 = cumulative 1957.**
 
 ## Latest AI 2 DX11 source/C6 scoring event (01062)
 

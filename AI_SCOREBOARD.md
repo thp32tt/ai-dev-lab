@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 21:30 KST (Asia/Seoul)
+Updated: 2026-10-25 22:15 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1663** | Unchanged by this task |
-| AI 2 — ChatGPT2 | **1961** | Previous confirmed 1960 + 1 independently verified REA/Ghidra Quest cockpit function suite and recovered C++ FP-reference source |
+| AI 2 — ChatGPT2 | **1962** | Previous confirmed 1961 + 1 build-verified independent menu optical scale / game render-source separation |
+
+## AI 2 menu/game render separation completion (2026-10-25 22:15 KST)
+
+- RUN_KEY / TASK_ID: `USER-DX9EX-MENU-RENDER-SEPARATION-20261025`; exactly one functional outcome, +1. No separate credit for test repairs, refresh guard, CI retries or evidence commits.
+- Implemented independent title/main 4:3 MenuScale, provider-independent startup OpenXR game source selection, saved-scale cached-image refresh and same-owner failed-config lookup preservation. R26+HUD, HUD 0.55 and wide selectors retained. A separate fixed-resolution menu render target is not claimed.
+- Material commits: `b65c346da8481706f4bf80a42e41f011065950f2`, `74fdf953b197a0109fc83a807b5396e75f3b5aed`; final integrated validation SHA `8b7e06ce68eff3cb74847a6a4ff88449913fda7d` on thp32tt/OutRun2006Tweaks vr-d3d9ex-focus.
+- Exact-SHA PASS: [Active game/host/package](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40195919150), [Domain](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40195919128), [HUD Inspector](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40195919024), [Full Source](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40195919174). Active artifact 12599727417; inner ZIP SHA256 BAB9E0CAF2C433368DFF1B067190F7E9310FE54F9CCEE83895B64A4EC61E98F0.
+- Durable evidence: docs/automation/runs/USER-DX9EX-MENU-RENDER-SEPARATION-20261025.json and docs/automation/reviews/MENU_RENDER_SEPARATION_20261025.md. RUNTIME_VALIDATION=UNTESTED; no Quest3 optical/FPS or HMD baseline promotion claim.
+- Score: **1961 + 1 = 1962**. AI 1 remains **1663**.
 
 ## Latest independent AI 2 Quest REA source recovery (2026-10-25 21:30 KST)
 

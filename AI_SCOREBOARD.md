@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 22:53 KST (Asia/Seoul)
+Updated: 2026-10-25 22:58 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1665** | New independently verified Memories story summary, +1 |
+| AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
 | AI 2 — ChatGPT2 | **1962** | Previous confirmed 1961 + 1 build-verified independent menu optical scale / game render-source separation |
+
+## AI 1 new detailed retro Memories plot research (2026-10-25 22:58 KST)
+
+- TASK_ID: `DIRECT-RETRO-MEMORIES-DETAILED-PLOT-20261025T2252KST`. Independent from earlier game identification/short synopsis: recovered concrete 50-year memory world, staged invitations and drugged tea, all six psychic analysts and differentiated objectives, specific mansion death mechanisms and the late Rieka-commissioned Lan Kohō rescue connection, using original Japanese game review, Japanese fandom snippets, 2025/2026 independent player retrospective and later-series continuity.
+- Clearly separated sourced plot sequence from unverified fine-grained final scene and avoided conflating Vol.2 Memories with Vol.5 Nightmare. A walkthrough exists but original host denied remote page reads; did not falsely report reading full transcript.
+- One new corroborated long-form research result +1, retrieval/search repetition +0.
+- **AI 1 score: previous 1665 + 1 = 1666.** AI 2 unchanged at 1962.
 
 ## AI 1 independent Memories story synopsis (2026-10-25 22:53 KST)
 

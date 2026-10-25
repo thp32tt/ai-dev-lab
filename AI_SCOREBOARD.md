@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 20:36 KST (Asia/Seoul)
+Updated: 2026-10-25 21:30 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1663** | Unchanged by this task |
-| AI 2 — ChatGPT2 | **1960** | Previous confirmed 1959 + 1 distinct Quest cockpit matrix neutralization/normal+unwind restore and PMT glass predicate evidence |
+| AI 2 — ChatGPT2 | **1961** | Previous confirmed 1960 + 1 independently verified REA/Ghidra Quest cockpit function suite and recovered C++ FP-reference source |
+
+## Latest independent AI 2 Quest REA source recovery (2026-10-25 21:30 KST)
+
+- RUN_KEY: `DIRECT-QUEST-REA-SEVEN-FUNC-CPP-20261025T2105KST` — exactly one achievement (+1), no duplicate credit for repeated function reads or documentation commits.
+- Material result: REA 6.5.0 with Ghidra 12.1.4 successfully analyzed **7 byte-identical native Quest AArch64 function slices** with Evidence IDs, input SHA256s, 14,688 observed function-body bytes, while noting partial call coverage and pseudocode limitations. Full 22MB ELF REA import timed out after 260 seconds and is not claimed successful.
+- Independent C++ recovery: generated **12,393-character** research-only `body_correction_from_guest_matrices` C++ from 211 FP/memory operations in 229 exact ARM64 instructions, verified 16 output slots and 3 synthetic fixture cases. This is not HMD or compiler-verified equivalence.
+- GitHub result on `thp32tt/OutRun2006Tweaks` `vr-d3d9ex-focus`: `docs/research/quest_cockpit_body_correction_reconstructed_20261025.cpp`, fixture JSON, seven-REA-function manifest JSON, and `QUEST_APK_REA_XR_COCKPIT_IMPLEMENTATION_RECOVERY_20261025.md` (last research material commit `c0bd73a333ded2056be37025c6ff652160acb39a`; target HEAD and four exact paths read back).
+- Source ELF SHA256 `fa0f9db9b744515a9a1439741bc9806ad007470b621b88d22a0b8cbced6120b6`. DX9Ex=REVIEW_ONLY, CODE_CHANGE=NO, BUILD=NOT_RUN, HMD RUNTIME_VALIDATION=UNTESTED. AI 1 remains **1663**.
+- **Score:** previous 1960 + new independent source-recovery outcome 1 = **1961**; no repeat score for same RUN_KEY.
 
 ## Latest AI 2 new independent Quest cockpit matrix-lifecycle and glass analysis (2026-10-25 20:36 KST)
 

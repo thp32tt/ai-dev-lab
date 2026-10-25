@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 22:15 KST (Asia/Seoul)
+Updated: 2026-10-25 22:16 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1663** | Unchanged by this task |
+| AI 1 — ChatGPT | **1664** | New independent DOS game identification and cross-checked retrieval, +1 |
 | AI 2 — ChatGPT2 | **1962** | Previous confirmed 1961 + 1 build-verified independent menu optical scale / game render-source separation |
+
+## AI 1 independent retro-game identification (2026-10-25 22:16 KST)
+
+- TASK_ID: `DIRECT-RETRO-MEMORIES-IDENTIFICATION-20261025T2214KST`.
+- Completed: Identified the user's 1990s Korean DOS text adventure “메모리즈” as Data West's Psychic Detective Series Vol.2: Memories. Cross-checked primary platform chronology with MobyGames release records, PC98 game catalog, and independent Korean DOS collection pages, and located accessible game information and Korean launcher/archive listing pages (두기/레트로몬). Not claiming installer tested or download legal status determined.
+- One independent discovery result +1; same identification, later lookup/status follow-ups +0 unless genuinely new task outcome.
+- **AI 1 score: previous confirmed 1663 + 1 = 1664.** AI 2 unchanged at 1962.
 
 ## AI 2 menu/game render separation completion (2026-10-25 22:15 KST)
 

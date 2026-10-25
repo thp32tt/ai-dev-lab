@@ -1,13 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 08:07 KST (Asia/Seoul)
+Updated: 2026-10-25 12:05 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
-| AI 2 — ChatGPT2 | **1951** | Previous confirmed 1950 + 1 completed independent 수도권 주말 이용권 실시간 특가 조사 |
+| AI 2 — ChatGPT2 | **1952** | Previous confirmed 1951 + 1 independent CONVERSION-DX11-01058 exact-SHA C6 completion |
+
+## Latest AI 2 DX11 source/C6 scoring event
+
+- Time: 2026-10-25 12:05 KST
+- AI: AI 2 — ChatGPT2
+- TASK_ID / RUN_KEY: `AUTO:CONVERSION-DX11-01058`
+- Unique achievement: DX11 native D3D9 cropped game-tile late-staging failure recovery materially committed in OutRun2006Tweaks source SHA `192c19543b39ddbcdd81ae405e51691446b3a833`; actual Backend CI failure and inherited 01056/01055/00886 regression failures repaired in the SAME task. The five mandatory GitHub Actions **SUCCESS** on identical validation-bearing SHA `f941d0146f833b6bf1bab1d3e13ae316d1f9061d`; durable C6 record committed at `5db0b69f840b07511f1c22b6cbbee3973346c2a1`.
+- Verified gates: DX11 Fast 40155776799; Backend Gate 40155776800; Windows Build 40155776804; OpenXR 40155776793; HUD Inspector 40155776844.
+- Distinguish proof: `COMPLETE_BUILD_VERIFIED`, `PASS_EXACT_SHA`; real OutRun/Quest3/HMD gameplay `RUNTIME_VALIDATION=UNTESTED`. No claim of playable native DX11 frames.
+- Duplication: This +1 is for one genuinely new material feature with completed source/C6 evidence. Rollovers E001/E003, inherited 01057 bookkeeping repair, retries, failed runs, and repeated successful checks are **not** separately scored.
+- AI 1 score unchanged.
+- Calculation: **AI 2 previous confirmed 1951 + this independent completed achievement +1 = cumulative 1952.**
 
 ## Latest AI 2 수도권 연간이용권 모니터링 event
 

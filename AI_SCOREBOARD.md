@@ -1,13 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 16:52 KST (Asia/Seoul)
+Updated: 2026-10-25 17:02 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1663** | 1662 previously confirmed + 1 direct visual OCR recovery/runtime B dispatch achievement |
-| AI 2 — ChatGPT2 | **1955** | Previous confirmed 1954 + 1 independently completed CONVERSION-DX11-01061 native mip-zero GPU frame source/CI achievement |
+| AI 2 — ChatGPT2 | **1956** | Previous confirmed 1955 + 1 independently completed CONVERSION-DX11-01062 independent-resolution native game GPU sink source/CI achievement | Previous confirmed 1954 + 1 independently completed CONVERSION-DX11-01061 native mip-zero GPU frame source/CI achievement |
+
+## Latest AI 2 DX11 source/C6 scoring event (01062)
+
+- Time: 2026-10-25 17:02 KST
+- AI: AI 2 — ChatGPT2
+- TASK_ID / RUN_KEY: `AUTO:CONVERSION-DX11-01062`
+- One new integrated DX11 native GPU frame capability: full-size real-game D3D11 color texture with verified producer ownership and pixel extent is now eligible for independent-resolution native GPU sink, without inheriting the D3D9 desktop-size restriction. Actual native texture format, mip/array/sample and owning device are checked; original strict D3D9Ex shared desktop crop/dirty-region rollback, Draw/Present, original gamepad and FFB remain fail-closed.
+- Implementation SHA: `44494c8f0ffad0138ae3c7dd3ffe8701942d78bf`; causal source-link negative-mutation regression repair and final validation-bearing SHA: `fb339c7a7740c19ecec2777e5310d9cd2657366d`; separate post-Gate C6-only commit: `ef992e0199bb327f3f793dabd2e3942104d9ccfe`. No CI-skip on either validation-bearing result commit; only C6 bookkeeping uses `[skip ci]`.
+- Five identical exact-SHA GitHub Actions **SUCCESS**: Fast `40173587197`, Backend `40173587220`, Windows Build `40173587171`, OpenXR architecture `40173587163`, HUD Inspector `40173587208`. Portable 01062 C++ consumer-geometry positive/negative checks and source-link destructive regressions ran within Fast. The repaired mutation test re-scoped its edit to the actual GPU-only source block, without weakening any safety assertion.
+- Validation: `COMPLETE_BUILD_VERIFIED` / `PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. No physical OutRun Draw count/native published frames, real visible 4:3 theater result, Quest3/VDXR stereo output or FFB hardware result. No automatic native promotion, DXVK remains frozen.
+- Uniqueness: New 01062 source+five mandatory Gate result earns **one** independent +1 achievement; failed SHA, regression-only repair, repeats, C6 and checkpoint produce no extra points. AI 1 unaffected.
+- Calculation: **AI 2 previous confirmed 1955 + one independently completed 01062 source/CI achievement +1 = cumulative 1956.**
 
 ## Latest AI 2 DX11 source/C6 scoring event (01061)
 

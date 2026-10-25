@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 22:16 KST (Asia/Seoul)
+Updated: 2026-10-25 22:53 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1664** | New independent DOS game identification and cross-checked retrieval, +1 |
+| AI 1 — ChatGPT | **1665** | New independently verified Memories story summary, +1 |
 | AI 2 — ChatGPT2 | **1962** | Previous confirmed 1961 + 1 build-verified independent menu optical scale / game render-source separation |
+
+## AI 1 independent Memories story synopsis (2026-10-25 22:53 KST)
+
+- TASK_ID: `DIRECT-RETRO-MEMORIES-STORY-SUMMARY-20261025T2252KST`.
+- New and distinct from previous game identification: verified story specifics through MobyGames, classicgame Japanese longform character/plot analysis and firsthand player reflections: distressed daughter Shoko, deceptive father Shotaro, drugged tea, 50-year memory-world confinement, other psychic analysts and the dead-lover obsession. Explicitly separated well-supported setup and spoilers from unverified final sequence; no fictional ending details invented.
+- Unique user-requested researched story synopsis +1, same facts/reports +0 on retries/follow-ups.
+- **AI 1 score: previous 1664 + 1 = 1665.** AI 2 unchanged at 1962.
 
 ## AI 1 independent retro-game identification (2026-10-25 22:16 KST)
 

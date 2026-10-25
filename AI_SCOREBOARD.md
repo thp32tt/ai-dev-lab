@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 20:19 KST (Asia/Seoul)
+Updated: 2026-10-25 20:36 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1663** | Unchanged by this task |
-| AI 2 — ChatGPT2 | **1959** | Previous confirmed 1958 + 1 newly recovered Quest native cockpit/VR function set with verified ELF/Ghidra address correction and GitHub evidence |
+| AI 2 — ChatGPT2 | **1960** | Previous confirmed 1959 + 1 distinct Quest cockpit matrix neutralization/normal+unwind restore and PMT glass predicate evidence |
+
+## Latest AI 2 new independent Quest cockpit matrix-lifecycle and glass analysis (2026-10-25 20:36 KST)
+
+- Time: 2026-10-25 20:36 KST; RUN_KEY: `DIRECT-QUEST-COCKPIT-MATRIX-UNWIND-GLASS-20261025T2022KST`.
+- Distinct from previous corrected-Ghidra-address recovery: independently verified exact Quest APK cockpit mode-1 **render-frame state lifecycle** from original bounded ARM64: guest camera +0xF0..+0x12C 16-float matrix is temporarily rewritten to identity (bit-exact diagonal indices 0,5,10,15), after separate 16-float cockpit/body-correction calculation, then fully restored in both normal 0x10CC78C..7D0 and exception/unwind 0x10CC910..968 paths; both clear active TLS. Independent script verified 16/16 offset coverage on each path, no duplicated/missing stores, and identity arithmetic.
+- New associated materials cross-check: independently reran 31 APK player-PMT inventories; 48 broad tinted candidates, only 47 match the actual native alpha 0.55/0.425 ±0.001 gate, excluding obj_plcar_f50_pmt.sz object0/material3 alpha 0.5. The more specific material/mesh identity and runtime D3D9 blend have NOT been proven. Missing Ghidra PLT callees were trial-defined read-only, but inflated pseudocode **did not shrink**; no false decompiler-completion claim.
+- New research commit: `thp32tt/OutRun2006Tweaks@e46d25a13edcf76181bac904bd133829d010c318`, exact docs path `docs/research/QUEST_APK_COCKPIT_MATRIX_LIFECYCLE_GLASS_PMT_CROSSCHECK_20261025.md`, independent GitHub readback blob `03f630f13584996aed5c4db114912422efb30d0a`.
+- Verified N100 source ELF SHA256 `fa0f9db9b744515a9a1439741bc9806ad007470b621b88d22a0b8cbced6120b6`; local machine-checkable evidence `quest20261025_matrix_lifecycle_verified.json`. Source policy: DX9Ex REVIEW_ONLY, CODE_CHANGE=NO, BUILD=NOT_RUN, HMD RUNTIME_VALIDATION=UNTESTED.
+- Scoring: previous confirmed AI 2 **1959** + exactly **1** novel material recovered behavior/report = AI 2 cumulative **1960**. No extra points for the several tools, reruns, decompiler setup, related report updates or this event's duplicate readbacks. AI 1 remains 1663.
 
 ## New unique AI 2 Quest source recovery result (2026-10-25 20:19 KST)
 

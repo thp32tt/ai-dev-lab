@@ -1,13 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 08:30:55 KST (Asia/Seoul)
+Updated: 2026-10-26 08:50:32 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1965** | PG/VAN weekly regulation brief (2026-10-26), official-source research +1 |
+| AI 2 — ChatGPT2 | **1966** | 수도권 주말 이용 시즌권·연간권 신규 판매/조건 재확인, 중복 알림 제외 +1 |
+
+## AI 2 수도권 시즌권·연간권 특가 모니터링 (2026-10-26 08:50 KST)
+
+- KST execution: 2026-10-26 08:50:32 KST (Asia/Seoul); AI: **AI 2 — ChatGPT2**; RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:20261026T085032+0900`.
+- Previous confirmed cumulative score: **1965**. Change: **+1** (new daily monitoring execution completed with source verification under user-specific monitoring-scoring rule). New confirmed cumulative score: **1966**.
+- Result: Searched newly released/reopened weekend-eligible annual/season/multi-visit passes across Seoul, Gyeonggi and Incheon amusement parks, aquariums, water parks and kids facilities. **No independently confirmed new/reopened materially recommendable offer beyond previously notified conditions**. Do not send duplicate purchase alert.
+- SEA LIFE COEX official 2026 39%-off single pass remains **KRW 79,000** versus **KRW 130,000**, official 2026-09-23 to 2026-10-31 promotion, weekend/holiday eligible, first-entry-month one-year subject to purchase-month-specific registration/validity. Previously alerted; official channel MyRealTrip 10/24–10/26 (platform offer redirected to home when checked, so no platform live inventory claim). Prior sale-platform notice of registration/first visit by 10/31 remains a buyer-specific caution; official general terms and platform-specific special terms should not be conflated.
+- Other checks: Seoul Land 5-month season-pass registration page found, but no verified newly active promotional sales; Aqua Planet Ilsan official annual-pass general-price page (weekend KRW 100,000), Lotte World official annual-pass standard pricing, Everland existing KB card discount, One Mount and Woongjin Playdoci local listings; none independently proved a new user-qualifying promotion. No invented prices, blackout dates, infant or registration terms.
+- Sources: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/y26-ap-single-flash-sale/ ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/promotions/annual-pass-promotion/ ; https://onestop.seoulland.co.kr/m/season/seasonTicket/5SEASON ; https://www.aquaplanet.co.kr/ilsan/eng/information/use_price.do ; https://adventure.lotteworld.com/price/member/price ; https://grp.everland.com/pick/2025/garden_pass/notice/notice-260316.html .
+- AI 1 unchanged. Calculation: **1965 + 1 = 1966**. Same RUN_KEY/retry/readback scores +0.
 
 
 ## AI 2 PG/VAN weekly regulation briefing (2026-10-26 08:30 KST)

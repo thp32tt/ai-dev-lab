@@ -1,13 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 14:56 KST (Asia/Seoul)
+Updated: 2026-10-25 15:53 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
-| AI 2 — ChatGPT2 | **1954** | Previous confirmed 1953 + 1 independently completed CONVERSION-DX11-01060 source/CI achievement |
+| AI 2 — ChatGPT2 | **1955** | Previous confirmed 1954 + 1 independently completed CONVERSION-DX11-01061 native mip-zero GPU frame source/CI achievement |
+
+## Latest AI 2 DX11 source/C6 scoring event (01061)
+
+- Time: 2026-10-25 15:53 KST
+- AI: AI 2 — ChatGPT2
+- TASK_ID / RUN_KEY: `AUTO:CONVERSION-DX11-01061`
+- Unique implemented native DX11 GPU frame source integration: actual complete native menu/vehicle/race color textures with mipmaps can copy mip-zero to the existing bounded, fenced D3D9Ex shared-desktop path. Compatible BGRA8 UNORM, sRGB and single-sampled typeless storage are handled with format-aware GPU CopyResource/CopySubresourceRegion and cached resolve-target format checks; ambiguous array/eye slices, unproved MSAA, and unsupported sources fail closed to original D3D9 game Present/input/FFB.
+- Material source commit: `12e329badf2982d8547b8a3e91ebfedea19eddd5`. Inherited 01060 C6 acceptance metadata was repaired to unblock a real Fast policy Gate failure in same task. Validation-bearing source/repair commit: `75898b79367e818d389b003ead7f42b3f9df8015`. Post-Gate C6-only checkpoint commit: `28503bcd527654fedb61b6b37c1eb88c096aea42`, with `[skip ci]` ONLY on this post-Gate C6 commit, not on the validation-bearing SHA.
+- Five same-SHA GitHub Actions **SUCCESS**: DX11 Fast `40169900853`, Backend `40169900809`, Windows Build `40169900803`, OpenXR `40169900798`, HUD Inspector `40169900857`. The new 01061 portable C++ layout probe and structural negative-mutation regressions passed on the same validated source SHA.
+- Scope: `COMPLETE_BUILD_VERIFIED` / `PASS_EXACT_SHA`, `RUNTIME_VALIDATION=UNTESTED`. Native draw/published-frame counts in a real game launch, actual Quest3/VDXR and FFB hardware have not been measured; no game/HMD playable claim. DXVK frozen.
+- Uniqueness: Exactly one new independent 01061 source+five-Gate achievement is scored. CI policy repair of prior 01060 record, retries, post-Gate C6, and status checks score **+0** separately. AI 1 unchanged.
+- Calculation: **AI 2 previous confirmed 1954 + one independently completed 01061 source/CI achievement +1 = cumulative 1955.**
 
 ## Latest AI 2 DX11 source/C6 scoring event (01060)
 

@@ -1,13 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 19:52 KST (Asia/Seoul)
+Updated: 2026-10-25 20:19 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1663** | Unchanged; no AI 1 scoring event in this task |
-| AI 2 — ChatGPT2 | **1958** | Previous confirmed 1957 + 1 new uniquely verified Quest cockpit glass draw-state reverse-engineering and GitHub report materialization |
+| AI 1 — ChatGPT | **1663** | Unchanged by this task |
+| AI 2 — ChatGPT2 | **1959** | Previous confirmed 1958 + 1 newly recovered Quest native cockpit/VR function set with verified ELF/Ghidra address correction and GitHub evidence |
+
+## New unique AI 2 Quest source recovery result (2026-10-25 20:19 KST)
+
+- RUN_KEY: `DIRECT-QUEST-GHIDRA-CORRECTBASE-20FUNC-20261025T2002KST`
+- **NEW INDEPENDENT MATERIAL ACHIEVEMENT**: fixed N100 Ghidra project `IMAGEBASE=0x100000` vs AArch64 ELF virtual address mapping; formerly failed `halt_baddata` driver/cockpit shader and rendering functions are now decompilable at correct function bounds. Three focused Ghidra recoveries generated C-like outputs for 20 unique native functions across cockpit body, glass PMT, vehicle/driver/occupant, GLES state and OpenXR eyes/hands; fourth independent machine-code pass cross-checked control-flow boundaries.
+- Source integrity: original user ARM64 ELF SHA256 `fa0f9db9b744515a9a1439741bc9806ad007470b621b88d22a0b8cbced6120b6`, independently recomputed. Exactly 13,053/13,053 instructions decoded, 20/20 Ghidra completion results, 727,941 pseudocode characters, 16/20 files with unresolved Ghidra warnings. Full original authored C++ not recovered; no runtime proof claimed.
+- New durable research GitHub result: `thp32tt/OutRun2006Tweaks` `vr-d3d9ex-focus` commit `2934ec4cebd8592f6ee9568bee45a7b37bc8fec6` plus independent bounded-branch cross-check `964e925173f40496aa064ecf4f57d845675c7cbd`; remote document readback blob `8ecfd1ee5ed262e55750efca2fa1c1292a5af192`, path `docs/research/QUEST_APK_GHIDRA_REBASE_COCKPIT_RECOVERY_20261025.md`.
+- N100 local evidence: `apk/_analysis_focus/quest20261025_recovery_manifest.json`, three `correctbase*20261025` directories (proprietary-derived C-like pseudocode private), `quest20261025_controlflow_bounded.json`; no game code or proprietary binary uploaded to GitHub.
+- Scope: `REVIEW_ONLY`, `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`; stable R26+HUD and DX11 source unaffected.
+- All four loops are **one achievement**, not four separate scores. Re-readback/rollover/retry/restatement of this exact same success adds **+0**.
+- Calculation: **AI 2 previous confirmed 1958 + one new completed unique source-recovery/evidence achievement +1 = 1959**. AI 1 unchanged.
 
 ## Latest AI 2 unique offline reverse-engineering event (Quest cockpit/glass 2026-10-25)
 

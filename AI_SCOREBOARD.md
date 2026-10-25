@@ -1,15 +1,27 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 13:48 KST (Asia/Seoul)
+Updated: 2026-10-25 14:56 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
-| AI 2 — ChatGPT2 | **1953** | Previous confirmed 1952 + 1 independent CONVERSION-DX11-01059 exact-SHA C6 completion |
+| AI 2 — ChatGPT2 | **1954** | Previous confirmed 1953 + 1 independently completed CONVERSION-DX11-01060 source/CI achievement |
 
-## Latest AI 2 DX11 source/C6 scoring event
+## Latest AI 2 DX11 source/C6 scoring event (01060)
+
+- Time: 2026-10-25 14:56 KST
+- AI: AI 2 — ChatGPT2
+- TASK_ID / RUN_KEY: `AUTO:CONVERSION-DX11-01060`
+- Unique new implemented source integration: authentic current D3D9 menu/car/race backbuffer CPU staging now supports a private same-format scratch GPU RT when direct GetRenderTargetData fails in a native D3D11 multi-dirty-region publication transaction; nested R30 StretchRect hook is suppressed while State::mutex is held. If readback cannot complete, no partial native pixels are published and original D3D9/input/FFB fallback remains unchanged.
+- Material game/source commit: `06990acebcfd7e518374d48d3c88e5d07745d89e`; actual Fast CI regressions for historical 00769, 00754, 00767 were repaired within SAME TASK_ID. Validation-bearing exact SHA: `73e2e57a3e100a381eff13068f971b5b887340e3`. C6-only bookkeeping commit: `b6282743556ba408c76a6d2a0ee2bda29f68618f` on `thp32tt/OutRun2006Tweaks/vr-dx11-native-r71`.
+- Five GitHub Actions same-SHA **SUCCESS**: DX11 Fast `40166287560`; Backend `40166287542`; Windows Build `40166292412`; OpenXR `40166292416`; HUD Inspector `40166292398`. 01060 source-link regression and prior fallback/protection regressions PASS. CI-skip applied only to post-Gate C6 bookkeeping commit, not validation-bearing result.
+- Scope: `COMPLETE_BUILD_VERIFIED` / `PASS_EXACT_SHA`, `RUNTIME_VALIDATION=UNTESTED`; no actual OutRun source Draw counts, menu/race pixels, Quest3/VDXR, or gamepad/FFB hardware runtime claim. DXVK unchanged.
+- Uniqueness: The source/CI/C6 record is ONE independent 01060 integration achievement. Its multiple Gate retries, failure repairs, checkpoint, previous SHA and new source-link regressions are **not** additional scores. AI 1 unchanged.
+- Calculation: **AI 2 previous confirmed 1953 + one newly completed 01060 source/CI achievement +1 = cumulative 1954.**
+
+## Prior AI 2 DX11 source/C6 scoring event (01059)
 
 - Time: 2026-10-25 13:48 KST
 - AI: AI 2 — ChatGPT2

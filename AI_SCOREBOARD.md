@@ -1,15 +1,26 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-25 12:05 KST (Asia/Seoul)
+Updated: 2026-10-25 13:48 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1662** | 1661 previously confirmed + 1 newly completed five-SHA C1 QA achievement |
-| AI 2 — ChatGPT2 | **1952** | Previous confirmed 1951 + 1 independent CONVERSION-DX11-01058 exact-SHA C6 completion |
+| AI 2 — ChatGPT2 | **1953** | Previous confirmed 1952 + 1 independent CONVERSION-DX11-01059 exact-SHA C6 completion |
 
 ## Latest AI 2 DX11 source/C6 scoring event
+
+- Time: 2026-10-25 13:48 KST
+- AI: AI 2 — ChatGPT2
+- TASK_ID / RUN_KEY: `AUTO:CONVERSION-DX11-01059`
+- Unique new completed implementation: D3D9 native game source-copy full-frame readback fallback via a private same-format GPU render target, together with R30 hooked StretchRect recursion suppression under State::mutex, exact owner/size/format admission, Reset lifetime and fail-closed original D3D9 fallback. Result source commit: `697c96ad6956fec38e95643bcafa509dfcdf8de7` on `thp32tt/OutRun2006Tweaks/vr-dx11-native-r71`; C6-only bookkeeping commit: `1ec39e6e1da8eedecd7baec68dd6b9e8a4dc6c15`.
+- Exact-SHA five mandatory GitHub Actions **SUCCESS**: DX11 Fast `40162429648`; Backend `40162429562`; Windows Build `40162429600`; OpenXR `40162429610`; HUD Inspector `40162429590`. Dedicated source mutation regression 01059 PASS in Fast log. No CI-skip on the validation-bearing result.
+- Explicit bounds: `COMPLETE_BUILD_VERIFIED` / `PASS_EXACT_SHA`, `RUNTIME_VALIDATION=UNTESTED`; no real game Draw counts, menu/race visibility or Quest3/VDXR gameplay claims. Original FFB and DX9Ex fallback preserved in source.
+- Uniqueness: source + acceptance record are one independent 01059 implementation achievement; no duplicate score for its C6/status readback, retry, same-SHA CI duplicate or rollover. AI 1 unaffected.
+- Calculation: **AI 2 previous confirmed 1952 + independent new DX11 01059 completed achievement +1 = cumulative 1953.**
+
+## Previous AI 2 DX11 source/C6 scoring event
 
 - Time: 2026-10-25 12:05 KST
 - AI: AI 2 — ChatGPT2

@@ -7,7 +7,7 @@ Updated: 2026-10-25 17:02 KST (Asia/Seoul)
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1663** | 1662 previously confirmed + 1 direct visual OCR recovery/runtime B dispatch achievement |
-| AI 2 — ChatGPT2 | **1956** | Previous confirmed 1955 + 1 independently completed CONVERSION-DX11-01062 independent-resolution native game GPU sink source/CI achievement | Previous confirmed 1954 + 1 independently completed CONVERSION-DX11-01061 native mip-zero GPU frame source/CI achievement |
+| AI 2 — ChatGPT2 | **1956** | Previous confirmed 1955 + 1 independently completed CONVERSION-DX11-01062 independent-resolution native game GPU sink source/CI achievement |
 
 ## Latest AI 2 DX11 source/C6 scoring event (01062)
 

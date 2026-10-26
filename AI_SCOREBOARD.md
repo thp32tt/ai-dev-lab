@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 12:07:22 KST (Asia/Seoul)
+Updated: 2026-10-26 13:02:39 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1970** | Unique DX9Ex REVIEW_ONLY 01503 inner RIGHT restore-failure conditional, verified docs-only commit +1 |
+| AI 2 — ChatGPT2 | **1971** | DX11 01082 authentic SM3 native independent-list GPU chunk implementation + exact-SHA five Gate success, +1 |
+
+## AI 2 DX11 native shader-bound game GPU draw source implementation 01082 (2026-10-26 13:02:39 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01082`; one new integrated source milestone, **+1 once**; further retries/C6/readback are +0. AI 1 unchanged.
+- Repository: `thp32tt/OutRun2006Tweaks` branch `vr-dx11-native-r71`; base HEAD `2a36ff69e030a9ffa84ec97cae22d2d0541b8813`; C++ material source SHA `3dfb1ae419cad7649682be63edebe3021fd06676`; validation-bearing fix SHA `f8868b5fa0600fa77f8828a6d8685d06747c251e` (exact `[AUTO:CONVERSION-DX11-01082]` tags). Source and regression material code changed, not a mere review.
+- Actual native SM3 game Draw bridge now splits game-authored noninstanced unindexed point/line/triangle LIST streams exceeding a single 32 MiB packed FLOAT4 GPU upload into aligned chunks, assembles absolute multi-stream vertex windows, streams through live D3D11 IA + guarded Draw; retains indexed/connected fallback and original D3D9Ex input/FFB. No game/HMD runtime observation.
+- Mandatory five **push, exact-SHA** GitHub Actions SUCCESS all for `f8868b5fa0600fa77f8828a6d8685d06747c251e`: DX11 Fast `40265391734`, Backend `40265391755`, Build `40265391703`, OpenXR `40265391717`, HUD `40265391738`. Initial exact-string static failures were repaired within the same task; no CI-skip/forced push.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`, game/HMD/Quest3 and native full menu/car/race frame not proven. C6 bookkeeping is not another scored event.
+- **AI 2 score: previous confirmed 1970 + new implemented and five-gate verified source milestone +1 = cumulative 1971.**
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01503 (2026-10-26 12:07:22 KST (Asia/Seoul))
 

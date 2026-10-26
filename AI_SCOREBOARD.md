@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 07:52:57 KST
+Updated: 2026-10-27 08:08:37 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1997** | New DX11 original game point/line source-to-native D3D11 frame path 01098, +1 |
+| AI 2 — ChatGPT2 | **1998** | New independent DX9Ex R30 WVP rollback / R9 mono-gap REVIEW_ONLY 01521, +1 |
+
+
+
+## AI 2 DX9Ex R30 pre-LEFT WVP failure / orphaned R9 mono-gap REVIEW_ONLY 01521 (2026-10-27 08:08:37 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01521`. New independent conditional source finding on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: after R30 shader screen/effect admission, `R9NoteStereoDrawWithoutMonoBackup` marks a gap before LEFT raw GPU Draw. If the LEFT shader c64 upload fails and original c64 rollback succeeds, R30 undoes only `R9DrawCalls` and returns E_NOTIMPL to its lower R29/R9 fallback; `R9MonoBackupGap` stays set, even where lower mono replay succeeds. A later incomplete frame would skip R9 mono restore and may Present an eye-transformed source; runtime/driver/Quest3 reachability UNTESTED. Not a repeat of 01501 R62 terminal SetTransform failure, 01519 restore HRESULT failure, or 01520 active-query mono replay skip.
+- SOURCE_HEAD `01dfee28670c743a7f544564514c385d2aaeaab4`; docs-only result `1e77bf79e2153aa8f78f096ef2f585345742ba33`. Exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01521.md` (+41/-0), exact `[AUTO:CONVERSION-DX9EX-01521]` marker; parent=SOURCE_HEAD, remote target HEAD=RESULT_SHA, compare ahead=1/behind=0, remote blob `db0278b3692eda73d52d04f58b31cd0fb39c20e9` read back.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `PATCH_CANDIDATE_ONLY`; `RUNTIME_VALIDATION=UNTESTED`. No runtime source/workflow/config modifications, no B9200 +5 or R84 elevation. No new HMD result claimed.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 1997 + one independently verified docs-only review +1 = 1998.** AI 1 stays 1666. Same TASK_ID retry/rollover/readback scores +0.
 
 
 ## AI 2 DX11 native full-source point/line game frame integration 01098 (2026-10-27 07:52:57 KST)

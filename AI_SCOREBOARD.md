@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 19:49:28 KST
+Updated: 2026-10-26 20:07:38 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1980** | DX11 01086 indexed connected LINESTRIP/TRIANGLESTRIP native source implementation, five exact-SHA PASS, +1 |
+| AI 2 — ChatGPT2 | **1981** | DX9Ex REVIEW_ONLY 01510 new independent pre-drain priority snapshot source review, docs-only validation +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01510 (2026-10-26 20:07:38 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01510`. One distinct static conditional finding: GOAL 0–99% inner E8 saves priority roots/tails/serial **before** old-owner native D3DX pre-drain. If pre-drain reentrantly appends an untagged node without `SelectSpriteQueueNode` / epoch increment, current GOAL admission may pass and final bounded tag walk may misattribute the *pre-source* node. Actual callback reentry, pixels, Quest3/HMD behavior UNTESTED. Not a repeat of 01506 VR admission (now guarded), 01507 full-parent queue pass or 01509 HUD containment.
+- Source SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, `SOURCE_HEAD=bda6b12078528265a8157d842a7c825883fb629c`. Review-only GitHub `RESULT_SHA=62db29a7bde1b95ea619411e41e20fc210a61bda`; **exact one** new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01510.md` (+51, other paths 0), exact commit marker `[AUTO:CONVERSION-DX9EX-01510]`. Parent/SOURCE_HEAD same; remote HEAD readback same; compare ahead=1, behind=0; remote blob `1f87d53cbd72e5e1fc517bd1f704f7b7b81be0bc` verified.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `BUILD=NOT_RUN`; `RUNTIME_VALIDATION=UNTESTED`. No production source/hook/workflow change; R26+HUD baseline unchanged; no R84 promotion, no B9200 post-CALL/+5 hook. `PATCH_CANDIDATE_ONLY` documented, not implemented.
+- **AI 2 score: previous confirmed 1980 + independently completed new docs-only static review +1 = cumulative 1981.** Existing TASK_ID retries, rechecks and this score update earn +0. AI 1 unchanged (1666).
 
 ## AI 2 DX11 indexed connected strip 01086 (2026-10-26 19:49:28 KST)
 

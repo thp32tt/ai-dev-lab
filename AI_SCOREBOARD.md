@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 22:10 KST
+Updated: 2026-10-26 22:55 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1984** | DX11 01088 true live SM3 fan point/wire/solid GPU windows: material source + five exact-SHA CI PASS, +1 |
+| AI 2 — ChatGPT2 | **1985** | DX11 01089 indexed/nonindexed SM3 triangle-strip POINT/WIREFRAME/SOLID native GPU windows: five exact-SHA GitHub CI PASS, +1 |
+
+## AI 2 DX11 native SM3 connected polygon strip 01089 (2026-10-26 22:55 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01089`. New cohesive real-game source implementation for programmable SM3 genuine D3D9 indexed and nonindexed `TRIANGLESTRIP` POINT/WIREFRAME/SOLID rendering across multiple bounded native D3D11 GPU windows. Per-source-triangle point occurrences, authentic alternating strip winding/overlap, bounded index-buffer and preflight on entire original indexed input; untouched original D3D9/DX9Ex rendering, input/FFB/SkyGlow fallback, and DXVK freeze.
+- Game source implementation commit `c59adafe2e9a8446e626d5c7f99b52ac22afa606` (`src/vr/d3d11/live_game_frame_bridge.cpp`, `live_game_sm3_polygon_raster.hpp`, C++/Python regression); same TASK_ID causal gate/contract repair commits `4f5ef4d5848943ab7b91370b3320978cb8b3faec`, `87628eedf2f6351b738b0205d2a6a7eab51dad32`. Exact validation-bearing `RESULT_SHA=87628eedf2f6351b738b0205d2a6a7eab51dad32`. Separate C6 documentation-only checkpoint `845dbd39d850293d797a70680f3ced903c4ecdbf` with `[skip ci]` is not the material result and triggers no new Gate.
+- All five GitHub Actions `push` runs `completed/success` with the identical exact `RESULT_SHA`: DX11 Fast Structural Checks `40332918794`, Backend Conversion Gate `40332918879`, Windows Build `40332918849`, OpenXR VR architecture `40332918730`, OutRun EXE HUD Inspector CI `40332918765`. Real OutRun game native pixels, Quest 3/VDXR stereo, actual drawn/published frame counts, runtime and FPS **UNTESTED**. Source/CI verified, not full playability or complete native gameplay.
+- **AI 2 cumulative: previous confirmed 1984 + new integrated source achievement +1 = 1985.** Same TASK_ID gate repairs, C6, rechecks and retry/rollover contribute +0. AI 1 stays 1666.
 
 ## AI 2 DX11 live polygon fan native GPU windows 01088 (2026-10-26 22:10 KST)
 

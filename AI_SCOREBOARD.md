@@ -1,14 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 08:08:37 KST
+Updated: 2026-10-27 08:45:00 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1998** | New independent DX9Ex R30 WVP rollback / R9 mono-gap REVIEW_ONLY 01521, +1 |
+| AI 2 — ChatGPT2 | **1999** | New distinct 2026-10-27 capital-area annual-pass deal research and cross-check, +1 |
 
+
+
+## AI 2 수도권 연간이용권 특가 조회 (2026-10-27 08:45:00 KST)
+
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-10-27T08:45:00+09:00`.
+- Scope: 수도권 놀이공원·아쿠아리움·워터파크·동물원·키즈 체험시설의 주말 사용 가능 연간권/시즌권/다회권 신규·재판매 및 조건개선 확인. 공식 시설 페이지와 최신 검색 교차검증.
+- Verified current 2026 offer: SEA LIFE COEX 2026 last annual pass flash sale, 2026-09-23 10:00 through 2026-10-31 23:59, single pass KRW 79,000 (from KRW 130,000; 39% off), weekend/holidays allowed, no blackout on operating days, infant under 36 months free. Official FAQ: first-entry-month validity subject to purchase-month registration/validity restrictions. Same price/conditions as previously notified; excluded from repeat new-deal notification. Sources: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/y26-ap-single-flash-sale/ and https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ . Vendor-specific final registration deadline/first-visit requirement not newly verified; no extrapolation.
+- Seoul Land 5-month season-pass registration page remains available but no current new-sale price/date established; premium 둘모아/다모아 official page explicitly states sales temporarily suspended. Aqua Planet Ilsan 2026 annual pass page and normal weekend pass KRW 100,000 found; no new confirmed discount. Woongjin Playdoci 2026-09-09 through 2026-12-11 posted normal day ticket KRW 60,000, infant under 36 months free, but no newly verified multi-pass promotion. No new qualifying weekend-access sale verified in this run. Sources: https://onestop.seoulland.co.kr/m/season/seasonTicket/5SEASON ; https://seoulland.co.kr/?p=30_bak_251125 ; https://m.aquaplanet.co.kr/ilsan/event/view.do?seq=3257 ; https://www.aquaplanet.co.kr/ilsan/eng/information/use_price.do ; https://www.playdoci.com/water/info_charge.aspx .
+- No repeated notification for unchanged promotions. Prior score 1998 + distinct independently executed scheduled research and verification +1 = **AI 2 1999**. AI 1 unchanged. Same RUN_KEY retry/readback +0.
 
 
 ## AI 2 DX9Ex R30 pre-LEFT WVP failure / orphaned R9 mono-gap REVIEW_ONLY 01521 (2026-10-27 08:08:37 KST)

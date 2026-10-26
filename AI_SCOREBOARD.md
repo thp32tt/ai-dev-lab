@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 00:06 KST
+Updated: 2026-10-27 01:06 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1988** | New DX9Ex review 01514, exact docs-only remote commit +1 |
+| AI 2 — ChatGPT2 | **1989** | Distinct DX9Ex REVIEW_ONLY 01515 color initialization review, docs-only exact SHA +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01515 (2026-10-27 01:06 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01515`. Independent new source-grounded static conditional observation: R7 `EnsureStereoResources` allocates a full-size right-eye COLOR surface yet its first `Clear(Count=0,pRects=nullptr,TARGET)` runs in the **current saved possibly cropped viewport**. The later DirectGPU and SBS paths copy/sample the complete right surface; absent an intervening full-right color Clear/write, pixels outside the saved viewport are not proven initialized. This is color allocation/output coverage, distinct from 01513 depth/stencil bootstrap and 01514 tiled depth Clear predicate. Actual original-game cropped-first-allocation, visible artifact and Quest3/VDXR FPS **UNTESTED**.
+- GitHub SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned `SOURCE_HEAD=5178744eab87f36b6301f778c6e232790909aafc`, docs-only `RESULT_SHA=4479f0c4e4079142e57d4e3a25e04ea06c0be6a2`; exactly one new file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01515.md` (+42/-0), commit message includes exact `[AUTO:CONVERSION-DX9EX-01515]`. Remote branch HEAD exact, compare ahead=1 behind=0, blob SHA `0d475413a48a9b8ab9f3e3d555e13d445c966cc2` readback verified. No game code, build/workflow/config, new branch, R84 promotion or risky B9200 +5 hook.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `RUNTIME_VALIDATION=UNTESTED`; `PATCH_CANDIDATE_ONLY`. Same task retry/rollover/status/readback +0.
+- **AI 2 score: previous confirmed 1988 + one newly verified independent docs-only review +1 = cumulative 1989.** AI 1 unchanged.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01514 (2026-10-27 00:06 KST)
 

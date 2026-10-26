@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 23:57 KST
+Updated: 2026-10-27 00:06 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1987** | New DX11 native triangle-list polygon GPU windows 01090, verified five push exact-SHA CI, +1 |
+| AI 2 — ChatGPT2 | **1988** | New DX9Ex review 01514, exact docs-only remote commit +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01514 (2026-10-27 00:06 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01514`. Unique source-grounded static finding: R7's `ClearCoversStereoBackbuffer` checks whether a single `D3DRECT` covers the full game viewport; multiple D3DRECTs whose **union** covers the full screen are not accepted as full clear. A successful bilateral depth/stencil Clear over a full-covering tiled array can therefore leave initial right-sync flags false and cause avoidable conservative rejection of a later eligible depth/stencil-tested stereo draw. Original-game Count>1 union-full occurrence, depth pixels, Quest3/VDXR and FPS remain UNTESTED.
+- GitHub SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, SOURCE_HEAD `121741133f774e46322f046c9256537d3b6641f3`, docs-only RESULT_SHA `f1d60a37a53dbf158890e074d074cb548b88bbcb`; exactly one new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01514.md` (+47/-0), exact `[AUTO:CONVERSION-DX9EX-01514]`, parent=SOURCE_HEAD, compare ahead=1/behind=0 and remote HEAD exact, remote Markdown blob `783c20f5b24eebe7e55a65046805d302146dced0` verified. Distinct from 01513's opposite cropped-viewport bootstrap false-positive; no game source, CI, workflow or configs changed.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, `PATCH_CANDIDATE_ONLY`. R26+HUD baseline unchanged; no R84 or B9200 +5 risky hook. Same-task retries/readbacks/rollovers earn +0.
+- **AI 2 score: previous confirmed 1987 + new independently verified docs-only review +1 = cumulative 1988.** AI 1 unchanged.
 
 ## AI 2 DX11 native triangle-list polygon GPU windows 01090 (2026-10-26 23:57 KST)
 

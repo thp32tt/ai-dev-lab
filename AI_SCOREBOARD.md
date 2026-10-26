@@ -1,13 +1,19 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 22:55 KST
+Updated: 2026-10-26 23:09 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1985** | DX11 01089 indexed/nonindexed SM3 triangle-strip POINT/WIREFRAME/SOLID native GPU windows: five exact-SHA GitHub CI PASS, +1 |
+| AI 2 — ChatGPT2 | **1986** | New distinct DX9Ex R7 viewport-clipped right-depth bootstrap synchronization audit 01513: verified docs-only exact SHA, +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01513 (2026-10-26 23:09 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01513`. New independent source-grounded conditional static finding: R7 `TryBootstrapRightDepthFromRecentClear` replays an old full-depth clear using `Clear(Count=0, nullptr)` under the **current possibly cropped viewport**, then promotes whole-surface right depth/stencil synchronized flags on success without verifying full viewport coverage. Microsoft's D3D9 API specifies that Count=0 clears the *viewport*, not necessarily the complete depth surface. This is distinct from 01512's compatible main-depth allocation identity/contents issue and 01511's SBS compositor HRESULT issue. An actual problematic game sequence is not proven.
+- GitHub SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, analyzed `SOURCE_HEAD=aa174f4f19a77457b0045c8ffa7e997552d42d05`, docs-only result `RESULT_SHA=8767a87c18d32b9e00f95ad80ff077fee5de0b02`. Exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01513.md` (+50/-0), exact commit marker `[AUTO:CONVERSION-DX9EX-01513]`, compare ahead=1/behind=0, remote branch HEAD match and blob `312520ed0474162c4120828f44624ebb47cbeda7` verified. `CODE_CHANGE=NO`; source build/CI not run; R26+HUD baseline unchanged; Quest3/VDXR `RUNTIME_VALIDATION=UNTESTED`. Patch remains `PATCH_CANDIDATE_ONLY`.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; no claim of end-to-end runtime/HMD PASS. **AI 2 cumulative: previous confirmed 1985 + this unique new verified review achievement +1 = 1986.** Same TASK retry/check/rollover +0. AI 1 remains 1666.
 
 ## AI 2 DX11 native SM3 connected polygon strip 01089 (2026-10-26 22:55 KST)
 

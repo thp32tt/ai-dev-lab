@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 13:53:28 KST (Asia/Seoul)
+Updated: 2026-10-26 14:09:57 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1972** | DX11 01083 authentic connected LINESTRIP/TRIANGLESTRIP native GPU chunk/seam and five exact-SHA Gates, +1 |
+| AI 2 — ChatGPT2 | **1973** | DX9Ex 01505 new unique conditional deferred D3DX +TIME E8 admission/ledger finding, docs-only verified, +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01505 (2026-10-26 14:09:57 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01505`; new independent static conditional source finding on a rejected +TIME E8 source ticket versus a still-homogeneous direct D3DX command ledger, **+1 once**; retry, identical result readback and future rollover score +0. AI 1 unchanged.
+- Pinned GitHub SOURCE_HEAD `thp32tt/OutRun2006Tweaks@5bcc74104f775cc69ac6dd313601a9ff46e2e84a` (`vr-d3d9ex-focus`). Earlier 01504 current-root queued interposition was separately reverted to stable-root-only by a USER-DX9EX-VISUAL-REPAIR commit before this task; 01505 independently concerns deferred native direct +TIME D3DX ownership after `StageExtensionAdmission.mayPublish` rejects changed VR/queue epoch.
+- Durable one-file docs-only commit `f5fdfd0afd8a4747bcc48433eddc5c66240bd258` for `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01505.md` (+53 lines, no other file), exact `[AUTO:CONVERSION-DX9EX-01505]` marker, parent/source HEAD match, remote head verified, compare ahead=1 behind=0, remote blob `d88e4a2a8a7417c0c76332a49c06e798f25b4c67` verified.
+- Finding: E8 departure that rejects VR or queue-epoch ticket skips source-exit D3DX Flush but does not revoke an already-recorded exact direct StageExtensionTime homogeneous batch. Native delayed Flush/End separately restores ScreenHud/StageExtensionTime if its own live sprite/ledger guards still hold. The user-visible effect, physical bilateral draw, and natural occurrence are NOT established; conditional source review only.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. R26+HUD original baseline unchanged; R84 not promoted; no Quest3/OpenXR PASS claim.
+- **AI 2 score: previous confirmed 1972 + one newly completed unique review +1 = cumulative 1973.**
 
 ## AI 2 DX11 native connected real-game geometry 01083 (2026-10-26 13:53:28 KST)
 

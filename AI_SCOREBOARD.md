@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 20:07:38 KST
+Updated: 2026-10-26 21:00 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1981** | DX9Ex REVIEW_ONLY 01510 new independent pre-drain priority snapshot source review, docs-only validation +1 |
+| AI 2 — ChatGPT2 | **1982** | DX9Ex REVIEW_ONLY 01511 independent R7 SBS compositor state-set HRESULT review, docs-only validation +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01511 (2026-10-26 21:00 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01511`. One NEW, independent source-grounded static conditional finding: active R7 SBS fallback `ComposeSbs` discards HRESULTs from shader/FVF/render/texture-stage/sampler state setup after BeginScene. Both source L/R sprite and final DrawTextureHalf calls can be checked as successful while the compositing setup's own setter returns do not participate in the final success predicate. Conditional driver reachability and Quest3/HMD pixels UNTESTED. This is distinct from 01510 GOAL pre-drain tail origin, 01509 reference HUD scaling and 01500-01503 R62 per-eye/restore failure paths.
+- Source SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned `SOURCE_HEAD=28605bd4acbe4e246335ab172b3557ef7c1d2912`. Docs-only `RESULT_SHA=0b47cc10aca75f8c8c41692b0e0e31b50a9f947a`, exact one new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01511.md` (+48/-0, no other file); marker `[AUTO:CONVERSION-DX9EX-01511]`; parent/base-to-result comparison ahead=1, behind=0; remote branch HEAD readback matched; blob `d510e13ffe157014a4314760ca30a2333b299c80` readback verified.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`, `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `CI=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. No C++/HLSL/CMake/workflow/runtime patch, no R84 promotion, no B9200 post-CALL/+5 hook; patch recommendation only, no live shader fault injection.
+- **AI 2 score: previous confirmed 1981 + one newly completed independent docs-only review +1 = cumulative 1982.** Retries/readback/status reports of 01511 are +0. AI 1 remains 1666.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01510 (2026-10-26 20:07:38 KST)
 

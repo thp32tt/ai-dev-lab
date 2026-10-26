@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 22:06 KST
+Updated: 2026-10-26 22:10 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1983** | DX9Ex REVIEW_ONLY 01512 independent R7 main-depth lineage review, docs-only validation +1 |
+| AI 2 — ChatGPT2 | **1984** | DX11 01088 true live SM3 fan point/wire/solid GPU windows: material source + five exact-SHA CI PASS, +1 |
+
+## AI 2 DX11 live polygon fan native GPU windows 01088 (2026-10-26 22:10 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01088`. Distinct integrated source achievement: true game D3D9 shader-bound indexed/nonindexed TRIANGLEFAN SOLID/WIREFRAME/POINT fill across bounded native D3D11 DrawIndexed GPU windows with per-triangle point occurrences; original full-IB/fan seam bounds, opt-in and DX9Ex/input/FFB fallback retained. Not a test-only or bookkeeping result.
+- Game repo `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, source implementation SHA `3274ae647c787a4ffb51ab80a6c035c300879c8a`, exact validation-bearing `RESULT_SHA=66c2df85241d0cc852dbf8798205f8f3b667e94d`. Same-task contract/CI repair `d640e8def8849b88f0e56a3b3cd2c2e2c92cc9dd`, `1482013685f0bccf8c0b9a5c74966721d47930e1`, `66c2df85241d0cc852dbf8798205f8f3b667e94d`; these repairs, retries, and C6 are +0.
+- Five required GitHub Actions `push` runs all `completed/success` on the identical SHA: DX11 Fast `40325716600`, Backend `40325716341`, Build `40325716494`, OpenXR `40325716578`, HUD `40325716522`. Fan C++ and Python regressions PASS; bundled host/x86 DLL/test launcher produced. Original game / Quest3 / VDXR / fps and actual native gameplay counters `RUNTIME_VALIDATION=UNTESTED`. No playable game or full renderer claim.
+- **AI 2 score: previous confirmed 1983 + this one newly completed integrated source achievement +1 = cumulative 1984.** No double credit for the 01088 event E003/E004, CI repair, C6 or subsequent same-task restatements. AI 1 remains 1666.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01512 (2026-10-26 22:06 KST)
 

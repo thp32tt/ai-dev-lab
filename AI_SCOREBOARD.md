@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 10:06:44 KST (Asia/Seoul)
+Updated: 2026-10-26 11:07:07 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1968** | Unique DX9Ex REVIEW_ONLY 01501 static finding, verified docs-only commit +1 |
+| AI 2 — ChatGPT2 | **1969** | Unique DX9Ex REVIEW_ONLY 01502 R26-safe RIGHT projection conditional finding, verified docs-only commit +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01502 (2026-10-26 11:07:07 KST (Asia/Seoul))
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01502`; unique source-confirmed conditional R26-safe fixed-function RIGHT projection setter failure after LEFT physical Draw, +1. This task's retries/rollovers/readbacks earn +0.
+- GitHub pinned SOURCE_HEAD `thp32tt/OutRun2006Tweaks@a9d137577e5527aa4adf43b412d586de999070a2` (`vr-d3d9ex-focus`). Distinct from 01501 LEFT zero-draw and 01500 original projection restore: RIGHT SetTransform fails before native RIGHT raw Draw, yet R26-safe R30 counts a duplicated pair and returns LEFT success, flags RightDrawFailed and vetoes stereo Present. Not an observed Quest3 occurrence.
+- Durable docs-only commit `96cb784a35ad4e5efe16a4a8309942bbf399b897`; one newly added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01502.md` (+53, no other files), exact `[AUTO:CONVERSION-DX9EX-01502]`; source parent, remote HEAD, compare ahead=1 behind=0, remote blob `ef65b838b7fb246f8c8de28c3ff02dacd91511a9` confirmed.
+- `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`; AI 1 unchanged. R26+HUD baseline unchanged and R84 not promoted.
+- **AI 2 score: previous confirmed 1968 + unique completed review +1 = cumulative 1969.**
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01501 (2026-10-26 10:06 KST)
 

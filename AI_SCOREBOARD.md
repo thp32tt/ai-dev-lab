@@ -1,15 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 08:45:00 KST
+Updated: 2026-10-27 08:50:12 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1999** | New distinct 2026-10-27 capital-area annual-pass deal research and cross-check, +1 |
+| AI 2 — ChatGPT2 | **2000** | New independent DX11 game-frame pre-Draw multi-RECT source implementation and exact-SHA five-Gate PASS 01099, +1 |
 
 
+
+
+## AI 2 DX11 authentic pre-Draw TARGET Clear GPU replay 01099 (2026-10-27 08:50:12 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01099`. New independent material C++ implementation on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: real game-authored D3D9 partial TARGET Clear batches up to 128 source D3DRECTs are admitted to a viewport-clipped transactional pre-Draw recorder, compacted when their ordered opaque writes fit 16 exact native GPU replay tiles, and consumed through existing full-frame native SM3/FVF output. Keep the separate 32-region post-Draw GPU ClearView budget, strict abort/rollback on unrepresentable writes, D3D9/DX9Ex Draw/Present/input/FFB and DXVK freeze.
+- Source implementation and **validation-bearing exact SHA** `1647b8321a55793355812b064c920cc84b146622`; C6-only bookkeeping commit `6fbb66f4697980e1c43431126a124006142bbf6e` (after five complete/success push workflows; `[skip ci]` applies only to C6). Exactly four material source/regression files: `src/vr/d3d11/live_game_frame_bridge.cpp`, `native_game_source_mutation.hpp`, `tools/dx11_pre_draw_target_clear_probe_01035.cpp`, `tools/test_dx11_pre_draw_target_clear_01035.py`. C++ probe includes successful 24-source overlapping framebuffer color parity and negative 24 independent over-capacity atomic rejection; original game renderer remains authoritative.
+- Five required **push** GitHub Actions **completed/success at exact `1647b8321a55793355812b064c920cc84b146622`**: DX11 Fast `40421027707`, Backend Conversion Gate `40421027838`, Build `40421027713`, OpenXR VR architecture `40421027716`, HUD Inspector `40421027823`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; real game/HMD/Quest3/VDXR runtime, native game draw/published frame counts, actual visuals and FPS `UNTESTED`; `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 1999 + one new materially implemented and verified DX11 source contribution +1 = 2000.** AI1 stays 1666. C6, retry, readback, duplicate gate proof score +0.
 
 ## AI 2 수도권 연간이용권 특가 조회 (2026-10-27 08:45:00 KST)
 

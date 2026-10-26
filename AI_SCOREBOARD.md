@@ -1,14 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 07:07:37 KST
+Updated: 2026-10-27 07:52:57 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1996** | New independent DX9Ex R9 occlusion-query mono-shadow lineage review 01520, +1 |
+| AI 2 — ChatGPT2 | **1997** | New DX11 original game point/line source-to-native D3D11 frame path 01098, +1 |
 
+
+## AI 2 DX11 native full-source point/line game frame integration 01098 (2026-10-27 07:52:57 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01098`. Actual C++ gameplay-source implementation in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: shared original D3D9 R30 point/line source span expands valid physical POINTLIST to 6144 points, LINELIST to 3072 lines and LINESTRIP to 6143 lines, each <=6144 captured VB/IB/UP source elements, linked to existing native FVF/SM3 D3D11 IA Draw/DrawIndexed. Polygon limits, source ordinals, oversize rejection, original D3D9 Draw/Present/gamepad/FFB and DX9Ex fallback remain protected. Source helper, compiled positive/negative C++ probe and structural regression changed; no game/HMD pixels claimed.
+- Source implementation SHA `b3c147dbffe72d6e2a4be026f6addc93077cbc61`; causal inherited 01097 invalid latest-policy run-record repair SHA `ac759d27506675562e5f49051da65b33010c0114`. Final CI **validation-bearing exact source SHA** `ac759d27506675562e5f49051da65b33010c0114`. Both commits include `[AUTO:CONVERSION-DX11-01098]`, neither skipped required CI. Same TASK_ID repair/checkpoint +0 additional.
+- Required five actual GitHub **push** Actions all `completed/success` at exact validation-bearing SHA: DX11 Fast `40414455494`, Backend Conversion Gate `40414455186`, Build `40414455073`, OpenXR VR architecture `40414455019`, OutRun EXE HUD Inspector CI `40414455237`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`. Source/compile Gates do NOT demonstrate real OutRun menu-to-race output or Quest3/VDXR stereo.
+- `RUNTIME_VALIDATION=UNTESTED`; native draw count, native published frame count, actual game/HMD visuals, controls and FPS `UNTESTED`; no deployment/gameplay promotion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 1996 + independent C++ source and exact-SHA five-Gate feature integration +1 = 1997.** AI 1 stays 1666. 01098 C6/readback/retry do not score again.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01520 (2026-10-27 07:07:37 KST)
 

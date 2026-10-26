@@ -1,14 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 03:07:09 KST
+Updated: 2026-10-27 04:58:50 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1991** | Distinct DX9Ex REVIEW_ONLY 01517 offscreen shared-depth review, docs-only exact SHA +1 |
+| AI 2 — ChatGPT2 | **1992** | New DX11 SM3 indexed POINT-strip windowed GPU draw implementation 01095, exact five Actions PASS +1 |
 
+
+## AI 2 DX11 SM3 native indexed POINT-strip GPU windows 01095 (2026-10-27 04:58:50 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01095`; independent material gameplay-source development in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Previous source HEAD `b489dca831c2a99760f9d92cb31ec1cae40ca147`. New substantive source implementation `a2e9843f50143d93ec74da9c9731958ccf021bfe`: already-native-layout genuine D3D9 programmable SM3 indexed TRIANGLESTRIP with D3DFILL_POINT is rendered as bounded original-IB indexed POINTLIST GPU windows without an oversized whole-triangle index expansion. All source indices are preflighted; global strip parity and each original repeated index corner are retained. Real live game vertex stream/VS/PS, guarded first-frame seed, DX9Ex Draw/input/FFB and frozen DXVK remain untouched.
+- Same TASK_ID causal Gate repair commits: `cd659e89dd5338bc9516dfa21aa6eb5b6f861de5` (correct run-contract accepted path), `c67240b391a9830bf404a53f91de3687d17c0b63` (existing SM3 batch planner compatibility), `aa15884a3dcae428ec2c3d52cae06a58a48a80e4` (reuse audited native DrawIndexed submit callsite), `f40286cf304bde5d02e7116ead4ad09d11ae0a77` (preserve FVF negative mutation after new SM3 occurrence). Final **validation-bearing exact SHA** `f40286cf304bde5d02e7116ead4ad09d11ae0a77`. Genuine C++/GPU path was implemented, not a C6/docs-only achievement.
+- GitHub push Actions at exactly that SHA: DX11 Fast Structural Checks `40389665855` completed/success; Backend Conversion Gate `40389666184` completed/success; Build `40389666094` completed/success; OpenXR VR architecture `40389666097` completed/success; OutRun EXE HUD Inspector CI `40389665816` completed/success. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`. Original OutRun game and Quest3/VDXR HMD pixels, full menu-to-race frame parity and FPS **not executed**: `RUNTIME_VALIDATION=UNTESTED`; no runtime PASS or feature-complete renderer assertion.
+- **AI 2 score: previous confirmed 1991 + this single new verified source implementation +1 = cumulative 1992.** Same-task GitHub Gate repairs, retry, C6/checkpoint, readback and rollover earn +0. AI 1 remains 1666.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01517 (2026-10-27 03:07:09 KST)
 

@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 21:00 KST
+Updated: 2026-10-26 22:06 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1982** | DX9Ex REVIEW_ONLY 01511 independent R7 SBS compositor state-set HRESULT review, docs-only validation +1 |
+| AI 2 — ChatGPT2 | **1983** | DX9Ex REVIEW_ONLY 01512 independent R7 main-depth lineage review, docs-only validation +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01512 (2026-10-26 22:06 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01512`. One distinct new source-grounded conditional finding: in R7 `SetDepthStencilSurfaceDest`, a changed main depth surface with the same descriptor as the existing right-eye depth passes compatibility and retains existing right depth/stencil synchronized flags without proving it is the previously synchronized logical left-main resource/content. If the original game binds a genuinely distinct main left-depth allocation with different contents and omits a subsequent fully mirrored depth clear, later depth-tested binocular draws may use a stale right depth. This does NOT assert the game performs this sequence or that Quest3 pixels are wrong. Separate from 01511 SBS setter HRESULT coverage, 01510 GOAL D3DX predrain queue attribution, and 01500-01503 R62 per-eye restore.
+- GitHub SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, analyzed `SOURCE_HEAD=072d3e70bcfd2bb9c313779bf376a647a2987992`. Result `84b6e1d6d467bab5bdb8d8ef413ed82e6535ace9`, exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01512.md` (+46/-0); exact `[AUTO:CONVERSION-DX9EX-01512]`, result parent=source HEAD, GitHub compare ahead=1 behind=0, branch HEAD readback matched; reviewed Markdown blob `454c710a43329e4bb6685ed1a86f6697fd3b4a43` readback confirmed.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `CI=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. Only patch candidate documented. No C++/HLSL/CMake/workflow/runtime config change, no R84 promotion or dangerous B9200 post-CALL/+5 hook. R26+HUD baseline unchanged.
+- **AI 2 score: previously confirmed 1982 + one new independently completed verified docs-only review +1 = cumulative 1983.** Same TASK retries, readback, rollover or status reports earn +0. AI 1 unchanged at 1666.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01511 (2026-10-26 21:00 KST)
 

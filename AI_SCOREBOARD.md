@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 14:09:57 KST (Asia/Seoul)
+Updated: 2026-10-26 15:11:26 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1973** | DX9Ex 01505 new unique conditional deferred D3DX +TIME E8 admission/ledger finding, docs-only verified, +1 |
+| AI 2 — ChatGPT2 | **1974** | DX9Ex 01506 new unique conditional GOAL progress E8 queued HUD tag admission finding, docs-only verified, +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01506 (2026-10-26 15:11:26 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01506`. One independent new source-confirmed conditional finding: installed GOAL 0–99% inner E8 source publishes exact queued ScreenHud/ResultProgress tag at leave without verifying VR mode at entry/leave. Distinct from prior 01505 +TIME deferred D3DX batch; retries and readbacks earn +0. AI 1 score unchanged.
+- GitHub SOURCE_HEAD `thp32tt/OutRun2006Tweaks@0270bcfa9a8617a0a565138dea5a91b8070c36bb` branch `vr-d3d9ex-focus`. Installed `ResultProgressEnter` only promotes direct semantic when VR enabled; paired `ResultProgressLeave` unconditionally queues tags on stable-root newly appended children. The old `ResultTextEnter/Leave` B9200 return-site midhooks are NOT installed, and were not the finding.
+- Docs-only source result commit `0a32d1e5bada498bada7b2e4b6b79a7285263e5e`; parent exact SOURCE_HEAD; one newly added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01506.md` (+51, no other path), exact `[AUTO:CONVERSION-DX9EX-01506]`, verified remote HEAD, compare ahead=1 behind=0, remote blob `029d6ca252847063a9a0711d524d30c0144a8c3c`.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. No new REA/run/GPU frame/HMD performance proof; R26+HUD baseline unchanged and no R84 or unsafe B9200 +5 hook.
+- **AI 2 score: previous 1973 + unique completed review +1 = cumulative 1974.**
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01505 (2026-10-26 14:09:57 KST)
 

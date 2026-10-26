@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 17:06:51 KST (Asia/Seoul)
+Updated: 2026-10-26 17:55:30 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1976** | DX9Ex 01508 full GOAL rebuilt-root empty-sentinel conditional review, docs-only verified, +1 |
+| AI 2 — ChatGPT2 | **1977** | DX11 01084 native SM3 game TRIANGLEFAN GPU chunks, five exact-SHA Gates PASS, +1 |
+
+## AI 2 DX11 native SM3 fan GPU chunks 01084 (2026-10-26 17:55:30 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01084` (one distinct source implementation accomplishment); retry E002 and CI-specific repairs are the SAME task, +0 additional.
+- Target: `thp32tt/OutRun2006Tweaks` / `vr-dx11-native-r71`. Source parent `80f2478376553f2866c85b45b7281bcf44f0b6ca`, new C++/regression material commit `5d7f7b6c77c0b8c489339cb922e9cd2884206771`, confirmed causal build/backend/fast acceptance repair and validation-bearing final SHA `00e6879a67471cc5e628a7328240c3394a2a30b8`. Exact `[AUTO:CONVERSION-DX11-01084]` in both messages, no CI skip on result.
+- Integrated source: live intercepted nonindexed programmable game SM3 D3D9 TRIANGLEFAN streams that exceed 32 MiB FLOAT4 native upload are partitioned into bounded center-preserving/rim-overlap windows, reassembled from original declaration bytes, translated to native D3D11 triangle-list index chunks and executed via guarded per-window `DrawIndexed`. Maintains original winding, complete per-draw admission and fail-closed native publication, D3D9Ex rendering/input/FFB fallback; other indexed/instanced/point/wire paths unchanged. C++ positive/negative geometry/attribute probe plus static native consumer regression executed. Initial Windows Build/Backend/DX11 Fast CI failed a stale 7-Draw/2-stream-helper source-contract count, repaired without removing negative authorization checks.
+- All mandatory **push exact-SHA** GitHub Actions `completed/success` on `00e6879a67471cc5e628a7328240c3394a2a30b8`: DX11 Fast `40294308962`, Backend Conversion `40294308987`, Windows Build `40294308973`, OpenXR `40294308888`, HUD Inspector `40294308975`. No unchanged-SHA duplicate execution.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. Game launch, real native frame pixels/counts, full menu->car->race continuity, input behavior, Quest3/VDXR stereo, FPS and gameplay PASS are not claimed. Source-phase time fractions not measured.
+- **AI 2 score: previous confirmed 1976 + newly verified unique DX11 source outcome +1 = cumulative 1977.** AI 1 remains 1666. All further retries/rollovers/C6/readback for this TASK_ID are +0.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01508 (2026-10-26 17:06:51 KST)
 

@@ -1,14 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 05:59:42 KST
+Updated: 2026-10-27 06:07:38 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1994** | New DX11 native source admission 01096 exact-SHA five-gate verified, +1 |
+| AI 2 — ChatGPT2 | **1995** | New DX9Ex independent R9 mono restore HRESULT review 01519, +1 |
 
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01519 (2026-10-27 06:07 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01519`. Independent source-grounded conditional failure-output finding: R9 `R9RestoreMonoBeforePresent` attempts mono-backup `StretchRect` on an incomplete frame and returns false after logging a failed HRESULT, but `PresentDestR9` ignores this boolean and proceeds to original D3D9/Ex Present and fallback metadata. Can be isolated after an earlier successful world-stereo LEFT/RIGHT draw followed by stereo poison *before ComposeSbs*, with complete mono backup. Prior 01518 was R7 SBS half-composition failure; this task concerns the R9 attempted recovery's failure-result boundary. Actual game/device reachability and visible Quest3/VDXR artifact are UNTESTED.
+- GitHub source SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned SOURCE_HEAD `649b045110f36b32aa567a779f225546f0a4dc94`, docs-only RESULT_SHA `a979ce9fbc772ee18f1474ec6de3e7196929ae16`. Exact one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01519.md` (+46/-0), exact `[AUTO:CONVERSION-DX9EX-01519]` marker. Remote branch HEAD equals RESULT_SHA; parent matches SOURCE_HEAD; compare ahead 1 / behind 0; remote Markdown blob `04a2a062dc7a9b0e2eeac7c26cc9ae092a47471a` read back.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `PATCH_CANDIDATE_ONLY`; `RUNTIME_VALIDATION=UNTESTED`. No source/CMake/workflow/config change, merge, package, R84 promotion or B9200 +5 hooks; retry/readback +0.
+- **AI 2 cumulative: previous GitHub SSOT 1994 + one distinct verified docs-only review +1 = 1995.** AI 1 unchanged. Do not rescore the same task on retry/rollover.
 
 ## AI 2 DX11 native large game-strip source -> GPU window 01096 (2026-10-27 05:59:42 KST)
 

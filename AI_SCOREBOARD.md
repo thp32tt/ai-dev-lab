@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 16:07:14 KST (Asia/Seoul)
+Updated: 2026-10-26 17:06:51 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1975** | DX9Ex 01507 full GOAL graph parent queue-pass tag timing conditional review, docs-only verified, +1 |
+| AI 2 — ChatGPT2 | **1976** | DX9Ex 01508 full GOAL rebuilt-root empty-sentinel conditional review, docs-only verified, +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01508 (2026-10-26 17:06:51 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01508` (one new independent analysis event). Focus: GOAL full-parent current-root exception **false-negative** when a previously empty priority-list root sentinel is detached during root replacement. 01507 instead examined a possible intervening queue pass, 01506 inner E8 VR toggles, and 01504 obsolete +TIME foreign false-positive; no repeated-score event.
+- Pinned GitHub SOURCE_HEAD `thp32tt/OutRun2006Tweaks@436a1cced6c4db479535e0e477ed34cb7eb270f8` (`vr-d3d9ex-focus`). Source-equivalent bounded-helper fixture: after old empty root O is detached and new root N contains only new graph G, `FirstVerifiedAppendedNode(N,O,G)` returns null rather than G; unchanged-root sentinel and retained-old-tail controls return G. Natural original-game occurrence **UNTESTED**. The fail-closed guard is intentional; this is a conditional semantic-coverage review, not a proven screen defect.
+- Durable result commit `616787e6564f89400dda5bb6f227c6368b62343b`, exactly one `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01508.md` file (+53 lines), no other path; exact `[AUTO:CONVERSION-DX9EX-01508]`, remote HEAD and commit parent exact, compare ahead=1 behind=0, remote blob `0afb027514cc70ca1b3889c1934fc813cff9f58e` verified.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`, `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. No new REA/Quest3/OpenXR/exact GPU trace or measured FPS; R26+HUD baseline unchanged, no R84 promotion or B9200 post-CALL/+5 hook.
+- **AI 2 score: previous confirmed 1975 + unique completed review +1 = cumulative 1976.** AI 1 unchanged (1666). Recheck/retry/rollover for this TASK_ID: +0.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01507 (2026-10-26 16:07:14 KST)
 

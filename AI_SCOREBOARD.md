@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 09:08:34 KST (Asia/Seoul)
+Updated: 2026-10-26 10:06:44 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1967** | Unique DX9Ex REVIEW_ONLY 01500 static finding, verified docs-only commit +1 |
+| AI 2 — ChatGPT2 | **1968** | Unique DX9Ex REVIEW_ONLY 01501 static finding, verified docs-only commit +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01501 (2026-10-26 10:06 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01501`; new independent conditional static finding, +1; retries, readbacks and rollover of this same result score +0.
+- Pinned source SSOT `thp32tt/OutRun2006Tweaks@5109bf374b71d97b59d6973d9a9bbd034f596ef9` (`vr-d3d9ex-focus`). R62 FVF142 original game fixed-function sprite LEFT `SetTransform(PROJECTION)` can fail before native raw GPU LEFT draw (attempt=0); R30 nevertheless accounts missing mono backup, classifies `StereoFailureLeftDrawFailed`, and terminal E_FAIL precludes original lower GPU draw. Frame Present fails closed; a source-conditional failure, not Quest3/HMD-observed.
+- GitHub docs-only result: `a6e755bfb10fb714d8cfdcafbd74684cc1558b09`; one new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01501.md` (+53, no other path) with exact `[AUTO:CONVERSION-DX9EX-01501]`; verified remote HEAD and parent SOURCE_HEAD, compare ahead=1/behind=0, remote blob `bc5e0dba95acf615e232a438f05ddfdc0d8b25ce`.
+- `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`, R26+HUD reference unchanged and R84 not promoted; AI 1 unchanged at 1666.
+- **AI 2 score: previous confirmed 1967 + new completed review +1 = cumulative 1968.**
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01500 (2026-10-26 09:08 KST)
 

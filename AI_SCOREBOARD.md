@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 08:50:32 KST (Asia/Seoul)
+Updated: 2026-10-26 09:08:34 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1966** | 수도권 주말 이용 시즌권·연간권 신규 판매/조건 재확인, 중복 알림 제외 +1 |
+| AI 2 — ChatGPT2 | **1967** | Unique DX9Ex REVIEW_ONLY 01500 static finding, verified docs-only commit +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01500 (2026-10-26 09:08 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01500`; one new independent conditional static finding, +1, not a HMD pass or code repair. Same TASK_ID retries / rollover / re-verification +0.
+- Pinned source SSOT `thp32tt/OutRun2006Tweaks@b16d6994a6492947e721d607a4ff1710b0e7dfe3` (`vr-d3d9ex-focus`). R62 fixed-function FVF142 after both raw eye draws and inner RT/depth/viewport restore succeed: if final original projection `SetTransform` fails, exact finite +TIME/GOAL result converts successful native draw HRESULT to E_FAIL, but admitted non-result projected-rank/ScreenHud retains successful left HRESULT. Both call NoteRestoreFailure and poison same-frame stereo Present; no observed runtime failure or optical PASS.
+- GitHub docs-only result: `7e317009303c7592080d41d543216c0a6fd8321b`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01500.md`, 47 added lines, commit tag `[AUTO:CONVERSION-DX9EX-01500]`. Verified branch HEAD equals commit, parent equals source HEAD, compare ahead=1/behind=0 and only a single added review file. Remote readback blob SHA `8b226de710cbb515114bfbae635038ce32119bed`.
+- `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`; R26+HUD baseline and no R84 auto-promotion/B9200 hook changes. AI 1 unchanged at 1666.
+- **AI 2 score: previous confirmed 1966 + unique completed review +1 = cumulative 1967.**
 
 ## AI 2 수도권 시즌권·연간권 특가 모니터링 (2026-10-26 08:50 KST)
 

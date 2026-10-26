@@ -1,13 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 17:55:30 KST (Asia/Seoul)
+Updated: 2026-10-26 19:10:49 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1977** | DX11 01084 native SM3 game TRIANGLEFAN GPU chunks, five exact-SHA Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **1978** | DX11 01085 indexed real-game SM3 native GPU list windows, five exact-SHA GitHub Gates PASS, +1 |
+
+## AI 2 DX11 native indexed game source 01085 (2026-10-26 19:10:49 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01085`, one unique actual C++ source-implementation outcome, not a test/enum/metadata-only change. Retry, causal CI repairs and C6 state commits earn +0 additional.
+- Target: `thp32tt/OutRun2006Tweaks` branch `vr-dx11-native-r71`; starting branch HEAD `d1dd30e80c67689ee9c5f17173ad7aad216d057c`. Actual renderer source implementation `f45b9ea3d817ea9ac7cfc6a8796f22edcba59a21`. Same-task CI causal repairs `d9f14df17caa666931a4e16f58ef23f1d60332e9`, `a19cf6e55a270da906913fcdc7672f877270fc5b`, `990fecfa5c2bab024453640be165ced9aa0748b3`, exact material result `74fe2239652250754cb0a8e470f7ea6ba6d5d41f`. All source/repair commits include exact `[AUTO:CONVERSION-DX11-01085]`; no CI-skip on material.
+- New source capability: original game indexed programmable SM3 POINT/LINELIST/TRIANGLELIST source streams whose FLOAT4 D3D11 packing would exceed 32 MiB are collected in original D3D9 IB order into primitive-aligned bounded native GPU vertex windows and submitted through actual guarded D3D11 Draw; multi-stream attributes, repeated indices, fail-closed bounds, original D3D9/DX9Ex gameplay renderer/input/FFB fallback preserved. Added `tools/dx11_sm3_indexed_chunk_01085.cpp`, Python source graph probe and Fast CI integration.
+- Confirmed prior 01084 recorded-policy mismatch repair and unchanged safety regression source-contract compatibility; changes belong to same 01085 work and have no separate score.
+- Five mandatory **push exact-SHA** GitHub Actions all `completed/success` on `74fe2239652250754cb0a8e470f7ea6ba6d5d41f`: DX11 Fast `40302596414`, Backend Conversion `40302596447` (run attempt 2), Windows Build `40302596382`, OpenXR `40302596461`, HUD Inspector `40302596395`. No disabling negative regression or bypassing required Gate.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. No physical OutRun menu/car/race execution, native frame capture, Quest3/VDXR L/R game visuals, input or FPS measurement; playable full-native DX11 not claimed. Development time proportions were not measured.
+- **AI 2 score: previous confirmed 1977 + one independently verified DX11 source outcome +1 = cumulative 1978.** AI 1 unchanged unless separately updated by its owner. 01085 same TASK retry/CI repair/C6/checkpoint/readback never score again.
 
 ## AI 2 DX11 native SM3 fan GPU chunks 01084 (2026-10-26 17:55:30 KST)
 

@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 15:11:26 KST (Asia/Seoul)
+Updated: 2026-10-26 16:07:14 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1974** | DX9Ex 01506 new unique conditional GOAL progress E8 queued HUD tag admission finding, docs-only verified, +1 |
+| AI 2 — ChatGPT2 | **1975** | DX9Ex 01507 full GOAL graph parent queue-pass tag timing conditional review, docs-only verified, +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01507 (2026-10-26 16:07:14 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01507`; new independent static conditional analysis of **full GOAL graph parent** tag-publication timing across possible intervening original partial queue consumption. This is different from 01506 inner result-progress E8 VR-mode admission and 01504 +TIME root replacement. One completed, uniquely documented review +1; retry/readback/rollover +0. AI 1 unchanged.
+- GitHub pinned SOURCE_HEAD `thp32tt/OutRun2006Tweaks@0a32d1e5bada498bada7b2e4b6b79a7285263e5e` branch `vr-d3d9ex-focus`. The installed two full graph callsite replacements enter only when VREnabled+STATE_GOAL+outside queue, then publish new finite ResultProgress SpriteNode tags **after** original(0x979E0) returns, without queue-epoch/earlier-physical-consumption proof. Queue serial cutoff can prevent retroactive ownership within an ongoing pass, but does not establish whether an earlier pass selected that node while the source wrapper was still active. Reentry and real HMD issue remain unobserved.
+- Durable docs-only commit `2c9d0243231e702df331e1a91c2b14d4ea37fac8`: exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01507.md` (+49; other files 0), exact `[AUTO:CONVERSION-DX9EX-01507]`. Remote HEAD/result SHA, parent/source HEAD, compare ahead=1 behind=0, remote blob `7f3a40cc1074472e0e8fb481bdfbe2c4217a87d2` verified.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`; no new REA or original-game runtime trace, Quest3, XR frame or FPS proof. R26+HUD stays baseline; R84 not promoted, B9200 unsafe +5 hook not reintroduced.
+- **AI 2 score: previous confirmed 1974 + unique completed review +1 = cumulative 1975.**
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01506 (2026-10-26 15:11:26 KST)
 

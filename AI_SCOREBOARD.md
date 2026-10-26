@@ -1,14 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 06:07:38 KST
+Updated: 2026-10-27 07:07:37 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1995** | New DX9Ex independent R9 mono restore HRESULT review 01519, +1 |
+| AI 2 — ChatGPT2 | **1996** | New independent DX9Ex R9 occlusion-query mono-shadow lineage review 01520, +1 |
 
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01520 (2026-10-27 07:07:37 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01520`. Independent conditional R9/R13 readiness-boundary review: while R9 callback policy is active but R13 hardening overlay has not yet become ready (or rolled back), R9 `R9ReplayMonoDraw` returns true for active occlusion queries without drawing to the mono shadow; R7 still executes the original query Draw once on the main BackBuffer. A color-writing query Draw could therefore be absent from a later **successfully copied** R9 mono fallback if the frame is subsequently poisoned. This is independent of 01519's failed StretchRect HRESULT, 01518's half-SBS composition, and 01516's right-depth/stencil synchronization bypass. R13-ready path has its own unsafe single-execution/forced-mono policy, and actual game reachability, query color-write behavior, GPU pixels and HMD outcome are UNTESTED.
+- GitHub SSOT `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: SOURCE_HEAD `a979ce9fbc772ee18f1474ec6de3e7196929ae16`; docs-only RESULT_SHA `a99fdf40579b14007feac14bf5b8d377ed8ff9ed`. Exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01520.md` (+48/-0), marker `[AUTO:CONVERSION-DX9EX-01520]`; remote branch HEAD=RESULT_SHA, parent=SOURCE_HEAD, compare ahead=1 behind=0, file blob `8e319a9a001c58a56452e8a151b39f355edd66ed` read back.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `PATCH_CANDIDATE_ONLY`; `RUNTIME_VALIDATION=UNTESTED`. No game source, CMake, workflow/config, branch, release/package, B9200 hook or R84 promotion changed. Retry/rollover/readback +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 1995 + distinct verified docs-only review +1 = 1996.** AI 1 remains 1666; do not score this TASK_ID again.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01519 (2026-10-27 06:07 KST)
 

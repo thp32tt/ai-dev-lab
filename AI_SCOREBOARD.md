@@ -7,7 +7,7 @@ Updated: 2026-10-27 08:56:04 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **2001** | DX9Ex lens flare-only controller/prompt policy committed and remote verified, +1 | | New independent DX11 game-frame pre-Draw multi-RECT source implementation and exact-SHA five-Gate PASS 01099, +1 |
+| AI 2 — ChatGPT2 | **2001** | DX9Ex lens flare-only controller policy committed and remote verified, +1 |
 
 
 

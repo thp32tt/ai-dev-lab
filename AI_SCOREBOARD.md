@@ -1,14 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 05:05 KST
+Updated: 2026-10-27 05:59:42 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1993** | New independent DX9Ex REVIEW_ONLY 01518 verified docs-only finding, +1 |
+| AI 2 — ChatGPT2 | **1994** | New DX11 native source admission 01096 exact-SHA five-gate verified, +1 |
 
+
+## AI 2 DX11 native large game-strip source -> GPU window 01096 (2026-10-27 05:59:42 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01096`; independent actual C++ source implementation integrated previously unreachable authentic D3D9 2049..4096-triangle TRIANGLESTRIP draws with native GPU POINTLIST indexed windows across both the FVF and live programmable SM3 full-game route, retaining 6144 physical source elements / per-submit GPU indices and original full-index preflight, original game D3D9 Draw, gamepad/FFB and DX9Ex fallback. This is source/CI integration, not a full native renderer/playability or measured performance claim.
+- OutRun repo `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: pretask source HEAD `377e23a92bc868263076c1633ada08bbfaf43043`. Substantive source+test implementation `d5040d605471299044ec9351c64ee821be4ca2e6`. Causal same-TASK gate/test contract repairs `a13fc1581860a52fd0a12ffc425f16c1707eeb25`, `871e1a17679b04525d81f9a1b7b4f31a6c2a4317`, `8bd8f939a2216530e02dc1d48920741652a15472`, `647367b72cd072f9518772725125476a756f06f1`, `c8404ae3abc85bbcb80f156baeb80fc8bb8bf5bd`. Final material/repair **validation-bearing exact SHA** `c8404ae3abc85bbcb80f156baeb80fc8bb8bf5bd`. Negative tests retained rather than disabled, and no validation-bearing commit uses CI-skip.
+- Actual required *push* GitHub Actions all `completed/success` at this exact SHA: DX11 Fast Structural Checks `40398409931`; Backend Conversion Gate `40398410021`; Build `40398409955`; OpenXR VR architecture `40398409920`; OutRun EXE HUD Inspector CI `40398410060`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`.
+- Real original game, visible menu/car/race continuity, HMD Quest3/VDXR pixels, eye parity, controls in headset, frame timings and FPS not run: `RUNTIME_VALIDATION=UNTESTED`. `NATIVE_GAME_DRAW_COUNT=UNTESTED`; `NATIVE_PUBLISHED_FRAME_COUNT=UNTESTED`. No runtime promotion. Same TASK_ID Fast contract repair, retry, C6/checkpoint, CI readback +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 1993 + one distinct source/CI verified feature integration +1 = 1994.** AI 1 unchanged 1666. Next independent task must not rescore 01096.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01518 (2026-10-27 05:05 KST)
 

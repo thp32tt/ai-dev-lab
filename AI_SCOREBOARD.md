@@ -1,15 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 08:50:12 KST
+Updated: 2026-10-27 08:56:04 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **2000** | New independent DX11 game-frame pre-Draw multi-RECT source implementation and exact-SHA five-Gate PASS 01099, +1 |
+| AI 2 — ChatGPT2 | **2001** | DX9Ex lens flare-only controller/prompt policy committed and remote verified, +1 | | New independent DX11 game-frame pre-Draw multi-RECT source implementation and exact-SHA five-Gate PASS 01099, +1 |
 
 
+
+
+## AI 2 DX9Ex lens-flare-only automatic review scope policy (2026-10-27 08:56:04 KST)
+
+- TASK_ID / RUN_KEY: `CONTROLLER-DX9EX-LENSFLARE-FOCUS-20261027`. User-requested controller configuration **implementation**, independent of hourly DX9Ex review-task scores. Original repository `thp32tt/OutRun2006Tweaks`, `chat-controller-downloads`, final policy commit `27668d756b374e0252c9eb0136e4b6147d2445b3`.
+- Exactly four committed files: `tools/chat-controller/v0.4/conversion_continuous_dx9ex.md`, `conversion_dx9ex.md`, `src-vr-v2/controller.py.part00`, and `src-vr-v2/controller.py.part03`. Remote re-fetch verified lens flare-only scopes, persistent hypothesis/falsification ledger and DX9Ex rollover scope; existing DX9Ex :00 and DX11 :30 schedules unchanged. No game/host rendering source modified.
+- GitHub prompt/controller change complete; Portainer container rebuild/redeploy and live task execution **not verified**. This is **not** a claim that the lens-flare defect is fixed or HMD/runtime passed. Future redeploy, readback, and repeated reporting under the same RUN_KEY +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2000 + one independent committed/verified controller-policy implementation +1 = 2001.** AI1 remains separate.
 
 
 ## AI 2 DX11 authentic pre-Draw TARGET Clear GPU replay 01099 (2026-10-27 08:50:12 KST)

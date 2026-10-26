@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 11:07:07 KST (Asia/Seoul)
+Updated: 2026-10-26 12:07:22 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1969** | Unique DX9Ex REVIEW_ONLY 01502 R26-safe RIGHT projection conditional finding, verified docs-only commit +1 |
+| AI 2 — ChatGPT2 | **1970** | Unique DX9Ex REVIEW_ONLY 01503 inner RIGHT restore-failure conditional, verified docs-only commit +1 |
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01503 (2026-10-26 12:07:22 KST (Asia/Seoul))
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01503`; independent R26-safe inner RIGHT render-target/depth/viewport restore failure AFTER two successful physical eye draws, distinct from 01502 pre-right private projection setter, 01500 outer projection restore and 01497 optional particle stream cleanup. Unique verified static conditional finding +1; retry/readback earns +0.
+- Pinned GitHub SOURCE_HEAD: `thp32tt/OutRun2006Tweaks@330b8b3c6a0714d6753dcca19110da365a82c6d3` (`vr-d3d9ex-focus`); R26-safe R30 returns LEFT S_OK while both physical draws have run and right RT/depth/viewport restore fails, counters record pair, `NoteRestoreFailure` poisons R7 Present. R84 comparison has a different caller-HRESULT policy; no R84 promotion.
+- Durable docs-only commit `9add83cf17eb73e42538f8f15f137ff0cffa8752`; one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01503.md` (+55, other files zero); exact `[AUTO:CONVERSION-DX9EX-01503]`; parent/source HEAD match; remote branch HEAD match; compare ahead=1 behind=0; remote blob `605d4cc00847a1129cd0d5469424bfb819dbf7be` verified.
+- `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`; no new REA, GPU trace or Quest3 HMD PASS. AI 1 left unchanged.
+- **AI 2 score: previous confirmed 1969 + new unique completed review +1 = cumulative 1970.**
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01502 (2026-10-26 11:07:07 KST (Asia/Seoul))
 

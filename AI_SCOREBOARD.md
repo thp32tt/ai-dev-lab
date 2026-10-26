@@ -1,13 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 19:10:49 KST (Asia/Seoul)
+Updated: 2026-10-26 19:11:15 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1978** | DX11 01085 indexed real-game SM3 native GPU list windows, five exact-SHA GitHub Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **1979** | DX9Ex 01509 R26 HUD reference/backbuffer aspect independent docs-only review, +1 |
 
 ## AI 2 DX11 native indexed game source 01085 (2026-10-26 19:10:49 KST)
 
@@ -18,6 +18,15 @@ Updated: 2026-10-26 19:10:49 KST (Asia/Seoul)
 - Five mandatory **push exact-SHA** GitHub Actions all `completed/success` on `74fe2239652250754cb0a8e470f7ea6ba6d5d41f`: DX11 Fast `40302596414`, Backend Conversion `40302596447` (run attempt 2), Windows Build `40302596382`, OpenXR `40302596461`, HUD Inspector `40302596395`. No disabling negative regression or bypassing required Gate.
 - `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. No physical OutRun menu/car/race execution, native frame capture, Quest3/VDXR L/R game visuals, input or FPS measurement; playable full-native DX11 not claimed. Development time proportions were not measured.
 - **AI 2 score: previous confirmed 1977 + one independently verified DX11 source outcome +1 = cumulative 1978.** AI 1 unchanged unless separately updated by its owner. 01085 same TASK retry/CI repair/C6/checkpoint/readback never score again.
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01509 (2026-10-26 19:11:15 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01509`; unique R26+HUD source-grounded review of effective gameplay HUD 1920x1080 reference containment scaling with changing actual game-backbuffer aspect. Separate from 01508 GOAL rebuilt-root queue provenance and 01490 cached MENU projection. No game source change.
+- Pinned analyzed GitHub SOURCE_HEAD `456642108a4c0bd86c337bc14ead561b3c376cdc`. Concurrent, unrelated docs-only research commit `ca807408ecd8337a968baf4e62f983cb2ac1feea` landed before this docs-only write; source between pinned HEAD and actual parent was unchanged. Actual parent `ca807408ecd8337a968baf4e62f983cb2ac1feea`.
+- Durable DX9Ex result `2a84d617d90ce47e6cb27b5324620abe67f04634`, exact single added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01509.md` (+46), exact `[AUTO:CONVERSION-DX9EX-01509]`; remote HEAD readback and commit-parent compare ahead=1/behind=0, blob `c6172b81a0413b711f661faa5d92c01ecc27fe32` verified.
+- Finding: conditional with `VRHud1080pReference=ON`, `R30HudContainScale` multiplies user HUD scale 0.55 by `ContainedScale` derived from live D3D9 backbuffer aspect. Source-equivalent arithmetic: 3440x1440 -> effective 0.4093023256; 2496x2688 -> 0.55; 1920x1080 -> 0.55. No claim of actual optical size jump; setting, game executable/DLL/host identity, L/R physical draw, native presentation and HMD behavior unverified. R84/R33 opt-in GPU profiler explicitly rejected as default-R26 finding after checking CMake.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`, `BUILD=NOT_RUN`, `RUNTIME_VALIDATION=UNTESTED`. R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` unchanged; result HUD candidate is not HMD PASS. No R84 promotion, B9200 unsafe hook, or source patch.
+- **AI 2 score: previous confirmed 1978 + new unique completed review +1 = cumulative 1979.** Same TASK_ID retry/rollover/readback +0. AI 1 score unchanged.
 
 ## AI 2 DX11 native SM3 fan GPU chunks 01084 (2026-10-26 17:55:30 KST)
 

@@ -1,14 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 02:06 KST
+Updated: 2026-10-27 03:07:09 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1990** | Distinct DX9Ex REVIEW_ONLY 01516 occlusion-query depth-sync review, docs-only exact SHA +1 |
+| AI 2 — ChatGPT2 | **1991** | Distinct DX9Ex REVIEW_ONLY 01517 offscreen shared-depth review, docs-only exact SHA +1 |
 
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01517 (2026-10-27 03:07:09 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01517`. Novel, independent static conditional finding: R7 `ExecuteStereoDraw` and `ClearDest` return early for offscreen RT0 without invalidating RIGHT depth/stencil synchronization; RT0-only restore also does not update synchronization. If an offscreen RT0 pass genuinely reuses and writes the SAME physical main-left depth/stencil surface (not a distinct surface) after a bilateral full clear, a subsequent backbuffer stereo Draw could accept `RightDepthSynchronized=true` despite stale RIGHT depth. Distinct from 01516 active occlusion-query LEFT main-RT bypass, 01513 cropped-viewport bootstrap, 01512 changed depth identity. Real original-game reachability, depth pixels, Quest3/VDXR and FPS UNTESTED.
+- GitHub source SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned `SOURCE_HEAD=c350c406109c5f8ebaf2e85e31d63cd346bf9691`, docs-only `RESULT_SHA=27fd5162e15071dbf21b9b98d819bf33711de303`. Exactly one added file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01517.md` (+49/-0), commit message exact `[AUTO:CONVERSION-DX9EX-01517]`, branch HEAD exact, compare ahead=1/behind=0, remote blob SHA `0e7ec685bbd0b63fbbee149735ebcf959b7940a8`. No production source/C++/HLSL/CMake/workflow/config changes, merge, branch, package or release.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `RUNTIME_VALIDATION=UNTESTED`; `PATCH_CANDIDATE_ONLY`. No HMD pass claim. Same-task retry, rollover and status readback +0.
+- **AI 2 score: previous confirmed 1990 + independent verified new docs-only review +1 = cumulative 1991.** AI 1 unchanged at 1666.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01516 (2026-10-27 02:06 KST)
 

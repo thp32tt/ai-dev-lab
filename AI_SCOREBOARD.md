@@ -1,13 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 19:11:15 KST
+Updated: 2026-10-26 19:49:28 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1979** | DX9Ex 01509 R26 HUD reference/backbuffer aspect independent docs-only review, +1 |
+| AI 2 — ChatGPT2 | **1980** | DX11 01086 indexed connected LINESTRIP/TRIANGLESTRIP native source implementation, five exact-SHA PASS, +1 |
+
+## AI 2 DX11 indexed connected strip 01086 (2026-10-26 19:49:28 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01086`; **one new independent material C++ source implementation**, not a one-enum/test-only change. Retry, C6 and result readback are +0.
+- Source SSOT: `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`; prior HEAD `b5fb3e2e556ad2224eb276a8c49e70bf629c7c6c`, material **RESULT_SHA `4f7331f01323c5b21e0a8cf5bd49313ddfafdf78`**, correct commit marker `[AUTO:CONVERSION-DX11-01086]` and no CI-skip. Exact single-parent branch compare ahead=1 behind=0 confirmed; five changed files only.
+- New source integration: real shader-bound D3D9 indexed LINESTRIP/TRIANGLESTRIP with a shader-visible FLOAT4 packing overflow can expand original indexed source occurrences into bounded D3D11 GPU Draw windows. Adjacent windows repeat 1 line or 2 triangle seam entries, align triangle start to even original triangle ordinals to preserve winding, scan the entire IB before any native GPU mutation, and enforce source and total upload limits. Original game renderer/input/FFB fallback, default native opt-in and frozen DXVK preserved.
+- C++ topology/attribute/winding/negative rejection tests `tools/dx11_sm3_indexed_connected_01086.cpp`, Python live source submission probe `tools/test_dx11_sm3_indexed_connected_01086.py` and Fast workflow integration.
+- Required five **push exact-SHA** Actions completed/success on material RESULT_SHA: DX11 Fast `40308931748`, Backend Conversion `40308931793`, Windows Build `40308931642`, OpenXR `40308931713`, HUD Inspector `40308931698`. Additional isolated WARP `40308931696` success. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`.
+- `RUNTIME_VALIDATION=UNTESTED`. No physical OutRun menu/car/race render, native GPU draw counts, Quest3/VDXR frame images, input, FFB or FPS observations. Full native gameplay not claimed. Time allocation ratios not measured.
+- **AI 2 score: previous 1979 + unique source outcome +1 = cumulative 1980.** AI 1 unchanged. The 01086 C6/checkpoint/CI readback contributes +0.
 
 ## AI 2 DX11 native indexed game source 01085 (2026-10-26 19:10:49 KST)
 

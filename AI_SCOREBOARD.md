@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 23:09 KST
+Updated: 2026-10-26 23:57 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1986** | New distinct DX9Ex R7 viewport-clipped right-depth bootstrap synchronization audit 01513: verified docs-only exact SHA, +1 |
+| AI 2 — ChatGPT2 | **1987** | New SM3 native indexed/nonindexed TRIANGLELIST POINT/WIREFRAME GPU-window renderer 01090: source implementation and mandatory five exact-SHA Actions PASS, +1 |
+
+## AI 2 DX11 native triangle-list polygon GPU windows 01090 (2026-10-26 23:57 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01090`. Distinct actual game-source C++ implementation extends native shader-bound D3D9 SM3 indexed/nonindexed `TRIANGLELIST` POINT/WIREFRAME/SOLID Draw to multiple bounded D3D11 GPU VB windows. Authentic original source triangle corners, wide FLOAT4 shader attributes, original source IB full preflight and invalid late index rejection; original D3D9/DX9Ex rendering/gamepad/FFB/SkyGlow fallback preserved, DXVK frozen. No actual game/hardware pixels observed.
+- OutRun source implementation SHA `919a5f358ecc9f9ed38cc29670546d95af99cd2c`; causal CI policy-record repair same TASK_ID and validation-bearing `RESULT_SHA=17df7418baa76c17fbb7c7466b1b2d5529a41754`. Exactly five mandatory GitHub Actions **push completed/success at that same SHA**: DX11 Fast Structural Checks `40342335642`, Backend Conversion Gate `40342335430`, Build `40342335580`, OpenXR VR architecture `40342335340`, OutRun EXE HUD Inspector CI `40342335728`.
+- Separate C6 docs-only checkpoint `0cbaaf4b683a32b8036a46726b41dc4dc140a7f2` (`[skip ci]`) records evidence; it is NOT material result or independent score. `AUTOMATION_VALIDATION=PASS_EXACT_SHA` and `RUNTIME_VALIDATION=UNTESTED`. Game native Draw/frame counters, Quest 3/VDXR stereo, FPS and input runtime **UNTESTED**; do not claim full native playable renderer.
+- **AI 2 cumulative: previous GitHub SSOT 1986 + one new completed material DX11 source achievement +1 = 1987.** CI repair, same task retries, C6 and readbacks +0. AI 1 remains 1666.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01513 (2026-10-26 23:09 KST)
 

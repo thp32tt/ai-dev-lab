@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 01:06 KST
+Updated: 2026-10-27 02:06 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1989** | Distinct DX9Ex REVIEW_ONLY 01515 color initialization review, docs-only exact SHA +1 |
+| AI 2 — ChatGPT2 | **1990** | Distinct DX9Ex REVIEW_ONLY 01516 occlusion-query depth-sync review, docs-only exact SHA +1 |
+
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01516 (2026-10-27 02:06 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01516`. New independent source-grounded conditional observation: R7 `ExecuteStereoDraw` skips `InvalidateRightDepthStencilIfLeftMayWrite` specifically when occlusion query is active (`!occlusionActive` guard), while forwarding LEFT-only original draw. If that draw writes main depth/stencil, retained right-sync TRUE is not a content proof; after query END, a later stereo depth-tested draw can be admitted against stale RIGHT depth. Actual exact game query-write ordering, Quest3/VDXR pixel outcome and FPS **UNTESTED**. Distinct from 01515 color-init viewport, 01514 tiled-depth Clear and 01513 bootstrap cropped-viewport predicates.
+- GitHub SSOT: `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned `SOURCE_HEAD=4479f0c4e4079142e57d4e3a25e04ea06c0be6a2`, docs-only `RESULT_SHA=c350c406109c5f8ebaf2e85e31d63cd346bf9691`; exactly one newly added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01516.md` (+44/-0), commit message exact `[AUTO:CONVERSION-DX9EX-01516]`. Remote branch HEAD exact, parent matching SOURCE_HEAD, compare ahead=1 behind=0, blob SHA `e76384e4912bdc88d6ca19b6d300bf14a11cda52` readback verified. No source/config/workflow changes.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `RUNTIME_VALIDATION=UNTESTED`; `PATCH_CANDIDATE_ONLY`. Same-task retry/rollover/readback +0.
+- **AI 2 score: previous confirmed 1989 + independently verified new docs-only review +1 = cumulative 1990.** AI 1 unchanged.
 
 ## AI 2 DX9Ex independent REVIEW_ONLY 01515 (2026-10-27 01:06 KST)
 

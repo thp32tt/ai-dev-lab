@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 04:58:50 KST
+Updated: 2026-10-27 05:05 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1992** | New DX11 SM3 indexed POINT-strip windowed GPU draw implementation 01095, exact five Actions PASS +1 |
+| AI 2 — ChatGPT2 | **1993** | New independent DX9Ex REVIEW_ONLY 01518 verified docs-only finding, +1 |
+
+
+## AI 2 DX9Ex independent REVIEW_ONLY 01518 (2026-10-27 05:05 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01518`. New distinct static failure-atomicity finding: R7 `ComposeSbs` can successfully clear original BackBuffer black and submit the LEFT SBS half before a checked RIGHT `DrawTextureHalf` fails; the code restores D3D9 states/RT/depth/viewport but does not restore original BackBuffer *pixels*. `PresentDest` marks the frame incomplete/mono fallback yet still forwards original `Present`; a successful Present may carry partially composed/black pixels. Physical-game reachability, Desktop Duplication host sampling, Quest3/VDXR outcome and FPS are UNTESTED. Different from 01511's unchecked compositor setter producing incorrectly accepted SBS active metadata; here failed half-draw is correctly rejected in metadata but backbuffer color rollback is absent.
+- Source SSOT `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: pinned `SOURCE_HEAD=27fd5162e15071dbf21b9b98d819bf33711de303`, docs-only `RESULT_SHA=649b045110f36b32aa567a779f225546f0a4dc94`. Exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01518.md` (+46/-0), commit marker exactly `[AUTO:CONVERSION-DX9EX-01518]`; remote HEAD exact, parent matches source HEAD, compare ahead=1 behind=0; remote Markdown blob `22b7cd8b4c87716a2910d6b3510a47ce4b707330` read back.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `PATCH_CANDIDATE_ONLY`; `RUNTIME_VALIDATION=UNTESTED`. No C++/HLSL/CMake/workflow/config changes or R84 promotion. Retry/readback/rollover +0.
+- **AI 2 cumulative: previous GitHub SSOT 1992 + independent newly verified docs-only review +1 = 1993.** AI 1 remains 1666.
 
 
 ## AI 2 DX11 SM3 native indexed POINT-strip GPU windows 01095 (2026-10-27 04:58:50 KST)

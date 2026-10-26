@@ -1,13 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-26 13:02:39 KST (Asia/Seoul)
+Updated: 2026-10-26 13:53:28 KST (Asia/Seoul)
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **1971** | DX11 01082 authentic SM3 native independent-list GPU chunk implementation + exact-SHA five Gate success, +1 |
+| AI 2 — ChatGPT2 | **1972** | DX11 01083 authentic connected LINESTRIP/TRIANGLESTRIP native GPU chunk/seam and five exact-SHA Gates, +1 |
+
+## AI 2 DX11 native connected real-game geometry 01083 (2026-10-26 13:53:28 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01083`. New material native SM3 connected LINESTRIP/TRIANGLESTRIP cross-upload source path, source + regression tests integrated, **+1 once** after all required Gates. Subsequent retries, gate readbacks and C6 bookkeeping are +0. AI 1 unchanged.
+- Repository: `thp32tt/OutRun2006Tweaks` branch `vr-dx11-native-r71`. Base `ba185aaf9b36a1295514a745080a2fe140d2dacd`; initial source+test material commit `34658b9be8204ef5374c94215b2e416150e8a2fa`; validation-bearing exact SHA `0b92706497098316a49f24b10e0c84d6a0725f4d` with same `[AUTO:CONVERSION-DX11-01083]` tag. The second commit repaired confirmed prior 01082 C6 policy record mismatch, not a new feature.
+- Actual change: `live_game_frame_bridge.cpp` plus SM3 assembly header route long nonindexed game-authored LINESTRIP/TRIANGLESTRIP geometry through bounded D3D11 multi-stream FLOAT4 source window uploads, with one/two repeated strip-seam vertices and even TRIANGLESTRIP starting parity. Per-chunk native IA/VS/PS GPU Draw and original FFB/input/DX9Ex fallback preserved. Indexed, fan, point/wireframe, malformed and over-budget inputs remain fail-closed. Dedicated C++ positive/negative strip parity/source-window probe and live-bridge wiring regression integrated into DX11 Fast.
+- Five **push exact-SHA** mandatory GitHub Actions verified `completed/success` for `0b92706497098316a49f24b10e0c84d6a0725f4d`: DX11 Fast `40270195582`, Backend Conversion `40270195691`, Windows Build `40270195651`, OpenXR `40270195626`, HUD Inspector `40270195604`. No CI-skip, force push or duplicate unchanged-SHA retry.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. Actual game launch, full menu/car/race native frame, HMD output, published frame count, Quest 3/VDXR stereo and 72/120 FPS unobserved. Source time proportion not measured; no claimed implementation percentage.
+- **AI2 score: previous confirmed 1971 + one independently verified source accomplishment +1 = cumulative 1972.** No additional credit for C6/bookkeeping. AI 1 remains 1666.
 
 ## AI 2 DX11 native shader-bound game GPU draw source implementation 01082 (2026-10-26 13:02:39 KST)
 

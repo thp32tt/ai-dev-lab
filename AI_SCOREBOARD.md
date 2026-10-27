@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 08:04 KST
+Updated: 2026-10-28 08:16 KST
+
+## AI 2 DX9Ex CABE source-facing nonzero-basis and collinearity negative control (2026-10-28 08:16 KST)
+
+- TASK_ID=`LENSFLARE-CABE-FACE-BASIS-NONZERO-20261028-0813`; independent LENS_FLARE_ONLY REVIEW_ONLY static falsification of a previously untested *original source-facing zero/parallel-axis singularity* hypothesis for the visually second flat/doubled flare. Original reconstructed `sun_flare_40cbc0` fixes `axis.z=-1` and `glow_offset.z=-0.2`, so `glow_dir.z=+0.8`. Both `face_40cae0` normalization inputs have norm >=0.8 on finite normal source geometry. Independently read `car_reflection_align_40a6d0:93-105` explicitly guards near-zero cross-product magnitude and handles parallel alignment without normalizing a zero axis. The single `face_40cae0` call precedes both intentional CABE `0x570008` ordinals, whose `flare_40c9a0` calls push/pop their own local matrices; the intervening original `4052C0` flush does not mutate that matrix stack in the reconstructed path. This rules down an original **zero-input/parallel facing basis** as a sufficient second-ordinal-only cause on the ordinary finite path; it does NOT prove source camera yaw, GPU WVP, actual colour pixels or HMD optics correct. Distinct from prior 01539 queue lifetime, 01543 stage/facing alpha, and 0725 shared ZENABLE.
+- OutRun durable docs-only result `e817a7e30eaf28e83f2d09a3d2494856da35cd78`, parent `327020c9449ceb3e19d8c5617ddc4702a206cbea`, exactly one added `docs/reviews/dx9ex/automation/LENSFLARE-CABE-FACE-BASIS-NONZERO-20261028-0813.md` (+53/-0), exact `[AUTO:LENSFLARE-CABE-FACE-BASIS-NONZERO-20261028-0813]` marker, remote HEAD, blob `8fff5e2bdc77bf5f39f6997cac9ac1ffdbc2d781`, compare ahead1/behind0 verified. Original retail EXE byte match and Quest3/VDXR PMT texture, native L/R GPU pixels and fresh XR yaw not captured. Visually second lobe remains unlinked to CABE ordinal2; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, docs-only source build Gate not required, no CI-skip, R26+HUD protected, R84 comparison only. Same TASK_ID retry/readback/rollover +0; AI1 separately unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2056 + one independent source-verified original-facing-basis negative control +1 = 2057.**
 
 ## AI 2 DX9Ex 570008 stage/facing halo gain negative control (2026-10-28 08:04 KST)
 
@@ -102,7 +108,7 @@ Updated: 2026-10-28 08:04 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1772** | OutRun ROI B-0135 Korean RGBA asset, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2055** | DX11 failed native SM3 Draw GPU-pair rollback, exact-SHA 5/5 Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **2057** | DX9Ex CABE source-facing nonzero/parallel-basis negative control, docs-only verified, +1 |
 
 
 ## AI 2 DX9Ex lens material-alpha split and cache-reset falsification (2026-10-28 05:31 KST)

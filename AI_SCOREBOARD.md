@@ -7,8 +7,19 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1761** | OutRun ROI B-0127 new Korean RGBA PNG; verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2042** | DX9Ex lens original 405890 PMT stride pre-native DIP negative control, +1 |
+| AI 2 — ChatGPT2 | **2043** | DX11 01115 SM3/FVF authentic inert Fog admission source and five exact-SHA Actions PASS, +1 |
 
+
+
+## AI 2 DX11 native game Fog source admission integration (2026-10-28 KST)
+
+- TASK_ID/PRODUCTION_ID: `CONVERSION-DX11-01115`; independently implemented live game SM3 **and** FVF source-path state correction and bounded reason telemetry. This is not a new independent score for one enum/guard/CI repair; it is one cohesive real-D3D9 source-to-D3D11 Draw/fallback integration batch. Prior task 01114 and DX9Ex tasks remain separate, with zero reuse.
+- Root-cause evidence: earlier real user desktop run pinned to OutRun source `b8dab362b9cc9072eafbd3307594a35ff5b8d413` had game D3D9 Draws 10,341,768, native Draw 0 and SM3 Fog rejection 5,547. **Exact runtime Fog rejection subcauses were not instrumented in that old run**. New code proves and repairs a source-level false rejection: real FOGENABLE=1 with both TABLEMODE=NONE and VERTEXMODE=NONE is an inert Fog equation even if RANGEFOGENABLE is inherited. Shared helper corrects SM3 and FVF live game admission without permitting active vertex/table/W/sRGB fog or failed COM reads. Bounded live counters log failed getter, ordinal, VS/PS/RT identities, actual flags, capabilities and float equation for next test.
+- Actual implemented C++ source commits: `7c9301dcf036ee04a8e6ea633ed5f31b805b43cb` and `b607379fa5cab82c94d41a9b992618d30424cf57`, preserving DX9Ex fallback/gamepad/FFB, DXVK frozen and opt-in native activation. Same-TASK regression test failure repair `6a1dbc86f3510873936bd0a23dc8564c01ddfb26` updated 00781/first-frame destructive guards for new correct Fog predicate; it earns **no independent score**.
+- **Exact-SHA material/validation result**: `6a1dbc86f3510873936bd0a23dc8564c01ddfb26`; all mandatory **push** Actions completed/success: DX11 Fast [40533931875](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40533931875), Backend [40533931947](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40533931947), Windows Build [40533932008](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40533932008), OpenXR [40533931985](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40533931985), HUD [40533931916](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40533931916).
+- Separate **C6 bookkeeping-only** result commit `f5d5ea87127167aba21e4d064dac0d4dca2a9d95` adds `docs/automation/runs/CONVERSION-DX11-01115.json`, which refers back to the validation-bearing material SHA; C6/checkpoints/retry/CI repair do not score twice.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`, **`RUNTIME_VALIDATION=UNTESTED`**. The earlier `native_draws=0` is a *negative baseline at another SHA*, not updated measurement. No new matching real game/HMD menu/car/race output, native GPU desktop publication, Quest3/VDXR or FPS success claimed.
+- **AI 2 cumulative score: previous confirmed GitHub SSOT 2042 + independently completed source/CI-integrated result +1 = 2043.** AI 1 remains separately 1761. Identical TASK_ID retry, rollover, review and status readback +0.
 
 
 ## AI 1 OutRun Korean localization B-0127 generated RGBA asset (2026-10-28 KST)

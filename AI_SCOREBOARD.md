@@ -1,16 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 08:56:04 KST
+Updated: 2026-10-27 09:10:17 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **2001** | DX9Ex lens flare-only controller policy committed and remote verified, +1 |
+| AI 2 — ChatGPT2 | **2002** | New C993 lens-flare physical producer/head-ray REVIEW_ONLY documented, +1 |
 
 
 
+
+## AI 2 DX9Ex C993 lens-centre exact producer/head-ray admission review 01522 (2026-10-27 09:10:17 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01522`. Independent conditional static source finding under user's **lens-flare-only** C-slot policy; previous 01521 is an unrelated R30/R9 mono-backup gap.
+- OutRun GitHub SSOT `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned **SOURCE_HEAD** `def4440df0ce34a3c06de64acd422a76d227c2a0` -> docs-only **RESULT_SHA** `037c00e0cd8e671fc020fc5bab2d5f2d0d3c184a`; exactly one new file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01522.md` (+41/-0), exact `[AUTO:CONVERSION-DX9EX-01522]` commit marker. Remote branch HEAD equals result; compare ahead 1 behind 0; remote file blob `6c32a0ecfc4707217d835c15072da6d3c641b1e9` read back.
+- Finding: C993 `DrawObjectAlphaCentre` binds `ProjectedScreenEffect2D` with `ProducerToken::None` inside its original-game call, while the specialized `BuildProjectedSunRay` head-correction branch requires physical `LensFlareCentre` token. Under inspected ordinary no-guard physical path, projected class instead submits stock WVP identically L/R if its raw c64 proof passes; optional source-sync may already compensate head pose. True HMD head-lock, duplicated flare pixels, source-camera synchronization and real path reachability remain **UNTESTED**. No automatic source patch.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_EXACT_SHA`; `CODE_CHANGE=NO`; `BUILD=NOT_RUN`; `CI=NOT_RUN`; `SOURCE_BUILD_GATE=NOT_REQUIRED_DOCS_ONLY`; `RUNTIME_VALIDATION=UNTESTED`. Same-task readback/retry/rollover scores +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2001 + one unique verified docs-only lens-flare review +1 = 2002.** AI 1 stays independent.
 
 ## AI 2 DX9Ex lens-flare-only automatic review scope policy (2026-10-27 08:56:04 KST)
 

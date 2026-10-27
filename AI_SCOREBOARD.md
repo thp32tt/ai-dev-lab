@@ -68,8 +68,14 @@ Updated: 2026-10-28 04:53 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1772** | OutRun ROI B-0135 Korean RGBA asset, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2049** | DX9Ex lens projected FOV-affine pre-copy gate, +1 |
+| AI 2 — ChatGPT2 | **2050** | DX9Ex R69 lens fusion/FIX one-shot observability falsification, +1 |
 
+
+## AI 2 DX9Ex R69 lens fusion one-shot optical-claim falsification (2026-10-28 05:08 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01541`; novel lens-flare-only REVIEW_ONLY source check, separate from `CONVERSION-DX9EX-01535` sampled source/native join, `01536` sampled PHYSICAL EYES RIGHT setup failure, `01538` C993 exact owner, `01539` opaque flush phase and `01540` FOV-affine rejection. At pinned source `thp32tt/OutRun2006Tweaks@92512bdbda60677ef8eaa6ebf3845b8bcfe138c4`, `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp::R30BuildScreenSpaceEyeConstants:5216-5226` logs `VR R69 FLARE FUSION` on **prepared** identical L/R stock WVP before GetViewport or either actual Draw. The later `::R30TryScreenSpaceFovDraw:5818-5824` logs `VR R69 FLARE FIX` once after only the *first successful projected stereo pair*, irrespective of correction branch or all flare-child PMT pixels. The ordinary branch merely copies stock WVP, without `GetLatchedHeadInverse`/`BuildProjectedSunRay`; hence the unconditional text `head-corrected complete ... family` overstates evidence. This is a distinct proven diagnostic milestone/claim mismatch, **not** proof of current Quest3 double-image, HMD optical fix or extra source draw.
+- Durable OutRun docs-only commit `2e5ad2f44c62c2fa269882481a11be77388c7cbb`, parent `92512bdbda60677ef8eaa6ebf3845b8bcfe138c4`, only added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01541.md` (+55/-0), exact marker `[AUTO:CONVERSION-DX9EX-01541]`, remote branch HEAD / blob / compare ahead1 behind0 verified. `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; no source CI gate required, no CI-skip, no runtime hook/R84 promotion, no hardware verification.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2049 + distinct new source-verified log-predicate/optical-claim falsification +1 = 2050.** Same TASK_ID retry/recheck/rollover/record re-report +0. AI 1 remains separately tracked.
 
 ## AI 2 DX9Ex projected-lens FOV-affine pre-copy rejection (2026-10-28 KST)
 

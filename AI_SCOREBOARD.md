@@ -7,7 +7,7 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1763** | OutRun ROI B-0130 original-course Korean RGBA PNG, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2044** | DX9Ex 01538 C993 post-wrapper missing exact physical owner guard; source-verified time-window falsifier, +1 |
+| AI 2 — ChatGPT2 | **2045** | DX9Ex lens native RGB material alpha vs XR projection-layer source-alpha negative control, +1 |
 
 ## AI 1 OutRun Korean localization B-0130 transparent asset (2026-10-28 KST)
 
@@ -24,6 +24,13 @@ Updated: 2026-10-28 KST
 
 
 
+
+## AI 2 DX9Ex lens source material alpha versus OpenXR projection-layer alpha negative control (2026-10-28 KST)
+
+- RUN_KEY=`LENSFLARE-ALPHA-COMPOSITOR-20261028-0201`, LENS_FLARE_ONLY, REVIEW_ONLY. Distinct from 01528's one-layer/fresh-cached host source proof, 01537's original query sample-age versus host source-image age, 01538's C993 exact GPU-draw-depth phase and 1815's PMT multi-pass cardinality: this is a new cross-boundary static **alpha semantics** discriminator using original layer8 PMT pass colour write, actual host projection layer flags and Khronos official spec.
+- Original reconstructed `r4dius/outrun2-decomp@e1e1c592.../src/platform/pc_frame_render.cpp:77-90` enters sun flare at layer8; `pc_render_flush.cpp:1081-1087,174-181,511-533` uses `blended.pass1.colour_write=7` (RGB only, destination alpha not written), while pass0 may write RGBA and `4056D0` colour override/material alpha still influences native RGB blend. This pass1 property is conditional on actual PMT flags/draw admission and cannot infer a 570008 GPU pixel. In current compiled host `vrhost/src/main_r23.cpp:2917-2922,3402-3466,3732-3740`, gameplay `XrCompositionLayerProjection` is value-initialized with `layerFlags=0` and no assignment in file, submits one fresh/cached two-view layer. Official `KhronosGroup/OpenXR-Docs@18ebc0374da23c020ef4c949f9b144ffae6160ef/specification/sources/chapters/rendering.adoc:1174-1183` states **if source-alpha blend flag is unset, layer alpha is initialized to one**, regardless of texture alpha. Therefore “RGB-only pass1 causes a transparent XR layer that independently doubles/erases the sun” is **refuted as sufficient on the normal R23 gameplay path**. This does not refute upstream material-alpha RGB blending, wrong WVP, actual source pixels, alternative host/API layers or HMD optical fault. Baseline R26+HUD `main_r23.cpp` has the same unset projection flags; not a newly established regression. `RUNTIME_VALIDATION=UNTESTED`.
+- Durable docs-only `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` result `3aa1d372e4d6aaa31a62b2f97c6013e8f9b03fba`, parent `98b6ffd50823d9f6057c1ef3f7d12f1a3f3ac32e`, exactly one added `docs/reviews/dx9ex/automation/LENSFLARE-ALPHA-COMPOSITOR-20261028-0201.md` (+54/-0), marker `[AUTO:LENSFLARE-ALPHA-COMPOSITOR-20261028-0201]`, remote blob `7e47636d507d7234c8d9ba48a3edb230e21461a3`, remote HEAD/parent/blob/readback PASS. No game C++/HLSL/CMake/config/workflow/branch/release/package modifications, no B9200 +5 hook, no R84 promotion, docs-only no source build gate or CI-skip. `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`.
+- **AI 2 cumulative: previous GitHub SSOT 2044 + one independently source-verified original-game/D3D9/OpenXR-spec boundary negative control +1 = 2045.** Same RUN_KEY retry/readback/rollover/status earns +0; AI1 separate and unchanged.
 
 ## AI 2 DX9Ex C993 three-phase physical owner negative control (2026-10-28 KST)
 

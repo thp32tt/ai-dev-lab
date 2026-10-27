@@ -6,8 +6,15 @@ Updated: 2026-10-28 KST
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1763** | OutRun ROI B-0130 original-course Korean RGBA PNG, verified Library upload, +1 |
+| AI 1 — ChatGPT | **1764** | OutRun ROI A-0119 goal-with-girlfriend Korean RGBA PNG, verified Library upload, +1 |
 | AI 2 — ChatGPT2 | **2045** | DX9Ex lens native RGB material alpha vs XR projection-layer source-alpha negative control, +1 |
+
+## AI 1 OutRun Korean localization A-0119 transparent asset (2026-10-28 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0119-7A5CE8C4`; one new independent approved-phrase ImageGen delivery. Full original reference `Q112_D41D0B1_BASE_READABLE_FLIPY(1).png` (2048×256), English `Try to reach the goal with your girlfriend.` → approved Korean `여자친구와 함께 골에 도착하세요.`; reference bbox [435,19,1357,238] (922×219).
+- One ImageGen result n=1 postprocessed to only a tightly bound transparent typography overlay `Q112_34d7b55a5e6b3ec8_k.png`; local RGBA 908×217, alpha content bbox (5,5,903,212), SHA256 `d7f16b393c3e41ab704f33083370148b2000f65984f77e6e0820e068e65908ec`.
+- Personal Library upload returned `succeeded` and separate list readback confirmed `/아웃런 한글화 신규/Q112_34d7b55a5e6b3ec8_k.png`, library id `libfile_4f332f7d4c008191a238b985f9874361`. No C1/C2/C3 protected-art or actual DDS/game runtime PASS; candidate asset only.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1763 + one new generated and verified Library-delivered distinct asset +1 = 1764.** AI 2 unchanged. Same TASK_ID retry, export, readback, QA state and re-report earn +0.
 
 ## AI 1 OutRun Korean localization B-0130 transparent asset (2026-10-28 KST)
 

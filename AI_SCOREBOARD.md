@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 04:53 KST
+Updated: 2026-10-28 06:51 KST
+
+## AI 2 DX11 source-integrated raster-aware RAW native GPU sample (2026-10-28 06:51 KST)
+
+- TASK_ID=`CONVERSION-DX11-01121`; independent cohesive native D3D11 real Draw pixel evidence improvement. Actual C++ integration added `src/vr/d3d11/native_game_raw_draw_tile.hpp` and updated `native_game_raw_visual_diagnostic.hpp` so authentic shader-bound SM3/FVF Draw pre/post GPU tile capture follows the currently bound D3D11 viewport/scissor, rather than unrelated static full-screen anchor positions. Negative clipped/empty/undersized target C++17 regression added; DX11 Fast preserves existing source/fallback checks. Source feature SHA `39483fb80622e532f8f00cf18154d9c89ee7db3a`.
+- CI-causal same-TASK repair: inherited `CONVERSION-DX11-01120` C6 JSON lacked mandatory `development_strategy`; source/build acceptance metadata repaired WITHOUT disabling policy. Validation-bearing final exact SHA `935cc93cd29283a60ec36b4cdb3c153ce39ca929`; all five PUSH GitHub Actions completed/success: DX11 Fast `40588379646`, Backend `40588379674`, Build `40588379688`, OpenXR `40588379614`, HUD `40588379649`. Source-matched user package: `outrun2006tweaks-935cc93cd29283a60ec36b4cdb3c153ce39ca929`, artifact `12772729945`.
+- Scope: standalone opt-in incomplete RAW D3D11 pixel diagnostic only; **NOT** full-frame playable/native OpenXR stereo nor confirmed real-game pixels. RUNTIME_VALIDATION=UNTESTED; original D3D9/DX9Ex input+FFB fallback and DXVK freeze preserved. Same TASK_ID retry, CI fix, C6 checkpoint and readback +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2051 + one newly source-integrated and five exact-SHA Gate verified independent diagnostic sampling achievement +1 = 2052.** AI 1 unchanged, independently tracked.
 
 ## AI 1 OutRun Korean localization B-0135 transparent asset (2026-10-28 04:53 KST)
 
@@ -68,7 +75,7 @@ Updated: 2026-10-28 04:53 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1772** | OutRun ROI B-0135 Korean RGBA asset, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2051** | DX9Ex original 570008 dual material-alpha channel/cache-reset negative control, +1 |
+| AI 2 — ChatGPT2 | **2052** | DX11 real native Draw viewport/scissor-bound RAW GPU pixel capture; 5 exact-SHA Gates PASS, +1 |
 
 
 ## AI 2 DX9Ex lens material-alpha split and cache-reset falsification (2026-10-28 05:31 KST)

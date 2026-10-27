@@ -1,14 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 KST
+Updated: 2026-10-28 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
-| AI 2 — ChatGPT2 | **2040** | DX11 real no-Clear source-copy first-Draw blocker fixed and exact-SHA five Gates, +1 |
+| AI 2 — ChatGPT2 | **2041** | DX9Ex original dual-GetData pending/readback lens visibility source branch verified, +1 |
 
+
+
+## AI 2 DX9Ex original 40CBC0 dual GetData lens visibility/occlusion divergence (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01537`; REVIEW_SCOPE=LENS_FLARE_ONLY; independent original-source control not previously scored for 01536 (R30 RIGHT conditional actualDraw), 2026-10-27 23:18 (40BE70/SceneEffect/opaque flush), or query PMT draw cardinality (2026-10-27 19:38). 2026-10-27 22:04 flicker alpha is a separate earlier achievement. Same TASK_ID retry/rollover/readback +0.
+- Pinned OutRun source `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `0fd93b63dbdef0ee1fe0578fdfbc5df06ce52ed3`; pinned original reconstruction `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62/src/platform/race_course_passes.cpp`. Original `Sun::query_get_data:486-492`, `sun_flare_40cbc0:631-645` first GetData pending (=1) reuses `samples_89f684` for current lens `visible`; original `Sun::occlusion_draw_4114e0:500-513` separately checks GetData for query PMT Begin/Draw/End and can skip that bracket while original `sun_flare_40cbc0:672-715` still emits expected visible CABE/C993 flare children when otherwise admitted. It is possible for a fresh host source image to reflect stale original lens occlusion samples, distinct from OpenXR cache and extra same-eye physical Draw. Original retail EXE byte match/live query status/alpha/eye RT/head yaw/Quest3 pixels unverified; **no confirmed double image/head-lock bug**.
+- Durable docs-only `RESULT_SHA=197e85b5cbcad7a8a74f79e480c4bc3fd606c1c4`, exact parent `0fd93b63dbdef0ee1fe0578fdfbc5df06ce52ed3`, exact marker `[AUTO:CONVERSION-DX9EX-01537]`; only new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01537.md` (+52/-0), GitHub ref/file/compare remote readback PASS. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`, source build gate not required. No CI skip, B9200 hook, R84 promotion, source/config/workflow change.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2040 + one independently source-traced dual-GetData producer visibility/query-suppression discriminator +1 = 2041.** AI 1 unchanged 1760. Same-task status/retry/readback earns +0.
 
 ## AI 2 DX11 01114 no-Clear authentic game bootstrap unblock (2026-10-27 KST)
 

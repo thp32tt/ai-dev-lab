@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 13:05:13 KST
+Updated: 2026-10-27 14:07:09 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2006** | DX9Ex 01526 new lens c64 EndScene/same-Present boundary source proof, docs-only, +1 |
+| AI 2 — ChatGPT2 | **2007** | DX9Ex 01527 lens EndScene telemetry vs Present publication negative control, docs-only, +1 |
+
+## AI 2 DX9Ex lens EndScene telemetry vs Present publication review 01527 (2026-10-27 14:07:09 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01527`; **lens-flare-only REVIEW_ONLY**. Independent from 01526's raw-c64 same-Present scene-retention inquiry: verified the distinct client scene-completion telemetry vs R7 stereo-render-frame publication boundary, including pre-Present in-flight vs post-Present completed protocol and existing aggregate multiBegin per-Present counter. A second EndScene is NOT itself a second complete stereo transport frame. This is a source-proven **negative control**, not a headset-visible duplicate fix; host XR layer reuse/actual same-eye raster remain untested.
+- Source HEAD inspected: `bcff6a0ed77c1a6cd6546ab2e70ec5c61f52f0fa` on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Durable docs-only RESULT_SHA `b6851f3cfe87422ba2c040b3ae33764f71f0ff72`, exact `[AUTO:CONVERSION-DX9EX-01527]` marker; exactly one added file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01527.md` (+57/-0); remote blob `4af4c017d1ce1e35dfdbd86d06c457195eb68bf9`; remote HEAD and parent compare ahead=1 behind=0. No game source/workflow/config changes, no build or CI skip.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`. E1 EndScene-direct-frame hypothesis refuted on inspected renderer path, E2 host in-flight/completed frame consumer remains OPEN; C993 optics and HMD not tested.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2006 + one new, independent source-grounded publication-boundary falsification with durable GitHub review +1 = 2007.** Same TASK_ID retry/status readback/rollover +0. AI 1 independent and unchanged.
 
 ## AI 2 DX9Ex same-Present lens c64 lifecycle review 01526 (2026-10-27 13:05:13 KST)
 

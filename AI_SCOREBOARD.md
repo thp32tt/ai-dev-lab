@@ -1,6 +1,14 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 KST
+Updated: 2026-10-28 04:33 KST
+
+## AI 1 OutRun Korean localization B-0134 transparent asset (2026-10-28 04:33 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0134-9DF35040`; one new standalone Korean ImageGen lettering candidate, original full HD PNG `Q121_FD90AA9_BASE_READABLE_FLIPY(8).png` (4096×4096), English `Outrun2 Course has been selected.` → approved Korean `아웃런2 코스가 선택되었습니다.`; reference bbox [162,1380,2048,1484] (1886×104).
+- Exactly one ImageGen output, trimmed/rescaled to transparent RGBA PNG `Q121_ceb2a8173087102c_k.png` (1868×101); SHA256 `10fb1131862758c52da9cf997f8cc3d5a7f0a2751d0756bff0c829322b1b9e13`.
+- Personal Library upload `succeeded` and independently verified via files.list: `/아웃런 한글화 신규/Q121_ceb2a8173087102c_k.png`; library_file_id `libfile_9c85d64e91c88191a48dce9fccc45a61`.
+- Candidate text overlay only; image proportions adjusted to meet target bbox and original style accuracy is not independently QA-approved. No C1/C2/C3, protected-art placement, DDS integration or real-game PASS claim.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1769 + one new ImageGen and Library-verified distinct asset +1 = 1770.** AI 2 unchanged. Same TASK_ID retry/readback/re-report +0.
 
 
 ## AI 1 OutRun Korean localization A-0122 transparent asset (2026-10-28 04:24 KST)
@@ -44,7 +52,7 @@ Updated: 2026-10-28 KST
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1769** | OutRun ROI A-0122 Korean RGBA PNG, verified Library upload, +1 |
+| AI 1 — ChatGPT | **1770** | OutRun ROI B-0134 Korean RGBA PNG, verified Library upload, +1 |
 | AI 2 — ChatGPT2 | **2049** | DX9Ex lens projected FOV-affine pre-copy gate, +1 |
 
 

@@ -7,8 +7,15 @@ Updated: 2026-10-27 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
-| AI 2 — ChatGPT2 | **2039** | DX9Ex lens 40BE70 course-post encloses first CABE deferred flush SceneEffect scope, +1 |
+| AI 2 — ChatGPT2 | **2040** | DX11 real no-Clear source-copy first-Draw blocker fixed and exact-SHA five Gates, +1 |
 
+
+## AI 2 DX11 01114 no-Clear authentic game bootstrap unblock (2026-10-27 KST)
+
+- TASK_ID / PRODUCTION_ID: `CONVERSION-DX11-01114`; new independent actual C++ source-path defect repair, not a retry or additional micro-feature credit for 01113. On the DX11 branch, an early `s.clearColor.matches(...)` check rejected all game-authored whole-backbuffer `StretchRect/UpdateSurface` frames that start without a TARGET Clear, before `bootstrapCopy` could be evaluated.
+- Source implementation `78354ec6d2adb1e439b357f6242f35f2064dee4b` moves seeded-Clear validation after authentic owner/backbuffer/whole-copy bootstrap admission and preserves fail-closed existing-owner path; C++ and source-level negative regressions accompany actual `live_game_frame_bridge.cpp` integration. Existing 00886 regression had the old literal `s.sourceGameDevice != owner` and was causally repaired without relaxing mutation coverage.
+- Exact-SHA validation-bearing material/result commit `b8dab362b9cc9072eafbd3307594a35ff5b8d413` (implementation plus same-task necessary test repair) on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`; all mandatory **push** Actions complete/success at this SHA: DX11 Fast 40522771101, Backend 40522770991, Build 40522771053, OpenXR 40522771089, HUD 40522771263. C6-only descendant `ab13f1ce7e98289ee1299d7813d89b76f64429d0` is not a second material result, with runtime/native game/HMD `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 score: previous confirmed GitHub SSOT 2039 + one unique source-level real first-frame defect restoration with five exact-SHA Gates +1 = 2040.** Same TASK_ID CI repair/C6/retry/rollover/recheck +0. AI 1 remains separate.
 
 ## AI 2 DX9Ex lens original 40BE70 -> 40CBC0 scoped opaque flush owner (2026-10-27 KST)
 

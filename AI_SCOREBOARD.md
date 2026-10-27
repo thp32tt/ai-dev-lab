@@ -7,9 +7,15 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1761** | OutRun ROI B-0127 new Korean RGBA PNG; verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2043** | DX11 01115 SM3/FVF authentic inert Fog admission source and five exact-SHA Actions PASS, +1 |
+| AI 2 — ChatGPT2 | **2044** | DX9Ex 01538 C993 post-wrapper missing exact physical owner guard; source-verified time-window falsifier, +1 |
 
 
+
+## AI 2 DX9Ex C993 three-phase physical owner negative control (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01538`, LENS_FLARE_ONLY REVIEW_ONLY. Distinct from 01532 projected `LensFlareCentre=None`/yaw observation, 01531 queue lifetime and 01536 RIGHT pre-Draw log: this review **independently compared the protected R26+HUD baseline and current C993 source plus render_semantics GPU-draw-depth RAII + `CapturePhysicalDrawCommand::IsDirectWorldLensCentre` + R30 `SelectWorldRoute`**. Baseline C993 created `ScopedExactLensCentreGpuDraw` inside the world owner; current focus C993 uses projected `ScopedExactProducerSemantic(...None)` without that guard. Conditional original opaque physical flush after wrapper return but before D3AA could restore a `LensFlareCentre` parent token WITHOUT a real exact C993 GPU-draw-depth proof: `rawOwned=false`, `SelectWorldRoute(true,false)=PreserveOriginal`, so the protected exact-world stereo route is not earned. Separate W1 direct projected, W2 parent-token-only, W3 SceneEffect windows and a C993 RAY EYES telemetry negative-control were explicitly source-verified. **This is conditional static source truth, NOT a proven actual C993 PMT flush window or HMD double/head-lock fix**; old 01532 result is not independently re-credited. `NEW_FINDING=STATIC_PHASE_GUARD_NEGATIVE_CONTROL`.
+- Pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `e7ea48516892bb4cbd42aa7232d5b86b97f9ef1f`. Protected baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`. Durable docs-only RESULT_SHA `98b6ffd50823d9f6057c1ef3f7d12f1a3f3ac32e`, exact parent `e7ea48516892bb4cbd42aa7232d5b86b97f9ef1f`. Exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01538.md` (+58/-0), commit marker `[AUTO:CONVERSION-DX9EX-01538]`, remote HEAD/compare/blob/readback verified. `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`; no source-build CI gate or CI-skip, no B9200 +5 hook, no R84 promotion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2043 + independent new source-verified exact-gpu-draw-depth/route guard negative control +1 = 2044.** AI1 separate, not changed. Same TASK_ID readback/retry/rollover/status does not earn another point.
 
 ## AI 2 DX11 native game Fog source admission integration (2026-10-28 KST)
 

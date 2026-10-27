@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 08:32 KST
+Updated: 2026-10-28 08:46 KST
+
+## AI 2 DX11 source-integrated RAW Present crop coverage (2026-10-28 08:46 KST)
+
+- TASK_ID=`CONVERSION-DX11-01123`, same-task retry E003. Distinct real native-game C++ + portable positive/negative test integration for D3D9 verified dirty-region RAW GPU diagnostic tile: material source commit `de1a0ad3b7a783b886a34fb8f3230c7576a58aa3` with exact `[AUTO:CONVERSION-DX11-01123]`; causal prior 01122 full_gate_plan schema repair `afa345ae7d33fad8f62784fee1ebf57a85d7c3b1`, not a second achievement. Production validation-bearing result SHA `afa345ae7d33fad8f62784fee1ebf57a85d7c3b1` (no CI-skip).
+- Exact-SHA required push GitHub Actions all completed/success: DX11 Fast #40603017023, Backend Conversion Gate #40603016987, Build #40603016993, OpenXR VR architecture #40603017024, HUD Inspector #40603017079. Build artifact `outrun2006tweaks-afa345ae7d33fad8f62784fee1ebf57a85d7c3b1` #12780161183. Source path `src/vr/d3d11/live_game_frame_bridge.cpp`, `native_game_raw_present_coverage.hpp`, `native_game_raw_visual_diagnostic.hpp`, `tests/native_raw_present_coverage_test.cpp`; native GPU RAW partial diagnostic only, not full frame.
+- Authentic Quest3/VDXR, live native_d​​raws, GPU pixel output, and published complete menu/vehicle/race frame all **UNTESTED** at this SHA; `RUNTIME_VALIDATION=UNTESTED`, not native display/HMD pass. Prior source-pinned native desktop zero Draw evidence remains a negative control only for its own SHA. Frozen DXVK, protected D3D9Ex fallback/input/FFB and full exact-SHA Gates retained. Same-task retry, policy repairs, C6/checkpoint, rerun, score readback +0 beyond this one independent source-integrated achievement. AI 1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2058 + one distinct source-integrated exact-SHA five-Gate verified DX11 task +1 = 2059.**
 
 ## AI 2 수도권 연간·시즌권 특가 조사 (2026-10-28 08:32 KST)
 

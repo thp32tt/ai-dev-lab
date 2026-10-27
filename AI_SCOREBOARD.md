@@ -7,7 +7,7 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1761** | OutRun ROI B-0127 new Korean RGBA PNG; verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2041** | DX9Ex original dual-GetData pending/readback lens visibility source branch verified, +1 |
+| AI 2 — ChatGPT2 | **2042** | DX9Ex lens original 405890 PMT stride pre-native DIP negative control, +1 |
 
 
 
@@ -16,6 +16,13 @@ Updated: 2026-10-28 KST
 - TASK_ID=`OUTRUN-ROI-B-0127-C70CB0E0`; independent, new ImageGen text-only Korean localization asset, not a retry of previously recorded A-0111. Source was the user-provided HD full image `Q111_C075FB49_BASE_READABLE_FLIPY(6).png`; source phrase `Go through the gate!` → approved Korean `게이트를 통과하세요!` and source bbox [1076,262,1566,357] (490×95).
 - One ImageGen output was cropped/resized and saved to `Q111_b40aa043dc4c3737_k.png`: verified local 490×82 RGBA, transparent, SHA-256 `1303e7da65bee79a11e73b91ac93d86ba6778501b71af82f34aa9e30c13b7eb1`. Personal Library operation `upload` returned `succeeded` at `/아웃런 한글화 신규/Q111_b40aa043dc4c3737_k.png`, library id `libfile_d84a06653fbc81919b239c1f7bdf5df1`. No game DDS/placement, C1/C2/C3, or game-runtime PASS claimed.
 - **AI 1 score: prior GitHub SSOT 1760 + independently generated and verified Library-delivered new asset +1 = 1761.** AI 2 unchanged **2041**. Same TASK_ID retry/upload/status/report yields +0.
+
+## AI 2 DX9Ex original 405890 PMT pre-DIP stride rejection negative control (2026-10-28 KST)
+
+- RUN_KEY=`LENSFLARE-PMT-STRIDE-PREDRAW-SKIP-20261028-0052`, LENS_FLARE_ONLY, REVIEW_ONLY. Unique original PC render-queue *post-descriptor, post-pass and per-PMT draw-record* native DIP suppression; distinct from 01530 4056D0 pre-descriptor 0x80 undo cap, 1815 normal pass0/pass1 multiplicity, 01535 sampled source/R30 join, 01536 R30 right-eye pre-Draw setup failure and 01537 two GetData query-sample freshness. Same RUN_KEY retries/readback/status +0.
+- Source pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus:197e85b5cbcad7a8a74f79e480c4bc3fd606c1c4`, original reconstructed `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62/src/platform/pc_render_flush.cpp::draw_404700:761-801`. After admitted opaque 405360 descriptor and 405890 pass/primitive selection, original 404700 binds shader/declaration, indices and PMT material at :789-794, then `if(stride!=size)continue` at :795 skips native `draw_indexed_primitive` at :798. `size` comes from shader declaration :749-759; original `load_matrices` may already have updated world/c64 :821-829. Therefore source/descriptor/c64/material state can exist without any R30 physical Draw for that PMT record, a new exact negative control against falsely classifying missing independently sampled R30 rows as lost source/eye or an extra emitter. **No evidence actual 570008 PMT has a mismatch**, no native eye pixel, head yaw or Quest3 test; optical root cause OPEN.
+- Durable docs-only result `e7ea48516892bb4cbd42aa7232d5b86b97f9ef1f` parent `197e85b5cbcad7a8a74f79e480c4bc3fd606c1c4`; exactly one added `docs/reviews/dx9ex/automation/LENSFLARE-PMT-STRIDE-PREDRAW-SKIP-20261028-0052.md` (+50/-0), marker `[AUTO:LENSFLARE-PMT-STRIDE-PREDRAW-SKIP-20261028-0052]`, remote blob `d80999219174ac6545fa31fe044dcf647c1f042c`, HEAD/parent/readback PASS. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`, docs-only no source build gate and no CI-skip; R26+HUD baseline unchanged, R84 comparison only, B9200 +5 hook forbidden.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2041 + one independently source-verified PMT pre-native rejection negative control +1 = 2042.** AI1 separate, not modified. No repeat credit for original queue, prior sampled logs or later retry.
 
 ## AI 2 DX9Ex original 40CBC0 dual GetData lens visibility/occlusion divergence (2026-10-28 KST)
 

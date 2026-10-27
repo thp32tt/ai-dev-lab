@@ -1,15 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 19:59 KST
+Updated: 2026-10-27 20:07:31 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2028** | DX11 real-game sparse post-Draw TARGET/Z native GPU 32-region batched replay, five exact-SHA Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **2029** | DX9Ex lens-only camera-origin static discriminant, docs-only remote verified, +1 |
 
 
+
+## AI 2 DX9Ex flare source-eye vs camera-sync split (2026-10-27 KST)
+
+- TASK_ID: `CONVERSION-DX9EX-01533`, new independent, source-grounded **lens flare only** REVIEW_ONLY result: original reconstructed `sun_flare_40cbc0` builds camera-relative directional S from blend(`cam+0xD4`, `cam+0x3A8`), but direction/facing uses `cam+0xF8/+0x104`. Current `ApplyCullingCameraSync` directly writes only F8/104, not blended-eye fields; original sun P separately depends on `View(+0x140)`. This narrows 01532's previously unresolved yaw/translation *co-translation* assumption and introduces a falsifiable frame-level source-eye/view-origin versus XR pose + alpha test. **Static field split is verified, HMD defect is not.**
+- Compared protected R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` and current mod; both have the same camera-sync direct write set, so no new regression or speculative source patch asserted. Distinct from 01532 sun-direction theory and 19:38 PMT query cardinality result. R84 is nondefault.
+- OutRun GitHub analyzed SOURCE_HEAD `b8ef7ce63addbb924ac4d98b3f98f956c91f5bee` on `vr-d3d9ex-focus`; concurrent source commits arrived before docs commit. Docs-only durable RESULT_SHA `ebeaf2cd4f8a72e1627d11f61ad176cd8a2eb570`: **exactly one newly added file** `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01533.md`, blob `d712fa49abe3071dfd65e9eefd6a58e2a9cd7161`, exact marker `[AUTO:CONVERSION-DX9EX-01533]`, remote HEAD/file/commit readback verified. No source change by this task; build Gate not required and no CI-skip. `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED` (no Quest 3/VDXR proof).
+- **AI 2 cumulative: previously confirmed 2028 + distinct new GitHub source-verified static camera-coherence falsifier +1 = 2029.** Retry, recheck, readback and rollover for same TASK_ID are +0. AI1 remains independent at 1759.
 
 ## AI 2 DX11 native game-frame sparse post-Draw TARGET/Z GPU replay (2026-10-27 19:59 KST)
 

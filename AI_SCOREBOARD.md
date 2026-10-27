@@ -1,6 +1,14 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 08:16 KST
+Updated: 2026-10-28 08:32 KST
+
+## AI 2 수도권 연간·시즌권 특가 조사 (2026-10-28 08:32 KST)
+
+- RUN_KEY=`AUTO:CAPITAL-ANNUAL-PASS:2026-10-28T08:32:52+09:00`. 수도권 주말 이용 가능 연간·시즌·다회권 신규/재판매 조사. 서울랜드 공식 연간권/5개월권 등록 및 다모아 판매중단, 아쿠아플라넷 일산 공식 요금, 씨라이프 코엑스 공식 2026 마지막 싱글패스 특가 및 연간권 상세, 원마운트/웅진플레이도시/롯데월드/에버랜드와 키즈·동물원 카테고리의 신규 조건을 교차 확인. 오늘 추가 검증 가능한 신규 최저가 또는 재판매 시즌권은 없음; 기존 코엑스 79,000원 특가 중복 알림 제외.
+- 유효하고 새로 명확해진 마감 정보: 씨라이프 공식 연간권 페이지 2026-10-26~28 쿠팡 판매, 공식 자체 79,000원(특가 안내 정가 130,000원 대비 39%) 2026-10-31 23:59 종료, 2026-11-01 싱글패스 99,000원 안내. 연간권 다른 공식 페이지는 139,000원 정가로 표기하여 기준가 불일치; 실제 등록/첫 방문 마감과 구매월별 유효기간은 판매처별 조건 확인 필요. 주말·공휴일 사용 가능, 36개월 미만 보호자 동반 무료(증빙), 제외일 없음, 동반 3인 30% 할인, 4시간 주차 4,800원.
+- 서울랜드 5개월권 등록 URL 존재는 새 판매의 증거가 아님; 둘모아/다모아는 공식 판매 일시 중단. 일산 한국어 공식 안내 연간입장권 130,000원과 평일 오후권 90,000원으로, 검색에 남은 구 영어 안내 100,000원 주말권과 불일치하므로 현재 특가로 소개하지 않음. 기타 시설 가격·조건의 현재 판매 증거 미확인 시 단정/허위 추천 회피.
+- Official sources: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/y26-ap-single-flash-sale/ ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://seoulland.co.kr/?p=28 ; https://seoulland.co.kr/?p=30_bak_251125 ; https://onestop.seoulland.co.kr/m/season/seasonTicket/5SEASON ; https://m.aquaplanet.co.kr/ilsan/guide/schedule/charge.do . No unverified runtime/purchase claims.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2057 + one unique verified daily consumer-offer research execution +1 = 2058.** Same RUN_KEY retry/rollover/recheck +0. AI 1 unchanged.
 
 ## AI 2 DX9Ex CABE source-facing nonzero-basis and collinearity negative control (2026-10-28 08:16 KST)
 

@@ -2,6 +2,13 @@
 
 Updated: 2026-10-28 KST
 
+## AI 1 OutRun Korean localization B-0133 transparent asset (2026-10-28 04:13 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0133-C057FC83`; one new independent approved-phrase transparent ImageGen asset based on uploaded full HD original `Q121_FD90AA9_BASE_READABLE_FLIPY(5).png` (4096×4096), English `Normal difficult` → Korean `보통 난이도`; original reference bbox [2614,756,3310,868] (696×112).
+- ImageGen invoked once (n=1); cleaned/cropped transparent Korean-text-only RGBA PNG `Q121_9a62ccb58daa23ae_k.png` of 636×112 pixels, SHA256 `1aa10ae9feff601f2db33e8a314049e9136264d7cedd7655c39333dda9b0babc`. User-requested personal Library location uploaded and independently verified via list readback: `/아웃런 한글화 신규/Q121_9a62ccb58daa23ae_k.png`, library_file_id `libfile_0b6443c2dde0819184f481675215d5ac`.
+- Candidate text asset only, original-style/C1/C2/C3 native placement, DDS and real-game runtime PASS not asserted. Same TASK_ID retry/readback/status +0.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1767 + one new generated/Library-verified independent asset +1 = 1768.** AI 2 unchanged.
+
 ## AI 1 OutRun Korean localization A-0121 transparent asset (2026-10-28 KST)
 
 - TASK_ID=`OUTRUN-ROI-A-0121-979D5750`; one new independent approved-phrase ImageGen candidate based on full original HD `Q121_FD90AA9_BASE_READABLE_FLIPY(4).png` 4096×4096; English `A course designed for player battle.` → Korean `플레이어 대전을 위해 설계된 코스입니다.`; reference bbox [3180,1534,3828,1668] (648×134).
@@ -29,7 +36,7 @@ Updated: 2026-10-28 KST
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1767** | OutRun ROI A-0121 Korean RGBA PNG, verified Library upload, +1 |
+| AI 1 — ChatGPT | **1768** | OutRun ROI B-0133 Korean RGBA PNG, verified Library upload, +1 |
 | AI 2 — ChatGPT2 | **2049** | DX9Ex lens projected FOV-affine pre-copy gate, +1 |
 
 

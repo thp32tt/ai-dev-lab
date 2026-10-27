@@ -7,7 +7,14 @@ Updated: 2026-10-27 17:00 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2016** | DX9Ex lens native shader / XYZRHW / FVF142 optical-route divergence review, +1 |
+| AI 2 — ChatGPT2 | **2017** | DX9Ex lens 4056D0 opaque undo early-return negative control, +1 |
+
+## AI 2 DX9Ex lens opaque colour-undo admission negative control (2026-10-27 17:00 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01530`; GitHub source HEAD `2523f141e510f28dd152bb6a8488ec436c6bbd86`, reviewed one independent lens-only source-level discriminator, exact docs-only result `26693713c0c4b2d0b75b0bbf2284bdb67bc77e6b`. One new path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01530.md` (+61/-0); remote commit and blob verified. No game C++/HLSL/CMake/config/workflow modified by this task.
+- Distinct from prior `CONVERSION-DX9EX-01529` ordinal-versus-physical receipt and `LENSFLARE-QUEUE-IMMEDIATE-20261027-1654` queued/immediate split: original game's independently reconstructed `4056D0` **early returns before enqueue** when opaque colour undo list size plus this object's colour record count reaches 0x80. The first queued 0x570008 follows five earlier ring objects and may face accumulated undo; the second immediate 0x570008 follows a 4052C0 flush that clears the list. Therefore source-called ordinal 1 can conditionally be absent even at queue admission, while ordinal 2 has independent gate conditions; hypothetical 120+8=128 rejection is not measured game data. Source-level negative control only; no demonstrated actual threshold hit, duplicate raster, head-lock fix, live XR/HMD evidence, or code patch.
+- `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`; same TASK_ID retry/status/readback/rollover +0.
+- **AI 2 score: previous confirmed 2016 + one distinct, source-verified docs-only lens admission-edge finding +1 = cumulative 2017.** AI 1 remains separately maintained.
 
 ## AI 2 lens native raster-form optical-policy split (2026-10-27 17:00 KST)
 

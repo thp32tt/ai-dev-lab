@@ -1,14 +1,18 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 16:18:00 KST
+Updated: 2026-10-27 16:54 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2014** | DX9Ex rival first-writer/live-state/D3DX boundary repair, official R26 build PASS, +1 |
+| AI 2 — ChatGPT2 | **2015** | DX9Ex lens 4056D0 opaque queue deferred/immediate source boundary, independent verified docs-only finding, +1 |
 
+## AI 2 DX9Ex lens source queue/immediate boundary (2026-10-27 16:54 KST)
+
+- RUN_KEY: `LENSFLARE-QUEUE-IMMEDIATE-20261027-1654`; distinct lens-only source review, docs-only GitHub commit `712dda424c1b3b7c9d62a4f6ba0fc54f4c726a4d` on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`; exact remote file/branch HEAD readback verified. Original `Game::DrawObjectAlpha_Internal` maps to 0x4056D0, reconstructed as a colour-override 405360 queue writer. 0x570010/00F and first CABE 0x570008 are explicitly queued until 4052C0; second CABE 0x570008 is immediate after 4052C0 and uses different transform, scale and alpha. Source-call RAII scope need not persist to a deferred physical native draw; actual lens pixel/eye error remains UNTESTED. Distinct from prior 01529 ordinal-logging negative control. No game code, HLSL, CMake, config, workflow or package changes.
+- SCORE: prior confirmed 2014 + new independently source-verified docs-only lens finding +1 = AI 2 2015. Same RUN_KEY retry/readback +0; AI 1 unchanged. RUNTIME_VALIDATION=UNTESTED; no optical fix claim.
 
 ## AI 2 DX9Ex rival first-writer/live-state/D3DX boundary repair (2026-10-27 16:18:00 KST)
 

@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 15:07:49 KST
+Updated: 2026-10-27 15:51:08 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2008** | DX9Ex 01528 lens host XR one-layer vs temporal cache negative control, docs-only, +1 |
+| AI 2 — ChatGPT2 | **2009** | DX9Ex rival exact XYZRHW rejection diagnostics repaired/hardened in source, +1 |
+
+## AI 2 DX9Ex rival XYZRHW exact rejection diagnostics repair (2026-10-27 15:51:08 KST)
+
+- TASK_ID / RUN_KEY: `RIVAL-DEEP-20261027T1543KST`. New independent source achievement on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: while continuing the rival-only regression trace, verified that diagnostic commit `9406722b7f94fb631ca1a01807c5c196a47efc83` left the `rejectClass` declaration under a brace-less `if`, making the following log use invalid scope, and that its heuristic late-gate label could not distinguish the actual `R30PrepareXyzrhwState` rejection point.
+- Durable source fix/result SHA `7f5f8ac0a3716b341e40b034c099f089f6761fb8`, exact marker `[AUTO:RIVAL-DEEP-20261027T1543KST]`. One runtime source file changed: `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp`. Added exact prepare rejection enum/reporting for safe-stereo, cached/live VS, FVF, resources, viewport, Z-state, stereo frame/pose and eye-affine gates; fixed the telemetry block scope. Render admission/output decisions are unchanged by this commit.
+- Remote branch compare after commit: `7f5f8ac... == vr-d3d9ex-focus` (ahead 0 / behind 0). Available commit-status/PR-workflow endpoints exposed no exact-SHA CI proof at scoring time; `BUILD/CI=UNCONFIRMED`, `RUNTIME_VALIDATION=UNTESTED`. This score is for the distinct committed source diagnostic repair, not a claim that the rival visual defect is fixed.
+- Deeper static follow-up identified a runtime discriminator, not separately scored: if `reject=CACHED_VS_IDENTITY` while `vsBound=0`, stale positive shader tracking can block the fixed-function XYZRHW route; if `cachedVs=0` while live VS is bound, XYZRHW correctly rejects to shader routing but the subsequent screen-space c64 path has its own cache-zero gate. Runtime evidence is required before changing render policy.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2008 + one new committed/verified source diagnostic repair +1 = 2009.** Same task readback, additional analysis, build retry or rollover +0. AI 1 remains separate.
 
 ## AI 2 DX9Ex lens host XR single-layer vs temporal reuse negative-control review 01528 (2026-10-27 15:07:49 KST)
 

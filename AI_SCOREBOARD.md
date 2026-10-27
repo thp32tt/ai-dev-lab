@@ -68,8 +68,14 @@ Updated: 2026-10-28 04:53 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1772** | OutRun ROI B-0135 Korean RGBA asset, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2050** | DX9Ex R69 lens fusion/FIX one-shot observability falsification, +1 |
+| AI 2 — ChatGPT2 | **2051** | DX9Ex original 570008 dual material-alpha channel/cache-reset negative control, +1 |
 
+
+## AI 2 DX9Ex lens material-alpha split and cache-reset falsification (2026-10-28 05:31 KST)
+
+- TASK_ID=`LENSFLARE-MATERIAL-ALPHA-SPLIT-20261028-0528`; unique LENS_FLARE_ONLY REVIEW_ONLY source-verified negative control, distinct from `LENSFLARE-FLICKER-ALPHA-20261027-2204` (original first/second source alpha divergence), `LENSFLARE-ALPHA-COMPOSITOR-20261028-0201` (OpenXR source alpha), and `CONVERSION-DX9EX-01539` (first deferred/second immediate opaque queue). Original reconstruction `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62` shows `4056D0` writes each PMT colour record `+0x0C` diffuse alpha (`m[3]`), while `material_colours_410dd0` separately derives its combiner alpha from `+0x44` (`m[17]`) and `px.alpha_scale`; zero source diffuse alpha is not itself proof of zero combiner alpha or any actual RGB pixel. `Flush::begin_408af0` resets material colour cache at each nonempty `405890`, and `4052C0` undoes prior overrides before the second intended `0x570008` immediate flush. Hence *cross-flush stale colour-cache reuse alone* cannot explain second glow alpha on the reconstructed normal successful path. Actual installed PMT shader/texture, HMD and optical root cause remain unverified.
+- OutRun docs-only commit `21b1cae8deb2e58e2f452ed5b45de8adc370063c`, parent `2e5ad2f44c62c2fa269882481a11be77388c7cbb`, exactly one added file `docs/reviews/dx9ex/automation/LENSFLARE-MATERIAL-ALPHA-SPLIT-20261028-0528.md` (+54/-0), exact marker `[AUTO:LENSFLARE-MATERIAL-ALPHA-SPLIT-20261028-0528]`; remote HEAD, file blob `34e668d218683f49f3320fbe5bde483822007221`, compare ahead1/behind0 and commit parent readback verified. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, source CI gate not required, CI-skip not used. R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` unchanged; R84 comparison only.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2050 + distinct new source-verified material-alpha/channel-cache falsification +1 = 2051.** Same TASK_ID retry/readback/re-report +0. AI 1 unchanged.
 
 ## AI 2 DX9Ex R69 lens fusion one-shot optical-claim falsification (2026-10-28 05:08 KST)
 

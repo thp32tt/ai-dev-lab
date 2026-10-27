@@ -1,15 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 21:35 KST
+Updated: 2026-10-27 21:55 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2034** | DX9Ex lens C993/CABE scoped-source to R30 native-entry correlation + exact-SHA PC Fast package PASS, +1 |
+| AI 2 — ChatGPT2 | **2035** | DX11 authentic post-Draw TARGET/Z clipped-empty native frame preservation + 5 exact-SHA required Gates PASS, +1 |
 
 
+
+## AI 2 DX11 post-Draw authentic empty-Clear preservation (2026-10-27 21:55 KST)
+
+- TASK_ID=`CONVERSION-DX11-01112`, FEATURE_ID=`DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME`, distinct source implementation of the real D3D9 post-Draw Clear native-frame continuity bug. A retry, CI repair, same-Task C6/checkpoint and repeated report are +0.
+- Source `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` implemented in material result commit `cc56319dd37d9661a8b1b42f7d8aed69c005627f` (source baseline `5aef3d66988ed4e34b10f77eff7474e16c3c29d1`), changing `src/vr/d3d11/live_game_frame_bridge.cpp` plus compiled positive/negative sparse region regression `tools/dx11_post_draw_sparse_clear_01110.cpp` and source contract test `tools/test_dx11_post_draw_sparse_clear_01110.py`. Original D3D9 game-authored TARGET|Z and Z-only Clears whose complete 128 region union clips outside the canonical viewport must leave pending native frame color/depth untouched; classify before requiring unused D32/DSV. Main COM source RT and DSV identities, viewport/MRT authentication, nonempty pixel replay, original D3D9Ex rendering, input and FFB fallback remain protected; DXVK untouched.
+- Mandatory FIVE GitHub `push` Actions **all completed/success at identical material SHA** `cc56319dd37d9661a8b1b42f7d8aed69c005627f`: DX11 Fast `40505682714`, Backend Conversion Gate `40505683011`, Windows Build `40505682576`, OpenXR VR architecture `40505682691`, HUD Inspector `40505682566`. This is **AUTOMATION_VALIDATION=PASS_EXACT_SHA** only, not real-game observed output.
+- C6 docs-only descendant `8704cf457a62ebbcb6190a521366fa5720753408` records `docs/automation/runs/CONVERSION-DX11-01112.json`, not a second material RESULT_SHA and not an additional score. The source/result identity is `cc56319dd37d9661a8b1b42f7d8aed69c005627f`.
+- **RUNTIME_VALIDATION=UNTESTED**: no matching OutRun 2006 menu/car/race physical pixels, actual native Draw/frame counters, Quest3/VDXR stereo or real gamepad/FFB runtime proof. No gameplay/HMD promotion.
+- **AI 2 cumulative: previously confirmed GitHub SSOT 2034 + one independently implemented and five-gate-validated native game-frame source correctness achievement +1 = 2035.** AI 1 remains unchanged and separate.
 
 ## AI 2 DX9Ex lens original call-stack to R30 entry provenance (2026-10-27 21:35 KST)
 

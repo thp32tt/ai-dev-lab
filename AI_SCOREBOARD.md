@@ -16,8 +16,17 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1765** | OutRun ROI B-0131 Normal Setting Korean RGBA PNG, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2046** | DX9Ex 01539 original 570008 deferred-versus-immediate opaque flush phase; distinct source-verified diagnostic, +1 |
+| AI 2 — ChatGPT2 | **2047** | DX11 01117 raw partial native GPU tile source+test-package integration, five exact-SHA required CI PASS, runtime UNTESTED, +1 |
 
+
+## AI 2 DX11 RAW native visual GPU tile source implementation (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX11-01117`; distinct substantive native D3D11 developer/user-visible diagnostic integration, not a retry, C6, gate recheck, enum-only task or full renderer/HMD certification.
+- OutRun repo `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: first material C++ implementation `cb80c0ca5df4025acc62a1c4423ff2828816a649`; integrated source/packager/test validation-bearing result `1db7d8c42d9ee4d9da6d7dd0ce7d7ca11f239b58` (remote target HEAD and exact SHA verified). Includes `native_game_raw_visual_diagnostic.hpp` independent nonblocking 256x144 D3D11 GPU tile to clearly magenta-marked D3D9 inset; `live_game_frame_bridge.cpp` restricted opt-in visual Fog omission and one sampled genuine source RT/main-Clear partial native draw when full-game source coverage already poisoned. Always leave production full-frame/HMD native promotion, original DX9Ex Draw/input/FFB and DXVK protected.
+- Separate source-matched `RUN_DX11_RAW_VISUAL.cmd` and `RUN_DX9EX_CONTROL.cmd`, distinct RAW evidence archive/verdict, plus integrated synthetic source/package safety tests. OpenXR run 40554202424 artifact `feature-dx11-first-game-frame-1db7d8c42d9ee4d9da6d7dd0ce7d7ca11f239b58`. Only an available test package, NOT a successful live game test.
+- **Five mandatory GitHub push Actions PASS on one exact SHA**: DX11 Fast 40554202396, Backend Conversion 40554202537, Windows Build 40554202503, OpenXR VR architecture 40554202424, OutRun EXE HUD Inspector 40554202487.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA_5_GATES`; `RUNTIME_VALIDATION=UNTESTED`; user game `native_draws`, `native_gpu_pixel_output`, visible RAW tile, full native menu/race/Quest3 L/R all **UNTESTED on this SHA**. No auto-promotion or external controller adoption claim. Same TASK_ID retry/rollover/checkpoint/status re-report adds +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2046 + one new source implementation/user-test artifact with exact-SHA five-gate integration +1 = 2047.** AI 1 is separate and unchanged.
 
 ## AI 2 DX9Ex original lens 570008 ordinal queue/flush phase proof (2026-10-28 KST)
 

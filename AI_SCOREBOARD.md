@@ -1,14 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 20:07:31 KST
+Updated: 2026-10-27 20:10 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2029** | DX9Ex lens-only camera-origin static discriminant, docs-only remote verified, +1 |
+| AI 2 — ChatGPT2 | **2030** | DX9Ex C993/CABE bounded source/physical diagnostic + verified Windows build, +1 |
 
+
+
+## AI 2 DX9Ex lens-flare reviewed source/physical diagnostic implementation (2026-10-27 20:10 KST)
+
+- TASK_ID=`LENSFLARE-REVIEW-APPLY-20261027`; separate from the lens-only REVIEW_ONLY `01522..01533` findings, and separate from previous rival/build work. One scored material diagnostic implementation; its companion verifier fixes, docs, retries, build attempts and follow-up readback receive **+0**.
+- Prior confirmed GitHub SSOT AI 2 **2029** + one independent GitHub source/test implementation with Windows GitHub Actions success **+1** = new AI 2 cumulative **2030**. AI 1 unchanged **1759**.
+- Repository `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: actual C++ source diagnostic commit `a439d53e7ac6099c68ba015d29d59485f14b1ac6` in `src/hooks_graphics.cpp`, reporting C993/CABE source IDs, 570008 ordinal, ambient semantic scope, mod queue-state, projected admission and explicit physicalDraw/opaqueFlush UNOBSERVED without changing source alpha, original object visibility, depth, eye projection or native path.
+- Companion static verifier commits `b38b115ea383070eb177316f505ae4530ac03c76`, `b8ef7ce63addbb924ac4d98b3f98f956c91f5bee`, `e22513f7dda81db4ddba6280f5d60799068b90cb`, `9f6bdcab8158dc1484e18e5f71000cc003eed8ba`, `c794347b45d61e685bae2274c89ed5dd505272bd`. Durable review `docs/reviews/dx9ex/automation/LENSFLARE-REVIEW-APPLY-20261027.md` commit `c99d85fa308a44e32396a14ccbc492835bf1e25b`; these are same-task bookkeeping or test repairs, **not additional points**.
+- GitHub Actions `VR GitHub General Test Build` exact source SHA `a439d53e7ac6099c68ba015d29d59485f14b1ac6`: run `40493161409` completed/success; x86 game DLL, x64 VR host and hosted artifact `12730550743` published, remote artifact visible. Lens/rival protected official source checks passed prior to its independent Windows build; full Active Validation still has unrelated rank/static +TIME harness failures and is NOT claimed green.
+- **RUNTIME_VALIDATION=UNTESTED; LENS_VISUAL_FIX=NOT_CLAIMED**. No Quest 3/VDXR, actual lens pixel duplicate removal, full-source exact final-head five-gate pass or performance FPS claim.
 
 
 ## AI 2 DX9Ex flare source-eye vs camera-sync split (2026-10-27 KST)

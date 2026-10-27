@@ -2,11 +2,20 @@
 
 Updated: 2026-10-28 KST
 
+## AI 1 OutRun Korean localization B-0131 transparent asset (2026-10-28 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0131-7DFF86B7`; new independent approved-phrase ImageGen task. User-supplied full HD PNG `Q111_C075FB49_BASE_READABLE_FLIPY(20261027-171024).png` (2048×2048), English `Normal Setting` → Korean `일반 설정`; original reference bbox [405,1208,602,1311] (197×103).
+- ImageGen called once (n=1) and delivered a single processed Korean text-only RGBA PNG `Q111_391c45c30f031821_k.png` of 197×103, verified transparent alpha bbox (3,2,192,100), SHA256 `3c336f886689c479e5e5f6d8e164f58272fcf4acd7d34e490a2a875619a34133`.
+- Personal Library upload succeeded; independent list readback verified `/아웃런 한글화 신규/Q111_391c45c30f031821_k.png`, library_file_id `libfile_d269e77dc0708191b12fb33b0a32fc2e`. Candidate Korean glyph only; no C1/C2/C3 original-style or protected-art independent QA, DDS integration or real-game PASS claimed.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1764 + one new generated and verified Library-delivered distinct asset +1 = 1765.** AI 2 unchanged. Same TASK_ID retry/readback/re-report adds +0.
+
+
+
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1764** | OutRun ROI A-0119 goal-with-girlfriend Korean RGBA PNG, verified Library upload, +1 |
+| AI 1 — ChatGPT | **1765** | OutRun ROI B-0131 Normal Setting Korean RGBA PNG, verified Library upload, +1 |
 | AI 2 — ChatGPT2 | **2046** | DX9Ex 01539 original 570008 deferred-versus-immediate opaque flush phase; distinct source-verified diagnostic, +1 |
 
 

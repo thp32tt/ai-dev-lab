@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 14:07:09 KST
+Updated: 2026-10-27 15:07:49 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2007** | DX9Ex 01527 lens EndScene telemetry vs Present publication negative control, docs-only, +1 |
+| AI 2 — ChatGPT2 | **2008** | DX9Ex 01528 lens host XR one-layer vs temporal cache negative control, docs-only, +1 |
+
+## AI 2 DX9Ex lens host XR single-layer vs temporal reuse negative-control review 01528 (2026-10-27 15:07:49 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01528`; lens-only REVIEW_ONLY. Unlike 01527's game EndScene-to-render-frame publication boundary, this independent review inspected **the compiled OpenXR host consumer**: completed in-flight-veto, immutable frame/pose re-validation, exclusive fresh-vs-cached source selection, normal one-layer two-view `xrEndFrame` and R32/R24 single-path fallback. R23 may legitimately re-submit one previously released projection across separate XR ticks; this is NOT same-eye raster replay nor two simultaneous XR layers. E2a normal in-flight+final same-tick **double projection layer** is ruled down by static source; optics, host API layers and HMD are still untested. Baseline R26+HUD exhibits the same category of behavior.
+- GitHub OutRun source HEAD `c769e2facce04a694a059882d6ea8bcfd5d996ce`; docs-only result SHA `16bd3a03d7f9f2d43c479ad6826c685a5b6b0639` on `vr-d3d9ex-focus`, marker `[AUTO:CONVERSION-DX9EX-01528]`; exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01528.md` (+59/-0); remote blob `099f93e8c791b799fe6d1e762e2ae7ffbd27c37a`. Parent compare ahead=1 behind=0, remote HEAD verified. No game/host production source, CMake, workflow or configuration changed.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`. Distinct source-backed negative control and discrimination between in-tick double layers and legitimate cross-XR-tick projection reuse, not a confirmed headset-visible lens-flare fix. Same TASK_ID retry, readback or rollover +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2007 + independently validated new review result +1 = 2008.** AI 1 remains separate and unchanged.
 
 ## AI 2 DX9Ex lens EndScene telemetry vs Present publication review 01527 (2026-10-27 14:07:09 KST)
 

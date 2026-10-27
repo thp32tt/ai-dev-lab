@@ -1,15 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 19:38 KST
+Updated: 2026-10-27 19:59 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2027** | DX9Ex 570010 query multiple original PMT draws vs per-Draw R26 guard correction, +1 |
+| AI 2 — ChatGPT2 | **2028** | DX11 real-game sparse post-Draw TARGET/Z native GPU 32-region batched replay, five exact-SHA Gates PASS, +1 |
 
 
+
+## AI 2 DX11 native game-frame sparse post-Draw TARGET/Z GPU replay (2026-10-27 19:59 KST)
+
+- TASK_ID / PRODUCTION_ID: `CONVERSION-DX11-01110`, uniquely scored integrated renderer source work; same-task CI repair, C6, retry, rollover and re-reporting are **+0**.
+- Actual C++ source implementation commit `00cf46bd012d1c43002e5fd38c90e389f4171263` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: `src/vr/d3d11/native_game_post_draw_clear_batch.hpp` and `live_game_frame_bridge.cpp` stage up to **128** successful game-authored post-Draw disjoint Clear rectangles for authentic menu/car/race TARGET, Z and TARGET|Z operations; D3D11.1 calls are split into at most **32 native GPU regions per invocation**, D3D11.0 uses bounded per-region raster. Both color and D32 preserve every original rectangle, clipping and untouched pixel gaps. Positive compiled sparse pixel masks and negative malformed/>128-source checks retained; original D3D9Ex draw/Present/input/FFB fallback and DXVK freeze preserved.
+- Same-task causal structural/test repairs `4c0fb92b6fbf7b681ccd4c4c619a556ed11341d6`, `b9206d6fbc944253efc7b248fd4add7e7b9ea2a5`, `ca27c6fc2c1000f5dbff352fd67abea695accd40` repaired inherited 00996 and 00995 fail-closed source assertions without removing the depth/stencil owner and negative tests. Final **validation-bearing exact `RESULT_SHA=ca27c6fc2c1000f5dbff352fd67abea695accd40`**.
+- GitHub mandatory five **push exact-SHA completed/success**: DX11 Fast [40490637001](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40490637001), Backend [40490636986](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40490636986), Win32 Build [40490637048](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40490637048), OpenXR [40490637141](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40490637141), HUD [40490636956](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/40490636956). `AUTOMATION_VALIDATION=PASS_EXACT_SHA`.
+- C6 bookkeeping descendant `1543a56a721e933ac57f982544e93af48c20c835` is documentation-only `docs/automation/runs/CONVERSION-DX11-01110.json` [skip ci] and **does not replace** the five-Gate material SHA.
+- **`RUNTIME_VALIDATION=UNTESTED`**: no actual OutRun 2006 desktop menu/vehicle/race pixel or Quest 3/VDXR gamepad/FFB hardware proof, no gameplay/HMD promotion.
+- **AI 2 cumulative: previous confirmed 2027 + new unique verified DX11 material implementation +1 = 2028.** AI 1 remains distinct at its independently recorded score; no duplicate for 01110 retries or C6.
 
 ## AI 2 DX9Ex lens 570010 occlusion query native-draw cardinality correction (2026-10-27 19:38 KST)
 

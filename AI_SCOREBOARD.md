@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 16:54 KST
+Updated: 2026-10-27 17:00 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2015** | DX9Ex lens 4056D0 opaque queue deferred/immediate source boundary, independent verified docs-only finding, +1 |
+| AI 2 — ChatGPT2 | **2016** | DX9Ex lens native shader / XYZRHW / FVF142 optical-route divergence review, +1 |
+
+## AI 2 lens native raster-form optical-policy split (2026-10-27 17:00 KST)
+
+- RUN_KEY / TASK_ID: `LENSFLARE-ROUTE-DIVERGENCE-20261027-1655`, new manual DX9Ex lens-only REVIEW_ONLY. Different from the previously credited `CONVERSION-DX9EX-01522..01529` (C993 specific WVP/ordinal) and concurrent `LENSFLARE-QUEUE-IMMEDIATE-20261027-1654` (original opaque 4056D0 queue/deferred split): this task independently traces **R30 physical native-draw admission by shader/c64 vs XYZRHW vs FVF0x142 under the same projected-flare semantic**, not the source queue writer.
+- GitHub source pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` analysis SHA `5e8af44495718c0e06b016221f372a9ae14b9f16`; direct exact source blobs `src/hooks_graphics.cpp=1a8b3acf...`, `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp=81a87e29...`, `render_semantics.hpp=eeb2aafd...`. S: `R30BuildScreenSpaceEyeConstants:5092-5144` projected shader fallback clones original c64 to both eyes, while the exact head-ray requires LensFlareCentre token. X: null-VS XYZRHW `R30PrepareXyzrhwState` and `R30ConfigureXyzrhwWorldEffect` can select depth-proven world reprojection OR finite head-inverse/IPD/FOV HUD plane. F: null-VS FVF0x142 projected screen effect does not meet `R62TryFixedFunctionSpriteStereo` projected-world-or-HUD gate; R30 XYZRH and shader/c64 guards cannot establish this form's optical correction, leaving downstream hook behavior unproven. No actual C993/CABE lens child has been matched to a form, so ROOT_CAUSE=OPEN; source-only fork is verified, optical attribution conditional.
+- Durable docs-only GitHub result `21554e12598616a13a532f07bd110566d8fccb87`, exact `[AUTO:LENSFLARE-ROUTE-DIVERGENCE-20261027-1655]` marker, exactly one added file `docs/reviews/dx9ex/automation/LENSFLARE-ROUTE-DIVERGENCE-20261027-1655.md` (+56/-0); parent `cbb7e01114a880e6f217da0b5de593951ff0f301` remotely verified, blob `f2f0605b02b13079a5470f54dd22332d2430646f`. Concurrent unrelated changes reached branch before docs commit; R30 file at commit had updated blob `7d273b89...` but key projected-copy, RHW-depth, FVF142 rejection gates were re-read and remain. Exact Quest3/VDXR and real source-to-draw IDs not recorded.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `CODE_CHANGE=NO`; `RUNTIME_VALIDATION=UNTESTED`. NEXT_REVIEW=LENS_FLARE:C993_CABE_NATIVE_VS_FVF_XYZRHW_C64_BRANCH_PER_OBJECT_FRESH_EYE_RT_OPTICS. No runtime fix or visual PASS claim.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2015 + one independently source-backed, remotely committed native-raster-form discriminator +1 = 2016.** No duplicate credit for original opaque queue 1654, re-read, retry, rollover or future source/eye HMD validation of this same finding. AI1 score unchanged.
 
 ## AI 2 DX9Ex lens source queue/immediate boundary (2026-10-27 16:54 KST)
 

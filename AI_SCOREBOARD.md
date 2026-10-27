@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 16:07:57 KST
+Updated: 2026-10-27 16:10:40 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2011** | DX9Ex lens flare CABE original-ordinal versus frame/eye raster negative control 01529, +1 |
+| AI 2 — ChatGPT2 | **2013** | DX9Ex R9 null-depth deferred-state + R7 compatible depth identity-sync source fixes, exact-SHA CI PASS, +2 |
+
+
+## AI 2 DX9Ex R9 null-depth + R7 depth-identity source fixes (2026-10-27 16:10:40 KST)
+
+- Distinct material source task `DIRECT-DX9EX-R9-NULL-DEPTH-20261027`: `src/vr/d3d9/stereo_renderer.cpp` now clears stale `R9DeferredDepth` and releases `R9DeferredDepthIdentity` when the game enters its explicitly legitimate `DepthStencil=null` UI state. This prevents an earlier auxiliary depth bind from incorrectly poisoning later no-depth HUD draws. Source commit `f3627633628537771f2e04a038b6c36fa53b9248`; dedicated verifier `tools/verify_vr_r9_null_depth_clears_deferred.py` passed in final policy validation.
+- Distinct material source task `DIRECT-DX9EX-R7-DEPTH-IDENTITY-20261027`: `src/vr/d3d9/stereo_renderer_r7.inc` no longer treats a different LEFT depth COM object with a descriptor-compatible allocation as content-synchronized with the existing RIGHT depth. It reuses the allocation but invalidates depth/stencil content-sync proof until a real clear/bootstrap resynchronizes it. Source commit `d6015c3380be4c08a3b5104373b5c83d523d6f5c`; dedicated verifier `tools/verify_vr_r7_depth_identity_sync.py` passed.
+- Final validation-bearing descendant `e81414980996d233363279831b162cdbc8a2bde1` passed exact-SHA DX9Ex Active Validation: policy, Win32 R26+HUD game, x64 OpenXR host, R84 explicit full-chain comparison and package all SUCCESS; VR PC Fast Test Build and Domain Isolation Guard also SUCCESS. The stale R33 rival verifier was repaired under existing `RIVAL-DEEP-20261027T1543KST` and receives no additional point.
+- `RUNTIME_VALIDATION=UNTESTED`: no Quest3/VDXR claim. **AI 2 cumulative: previous confirmed GitHub SSOT 2011 + two independent material source fixes (+1 each) = 2013.** CI retries/verifier repair/readbacks +0. AI 1 independent 1759, unchanged.
 
 
 ## AI 2 DX9Ex lens C993/CABE ordinal provenance negative-control review 01529 (2026-10-27 16:07:57 KST)

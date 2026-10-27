@@ -1,15 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 18:18 KST
+Updated: 2026-10-27 19:00 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2023** | DX9Ex lens original dual material-pass / zero-colour-write query draw-count negative control, +1 |
+| AI 2 — ChatGPT2 | **2024** | DX9Ex lens directional original eye+sun-offset source geometry, distinct yaw-vs-translation falsifier, +1 |
 
 
+
+## AI 2 DX9Ex original directional sun-anchor yaw/translation control (2026-10-27 19:00 KST)
+
+- TASK_ID / PRODUCTION_ID: `CONVERSION-DX9EX-01532`; new independent lens-only static original-emitter geometry discriminator, separate from 01522 projected C993 producer-None finding, 01531 native c64 upload gate and 2026-10-27 18:15 native two-material-pass/query draw multiplicity negative controls.
+- GitHub original game reconstruction `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62`, `src/platform/race_course_passes.cpp::sun_flare_40cbc0:542-655`: stage-relative sun offset D=-range*direction, blended game eye `E`, emitter `S=E+D`, then camera-view projection `P` and common screen axis. Original sun is camera-relative directional effect; in a coherent game camera translation should not demand finite binocular depth, while headset/camera yaw should change angular bearing for stable direction. Static source-based negative control; no actual headset defect established.
+- Protected `R26+HUD=0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`, R84 comparison-only. An earlier projected C993 stock WVP copied to both eyes does NOT alone prove head-lock; distinguishing fresh eye yaw vs translational parallax requires source gameCamera/c64/latched XR pose and physical L/R RT receipts. Original reconstructed source is not new EXE byte validation.
+- Reviewed starting OutRun HEAD `2dfd438226fde0cced0137c84748834b364999e4`, exact single new file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01532.md` (+56/-0), docs-only result `8d32fde546287533ce00f0a0e31c6ab28601ff30`, `[AUTO:CONVERSION-DX9EX-01532]`; remote HEAD readback, document blob `c7287fcfba6473cf4b7c8d93e04813b9a9593484`, compare ahead1/behind0 and exact path independently checked.
+- `NEW_FINDING=SOURCE_VERIFIED_ORIGINAL_CAMERA_RELATIVE_DIRECTIONAL_SUN_ANCHOR_WITH_YAW_VS_TRANSLATION_FALSIFICATION_CONTROL`; `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`; no build gate/CI skip, Quest3/VDXR untested.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2023 + one distinct original-source verified directional-emitter falsification control +1 = 2024.** Rollover/retry/readback/same-task restatement +0; AI1 remains separate.
 
 ## AI 2 DX9Ex lens native source draw-count negative controls (2026-10-27 18:18 KST)
 

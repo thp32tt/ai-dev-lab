@@ -1,16 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 09:10:17 KST
+Updated: 2026-10-27 10:05:48 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **2002** | New C993 lens-flare physical producer/head-ray REVIEW_ONLY documented, +1 |
+| AI 2 — ChatGPT2 | **2003** | Actual DX11 pre-Draw TARGET|Z paired C++ GPU replay, 5 exact-SHA push Gates PASS, +1 |
 
 
 
+
+## AI 2 DX11 authentic paired partial TARGET|Z Clear implementation 01100 (2026-10-27 10:05:48 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01100`. One actual material DX11 C++ source integration feature on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` (not a review, CI-only change, or one enum variant).
+- Source implementation SHA `57d3759551adb5729ad99faa80ebdffcaa2d3734`: authentic game D3D9 clipped pre-Draw combined TARGET|ZBUFFER Clear records matching canonical RTV+DSV source owners with a pending full-depth seed and atomically stages both color and Z GPU replay ledgers; negative/fallback and native SM3/FVF replay linkage in five source/regression/workflow files. Original DX9Ex Draw/Present/input/FFB protected, DXVK frozen.
+- Causal **same TASK_ID** CI repairs: `b5cd24f2161bc52aa497665863e22703be89f78b` reconciled inherited 01099 policy evidence; final **validation-bearing exact SHA** `ad7943a3012b531d505ac7b13e3d989653302707` updated only obsolete 01035 structural oracle for the new guarded combined Clear source contract. No CI skips in either validation-bearing commit.
+- Five mandatory **push** workflows all `completed/success` on exactly `ad7943a3012b531d505ac7b13e3d989653302707`: DX11 Fast 40427864247, Backend Conversion Gate 40427864274, Build 40427864380, OpenXR VR architecture 40427864358, HUD Inspector 40427864512. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`. C6 bookkeeping-only commit `1d54f633d007aa9294ecd873e574a7c36eade7e0` with `[skip ci]` **after** gate success; no repeated Gate.
+- `RUNTIME_VALIDATION=UNTESTED`: actual OutRun game/HMD/Quest3/VDXR menu-to-race pixels, native draw/publish counters, stereo, FPS, input behavior UNTESTED. Build PASS is not gameplay PASS or promotion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2002 + one new material source integration with 5 exact-SHA Gate proofs +1 = 2003.** AI1 independently 1666. Same TASK_ID CI fix/C6/readback/retry/rollover +0.
 
 ## AI 2 DX9Ex C993 lens-centre exact producer/head-ray admission review 01522 (2026-10-27 09:10:17 KST)
 

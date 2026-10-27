@@ -1,16 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 10:05:48 KST
+Updated: 2026-10-27 11:06:41 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
-| AI 2 — ChatGPT2 | **2003** | Actual DX11 pre-Draw TARGET|Z paired C++ GPU replay, 5 exact-SHA push Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **2004** | Actual DX11 cropped TARGET|STENCIL and TARGET|Z|STENCIL pre-Draw C++ native replay, five exact-SHA Gates PASS, +1 |
 
 
 
+
+## AI 2 DX11 genuine pre-Draw cropped TARGET|STENCIL color/Z replay implementation 01101 (2026-10-27 11:06:41 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01101`. New material C++ integration on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: actual successful game D3D9 clipped TARGET|STENCIL and TARGET|Z|STENCIL partial Clears before first native Draw now prove canonical RT0 and Z/S COM identity, source pristine Draw ordinal and bounded rectangles. The stencil-disabled native SM3/FVF subset preserves original stencil-neutral operation while atomic RGB and depth recorder/replay retain real D3D9 source pixels. Original D3D9Ex render/Present/input/FFB and DXVK freeze remain untouched.
+- Source implementation SHA `78f9dbfffdcf27f94cd29e24ad76dabd508fd4d2`. Actual C++ hook/helper with compiled color/depth pixel/rollback negative tests; not a document/test-only task.
+- Causal **same TASK_ID** CI repairs: `f918875bb1cfa1c82b1343f6877ff6387fd2e94c` fixed inherited 01100 stale `full_gate_plan` policy record; validation-bearing `eb2a320126b72332d388a2d6b136af3751adbfe8` fixed exact prior structural probe oracle after canonical MSAA refactor. Neither repair scores separately.
+- Exactly five required **push** Actions all `completed/success` on **the same exact SHA `eb2a320126b72332d388a2d6b136af3751adbfe8`**: DX11 Fast 40434376032, Backend Conversion 40434376005, Build 40434376055, OpenXR 40434375896, HUD Inspector 40434375857. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`. Separate post-Gate bookkeeping-only C6 commit `634fda2d462a6f781bc7736938fb5875d1757998` with `[skip ci]` did not move the evidence SHA.
+- `RUNTIME_VALIDATION=UNTESTED`: original game/Quest3/VDXR menu-to-race pixels, native Draw/published frame count, stereo, performance and input behaviour were **not** observed, so no gameplay or VR runtime promotion.
+- **AI 2 score: previously confirmed 2003 + one distinct source-integrated exact-SHA validated achievement +1 = cumulative 2004.** AI1 independent 1666. Same TASK_ID CI repair/C6/retry/rollover/status +0.
 
 ## AI 2 DX11 authentic paired partial TARGET|Z Clear implementation 01100 (2026-10-27 10:05:48 KST)
 

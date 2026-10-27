@@ -1,14 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 23:09 KST
+Updated: 2026-10-27 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
-| AI 2 — ChatGPT2 | **2038** | DX11 native game authentic full D3D9 surface-copy first-Draw seed, exact-SHA five Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **2039** | DX9Ex lens 40BE70 course-post encloses first CABE deferred flush SceneEffect scope, +1 |
 
+
+## AI 2 DX9Ex lens original 40BE70 -> 40CBC0 scoped opaque flush owner (2026-10-27 KST)
+
+- RUN_KEY=`LENSFLARE-BE70-FLUSH-OWNER-20261027-2318`; LENS_FLARE_ONLY REVIEW_ONLY; **one distinct static original caller/semantic owner verification**, not a retry of 01535/01536 (sampled INLINE/EYES and RIGHT actualDraw receipts), 1730 (conditional SceneEffect classifier without known enclosing original caller), or 1654 (original CABE queued/immediate split). Same-task further readback/retry/status +0.
+- Pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `48737391ad91bdf7b78a7bcf12bd720d35367655`; independently pinned `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62`. Original `pc_frame_render.cpp::course_post_40be70:77-90,frame_render_449050:104-125` calls sun leaf 40CBC0 on layer 8, corroborated by `tools/oracle/frame_render_probe.inc:58-60` original PC 0x40BEEF E9 -> 0x40CBC0 tail-branch site. Current `hooks_graphics.cpp::FixZBufferPrecision::Clr_SceneEffect_dest:2222-2253` scopes entire hooked 0xBE70 original call as SceneEffect when installed; baseline `0cff83cf...` already has this outer wrapper. Original 40CBC0 performs **synchronous 4052C0 opaque flushes at :675 and :714 inside that enclosing call**. Inner C993/CABE projected RAII ends after 4056D0 registration. Thus first CABE 0x570008 queued at :708 can physically inherit SceneEffect at flush :714, while second 0x570008 after 4052C0 resets immediate=1 can physically inherit projected scope inside its 4056D0 call. Likewise 570010/00F visible queued before flush :675 can inherit SceneEffect. This concretely narrows prior 1730 `SceneEffect vs None unknown` **on the normal enabled original caller path**, and provides an independently sourced reason for mixed native stereo policy despite one legitimate original flare pair.
+- Actual native R30 classification/c64/eyeRT, first CABE descriptor and Quest3 pixels **UNTESTED**; original reconstruction/oracle not freshly byte-matched to retail game; mod hook installation, same-thread/other overrides, shader/FVF and R30 safety admission still conditional. Not a proven headset defect or new regression; original 570010 query colour-off, both 570008 source calls and R26+HUD remain protected. No C++/HLSL/CMake/config/workflow/package/release change, no B9200 +5 hook.
+- Docs-only commit `0fd93b63dbdef0ee1fe0578fdfbc5df06ce52ed3`, exact parent `48737391ad91bdf7b78a7bcf12bd720d35367655`, marker `[AUTO:LENSFLARE-BE70-FLUSH-OWNER-20261027-2318]`, exactly one added `docs/reviews/dx9ex/automation/LENSFLARE-BE70-FLUSH-OWNER-20261027-2318.md` (+50/-0), remote blob `400ca28ed67b95499e2c8371086cccc9304409f5`; remote HEAD/readback verified. `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`; no source build gate required, no CI-skip.
+- **AI 2 score: previous GitHub SSOT 2038 + one independent source-traced original call-stack/physical-scope discriminator +1 = 2039.** AI 1 remains separate; no duplicate credit for previous deferred queue, SceneEffect classifier or subsequent readbacks.
 
 ## AI 2 DX11 authentic whole D3D9 surface copy -> native game first Draw (2026-10-27 23:09 KST)
 

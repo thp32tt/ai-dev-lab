@@ -1,14 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 21:15 KST
+Updated: 2026-10-27 21:35 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2033** | DX11 pre-first-Draw 128 sparse TARGET/Z GPU replay + five exact-SHA Gates, +1 |
+| AI 2 — ChatGPT2 | **2034** | DX9Ex lens C993/CABE scoped-source to R30 native-entry correlation + exact-SHA PC Fast package PASS, +1 |
 
+
+
+## AI 2 DX9Ex lens original call-stack to R30 entry provenance (2026-10-27 21:35 KST)
+
+- TASK_ID=`LENSFLARE-SOURCE-GPU-PROVENANCE-20261027-2115` UNIQUE; distinct from earlier `LENSFLARE-REVIEW-APPLY-20261027` source-only logs and `LENSFLARE-PHYSICAL-LOG-20261027` source-unlinked physical GPU diagnostics. Same task verifier fixes, retry/review and reporting are +0.
+- Previous SSOT AI2 **2033** + **1** for independently implemented, static-constrained new C993/CABE source-call serial+RAII call-stack R30 receipt with zero game optics changes and exact GitHub Windows build = **2034**. AI1 unchanged.
+- Source branch `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`; C++ material implementation `aac9dd5e79cdff7ec16dda33e68411cbbb494bc4`, then source admission and destructive-probe repairs including `4faf695a007d2b4f2c6209529dc461167337d621`, `dacde3e1b72c6c3e4899dd8008462f1636077bb5`, and validation-bearing `4b4a8073c5a95dc655f3756adf7ac38f103266d3`.
+- Exact-SHA GitHub Actions `VR PC Fast Test Build` **40504075560 COMPLETED/SUCCESS**, uploaded immutable artifact **12733709665** named `OutRun2-VR-PC-FAST-4b4a8073c5a95dc655f3756adf7ac38f103266d3`. `DX9Ex OFFICIAL FOCUS` C993/diagnostic source gates and Win32 DLL stage passed; x64 host/package result separately tracked, not claimed passed as of this record.
+- `Domain Isolation Guard` same-SHA PASS run 40504075590. `DX9Ex Active Validation` has unrelated rank/reference source contract failure, `DX9Ex R26 User Test Build` inherited +TIME fixture failure on earlier SHA, not claimed full CI green. No Quest3/VDXR run. `RUNTIME_VALIDATION=UNTESTED`, `LENS_VISUAL_FIX=NOT_CLAIMED` and actual original opaque 4052C0 descriptor-to-GPU identity **UNLINKED**; scoped source context is a read-only CALL_STACK_ONLY candidate, never proof of GPU draw.
+- R26+HUD protected baseline 0cff83cf509c2acd6f3391b3a46c4dec1403a0d9 unchanged; no B9200 post-CALL/+5, R84 nondefault, no alpha/visibility/depth/projection changes.
 
 
 ## AI 2 DX11 authentic first-Draw 128 sparse TARGET/Z native GPU replay (2026-10-27 21:15 KST)

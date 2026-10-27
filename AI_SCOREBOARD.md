@@ -7,7 +7,15 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1764** | OutRun ROI A-0119 goal-with-girlfriend Korean RGBA PNG, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2045** | DX9Ex lens native RGB material alpha vs XR projection-layer source-alpha negative control, +1 |
+| AI 2 — ChatGPT2 | **2046** | DX9Ex 01539 original 570008 deferred-versus-immediate opaque flush phase; distinct source-verified diagnostic, +1 |
+
+
+## AI 2 DX9Ex original lens 570008 ordinal queue/flush phase proof (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01539`; new independent LENS_FLARE_ONLY REVIEW_ONLY verification. Unlike 01538 C993 projected/draw-depth scope guard and independent concurrent lens alpha compositor analysis, the new result derives from **original 405360, 4056D0, and 4052C0 source ordering and state reset**. Original reconstructed sun path `race_course_passes.cpp::sun_flare_40cbc0:695-715` switches opaque immediate=0, submits intentional first `0x570008` at :708 into an opaque queue, explicitly flushes at :714 (which resets immediate=1), then submits intended second `0x570008` at :715 with a synchronous immediate 405360→4052C0. This is a conditional **physical ownership lifetime asymmetry**: first original CABE source wrapper can exit before its physical Draw, second can execute native Draw while CABE projected semantic is active. The conditional split is source-verified using original `pc_render_queue.cpp:219-246,288-305` and `pc_render_flush.cpp:970-980`, **not** proven retail-executable or headset pixel behavior; no unwanted third emitter/ghost/head-lock is claimed. Successful descriptors/material/colour L/R pixels and fresh yaw remain untested.
+- OutRun `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned SOURCE_HEAD `3aa1d372e4d6aaa31a62b2f97c6013e8f9b03fba` (preceding doc-only change; same mod game source as first observed `98b6ffd50823d9f6057c1ef3f7d12f1a3f3ac32e`), docs-only RESULT_SHA `10263c463b8944f3e695794e515c38d8e36c29b9`; exact one new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01539.md` (+52/-0), exact `[AUTO:CONVERSION-DX9EX-01539]` marker, compare ahead1/behind0, blob and remote HEAD verified.
+- `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`; no C++/HLSL/build/CI skip, unsafe B9200 post-CALL +5, R84 default promotion or HMD claims. Re-review/retry/rollover for this TASK_ID adds +0.
+- **AI 2 cumulative: previous GitHub SSOT 2045 + one new distinct verified queue-phase proof +1 = 2046**. AI 1 is separate and unchanged by this event.
 
 ## AI 1 OutRun Korean localization A-0119 transparent asset (2026-10-28 KST)
 

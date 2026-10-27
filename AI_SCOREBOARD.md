@@ -1,15 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 20:10 KST
+Updated: 2026-10-27 20:42 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2030** | DX9Ex C993/CABE bounded source/physical diagnostic + verified Windows build, +1 |
+| AI 2 — ChatGPT2 | **2031** | DX9Ex lens R26 lower-owner vs mislabeled R29 and scope-None physical telemetry blind spot, +1 |
 
 
+
+## AI 2 DX9Ex lens default R26+HUD lower owner and scope-None telemetry blind spot (2026-10-27 20:42 KST)
+
+- RUN_KEY=`LENSFLARE-R26-LOWER-OWNER-20261027-2042`, unique independent LENS_FLARE_ONLY DX9EX REVIEW_ONLY source-verified result. Distinct from `LENSFLARE-PHYSICAL-LOG-20261027` instrumentation implementation (already scored) and `CONVERSION-DX9EX-01531..01533` earlier projection/camera findings. New proof: CMake fresh default `OUTRUN_VR_R26_HUD_COMPARE=ON` compiles `stereo_renderer_r30_r26_safe.cpp` and `outrun_renderer_r23.cpp`, and R30 hooks `DrawPrimitiveDestR26` etc after `R26InstallState`; callback variable `r29` is legacy naming. Thus R30 E_NOTIMPL default lower is **R26/R23/R27/R13/R9**, not R29's fast zero-disparity policy; R84's R29 is opt-in comparison. Additionally new `VR LENS R30 PHYSICAL CLASS/EYES/LOWER FALLBACK` events are emitted only when physical scope is ProjectedScreenEffect2D or SceneEffect and safe base admits; a deferred original 0x570008 physically flushed with scope None can be completely invisible to all three. No source->GPU descriptor correlation or Quest3 evidence, so root cause remains OPEN; missing log is not a negative proof.
+- Pinned OutRun SOURCE_HEAD `c2008e8e69c91d46cf7c75fdb0bd45ee1213c84d`. Verified **docs-only** result commit `a6ebe9aa2e9f3eae2859aac1612937f234bcb996`, exact parent source HEAD, exact one added `docs/reviews/dx9ex/automation/LENSFLARE-R26-LOWER-OWNER-20261027-2042.md` (+51/-0), exact `[AUTO:LENSFLARE-R26-LOWER-OWNER-20261027-2042]`, remote blob `13b81075ab1fa513153630d60f345da477e3c169`, remote branch HEAD readback matched. Baseline R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` untouched, R84 nondefault, no unsafe B9200 +5 hook, no source/build/workflow modifications. `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`; docs-only source build Gate not required, no CI-skip.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2030 + one new independent verified default-renderer owner/telemetry-falsification result +1 = 2031.** Same-task retry/readback/rollover/status +0. AI 1 separate unchanged.
 
 ## AI 2 DX9Ex lens-flare reviewed source/physical diagnostic implementation (2026-10-27 20:10 KST)
 

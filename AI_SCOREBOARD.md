@@ -1,13 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 15:51:08 KST
+Updated: 2026-10-27 15:54:20 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2009** | DX9Ex rival exact XYZRHW rejection diagnostics repaired/hardened in source, +1 |
+| AI 2 — ChatGPT2 | **2010** | DX9Ex lens-only host cached projection eye-pose provenance negative-control review, +1 |
+
+
+## AI 2 lens flare source-pose vs R23 cached projection negative control (2026-10-27 15:54:20 KST)
+
+- RUN_KEY / TASK_ID: `LENSFLARE-POSE-20261027-1546`, independent **user-requested manual** lens-only review, not DX9Ex controller's future numeric hourly TASK_ID. Source analysis pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` HEAD `7f5f8ac0a3716b341e40b034c099f089f6761fb8`.
+- Distinct from 01528's single OpenXR projection layer/temporal reuse proof: this run source-traced immutable `RenderFrameState.eye[2].pose/fov` through R23 matched views, independent left/right projection swapchain blits and source-coherent cached `XrCompositionLayerProjectionView[2]` metadata; normal R23 cached branch does NOT re-stamp an older cached eye source with current XR tick's head pose. Verified protected R26+HUD baseline carries same host pose-cache category. This narrows the host-cache hypothesis, not all runtime reprojection or actual optics.
+- Existing C993 game path can copy same original c64 WVP to left/right for source-producer None, as earlier lens review already noted; **not double-scored as a new discovery**. Next falsifier is same-eye original 0x570002/006/00F/010 versus CABE 0x570008 texture/alpha raster parity on fresh vs cached host frames.
+- Docs-only `docs/reviews/dx9ex/automation/LENSFLARE-POSE-20261027-1546.md` created with exact `[AUTO:LENSFLARE-POSE-20261027-1546]` commit `cc15f53de785ee26fe399649330c722890251bd8`; independently remote-read back same blob, exact one-file commit. Concurrent unrelated source commits existed; no source changes belong to this review. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; no game/HMD/optical fix claim.
+- **AI 2 cumulative: prior GitHub SSOT 2009 + one independently completed source-grounded lens-only review +1 = 2010.** Future retry/rollover/readback/re-report this RUN_KEY +0. AI1 score separately unchanged.
+
 
 ## AI 2 DX9Ex rival XYZRHW exact rejection diagnostics repair (2026-10-27 15:51:08 KST)
 

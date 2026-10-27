@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 06:51 KST
+Updated: 2026-10-28 KST
+
+## AI 2 DX9Ex lens host per-eye blit source-vs-target negative control (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01542`; a distinct LENS_FLARE_ONLY REVIEW_ONLY source-verified falsification of a *specific host-side* wrong-eye hypothesis not previously checked in the 01528 one-layer or cached-pose reviews. Current `vrhost/src/main_r23.cpp::R23StageDirectHold` copies DirectGPU left/right into separately indexed hold resources, and `R23RenderProjection` selects separate direct SRVs or nonoverlapping classic SBS UV crops and distinct projection array slices. `vrhost/src/main.cpp::StereoCompositor::RenderTo` may reuse common viewport/shaders/sampler in RIGHT, but always rebinds the eye-specific RTV/SRV/constant buffer and executes a fresh `Draw(3,0)` for each eye. Protected R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` already contains these same bindings. This rules down *reuseCommonPipeline skipping the RIGHT eye SRV bind* as a sufficient static explanation; real GPU inputs/optics and game C993/CABE lens route are untested.
+- OutRun durable docs-only result commit `8219dacb30804770e077a4589d83e26c9da2dc14`, parent `21b1cae8deb2e58e2f452ed5b45de8adc370063c`, exactly one new file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01542.md` (+54/-0), exact `[AUTO:CONVERSION-DX9EX-01542]`, remote branch HEAD and document blob readback; compare ahead1/behind0. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, docs-only source-build gate not required, no CI-skip. Not proof of Quest3/VDXR HMD correction; no source or game runtime patched. Same TASK_ID retry/rollover/readback +0; AI 1 independently unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2052 + one distinct source-verified host per-eye sampling/rebind negative-control investigation +1 = 2053.**
 
 ## AI 2 DX11 source-integrated raster-aware RAW native GPU sample (2026-10-28 06:51 KST)
 
@@ -75,7 +81,7 @@ Updated: 2026-10-28 06:51 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1772** | OutRun ROI B-0135 Korean RGBA asset, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2052** | DX11 real native Draw viewport/scissor-bound RAW GPU pixel capture; 5 exact-SHA Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **2053** | DX9Ex lens host eye-blit SRV/RTV reuse negative control, docs-only remote verified, +1 |
 
 
 ## AI 2 DX9Ex lens material-alpha split and cache-reset falsification (2026-10-28 05:31 KST)

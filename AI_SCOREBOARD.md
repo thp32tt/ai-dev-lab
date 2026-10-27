@@ -1,13 +1,20 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 17:29 KST
+Updated: 2026-10-27 17:35 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2019** | DX9Ex lens opaque queued-world-matrix snapshot vs current VR semantic provenance, +1 |
+| AI 2 — ChatGPT2 | **2020** | DX9Ex lens projected-vs-SceneEffect shader eye-policy conditional control-flow finding, +1 |
+
+## AI 2 DX9Ex lens deferred SceneEffect-versus-projected eye-policy fork (2026-10-27 17:35 KST)
+
+- RUN_KEY / TASK_ID: `LENSFLARE-SCENE-SCOPE-FALLBACK-20261027-1730`; lens-only REVIEW_ONLY, distinct from 01522 C993 token-None, 01529 ordinal telemetry, 01530 colour undo gate, `LENSFLARE-QUEUE-IMMEDIATE-20261027-1654` original deferred source boundary, `LENSFLARE-ROUTE-DIVERGENCE-20261027-1655` native vertex-form fork and `LENSFLARE-OPAQUE-MATRIX-20261027-1722` preserved world-matrix snapshot. This task independently establishes the *same-shader same-original-c64* divergent **R30 physical draw scope** policy (ProjectedScreenEffect2D versus SceneEffect).
+- GitHub exact source HEAD pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus:4431d0d1fdbfd44f7fa16bd22ca9cc35b7c6a371`; 4056D0 can queue original flare while C993/CABE projected RAII restores when registration returns. The game's original 405890 retains each mesh world matrix, **not** mod ProjectedScreenEffect2D or producer. In current mod `render_semantics.hpp::EffectiveScope` no game-opaque queue ownership; if physical Draw instead inherits enclosing `SceneEffect`, `R30ClassifyScreenSpacePass:2361-2392` requires perspective and original c64 and tests `R44ClassifyOwnedOverlayMatrix:2137-2182` with thresholds affineError 0.02 / viewDepth 1.25: WorldBillboard / PerspectiveHud / None. WorldBillboard then applies headInverse/eye IPD/FOV, PerspectiveHud finite head-recentered plane, while physical ProjectedScreenEffect2D usually clones stock game c64 identically to both eyes. Thus divergent per-eye optical policy can occur even with same shader form and correct original source WVP, conditional on true physical scope at flush. Not evidence that first CABE ordinal is actually misclassified in headset; no Quest3 trace, root cause OPEN.
+- Durable docs-only commit `0a6289d8664a6fddde4b7d9f9028f357f97f5e0b` on `vr-d3d9ex-focus`, exact marker `[AUTO:LENSFLARE-SCENE-SCOPE-FALLBACK-20261027-1730]`, parent pinned `4431d0d...`, exactly one new path `docs/reviews/dx9ex/automation/LENSFLARE-SCENE-SCOPE-FALLBACK-20261027-1730.md` (+53/-0) remote blob `6fa162f56557262efadc677b3950d97668bed14b`. Readback passed; NO C++/HLSL/workflow/config change, NO source/build gate for docs-only, no CI-skip. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`. Next test is one physically linked C993/CABE source call -> 4052C0 flush -> effective scope / matrixKind -> source c64 -> left/right RT+fresh XR frame.
+- **AI 2 confirmed cumulative: previous GitHub SSOT 2019 + one independent physically distinct *static routing discriminator* docs-only verified result +1 = 2020.** Same TASK_ID retries, status, further docs/history reread +0. AI1 remains independent.
 
 ## AI 2 DX9Ex lens opaque queue per-entry world matrix survives delayed GPU flush (2026-10-27 17:29 KST)
 

@@ -1,15 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 21:55 KST
+Updated: 2026-10-27 22:05 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2035** | DX11 authentic post-Draw TARGET/Z clipped-empty native frame preservation + 5 exact-SHA required Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **2036** | DX9Ex lens original flicker leaves 570008 glow alpha while first flare zero, plus late ordinal sampling parity, +1 |
 
 
+
+## AI 2 DX9Ex original flicker alpha split / sampled 570008 parity (2026-10-27 22:05 KST)
+
+- RUN_KEY=`LENSFLARE-FLICKER-ALPHA-20261027-2204`, lens-only independent docs REVIEW_ONLY. Current `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` source HEAD `4b4a8073c5a95dc655f3756adf7ac38f103266d3` and pinned original reconstructed `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62` were read. New static original source evidence `race_course_passes.cpp::sun_flare_40cbc0:614-630,687-715`: `edge` snapshots `bright` before flicker; odd countdown sets `flare=0; bright=0` while later `ring` uses pre-flicker `edge`, so first `0x570008` CABE `flare*intensity` becomes zero and second near-centre `0x570008` `glow=ring*visible` can remain nonzero with positive ring/visible/intensity. 570006 uses zeroed bright; 570002 may remain independently visible. This is an original alpha-material conditional, **not** an extra source emitter or HMD root-cause proof.
+- Independent diagnostic falsifier: current `hooks_graphics.cpp::DrawObjectAlphaProjected:741-767` samples 570008 source hits `n<=12 || powerOfTwo(n)`; for an uninterrupted two-570008-per-sun stream, all later sampled hits 16/32/64/... are **even second-in-pair**, systematically excluding first-in-pair. Earlier 01529 only established that the source log was sampled and ordinal is not physical GPU evidence; 01534 established spread<=0 can alias the sequence. The new exact conditional alpha branch and late-sample parity were not previously credited. Both require unsampled producer + opaque descriptor + eyeRT + material/texture/alpha and fresh/cached XR frame join for any visual conclusion.
+- Docs-only durable commit `60073e6eabca38b0e5f992645168b266c41e0ca3`, exact parent `4b4a8073c5a95dc655f3756adf7ac38f103266d3`, exact marker `[AUTO:LENSFLARE-FLICKER-ALPHA-20261027-2204]`, one new `docs/reviews/dx9ex/automation/LENSFLARE-FLICKER-ALPHA-20261027-2204.md` (+50/-0), remote blob `e6da1222570a19092f5d10a7fbfb81e24cd64938`, branch remote HEAD/readback verified. `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`; CI source gate not required and no CI-skip. R26+HUD immutable baseline `0cff83cf...`; R84 comparison only. Same RUN_KEY retry/readback/docs +0.
+- **AI 2 cumulative:** previous GitHub SSOT 2035 + one distinct source-grounded conditional alpha/flicker finding +1 = **2036**. AI 1 is independent.
 
 ## AI 2 DX11 post-Draw authentic empty-Clear preservation (2026-10-27 21:55 KST)
 

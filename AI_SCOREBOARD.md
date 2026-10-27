@@ -1,15 +1,25 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 20:45 KST
+Updated: 2026-10-27 21:15 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2032** | DX9Ex lens native GPU source/c64/VS/FVF/L-R receipts + exact-SHA Win32 build, +1 |
+| AI 2 — ChatGPT2 | **2033** | DX11 pre-first-Draw 128 sparse TARGET/Z GPU replay + five exact-SHA Gates, +1 |
 
 
+
+## AI 2 DX11 authentic first-Draw 128 sparse TARGET/Z native GPU replay (2026-10-27 21:15 KST)
+
+- TASK_ID / PRODUCTION_ID: `CONVERSION-DX11-01111`; a unique integrated C++ renderer implementation and source-owner frame-extent correctness result, distinct from `CONVERSION-DX11-01110` (post-Draw color/depth GPU region replay). CI repairs, C6/checkpoint, retry, rollover and re-reporting are not independent achievements (+0).
+- GitHub `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`; first actual source implementation SHA `6ae7ce3368319148cedce4af33b86078ad0c14d1`. Native pre-first-Draw TARGET and Z source ledgers accept up to 128 legitimate sparse original-game pixels (formerly 16 RTV / 32 DSV), batch up to 32 equal-Z D3D11.1 ClearView regions or serial D3D11.0 depth raster, retaining original source order and DX9Ex fallback. Later same-task material source repair pins canonical color/depth width/height and prevents narrower stale GPU target replay; no source input/gamepad/FFB change. DXVK remains frozen.
+- Causal fixes for inherited 00671/01034 capacity probes, 01036 static GPU call check, 01100/01103 nonfusible-Z negative controls, and 01110 C6 schema blockage were made under this same TASK_ID; **no second point** for any repair.
+- Exact validation-bearing material RESULT_SHA `88eac24e5821b444290248505ae50a54e8cf6637`; mandatory **five GitHub push Actions at the exact same SHA completed/success**: DX11 Fast `40500162478`, Backend Conversion Gate `40500161550`, Windows Build `40500161621`, OpenXR VR architecture `40500161303`, OutRun EXE HUD Inspector `40500161519`. DX11 Fast includes newly added 128 sparse color/Z source-to-GPU pixel/gap oracle plus source-extent/129th/owner/atomic negatives; Windows Build, OpenXR DLL/host and Backend readiness smoke succeeded. Source/HMD validation distinctly bounded.
+- C6 **bookkeeping-only** descendant `5aef3d66988ed4e34b10f77eff7474e16c3c29d1` persists `docs/automation/runs/CONVERSION-DX11-01111.json`; remote HEAD and C6 readback verified. Do not use C6 SHA as material result or count C6 again.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; **`RUNTIME_VALIDATION=UNTESTED`**: original OutRun 2006 menu, vehicle selection, race and Quest3/VDXR HMD pixels were not physically observed. No claim of visual fidelity, deployment or HMD completion.
+- **AI 2 cumulative: previous SSOT 2032 + one distinct validated C++ renderer material achievement +1 = 2033.** AI 1 remains separate 1759, unchanged.
 
 ## AI 2 new physical lens GPU telemetry (2026-10-27 KST)
 

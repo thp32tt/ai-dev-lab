@@ -1,6 +1,6 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 KST
+Updated: 2026-10-28 03:23 KST
 
 ## AI 1 OutRun Korean localization B-0131 transparent asset (2026-10-28 KST)
 
@@ -16,8 +16,15 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1765** | OutRun ROI B-0131 Normal Setting Korean RGBA PNG, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2047** | DX11 01117 raw partial native GPU tile source+test-package integration, five exact-SHA required CI PASS, runtime UNTESTED, +1 |
+| AI 2 — ChatGPT2 | **2048** | DX9Ex lens 405890 c64 pre-shader-bind epoch conditional R30 raw-WVP rejection, +1 |
 
+
+## AI 2 DX9Ex lens opaque c64 pre-shader-bind epoch false-negative (2026-10-28 03:23 KST)
+
+- RUN_KEY=`LENSFLARE-C64-PREBIND-EPOCH-20261028-0317`; one independent **lens-only** REVIEW_ONLY source-falsification result, not a recheck of `CONVERSION-DX9EX-01524` (native c64 callback *post*-stamp), `01525` (same-shader cross-object *admission*), `01531` (pre-R30 head-injection) or `01539` (original 570008 deferred/immediate queue split).
+- Pinned GitHub source `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus:10263c463b8944f3e695794e515c38d8e36c29b9`, original independent reconstruction `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62`. Original `405890::flush` loads matrix and `world_411060` uploads game c64 **before** `404700::shader_410680` binds PMT shader. Mod `RecordGameWvpWrite` stamps the shader epoch at c64 upload; mod R7 `SetVertexShaderDest` advances epoch on later shader change. R30 SceneEffect/projected raw getters require `writeShader+epoch==drawShader+epoch`. Therefore the precise conditional `world c64 write under S_old -> successful SetVS(S_new!=S_old) -> native DIP without new c64` causes R30 raw-WVP *rejection* even when original D3D9 c64 is correct. R30 SceneEffect may fall through to R26/R23; projected scope may fail eye builder. This is NOT evidence that actual 570008 PMT switches shaders, a headset double image, wrong pose or a new regression. Actual lens PMT, L/R RT, fresh XR yaw and physical join are untested.
+- Durable OutRun docs-only commit `6376e9fc50741e0e3f9691ef63acc8183ccd2683`, exact parent `10263c463b8944f3e695794e515c38d8e36c29b9`, exactly one added `docs/reviews/dx9ex/automation/LENSFLARE-C64-PREBIND-EPOCH-20261028-0317.md` (+49/-0), exact marker `[AUTO:LENSFLARE-C64-PREBIND-EPOCH-20261028-0317]`, remote HEAD and blob `e27918da0e58edeb3f660cd60e6749546cea0689` independently verified. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`, no source CI gate required, no CI-skip, no B9200 hook or R84 promotion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2047 + one new source-grounded independent conditional raw-c64 epoch rejection +1 = 2048.** Same RUN_KEY/retry/docs readback/status +0. AI 1 tracked independently.
 
 ## AI 2 DX11 RAW native visual GPU tile source implementation (2026-10-28 KST)
 

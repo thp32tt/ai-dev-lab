@@ -1,6 +1,6 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 04:03 KST
+Updated: 2026-10-28 KST
 
 ## AI 1 OutRun Korean localization A-0121 transparent asset (2026-10-28 KST)
 
@@ -30,8 +30,15 @@ Updated: 2026-10-28 04:03 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1767** | OutRun ROI A-0121 Korean RGBA PNG, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2048** | DX9Ex lens 405890 c64 pre-shader-bind epoch conditional R30 raw-WVP rejection, +1 |
+| AI 2 — ChatGPT2 | **2049** | DX9Ex lens projected FOV-affine pre-copy gate, +1 |
 
+
+## AI 2 DX9Ex projected-lens FOV-affine pre-copy rejection (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01540`; independent, source-verified LENS_FLARE_ONLY REVIEW_ONLY finding. Unlike `CONVERSION-DX9EX-01539` (original opaque queue/flush first deferred versus second immediate) and `LENSFLARE-C64-PREBIND-EPOCH-20261028-0317` (original PMT c64 pre-shader-bind epoch R30 getter rejection), this checks **a different earlier R30 numeric eye-FOV admission gate** before the projected CABE/C993 zero-disparity WVP eye copy.
+- Pinned OutRun source `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus:6376e9fc50741e0e3f9691ef63acc8183ccd2683`. `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp::R30BuildScreenSpaceEyeConstants:5155-5209` always executes `R30BuildEyeAffine` before the ordinary `ProjectedScreenEffect2D` stockWvp→L/R identical-copy path, even though that projected branch does not consume affine scale/offset. `R30BuildEyeAffine:2511-2549` rejects nonfinite or too-narrow FOV tangent spans, eye scale outside [0.50,1.50] and absolute offset >0.50. A failed gate causes `R30TryScreenSpaceFovDraw` to return `E_NOTIMPL` before the first LEFT native draw; this is a **conditional lower-path diagnostic/falsification gate**, not proof of a second eye pixel, a real Quest3 invalid FOV or the cause of head-lock. The protected R26+HUD baseline already has the shared affine guard, but its eye-builder kind set lacks the newer projected screen-effect route, so no headset regression is proven.
+- Durable exactly one path docs-only result `92512bdbda60677ef8eaa6ebf3845b8bcfe138c4`, parent `6376e9fc50741e0e3f9691ef63acc8183ccd2683`; only added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01540.md` (+52/-0), exact marker `[AUTO:CONVERSION-DX9EX-01540]`, remote branch HEAD/file blob/compare ahead1 behind0 verified. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`; no game source/workflow/config change, unsafe hook, source build CI gate or CI-skip, R84 promotion or headset success claim.
+- **AI 2 cumulative: previous GitHub SSOT 2048 + one independent new conditional FOV-affine gate verification +1 = 2049.** Same TASK_ID retry/readback/rollover/score re-report adds +0. AI 1 unchanged.
 
 ## AI 2 DX9Ex lens opaque c64 pre-shader-bind epoch false-negative (2026-10-28 03:23 KST)
 

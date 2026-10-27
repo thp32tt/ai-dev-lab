@@ -2,6 +2,14 @@
 
 Updated: 2026-10-27 23:09 KST
 
+## Latest confirmed cumulative scores
+
+| AI | Cumulative score | Status |
+| --- | ---: | --- |
+| AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
+| AI 2 — ChatGPT2 | **2038** | DX11 native game authentic full D3D9 surface-copy first-Draw seed, exact-SHA five Gates PASS, +1 |
+
+
 ## AI 2 DX11 authentic whole D3D9 surface copy -> native game first Draw (2026-10-27 23:09 KST)
 
 - TASK_ID / PRODUCTION_ID: `CONVERSION-DX11-01113`. One unique substantive source implementation connecting successful original D3D9 whole-backbuffer `StretchRect/UpdateSurface` source pixels to the full-resolution native SM3/FVF first Draw in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`; same-task E001/E002, C6, regression updates and CI repairs are **+0**.
@@ -11,14 +19,6 @@ Updated: 2026-10-27 23:09 KST
 - C6 bookkeeping-only descendant `fb16be338a8e9ce592e179e9494ae2a68192c1ff` writes `docs/automation/runs/CONVERSION-DX11-01113.json` and does NOT replace material `RESULT_SHA` or trigger another material Gate.
 - `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. Actual original game menu/vehicle/race screen, native_draw_count, native_published_frame_count and Quest 3/VDXR optical test were NOT observed. Build source progression only, not a claim of HMD/gameplay PASS.
 - **AI 2 score: previous GitHub SSOT 2037 + unique verified C++ source achievement +1 = 2038**; AI 1 remains 1760 and separate. Same TASK_ID retry, checkpoint, C6, readback and re-report receive +0.
-
-
-## Latest confirmed cumulative scores
-
-| AI | Cumulative score | Status |
-| --- | ---: | --- |
-| AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
-| AI 2 — ChatGPT2 | **2038** | DX11 native game authentic full D3D9 surface-copy first-Draw seed, exact-SHA five Gates PASS, +1 |
 
 
 ## AI 2 DX9Ex lens R30 RIGHT pre-Draw diagnostic negative control (2026-10-27 23:06 KST)

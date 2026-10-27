@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 07:59 KST
+Updated: 2026-10-28 08:04 KST
+
+## AI 2 DX9Ex 570008 stage/facing halo gain negative control (2026-10-28 08:04 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01543`; distinct lens-flare-only REVIEW_ONLY static falsification at original producer *stage/facing -> ordinal2 gain* boundary, separately from earlier flicker, shared ZENABLE, native phase and host per-eye controls. Original reconstructed `sun_flare_40cbc0:687-715` uses `ring=min(edge,0.999)` in stages `0x14/0x19/0x1A`, but other stages use `min(edge,0.4)` plus `(facing-0.92)*6.8` only above `facing=0.92` and capped at 0.999. Ordinal2 `570008` takes `glow=ring*visible` and ordinal1 takes `flare` separately; quantifiable second-only brightness changes can therefore arise with **the same two intended original source calls**, not sufficient to identify extra PMT draws or a head-lock cause. This quantitative stage/threshold axis adds to, does not re-score, prior qualitative flicker-alpha split. Source reconstructed, not fresh retail byte/HMD proof.
+- OutRun result `327020c9449ceb3e19d8c5617ddc4702a206cbea`, parent `cd92a8b4b2fc0ac1dceded2bf65077901df820d2`, exactly one new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01543.md` (+52/-0) with exact `[AUTO:CONVERSION-DX9EX-01543]`; remote HEAD and document blob `8a43a595381a51ec68e1638918b17e95be0fec16` verified, compare ahead1/behind0. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS`, `RUNTIME_VALIDATION=UNTESTED`; docs-only source Gate not required, CI-skip not used. User's visually second lobe not identified as ordinal2, live PMT texture+eye GPU pixels and Quest3 optical bearing untested. Same task retry/readback/rollover +0; AI1 separately unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2055 + one distinct source-verified stage/facing original-lens-gain falsification +1 = 2056.**
 
 ## AI 2 DX11 native SM3 GPU Draw abort rollback and exact-SHA full Gate recovery (2026-10-28 07:59 KST)
 

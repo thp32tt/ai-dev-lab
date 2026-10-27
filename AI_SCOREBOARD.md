@@ -1,15 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 22:05 KST
+Updated: 2026-10-27 22:23 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
+| AI 1 — ChatGPT | **1760** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
 | AI 2 — ChatGPT2 | **2036** | DX9Ex lens original flicker leaves 570008 glow alpha while first flare zero, plus late ordinal sampling parity, +1 |
 
 
+
+## AI 1 OutRun Korean localization A-0111 generated RGBA asset (2026-10-27 22:23 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0111-95DA5469`; one distinct transparent PNG asset `Q101_e5312f08859b605b_k.png` created from original HD source reference, phrase `The distance to the final goal will be very long.` -> `최종 골까지의 거리가 매우 깁니다.`.
+- The PNG was independently inspected as RGBA with transparent pixels, tightly cropped and resized to 1064×98 (within 1160×98 source ROI); user Library upload path `/아웃런 한글화 신규/Q101_e5312f08859b605b_k.png` was verified by a separate directory listing. DDS, composite placement, independent QA, in-game PASS untested.
+- Unique image-creation-and-verified-asset-delivery achievement: AI 1 previous 1759 + 1 = 1760. AI 2 unchanged 2036. Same TASK_ID retry/re-upload/report is +0.
 
 ## AI 2 DX9Ex original flicker alpha split / sampled 570008 parity (2026-10-27 22:05 KST)
 

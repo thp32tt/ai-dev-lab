@@ -1,13 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 17:35 KST
+Updated: 2026-10-27 18:02 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2020** | DX9Ex lens projected-vs-SceneEffect shader eye-policy conditional control-flow finding, +1 |
+| AI 2 — ChatGPT2 | **2021** | DX11 01108 native tiled whole TARGET/Z and stale main-depth source fix; five exact-SHA Actions PASS, +1 |
+
+
+## AI 2 DX11 authentic 17..128-rect full game Clear and retained D3D9 depth provenance (2026-10-27 18:02 KST)
+
+- TASK_ID / PRODUCTION_ID: `CONVERSION-DX11-01108`; new independently implemented real game-native full-resolution menu/car/race Clear scene source gap, distinct from predecessor 01107 leading pixel-neutral source Draw ordinal after TARGET|Z.
+- OutRun repository `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Pinned starting HEAD `2d919b7cc26fc2913efab76fb2387759bbaee7d3`; substantive C++ game DX11 Clear coverage, source main-Z retention and compiled positive/negative tests `5c4b640b9de7ccd34b2a8ee267e38a2c8ca0b0ef`. Initial DX11 Fast 40474911126 identified inherited 00762/00728 hardcoded 16-rect regression mismatch: same-task causal test repair, final validation-bearing material result `b120616baa742bd5a4c7faf60a962ba2d6be308d`.
+- Exactly the five required **push** workflows at identical final material SHA `b120616baa742bd5a4c7faf60a962ba2d6be308d` completed/success: DX11 Fast **40475190617**, Backend Conversion Gate **40475190639**, Build **40475190628**, OpenXR VR architecture **40475190606**, OutRun EXE HUD Inspector CI **40475190765**. Earlier partial SHA failed; only final exact SHA earns pass. No CI bypass or force push.
+- Final bookkeeping-only C6 commit `665aad17f1e0884719bf946b49267927b6f77407`, new durable file `docs/automation/runs/CONVERSION-DX11-01108.json`, remote blob `f11bec0e08c53f9f1a9b8c45462f224d0f17494c`. It is a skipped-CI record descendant only, not the validation-bearing code result and not a separately scored feature.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`, native original game/Quest 3/VDXR frame output, controls, FFB and FPS not observed. Full native menu-to-race gameplay readiness not claimed. Original D3D9Ex fallback and frozen DXVK unchanged.
+- **AI 2 cumulative: previously confirmed GitHub SSOT 2020 + one distinct materially implemented DX11 game-frame source capability with exact SHA five-Gate PASS +1 = 2021.** Same TASK_ID retry/CI repair/C6/rollover/earlier incomplete commit +0; AI1 remains separate.
+
 
 ## AI 2 DX9Ex lens deferred SceneEffect-versus-projected eye-policy fork (2026-10-27 17:35 KST)
 

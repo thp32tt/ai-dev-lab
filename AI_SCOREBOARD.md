@@ -1,15 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 19:00 KST
+Updated: 2026-10-27 19:08 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2024** | DX9Ex lens directional original eye+sun-offset source geometry, distinct yaw-vs-translation falsifier, +1 |
+| AI 2 — ChatGPT2 | **2025** | DX9Ex lens occlusion query R26 tracked write-free single-execution negative control, +1 |
 
 
+
+## AI 2 DX9Ex lens 570010 query write-free single-execution negative control (2026-10-27 19:08 KST)
+
+- RUN_KEY/TASK_ID: `LENSFLARE-QUERY-STEREO-SINGLEEXEC-20261027-1908`. Unique REVIEW_ONLY source verification, separate from `CONVERSION-DX9EX-01532` (directional sun yaw/translation), `LENSFLARE-NATIVE-DRAW-MULTIPLICITY-20261027-1815` (original two-pass and zero-colour query), `CONVERSION-DX9EX-01531` (pre-R30 c64 injection). The earlier query review showed the 0x570010 original occlusion proxy has no colour write; **this result independently verifies the active-query D3D9 stereo single-execution controls and original query sample -> lens alpha timing**.
+- Source-grounded: original reconstruction `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62/src/platform/race_course_passes.cpp:486-531,631-645,649-715` issues D3D occlusion BEGIN/END around 4116F0 with colour mask=0 and zwrite=0; source 95AEF8 ratio from ready/pending occlusion samples modulates 570002/006/008 original alphas, but 570010/00F source calls use intensity*1. Current `stereo_renderer_r7.inc::QueryIssueDest:1693-1694` tracks game occlusion BEGIN/END; `stereo_renderer_r26.cpp::R26GuardTrackedOcclusion:337-428` bypasses replay with exactly one actualDraw when active tracked query and colour0/zwrite0/stencil write-free, `stereo_renderer_r30_r26_safe.cpp::R30SafeStereoBase:77-121` rejects active query, and `stereo_renderer_r7.inc::PrepareDuplicatedDraw:1587-1589` rejects active query. This rules down *stereo-inflated query samples* in the inspected tracked/write-free path; NOT an HMD bug or complete source runtime proof. R26 blob `4e486a14c0f180928732419868f5449b6d8759cf` matches protected R26+HUD baseline exactly; R84 comparison-only.
+- OutRun pinned source HEAD `8d32fde546287533ce00f0a0e31c6ab28601ff30` -> docs-only RESULT_SHA `586d54ede380d1c8d7e2c30ab01057abff156394`; exact one new `docs/reviews/dx9ex/automation/LENSFLARE-QUERY-STEREO-SINGLEEXEC-20261027-1908.md` (+53/-0), exact `[AUTO:LENSFLARE-QUERY-STEREO-SINGLEEXEC-20261027-1908]`, remote HEAD and parent verified, remote blob `ef72514cac4efcfd447d81412bbcfef4b0e9ca1e`. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`, CI-skip NONE, no build required.
+- **AI 2 confirmed cumulative: previous GitHub SSOT 2024 + distinct static original-query-to-current-stereo control-flow and alpha falsifier +1 = 2025.** Same-task retry/readback/rollover +0; AI1 independent.
 
 ## AI 2 DX9Ex original directional sun-anchor yaw/translation control (2026-10-27 19:00 KST)
 

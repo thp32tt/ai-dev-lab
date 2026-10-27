@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 08:46 KST
+Updated: 2026-10-28 08:52 KST
+
+## AI 1 OutRun Korean icon multiline layout correction and QA hold (2026-10-28 08:52 KST)
+
+- TASK_ID=`OUTRUN-ICON-LAYOUT-AUDIT-20261028-0836`; N100 live A 418 files/124 batches, B 472 files/135 batches, production manifest 938, C1 OCR completed 115. These are candidate production counts; **not** Library or DDS/game PASS.
+- Distinct source-verified production prompt repair on `thp32tt/OutRun2006Tweaks` branch `localization-controller-recovery-20260928`: `text_roi_queue.py` commit `55c3763f006a25f8670c5ad4f33084465b4a1015` requires original line count and per-line layout for both full-HD direct and ROI crop ImageGen prompts; new self-contained regression `tests/test_text_roi_line_layout_prompt.py` commit `88a1f942a84ee8c1e9c9bd1f2962114cd876f308`, two tests passed on N100 using exact GitHub source. GitHub branch readback and commit compare verified. This GitHub change is NOT proven deployed to running Portainer stack.
+- Independent N100 visual candidate review confirmed Q095 source-to-Korean line regressions: `Q095_d1e36e6a4765a908` 3→2, `Q095_3f83420414b71418` 4→3, `Q095_06d2b7de8ed3b74c` 4→2. Two Q100 candidates retained 3 lines but re-generated protected icon backgrounds (`Q100_bffb98811ed62767`, `Q100_84c26a1be776761c`). The 5 exact SHA-confirmed candidates were recorded as `HOLD_REWORK` in N100 `work/qa_icon_layout_20261028/rework_hold.json` (report only, not wired to runtime QA gate); originals/candidates and A/B counters were not modified. Additional unreviewed assets may have layout issues. No DDS/game runtime validation, no automatic release.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1772 + one distinct verified prompt hardening with test +1 = 1773.** QA readbacks/report and same TASK_ID retry +0. AI 2 unchanged.
 
 ## AI 2 DX11 source-integrated RAW Present crop coverage (2026-10-28 08:46 KST)
 

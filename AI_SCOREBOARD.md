@@ -1,15 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 18:07 KST
+Updated: 2026-10-27 18:18 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2022** | DX9Ex lens pre-R30 original-c64 vs injected-WVP conditional source discriminator, +1 |
+| AI 2 — ChatGPT2 | **2023** | DX9Ex lens original dual material-pass / zero-colour-write query draw-count negative control, +1 |
 
 
+
+## AI 2 DX9Ex lens native source draw-count negative controls (2026-10-27 18:18 KST)
+
+- TASK_ID / RUN_KEY: `LENSFLARE-NATIVE-DRAW-MULTIPLICITY-20261027-1815`. Independent REVIEW_ONLY finding, distinct from 01529 (CABE sampled source ordinal != physical draw), 01530 (4056D0 undo admission), 01531 (pre-R30 c64 head injection), manual 1722 (original queue matrix retention) and manual 1730 (physical R30 projected-vs-SceneEffect policy). Original `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62` proves `pc_render_flush.cpp::Flush::flush:860-883` can visit **one** opaque 405360 descriptor in **two** original material passes when node.flags&1 and &2 and both pass lists are enabled; `draw_404700:761-801` chooses separate `prim.draws[e.pass]`/`first_draw[e.pass]`, material/texture and blend. Actual 0x570008 PMT flags are UNKNOWN, so no actual dual-pass lens visual cause is claimed. A native count > one per source descriptor/eye is NOT sufficient B replay evidence until pass/primitive/material are joined.
+- Independently the reconstructed `race_course_passes.cpp::sun_flare_40cbc0:669-672` records 0x570010 for `occlusion_411420 -> 4114E0 -> 4116F0` query geometry and separately calls visible `4056D0` for the same ID. The query path sets render states [7,14,15,168]=[1,0,0,0], where enum 168 is COLORWRITEENABLE; zero-colour-mask query native Draw cannot itself add a visible sun colour under original intended state. Query availability and actual Quest3 RT/state remain UNTESTED. This refines A/B/D false-positive criteria: match sourceSerial+flushID+descriptor+**passIndex+primitive draw record+material+colourWriteMask+eyeRT**, excluding original dual-pass, query-only and normal stereo LEFT/RIGHT. Current root cause C/F and host temporal caching still OPEN.
+- Source pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus:f66bd019462c036f19e1da7593001a426492480e`; immutable R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`, R84 comparison only, B9200 post-CALL/+5 prohibited. Exactly one NEW docs file `docs/reviews/dx9ex/automation/LENSFLARE-NATIVE-DRAW-MULTIPLICITY-20261027-1815.md` (+63/-0) in source result `25010620be8f99732ea9f41d73c34c63096664ca` with exact `[AUTO:LENSFLARE-NATIVE-DRAW-MULTIPLICITY-20261027-1815]` marker, remote parent pinned and branch readback. A single-path correction `2dfd438226fde0cced0137c84748834b364999e4` corrected only the R30 source blob SHA typo (no second finding/score), remote doc blob `839aa24d58c8edc61c7cc1a8d71ace6c5a4017c5`, current branch HEAD verified. `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED`; no source build required, no CI skip.
+- **AI 2 confirmed cumulative: previous GitHub SSOT 2022 + one independently verified original-native physical draw multiplicity falsifier +1 = 2023.** The correction, readbacks, retries, rollover and same TASK_ID further reporting +0. AI1 unchanged.
 
 ## AI 2 DX9Ex lens original-WVP-vs-uploaded-c64 pre-R30 gate (2026-10-27 18:07 KST)
 

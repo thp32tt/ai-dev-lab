@@ -1,6 +1,6 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 15:54:20 KST
+Updated: 2026-10-27 15:54:19 KST
 
 ## Latest confirmed cumulative scores
 
@@ -19,13 +19,14 @@ Updated: 2026-10-27 15:54:20 KST
 - **AI 2 cumulative: prior GitHub SSOT 2009 + one independently completed source-grounded lens-only review +1 = 2010.** Future retry/rollover/readback/re-report this RUN_KEY +0. AI1 score separately unchanged.
 
 
-## AI 2 DX9Ex rival XYZRHW exact rejection diagnostics repair (2026-10-27 15:51:08 KST)
+## AI 2 DX9Ex rival known-good DPUP live-probe restoration + exact gate diagnostics (2026-10-27 15:54:19 KST)
 
-- TASK_ID / RUN_KEY: `RIVAL-DEEP-20261027T1543KST`. New independent source achievement on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: while continuing the rival-only regression trace, verified that diagnostic commit `9406722b7f94fb631ca1a01807c5c196a47efc83` left the `rejectClass` declaration under a brace-less `if`, making the following log use invalid scope, and that its heuristic late-gate label could not distinguish the actual `R30PrepareXyzrhwState` rejection point.
-- Durable source fix/result SHA `7f5f8ac0a3716b341e40b034c099f089f6761fb8`, exact marker `[AUTO:RIVAL-DEEP-20261027T1543KST]`. One runtime source file changed: `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp`. Added exact prepare rejection enum/reporting for safe-stereo, cached/live VS, FVF, resources, viewport, Z-state, stereo frame/pose and eye-affine gates; fixed the telemetry block scope. Render admission/output decisions are unchanged by this commit.
-- Remote branch compare after commit: `7f5f8ac... == vr-d3d9ex-focus` (ahead 0 / behind 0). Available commit-status/PR-workflow endpoints exposed no exact-SHA CI proof at scoring time; `BUILD/CI=UNCONFIRMED`, `RUNTIME_VALIDATION=UNTESTED`. This score is for the distinct committed source diagnostic repair, not a claim that the rival visual defect is fixed.
-- Deeper static follow-up identified a runtime discriminator, not separately scored: if `reject=CACHED_VS_IDENTITY` while `vsBound=0`, stale positive shader tracking can block the fixed-function XYZRHW route; if `cachedVs=0` while live VS is bound, XYZRHW correctly rejects to shader routing but the subsequent screen-space c64 path has its own cache-zero gate. Runtime evidence is required before changing render policy.
-- **AI 2 cumulative: previous confirmed GitHub SSOT 2008 + one new committed/verified source diagnostic repair +1 = 2009.** Same task readback, additional analysis, build retry or rollover +0. AI 1 remains separate.
+- TASK_ID / RUN_KEY: `RIVAL-DEEP-20261027T1543KST`. Continued rival-only regression trace against known-good `a22be86a`, regression `5366b7d7`, and current focus. First, diagnostic commit `9406722b7f94fb631ca1a01807c5c196a47efc83` was found to have a brace-less `if` / out-of-scope `rejectClass` defect and only heuristic rejection labeling. Source repair `7f5f8ac0a3716b341e40b034c099f089f6761fb8` fixed the scope and made `R30PrepareXyzrhwState` report the exact safe-stereo, cached/live VS, FVF, resources, viewport, Z-state, stereo/pose and eye-affine rejection stage. Exact-SHA general build status for `7f5f8ac...` later read back **SUCCESS** (Actions run `40463023261`).
+- Deeper comparison found a functional regression boundary: known-good `a22be86a` always called the R30 XYZRHW live probe first for `DrawPrimitiveUP`, while current R33 optimized the call away whenever StateBlock tracking was reliable and cached VS identity was nonzero. Because the code itself documents that D3DX StateBlock traffic can leave the cached identity stale, an exact rival fixed-function DPUP could be diverted before authoritative live `GetVertexShader/GetFVF` validation.
+- Narrow current-source repair: `077c8c92c6f7f41b11334e2038c46237b9e23fcf` lets only a queue-owned `RivalMarkerSprani + ProjectedWorldMarker2D + valid Calc3D2D anchor` bypass the inner cached-VS hint; a real live VS or non-XYZRHW FVF still rejects before any stereo GPU draw. R33 restoration was then scoped precisely to `DrawPrimitiveUPDestR33`; an initial same-task misplaced edit `551010416d759a115366e53e54411543de2ab439` was immediately corrected by `127ae79e3904a53cf6c2bf492d71392526f9030a`. Remote readback verifies ordinary `DrawPrimitiveDestR33` has no rival bypass and only `DrawPrimitiveUPDestR33` does. Current remote `vr-d3d9ex-focus` HEAD equals `127ae79e...` (ahead 0 / behind 0).
+- Build/validation at this update: `7f5f8ac...` exact-SHA general build SUCCESS; `077c8c92...` general build was still PENDING (run `40463729785`); no final exact-SHA status had yet appeared for `127ae79e...`. `RUNTIME_VALIDATION=UNTESTED`; no claim that Quest3-visible rival placement is fixed yet.
+- Runtime discriminator after this repair: exact fixed-function rival should now reach `VR RIVAL XYZRHW PREPARE` even when the cached shader shadow is stale. `LIVE_VS_BOUND` means shader/c64 route is genuinely appropriate; `ADMITTED` should continue through `XYZRHW PROJECTED` and `XYZRHW EYE RECEIPT`. Absence of the prepare line despite `NATIVE QUEUE CONSUMER projected=1` now points above R30 (state/raster guard or source classification), not the old cached-VS fast gate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2008 + this one distinct rival deep-trace/source-repair task +1 = 2009.** Same TASK_ID diagnostics refinement, misplaced-edit correction, build/readback, runtime follow-up or rollover +0. AI 1 remains separate.
 
 ## AI 2 DX9Ex lens host XR single-layer vs temporal reuse negative-control review 01528 (2026-10-27 15:07:49 KST)
 

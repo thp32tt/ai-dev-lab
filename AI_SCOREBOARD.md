@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 17:08 KST
+Updated: 2026-10-27 17:29 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2018** | DX9Ex rival known-good BB796 ownership/install-chain restoration, +1 |
+| AI 2 — ChatGPT2 | **2019** | DX9Ex lens opaque queued-world-matrix snapshot vs current VR semantic provenance, +1 |
+
+## AI 2 DX9Ex lens opaque queue per-entry world matrix survives delayed GPU flush (2026-10-27 17:29 KST)
+
+- RUN_KEY / TASK_ID: `LENSFLARE-OPAQUE-MATRIX-20261027-1722`. Lens-only manual REVIEW_ONLY, not `CONVERSION-DX9EX-01530` (0x80 undo admission), `LENSFLARE-QUEUE-IMMEDIATE-20261027-1654` (4056D0 deferred vs immediate execution), or `LENSFLARE-ROUTE-DIVERGENCE-20261027-1655` (native form S/X/F optical branching).
+- Independent source-grounded negative control: original reconstruction `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62` proves `405360::walk_404d10 -> matrix_slot_404a80` snapshots the 64-byte world matrix for each visible admitted mesh entry into opaque `q.matrices`; `4052C0 -> 405890::Flush::flush` reads the exact entry matrix and conditionally `world_411060` rebuilds WVP and uploads vertex constants c64..c67 before drawing mesh primitives. Therefore source wrapper scope expiry **does not by itself destroy original game matrix data**. However opaque descriptors do not store DX9Ex VR producer/semantic/pose, and current `src/vr/game/outrun_renderer.cpp::RecordGameWvpWrite` records effective VR scope and producer only at actual game c64 write. Correct source matrix != proven correct mod semantic owner/eye projection; actual C993/CABE physical identity/HMD remains untested. This narrows next falsification to original flush entry+matrix/c64 vs VR owner/eye and pose, not to blanket source matrix-loss.
+- Source pinned GitHub HEAD `2ff372a57f369bca51be7fd30188ceb78a4fd7d7` (`thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`); source blobs original `pc_render_queue.cpp 95e5709c...`, `pc_render_flush.cpp e6928a31...`; mod `hooks_graphics.cpp 1a8b3acf...`, `outrun_renderer.cpp db399409...`, `stereo_renderer_r30_r26_safe.cpp b9a7874c...`. Protected R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`.
+- Durable docs-only `[AUTO:LENSFLARE-OPAQUE-MATRIX-20261027-1722]` commit `795b8e74f7549ba287739fbf236bad546f2f4a56`; exactly one added path `docs/reviews/dx9ex/automation/LENSFLARE-OPAQUE-MATRIX-20261027-1722.md` (+58/-0), remote readback blob `39f7f1eeda055bd4d58a53c5abea5e48f6de48f1`, source game/HLSL/config/workflow untouched, no CI-skip. `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. No HMD or original EXE byte-level acceptance claimed. Next `LENS_FLARE:405890_PER_ENTRY_MATRIX_C64_CURRENT_SEMANTIC_C993_CABE_570008_EYE_RT_FRESH_HOST_JOIN`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2018 + one distinct exact-source per-entry-matrix/VR-semantic-fork negative control with durable remote docs-only evidence +1 = 2019.** Repeated reports/readback/retry/rollover same RUN_KEY +0. AI1 separate, unchanged.
 
 ## AI 2 DX9Ex rival known-good BB796 ownership/install-chain restoration (2026-10-27 17:08 KST)
 

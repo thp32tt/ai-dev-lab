@@ -7,8 +7,15 @@ Updated: 2026-10-27 18:02 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2021** | DX11 01108 native tiled whole TARGET/Z and stale main-depth source fix; five exact-SHA Actions PASS, +1 |
+| AI 2 — ChatGPT2 | **2022** | DX9Ex lens pre-R30 original-c64 vs injected-WVP conditional source discriminator, +1 |
 
+
+
+## AI 2 DX9Ex lens original-WVP-vs-uploaded-c64 pre-R30 gate (2026-10-27 18:07 KST)
+
+- TASK_ID / PRODUCTION_ID: `CONVERSION-DX9EX-01531`; distinct lens-only REVIEW_ONLY finding from 01530 (original 4056D0 opaque undo admission) and manual LENSFLARE-SCENE-SCOPE-FALLBACK-20261027-1730 (later **R30 physical semantic classifier**). This review independently verifies the **earlier D3D9 SetVertexShaderConstantF/c64 upload** fork for a deferred 405360/4052C0 CABE flare: projected camera-synced semantic bypasses head WVP injection, but a physical SceneEffect/None c64 with the same original source can enter TryPrepareOutRunWvp and conditionally upload a head-corrected WVP before R30. RecordGameWvpWrite still retains original raw c64, so a subsequent R30 successful draw can supersede that GPU upload; no double head correction or current HMD defect is proven.
+- GitHub pinned source `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus:0a6289d8664a6fddde4b7d9f9028f357f97f5e0b`; protected baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` has the same guard, so NOT a newly demonstrated regression. Independent reconstructed original source at `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62` was also read. Exact docs-only result `f66bd019462c036f19e1da7593001a426492480e` `[AUTO:CONVERSION-DX9EX-01531]`, exactly one added review file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01531.md` (+54/-0), parent 0a6289d, ahead1/behind0 remote compare, blob `9c69ab74803880d4cb9168a86f20bff925fe75f3`; verified branch HEAD and remote readback. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`, `RUNTIME_VALIDATION=UNTESTED`; no source gate, no CI skip.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2021 + one independently source-verified pre-R30 optical-policy discriminator with durable docs-only remote validation +1 = 2022.** No additional points for the same TASK_ID retry/readback/rollover or headset-less optics assumptions. AI1 unchanged.
 
 ## AI 2 DX11 authentic 17..128-rect full game Clear and retained D3D9 depth provenance (2026-10-27 18:02 KST)
 

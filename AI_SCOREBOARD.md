@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 03:54 KST
+Updated: 2026-10-28 04:03 KST
+
+## AI 1 OutRun Korean localization A-0121 transparent asset (2026-10-28 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0121-979D5750`; one new independent approved-phrase ImageGen candidate based on full original HD `Q121_FD90AA9_BASE_READABLE_FLIPY(4).png` 4096×4096; English `A course designed for player battle.` → Korean `플레이어 대전을 위해 설계된 코스입니다.`; reference bbox [3180,1534,3828,1668] (648×134).
+- ImageGen called once (n=1). Transparent typography-only RGBA candidate exported `Q121_c8c40943e3657cc4_k.png` 414×134, SHA256 `76f1423d97c1a5b781da263dc828f8b2c8c66936a04ba28fca4e10fe2312c17f`. Personal Library upload independently verified by list readback: `/아웃런 한글화 신규/Q121_c8c40943e3657cc4_k.png`, library_file_id `libfile_2e62f84cd634819180c659b58e837838`.
+- Candidate only; no independent C1/C2/C3 original-style/placement PASS, no DDS or real-game runtime PASS.
+- **AI 1 cumulative: previous GitHub SSOT 1766 + one newly generated and Library-verified distinct asset +1 = 1767.** AI 2 unchanged. Same TASK_ID retry, status/readback/re-report +0.
 
 ## AI 1 OutRun Korean localization B-0132 transparent asset (2026-10-28 KST)
 
@@ -22,7 +29,7 @@ Updated: 2026-10-28 03:54 KST
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1766** | OutRun ROI B-0132 SP Course Korean RGBA PNG, verified Library upload, +1 |
+| AI 1 — ChatGPT | **1767** | OutRun ROI A-0121 Korean RGBA PNG, verified Library upload, +1 |
 | AI 2 — ChatGPT2 | **2048** | DX9Ex lens 405890 c64 pre-shader-bind epoch conditional R30 raw-WVP rejection, +1 |
 
 

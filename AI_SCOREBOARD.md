@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 KST
+Updated: 2026-10-28 07:25 KST
+
+## AI 2 DX9Ex original lens pair ZENABLE-depth negative control (2026-10-28 07:25 KST)
+
+- TASK_ID=`LENSFLARE-ZENABLE-TWO-ORDINAL-CONTROL-20261028-0725`; independent LENS_FLARE_ONLY REVIEW_ONLY static cross-source verification: original reconstructed `sun_flare_40cbc0` calls `z_save_406810(0)` before both intentional CABE `0x570008` ordinals and restores ZENABLE only after the second; original `4052C0` opaque flush and `pass_404600` do not perform a separate ZENABLE restore (the pass updates ZWRITEENABLE instead). Thus a **second-only** visually flat/doubled flare is not explained solely by different original depth-test settings across the two 570008 ordinals. Actual PMT/texture and headset pixels remain unlinked, and the user's visually second flare is not proven to equal CABE ordinal2.
+- Current default R26/R23 fallback's R13 `R13CaptureDrawTimeEffect` reads ZENABLE separately from ZWRITEENABLE; `PassPolicy::ClassifyEffectStereo` selects ZeroDisparity when depth test is disabled. The protected R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` contains **identical R13 and pass-policy blobs**, so this lower depth-off rule is not a new focus-branch regression. The R30 projected stock-WVP equal-copy and actual eye source/HMD yaw remain distinct untested questions.
+- OutRun docs-only commit `cd92a8b4b2fc0ac1dceded2bf65077901df820d2`, parent `8219dacb30804770e077a4589d83e26c9da2dc14`, exactly one new `docs/reviews/dx9ex/automation/LENSFLARE-ZENABLE-TWO-ORDINAL-CONTROL-20261028-0725.md` (+57/-0), exact `[AUTO:LENSFLARE-ZENABLE-TWO-ORDINAL-CONTROL-20261028-0725]`, remote HEAD/blob `38b27b8d89d1ea17860755bd4f994d7a24b1d858`, compare ahead1/behind0 verified. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; docs-only build gate not required, CI-skip none. No Quest3 HMD root-cause/fix claim; same-task retry/readback +0; AI 1 unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2053 + one distinct source-verified ZENABLE/ZeroDisparity negative-control investigation +1 = 2054.**
 
 ## AI 2 DX9Ex lens host per-eye blit source-vs-target negative control (2026-10-28 KST)
 
@@ -81,7 +88,7 @@ Updated: 2026-10-28 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1772** | OutRun ROI B-0135 Korean RGBA asset, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2053** | DX9Ex lens host eye-blit SRV/RTV reuse negative control, docs-only remote verified, +1 |
+| AI 2 — ChatGPT2 | **2054** | DX9Ex lens host eye-blit SRV/RTV reuse negative control, docs-only remote verified, +1 |
 
 
 ## AI 2 DX9Ex lens material-alpha split and cache-reset falsification (2026-10-28 05:31 KST)

@@ -1,14 +1,24 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 19:08 KST
+Updated: 2026-10-27 19:14 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2025** | DX9Ex lens occlusion query R26 tracked write-free single-execution negative control, +1 |
+| AI 2 — ChatGPT2 | **2026** | DX11 post-Draw TARGET/Z 128-rect native GPU replay, five exact-SHA Gates PASS, +1 |
 
+
+
+## AI 2 DX11 native full-frame post-Draw authentic TARGET/Z rectangle union (2026-10-27 19:14 KST)
+
+- TASK_ID / PRODUCTION_ID: `CONVERSION-DX11-01109` (single independently scored source implementation task; same-task CI repairs, C6, retries, rollover and status rechecks +0).
+- Previous confirmed AI 2 score **2025** + this newly verified material renderer capability **+1** = **2026** cumulative points. AI 1 remains separately **1759**.
+- Source implementation commit `8ddc7c8539faada6d9a2173f959a0ec2f989aa8b`: `src/vr/d3d11/native_game_post_draw_clear_batch.hpp`, `src/vr/d3d11/live_game_frame_bridge.cpp`, C++ and source-graph tests. Actual game-authored post-Draw 17..128-rectangle D3D9 TARGET/Z Clear is compacted into exact clipped bounded D3D11 RTV/D32 replay with fail-closed DX9Ex fallback.
+- Causal same-task CI repair and real 00728 C++ constexpr out-of-bounds regression were corrected without suppressing safety; Fast now fails if that compile/test fails, and all five workflows trigger for its source. Immutable validation-bearing `RESULT_SHA=983266f5be558cb6714f92ac9093ad504a96df5b` in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`.
+- GitHub push exact-SHA mandatory five completed/success: DX11 Fast **40484806846**, Backend **40484806851**, Build **40484806966**, OpenXR **40484806785**, HUD **40484806834**; extra WARP **40484806817** completed/success. C6 bookkeeping-only descendant `f34aa7ae1f46da07120ddce7c36b34c2e9917e26` contains `[skip ci]` and does not revalidate the source.
+- **RUNTIME_VALIDATION=UNTESTED**: no Quest3/VDXR, real OutRun 2006 menu/vehicle/race pixel, gamepad/FFB runtime proof; automated source and Windows build PASS do not establish gameplay/HMD PASS.
 
 
 ## AI 2 DX9Ex lens 570010 query write-free single-execution negative control (2026-10-27 19:08 KST)

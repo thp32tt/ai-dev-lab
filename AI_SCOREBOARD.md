@@ -6,8 +6,15 @@ Updated: 2026-10-28 KST
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1761** | OutRun ROI B-0127 new Korean RGBA PNG; verified Library upload, +1 |
+| AI 1 — ChatGPT | **1762** | OutRun ROI A-0117 RANDOM→무작위 isolated Korean RGBA PNG, verified Library upload, +1 |
 | AI 2 — ChatGPT2 | **2044** | DX9Ex 01538 C993 post-wrapper missing exact physical owner guard; source-verified time-window falsifier, +1 |
+
+## AI 1 OutRun Korean localization A-0117 transparent asset (2026-10-28 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0117-C5817D42`; single new OutRun 2006 full-HD-reference Korean lettering deliverable. Original `Q111_C075FB49_BASE_READABLE_FLIPY(9).png`, approved English `RANDOM` -> Korean `무작위`, original reference bbox [1734,1450,1945,1498] (211×48).
+- One ImageGen output was transparency-cropped, resized, and exported as `Q111_5cdc8808f3d14492_k.png`; local 211×48 RGBA with alpha 0..255; SHA256 `c9f5236c56c9a2409bef8c4771974afa1c5993dff18266f2a1c000db351d0f8d`. File Library upload returned succeeded and separate Library readback confirmed `/아웃런 한글화 신규/Q111_5cdc8808f3d14492_k.png`, library_file_id `libfile_bbc8a49e7df481918bf5fbb1a9e36eef`. Source style fidelity and game placement have not been independently QA-approved; no DDS, C1/C2/C3 or runtime PASS.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1761 + one newly generated and verified Library-delivered distinct asset +1 = 1762.** AI 2 unchanged. Same TASK_ID retry, upload, QA status/readback/re-report scores +0.
+
 
 
 

@@ -1,14 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 16:10:40 KST
+Updated: 2026-10-27 16:18:00 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2013** | DX9Ex R9 null-depth deferred-state + R7 compatible depth identity-sync source fixes, exact-SHA CI PASS, +2 |
+| AI 2 — ChatGPT2 | **2014** | DX9Ex rival first-writer/live-state/D3DX boundary repair, official R26 build PASS, +1 |
 
+
+## AI 2 DX9Ex rival first-writer/live-state/D3DX boundary repair (2026-10-27 16:18:00 KST)
+
+- TASK_ID / RUN_KEY: `RIVAL-DEEP-20261027T1600KST`. Continued the rival-only regression trace from known-good `a22be86a` through `CONVERSION-DX9EX-01045` (`5366b7d7f3dac1d23f75c9df461925719887c35d`) and current `vr-d3d9ex-focus`. Exact first-writer recovery lineage is now pinned: `5366b7d7` introduced stable-root enforcement that rejects the original game's legitimate null-root first writer; `5e7b141f8d3d19e9b50cb314de081f742544fc8a` first added rival-only `FirstVerifiedNewRootAppendedChain`, with `cd4fa9c...` later strengthening the MSVC constexpr regression.
+- New material game-source repair in this task: `8f63adfaff6d7b45ab6ceb5826da029afe9ac012` flushes an exact deferred RivalMarkerSprani D3DX batch only at NEXT_NODE/QUEUE_END while the original queue node/epoch/Calc3D2D marker still own the physical submission. `79b26019f7579ccb24a811b54cb4a6b177bda790` lets exact queued FVF 0x142 rivals bypass only a potentially stale cached-VS hint and then requires authoritative live `GetVertexShader()==nullptr` plus exact FVF 0x142. Earlier same-trace R30/R33 DPUP live-probe restoration remains narrow to exact rival ownership; ordinary draws keep cached-state optimization.
+- Diagnostic/verification completion under the same task (no extra score): exact R30 prepare rejection reasons, R62 PREPARE + bilateral EYE RECEIPT, R84 raw-c64 proof, dedicated `verify_vr_rival_known_good_restore.py`, and Active-workflow wiring. Several inherited stale verifier assumptions were repaired without widening render policy.
+- Validation-bearing official source SHA `62553dc9bd5f41f920eee9bf752c29fcae1648a2`: GitHub Actions `DX9Ex OFFICIAL FOCUS R26 HUD Test and Debug` run `40468223684` completed **SUCCESS**. Its rival known-good verifier, Win32 R26+HUD DLL build, x64 OpenXR host build, RelWithDebInfo build and TEST+DEBUG package assembly passed. Artifact `OutRun2-VR-R26-OFFICIAL-FOCUS-62553dc9bd5f41f920eee9bf752c29fcae1648a2`, digest `sha256:768c09ce40a0e7f17ef44dfcfa1491e1aca8f2253f78cb1a6729c04a289abc29`. Later descendants through `959ffada...` changed only verifier files relative to this game source; subsequent concurrent host/R84 work is separate and does not create another score for this same rival outcome.
+- `RUNTIME_VALIDATION=UNTESTED`: Quest3/VDXR visual success is not claimed until the user runs the DEBUG package. Runtime discrimination is now complete for fixed-function XYZRHW, shader/c64 and deferred D3DX/FVF142 rival paths.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2013 + one distinct material rival source-repair achievement +1 = 2014.** Same-task telemetry, CI/verifier repairs, readback, retry, later shared-c64 diagnostics or rollover +0. AI 1 remains separate.
 
 ## AI 2 DX9Ex R9 null-depth + R7 depth-identity source fixes (2026-10-27 16:10:40 KST)
 

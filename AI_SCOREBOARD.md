@@ -1,14 +1,22 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 15:54:19 KST
+Updated: 2026-10-27 16:07:57 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2010** | DX9Ex lens-only host cached projection eye-pose provenance negative-control review, +1 |
+| AI 2 — ChatGPT2 | **2011** | DX9Ex lens flare CABE original-ordinal versus frame/eye raster negative control 01529, +1 |
 
+
+## AI 2 DX9Ex lens C993/CABE ordinal provenance negative-control review 01529 (2026-10-27 16:07:57 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX9EX-01529`; distinct lens-only REVIEW_ONLY, not a retry of 01528 or the manual `LENSFLARE-POSE-20261027-1546`. Protected R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`. GitHub inspected SSOT `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` source HEAD `e81414980996d233363279831b162cdbc8a2bde1`; read-back exact hooks blob `4f0296f00b06b99faffabeec407805d5b82130cc`.
+- Independent static falsification of the implicit telemetry-to-physical-draw inference: current `src/hooks_graphics.cpp::DrawObjectAlphaCentre` advances/resets `LensFlareSequence/LensOuter570008Ordinal` on VR-enabled 0x570002, not on Present or eye draw; `DrawObjectAlphaProjected` increments ordinal on original CABE 0x570008 calls with `LensFlareSequence != 0`. Both CABE and C993 logger hits are power-of-two/early sampled, do not share a physical same-eye RT/texture/draw ID or game-frame join. Baseline hook lacks this new ordinal instrumentation. Accordingly ordinal=2 is NOT proof of a duplicate same-eye raster. This resolves an observability ambiguity, **not** the reported double/flat/head-following optics, and is not a duplicate score for previously known C993 zero-disparity or R23 cached-source behavior.
+- GitHub OutRun docs-only exact `[AUTO:CONVERSION-DX9EX-01529]` RESULT_SHA `49eabaa738af42e444bb8dc4958ce4a39508ea9b`; exactly **one added file**, `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01529.md` (+57/-0), parent `e81414980996d233363279831b162cdbc8a2bde1`. Remote blob `da68a27574078fb9b39e8617e8835724afc10bb3` and remote branch HEAD verified; no C++/HLSL/config/workflow/source changed; no CI bypass, build gate not required.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `CODE_CHANGE=NO`; `RUNTIME_VALIDATION=UNTESTED`. No GPU/Quest3/VDXR trace, no new original EXE reverse engineering or HMD-pass claim. Next falsifier joins one C993/CABE source serial/texture/blend to actual `Present+eye+RT+physicalDraw` and host fresh/cached frame rather than trusting the ordinal alone.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2010 + one new independently source-verified, remotely committed lens-log-provenance negative control +1 = 2011.** Same TASK_ID re-read, retry, rollover, further documentation or HMD later on same achievement +0. AI 1 independent 1759, unchanged.
 
 ## AI 2 lens flare source-pose vs R23 cached projection negative control (2026-10-27 15:54:20 KST)
 

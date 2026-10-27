@@ -1,16 +1,26 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 11:15:00 KST
+Updated: 2026-10-27 12:46:36 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2004** | Actual DX11 cropped TARGET|STENCIL and TARGET|Z|STENCIL pre-Draw C++ native replay, five exact-SHA Gates PASS, +1 |
+| AI 2 — ChatGPT2 | **2005** | DX11 01103 authentic pre-Draw Z source compaction and exact-SHA five Gates PASS, +1 |
 
 
 
+
+
+## AI 2 DX11 original-game pre-Draw many-rect depth GPU replay 01103 (2026-10-27 12:46:36 KST)
+
+- TASK_ID / RUN_KEY: `CONVERSION-DX11-01103`. Independently implemented authentic D3D9 pre-Draw clipped Z and combined TARGET|Z source batch chronology on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: bound original source input to 128 regions, compact ordered, completely covered depth writes into 32 GPU Z replay tiles without dropping unproven partial overlaps. Main RT0+depth COM identity, full-Z seed, exact original source ordinals, stencil-neutral admission, atomic color/depth rollback, DX9Ex fallback, input/FFB and DXVK freeze preserved.
+- Actual five-file C++/regression/workflow material implementation SHA and **validation-bearing RESULT_SHA** `39ab58702d316bc7706a4cce30650c1b404a381d`; includes `native_game_pre_draw_depth.hpp`, `live_game_frame_bridge.cpp`, compiled deterministic overlapping Z and paired color/depth pixel parity/negative probes, and required workflow integration.
+- **Five exact-SHA push GitHub Actions completed/success on `39ab58702d316bc7706a4cce30650c1b404a381d`**: DX11 Fast 40444908436, Backend Conversion Gate 40444908226, Windows Build 40444908328, OpenXR VR architecture 40444908364, HUD Inspector 40444908281. Optional WARP 40444908539 also success. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`. No CI-skip on result commit.
+- Separate C6 bookkeeping-only source-repository commit `148e2a4eba4d7c059f44972b12a8de3765a19399` contains `docs/automation/runs/CONVERSION-DX11-01103.json` and carries `[skip ci]` solely after gates. No new source milestone or additional score.
+- `RUNTIME_VALIDATION=UNTESTED`: real game/menu/car/race pixels, Quest3/VDXR HMD, native Draw and published frames, FPS and input parity **not measured**. Source allocation ratio not measured, no 70% claim. Build verified is not gameplay verified.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2004 + one distinct material C++ source integration and five exact-SHA gate achievement +1 = 2005.** AI1 separate. Same TASK_ID C6/retry/rollover/readback +0.
 
 
 ## AI 1 OutRun C1 stale SUBMITTING recovery + watchdog hardening (2026-10-27 11:15 KST)

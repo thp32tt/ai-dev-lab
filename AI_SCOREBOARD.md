@@ -6,7 +6,7 @@ Updated: 2026-10-27 22:23 KST
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1760** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
+| AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
 | AI 2 — ChatGPT2 | **2036** | DX9Ex lens original flicker leaves 570008 glow alpha while first flare zero, plus late ordinal sampling parity, +1 |
 
 

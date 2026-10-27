@@ -1,14 +1,23 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 20:42 KST
+Updated: 2026-10-27 20:45 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2031** | DX9Ex lens R26 lower-owner vs mislabeled R29 and scope-None physical telemetry blind spot, +1 |
+| AI 2 — ChatGPT2 | **2032** | DX9Ex lens native GPU source/c64/VS/FVF/L-R receipts + exact-SHA Win32 build, +1 |
 
+
+
+## AI 2 new physical lens GPU telemetry (2026-10-27 KST)
+
+- TASK_ID=`LENSFLARE-PHYSICAL-LOG-20261027`; one distinct material DX9Ex native GPU telemetry achievement, separate from earlier `LENSFLARE-REVIEW-APPLY-20261027` source-call logging and separate `LENSFLARE-R26-LOWER-OWNER-20261027-2042` docs review. Same-task CI retry, verifier correction, docs update and diagnostic work receive +0.
+- Before **2031** + new distinct material achievement **+1** = after **2032** (AI1 1759 unaffected).
+- Source `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` native physical R30 classification, sampled live VS/FVF, L/R WVP HResults/restore and lower fallback diagnostics; game c64 gate, new destructive verifier and FOCUS workflow; material validation-bearing SHA `36a117c889b07048afd4576d25474a9a7317e80a`.
+- GitHub Actions exact-SHA `VR PC Fast Test Build` run `40497661770` **completed/success** with GitHub artifact `12731147861`; remote readback confirmed. Other FOCUS extended debug and Active Validation gates separately tracked, no all-CI-green claim.
+- Correct default lower owner: R26/R23 (not local variable named r29). GPU source-to-opaque-descriptor `UNLINKED`, scope-None path invisible. `QUEST3_VDXR=UNTESTED`, actual optical root cause still OPEN.
 
 
 ## AI 2 DX9Ex lens default R26+HUD lower owner and scope-None telemetry blind spot (2026-10-27 20:42 KST)

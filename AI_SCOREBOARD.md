@@ -1,13 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 17:00 KST
+Updated: 2026-10-27 17:08 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
-| AI 2 — ChatGPT2 | **2017** | DX9Ex lens 4056D0 opaque undo early-return negative control, +1 |
+| AI 2 — ChatGPT2 | **2018** | DX9Ex rival known-good BB796 ownership/install-chain restoration, +1 |
+
+## AI 2 DX9Ex rival known-good BB796 ownership/install-chain restoration (2026-10-27 17:08 KST)
+
+- TASK_ID / RUN_KEY: `RIVAL-DEEP-20261027T1645KST`. Independent continuation of the user's rival-only regression trace. Known-good `a22be86a` was re-read and proves `RivalMarker_SpraniCall (0xBB796)` was unconditionally hooked and no `VRRivalDx11NativeRoute` option existed. Current pre-fix source conditionally disabled BB796 when `RivalDx11NativeRoute=true`, bypassing projected-anchor SpriteNode ownership and all downstream fresh-root/R30/R33 fixes.
+- Material source repair: `cbb7e01114a880e6f217da0b5de593951ff0f301` restores unconditional BB796 ownership while leaving the stock-vs-exact BB6F0 projector A/B separate. Follow-up `0caeef31b7e4575131d92e0cc1119185609c73aa` makes exact BB6F0 installation atomic with a valid `Calc3D2D_hk` trampoline; `6912b977c6aaade873d7190b19ea67a0df30b864` exposes requested exact-edge config separately from actual install diagnostics. Official correctness launch is pinned to `RivalDx11NativeRoute=false` and now also `UIScalingMode=1` via `c327a17f0283c3c91a1fd478bdc045cb54aa9de8`, preventing user.ini from disabling the entire UIScaling/BB796 hook chain.
+- The speculative broader R33 cross-node rival c64 relaxation introduced during this same investigation was deliberately reverted after deeper safety review: current `rank_marker_physical_source.hpp` is back to exact queueNode+queueEpoch and <=12 draw fail-closed ownership. Runtime telemetry remains to distinguish exact-node rejection without widening provenance.
+- Current OutRun branch HEAD at scoring time `af322f6e40a30bc5951e4b4ec33aa2bca824cd3f`; remote readback of the rival install/admission contract passed all checked invariants (BB796 unconditional, exact-edge guard, fresh-root, R30 reject discriminator, R33 DPUP live probe, R62 rival fixed-function route, strict original-c64 fence, shipped false A/B default and UIScaling gate). The first BB796 source commit's Win32 game DLL build step completed SUCCESS; its general workflow later failed in unrelated `vrhost/src/main_r23.cpp` because a lambda was incorrectly declared as bool. That inherited host build blocker was minimally repaired in `f4a4000740364270e959f429f46de4e3f8ff9c19`; clean full build reruns are still pending at this score update. `RUNTIME_VALIDATION=UNTESTED`; no Quest3 visual PASS claim.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2017 + one new material rival source regression repair +1 = 2018.** Same RUN_KEY diagnostic refinements, safety rollback, verifier changes, build repair/retry and later runtime validation +0. AI 1 remains separate.
 
 ## AI 2 DX9Ex lens opaque colour-undo admission negative control (2026-10-27 17:00 KST)
 

@@ -6,10 +6,16 @@ Updated: 2026-10-28 KST
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
+| AI 1 — ChatGPT | **1761** | OutRun ROI B-0127 new Korean RGBA PNG; verified Library upload, +1 |
 | AI 2 — ChatGPT2 | **2041** | DX9Ex original dual-GetData pending/readback lens visibility source branch verified, +1 |
 
 
+
+## AI 1 OutRun Korean localization B-0127 generated RGBA asset (2026-10-28 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0127-C70CB0E0`; independent, new ImageGen text-only Korean localization asset, not a retry of previously recorded A-0111. Source was the user-provided HD full image `Q111_C075FB49_BASE_READABLE_FLIPY(6).png`; source phrase `Go through the gate!` → approved Korean `게이트를 통과하세요!` and source bbox [1076,262,1566,357] (490×95).
+- One ImageGen output was cropped/resized and saved to `Q111_b40aa043dc4c3737_k.png`: verified local 490×82 RGBA, transparent, SHA-256 `1303e7da65bee79a11e73b91ac93d86ba6778501b71af82f34aa9e30c13b7eb1`. Personal Library operation `upload` returned `succeeded` at `/아웃런 한글화 신규/Q111_b40aa043dc4c3737_k.png`, library id `libfile_d84a06653fbc81919b239c1f7bdf5df1`. No game DDS/placement, C1/C2/C3, or game-runtime PASS claimed.
+- **AI 1 score: prior GitHub SSOT 1760 + independently generated and verified Library-delivered new asset +1 = 1761.** AI 2 unchanged **2041**. Same TASK_ID retry/upload/status/report yields +0.
 
 ## AI 2 DX9Ex original 40CBC0 dual GetData lens visibility/occlusion divergence (2026-10-28 KST)
 

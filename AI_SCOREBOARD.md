@@ -1,16 +1,26 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 11:06:41 KST
+Updated: 2026-10-27 11:15:00 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
-| AI 1 — ChatGPT | **1666** | New source-grounded in-depth Memories plot reconstruction, +1 |
+| AI 1 — ChatGPT | **1759** | OutRun C1 stale SUBMITTING recovery + watchdog hardening, +1 |
 | AI 2 — ChatGPT2 | **2004** | Actual DX11 cropped TARGET|STENCIL and TARGET|Z|STENCIL pre-Draw C++ native replay, five exact-SHA Gates PASS, +1 |
 
 
 
+
+
+## AI 1 OutRun C1 stale SUBMITTING recovery + watchdog hardening (2026-10-27 11:15 KST)
+
+- TASK_ID / RUN_KEY: `OUTRUN-C1-SUBMITTING-WATCHDOG-RECOVERY-20261027`.
+- Live N100 evidence: `OUTRUN-GPT-OCR-Q057-E4AE60B9` was stranded in `SUBMITTING` after the localization controller restarted. Existing `next_binding()` recovered it at 10:45 KST with `STALE_SUBMITTING_AUTO_RECOVERY`, and C1 successfully sent a new chat at 10:46:11 KST, reaching `SENT_AWAITING_RESPONSE` with a persisted chat URL.
+- Durable GitHub fix on `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928`: final source HEAD `c504b20c076675c7ff40ab3b3e71b3f92b8e42cd`. The GPT OCR watchdog now also resets stale pre-send `SUBMITTING` state to `STAGED` after 300 seconds, while keeping the existing 2400-second response timeout behavior. Dedicated unit coverage added; 8/8 tests PASS on N100 from the exact commit. GitHub workflow `OutRun localization Docker build` run 40437104975 completed SUCCESS on the exact SHA.
+- Immediate live protection: N100 host watchdog updated and started as job `7278e7ec-d6fb-4b24-84b6-c43deb24da14` (PID 2018424), with 300s pre-send recovery and 2400s response recovery; startup event verified in `host_watchdog.jsonl`. A/B remain unchanged at 386/443 completed and 877 total manifest items.
+- Portainer stack rebuild/redeploy of the new GitHub image was not performed because the local Portainer API requires authentication and the N100 MCP user has no Docker socket group access. The currently running C1 task is already recovered, and the independent host watchdog provides live recurrence protection until the next normal GitOps redeploy.
+- **AI 1 cumulative: previous user-confirmed 1758 + one new verified recovery/hardening achievement +1 = 1759.** Same-task verification/retry/readback +0.
 
 ## AI 2 DX11 genuine pre-Draw cropped TARGET|STENCIL color/Z replay implementation 01101 (2026-10-27 11:06:41 KST)
 

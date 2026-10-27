@@ -1,14 +1,21 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-27 22:23 KST
+Updated: 2026-10-27 23:06 KST
 
 ## Latest confirmed cumulative scores
 
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
-| AI 2 — ChatGPT2 | **2036** | DX9Ex lens original flicker leaves 570008 glow alpha while first flare zero, plus late ordinal sampling parity, +1 |
+| AI 2 — ChatGPT2 | **2037** | DX9Ex lens R30 EYES receipt can log before RIGHT Draw execution on RIGHT state failure, independently source-verified docs-only +1 | DX9Ex lens original flicker leaves 570008 glow alpha while first flare zero, plus late ordinal sampling parity, +1 |
 
+
+## AI 2 DX9Ex lens R30 RIGHT pre-Draw diagnostic negative control (2026-10-27 23:06 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01536`; new independent lens-flare-only REVIEW_ONLY source verification. Compared pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `7b0d5f139bee13daed6fc4a4068e839a21c4df9a` and prior 01535 receipt limitation.
+- Distinct material evidence: `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp::R30TryScreenSpaceFovDraw:5704-5777` makes RIGHT native `actualDraw()` conditional on RIGHT RT/depth/viewport/c64 setup success, but samples `VR LENS R30 PHYSICAL EYES` unconditionally afterward for lens candidates; hence an EYES row can represent only a successful LEFT draw plus failed RIGHT pre-Draw setup. `eyeRT=LEFT_RIGHT_TRANSACTION` is a label; `wvpEqual` compares prepared constants, not actual RIGHT upload. Failed RIGHT setup is poisoned/recovered and cannot alone prove double-flare or a second lower draw. Separate conditional rightDrawEntered, descriptor/PMT and eyeRT receipt is required.
+- Durable docs-only commit `48737391ad91bdf7b78a7bcf12bd720d35367655`, exact parent `7b0d5f139bee13daed6fc4a4068e839a21c4df9a`, exact marker `[AUTO:CONVERSION-DX9EX-01536]`; one new file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01536.md` (+61/-0); branch remote HEAD/parent/diff/readback verified. CODE_CHANGE=NO; AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE; RUNTIME_VALIDATION=UNTESTED; no source build gate or CI-skip. Original double flare/head-lock remains unproven at this SHA.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2036 + one new independent source-traced RIGHT-stage EYES negative-control finding +1 = 2037.** Same TASK_ID review/retry/rollover/readback +0; AI 1 unchanged.
 
 
 ## AI 1 OutRun Korean localization A-0111 generated RGBA asset (2026-10-27 22:23 KST)

@@ -1,6 +1,14 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 07:25 KST
+Updated: 2026-10-28 07:59 KST
+
+## AI 2 DX11 native SM3 GPU Draw abort rollback and exact-SHA full Gate recovery (2026-10-28 07:59 KST)
+
+- TASK_ID=`CONVERSION-DX11-01122`; one distinct DX11 native real-game GPU source-diagnostic safety repair. Material C++ source implementation `2fdc543bd7783e9f1acec3352c630262396fe47b` changes `live_game_frame_bridge.cpp`, `native_game_raw_visual_diagnostic.hpp`, adds `native_game_raw_draw_pair.hpp` and `tests/native_raw_draw_pair_test.cpp` with DX11 Fast wiring: failed/partial SM3 Draw invalidates paired pre-GPU readback before any later source Draw; wrong color/Present source identity fails closed; counts only actually submitted GPU post-copies. Original D3D9 Draw/input/FFB and guarded fallback retained.
+- Causal same-task repairs, NOT additional achievements: `142349131f09c011f06fe8056eac12c5bbeaa17b` corrects inherited 01121 terminal acceptance command metadata (Backend failed run 40595762855); `c31c518cc74f63fb35c06295579ad076c4cd1165` adjusts stale OpenXR diagnostic bundle source-contract assertions to require rollback, reject counter and RAW copy accounting with negative mutants. No Gate disabled, no validation-bearing CI-skip.
+- Exact validation-bearing result SHA `c31c518cc74f63fb35c06295579ad076c4cd1165`: five GitHub Actions PUSH `completed/success` on the SAME SHA: DX11 Fast `40597059276`, Backend `40597059249`, Build `40597059263`, OpenXR `40597059280`, HUD `40597059250`. Source-matched GitHub Build package `outrun2006tweaks-c31c518cc74f63fb35c06295579ad076c4cd1165`, artifact `12776637902`.
+- Scope remains opt-in diagnostic, NOT complete native menu/vehicle/race frame and not Quest3/VDXR visual parity. `RUNTIME_VALIDATION=UNTESTED`; same TASK_ID retries, metadata/Gate repairs, C6 checkpoint and readbacks +0. AI1 unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2054 + newly source-integrated exact-SHA five-Gate verified distinct DX11 repair +1 = 2055.**
 
 ## AI 2 DX9Ex original lens pair ZENABLE-depth negative control (2026-10-28 07:25 KST)
 
@@ -88,7 +96,7 @@ Updated: 2026-10-28 07:25 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1772** | OutRun ROI B-0135 Korean RGBA asset, verified Library upload, +1 |
-| AI 2 — ChatGPT2 | **2054** | DX9Ex lens host eye-blit SRV/RTV reuse negative control, docs-only remote verified, +1 |
+| AI 2 — ChatGPT2 | **2055** | DX11 failed native SM3 Draw GPU-pair rollback, exact-SHA 5/5 Gates PASS, +1 |
 
 
 ## AI 2 DX9Ex lens material-alpha split and cache-reset falsification (2026-10-28 05:31 KST)

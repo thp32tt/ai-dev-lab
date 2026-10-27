@@ -7,7 +7,7 @@ Updated: 2026-10-27 23:06 KST
 | AI | Cumulative score | Status |
 | --- | ---: | --- |
 | AI 1 — ChatGPT | **1760** | OutRun ROI A-0111 Korean transparent PNG and Library verified, +1 |
-| AI 2 — ChatGPT2 | **2037** | DX9Ex lens R30 EYES receipt can log before RIGHT Draw execution on RIGHT state failure, independently source-verified docs-only +1 | DX9Ex lens original flicker leaves 570008 glow alpha while first flare zero, plus late ordinal sampling parity, +1 |
+| AI 2 — ChatGPT2 | **2037** | DX9Ex lens R30 EYES receipt can precede RIGHT Draw on state failure; lens-only static negative control +1 |
 
 
 ## AI 2 DX9Ex lens R30 RIGHT pre-Draw diagnostic negative control (2026-10-27 23:06 KST)

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun Korean ROI A-0137 MODE SELECT single-image asset (2026-10-29 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0137-E099CABB`. Generated exactly one Korean `모드 선택` title-only image (single image generation) using the user-supplied full OutRun 2006 HD English UI screenshot as reference, original English `mode select` ROI [2,1742,1252,1861] (maximum 1250×119 px). Rendered chrome-style silver bevel and shadow lettering; prepared a standalone transparent RGBA PNG `Q228_c59d679311eed391_k.png` at 766×118 pixels, with text and alpha isolated (no screenshot canvas or other UI elements).
+- ChatGPT personal Library upload succeeded, final corrected snapshot overwrite succeeded at `/아웃런 한글화 신규/Q228_c59d679311eed391_k.png`, library_file_id `libfile_2ae69f1dac5c8191853bbe09d2161996`. Candidate asset only. Independent font/style QA, source DDS composition, game visual placement and runtime PASS NOT claimed. Same TASK_ID retry, recheck, or report +0.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1776 + one distinct newly generated Library-saved asset +1 = 1777.** AI 2 unchanged at 2111.
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 DX9Ex CONVERSION-DX9EX-01565 R85 conditional head-rotation count truth table (2026-10-29 KST)
 
 - Independent LENS_FLARE_ONLY REVIEW_ONLY source-static falsification on thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus pinned SOURCE_HEAD `1823787b0c54b3132603f3b5f051ba7480c8d480`: `projected_sun_ray.hpp::BuildProjectedSunRay` multiplies original stockWvp * inverseBaseProjection * (headInverse or identity based on saved sourceCameraSynced) * identityEye * per-eye projection. Original `RecordGameWvpWrite` stores camera-override state, not measured producer-40CBC0 camera rotation. A fresh independent read-only four-case row-matrix yaw [0,15,30] model shows correct one rotation for (sourceHasHead=false, flag=false) and (sourceHasHead=true, flag=true), missing rotation for (false,true) and double rotation for (true,false). These are mathematical conditional possibilities, not observed screen pixels or actual bad camera state. Unlike 01560's FOV/legacy logs, 01563's mixed-time diagnostic, 01562's CABE shader/age source alias and 01564's C993 class/strict getter comparison, the two-axis producer-WVP rotation/flag truth-table discriminates two opposite root-cause candidates and lists same-physical-PMT yaw falsifiers. No actual head lock, duplicate emitter, invalid native L/R or HMD fault proven.

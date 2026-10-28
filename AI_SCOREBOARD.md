@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 CONVERSION-DX11-01135 source-authentic ColorFill/Copy RAW GPU pixel epoch (2026-10-28 KST)
+
+- Unique source-integrated game rendering correctness repair on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: actual four C++/test source files at implementation commit `5f93b270f2342091d1dd37417ee36ae759e0f6b7`; inherited 01134 policy-record CI failure repaired under SAME CONVERSION-DX11-01135, extended negative regression, final non-CI-skipped exact-source `RESULT_SHA=2068eb978d6c3f0e93e533b973b6bfbaa12f2510`. Separate C6 docs-only `71d38dd74a0e3f27034e5e0afbca633df4e51c59` (`+0`) and remote JSON readback `d331ba067225d6aceb0a6518b0668d7aede3cc0f`.
+- Distinct defect versus 01134: after a valid native D3D11 Draw and PRE/POST GPU capture, a successful original D3D9 game `ColorFill` or `StretchRect/UpdateSurface` into its canonical backbuffer can overwrite sampled RGB without a TARGET Clear. Integrated authenticated source-device/COM RT identity/extent/format and successful nonempty region with RAW preview source capture retirement. Event-fenced staging and same-present rearm stay intact, other/offscreen/failed/empty writes do not revoke evidence. Tested positive/negative C++17 source cases; original game D3D9 rendering, input/FFB, DX9Ex fallback, frozen DXVK and full-native-frame fail-closed gate preserved. This is not the prior clipped TARGET Clear repair.
+- **Five required push GitHub Actions SUCCESS on identical exact SHA `2068eb978d6c3f0e93e533b973b6bfbaa12f2510`:** DX11 Fast #40681202249, Backend #40681202198, Windows Build #40681202288, OpenXR architecture #40681202172, HUD Inspector #40681202278. Verified game Windows artifact ID `12813500770`, digest `sha256:84e77b3f86abb542649bbfa0e83c0e2c9f926d7de0bae2936039ac9dcad5a235`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; build/source verified, **RUNTIME_VALIDATION=UNTESTED** (no actual game native GPU pixels, full-frame or Quest3/VDXR proof). Implementation-time percentages unmeasured. Same-task CI correction, Gate checks, C6, retry and report +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2091 + distinct C++ game source-write RGB epoch repair with five exact-SHA Gate PASS +1 = 2092.** AI1 score independent.
+
+Updated: 2026-10-28 KST
+
 ## AI 2 DX9Ex CONVERSION-DX9EX-01555 one-shot pending semantic counterexample (2026-10-28 KST)
 
 - TASK_ID=`CONVERSION-DX9EX-01555`; unique LENS_FLARE_ONLY REVIEW_ONLY source-static falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Pinned `SOURCE_HEAD=b21ad48ead31d3bfacfff6b95004e1d0150a49bf`; exactly-one-file docs-only `RESULT_SHA=fc08aa3d030a44680189d1dbafc7783bc4f43e70`, marker `[AUTO:CONVERSION-DX9EX-01555]`; GitHub commit file list, remote blob `9c8d2d658d4740d479c27abdd70da7c3da43acf4`, branch HEAD and required report fields readback verified.

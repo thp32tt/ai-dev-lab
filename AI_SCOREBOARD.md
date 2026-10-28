@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun 2006 C1 new SHA8 independent lightweight QA (2026-10-29 KST)
+
+- RUN_KEY: `OUTRUN-C1-20261029T0845KST-A0075-B0088-NEW-SHA8` (unique new A/B candidate byte SHA-256 set, not a retry).
+- Independent C1 source/candidate inspection of **8 previously unreviewed SHA-matched transparent Korean PNGs** from N100: A-0075 ordinals 365–368 and B-0088 ordinals 420–423. All 8 candidate export SHA-256 and reviewed source-manifest SHA-256 matched actual file bytes. Compared actual source/candidate contact sheet and examined Korean text, alpha, clipping, non-lettering art, and mapping.
+- Results: **PASS 0, FAIL 2, HOLD 6**. B-0088 ordinal 422 `NOT AVAILABLE → 사용할 수 없음` includes an unnecessary red rounded UI background; ordinal 423 `TimeAttack Mode OutRun2 → 타임 어택 모드 아웃런2` includes the full blue beveled button/arrow panel. Six remaining lettering layers have no obvious text or alpha defects but native UI-cell registration/protected-art safety remains unverified.
+- GitHub QA evidence: [C1_20261029_0845_A0075_B0088_SHA8.json](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_0845_A0075_B0088_SHA8.json) commit `da4b8ee5759f5684b50ebb2b4a44b893a90db91f`, SHA readback verified and remote HEAD matched. N100 QA record persisted and SHA-level inventory reconfirmed 914 exported entries, 792 reviewed and **122 currently unreviewed**, with no missing or mismatched exports.
+- Boundaries: C1 only, no ImageGen, no A/B queue consumption, no DDS/C2/C3/game PASS, and no VR/FFB/DX11/DXVK changes. Rechecks, identical SHA, retry, rollover and status reads +0 separately. AI 2 score unchanged.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1777 + one new distinct completed SHA8 QA achievement +1 = 1778.**
+
 ## AI 2 수도권 주말 연간·시즌·다회권 특가 재검증 (2026-10-29 KST)
 
 - RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-10-29T08:07:34+09:00`. 2026-10-29 08:07 KST 시작한 독립 조회. 씨라이프 코엑스 공식 2026 마지막 싱글패스 특가(9/23~10/31 79,000원, 정상 130,000원), 공식 연간권 상세(주말·공휴일 제한 없음, 첫 입장월부터 1년이나 구매월별 정보등록/유효기간 상이, 동반 최대 3인 30% 할인, 주차 4시간 4,800원, 11/1 싱글패스 99,000원 예고), 공식 36개월 미만 무료 증빙 조건을 교차 확인. 판매처별 최종 정보등록 마감은 확정 불가. 과거 보고와 동일한 가격/혜택이므로 중복 추천 알림 없음.

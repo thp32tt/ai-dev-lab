@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun Korean ROI A-0134 GOAL D single-image asset (2026-10-29 03:00 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0134-FF64E0D6`. Exactly one new Korean `골 D` text-only candidate was generated from `Q215_C05E67EF_BASE_READABLE_FLIPY(1).png` (512x256) for original `GOAL D` at source ROI `[255,191,420,245]`. ImageGen was invoked once (n=1), and its RGBA output was tightly alpha-cropped/resized to 125x54, within the source ROI maximum 165x54. Final file `Q215_e8c52eec1c265238_k.png`.
+- Personal ChatGPT Library upload confirmed succeeded at `/아웃런 한글화 신규/Q215_e8c52eec1c265238_k.png` (library_file_id `libfile_c0ddbb18b0ac8191b8eeb32de1ca1f8c`); RGBA/alpha and output dimensions verified locally. Candidate only: no exact font/style QA, DDS/game runtime visual PASS, or C1/C2/C3 gate is claimed. Same TASK_ID retries/readbacks/reports score +0.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1774 + one distinct new generated and Library-uploaded asset +1 = 1775.** AI 2 independently remains 2105.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun Korean ROI B-0140 START single-image asset (2026-10-29 02:30 KST)
 
 - TASK_ID=`OUTRUN-ROI-B-0140-A345A138`. Created one new transparent-background Korean text-only candidate `출발` from verified original HD UI `START`, source `Q214_BF229CF4_BASE_READABLE_FLIPY.png` (2048x2048), reference bbox `[815,494,900,520]`. ImageGen generated exactly one image; cropped its transparent-alpha lettering and scaled to 85x26 RGBA PNG matching the maximum source ROI pixel dimensions. File `Q214_58929d092596d425_k.png`.

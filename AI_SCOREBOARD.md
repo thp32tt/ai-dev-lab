@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex LENSFLARE-R85-EYE-CANT-PROJECTION-20261029-0638 per-eye cant omission conditional control (2026-10-29 KST)
+
+- Independent LENS_FLARE_ONLY REVIEW_ONLY static falsification on thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus pinned SOURCE_HEAD `e2b84b0cb7275c3d3c0467e62150bc8efddff3e9`: current R85 `ProjectedScreenEffect2D` builds both C993/CABE candidate eye matrices with `identityEye` plus per-eye FOV, although latched `stereo.eyeOrientation[eye]` exists, current WorldBillboard uses that orientation, and R23 final XR projection views preserve per-eye pose orientation. Distinct from 01565 common-head yaw/sourceCameraSynced truth table and 01560 per-eye FOV/legacy label: an isolated equal-FOV, opposite eye-cant [-5,0,+5] perspective fixture proves current R85 eye matrices are invariant (x_ndc=0), whereas a hypothetical rotation-only eyeInverse yields x_ndc [+0.087489,0,-0.087489]. This is a conditional angular-source mismatch candidate, NOT observed Quest3 cant, duplicate pixels, head-lock or wrong depth. Exact original 405360/4052C0 PMT, texture/alpha, native L/R colour and fresh accepted XR frame remain unjoined.
+- Exactly one added docs-only OutRun file `docs/reviews/dx9ex/automation/LENSFLARE-R85-EYE-CANT-PROJECTION-20261029-0638.md`, marker `[AUTO:LENSFLARE-R85-EYE-CANT-PROJECTION-20261029-0638]`, RESULT_SHA `ea9903f925189edb280920129320bf7218777d24`, parent pinned SOURCE_HEAD, one added path +44/-0, remote branch HEAD and blob `0cb94ea57f389fe494c4c7a53079eeb9ae8717b4` independently confirmed. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED; source build not required, no CI skip. R26+HUD immutable baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`, R84 comparison only, B9200 +5 forbidden. Same RUN_KEY retry/readback/re-report +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2111 + independent new per-eye orientation negative control +1 = 2112.** AI 1 remains separate and unchanged at 1777.
+
+Updated: 2026-10-29 KST
+
 ## AI 1 OutRun Korean ROI A-0137 MODE SELECT single-image asset (2026-10-29 KST)
 
 - TASK_ID=`OUTRUN-ROI-A-0137-E099CABB`. Generated exactly one Korean `모드 선택` title-only image (single image generation) using the user-supplied full OutRun 2006 HD English UI screenshot as reference, original English `mode select` ROI [2,1742,1252,1861] (maximum 1250×119 px). Rendered chrome-style silver bevel and shadow lettering; prepared a standalone transparent RGBA PNG `Q228_c59d679311eed391_k.png` at 766×118 pixels, with text and alpha isolated (no screenshot canvas or other UI elements).

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01566 R85 head translation / IPD finite-vs-ray static negative control (2026-10-29 KST)
+
+- New distinct LENS_FLARE_ONLY REVIEW_ONLY source-static *translation-axis* falsification, separate from prior 01565 common-head yaw and 2026-10-29-0638 per-eye cant tests. Pinned OutRun source HEAD `ea9903f925189edb280920129320bf7218777d24`: `BuildProjectedSunRay` clears head and eye translation; current R85 ProjectedScreenEffect2D supplies identityEye with indexed FOV, while finite WorldBillboard includes full head inverse and `eyeOffset`. Under explicitly fixed stock WVP/orientations/FOV, read-only 7/7 source predicates and four row-vector synthetic controls (head translation 0/+0.25; eye translation ±0.04) showed R85 ray x_ndc always 0 versus finite spatial -0.020,+0.020,+0.105,+0.145. Numeric inputs synthetic, not actual HMD IPD/pose. This independently constrains the flat-depth explanation while emphasizing a directional sun ray can correctly have zero parallax; original physical PMT/material/depth and actual user-reported double/head-lock remain unproven.
+- Exactly one OutRun docs-only commit `ce07185cf5cc17e460f5c9b2066e66830b7b7e70`, marker `[AUTO:CONVERSION-DX9EX-01566]`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01566.md`; confirmed remote branch HEAD, one changed file, blob `9eba07f37fd9760d982da7b33c3b08f69830b16b`, required ledger/falsifiers. CODE_CHANGE=NO, AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK; RUNTIME_VALIDATION=UNTESTED; no source build, CI-skip, source patch, or Quest3 assertion. R26+HUD protected baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`; R84 comparison-only, B9200 +5 banned. Same task retry/readback/rollover/re-report +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2114 + one distinct verified translation-versus-finite optical negative control +1 = 2115.** AI 1 unchanged (separate score).
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun Korean ROI B-0143 OPTIONS single-image asset (2026-10-29 KST)
 
 - TASK_ID=`OUTRUN-ROI-B-0143-84E41B3E`. Generated exactly one ImageGen Korean `옵션` lettering-only candidate from supplied verified original OutRun 2006 HD screenshot `Q228_E7F6E9B7_BASE_READABLE_FLIPY(6).png`, English `options` ROI [6,1114,748,1265] (maximum 742×151 px).

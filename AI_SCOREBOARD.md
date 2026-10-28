@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 17:27 KST
+Updated: 2026-10-28 17:35 KST
+
+## AI 2 DX9Ex lens Reset entry-QPC versus completion-epoch diagnostic falsification (2026-10-28 17:35 KST)
+
+- RUN_KEY=`LENSFLARE-RESET-ENTRYQPC-PUBLISH-ORDER-20261028-1735`; new distinct LENS_FLARE_ONLY REVIEW_ONLY source-static result at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Source pinned `c6b4140f1edfa714c7ef13a1ce261d0c9bd8fb1c`; docs-only result `a100ef2ab18dc30b6ff58ab62de920c7daf6c595`; remote one-file readback blob `d0ce1317a4297a68651ca096b2eba3f2b396be5d`.
+- Independent finding: `ex_device_upgrade.cpp::ResetCompatDest:463-464` samples QPC before ResetEx, but `reset_trace.hpp::Publish:69-101` allocates the reset epoch after ResetEx/state replay under a serialized writer lock. `trace.qpc` remains the Reset **entry** time; completion-monotonic resetEpoch does not imply monotonic stored resetQpc when Reset calls overlap. The C993/CABE source and R30 physical eye receipts inherit that Reset-entry QPC, not source/draw event QPC. Two explicit static scheduling counterexamples and falsifiers recorded; not a measured Quest3 condition or confirmed optical cause.
+- This is separate from already-scored 01552 viewport-origin predicate and old multiwriter seqlock issue, and from V3's already-scored serialized completion epoch implementation. No game source or workflow changed, no unsafe B9200 hook, no CI skip; R26+HUD immutable, R84 comparison-only; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2084 + one independent source-proven lens Reset timestamp/epoch join counterexample +1 = 2085.** Same finding retry/readback/re-report +0. AI1 independent.
 
 ## AI 2 DX9Ex Reset-joined lens/HUD lifecycle trace system V3 (2026-10-28 17:27 KST)
 

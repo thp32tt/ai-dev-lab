@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 CONVERSION-DX11-01136 native RAW capture survives provably disjoint real game writes (2026-10-28 KST)
+
+- New distinct actual game-source C++ renderer correctness repair versus 01135: 01135 retired real D3D11 GPU RAW RGB evidence on ANY canonical ColorFill/StretchRect/UpdateSurface or partial TARGET Clear, even when the D3D9 write could not touch the actual 256x144 captured GPU tile. Authenticated **bounded source write rectangles now intersect with the native BEFORE/AFTER GPU capture region**; valid disjoint game backbuffer color writes preserve genuine native pixels while single-pixel overlap, full/unknown/excessive/malformed source writes conservatively retire the sample without freeing in-flight GPU EVENT staging. Source device, canonical backbuffer COM identity, successful source write and format/extent checks remain mandatory; original D3D9 Draw/input/FFB, DX9Ex fallback, fail-closed full native frame and frozen DXVK unchanged.
+- Implementation source+test commit `cd9058b0f6414de1f9ec552a43487140459bca11` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, exactly four changed C++/header/regression files, marker `[AUTO:CONVERSION-DX11-01136]`. Separate C6 docs-only `992a1b9dd4d196d560388bebe25f7f41da590952` with original `material_result_sha=cd9058b0f6414de1f9ec552a43487140459bca11` and record blob `228d167b4c056120ac9a5ef758f95c531cc04bdc` remotely read back. Same TASK_ID C6 and repeated checks +0. No full-native-game frame or game/HMD visual claim.
+- **Five original required push GitHub Actions SUCCESS on one exact material SHA cd9058b0f6414de1f9ec552a43487140459bca11:** DX11 Fast #40689007367, Backend #40689007665, Windows Build #40689007583, OpenXR architecture #40689007712, HUD Inspector #40689007679. Source-matched Windows artifact ID 12817046211, digest `sha256:dcf23b9b81faa5f57a6faeb3de8421a30905b4d585c2ce9a95e58865de52ee7e`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED` including actual desktop game/native RGB and Quest3/VDXR. Development time ratios UNMEASURED.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2093 + independent new coherent game-source nonoverlapping-write/native GPU pixel-preservation repair with 5 exact-SHA Gates +1 = 2094.** AI 1 independent. Same TASK_ID retry, CI polling, C6, readback and report additional +0.
+
+Updated: 2026-10-28 KST
+
 ## AI 2 DX9Ex CONVERSION-DX9EX-01556 R30 RIGHT-failure receipt / LEFT-HRESULT counterexample (2026-10-28 KST)
 
 - Unique pinned-source static lens-only falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: `SOURCE_HEAD=2f97448949bc8dddcb382aef07555c280e57775d`; committed exactly one review file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01556.md` with exact `[AUTO:CONVERSION-DX9EX-01556]` at `RESULT_SHA=bb3f3bac41b3f199d13d985726564c6079d456ac`. Remote branch HEAD, exact commit changed-path list and document blob `f425914dc62d8bbb5135bf6d6bab7c6e5d4dff6f` checked.

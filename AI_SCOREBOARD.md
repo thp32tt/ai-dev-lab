@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 13:03 KST
+Updated: 2026-10-28 13:18 KST
+
+## AI 2 DX9Ex lens XR mixed-layer fallback stale final-submission receipt falsification (2026-10-28 13:18 KST)
+
+- RUN_KEY=`LENSFLARE-XR-MIXED-FALLBACK-STALE-RECEIPT-20261028-1318`; independent LENS_FLARE_ONLY REVIEW_ONLY static source verification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned SOURCE_HEAD `7d5039ec1c4f5993c1eaeba833a3ccab6673284f`. Unlike 01548 (RGBA vs RGB), 01547 (sparse 5x3 grid), and LENSFLARE-XR-PROBE-PREPUBLISH-20261028-1204 (fresh B sample tagged A before publish), this tests a separate R24 *mixed projection+nonprojection rejected* submission path. `r24_black_screen_guard.hpp:618-636` returns `R23RuntimeHardening::SubmitNonProjectionOnly` when mixed exact-bundle validation fails; that helper `r23_runtime_hardening.hpp:105-128` calls the final OpenXR submit without updating `LastSubmittedFrameId/Kind/Layer`. The prior successful projection receipt can persist despite current successful nonprojection-only submission, so `main_r23.cpp:3873-3950` XR FRAME FULL actualFrameId/actualLayer and `R23AsyncPixelProbe::NoteFinalSubmission:1037-1052` can conditionally misattribute a flare projection to the current XR tick. **Reachability limitation:** the ordinary R23 host emits at most one layer; mixed fallback requires a distinct/mutated mixed-layer caller. This is a proven static *conditional telemetry authority gap*, NOT an HMD lens duplicate/head-lock root cause.
+- Durable one-file docs-only source review commit `af5da803606244f6d40e43a25d49fe3e189fd8e9`, exact marker `[AUTO:LENSFLARE-XR-MIXED-FALLBACK-STALE-RECEIPT-20261028-1318]`, parent `7d5039ec1c4f5993c1eaeba833a3ccab6673284f`; exactly one new path `docs/reviews/dx9ex/automation/LENSFLARE-XR-MIXED-FALLBACK-STALE-RECEIPT-20261028-1318.md` (+46/-0), remote branch HEAD, compare ahead1/behind0, and document blob `be5601511be5a0114c0850b52a8e8905fbc2f5f0` readback verified. No source/config/workflow/release/package modifications; protected R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` unchanged; R84 comparison-only; no B9200 +5; no CI-skip; docs-only build Gate not required; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. No Quest3, native physical PMT, eye ROI or HMD causal proof.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2071 + one independent verified mixed-layer XR receipt falsification +1 = 2072.** Same RUN_KEY retry, readback, rollover and already known 01547/01548 findings +0; AI1 remains separate.
 
 ## AI 2 DX9Ex lens flare pixel-grid RGBA raw-hash versus RGB/encoded-sRGB falsification (2026-10-28 13:03 KST)
 

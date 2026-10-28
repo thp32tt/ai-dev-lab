@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 09:39:19 KST
+Updated: 2026-10-28 09:47:55 KST
+
+## AI 2 DX11 genuine native GPU RAW Present partial-crop implementation (2026-10-28 09:47:55 KST)
+
+- TASK_ID=`CONVERSION-DX11-01124`, independent functional C++ integration on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. When a real game-authored D3D11 Draw has changed pixels, the opt-in `DX11_RAW_VISUAL_DIAGNOSTIC` now maps its verified GPU before/after source tile into a bounded, UNSCALED portion of an authentic small D3D9 Present crop; small menu/vehicle transition crops previously rejected below 272x160. The D3D9 `UpdateSurface` uses an explicit subsection, visible pixel count is limited to that subsection, and a magenta INCOMPLETE diagnostic border stays visible. Original D3D9 game Draw/input/FFB fallback and full-frame/native HMD promotion gates remain protected. No actual user game native Draw, visible pixels, native mono full frame, or Quest3/VDXR validation was performed (`RUNTIME_VALIDATION=UNTESTED`).
+- Material C++ implementation commit `d496483b20bea1802284db8503c12f684c95d429`, matching `[AUTO:CONVERSION-DX11-01124]`. Related portable constexpr positive/negative source-crop regression added to unchanged DX11 Fast structural build. A real inherited 01123 C6 acceptance-schema failure in the first exact-SHA Fast run `40609624623` was causally repaired, without weakening validation, in final validation-bearing commit `69a191b1c3eda88703effae81d71e4f1f6d3963b` (same TASK_ID, no second achievement). The first Fast run failure was not a C++ runtime or compile failure.
+- Exact-SHA five required **push** GitHub Actions are completed/success at `69a191b1c3eda88703effae81d71e4f1f6d3963b`: DX11 Fast `40609722590`, Backend Conversion Gate `40609722405`, Build `40609722437`, OpenXR VR architecture `40609722470`, OutRun EXE HUD Inspector CI `40609723064`. Source-matched Build artifact `outrun2006tweaks-69a191b1c3eda88703effae81d71e4f1f6d3963b` id `12782572194`. This establishes `BUILD_VERIFIED` only; game and HMD behavior must be tested on exact source artifact. Same-task CI repair, C6, retry/rollover/re-report +0. AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2061 + one independent integrated DX11 source feature with exact-SHA five Gate PASS +1 = 2062.**
 
 ## AI 2 DX9Ex lens deferred whole-queue ownership negative control (2026-10-28 09:39:19 KST)
 

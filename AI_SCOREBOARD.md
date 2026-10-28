@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 17:45 KST
+Updated: 2026-10-28 18:05 KST
+
+## AI 2 DX9Ex CONVERSION-DX9EX-01553 C993 token versus ray-branch trace falsification (2026-10-28 18:05 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01553`; distinct REVIEW_ONLY LENS_FLARE_ONLY source-static falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Source pinned `a100ef2ab18dc30b6ff58ab62de920c7daf6c595`; docs-only result `57f4284e6e1beea8cd6225654c057d3d585125ab`; exact one-file commit and remote document blob `45133d26fbbad18e95d94e51c2ced1fd695f3e1a` readback confirmed.
+- Independent finding: `src/hooks_graphics.cpp::DrawObjectAlphaCentre:1053-1068` scopes projected C993 `ProducerToken::None` for the native call. `render_semantics.hpp::ScopedExactProducerSemantic:1497-1546` installs it unless a distinct exact GPU owner intervenes; `R30BuildScreenSpaceEyeConstants:5192-5250` special `BuildProjectedSunRay` and `R30TryScreenSpaceFovDraw:6519-6536` named `VR LENS C993 RAY EYES` receipt require `LensFlareCentre` instead. The generic projected path can still copy original WVP identically into L/R. Therefore **absence of that named receipt is not evidence of missing physical C993 render**, and special-ray incidence must be proven at the physical PMT/eye command. The exact GPU-owner exception is separately caveated, since its `EffectiveScope` can become WorldBillboard. This is neither headset optical success nor confirmed root cause.
+- Only `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01553.md` added on the OutRun branch, with `[AUTO:CONVERSION-DX9EX-01553]`. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`, `RUNTIME_VALIDATION=UNTESTED`; R26+HUD baseline immutable, R84 comparison only, no unsafe B9200 hook or CI skip. Previous 01545/01546 broad FULL-coverage limits, 01550 source sequence/ordinal, 01551/01552 Reset and subsequent Reset-QPC review are inherited and **not** re-scored.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2086 + one independent C993 token/branch diagnostic reachability proof +1 = 2087.** Same TASK_ID retry/readback/re-report +0. AI 1 remains independent.
 
 ## AI 2 DX11 CONVERSION-DX11-01132 authentic RAW backbuffer attempt preservation (2026-10-28 17:45 KST)
 

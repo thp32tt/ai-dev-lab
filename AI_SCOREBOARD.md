@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 주말 연간·시즌·다회권 특가 재검증 (2026-10-29 KST)
+
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-10-29T08:07:34+09:00`. 2026-10-29 08:07 KST 시작한 독립 조회. 씨라이프 코엑스 공식 2026 마지막 싱글패스 특가(9/23~10/31 79,000원, 정상 130,000원), 공식 연간권 상세(주말·공휴일 제한 없음, 첫 입장월부터 1년이나 구매월별 정보등록/유효기간 상이, 동반 최대 3인 30% 할인, 주차 4시간 4,800원, 11/1 싱글패스 99,000원 예고), 공식 36개월 미만 무료 증빙 조건을 교차 확인. 판매처별 최종 정보등록 마감은 확정 불가. 과거 보고와 동일한 가격/혜택이므로 중복 추천 알림 없음.
+- 서울랜드 5개월권 신규 재판매, 아쿠아플라넷 일산, 원마운트, 웅진플레이도시, 에버랜드, 롯데월드 아쿠아리움 및 키즈/동물원 상품을 검색·사업장 자료와 대조했으나 **새로 확정된 주말 이용 가능 시즌권/연간권/다회권 추천 특가 없음**. 아쿠아플라넷 일산 NOL 28,000원 10월 통합 1일권은 연간/시즌/다회권이 아니므로 제외. 검증 불충분한 신규 최저가나 등록 조건은 추정하지 않음.
+- Sources: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/y26-ap-single-flash-sale/ ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://www.visitsealife.com/coex-seoul/tickets-passes/ ; https://leisure-web.yanolja.com/leisure/10370174 . Same RUN_KEY retry/readback/re-report +0. AI 1 점수 변경 없음.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2117 + distinct completed daily market verification +1 = 2118.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex CONVERSION-DX9EX-01567 R19 fallback XR source-pose epoch control (2026-10-29 KST)
 
 - New independent LENS_FLARE_ONLY REVIEW_ONLY source-static host provenance finding. Pinned OutRun vr-d3d9ex-focus SOURCE_HEAD `e903c44150123570af3bbdf11cb2549a2cac0ae5`: confirmed prior 2026-10-28 R24 ordinary classic-fallback missing-receipt report no longer holds after current result-aware R19 wrapper. Separately demonstrated a conditional **R19 captured source frame B + incoming projection A pose/FOV** path when R19 projection replacement succeeds; R24's repaired final receipt names B, yet does not certify outgoing pose belongs to B. Negative controls distinguish no-incoming B pose and failed-replacement unchanged incoming. Fifteen source predicate checks PASS; no actual A!=B HMD incidence, lens-flare double, or optical root-cause claim.

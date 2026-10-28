@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 09:04:34 KST
+Updated: 2026-10-28 09:39:19 KST
+
+## AI 2 DX9Ex lens deferred whole-queue ownership negative control (2026-10-28 09:39:19 KST)
+
+- RUN_KEY=`LENSFLARE-DEFERRED-QUEUE-COLLISION-20261028-0937`; distinct REVIEW_ONLY source-verified regression finding **after** material lens provenance source commit `6a7017d33ddc7881cc878e78642f35afba280276`, not a re-score of 01539 first deferred/second immediate queue or 01544 first queued matrix-slot snapshot. Original reconstructed `sun_flare_40cbc0:702-715` submits **eleven distinct CABE source objects** (five before first 570008, first 570008, five after) into the same `4052C0` opaque flush; `405890` can draw their admitted PMT nodes in reverse pass0/forward pass1 order. Current `DeferredLensProjectedOwnsPhysicalDraw` checks only its own first-570008 receipt and mod queue/external guards, not actual opaque DrawEntry identity; `EffectiveScope` may promote **all eligible** queue draws to ProjectedScreenEffect2D, and R30 `DEFERRED_SOURCE_WINDOW sourceObj=570008` logs may falsely attribute other object draws to first 570008. This is a confirmed **conditional source-scope/provenance overbreadth**, not proven original HMD ghost cause or physical colour duplication.
+- Exact pinned focus source `e51dbfa9899c4cc6d4631aea61486bc9b9396a16`; original secondary `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62`; protected R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` immutable. Original retail EXE byte match, PMT node/texture/material/colour-write, native L/R eye RT RGB, fresh host pose and Quest3/VDXR all untested. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; no risky B9200 post-CALL/+5 hook, no CI skip or source/workflow edit.
+- OutRun durable docs-only result initial `dd353de16fd9a1135bf1585e09c6260e691bd968` + same-doc numerical correction `6bb812c1de4a5943ce649b21e3f2a773f45ad35e`; pinned source parent `e51dbfa9899c4cc6d4631aea61486bc9b9396a16`, remote compare ahead2/behind0 with **exactly one newly added file** `docs/reviews/dx9ex/automation/LENSFLARE-DEFERRED-QUEUE-COLLISION-20261028-0937.md` (57 lines); final blob `b235d227d7159637e4d93ca21e41fc33ee94f169`; exact `[AUTO:LENSFLARE-DEFERRED-QUEUE-COLLISION-20261028-0937]` markers. Source build Gate not required for docs-only; source runtime pass not claimed. Same RUN_KEY retry/correction/readback/status = +0 beyond one new independent finding; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2060 + one new independent verified lens deferred multi-object ownership finding +1 = 2061.**
 
 ## AI 2 DX9Ex original CABE queued matrix-slot negative control (2026-10-28 09:04:34 KST)
 

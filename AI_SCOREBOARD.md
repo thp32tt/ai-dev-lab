@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01556 R30 RIGHT-failure receipt / LEFT-HRESULT counterexample (2026-10-28 KST)
+
+- Unique pinned-source static lens-only falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: `SOURCE_HEAD=2f97448949bc8dddcb382aef07555c280e57775d`; committed exactly one review file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01556.md` with exact `[AUTO:CONVERSION-DX9EX-01556]` at `RESULT_SHA=bb3f3bac41b3f199d13d985726564c6079d456ac`. Remote branch HEAD, exact commit changed-path list and document blob `f425914dc62d8bbb5135bf6d6bab7c6e5d4dff6f` checked.
+- **Distinct test versus 01555:** after an admitted R30 lens physical LEFT Draw succeeds, RIGHT Draw/restore can fail; `VR LENS R30 PHYSICAL EYES` can still be emitted, and R30 returns successful `leftHr` rather than indicating complete L/R. Current pair counters require `SUCCEEDED(rightHr) && restoreOk`; lower R29 only runs on `E_NOTIMPL` from R30, so it is not replayed for this same successful-left/failed-right call. Protected R26+HUD baseline retains LEFT-return/fallback convention but incremented two-eye counters **unconditionally** before checking RIGHT failure. The new finding is diagnostic receipt/return/counter interpretation, not an observed HMD failure or new regression.
+- `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. Actual original CABE/4052C0 PMT, successful same-eye RGB writes, sourceFrameId/pose and Quest3/VDXR binocular result remain unmeasured. R26+HUD immutable; R84 comparison only; B9200 post-CALL/+5 forbidden. No source build Gate required or CI skip used.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2092 + independent new source-static R30 RIGHT completion-versus-LEFT caller-return falsification +1 = 2093.** Repeated readback, retry, rollover and further status updates for this TASK_ID +0; AI 1 independently accounted.
+
+Updated: 2026-10-28 KST
+
+
 ## AI 2 DX11 CONVERSION-DX11-01135 source-authentic ColorFill/Copy RAW GPU pixel epoch (2026-10-28 KST)
 
 - Unique source-integrated game rendering correctness repair on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: actual four C++/test source files at implementation commit `5f93b270f2342091d1dd37417ee36ae759e0f6b7`; inherited 01134 policy-record CI failure repaired under SAME CONVERSION-DX11-01135, extended negative regression, final non-CI-skipped exact-source `RESULT_SHA=2068eb978d6c3f0e93e533b973b6bfbaa12f2510`. Separate C6 docs-only `71d38dd74a0e3f27034e5e0afbca633df4e51c59` (`+0`) and remote JSON readback `d331ba067225d6aceb0a6518b0668d7aede3cc0f`.

@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 15:11 KST
+Updated: 2026-10-28 15:48 KST
+
+## AI 2 DX11 CONVERSION-DX11-01130 same-Present zero-RGB GPU Draw recapture (2026-10-28 15:48 KST)
+
+- TASK_ID=`CONVERSION-DX11-01130`; new distinct native-D3D11 RAW opt-in diagnostic integration on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Real C++ implementation SHA `0cf63e09c58fa3f7338da7aedaacc4a7af0f2952`: a completed GPU fence and mapped authentic source pre/post GPU capture prove zero RGB change before safely allowing up to two later real native Draw recaptures in the **same original game Present**. Preserve genuine RGB-positive captures, S_FALSE in-flight ownership, invalid-map/query quarantine, unchanged source D3D9 game Draw/input/FFB and DX9Ex fallback, and frozen DXVK. Integration spans the native RAW GPU capture epoch, typed 256x144 row-pitch-aware RGB comparison, actual game native Draw readback, bounded telemetry, and two positive/negative C++ regressions. Does NOT assert that native full game frames are working.
+- Initial exact-SHA DX11 Fast #40644752285 and Backend #40644752213 failed solely on inherited `docs/automation/runs/CONVERSION-DX11-01129.json` C6 `full_gate_plan` value `one_validation_bearing_sha_with_real_causal_repair` violating established `one_validation_bearing_sha` policy. Same-TASK causal repair SHA `6ca12ccf7066a36bff2411a033a676845f200a7f` corrects only the inherited record (no removed tests, no weakened gates), remains the validation-bearing RESULT_SHA, and uses exact marker `[AUTO:CONVERSION-DX11-01130]`. Original source implementation `0cf63e09...` remains a separate commit; neither uses CI-skip.
+- Mandatory five push GitHub Actions all completed success at exact FINAL RESULT_SHA `6ca12ccf7066a36bff2411a033a676845f200a7f`: DX11 Fast #40644868164; Backend Conversion Gate #40644868274; Build #40644868131; OpenXR VR architecture #40644868187; OutRun EXE HUD Inspector CI #40644868146. Windows build source-matched artifact ID `12797735643`, digest `sha256:cee10dfc56eb7a2337103c789edce347098ca274df1e66e46f7461d899226465`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA` means only `BUILD_VERIFIED`; genuine OutRun menu->vehicle->race visible native GPU output, full native frame and Quest3/VDXR stereo are NOT runtime-verified. `RUNTIME_VALIDATION=UNTESTED`. Work-time percentages not measured; controller runtime adoption unverified.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2079 + one distinct source-integrated DX11 functionality with five exact-SHA Gate PASS +1 = 2080.** Same TASK_ID retry/causal CI repair/C6/readback/status recheck = +0; AI1 counted independently.
 
 ## AI 2 DX9Ex lens XR trace provenance hardening and final test build (2026-10-28 15:11 KST)
 

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Korean ROI B-0140 START single-image asset (2026-10-29 02:30 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0140-A345A138`. Created one new transparent-background Korean text-only candidate `출발` from verified original HD UI `START`, source `Q214_BF229CF4_BASE_READABLE_FLIPY.png` (2048x2048), reference bbox `[815,494,900,520]`. ImageGen generated exactly one image; cropped its transparent-alpha lettering and scaled to 85x26 RGBA PNG matching the maximum source ROI pixel dimensions. File `Q214_58929d092596d425_k.png`.
+- ChatGPT personal Library upload succeeded and independent list readback verified at `/아웃런 한글화 신규/Q214_58929d092596d425_k.png`, library_file_id `libfile_03de785a3378819182e7517a53adc2f6`. No native DDS, real-game placement QA/PASS, or automated C1/C2/C3 gate is claimed. Later retry, readback and re-report under same TASK_ID +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2104 + one distinct new generated and Library-verified asset +1 = 2105.** AI 1 independent and unchanged.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex LENSFLARE-R85-CAMERA-SYNC-RAW-WVP-RECORD-20261029-0215 R85 camera-sync bit / raw WVP same-record negative control (2026-10-29 KST)
 
 - Independent LENS_FLARE_ONLY REVIEW_ONLY pinned-GitHub source-static falsification: `src/vr/game/outrun_renderer.cpp::RecordGameWvpWrite` publishes the original raw c64 and `LastRawGameWvpCameraSynced=CullingCameraOverridden` in the same most-recent game-WVP record. Both R30 projected CABE raw-WVP recovery paths use `GetLastRawGameWvpWrite`, and R85 `GetLastRawGameWvpCameraSynced` reads that same stored flag. Therefore, with no intervening publication/invalidation, the R85 ray uses a camera-sync flag from the SAME WVP record, not an unrelated live camera flag. The getters are still separate and do not atomically bind source PMT, camera pose, or a physical L/R Draw; no intervening mutation or Quest3 optical root cause is proven. Distinct from 01560's generic camera-sync uncertainty, R85 policy expansion, and 01561's CABE source receipt verifier mutation.

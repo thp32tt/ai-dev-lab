@@ -1,6 +1,15 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 16:00 KST
+Updated: 2026-10-28 16:21 KST
+
+## AI 2 DX9Ex XR Reset resolution persistence + GOAL post-drain ownership repair (2026-10-28 16:21 KST)
+
+- RUN_KEY=`DIRECT-DX9EX-RES-GOAL-REPAIR-20261028T1555KST`; one distinct material DX9Ex source repair on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Final runtime source SHA `cd977b98cafe7ca58e798d341f7ba0de75436f89`.
+- Resolution repair: `src/vr/d3d9/ex_device_upgrade.cpp` now records the validated XR physical eye extent from successful Ex CreateDevice and preserves that exact physical D3D9Ex target across legacy `IDirect3DDevice9::Reset -> ResetEx` when VR is windowed, `FollowGameResolution=false`, and the stored extent is valid. It keeps the game/UI logical resolution independent, fails closed to the requested game size when the XR extent is unavailable/follow/fullscreen applies, clears the cached extent with compatibility teardown, and logs requested/effective reset dimensions.
+- GOAL repair: `src/hooks_uiscaling.cpp` direct GOAL time helpers 0xBE020/0xBE150 and exact B9200 result text now snapshot source admission, drain the preceding D3DX batch, revalidate VR/GOAL/queue epoch before assigning ScreenHud producer ownership, execute the original native source exactly once on each mutually exclusive path, and revalidate again before queued-sibling publication/final exact flush. Rejected post-drain paths execute the original natively once without stale VR owner promotion. +TIME was re-reviewed and left unchanged because its existing source ticket/epoch/post-drain admission and revoke contract is already stricter; lens 01550/01551 remain diagnostic-only and do not justify a renderer policy change.
+- Dedicated regression contracts were extended for XR Reset persistence, GOAL time/B9200 post-drain admission, producer provenance and exact HUD callsite mutation scope. Related Active Validation checks pass through the new resolution/GOAL/provenance contracts; the workflow still stops later at the pre-existing unrelated `verify_vr_menu_letterbox_aspect.py` visibility-string assertion, so no full Active Validation PASS is claimed.
+- Exact final-SHA build evidence: General Test run `40648281463` SUCCESS, artifact `12798761320`, digest `sha256:2432b9f540d67b345f0a7ef1698ea4870ab05b7f280b73a0f971632f47b83f12`; User Test run `40648281417` SUCCESS, artifact `12798587122`, digest `sha256:f6aaad643928dc568dbbca186cebc44c0f9065f3ec6971a0e6172626e04f07d6`; Official Focus DEBUG run `40648281524` SUCCESS, artifact `12798926976`, digest `sha256:1580af7965af06cba3ef19b92b91b1b5f24a48a4b4f84996e490f6213cb34d83`. Official passed Win32 game DLL, x64 OpenXR host, RelWithDebInfo builds and standalone TEST/DEBUG ZIP packaging. `RUNTIME_VALIDATION=UNTESTED`: no Quest3 optical-success claim yet.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2081 + one distinct source-integrated DX9Ex resolution/GOAL repair with exact-SHA three-build success +1 = 2082.** Same-source retries, CI verifier compatibility repairs, status checks and already-scored 01551 docs-only review = +0. AI1 independent.
 
 ## AI 2 DX9Ex CONVERSION-DX9EX-01551 ResetEx physical-viewport lens falsification (2026-10-28 16:00 KST)
 

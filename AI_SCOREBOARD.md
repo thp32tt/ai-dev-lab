@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 08:52 KST
+Updated: 2026-10-28 09:04:34 KST
+
+## AI 2 DX9Ex original CABE queued matrix-slot negative control (2026-10-28 09:04:34 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01544`; new LENS_FLARE_ONLY REVIEW_ONLY **independent source-verified matrix-snapshot falsification**, distinct from 01539 (first deferred/second immediate queue), 01543 (stage/facing gain) and 08:13 CABE facing-basis check. The reconstructed original `pc_render_queue.cpp::descriptor` begins a dirty matrix; `matrix_slot_404a80:96-105` copies 64 bytes into the original opaque matrix pool, `walk_404d10:168-179` stores that matrix slot in a by-value DrawEntry, `pc_render_flush.cpp::Flush::matrix_of/flush:806-847` re-reads the entry slot at 405890 native mesh draw, and `4052C0:970-980` flushes/resets the first 570008 queue **before** the separate second original 570008 source call. On normally admitted unsaturated entries, second source's *later live game matrix* cannot retroactively overwrite the already flushed first queue matrix. This is not a proof against earlier slot alias, shader/c64 eye projection, or the user's actual HMD double/head-lock cause.
+- Original secondary source pin `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62`; current mod source and protected R26+HUD 0cff83cf... cross-checked to preserve original CABE call/alpha; first along `0.064*|glow_dir|*facing`/size `0.036*fov`, second along ~-0.003/size 1.5 remain intentionally different. No new original retail EXE byte-equivalence, queue/PMT physical descriptor, eye RT RGB, fresh OpenXR pose or Quest3/VDXR verification; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. R84 nondefault; no dangerous B9200 post-CALL/+5 hook, no CI skip or game source modification; docs-only source build Gate not required.
+- Durable OutRun GitHub result `c4fc69f23b5889d25fe82189c5e65ba732748ad1` parent `e817a7e30eaf28e83f2d09a3d2494856da35cd78`, exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01544.md` (+58/-0), exact `[AUTO:CONVERSION-DX9EX-01544]` commit marker, branch remote HEAD and blob `5f9b82d2ea30c5e17d4b48a6ad93acac3e4ab5d0` readback, compare ahead1/behind0. This verified docs-only static negative control is one new distinct review achievement; same TASK_ID retry/readback/status/rollover +0. AI 1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2059 + one independently verified DX9Ex original queue matrix-slot falsification +1 = 2060.**
 
 ## AI 1 OutRun Korean icon multiline layout correction and QA hold (2026-10-28 08:52 KST)
 

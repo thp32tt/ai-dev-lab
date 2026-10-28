@@ -1,6 +1,14 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 11:14 KST
+Updated: 2026-10-28 11:48 KST
+
+## AI 2 DX11 RAW densest authentic native GPU pixel region in cropped game Present (2026-10-28 11:48 KST)
+
+- TASK_ID=`CONVERSION-DX11-01126`, retry E002 same task, one new cohesive C++ RAW GPU pixel-visibility implementation on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: source real-game D3D9 Draw -> native D3D11 GPU Draw -> paired before/after GPU staging RGB deltas; select the UNscaled, bounded 24x24+ diagnostic source subsection with the MOST actual GPU-changed pixels instead of the inherited 01125 first/closest-only solution that could leave a dense vehicle/menu fragment invisible. D3D9 Present destination, original D3D9 renderer/input/FFB, safe DX9Ex fallback, DXVK frozen, and opt-in RAW only are preserved. This is independent actual C++ source functionality plus new portable positive/negative regression, not inherited CI/C6 repetition. It does not complete native full frame/stereo.
+- Original functional source commit `b5d4ebc983ce9898284a9228cb61dffc1c162c4b` has exact `[AUTO:CONVERSION-DX11-01126]`, added `native_game_raw_changed_pixel_window.hpp`, integrated `native_game_raw_visual_diagnostic.hpp`, added `tests/native_raw_changed_pixel_window_test.cpp` and wired existing DX11 Fast. First Fast `40621686211` and Backend `40621686042` failed on inherited **01125** C6 legacy strategy path; same-task causal repair `8a2adedd36ee9d8bdbf3acfcd57a44ea43235d9b` normalized genuine D3D9->D3D11 Draw->visible RAW-only path without weakening Gate or modifying 01125 results. The repair is NOT an independent scored milestone.
+- Final validation-bearing exact SHA `8a2adedd36ee9d8bdbf3acfcd57a44ea43235d9b`: all five required push GitHub Actions completed SUCCESS: DX11 Fast `40621870269`, Backend Conversion Gate `40621870038`, Windows Build `40621870061`, OpenXR VR architecture `40621870282`, OutRun EXE HUD Inspector CI `40621870011`. GitHub branch HEAD readback matched. No CI-skip in validation-bearing source/repair. `AUTOMATION_VALIDATION=PASS_EXACT_SHA` means BUILD_VERIFIED only; no matching game/Quest3 native draw/pixel or full-frame evidence, `RUNTIME_VALIDATION=UNTESTED`.
+- Retry, inherited-record CI repair, readback and C6 bookkeeping on the same TASK_ID add **+0** beyond this one qualifying source-integration achievement; AI1 score remains separate. No unmeasured development-time percentage asserted.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2066 + one independent genuine DX11 native RAW GPU visual source capability with five exact-SHA Gate PASS +1 = 2067.**
 
 ## AI 2 DX9Ex cached gameplay XR EYE FULL wrong-view telemetry negative control (2026-10-28 11:14 KST)
 

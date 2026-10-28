@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 13:18 KST
+Updated: 2026-10-28 13:45 KST
+
+## AI 2 DX11 RAW GPU pixel source Present-epoch integrity and stale completion retirement (2026-10-28 13:45 KST)
+
+- TASK_ID=`CONVERSION-DX11-01128`; one new material C++ source implementation on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` at `92fff241933cc5cb599ed86fbb42599090291bfc` (four files: native RAW capture epoch, GPU pixel preview, live original D3D9 Present integration, and positive/negative C++ source epoch regression). Source-bound RAW D3D11 GPU paired-copy output now matches the exact originating game Present serial; a late completed D3D11 EVENT from a previous menu/car/race frame retires staging without Map/UpdateSurface into a different frame. Default production output, source D3D9Ex input/FFB and fallback preserved; DXVK frozen.
+- One causal CI repair of inherited `CONVERSION-DX11-01127.json` strategy/path/evidence schema from 01128 initial Fast/Backend failure; validation-bearing material RESULT_SHA `808b8bbd2bfbe6b8fbb6a5104f296d1bd1088db0` (not a new feature, no revision of 01127 existing PASS SHA or prior score). All five unchanged mandatory push Gates at that **identical result SHA**: DX11 Fast #40633066686 SUCCESS; Backend #40633066752 SUCCESS; Windows Build #40633066650 SUCCESS; OpenXR #40633066667 SUCCESS; HUD Inspector #40633066689 SUCCESS. Exact binary Build artifact `outrun2006tweaks-808b8bbd2bfbe6b8fbb6a5104f296d1bd1088db0` ID 12792218616. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED` (no actual desktop game menu/car/race visible-frame or Quest3/VDXR runtime proof; full native renderer not complete). C6 record after validation is bookkeeping +0 and uses no new exact-SHA Gate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2072 + one distinct material C++ source integrity repair integrated with five exact-SHA Gates +1 = 2073.** Same TASK_ID retry, inherited schema repair, C6/checkpoint, CI readback, rollover and artifact +0. AI1 score remains separate.
 
 ## AI 2 DX9Ex lens XR mixed-layer fallback stale final-submission receipt falsification (2026-10-28 13:18 KST)
 

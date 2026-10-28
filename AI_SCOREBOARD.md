@@ -1,6 +1,14 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 15:04 KST
+Updated: 2026-10-28 15:11 KST
+
+## AI 2 DX9Ex lens XR trace provenance hardening and final test build (2026-10-28 15:11 KST)
+
+- RUN_KEY=`DIRECT-DX9EX-LENS-TRACE-HARDEN-20261028T1441KST`; one distinct material DX9Ex/OpenXR diagnostic integration on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Starting from the build-verified `773f0fe1c312ad3f97ff453b10b097116d117ec1` source, applied the post-01547/01548/01549 and XR fallback review findings without changing flare hiding/merge/render policy: 17x11 opt-in per-eye raw pixel grid; separate RGBA/RGB/alpha hashes; sRGB-linear control metrics; render-time frame/pose/FOV attribution instead of prepublication verified-bundle identity; current-call final-submission serial gating; exact R19/R24 classic/mixed fallback receipt provenance; and explicit labels that same-index pair deltas and global bright centroid are negative controls rather than flare correspondence/ROI proof.
+- Final runtime source SHA `1621b13c7af627192a176145245c5cb0728adbae`. The later docs-only `CONVERSION-DX9EX-01550` at `05339eec42bf4c1db1998e4b0c97daf8dffe1759` was reviewed separately and correctly left render policy unchanged because its spread<=0/570002-missing result is a conditional diagnostic false-negative with no stable original sun-invocation boundary; no duplicate score here for 01550.
+- Exact final-SHA builds: Official Focus DEBUG run `40641353504` SUCCESS, User Test run `40641353464` SUCCESS, General Test run `40641353561` SUCCESS. Official artifact `OutRun2-VR-R26-OFFICIAL-FOCUS-1621b13c7af627192a176145245c5cb0728adbae` ID `12795538049`, digest `sha256:972c918a7aeb780a47ed799c5b466e2fa3891a4abe893c95e65767214b725e92`; User artifact ID `12795628706`; General artifact ID `12796255240`. Win32 game DLL, x64 OpenXR host, RelWithDebInfo binaries and standalone TEST/DEBUG ZIP assembly all passed in Official. `RUNTIME_VALIDATION=UNTESTED`: no Quest3/VDXR optical success claim.
+- DX9Ex Active Validation still has an unrelated stale menu-letterbox verifier failure after the lens/R62/capture/C993 checks pass; this is not counted as an extra success or repaired under this lens task.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2078 + one distinct source-integrated DX9Ex lens trace hardening with final Official/User/General build artifacts +1 = 2079.** Same build retries, stale-verifier compatibility repairs, status checks, readbacks, and the already-scored 01550 docs-only review = +0. AI1 independent.
 
 ## AI 2 DX9Ex CONVERSION-DX9EX-01550 absent C993 anchor conditional deferred-window false-negative (2026-10-28 15:04 KST)
 

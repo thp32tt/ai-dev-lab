@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex live checkpoint +TIME exact Navi source integration (2026-10-29 KST)
+
+- New distinct material DX9Ex runtime source achievement on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: canonical SHA-pinned OR2006C2C.EXE disassembly and reconstructed source separated the historical `0x989xx` GOAL result time/score panel from the true in-race checkpoint +TIME chain. Exact live path was pinned as race-manager time extension -> Navi timer `0x8446E8` -> `0x4BD0A0` -> **EXE+0xBD217 E8 -> 0x4B9320**, with safe common function exit at **EXE+0xBD221 RET**; `0xBD21C` was explicitly rejected as an unsafe shared branch target/CALL+5 site.
+- Material runtime implementation SHA `08b9bb42420a7e0a7fdc0e2ce6300c7bbdcf9a19` adds exact live Navi +TIME enter/leave ownership using the existing fail-closed StageExtension SourceAdmission/ticket/epoch/D3DX batch path plus `VR TRACE PLUS_TIME LIVE NAVI ENTRY/EXIT` receipts. Historical `0x989xx` ownership is retained only as GOAL-result compatibility pending HMD retest, avoiding an unrelated GOAL regression. Subsequent commits through `1212d72ad9a957f157197f72269f3e4f88d0b101` are verifier/CI corrections and do not earn additional score.
+- Source-matched GitHub Actions evidence: DX9Ex R26 User Test Build run `40780287233` **SUCCESS**, VR GitHub General Test Build run `40780287256` **SUCCESS**, and Official Focus run `40780850921` **SUCCESS** with Win32 Release game DLL, x64 OpenXR host, RelWithDebInfo game/host, TEST and DEBUG standalone packages. Inspector static original-EXE/disassembly and HUD build also passed on the integrated line. Actual Quest3/VDXR visual placement remains `RUNTIME_VALIDATION=UNTESTED`; build/static PASS is not claimed as HMD visual PASS.
+- Same live +TIME achievement's disassembly-window extensions, verifier repairs, retry runs, CI-path fixes, artifact readbacks and status reports score **+0** separately.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2115 + one distinct exact-source live +TIME runtime integration with successful source builds +1 = 2116.** AI 1 remains separate and unchanged.
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 DX9Ex CONVERSION-DX9EX-01566 R85 head translation / IPD finite-vs-ray static negative control (2026-10-29 KST)
 
 - New distinct LENS_FLARE_ONLY REVIEW_ONLY source-static *translation-axis* falsification, separate from prior 01565 common-head yaw and 2026-10-29-0638 per-eye cant tests. Pinned OutRun source HEAD `ea9903f925189edb280920129320bf7218777d24`: `BuildProjectedSunRay` clears head and eye translation; current R85 ProjectedScreenEffect2D supplies identityEye with indexed FOV, while finite WorldBillboard includes full head inverse and `eyeOffset`. Under explicitly fixed stock WVP/orientations/FOV, read-only 7/7 source predicates and four row-vector synthetic controls (head translation 0/+0.25; eye translation ±0.04) showed R85 ray x_ndc always 0 versus finite spatial -0.020,+0.020,+0.105,+0.145. Numeric inputs synthetic, not actual HMD IPD/pose. This independently constrains the flat-depth explanation while emphasizing a directional sun ray can correctly have zero parallax; original physical PMT/material/depth and actual user-reported double/head-lock remain unproven.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01567 R19 fallback XR source-pose epoch control (2026-10-29 KST)
+
+- New independent LENS_FLARE_ONLY REVIEW_ONLY source-static host provenance finding. Pinned OutRun vr-d3d9ex-focus SOURCE_HEAD `e903c44150123570af3bbdf11cb2549a2cac0ae5`: confirmed prior 2026-10-28 R24 ordinary classic-fallback missing-receipt report no longer holds after current result-aware R19 wrapper. Separately demonstrated a conditional **R19 captured source frame B + incoming projection A pose/FOV** path when R19 projection replacement succeeds; R24's repaired final receipt names B, yet does not certify outgoing pose belongs to B. Negative controls distinguish no-incoming B pose and failed-replacement unchanged incoming. Fifteen source predicate checks PASS; no actual A!=B HMD incidence, lens-flare double, or optical root-cause claim.
+- Exactly one target-branch docs-only commit `444a490f7c521486363bc0d35adfa9598ef556eb`, marker `[AUTO:CONVERSION-DX9EX-01567]`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01567.md`; exact-commit GitHub remote readback: only that doc added, blob `d42bcf5eb1d5d12619c48d9933d583a7756fee05`. CODE_CHANGE=NO; AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK; RUNTIME_VALIDATION=UNTESTED. Protected R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`; R84 comparison only; B9200 +5 hook banned. Same task retry/readback/rollover/re-report +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2116 + one distinct source-verified XR pose-provenance discriminator +1 = 2117.** AI 1 remains independent and unchanged.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex live checkpoint +TIME exact Navi source integration (2026-10-29 KST)
 
 - New distinct material DX9Ex runtime source achievement on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: canonical SHA-pinned OR2006C2C.EXE disassembly and reconstructed source separated the historical `0x989xx` GOAL result time/score panel from the true in-race checkpoint +TIME chain. Exact live path was pinned as race-manager time extension -> Navi timer `0x8446E8` -> `0x4BD0A0` -> **EXE+0xBD217 E8 -> 0x4B9320**, with safe common function exit at **EXE+0xBD221 RET**; `0xBD21C` was explicitly rejected as an unsafe shared branch target/CALL+5 site.

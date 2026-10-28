@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Korean ROI B-0141 GOAL single-image asset (2026-10-29 03:33 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0141-EE161E73`. Exactly one ImageGen output (n=1) created from user-supplied original 2048×2048 OutRun HD screenshot, English `GOAL` at bbox [1335,764,1434,802], approved Korean `골`. Source-output transparent RGBA cropped and resized into a single 99×38 px PNG `Q217_679626dd168ca369_k.png`; alpha transparent edges verified locally. The red/white glossy slanted badge is part of the source visual reference.
+- ChatGPT personal Library upload succeeded and independent list readback verified at `/아웃런 한글화 신규/Q217_679626dd168ca369_k.png`, library_file_id `libfile_e3d1e45373088191aba6160b574142a0`, size 4716 bytes. Candidate only; exact original style, placement, DDS, independent QA and game runtime PASS are NOT claimed. Same TASK_ID retry, status recheck or report +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2106 + distinct new generated and Library-verified asset +1 = 2107.** AI 1 remains unchanged at 1776.
+
+Updated: 2026-10-29 KST
+
+
 ## AI 1 OutRun Korean ROI A-0135 START single-image asset (2026-10-29 03:23 KST)
 
 - TASK_ID=`OUTRUN-ROI-A-0135-F2410BD5`. New ImageGen single-output (n=1) Korean `출발` candidate from supplied 2048×2048 OutRun original HD UI, original `START` source bbox [797,503,892,540] (max 95×37). Cropped alpha content and resized to 95×29, transparent RGBA PNG, final name `Q217_dccffac670aa640c_k.png`.

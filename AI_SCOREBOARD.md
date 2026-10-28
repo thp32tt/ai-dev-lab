@@ -1,6 +1,14 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 17:35 KST
+Updated: 2026-10-28 17:45 KST
+
+## AI 2 DX11 CONVERSION-DX11-01132 authentic RAW backbuffer attempt preservation (2026-10-28 17:45 KST)
+
+- TASK_ID=`CONVERSION-DX11-01132`, new distinct causal C++ source repair on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Genuine source/validation-bearing SHA `379dd599e1c517a28f0397f1442965c658a31167` (NON-CI-skipped material commit) on the original D3D9 -> native D3D11 GPU RAW partial-diagnostic capture path; C6 docs-only checkpoint commit `936e3f9b7099f1a9c6ab1ea048ee49a60e30f381` (C6-only +0).
+- Fixed a source-stage blocker: before repair, the four opt-in RAW native retry attempts could be consumed by offscreen/foreign RT, missing CPU geometry shadow or zero-primitive D3D9 Draws after a poisoned full native frame, leaving no budget for real backbuffer geometry. Real game source Draw counter was preserved, but invalid candidates expended the native source probe attempt budget before D3D9 RT0/backbuffer/clear owner identity was checked.
+- In `live_game_frame_bridge.cpp` attempt consumption is now deferred until after authentic backbuffer identity and a conservative bounded geometry preflight; `native_game_raw_source_probe.hpp` throttles ineligible candidate COM checks without draining the native conversion attempt budget, with saturating source ordinal arithmetic. The existing C++17 `tests/native_raw_source_probe_schedule_test.cpp` regression verifies offscreen/unshadowed skips, next authentic sampled backbuffer Draw, sparse cadence, Clear/Present reset and overflow boundaries. Exactly three source/test files changed; no DXVK or DX9Ex fallback/input/FFB change; incomplete RAW native pixel region stays opt-in separate from full native game publication.
+- **Five unchanged GitHub Actions exact-SHA required Gates PASS:** DX11 Fast Structural Checks run `40657648170`; Backend Conversion Gate `40657648138`; Windows Build `40657648160`; OpenXR VR architecture `40657658675`; OutRun EXE HUD Inspector CI `40657648148`. Verified separately on the same material SHA `379dd599e1c517a28f0397f1442965c658a31167`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `BUILD_VERIFIED`. **RUNTIME_VALIDATION=UNTESTED**: real game native_draws, GPU pixel visibility, full-frame coverage and Quest3/VDXR are not yet observed on this binary.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2085 + one distinct source-integrated authentic backbuffer conversion-attempt budget repair with five exact-SHA Gate PASS +1 = 2086.** Same FEATURE_ID carry-over, retries, CI, C6/rollover, prior 01131 adaptive source sampling, and unrelated DX9Ex changes get no duplicated credit. AI 1 independent.
 
 ## AI 2 DX9Ex lens Reset entry-QPC versus completion-epoch diagnostic falsification (2026-10-28 17:35 KST)
 

@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 14:49 KST
+Updated: 2026-10-28 14:51 KST
+
+## AI 2 DX11 CONVERSION-DX11-01129 GPU orphan copy retirement (2026-10-28 14:51 KST)
+
+- TASK_ID=`CONVERSION-DX11-01129`; one distinct real C++ DX11 RAW visual diagnostic source feature on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: source implementation SHA `d984954e2cdc458e79cd7b33a84132f55a0a59d5` retires orphaned prior-Present D3D11 GPU staging copies only after successful EVENT completion, does not publish stale pixels, retains pending ownership on S_FALSE and quarantines actual query/Map failure until Reset, with regression in `tests/native_raw_gpu_source_epoch_test.cpp`. Production full-frame DX11, original D3D9 game/input/FFB/DX9Ex fallback and frozen DXVK remain guarded.
+- Exact failed Backend #40638781956 at initial source SHA was Win32 C1083 missing `native_raw_gpu_wait.hpp`; same-TASK causal repair SHA `40492ccc267b469d4597db2cbbc71ab9bd772663` corrected include to existing `native_game_raw_gpu_wait.hpp` (one file, +1/-1). This repair is not a second feature; no CI skip or forced update. Remote branch HEAD and changed-file readback confirmed.
+- Five mandatory push GitHub Actions SUCCESS at identical validation-bearing RESULT_SHA `40492ccc267b469d4597db2cbbc71ab9bd772663`: DX11 Fast #40639228910; Backend Conversion Gate #40639228884 (both validate and readiness smoke jobs PASS); Windows Build #40639228900; OpenXR VR architecture #40639228912; OutRun EXE HUD Inspector CI #40639228899. `AUTOMATION_VALIDATION=PASS_EXACT_SHA` means BUILD_VERIFIED only; no matching real OutRun desktop menu/car/race/native visible pixels or Quest3/VDXR runtime trial, so `RUNTIME_VALIDATION=UNTESTED` and full renderer completion NOT claimed. CI wait time excluded, implementation-time ratios not measured.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2076 + one distinct source-integrated DX11 feature with exact-SHA five-gate PASS +1 = 2077.** Same TASK_ID retry, causal CI repair, C6 checkpoint, readback, and report replays are +0. AI1 score independent.
 
 ## AI 2 DX9Ex global bright-centroid lens ROI negative control (2026-10-28 14:49 KST)
 

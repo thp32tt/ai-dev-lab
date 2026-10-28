@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01555 one-shot pending semantic counterexample (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01555`; unique LENS_FLARE_ONLY REVIEW_ONLY source-static falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Pinned `SOURCE_HEAD=b21ad48ead31d3bfacfff6b95004e1d0150a49bf`; exactly-one-file docs-only `RESULT_SHA=fc08aa3d030a44680189d1dbafc7783bc4f43e70`, marker `[AUTO:CONVERSION-DX9EX-01555]`; GitHub commit file list, remote blob `9c8d2d658d4740d479c27abdd70da7c3da43acf4`, branch HEAD and required report fields readback verified.
+- **Distinct static test versus 01554 and 01553:** `DrawObjectAlphaProjected` CABE's `ScopedRenderSemantic(ProjectedScreenEffect2D)` does NOT shield an earlier non-None `NextDrawScope`; native `R30` DP/DIP/UP dispatch calls `ConsumeForDraw` first, and the pending token can supersede the projected scope before native classification. In contrast projected C993 creates `ScopedExactProducerSemantic(...,isolatePendingDraw=true,ProducerToken::None)` and saves/clears/restores that token around an inline native Draw. Synthetic same-pending-state P/C controls, queue and deferred negative controls, and R26+HUD baseline re-read verified the **conditional source invariant**; it is inherited from protected baseline and not demonstrated to occur in HMD. Unlike 01554's PRE_SCOPE_SOURCE_FULL timing, this verifies **at-native one-shot consumption/isolated pending-scope outcome**. No original 4052C0 PMT join, game trace, same-eye colour-write proof or real optical root cause asserted.
+- Only `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01555.md` added on target branch; `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`, `RUNTIME_VALIDATION=UNTESTED`; no build gate for docs-only. R26+HUD 0cff83cf509c2acd6f3391b3a46c4dec1403a0d9 protected, R84 comparison only, B9200 post-CALL/+5 banned.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2090 + new independent source-static lens one-shot negative-control falsification +1 = 2091.** Existing prior hypotheses, retries, doc readback and further reports +0; AI 1 independent.
+
+Updated: 2026-10-28 KST
+
 ## AI 2 DX11 CONVERSION-DX11-01134 authentic clipped TARGET Clear RAW GPU preview repair (2026-10-28 19:47 KST)
 
 - TASK_ID=`CONVERSION-DX11-01134`, distinct source-integrated C++ renderer correctness repair on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Actual four-file C++/test implementation and final non-CI-skipped exact material RESULT_SHA=`9cb8da965cdfab0b1082d8634a71b44871c6ee58`. Docs-only C6 SHA=`85530a4ca23206603542200a61156becb9be8a54` is separate bookkeeping +0; C6 JSON remote blob `0ed134959ec5ef8de8d8055fa10aca4ab44e13ae` readback matched five Gate facts.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Korean ROI B-0143 OPTIONS single-image asset (2026-10-29 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0143-84E41B3E`. Generated exactly one ImageGen Korean `옵션` lettering-only candidate from supplied verified original OutRun 2006 HD screenshot `Q228_E7F6E9B7_BASE_READABLE_FLIPY(6).png`, English `options` ROI [6,1114,748,1265] (maximum 742×151 px).
+- Processed generated transparent RGBA alpha layer into `Q228_3567fada392dfe42_k.png` (433×151 px); locally confirmed PNG RGBA, transparent alpha range 0..255 and dimensions within reference bbox. Uploaded to ChatGPT personal Library `/아웃런 한글화 신규/Q228_3567fada392dfe42_k.png`; successful upload receipt library_file_id `libfile_7d836eb3977c81919fbe80ff04a651bc`. No source DDS/game runtime PASS or independent typographic QA claimed.
+- Same TASK_ID retry, status readback or re-report earns +0. **AI 2 cumulative: previous confirmed GitHub SSOT 2113 + one distinct new generated and Library-saved image +1 = 2114.** AI 1 remains unchanged at 1777.
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 DX11 CONVERSION-DX11-01144 authentic disjoint D3D9 Present RAW native GPU RGB integration (2026-10-29 KST)
 
 - Distinct cohesive C++ native Draw diagnostic-source integration at `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: source implementation SHA `9dc7c963768049cbc8cbb9e485a5db41d97d5dd3` modifies two production C++ headers plus C++17 compile-time regressions to carry authentic paired native D3D11 GPU before/after RGB to two separately painted, disjoint D3D9 Present dirty islands. Uses same-sized real GPU source crops, verifies original dirty union, authenticated initial tile, disjoint destination, clipping, malformed/out-of-bounds rejection; preserves original DX9Ex/game input/FFB, full-frame fail-closed and DXVK freeze. This is optional RAW visual diagnostic, NOT a complete native game frame, stereo output or HMD runtime proof.

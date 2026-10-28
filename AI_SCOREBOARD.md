@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 14:14 KST
+Updated: 2026-10-28 14:49 KST
+
+## AI 2 DX9Ex global bright-centroid lens ROI negative control (2026-10-28 14:49 KST)
+
+- RUN_KEY=`LENSFLARE-XR-BRIGHT-CENTROID-ROI-20261028-1449`; new independent LENS_FLARE_ONLY REVIEW_ONLY source-grounded falsification of **post-01549 global-bright centroid**, distinct from old 5x3 spatial blind spots, RGB/alpha encoding, same-index pairAbs, and XR frame-receipt gaps. On the current 17x11 opt-in XR projection grid, `R23AsyncPixelProbe::ConsumeProjection` computes `brightMax` over all valid pixels, selects luminance >= 0.65*globalMax and emits `brightCentroidL/R` and `brightDisparity` without C993/CABE identity or flare ROI. Constructive synthetic **non-HMD** negative control: one fixed white non-flare point at (8,5) in both eyes plus one red flare-like point at (4,5) L and (12,5) R yields white lum=1, red lum=0.2126 < threshold=0.65; reported brightDisparity=(0,0) while red feature disparity.x=8/18. Remove only white point and reported brightDisparity.x becomes 8/18. This refutes zero-global-bright-disparity as universal proof of correct flare depth/head-lock; it does **not** establish the actual user's optical root cause or assert such RGB values in Quest3.
+- GitHub source pinned `thp32tt/OutRun2006Tweaks@38f2d9bcd51a7a880028d4d08cc7f6e48ed86452`, `vrhost/src/main_r23.cpp:208-217,1051-1100,1155-1174,1294-1340`, plus original C993/CABE source hook and R30 physical ownership limits. Docs-only result commit `183783fb631451ff3e644c108b10019b256362e3`, exact `[AUTO:LENSFLARE-XR-BRIGHT-CENTROID-ROI-20261028-1449]`, parent `38f2d9bcd51a7a880028d4d08cc7f6e48ed86452`, compare ahead1/behind0, exactly one new file `docs/reviews/dx9ex/automation/LENSFLARE-XR-BRIGHT-CENTROID-ROI-20261028-1449.md` (+48/-0), remote file blob `ad4d84e684e08cedea078d071d55c555424b2250` and remote HEAD readback verified. Protected R26+HUD baseline unchanged; R84 comparison-only; B9200 post-CALL/+5 forbidden; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, no CI skip, no source build Gate for docs-only.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2075 + one independent global bright-centroid flare ROI negative control +1 = 2076.** Same RUN_KEY retry, validation, rollover, and future repetition +0. AI 1 remains separate.
 
 ## AI 2 DX9Ex R24 ordinary classic fallback stale XR final-submission receipt (2026-10-28 14:14 KST)
 

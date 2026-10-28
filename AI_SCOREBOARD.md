@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 14:02 KST
+Updated: 2026-10-28 14:14 KST
+
+## AI 2 DX9Ex R24 ordinary classic fallback stale XR final-submission receipt (2026-10-28 14:14 KST)
+
+- RUN_KEY=`LENSFLARE-XR-CLASSIC-FALLBACK-RECEIPT-20261028-1414`; one distinct LENS_FLARE_ONLY DX9Ex REVIEW_ONLY source-grounded diagnostic falsification. Unlike the earlier 1318 rejected *mixed-layer* fallback, this traces the ordinary no-verified-bundle/no-grace + fresh classic producer path: `vrhost/src/runtime/r24_black_screen_guard.hpp:697-702` directly calls `OutRunVrSbsCaptureOverride::EndFrame` without R23 `RecordFinalSubmissionResult`; `review_hardening.hpp:109-136` can admit a fresh classic producer independently of verified bundle; `sbs_capture_override.hpp:1219-1262` may replace the submitted projection and calls final OpenXR without updating the R23 receipt. Thus `LastSubmittedFrameId/Kind/Layer` from previous A may persist after successful fallback B; `main_r23.cpp:3873-3950` XR FRAME FULL and `R23AsyncPixelProbe::NoteFinalSubmission:1037-1052` may misattribute B or report false-positive prior A. Conditional **telemetry authority gap**, not proof of real Quest3 double flare/head-lock/depth error; prior 1204 prepublication and 1318 mixed fallback are not re-scored.
+- Durable one-file docs-only source-review commit `0268eb29e3dc1feb6412fd0c22008577e599e36d` exact `[AUTO:LENSFLARE-XR-CLASSIC-FALLBACK-RECEIPT-20261028-1414]`; parent `0650eeca4ffa6bc06e2883b467995f1d6cb8cc9a`, compare ahead1/behind0, only `docs/reviews/dx9ex/automation/LENSFLARE-XR-CLASSIC-FALLBACK-RECEIPT-20261028-1414.md` (+47/-0), remote branch HEAD and blob `211901dec7e0585bda8ad4dafe769d0796fd8cc1` readback verified. R26+HUD baseline unchanged, R84 comparison-only, no B9200 +5, no source/config/workflow changes, no CI skip; docs-only build gate not needed; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2074 + one independent ordinary classic fallback XR receipt falsification +1 = 2075.** Same RUN_KEY retry, readback, rollover and subsequent HMD recheck without distinct new outcome +0; AI1 independent.
 
 ## AI 2 DX9Ex XR lens flare disparity-correspondence negative control (2026-10-28 14:02 KST)
 

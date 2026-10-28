@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 09:47:55 KST
+Updated: 2026-10-28 10:43:59 KST
+
+## AI 2 DX9Ex full source-to-XR visual trace instrumentation (2026-10-28 10:43:59 KST)
+
+- RUN_KEY=`USER-DX9EX-FULL-TRACE-20261028-1011`; distinct material DX9Ex diagnostic integration on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. The visual-first trace now records lens D3A5/C993/CABE source identity/alpha/ordinal and queue provenance, unthrottled c64/R30 admission/fallback/GPU state/full raw-L-R matrices, +TIME and GOAL-percent queue boundaries/R62 early rejects/GPU state/full matrices/eye receipts, plus every OpenXR projection blit and live-vs-submitted per-eye pose/FOV. Host FULL lines persist to `outrun-vr-host-full-trace.log` and the launcher returns it with `FULL_TRACE_STATUS.txt` in the normal DX9EX_LOG ZIP. Trace overhead is intentionally accepted for one-pass visual diagnosis.
+- Material source series began at `668ad645c397f219d5484eb748aefdd27a4501aa`, host/XR persistence at `c82f1670c91137624323686a23cc6cd90225344e`, with causal same-task verifier/harness/placement/scope repairs only; final validation-bearing HEAD `d82f33fe0ddad33799c10dfb106396b9dbc6d7c6`. Exact-SHA GitHub User Test run `40615754987` completed/success, including Win32 game DLL, x64 OpenXR host, package and upload; General Test Build `40615755195` completed/success. Source-matched user-test artifact `OutRun2-VR-R26-VISUAL-OWNER-REPAIR-AA2-TEST-d82f33fe0ddad33799c10dfb106396b9dbc6d7c6` id `12785435902`.
+- No Quest3/VDXR visual run was performed at this SHA; `RUNTIME_VALIDATION=UNTESTED`. Same-task CI/verifier/harness repairs and re-runs are +0, not separate achievements. AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2062 + one independent source-integrated full visual trace feature with exact-SHA build/package PASS +1 = 2063.**
 
 ## AI 2 DX11 genuine native GPU RAW Present partial-crop implementation (2026-10-28 09:47:55 KST)
 

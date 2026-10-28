@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01563 R85 mixed-time camera sample / original source coherence falsification (2026-10-29 04:04 KST)
+
+- Distinct independently verified LENS_FLARE_ONLY REVIEW_ONLY static proof on thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus pinned SOURCE_HEAD `e3f1e391d59513ee8244b7a5332e6963fcb45132`: `ApplyCullingCameraSync` `VR LENS CAMERA SYNC` diagnostic combines pre-override D4/3A8/View140 with post-override F8/104; its receipt plus same-record `LastRawGameWvpCameraSynced` cannot distinguish later coherent `sun_flare_40cbc0` producer camera from a conditional stale producer view when R85 suppresses headInverse. Independently reread pinned original reconstructed 40CBC0 Eblend/View140/facing source and latest R85 projected CABE logic; bounded two-world identical-log negative control established. NEW_FINDING is a source/telemetry identifiability limit, NOT observed stale XR pose, wrong WVP, doubled pixels or headset optical root cause. Distinct from 01533 source-field write-set alone, 01560 R85 FOV label, 02:15 same-record sync, and 01562 shader-age WVP source-alias admission.
+- One docs-only `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01563.md`, OutRun RESULT_SHA `f38fbc4bd6f829f738b36593b7808d05beadacfc`, marker `[AUTO:CONVERSION-DX9EX-01563]`; target HEAD, exactly one new doc changed, and blob `aa28ca394042da58d577b016989c364ff1212283` independently remotely read back. CODE_CHANGE=NO; AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK; RUNTIME_VALIDATION=UNTESTED; no build/CI-skip, R26+HUD@0cff83cf509c2acd6f3391b3a46c4dec1403a0d9 immutable, R84 comparison-only and B9200 post-CALL/+5 forbidden. Same TASK_ID repeat/readback/rollover +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2107 + independent new verified mixed-time original-source camera receipt falsification +1 = 2108.** AI 1 unchanged independently.
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 OutRun Korean ROI B-0141 GOAL single-image asset (2026-10-29 03:33 KST)
 
 - TASK_ID=`OUTRUN-ROI-B-0141-EE161E73`. Exactly one ImageGen output (n=1) created from user-supplied original 2048×2048 OutRun HD screenshot, English `GOAL` at bbox [1335,764,1434,802], approved Korean `골`. Source-output transparent RGBA cropped and resized into a single 99×38 px PNG `Q217_679626dd168ca369_k.png`; alpha transparent edges verified locally. The red/white glossy slanted badge is part of the source visual reference.

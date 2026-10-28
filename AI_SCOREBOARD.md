@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 15:48 KST
+Updated: 2026-10-28 16:00 KST
+
+## AI 2 DX9Ex CONVERSION-DX9EX-01551 ResetEx physical-viewport lens falsification (2026-10-28 16:00 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01551`; one distinct REVIEW_ONLY static path falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, source pinned `00857bdd3ddcc286e9aa27a2aa836e47579d3c5d` (post-01550 ResetEx physical extent commit). Direct GitHub source verified `ex_device_upgrade.cpp::ResetCompatDest:450-507`: successful windowed Ex reset may replace game requested backbuffer width/height with cached XR physical extent, then `RestoreClassicResetState:242-330` resets viewport and scissor to actual live backbuffer. The C993 centre call forwards source work without overriding viewport in its wrapper, while R30 uses the saved live viewport for both eyes; a subsequent game viewport override before actual C993 physical draw remains unverified. Proves a conditional physical/logical viewport *diagnostic confounder*, not a concrete same-eye duplicate, head-lock root cause, Quest3 visual correction or broken per-eye projection. Unique source-commit/reset-epoch axis, not the already-scored 01550 ordinal/window false-negative or 01546 FULL logging analysis.
+- Exact one-file docs-only GitHub commit `dc7486e0463d07528e9ffb7448595ec66bf47a87`, marker `[AUTO:CONVERSION-DX9EX-01551]`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01551.md` (+57/-0), remote readback blob `5f077f47031a7988ab87520d5633d83f868c29f0` and current branch HEAD readback verified. Multiple concurrent intermediate commits after pinned source before docs commit; docs commit itself changed ONLY this one file. Subsequent change to Ex reset log appends contract label only, does not affect the conditional source conclusion. Protected R26+HUD remains baseline, R84 comparison only, no B9200 +5; CODE_CHANGE=NO and RUNTIME_VALIDATION=UNTESTED. Source build Gate not required for docs-only; no CI skip in this review.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2080 + one distinct lens-only ResetEx-to-physical-viewport conditional static proof +1 = 2081.** Same TASK_ID retries/remote readbacks/rollover and other workflows' intermediate commits = +0; AI 1 independent.
 
 ## AI 2 DX11 CONVERSION-DX11-01130 same-Present zero-RGB GPU Draw recapture (2026-10-28 15:48 KST)
 

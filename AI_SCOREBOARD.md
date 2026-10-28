@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 13:45 KST
+Updated: 2026-10-28 14:02 KST
+
+## AI 2 DX9Ex XR lens flare disparity-correspondence negative control (2026-10-28 14:02 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01549`; distinct `REVIEW_ONLY` source-verified lens-only diagnostic falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned source HEAD `af5da803606244f6d40e43a25d49fe3e189fd8e9`. New axis versus prior 01547 5x3 spatial completeness, 01548 raw RGBA-versus-RGB encoding, prepublication stale frame and mixed-XR final receipt: `R23AsyncPixelProbe` pairs **same-index image coordinates** without compensating for intentional optical L/R feature disparity. Synthetic, explicitly non-HMD, per-eye arrays with exactly one flare-like bright red pixel, displaced from grid (.30,.50) L to (.50,.50) R, yield `finiteL=finiteR=15`, `pairAbsMean=2/45`, `pairAbsMax=1`, despite NO same-eye duplicate; equal bright pixels produce zero pairAbs for either head-locked mono or intended far-field/centre-eye zero disparity. Source locations `vrhost/src/main_r23.cpp:865-998,1094-1147,1627-1699`, `src/hooks_graphics.cpp:797-905,945-1059` and R30 deferred source identity warning checked. This only falsifies misuse of the metric as a universal stereo/duplicate verdict, does not prove actual user HMD optical bug or change a renderer.
+- Durable docs-only result commit `0650eeca4ffa6bc06e2883b467995f1d6cb8cc9a` exact `[AUTO:CONVERSION-DX9EX-01549]`, one added file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01549.md`, blob `5976d117c8c9725f39cc506e6a5898879aa458dd`; branch HEAD and remote file readback verified. No production source/build workflow/config change, no CI skip; docs-only source build gate not required. `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`; `RUNTIME_VALIDATION=UNTESTED`; R26+HUD immutable; R84 comparison-only; B9200 post-CALL/+5 forbidden.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2073 + one unique source-grounded binocular feature-correspondence negative control +1 = 2074.** Same TASK_ID retries, readbacks, rollover, reanalysis, and future HMD rechecks without a new independent achievement +0. AI 1 remains separate.
 
 ## AI 2 DX11 RAW GPU pixel source Present-epoch integrity and stale completion retirement (2026-10-28 13:45 KST)
 

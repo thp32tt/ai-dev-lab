@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 12:58 KST
+Updated: 2026-10-28 13:03 KST
+
+## AI 2 DX9Ex lens flare pixel-grid RGBA raw-hash versus RGB/encoded-sRGB falsification (2026-10-28 13:03 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01548`; unique LENS_FLARE_ONLY REVIEW_ONLY static source verification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` source SHA `dce6035c023236b596f436721e05578ac7d37439`. Independent channel-identity counterexample, NOT rescore of `CONVERSION-DX9EX-01547` (5x3 sparse spatial sampling) or `LENSFLARE-XR-PROBE-PREPUBLISH-20261028-1204` (fresh B pixel sample mislabelled old A frame): `vrhost/src/main.cpp:1941-1984` chooses four-channel 8-bit SRGB/UNORM projection format; `vrhost/src/main_r23.cpp:900-911` hashes **all 4 bytes per sample** while `R23DecodeRgb:735-755` and `ConsumeProjection:912-947` derive `pairAbsMean` from RGB alone. If the final sample differs only in alpha, hashL != hashR but pairAbsMean=pairAbsMax=0. SRGB bytes /255 without transfer-function linearization are encoded channel differences, not quantitative linear flare energy. These are static evidence-confidence findings only; no direct same-eye flare or HMD optical root cause claim.
+- Durable one-file docs-only source review commit `7d5039ec1c4f5993c1eaeba833a3ccab6673284f`, exact marker `[AUTO:CONVERSION-DX9EX-01548]`, parent `dce6035c023236b596f436721e05578ac7d37439`; one added path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01548.md` (+44/-0), remote branch HEAD/commit comparison/record blob `1f0bdf8b01d420efa7618cb7cc6943d43955cde9` readback verified. No runtime C++, HLSL, config, workflow, hook, release or source modification; R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` remains protected, R84 comparison-only; no forbidden B9200 +5. Source build Gate not required for docs-only; no CI-skip. `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE`; `RUNTIME_VALIDATION=UNTESTED` (no Quest3/VDXR/source RGB evidence).
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2070 + one independent verified XR lens pixel-probe channel-metric falsification +1 = 2071.** Retry, C6 readback, rollover, repeated same-axis evidence +0. AI1 remains separate.
 
 ## AI 2 DX11 opt-in RAW same-Present GPU readback for authentic native game Draw (2026-10-28 12:58 KST)
 

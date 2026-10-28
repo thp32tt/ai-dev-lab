@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 12:05 KST
+Updated: 2026-10-28 12:06 KST
+
+## AI 2 DX9Ex fresh XR projection pixel-grid prepublication source attribution falsification (2026-10-28 12:06 KST)
+
+- RUN_KEY=`LENSFLARE-XR-PROBE-PREPUBLISH-20261028-1204`; independent LENS_FLARE_ONLY REVIEW_ONLY connected GitHub source verification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `4f126ca82935678de1e3986c31331f5f2cd63094`. New distinct source-order defect: `R23RenderProjection:1654-1694` schedules a 5x3 L/R projection pixel readback after rendering fresh game frame B, but `R23AsyncPixelProbe::ScheduleProjection:1132-1142` reads `OutRunVrR23VerifiedBundle::ReadFresh` BEFORE the caller publishes B at `main_r23.cpp:3557-3562`. With a previous published frame A, the sampled RGB is B while the probe's `projectionFrameId`/kind can be A (or 0/None at first boot). `NoteFinalSubmission:1037-1052` then may fail to match actual submitted B, leaving `finalSubmissionKnown=0` despite successful B projection. This is a *diagnostic source-identity and final-submission attribution defect*, not proof of a physical flare duplicate/head-lock and not a fix. Unlike prior `CONVERSION-DX9EX-01547`, which proved 5x3 spatial sampling incompleteness, this independently tests temporal source identity and Publish ordering. Prior cached XR EYE FULL wrong-pv log and its repair are not re-scored.
+- Durable docs-only commit `dce6035c023236b596f436721e05578ac7d37439` with exact `[AUTO:LENSFLARE-XR-PROBE-PREPUBLISH-20261028-1204]`, one added file `docs/reviews/dx9ex/automation/LENSFLARE-XR-PROBE-PREPUBLISH-20261028-1204.md` (+52/-0), parent `4f126ca82935678de1e3986c31331f5f2cd63094`, compare ahead1/behind0, remote branch HEAD and document blob `2b586f1339eca2117410f4d20acf10aed2dedd5a` readback verified. R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` untouched, R84 comparison-only, no risky B9200 hook, no game/host source or CI changes, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, no CI skip; docs-only source build Gate not required. Same RUN_KEY retries, rechecks, or later runtime confirmation without independent outcome +0; AI1 score independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2068 + one independent static lens pixel-probe source-attribution finding +1 = 2069.**
 
 ## AI 2 DX9Ex lens flare binocular 5x3 XR pixel-grid completeness falsification (2026-10-28 12:05 KST)
 

@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 14:51 KST
+Updated: 2026-10-28 15:04 KST
+
+## AI 2 DX9Ex CONVERSION-DX9EX-01550 absent C993 anchor conditional deferred-window false-negative (2026-10-28 15:04 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01550`; independent LENS_FLARE_ONLY REVIEW_ONLY source/caller-branch falsification: verified the secondary original sun_flare_40cbc0 visible-sun spread<=0 branch omits the 0x570002 C993 anchor but retains 0x570006 and two intended CABE 0x570008 plus intervening 4052C0. Current DX9Ex sequence/ordinal reset is only on 570002. Cold no-anchor control reports 0/0; after a prior positive-spread anchored 1/2 invocation, next no-anchor call reports 3/4 and no ordinal1 deferred-window ARM. This refutes a universal inference that absent R30 window implies absent first opaque physical flare draw, **not** evidence of extra HMD flare or head-lock. Distinct concrete original branch and arm/close transition versus 01545's earlier generic ordinal-unstable warning; latter is not re-scored.
+- GitHub source pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` `76f2265aa67287d497205106fd14ccf194c42827` (game source blob `0d2a6fc2ae87d3e9de90f9be2dfeac67fe458a78`), original reconstructed source `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62` (not retail-byte matched). Docs-only RESULT_SHA `05339eec42bf4c1db1998e4b0c97daf8dffe1759`, exact marker `[AUTO:CONVERSION-DX9EX-01550]`, parent `1621b13c7af627192a176145245c5cb0728adbae`, compare ahead1/behind0; only added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01550.md` (+56/-0), remote readback blob `ac97f1766b40b1140f1672b21047a6139d1b90bb`. No source/CI config changes in this task. `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`; `RUNTIME_VALIDATION=UNTESTED`, protected R26+HUD baseline unchanged, R84 comparison-only, no B9200 post-CALL/+5.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2077 + one independent original-branch C993-missing lens conditional trace falsification +1 = 2078.** Same TASK_ID retry, readback, rollover, downstream HMD confirmation without new independent achievement = +0. AI1 independent.
 
 ## AI 2 DX11 CONVERSION-DX11-01129 GPU orphan copy retirement (2026-10-28 14:51 KST)
 

@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 11:48 KST
+Updated: 2026-10-28 12:05 KST
+
+## AI 2 DX9Ex lens flare binocular 5x3 XR pixel-grid completeness falsification (2026-10-28 12:05 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01547`; independent LENS_FLARE_ONLY, REVIEW_ONLY static source verification against `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned source HEAD `773f0fe1c312ad3f97ff453b10b097116d117ec1`. The **newly introduced after 01546** 100ms opt-in `R23AsyncPixelProbe::ScheduleProjection` grid samples precisely 5 x 3 fixed normalized points per eye from projection array slices. `ConsumeProjection` hashes only these 15 samples and computes pairAbsMean/Max on them; a flare lobe at an unmeasured pixel can change while both hashes and pairAbs remain identical, and a nonflare RGB difference on one sampled point can change pairAbs even if the actual flare is unchanged. These are explicit constructive source-based false-negative and false-positive controls for new evidence, **not** a demonstrated HMD/rendering root cause. This finding is independent of 01546 R30 scope FULL logging coverage and the older cached XR EYE FULL alias finding.
+- The host source after `d34ef11f178136e3692d1351766f7356f7ed8a3b` was checked at blob `6a44ec91a3cd92706922c3e0214a17592764cc10` (`main_r23.cpp:209-227,865-998,1037-1053,1094-1147,1654-1694,3865-4021`). Sampled pixels are compositor projection pixels, not original physical PMT/game L/R RT or a flare ROI. XR cached-frame pose/provenance log uses the post-prior repair correct cachedProjectionViews, but source-vs-XR yaw/full dense ROI must still be matched. R26+HUD immutable `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`, R84 comparison-only, no B9200 risky hook. `RUNTIME_VALIDATION=UNTESTED` (no Quest3/VDXR/run log); `CODE_CHANGE=NO`; no CI-skip and docs-only Gate needs no build.
+- Durable GitHub docs-only outcome `4f126ca82935678de1e3986c31331f5f2cd63094` on parent `773f0fe1c312ad3f97ff453b10b097116d117ec1`, exact `[AUTO:CONVERSION-DX9EX-01547]`, exactly one added `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01547.md` (+55/-0); remote branch HEAD, commit changed-paths, ahead1/behind0 and document blob `6eeccce900a75ee267004eb012d5380a2305f48e` independently read back. New TASK_ID gets a single score increment; same-task retries, repeated reports and later readback +0; AI1 unaffected.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2067 + one independent post-feature lens-specific pixel-grid falsification result +1 = 2068.**
 
 ## AI 2 DX11 RAW densest authentic native GPU pixel region in cropped game Present (2026-10-28 11:48 KST)
 

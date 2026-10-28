@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01562 R85 CABE raw-WVP admission source/pose predicate counterexample (2026-10-29 KST)
+
+- New independent pinned-GitHub LENS_FLARE_ONLY REVIEW_ONLY static counterexample at thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus SOURCE_HEAD 59d06ec8ddff490c8d5786f422cf354524d1090c. The two CABE ProjectedScreenEffect2D original raw-WVP recovery paths in R30 require matching shader identity/epoch and draw age (R44 1..12; ExactSceneEffect 1..128) but do not compare stored WVP source semantic, producer/object, original 4052C0/405360 opaque PMT or pose epoch against the current CABE draw. An in-memory read-only predicate witness with source A!=current CABE B, matching shader epoch and age 1 passes both guards; shader-epoch mismatch or age 129 rejects both. Exact C993 centre instead has separate source/pose owner gates. Normal LatchFramePose and Present/Reset invalidate the WVP record, so cross-frame stale pose is NOT claimed. This is a conditional source-provenance *proof gap* newly tested, NOT evidence of incorrect actual GPU WVP, duplicate source emitters, HMD head lock, or a fixed optic. Distinct from 01561 zero-serial source receipt verifier mutation and the earlier R85 same-record camera-sync finding.
+- Exactly one docs-only review file docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01562.md, OutRun RESULT_SHA e3f1e391d59513ee8244b7a5332e6963fcb45132; marker [AUTO:CONVERSION-DX9EX-01562]; GitHub HEAD and single added document blob 5f1642690bab95704be31aa1c1204ac631d7b372 remote readback verified. CODE_CHANGE=NO, AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK, RUNTIME_VALIDATION=UNTESTED; no build Gate, no CI skip. R26+HUD@0cff83cf509c2acd6f3391b3a46c4dec1403a0d9 protected; R84 comparison-only; no unsafe post-CALL/+5 hook. Retry/readback/rollover of this TASK_ID +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2105 + independent newly verified CABE cross-source WVP admission-predicate negative control +1 = 2106.** AI 1 independently unchanged.
+
+Updated: 2026-10-29 KST
+
 ## AI 1 OutRun Korean ROI A-0134 GOAL D single-image asset (2026-10-29 03:00 KST)
 
 - TASK_ID=`OUTRUN-ROI-A-0134-FF64E0D6`. Exactly one new Korean `골 D` text-only candidate was generated from `Q215_C05E67EF_BASE_READABLE_FLIPY(1).png` (512x256) for original `GOAL D` at source ROI `[255,191,420,245]`. ImageGen was invoked once (n=1), and its RGBA output was tightly alpha-cropped/resized to 125x54, within the source ROI maximum 165x54. Final file `Q215_e8c52eec1c265238_k.png`.

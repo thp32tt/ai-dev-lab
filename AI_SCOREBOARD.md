@@ -1,6 +1,16 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 17:04 KST
+Updated: 2026-10-28 17:27 KST
+
+## AI 2 DX9Ex Reset-joined lens/HUD lifecycle trace system V3 (2026-10-28 17:27 KST)
+
+- RUN_KEY=`DIRECT-DX9EX-RESET-JOINED-TRACE-V3-20261028T1658KST`; one distinct material DX9Ex diagnostic integration on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Exact final source SHA `c6b4140f1edfa714c7ef13a1ce261d0c9bd8fb1c`. No lens hiding/merge/optical remap or +TIME/GOAL rendering policy was changed.
+- Added shared `src/vr/d3d9/reset_trace.hpp`: serialized writer-safe Reset snapshot with stable-read indication, requested/effective/actual backbuffer extent, full viewport X/Y/W/H, scissor rectangle, Reset/preserve/classic-replay/backbuffer/viewport/scissor flags, QPC, and externally visible reset epoch allocated only under the publisher lock so published epochs increase in actual completion order even if Reset calls overlap.
+- `src/vr/d3d9/ex_device_upgrade.cpp` now publishes the Reset V3 snapshot after ResetEx, classic-state replay, and live backbuffer/viewport/scissor queries and logs `publishOrder=COMPLETION_MONOTONIC contract=XR_RESET_EPOCH_V3`. Lens C993/CABE source logs, R30 physical L/R receipts, +TIME, GOAL time/B9200 and D3DX LostDevice/ResetDevice lifecycle receipts all carry the same Reset epoch/QPC/flags/stability join. R30 separately logs extent-match, exact X/Y/W/H rectangle-match and scissor-match; the dimension-only `resetViewportMatchesPre` false-positive identified by already-scored REVIEW_ONLY 01552 was removed.
+- Added `VR HUD D3DX LIFECYCLE` telemetry to prove whether pending HUD batches were owned and invalidated across ID3DXSprite LostDevice/ResetDevice, with entry/post generation, mutation, active, drawCount, homogeneous scope/producer and Reset join. Original native HRESULT and existing invalidation behavior are preserved.
+- Regression contracts now require writer serialization, publish-order serial assignment, stable read status, full viewport/scissor equality, Reset-to-lens/HUD trace join and lifecycle receipts. Final Active Validation `40655564995` passes the new resolution/Reset/FULL trace/lens/+TIME/GOAL/provenance contracts and still stops later at the pre-existing unrelated `verify_vr_menu_letterbox_aspect.py` visibility-string assertion; no full Active Validation PASS is claimed. Domain Isolation Guard `40655564793` SUCCESS.
+- Exact final-SHA builds: User Test run `40655564762` SUCCESS, artifact `12801483072`, digest `sha256:52bf37840d87249aa003684011094e7835f0cb3e7c3d1c9d2f22c07d1c9431e7`; Official Focus DEBUG run `40655564865` SUCCESS, artifact `12801723748`, digest `sha256:444f3ea4a82d648b1e7bdd701df15758a5cd11a92759c7a4b9336a24044ded4b`. Official passed Win32 game DLL, x64 OpenXR host, RelWithDebInfo Win32+x64 and standalone TEST/DEBUG ZIP packaging. `RUNTIME_VALIDATION=UNTESTED`: no Quest3 optical-success claim.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2083 + one distinct source-integrated Reset-joined visual/HUD lifecycle trace system with exact-SHA User+Official build success +1 = 2084.** The already-scored 01552 review, same-work verifier formatting repairs, intermediate SHA builds/status checks and unrelated menu-letterbox failure = +0. AI1 independent.
 
 ## AI 2 DX9Ex CONVERSION-DX9EX-01552 Reset viewport-origin equality false-positive (2026-10-28 17:03 KST)
 

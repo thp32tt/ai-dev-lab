@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun Korean ROI A-0135 START single-image asset (2026-10-29 03:23 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0135-F2410BD5`. New ImageGen single-output (n=1) Korean `출발` candidate from supplied 2048×2048 OutRun original HD UI, original `START` source bbox [797,503,892,540] (max 95×37). Cropped alpha content and resized to 95×29, transparent RGBA PNG, final name `Q217_dccffac670aa640c_k.png`.
+- Personal ChatGPT Library upload succeeded and list readback verified at `/아웃런 한글화 신규/Q217_dccffac670aa640c_k.png` (library_file_id `libfile_9a691cfd68d88191b5d5aef1fb841cb5`), 5,990 bytes. This is a candidate only; no exact UI font/style gate, DDS, C1/C2/C3 or game-runtime PASS is claimed. Retry, recheck, rollover and same TASK_ID repeat +0.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1775 + one distinct new ImageGen+Library-verified asset +1 = 1776.** AI 2 remains unchanged at 2106.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex CONVERSION-DX9EX-01562 R85 CABE raw-WVP admission source/pose predicate counterexample (2026-10-29 KST)
 
 - New independent pinned-GitHub LENS_FLARE_ONLY REVIEW_ONLY static counterexample at thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus SOURCE_HEAD 59d06ec8ddff490c8d5786f422cf354524d1090c. The two CABE ProjectedScreenEffect2D original raw-WVP recovery paths in R30 require matching shader identity/epoch and draw age (R44 1..12; ExactSceneEffect 1..128) but do not compare stored WVP source semantic, producer/object, original 4052C0/405360 opaque PMT or pose epoch against the current CABE draw. An in-memory read-only predicate witness with source A!=current CABE B, matching shader epoch and age 1 passes both guards; shader-epoch mismatch or age 129 rejects both. Exact C993 centre instead has separate source/pose owner gates. Normal LatchFramePose and Present/Reset invalidate the WVP record, so cross-frame stale pose is NOT claimed. This is a conditional source-provenance *proof gap* newly tested, NOT evidence of incorrect actual GPU WVP, duplicate source emitters, HMD head lock, or a fixed optic. Distinct from 01561 zero-serial source receipt verifier mutation and the earlier R85 same-record camera-sync finding.

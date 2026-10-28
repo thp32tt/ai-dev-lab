@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01559 R30 stored sameRT identity vs executed right-eye RT (2026-10-29 KST)
+
+- Distinct pinned-source LENS_FLARE_ONLY REVIEW_ONLY control at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `2643e0cca47c7aaa129db609a954786ac656195e`: R30 `VR LENS R30 PHYSICAL EYES sameRT` compares saved `TrackedRenderTarget` with expected `RightEyeSurface`, regardless of actual successful right `SetRenderTarget` or right `actualDraw`. A LEFT-success / RIGHT_RT-bind-failure branch can print `sameRT=0` while `rightDrawAttempted=0` and `rightDrawHr=E_PENDING`. Cross-tested against R30 sampled `EYE RASTER` live `GetRenderTarget`/HRESULT, which is stronger when `captured=1`, and protected R26+HUD baseline lacking the later logs. This is a **saved-pointer versus physical-eye binding diagnostic negative control**, distinct from 01556's separate LEFT-HRESULT return/completion analysis, 01558's uncaptured-raster zeros and 2314 getter status. No real tracker mismatch, failed getter, GPU pixels, original C993/CABE PMT, Quest3/VDXR root cause, or stereo visual repair proven.
+- Exactly one new review file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01559.md`, exact marker `[AUTO:CONVERSION-DX9EX-01559]`, docs-only RESULT_SHA `95d41e9282f1a0d11567010df7b18eb9ed2645fe`. GitHub readback verified branch HEAD, changed-file count=1, doc blob `c136103c1d097ff960d89c9016c664726bba8f09`; CODE_CHANGE=NO, AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK, RUNTIME_VALIDATION=UNTESTED. No source CI/build, CI-skip, R84 promotion or B9200 post-CALL/+5 hook. Same TASK_ID retry/rollover/readback/re-report +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2097 + unique new source-static saved-vs-live lens-eye RT receipt falsification with verified durable docs result +1 = 2098.** AI 1 independent and unchanged at 1774.
+
+Updated: 2026-10-29 KST
+
 ## AI 1 OutRun Korean ROI A-0132 single-image asset (2026-10-28 23:20 KST)
 
 - TASK_ID=`OUTRUN-ROI-A-0132-078428A5`. One fresh transparent-background Korean text-only PNG was generated from the supplied OutRun 2006 HD screenshot: approved phrase `싱글/멀티플레이 랭킹 보기` for original English `View single player and multiplayer rankings` (reference bbox [2,910,1334,978] / original 4096x2048). Generated single image was cropped and resized to 1230x65 RGBA without preserving original full canvas. Final filename `Q205_1ffed26b404f33c4_k.png`.

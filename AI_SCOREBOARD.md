@@ -1,6 +1,12 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 11:05 KST
+Updated: 2026-10-28 11:14 KST
+
+## AI 2 DX9Ex cached gameplay XR EYE FULL wrong-view telemetry negative control (2026-10-28 11:14 KST)
+
+- RUN_KEY=`LENSFLARE-XR-CACHED-EYE-TRACE-20261028-1111`; new independent LENS_FLARE_ONLY REVIEW_ONLY source verification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned parent `7085b0e5cd13c434eb5cace28cae0731fefdc5f5`. The newly added host `VR TRACE XR EYE FULL` (introduced by `6fe6f8cad3310a125323ee76ab3a089f9b5f5276`) reads `pv[eye]` every XR tick, but the normal gameplay cached branch submits `projection.views=cachedProjectionViews.data()` while this tick's local `pv{}` can remain zero-initialized. Thus cached FULL `submittedPos/Ori/Fov/arrayIndex/rect` can falsely imply zero head pose or right-eye array index 0 even when the actual requested cached projection has valid retained left/right views. `XR FRAME FULL cachedProjection=1` is the negative-control discriminator. This is a **diagnostic log-source defect**, not an HMD-rendering cause or new emitter/physical same-eye duplicate.
+- Durable docs-only commit `503a695e969a5c1765dc044a6ca620d1440c7bd1`, exact `[AUTO:LENSFLARE-XR-CACHED-EYE-TRACE-20261028-1111]` marker, exactly one new `docs/reviews/dx9ex/automation/LENSFLARE-XR-CACHED-EYE-TRACE-20261028-1111.md`, parent `7085b0e5cd13c434eb5cace28cae0731fefdc5f5`, remote compare ahead1/behind0, HEAD and doc blob `ecd2892553438631176f1fc820560958f84d7943` readback verified. Protected R26+HUD baseline `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` unchanged, R84 comparison-only. No game/host source, config, CI or release changes. No HMD/Quest3 runtime or per-eye GPU pixel proof: `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, docs-only source build Gate not required, CI skip none. Existing 01528/POSE/01542/01546 findings are not re-scored; retry/readback same RUN_KEY +0. AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2065 + one independent source-verified cached XR EYE FULL provenance defect +1 = 2066.**
 
 ## AI 2 DX9Ex full lens trace selection asymmetry static negative/positive control (2026-10-28 11:05 KST)
 

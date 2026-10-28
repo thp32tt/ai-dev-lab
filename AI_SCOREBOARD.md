@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
-Updated: 2026-10-28 12:06 KST
+Updated: 2026-10-28 12:58 KST
+
+## AI 2 DX11 opt-in RAW same-Present GPU readback for authentic native game Draw (2026-10-28 12:58 KST)
+
+- TASK_ID=`CONVERSION-DX11-01127`; one independent material C++ RAW visual-output integration in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: genuine game-authored D3D9 Draw -> native D3D11 GPU Draw -> source-ordered paired before/after GPU copies -> **bounded same-Present GPU event wait** (24ms, maximum polls) -> completed STAGING readback -> genuine changed-RGB crop into opt-in-only game diagnostic surface. The previous single DONOTFLUSH query could defer every still-in-flight real GPU copy until the NEXT game's Present, reducing same-frame visible evidence. Preserve original game D3D9 Draw/gamepad/FFB/DX9Ex fallback, incomplete-RAW labelling, fail-closed production full-frame, frozen DXVK; no full native menu/race or Quest stereo completion claimed.
+- Functional C++ commit `6185393c488c6b2e6d5196b20f8248a42198ff6e` with exact `[AUTO:CONVERSION-DX11-01127]`: updated `src/vr/d3d11/native_game_raw_visual_diagnostic.hpp`, added reusable `native_game_raw_gpu_wait.hpp`, `tests/native_raw_gpu_wait_test.cpp` (ready, delayed completion, bounded timeout, GPU failure, stuck clock, zero budget), wired existing DX11 Fast unchanged full Gates. Actual OpenXR package Gate at source SHA failed due to inherited strict `D3D11_MAP_FLAG_DO_NOT_WAIT` literal; same TASK_ID causal repair `35a02c82bb62677326a0d67b849ce9459973eaf7` corrected `tools/test_package_dx11_first_game_frame.py` to enforce completion-before-Map and bounded event wait, rather than weakening real package/device safety. This repair and same-ID retries/C6 do NOT score independently.
+- Final validation-bearing exact SHA `35a02c82bb62677326a0d67b849ce9459973eaf7`: mandatory push GitHub Actions SUCCESS DX11 Fast `40628277706`, Backend Conversion Gate `40628277545`, Windows Build `40628277594`, OpenXR VR architecture `40628277530`, OutRun EXE HUD Inspector CI `40628277683`. Readback of the branch and source confirmed; no CI-skip on source or causal repair. `AUTOMATION_VALIDATION=PASS_EXACT_SHA` equals BUILD_VERIFIED only. No new matching real game desktop/Quest3/VDXR evidence; `RUNTIME_VALIDATION=UNTESTED`. No measured development-time percentages claimed; AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2069 + one independent DX11 functional source integration and five exact-SHA Gates PASS +1 = 2070.**
 
 ## AI 2 DX9Ex fresh XR projection pixel-grid prepublication source attribution falsification (2026-10-28 12:06 KST)
 

@@ -2,6 +2,12 @@
 
 Updated: 2026-10-28 16:21 KST
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01552 Reset viewport-origin equality false-positive (2026-10-28 17:03 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01552`; new distinct LENS_FLARE_ONLY REVIEW_ONLY source-static falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, source pinned `b8e86d17ecac0740f21749f2d83efc41065ce295`. Unlike prior 01551 conditional ResetEx physical/logical extent difference, this tests newly wired Reset epoch publisher/C993+CABE source tags/R30 eye log. `stereo_renderer_r30_r26_safe.cpp::R30TryScreenSpaceFovDraw:6380-6440` marks `resetViewportMatchesPre=1` when reset serial is nonzero and viewport width/height equal while omitting X/Y, even though both origin fields exist: a synthetic reset viewport (0,0,1200,900) and pre-lens viewport (64,0,1200,900) is labeled a match. It is a proven **conditional diagnostic false-positive**, NOT proof such viewport movement occurred on Quest3 or caused lens doubling/head-lock. Source/physical/host optical ROI still unverified.
+- Durable docs-only commit `318ae7aa0dc3fc6d28be9c636f4aec396fe96b06`, marker `[AUTO:CONVERSION-DX9EX-01552]`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01552.md`; commit itself adds exactly that file (+56/-0), GitHub remote readback blob `a6c5612ceb707753efb37cf927845fbd77421410`, branch readback verified. Concurrent unrelated intervening commits preceded review commit; not attributed to this task. Protected R26+HUD baseline, no R84 promotion or B9200 post-CALL/+5. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`, `RUNTIME_VALIDATION=UNTESTED`. Source build gate not applicable, no CI skip.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2082 + one independent source-proven lens-only Reset-viewport-origin diagnostic predicate counterexample +1 = 2083.** Same TASK_ID retry, docs recheck, rollover, unrelated source commits +0. AI 1 scored independently.
+
 ## AI 2 DX9Ex XR Reset resolution persistence + GOAL post-drain ownership repair (2026-10-28 16:21 KST)
 
 - RUN_KEY=`DIRECT-DX9EX-RES-GOAL-REPAIR-20261028T1555KST`; one distinct material DX9Ex source repair on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Final runtime source SHA `cd977b98cafe7ca58e798d341f7ba0de75436f89`.

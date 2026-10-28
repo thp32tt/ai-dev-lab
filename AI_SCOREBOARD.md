@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun Korean ROI A-0132 single-image asset (2026-10-28 23:20 KST)
+
+- TASK_ID=`OUTRUN-ROI-A-0132-078428A5`. One fresh transparent-background Korean text-only PNG was generated from the supplied OutRun 2006 HD screenshot: approved phrase `싱글/멀티플레이 랭킹 보기` for original English `View single player and multiplayer rankings` (reference bbox [2,910,1334,978] / original 4096x2048). Generated single image was cropped and resized to 1230x65 RGBA without preserving original full canvas. Final filename `Q205_1ffed26b404f33c4_k.png`.
+- Confirmed user Library upload and independent list readback at `/아웃런 한글화 신규/Q205_1ffed26b404f33c4_k.png`, library_file_id `libfile_ee0a3b55e8e881919bc62f8bf6ffee94`, 123694 bytes. Generated asset and Library presence verified; no DDS, real-game visual QA/PASS, or project attachment claim. Same TASK_ID retry or report +0.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1773 + one distinct generated and Library-verified new asset +1 = 1774.** AI 2 unchanged (2097).
+
+Updated: 2026-10-28 KST
+
 ## AI 2 DX9Ex LENSFLARE-R30-MATERIAL-GETTER-STATUS-20261028-2314 material/texture getter validity vs reported alpha/colour state (2026-10-28 KST)
 
 - New independent `LENS_FLARE_ONLY` `REVIEW_ONLY` pinned GitHub source-static negative control at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` `SOURCE_HEAD=0a1e57f419f04562e6bbf5c6547e79142a5ad115`. R30 pre-admission physical material logs `VR LENS R30 PHYSICAL CLASS` and `VR TRACE LENS GPU STATE FULL` print zero-initialized `colorWrite/alphaBlend/srcBlend/dstBlend/zEnable/zWrite/alphaTest` values despite discarding all seven `GetRenderState` HRESULTs; `tex0=0` similarly conflates a failed `GetTexture` query and a successful unbound stage. A printed zero therefore cannot prove successful state observation, actual missing flare texture, alpha suppression, or a colour-disabled native draw. Distinct from 01558's separate `EYE RASTER captured=0` failure-sampling sentinel; no actual failed getter, GPU colour pixel, original PMT, Quest3 visual fix, or root-cause claim.

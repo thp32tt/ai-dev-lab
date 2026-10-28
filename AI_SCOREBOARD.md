@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01554 pre-scope C993/CABE source-log semantic versus native draw (2026-10-28 KST)
+
+- TASK_ID=`CONVERSION-DX9EX-01554`, distinct LENS_FLARE_ONLY REVIEW_ONLY static diagnostic-interpretation counterexample on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Pinned pre-review `SOURCE_HEAD=57f4284e6e1beea8cd6225654c057d3d585125ab`; docs-only one-file `RESULT_SHA=b21ad48ead31d3bfacfff6b95004e1d0150a49bf`; exact GitHub commit file-list and file blob `9dd28dd94776884ccb4427130af6c530aac49856` remotely verified.
+- **Independent source-static result:** `src/hooks_graphics.cpp::DrawObjectAlphaCentre:982-1005` logs `VR TRACE LENS SOURCE FULL` **before** `ScopedExactProducerSemantic(ProjectedScreenEffect2D, ..., ProducerToken::None)` at :1053-1068. `LensCentreEnter:682-732` may already supply ambient `WorldBillboard/LensFlareCentre`. An exact matching *inline* sourceCallSerial can therefore show pre-scope C993 SOURCE FULL `WorldBillboard/LensFlareCentre` while native `R30 SOURCE JOIN` sees `ProjectedScreenEffect2D/None`, without a duplicate original emitter, native same-eye draw or semantic leak. `DrawObjectAlphaProjected:826-891` has the corresponding pre-scope CABE logging timing. Distinct from 01553's already-scored **ray-branch token guard**, the new result falsifies the use of **source-log ambient scope/producer fields as actual physical route identity**. Exact GPU-owner and queued/deferred exceptions are explicitly preserved.
+- Only `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01554.md` added; `[AUTO:CONVERSION-DX9EX-01554]`; remote readback and branch HEAD match. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`, `RUNTIME_VALIDATION=UNTESTED`; protected R26+HUD unchanged, R84 comparison only, B9200 +5 hook prohibited. No new game log, HMD pixel proof, original retail EXE disassembly, or optical root-cause claim; previous 01540-01553 results are not re-scored.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2088 + one independent durable source-log temporal-provenance static falsification +1 = 2089.** Same TASK_ID retry/readback/status/re-report +0. AI 1 separate.
+
 Updated: 2026-10-28 18:59 KST
 
 ## AI 2 DX11 CONVERSION-DX11-01133 canonical same-Present Clear GPU capture epoch repair (2026-10-28 18:59 KST)

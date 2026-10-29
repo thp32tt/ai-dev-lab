@@ -128,3 +128,15 @@ LS11/bitplane 구조는 실제 제공된 KAO.LZW와 공개 프로젝트 `gcjjyy/
 - Save actor table at saveBase+0x18 (8 × 3 bytes) restored and rendered with char6.
 - Saved townspeople participate in proximity collision and wall-around logic; walkers use the original direction/move probabilities.
 - Firefox validation: Tunis Catalina down frame on load, ArrowLeft changes to the real left walking frame; saved residents are visible around town.
+
+## Browser M6 — Korean fleet speed + 20-minute sailing ticks (2026-10-29)
+
+- Rejected the incompatible English/reference save fleet offsets after direct Korean-save validation.
+- Korean Ship2 30-byte provision record decoded for water/food/lumber/shot, Lookout%, Navigation%, load, goods and captain.
+- Korean Ship4 +7 proven as Sail Type for all 25 ship models (25/25 match).
+- Captain Seamanship and Navigation Level taken from Korean Person records.
+- Original integer sailing-speed formula implemented: wind/sail type, Power, crew Navigation ratio, load factor, Navigation Level, Seamanship and Tacking.
+- WINDCUR current vector is added to fleet velocity.
+- Movement now uses original-style independent 60-unit X/Y accumulators and one 20-minute game tick per forward input.
+- Firefox Danzig validation: north coast-block, east speed12/6 knots, accumulators 12→24→36→48→60 and movement (286,238)→(287,238), clock 16:20→18:20.
+- Remaining exactness edge: original 16-bit load-factor overflow for very large loads (>327) is not yet byte-for-byte emulated.

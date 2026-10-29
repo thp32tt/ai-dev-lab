@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 FVF live Fog RAW source-equation native Draw integration (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX11-01154`; OutRun `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` material implementation / exact-SHA result `0eb3fb663aa1aebef14cb1574249d7ec78ab3fa6`. Actual C++ changed in `src/vr/d3d11/live_game_frame_bridge.cpp`, `native_game_raw_fvf_fog_visual.hpp` and positive/negative C++/source regression files. D3D9 table Fog over inherited vertex Fog selects only consumed source START/END versus DENSITY getter for opt-in game FVF native RAW Draw; FVF and SM3 RAW now share the same real source equation admission, rejecting failed required getter/invalid consumed float, malformed mode or RAW-off. Original production full-frame Fog equality, D3D9 game Draw, gamepad, FFB, DX9Ex fallback, native resource/poison safeguards and DXVK freeze remain unchanged.
+- **All five mandatory push GitHub Actions on EXACT material SHA `0eb3fb663aa1aebef14cb1574249d7ec78ab3fa6` SUCCESS**: DX11 Fast `40836219899`, Backend Conversion `40836220067` (including Win32 and WARP/readiness), Windows Build `40836219961`, OpenXR `40836219915`, HUD Inspector `40836219996`. No CI-skip on the validation-bearing commit.
+- **SOURCE_CHANGED=YES; AUTOMATION_VALIDATION=PASS_EXACT_SHA; RUNTIME_VALIDATION=UNTESTED.** No new source-matched actual OutRun game native GPU Draw/published frame/Quest3-VDXR evidence; CI PASS is BUILD_VERIFIED, not confirmed playable renderer. No point for later C6, retry, local smoke, repeated Gate checks, or same task re-report. AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2152 + one distinct source-integrated FVF/SM3 RAW native Draw feature achievement with five exact-SHA Gate PASS +1 = 2153.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 대항해시대 II Browser M5 한국어판 스프라이트·WINDCUR·함대 상태 통합 (2026-10-29 KST)
 
 - M3/M4와 별개의 신규 실행 성과. 사용자 한국어판 `CHAR.LZW` 실제 청크 5,120×6 + 15,360을 분석해 주인공 6명×8프레임의 프레임당 4개 16×16 planar 4bpp 색상 사분면을 브라우저 항구 보행에 연결했다. 다섯 번째 128-byte blitter mask/control 의미는 미확정으로 명시하고 억지 적용하지 않았다.

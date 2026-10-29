@@ -11,6 +11,36 @@ export function stripMenuControls(text) {
   return text.replace(/[\x00-\x1f]/g, " ").replace(/\s+/g, " ").trim();
 }
 
+export function parseMenuTable(arrayBuffer) {
+  const bytes = new Uint8Array(arrayBuffer);
+  if (bytes.length < 2) return [];
+  const firstOffset = (bytes[0] << 8) | bytes[1];
+  const count = firstOffset / 2;
+  const out = [];
+  for (let i = 0; i < count; i++) {
+    const off = (bytes[i * 2] << 8) | bytes[i * 2 + 1];
+    const next = i + 1 < count
+      ? (bytes[(i + 1) * 2] << 8) | bytes[(i + 1) * 2 + 1]
+      : bytes.length;
+    if (off + 2 > bytes.length || next < off) {
+      out.push({ index: i, width: 0, count: 0, options: [] });
+      continue;
+    }
+    const width = bytes[off];
+    const optionCount = bytes[off + 1];
+    let p = off + 2;
+    const options = [];
+    for (let k = 0; k < optionCount && p < next; k++) {
+      let end = p;
+      while (end < next && bytes[end] !== 0) end++;
+      options.push(cp949.decode(bytes.subarray(p, end)));
+      p = end + 1;
+    }
+    out.push({ index: i, width, count: optionCount, options });
+  }
+  return out;
+}
+
 export function parseOffsetTextTable(arrayBuffer) {
   const bytes = new Uint8Array(arrayBuffer);
   if (bytes.length < 2) return [];
@@ -44,16 +74,29 @@ export const SAVE = Object.freeze({
   ACTOR_COUNT: 8,
   ACTOR_SIZE: 3,
   MONEY: 0x06a1,
+  BANK_WORD: 0x06a5,
+  BANK_REMAINDER: 0x06a7,
+  ITEM_INVENTORY: 0x21fa,
+  ITEM_INVENTORY_COUNT: 20,
+  VOYAGE_DAY: 0x21bb,
+  WATER_RATION: 0x21bc,
+  FOOD_RATION: 0x21bd,
+  ITEM_DEFINITIONS: 0x75c5,
+  ITEM_DEFINITION_SIZE: 26,
+  ITEM_DEFINITION_COUNT: 100,
   HERO_ID: 0x06a8,
   PERSON: 0x06a9,
   PERSON_SIZE: 50,
   PORT_TABLE: 0x53ba,
+  PORT_META: 0x5966,
+  PORT_META_SIZE: 0x25,
   PORT: 0x53bf,
   PORT_SIZE: 20,
   ABILITY: [0x064d, 0x065b, 0x0669, 0x0677, 0x0685, 0x0693],
 });
 
 function u16le(view, off) { return view.getUint16(off, true); }
+function i16le(view, off) { return view.getInt16(off, true); }
 function u32le(view, off) { return view.getUint32(off, true); }
 
 
@@ -103,6 +146,11 @@ function parseKoreanFleet(bytes, view, page, heroId) {
       lookoutPercent:bytes[s2+11],
       navigationPercent:bytes[s2+12],
       load:u16le(view,s2+13),
+      goods:Array.from({length:5},(_,slot)=>({
+        slot,
+        quantity:u16le(view,s2+15+slot*2),
+        id:bytes[s2+25+slot],
+      })),
       captainName:[
         decodeCString(bytes,page+SAVE.PERSON+bytes[s2]*SAVE.PERSON_SIZE,13),
         decodeCString(bytes,page+SAVE.PERSON+bytes[s2]*SAVE.PERSON_SIZE+13,13),
@@ -136,6 +184,32 @@ function parseKoreanFleet(bytes, view, page, heroId) {
 }
 
 
+function parsePortMetaRecord(bytes, view, page, port) {
+  if (port < 0 || port >= 100) return null;
+  const at = page + SAVE.PORT_META + port * SAVE.PORT_META_SIZE;
+  if (at + SAVE.PORT_META_SIZE > bytes.length) return null;
+  return {
+    offset: at,
+    economy: u16le(view, at + 0x02),
+    marketInvestment: u16le(view, at + 0x04),
+    industry: u16le(view, at + 0x06),
+    shipyardInvestment: u16le(view, at + 0x08),
+    support: Array.from(bytes.subarray(at + 0x0a, at + 0x10)),
+    rates: Array.from(bytes.subarray(at + 0x10, at + 0x1a)),
+    specialtyBasePrice: u16le(view, at + 0x1a),
+    specialtyGoodsId: bytes[at + 0x1c],
+    specialtyEconomyThreshold: bytes[at + 0x1d],
+    regionId: bytes[at + 0x1e],
+    regularItems: Array.from(bytes.subarray(at + 0x1f, at + 0x22)),
+    secretItem: bytes[at + 0x22],
+    marketId: bytes[at + 0x23],
+    industryId: bytes[at + 0x24],
+    // In the 0x5966 framing the Pub specialty byte at executable-relative
+    // +0x26 is the following record's +1.
+    pubDrinkId: bytes[at + 0x26],
+  };
+}
+
 export function parseKoreanPortTable(arrayBuffer, page = 0) {
   const bytes = new Uint8Array(arrayBuffer);
   const view = new DataView(arrayBuffer);
@@ -151,6 +225,7 @@ export function parseKoreanPortTable(arrayBuffer, page = 0) {
       name: decodeCString(bytes, at + 5, 15),
       supply: i >= 100,
       mapId: i >= 100 ? 100 : i,
+      meta: i < 100 ? parsePortMetaRecord(bytes, view, page, i) : null,
     });
   }
   return ports;
@@ -208,6 +283,9 @@ export function parseSaveSlots(arrayBuffer) {
       });
     }
     const fleet=parseKoreanFleet(bytes,view,page,heroId);
+    const portMeta = port !== 0xff && port < 100
+      ? parsePortMetaRecord(bytes, view, page, port)
+      : null;
     slots.push({
       index: i,
       empty: false,
@@ -216,6 +294,7 @@ export function parseSaveSlots(arrayBuffer) {
       portName,
       portWorld,
       fleet,
+      portMeta,
       dateTime: {
         year, month, day, timeTick,
         hour: Math.floor(timeTick / 3),
@@ -225,7 +304,40 @@ export function parseSaveSlots(arrayBuffer) {
       heroId,
       heroName: [fname, lname].filter(Boolean).join(" "),
       portraitIdCandidate: bytes[personBase + 26],
+      charm: bytes[personBase + 34],
+      luck: bytes[personBase + 35],
+      navigationLevel: bytes[personBase + 36],
+      battleLevel: bytes[personBase + 37],
+      navigationExperience: u16le(view, personBase + 38),
+      battleExperience: u16le(view, personBase + 40),
+      affiliation: bytes[personBase + 44] & 0x0f,
+      rank: bytes[abilityBase + 13],
+      dayFlags: bytes[saveBase + 0x0c],
       money: u32le(view, page + SAVE.MONEY),
+      bankBalance: i16le(view, page + SAVE.BANK_WORD) * 100 + bytes[page + SAVE.BANK_REMAINDER],
+      voyageDay: bytes[page + SAVE.VOYAGE_DAY],
+      waterRation: bytes[page + SAVE.WATER_RATION],
+      foodRation: bytes[page + SAVE.FOOD_RATION],
+      inventory: Array.from(
+        bytes.subarray(
+          page + SAVE.ITEM_INVENTORY,
+          page + SAVE.ITEM_INVENTORY + SAVE.ITEM_INVENTORY_COUNT,
+        ),
+      ),
+      itemDefinitions: Array.from({length:SAVE.ITEM_DEFINITION_COUNT},(_,id)=>{
+        const at=page+SAVE.ITEM_DEFINITIONS+id*SAVE.ITEM_DEFINITION_SIZE;
+        return {
+          id,
+          name: decodeCString(bytes,at,21),
+          picture: bytes[at+21],
+          priceUnit: u16le(view,at+22),
+          price: u16le(view,at+22)*100,
+          rating: bytes[at+24],
+          flags: bytes[at+25],
+          type: bytes[at+25]&0x0f,
+          equipped: (bytes[at+25]&0x10)!==0,
+        };
+      }),
       tradeFame: u16le(view, abilityBase),
       pirateFame: u16le(view, abilityBase + 2),
       adventureFame: u16le(view, abilityBase + 4),

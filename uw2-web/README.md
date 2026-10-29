@@ -140,3 +140,32 @@ LS11/bitplane 구조는 실제 제공된 KAO.LZW와 공개 프로젝트 `gcjjyy/
 - Movement now uses original-style independent 60-unit X/Y accumulators and one 20-minute game tick per forward input.
 - Firefox Danzig validation: north coast-block, east speed12/6 knots, accumulators 12→24→36→48→60 and movement (286,238)→(287,238), clock 16:20→18:20.
 - Remaining exactness edge: original 16-bit load-factor overflow for very large loads (>327) is not yet byte-for-byte emulated.
+
+## Browser M7 — Port Call round-trip (2026-10-29)
+
+- Korean save's full 130-port world catalog is decoded from page-relative 0x53BA.
+- Original-style Port Call scans the 12 world tiles in the 4×4 ring around the fleet's occupied 2×2 block.
+- ENTER/P at sea calls a nearby port by exact world coordinate.
+- Arrival uses ZA_DAT Harbor door, places the player one row below it, and reconstructs view = Harbor − (12,13), clamped to 0..72.
+- Danzig round-trip is exact: town (22,52), view(10,38), player(12,14) → sail (286,238) → Port Call Danzig (288,240) → town (22,52), view(10,38), player(12,14).
+- Firefox validation PASS. The first complete interactive town→sea→town loop now works.
+
+## Browser M8 — 한국어판 OPEN.EXE 12장면 오프닝 (2026-10-30)
+
+기존 오프닝 구현은 공개 영문판의 13-scene/16-part 구조를 일부 참고한 근사치였지만, 사용자 한국어판 `OPEN.EXE`를 직접 추적해 교체했다.
+
+- 한국어판 scene table: `DS:0x0740`, 12개 함수 포인터.
+- 실제 장면 수: **12**. 웹의 가짜 13번째 `HIT ANY BUTTON` 장면 제거.
+- 실제 한국어판 OPGRAPH: 14 parts / 108 GRAPH records.
+- `0x18493` part loader와 `0x14E58` record lookup을 추적해 108개 record가 오프닝 12장면에서 전부 사용됨을 확인.
+- 타이틀 scene은 part0 record `5,6,7,8,9,11,12,13,14,15,10` 순서. 32×32 twinkle 11..15도 실제 사용.
+- 스토리 순서: Otto → Catalina → Ernst → Pietro → Ali → lovers/story → antagonist → João Ferrero → boarding.
+- João scene은 Korean part3를 다시 로드해 part10과 함께 사용하며, scene10 후반에서 part11/12 승선 전환을 시작한다.
+- scene11은 part12 record0으로 승선/마무리 애니메이션을 계속한다.
+- Firefox 20× accelerated validation에서 scene 1/12 → 12/12 → title hold 전체 PASS.
+- Node exact-record-map: 14 parts / 108 records / 12 scenes / 108 used PASS.
+
+정확도 경계:
+- scene/part/record 순서와 사용 여부는 사용자 OPEN.EXE/OPGRAPH 직접 근거.
+- 일부 저수준 rectangle blit/wipe는 브라우저에서 시각적으로 동등한 transition으로 재현하며, 아직 framebuffer instruction 단위 에뮬레이션은 아니다.
+- D2.MML/FMDRV FM 음악은 아직 브라우저 네이티브 재생 미구현.

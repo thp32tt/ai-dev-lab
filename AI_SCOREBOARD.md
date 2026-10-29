@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens R7 SINGLE-route leftAttempted/eye-surface false-positive control (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01581`; distinct **LENS_FLARE_ONLY / REVIEW_ONLY** static audit at pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `cab4379ed32a58c5f0ea2af306f90c8986740c40`. Different from 01579 preselected rightFailure/pair count and 01580 PMT retail-verifier boundary.
+- Verified source condition: `stereo_renderer_r7.inc::ExecuteStereoDraw` sets `leftAttempted=1` and emits `leftHr` after **one original draw** on BASE_BYPASS_SINGLE/OFFSCREEN_SINGLE/PREPARE_REJECT_SINGLE/VIEWPORT_REJECT_SINGLE/LEFT_WVP_REJECT_SINGLE. In LEFT_WVP_REJECT_SINGLE, `prepared=1,worldStereo=1,pose>0` may be logged even after failed left-eye WVP upload and frame poison, so a positive leftHr does not itself validate an eye RT, proper WVP, visible flare pixel, or accepted XR. This bounds a new false-positive interpretation of optical telemetry, **not** an observed headset/render defect; PMT/texture/accepted XR identity remains unresolved.
+- [One-file durable docs-only lens review](https://github.com/thp32tt/OutRun2006Tweaks/blob/388e79d625ba5093159da49bd404256b0e0d7c32/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01581.md), commit `388e79d625ba5093159da49bd404256b0e0d7c32`; remote blob `1ed11418f485252031b8727b0d100ee3cc9cde68`, exactly one changed file, branch HEAD readback confirmed. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS` docs-only, `RUNTIME_VALIDATION=UNTESTED`; no source build gate/CI skip.
+- Independently verified source-static log/geometry attribution discriminator credited **+1 once**. Same task retry/readback/re-report +0. AI 1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2173 + unique static lens-route finding +1 = 2174.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex lens PMT call-site and descriptor-layout verifier proof boundary (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01580`; independently verified **LENS_FLARE_ONLY / REVIEW_ONLY** source-static negative control on pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `f632832d5554abd08d8cf790eb19f31934b4ee2c`. Distinct from 01579 R7 failure-sentinel, 01578 PRE/post DIP serial, and the separate 21:23 D79B queue-global count/capacity field mapping.

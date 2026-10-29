@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight first-time SHA independent Korean ROI QA (2026-10-29 11:45 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T1145KST-A0095-B0110-NEW-SHA8`; separate source ordinals A389–392 (A-0095..0098) and B444–447 (B-0107..0110), distinct from 11:15 and prior. 32 N100 prior QA report files, 223 previously reviewed distinct candidate SHA, and no overlap with the current 8. All 8 candidate PNG SHA256 match per-task N100 export evidence; all 8 original full-HD source SHA256 match unique-ID production manifest; all 8 are RGBA.
+- Directly reviewed 8 original English-to-Korean pair images, aspect-preserving native-size simulated fits and four widened original source contexts. **C1 PASS 0 / FAIL 0 / HOLD 8**. All approved mappings visually legible, no definite typo/fake jamo, separate opaque panel, or meaningful cut-off edge pixels. Alpha=1 border-only pixels at A-0095/B-0108/B-0109 are not evidence of clipped text. Q062 Right/Left/EASY source ROIs also include protected track illustration, and Q086 text appears near neighboring atlas art. True cell/UV registration and protected-art-preserving composite NOT TESTED; width/translation-length variance is not a fail.
+- N100 durable `work/C1_QA_20261029_1145_AI2_report.json`, evidence `work/C1_QA_20261029_1145_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg,Q062_left_right_context.png,Q062_easy_context.png,Q086_continuous_context.png,Q086_goal_context.png}`. [GitHub QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1145_AI2_A0095_B0110_SHA8.json) single-file commit `7567603e9c0bd06170d1bc5e272dbc3f934bec5b`; confirmed asset remote branch HEAD and report blob `557d930aafd0fed0bc8423c4e810c6254a45e097`.
+- C1 only; no ImageGen generation, A/B queue consumption, DDS, C2/C3/real-game PASS, or VR/FFB/DX11/DXVK changes. RUNTIME_VALIDATION=UNTESTED. Duplicate SHA/retry/status recheck earns +0; AI 1 not modified.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2127 + distinct eight-candidate first-time C1 QA achievement +1 = 2128.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight first-time SHA independent Korean ROI QA (2026-10-29 11:15 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1115KST-A0091-B0106-NEW-SHA8`, distinct from 10:45 and earlier QA. Exactly eight A/B candidate PNGs: A source ordinals 385–388 (A-0091..0094), B 440–443 (B-0103..0106). All eight candidate byte SHA256 match N100 export evidence, all eight original full-HD source SHA256 match the corresponding production manifest entry by unique source ID (not array ordinal); eight output modes RGBA. 31 N100 prior report files with 215 reviewed SHA were checked; no candidate SHA duplicate there, and last 10:45 review covered separate A 381–384 and B 436–439.

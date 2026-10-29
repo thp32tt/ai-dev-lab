@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II Browser M7 주인공 좌우 프레임 교정·한국어 주민 대화 (2026-10-29 KST)
+
+- M5/M6와 별개의 신규 실제 런타임 기능 성과. 사용자 실브라우저 제보로 주인공 `CHAR.LZW` 수평 방향이 반대로 보이는 결함을 재현했고, 실제 프레임 순서를 `up 0/1, right 2/3, down 4/5, left 6/7`로 교정했다. Firefox SAVE1 튀니스에서 ArrowLeft 후 `facing=left` 스프라이트가 실제 왼쪽을 향하고, ArrowRight 후 `facing=right`가 실제 오른쪽을 향함을 시각 검증했다.
+- 한국어판 `MAIN.EXE` file offset `0xB800`을 REA 6.5.0 + Ghidra 12.1.4로 직접 디컴파일해 주민 대사 선택 switch를 확인했다. 시장 여성 `642+port`, 주점 남성 `630+day%10`, 개 `619+port%3`, 경비 622, 노인 616→617/618 등 한국어판 분기를 확보하고 `MESSAGE.DAT` 1,179개 테이블과 교차검증했다.
+- `saveBase+0x18` 주민 8×3B 테이블과 `CHAR.006` 24프레임을 기존 M5 런타임에 연결한 상태에서, 원본 10-step talk counter 경계와 주민 근접 충돌 대화 이벤트/대화창/다음 키 dismiss를 구현했다. Firefox SAVE1에서 플레이어가 (16,89)에 정지한 채 actor slot5 개와 충돌해 MESSAGE #621 `캉캉！`이 표시되고 다음 키로 정상 종료됨을 실검증했다.
+- 현재 `uw2-web-port` M6 해상 소스를 N100 실행본에 재병합한 뒤 `char`, `town`, `world-map`, `sea-speed`, `port-call`, `wind-date` 6개 회귀검사 모두 PASS. M6 함대 속도·바람/해류·20분 tick·기항 기능 보존.
+- GitHub source-only `thp32tt/ai-dev-lab@uw2-web-port`. 주요 커밋: char 방향 `afbf02774d224b5c4b5c4223e948fc5ffd2590cd`, town dialogue `e9b7502339099aabee6610c90004e3d8164a3edc`, app dialogue/M6 merge `4da7b8b8c929b238b48595a5e38d745b406d3ef2`, tests final `3dca2dc0ce1c83a7cb5d57f43f2f4728d74988e8`, M7 report `ef59764dcc921483113952953f5c45be18bacf0a`. 동일 M7 재확인/스크린샷/문구 수정은 +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2158 + one distinct browser gameplay/dialogue integration achievement +1 = 2159.**
+
+Updated: 2026-10-29 KST
 ## AI 2 대항해시대 II Browser M6 한국어판 함대 속도·바람·해류·20분 tick (2026-10-29 KST)
 
 - M5와 별개의 신규 실제 게임 로직 구현. 영문판 save fleet offsets가 한국어판에 맞지 않아 불가능한 값(fleet ID 80, load 15873)을 생성하는 것을 실데이터로 반증하고, HORIEDIT 기반 한국어판 Ship1/2/3/4/5 레이아웃만 사용하도록 고정했다.

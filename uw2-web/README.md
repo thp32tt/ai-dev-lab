@@ -56,3 +56,26 @@ node /home/chatgpt-runner/uw2-web/tests/runtime.test.mjs
 - 현재 상태는 브라우저 네이티브 재구현의 초기 실행 마일스톤이며 원본 항해/전투/항구/이벤트 로직은 계속 REA로 복원 중입니다.
 
 LS11/bitplane 구조는 실제 제공된 KAO.LZW와 공개 프로젝트 `gcjjyy/koei_viewer`의 포맷 설명을 교차검증했습니다. 원본 게임 바이너리/데이터 파일은 GitHub에 커밋하지 않습니다.
+
+## Browser M2 — 항구 지도 + GRAPH/OPGRAPH (2026-10-29)
+
+추가 구현:
+- `PORTCHIP.LZW`: LS11 14 entries 중 짝수 7개가 30,720-byte 그래픽 뱅크. 각 뱅크는 240개의 16×16/4bpp 타일.
+- `PORTMAP.LZW`: 101개 엔트리, 전부 9,216 bytes = 96×96 tile index map.
+- `CHIP_NO.DAT`: 100 bytes, 값 0..6만 존재. 정규 항구 ID 0..99를 7개 PORTCHIP 뱅크에 연결.
+- 선택 세이브의 항구 ID를 실제 PORTMAP/PORTCHIP로 렌더링. 현재 슬롯 1은 PORT #5 튀니스, bank 2.
+- `GRAPH.DAT`/ `GRAPH2.DAT`/ `ENDGRP.DAT`/ `OPGRAPH.LZW` 공통 GRAPH 레코드 디코더 구현.
+- 사용자 OPGRAPH 원본은 LS11 14 parts / GRAPH 108 records. 시작 화면은 실제 640×128 타이틀 레코드를 직접 복원.
+- OPGRAPH 갤러리와 런타임의 '원본 오프닝' 버튼 추가.
+
+검증:
+- GRAPH.DAT 65 records 전부 decode PASS
+- GRAPH2.DAT 2 records 전부 decode PASS
+- ENDGRP.DAT 59 records 전부 decode PASS
+- OPGRAPH.LZW 14 parts / 108 records 전부 decode PASS
+- REA로 사용자 `OPEN.EXE` file offset `0x0F7A` screen decoder와 `0x13A2` buffer decoder를 직접 decompile해 명령 구조를 교차검증.
+- Firefox WebDriver: OPGRAPH 12-card gallery, 640×128 실제 타이틀 화면, 튀니스 96×96 tile map, 세이브 런타임 전환 PASS.
+
+주의:
+- OPGRAPH 색은 현재 16색 근사 팔레트다. 픽셀/압축 명령 구조는 원본이지만 정확한 장면별 EGA/VGA palette 전환은 추가 역분석 대상.
+- 항구 런타임 미니뷰는 실제 플레이어 좌표가 아직 확정되지 않아 배경 타일을 제외한 콘텐츠 중심으로 보여준다. 이를 플레이어 위치로 주장하지 않는다.

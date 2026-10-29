@@ -1,6 +1,7 @@
 import { decodeLS11 } from "./ls11.js";
 import { UW2_WORLD_PALETTE } from "./koei-image.js";
 import { environmentAt } from "./windcur.js";
+import { fleetSeaSpeed } from "./sea-speed.js";
 
 export const WORLD_CELL_W = 1080;
 export const WORLD_CELL_H = 540;
@@ -214,19 +215,100 @@ const DIRS=[
   [0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]
 ];
 export class SeaRuntime{
-  constructor(assets,start,windRaw=null,month=1){
-    this.assets=assets;this.x=start.x;this.y=start.y;this.heading=0;this.steps=0;this.lastEvent="set-sail";
-    this.windRaw=windRaw;this.month=month;
+  constructor(assets,start,windRaw=null,month=1,fleet=null,dateTime=null){
+    this.assets=assets;
+    this.x=start.x; this.y=start.y;
+    this.heading=0;
+    this.steps=0;
+    this.ticks=0;
+    this.accX=0; this.accY=0;
+    this.lastEvent="set-sail";
+    this.windRaw=windRaw;
+    this.month=month;
+    this.fleet=fleet;
+    this.dateTime=dateTime ? {...dateTime} : {year:1501,month,day:1,timeTick:0,hour:0,minute:0};
   }
-  turn(delta){this.heading=(this.heading+delta+8)%8;this.lastEvent="turn";return this.snapshot();}
-  move(){
-    const [dx,dy]=DIRS[this.heading];
-    const nx=((this.x+dx)%WORLD_CHIP_W+WORLD_CHIP_W)%WORLD_CHIP_W, ny=this.y+dy;
-    if(canFleetStand(this.assets,nx,ny)){this.x=nx;this.y=ny;this.steps++;this.lastEvent="sail";return true;}
-    this.lastEvent="coast-block";return false;
+
+  turn(delta){
+    this.heading=(this.heading+delta+8)%8;
+    this.lastEvent="turn";
+    return this.snapshot();
   }
+
+  _advanceClock(){
+    this.dateTime.timeTick=(this.dateTime.timeTick+1)%72;
+    if(this.dateTime.timeTick===0){
+      const monthDays=[31,28,31,30,31,30,31,31,30,31,30,31];
+      this.dateTime.day++;
+      const max=monthDays[(this.dateTime.month-1)%12] ?? 30;
+      if(this.dateTime.day>max){
+        this.dateTime.day=1;
+        this.dateTime.month++;
+        if(this.dateTime.month>12){this.dateTime.month=1;this.dateTime.year++;}
+        this.month=this.dateTime.month;
+      }
+    }
+    this.dateTime.hour=Math.floor(this.dateTime.timeTick/3);
+    this.dateTime.minute=(this.dateTime.timeTick%3)*20;
+  }
+
+  _attemptDelta(mx,my){
+    if(mx===0&&my===0) return false;
+    const nx=((this.x+mx)%WORLD_CHIP_W+WORLD_CHIP_W)%WORLD_CHIP_W;
+    const ny=this.y+my;
+    if(canFleetStand(this.assets,nx,ny)){
+      this.x=nx; this.y=ny; this.steps++;
+      return true;
+    }
+    // Preserve useful coast-sliding when a diagonal target is blocked.
+    if(mx!==0&&my!==0){
+      const xx=((this.x+mx)%WORLD_CHIP_W+WORLD_CHIP_W)%WORLD_CHIP_W;
+      if(canFleetStand(this.assets,xx,this.y)){this.x=xx;this.steps++;return true;}
+      if(canFleetStand(this.assets,this.x,this.y+my)){this.y+=my;this.steps++;return true;}
+    }
+    return false;
+  }
+
+  tick(){
+    const environment=this.windRaw ? environmentAt(this.windRaw,this.month,this.x,this.y) : null;
+    const speedInfo=fleetSeaSpeed(this.fleet,this.heading,environment?.wind ?? {dir:0,speed:0});
+    const [hdx,hdy]=DIRS[this.heading];
+    const current=environment?.current ?? {dir:0,speed:0};
+    const [cdx,cdy]=DIRS[current.dir&7];
+
+    const vx=hdx*speedInfo.speed + cdx*current.speed;
+    const vy=hdy*speedInfo.speed + cdy*current.speed;
+    this.accX+=vx; this.accY+=vy;
+
+    let mx=0,my=0;
+    if(this.accX>=60){mx=1;this.accX-=60;}
+    else if(this.accX<0){mx=-1;this.accX+=60;}
+    if(this.accY>=60){my=1;this.accY-=60;}
+    else if(this.accY<0){my=-1;this.accY+=60;}
+
+    const crossed=mx!==0||my!==0;
+    const moved=this._attemptDelta(mx,my);
+    if(crossed&&!moved){
+      if(mx>0)this.accX=59; else if(mx<0)this.accX=0;
+      if(my>0)this.accY=59; else if(my<0)this.accY=0;
+      this.lastEvent="coast-block";
+    } else {
+      this.lastEvent=moved ? "sail" : "accumulate";
+    }
+    this.ticks++;
+    this._advanceClock();
+    return moved;
+  }
+
+  move(){ return this.tick(); }
+
   snapshot(){
     const environment=this.windRaw ? environmentAt(this.windRaw,this.month,this.x,this.y) : null;
-    return {x:this.x,y:this.y,heading:this.heading,steps:this.steps,lastEvent:this.lastEvent,month:this.month,environment};
+    const speed=fleetSeaSpeed(this.fleet,this.heading,environment?.wind ?? {dir:0,speed:0});
+    return {
+      x:this.x,y:this.y,heading:this.heading,steps:this.steps,ticks:this.ticks,
+      accX:this.accX,accY:this.accY,
+      speed,lastEvent:this.lastEvent,month:this.month,dateTime:{...this.dateTime},environment,
+    };
   }
 }

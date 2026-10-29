@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens physical receipt scope falsification, REVIEW_ONLY (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01573`; `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned source HEAD `c04e56514aa0eef7f3d7d1c164166a546020eb7b`; verified single-doc review commit `beaa1a2569294f2885ea361f5ecc8c6ee74f5d77`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01573.md`, remote file readback and changed-path audit PASS, game source unchanged.
+- Independent, narrower static result **not part of the already credited diagnostic implementation**: branch-checked `src/hooks_uiscaling.cpp::FlushDest/EndDest` `D3DX PHYSICAL FULL` logging only activates for `CanReprojectFiniteResultHudPlane` with `ScreenHud` and six result HUD producers, so those newly expanded physical logs **cannot be used to falsify C993/CABE lens D3DX replay**. Current R30 post-right source-linked/anchor-linked FULL receipt bypasses success sampling and LEFT native Draw failure has a separate receipt; both remain R30-scope only and not exact original PMT/pixel witnesses. This audit establishes a distinct negative-control and reconciles prior 01572's now-obsolete sampling/LEFT log limitation at the newer source HEAD, with concrete control table; it does not re-credit the underlying diagnostics, 01572 review, or claim the second flare root cause.
+- DX9Ex REVIEW_ONLY, CODE_CHANGE=NO, docs-only validation PASS. Source build gate not required and not claimed; no fresh gameplay traces or Quest3/VDXR test, `RUNTIME_VALIDATION=UNTESTED`. Same TASK_ID retry, readback, scoreboard re-report earn +0. AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2144 + one independent source-static lens evidence negative-control review +1 = 2145.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex lens / +TIME / GOAL overcapture diagnostic integration (2026-10-29 KST)
 
 - User-directed material diagnostic expansion on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, final validation-bearing HEAD `c04e56514aa0eef7f3d7d1c164166a546020eb7b`. The source-integrated change deliberately overcaptures the three unresolved visual families without changing their render policy: lens source-linked/window-linked R30 physical results are no longer success-sampled away; R19 classic-SBS replacement logs projection UV, bilateral blit result and A/B pose/FOV join on every replacement frame; +TIME/GOAL queued node forensics include the exact GOAL time helper families; D3DX CPU Draw tracing is expanded to GoalTime020/GoalTime150/OutRunStagePrintf/ResultTextB9200; native D3DX Flush/End PRE/POST receipts record deferred physical submission ownership/HRESULT; R30 detailed physical GPU/matrix/eye-HRESULT telemetry now covers PLUS_TIME, GOAL_PERCENT, GOAL_TEXT, GOAL_TIME and GOAL_STAGE_PRINTF.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Korean ROI B-0142 MUSIC SELECT previously unscored Library asset (2026-10-29 09:16 KST)
+
+- TASK_ID=`OUTRUN-ROI-B-0142-2698790E`. Distinct approved OutRun 2006 HD Korean title asset `music select → 음악 선택`, source ROI [6,958,1276,1077] (1270×119 px). ChatGPT personal Library file `/아웃런 한글화 신규/Q228_648c578b4495751e_k.png` was saved at 2026-10-29 06:32 KST (Library file `libfile_daaf617e5a508191ac70175411201980`).
+- Direct image inspection reads the intended Korean `음악 선택`. Actual Library PNG bytes were inspected: RGBA 1270×119, alpha 0..255, nonzero alpha bbox (2,1,1268,117), transparent corners, SHA-256 `016e541d69ed32baeedca109c65f7d012037a16e352d1a25f65a029687a770b0`. This is a verified standalone candidate asset, NOT independent source DDS composition or game/HMD QA PASS.
+- Task ID was absent from latest scoreboard while separate B-0140, B-0141, B-0143 had already been scored. Score only this one distinct completed and Library-saved candidate, not its retries, upload checks or re-report. AI 1 remains unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2119 + one previously unscored verified B-0142 asset +1 = 2120.**
+
+Updated: 2026-10-29 09:16 KST
+
 ## AI 2 DX9Ex CONVERSION-DX9EX-01568 R19 SBS boundary-seam optical negative control (2026-10-29 KST)
 
 - New distinct lens-flare-only REVIEW_ONLY source-static discriminator, separate from 01567 pose-epoch findings. Pinned OutRun `vr-d3d9ex-focus` SOURCE_HEAD `246826919da9d700aa6188aba8a10d87d7bf2e93`. Inspected R19 BlitShader/one-mip source/linear sampler/SBS half-UVs/indexed L/R writes and single patched XR layer, plus R24 classic-fallback routing; current source 15/15 predicates PASS and protected R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` 11/11 equivalent source predicates PASS. A synthetic 1920-pixel SBS to 1600-output-per-eye bilinear example found ~20% opposite-eye pixel mixing **only at the internal seam boundary**, whereas one-sample full-screen per-eye mapping and single-layer replacement do not synthesize an object-local second complete flare. Mechanism existed in baseline; actual user's doubled halo and headset source remain UNPROVEN. This is conditional falsification/provenance, not VR visual repair or HMD PASS.

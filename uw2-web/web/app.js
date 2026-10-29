@@ -54,7 +54,19 @@ import {
   bankBorrow,
   bankRepay,
   applyMonthlyBankInterest,
+  applyBankInterestCrossings,
 } from "./bank.js";
+import {
+  ITEM_TYPES,
+  itemShopMode,
+  itemShopStock,
+  carriedItems,
+  itemBuyStatus,
+  buyItem,
+  itemSellStatus,
+  sellItem,
+  itemCounterOffer,
+} from "./item-shop.js";
 import {
   RESOURCE_KEYS,
   RESOURCE_NAMES,
@@ -99,6 +111,37 @@ let charAssets = null;
 let windCur = null;
 let portCatalog = [];
 let buildingUi = null;
+
+function advanceSelectedDateTicks(ticks) {
+  if (!selected?.dateTime) return [];
+  const before={...selected.dateTime};
+  advanceDateTicks(selected.dateTime,ticks);
+  const events=applyBankInterestCrossings(selected,before,selected.dateTime);
+  if(events.length) selected.lastBankInterest=events.at(-1);
+  return events;
+}
+
+function lodgeSelected() {
+  if (!selected?.dateTime) return [];
+  const before={...selected.dateTime};
+  lodgeCheckIn(selected.dateTime);
+  const events=applyBankInterestCrossings(selected,before,selected.dateTime);
+  if(events.length) selected.lastBankInterest=events.at(-1);
+  return events;
+}
+
+function tickSeaWithBankInterest() {
+  if (!seaRuntime) return false;
+  const before=seaRuntime.snapshot();
+  const moved=seaRuntime.move();
+  const after=seaRuntime.snapshot();
+  if(selected){
+    selected.dateTime={...after.dateTime};
+    const events=applyBankInterestCrossings(selected,before.dateTime,after.dateTime);
+    if(events.length) selected.lastBankInterest=events.at(-1);
+  }
+  return moved;
+}
 
 async function loadBuffer(name) {
   const res = await fetch("/game/" + encodeURIComponent(name), { cache: "no-store" });
@@ -170,7 +213,7 @@ async function loadOpeningGraphics() {
     gallery.appendChild(fig);
   }
   $("opening-status").textContent =
-    `${openingData.magic} · 한국어판 14 parts / ${openingData.recordCount} GRAPH records · OPEN.EXE 13-scene loop playback`;
+    `${openingData.magic} · 한국어판 14 parts / ${openingData.recordCount} GRAPH records · OPEN.EXE 12-scene playback`;
 }
 
 function renderSelectedPortMap() {
@@ -425,6 +468,7 @@ function ensureBuildingUi(buildingId) {
       pubEnthusiasm: buildingId === 1 ? initialPubEnthusiasm(selected) : null,
       pubAmount: 1,
       bankAmount: 100,
+      itemPending: null,
       messageId: null,
       messageText: "",
       departure: null,
@@ -514,6 +558,107 @@ function drawHarborSupply(ui) {
   ctx.fillStyle="#9fb0c4";
   ctx.font="12px Malgun Gothic, sans-serif";
   ctx.fillText("L 적재 / U 하역 / Enter 1개 / Shift+Enter 10개 / M 최대 / ESC 메뉴",58,344);
+}
+
+function drawItemShopTrade(ui, selling = false) {
+  const shop=itemShopStock(selected);
+  const rows=selling
+    ? carriedItems(selected).map(x=>({
+        inventorySlot:x.slot,
+        id:x.id,
+        item:x.item,
+        name:x.item.name,
+        price:itemSellStatus(selected,x.slot).offer ?? 0,
+      }))
+    : shop.items.map(item=>({
+        id:item.id,
+        item,
+        name:item.name,
+        price:item.price,
+      }));
+  ui.item=Math.max(0,Math.min(ui.item??0,Math.max(0,rows.length-1)));
+  const row=rows[ui.item];
+
+  drawBox(56,52,548,294,"rgba(5,12,20,.988)");
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 20px Malgun Gothic, sans-serif";
+  ctx.fillText(`아이템 상점 · ${selling?"매각":"구입"}`,76,82);
+  ctx.fillStyle="#e7edf5";
+  ctx.font="14px Malgun Gothic, sans-serif";
+  ctx.fillText(`소지금 ${Number(selected?.money??0).toLocaleString()} G · 보유 ${carriedItems(selected).length}/20`,310,82);
+
+  if(shop.mode==="closed"){
+    ctx.fillStyle="#e7edf5";
+    ctx.fillText("현재 영업 시간이 아닙니다. 일반 08:00–20:00 / 비밀상점 02:00–03:00",76,118);
+    ctx.fillStyle="#9fb0c4";
+    ctx.fillText("ESC: 메뉴",76,326);
+    return;
+  }
+
+  if(!selling){
+    ctx.fillStyle="#9fb0c4";
+    ctx.fillText(shop.mode==="secret"?"비밀상점 재고":"일반 재고",76,108);
+  }
+
+  rows.slice(0,10).forEach((it,i)=>{
+    const y=136+i*20;
+    const item=it.item;
+    ctx.fillStyle=i===ui.item?"#f1d58b":"#d7dde7";
+    const type=ITEM_TYPES[item.type]??`TYPE${item.type}`;
+    const suffix=selling
+      ? `${String(it.price).padStart(7," ")}G ${item.equipped?"[장착]":""}`
+      : `${String(it.price).padStart(7," ")}G`;
+    ctx.fillText(`${i===ui.item?"▶":" "} ${String(it.name).padEnd(12," ")} ${type.padEnd(5," ")} ${suffix}`,76,y);
+  });
+
+  if(!rows.length){
+    ctx.fillStyle="#aeb8c6";
+    ctx.fillText(selling?"매각할 아이템이 없습니다.":"판매 중인 아이템이 없습니다.",76,140);
+  }
+
+  if(row){
+    const it=row.item;
+    ctx.fillStyle="#e7edf5";
+    ctx.fillText(
+      `선택: ${it.name} · 등급값 ${it.rating} · 그림 ${it.picture} · ${ui.last||""}`,
+      76,314
+    );
+  }
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText(
+    selling
+      ?"↑↓ 선택 · Enter 기본가 매각 · C 흥정 후 매각 · ESC 메뉴"
+      :"↑↓ 선택 · Enter 구입 · ESC 메뉴",
+    76,336
+  );
+}
+
+
+function drawItemShopDecision(ui) {
+  const p=ui.itemPending;
+  if(!p) return;
+  let text="";
+  if(ui.mode==="item-buy-confirm"){
+    text=`${formattedMessage(240,[p.item.name])}${Number(p.item.price).toLocaleString()}${formattedMessage(241)}\n구입하시겠습니까？`;
+  }else if(ui.mode==="item-sell-offer"){
+    text=`${formattedMessage(245,[p.item.name])}${Number(p.offer).toLocaleString()}${formattedMessage(247)}\n이 가격에 파시겠습니까？`;
+  }else if(ui.mode==="item-sell-counter"){
+    text=`${formattedMessage(246)}${Number(p.counter?.offer??0).toLocaleString()}${formattedMessage(247)}\n흥정 가격에 파시겠습니까？`;
+  }else return;
+
+  drawBox(96,172,448,126,"rgba(2,9,16,.985)");
+  ctx.fillStyle="#f4f4f4";
+  ctx.font="bold 15px Malgun Gothic, sans-serif";
+  wrapTownMessage(text,36).slice(0,4).forEach((line,i)=>ctx.fillText(line,112,200+i*21));
+  ctx.fillStyle="#f1d58b";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText("ENTER / Y: 예    N / ESC: 아니오",290,286);
+}
+
+function itemShopFailureText(status) {
+  if(!status) return "";
+  return formattedMessage(status.messageId) || status.reason || "거래할 수 없습니다.";
 }
 
 function drawMarketTrade(ui, selling = false) {
@@ -709,6 +854,17 @@ function renderBuildingInterface(s) {
     $("runtime-status").textContent = "주점 · 한턱내기 · 열의 상승";
     return;
   }
+  if (ui.mode.startsWith("item-")) {
+    const selling=!ui.mode.startsWith("item-buy");
+    drawItemShopTrade(ui,selling);
+    drawItemShopDecision(ui);
+    $("runtime-status").textContent =
+      ui.mode==="item-buy-confirm" ? "아이템 상점 · 구입 가격 확인" :
+      ui.mode==="item-sell-offer" ? "아이템 상점 · 1차 매입가 확인" :
+      ui.mode==="item-sell-counter" ? "아이템 상점 · Luck 흥정가 확인" :
+      "아이템 상점 · 한국어판 26바이트 아이템 정의/20칸 인벤토리";
+    return;
+  }
   if (ui.mode.startsWith("bank-")) {
     drawBankAmount(ui);
     $("runtime-status").textContent = "은행 · 원본 예금/대출 공식 적용";
@@ -762,7 +918,7 @@ function renderBuildingInterface(s) {
 
 function exitBuildingWithVisitTime() {
   if (buildingUi?.visitTicks && selected?.dateTime) {
-    advanceDateTicks(selected.dateTime,buildingUi.visitTicks);
+    advanceSelectedDateTicks(buildingUi.visitTicks);
   }
   buildingUi=null;
   townRuntime.leaveBuilding();
@@ -825,6 +981,28 @@ function runBuildingCommand(ui, buildingId) {
     ui.messageText="도크의 보관·취역·교환은 다음 구현 단계에서 원본 선박 예비 레코드와 연결합니다.";
     return;
   }
+  if (buildingId === 9) {
+    ui.item=0;
+    ui.itemPending=null;
+    if(cursor===0){
+      if((selected?.money??0)<=0){
+        ui.mode="message"; ui.messageId=236; ui.messageText=""; return;
+      }
+      if(!(selected?.inventory??[]).includes(0xff)){
+        ui.mode="message"; ui.messageId=237; ui.messageText=""; return;
+      }
+      ui.mode="item-buy";
+      ui.last=formattedMessage(238);
+      return;
+    }
+    if(carriedItems(selected).length===0){
+      ui.mode="message"; ui.messageId=243; ui.messageText=""; return;
+    }
+    ui.mode="item-sell";
+    ui.last=formattedMessage(244);
+    return;
+  }
+
   if (buildingId === 8) {
     const modes=["bank-deposit","bank-withdraw","bank-borrow","bank-repay"];
     ui.mode=modes[cursor] ?? "menu";
@@ -853,7 +1031,7 @@ function runBuildingCommand(ui, buildingId) {
 
   if (buildingId === 4) {
     if (cursor === 2) {
-      lodgeCheckIn(selected.dateTime);
+      lodgeSelected();
       buildingUi=null;
       townRuntime.leaveBuilding();
       townRuntime.lastEvent="lodge-check-in";
@@ -893,7 +1071,7 @@ function handleBuildingKey(event) {
   if (ui.mode === "sail-confirm") {
     if (key === "enter" || key === "y" || key === "1") {
       event.preventDefault();
-      advanceDateTicks(selected.dateTime,ui.visitTicks);
+      advanceSelectedDateTicks(ui.visitTicks);
       consumeDepartureDay(selected);
       buildingUi=null;
       startSeaFromPort();
@@ -903,6 +1081,145 @@ function handleBuildingKey(event) {
       event.preventDefault();
       ui.mode="menu"; ui.departure=null; ui.messageId=null;
       renderTownScreen();
+    }
+    return true;
+  }
+
+  if (ui.mode.startsWith("item-")) {
+    const yes=key==="enter"||key==="y"||key==="1";
+    const no=key==="escape"||key==="n"||key==="0";
+
+    if(ui.mode==="item-buy-confirm"){
+      event.preventDefault();
+      if(yes){
+        const p=ui.itemPending;
+        const tx=p ? buyItem(selected,p.id) : {quantity:0,reason:"missing-pending"};
+        ui.itemPending=null;
+        if(tx.quantity){
+          if((selected?.money??0)<=0){
+            ui.mode="message"; ui.messageId=236; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
+          }
+          if(!(selected?.inventory??[]).includes(0xff)){
+            ui.mode="message"; ui.messageId=237; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
+          }
+          ui.mode="item-buy";
+          ui.last=formattedMessage(242);
+        }else{
+          ui.mode="item-buy";
+          ui.last=itemShopFailureText(tx);
+        }
+      }else if(no){
+        ui.itemPending=null;
+        ui.mode="item-buy";
+        ui.last=formattedMessage(238);
+      }
+      renderTownScreen();
+      return true;
+    }
+
+    if(ui.mode==="item-sell-offer"){
+      event.preventDefault();
+      const p=ui.itemPending;
+      if(yes){
+        const tx=p ? sellItem(selected,p.inventorySlot,p.offer) : {quantity:0,reason:"missing-pending"};
+        ui.itemPending=null;
+        if(tx.quantity){
+          if(carriedItems(selected).length===0){
+            ui.mode="message"; ui.messageId=243; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
+          }
+          ui.mode="item-sell";
+          ui.last=formattedMessage(248);
+        }else{
+          ui.mode="item-sell";
+          ui.last=itemShopFailureText(tx);
+        }
+      }else if(no){
+        if(!p){
+          ui.mode="item-sell"; ui.itemPending=null;
+        }else{
+          const co=itemCounterOffer(selected,p.item);
+          if(co.success){
+            p.counter=co;
+            ui.mode="item-sell-counter";
+          }else{
+            ui.itemPending=null;
+            ui.mode="item-sell";
+            ui.last=`흥정 실패 · Luck ${selected?.luck??0} < roll ${co.roll}`;
+          }
+        }
+      }
+      renderTownScreen();
+      return true;
+    }
+
+    if(ui.mode==="item-sell-counter"){
+      event.preventDefault();
+      const p=ui.itemPending;
+      if(yes){
+        const tx=p ? sellItem(selected,p.inventorySlot,p.counter?.offer??p.offer) : {quantity:0,reason:"missing-pending"};
+        ui.itemPending=null;
+        if(tx.quantity){
+          if(carriedItems(selected).length===0){
+            ui.mode="message"; ui.messageId=243; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
+          }
+          ui.mode="item-sell";
+          ui.last=formattedMessage(248);
+        }else{
+          ui.mode="item-sell";
+          ui.last=itemShopFailureText(tx);
+        }
+      }else if(no){
+        ui.itemPending=null;
+        ui.mode="item-sell";
+        ui.last=formattedMessage(244);
+      }
+      renderTownScreen();
+      return true;
+    }
+
+    const selling=ui.mode==="item-sell";
+    const shop=itemShopStock(selected);
+    const rows=selling ? carriedItems(selected) : shop.items;
+    ui.item=Math.max(0,Math.min(ui.item??0,Math.max(0,rows.length-1)));
+
+    if(key==="escape"){
+      event.preventDefault();ui.mode="menu";ui.last="";ui.itemPending=null;renderTownScreen();return true;
+    }
+    if(shop.mode==="closed"){
+      event.preventDefault();renderTownScreen();return true;
+    }
+    if(key==="arrowup"||key==="w"){
+      event.preventDefault();ui.item=Math.max(0,ui.item-1);renderTownScreen();return true;
+    }
+    if(key==="arrowdown"||key==="s"){
+      event.preventDefault();ui.item=Math.min(Math.max(0,rows.length-1),ui.item+1);renderTownScreen();return true;
+    }
+    if(key==="enter"){
+      event.preventDefault();
+      const row=rows[ui.item];
+      if(row){
+        if(selling){
+          const st=itemSellStatus(selected,row.slot);
+          if(st.allowed){
+            ui.itemPending={
+              inventorySlot:row.slot,
+              id:row.id,
+              item:st.item,
+              offer:st.offer,
+            };
+            ui.mode="item-sell-offer";
+            ui.last="";
+          }else ui.last=itemShopFailureText(st);
+        }else{
+          const st=itemBuyStatus(selected,row.id);
+          if(st.allowed){
+            ui.itemPending={id:row.id,item:st.item};
+            ui.mode="item-buy-confirm";
+            ui.last="";
+          }else ui.last=itemShopFailureText(st);
+        }
+      }
+      renderTownScreen();return true;
     }
     return true;
   }
@@ -1458,7 +1775,7 @@ window.addEventListener("keydown", (event) => {
     }
     if (key === "arrowleft" || key === "a" || key === "4") seaRuntime.turn(-1);
     else if (key === "arrowright" || key === "d" || key === "6") seaRuntime.turn(1);
-    else if (key === "arrowup" || key === "w" || key === "8" || key === " ") seaRuntime.move();
+    else if (key === "arrowup" || key === "w" || key === "8" || key === " ") tickSeaWithBankInterest();
     else handled = false;
     if (handled) {
       event.preventDefault();

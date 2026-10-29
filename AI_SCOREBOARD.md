@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 source-live EXP/EXP2 versus LINEAR table Fog Draw parameter integration (2026-10-29 13:44 KST)
+
+- TASK_ID: `CONVERSION-DX11-01151`, one distinct production feature under `DX11:FIRST_LIVE_GAME_NATIVE_FRAME` / `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME`. Real source/positive-negative C++ regression commit `9576546354bf8e9a767988888a69d38e83245afc` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, same exact validation-bearing `RESULT_SHA=9576546354bf8e9a767988888a69d38e83245afc`. This task is not a C6-only milestone, enum-only change or duplicated 01150 zero-density EXP/EXP2 behavior.
+- Integration: actual D3D9 SM3 game Draw Fog COM acquisition now preserves required per-equation input ownership: EXP/EXP2 density, LINEAR start/end; source table fog overrides inherited RANGE, so unused getter failures and irrelevant non-finite floats no longer veto otherwise proven shader-bound native Draw eligibility. Required COM queries, active finite operands, Z/W cap, sRGB, RT/depth/poison and partial-frame publication safeguards remain fail-closed. C++ fog factor and admission behavior and positive/negative exact source tests were changed together; original D3D9 input/FFB/fallback protected, DXVK frozen. This is source/build verification only, **not** a real-game native draw or HMD claim; `RUNTIME_VALIDATION=UNTESTED`.
+- Five required exact-SHA **push** GitHub Actions SUCCESS: DX11 Fast `40818445377`, Backend Conversion `40818445471`, Windows Build `40818445406`, OpenXR VR architecture `40818445402`, HUD Inspector `40818445391`, all on `9576546354bf8e9a767988888a69d38e83245afc`. Optional VR PC Fast Build conditional skipped, not a mandatory Gate. Same task's future retry/C6/readback and any CI-specific repair count +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2135 + distinct source-integrated five-Gate DX11 behavior +1 = 2136.** AI 1 score remains separate.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight distinct first-time SHA independent Korean ROI QA (2026-10-29 13:15 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1315KST-A0107-B0122-NEW-SHA8`. N100 verified 35 prior C1 reports, 247 previously reviewed distinct SHA. Selected eight new SHA: A ordinals 401–404 (A-0107..0110), B ordinals 456–459 (B-0119..0122). Eligible manifest-backed unreviewed exports before selection: A 34, B 26. All eight candidate PNG byte SHA256 match export evidence, source full-HD SHA256 match production manifest by ID, and all output images are RGBA.

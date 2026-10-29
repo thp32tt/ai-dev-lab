@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 live FVF stage0/stage1 full-combiner native table fog (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX11-01156` in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, unique source integration under existing `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME` feature. Real C++/HLSL connected source implementation commit `4abbad3845182dbc63f43880118213575e3040e8`; causal acceptance-metadata policy preflight repair `9ff2f5806aede6f0309717c0cf819de3863ea53b` is the **validation-bearing RESULT_SHA**, not a separate feature or score.
+- Source change connects 97 additional actual compiled game-owned FVF stage0/stage1 PS entries to exact authenticated D3D9 table fog native D3D11 RGB via bounded, lazy on-device shader wrapper compilation; original alpha test/discard, per-Draw b2 source fog, DX9Ex original renderer, controller/FFB and DXVK freeze remain. Cross-device/unknown source PS, invalid HLSL identifiers, compile/resource failure and unsupported active fog remain fail-closed. Modified material source `src/vr/d3d11/live_game_frame_bridge.cpp`, new `src/vr/d3d11/native_game_fvf_fog_dispatch.hpp`; added C++ regression `tests/native_game_fvf_fog_dispatch_test.cpp` and integrated test `tools/test_dx11_live_sm3_table_zfog_01005.py`.
+- **Five mandatory push GitHub Actions independently confirmed `status=completed`, `conclusion=success`, exact `head_sha=9ff2f5806aede6f0309717c0cf819de3863ea53b`:** DX11 Fast Structural Checks #40851233072, Backend Conversion Gate #40851232972 (validate + smoke), Build #40851233047, OpenXR VR architecture #40851232977, OutRun EXE HUD Inspector CI #40851233174. No CI-skip on source or validation-bearing result; extra VR PC Fast Test Build is an unrelated conditional skip, not a missing mandatory Gate.
+- Actual 2026-10-28 game session previously showed native_draws=0 on an older SHA; **no source-matched OutRun real game or Quest3/VDXR session was run on this result**. `RUNTIME_VALIDATION=UNTESTED`; runtime native GPU Draw>0, full-frame publication>0 and HMD appearance remain unproved. Work-time proportions were not measured. C6 and same TASK retries/readback/rollover, metadata corrections and rechecks +0. AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2164 + one independently implemented native DX11 FVF game PS integration, exact-SHA five-Gate verified +1 = 2165.**
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 OutRun 2006 C1 six new-SHA independent PNG QA (2026-10-29 18:45 KST)
 
 - RUN_KEY `OUTRUN-C1-AI2-20261029T1845KST-A0135-A0140-NEW-SHA6`. Verified current Korean localization C1 contract, glyph-scale and controller roles on asset branch. From 42 previous local QA reports / 301 distinct prior SHA, inspected **six new A candidate SHA** (A-0135..A-0140), **B new eligible export none**; source original PNG SHA, manifest SHA, saved candidate SHA, export SHA all match (6/6); all RGBA, alpha>=32 outer-border contact 0/6. No ImageGen, A/B queue change, DDS or renderer changes.

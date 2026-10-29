@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight first-time SHA independent Korean ROI QA (2026-10-29 11:15 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T1115KST-A0091-B0106-NEW-SHA8`, distinct from 10:45 and earlier QA. Exactly eight A/B candidate PNGs: A source ordinals 385–388 (A-0091..0094), B 440–443 (B-0103..0106). All eight candidate byte SHA256 match N100 export evidence, all eight original full-HD source SHA256 match the corresponding production manifest entry by unique source ID (not array ordinal); eight output modes RGBA. 31 N100 prior report files with 215 reviewed SHA were checked; no candidate SHA duplicate there, and last 10:45 review covered separate A 381–384 and B 436–439.
+- Directly reviewed original English ROI, Korean PNG letterforms, preservation-of-aspect simulated native fit, and two expanded full-HD source contexts. **C1 PASS 0 / FAIL 0 / HOLD 8**. All eight Korean phrases read correctly; no definite fake jamo, separate opaque panel, gross skew or substantive alpha clipping. B-0106 has only alpha=1 edge pixels, not evidence of clipped readable glyph. A-0091 source bbox includes protected icon strip and cuts English line vertically; A-0092 source bbox cuts source English at right. Both actual wider-original findings remain HOLD. Other six HOLD because true native UI cell and protected-art composite isolation were not tested. No failure solely for shorter Korean width.
+- Durable N100 report `work/C1_QA_20261029_1115_AI2_report.json`, evidence `work/C1_QA_20261029_1115_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg,A0091_wider.png,A0092_wider.png}`. [GitHub QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1115_AI2_A0091_B0106_SHA8.json) in commit `86c6475888dfbb3a274cb4ea8b1c31769cbd884c`, verified remote branch HEAD and file blob `44f9b17fef3edc4a1b208e776ec5e585103cbbdb`.
+- C1 only; no ImageGen, A/B queue consumption, DDS generation/deployment, C2/C3 or game PASS; VR/FFB/DX11/DXVK unchanged; RUNTIME_VALIDATION=UNTESTED. Same SHA/retry/status report scores +0. AI 1 remains unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2126 + one new independent 8-candidate SHA-verified C1 QA achievement +1 = 2127.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex LENSFLARE-R19-PREACQUIRE-UV-RECEIPT-20261029-1104 independent R19 new diagnostic stage falsification (2026-10-29 11:04 KST)
 
 - NEW LENS_FLARE_ONLY REVIEW_ONLY source-static verification of the **new** R19 `projection-uv` receipt added in OutRun commit `5f587da090429a51e352999dbea2d6e3684a67b1`, distinct from prior 01570 R30 pre-native-Draw correlation, 01567 R19 A/B pose, 01568 seam, 01569 crop, and 10:18 R19 one-sided QPC. Pinned OutRun source HEAD `d2f611390f4a60eeedb819d96556e119efa5dc24`, current `sbs_capture_override.hpp` blob `ed2b6aa371ec6bc3bba5e70063d46953de42f155`, previous `b1e017b74b83957643387c7db7c413d7629aab8e`, protected R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`.

@@ -109,3 +109,12 @@ LS11/bitplane 구조는 실제 제공된 KAO.LZW와 공개 프로젝트 `gcjjyy/
 - 항구 위치/충돌/문/세계지도/해상 칩 충돌은 사용자 원본 데이터 기반.
 - 항해 속도, 바람·해류, 선박 능력치, 날짜/식량, NPC 함대, 전투, 이벤트, 상거래 전체는 아직 완전 재구현되지 않음.
 - 항구 player/sea ship은 아직 diagnostic marker. 사용자 CHAR.LZW는 이식판 자료와 크기가 달라 별도 해석 중.
+
+## Browser M5 — Korean sprites + WINDCUR + fleet grounding (2026-10-29)
+
+- `CHAR.LZW`: 5,120×6 + 15,360. Hero chunks are 8×640-byte frames; first four 128-byte planar blocks per frame form a 32×32 color layer. Fifth 128-byte blitter block remains unresolved, so current browser uses the confirmed color layer with index 0 transparent and does not claim final mask fidelity.
+- `DATA1.LZW[11]`: 32,768 bytes = 0x4000 world tiles + 16×0x400 Korean sea-ship frames. Each ship frame is 0x200 packed 4bpp color + 0x200 packed mask, nibble 0xF transparent. Actual ship artwork now replaces the sea marker.
+- Save-body clock at `page+0x97 + {6,7,8,9}` is decoded and cross-checks the slot headers exactly.
+- `WINDCUR.DAT`: 30×15×3 pages, 72 world chips per cell. Browser now shows real seasonal wind and current at the live sea position.
+- Korean `HORIEDIT` fleet layouts are decoded and exposed: Catalina save=Galleon 1; João save=Caravel Latina/Brigantine/La Reale 3, total crew 80.
+- Next: prove remaining speed inputs and replace one-key-one-chip movement with the original 60-subunit tick integrator.

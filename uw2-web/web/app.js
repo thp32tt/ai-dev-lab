@@ -137,9 +137,13 @@ function controllerMusicState() {
 }
 
 function publishControllerState(extra = {}) {
+  const nearbyPort = viewMode === "sea" && seaRuntime && portCatalog.length
+    ? (findPortCallTarget(seaRuntime.snapshot(), portCatalog)?.name ?? null)
+    : null;
   const detail = {
     mode: viewMode,
     autoSail: seaAutoActive,
+    nearbyPort,
     music: controllerMusicState(),
     ...extra,
   };

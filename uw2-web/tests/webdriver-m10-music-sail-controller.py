@@ -45,6 +45,9 @@ try:
     sea0=dbg(sid)
     if sea0.get("mode")!="sea":
         raise RuntimeError("failed to enter sea: "+json.dumps(sea0,ensure_ascii=False))
+    port_button=js(sid,"const b=document.querySelector(\'[data-key=p]\');return {disabled:b.disabled,label:b.querySelector(\'small\')?.textContent,aria:b.getAttribute(\'aria-label\')};")
+    if port_button["disabled"] or port_button["label"]!="단치히":
+        raise RuntimeError("port controller state mismatch: "+json.dumps(port_button,ensure_ascii=False))
 
     key(sid,"ArrowRight"); key(sid,"ArrowRight"); time.sleep(.1)
     voyage0=js(sid,"return window.__uw2VoyageState?.()||null;")
@@ -85,7 +88,7 @@ try:
 
     print(json.dumps({
       "music0":music0,"start":start_state,"music1":music1,
-      "sea0":sea0,
+      "sea0":sea0,"portButton":port_button,
       "auto":{"beforeTicks":voyage0["sea"]["ticks"],"afterTicks":voyage_auto["sea"]["ticks"],"pressed":auto_pressed,"stoppedTicks":voyage_stop["sea"]["ticks"]},
       "daily":{"beforeDate":before_daily["dateTime"],"afterDate":after_daily["dateTime"],"beforeProv":prov(before_daily),"afterProv":prov(after_daily),"marker":after_daily.get("lastSeaProvisionDate")},
       "music2":music2,"music3":music3,

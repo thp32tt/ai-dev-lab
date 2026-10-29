@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 authentic source-aligned native GPU RAW dual-tile Present prioritization (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01167`, independent visual output connection repair under `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, continuing the unfinished `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME` feature. Previously the RAW dual-tile branch discarded even a proved original-game source-coincident placement whenever two displaced legacy tiles already fitted. The actual D3D11 GPU PRE/Draw/POST -> original D3D9 Present path now adopts each independently verified exact source-coordinate GPU tile, rechecks final output non-overlap after any move, allows two truly disjoint aligned regions, and prioritizes a source-coincident tile when competing with a richer but displaced legacy inset. Canonical source RT pointer/dimensions, genuine dirty union and crop remain mandatory; original D3D9 render/input/FFB/DX9Ex fallback and frozen DXVK unchanged.
+- Material C++ source/test implementation and exact-SHA validation-bearing RESULT_SHA `b8e71c2ca1c8466c10fc93dd749162cc4f68e10b`, 3 changed files (`native_game_raw_visual_diagnostic.hpp`, `native_game_raw_present_coverage.hpp`, `native_raw_dual_tile_test.cpp`). Compiled positive/negative single-/dual-tile overlap and authentic-source-priority tests. Five required **push** GitHub Actions SUCCESS on the exact same SHA: DX11 Fast `40950615830`, Backend Conversion Gate `40950615834`, Win32 Build `40950615829`, OpenXR VR architecture `40950615875`, HUD Inspector `40950615833`. Separately scheduled VR PC Fast Test Build was skipped, not a mandatory Gate.
+- Source/build verification only: `RUNTIME_VALIDATION=UNTESTED`; no matching full game, mono native GPU pixel or Quest 3/VDXR HMD observation. Partial RAW diagnostic is **not** native full menu/vehicle/race or stereo gameplay completion. Same-task C6, readback, retry, SHA status recheck +0; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2190 + independent DX11 authentic source-coordinate RAW dual-output integration +1 = 2191.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 OutRun 2006 C1 two fresh exported ImageGen lettering candidates independent QA (2026-10-30 KST)
 
 - RUN_KEY `OUTRUN-C1-AI2-20261030T0515KST-NEW-SHA2`. A/B exported new unique SHA256 candidates were de-duplicated against 208 prior C1 JSON artifacts / 921 previously reviewed candidate SHA, then read directly from N100. Exact candidate file bytes, full-HD original PNG SHA against manifest, approved English-to-Korean mapping, and original ROI vs native aspect-preserving/50% alpha checker previews were verified.

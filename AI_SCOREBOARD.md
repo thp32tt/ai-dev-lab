@@ -1,5 +1,32 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 web M10 controller live-state/mobile UX integration (2026-10-30 KST)
+
+- RUN_KEY `UW2-WEB-M10-CONTROLLER-20261030`; distinct user-facing controller integration on `thp32tt/ai-dev-lab@uw2-web-port`. Replaced transform-dependent A/B placement with a responsive layout; added current game-mode/BGM status, AUTO sail control, BGM toggle, previous/next D2 track controls, and context-aware controller state.
+- Port Call control is now stateful: P is disabled when no real nearby port exists and, after follow-up state synchronization repair, displays the actual nearby port name. Primary M10 material commit `9113b9147cfda88d8fc74b677eb00d68ee84823a`; validation/controller report commit `f52b43eb47fb8a676dcb9e03a71509e2fec1c708`; live-state repair `2b1889eb09488f2234e036cf3d55ef5fba5a0209`.
+- Firefox live validation after exact-SHA deployment: Danzig sea state shows P enabled with label `단치히` / aria `단치히 기항`; at 500px viewport document/body scrollWidth are both exactly 500 and controller width is 492px, so no page-level horizontal scroll. Same M10 retries, stale raw-URL cache correction, deploy/readback and test reruns score +0 separately.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2182 + one distinct controller live-state/mobile UX integration +1 = 2183.**
+
+Updated: 2026-10-30 KST
+
+## AI 2 UW2 web M10 continuous sailing + daily provisions integration (2026-10-30 KST)
+
+- RUN_KEY `UW2-WEB-M10-CONTINUOUS-SAIL-20261030`; distinct gameplay integration building on the already reconstructed Korean fleet speed/WINDCUR/60-subunit/20-minute sea model. Added AUTO/G continuous 20-minute sailing, controller latch/stop behavior, coast-block automatic stop, and midnight/day-boundary consumption of water/food by each ship's current crew.
+- Material source is included in `9113b9147cfda88d8fc74b677eb00d68ee84823a`; later controller-state repair does not change the voyage rules. Firefox João/Danzig validation: turn east then AUTO advances ticks `0 -> 3` while latched; toggling off leaves tick count at 3. A full 72×20-minute cycle crosses 1522-07-06 -> 1522-07-07 and consumes ship0 `279/379 -> 264/364` for 15 crew, ship1 `749/1049 -> 724/1024` for 25 crew, while zero stores remain clamped to zero.
+- Existing original-data Port Call/town round-trip remains intact; no separate points for the repeated browser run, HTTP smoke, or deployment.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2181 + one distinct continuous-sailing/day-provision gameplay integration +1 = 2182.**
+
+Updated: 2026-10-30 KST
+
+## AI 2 UW2 web M10 original D2.MML-driven browser music (2026-10-30 KST)
+
+- RUN_KEY `UW2-WEB-M10-D2-BGM-20261030`; distinct audio implementation using the user's actual Korean DOS `D2.MML` (27,866 bytes), not substituted MIDI/audio. The artifact header is parsed into 22 monotonic song groups with up to four active channel pointers; `web/music.js` schedules admitted D2 note/rest events through Web Audio and exposes play/pause/track switching.
+- Material feature commit `9113b9147cfda88d8fc74b677eb00d68ee84823a`. Artifact-backed `music.test.mjs` confirms 22 songs and 1,591 first-pass admitted note/rest events. Firefox validation confirms `AudioContext.state=running`, scheduler `playing=true`, and D2 track switching on the live port-18082 deployment.
+- Fidelity boundary is explicit: playback is driven by original `D2.MML`, but current command admission and WebAudio oscillator/modulator timbre are a first-pass renderer, **not yet bit-exact `FMDRV.COM` OPL-II command/register/timbre emulation**. Mode-to-track choices are provisional until exact MAIN.EXE music-routing calls are traced.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2180 + one distinct original-D2 browser music implementation +1 = 2181.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex lens R24 cached-quad Direct/Classic Theater optical provenance (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01583`; distinct LENS_FLARE_ONLY REVIEW_ONLY **source-static conditional falsification** at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `707f6cd0321b6d4c534680f90a5cb5a22979f798`. This extends but does not rescore 01582's generic R23 requested-eye/R24 actual ViewSpace quad ambiguity: this task verifies *which source image* R24's cached quad may select and how its producer-run guard differs between Direct and classic paths.

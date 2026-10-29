@@ -27,6 +27,7 @@ import {
 import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from "./char.js";
 import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 import { D2MusicPlayer } from "./music.js";
+import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -118,6 +119,7 @@ let windCur = null;
 let portCatalog = [];
 let buildingUi = null;
 let musicPlayer = null;
+let fontAssets = null;
 let musicMode = null;
 let musicAutostartPending = true;
 let seaAutoTimer = null;
@@ -292,12 +294,19 @@ function drawOriginalParchment(x, y, w = 368, h = 152) {
 }
 
 function drawOriginalPanelText(text, x, y, opts = {}) {
+  if (fontAssets) {
+    return drawUw2Text(ctx, fontAssets, String(text ?? ""), x, y - 14, {
+      color: opts.color ?? "#2b1a0e",
+      lineHeight: opts.lineHeight ?? 18,
+    });
+  }
   ctx.save();
   ctx.fillStyle = opts.color ?? "#2b1a0e";
   ctx.font = `${opts.bold ? "bold " : ""}${opts.size ?? 15}px "Malgun Gothic", sans-serif`;
   ctx.textBaseline = "alphabetic";
   ctx.fillText(String(text ?? ""), x, y);
   ctx.restore();
+  return null;
 }
 
 function drawOriginalDatePanel(date, label = "") {
@@ -441,6 +450,15 @@ function renderSelectedPortMap() {
   const info = renderPortMapToCanvas(portCanvas, portAssets, selected.port, 0.25);
   $("portmap-status").textContent =
     `PORT #${selected.port} ${selected.portName} · CHIP bank ${info.bankId} · 96×96 tiles / 1536×1536 px`;
+}
+
+async function loadFontSupport() {
+  const [allFontBuf, hankakuBuf] = await Promise.all([
+    loadBuffer("ALL_FONT.16P"),
+    loadBuffer("HANKAKU.FNT"),
+  ]);
+  fontAssets = parseUw2Fonts(allFontBuf, hankakuBuf);
+  return fontAssets;
 }
 
 async function loadCharacterSupport() {
@@ -719,13 +737,15 @@ function drawBuildingMessage(ui) {
   const text = ui.messageText || formattedMessage(ui.messageId, values);
   const x=104, y=232, w=368, h=152;
   drawOriginalParchment(x,y,w,h);
-  ctx.fillStyle = "#24160c";
-  ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
-  wrapTownMessage(text,31).slice(0,5).forEach((line,i)=>ctx.fillText(line,x+22,y+35+i*20));
-  ctx.fillStyle = "#6e431b"; ctx.font = '12px "Malgun Gothic", sans-serif';
-  ctx.textAlign = "right";
-  ctx.fillText(ui.mode === "sail-confirm" ? "ENTER / ESC" : "▼", x+w-20, y+h-17);
-  ctx.textAlign = "left";
+  wrapTownMessage(text,31).slice(0,5).forEach((line,i)=>
+    drawOriginalPanelText(line,x+22,y+35+i*20,{color:"#24160c"})
+  );
+  drawOriginalPanelText(
+    ui.mode === "sail-confirm" ? "ENTER / ESC" : "▼",
+    ui.mode === "sail-confirm" ? x+w-112 : x+w-30,
+    y+h-17,
+    {color:"#6e431b"}
+  );
 }
 function drawHarborSupply(ui) {
   const ships = selected?.fleet?.ships ?? [];
@@ -1110,13 +1130,15 @@ function renderBuildingInterface(s) {
     const opts=options.length?options:["전용 기능"];
     const x=104, y=232, w=368, h=152;
     drawOriginalParchment(x,y,w,h);
-    ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
     opts.slice(0,5).forEach((opt,i)=>{
-      ctx.fillStyle=i===ui.cursor?"#8a2d13":"#24160c";
-      ctx.fillText(`${i===ui.cursor?"▶":"　"}${opt}`, x+24, y+34+i*21);
+      drawOriginalPanelText(
+        `${i===ui.cursor?">":" "}${opt}`,
+        x+24,
+        y+34+i*21,
+        {color:i===ui.cursor?"#8a2d13":"#24160c"}
+      );
     });
-    ctx.fillStyle="#6e431b"; ctx.font = '11px "Malgun Gothic", sans-serif';
-    ctx.fillText("ENTER 결정   ESC 나가기",x+196,y+h-18);
+    drawOriginalPanelText("ENTER 결정   ESC 나가기",x+196,y+h-18,{color:"#6e431b"});
     $("runtime-status").textContent = `${s.building.name} · ${s.portName}`;
   } else if (ui.mode === "message" || ui.mode === "sail-confirm") {
     drawBuildingMessage(ui);
@@ -1700,15 +1722,10 @@ function drawTownDialogue(talk) {
   const lines = wrapTownMessage(text, 31).slice(0, 5);
   const x = 104, y = 232, w = 368, h = 152;
   drawOriginalParchment(x, y, w, h);
-  ctx.save();
-  ctx.fillStyle = "#24160c";
-  ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
-  lines.forEach((line, i) => ctx.fillText(line, x + 22, y + 35 + i * 20));
-  ctx.fillStyle = "#6e431b";
-  ctx.font = '12px "Malgun Gothic", sans-serif';
-  ctx.textAlign = "right";
-  ctx.fillText("▼", x + w - 20, y + h - 17);
-  ctx.restore();
+  lines.forEach((line, i) =>
+    drawOriginalPanelText(line, x + 22, y + 35 + i * 20, { color: "#24160c" })
+  );
+  drawOriginalPanelText("▼", x + w - 30, y + h - 17, { color: "#6e431b" });
 }
 function renderTownScreen() {
   if (!townRuntime || !portAssets) return;
@@ -2036,6 +2053,7 @@ const gameBoot = Promise.allSettled([
   loadTownSupport(),
   loadWorldSupport(),
   loadCharacterSupport(),
+  loadFontSupport(),
   loadMusicSupport(),
 ]).then(results => {
   const failed = results.filter(r => r.status === "rejected");

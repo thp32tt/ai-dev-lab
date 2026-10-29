@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex R19 repeated-source post-blit-to-XR receipt join source-static verification (2026-10-29 12:18 KST)
+
+- RUN_KEY: `LENSFLARE-R19-REUSED-FRAME-RECEIPT-JOIN-20261029-1218`; REVIEW_ONLY / LENS_FLARE_ONLY. Source SSOT `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned `1460e4ae101efe8235ba6cf89b17f83e4f3201c6`. Newly introduced `[R19 TRACE] frame-result` and `endframe-result` (source commit `7196265081a4`, host blob `f2ec57f461492666ff9017ebe77e0b53e3ee2142`) have separate sampled hit counters; only the later EndFrame event has `receiptSerial`, while only the former has acquired `image`. The R19 cache permits repeated XR EndFrame invocations on the same game frameId/poseSequence within 500ms. Thus neither equal hit counters nor source frameId/poseSequence guarantees a unique cross-stage per-invocation pixel-to-accepted-XR join. This is distinct from 11:04 pre-Acquire UV logging, 10:18 one-sided QPC age, and 01571 R30 lexical-scope compile defect. No actual HMD double flare or runtime mismatch proven.
+- [Durable docs-only review](https://github.com/thp32tt/OutRun2006Tweaks/blob/vr-d3d9ex-focus/docs/reviews/dx9ex/automation/LENSFLARE-R19-REUSED-FRAME-RECEIPT-JOIN-20261029-1218.md) commit `4d2e2848036e135bf1cff9906932ab8623035bd0`, remote blob `82d56eaa676a9938f91cd07e68421a0eed8d7e2a`, exact `[AUTO:LENSFLARE-R19-REUSED-FRAME-RECEIPT-JOIN-20261029-1218]` marker and remote HEAD readback. Exactly one new review document, no game source or workflow changes, no build or HMD run; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. R26+HUD baseline immutable; R84 comparison-only. Same RUN_KEY retry/re-report +0. AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2130 + unique new independent R19 post-blit/EndFrame diagnostic join verification +1 = 2131.**
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 DX9Ex independently verified lens-physical receipt C++ lexical-scope defect (2026-10-29 KST)
 
 - RUN_KEY: `CONVERSION-DX9EX-01571`; REVIEW_ONLY / LENS_FLARE_ONLY, unique subsequent source HEAD `d2b9b8451b6c4207cc7005e61bb98c3ca2ce0a28`, distinct from 01570 pre-native lens correlation audit.

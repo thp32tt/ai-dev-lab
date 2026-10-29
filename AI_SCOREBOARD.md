@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight new-SHA Korean lettering independent QA (2026-10-29 14:45 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T1445KST-A0119-B0134-NEW-SHA8`. N100 checked 38 prior C1 reports containing 271 reviewed distinct candidate SHA. Selected 8 first-time SHA-verified exported PNGs: A-0119..0122 (ordinals 413–416), B-0131..0134 (ordinals 468–471). All 8 generated PNG SHA256 equal export evidence, all 8 original full-HD source SHA256 equal production manifest, all 8 files RGBA; 0 alpha>=32 canvas-border pixels. A/B queue untouched.
+- Independently viewed English source crops, transparent Korean lettering PNGs and aspect-preserving simulated native fit. **C1 LETTERING-LAYER PASS 8 / HOLD 0 / FAIL 0**. Approved Korean mappings exact; no visible serious clipping, fake jamo, English residue or opaque regenerated backgrounds. Shorter translated sentence width alone not rejected. UI protected-art composite, UV cell containment, native 50% game readability, DDS and real-game effects are **NOT TESTED**; `RUNTIME_VALIDATION=UNTESTED`. Not C2/C3/real-game PASS.
+- N100 evidence `work/C1_QA_20261029_1445_AI2_report.json` and `work/C1_QA_20261029_1445_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg}`. [Asset-branch C1 report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1445_AI2_A0119_B0134_SHA8.json); verified asset commit/HEAD `03aab6edf1bd5bde2ba3f8286f152a1b7aa1cf9b`, report blob `97b75a14d3457fa3f732eb4b071fa5a1a321fa65`.
+- C1 did not invoke ImageGen, consume A/B queue, produce DDS, or change VR/FFB/DX11/DXVK. Same task/retry/readback scores +0. AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2140 + distinct eight-first-time-SHA C1 QA achievement +1 = 2141.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex lens physical receipt / R19 provenance diagnostic integration (2026-10-29 14:19 KST)
 
 - User-directed material DX9Ex diagnostic work on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Primary source commit `128b0f2ad6ed0b5c11283e6373c2c4ec374c8046` adds: (1) R19 near-full client centre-authority guard so an off-centre >=90% game client no longer silently uses the desktop midpoint as the SBS split, with bounded geometry receipts; (2) R19 source-frame B versus incoming projection A pose/FOV numerical mismatch receipts; (3) R30 lens LEFT-failure physical receipt; and (4) post-native lens texture/VB/IB/entry-RT, bilateral RT extent/format and right-stage/WVP join.

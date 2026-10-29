@@ -28,6 +28,7 @@ import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from
 import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 import { D2MusicPlayer } from "./music.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
+import { UI_LAYOUT, UI_GRAPH_RECORD } from "./ui-layout.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -108,9 +109,9 @@ let townRuntime = null;
 let buildingImages = [];
 let uiGraph = null;
 const uiCanvasCache = new WeakMap();
-const UI_VIEW_X = 104;
-const UI_VIEW_Y = 16;
-const UI_VIEW_SIZE = 368;
+const UI_VIEW_X = UI_LAYOUT.viewport.x;
+const UI_VIEW_Y = UI_LAYOUT.viewport.y;
+const UI_VIEW_SIZE = UI_LAYOUT.viewport.w;
 let worldAssets = null;
 let marketAssets = null;
 let seaRuntime = null;
@@ -267,8 +268,9 @@ function drawOriginalGraph(image, x, y, w = image?.width, h = image?.height) {
   return true;
 }
 
-function drawOriginalMainFrame() {
-  if (!drawOriginalGraph(uiGraph?.main, 0, 0, 640, 400)) {
+function drawOriginalSceneFrame(scene) {
+  const frame = scene === "sea" ? uiGraph?.sea : uiGraph?.town;
+  if (!drawOriginalGraph(frame, 0, 0, 640, 400)) {
     ctx.fillStyle = "#05070b"; ctx.fillRect(0, 0, 640, 400);
   }
 }
@@ -486,11 +488,11 @@ async function loadTownSupport() {
   const records = readGraphRecords(new Uint8Array(graphBuf));
   buildingImages = records.slice(6, 18).map(decodeGraphRecord);
   uiGraph = {
-    yesNo: decodeGraphRecord(records[0]),
-    main: decodeGraphRecord(records[4]),
-    status: decodeGraphRecord(records[5]),
-    dialogue: decodeGraphRecord(records[22]),
-    side: decodeGraphRecord(records[26]),
+    yesNo: decodeGraphRecord(records[UI_GRAPH_RECORD.yesNo]),
+    sea: decodeGraphRecord(records[UI_GRAPH_RECORD.sea]),
+    town: decodeGraphRecord(records[UI_GRAPH_RECORD.town]),
+    dialogue: decodeGraphRecord(records[UI_GRAPH_RECORD.dialogue]),
+    side: decodeGraphRecord(records[UI_GRAPH_RECORD.side]),
   };
 }
 
@@ -735,17 +737,17 @@ function drawBox(x, y, w, h, fill = "rgba(7,21,34,.97)") {
 function drawBuildingMessage(ui) {
   const values = ui.departure?.messageId === 61 ? [ui.departure.days] : [];
   const text = ui.messageText || formattedMessage(ui.messageId, values);
-  const x=104, y=232, w=368, h=152;
+  const { x, y, w, h } = UI_LAYOUT.dialogue;
   drawOriginalParchment(x,y,w,h);
-  wrapTownMessage(text,31).slice(0,5).forEach((line,i)=>
-    drawOriginalPanelText(line,x+22,y+35+i*20,{color:"#24160c"})
+  wrapTownMessage(text,31).slice(0,6).forEach((line,i)=>
+    drawOriginalPanelText(line,x+16,y+30+i*16,{color:"#24160c"})
   );
-  drawOriginalPanelText(
-    ui.mode === "sail-confirm" ? "ENTER / ESC" : "▼",
-    ui.mode === "sail-confirm" ? x+w-112 : x+w-30,
-    y+h-17,
-    {color:"#6e431b"}
-  );
+  if (ui.mode === "sail-confirm") {
+    const yn = UI_LAYOUT.yesNo;
+    drawOriginalGraph(uiGraph?.yesNo, yn.x, yn.y, yn.w, yn.h);
+  } else {
+    drawOriginalPanelText("▼", x + Math.floor((w - 16) / 2), y + h - 12, {color:"#6e431b"});
+  }
 }
 function drawHarborSupply(ui) {
   const ships = selected?.fleet?.ships ?? [];
@@ -1123,23 +1125,19 @@ function renderBuildingInterface(s) {
     return;
   }
 
-  drawOriginalPanelText(s.building.name, 500, 82, {size:13,bold:true});
-  drawOriginalDatePanel(selected?.dateTime, s.portName);
-
   if (ui.mode === "menu") {
     const opts=options.length?options:["전용 기능"];
-    const x=104, y=232, w=368, h=152;
+    const { x, y, w, h } = UI_LAYOUT.dialogue;
     drawOriginalParchment(x,y,w,h);
-    opts.slice(0,5).forEach((opt,i)=>{
+    opts.slice(0,6).forEach((opt,i)=>{
       drawOriginalPanelText(
-        `${i===ui.cursor?">":" "}${opt}`,
-        x+24,
-        y+34+i*21,
+        (i===ui.cursor?">":" ") + opt,
+        x+16,
+        y+30+i*16,
         {color:i===ui.cursor?"#8a2d13":"#24160c"}
       );
     });
-    drawOriginalPanelText("ENTER 결정   ESC 나가기",x+196,y+h-18,{color:"#6e431b"});
-    $("runtime-status").textContent = `${s.building.name} · ${s.portName}`;
+    $("runtime-status").textContent = s.building.name + " · " + s.portName;
   } else if (ui.mode === "message" || ui.mode === "sail-confirm") {
     drawBuildingMessage(ui);
     $("runtime-status").textContent = ui.mode === "sail-confirm"
@@ -1719,23 +1717,25 @@ function wrapTownMessage(text, width = 32) {
 function drawTownDialogue(talk) {
   if (!talk) return;
   const text = townMessageText(talk);
-  const lines = wrapTownMessage(text, 31).slice(0, 5);
-  const x = 104, y = 232, w = 368, h = 152;
+  const lines = wrapTownMessage(text, 31).slice(0, 6);
+  const { x, y, w, h } = UI_LAYOUT.dialogue;
   drawOriginalParchment(x, y, w, h);
   lines.forEach((line, i) =>
-    drawOriginalPanelText(line, x + 22, y + 35 + i * 20, { color: "#24160c" })
+    drawOriginalPanelText(line, x + 16, y + 30 + i * 16, { color: "#24160c" })
   );
-  drawOriginalPanelText("▼", x + w - 30, y + h - 17, { color: "#6e431b" });
+  drawOriginalPanelText("▼", x + Math.floor((w - 16) / 2), y + h - 12, { color: "#6e431b" });
 }
 function renderTownScreen() {
   if (!townRuntime || !portAssets) return;
   const st = townRuntime.snapshot();
-  drawOriginalMainFrame();
-  drawOriginalDatePanel(selected?.dateTime, st.portName);
+  drawOriginalSceneFrame("town");
 
   if (st.building) {
     const image = buildingImages[st.building.id];
-    if (image) drawBuildingImage(image, 220, 42, 204, 168);
+    if (image) {
+      const b = UI_LAYOUT.building;
+      drawBuildingImage(image, b.x, b.y, image.width, image.height);
+    }
     renderBuildingInterface(st);
   } else {
     renderTownView(ctx, portAssets, st.portId, st, UI_VIEW_X, UI_VIEW_Y, !charAssets);
@@ -1751,8 +1751,6 @@ function renderTownScreen() {
       }
       drawHeroSprite(ctx, charAssets, selected?.heroId ?? 0, st, UI_VIEW_X, UI_VIEW_Y);
     }
-    drawOriginalPanelText(st.portName, 500, 82, {size:13,bold:true});
-    drawOriginalPanelText(`G ${Number(selected?.money ?? 0).toLocaleString()}`, 500, 105, {size:11});
     $("runtime-status").textContent = `항구 · ${st.portName}`;
     if (st.talk) {
       drawTownDialogue(st.talk);
@@ -1853,7 +1851,7 @@ function callNearbyPort() {
 function renderSeaScreen() {
   if (!seaRuntime || !worldAssets) return;
   const st = seaRuntime.snapshot();
-  drawOriginalMainFrame();
+  drawOriginalSceneFrame("sea");
   renderSeaView(ctx, worldAssets, st, UI_VIEW_X, UI_VIEW_Y, 23, 23);
   const nearbyPort = findPortCallTarget(st, portCatalog);
   const env = st.environment;

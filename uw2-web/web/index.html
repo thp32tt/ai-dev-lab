@@ -2,75 +2,62 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>대항해시대 II Web Runtime</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>대항해시대 II</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <main>
-    <header>
-      <h1>대항해시대 II Web Runtime</h1>
-      <p>원본 DOS 데이터 직접 로드 + REA 기반 브라우저 재구현</p>
-    </header>
+  <main class="game-shell">
+    <section class="screen-frame" aria-label="대항해시대 II 게임">
+      <canvas id="screen" width="640" height="400" aria-label="game screen"></canvas>
+      <div id="runtime-status" class="game-status">게임 데이터 로딩 중…</div>
+    </section>
 
-    <section class="grid">
-      <article class="panel">
-        <h2>원본 자원</h2>
-        <div id="manifest-status">확인 중…</div>
-        <div id="manifest"></div>
-      </article>
+    <section id="web-controller" class="controller" aria-label="웹 게임 컨트롤러">
+      <div class="dpad" aria-label="방향키">
+        <button class="pad up" data-key="ArrowUp" aria-label="위">▲</button>
+        <button class="pad left" data-key="ArrowLeft" aria-label="왼쪽">◀</button>
+        <div class="pad-center"></div>
+        <button class="pad right" data-key="ArrowRight" aria-label="오른쪽">▶</button>
+        <button class="pad down" data-key="ArrowDown" aria-label="아래">▼</button>
+      </div>
 
-      <article class="panel">
-        <h2>세이브 슬롯</h2>
-        <div id="save-status">KOUKAI2.DAT 로딩 중…</div>
-        <div id="save-slots"></div>
-      </article>
+      <div class="action-pad">
+        <button class="action secondary" data-key="Escape"><span>B</span><small>취소</small></button>
+        <button class="action primary" data-key="Enter"><span>A</span><small>확인</small></button>
+        <button class="mini" data-key="p"><b>P</b><small>기항</small></button>
+        <button class="mini" data-key="l"><b>L</b><small>적재</small></button>
+        <button class="mini" data-key="u"><b>U</b><small>하역</small></button>
+        <button class="mini" data-key="m"><b>M</b><small>최대</small></button>
+        <button class="mini" data-key="c"><b>C</b><small>흥정</small></button>
+      </div>
 
-      <article class="panel wide">
-        <div class="game-head">
-          <h2>브라우저 런타임</h2>
-          <button id="opening-button" disabled>원본 오프닝</button>
-          <button id="run-button" disabled>선택 슬롯 시작</button>
-          <button id="pause-button" disabled>일시정지</button>
-        </div>
-        <canvas id="screen" width="640" height="400" aria-label="game screen"></canvas>
-        <div id="runtime-status"></div>
-      </article>
-
-      <article class="panel wide">
-        <h2>OPGRAPH.LZW 원본 오프닝 그림</h2>
-        <div id="opening-status">OPGRAPH 디코딩 중…</div>
-        <div id="opening-gallery" class="opening-gallery"></div>
-      </article>
-
-      <article class="panel wide">
-        <h2>선택 세이브 실제 항구 맵</h2>
-        <div id="portmap-status">PORTMAP/PORTCHIP 로딩 중…</div>
-        <div class="portmap-wrap"><canvas id="portmap"></canvas></div>
-      </article>
-
-      <article class="panel wide">
-        <h2>원본 KAO.LZW 초상화</h2>
-        <div id="kao-status">LS11 디코딩 중…</div>
-        <div id="portraits" class="portraits"></div>
-      </article>
-
-      <article class="panel">
-        <h2>원본 MENU.DAT</h2>
-        <div id="menus"></div>
-      </article>
-
-      <article class="panel">
-        <h2>원본 MESSAGE.DAT</h2>
-        <div id="messages"></div>
-      </article>
-
-      <article class="panel wide">
-        <h2>REA 상태 추적</h2>
-        <pre id="debug"></pre>
-      </article>
+      <div class="system-pad">
+        <button data-action="save-prev">◀ SAVE</button>
+        <button data-action="start">START</button>
+        <button data-action="opening">OPENING</button>
+        <button data-action="pause">PAUSE</button>
+        <button data-action="save-next">SAVE ▶</button>
+      </div>
     </section>
   </main>
+
+  <!-- Runtime compatibility nodes: kept invisible; analysis/debug UI is no longer displayed. -->
+  <div id="runtime-internals" hidden>
+    <div id="manifest-status"></div><div id="manifest"></div>
+    <div id="save-status"></div><div id="save-slots"></div>
+    <button id="opening-button" disabled></button>
+    <button id="run-button" disabled></button>
+    <button id="pause-button" disabled></button>
+    <div id="opening-status"></div><div id="opening-gallery"></div>
+    <div id="portmap-status"></div><canvas id="portmap"></canvas>
+    <div id="kao-status"></div><div id="portraits"></div>
+    <div id="menus"></div><div id="messages"></div>
+    <pre id="debug"></pre>
+  </div>
+
   <script type="module" src="./app.js"></script>
+  <script type="module" src="./web-controller.js"></script>
 </body>
 </html>

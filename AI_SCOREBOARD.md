@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 first-time eight-SHA A/B Korean lettering independent QA (2026-10-29 13:45 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T1345KST-NEW-SHA8`. N100 read 36 prior local C1 reports and 255 previously reviewed unique candidate SHA; selected 8 never-reviewed source/export-backed SHA: A-0111..0114 ordinals 405–408, B-0123..0126 ordinals 460–463, with no overlap. All 8 saved PNG byte SHA256 equal export evidence, 8 verified full-HD source SHA256 equal production manifest, all 8 PNG are RGBA and alpha >=32 does not touch canvas boundaries.
+- Independent visual source vs generated Korean lettering and native-fit preview: **C1 lettering-layer PASS 5, HOLD 2, FAIL 1**. A-0112/0113/0114 and B-0123/0124 have readable approved Hangul, no visible English/opaque panel, and no substantive border clipping. A-0111 and B-0125 HOLD on native-size/50%-view readability and true placement uncertainty; shortening translation width alone is NOT FAIL. B-0126 '조건:' **FAIL** because the generated colon looks like numeral 8 (PUNCTUATION_COLON_READS_AS_EIGHT); needs punctuation regeneration/reinspection, not autonomous C1 generation. C1 standalone-layer PASS is not C2/C3 or actual UI/DDS/game approval; native protected-art composite and UV cell not proven.
+- N100 evidence: `work/C1_QA_20261029_1345_AI2_report.json`, `work/C1_QA_20261029_1345_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg}`. [Canonical GitHub C1 QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1345_AI2_A0111_B0126_SHA8.json), current asset HEAD `11bd61335e174ceaf81598a7892b6df51edd33b6`, report blob `3e23de815f0ea1da7f556b6595b34be851f9c502`; remote HEAD and report readback confirmed. Duplicate temporary path removed; no extra score for directory correction.
+- Scope: ImageGen NOT CALLED, A/B production queue NOT CONSUMED, DDS NOT CREATED, C2/C3/real-game NOT ASSESSED, VR/FFB/DX11/DXVK UNCHANGED, `RUNTIME_VALIDATION=UNTESTED`. Same task/retry/SHA/status readback scores +0. AI1 unaffected.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2136 + unique eight-SHA independent C1 QA evidence +1 = 2137.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX11 source-live EXP/EXP2 versus LINEAR table Fog Draw parameter integration (2026-10-29 13:44 KST)
 
 - TASK_ID: `CONVERSION-DX11-01151`, one distinct production feature under `DX11:FIRST_LIVE_GAME_NATIVE_FRAME` / `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME`. Real source/positive-negative C++ regression commit `9576546354bf8e9a767988888a69d38e83245afc` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, same exact validation-bearing `RESULT_SHA=9576546354bf8e9a767988888a69d38e83245afc`. This task is not a C6-only milestone, enum-only change or duplicated 01150 zero-density EXP/EXP2 behavior.

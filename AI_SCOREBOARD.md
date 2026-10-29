@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01569 independent R19 near-full window SBS crop negative-control (2026-10-29 KST)
+
+- Distinct new lens-flare-only REVIEW_ONLY source-static discriminator beyond 01567 pose-epoch and 01568 bilinear seam. Pinned OutRun `vr-d3d9ex-focus` SOURCE_HEAD `609df7a3b0fec423ee24317f1036ba9be000197f`. Verified actual `vrhost/src/runtime/sbs_capture_override.hpp::GetGameUv` >=90%-on-both-axes whole-desktop selection independently of window origin, and `RenderProjectionOverride` half-SBS eye split. In a synthetic 1920x1080 desktop/left-aligned 1766x994 client (not observed VR pixels), real split x883 versus selected x960 leaves a 77-pixel wrong-eye strip; centered, below-threshold and real-fullscreen negative controls distinguished geometry from 01568's ~one-texel filter seam. Protected R26+HUD reference `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` has the same size-only branch; **no new regression or root-cause/HMD PASS claimed**.
+- Durable [docs-only review](https://github.com/thp32tt/OutRun2006Tweaks/blob/vr-d3d9ex-focus/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01569.md) single-file commit `ab304637b748487648501eb8b6476797a0a2f8b5` with exact `[AUTO:CONVERSION-DX9EX-01569]` marker, verified remote HEAD, sole changed file, remote blob `26b314976d7276f4dad3d777ea752b9f8a1152c3` and document readback. No C++/HLSL/build changes or Quest3/VDXR execution; CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED.
+- This is a new independently confirmed conditional source property and four-case geometric falsification, not a retry, post hoc inference from a screenshot or 01568 seam re-report. Same TASK_ID future rechecks/rollover score +0. AI 1 stays separate (1779 at prior SSOT).
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2121 + one independent static crop-geometry discriminator with docs-only GitHub verification +1 = 2122.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight new SHA independent lightweight QA (2026-10-29 09:45 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T0945KST-A0079-B0094-NEW-SHA8`; unique, not any retry or 09:15 AI 1 C1 SHA set.

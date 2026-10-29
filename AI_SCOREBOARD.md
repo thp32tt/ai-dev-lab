@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II 브라우저 M1 원본 데이터/LS11 런타임 구현 (2026-10-29 KST)
+
+- 사용자 요청에 따라 N100 REA 역분석을 실제 브라우저 네이티브 구현으로 확장했다. `thp32tt/ai-dev-lab@uw2-web-port`에 원본 게임 자산을 포함하지 않은 웹 런타임 소스를 구현하고, N100 `0.0.0.0:18082`에서 실행 검증했다. `KOUKAI2.DAT` 10-slot/33,340-byte 페이지 구조, `MENU.DAT` 61개 및 `MESSAGE.DAT` 1,179개 BE-u16 offset + CP949 string table을 실제 제공 데이터에서 직접 파싱한다.
+- 신규 그래픽 성과: 실제 `KAO.LZW`의 `LS11` 컨테이너를 분석해 16-byte header + 256-byte dictionary + big-endian FAT 구조와 256개 엔트리를 확인하고 LZ back-reference decoder를 브라우저 JavaScript로 구현했다. 첫 엔트리들은 정확히 1,920 bytes로 해제되어 64×80×3bpp KOEI planar decoder로 정상 초상화가 복원됐다. 세이브 Person+26의 미확정 바이트는 first-six protagonist에서 0..5로 안정적으로 나타나므로 `portraitIdCandidate`로 보존하고 선택 슬롯의 원본 KAO 얼굴을 Canvas에 표시한다.
+- 실제 브라우저 검증: N100 Firefox/geckodriver에서 페이지 완전 로드 후 원본 resource 56개, save slots 10, MENU rows 61, displayed MESSAGE rows 120, KAO canvases 8을 확인했다. 첫 세이브 실행 버튼을 실제 클릭한 후 runtime status=`실행 중`, frame 38+ 진행, hero=`카탈리나 에란초`, `portraitIdCandidate=1`, 원본 KAO #1 초상화의 runtime Canvas 합성을 스크린샷으로 확인했다. Node `runtime.test.mjs` 및 `kao.test.mjs` PASS.
+- REA 분석도 병행해 `FUN_1000_4ea7`가 조건부 byte `0x413` countdown 및 zero 시 `FUN_1000_2f90` 호출, `FUN_1fb7_73a3`가 `0x413` clear 후 `FUN_1fb7_5d7c` 결과를 word `0x414`에 저장하는 동작을 추가 확인했다. 상태의 의미는 아직 임의 명명하지 않았다. Durable report: N100 `rea-analysis/uncharted-waters-2/BROWSER_M1_20261029.md`, GitHub branch report commit `a22560122148462cbb7fa34bf20550e7f81bb35b`, report blob `4eeb6f64549ea8498a6a786580966ec85735dc5d`.
+- 이는 완성 게임 PASS가 아니라 **브라우저에서 실제 원본 save/text/portrait 데이터를 직접 읽고 실행 프레임을 구동하는 M1**이다. 항구/항해/전투/이벤트/음악 전체 재구현은 미완료다. 동일 M1의 재검증·readback·후속 보고는 +0. AI 1 별도.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2145 + one distinct browser-native original-data/LS11 runtime implementation achievement +1 = 2146.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex lens physical receipt scope falsification, REVIEW_ONLY (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01573`; `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned source HEAD `c04e56514aa0eef7f3d7d1c164166a546020eb7b`; verified single-doc review commit `beaa1a2569294f2885ea361f5ecc8c6ee74f5d77`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01573.md`, remote file readback and changed-path audit PASS, game source unchanged.

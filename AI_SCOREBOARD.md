@@ -1,5 +1,17 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight new SHA independent lightweight QA (2026-10-29 09:45 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T0945KST-A0079-B0094-NEW-SHA8`; unique, not any retry or 09:15 AI 1 C1 SHA set.
+- Verified N100 export and native full-HD/ROI source bytes and SHA256 for eight first-time A/B Korean PNGs: A source ordinal 373-376 (A-0079..0082), B ordinal 428-431 (B-0091..0094). All 8 candidate PNG bytes match export evidence SHA256, source bytes match production manifest SHA256, format RGBA and alpha without substantive edge clipping.
+- Independently compared original English ROI, Korean lettering, approved mappings, and aspect-preserving simulated native target-size view. Korean is legible with no observed spelling defects, protected frame regeneration or other gross graphic intrusion. **C1 verdict PASS 0 / FAIL 0 / HOLD 8** because actual native UI-cell registration, protected-art composited comparison, DDS and in-game validation were not evidenced; a simulated fit is not deployment approval.
+- Evidence file: [C1_20261029_0945_AI2_A0079_B0094_SHA8.json](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_0945_AI2_A0079_B0094_SHA8.json) verified in GitHub commit `a31da6da5416f8d0ef67a1eb8a1d1b670dbee5e7`, remote branch HEAD and file readback matched. N100 record `work/C1_QA_20261029_0945_AI2_report.json` plus original/pair/native-fit sheets. No ImageGen, queue consumption, C2/C3/user game PASS, DDS deploy or VR/FFB/DX11/DXVK work.
+- Same SHA retries/reinspection/status reports score +0. AI 1 cumulative remains 1779.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2120 + one distinct completed eight-candidate SHA-verified independent C1 QA achievement +1 = 2121.**
+
+Updated: 2026-10-29 KST
+
+
 ## AI 1 OutRun 2006 C1 eight NEW-SHA transparent ROI independent QA (2026-10-29 09:15 KST)
 
 - RUN_KEY: `OUTRUN-C1-20261029T0915KST-A0075-B0090-NEW-SHA8`; new SHA-256 set relative to the last verified 08:45 C1 run (not a retry of A-0075/B-0088 ordinal 365–368/420–423).

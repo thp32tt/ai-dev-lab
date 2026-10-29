@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens PMT call-site and descriptor-layout verifier proof boundary (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01580`; independently verified **LENS_FLARE_ONLY / REVIEW_ONLY** source-static negative control on pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `f632832d5554abd08d8cf790eb19f31934b4ee2c`. Distinct from 01579 R7 failure-sentinel, 01578 PRE/post DIP serial, and the separate 21:23 D79B queue-global count/capacity field mapping.
+- New evidence: `src/hooks_graphics.cpp::VRLensFlareProjected2D::apply` hooks two alleged retail `405890→404700` sites `0x5A41/0x5C44`; `TraceLensOpaquePmtEntry` assigns `entry[8]` pass (+0x20) and `entry[14]` objectId (+0x38). Yet the inspected `tools/disasm_outrun_goal_flare_p0.py::verify_lens_original_queue_edges` asserts different original CALL/PUSH edges but **neither PMT hook-site CALL target nor these descriptor field instruction operands**. `tools/verify_vr_lens_physical_telemetry.py` checks source strings for those hooks/offsets, not canonical retail bytes. A positive PMT trace can identify an instrumented invocation while its semantic 0x570008 attribution retains that specific verifier-proof gap. No assertion that original bytes/fields are actually wrong; Quest3 root cause remains unresolved.
+- [One-file durable docs-only review](https://github.com/thp32tt/OutRun2006Tweaks/blob/cab4379ed32a58c5f0ea2af306f90c8986740c40/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01580.md) commit `cab4379ed32a58c5f0ea2af306f90c8986740c40`, exactly one file changed; remote blob `193ed925379522a4327043392c6c751d36a22889`, branch HEAD readback matched. `CODE_CHANGE=NO`; `AUTOMATION_VALIDATION=PASS` docs-only; `RUNTIME_VALIDATION=UNTESTED`; no CI-skip/source build gate.
+- This independently verified PMT hook/field-verifier authority boundary is credited **+1 once**. Same TASK_ID retries, scoreboard readbacks and repeated reports score +0; AI1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2172 + distinct static verifier finding +1 = 2173.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex R7 lens eye failure-sentinel and attempted-pair counter distinction (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01579`; distinct **LENS_FLARE_ONLY / REVIEW_ONLY** static control-flow falsification on pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `0f35dd7d7ccb79684d5a678b26a572429f4c9c7e`. Different from 01577 PMT pass/primitive fan-out, 01578 DIP PRE/post causal-key absence, and 21:23 original queue verifier-label authority gap.

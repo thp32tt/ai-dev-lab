@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CABE D79B full-flush barrier refutes ordinal1-to-ordinal2 queued PMT survival (2026-10-29 KST)
+
+- RUN_KEY `LENSFLARE-CABE-D79B-INTERVENING-FLUSH-20261029-1704`, focus source HEAD `4f754b0cafdcd6ffb168265c44d92ec6fe3f6b76`. Independent falsification of the *specific* 01574 hypothetical ordinal1 PMT draining inside ordinal2: original reconstructed `sun_flare_40cbc0:695-715` and canonical-EXE E8 verification contract place first 570008 (D6BA), D79B full 4052C0 flush, then second 570008 (D7B4). Reconstructed `render_queue_flush_4052c0:970-980` clears opaque.count/matrix_count and sets immediate=1 after consuming the queue. The first queued PMT cannot survive a normally returning D79B full flush to be first drained by the second inline 542A call. This resolves the 01574 conditional counterexample under the normal reconstructed schedule, without implying that a flush serial authenticates PMT identity or that the visual double flare is fixed. Prior 01545 first-deferred/second-immediate evidence is not independently re-scored.
+- Exactly one docs-only OutRun result `docs/reviews/dx9ex/automation/LENSFLARE-CABE-D79B-INTERVENING-FLUSH-20261029-1704.md`, commit `bb08b8c16b3a8619534acccd0b87784390a6d1b4`, remote blob `35af3f9585c9d3fba61b395f18c18d0780420d9d` and branch HEAD readback verified. No game/runtime changes, no CI-skip; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. Retail EXE bytes not rerun, physical PMT/texture/alpha and HMD RGB/final XR pose unresolved. Same RUN_KEY retry/readback +0; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2155 + one distinct source-static normal-path hypothesis falsification achievement +1 = 2156.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex scene opaque-flush LENS family false-positive source falsification (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01575`, OutRun `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned actual source HEAD `7d5f5296b906b59a470f100abc8ec197ff9dc246`. New independent negative-control audit of latest 4052C0 opaque scene-flush receipt: `src/hooks_graphics.cpp:703-749` allocates nonzero flush serial for D44B/D79B with no authentic lens source, while `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp:4214-4233` and `stereo_renderer_r7.inc:1620-1637` classify a potentially unrelated nested native Draw as `family=LENS` solely through that serial. `R30TryScreenSpaceFovDraw:6240-6248` independently gates physical lens result by effective scope; the flush hash is patch-ledger state, never PMT identity. This is distinct from 01574's ordinal1-versus-ordinal2 CALL-stack PMT attribution counterexample.

@@ -1,5 +1,17 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II Browser M6 한국어판 함대 속도·바람·해류·20분 tick (2026-10-29 KST)
+
+- M5와 별개의 신규 실제 게임 로직 구현. 영문판 save fleet offsets가 한국어판에 맞지 않아 불가능한 값(fleet ID 80, load 15873)을 생성하는 것을 실데이터로 반증하고, HORIEDIT 기반 한국어판 Ship1/2/3/4/5 레이아웃만 사용하도록 고정했다.
+- 한국어판 Ship2 30B에서 captain/condition/figurehead, water/food/lumber/shot, Lookout%, Navigation%, load, 상품량/ID를 실세이브로 복원했다. SAVE2는 카라벨 라티나/브리간틴/라레아르에 각각 Navigation 50/50/20%, load 113/264/0, 선장 조안/로코/엔리코가 정상 복원된다.
+- 한국어판 Ship4 +7을 Sail Type으로 확인했다. 25개 모델 전체가 공식 sail-type 배열 `[4,4,4,0,4,5,4,5,2,2,0,3,5,5,4,2,2,3,5,1,1,3,2,2,5]`와 25/25 완전 일치했다.
+- 원본 정수 항해 속도식(풍향×Sail Type, Power, Navigation crew ratio, load factor, Navigation Level, Seamanship, Tacking, 함대 최저속도)을 구현하고 WINDCUR 해류 벡터를 더했다. 60단위 X/Y 독립 누산기와 20분 game tick을 SeaRuntime에 연결했다.
+- Firefox SAVE2 단치히 실검증: 출항 (286,238), 북향 speed9/5 knots는 즉시 coast-block, 동향 speed12/6 knots, 누산 12→24→36→48→threshold, 전체 tick6에 (287,238)로 1칸 이동, 시간 1522.7.6 16:20→18:20 PASS.
+- GitHub source-only `thp32tt/ai-dev-lab@uw2-web-port`. M6 report commit `855b39f03a7911219fe6c3145d253fa9e4738cc9`, remote report blob `08ac66a386e3272b70282c3d3cdb71fabb7bf674`; `sea-speed.js` commit `f551729636f149696ee6fb40d14c8c6b88ebffee`. 동일 M6 retry/readback/screenshot 재확인은 +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2157 + one distinct Korean sailing-speed/current/tick runtime achievement +1 = 2158.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 대항해시대 II Browser M5 정확한 CHAR·주민 런타임 (2026-10-29 KST)
 
 - M3/M4와 별개의 신규 실제 구현 성과. 사용자 한국어판 `CHAR.LZW`의 정확한 프레임 포맷을 원 추출기와 교차검증하여 브라우저에 구현했다: CHAR.000~005 각 5,120B=주인공 8프레임, CHAR.006 15,360B=주민 24프레임, 프레임당 640B=4사분면×(4×256-bit 색면+256-bit 투명면).

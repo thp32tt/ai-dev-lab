@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex scene opaque-flush LENS family false-positive source falsification (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01575`, OutRun `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned actual source HEAD `7d5f5296b906b59a470f100abc8ec197ff9dc246`. New independent negative-control audit of latest 4052C0 opaque scene-flush receipt: `src/hooks_graphics.cpp:703-749` allocates nonzero flush serial for D44B/D79B with no authentic lens source, while `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp:4214-4233` and `stereo_renderer_r7.inc:1620-1637` classify a potentially unrelated nested native Draw as `family=LENS` solely through that serial. `R30TryScreenSpaceFovDraw:6240-6248` independently gates physical lens result by effective scope; the flush hash is patch-ledger state, never PMT identity. This is distinct from 01574's ordinal1-versus-ordinal2 CALL-stack PMT attribution counterexample.
+- Exactly one docs-only OutRun result at `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01575.md`, commit `4f754b0cafdcd6ffb168265c44d92ec6fe3f6b76`, verified branch HEAD, commit marker `[AUTO:CONVERSION-DX9EX-01575]`, and remote readback blob `22ad338fda5c5f2ac6f37bbeb94c591976dcbe36`. No production source change, no CI-skip. `AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK`, `RUNTIME_VALIDATION=UNTESTED`; actual scene PMTs, user's doubled second flare, same-eye ROI and Quest3 cause remain unproven. Retry/readback/re-report +0; AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2154 + one distinct source-static false-attribution verification achievement +1 = 2155.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight new-SHA Korean lettering independent QA (2026-10-29 16:45 KST)
 
 - RUN_KEY `OUTRUN-C1-AI2-20261029T1645KST-A0127-B0142-NEW-SHA8`. New independent QA result on 8 first-time candidate SHA (A-0127..A-0130, B-0139..B-0142). N100 compared 40 prior C1 reports / 287 prior distinct candidate SHA; no SHA repeated. All eight production-export candidate SHA256 and original full-HD source PNG SHA256 agree with their export/manifest evidence. Eight RGBA, zero alpha>=32 output-edge contacts.

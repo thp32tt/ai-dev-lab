@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 real source Fog FVF + SM3 RAW diagnostic integration (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX11-01153`, branch `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. A new cohesive native source implementation `5fc23727cf6965285c569378de80a8626354a6b8` changes actual `src/vr/d3d11/live_game_frame_bridge.cpp` and `live_game_sm3_table_fog.hpp` along with deterministic positive/negative C++ and source integration regression tests. Source-authentic D3D9 EXP/EXP2 density=0 enables exact inert-fog native FVF Draw; independently the opt-in isolated SM3 RAW tile may omit visual fog when source W-projection query fails only after authentic source mode/equation input reads and source fail-closed conditions. Production full-frame / input / FFB / DX9Ex fallback remain protected, DXVK frozen.
+- Validation-bearing result SHA `b6055fb4c87b6ea8d276350f65c44bf8efc6615a` includes the same source implementation and a causal CI acceptance-contract record repair. All **five mandatory push GitHub Actions** are SUCCESS on **this exact SHA**: DX11 Fast `40830561662`, Backend `40830561660`, Win32 Build `40830561642`, OpenXR architecture `40830561735`, HUD Inspector `40830561636`. The initial `5fc23727cf6965285c569378de80a8626354a6b8` failed only the new task's required gameplay target/feature-contract report fields; its causal JSON repair is not separately scored.
+- **CODE_CHANGED=YES; BUILD_VERIFIED only; RUNTIME_VALIDATION=UNTESTED.** No source-matched real-game native Draw, native published pixels, desktop playability or Quest3/VDXR HMD proof has been observed. No gameplay/native deployment claim. Same TASK_ID retry, first Gate contract repair, C6, recheck, and scoreboard report earn +0; AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2148 + one distinct source-integrated DX11 feature/repair accomplishment with five exact-SHA mandatory Gate PASS +1 = 2149.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 대항해시대 II Browser M2 항구맵 + GRAPH/OPGRAPH 실구현 (2026-10-29 KST)
 
 - M1과 별개의 신규 구현 성과: N100 원본 `PORTCHIP.LZW`, `PORTMAP.LZW`, `CHIP_NO.DAT` 구조를 실제 파일 전체로 검증하고 브라우저 렌더러를 구현했다. `PORTCHIP.LZW`는 14 LS11 entries 중 짝수 7개가 각각 30,720 bytes = 240 × 16×16×4bpp 타일 뱅크, `PORTMAP.LZW`는 101 entries 모두 9,216 bytes = 96×96 byte tile map, `CHIP_NO.DAT`는 정규 항구 100개에 대응하는 0..6 뱅크 선택표임을 검증했다. 현재 save slot 1의 PORT #5 튀니스가 bank 2로 연결되어 전체 1536×1536 원본 항구 지도를 Firefox에서 실제 렌더링한다.

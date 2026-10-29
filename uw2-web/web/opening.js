@@ -198,7 +198,7 @@ export const KOREAN_OPENING_SCENE_PLAN = Object.freeze([
   },
   {
     scene: 10,
-    name: "João Franco",
+    name: "João Ferrero",
     sources: [
       ref(13,8),
       ref(10,[0,1,2,3,4]),

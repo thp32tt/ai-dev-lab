@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens R30 receipt scope-repair and pair-guard independent static falsification (2026-10-29 14:02 KST)
+
+- TASK_ID: `CONVERSION-DX9EX-01572`; unique LENS_FLARE_ONLY REVIEW_ONLY report on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`; pre-review SOURCE_HEAD `6f02a9cfa5110d9316b0f2d3898a9dba0941d7ea`, docs-only `RESULT_SHA=5000acc5166cc05b6e6b30004bff2633003362b4`, record `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01572.md`, blob `add505c21bf0de37c609fac885e16be982a6c3cb`. Verified the commit changes exactly that one file and remote readback matches HEAD.
+- Independently checked two **subsequent** GitHub source commits beyond the scope-break finding of 01571: `ade9ff3` removes lens-local references from unrelated generic XYZRHW and restores the post-Draw result receipt to `R30TryScreenSpaceFovDraw`; latest `6f02a9c` renames its local `lensPairComplete` guard and explicitly reads the transaction restore result. Enumerated native LEFT failure/RIGHT pre-Draw failure/RIGHT Draw failure/restore failure/success reachable branches; established the new receipt's result predicate is equivalent to canonical later R30 pair completion **only on paths that reach the post-right log**, while early LEFT failures and sampled success remain uncensused. This is bounded static verification of a **new HEAD's previously diagnosed issue resolution** and new negative controls, not a claim that the original duplicate-flare visual fault is fixed.
+- R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` protected; source/compile/workflow/runtime unchanged by this review; no build, original EXE disasm, game-log, RGB readback or Quest3 HMD validation. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, `AUTOMATION_VALIDATION=PASS` is docs-only single-path remote proof, never HMD PASS. AI 1 score is separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2137 + one distinct source-static diagnostic-scope repair verification +1 = 2138.** Same TASK_ID retry, verification/readback, or re-report scores +0.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 first-time eight-SHA A/B Korean lettering independent QA (2026-10-29 13:45 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1345KST-NEW-SHA8`. N100 read 36 prior local C1 reports and 255 previously reviewed unique candidate SHA; selected 8 never-reviewed source/export-backed SHA: A-0111..0114 ordinals 405–408, B-0123..0126 ordinals 460–463, with no overlap. All 8 saved PNG byte SHA256 equal export evidence, 8 verified full-HD source SHA256 equal production manifest, all 8 PNG are RGBA and alpha >=32 does not touch canvas boundaries.

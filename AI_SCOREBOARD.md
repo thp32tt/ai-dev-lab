@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 authentic native RAW source-aligned screen geometry integration (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01165`, distinct native C++ gameplay diagnostic improvement on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Actual native D3D11 GPU BEFORE/Draw/AFTER pixel crops can now map to the same physical D3D9 screen coordinates, rather than always an arbitrary corner inset, only for an identically sized live native color target and canonical original D3D9 backbuffer. Source-aligned tile destinations independently require verified Present crop and original RGNDATA union coverage; invalid identity, dimensions, crop, holes, or out-of-bounds mapping preserve existing fail-closed RAW inset/original game path. Includes compiler-evaluated positive/negative C++ regressions for exact coordinates, split dirty union, invalid dimensions, cropped source and overflow.
+- Material C++ source implementation commit `035891715b575e96fc46cbab524d28bb80df432d`; inherited previous task acceptance evidence-path CI failure causally repaired (score +0 for repair) in `dc0acb87687ba1bcf503dee748f6f801940d8ee9`. Final validation-bearing exact-SHA RESULT_SHA `dc0acb87687ba1bcf503dee748f6f801940d8ee9`.
+- Mandatory five **push** GitHub Actions at exact SHA all completed SUCCESS: DX11 Fast `40932661091`, Backend Conversion Gate `40932661087`, Build `40932661186`, OpenXR `40932661519`, HUD Inspector `40932661182`. These establish source/build validation, NOT real game source-matched pixel output, complete menu/car/race frames, native L/R HMD or Quest3/VDXR performance. `RUNTIME_VALIDATION=UNTESTED`, DXVK frozen, protected DX9Ex fallback/FFB unchanged, external controller deployment unverified.
+- One distinct C++ source-screen pixel alignment integration = +1. Same TASK_ID retry, CI repair, C6, status/readback, and repeated tests = +0; AI 1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2187 + new source-aligned native GPU screen output integration +1 = 2188.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex same-run R24 cached Theater lens image refresh-starvation falsification (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01584`; distinct `LENS_FLARE_ONLY` REVIEW_ONLY source-static conditional branch proof at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `c52f3f4f9da1d03479b2f62855ffe266a1a0864f`. Docs-only RESULT_SHA `52a1fa3aad464a7637242459f9a3eca026353e08`, remote blob `5b23aa95083996ddfa2645c56b8055e15c408bd0`, HEAD and exactly one changed review-doc path verified.

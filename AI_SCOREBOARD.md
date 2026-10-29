@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex exact lens PMT pass/primitive cardinality and pre-DIP outcome falsification (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01577`; independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static validation. Pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `45590a5859a906c20112505cb67b6daf2b7771a2`. Read focus `src/hooks_graphics.cpp::TraceLensOpaquePmtEntry`, `src/vr/game/render_semantics.hpp::LensOpaquePmtEntryReceipt`, `src/vr/d3d9/stereo_renderer_r7.inc::DrawIndexedPrimitiveDest/R7TraceVisualEyes`, R30 scope-gated trace, and original reconstructed 405890/404700 fan-out.
+- **Distinct new falsification:** `pmtEntrySerial` counts exact instrumented 405890→404700 *pass invocation*, not one flare emitter/visible pixel. Reconstructed node flags can admit the *same opaque descriptor* to pass 0 and pass 1, creating two serials with different pass; each 404700 call can emit many primitive DIPs. R7 `VR TRACE LENS PMT DIP FULL` is emitted **before** `ExecuteStereoDraw`, so a pre-DIP count does not establish successful L/R HRESULT or RT colour. Static, conditional reconstruction-derived negative control; **not** proof that actual 0x570008 node uses both passes or that the HMD showed an extra image. Separate from 01575 scene-flush family false positive, 01576 undo/PMT cardinality and D79B queue-words hypothesis. Root cause unresolved.
+- [Exactly one docs-only review](https://github.com/thp32tt/OutRun2006Tweaks/blob/0cb9399d58c442214e2264177b83cc9031cc7df5/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01577.md) commit `0cb9399d58c442214e2264177b83cc9031cc7df5`, GitHub commit/one-changed-path/blob `b683abf4d9c6123296ec679e77157ab22e76dc85` and exact branch HEAD readback verified. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS`, `RUNTIME_VALIDATION=UNTESTED`; no source build gate or CI-skip. Same TASK_ID retry/re-report/readback +0; AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2166 + one independent PMT pass/primitive-to-eye receipt insufficiency falsification +1 = 2167.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX11 authentic live FVF post-combiner SPECULAR RGB native pixel integration (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX11-01157`, branch `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, existing feature `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME`. Independent game-facing C++/HLSL integration source commit `5e0455a09e812da4ce8b9d08c2841954858e3c3b`; same-task actual source shade-mode mismatch repair `fc48e6667c9d8d1d9e174c91584c4b18cf10ae6d` is the **validation-bearing material RESULT_SHA**, not a separate score.

@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight first-time-SHA independent Korean lettering QA (2026-10-29 14:15 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T1415KST-A0115-B0130-NEW-SHA8`. N100 checked 37 prior C1 reports containing 263 distinct previously reviewed candidate SHA. Independently selected eight new export-backed PNGs: A-0115..0118, ordinals 409–412, and B-0127..0130, ordinals 464–467. All eight candidate PNG SHA256 match export evidence; all eight original full-HD source PNG SHA256 match production manifest by stable source ID; all eight are RGBA; alpha>=32 pixels do not touch the output canvas border. No prior SHA overlap or A/B queue consumption.
+- Direct visual English source versus transparent Korean PNG and simulated native-fit: **C1 standalone lettering-layer PASS 7 / HOLD 0 / FAIL 1**. A-0115 '장거리', A-0116 '튜닝 설정', A-0117 '무작위', A-0118 '상급자용:', B-0127 '게이트를 통과하세요!', B-0128 '충돌하지 마세요!', B-0130 '오리지널 아웃런2의 코스입니다.' display legible approved Korean without observed material glyph clipping. **B-0129 'BGM 더 많이' FAIL_UNNECESSARY_OPAQUE_YELLOW_BANNER** because the output includes a prominent solid yellow trapezoid background/panel, violating transparent lettering-only requirements even though its text reads correctly. Translation width differences alone were never marked FAIL. Original red/blue background art in the source remains protected; real protected-art-clean/composite UV cell placement, DDS and native 50% runtime readability are not verified by standalone layer inspection.
+- Durable N100 record `work/C1_QA_20261029_1415_AI2_report.json`, evidence `work/C1_QA_20261029_1415_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg}`. GitHub canonical [C1 QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1415_AI2_A0115_B0130_SHA8.json), asset commit `4199424682e8f3550b10b672723610b09b7a6e88`, confirmed remote HEAD and report blob `1925edcedd21ebb7292606d5eb8fd6de83597170`.
+- C1 only: ImageGen NOT CALLED, A/B producer queues NOT CONSUMED, DDS/C2/C3/real-game PASS NOT PRODUCED; VR/FFB/DX11/DXVK untouched; RUNTIME_VALIDATION=UNTESTED. Same task/SHA/retry/readback earns +0. AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2138 + one distinct eight-new-SHA C1 independent QA achievement +1 = 2139.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex lens R30 receipt scope-repair and pair-guard independent static falsification (2026-10-29 14:02 KST)
 
 - TASK_ID: `CONVERSION-DX9EX-01572`; unique LENS_FLARE_ONLY REVIEW_ONLY report on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`; pre-review SOURCE_HEAD `6f02a9cfa5110d9316b0f2d3898a9dba0941d7ea`, docs-only `RESULT_SHA=5000acc5166cc05b6e6b30004bff2633003362b4`, record `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01572.md`, blob `add505c21bf0de37c609fac885e16be982a6c3cb`. Verified the commit changes exactly that one file and remote readback matches HEAD.

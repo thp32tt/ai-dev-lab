@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CABE cross-ordinal opaque PMT false-attribution negative control (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01574`, branch `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned review source HEAD `beaa1a2569294f2885ea361f5ecc8c6ee74f5d77`. Unique source-static conditional counterexample: if CABE ordinal1's queued opaque material is drained *inside* the ordinal2 `Game::DrawObjectAlpha_Internal`, ordinal2 entry has already cleared the deferred ordinal1 window and installed ordinal2's inline source-call receipt. Consequently `R30TryScreenSpaceFovDraw` may log `EXACT_INLINE_SOURCE` ordinal2 even for the ordinal1 opaque PMT. The label proves a live call stack, never the opaque 405360/4052C0 PMT identity. This is a new interpretation negative control, distinct from the previously scored potential first/second optical-route asymmetry and generic R30 correlation limitation.
+- Evidence: connected GitHub source `src/hooks_graphics.cpp:787-924`, `src/vr/game/render_semantics.hpp:871-923`, `src/vr/d3d9/stereo_renderer_r30_r26_safe.cpp:5970-6004,6229-6256`; exact-SHA durable review-only commit `e19a56813b0e1df0abbf6f328416f2cef640a1a7`, exactly one new `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01574.md`, remote content blob `8936ca087344931a381515aecf837fdc01393334`, changed-path and required marker remote PASS.
+- **CODE_CHANGE=NO, BUILD_GATE=NOT_REQUIRED_DOCS_ONLY, RUNTIME_VALIDATION=UNTESTED.** Actual original EXE flush timing, PMT texture, same-eye optical duplication, HMD and accepted XR output remain unproven; this is NOT an optical fix or a new Quest3 PASS. Same TASK_ID retry, score update readback, later re-report and rollover earn +0; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2150 + one distinct source-static lens attribution falsification accomplishment +1 = 2151.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 대항해시대 II Browser M3/M4 실제 항구 보행·출항·해상 이동 (2026-10-29 KST)
 
 - M2와 별개의 신규 실제 실행 성과. 사용자 한국어판 `KOUKAI2.DAT`에서 slot data base `page+0x97`, `+0x10/+0x12/+0x14/+0x16 = viewX/viewY/playerX/playerY`를 두 세이브와 `ZA_DAT.DAT` 문 좌표로 교차확정했다. SAVE1 튀니스 (16,89)은 주점 문 (16,88) 바로 아래, SAVE2 단치히 (22,52)는 항 문 (22,51) 바로 아래다.

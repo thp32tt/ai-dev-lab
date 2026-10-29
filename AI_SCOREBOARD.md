@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex LENSFLARE-R19-PREACQUIRE-UV-RECEIPT-20261029-1104 independent R19 new diagnostic stage falsification (2026-10-29 11:04 KST)
+
+- NEW LENS_FLARE_ONLY REVIEW_ONLY source-static verification of the **new** R19 `projection-uv` receipt added in OutRun commit `5f587da090429a51e352999dbea2d6e3684a67b1`, distinct from prior 01570 R30 pre-native-Draw correlation, 01567 R19 A/B pose, 01568 seam, 01569 crop, and 10:18 R19 one-sided QPC. Pinned OutRun source HEAD `d2f611390f4a60eeedb819d96556e119efa5dc24`, current `sbs_capture_override.hpp` blob `ed2b6aa371ec6bc3bba5e70063d46953de42f155`, previous `b1e017b74b83957643387c7db7c413d7629aab8e`, protected R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9`.
+- Independent five-case control-flow falsification: `projection-uv` logs before Acquire, both RenderTo, Release and final xrEndFrame, so it can print despite failed Acquire or failed right-eye RenderTo; its sampling is hits 1..64 and powers of two, so missing logs after 64 do not exclude successful fallback; successful R19 image output can still fail final XR acceptance. Earlier `source-match accepted=1` likewise is not pixel/XR success. **This is a new diagnostic evidence limitation, not a proven extra flare, host regression or Quest3 root cause.**
+- Durable [docs-only review](https://github.com/thp32tt/OutRun2006Tweaks/blob/vr-d3d9ex-focus/docs/reviews/dx9ex/automation/LENSFLARE-R19-PREACQUIRE-UV-RECEIPT-20261029-1104.md) single-file commit `f8fd503f40199cd210d4f74a9d1a9b6f076520de` with `[AUTO:LENSFLARE-R19-PREACQUIRE-UV-RECEIPT-20261029-1104]` marker, exact one-file remote compare and readback blob `3c2b608e2bd7c8d11fdddde008bda269b6bc7aab` verified. CODE_CHANGE=NO; RUNTIME_VALIDATION=UNTESTED; no CI skip/build or HMD. Same RUN_KEY/retry/readback scores +0. AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2125 + one new independently source-verified R19 diagnostic stage falsifier +1 = 2126.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight first-time SHA-independent Korean ROI QA (2026-10-29 10:45 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1045KST-A0087-B0102-NEW-SHA8`. Independent C1 lightweight QA of 8 newly unreviewed SHA-verified N100 A/B PNG candidates (A source ordinals 381–384, B 436–439), separate from 10:15 AI2's ordinals 377–380/432–435 and prior AI1 QA. Preflight: 100 unreviewed at selection, 821 prior SHA already reviewed; 8 inspected, 92 snapshot remainder, subject to concurrent exports. All eight candidate byte hashes match export evidence, all original native HD image hashes match pinned production manifest, all output PNGs contain transparent RGBA.

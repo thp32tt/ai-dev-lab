@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex D79B original opaque queueWords reconstruction mapping review (2026-10-29 KST)
+
+- RUN_KEY `LENSFLARE-D79B-OPAQUE-QUEUE-WORDS-20261029-1829`, independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static verification. Current `src/hooks_graphics.cpp::TraceLensOpaqueFlush` logs three PRE/POST words at EXE RVA `0x464EF8/0x464EFC/0x464F00`; `src/plugin.hpp::exe_ptr` adds EXE module base. Cross-checked original-game reconstruction `r4dius/outrun2-decomp@e1e1c592` documenting opaque queue PC VA `0x864EF8`, logical leading fields `count/capacity/matrix_count/matrix_capacity`, `405160` reset opaque capacity `0x100`, and `4052C0` reset count/matrix_count after 405890 flush.
+- **New narrow evidence:** previously untyped `queueWords` have reconstruction-derived *candidate* meaning `opaque.count, opaque.capacity, opaque.matrix_count` (not undo count, not per-flare PMT or eye Draw count). Falsifiable D79B prediction: normal flush PRE count within capacity, capacity typically `0x100`, POST count/matrix_count zero, capacity stable. `PcRenderQueue` reconstruction is a logical C++ model, **not original retail EXE binary layout authentication**; no retail byte rerun, current-head HMD, PMT/texture/alpha, L/R RGB or accepted XR pose proof. Lens duplicate/head-lock root cause **UNRESOLVED**.
+- [Docs-only source review](https://github.com/thp32tt/OutRun2006Tweaks/blob/vr-d3d9ex-focus/docs/reviews/dx9ex/automation/LENSFLARE-D79B-OPAQUE-QUEUE-WORDS-20261029-1829.md) at exact commit `1663f6b528adf58637fdb6e88e679cae6a47ac27`, parent `7d19d10a920957add8cf5635de74bf68eb2b0054`. Exactly one added docs file, remote commit/HEAD/blob readback. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, no source build gate or CI-skip. This is distinct from 01575 scene-flush misclassification, 01576 undo-vs-PMT counterexample and prior D79B barrier; same RUN_KEY/retry/re-report +0, AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2162 + one independent reconstruction-derived D79B queue field falsification plan +1 = 2163.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX11 live FVF table fog source integration (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX11-01155`, independent game-facing C++/HLSL source conversion on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Material initial game source commit `d5a042c82779c24b997f7c1fdd751d745b676f91`, real Windows C2059/source conditional compile and strict regression repair commits `549ab110cf1b060e052f31206ea795b94b130b28`, `d7e190cc6a7f6e3d02994113e945480cfca60626`, `c306e40aaeadc164007fb5e419737f10642c327e`; validation-bearing RESULT_SHA `4de2114a31887bc9bd2d9fb535723da0507c22e0`.

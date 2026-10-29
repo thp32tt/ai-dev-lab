@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex R7 lens eye failure-sentinel and attempted-pair counter distinction (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01579`; distinct **LENS_FLARE_ONLY / REVIEW_ONLY** static control-flow falsification on pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `0f35dd7d7ccb79684d5a678b26a572429f4c9c7e`. Different from 01577 PMT pass/primitive fan-out, 01578 DIP PRE/post causal-key absence, and 21:23 original queue verifier-label authority gap.
+- Newly verified evidence: `src/vr/d3d9/stereo_renderer_r7.inc::ExecuteStereoDraw:1833-1913` sets `rightFailure=RightDrawFailed` *before* right `drawCall()` without clearing on success; thus nonzero `rightFailure` in a `STEREO_PAIR` R7 log is not by itself an actual failed right draw. `FrameHadDuplicatedDraw`/`DuplicatedDraws` and `STEREO_PAIR` can also be recorded following unsuccessful right-eye setup with `rightAttempted=0`; `PresentDest:2022-2028` separately gates failed/incomplete frames. Hence apparent right failure / double-submission inferred from those specific logs/counters can be a **diagnostic interpretation false positive**, not proof of two native same-eye halo colour writes. No current-target HMD/root-cause verdict.
+- [One docs-only durable result](https://github.com/thp32tt/OutRun2006Tweaks/blob/f632832d5554abd08d8cf790eb19f31934b4ee2c/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01579.md) commit `f632832d5554abd08d8cf790eb19f31934b4ee2c`, single changed path, confirmed remote document blob `3a626779a00597467c820bc21aa892cd07078524`, branch HEAD readback matched. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS`, `RUNTIME_VALIDATION=UNTESTED`; docs-only build gate not required and no CI-skip.
+- One independent source-static negative-control achievement scores +1 once; retry, rollover, repeat log explanation, document readback or future same-task reports score +0. AI 1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2171 + new independent documented static falsification +1 = 2172.**
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 DX11 native RAW FVF source SPECULAR with explicitly omitted active Fog (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX11-01159`; new **source-integrated DX11 RAW GPU pixel diagnostic** on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, distinct from preceding 01158 exact full native specular/table-fog integration. Actual C++ native GPU shader variant, D3D9 source Gouraud/SPECULAR/active-Fog bounded admission, unique variant owner cache, source pixel Draw, fail-closed partial-frame publication and positive/negative C++ regressions. Six functional source/test files in [material implementation](https://github.com/thp32tt/OutRun2006Tweaks/commit/76846a919aa30f25268406a6a39c07a0b11d1ec3), not a docs-only or enum-only task.

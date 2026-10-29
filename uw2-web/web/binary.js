@@ -135,6 +135,27 @@ function parseKoreanFleet(bytes, view, page, heroId) {
   };
 }
 
+
+export function parseKoreanPortTable(arrayBuffer, page = 0) {
+  const bytes = new Uint8Array(arrayBuffer);
+  const view = new DataView(arrayBuffer);
+  const ports = [];
+  for (let i = 0; i < 130; i++) {
+    const at = page + SAVE.PORT_TABLE + i * SAVE.PORT_SIZE;
+    if (at + SAVE.PORT_SIZE > bytes.length) break;
+    ports.push({
+      id: i,
+      nation: bytes[at],
+      x: u16le(view, at + 1),
+      y: u16le(view, at + 3),
+      name: decodeCString(bytes, at + 5, 15),
+      supply: i >= 100,
+      mapId: i >= 100 ? 100 : i,
+    });
+  }
+  return ports;
+}
+
 export function parseSaveSlots(arrayBuffer) {
   const bytes = new Uint8Array(arrayBuffer);
   const view = new DataView(arrayBuffer);

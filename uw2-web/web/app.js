@@ -319,6 +319,47 @@ function drawBuildingImage(image, x, y, w, h) {
   drawOpeningFit(ctx, image, x, y, w, h);
 }
 
+function townMessageText(talk) {
+  if (!talk || !Number.isInteger(talk.messageId)) return "";
+  const raw = messages[talk.messageId]?.text ?? `MESSAGE #${talk.messageId}`;
+  return raw
+    .replace(/%[-+0-9.]*[sd]/g, "…")
+    .replace(/\x1b./g, "");
+}
+
+function wrapTownMessage(text, width = 32) {
+  const lines = [];
+  for (const para of String(text).split("\n")) {
+    if (!para) { lines.push(""); continue; }
+    let rest = para;
+    while (rest.length > width) {
+      lines.push(rest.slice(0, width));
+      rest = rest.slice(width);
+    }
+    lines.push(rest);
+  }
+  return lines;
+}
+
+function drawTownDialogue(talk) {
+  if (!talk) return;
+  const text = townMessageText(talk);
+  const lines = wrapTownMessage(text, 32).slice(0, 5);
+  ctx.save();
+  ctx.fillStyle = "rgba(7,21,34,.97)";
+  ctx.fillRect(128, 160, 288, 128);
+  ctx.strokeStyle = "#f1d58b";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(128, 160, 288, 128);
+  ctx.fillStyle = "#f4f4f4";
+  ctx.font = "bold 15px Malgun Gothic, sans-serif";
+  lines.forEach((line, i) => ctx.fillText(line, 144, 184 + i * 20));
+  ctx.fillStyle = "#f1d58b";
+  ctx.font = "13px Malgun Gothic, sans-serif";
+  ctx.fillText("아무 키로 계속", 298, 278);
+  ctx.restore();
+}
+
 function renderTownScreen() {
   if (!townRuntime || !portAssets) return;
   const s = townRuntime.snapshot();
@@ -392,6 +433,11 @@ function renderTownScreen() {
     lines.forEach((line, i) => ctx.fillText(line, 408, 84 + i * 25));
     $("runtime-status").textContent =
       `항구 보행 · ${s.portName} · 실제 SAVE 좌표/PORTMAP 충돌 사용`;
+    if (s.talk) {
+      drawTownDialogue(s.talk);
+      $("runtime-status").textContent =
+        `주민 대화 · MESSAGE #${s.talk.messageId}`;
+    }
   }
 
   $("debug").textContent = JSON.stringify({
@@ -601,6 +647,15 @@ window.addEventListener("keydown", (event) => {
   }
 
   if (viewMode !== "town" || !townRuntime) return;
+
+  if (townRuntime.talk) {
+    if (!["shift","control","alt","meta"].includes(key)) {
+      event.preventDefault();
+      townRuntime.dismissTalk();
+      renderTownScreen();
+    }
+    return;
+  }
 
   if (townRuntime.insideBuilding) {
     if (townRuntime.insideBuilding.id === 3 &&

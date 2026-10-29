@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex same-run R24 cached Theater lens image refresh-starvation falsification (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01584`; distinct `LENS_FLARE_ONLY` REVIEW_ONLY source-static conditional branch proof at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `c52f3f4f9da1d03479b2f62855ffe266a1a0864f`. Docs-only RESULT_SHA `52a1fa3aad464a7637242459f9a3eca026353e08`, remote blob `5b23aa95083996ddfa2645c56b8055e15c408bd0`, HEAD and exactly one changed review-doc path verified.
+- New, **independent of 01583's Direct-vs-Classic cache eligibility and producer-restart provenance**: a newly published R19 production Source advances its capture QPC/counters but does not rewrite an already-committed Theater RTV. In persistent R24 visible fallback, `BuildCachedVisibleQuad` is evaluated before `RenderTheaterOverride`, and `live=!cached` prevents refreshing that Theater image even when a fresher same-run capture exists. R19's 500-ms CaptureDesktop freshness gate is applied to a *new* blit, not to the R24 cached quad. Conditional same-run stale head-relative flare image can persist without another game emitter; actual lens duplication, HMD causation and runtime incidence remain **UNTESTED**. A future T0/T1 source-QPC versus RTV-last-write/accepted XR-layer test is required.
+- Original CABE/C993 emitter, alpha/texture, game L/R draw and Quest3 pixel identities are not newly established. No C++/HLSL/runtime/config modifications; R26+HUD immutable and R84 nondefault. Same TASK_ID retry, readback and further restatements score +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2186 + one distinct same-run cache-first temporal falsification +1 = 2187.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 authentic compact RAW dirty-Present visible GPU pixel path (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01164`, distinct source implementation on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: previous source-owned compact native GPU BEFORE/Draw/AFTER readback could be blocked from visible original D3D9 menu/car Presents whose authentic dirty crop is 24..39 pixels. The new explicit compact-opt-in native RAW Present path preserves unscaled source pixel provenance and source-verified RGNDATA union coverage while showing 24px image regions. Ordinary 256x144 source RAW retains the prior 40px/8px margin safety contract; no DX9Ex, DXVK, original input/FFB, HMD/full-frame promotion.

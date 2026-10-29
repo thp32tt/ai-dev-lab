@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens R13 forced-mono native draw without R7 receipt (2026-10-30 KST)
+
+- RUN_KEY `LENSFLARE-R13-FORCED-MONO-R7-ABSENCE-20261030-0022`; independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static falsification at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned SOURCE_HEAD `388e79d625ba5093159da49bd404256b0e0d7c32`. Different from 01581, which proved an *existing R7 SINGLE receipt* can misleadingly report a left-eye draw; this run proves **no R7 receipt at all** can accompany an original native draw in an upstream R13 forced-mono route.
+- Verified `stereo_renderer_r13.cpp::R13GuardedDraw:595-652` dispatches ForcedMonoShadow/unsafe fallback to `R13DrawMonoShadowOnce:467-505` with `actualDraw` rather than R9 `legacyDraw`; `DrawIndexedPrimitiveDestR13:665-682` identifies those distinct trampolines. `stereo_renderer.cpp::R9BindMonoTarget:301-326` binds private `R9MonoSurface`, and R9 mono Present fallback can restore it. If binding fails, R13 also calls the original native draw once without R7. Thus absence of `R7TraceVisualEyes` cannot prove absence of an opaque PMT physical Draw, eye RT, or final pixels. **Conditional route proof only**; actual CABE/Quest3 incidence and HMD root cause remain unresolved.
+- [One-file docs-only review](https://github.com/thp32tt/OutRun2006Tweaks/blob/27ecf6cd14f287936c2911b6345431c1467cb03/docs/reviews/dx9ex/automation/LENSFLARE-R13-FORCED-MONO-R7-ABSENCE-20261030-0022.md), commit `27ecf6cd14f287936c2911b6345431c1467cb03`; remote blob `35e8c7de6ea78d27a444e72ed66b210130a48650`, exactly one changed path, branch HEAD readback matched. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, no source build gate or CI skip; R26+HUD protected and R84 comparison-only.
+- One new independent static negative-control result credited **+1 once**. Retry, rollover, readback and same-claim restatement +0. AI 1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2174 + unique R13 bypass finding +1 = 2175.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex lens R7 SINGLE-route leftAttempted/eye-surface false-positive control (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01581`; distinct **LENS_FLARE_ONLY / REVIEW_ONLY** static audit at pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `cab4379ed32a58c5f0ea2af306f90c8986740c40`. Different from 01579 preselected rightFailure/pair count and 01580 PMT retail-verifier boundary.

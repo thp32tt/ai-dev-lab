@@ -21,6 +21,8 @@ import {
   renderSeaView,
   SeaRuntime,
 } from "./world-map.js";
+import { decodeKoreanChar, drawHeroSprite } from "./char.js";
+import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("screen");
@@ -41,6 +43,8 @@ let townRuntime = null;
 let buildingImages = [];
 let worldAssets = null;
 let seaRuntime = null;
+let charAssets = null;
+let windCur = null;
 
 async function loadBuffer(name) {
   const res = await fetch("/game/" + encodeURIComponent(name), { cache: "no-store" });
@@ -134,12 +138,19 @@ function renderSelectedPortMap() {
     `PORT #${selected.port} ${selected.portName} · CHIP bank ${info.bankId} · 96×96 tiles / 1536×1536 px`;
 }
 
+async function loadCharacterSupport() {
+  const charBuf = await loadBuffer("CHAR.LZW");
+  charAssets = decodeKoreanChar(charBuf);
+}
+
 async function loadWorldSupport() {
-  const [worldBuf, data1Buf] = await Promise.all([
+  const [worldBuf, data1Buf, windBuf] = await Promise.all([
     loadBuffer("WORLDMAP.LZW"),
     loadBuffer("DATA1.LZW"),
+    loadBuffer("WINDCUR.DAT"),
   ]);
   worldAssets = decodeWorldAssets(worldBuf, data1Buf);
+  windCur = parseWindCur(windBuf);
 }
 
 async function loadTownSupport() {
@@ -340,7 +351,8 @@ function renderTownScreen() {
     $("runtime-status").textContent =
       `건물 진입: ${s.building.name} · 원본 GRAPH.DAT vendor art`;
   } else {
-    renderTownView(ctx, portAssets, s.portId, s, 16, 16);
+    renderTownView(ctx, portAssets, s.portId, s, 16, 16, !charAssets);
+    if (charAssets) drawHeroSprite(ctx, charAssets, selected?.heroId ?? 0, s, 16, 16);
     ctx.strokeStyle = "#c9a95e";
     ctx.lineWidth = 2;
     ctx.strokeRect(14, 14, 372, 372);
@@ -389,7 +401,7 @@ function startSeaFromPort() {
     $("runtime-status").textContent = "출항 실패: 항구 근처 항해 가능 바다를 찾지 못했습니다.";
     return false;
   }
-  seaRuntime = new SeaRuntime(worldAssets, start);
+  seaRuntime = new SeaRuntime(worldAssets, start, windCur, selected?.dateTime?.month ?? 1);
   viewMode = "sea";
   renderSeaScreen();
   return true;
@@ -411,19 +423,25 @@ function renderSeaScreen() {
   ctx.fillText("해상", 408, 48);
   ctx.fillStyle = "#e7edf5";
   ctx.font = "15px Malgun Gothic, sans-serif";
+  const env=s.environment;
+  const date=selected?.dateTime;
+  const clock=date ? `${date.year}.${date.month}.${date.day} ${String(date.hour).padStart(2,"0")}:${String(date.minute).padStart(2,"0")}` : "";
   const lines = [
     `출항: ${selected?.portName ?? ""}`,
     `좌표: (${s.x}, ${s.y})`,
     `방향: ${dirNames[s.heading]} / ${s.heading}`,
-    `이동: ${s.steps}칸`,
-    `상태: ${s.lastEvent}`,
+    `날짜: ${clock}`,
+    env ? `바람: ${FLOW_DIR_NAMES[env.wind.dir]} ${env.wind.speed}` : "바람: -",
+    env ? `해류: ${FLOW_DIR_NAMES[env.current.dir]} ${env.current.speed}` : "해류: -",
+    `함대: ${selected?.fleet?.count ?? 0}척 / 선원 ${selected?.fleet?.totalCrew ?? 0}`,
+    `이동: ${s.steps}칸 · ${s.lastEvent}`,
     "",
     "←/A/4 : 좌회전",
     "→/D/6 : 우회전",
     "↑/W/8 : 전진",
     "",
-    "현재는 지도/충돌/조타",
-    "직접 실행 단계입니다.",
+    "WINDCUR 실제 격자 적용",
+    "속도식은 다음 단계입니다.",
   ];
   lines.forEach((line, i) => ctx.fillText(line, 408, 82 + i * 25));
   $("runtime-status").textContent =
@@ -548,6 +566,7 @@ Promise.all([
   loadOpeningGraphics(),
   loadTownSupport(),
   loadWorldSupport(),
+  loadCharacterSupport(),
 ]).then(() => {
   drawOpeningScreen();
 }).catch(err => {

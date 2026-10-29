@@ -1,0 +1,22 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import {readGraphRecords,decodeGraphRecord} from "../web/graph-format.js";
+
+const gd=process.env.UW2_GAME_DIR || "/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD";
+const raw=fs.readFileSync(gd+"/GRAPH.DAT");
+const records=readGraphRecords(new Uint8Array(raw.buffer,raw.byteOffset,raw.byteLength));
+assert.equal(records.length,65);
+const main=decodeGraphRecord(records[4]);
+const status=decodeGraphRecord(records[5]);
+const dialogue=decodeGraphRecord(records[22]);
+const yesNo=decodeGraphRecord(records[0]);
+const side=decodeGraphRecord(records[26]);
+assert.deepEqual([main.width,main.height],[640,400]);
+assert.deepEqual([status.width,status.height],[640,400]);
+assert.deepEqual([dialogue.width,dialogue.height],[368,152]);
+assert.deepEqual([yesNo.width,yesNo.height],[144,56]);
+assert.deepEqual([side.width,side.height],[224,400]);
+assert.ok(dialogue.indices.some(x=>x!==0));
+assert.ok(main.indices.some(x=>x!==0));
+console.log(JSON.stringify({records:records.length,main:[640,400],dialogue:[368,152],yesNo:[144,56],side:[224,400]},null,2));
+console.log("Original GRAPH UI asset tests: PASS");

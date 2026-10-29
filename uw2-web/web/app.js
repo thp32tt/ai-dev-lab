@@ -11,7 +11,7 @@ import {
   KoreanOpeningPlayer,
   KOREAN_OPENING_SCENE_PLAN,
 } from "./opening.js";
-import { readGraphRecords, decodeGraphRecord } from "./graph-format.js";
+import { readGraphRecords, decodeGraphRecord, graphIndicesToRgba, UW2_APPROX_PALETTE } from "./graph-format.js";
 import {
   parsePortDoors,
   PortWalkingRuntime,
@@ -105,6 +105,11 @@ let openingPlayer = null;
 let portDoors = null;
 let townRuntime = null;
 let buildingImages = [];
+let uiGraph = null;
+const uiCanvasCache = new WeakMap();
+const UI_VIEW_X = 104;
+const UI_VIEW_Y = 16;
+const UI_VIEW_SIZE = 368;
 let worldAssets = null;
 let marketAssets = null;
 let seaRuntime = null;
@@ -235,6 +240,71 @@ function toggleSeaAuto() {
   }, 220);
   renderSeaScreen();
   return true;
+}
+
+function graphImageCanvas(image) {
+  if (!image) return null;
+  let c = uiCanvasCache.get(image);
+  if (c) return c;
+  c = document.createElement("canvas");
+  c.width = image.width; c.height = image.height;
+  const g = c.getContext("2d");
+  const rgba = graphIndicesToRgba(image.indices, UW2_APPROX_PALETTE);
+  g.putImageData(new ImageData(rgba, image.width, image.height), 0, 0);
+  uiCanvasCache.set(image, c);
+  return c;
+}
+
+function drawOriginalGraph(image, x, y, w = image?.width, h = image?.height) {
+  const src = graphImageCanvas(image);
+  if (!src) return false;
+  ctx.save();
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(src, x, y, w, h);
+  ctx.restore();
+  return true;
+}
+
+function drawOriginalMainFrame() {
+  if (!drawOriginalGraph(uiGraph?.main, 0, 0, 640, 400)) {
+    ctx.fillStyle = "#05070b"; ctx.fillRect(0, 0, 640, 400);
+  }
+}
+
+function drawOriginalParchment(x, y, w = 368, h = 152) {
+  const src = graphImageCanvas(uiGraph?.dialogue);
+  if (!src) {
+    ctx.fillStyle = "#f0dfc0"; ctx.fillRect(x, y, w, h);
+    ctx.strokeStyle = "#996c25"; ctx.strokeRect(x, y, w, h);
+    return;
+  }
+  const sw = src.width, sh = src.height, c = 16;
+  const dw = Math.min(c, Math.floor(w / 3));
+  const dh = Math.min(c, Math.floor(h / 3));
+  ctx.save(); ctx.imageSmoothingEnabled = false;
+  const parts = [
+    [0,0,c,c, x,y,dw,dh], [c,0,sw-2*c,c, x+dw,y,w-2*dw,dh], [sw-c,0,c,c, x+w-dw,y,dw,dh],
+    [0,c,c,sh-2*c, x,y+dh,dw,h-2*dh], [c,c,sw-2*c,sh-2*c, x+dw,y+dh,w-2*dw,h-2*dh], [sw-c,c,c,sh-2*c, x+w-dw,y+dh,dw,h-2*dh],
+    [0,sh-c,c,c, x,y+h-dh,dw,dh], [c,sh-c,sw-2*c,c, x+dw,y+h-dh,w-2*dw,dh], [sw-c,sh-c,c,c, x+w-dw,y+h-dh,dw,dh],
+  ];
+  for (const p of parts) ctx.drawImage(src, ...p);
+  ctx.restore();
+}
+
+function drawOriginalPanelText(text, x, y, opts = {}) {
+  ctx.save();
+  ctx.fillStyle = opts.color ?? "#2b1a0e";
+  ctx.font = `${opts.bold ? "bold " : ""}${opts.size ?? 15}px "Malgun Gothic", sans-serif`;
+  ctx.textBaseline = "alphabetic";
+  ctx.fillText(String(text ?? ""), x, y);
+  ctx.restore();
+}
+
+function drawOriginalDatePanel(date, label = "") {
+  if (!date) return;
+  drawOriginalPanelText(`${date.year}.${date.month}.${date.day}`, 505, 26, {size:12,bold:true});
+  drawOriginalPanelText(`${String(date.hour).padStart(2,"0")}:${String(date.minute).padStart(2,"0")}`, 555, 45, {size:11});
+  if (label) drawOriginalPanelText(label, 500, 65, {size:11,bold:true});
 }
 
 function advanceSelectedDateTicks(ticks) {
@@ -397,6 +467,13 @@ async function loadTownSupport() {
   portDoors = parsePortDoors(zaBuf);
   const records = readGraphRecords(new Uint8Array(graphBuf));
   buildingImages = records.slice(6, 18).map(decodeGraphRecord);
+  uiGraph = {
+    yesNo: decodeGraphRecord(records[0]),
+    main: decodeGraphRecord(records[4]),
+    status: decodeGraphRecord(records[5]),
+    dialogue: decodeGraphRecord(records[22]),
+    side: decodeGraphRecord(records[26]),
+  };
 }
 
 async function loadPortMaps() {
@@ -640,20 +717,16 @@ function drawBox(x, y, w, h, fill = "rgba(7,21,34,.97)") {
 function drawBuildingMessage(ui) {
   const values = ui.departure?.messageId === 61 ? [ui.departure.days] : [];
   const text = ui.messageText || formattedMessage(ui.messageId, values);
-  drawBox(82, 142, 476, 142);
-  ctx.fillStyle = "#f4f4f4";
-  ctx.font = "bold 16px Malgun Gothic, sans-serif";
-  wrapTownMessage(text, 38).slice(0,5)
-    .forEach((line,i)=>ctx.fillText(line,100,172+i*22));
-  ctx.fillStyle = "#f1d58b";
-  ctx.font = "13px Malgun Gothic, sans-serif";
-  if (ui.mode === "sail-confirm") {
-    ctx.fillText("ENTER: 출항   ESC: 취소", 322, 268);
-  } else {
-    ctx.fillText("아무 키로 메뉴", 410, 268);
-  }
+  const x=104, y=232, w=368, h=152;
+  drawOriginalParchment(x,y,w,h);
+  ctx.fillStyle = "#24160c";
+  ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
+  wrapTownMessage(text,31).slice(0,5).forEach((line,i)=>ctx.fillText(line,x+22,y+35+i*20));
+  ctx.fillStyle = "#6e431b"; ctx.font = '12px "Malgun Gothic", sans-serif';
+  ctx.textAlign = "right";
+  ctx.fillText(ui.mode === "sail-confirm" ? "ENTER / ESC" : "▼", x+w-20, y+h-17);
+  ctx.textAlign = "left";
 }
-
 function drawHarborSupply(ui) {
   const ships = selected?.fleet?.ships ?? [];
   const prices = harborSupplyPrices(selected);
@@ -1030,23 +1103,21 @@ function renderBuildingInterface(s) {
     return;
   }
 
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 24px Malgun Gothic, sans-serif";
-  ctx.fillText(s.building.name,390,72);
-  ctx.fillStyle="#e7edf5";
-  ctx.font="15px Malgun Gothic, sans-serif";
-  ctx.fillText(`${s.portName} · ${selected?.dateTime?.year ?? ""}.${selected?.dateTime?.month ?? ""}.${selected?.dateTime?.day ?? ""} ${String(selected?.dateTime?.hour ?? 0).padStart(2,"0")}:${String(selected?.dateTime?.minute ?? 0).padStart(2,"0")}`,390,100);
+  drawOriginalPanelText(s.building.name, 500, 82, {size:13,bold:true});
+  drawOriginalDatePanel(selected?.dateTime, s.portName);
 
   if (ui.mode === "menu") {
     const opts=options.length?options:["전용 기능"];
-    opts.forEach((opt,i)=>{
-      ctx.fillStyle=i===ui.cursor?"#f1d58b":"#dce3ec";
-      ctx.fillText(`${i===ui.cursor?"▶":" "} ${opt}`,390,136+i*27);
+    const x=104, y=232, w=368, h=152;
+    drawOriginalParchment(x,y,w,h);
+    ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
+    opts.slice(0,5).forEach((opt,i)=>{
+      ctx.fillStyle=i===ui.cursor?"#8a2d13":"#24160c";
+      ctx.fillText(`${i===ui.cursor?"▶":"　"}${opt}`, x+24, y+34+i*21);
     });
-    ctx.fillStyle="#9fb0c4";
-    ctx.font="12px Malgun Gothic, sans-serif";
-    ctx.fillText(`↑↓ 선택 · ENTER 실행 · ESC 나가기 · 방문 ${ui.visitTicks*20}분`,390,356);
-    $("runtime-status").textContent = `건물: ${s.building.name} · MENU.DAT #${BUILDING_MENU_INDEX[s.building.id]}`;
+    ctx.fillStyle="#6e431b"; ctx.font = '11px "Malgun Gothic", sans-serif';
+    ctx.fillText("ENTER 결정   ESC 나가기",x+196,y+h-18);
+    $("runtime-status").textContent = `${s.building.name} · ${s.portName}`;
   } else if (ui.mode === "message" || ui.mode === "sail-confirm") {
     drawBuildingMessage(ui);
     $("runtime-status").textContent = ui.mode === "sail-confirm"
@@ -1626,93 +1697,58 @@ function wrapTownMessage(text, width = 32) {
 function drawTownDialogue(talk) {
   if (!talk) return;
   const text = townMessageText(talk);
-  const lines = wrapTownMessage(text, 32).slice(0, 5);
+  const lines = wrapTownMessage(text, 31).slice(0, 5);
+  const x = 104, y = 232, w = 368, h = 152;
+  drawOriginalParchment(x, y, w, h);
   ctx.save();
-  ctx.fillStyle = "rgba(7,21,34,.97)";
-  ctx.fillRect(128, 160, 288, 128);
-  ctx.strokeStyle = "#f1d58b";
-  ctx.lineWidth = 2;
-  ctx.strokeRect(128, 160, 288, 128);
-  ctx.fillStyle = "#f4f4f4";
-  ctx.font = "bold 15px Malgun Gothic, sans-serif";
-  lines.forEach((line, i) => ctx.fillText(line, 144, 184 + i * 20));
-  ctx.fillStyle = "#f1d58b";
-  ctx.font = "13px Malgun Gothic, sans-serif";
-  ctx.fillText("아무 키로 계속", 298, 278);
+  ctx.fillStyle = "#24160c";
+  ctx.font = 'bold 15px "Malgun Gothic", sans-serif';
+  lines.forEach((line, i) => ctx.fillText(line, x + 22, y + 35 + i * 20));
+  ctx.fillStyle = "#6e431b";
+  ctx.font = '12px "Malgun Gothic", sans-serif';
+  ctx.textAlign = "right";
+  ctx.fillText("▼", x + w - 20, y + h - 17);
   ctx.restore();
 }
-
 function renderTownScreen() {
   if (!townRuntime || !portAssets) return;
-  const s = townRuntime.snapshot();
-  ctx.fillStyle = "#05070b";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const st = townRuntime.snapshot();
+  drawOriginalMainFrame();
+  drawOriginalDatePanel(selected?.dateTime, st.portName);
 
-  if (s.building) {
-    const image = buildingImages[s.building.id];
-    drawBuildingImage(image, 24, 40, 330, 272);
-    ctx.strokeStyle = "#c9a95e";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(20, 36, 338, 280);
-    renderBuildingInterface(s);
+  if (st.building) {
+    const image = buildingImages[st.building.id];
+    if (image) drawBuildingImage(image, 220, 42, 204, 168);
+    renderBuildingInterface(st);
   } else {
-    renderTownView(ctx, portAssets, s.portId, s, 16, 16, !charAssets);
+    renderTownView(ctx, portAssets, st.portId, st, UI_VIEW_X, UI_VIEW_Y, !charAssets);
     if (charAssets) {
-      const fixedParity = s.stepParity & 1;
-      for (const actor of s.actors ?? []) {
+      const fixedParity = st.stepParity & 1;
+      for (const actor of st.actors ?? []) {
         if (!actor.active) continue;
-        const sx = actor.x - s.viewX;
-        const sy = actor.y - s.viewY;
+        const sx = actor.x - st.viewX;
+        const sy = actor.y - st.viewY;
         if (sx < -1 || sy < -1 || sx > 22 || sy > 22) continue;
         const frame = folkFrameIndex(actor, fixedParity);
-        drawFolkSprite(ctx, charAssets, frame, sx, sy, 16, 16);
+        drawFolkSprite(ctx, charAssets, frame, sx, sy, UI_VIEW_X, UI_VIEW_Y);
       }
-      drawHeroSprite(ctx, charAssets, selected?.heroId ?? 0, s, 16, 16);
+      drawHeroSprite(ctx, charAssets, selected?.heroId ?? 0, st, UI_VIEW_X, UI_VIEW_Y);
     }
-    ctx.strokeStyle = "#c9a95e";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(14, 14, 372, 372);
-
-    ctx.fillStyle = "#f1d58b";
-    ctx.font = "bold 20px Malgun Gothic, sans-serif";
-    ctx.fillText(s.portName, 408, 48);
-    ctx.fillStyle = "#e7edf5";
-    ctx.font = "15px Malgun Gothic, sans-serif";
-    const lines = [
-      `map: (${s.mapX}, ${s.mapY})`,
-      `view: (${s.viewX}, ${s.viewY})`,
-      `player: (${s.playerX}, ${s.playerY})`,
-      `facing: ${s.facing}`,
-      "",
-      "이동:",
-      "방향키 / WASD",
-      "숫자 8 6 2 4",
-      "",
-      "문 위로 걸으면",
-      "건물에 들어갑니다.",
-    ];
-    lines.forEach((line, i) => ctx.fillText(line, 408, 84 + i * 25));
-    $("runtime-status").textContent =
-      `항구 보행 · ${s.portName} · 실제 SAVE 좌표/PORTMAP 충돌 사용`;
-    if (s.talk) {
-      drawTownDialogue(s.talk);
-      $("runtime-status").textContent =
-        `주민 대화 · MESSAGE #${s.talk.messageId}`;
+    drawOriginalPanelText(st.portName, 500, 82, {size:13,bold:true});
+    drawOriginalPanelText(`G ${Number(selected?.money ?? 0).toLocaleString()}`, 500, 105, {size:11});
+    $("runtime-status").textContent = `항구 · ${st.portName}`;
+    if (st.talk) {
+      drawTownDialogue(st.talk);
+      $("runtime-status").textContent = `대화 · ${st.portName}`;
     }
   }
 
   $("debug").textContent = JSON.stringify({
-    mode: "town",
-    hero: selected?.heroName,
-    money: selected?.money,
-    ...s,
-    buildingUi,
-    fleet: selected?.fleet ?? null,
-    dateTime: selected?.dateTime ?? null,
+    mode: "town", hero: selected?.heroName, money: selected?.money, ...st,
+    buildingUi, fleet: selected?.fleet ?? null, dateTime: selected?.dateTime ?? null,
   }, null, 2);
   publishControllerState();
 }
-
 function moveTown(direction) {
   if (!townRuntime || viewMode !== "town") return;
   townRuntime.move(direction);
@@ -1799,57 +1835,31 @@ function callNearbyPort() {
 
 function renderSeaScreen() {
   if (!seaRuntime || !worldAssets) return;
-  const s = seaRuntime.snapshot();
-  ctx.fillStyle = "#05070b";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  renderSeaView(ctx, worldAssets, s, 16, 16, 23, 23);
-  ctx.strokeStyle = "#c9a95e";
-  ctx.lineWidth = 2;
-  ctx.strokeRect(14, 14, 372, 372);
-
+  const st = seaRuntime.snapshot();
+  drawOriginalMainFrame();
+  renderSeaView(ctx, worldAssets, st, UI_VIEW_X, UI_VIEW_Y, 23, 23);
+  const nearbyPort = findPortCallTarget(st, portCatalog);
+  const env = st.environment;
   const dirNames = ["북","북동","동","남동","남","남서","서","북서"];
-  ctx.fillStyle = "#f1d58b";
-  ctx.font = "bold 20px Malgun Gothic, sans-serif";
-  ctx.fillText("해상", 408, 48);
-  ctx.fillStyle = "#e7edf5";
-  ctx.font = "15px Malgun Gothic, sans-serif";
-  const env=s.environment;
-  const nearbyPort=findPortCallTarget(s, portCatalog);
-  const date=s.dateTime;
-  const clock=date ? `${date.year}.${date.month}.${date.day} ${String(date.hour).padStart(2,"0")}:${String(date.minute).padStart(2,"0")}` : "";
-  const lines = [
-    `출항: ${selected?.portName ?? ""}`,
-    `좌표: (${s.x}, ${s.y})`,
-    `방향: ${dirNames[s.heading]} / ${s.heading}`,
-    `날짜: ${clock}`,
-    env ? `바람: ${FLOW_DIR_NAMES[env.wind.dir]} ${env.wind.speed}` : "바람: -",
-    env ? `해류: ${FLOW_DIR_NAMES[env.current.dir]} ${env.current.speed}` : "해류: -",
-    `함대: ${selected?.fleet?.count ?? 0}척 / 선원 ${selected?.fleet?.totalCrew ?? 0}`,
-    `속도: ${s.speed?.speed ?? 0} / ${s.speed?.knots ?? 0} knots`,
-    `누산: (${s.accX}, ${s.accY}) · tick ${s.ticks}`,
-    `이동: ${s.steps}칸 · ${s.lastEvent}`,
-    `자동항해: ${seaAutoActive ? "ON" : "OFF"} · AUTO/G`,
-    "",
-    "←/A/4 : 좌회전",
-    "→/D/6 : 우회전",
-    "↑/W/8 : 20분 tick",
-    "",
-    "원본 속도식+해류 누산 적용",
-    nearbyPort ? `ENTER / P : ${nearbyPort.name} 기항` : "기항 가능 항구 없음",
-  ];
-  lines.forEach((line, i) => ctx.fillText(line, 408, 82 + i * 25));
-  $("runtime-status").textContent =
-    `해상 항해 · WORLDMAP/DATA1 원본 지도 · (${s.x}, ${s.y}) · AUTO ${seaAutoActive ? "ON" : "OFF"}`;
+  drawOriginalDatePanel(st.dateTime, "항해");
+  drawOriginalPanelText(dirNames[st.heading] ?? st.heading, 548, 182, {size:12,bold:true});
+  drawOriginalPanelText(`${st.speed?.knots ?? 0}`, 550, 222, {size:13,bold:true});
+  drawOriginalPanelText(`${st.steps}`, 551, 260, {size:12});
+  if (env) {
+    drawOriginalPanelText(`${FLOW_DIR_NAMES[env.wind.dir]} ${env.wind.speed}`, 500, 105, {size:11});
+    drawOriginalPanelText(`${FLOW_DIR_NAMES[env.current.dir]} ${env.current.speed}`, 500, 144, {size:11});
+  }
+  drawOriginalPanelText(seaAutoActive ? "AUTO" : "", 503, 282, {size:11,bold:true,color:"#7a260f"});
+  if (nearbyPort) drawOriginalPanelText(nearbyPort.name, 500, 304, {size:11,bold:true});
+  $("runtime-status").textContent = nearbyPort
+    ? `항해 · ${nearbyPort.name} 기항 가능 · AUTO ${seaAutoActive ? "ON" : "OFF"}`
+    : `항해 · AUTO ${seaAutoActive ? "ON" : "OFF"}`;
   publishControllerState({ nearbyPort: nearbyPort?.name ?? null });
   $("debug").textContent = JSON.stringify({
-    mode: "sea",
-    fromPort: selected?.portName,
-    portWorld: selected?.portWorld,
-    nearbyPort,
-    ...s,
+    mode: "sea", fromPort: selected?.portName, portWorld: selected?.portWorld,
+    nearbyPort, ...st,
   }, null, 2);
 }
-
 function renderRuntime() {
   if (!runtime || viewMode !== "runtime") return;
   runtime.tick();

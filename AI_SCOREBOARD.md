@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 six new-SHA independent PNG QA (2026-10-29 18:45 KST)
+
+- RUN_KEY `OUTRUN-C1-AI2-20261029T1845KST-A0135-A0140-NEW-SHA6`. Verified current Korean localization C1 contract, glyph-scale and controller roles on asset branch. From 42 previous local QA reports / 301 distinct prior SHA, inspected **six new A candidate SHA** (A-0135..A-0140), **B new eligible export none**; source original PNG SHA, manifest SHA, saved candidate SHA, export SHA all match (6/6); all RGBA, alpha>=32 outer-border contact 0/6. No ImageGen, A/B queue change, DDS or renderer changes.
+- Direct English source-vs-Korean lettering visual review and native-aspect-fit, dark-alpha overlay, offline 50% simulation. **C1 layer-only: PASS 4 (A-0136/0137/0138/0140), FAIL 2**: A-0135 opaque red trapezoid plate behind `출발` (nonlettering); A-0139 original 1439x66 ROI becomes 198x66 native-fit and 99x33 offline 50%, overlapping/illegible glyphs (not mere underfill). HOLD 0. No claim of native DDS/actual UI-cell composite/C2/C3/game PASS; `RUNTIME_VALIDATION=UNTESTED`.
+- [Asset branch QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1845_AI2_A0135_A0140_SHA6.json): commit `1d4759dfd4bf4581945c78ae37d44129ae53d369`, report blob `2289839a1e4386ce6df68608ce79d200052387fa`, exact remote branch HEAD confirmed. N100 images and preflight under `work/C1_QA_20261029_1845_AI2_new_sha8/`. Same RUN_KEY/retry/report/readback +0; AI1 unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2163 + one distinct six-new-SHA C1 review achievement +1 = 2164.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex D79B original opaque queueWords reconstruction mapping review (2026-10-29 KST)
 
 - RUN_KEY `LENSFLARE-D79B-OPAQUE-QUEUE-WORDS-20261029-1829`, independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static verification. Current `src/hooks_graphics.cpp::TraceLensOpaqueFlush` logs three PRE/POST words at EXE RVA `0x464EF8/0x464EFC/0x464F00`; `src/plugin.hpp::exe_ptr` adds EXE module base. Cross-checked original-game reconstruction `r4dius/outrun2-decomp@e1e1c592` documenting opaque queue PC VA `0x864EF8`, logical leading fields `count/capacity/matrix_count/matrix_capacity`, `405160` reset opaque capacity `0x100`, and `4052C0` reset count/matrix_count after 405890 flush.

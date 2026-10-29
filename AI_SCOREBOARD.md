@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun 2006 C1 eight NEW-SHA transparent ROI independent QA (2026-10-29 09:15 KST)
+
+- RUN_KEY: `OUTRUN-C1-20261029T0915KST-A0075-B0090-NEW-SHA8`; new SHA-256 set relative to the last verified 08:45 C1 run (not a retry of A-0075/B-0088 ordinal 365–368/420–423).
+- Independently inspected eight N100 source/candidate image pairs from A ordinals 369–372 and B ordinals 424–427 (A-0075…0078 and B-0088…0090); all eight actual candidate export SHA-256 and reviewed source manifest SHA-256 matched the underlying PNG bytes, modes RGBA. Inventory at selection: **123 previously unreviewed SHA entries** (65 A, 58 B), plus new exports possibly occurring concurrently.
+- QA result: **PASS 0 / FAIL 1 / HOLD 7**. B-0088 ordinal 424 `HeartAttack Mode OutRun2 → 하트 어택 모드 아웃런2` is **FAIL** for regenerating the complete blue hexagonal beveled button/background and border in a lettering-only PNG. Remaining seven have readable, correctly mapped Korean and transparent alpha with no obvious extra scene art, but native UI-cell registration/protected-art containment was not evidenced, so **HOLD**; B-0090 ordinal 427 also lacks full English prefix in visible source ROI contact sheet.
+- N100 evidence: `work/C1_QA_20261029_0915_report.json`, `work/C1_QA_20261029_0915_new_sha8/preflight.json` and `pairs.jpg`. GitHub QA report: [C1_20261029_0915_A0075_B0090_SHA8.json](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_0915_A0075_B0090_SHA8.json) in verified single-file commit `ad3c4f23dbf3a5ebcd889c75fd74346ba7589453`, remote branch HEAD matched.
+- C1-only evaluation; ImageGen not called, A/B queues not consumed, no DDS deployment or C2/C3/actual-game PASS. No VR/FFB/DX11/DXVK changes; RUNTIME_VALIDATION=UNTESTED. Identical-SHA reinspection, task retry, status check and rollover +0 separately; AI 2 unaffected.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1778 + one new distinct source-SHA-verified eight-candidate independent C1 QA achievement +1 = 1779.** AI 2 remains 2120.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun Korean ROI B-0142 MUSIC SELECT previously unscored Library asset (2026-10-29 09:16 KST)
 
 - TASK_ID=`OUTRUN-ROI-B-0142-2698790E`. Distinct approved OutRun 2006 HD Korean title asset `music select → 음악 선택`, source ROI [6,958,1276,1077] (1270×119 px). ChatGPT personal Library file `/아웃런 한글화 신규/Q228_648c578b4495751e_k.png` was saved at 2026-10-29 06:32 KST (Library file `libfile_daaf617e5a508191ac70175411201980`).

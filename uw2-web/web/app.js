@@ -412,7 +412,14 @@ function startSeaFromPort() {
     $("runtime-status").textContent = "출항 실패: 항구 근처 항해 가능 바다를 찾지 못했습니다.";
     return false;
   }
-  seaRuntime = new SeaRuntime(worldAssets, start, windCur, selected?.dateTime?.month ?? 1);
+  seaRuntime = new SeaRuntime(
+    worldAssets,
+    start,
+    windCur,
+    selected?.dateTime?.month ?? 1,
+    selected?.fleet ?? null,
+    selected?.dateTime ?? null,
+  );
   viewMode = "sea";
   renderSeaScreen();
   return true;
@@ -435,7 +442,7 @@ function renderSeaScreen() {
   ctx.fillStyle = "#e7edf5";
   ctx.font = "15px Malgun Gothic, sans-serif";
   const env=s.environment;
-  const date=selected?.dateTime;
+  const date=s.dateTime;
   const clock=date ? `${date.year}.${date.month}.${date.day} ${String(date.hour).padStart(2,"0")}:${String(date.minute).padStart(2,"0")}` : "";
   const lines = [
     `출항: ${selected?.portName ?? ""}`,
@@ -445,14 +452,15 @@ function renderSeaScreen() {
     env ? `바람: ${FLOW_DIR_NAMES[env.wind.dir]} ${env.wind.speed}` : "바람: -",
     env ? `해류: ${FLOW_DIR_NAMES[env.current.dir]} ${env.current.speed}` : "해류: -",
     `함대: ${selected?.fleet?.count ?? 0}척 / 선원 ${selected?.fleet?.totalCrew ?? 0}`,
+    `속도: ${s.speed?.speed ?? 0} / ${s.speed?.knots ?? 0} knots`,
+    `누산: (${s.accX}, ${s.accY}) · tick ${s.ticks}`,
     `이동: ${s.steps}칸 · ${s.lastEvent}`,
     "",
     "←/A/4 : 좌회전",
     "→/D/6 : 우회전",
-    "↑/W/8 : 전진",
+    "↑/W/8 : 20분 tick",
     "",
-    "WINDCUR 실제 격자 적용",
-    "속도식은 다음 단계입니다.",
+    "원본 속도식+해류 누산 적용",
   ];
   lines.forEach((line, i) => ctx.fillText(line, 408, 82 + i * 25));
   $("runtime-status").textContent =

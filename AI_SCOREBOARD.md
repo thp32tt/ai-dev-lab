@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 two different-size original-game source-aligned native GPU Draw crops (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01170`: distinct real C++ integration for opt-in native D3D11 RAW partial menu/car game pixels. Two independent native Draw PRE/POST authentic RGB source crops can land in **different-sized**, non-overlapping original D3D9 dirty Present islands on the same canonical source game backbuffer. Previously the equal-size legacy pair restriction dropped one source-authenticated Draw. Keep legacy/mixed displaced tiles equal-size, require nonzero extents, nonnegative destinations and nonoverlap; preserve D3D9 dirty union, RGB delta and original source coordinates. Actual game/HMD/complete renderer not proven.
+- Material C++ and compiled regression source commit `27b5774b0da12ca6aadcb29db828056cf4ef890b` on `vr-dx11-native-r71`. Five mandatory **push** GitHub Actions on identical exact SHA all SUCCESS: DX11 Fast `40973911464`, Backend Conversion Gate `40973911614`, Win32 Build `40973911522`, OpenXR architecture `40973911455`, HUD Inspector `40973911568`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`, `RUNTIME_VALIDATION=UNTESTED`; DXVK frozen and protected D3D9/DX9Ex fallback/inputs/FFB unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2196 + one independent two-different-size native GPU original-dirty source presentation C++ implementation +1 = 2197.** Repeat CI/readback/C6/retry/rollover +0; AI 1 separately tracked.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex R30 native LEFT failure mono-backup-gap and poisoned Present lens-route review (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01589`: independent LENS_FLARE_ONLY R26+HUD static falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `3f5f92867ba3334d5955f726a4a68907c77476d7`. Separate from earlier 01587 raw E_NOTIMPL and 01588 default actual R26 hook target: after R30's actual LEFT begins, `R9NoteStereoDrawWithoutMonoBackup` marks mono-backup gap; a LEFT HRESULT == E_NOTIMPL failure poisons `FrameStereoIncomplete` yet may conditionally delegate through R26->R23/R22/R9. On the normal R9 route, the poisoned frame may still issue a *separate mono-shadow RT Draw* and one original game-target Draw, but cannot accept a fresh eligible stereo Present and cannot restore the gapped mono shadow. Unlike protected R26+HUD baseline, the current recoverable pre-LEFT WVP E_NOTIMPL exits before this call's no-backup-gap marker. Conditional code-path proof only; no actual game LEFT E_NOTIMPL, same-eye GPU colour duplication, or HMD evidence; no optical fix.

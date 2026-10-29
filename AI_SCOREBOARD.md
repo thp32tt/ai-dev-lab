@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex R26+HUD nominal R29 lower actually targets R26 lens review (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01588`, independent LENS_FLARE_ONLY static route-provenance falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned pre-review SOURCE_HEAD `acfd2987f2d21a742805613e30b5dc2d8b0d38ef`. Source and fresh-cache CMake selection prove default R26+HUD `R30Draw*R29Hook` misleading names actually install all four R30 hooks on `Draw*DestR26`, whereas alternate R84 `stereo_renderer_r30.cpp` uses the R29 owner target. The default R30 `resultRoute=R29_FALLBACK`/`R30_NOT_ADMITTED` receipt cannot prove actual R29 replay, a completed stereo pair, or extra lens RGB. The downstream R26 either takes a proven write-free single original draw or delegates to R23. Protected R26+HUD 0cff83cf baseline has the same hook target: not a new runtime regression. This corrects inherited 01586/01587 lower-route terminology without rescoring their HRESULT/PMT hypotheses.
+- Exactly one-file docs-only OutRun result `3f5f92867ba3334d5955f726a4a68907c77476d7`, path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01588.md`, remotely verified blob `e7e04f89cd776af7af4055483c0358a18fd299b2` and branch HEAD. `AUTOMATION_VALIDATION=PASS` (single doc commit/readback only), `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; no Quest3/VDXR, source-eye RGB or accepted XR evidence. Lens doubling/head-follow root cause remains open; R84 not promoted.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2193 + one distinct R26+HUD lower hook target identity/source-path falsification +1 = 2194.** Retry/rollover/readback/scoreboard update on same task +0. AI 1 separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 canonical COM game-backbuffer native RAW source identity (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01168`, independent C++ source/test integration on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: source Draw D3D9 render target and original Present backbuffer resolve canonical `IID_IUnknown` COM identity before conditional native D3D11 GPU RGB pixels may be placed at authentic game coordinates. Distinct surface interface pointer aliases for the same COM object are admitted; foreign/null/unqueryable identity retains opt-in bounded RAW inset, original D3D9 game rendering/input/FFB and DX9Ex fallback. DXVK remains untouched; this is not complete menu/race or Quest3 gameplay.

@@ -1,6 +1,11 @@
 const controller = document.getElementById("web-controller");
 if (controller) controller.dataset.ready = "1";
 
+const modeLabel = document.getElementById("controller-mode");
+const musicLabel = document.getElementById("controller-music");
+const autoButton = controller?.querySelector('[data-action="auto-sail"]');
+const soundButton = controller?.querySelector('[data-action="sound"]');
+
 function emitKey(key, options = {}) {
   const down = new KeyboardEvent("keydown", {
     key,
@@ -10,6 +15,12 @@ function emitKey(key, options = {}) {
     shiftKey: !!options.shiftKey,
   });
   window.dispatchEvent(down);
+}
+
+function emitAction(action) {
+  window.dispatchEvent(new CustomEvent("uw2-controller-action", {
+    detail: { action },
+  }));
 }
 
 function visibleSaveButtons() {
@@ -28,9 +39,9 @@ function changeSave(delta) {
 function runAction(action) {
   if (action === "start") document.getElementById("run-button")?.click();
   else if (action === "opening") document.getElementById("opening-button")?.click();
-  else if (action === "pause") document.getElementById("pause-button")?.click();
   else if (action === "save-prev") changeSave(-1);
   else if (action === "save-next") changeSave(1);
+  else emitAction(action);
 }
 
 const repeatable = new Set(["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"]);
@@ -96,6 +107,42 @@ controller?.addEventListener("click", event => {
 
 controller?.addEventListener("contextmenu", event => event.preventDefault());
 
+window.addEventListener("uw2-game-state", event => {
+  const state = event.detail || {};
+  const labels = {
+    loading: "로딩",
+    opening: "오프닝",
+    town: "항구",
+    sea: "항해",
+    runtime: "게임",
+    preview: "미리보기",
+  };
+  if (modeLabel) modeLabel.textContent = labels[state.mode] || String(state.mode || "게임");
+  controller.dataset.mode = state.mode || "";
+
+  if (autoButton) {
+    const on = !!state.autoSail;
+    autoButton.classList.toggle("latched", on);
+    autoButton.setAttribute("aria-pressed", String(on));
+    const small = autoButton.querySelector("small");
+    if (small) small.textContent = on ? "자동 ON" : "자동항해";
+    autoButton.disabled = state.mode !== "sea";
+  }
+
+  const music = state.music;
+  if (musicLabel) {
+    if (!music?.loaded) musicLabel.textContent = "BGM 준비";
+    else musicLabel.textContent =
+      (music.playing ? "♪" : "×") + " D2 " + (music.track + 1) + "/" + music.songCount;
+  }
+  if (soundButton) {
+    const on = !!music?.playing;
+    soundButton.classList.toggle("latched", on);
+    soundButton.setAttribute("aria-pressed", String(on));
+    soundButton.textContent = on ? "🔊 BGM" : "🔇 BGM";
+  }
+});
+
 window.addEventListener("keydown", event => {
   const key = event.key.toLowerCase();
   for (const button of controller?.querySelectorAll("[data-key]") ?? []) {
@@ -112,9 +159,9 @@ window.addEventListener("keyup", event => {
   }
 });
 
-// Prevent browser scrolling while using the controller with a keyboard.
 window.addEventListener("keydown", event => {
-  if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(event.key)) {
+  if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(event.key)) {
     event.preventDefault();
   }
 }, { passive: false });
+queueMicrotask(() => emitAction("controller-ready"));

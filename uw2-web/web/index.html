@@ -15,6 +15,11 @@
     </section>
 
     <section id="web-controller" class="controller" aria-label="웹 게임 컨트롤러">
+      <div class="controller-head" aria-live="polite">
+        <strong id="controller-mode">로딩</strong>
+        <span id="controller-music">BGM 준비</span>
+      </div>
+
       <div class="dpad" aria-label="방향키">
         <button class="pad up" data-key="ArrowUp" aria-label="위">▲</button>
         <button class="pad left" data-key="ArrowLeft" aria-label="왼쪽">◀</button>
@@ -24,13 +29,18 @@
       </div>
 
       <div class="action-pad">
-        <button class="action secondary" data-key="Escape"><span>B</span><small>취소</small></button>
-        <button class="action primary" data-key="Enter"><span>A</span><small>확인</small></button>
-        <button class="mini" data-key="p"><b>P</b><small>기항</small></button>
-        <button class="mini" data-key="l"><b>L</b><small>적재</small></button>
-        <button class="mini" data-key="u"><b>U</b><small>하역</small></button>
-        <button class="mini" data-key="m"><b>M</b><small>최대</small></button>
-        <button class="mini" data-key="c"><b>C</b><small>흥정</small></button>
+        <div class="face-buttons">
+          <button class="action secondary" data-key="Escape"><span>B</span><small>취소</small></button>
+          <button class="action primary" data-key="Enter"><span>A</span><small>확인</small></button>
+        </div>
+        <div class="utility-grid">
+          <button class="mini" data-key="p"><b>P</b><small>기항</small></button>
+          <button class="mini" data-key="l"><b>L</b><small>적재</small></button>
+          <button class="mini" data-key="u"><b>U</b><small>하역</small></button>
+          <button class="mini" data-key="m"><b>M</b><small>최대</small></button>
+          <button class="mini" data-key="c"><b>C</b><small>흥정</small></button>
+          <button class="mini auto" data-action="auto-sail" aria-pressed="false" disabled><b>AUTO</b><small>자동항해</small></button>
+        </div>
       </div>
 
       <div class="system-pad">
@@ -38,12 +48,14 @@
         <button data-action="start">START</button>
         <button data-action="opening">OPENING</button>
         <button data-action="pause">PAUSE</button>
+        <button data-action="sound" aria-pressed="false">🔇 BGM</button>
+        <button data-action="track-prev">◀ ♪</button>
+        <button data-action="track-next">♪ ▶</button>
         <button data-action="save-next">SAVE ▶</button>
       </div>
     </section>
   </main>
 
-  <!-- Runtime compatibility nodes: kept invisible; analysis/debug UI is no longer displayed. -->
   <div id="runtime-internals" hidden>
     <div id="manifest-status"></div><div id="manifest"></div>
     <div id="save-status"></div><div id="save-slots"></div>

@@ -26,6 +26,7 @@ import {
 } from "./world-map.js";
 import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from "./char.js";
 import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
+import { D2MusicPlayer } from "./music.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -111,6 +112,122 @@ let charAssets = null;
 let windCur = null;
 let portCatalog = [];
 let buildingUi = null;
+let musicPlayer = null;
+let musicMode = null;
+let musicAutostartPending = true;
+let seaAutoTimer = null;
+let seaAutoActive = false;
+
+const MUSIC_TRACK_BY_MODE = Object.freeze({
+  opening: 0,
+  town: 19,
+  sea: 21,
+  runtime: 19,
+  preview: 0,
+});
+
+function controllerMusicState() {
+  return musicPlayer?.state() ?? {
+    supported: false,
+    loaded: false,
+    songCount: 0,
+    track: 0,
+    playing: false,
+  };
+}
+
+function publishControllerState(extra = {}) {
+  const detail = {
+    mode: viewMode,
+    autoSail: seaAutoActive,
+    music: controllerMusicState(),
+    ...extra,
+  };
+  window.__uw2MusicState = () => controllerMusicState();
+  window.__uw2SeaState = () => seaRuntime?.snapshot?.() ?? null;
+  window.__uw2VoyageState = () => ({
+    sea: seaRuntime?.snapshot?.() ?? null,
+    dateTime: selected?.dateTime ? { ...selected.dateTime } : null,
+    fleet: selected?.fleet ? structuredClone(selected.fleet) : null,
+    lastSeaProvisionDate: selected?.lastSeaProvisionDate ?? null,
+  });
+  window.dispatchEvent(new CustomEvent("uw2-game-state", { detail }));
+}
+
+function setMusicForMode(mode = viewMode, force = false) {
+  if (!musicPlayer?.songCount) {
+    publishControllerState();
+    return;
+  }
+  if (!force && musicMode === mode) {
+    publishControllerState();
+    return;
+  }
+  musicMode = mode;
+  const track = MUSIC_TRACK_BY_MODE[mode] ?? MUSIC_TRACK_BY_MODE.town;
+  musicPlayer.setTrack(track);
+  if (musicPlayer.desiredPlaying) {
+    musicPlayer.unlock().then(publishControllerState).catch(() => publishControllerState());
+  } else {
+    publishControllerState();
+  }
+}
+
+async function loadMusicSupport() {
+  const buf = await loadBuffer("D2.MML");
+  musicPlayer = new D2MusicPlayer({ volume: 0.14 });
+  const parsed = musicPlayer.load(buf);
+  setMusicForMode(viewMode, true);
+  return parsed;
+}
+
+function tryAutostartMusic(event) {
+  if (!musicAutostartPending || !musicPlayer?.songCount) return;
+  if (event?.target?.closest?.("[data-action=\"sound\"]")) return;
+  musicAutostartPending = false;
+  const track = MUSIC_TRACK_BY_MODE[viewMode] ?? MUSIC_TRACK_BY_MODE.town;
+  musicMode = viewMode;
+  musicPlayer.play(track).then(publishControllerState).catch(() => publishControllerState());
+}
+
+window.addEventListener("pointerdown", tryAutostartMusic, { capture: true });
+window.addEventListener("keydown", tryAutostartMusic, { capture: true });
+
+function stopSeaAuto(reason = null) {
+  if (seaAutoTimer) clearInterval(seaAutoTimer);
+  seaAutoTimer = null;
+  seaAutoActive = false;
+  if (reason && seaRuntime) seaRuntime.lastEvent = reason;
+  publishControllerState();
+}
+
+function toggleSeaAuto() {
+  if (viewMode !== "sea" || !seaRuntime) {
+    publishControllerState();
+    return false;
+  }
+  if (seaAutoActive) {
+    stopSeaAuto("auto-stop");
+    renderSeaScreen();
+    return false;
+  }
+  seaAutoActive = true;
+  publishControllerState();
+  seaAutoTimer = setInterval(() => {
+    if (viewMode !== "sea" || !seaRuntime) {
+      stopSeaAuto();
+      return;
+    }
+    tickSeaWithBankInterest();
+    const snap = seaRuntime.snapshot();
+    if (snap.lastEvent === "coast-block") {
+      stopSeaAuto("auto-coast-block");
+    }
+    renderSeaScreen();
+  }, 220);
+  renderSeaScreen();
+  return true;
+}
 
 function advanceSelectedDateTicks(ticks) {
   if (!selected?.dateTime) return [];
@@ -137,6 +254,18 @@ function tickSeaWithBankInterest() {
   const after=seaRuntime.snapshot();
   if(selected){
     selected.dateTime={...after.dateTime};
+    const dayChanged =
+      before.dateTime?.year !== after.dateTime?.year ||
+      before.dateTime?.month !== after.dateTime?.month ||
+      before.dateTime?.day !== after.dateTime?.day;
+    if(dayChanged) {
+      consumeDepartureDay(selected);
+      selected.lastSeaProvisionDate = {
+        year: after.dateTime.year,
+        month: after.dateTime.month,
+        day: after.dateTime.day,
+      };
+    }
     const events=applyBankInterestCrossings(selected,before.dateTime,after.dateTime);
     if(events.length) selected.lastBankInterest=events.at(-1);
   }
@@ -418,6 +547,8 @@ function startOpeningPlayback() {
   if (openingPlayer) openingPlayer.stop();
 
   viewMode = "opening";
+  setMusicForMode("opening");
+  publishControllerState();
   const openingSpeed = Math.max(0.05, Number(new URLSearchParams(location.search).get("openingSpeed")) || 1);
   openingPlayer = new KoreanOpeningPlayer(openingData, canvas, {
     speed: openingSpeed,
@@ -1571,6 +1702,7 @@ function renderTownScreen() {
     fleet: selected?.fleet ?? null,
     dateTime: selected?.dateTime ?? null,
   }, null, 2);
+  publishControllerState();
 }
 
 function moveTown(direction) {
@@ -1586,6 +1718,7 @@ function startSeaFromPort() {
     $("runtime-status").textContent = "출항 실패: 항구 근처 항해 가능 바다를 찾지 못했습니다.";
     return false;
   }
+  stopSeaAuto();
   seaRuntime = new SeaRuntime(
     worldAssets,
     start,
@@ -1595,6 +1728,8 @@ function startSeaFromPort() {
     selected?.dateTime ?? null,
   );
   viewMode = "sea";
+  setMusicForMode("sea");
+  publishControllerState();
   renderSeaScreen();
   return true;
 }
@@ -1644,9 +1779,12 @@ function callNearbyPort() {
     renderSeaScreen();
     return false;
   }
+  stopSeaAuto();
   selected = arrival;
   townRuntime = new PortWalkingRuntime(arrival, portAssets, portDoors);
   viewMode = "town";
+  setMusicForMode("town");
+  publishControllerState();
   renderTownScreen();
   return true;
 }
@@ -1682,6 +1820,7 @@ function renderSeaScreen() {
     `속도: ${s.speed?.speed ?? 0} / ${s.speed?.knots ?? 0} knots`,
     `누산: (${s.accX}, ${s.accY}) · tick ${s.ticks}`,
     `이동: ${s.steps}칸 · ${s.lastEvent}`,
+    `자동항해: ${seaAutoActive ? "ON" : "OFF"} · AUTO/G`,
     "",
     "←/A/4 : 좌회전",
     "→/D/6 : 우회전",
@@ -1692,7 +1831,8 @@ function renderSeaScreen() {
   ];
   lines.forEach((line, i) => ctx.fillText(line, 408, 82 + i * 25));
   $("runtime-status").textContent =
-    `해상 항해 · WORLDMAP/DATA1 원본 지도 · (${s.x}, ${s.y})`;
+    `해상 항해 · WORLDMAP/DATA1 원본 지도 · (${s.x}, ${s.y}) · AUTO ${seaAutoActive ? "ON" : "OFF"}`;
+  publishControllerState({ nearbyPort: nearbyPort?.name ?? null });
   $("debug").textContent = JSON.stringify({
     mode: "sea",
     fromPort: selected?.portName,
@@ -1740,6 +1880,8 @@ $("run-button").addEventListener("click", () => {
     if (runtime) runtime.pause();
     townRuntime = new PortWalkingRuntime(selected, portAssets, portDoors);
     viewMode = "town";
+    setMusicForMode("town");
+    publishControllerState();
     $("pause-button").disabled = true;
     renderTownScreen();
     return;
@@ -1747,6 +1889,8 @@ $("run-button").addEventListener("click", () => {
   runtime = new ReaGameRuntime(selected, menus, messages);
   runtime.start();
   viewMode = "runtime";
+  setMusicForMode("runtime");
+  publishControllerState();
   $("pause-button").disabled = false;
   $("pause-button").textContent = "일시정지";
   renderRuntime();
@@ -1766,6 +1910,11 @@ window.addEventListener("keydown", (event) => {
     if (key === "enter" || key === "p") {
       event.preventDefault();
       callNearbyPort();
+      return;
+    }
+    if (key === "g") {
+      event.preventDefault();
+      toggleSeaAuto();
       return;
     }
     if (key === "arrowleft" || key === "a" || key === "4") seaRuntime.turn(-1);
@@ -1816,6 +1965,40 @@ $("pause-button").addEventListener("click", () => {
   }
 });
 
+window.addEventListener("uw2-controller-action", async event => {
+  const action = event.detail?.action;
+  if (action === "controller-ready") {
+    publishControllerState();
+    return;
+  }
+  if (action === "auto-sail") {
+    toggleSeaAuto();
+    return;
+  }
+  if (action === "pause") {
+    if (viewMode === "sea") toggleSeaAuto();
+    else $("pause-button").click();
+    return;
+  }
+  if (!musicPlayer?.songCount) {
+    publishControllerState();
+    return;
+  }
+  if (action === "sound") {
+    musicAutostartPending = false;
+    await musicPlayer.toggle();
+    publishControllerState();
+    return;
+  }
+  if (action === "track-prev" || action === "track-next") {
+    musicAutostartPending = false;
+    const delta = action === "track-prev" ? -1 : 1;
+    musicPlayer.setTrack(musicPlayer.track + delta);
+    await musicPlayer.play(musicPlayer.track);
+    publishControllerState();
+  }
+});
+
 // The original OPEN.EXE intro is the boot sequence.  Do not hold it behind
 // unrelated save, portrait, port-map, or world-data fetches.
 const openingBoot = loadOpeningGraphics().then(() => {
@@ -1836,6 +2019,7 @@ const gameBoot = Promise.allSettled([
   loadTownSupport(),
   loadWorldSupport(),
   loadCharacterSupport(),
+  loadMusicSupport(),
 ]).then(results => {
   const failed = results.filter(r => r.status === "rejected");
   if (failed.length) {

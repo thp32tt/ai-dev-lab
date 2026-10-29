@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens PMT DIP-to-eye causal-key and non-DIP API-coverage falsification (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01578`; distinct **LENS_FLARE_ONLY / REVIEW_ONLY** source-static verification, pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` source HEAD `0cb9399d58c442214e2264177b83cc9031cc7df5`. It specifically checks whether new `R7 DrawIndexedPrimitiveDest` `dipSerial` PRE receipt is explicitly joined to post `R7TraceVisualEyes` and audits coverage of DrawPrimitive / DrawPrimitiveUP / DrawIndexedPrimitiveUP.
+- **Distinct source-static falsification:** `dipSerial` only appears in the indexed-DIP PRE log and is not propagated to `R7TraceVisualEyes`; multiple indexed primitives from one PMT share `pmtEntrySerial` but lack a unique explicit per-DIP pre/post receipt key. The other three intercepted D3D9 primitive APIs have no `PMT DIP FULL` entry receipt. R30 physical results are independently lens-scope gated and C993 lens centre can be lens-labeled with zero PMT serial. Neither this instrumentation limitation nor a normal L/R pair proves the user's second visible flare was drawn twice; actual original 404700 alternate API incidence and HMD optics are untested. New test is separate from 01577's PMT pass/primitive fan-out and PRE-versus-success conclusion.
+- [Exactly one docs-only review](https://github.com/thp32tt/OutRun2006Tweaks/blob/b7c0dcc0d25112e6566d802895e4bd823659a29c/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01578.md) commit `b7c0dcc0d25112e6566d802895e4bd823659a29c`; GitHub confirmed sole changed path and remote blob `c46ec41ef2a48a5689f70c44ebe561186448ddd0`, branch HEAD readback confirmed. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS`, `RUNTIME_VALIDATION=UNTESTED`; no CI-skip/build gate, no HMD claim. Same TASK_ID retry/readback/re-report +0; AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2168 + independent new source-static negative-control verification +1 = 2169.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 native FVF authenticated SPECULAR+TABLE FOG RGB integration (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX11-01158`, existing feature `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME`; new source-live FVF game pixel semantic integration, distinct from 01157 standalone specular and 01156 standalone table-fog. Game-source Gouraud FVF COLOR1 post-stage0/stage1 SPECULAR RGB is composed BEFORE source-authenticated table Z/W fog, with original shader AlphaGate/discard, separate per-device (source, fog, specular) PS variant cache and original D3D9Ex/gamepad/FFB fail-closed fallback. Active unproven vertex/range/RAW fog mixes are rejected; DXVK remains frozen.

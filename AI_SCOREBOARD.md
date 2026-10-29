@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens physical receipt / R19 provenance diagnostic integration (2026-10-29 14:19 KST)
+
+- User-directed material DX9Ex diagnostic work on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Primary source commit `128b0f2ad6ed0b5c11283e6373c2c4ec374c8046` adds: (1) R19 near-full client centre-authority guard so an off-centre >=90% game client no longer silently uses the desktop midpoint as the SBS split, with bounded geometry receipts; (2) R19 source-frame B versus incoming projection A pose/FOV numerical mismatch receipts; (3) R30 lens LEFT-failure physical receipt; and (4) post-native lens texture/VB/IB/entry-RT, bilateral RT extent/format and right-stage/WVP join.
+- First exact-SHA build exposed an inherited diagnostics compile-scope defect from the earlier +TIME trace: `StageExtensionEntrySerial` was a private `UIScaling` class TLS but referenced from the separate D3DX hook class. Causal repair `21e0a4f4564bd64813412a52a69edae513df527d` moves the same TLS cursor to translation-unit scope without changing producer semantics. This repair is part of the same achievement and earns no separate score.
+- Exact repair SHA GitHub Actions verified **SUCCESS**: DX9Ex R26 User Test Build `40823471973`, VR GitHub General Test Build `40823471923`, DX9Ex OFFICIAL FOCUS R26 HUD Test and Debug `40823471984`, Domain Isolation Guard `40823471972`, OutRun EXE HUD Inspector CI `40823471873`. Win32 game DLL and x64 OpenXR host both compile on the validated SHA. Lens-flare HMD causality remains unproven; R19 A/B mismatch and seam/filter incidence require a new Quest3/VDXR log. `RUNTIME_VALIDATION=UNTESTED`. Same source work, compile repair, workflow rechecks, readback or later re-report count +0. AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2139 + one distinct source-integrated DX9Ex diagnostic/crop-guard achievement +1 = 2140.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight first-time-SHA independent Korean lettering QA (2026-10-29 14:15 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1415KST-A0115-B0130-NEW-SHA8`. N100 checked 37 prior C1 reports containing 263 distinct previously reviewed candidate SHA. Independently selected eight new export-backed PNGs: A-0115..0118, ordinals 409–412, and B-0127..0130, ordinals 464–467. All eight candidate PNG SHA256 match export evidence; all eight original full-HD source PNG SHA256 match production manifest by stable source ID; all eight are RGBA; alpha>=32 pixels do not touch the output canvas border. No prior SHA overlap or A/B queue consumption.

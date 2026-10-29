@@ -71,6 +71,7 @@ export class PortWalkingRuntime {
     this.playerY = slot.portState.playerY;
     this.facing = "down";
     this.stepParity = 0;
+    this.actors = (slot.townActors ?? []).map(a => ({ ...a }));
     this.insideBuilding = null;
     this.lastEvent = "load-save-position";
   }
@@ -90,6 +91,7 @@ export class PortWalkingRuntime {
       mapY: this.mapY,
       facing: this.facing,
       stepParity: this.stepParity,
+      actors: this.actors.map(a => ({ ...a })),
       building: this.insideBuilding ? {
         id: this.insideBuilding.id,
         name: this.insideBuilding.name,
@@ -98,6 +100,17 @@ export class PortWalkingRuntime {
       } : null,
       lastEvent: this.lastEvent,
     };
+  }
+
+  _actorNear(x, y, ignoreSlot = -1) {
+    return this.actors.some(a =>
+      a.active && a.slot !== ignoreSlot &&
+      Math.abs(a.x - x) <= 1 && Math.abs(a.y - y) <= 1
+    );
+  }
+
+  _playerNear(x, y) {
+    return Math.abs(this.mapX - x) <= 1 && Math.abs(this.mapY - y) <= 1;
   }
 
   _insideView(nx, ny) {
@@ -129,12 +142,14 @@ export class PortWalkingRuntime {
         const sideX = cx + sx * k;
         const sideY = cy + sy * k;
         if (sideX < 0 || sideY < 0 || sideX > 94 || sideY > 94) break;
-        if (!canStandAt(this.portAssets, this.portId, sideX, sideY)) break;
+        if (!canStandAt(this.portAssets, this.portId, sideX, sideY) ||
+            this._actorNear(sideX, sideY)) break;
 
         const aheadX = sideX + dx;
         const aheadY = sideY + dy;
         if (aheadX < 0 || aheadY < 0 || aheadX > 94 || aheadY > 94) break;
-        if (canStandAt(this.portAssets, this.portId, aheadX, aheadY)) {
+        if (canStandAt(this.portAssets, this.portId, aheadX, aheadY) &&
+            !this._actorNear(aheadX, aheadY)) {
           found[si] = k;
           break;
         }
@@ -164,7 +179,8 @@ export class PortWalkingRuntime {
     let actualDx = dx, actualDy = dy;
     const targetX = this.mapX + dx;
     const targetY = this.mapY + dy;
-    let moved = canStandAt(this.portAssets, this.portId, targetX, targetY);
+    let moved = canStandAt(this.portAssets, this.portId, targetX, targetY) &&
+      !this._actorNear(targetX, targetY);
 
     if (!moved) {
       const around = this._findWayAround(dx, dy);
@@ -173,7 +189,8 @@ export class PortWalkingRuntime {
         const px = this.playerX + actualDx;
         const py = this.playerY + actualDy;
         if (this._insideView(px, py) &&
-            canStandAt(this.portAssets, this.portId, this.mapX + actualDx, this.mapY + actualDy)) {
+            canStandAt(this.portAssets, this.portId, this.mapX + actualDx, this.mapY + actualDy) &&
+            !this._actorNear(this.mapX + actualDx, this.mapY + actualDy)) {
           moved = true;
         }
       }
@@ -192,13 +209,41 @@ export class PortWalkingRuntime {
         return { moved: true, building: door };
       }
       this.lastEvent = "walk";
+      this.advanceActors();
       return { moved: true };
     }
 
     // The original uses the held direction for view maintenance if no step was taken.
     this._scroll(dx, dy);
     this.lastEvent = "blocked";
+    this.advanceActors();
     return { moved: false };
+  }
+
+  advanceActors(rng = Math.random) {
+    const dirSteps = [[0,-1],[1,0],[0,1],[-1,0]];
+    for (let slot = 0; slot < 4; slot++) {
+      const a = this.actors[slot];
+      if (!a?.active) continue;
+
+      if (Math.floor(rng() * 10) === 0) a.type = Math.floor(rng() * 4);
+      if (Math.floor(rng() * 3) !== 0) continue;
+
+      const [dx,dy] = dirSteps[a.type & 3];
+      const nx = a.x + dx, ny = a.y + dy;
+      const blocked =
+        nx < 0 || ny < 0 || nx > 94 || ny > 94 ||
+        !canStandAt(this.portAssets, this.portId, nx, ny) ||
+        this._actorNear(nx, ny, slot) ||
+        this._playerNear(nx, ny);
+
+      if (!blocked) {
+        a.x = nx; a.y = ny;
+      } else {
+        const turn = Math.floor(rng() * 3) - 1;
+        a.type = (a.type + turn + 4) & 3;
+      }
+    }
   }
 
   leaveBuilding() {

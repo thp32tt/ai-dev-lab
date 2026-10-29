@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 canonical COM game-backbuffer native RAW source identity (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01168`, independent C++ source/test integration on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: source Draw D3D9 render target and original Present backbuffer resolve canonical `IID_IUnknown` COM identity before conditional native D3D11 GPU RGB pixels may be placed at authentic game coordinates. Distinct surface interface pointer aliases for the same COM object are admitted; foreign/null/unqueryable identity retains opt-in bounded RAW inset, original D3D9 game rendering/input/FFB and DX9Ex fallback. DXVK remains untouched; this is not complete menu/race or Quest3 gameplay.
+- Implementation source `4207e72322d277e902bc3e11ce90fc1b9eeb7cc9` (C++ source headers and compiled positive/negative `native_raw_dual_tile_test.cpp`). Inherited 01167 C6 acceptance contract had been omitted and blocked new push CI; causal repair + negative regression tests on validation-bearing `7f5e9acf7e584f7d3eba6c0f56469daf762c8659`, without unnecessary extra C++ changes. Required **five push workflows success on identical exact SHA**: DX11 Fast `40960200115`, Backend Conversion Gate `40960200265`, Win32 Build `40960200166`, OpenXR VR architecture `40960200152`, HUD Inspector `40960200161`. Main binary and diagnostic bundle artifacts exist. `RUNTIME_VALIDATION=UNTESTED`; no physical OutRun desktop/Quest 3 test.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2192 + independent new canonical D3D9 COM backbuffer identity native source-aligned presentation implementation +1 = 2193.** Same-task rollover, 01167 inherited CI repair, exact-SHA readback and C6 documentation +0; AI 1 separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex lens R30 native HRESULT sentinel versus R29 lower eye replay review (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01587`, independently source-verified `LENS_FLARE_ONLY` REVIEW_ONLY conditional falsification. At `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `b91e95245d9a3838e64b3f39d2d8e2d64f645b86`, original LEFT native `actualDraw()` failure returns its raw `leftHr`; an exceptional `E_NOTIMPL` from that Draw is indistinguishable to `R30GuardScreenSpace` from a clean pre-LEFT rejection and conditionally delegates to R29. Conversely a successful LEFT followed by a RIGHT-eye failure returns leftHr and does not itself trigger Guard's R29 replay. Verified four native DP/DIP/UP hook call sites and protected R26+HUD baseline, which already has this semantics: not a new regression, actual E_NOTIMPL incidence/pixel duplication unproved.

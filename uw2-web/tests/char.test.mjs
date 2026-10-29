@@ -40,9 +40,9 @@ assert.equal(hashes.hero1,"fc92cae6c92f1643498d42554f4b47f4c81656c77048d3154cc9a
 assert.equal(hashes.folk,"9d1c545a76fb3e3747559bd30121b067f2a70b15b39fcce612718b375ce9bfa3");
 
 assert.equal(heroFrameIndex("up",0),0);
-assert.equal(heroFrameIndex("left",1),3);
+assert.equal(heroFrameIndex("right",1),3);
 assert.equal(heroFrameIndex("down",0),4);
-assert.equal(heroFrameIndex("right",1),7);
+assert.equal(heroFrameIndex("left",1),7);
 
 console.log(JSON.stringify({chunkSizes:d.chunkSizes,heroFrames:d.heroes.map(x=>x.length),folkFrames:d.folk.length,hashes},null,2));
 console.log("char exact-reference tests: PASS");

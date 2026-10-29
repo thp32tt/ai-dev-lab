@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens deferred SceneEffect classifier-only R30 admission falsification (2026-10-30 KST)
+
+- RUN_KEY `LENSFLARE-DEFERRED-PROMOTION-ADMISSION-GATE-20261030-0216`; distinct LENS_FLARE_ONLY REVIEW_ONLY source-static cross-commit falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, SOURCE_HEAD `342e080dcb9b652b37dcdcbad6b73aebd7d46a5f`, docs-only RESULT_SHA `c52f3f4f9da1d03479b2f62855ffe266a1a0864f` (one new doc, remote file/blob/HEAD verified).
+- The experimental `8b9645073d9cf81adfa6f07d232f021645209ad8` promoted deferred CABE 0x570008 SceneEffect/FlatHud *classification* to ProjectedScreenEffect2D but did not change the physical EffectiveScope. Its unchanged R30 physical admission gate requires EffectiveScope=ProjectedScreenEffect2D; with SceneEffect it returns E_NOTIMPL before R85 eye-WVP/native Draw, and R30GuardScreenSpace dispatches R29 lower fallback. The rollback `bc825df81454da148381c64c9e45e1b30db3d0b3` records a Quest3 split in a source comment, but cannot prove R85 eye-WVP execution. This is a new conditional negative control distinguishing R30 admission rejection/fallback from alleged R85 per-eye projected draw, not a confirmed HMD root cause.
+- Existing multi-object deferred-queue identity caveat, generic R85 scope gate, R13 mono and R24 cached/flat evidence are inherited and score +0 separately. CODE_CHANGE=NO, RUNTIME_VALIDATION=UNTESTED, baseline R26+HUD immutable, R84 comparison only, no CI skip.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2183 + one distinct source-static conditional falsification +1 = 2184.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 UW2 web M10 controller live-state/mobile UX integration (2026-10-30 KST)
 
 - RUN_KEY `UW2-WEB-M10-CONTROLLER-20261030`; distinct user-facing controller integration on `thp32tt/ai-dev-lab@uw2-web-port`. Replaced transform-dependent A/B placement with a responsive layout; added current game-mode/BGM status, AUTO sail control, BGM toggle, previous/next D2 track controls, and context-aware controller state.

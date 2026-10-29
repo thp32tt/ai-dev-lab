@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens R23 cached request vs R24 view-space final fallback (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01582`, independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static cross-layer falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `27ecf6cd14f287936c2911b6345431c1467cb03e`. Unlike 01581 (R7 misleading SINGLE eye receipt) and R13 forced-mono (native draw without R7 receipt), this review tests **R23's requested cached binocular projection versus R24's actual final XR layer and diagnostic log authority**.
+- Verified: `vrhost/src/main_r23.cpp:3732-3823` can keep `projection-cached` requested after gameplay source stall, and `vrhost/src/runtime/r23_verified_bundle.hpp:14-15,113-135` invalidates bundle freshness after 1000ms. R24 `r24_black_screen_guard.hpp:154-169,711-777` then may choose a visible quad fallback; `BuildViewQuad:203-224` uses `ViewSpace`, BOTH eye visibility and imageArrayIndex 0, intentionally eliminating binocular lens depth in that fallback. `main_r23.cpp:4206-4272` `XR EYE FULL submittedValid` still derives from cached *requested* two-eye views rather than R24's post-interception final projection/quad/no-layer decision. Therefore `submittedValid` is **not an actual accepted stereo-lens receipt**; the fallback explains a possible head-relative flat flare conditionally, not the user's doubled lobe or actual Quest3 root cause.
+- [Exactly one docs-only material review](https://github.com/thp32tt/OutRun2006Tweaks/blob/666cc8bb58c0a6fd84763c5ad76bfaadd01b89ae/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01582.md), result commit `666cc8bb58c0a6fd84763c5ad76bfaadd01b89ae`, remote blob `eb5a1fcb601c325f17c9ed7dcda07750336ebe91`. GitHub final branch HEAD, file readback, exact marker and only changed path verified. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS` docs-only, `RUNTIME_VALIDATION=UNTESTED`; no source build gate/CI skip, protected R26+HUD and R84 comparison-only.
+- One independent, materially different source-static R23/R24 final optical authority negative control credited **+1 once**. Same TASK_ID retry/readback/rollover/re-report +0. AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2176 + unique R23 requested-eye/R24 actual flat fallback diagnostic falsification +1 = 2177.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 대항해시대 II Browser M8 한국어 OPEN.EXE 12-scene 오프닝 복원 (2026-10-30 KST)
 
 - 기존 M2의 정적/근사 OPGRAPH 표시와 별개의 신규 실제 역분석·실행 성과. 사용자 한국어판 `OPEN.EXE`를 직접 추적해 scene table `DS:0x0740`의 12개 함수 포인터와 메인 루프 `SI < 0x0C`를 확인했다. 따라서 공개 영문판의 13-scene 구조를 한국어판에 적용하던 이전 웹 구현을 폐기하고 **정확한 12-scene one-pass 구조**로 교체했다.

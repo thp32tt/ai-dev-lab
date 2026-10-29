@@ -1,5 +1,17 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II Browser M2 항구맵 + GRAPH/OPGRAPH 실구현 (2026-10-29 KST)
+
+- M1과 별개의 신규 구현 성과: N100 원본 `PORTCHIP.LZW`, `PORTMAP.LZW`, `CHIP_NO.DAT` 구조를 실제 파일 전체로 검증하고 브라우저 렌더러를 구현했다. `PORTCHIP.LZW`는 14 LS11 entries 중 짝수 7개가 각각 30,720 bytes = 240 × 16×16×4bpp 타일 뱅크, `PORTMAP.LZW`는 101 entries 모두 9,216 bytes = 96×96 byte tile map, `CHIP_NO.DAT`는 정규 항구 100개에 대응하는 0..6 뱅크 선택표임을 검증했다. 현재 save slot 1의 PORT #5 튀니스가 bank 2로 연결되어 전체 1536×1536 원본 항구 지도를 Firefox에서 실제 렌더링한다.
+- GRAPH 공통 포맷도 브라우저 JavaScript로 재구현했다. `GRAPH.DAT` 65/65, `GRAPH2.DAT` 2/2, `ENDGRP.DAT` 59/59, 사용자 `OPGRAPH.LZW` 14 parts / 108/108 records를 모두 끝까지 decode PASS. 사용자 한국어판 실제 OPGRAPH는 공개 타 버전의 16/110과 달리 14/108이므로 artifact-derived 값을 SSOT로 사용한다.
+- 직접 REA 교차검증: 사용자 `OPEN.EXE` SHA-256 `f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65`의 file offset `0x0F7A` screen decoder와 `0x13A2` buffer decoder를 REA/Ghidra로 decompile하여 width/height, eight-u16 pattern lookup, 4-pixel planar units, same-line/previous-row copy, literal command families가 구현과 일치함을 확인했다. 초기 추정했던 record +4..19 palette 가설은 폐기하고 eight-u16 4-pixel lookup table로 정정했다.
+- Firefox WebDriver M2 PASS: 시작 Canvas에 실제 `OPGRAPH.LZW` part 0 / record 10, 640×128 한국어 타이틀을 직접 복원, gallery 12 canvases 로드, save 실행 후 Catalina Erantzo + PORT #5 Tunis 실제 tile map + KAO portrait와 frame 47+ 진행 확인. 색상은 아직 16색 근사 palette이며, 정확한 장면별 palette와 한국어판 플레이어 항구좌표는 미완료/추가 역분석 대상이다.
+- GitHub source-only branch `thp32tt/ai-dev-lab@uw2-web-port`; original EXE/DAT/LZW assets are not committed. Durable M2 report commit `6380a2fa7020677df2601b8995b5824a53f67e76`, remote report blob `4f399ff3b337c7e7553af630c4a2178e25d06a9e`, graph decoder blob `e68033cc7cc55d2ce0b532b171e83b932f65b786`. N100 report: `rea-analysis/uncharted-waters-2/BROWSER_M2_20261029.md`.
+- Same M2 re-run/readback/browser screenshot/re-report earns +0. AI 1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2147 + one distinct UW2 Browser M2 port-map/GRAPH implementation achievement +1 = 2148.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 8 new-SHA independent Korean lettering QA (2026-10-29 15:15 KST)
 
 - RUN_KEY `OUTRUN-C1-AI2-20261029T1515KST-A0123-B0138-NEW-SHA8`. Checked 39 prior N100 C1 reports / 279 distinct candidate SHA; independently selected eight first-time, SHA-verified A-0123..0126 and B-0135..0138 exports. All 8 local candidate SHA256 matched export evidence, all 8 original full-HD source PNG SHA256 matched the production manifest, all RGBA with zero alpha>=32 pixels on output canvas border.

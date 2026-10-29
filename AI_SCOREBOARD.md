@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II Browser M5 정확한 CHAR·주민 런타임 (2026-10-29 KST)
+
+- M3/M4와 별개의 신규 실제 구현 성과. 사용자 한국어판 `CHAR.LZW`의 정확한 프레임 포맷을 원 추출기와 교차검증하여 브라우저에 구현했다: CHAR.000~005 각 5,120B=주인공 8프레임, CHAR.006 15,360B=주민 24프레임, 프레임당 640B=4사분면×(4×256-bit 색면+256-bit 투명면).
+- 정확한 CHAR 팔레트(0/2/4/6/8/10/12/14)와 투명면을 적용했고 사용자 원본에서 직접 디코딩한 전체 RGBA 시트가 독립 추출 참조와 SHA-256 완전 일치했다. hero0=`418d02fdc8c343c7e3accd73d07ff90fa11badaebf289d6931f956722be43d55`, hero1=`fc92cae6c92f1643498d42554f4b47f4c81656c77048d3154cc9a0a2867d7757`, char6=`9d1c545a76fb3e3747559bd30121b067f2a70b15b39fcce612718b375ce9bfa3`.
+- 항구의 진단 사각형을 선택 주인공의 실제 32×32 걷기 스프라이트로 교체했다. Firefox SAVE1 튀니스에서 카탈리나 down 프레임, ArrowLeft 후 left/stepParity=1 프레임 전환을 실검증했다.
+- `saveBase+0x18`의 8×3B 주민 테이블을 복원해 저장된 주민 좌표/방향/종류를 char6로 렌더링하고 플레이어/주민 근접 충돌, wall-around 검사, walker의 원본 10% 방향 재선정·1/3 이동 시도·막힘 시 -1/0/+1 회전 확률을 구현했다. Firefox에서 튀니스 저장 주민들이 실제 화면에 표시됨을 확인했다.
+- GitHub source-only `thp32tt/ai-dev-lab@uw2-web-port`. M5 report commit `5f39082843be321b38fbbec46cbdbc5033a14c28`, remote report blob `726da8887e9c668ab1e311f326902123094916ba`; `web/char.js` blob `783812ddfd770d62c12b0214b4a0bbf92bf9fa93`. 원본 게임 자산/참조 PNG는 커밋하지 않았다. 동일 M5 retry/readback/screenshot 재확인은 +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2156 + one distinct exact Korean CHAR + saved townspeople runtime achievement +1 = 2157.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex CABE D79B full-flush barrier refutes ordinal1-to-ordinal2 queued PMT survival (2026-10-29 KST)
 
 - RUN_KEY `LENSFLARE-CABE-D79B-INTERVENING-FLUSH-20261029-1704`, focus source HEAD `4f754b0cafdcd6ffb168265c44d92ec6fe3f6b76`. Independent falsification of the *specific* 01574 hypothetical ordinal1 PMT draining inside ordinal2: original reconstructed `sun_flare_40cbc0:695-715` and canonical-EXE E8 verification contract place first 570008 (D6BA), D79B full 4052C0 flush, then second 570008 (D7B4). Reconstructed `render_queue_flush_4052c0:970-980` clears opaque.count/matrix_count and sets immediate=1 after consuming the queue. The first queued PMT cannot survive a normally returning D79B full flush to be first drained by the second inline 542A call. This resolves the 01574 conditional counterexample under the normal reconstructed schedule, without implying that a flush serial authenticates PMT identity or that the visual double flare is fixed. Prior 01545 first-deferred/second-immediate evidence is not independently re-scored.

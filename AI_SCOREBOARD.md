@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 VR rendering research / Issue #100 official-source update (2026-10-30 KST)
+
+- RUN_KEY `VR-RESEARCH-20261030-ISSUE100`: independently verified official Khronos OpenXR SDK/Specification **1.1.65** release (2026-10-16), including `XR_EXT_app_consumed_swapchain`, `XR_EXT_enumerate_swapchain_formats2`, and Windows loader/API-layer fixes. Checked DXVK latest stable v3.1.1, still-open D3D9Ex user-memory/shared-import issue #5934 and unmerged PR #5972, plus conditional third-party depth-resource lifetime report #5889. Verified Virtual Desktop v1.34.8 actual release date **2025-09-20**, correcting previously mistaken 2026 date. No recent Microsoft D3D9Ex timing API changes established; no game code/CI/HMD test.
+- Updated `thp32tt/OutRun2006Tweaks` GitHub Issue #100 research SSOT with primary official links, OutRun-specific applicability, regression test contracts, negative findings, and release-date correction; remote issue body readback verified. `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2197 + one independent verified research synthesis and durable Issue #100 update +1 = 2198.** Repeat issue readback, weekly rerun with no new findings, retry/rollover +0; AI 1 separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 two different-size original-game source-aligned native GPU Draw crops (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01170`: distinct real C++ integration for opt-in native D3D11 RAW partial menu/car game pixels. Two independent native Draw PRE/POST authentic RGB source crops can land in **different-sized**, non-overlapping original D3D9 dirty Present islands on the same canonical source game backbuffer. Previously the equal-size legacy pair restriction dropped one source-authenticated Draw. Keep legacy/mixed displaced tiles equal-size, require nonzero extents, nonnegative destinations and nonoverlap; preserve D3D9 dirty union, RGB delta and original source coordinates. Actual game/HMD/complete renderer not proven.

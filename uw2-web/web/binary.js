@@ -53,6 +53,70 @@ export const SAVE = Object.freeze({
 function u16le(view, off) { return view.getUint16(off, true); }
 function u32le(view, off) { return view.getUint32(off, true); }
 
+
+const KOR_FLEET = Object.freeze({
+  SHIP1_ADDR: [0x2244,0x2776,0x31da,0x3c3e,0x370c,0x2ca8],
+  SHIP1_SIZE: 9,
+  SHIP2_ADDR: 0x4692,
+  SHIP2_SIZE: 30,
+  SHIP3_ADDR: 0x4c35,
+  SHIP3_SIZE: 25,
+  SHIP4_ADDR: 0x5291,
+  SHIP4_SIZE: 12,
+  SHIP5_ADDR: 0x501d,
+  SHIP5_SIZE: 25,
+});
+
+function parseKoreanFleet(bytes, view, page, heroId) {
+  const ships = [];
+  const base1 = KOR_FLEET.SHIP1_ADDR[heroId] ?? KOR_FLEET.SHIP1_ADDR[0];
+  for (let i=0;i<10;i++) {
+    const s1=page+base1+i*KOR_FLEET.SHIP1_SIZE;
+    const select=bytes[s1+7];
+    if (select===0xff) break;
+    const s2=page+KOR_FLEET.SHIP2_ADDR+i*KOR_FLEET.SHIP2_SIZE;
+    const s3=page+KOR_FLEET.SHIP3_ADDR+select*KOR_FLEET.SHIP3_SIZE;
+    const modelId=bytes[s3+18];
+    if (modelId===0xff) break;
+    const s4=page+KOR_FLEET.SHIP4_ADDR+modelId*KOR_FLEET.SHIP4_SIZE;
+    const s5=page+KOR_FLEET.SHIP5_ADDR+modelId*KOR_FLEET.SHIP5_SIZE;
+    ships.push({
+      index:i,
+      currentCrew:u16le(view,s1),
+      currentHull:bytes[s1+2],
+      maxHull:bytes[s1+3],
+      rudder:bytes[s1+4],
+      sail:bytes[s1+5],
+      currentWeapons:bytes[s1+6],
+      instanceId:select,
+      weaponId:bytes[s1+8],
+      captainId:bytes[s2],
+      condition:bytes[s2+1],
+      figurehead:bytes[s2+2],
+      name:decodeCString(bytes,s3,14),
+      modelId,
+      battleForm:bytes[s3+19],
+      maxWeapons:bytes[s3+20],
+      maxCrew:u16le(view,s3+21),
+      cargo:u16le(view,s3+23),
+      modelName:decodeCString(bytes,s5,18),
+      maxRudder:bytes[s4],
+      maxSail:bytes[s4+1],
+      maxCrew10:bytes[s4+2],
+      requiredCrew:bytes[s4+3],
+      capacity:u16le(view,s4+4),
+      modelMaxWeapons:bytes[s4+6],
+      seaForm:bytes[s5+18],
+      modelBattleForm:bytes[s5+19],
+    });
+  }
+  return {
+    count:ships.length,
+    totalCrew:ships.reduce((n,s)=>n+s.currentCrew,0),
+    ships,
+  };
+}
+
 export function parseSaveSlots(arrayBuffer) {
   const bytes = new Uint8Array(arrayBuffer);
   const view = new DataView(arrayBuffer);
@@ -85,10 +149,15 @@ export function parseSaveSlots(arrayBuffer) {
 
     const abilityBase = page + (SAVE.ABILITY[heroId] ?? SAVE.ABILITY[0]);
     const saveBase = page + SAVE.SLOT_DATA_BASE;
+    const year = 1501 + bytes[saveBase + 6];
+    const month = 1 + bytes[saveBase + 7];
+    const day = 1 + bytes[saveBase + 8];
+    const timeTick = bytes[saveBase + 9];
     const viewX = u16le(view, saveBase + SAVE.VIEW_X);
     const viewY = u16le(view, saveBase + SAVE.VIEW_Y);
     const playerX = u16le(view, saveBase + SAVE.PLAYER_X);
     const playerY = u16le(view, saveBase + SAVE.PLAYER_Y);
+    const fleet=parseKoreanFleet(bytes,view,page,heroId);
     slots.push({
       index: i,
       empty: false,
@@ -96,6 +165,12 @@ export function parseSaveSlots(arrayBuffer) {
       port,
       portName,
       portWorld,
+      fleet,
+      dateTime: {
+        year, month, day, timeTick,
+        hour: Math.floor(timeTick / 3),
+        minute: (timeTick % 3) * 20,
+      },
       ending,
       heroId,
       heroName: [fname, lname].filter(Boolean).join(" "),

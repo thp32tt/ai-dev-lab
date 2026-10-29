@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex independently verified lens-physical receipt C++ lexical-scope defect (2026-10-29 KST)
+
+- RUN_KEY: `CONVERSION-DX9EX-01571`; REVIEW_ONLY / LENS_FLARE_ONLY, unique subsequent source HEAD `d2b9b8451b6c4207cc7005e61bb98c3ca2ce0a28`, distinct from 01570 pre-native lens correlation audit.
+- Verified latest single-file source diff moved `VR TRACE LENS PHYSICAL RESULT FULL` into `R30ExecuteXyzrhwStereo` at 4283-4322 while `lensPhysicalCandidate`, `lensTransaction`, `stereo`, and source/anchor locals belong only to separate `R30TryScreenSpaceFovDraw` (current blob `53a73878bcb8fe99f90766e9faf128b1d54e6083`). This is an independently established invalid C++ lexical-name-resolution source defect predicting a compile blocker and misplacing lens diagnostic ownership; actual compiler Gate was not run and optical double-flare cause remains unknown.
+- Durable docs-only single-file GitHub commit `1460e4ae101efe8235ba6cf89b17f83e4f3201c6` with exact `[AUTO:CONVERSION-DX9EX-01571]` marker, remote file blob `5c983b929f9cb4197c7bf4cdd54762b7045e94d2`; game code not modified and exact-HMD `RUNTIME_VALIDATION=UNTESTED`. No source build claimed, no R84 promotion; protected R26+HUD baseline unchanged. Same task retry/readback/re-report earns +0. AI1 unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2129 + unique new source-static defect proven and durable review +1 = 2130.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX11 live SM3 table-fog priority integrated C++ repair (2026-10-29 12:01 KST)
 
 - RUN_KEY: `CONVERSION-DX11-01149` source implementation; repeated E002 retry, CI causal metadata repair, C6 and re-report are NOT separately scored. Pin `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: material native game-source C++ + regression commit `0f004edd6778db23d05779e12627c27be68ce00f`; exact-SHA final causal repair / validation-bearing result `a3ecc6192fc069a5ece2fdae84d3812708b09746`; separate docs-only C6 `4b352f2a9a22cb27fec3312ffd70ad8fffd05895`.

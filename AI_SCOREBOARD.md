@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex D79B opaque queue EXE_PROVEN diagnostic authority mismatch (2026-10-29 KST)
+
+- RUN_KEY `LENSFLARE-OPAQUE-QUEUE-EXE-PROOF-GAP-20261029-2123`; independent **LENS_FLARE_ONLY / REVIEW_ONLY** pinned-source verification at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `b7c0dcc0d25112e6566d802895e4bd823659a29c`. New, distinct from 01576 queue patch-count, the 18:29 reconstruction-derived field candidates, 01577 PMT pass fan-out and 01578 per-DIP eye join.
+- **New static source/test falsification:** subsequent `ea6504272` renamed three queueWords as `queueCount/queueCapacity/matrixCount` and stamped `queueLayout=EXE_PROVEN_405160_4052C0`, but the inspected `tools/disasm_outrun_goal_flare_p0.py::verify_lens_original_queue_edges` asserts only original CALL/PUSH edges and D79B ordering, not original EXE queue field load/store offsets or 405160 reset; `tools/verify_vr_lens_physical_telemetry.py` merely checks the literal `EXE_PROVEN` string. Earlier reconstruction-derived mapping remains a **candidate**, not authenticated retail-byte layout by these tests. No claim that layout is wrong or that actual second flare is doubled.
+- [One docs-only analysis](https://github.com/thp32tt/OutRun2006Tweaks/blob/0f35dd7d7ccb79684d5a678b26a572429f4c9c7e/docs/reviews/dx9ex/automation/LENSFLARE-OPAQUE-QUEUE-EXE-PROOF-GAP-20261029-2123.md), commit `0f35dd7d7ccb79684d5a678b26a572429f4c9c7e`, remote branch HEAD and file blob `3dd539253829ce3abc0774d54257e0ecbf037525` verified; only one new docs path, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, no source build gate or CI-skip. R26+HUD unchanged; R84 comparison-only. Same RUN_KEY retry/readback/re-report +0; AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2169 + independent new source-static verifier authority falsification +1 = 2170.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex lens PMT DIP-to-eye causal-key and non-DIP API-coverage falsification (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01578`; distinct **LENS_FLARE_ONLY / REVIEW_ONLY** source-static verification, pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` source HEAD `0cb9399d58c442214e2264177b83cc9031cc7df5`. It specifically checks whether new `R7 DrawIndexedPrimitiveDest` `dipSerial` PRE receipt is explicitly joined to post `R7TraceVisualEyes` and audits coverage of DrawPrimitive / DrawPrimitiveUP / DrawIndexedPrimitiveUP.

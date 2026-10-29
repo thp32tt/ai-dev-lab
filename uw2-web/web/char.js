@@ -1,71 +1,122 @@
 import { decodeLS11 } from "./ls11.js";
-import { UW2_WORLD_PALETTE } from "./koei-image.js";
 
-function decodePlanar16(raw, at) {
-  const out = new Uint8Array(16 * 16);
-  for (let y = 0; y < 16; y++) {
-    for (let x = 0; x < 16; x++) {
-      let v = 0;
-      for (let p = 0; p < 4; p++) {
-        const b = raw[at + p * 32 + y * 2 + (x >> 3)];
-        v |= ((b >> (7 - (x & 7))) & 1) << p;
-      }
-      out[y * 16 + x] = v;
-    }
+export const CHAR_PALETTE = Object.freeze([
+  [0x00,0x00,0x00,255], undefined,
+  [0x00,0xA2,0x61,255], undefined,
+  [0xD3,0x41,0x00,255], undefined,
+  [0xF3,0xA2,0x61,255], undefined,
+  [0x00,0x41,0xD3,255], undefined,
+  [0x00,0xA2,0xF3,255], undefined,
+  [0xD3,0x61,0xA2,255], undefined,
+  [0xF3,0xE3,0xD3,255], undefined,
+]);
+
+function bit(raw, index) {
+  return (raw[index >> 3] >> (7 - (index & 7))) & 1;
+}
+
+export function decodeCharacterChunk(raw, frames) {
+  const expected = frames * 4 * 160;
+  if (raw.length !== expected) {
+    throw new Error(`CHAR chunk size ${raw.length}, expected ${expected} for ${frames} frames`);
   }
-  return out;
+
+  const rgbaFrames = [];
+  let pointer = 0;
+  for (let frame = 0; frame < frames; frame++) {
+    const rgba = new Uint8ClampedArray(32 * 32 * 4);
+    for (let quadrant = 0; quadrant < 4; quadrant++) {
+      for (let pixel = 0; pixel < 256; pixel++) {
+        let colorIndex = 0;
+        for (let plane = 0; plane < 4; plane++) {
+          colorIndex = (colorIndex << 1) | bit(raw, pointer + pixel + plane * 256);
+        }
+        const transparent = bit(raw, pointer + pixel + 1024) === 1;
+        const x = (quadrant & 1) * 16 + (pixel & 15);
+        const y = (quadrant >> 1) * 16 + (pixel >> 4);
+        const at = (y * 32 + x) * 4;
+
+        if (transparent) {
+          rgba[at] = 0;
+          rgba[at + 1] = 0;
+          rgba[at + 2] = 0;
+          rgba[at + 3] = 0;
+        } else {
+          const c = CHAR_PALETTE[colorIndex];
+          if (!c) throw new Error(`CHAR missing palette index ${colorIndex}`);
+          rgba[at] = c[0];
+          rgba[at + 1] = c[1];
+          rgba[at + 2] = c[2];
+          rgba[at + 3] = c[3];
+        }
+      }
+      pointer += 1280; // bits = 4*256 colour + 256 transparency
+    }
+    rgbaFrames.push(rgba);
+  }
+  return rgbaFrames;
 }
 
 export function decodeKoreanChar(arrayBuffer) {
-  const d = decodeLS11(arrayBuffer);
-  const heroes = [];
-  for (let c = 0; c < Math.min(6, d.decoded.length); c++) {
-    const raw = d.decoded[c].data;
-    const n = Math.floor(raw.length / 640);
-    const frames = [];
-    for (let f = 0; f < Math.min(8, n); f++) {
-      const px = new Uint8Array(32 * 32);
-      // Korean DOS chunk: 640 bytes/frame. The first four 128-byte
-      // planar blocks reconstruct the 2x2 color quadrants. The final
-      // 128 bytes are a blitter mask/control block whose exact combine
-      // semantics are still under REA analysis; color index 0 is clear.
-      for (let q = 0; q < 4; q++) {
-        const tile = decodePlanar16(raw, f * 640 + q * 128);
-        const bx = (q & 1) * 16, by = (q >> 1) * 16;
-        for (let y = 0; y < 16; y++) {
-          for (let x = 0; x < 16; x++) {
-            px[(by + y) * 32 + bx + x] = tile[y * 16 + x];
-          }
-        }
-      }
-      frames.push(px);
-    }
-    heroes.push(frames);
+  const archive = decodeLS11(arrayBuffer);
+  if (archive.decoded.length !== 7) {
+    throw new Error(`CHAR.LZW parts ${archive.decoded.length}, expected 7`);
   }
-  return { heroes, folkChunk: d.decoded[6]?.data ?? null };
+
+  const heroes = [];
+  for (let character = 0; character < 6; character++) {
+    heroes.push(decodeCharacterChunk(archive.decoded[character].data, 8));
+  }
+  const folk = decodeCharacterChunk(archive.decoded[6].data, 24);
+  return {
+    heroes,
+    folk,
+    chunkSizes: archive.decoded.map(x => x.data.length),
+  };
 }
 
-function frameIndex(facing, stepParity) {
+export function heroFrameIndex(facing, stepParity) {
+  // Shipped order is two frames each: up, left, down, right.
   const base = facing === "up" ? 0 :
                facing === "left" ? 2 :
                facing === "down" ? 4 : 6;
   return base + (stepParity & 1);
 }
 
+function drawRgbaFrame(ctx, frame, x, y) {
+  if (!frame) return false;
+  const c = document.createElement("canvas");
+  c.width = 32; c.height = 32;
+  const xctx = c.getContext("2d");
+  const image = new ImageData(frame, 32, 32);
+  xctx.putImageData(image, 0, 0);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(c, x, y);
+  return true;
+}
+
 export function drawHeroSprite(ctx, chars, heroId, state, dx, dy) {
   const frames = chars?.heroes?.[heroId];
   if (!frames?.length) return false;
-  const frame = frames[Math.min(frames.length - 1, frameIndex(state.facing, state.stepParity))];
-  const c = document.createElement("canvas"); c.width = 32; c.height = 32;
-  const xctx = c.getContext("2d"); const img = xctx.createImageData(32,32);
-  for (let i = 0; i < frame.length; i++) {
-    const ci = frame[i], p = i * 4;
-    if (ci === 0) { img.data[p+3] = 0; continue; }
-    const rgb = UW2_WORLD_PALETTE[ci] ?? [0,0,0];
-    img.data[p] = rgb[0]; img.data[p+1] = rgb[1]; img.data[p+2] = rgb[2]; img.data[p+3] = 255;
+  const frame = frames[heroFrameIndex(state.facing, state.stepParity)];
+  return drawRgbaFrame(
+    ctx,
+    frame,
+    dx + state.playerX * 16,
+    dy + state.playerY * 16,
+  );
+}
+
+export function folkFrameIndex(actor, animationParity = 0) {
+  if (!actor?.active) return -1;
+  if (actor.walker) {
+    const direction = actor.type & 3;
+    return 2 * ((actor.slot & 1) * 4 + direction) + ((actor.x + actor.y) & 1);
   }
-  xctx.putImageData(img,0,0);
-  ctx.imageSmoothingEnabled = false;
-  ctx.drawImage(c, dx + state.playerX * 16, dy + state.playerY * 16);
-  return true;
+  return 16 + 2 * (actor.type & 3) + (animationParity & 1);
+}
+
+export function drawFolkSprite(ctx, chars, frameIndex, screenX, screenY, dx = 0, dy = 0) {
+  const frame = chars?.folk?.[frameIndex];
+  return drawRgbaFrame(ctx, frame, dx + screenX * 16, dy + screenY * 16);
 }

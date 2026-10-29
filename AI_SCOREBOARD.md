@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight distinct first-time SHA independent Korean ROI QA (2026-10-29 13:15 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T1315KST-A0107-B0122-NEW-SHA8`. N100 verified 35 prior C1 reports, 247 previously reviewed distinct SHA. Selected eight new SHA: A ordinals 401–404 (A-0107..0110), B ordinals 456–459 (B-0119..0122). Eligible manifest-backed unreviewed exports before selection: A 34, B 26. All eight candidate PNG byte SHA256 match export evidence, source full-HD SHA256 match production manifest by ID, and all output images are RGBA.
+- Visually compared original English ROIs and Korean lettering/effects plus aspect-preserving simulated native-fit for Tuned/튜닝; Time Attack Mode 15 continuous course/타임 어택 모드 15코스 연속; HeartAttack Mode OutRun2/하트 어택 모드 아웃런2; HeartAttack Mode SPECIAL TOURS/하트 어택 모드 스페셜 투어; Heart Attack Mode/하트 어택 모드; Ghost Car course-record instruction/고스트 카와 달리며 코스 기록에 도전하세요!; OutRun Mode OutRun2/아웃런 모드 아웃런2; TimeAttack Mode OutRun2/타임 어택 모드 아웃런2. **C1 PASS 0 / FAIL 0 / HOLD 8**. No confirmed fake jamo or text glyph cutoff; no alpha>=32 output border contact. A-0108 English source ROI crops right side of Time Attack line and contains protected arrow art; several Q095/Q100 source ROIs contain colored button/panel art. Actual UI-cell/UV placement, original-English removal and protected-art composite, native 50%-scale game visibility not proved; Korean width shortening alone is not a FAIL.
+- N100 evidence: `work/C1_QA_20261029_1315_AI2_report.json`, `work/C1_QA_20261029_1315_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg}`. [GitHub C1 QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1315_AI2_A0107_B0122_SHA8.json), commit `f488d2f04ea36d3381ea5572e64354e89db9a78a`, confirmed remote asset HEAD and blob `c51e146c9d3399935eb6e82ec99c0afab43265fe`.
+- C1 only: ImageGen NOT CALLED, A/B producer queues NOT CONSUMED, DDS/C2/C3/real-game PASS NOT PRODUCED; VR/FFB/DX11/DXVK untouched; RUNTIME_VALIDATION=UNTESTED. Same task/retry/SHA/status check scores +0; AI1 unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2134 + new distinct eight-SHA C1 QA evidence +1 = 2135.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX11 source-zero-density EXP/EXP2 Fog native live Draw admission (2026-10-29 KST)
 
 - TASK_ID: `CONVERSION-DX11-01150`; same task E001/E002 retry, inherited policy repair and static test repair all belong to ONE source achievement, no separate score. Original new game-path C++/C++ regression material commit `7746cf5d38a4907e64044595bf47d0db541daac5` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`; latest exact-source validation-bearing causal repair/result `50221dcc1e238e383897a65992d34ac663d7152d`.

@@ -29,11 +29,24 @@
       <article class="panel wide">
         <div class="game-head">
           <h2>브라우저 런타임</h2>
+          <button id="opening-button" disabled>원본 오프닝</button>
           <button id="run-button" disabled>선택 슬롯 시작</button>
           <button id="pause-button" disabled>일시정지</button>
         </div>
         <canvas id="screen" width="640" height="400" aria-label="game screen"></canvas>
         <div id="runtime-status"></div>
+      </article>
+
+      <article class="panel wide">
+        <h2>OPGRAPH.LZW 원본 오프닝 그림</h2>
+        <div id="opening-status">OPGRAPH 디코딩 중…</div>
+        <div id="opening-gallery" class="opening-gallery"></div>
+      </article>
+
+      <article class="panel wide">
+        <h2>선택 세이브 실제 항구 맵</h2>
+        <div id="portmap-status">PORTMAP/PORTCHIP 로딩 중…</div>
+        <div class="portmap-wrap"><canvas id="portmap"></canvas></div>
       </article>
 
       <article class="panel wide">

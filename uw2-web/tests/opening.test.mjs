@@ -40,7 +40,7 @@ assert.deepEqual(KOREAN_OPENING_SCENE_PLAN[0].sources[0].records,[0,1,3,4,2]);
 assert.deepEqual(KOREAN_OPENING_SCENE_PLAN[1].sources[0].records,[5,6,7,8,9,11,12,13,14,15,10]);
 assert.equal(KOREAN_OPENING_SCENE_PLAN[3].name,"Otto Spinola");
 assert.equal(KOREAN_OPENING_SCENE_PLAN[4].name,"Catalina Erantzo");
-assert.equal(KOREAN_OPENING_SCENE_PLAN[10].name,"João Franco");
+assert.equal(KOREAN_OPENING_SCENE_PLAN[10].name,"João Ferrero");
 assert.deepEqual(KOREAN_OPENING_SCENE_PLAN[11].sources,[{part:12,records:[0]}]);
 
 const used=new Set();

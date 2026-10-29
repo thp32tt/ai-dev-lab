@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 authentic live FVF post-combiner SPECULAR RGB native pixel integration (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX11-01157`, branch `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, existing feature `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME`. Independent game-facing C++/HLSL integration source commit `5e0455a09e812da4ce8b9d08c2841954858e3c3b`; same-task actual source shade-mode mismatch repair `fc48e6667c9d8d1d9e174c91584c4b18cf10ae6d` is the **validation-bearing material RESULT_SHA**, not a separate score.
+- Authentic per-Draw D3D9 FVF `D3DRS_SPECULARENABLE` + `D3DRS_SHADEMODE=GOURAUD` for live FVF COLOR1 now route original source-owned stage0/stage1 HLSL PS color through a lazy D3D11 specular RGB finalizer after original combiner/AlphaGate and before OM, with (source shader pointer, specular variant) device-lifetime cache. Source alpha/discard is preserved. Active fog+specular, D3D9 FLAT/PHONG, failed shade/COM query, unknown source shader, invalid HLSL or shader compile failure remain fail-closed to unmodified D3D9 original renderer/gamepad/FFB; DX9Ex fallback and DXVK freeze remain. Four source+regression files changed: `src/vr/d3d11/live_game_frame_bridge.cpp`, `src/vr/d3d11/native_game_fvf_fog_dispatch.hpp`, `tests/native_game_fvf_fog_dispatch_test.cpp`, `tools/test_dx11_live_sm3_table_zfog_01005.py`.
+- **All five mandatory GitHub push Actions exact SHA `fc48e6667c9d8d1d9e174c91584c4b18cf10ae6d` status=completed/conclusion=success, remote-verified:** DX11 Fast Structural Checks #40860382404, Backend Conversion Gate #40860382446 (validate and smoke), Build #40860382504, OpenXR VR architecture #40860382554, OutRun EXE HUD Inspector CI #40860382473. CI-skip absent on both source and validation-bearing commit. Unrelated conditional VR PC Fast Test Build skip is not a mandatory Gate.
+- **No source-matched real OutRun/Quest 3/VDXR session:** `RUNTIME_VALIDATION=UNTESTED`; actual native GPU Draw>0, contiguous full-frame publication and HMD are NOT proved. Prior 2026-10-28 native_draws=0 was on an older binary and must not be represented as new evidence. Work-time proportions unmeasured. Same TASK_ID C6, retry, source safety fix, CI rerun/checkpoint, readback and rollover add +0. AI1 scored separately.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2165 + one new independent native FVF game specular source integration with exact-SHA 5-Gate verification +1 = 2166.**
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 DX11 live FVF stage0/stage1 full-combiner native table fog (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX11-01156` in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, unique source integration under existing `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME` feature. Real C++/HLSL connected source implementation commit `4abbad3845182dbc63f43880118213575e3040e8`; causal acceptance-metadata policy preflight repair `9ff2f5806aede6f0309717c0cf819de3863ea53b` is the **validation-bearing RESULT_SHA**, not a separate feature or score.

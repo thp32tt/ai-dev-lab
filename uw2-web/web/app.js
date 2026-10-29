@@ -1,4 +1,4 @@
-import { parseOffsetTextTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls } from "./binary.js";
+import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls } from "./binary.js";
 import { ReaGameRuntime } from "./runtime.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
@@ -8,6 +8,8 @@ import {
   chooseTitleLikeRecord,
   chooseOpeningGallery,
   drawOpeningFit,
+  KoreanOpeningPlayer,
+  KOREAN_OPENING_SCENE_PLAN,
 } from "./opening.js";
 import { readGraphRecords, decodeGraphRecord } from "./graph-format.js";
 import {
@@ -24,6 +26,51 @@ import {
 } from "./world-map.js";
 import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from "./char.js";
 import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
+import {
+  pubSpecialty,
+  initialPubEnthusiasm,
+  pubTreatMaximum,
+  pubTreat,
+  pubRecruitOffer,
+  hireCrew,
+  dismissCrew,
+} from "./pub.js";
+import {
+  GOODS_CATEGORY_NAMES,
+  decodeMarketAssets,
+  currentPortMarket,
+  buyGoods,
+  sellGoods,
+  carriedGoodsRows,
+} from "./market.js";
+import {
+  bankCreditLine,
+  bankDepositMaximum,
+  bankWithdrawMaximum,
+  bankBorrowMaximum,
+  bankRepayMaximum,
+  bankDeposit,
+  bankWithdraw,
+  bankBorrow,
+  bankRepay,
+  applyMonthlyBankInterest,
+} from "./bank.js";
+import {
+  RESOURCE_KEYS,
+  RESOURCE_NAMES,
+  harborSupplyPrices,
+  shipCargoUsed,
+  shipCargoFree,
+  maxSupplyLoad,
+  resourceUnitsAboard,
+  loadSupply,
+  unloadSupply,
+  harborDepartureStatus,
+  consumeDepartureDay,
+  advanceDateTicks,
+  lodgeCheckIn,
+  buildingVisitTicks,
+} from "./buildings.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("screen");
@@ -32,21 +79,26 @@ const ctx = canvas.getContext("2d");
 let slots = [];
 let selected = null;
 let menus = [];
+let menuDefs = [];
 let messages = [];
+let saveBuffer = null;
 let runtime = null;
 let viewMode = "loading";
 let kaoPortraits = [];
 let portAssets = null;
 let openingData = null;
 let openingTitle = null;
+let openingPlayer = null;
 let portDoors = null;
 let townRuntime = null;
 let buildingImages = [];
 let worldAssets = null;
+let marketAssets = null;
 let seaRuntime = null;
 let charAssets = null;
 let windCur = null;
 let portCatalog = [];
+let buildingUi = null;
 
 async function loadBuffer(name) {
   const res = await fetch("/game/" + encodeURIComponent(name), { cache: "no-store" });
@@ -87,6 +139,7 @@ async function loadTables() {
     loadBuffer("MESSAGE.DAT"),
   ]);
   menus = parseOffsetTextTable(menuBuf);
+  menuDefs = parseMenuTable(menuBuf);
   messages = parseOffsetTextTable(msgBuf);
   $("menus").replaceChildren(rows(menus, x => `#${x.index}  ${stripMenuControls(x.text)}`));
   $("messages").replaceChildren(rows(messages.slice(0, 120), x => `#${x.index}  ${x.text.replace(/\n/g, " / ")}`));
@@ -117,7 +170,7 @@ async function loadOpeningGraphics() {
     gallery.appendChild(fig);
   }
   $("opening-status").textContent =
-    `${openingData.magic} · 사용자 원본 14 parts / ${openingData.recordCount} GRAPH records · 16색 근사 팔레트`;
+    `${openingData.magic} · 한국어판 14 parts / ${openingData.recordCount} GRAPH records · OPEN.EXE 13-scene loop playback`;
 }
 
 function renderSelectedPortMap() {
@@ -152,6 +205,7 @@ async function loadWorldSupport() {
     loadBuffer("WINDCUR.DAT"),
   ]);
   worldAssets = decodeWorldAssets(worldBuf, data1Buf);
+  marketAssets = decodeMarketAssets(data1Buf);
   windCur = parseWindCur(windBuf);
 }
 
@@ -190,6 +244,9 @@ function renderSlots() {
       : `${slot.index + 1}. ${slot.memo} · ${slot.portName} · ${slot.heroName} · ${slot.money.toLocaleString()} G${slot.ending ? " · END" : ""}`;
     btn.addEventListener("click", () => {
       selected = slot;
+      if (saveBuffer && selected?.raw?.page != null) {
+        portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
+      }
       $("run-button").disabled = false;
       renderSlots();
       drawPreview(slot);
@@ -226,6 +283,7 @@ async function loadPortraits() {
 
 async function loadSaves() {
   const buf = await loadBuffer("KOUKAI2.DAT");
+  saveBuffer = buf;
   slots = parseSaveSlots(buf);
   portCatalog = parseKoreanPortTable(buf, 0);
   $("save-status").textContent =
@@ -233,6 +291,9 @@ async function loadSaves() {
   const first = slots.find(x => !x.empty);
   if (first) {
     selected = first;
+    if (saveBuffer && selected?.raw?.page != null) {
+      portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
+    }
     $("run-button").disabled = false;
   }
   renderSlots();
@@ -280,30 +341,21 @@ function drawPreview(slot) {
   $("runtime-status").textContent = "세이브 미리보기";
 }
 
-function drawOpeningScreen() {
+function drawOpeningTitleHold(reason = "complete") {
   if (!openingTitle) return;
-  viewMode = "opening";
-  if (runtime) runtime.pause();
+  viewMode = "opening-title";
   ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  drawOpeningFit(ctx, openingTitle, 0, 78, canvas.width, 150);
-  ctx.fillStyle = "#d7d7d7";
-  ctx.font = "16px Malgun Gothic, sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillText("OPGRAPH.LZW 원본 GRAPH 레코드 직접 복원", 320, 274);
-  ctx.fillText(
-    `part ${openingTitle.partIndex} / record ${openingTitle.recordIndex} · ${openingTitle.width}×${openingTitle.height}`,
-    320, 302
-  );
-  ctx.fillStyle = "#8f98a8";
-  ctx.fillText("색상은 현재 16색 근사 팔레트 · 픽셀/압축 구조는 원본 데이터", 320, 334);
-  ctx.textAlign = "start";
-  $("runtime-status").textContent = "원본 OPGRAPH 오프닝 화면";
+  drawOpeningFit(ctx, openingTitle, 0, 0, canvas.width, canvas.height, { noUpscale: true });
+  $("runtime-status").textContent =
+    reason === "skip" ? "오프닝 건너뜀 · 타이틀" : "오프닝 완료 · 타이틀";
   $("debug").textContent = JSON.stringify({
-    view: "opening",
-    parts: openingData.parts.length,
-    records: openingData.recordCount,
-    selectedRecord: {
+    view: "opening-title",
+    reason,
+    scenes: KOREAN_OPENING_SCENE_PLAN.length,
+    parts: openingData?.parts?.length ?? 0,
+    records: openingData?.recordCount ?? 0,
+    title: {
       part: openingTitle.partIndex,
       record: openingTitle.recordIndex,
       width: openingTitle.width,
@@ -312,11 +364,790 @@ function drawOpeningScreen() {
   }, null, 2);
 }
 
+function stopOpening(showTitle = false) {
+  if (openingPlayer) openingPlayer.stop();
+  if (showTitle && openingTitle) drawOpeningTitleHold("skip");
+}
+
+function startOpeningPlayback() {
+  if (!openingData || !openingTitle) return;
+  if (runtime) runtime.pause();
+  if (openingPlayer) openingPlayer.stop();
+
+  viewMode = "opening";
+  const openingSpeed = Math.max(0.05, Number(new URLSearchParams(location.search).get("openingSpeed")) || 1);
+  openingPlayer = new KoreanOpeningPlayer(openingData, canvas, {
+    speed: openingSpeed,
+    loop: false,
+    onScene: (scene, cycle = 0) => {
+      viewMode = "opening";
+      $("runtime-status").textContent =
+        `원본 오프닝 · scene ${scene.scene + 1}/${KOREAN_OPENING_SCENE_PLAN.length} · ${scene.name}`;
+      $("debug").textContent = JSON.stringify({
+        view: "opening",
+        scene: scene.scene,
+        name: scene.name,
+        cycle,
+        sources: scene.sources,
+        artifact: "Korean OPEN.EXE / OPGRAPH.LZW",
+      }, null, 2);
+    },
+    onFinish: () => {
+      drawOpeningTitleHold("complete");
+    },
+  });
+  openingPlayer.play().catch(err => {
+    $("runtime-status").textContent = "오프닝 재생 오류: " + err.message;
+    $("debug").textContent = err.stack || String(err);
+  });
+}
+
 function drawBuildingImage(image, x, y, w, h) {
   if (!image) return;
   ctx.fillStyle = "#000";
   ctx.fillRect(x, y, w, h);
   drawOpeningFit(ctx, image, x, y, w, h);
+}
+
+
+const NATION_NAMES = Object.freeze(["포르투갈","에스파니아","오스만","영국","이탈리아","네덜란드"]);
+
+function ensureBuildingUi(buildingId) {
+  if (!buildingUi || buildingUi.buildingId !== buildingId) {
+    buildingUi = {
+      buildingId,
+      mode: "menu",
+      cursor: 0,
+      ship: 0,
+      resource: 0,
+      loadMode: true,
+      visitTicks: buildingVisitTicks(),
+      pubEnthusiasm: buildingId === 1 ? initialPubEnthusiasm(selected) : null,
+      pubAmount: 1,
+      bankAmount: 100,
+      messageId: null,
+      messageText: "",
+      departure: null,
+      last: "",
+    };
+  }
+  return buildingUi;
+}
+
+function buildingOptions(buildingId) {
+  const menuIndex = BUILDING_MENU_INDEX[buildingId];
+  return Number.isInteger(menuIndex) ? (menuDefs[menuIndex]?.options ?? []) : [];
+}
+
+function formattedMessage(messageId, values = []) {
+  let text = Number.isInteger(messageId) ? (messages[messageId]?.text ?? `MESSAGE #${messageId}`) : "";
+  let vi = 0;
+  text = text.replace(/%[-+0-9.#hlL]*[duxs]/gi, () => String(values[vi++] ?? "…"));
+  return text.replace(/\x1b./g, "");
+}
+
+function drawBox(x, y, w, h, fill = "rgba(7,21,34,.97)") {
+  ctx.fillStyle = fill;
+  ctx.fillRect(x,y,w,h);
+  ctx.strokeStyle = "#f1d58b";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(x+1,y+1,w-2,h-2);
+}
+
+function drawBuildingMessage(ui) {
+  const values = ui.departure?.messageId === 61 ? [ui.departure.days] : [];
+  const text = ui.messageText || formattedMessage(ui.messageId, values);
+  drawBox(82, 142, 476, 142);
+  ctx.fillStyle = "#f4f4f4";
+  ctx.font = "bold 16px Malgun Gothic, sans-serif";
+  wrapTownMessage(text, 38).slice(0,5)
+    .forEach((line,i)=>ctx.fillText(line,100,172+i*22));
+  ctx.fillStyle = "#f1d58b";
+  ctx.font = "13px Malgun Gothic, sans-serif";
+  if (ui.mode === "sail-confirm") {
+    ctx.fillText("ENTER: 출항   ESC: 취소", 322, 268);
+  } else {
+    ctx.fillText("아무 키로 메뉴", 410, 268);
+  }
+}
+
+function drawHarborSupply(ui) {
+  const ships = selected?.fleet?.ships ?? [];
+  const prices = harborSupplyPrices(selected);
+  ui.ship = Math.max(0, Math.min(ui.ship, Math.max(0, ships.length - 1)));
+  ui.resource = Math.max(0, Math.min(ui.resource, 3));
+  const ship = ships[ui.ship];
+  const resource = RESOURCE_KEYS[ui.resource];
+
+  drawBox(38, 44, 564, 308, "rgba(5,12,20,.985)");
+  ctx.fillStyle = "#f1d58b";
+  ctx.font = "bold 20px Malgun Gothic, sans-serif";
+  ctx.fillText(`보급 · ${ui.loadMode ? "적재" : "하역"}`, 58, 74);
+  ctx.font = "14px Malgun Gothic, sans-serif";
+  ctx.fillStyle = "#e7edf5";
+  ctx.fillText(`소지금 ${Number(selected?.money ?? 0).toLocaleString()} G`, 390, 74);
+
+  const priceText = RESOURCE_KEYS.map((k,i)=>{
+    const p=prices[k];
+    return `${RESOURCE_NAMES[i]} ${p==null?"?":p+"G"}`;
+  }).join("  ");
+  ctx.fillText(priceText,58,98);
+
+  ctx.font = "13px monospace";
+  (ships.length ? ships : [{name:"함선 없음"}]).slice(0,10).forEach((sh,i)=>{
+    const y=126+i*26;
+    const mark=i===ui.ship?"▶":" ";
+    const values=RESOURCE_KEYS.map(k=>String(resourceUnitsAboard(sh,k)).padStart(4," ")).join(" ");
+    ctx.fillStyle=i===ui.ship?"#f1d58b":"#d6dbe3";
+    ctx.fillText(`${mark} ${String(sh.name??"").slice(0,15).padEnd(15," ")} ${values}`,58,y);
+  });
+
+  if (ship) {
+    const max = ui.loadMode
+      ? maxSupplyLoad(selected,ship,resource)
+      : resourceUnitsAboard(ship,resource);
+    ctx.fillStyle="#e7edf5";
+    ctx.font="14px Malgun Gothic, sans-serif";
+    ctx.fillText(`선택: ${RESOURCE_NAMES[ui.resource]} · 현재 ${resourceUnitsAboard(ship,resource)} · 가능 ${max}`,58,300);
+    ctx.fillText(`화물 ${shipCargoUsed(ship)}/${ship.cargo} (빈칸 ${shipCargoFree(ship)}) · 총중량 ${ship.load} · ${ui.last || "←/→ 자원  ↑/↓ 함선"}`,58,324);
+  }
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText("L 적재 / U 하역 / Enter 1개 / Shift+Enter 10개 / M 최대 / ESC 메뉴",58,344);
+}
+
+function drawMarketTrade(ui, selling = false) {
+  const ships=selected?.fleet?.ships ?? [];
+  ui.ship=Math.max(0,Math.min(ui.ship,Math.max(0,ships.length-1)));
+  const pm=currentPortMarket(selected,marketAssets);
+  const rows=selling ? carriedGoodsRows(selected,marketAssets) : (pm?.buy ?? []);
+  ui.item=Math.max(0,Math.min(ui.item ?? 0,Math.max(0,rows.length-1)));
+  const row=rows[ui.item];
+
+  drawBox(34,40,572,316,"rgba(5,12,20,.988)");
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 20px Malgun Gothic, sans-serif";
+  ctx.fillText(`교역소 · ${selling?"매각":"구입"}`,54,70);
+  ctx.fillStyle="#e7edf5";
+  ctx.font="14px Malgun Gothic, sans-serif";
+  ctx.fillText(`소지금 ${Number(selected?.money??0).toLocaleString()} G · 경제 ${selected?.portMeta?.economy ?? 0}`,340,70);
+
+  ctx.font="13px Malgun Gothic, sans-serif";
+  rows.slice(0,11).forEach((it,i)=>{
+    const y=100+i*21;
+    ctx.fillStyle=i===ui.item?"#f1d58b":"#d7dde7";
+    if(selling){
+      ctx.fillText(`${i===ui.item?"▶":" "} ${String(it.name).padEnd(8," ")} ${String(it.quantity).padStart(4," ")}통  ${String(it.sellPrice).padStart(4," ")}G  ${it.shipName}`,54,y);
+    }else{
+      ctx.fillText(`${i===ui.item?"▶":" "} ${String(it.name).padEnd(8," ")} ${String(it.price).padStart(4," ")}G${it.specialty?"  ★특산":""}`,54,y);
+    }
+  });
+
+  if(!rows.length){
+    ctx.fillStyle="#aeb8c6";ctx.fillText(selling?"매각할 교역품이 없습니다.":"구입할 상품이 없습니다.",54,118);
+  }
+
+  if(row){
+    if(!selling){
+      const ship=ships[ui.ship];
+      ctx.fillStyle="#e7edf5";
+      ctx.fillText(`함선: ${ship?.name ?? "-"} · 화물 ${ship?shipCargoUsed(ship):0}/${ship?.cargo ?? 0} · 빈칸 ${ship?shipCargoFree(ship):0}`,330,302);
+      ctx.fillText(`선택 ${row.name} · ${row.price}G/통 · ${ui.last || "←/→ 함선 선택"}`,54,326);
+    }else{
+      ctx.fillStyle="#e7edf5";
+      ctx.fillText(`선택 ${row.name} · 매각 ${row.sellPrice}G/통 · ${row.shipName} · ${ui.last || ""}`,54,326);
+    }
+  }
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText(selling
+    ?"↑↓ 상품 · Enter 1통 · Shift+Enter 10통 · M 전량 · ESC 메뉴"
+    :"↑↓ 상품 · ←→ 함선 · Enter 1통 · Shift+Enter 10통 · M 최대 · ESC 메뉴",
+    54,348);
+}
+
+function drawMarketRates(ui) {
+  const pm=currentPortMarket(selected,marketAssets);
+  drawBox(300,70,314,286,"rgba(5,12,20,.988)");
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 18px Malgun Gothic, sans-serif";
+  ctx.fillText("시세 · 물가",320,100);
+  ctx.font="14px Malgun Gothic, sans-serif";
+  GOODS_CATEGORY_NAMES.forEach((name,i)=>{
+    const rate=pm?.rates?.[i] ?? 0;
+    ctx.fillStyle="#e7edf5";
+    ctx.fillText(`${name.padEnd(5," ")} ${String(rate).padStart(3," ")}`,320,128+i*20);
+  });
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText("ENTER / ESC: 메뉴",320,342);
+}
+
+function drawPubCrew(ui, dismissing = false) {
+  const ships=selected?.fleet?.ships ?? [];
+  ui.ship=Math.max(0,Math.min(ui.ship,Math.max(0,ships.length-1)));
+  const ship=ships[ui.ship];
+  const offer=pubRecruitOffer(selected,ui.pubEnthusiasm);
+
+  drawBox(56,52,548,296,"rgba(5,12,20,.988)");
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 20px Malgun Gothic, sans-serif";
+  ctx.fillText(`주점 · ${dismissing?"선원 해고":"선원 고용"}`,76,82);
+  ctx.fillStyle="#e7edf5";
+  ctx.font="14px Malgun Gothic, sans-serif";
+  ctx.fillText(`열의 ${ui.pubEnthusiasm} · 1인 ${offer.unitPrice}G · 가능 ${offer.maximum}명`,76,108);
+
+  ships.forEach((sh,i)=>{
+    const y=140+i*30;
+    ctx.fillStyle=i===ui.ship?"#f1d58b":"#d7dde7";
+    ctx.fillText(`${i===ui.ship?"▶":" "} ${sh.name}  ${sh.currentCrew}/${sh.maxCrew}명`,76,y);
+  });
+  if(ship){
+    ctx.fillStyle="#e7edf5";
+    ctx.fillText(`선택 ${ship.name} · 현재 ${ship.currentCrew}명 · 빈선실 ${Math.max(0,ship.maxCrew-ship.currentCrew)}`,76,284);
+    ctx.fillText(ui.last||"",76,308);
+  }
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText(dismissing
+    ?"↑↓ 함선 · Enter 1명 · Shift+Enter 10명 · M 전원 · ESC 메뉴"
+    :"↑↓ 함선 · Enter 1명 · Shift+Enter 10명 · M 최대 · ESC 메뉴",76,334);
+}
+
+function drawBankAmount(ui) {
+  const mode=ui.mode;
+  const meta={
+    "bank-deposit":{title:"예금",max:bankDepositMaximum(selected)},
+    "bank-withdraw":{title:"인출",max:bankWithdrawMaximum(selected)},
+    "bank-borrow":{title:"대출",max:bankBorrowMaximum(selected)},
+    "bank-repay":{title:"상환",max:bankRepayMaximum(selected)},
+  }[mode];
+  if(!meta) return;
+
+  ui.bankAmount=Math.max(0,Math.min(meta.max,Math.floor(ui.bankAmount||0)));
+  drawBox(102,88,440,232,"rgba(5,12,20,.988)");
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 20px Malgun Gothic, sans-serif";
+  ctx.fillText(`은행 · ${meta.title}`,122,120);
+  ctx.fillStyle="#e7edf5";
+  ctx.font="15px Malgun Gothic, sans-serif";
+  const bal=Math.trunc(selected?.bankBalance??0);
+  ctx.fillText(`소지금: ${Number(selected?.money??0).toLocaleString()} G`,122,154);
+  ctx.fillText(`은행잔액: ${bal.toLocaleString()} G`,122,180);
+  ctx.fillText(`작위: ${selected?.rank??0} · 신용한도: ${bankCreditLine(selected).toLocaleString()} G`,122,206);
+  ctx.fillText(`금액: ${ui.bankAmount.toLocaleString()} / 최대 ${meta.max.toLocaleString()} G`,122,236);
+  if(ui.last){
+    ctx.fillStyle="#d7dde7";
+    ctx.fillText(ui.last,122,264);
+  }
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText("←/→ 100G · Shift+←/→ 10,000G · M 최대 · Enter 실행 · ESC 메뉴",122,302);
+}
+
+function drawPubTreat(ui) {
+  const spec=pubSpecialty(selected);
+  const max=pubTreatMaximum(selected);
+  ui.pubAmount=Math.max(0,Math.min(max,ui.pubAmount||1));
+  const economy=Math.max(1,selected?.portMeta?.economy??0);
+  const strength=Math.floor(ui.pubAmount*200/economy);
+  const gain=Math.floor(strength*(selected?.charm??0)/10);
+  const next=Math.min(100,ui.pubEnthusiasm+gain);
+
+  drawBox(106,96,430,214,"rgba(5,12,20,.988)");
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 20px Malgun Gothic, sans-serif";
+  ctx.fillText("주점 · 한턱내기",126,128);
+  ctx.fillStyle="#e7edf5";
+  ctx.font="15px Malgun Gothic, sans-serif";
+  ctx.fillText(`특산주: ${spec.name} · ${spec.price}G/병`,126,160);
+  ctx.fillText(`병수: ${ui.pubAmount} / 최대 ${max}`,126,188);
+  ctx.fillText(`비용: ${ui.pubAmount*spec.price}G`,126,214);
+  ctx.fillText(`열의: ${ui.pubEnthusiasm} → ${next} (+${gain})`,126,240);
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText("←/→ 1병 · Shift+←/→ 10병 · M 최대 · Enter 구매 · ESC 메뉴",126,286);
+}
+
+function drawPortSupport(ui) {
+  drawBox(354,116,260,216);
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 17px Malgun Gothic, sans-serif";
+  ctx.fillText("항구의 지지율",374,144);
+  ctx.font="14px Malgun Gothic, sans-serif";
+  const support=selected?.portMeta?.support ?? [];
+  NATION_NAMES.forEach((name,i)=>{
+    ctx.fillStyle="#e7edf5";
+    ctx.fillText(`${name.padEnd(7," ")} ${String(support[i] ?? 0).padStart(3," ")}%`,374,172+i*23);
+  });
+  ctx.fillStyle="#9fb0c4";
+  ctx.font="12px Malgun Gothic, sans-serif";
+  ctx.fillText("ENTER / ESC: 돌아가기",374,318);
+}
+
+function renderBuildingInterface(s) {
+  const ui=ensureBuildingUi(s.building.id);
+  const options=buildingOptions(s.building.id);
+
+  if (ui.mode === "supply") {
+    drawHarborSupply(ui);
+    $("runtime-status").textContent = "항 · 보급 · 원본 적재량/가격 공식 적용";
+    return;
+  }
+  if (ui.mode === "pub-recruit") {
+    drawPubCrew(ui,false);
+    $("runtime-status").textContent = "주점 · 선원 고용 · 원본 열의/경제/작위 공식";
+    return;
+  }
+  if (ui.mode === "pub-dismiss") {
+    drawPubCrew(ui,true);
+    $("runtime-status").textContent = "주점 · 선원 해고";
+    return;
+  }
+  if (ui.mode === "pub-treat") {
+    drawPubTreat(ui);
+    $("runtime-status").textContent = "주점 · 한턱내기 · 열의 상승";
+    return;
+  }
+  if (ui.mode.startsWith("bank-")) {
+    drawBankAmount(ui);
+    $("runtime-status").textContent = "은행 · 원본 예금/대출 공식 적용";
+    return;
+  }
+  if (ui.mode === "market-buy") {
+    drawMarketTrade(ui,false);
+    $("runtime-status").textContent = "교역소 · 구입 · DATA1 시장/항구 시세 적용";
+    return;
+  }
+  if (ui.mode === "market-sell") {
+    drawMarketTrade(ui,true);
+    $("runtime-status").textContent = "교역소 · 매각 · 함선 교역품 5칸 적용";
+    return;
+  }
+  if (ui.mode === "market-rates") {
+    drawMarketRates(ui);
+    $("runtime-status").textContent = "교역소 · 시세/물가 · 10개 품목군";
+    return;
+  }
+  if (ui.mode === "support") {
+    drawPortSupport(ui);
+    $("runtime-status").textContent = "여관 · 항구의 지지율";
+    return;
+  }
+
+  ctx.fillStyle="#f1d58b";
+  ctx.font="bold 24px Malgun Gothic, sans-serif";
+  ctx.fillText(s.building.name,390,72);
+  ctx.fillStyle="#e7edf5";
+  ctx.font="15px Malgun Gothic, sans-serif";
+  ctx.fillText(`${s.portName} · ${selected?.dateTime?.year ?? ""}.${selected?.dateTime?.month ?? ""}.${selected?.dateTime?.day ?? ""} ${String(selected?.dateTime?.hour ?? 0).padStart(2,"0")}:${String(selected?.dateTime?.minute ?? 0).padStart(2,"0")}`,390,100);
+
+  if (ui.mode === "menu") {
+    const opts=options.length?options:["전용 기능"];
+    opts.forEach((opt,i)=>{
+      ctx.fillStyle=i===ui.cursor?"#f1d58b":"#dce3ec";
+      ctx.fillText(`${i===ui.cursor?"▶":" "} ${opt}`,390,136+i*27);
+    });
+    ctx.fillStyle="#9fb0c4";
+    ctx.font="12px Malgun Gothic, sans-serif";
+    ctx.fillText(`↑↓ 선택 · ENTER 실행 · ESC 나가기 · 방문 ${ui.visitTicks*20}분`,390,356);
+    $("runtime-status").textContent = `건물: ${s.building.name} · MENU.DAT #${BUILDING_MENU_INDEX[s.building.id]}`;
+  } else if (ui.mode === "message" || ui.mode === "sail-confirm") {
+    drawBuildingMessage(ui);
+    $("runtime-status").textContent = ui.mode === "sail-confirm"
+      ? `출항 확인 · 예상 ${ui.departure?.days ?? 0}일`
+      : `건물 메시지 · MESSAGE #${ui.messageId ?? "-"}`;
+  }
+}
+
+function exitBuildingWithVisitTime() {
+  if (buildingUi?.visitTicks && selected?.dateTime) {
+    advanceDateTicks(selected.dateTime,buildingUi.visitTicks);
+  }
+  buildingUi=null;
+  townRuntime.leaveBuilding();
+  renderTownScreen();
+}
+
+function runBuildingCommand(ui, buildingId) {
+  const cursor=ui.cursor;
+  if (buildingId === 1) {
+    if (cursor === 0) {
+      ui.mode="pub-recruit"; ui.ship=0; ui.last="";
+      return;
+    }
+    if (cursor === 1) {
+      ui.mode="pub-dismiss"; ui.ship=0; ui.last="";
+      return;
+    }
+    if (cursor === 2) {
+      ui.mode="pub-treat"; ui.pubAmount=1; ui.last="";
+      return;
+    }
+    ui.mode="message";
+    ui.messageId=null;
+    ui.messageText=`${buildingOptions(buildingId)[cursor] ?? "이 기능"}: 항해자/여급/도박은 다음 역분석 단위에서 연결합니다.`;
+    return;
+  }
+  if (buildingId === 0) {
+    if (cursor === 0) {
+      ui.mode="market-buy"; ui.item=0; ui.ship=0; ui.last="";
+      return;
+    }
+    if (cursor === 1) {
+      ui.mode="market-sell"; ui.item=0; ui.last="";
+      return;
+    }
+    if (cursor === 2) {
+      ui.mode="message"; ui.messageId=null;
+      ui.messageText="투자는 원본 경제·지지율 변동식과 투자 한도 검증 후 연결합니다.";
+      return;
+    }
+    ui.mode="market-rates"; ui.item=0; ui.last="";
+    return;
+  }
+  if (buildingId === 3) {
+    if (cursor === 0) {
+      const departure=harborDepartureStatus(selected);
+      ui.departure=departure;
+      ui.messageId=departure.messageId;
+      ui.messageText="";
+      ui.mode=departure.allowed?"sail-confirm":"message";
+      return;
+    }
+    if (cursor === 1) {
+      ui.mode="supply";
+      ui.ship=0; ui.resource=0; ui.loadMode=true; ui.last="";
+      return;
+    }
+    ui.mode="message";
+    ui.messageId=null;
+    ui.messageText="도크의 보관·취역·교환은 다음 구현 단계에서 원본 선박 예비 레코드와 연결합니다.";
+    return;
+  }
+  if (buildingId === 8) {
+    const modes=["bank-deposit","bank-withdraw","bank-borrow","bank-repay"];
+    ui.mode=modes[cursor] ?? "menu";
+    ui.bankAmount=100;
+    ui.last="";
+    const max={
+      "bank-deposit":bankDepositMaximum(selected),
+      "bank-withdraw":bankWithdrawMaximum(selected),
+      "bank-borrow":bankBorrowMaximum(selected),
+      "bank-repay":bankRepayMaximum(selected),
+    }[ui.mode] ?? 0;
+    if(max<=0){
+      let probe={messageId:null,reason:"unavailable"};
+      if(ui.mode==="bank-deposit") probe=bankDeposit(selected,0);
+      else if(ui.mode==="bank-withdraw") probe=bankWithdraw(selected,0);
+      else if(ui.mode==="bank-borrow") probe=bankBorrow(selected,0);
+      else if(ui.mode==="bank-repay") probe=bankRepay(selected,0);
+      ui.mode="message";
+      ui.messageId=probe.messageId;
+      ui.messageText="";
+    } else {
+      ui.bankAmount=Math.min(100,max);
+    }
+    return;
+  }
+
+  if (buildingId === 4) {
+    if (cursor === 2) {
+      lodgeCheckIn(selected.dateTime);
+      buildingUi=null;
+      townRuntime.leaveBuilding();
+      townRuntime.lastEvent="lodge-check-in";
+      renderTownScreen();
+      return;
+    }
+    if (cursor === 1) {
+      ui.mode="support";
+      return;
+    }
+    ui.mode="message";
+    ui.messageId=67;
+    ui.messageText="";
+    return;
+  }
+
+  ui.mode="message";
+  ui.messageId=null;
+  ui.messageText=`${buildingOptions(buildingId)[cursor] ?? "이 기능"}: 원본 메뉴 진입은 연결됐으며 거래/이벤트 로직을 계속 이식 중입니다.`;
+}
+
+function handleBuildingKey(event) {
+  const building=townRuntime?.insideBuilding;
+  if (!building) return false;
+  const ui=ensureBuildingUi(building.id);
+  const key=event.key.toLowerCase();
+
+  if (ui.mode === "message") {
+    if (!["shift","control","alt","meta"].includes(key)) {
+      event.preventDefault();
+      ui.mode="menu"; ui.messageId=null; ui.messageText=""; ui.departure=null;
+      renderTownScreen();
+    }
+    return true;
+  }
+
+  if (ui.mode === "sail-confirm") {
+    if (key === "enter" || key === "y" || key === "1") {
+      event.preventDefault();
+      advanceDateTicks(selected.dateTime,ui.visitTicks);
+      consumeDepartureDay(selected);
+      buildingUi=null;
+      startSeaFromPort();
+      return true;
+    }
+    if (key === "escape" || key === "n") {
+      event.preventDefault();
+      ui.mode="menu"; ui.departure=null; ui.messageId=null;
+      renderTownScreen();
+    }
+    return true;
+  }
+
+  if (ui.mode.startsWith("bank-")) {
+    const mode=ui.mode;
+    const max={
+      "bank-deposit":bankDepositMaximum(selected),
+      "bank-withdraw":bankWithdrawMaximum(selected),
+      "bank-borrow":bankBorrowMaximum(selected),
+      "bank-repay":bankRepayMaximum(selected),
+    }[mode] ?? 0;
+    ui.bankAmount=Math.max(0,Math.min(max,ui.bankAmount||0));
+
+    if(key==="escape"){
+      event.preventDefault();
+      ui.mode="menu"; ui.last="";
+      renderTownScreen();
+      return true;
+    }
+    const step=event.shiftKey?10000:100;
+    if(key==="arrowleft"){
+      event.preventDefault();
+      ui.bankAmount=Math.max(0,ui.bankAmount-step);
+      renderTownScreen(); return true;
+    }
+    if(key==="arrowright"){
+      event.preventDefault();
+      ui.bankAmount=Math.min(max,ui.bankAmount+step);
+      renderTownScreen(); return true;
+    }
+    if(key==="m"){
+      event.preventDefault();
+      ui.bankAmount=max;
+      renderTownScreen(); return true;
+    }
+    if(key==="enter"){
+      event.preventDefault();
+      let tx;
+      if(mode==="bank-deposit") tx=bankDeposit(selected,ui.bankAmount);
+      else if(mode==="bank-withdraw") tx=bankWithdraw(selected,ui.bankAmount);
+      else if(mode==="bank-borrow") tx=bankBorrow(selected,ui.bankAmount);
+      else tx=bankRepay(selected,ui.bankAmount);
+      ui.last=tx.quantity
+        ? `${tx.quantity.toLocaleString()}G 처리 · 잔액 ${Number(selected.bankBalance??0).toLocaleString()}G`
+        : `처리 불가: ${tx.reason??"unknown"}`;
+      ui.bankAmount=Math.min(ui.bankAmount,{
+        "bank-deposit":bankDepositMaximum(selected),
+        "bank-withdraw":bankWithdrawMaximum(selected),
+        "bank-borrow":bankBorrowMaximum(selected),
+        "bank-repay":bankRepayMaximum(selected),
+      }[mode] ?? 0);
+      renderTownScreen(); return true;
+    }
+    return true;
+  }
+
+  if (ui.mode === "pub-recruit" || ui.mode === "pub-dismiss") {
+    const dismissing=ui.mode==="pub-dismiss";
+    const ships=selected?.fleet?.ships ?? [];
+    ui.ship=Math.max(0,Math.min(ui.ship,Math.max(0,ships.length-1)));
+    if (key === "escape") {
+      event.preventDefault(); ui.mode="menu"; ui.last=""; renderTownScreen(); return true;
+    }
+    if (key === "arrowup" || key === "w") {
+      event.preventDefault(); ui.ship=Math.max(0,ui.ship-1); renderTownScreen(); return true;
+    }
+    if (key === "arrowdown" || key === "s") {
+      event.preventDefault(); ui.ship=Math.min(Math.max(0,ships.length-1),ui.ship+1); renderTownScreen(); return true;
+    }
+    if (key === "enter" || key === "m") {
+      event.preventDefault();
+      const ship=ships[ui.ship];
+      if(ship){
+        let q=event.shiftKey?10:1;
+        if(key==="m"){
+          q=dismissing ? ship.currentCrew : Math.min(
+            Math.max(0,ship.maxCrew-ship.currentCrew),
+            pubRecruitOffer(selected,ui.pubEnthusiasm).maximum
+          );
+        }
+        const tx=dismissing
+          ? dismissCrew(selected,ui.ship,q)
+          : hireCrew(selected,ui.ship,q,ui.pubEnthusiasm);
+        ui.last=dismissing
+          ? `선원 -${tx.quantity}`
+          : tx.reason==="used-today"
+            ? "오늘은 이미 선원을 고용했습니다."
+            : `선원 +${tx.quantity} / -${Number(tx.cost??0).toLocaleString()}G`;
+      }
+      renderTownScreen(); return true;
+    }
+    return true;
+  }
+
+  if (ui.mode === "pub-treat") {
+    const max=pubTreatMaximum(selected);
+    if(key==="escape"){
+      event.preventDefault();ui.mode="menu";renderTownScreen();return true;
+    }
+    if(key==="arrowleft"){
+      event.preventDefault();ui.pubAmount=Math.max(0,(ui.pubAmount||0)-(event.shiftKey?10:1));renderTownScreen();return true;
+    }
+    if(key==="arrowright"){
+      event.preventDefault();ui.pubAmount=Math.min(max,(ui.pubAmount||0)+(event.shiftKey?10:1));renderTownScreen();return true;
+    }
+    if(key==="m"){
+      event.preventDefault();ui.pubAmount=max;renderTownScreen();return true;
+    }
+    if(key==="enter"){
+      event.preventDefault();
+      const tx=pubTreat(selected,ui.pubEnthusiasm,ui.pubAmount);
+      ui.pubEnthusiasm=tx.enthusiasm;
+      ui.last=`${tx.specialty.name} ${tx.bottles}병 / -${tx.cost}G / 열의 +${tx.gain}`;
+      ui.mode="menu";
+      renderTownScreen();return true;
+    }
+    return true;
+  }
+
+  if (ui.mode === "market-rates") {
+    if (key === "enter" || key === "escape" || key === " ") {
+      event.preventDefault();
+      ui.mode="menu";
+      renderTownScreen();
+    }
+    return true;
+  }
+
+  if (ui.mode === "market-buy" || ui.mode === "market-sell") {
+    const selling=ui.mode==="market-sell";
+    const ships=selected?.fleet?.ships ?? [];
+    const pm=currentPortMarket(selected,marketAssets);
+    const rows=selling ? carriedGoodsRows(selected,marketAssets) : (pm?.buy ?? []);
+    ui.item=Math.max(0,Math.min(ui.item??0,Math.max(0,rows.length-1)));
+    ui.ship=Math.max(0,Math.min(ui.ship??0,Math.max(0,ships.length-1)));
+
+    if (key === "escape") {
+      event.preventDefault();
+      ui.mode="menu"; ui.last="";
+      renderTownScreen();
+      return true;
+    }
+    if (key === "arrowup" || key === "w") {
+      event.preventDefault();
+      ui.item=Math.max(0,ui.item-1);
+      renderTownScreen();
+      return true;
+    }
+    if (key === "arrowdown" || key === "s") {
+      event.preventDefault();
+      ui.item=Math.min(Math.max(0,rows.length-1),ui.item+1);
+      renderTownScreen();
+      return true;
+    }
+    if (!selling && (key === "arrowleft" || key === "a")) {
+      event.preventDefault();
+      ui.ship=Math.max(0,ui.ship-1);
+      renderTownScreen();
+      return true;
+    }
+    if (!selling && (key === "arrowright" || key === "d")) {
+      event.preventDefault();
+      ui.ship=Math.min(Math.max(0,ships.length-1),ui.ship+1);
+      renderTownScreen();
+      return true;
+    }
+    if (key === "enter" || key === "m") {
+      event.preventDefault();
+      const row=rows[ui.item];
+      if (row) {
+        let q=event.shiftKey?10:1;
+        if (key==="m") {
+          if (selling) q=row.quantity;
+          else {
+            const ship=ships[ui.ship];
+            q=ship ? Math.min(shipCargoFree(ship),Math.floor((selected?.money??0)/Math.max(1,row.price))) : 0;
+          }
+        }
+        if (selling) {
+          const tx=sellGoods(selected,marketAssets,row.shipIndex,row.goodsSlot,q);
+          ui.last=`${tx.name??row.name} -${tx.quantity} / +${Number(tx.revenue??0).toLocaleString()}G`;
+        } else {
+          const tx=buyGoods(selected,marketAssets,ui.ship,row.good,q);
+          ui.last=`${tx.name??row.name} +${tx.quantity} / -${Number(tx.cost??0).toLocaleString()}G`;
+        }
+      }
+      renderTownScreen();
+      return true;
+    }
+    return true;
+  }
+
+  if (ui.mode === "support") {
+    if (key === "enter" || key === "escape" || key === " ") {
+      event.preventDefault(); ui.mode="menu"; renderTownScreen();
+    }
+    return true;
+  }
+
+  if (ui.mode === "supply") {
+    const ships=selected?.fleet?.ships ?? [];
+    if (key === "escape") {
+      event.preventDefault(); ui.mode="menu"; renderTownScreen(); return true;
+    }
+    if (key === "arrowup") ui.ship=Math.max(0,ui.ship-1);
+    else if (key === "arrowdown") ui.ship=Math.min(Math.max(0,ships.length-1),ui.ship+1);
+    else if (key === "arrowleft") ui.resource=(ui.resource+3)%4;
+    else if (key === "arrowright") ui.resource=(ui.resource+1)%4;
+    else if (key === "l") ui.loadMode=true;
+    else if (key === "u" || key === "tab") ui.loadMode=!ui.loadMode;
+    else if (key === "enter" || key === "m") {
+      const ship=ships[ui.ship];
+      const resource=RESOURCE_KEYS[ui.resource];
+      if (ship) {
+        let q=key==="m"
+          ? (ui.loadMode?maxSupplyLoad(selected,ship,resource):resourceUnitsAboard(ship,resource))
+          : (event.shiftKey?10:1);
+        const tx=ui.loadMode
+          ? loadSupply(selected,ui.ship,resource,q)
+          : unloadSupply(selected,ui.ship,resource,q);
+        ui.last=ui.loadMode
+          ? `${RESOURCE_NAMES[ui.resource]} +${tx.quantity} / -${Number(tx.cost??0).toLocaleString()}G`
+          : `${RESOURCE_NAMES[ui.resource]} -${tx.quantity}`;
+      }
+    } else return true;
+    event.preventDefault();
+    renderTownScreen();
+    return true;
+  }
+
+  const opts=buildingOptions(building.id);
+  if (key === "escape") {
+    event.preventDefault(); exitBuildingWithVisitTime(); return true;
+  }
+  if (key === "arrowup" || key === "w") {
+    event.preventDefault(); ui.cursor=(ui.cursor+Math.max(1,opts.length)-1)%Math.max(1,opts.length); renderTownScreen(); return true;
+  }
+  if (key === "arrowdown" || key === "s") {
+    event.preventDefault(); ui.cursor=(ui.cursor+1)%Math.max(1,opts.length); renderTownScreen(); return true;
+  }
+  if (key === "enter") {
+    event.preventDefault(); runBuildingCommand(ui,building.id); renderTownScreen(); return true;
+  }
+  return true;
 }
 
 function townMessageText(talk) {
@@ -372,28 +1203,7 @@ function renderTownScreen() {
     ctx.strokeStyle = "#c9a95e";
     ctx.lineWidth = 2;
     ctx.strokeRect(20, 36, 338, 280);
-
-    ctx.fillStyle = "#f1d58b";
-    ctx.font = "bold 24px Malgun Gothic, sans-serif";
-    ctx.fillText(s.building.name, 390, 72);
-    ctx.fillStyle = "#e7edf5";
-    ctx.font = "16px Malgun Gothic, sans-serif";
-    ctx.fillText(`${s.portName} · 건물 #${s.building.id}`, 390, 104);
-    const menuIndex = BUILDING_MENU_INDEX[s.building.id];
-    const menuText = Number.isInteger(menuIndex)
-      ? stripMenuControls(menus[menuIndex]?.text ?? "")
-      : "전용 이벤트/대화";
-    const chunks = menuText.match(/.{1,16}/g) ?? [menuText];
-    chunks.slice(0, 8).forEach((line, i) => ctx.fillText(line, 390, 142 + i * 24));
-    ctx.fillStyle = "#9fb0c4";
-    if (s.building.id === 3 && worldAssets) {
-      ctx.fillStyle = "#f1d58b";
-      ctx.fillText("ENTER / 1 / S: 출항", 390, 330);
-    }
-    ctx.fillStyle = "#9fb0c4";
-    ctx.fillText("ESC: 항구로 돌아가기", 390, 360);
-    $("runtime-status").textContent =
-      `건물 진입: ${s.building.name} · 원본 GRAPH.DAT vendor art`;
+    renderBuildingInterface(s);
   } else {
     renderTownView(ctx, portAssets, s.portId, s, 16, 16, !charAssets);
     if (charAssets) {
@@ -445,6 +1255,9 @@ function renderTownScreen() {
     hero: selected?.heroName,
     money: selected?.money,
     ...s,
+    buildingUi,
+    fleet: selected?.fleet ?? null,
+    dateTime: selected?.dateTime ?? null,
   }, null, 2);
 }
 
@@ -492,6 +1305,7 @@ function buildArrivalSlot(port, seaState) {
     portCatalogId: port.id,
     portName: port.name,
     portWorld: { nation: port.nation, x: port.x, y: port.y },
+    portMeta: port.meta ? structuredClone(port.meta) : null,
     dateTime: { ...seaState.dateTime },
     portState: {
       viewX, viewY,
@@ -605,10 +1419,11 @@ function renderRuntime() {
   requestAnimationFrame(renderRuntime);
 }
 
-$("opening-button").addEventListener("click", drawOpeningScreen);
+$("opening-button").addEventListener("click", startOpeningPlayback);
 
 $("run-button").addEventListener("click", () => {
   if (!selected) return;
+  stopOpening(false);
   if (selected.port !== 0xff && portAssets && portDoors) {
     if (runtime) runtime.pause();
     townRuntime = new PortWalkingRuntime(selected, portAssets, portDoors);
@@ -627,6 +1442,12 @@ $("run-button").addEventListener("click", () => {
 
 window.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
+
+  if (viewMode === "opening") {
+    event.preventDefault();
+    stopOpening(true);
+    return;
+  }
 
   if (viewMode === "sea" && seaRuntime) {
     let handled = true;
@@ -658,17 +1479,7 @@ window.addEventListener("keydown", (event) => {
   }
 
   if (townRuntime.insideBuilding) {
-    if (townRuntime.insideBuilding.id === 3 &&
-        (key === "enter" || key === "1" || key === "s")) {
-      event.preventDefault();
-      startSeaFromPort();
-      return;
-    }
-    if (event.key === "Escape") {
-      event.preventDefault();
-      townRuntime.leaveBuilding();
-      renderTownScreen();
-    }
+    handleBuildingKey(event);
     return;
   }
 
@@ -693,19 +1504,32 @@ $("pause-button").addEventListener("click", () => {
   }
 });
 
-Promise.all([
+// The original OPEN.EXE intro is the boot sequence.  Do not hold it behind
+// unrelated save, portrait, port-map, or world-data fetches.
+const openingBoot = loadOpeningGraphics().then(() => {
+  if (viewMode !== "town" && viewMode !== "sea" && viewMode !== "runtime" && viewMode !== "preview") {
+    startOpeningPlayback();
+  }
+}).catch(err => {
+  $("opening-status").textContent = "오프닝 로드 오류: " + err.message;
+  $("debug").textContent = err.stack || String(err);
+});
+
+const gameBoot = Promise.allSettled([
   loadManifest(),
   loadTables(),
   loadSaves(),
   loadPortraits(),
   loadPortMaps(),
-  loadOpeningGraphics(),
   loadTownSupport(),
   loadWorldSupport(),
   loadCharacterSupport(),
-]).then(() => {
-  drawOpeningScreen();
-}).catch(err => {
-  $("runtime-status").textContent = "로드 오류: " + err.message;
-  $("debug").textContent = err.stack || String(err);
+]).then(results => {
+  const failed = results.filter(r => r.status === "rejected");
+  if (failed.length) {
+    $("runtime-status").textContent = "게임 데이터 일부 로드 오류: " +
+      failed.map(r => r.reason?.message ?? String(r.reason)).join("; ");
+  }
 });
+
+Promise.allSettled([openingBoot, gameBoot]);

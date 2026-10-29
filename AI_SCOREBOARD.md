@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 8 new-SHA independent Korean lettering QA (2026-10-29 15:15 KST)
+
+- RUN_KEY `OUTRUN-C1-AI2-20261029T1515KST-A0123-B0138-NEW-SHA8`. Checked 39 prior N100 C1 reports / 279 distinct candidate SHA; independently selected eight first-time, SHA-verified A-0123..0126 and B-0135..0138 exports. All 8 local candidate SHA256 matched export evidence, all 8 original full-HD source PNG SHA256 matched the production manifest, all RGBA with zero alpha>=32 pixels on output canvas border.
+- Direct English-source-crop vs Korean transparent PNG and aspect-preserving simulated native fit visual QA: **C1 LETTERING-LAYER PASS 7 / FAIL 1 / HOLD 0**. A-0123 '엔진음 크게' **FAIL_UNNECESSARY_OPAQUE_YELLOW_BANNER**: translation is legible, but a solid yellow trapezoidal plate and black border were generated in a lettering-only transparent layer. A-0124/0125/0126 and B-0135/0136/0137/0138 passed glyph/legibility/translation mapping and no observable material clipping/English residue. Shorter Korean sentence width alone was never rejected.
+- N100 evidence `work/C1_QA_20261029_1515_AI2_report.json` and `work/C1_QA_20261029_1515_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg}`. [Asset C1 report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1515_AI2_A0123_B0138_SHA8.json); asset remote HEAD `9e4cfde07769d43c1cf243fce56c5a17f385633b`, verified blob `96c7d56d1517968dd7f743a07ac795eb5c5f2138`.
+- Lettering layer only: original protected-art composite and native 50% game readability **NOT TESTED**; DDS, C2, C3, actual game **NOT TESTED**, `RUNTIME_VALIDATION=UNTESTED`. C1 did not call ImageGen or consume A/B queue; no VR/FFB/DX11/DXVK changes. Same task, retry, check, or report earns +0. AI 1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2146 + one distinct 8-new-SHA independent C1 QA achievement +1 = 2147.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 대항해시대 II 브라우저 M1 원본 데이터/LS11 런타임 구현 (2026-10-29 KST)
 
 - 사용자 요청에 따라 N100 REA 역분석을 실제 브라우저 네이티브 구현으로 확장했다. `thp32tt/ai-dev-lab@uw2-web-port`에 원본 게임 자산을 포함하지 않은 웹 런타임 소스를 구현하고, N100 `0.0.0.0:18082`에서 실행 검증했다. `KOUKAI2.DAT` 10-slot/33,340-byte 페이지 구조, `MENU.DAT` 61개 및 `MESSAGE.DAT` 1,179개 BE-u16 offset + CP949 string table을 실제 제공 데이터에서 직접 파싱한다.

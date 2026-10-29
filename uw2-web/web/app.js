@@ -2,13 +2,25 @@ import { parseOffsetTextTable, parseSaveSlots, stripMenuControls } from "./binar
 import { ReaGameRuntime } from "./runtime.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
-import { decodePortAssets, renderPortMapToCanvas, renderPortViewport } from "./port-map.js";
+import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
 import {
   decodeOpeningArchive,
   chooseTitleLikeRecord,
   chooseOpeningGallery,
   drawOpeningFit,
 } from "./opening.js";
+import { readGraphRecords, decodeGraphRecord } from "./graph-format.js";
+import {
+  parsePortDoors,
+  PortWalkingRuntime,
+  BUILDING_MENU_INDEX,
+} from "./town.js";
+import {
+  decodeWorldAssets,
+  findNearestSea,
+  renderSeaView,
+  SeaRuntime,
+} from "./world-map.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("screen");
@@ -24,6 +36,11 @@ let kaoPortraits = [];
 let portAssets = null;
 let openingData = null;
 let openingTitle = null;
+let portDoors = null;
+let townRuntime = null;
+let buildingImages = [];
+let worldAssets = null;
+let seaRuntime = null;
 
 async function loadBuffer(name) {
   const res = await fetch("/game/" + encodeURIComponent(name), { cache: "no-store" });
@@ -115,6 +132,24 @@ function renderSelectedPortMap() {
   const info = renderPortMapToCanvas(portCanvas, portAssets, selected.port, 0.25);
   $("portmap-status").textContent =
     `PORT #${selected.port} ${selected.portName} · CHIP bank ${info.bankId} · 96×96 tiles / 1536×1536 px`;
+}
+
+async function loadWorldSupport() {
+  const [worldBuf, data1Buf] = await Promise.all([
+    loadBuffer("WORLDMAP.LZW"),
+    loadBuffer("DATA1.LZW"),
+  ]);
+  worldAssets = decodeWorldAssets(worldBuf, data1Buf);
+}
+
+async function loadTownSupport() {
+  const [zaBuf, graphBuf] = await Promise.all([
+    loadBuffer("ZA_DAT.DAT"),
+    loadBuffer("GRAPH.DAT"),
+  ]);
+  portDoors = parsePortDoors(zaBuf);
+  const records = readGraphRecords(new Uint8Array(graphBuf));
+  buildingImages = records.slice(6, 18).map(decodeGraphRecord);
 }
 
 async function loadPortMaps() {
@@ -263,6 +298,144 @@ function drawOpeningScreen() {
   }, null, 2);
 }
 
+function drawBuildingImage(image, x, y, w, h) {
+  if (!image) return;
+  ctx.fillStyle = "#000";
+  ctx.fillRect(x, y, w, h);
+  drawOpeningFit(ctx, image, x, y, w, h);
+}
+
+function renderTownScreen() {
+  if (!townRuntime || !portAssets) return;
+  const s = townRuntime.snapshot();
+  ctx.fillStyle = "#05070b";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  if (s.building) {
+    const image = buildingImages[s.building.id];
+    drawBuildingImage(image, 24, 40, 330, 272);
+    ctx.strokeStyle = "#c9a95e";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(20, 36, 338, 280);
+
+    ctx.fillStyle = "#f1d58b";
+    ctx.font = "bold 24px Malgun Gothic, sans-serif";
+    ctx.fillText(s.building.name, 390, 72);
+    ctx.fillStyle = "#e7edf5";
+    ctx.font = "16px Malgun Gothic, sans-serif";
+    ctx.fillText(`${s.portName} · 건물 #${s.building.id}`, 390, 104);
+    const menuIndex = BUILDING_MENU_INDEX[s.building.id];
+    const menuText = Number.isInteger(menuIndex)
+      ? stripMenuControls(menus[menuIndex]?.text ?? "")
+      : "전용 이벤트/대화";
+    const chunks = menuText.match(/.{1,16}/g) ?? [menuText];
+    chunks.slice(0, 8).forEach((line, i) => ctx.fillText(line, 390, 142 + i * 24));
+    ctx.fillStyle = "#9fb0c4";
+    if (s.building.id === 3 && worldAssets) {
+      ctx.fillStyle = "#f1d58b";
+      ctx.fillText("ENTER / 1 / S: 출항", 390, 330);
+    }
+    ctx.fillStyle = "#9fb0c4";
+    ctx.fillText("ESC: 항구로 돌아가기", 390, 360);
+    $("runtime-status").textContent =
+      `건물 진입: ${s.building.name} · 원본 GRAPH.DAT vendor art`;
+  } else {
+    renderTownView(ctx, portAssets, s.portId, s, 16, 16);
+    ctx.strokeStyle = "#c9a95e";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(14, 14, 372, 372);
+
+    ctx.fillStyle = "#f1d58b";
+    ctx.font = "bold 20px Malgun Gothic, sans-serif";
+    ctx.fillText(s.portName, 408, 48);
+    ctx.fillStyle = "#e7edf5";
+    ctx.font = "15px Malgun Gothic, sans-serif";
+    const lines = [
+      `map: (${s.mapX}, ${s.mapY})`,
+      `view: (${s.viewX}, ${s.viewY})`,
+      `player: (${s.playerX}, ${s.playerY})`,
+      `facing: ${s.facing}`,
+      "",
+      "이동:",
+      "방향키 / WASD",
+      "숫자 8 6 2 4",
+      "",
+      "문 위로 걸으면",
+      "건물에 들어갑니다.",
+    ];
+    lines.forEach((line, i) => ctx.fillText(line, 408, 84 + i * 25));
+    $("runtime-status").textContent =
+      `항구 보행 · ${s.portName} · 실제 SAVE 좌표/PORTMAP 충돌 사용`;
+  }
+
+  $("debug").textContent = JSON.stringify({
+    mode: "town",
+    hero: selected?.heroName,
+    money: selected?.money,
+    ...s,
+  }, null, 2);
+}
+
+function moveTown(direction) {
+  if (!townRuntime || viewMode !== "town") return;
+  townRuntime.move(direction);
+  renderTownScreen();
+}
+
+function startSeaFromPort() {
+  if (!selected?.portWorld || !worldAssets) return false;
+  const start = findNearestSea(worldAssets, selected.portWorld.x, selected.portWorld.y, 40);
+  if (!start) {
+    $("runtime-status").textContent = "출항 실패: 항구 근처 항해 가능 바다를 찾지 못했습니다.";
+    return false;
+  }
+  seaRuntime = new SeaRuntime(worldAssets, start);
+  viewMode = "sea";
+  renderSeaScreen();
+  return true;
+}
+
+function renderSeaScreen() {
+  if (!seaRuntime || !worldAssets) return;
+  const s = seaRuntime.snapshot();
+  ctx.fillStyle = "#05070b";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  renderSeaView(ctx, worldAssets, s, 16, 16, 23, 23);
+  ctx.strokeStyle = "#c9a95e";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(14, 14, 372, 372);
+
+  const dirNames = ["북","북동","동","남동","남","남서","서","북서"];
+  ctx.fillStyle = "#f1d58b";
+  ctx.font = "bold 20px Malgun Gothic, sans-serif";
+  ctx.fillText("해상", 408, 48);
+  ctx.fillStyle = "#e7edf5";
+  ctx.font = "15px Malgun Gothic, sans-serif";
+  const lines = [
+    `출항: ${selected?.portName ?? ""}`,
+    `좌표: (${s.x}, ${s.y})`,
+    `방향: ${dirNames[s.heading]} / ${s.heading}`,
+    `이동: ${s.steps}칸`,
+    `상태: ${s.lastEvent}`,
+    "",
+    "←/A/4 : 좌회전",
+    "→/D/6 : 우회전",
+    "↑/W/8 : 전진",
+    "",
+    "현재는 지도/충돌/조타",
+    "직접 실행 단계입니다.",
+  ];
+  lines.forEach((line, i) => ctx.fillText(line, 408, 82 + i * 25));
+  $("runtime-status").textContent =
+    `해상 항해 · WORLDMAP/DATA1 원본 지도 · (${s.x}, ${s.y})`;
+  $("debug").textContent = JSON.stringify({
+    mode: "sea",
+    fromPort: selected?.portName,
+    portWorld: selected?.portWorld,
+    ...s,
+  }, null, 2);
+}
+
 function renderRuntime() {
   if (!runtime || viewMode !== "runtime") return;
   runtime.tick();
@@ -296,12 +469,63 @@ $("opening-button").addEventListener("click", drawOpeningScreen);
 
 $("run-button").addEventListener("click", () => {
   if (!selected) return;
+  if (selected.port !== 0xff && portAssets && portDoors) {
+    if (runtime) runtime.pause();
+    townRuntime = new PortWalkingRuntime(selected, portAssets, portDoors);
+    viewMode = "town";
+    $("pause-button").disabled = true;
+    renderTownScreen();
+    return;
+  }
   runtime = new ReaGameRuntime(selected, menus, messages);
   runtime.start();
   viewMode = "runtime";
   $("pause-button").disabled = false;
   $("pause-button").textContent = "일시정지";
   renderRuntime();
+});
+
+window.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+
+  if (viewMode === "sea" && seaRuntime) {
+    let handled = true;
+    if (key === "arrowleft" || key === "a" || key === "4") seaRuntime.turn(-1);
+    else if (key === "arrowright" || key === "d" || key === "6") seaRuntime.turn(1);
+    else if (key === "arrowup" || key === "w" || key === "8" || key === " ") seaRuntime.move();
+    else handled = false;
+    if (handled) {
+      event.preventDefault();
+      renderSeaScreen();
+    }
+    return;
+  }
+
+  if (viewMode !== "town" || !townRuntime) return;
+
+  if (townRuntime.insideBuilding) {
+    if (townRuntime.insideBuilding.id === 3 &&
+        (key === "enter" || key === "1" || key === "s")) {
+      event.preventDefault();
+      startSeaFromPort();
+      return;
+    }
+    if (event.key === "Escape") {
+      event.preventDefault();
+      townRuntime.leaveBuilding();
+      renderTownScreen();
+    }
+    return;
+  }
+
+  const direction =
+    key === "arrowup" || key === "w" || key === "8" ? "up" :
+    key === "arrowright" || key === "d" || key === "6" ? "right" :
+    key === "arrowdown" || key === "s" || key === "2" ? "down" :
+    key === "arrowleft" || key === "a" || key === "4" ? "left" : null;
+  if (!direction) return;
+  event.preventDefault();
+  moveTown(direction);
 });
 
 $("pause-button").addEventListener("click", () => {
@@ -322,6 +546,8 @@ Promise.all([
   loadPortraits(),
   loadPortMaps(),
   loadOpeningGraphics(),
+  loadTownSupport(),
+  loadWorldSupport(),
 ]).then(() => {
   drawOpeningScreen();
 }).catch(err => {

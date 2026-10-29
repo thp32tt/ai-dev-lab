@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 six distinct new-SHA Korean lettering independent QA (2026-10-29 17:45 KST)
+
+- RUN_KEY `OUTRUN-C1-AI2-20261029T1745KST-A0131-B0144-NEW-SHA6`. Verified GitHub C1 contract/glyph-scale policy/controller roles, pinned actual asset branch. N100 compared **41 prior review reports / 295 prior distinct candidate SHA**; reviewed six new non-repeated SHA (A-0131..0134, B-0143..0144), with all six candidate/export SHA256 and source-HD/manifest SHA256 matching.
+- Independently inspected English source ROI vs saved generated Korean PNG, native-bbox aspect-preserving fit, dark-alpha composites and RGBA/edge checks. All 6 RGBA, no alpha>=32 border contact. **C1 lettering-layer PASS 6 / FAIL 0 / HOLD 0.** Review included A's three platform-specific `싱글/멀티플레이 랭킹 보기`, `골 D`, B's `옵션` and `빠른 아웃런 게임에 참가하세요!`. Shorter Korean sentence alone never FAIL.
+- N100 local evidence: `work/C1_QA_20261029_1745_AI2_report.json` and `work/C1_QA_20261029_1745_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg,dark_alpha_A.jpg,dark_alpha_B.jpg,alpha_stats.json}`. [Asset branch C1 report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1745_AI2_A0131_B0144_SHA6.json); commit `519426f58dafd5c0a97b530e9465526854fdf662`, remote JSON blob `d7112d4eff4a13ca331970053babd50a2e95a72c`, exact branch HEAD verified.
+- Scope `PNG_KOREAN_LETTERING_LAYER_ONLY`: actual UI-cell/composite, 50% in-game, native DDS, C2/C3, user game PASS **NOT TESTED**; `RUNTIME_VALIDATION=UNTESTED`. No ImageGen call, queue consumption, DDS creation or VR/FFB/DX11/DXVK changes. Same RUN_KEY/retry/re-report/readback +0; AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2159 + one distinct six-new-SHA C1 review achievement +1 = 2160.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 대항해시대 II Browser M7 주인공 좌우 프레임 교정·한국어 주민 대화 (2026-10-29 KST)
 
 - M5/M6와 별개의 신규 실제 런타임 기능 성과. 사용자 실브라우저 제보로 주인공 `CHAR.LZW` 수평 방향이 반대로 보이는 결함을 재현했고, 실제 프레임 순서를 `up 0/1, right 2/3, down 4/5, left 6/7`로 교정했다. Firefox SAVE1 튀니스에서 ArrowLeft 후 `facing=left` 스프라이트가 실제 왼쪽을 향하고, ArrowRight 후 `facing=right`가 실제 오른쪽을 향함을 시각 검증했다.

@@ -35,10 +35,16 @@ export const SAVE = Object.freeze({
   PAGE_SIZE: 33340,
   HEADER_BASE: 1,
   INIT_SIZE: 15,
+  SLOT_DATA_BASE: 0x97,
+  VIEW_X: 0x10,
+  VIEW_Y: 0x12,
+  PLAYER_X: 0x14,
+  PLAYER_Y: 0x16,
   MONEY: 0x06a1,
   HERO_ID: 0x06a8,
   PERSON: 0x06a9,
   PERSON_SIZE: 50,
+  PORT_TABLE: 0x53ba,
   PORT: 0x53bf,
   PORT_SIZE: 20,
   ABILITY: [0x064d, 0x065b, 0x0669, 0x0677, 0x0685, 0x0693],
@@ -67,17 +73,29 @@ export function parseSaveSlots(arrayBuffer) {
     const personBase = page + SAVE.PERSON + heroId * SAVE.PERSON_SIZE;
     const fname = decodeCString(bytes, personBase, 13);
     const lname = decodeCString(bytes, personBase + 13, 13);
+    const portRecord = port === 0xff ? -1 : page + SAVE.PORT_TABLE + port * SAVE.PORT_SIZE;
     const portName = port === 0xff
       ? "해상"
-      : decodeCString(bytes, page + SAVE.PORT + port * SAVE.PORT_SIZE, 15);
+      : decodeCString(bytes, portRecord + 5, 15);
+    const portWorld = port === 0xff ? null : {
+      nation: bytes[portRecord],
+      x: u16le(view, portRecord + 1),
+      y: u16le(view, portRecord + 3),
+    };
 
     const abilityBase = page + (SAVE.ABILITY[heroId] ?? SAVE.ABILITY[0]);
+    const saveBase = page + SAVE.SLOT_DATA_BASE;
+    const viewX = u16le(view, saveBase + SAVE.VIEW_X);
+    const viewY = u16le(view, saveBase + SAVE.VIEW_Y);
+    const playerX = u16le(view, saveBase + SAVE.PLAYER_X);
+    const playerY = u16le(view, saveBase + SAVE.PLAYER_Y);
     slots.push({
       index: i,
       empty: false,
       memo,
       port,
       portName,
+      portWorld,
       ending,
       heroId,
       heroName: [fname, lname].filter(Boolean).join(" "),
@@ -86,7 +104,12 @@ export function parseSaveSlots(arrayBuffer) {
       tradeFame: u16le(view, abilityBase),
       pirateFame: u16le(view, abilityBase + 2),
       adventureFame: u16le(view, abilityBase + 4),
-      raw: { page, personBase, abilityBase },
+      portState: {
+        viewX, viewY, playerX, playerY,
+        mapX: viewX + playerX,
+        mapY: viewY + playerY,
+      },
+      raw: { page, saveBase, personBase, abilityBase },
     });
   }
   return slots;

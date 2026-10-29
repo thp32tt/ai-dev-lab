@@ -1,5 +1,17 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II Browser M5 한국어판 스프라이트·WINDCUR·함대 상태 통합 (2026-10-29 KST)
+
+- M3/M4와 별개의 신규 실행 성과. 사용자 한국어판 `CHAR.LZW` 실제 청크 5,120×6 + 15,360을 분석해 주인공 6명×8프레임의 프레임당 4개 16×16 planar 4bpp 색상 사분면을 브라우저 항구 보행에 연결했다. 다섯 번째 128-byte blitter mask/control 의미는 미확정으로 명시하고 억지 적용하지 않았다.
+- 사용자 `DATA1.LZW[11]` 32,768 bytes를 0x4000 world tile + 16×0x400 sea-ship frame으로 분해. 각 선박 프레임은 0x200 packed 4bpp color + 0x200 mask, nibble 0xF transparent로 실제 32×32 선박이 복원되며 Firefox 해상 화면에서 진단 사각형을 대체했다.
+- 실제 save slot body `page+0x97`의 +6/+7/+8/+9 날짜·20분 tick을 복원해 SAVE1=1522-05-28 08:40, SAVE2=1522-07-06 16:20을 헤더와 교차검증했다. `WINDCUR.DAT` 30×15×3, 72 chips/cell을 연결해 단치히 출항점 (286,238)에서 남동풍5/북서해류0을 Firefox UI/상태로 readback PASS.
+- 번들 `HORIEDIT.C/H`의 한국어판 전용 Ship1~5 table layout을 실제 세이브에 적용해 Catalina save=Galleon 1척/선원120, João save=Caravel Latina·Brigantine·La Reale 3척/총선원80을 소스 파서와 테스트로 검증했다. 공개판의 서로 다른 slot-size 후반 오프셋을 그대로 복사하지 않았다.
+- GitHub source-only `thp32tt/ai-dev-lab@uw2-web-port`. M5 report commit `05f372613b444edcb695c7bc94ab82e5b94a0315`, remote report blob `60162c467224bc9e2ebe03a3213cea1108b340ae`, CHAR decoder blob `bd89cf746371034a554fc5d15b1ff38c7a6f8fe8`, WINDCUR blob `905439733f25b368238f6e080f46d87231221571`. Original game assets/screenshots are not committed.
+- 다음 독립 과제는 한국어판 CHAR fifth-block 정확 blitter semantics와 exact fleet-speed 입력(sail kind/oar flag/navigation crew/load/captain stats)을 확정한 뒤 60-subunit original sailing tick integrator로 교체하는 것. 같은 M5 retry/readback/re-report는 +0. AI1 별도.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2151 + one distinct UW2 M5 Korean sprite/environment/fleet integration achievement +1 = 2152.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex CABE cross-ordinal opaque PMT false-attribution negative control (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01574`, branch `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned review source HEAD `beaa1a2569294f2885ea361f5ecc8c6ee74f5d77`. Unique source-static conditional counterexample: if CABE ordinal1's queued opaque material is drained *inside* the ordinal2 `Game::DrawObjectAlpha_Internal`, ordinal2 entry has already cleared the deferred ordinal1 window and installed ordinal2's inline source-call receipt. Consequently `R30TryScreenSpaceFovDraw` may log `EXACT_INLINE_SOURCE` ordinal2 even for the ordinal1 opaque PMT. The label proves a live call stack, never the opaque 405360/4052C0 PMT identity. This is a new interpretation negative control, distinct from the previously scored potential first/second optical-route asymmetry and generic R30 correlation limitation.

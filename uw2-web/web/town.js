@@ -49,6 +49,21 @@ function doorAt(doors, x, y) {
   return doors.find(d => d.present && d.x === x && d.y === y) ?? null;
 }
 
+export function townPersonMessageId(slot, actor) {
+  if (!actor) return null;
+  switch (actor.slot) {
+    case 0: return 0x282 + (slot.port ?? 0); // market woman: port lore
+    case 1: return 0x276 + (((slot.dateTime?.day ?? 1) - 1 + 10) % 10); // pub tips
+    case 2: return 0x281; // used-ship stock fallback: sold out when stock is not reconstructed yet
+    case 3: return 0x26f + ((slot.portWorld?.nation ?? 0) & 7); // local-language greeting
+    case 4: return (slot.port ?? 0) >= 100 ? 0x242 : 0x245; // waving man: generic port line
+    case 5: return 0x26b + ((slot.port ?? 0) % 3); // dog
+    case 6: return 0x26e; // hostile-port guard
+    case 7: return 0x268; // old man opening line
+    default: return null;
+  }
+}
+
 const DIR = Object.freeze({
   up: [0, -1],
   right: [1, 0],
@@ -72,6 +87,8 @@ export class PortWalkingRuntime {
     this.facing = "down";
     this.stepParity = 0;
     this.actors = (slot.townActors ?? []).map(a => ({ ...a }));
+    this.talkCounter = 10;
+    this.talk = null;
     this.insideBuilding = null;
     this.lastEvent = "load-save-position";
   }
@@ -92,6 +109,8 @@ export class PortWalkingRuntime {
       facing: this.facing,
       stepParity: this.stepParity,
       actors: this.actors.map(a => ({ ...a })),
+      talkCounter: this.talkCounter,
+      talk: this.talk ? { ...this.talk } : null,
       building: this.insideBuilding ? {
         id: this.insideBuilding.id,
         name: this.insideBuilding.name,
@@ -102,11 +121,15 @@ export class PortWalkingRuntime {
     };
   }
 
-  _actorNear(x, y, ignoreSlot = -1) {
-    return this.actors.some(a =>
+  _findActorNear(x, y, ignoreSlot = -1) {
+    return this.actors.find(a =>
       a.active && a.slot !== ignoreSlot &&
       Math.abs(a.x - x) <= 1 && Math.abs(a.y - y) <= 1
-    );
+    ) ?? null;
+  }
+
+  _actorNear(x, y, ignoreSlot = -1) {
+    return this._findActorNear(x, y, ignoreSlot) !== null;
   }
 
   _playerNear(x, y) {
@@ -164,10 +187,11 @@ export class PortWalkingRuntime {
 
   move(direction) {
     if (this.insideBuilding) return { moved: false, building: this.insideBuilding };
+    if (this.dialogueActor) return { moved: false, dialogueActor: this.dialogueActor };
+    if (this.talk) return { moved: false, talk: this.talk };
     const step = DIR[direction];
     if (!step) return { moved: false };
     const [dx, dy] = step;
-    this.facing = direction;
 
     const targetPX = this.playerX + dx;
     const targetPY = this.playerY + dy;
@@ -176,11 +200,25 @@ export class PortWalkingRuntime {
       return { moved: false };
     }
 
-    let actualDx = dx, actualDy = dy;
     const targetX = this.mapX + dx;
     const targetY = this.mapY + dy;
+    const actor = this._findActorNear(targetX, targetY);
+    if (actor && this.talkCounter >= 10) {
+      this.talk = {
+        actorSlot: actor.slot,
+        messageId: townPersonMessageId(this.slot, actor),
+      };
+      this.talkCounter = 0;
+      this.lastEvent = "talk";
+      return { moved: false, talk: this.talk };
+    }
+
+    this.talkCounter = Math.min(10, this.talkCounter + 1);
+    this.facing = direction;
+
+    let actualDx = dx, actualDy = dy;
     let moved = canStandAt(this.portAssets, this.portId, targetX, targetY) &&
-      !this._actorNear(targetX, targetY);
+      !actor;
 
     if (!moved) {
       const around = this._findWayAround(dx, dy);
@@ -244,6 +282,20 @@ export class PortWalkingRuntime {
         a.type = (a.type + turn + 4) & 3;
       }
     }
+  }
+
+  dismissTalk() {
+    if (!this.talk) return false;
+    this.talk = null;
+    this.lastEvent = "talk-dismissed";
+    return true;
+  }
+
+  dismissDialogue() {
+    if (!this.dialogueActor) return false;
+    this.dialogueActor = null;
+    this.lastEvent = "dismiss-dialogue";
+    return true;
   }
 
   leaveBuilding() {

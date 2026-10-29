@@ -81,6 +81,7 @@ export function parseSaveSlots(arrayBuffer) {
       ending,
       heroId,
       heroName: [fname, lname].filter(Boolean).join(" "),
+      portraitIdCandidate: bytes[personBase + 26],
       money: u32le(view, page + SAVE.MONEY),
       tradeFame: u16le(view, abilityBase),
       pirateFame: u16le(view, abilityBase + 2),

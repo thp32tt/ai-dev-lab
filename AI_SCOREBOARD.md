@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 live FVF table fog source integration (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX11-01155`, independent game-facing C++/HLSL source conversion on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Material initial game source commit `d5a042c82779c24b997f7c1fdd751d745b676f91`, real Windows C2059/source conditional compile and strict regression repair commits `549ab110cf1b060e052f31206ea795b94b130b28`, `d7e190cc6a7f6e3d02994113e945480cfca60626`, `c306e40aaeadc164007fb5e419737f10642c327e`; validation-bearing RESULT_SHA `4de2114a31887bc9bd2d9fb535723da0507c22e0`.
+- Genuine D3D9 fixed-function per-Draw FOGTABLEMODE/FogColor/FogStart/End/Density, authentic canonical Z/W projection, raster capabilities and valid consumed parameters now feed native D3D11 FVF source color, texture-modulate and texture-only pixel shaders; b2 constant buffer updated per Draw before D3D11 OM/DrawIndexed. Source alpha preserved; unsupported FVF/vertex-only fog/sRGB projection/combiner fail closed to original D3D9 or explicitly isolated incomplete RAW visual tile. Original input/FFB, DX9Ex fallback and DXVK freeze preserved.
+- **Five exact-SHA mandatory GitHub push Actions PASS** on `4de2114a31887bc9bd2d9fb535723da0507c22e0`: DX11 Fast Structural Checks #40846863272, Backend Conversion Gate #40846863380 (validate and 104-step smoke), Build #40846863370, OpenXR VR architecture #40846863493, OutRun EXE HUD Inspector CI #40846863381. All independently remote read back with `status=completed`, `conclusion=success` and same `head_sha`. No CI-skip on validation-bearing result; later C6 bookkeeping distinct.
+- No actual OutRun game/Quest 3/VDXR session or source-matched native Draw count at this SHA: `RUNTIME_VALIDATION=UNTESTED`, not game runtime PASS. Source-work-time percentage unmeasured. Same TASK_ID retry, CI failure repair, C6, rereadback, repeated status/re-report +0. AI1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2161 + one distinct DX11 native FVF fog source implementation and exact-SHA five-Gate verification +1 = 2162.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex CABE D79B undo-vs-PMT counterexample review (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01576`, independent lens-flare-only REVIEW_ONLY source-static verification. From pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `bb08b8c16b3a8619534acccd0b87784390a6d1b4`, compared original reconstructed `4056D0` colour undo / `405360` drawable opaque entry / `4052C0` drain with current `TraceLensOpaqueFlush` PRE/POST receipt.

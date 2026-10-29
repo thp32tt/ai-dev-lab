@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 two fresh exported ImageGen lettering candidates independent QA (2026-10-30 KST)
+
+- RUN_KEY `OUTRUN-C1-AI2-20261030T0515KST-NEW-SHA2`. A/B exported new unique SHA256 candidates were de-duplicated against 208 prior C1 JSON artifacts / 921 previously reviewed candidate SHA, then read directly from N100. Exact candidate file bytes, full-HD original PNG SHA against manifest, approved English-to-Korean mapping, and original ROI vs native aspect-preserving/50% alpha checker previews were verified.
+- Exact source evidence: `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` report `localization/qa_reports/C1_20261030_0515_AI2_NEW_SHA2.json`, commit `bbf554578ad5bae38d32e50c473676bb35cc26b2`. A-0141 `PERFECT!→완벽!`, candidate SHA `04b523d531fb8681b93d573e0f80984fcf9c4a50e66158971ec37ba54715d9b2`, C1 PASS. B-0145 `Imperial Avenue→임페리얼 애비뉴`, candidate SHA `378c7dd32b50143cd2602e7a1fd02c3352f31dc5e9ec3d8939f071e09c6458c5`, C1 PASS. Both source SHAs and native/50%-scale Hangul readability verified; PNG RGBA, no alpha>=32 canvas-border contact. 2 distinct newly reviewed / 2 PASS / 0 FAIL / 0 HOLD.
+- Scope restricted to generated Korean PNG lettering layers, not an integrated original UI, DDS, C2/C3 or actual game PASS. A/B queues unmodified, no ImageGen invoked, VR/FFB/DX11/DXVK unchanged, `RUNTIME_VALIDATION=UNTESTED`. One new independent QA batch achievement earns +1 total, not +1 per item or subsequent SHA recheck.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2189 + one new 2-SHA C1 QA batch +1 = 2190.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 genuine source-Draw render-target provenance and RAW pixel evidence separation (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01166` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. A source provenance defect was corrected: source-aligned D3D11 native RAW pixels previously used the **D3D9 render target bound during Present**, which need not be the source Draw target. The native RAW preview now captures an owned original D3D9 RT identity when the authentic pre-Draw GPU copy is queued, matches that exact identity against the original Present backbuffer, and permits source-coincident pixels only with authentic dimensions, dirty union and crop coverage; mismatch or failed source query preserves the bounded legacy RAW inset/fail-closed original D3D9 output. A separate source-aligned-GPU-RGB-pixel count prevents legacy inset pixels from being misreported as source-aligned.

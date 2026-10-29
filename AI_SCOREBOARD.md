@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 authentic compact RAW dirty-Present visible GPU pixel path (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01164`, distinct source implementation on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: previous source-owned compact native GPU BEFORE/Draw/AFTER readback could be blocked from visible original D3D9 menu/car Presents whose authentic dirty crop is 24..39 pixels. The new explicit compact-opt-in native RAW Present path preserves unscaled source pixel provenance and source-verified RGNDATA union coverage while showing 24px image regions. Ordinary 256x144 source RAW retains the prior 40px/8px margin safety contract; no DX9Ex, DXVK, original input/FFB, HMD/full-frame promotion.
+- Source material `b37e739a204c3bb009cfc13a4a67f3c1b48e1603` (2 native C++ header files plus 2 targeted C++ regressions). Genuine exact-SHA causal repairs: `c821c6cce8deaa99f43d7ce087687c7ca67af519` inherited 01163 task-path metadata rejection, `3de7fe51685b61e6702212f6b8fa8177a0077a77` narrow-copy admission accidentally weakening earlier 40px dirty-region regressions. Final validation-bearing RESULT_SHA `3de7fe51685b61e6702212f6b8fa8177a0077a77`.
+- Five mandatory push GitHub Actions PASS at exact SHA: DX11 Fast `40923721969`, Backend Conversion Gate `40923721956`, Build `40923738868`, OpenXR `40923721959`, HUD Inspector `40923722149`. Static/build verification only, `RUNTIME_VALIDATION=UNTESTED`: real game desktop or Quest3/VDXR pixel output is not established. Same TASK_ID E001/E002 retries, policy/CI fixes, C6/readback score +0 individually. AI 1 separately tracked.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2185 + distinct compact RAW live GPU dirty-Present source integration +1 = 2186.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 OutRun 2006 GPT OCR C1/C2 reply ownership and timeout replay repair (2026-10-30 KST)
 
 - RUN_KEY `OUTRUN-GPT-OCR-DUAL-LANE-20261030`; one distinct controller logic correction in `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928`, result branch commit `29386f27f73efffedaeb14e190eab5d2f6c67765`. Fixed periodic OCR reply poll selecting C1 even when B/C2 submitted the task: choose the actual originating B/C1 tab, protect that slot during poll, and disallow C1/B from consuming the other lane's active OCR lease.

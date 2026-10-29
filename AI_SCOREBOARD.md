@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CONVERSION-DX9EX-01568 R19 SBS boundary-seam optical negative control (2026-10-29 KST)
+
+- New distinct lens-flare-only REVIEW_ONLY source-static discriminator, separate from 01567 pose-epoch findings. Pinned OutRun `vr-d3d9ex-focus` SOURCE_HEAD `246826919da9d700aa6188aba8a10d87d7bf2e93`. Inspected R19 BlitShader/one-mip source/linear sampler/SBS half-UVs/indexed L/R writes and single patched XR layer, plus R24 classic-fallback routing; current source 15/15 predicates PASS and protected R26+HUD `0cff83cf509c2acd6f3391b3a46c4dec1403a0d9` 11/11 equivalent source predicates PASS. A synthetic 1920-pixel SBS to 1600-output-per-eye bilinear example found ~20% opposite-eye pixel mixing **only at the internal seam boundary**, whereas one-sample full-screen per-eye mapping and single-layer replacement do not synthesize an object-local second complete flare. Mechanism existed in baseline; actual user's doubled halo and headset source remain UNPROVEN. This is conditional falsification/provenance, not VR visual repair or HMD PASS.
+- One target-branch docs-only `[AUTO:CONVERSION-DX9EX-01568]` commit `609df7a3b0fec423ee24317f1036ba9be000197f`, verified exactly `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01568.md` added; remote blob `d9774d67b4815aab3cdb3ac165064af84290df5d`, branch head and commit marker readback. CODE_CHANGE=NO; AUTOMATION_VALIDATION=PASS_DOCS_ONLY_REMOTE_READBACK; RUNTIME_VALIDATION=UNTESTED. Earlier 01564–01567 mechanisms, retries, reruns, re-readbacks score +0 separately. AI 1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2118 + one distinct source-verified seam/local-ROI vs full-halo negative control +1 = 2119.**
+
+Updated: 2026-10-29 KST
+
 ## AI 1 OutRun 2006 C1 new SHA8 independent lightweight QA (2026-10-29 KST)
 
 - RUN_KEY: `OUTRUN-C1-20261029T0845KST-A0075-B0088-NEW-SHA8` (unique new A/B candidate byte SHA-256 set, not a retry).

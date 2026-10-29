@@ -1,5 +1,7 @@
 import { parseOffsetTextTable, parseSaveSlots, stripMenuControls } from "./binary.js";
 import { ReaGameRuntime } from "./runtime.js";
+import { decodeLS11 } from "./ls11.js";
+import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("screen");
@@ -9,6 +11,7 @@ let selected = null;
 let menus = [];
 let messages = [];
 let runtime = null;
+let kaoPortraits = [];
 
 async function loadBuffer(name) {
   const res = await fetch("/game/" + encodeURIComponent(name), { cache: "no-store" });
@@ -71,6 +74,29 @@ function renderSlots() {
   }
 }
 
+async function loadPortraits() {
+  const buf = await loadBuffer("KAO.LZW");
+  const decoded = decodeLS11(buf, 16);
+  const root = $("portraits");
+  root.replaceChildren();
+
+  kaoPortraits = decoded.decoded.map(entry => decodePlanarIndexed(entry.data, 64, 80, 3, 1, true));
+  decoded.decoded.slice(0, 8).forEach((entry, i) => {
+    const fig = document.createElement("figure");
+    fig.className = "portrait";
+    const canvas = document.createElement("canvas");
+    const cap = document.createElement("figcaption");
+    cap.textContent = `KAO #${i}`;
+    drawIndexedCanvas(canvas, kaoPortraits[i], 64, 80, 2);
+    fig.append(canvas, cap);
+    root.appendChild(fig);
+  });
+
+  $("kao-status").textContent =
+    `${decoded.magic} · FAT ${decoded.entries.length}개 · 16개 해제 / 첫 8개 표시 · 64×80/3bpp`;
+  if (selected) drawPreview(selected);
+}
+
 async function loadSaves() {
   const buf = await loadBuffer("KOUKAI2.DAT");
   slots = parseSaveSlots(buf);
@@ -99,14 +125,28 @@ function drawFrame(title, lines) {
   lines.forEach((line, i) => ctx.fillText(line, 42, 108 + i * 32));
 }
 
+function drawHeroPortrait(slot) {
+  const id = slot?.portraitIdCandidate;
+  const indexed = Number.isInteger(id) ? kaoPortraits[id] : null;
+  if (!indexed) return;
+  const tmp = document.createElement("canvas");
+  drawIndexedCanvas(tmp, indexed, 64, 80, 1);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(tmp, 0, 0, 64, 80, 478, 82, 128, 160);
+  ctx.strokeStyle = "#c9a95e";
+  ctx.strokeRect(477, 81, 130, 162);
+}
+
 function drawPreview(slot) {
   drawFrame("대항해시대 II", [
     `SAVE ${slot.index + 1}: ${slot.memo}`,
     `항구: ${slot.portName}`,
     `주인공: ${slot.heroName}`,
     `소지금: ${slot.money.toLocaleString()} G`,
+    `얼굴 후보 ID: ${slot.portraitIdCandidate}`,
     "원본 MENU.DAT / MESSAGE.DAT 로드 완료",
   ]);
+  drawHeroPortrait(slot);
 }
 
 function renderRuntime() {
@@ -122,7 +162,8 @@ function renderRuntime() {
     msg.replace(/\n/g, " ").slice(0, 40),
   ]);
   $("runtime-status").textContent = runtime.running ? "실행 중" : "일시정지";
-  $("debug").textContent = JSON.stringify(s, null, 2);
+  drawHeroPortrait(runtime.slot);
+  $("debug").textContent = JSON.stringify({ ...s, portraitIdCandidate: runtime.slot?.portraitIdCandidate }, null, 2);
   requestAnimationFrame(renderRuntime);
 }
 
@@ -146,7 +187,7 @@ $("pause-button").addEventListener("click", () => {
   }
 });
 
-Promise.all([loadManifest(), loadTables(), loadSaves()])
+Promise.all([loadManifest(), loadTables(), loadSaves(), loadPortraits()])
   .catch(err => {
     $("runtime-status").textContent = "로드 오류: " + err.message;
     $("debug").textContent = err.stack || String(err);

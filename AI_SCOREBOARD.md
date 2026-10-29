@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight new-SHA Korean lettering independent QA (2026-10-29 16:45 KST)
+
+- RUN_KEY `OUTRUN-C1-AI2-20261029T1645KST-A0127-B0142-NEW-SHA8`. New independent QA result on 8 first-time candidate SHA (A-0127..A-0130, B-0139..B-0142). N100 compared 40 prior C1 reports / 287 prior distinct candidate SHA; no SHA repeated. All eight production-export candidate SHA256 and original full-HD source PNG SHA256 agree with their export/manifest evidence. Eight RGBA, zero alpha>=32 output-edge contacts.
+- Direct native-resolution English-source crop versus generated Korean transparent lettering PNG, plus aspect-preserving native-size simulated fit inspected. **C1 LETTERING LAYER PASS 7 / FAIL 1 / HOLD 0**. B-0141 GOAL→'골' is legible but **FAIL_UNNECESSARY_OPAQUE_RED_BANNER**: a large filled red parallelogram/background panel was generated instead of transparent lettering alone. A-0127..0130 and B-0139/0140/0142 show no observable critical typo, fake Hangul, cut-off, English residue or unnecessary opaque generated banner. Shorter Korean text length alone was not a rejection reason.
+- N100 evidence `work/C1_QA_20261029_1645_AI2_report.json`, `work/C1_QA_20261029_1645_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg}`. [Asset-branch C1 report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1645_AI2_A0127_B0142_SHA8.json); verified remote commit and branch HEAD `3287077d5e9e97aef76bf52ea898ad7914549e14`, JSON blob `2c8ad662c3f091e469d3788b040fa99d722237a8`.
+- C1 scope lettering-layer only; protected-art composite/UI-cell fit, actual native 50% in-game readability, DDS, C2/C3, real-game all NOT TESTED. `RUNTIME_VALIDATION=UNTESTED`. No ImageGen call, no A/B queue consumption, no DDS output, no VR/FFB/DX11/DXVK change. Same SHA/task retries, readback, and scoreboard report score +0; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2153 + one distinct eight-new-SHA C1 review achievement +1 = 2154.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX11 FVF live Fog RAW source-equation native Draw integration (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX11-01154`; OutRun `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` material implementation / exact-SHA result `0eb3fb663aa1aebef14cb1574249d7ec78ab3fa6`. Actual C++ changed in `src/vr/d3d11/live_game_frame_bridge.cpp`, `native_game_raw_fvf_fog_visual.hpp` and positive/negative C++/source regression files. D3D9 table Fog over inherited vertex Fog selects only consumed source START/END versus DENSITY getter for opt-in game FVF native RAW Draw; FVF and SM3 RAW now share the same real source equation admission, rejecting failed required getter/invalid consumed float, malformed mode or RAW-off. Original production full-frame Fog equality, D3D9 game Draw, gamepad, FFB, DX9Ex fallback, native resource/poison safeguards and DXVK freeze remain unchanged.

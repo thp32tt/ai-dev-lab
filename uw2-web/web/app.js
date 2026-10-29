@@ -1096,12 +1096,9 @@ function handleBuildingKey(event) {
         const tx=p ? buyItem(selected,p.id) : {quantity:0,reason:"missing-pending"};
         ui.itemPending=null;
         if(tx.quantity){
-          if((selected?.money??0)<=0){
-            ui.mode="message"; ui.messageId=236; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
-          }
-          if(!(selected?.inventory??[]).includes(0xff)){
-            ui.mode="message"; ui.messageId=237; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
-          }
+          // The transaction already validated pre-buy gold and inventory space.
+          // Re-checking the post-buy state here mislabels an exact-price purchase
+          // or a purchase that fills the final slot as a failure.
           ui.mode="item-buy";
           ui.last=formattedMessage(242);
         }else{
@@ -1124,9 +1121,8 @@ function handleBuildingKey(event) {
         const tx=p ? sellItem(selected,p.inventorySlot,p.offer) : {quantity:0,reason:"missing-pending"};
         ui.itemPending=null;
         if(tx.quantity){
-          if(carriedItems(selected).length===0){
-            ui.mode="message"; ui.messageId=243; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
-          }
+          // Selling the last carried item is still a successful sale; the
+          // empty-inventory message belongs to the next attempted sale.
           ui.mode="item-sell";
           ui.last=formattedMessage(248);
         }else{
@@ -1159,9 +1155,8 @@ function handleBuildingKey(event) {
         const tx=p ? sellItem(selected,p.inventorySlot,p.counter?.offer??p.offer) : {quantity:0,reason:"missing-pending"};
         ui.itemPending=null;
         if(tx.quantity){
-          if(carriedItems(selected).length===0){
-            ui.mode="message"; ui.messageId=243; ui.messageText=""; ui.last=""; renderTownScreen(); return true;
-          }
+          // Selling the last carried item is still a successful sale; the
+          // empty-inventory message belongs to the next attempted sale.
           ui.mode="item-sell";
           ui.last=formattedMessage(248);
         }else{

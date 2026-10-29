@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 N100 REA 대항해시대2 DOS 실바이너리 초기 역분석 (2026-10-29 KST)
+
+- 신규 독립 분석 성과: 사용자 제공 `9969513B5D21CBC215.zip`을 N100으로 무결성 검증 전송(SHA-256 `a65fa9beaea200c6901a093f697818a1336711ed6e432808519de6defa8ea5df`)하고 REA 6.5.0 + Ghidra 12.1.4로 실제 DOS 바이너리를 분석했다. `MAIN.EXE`는 dos-mz / x86 16-bit Real Mode, 7개 메모리 블록과 1,261개 프로시저로 식별했으며 MZ CS:IP 진입점 `0000:32F4`(REA linear `0x132F4`)를 디컴파일해 CRT/메모리/BSS 초기화를 확인했다.
+- CRT 끝의 `FUN_1fb7_5f6b`를 추가 디컴파일해 초기화 후 상태 바이트 `0x426`, 반복 상태 `0x56F`(<12), `0x570` 및 다수 처리 함수를 순환하는 실제 상위 게임 루프 후보를 확인했다. `KOEI.COM`도 dos-com `0x10100` 진입점을 분석해 BIOS INT 10h / DOS INT 21h 기반 런처 초기화와 4개 프로시저를 확인했다.
+- 포함된 `HORIEDIT.C/H`를 교차검증해 `KOUKAI2.DAT` 슬롯 크기 33,340 bytes, money `0x06A1`, person table `0x06A9`, 선박/항구 테이블 주소와 Person/Ship 구조를 확보했다. `MAIN.EXE` 원본 바이트에서도 GRAPH/MENU/MESSAGE/DAT/LZW/MES/MML 등 런타임 자원 파일명 테이블을 추출했다.
+- N100 durable evidence: `rea-analysis/uncharted-waters-2/INITIAL_REA_20261029.md` 및 REA JSON/decompile 증거 파일들. 임시 Google Drive 전송본은 분석 후 삭제했다. 이는 웹 포팅 코드 구현 완료가 아니라, 실제 바이너리 기반 초기 구조/게임루프/세이브 데이터 역분석 성과다.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2142 + one distinct N100 REA binary reverse-analysis achievement +1 = 2143.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 native DX11 live D3D9 SM3 Z/W table Fog projection source translation (2026-10-29 KST)
 
 - TASK_ID: `CONVERSION-DX11-01152`, DX11 lane `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Independent *source-integrated* feature addition: actual live D3D9 projection fourth-column identification and authentic WFOG raster capability decide between affine device-Z or canonical eye-relative W fog coordinates. Original material C++/HLSL integration SHA `1821758df335621ad2141b0b6e64015e9f64e609` modifies `src/vr/d3d11/live_game_frame_bridge.cpp`, `src/vr/d3d11/live_game_sm3_table_fog.hpp`, and C++ positive/negative regression `tools/dx11_live_sm3_table_zfog_01005.cpp`. Native SM3 PS uses the matching per-pixel SV_Position Z / reciprocal-W coordinate; unknown source transform/COM/caps/floats, resource/RT/DS/poison and publication remain fail-closed. DX9Ex original Draw/input/FFB/SkyGlow and DXVK freeze preserved.

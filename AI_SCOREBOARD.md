@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens R30 native HRESULT sentinel versus R29 lower eye replay review (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01587`, independently source-verified `LENS_FLARE_ONLY` REVIEW_ONLY conditional falsification. At `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `b91e95245d9a3838e64b3f39d2d8e2d64f645b86`, original LEFT native `actualDraw()` failure returns its raw `leftHr`; an exceptional `E_NOTIMPL` from that Draw is indistinguishable to `R30GuardScreenSpace` from a clean pre-LEFT rejection and conditionally delegates to R29. Conversely a successful LEFT followed by a RIGHT-eye failure returns leftHr and does not itself trigger Guard's R29 replay. Verified four native DP/DIP/UP hook call sites and protected R26+HUD baseline, which already has this semantics: not a new regression, actual E_NOTIMPL incidence/pixel duplication unproved.
+- Exact **one-file docs-only** result `acfd2987f2d21a742805613e30b5dc2d8b0d38ef`, `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01587.md`, commit marker verified and remote file blob readback `1e8137324af2c5379991f125ea88c381c074e676`; immutable R26+HUD baseline unchanged, no runtime/C++ patch, no CI skip. `AUTOMATION_VALIDATION=PASS` (docs-only); `RUNTIME_VALIDATION=UNTESTED`; still no proof of Quest3 second flare lobe or extra same-eye RGB. Prior 01579 R7 right-failure counters and 01586 R30 lower-receipt coverage are inherited, not re-scored.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2191 + one distinct R30 original-Draw E_NOTIMPL/error-sentinel conditional proof +1 = 2192.** Same-task retry, doc verification, readback and re-report +0. AI 1 separately tracked.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 authentic source-aligned native GPU RAW dual-tile Present prioritization (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01167`, independent visual output connection repair under `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, continuing the unfinished `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME` feature. Previously the RAW dual-tile branch discarded even a proved original-game source-coincident placement whenever two displaced legacy tiles already fitted. The actual D3D11 GPU PRE/Draw/POST -> original D3D9 Present path now adopts each independently verified exact source-coordinate GPU tile, rechecks final output non-overlap after any move, allows two truly disjoint aligned regions, and prioritizes a source-coincident tile when competing with a richer but displaced legacy inset. Canonical source RT pointer/dimensions, genuine dirty union and crop remain mandatory; original D3D9 render/input/FFB/DX9Ex fallback and frozen DXVK unchanged.

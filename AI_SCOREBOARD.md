@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 GPT OCR C1/C2 reply ownership and timeout replay repair (2026-10-30 KST)
+
+- RUN_KEY `OUTRUN-GPT-OCR-DUAL-LANE-20261030`; one distinct controller logic correction in `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928`, result branch commit `29386f27f73efffedaeb14e190eab5d2f6c67765`. Fixed periodic OCR reply poll selecting C1 even when B/C2 submitted the task: choose the actual originating B/C1 tab, protect that slot during poll, and disallow C1/B from consuming the other lane's active OCR lease.
+- Upgraded response-extractor version to v4 and corrected timeout-only migration to reset **C2-prefixed attempt keys** rather than incorrectly resetting only the C1 fingerprint. Previously accepted OCR detections and existing producer/QA artifacts remain unchanged; no API image generation or DDS promotion.
+- Tests on N100 fast-forward checkout: B idle controller assembled AST test PASS (1), ChatGPT DOM static response collector PASS (1), GPT vision OCR unit suite PASS (11, including new C2 timeout reset regression). Portainer live deployment not asserted: N100 Docker socket denied access, and Git-only changes need user-controlled Git Stack redeploy. `RUNTIME_VALIDATION=UNTESTED` until fresh container evidence.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2184 + one distinct dual-lane OCR correctness repair +1 = 2185.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex lens deferred SceneEffect classifier-only R30 admission falsification (2026-10-30 KST)
 
 - RUN_KEY `LENSFLARE-DEFERRED-PROMOTION-ADMISSION-GATE-20261030-0216`; distinct LENS_FLARE_ONLY REVIEW_ONLY source-static cross-commit falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, SOURCE_HEAD `342e080dcb9b652b37dcdcbad6b73aebd7d46a5f`, docs-only RESULT_SHA `c52f3f4f9da1d03479b2f62855ffe266a1a0864f` (one new doc, remote file/blob/HEAD verified).

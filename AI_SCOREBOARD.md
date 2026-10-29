@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CABE D79B undo-vs-PMT counterexample review (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01576`, independent lens-flare-only REVIEW_ONLY source-static verification. From pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `bb08b8c16b3a8619534acccd0b87784390a6d1b4`, compared original reconstructed `4056D0` colour undo / `405360` drawable opaque entry / `4052C0` drain with current `TraceLensOpaqueFlush` PRE/POST receipt.
+- Distinct falsification: a visible object with zero colour overrides can enqueue an opaque draw entry while undo `patchCount=0`; an object with colour overrides can record undo despite culled/no drawable PMT. `4052C0` drains `rc.opaque`, not `rc.alpha`; first 570008 remains opaque and its normal D79B barrier remains valid. Thus neither undo count nor opaque-flush serial authenticates the user's doubled second halo, and no new HMD root cause is claimed. This goes beyond prior 01575 flush-family mislabel and the separate D79B cross-ordinal survival refutation.
+- Single durable docs-only changed path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01576.md`; commit `7d19d10a920957add8cf5635de74bf68eb2b0054`, parent `bb08b8c16b3a8619534acccd0b87784390a6d1b4`; GitHub branch/readback and commit changed-path verification. No game source, workflow, branch switch or renderer change. No source build gate for REVIEW_ONLY, `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`.
+- Same TASK_ID retry, commit readback, re-report or future rollover +0; AI1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2160 + one new independent DX9Ex static diagnostic falsification +1 = 2161.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 six distinct new-SHA Korean lettering independent QA (2026-10-29 17:45 KST)
 
 - RUN_KEY `OUTRUN-C1-AI2-20261029T1745KST-A0131-B0144-NEW-SHA6`. Verified GitHub C1 contract/glyph-scale policy/controller roles, pinned actual asset branch. N100 compared **41 prior review reports / 295 prior distinct candidate SHA**; reviewed six new non-repeated SHA (A-0131..0134, B-0143..0144), with all six candidate/export SHA256 and source-HD/manifest SHA256 matching.

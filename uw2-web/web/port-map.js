@@ -159,7 +159,7 @@ export function renderPortViewport(ctx, portAssets, portId, dx, dy, dw, dh) {
   ctx.drawImage(tmp, dx, dy);
   return { bankId, startX, startY, backgroundTile: bg, focusX, focusY };
 }
-export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16) {
+export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16, drawFallbackMarker = true) {
   const bankId = portId < portAssets.chipNo.length ? portAssets.chipNo[portId] : 3;
   const bank = portAssets.banks[bankId];
   const map = portAssets.maps[portId];
@@ -200,16 +200,17 @@ export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16)
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(tmp, dx, dy);
 
-  // Temporary player marker until CHAR.LZW's Korean-edition layout is fully decoded.
   const playerScreenX = dx + state.playerX * 16;
   const playerScreenY = dy + state.playerY * 16;
-  ctx.save();
-  ctx.fillStyle = "rgba(255,238,128,.35)";
-  ctx.fillRect(playerScreenX, playerScreenY, 32, 32);
-  ctx.strokeStyle = "#ffe680";
-  ctx.lineWidth = 2;
-  ctx.strokeRect(playerScreenX + 1, playerScreenY + 1, 30, 30);
-  ctx.restore();
+  if (drawFallbackMarker) {
+    ctx.save();
+    ctx.fillStyle = "rgba(255,238,128,.35)";
+    ctx.fillRect(playerScreenX, playerScreenY, 32, 32);
+    ctx.strokeStyle = "#ffe680";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(playerScreenX + 1, playerScreenY + 1, 30, 30);
+    ctx.restore();
+  }
 
   return { bankId, width: pxSize, height: pxSize, playerScreenX, playerScreenY };
 }

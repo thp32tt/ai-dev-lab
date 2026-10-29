@@ -41,6 +41,8 @@ if (fs.existsSync(path.join(gameDir, "KOUKAI2.DAT"))) {
   const s = slots.find(x => !x.empty);
   assert.ok(s.heroName.length > 0);
   assert.ok(Number.isInteger(s.money));
+  assert.ok(Number.isInteger(s.portraitIdCandidate));
+  assert.equal(slots[0].portraitIdCandidate, slots[0].heroId);
 
   const rt = new ReaGameRuntime(s, [], []);
   rt.start();

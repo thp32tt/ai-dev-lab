@@ -40,6 +40,9 @@ export const SAVE = Object.freeze({
   VIEW_Y: 0x12,
   PLAYER_X: 0x14,
   PLAYER_Y: 0x16,
+  ACTORS: 0x18,
+  ACTOR_COUNT: 8,
+  ACTOR_SIZE: 3,
   MONEY: 0x06a1,
   HERO_ID: 0x06a8,
   PERSON: 0x06a9,
@@ -157,6 +160,17 @@ export function parseSaveSlots(arrayBuffer) {
     const viewY = u16le(view, saveBase + SAVE.VIEW_Y);
     const playerX = u16le(view, saveBase + SAVE.PLAYER_X);
     const playerY = u16le(view, saveBase + SAVE.PLAYER_Y);
+    const townActors = [];
+    for (let actor = 0; actor < SAVE.ACTOR_COUNT; actor++) {
+      const at = saveBase + SAVE.ACTORS + actor * SAVE.ACTOR_SIZE;
+      const x = bytes[at], y = bytes[at + 1], type = bytes[at + 2];
+      townActors.push({
+        slot: actor,
+        x, y, type,
+        active: x !== 0xff && y !== 0xff,
+        walker: actor < 4,
+      });
+    }
     const fleet=parseKoreanFleet(bytes,view,page,heroId);
     slots.push({
       index: i,
@@ -184,6 +198,7 @@ export function parseSaveSlots(arrayBuffer) {
         mapX: viewX + playerX,
         mapY: viewY + playerY,
       },
+      townActors,
       raw: { page, saveBase, personBase, abilityBase },
     });
   }

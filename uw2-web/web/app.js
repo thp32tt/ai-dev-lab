@@ -2,16 +2,28 @@ import { parseOffsetTextTable, parseSaveSlots, stripMenuControls } from "./binar
 import { ReaGameRuntime } from "./runtime.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
+import { decodePortAssets, renderPortMapToCanvas, renderPortViewport } from "./port-map.js";
+import {
+  decodeOpeningArchive,
+  chooseTitleLikeRecord,
+  chooseOpeningGallery,
+  drawOpeningFit,
+} from "./opening.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("screen");
 const ctx = canvas.getContext("2d");
+
 let slots = [];
 let selected = null;
 let menus = [];
 let messages = [];
 let runtime = null;
+let viewMode = "loading";
 let kaoPortraits = [];
+let portAssets = null;
+let openingData = null;
+let openingTitle = null;
 
 async function loadBuffer(name) {
   const res = await fetch("/game/" + encodeURIComponent(name), { cache: "no-store" });
@@ -47,11 +59,74 @@ async function loadManifest() {
 }
 
 async function loadTables() {
-  const [menuBuf, msgBuf] = await Promise.all([loadBuffer("MENU.DAT"), loadBuffer("MESSAGE.DAT")]);
+  const [menuBuf, msgBuf] = await Promise.all([
+    loadBuffer("MENU.DAT"),
+    loadBuffer("MESSAGE.DAT"),
+  ]);
   menus = parseOffsetTextTable(menuBuf);
   messages = parseOffsetTextTable(msgBuf);
   $("menus").replaceChildren(rows(menus, x => `#${x.index}  ${stripMenuControls(x.text)}`));
   $("messages").replaceChildren(rows(messages.slice(0, 120), x => `#${x.index}  ${x.text.replace(/\n/g, " / ")}`));
+}
+
+async function loadOpeningGraphics() {
+  const buf = await loadBuffer("OPGRAPH.LZW");
+  openingData = decodeOpeningArchive(buf);
+  openingTitle = chooseTitleLikeRecord(openingData);
+  $("opening-button").disabled = !openingTitle;
+
+  const gallery = $("opening-gallery");
+  gallery.replaceChildren();
+  const chosen = chooseOpeningGallery(openingData, 12);
+  for (const image of chosen) {
+    const fig = document.createElement("figure");
+    fig.className = "opening-card";
+    const c = document.createElement("canvas");
+    c.width = 320;
+    c.height = 180;
+    const cctx = c.getContext("2d");
+    cctx.fillStyle = "#000";
+    cctx.fillRect(0, 0, c.width, c.height);
+    drawOpeningFit(cctx, image, 0, 0, c.width, c.height);
+    const cap = document.createElement("figcaption");
+    cap.textContent = `part ${image.partIndex} / record ${image.recordIndex} · ${image.width}×${image.height}`;
+    fig.append(c, cap);
+    gallery.appendChild(fig);
+  }
+  $("opening-status").textContent =
+    `${openingData.magic} · 사용자 원본 14 parts / ${openingData.recordCount} GRAPH records · 16색 근사 팔레트`;
+}
+
+function renderSelectedPortMap() {
+  const portCanvas = $("portmap");
+  if (!selected || !portAssets) return;
+  if (selected.port === 0xff) {
+    const pctx = portCanvas.getContext("2d");
+    portCanvas.width = 384;
+    portCanvas.height = 96;
+    pctx.fillStyle = "#071522";
+    pctx.fillRect(0, 0, portCanvas.width, portCanvas.height);
+    pctx.fillStyle = "#e7edf5";
+    pctx.font = "20px Malgun Gothic";
+    pctx.fillText("현재 세이브는 해상 상태입니다.", 30, 55);
+    $("portmap-status").textContent = "해상 상태 · 항구 맵 없음";
+    return;
+  }
+  const info = renderPortMapToCanvas(portCanvas, portAssets, selected.port, 0.25);
+  $("portmap-status").textContent =
+    `PORT #${selected.port} ${selected.portName} · CHIP bank ${info.bankId} · 96×96 tiles / 1536×1536 px`;
+}
+
+async function loadPortMaps() {
+  const [chipBuf, mapBuf, chipNoBuf] = await Promise.all([
+    loadBuffer("PORTCHIP.LZW"),
+    loadBuffer("PORTMAP.LZW"),
+    loadBuffer("CHIP_NO.DAT"),
+  ]);
+  portAssets = decodePortAssets(chipBuf, mapBuf, chipNoBuf);
+  $("portmap-status").textContent =
+    `7 tile banks × 240 tiles · PORTMAP ${portAssets.maps.length}개 · CHIP_NO ${portAssets.chipNo.length}개`;
+  renderSelectedPortMap();
 }
 
 function renderSlots() {
@@ -59,7 +134,8 @@ function renderSlots() {
   root.replaceChildren();
   for (const slot of slots) {
     const btn = document.createElement("button");
-    btn.className = "slot" + (slot.empty ? " empty" : "") + (selected?.index === slot.index ? " selected" : "");
+    btn.className = "slot" + (slot.empty ? " empty" : "") +
+      (selected?.index === slot.index ? " selected" : "");
     btn.disabled = slot.empty;
     btn.textContent = slot.empty
       ? `${slot.index + 1}. No data`
@@ -69,6 +145,7 @@ function renderSlots() {
       $("run-button").disabled = false;
       renderSlots();
       drawPreview(slot);
+      renderSelectedPortMap();
     });
     root.appendChild(btn);
   }
@@ -80,35 +157,37 @@ async function loadPortraits() {
   const root = $("portraits");
   root.replaceChildren();
 
-  kaoPortraits = decoded.decoded.map(entry => decodePlanarIndexed(entry.data, 64, 80, 3, 1, true));
+  kaoPortraits = decoded.decoded.map(entry =>
+    decodePlanarIndexed(entry.data, 64, 80, 3, 1, true)
+  );
   decoded.decoded.slice(0, 8).forEach((entry, i) => {
     const fig = document.createElement("figure");
     fig.className = "portrait";
-    const canvas = document.createElement("canvas");
+    const c = document.createElement("canvas");
     const cap = document.createElement("figcaption");
     cap.textContent = `KAO #${i}`;
-    drawIndexedCanvas(canvas, kaoPortraits[i], 64, 80, 2);
-    fig.append(canvas, cap);
+    drawIndexedCanvas(c, kaoPortraits[i], 64, 80, 2);
+    fig.append(c, cap);
     root.appendChild(fig);
   });
 
   $("kao-status").textContent =
     `${decoded.magic} · FAT ${decoded.entries.length}개 · 16개 해제 / 첫 8개 표시 · 64×80/3bpp`;
-  if (selected) drawPreview(selected);
+  if (selected && viewMode === "preview") drawPreview(selected);
 }
 
 async function loadSaves() {
   const buf = await loadBuffer("KOUKAI2.DAT");
   slots = parseSaveSlots(buf);
-  $("save-status").textContent = `KOUKAI2.DAT ${fmtBytes(buf.byteLength)} · 슬롯당 33,340 bytes`;
-  renderSlots();
+  $("save-status").textContent =
+    `KOUKAI2.DAT ${fmtBytes(buf.byteLength)} · 슬롯당 33,340 bytes`;
   const first = slots.find(x => !x.empty);
   if (first) {
     selected = first;
     $("run-button").disabled = false;
-    renderSlots();
-    drawPreview(first);
   }
+  renderSlots();
+  renderSelectedPortMap();
 }
 
 function drawFrame(title, lines) {
@@ -138,19 +217,54 @@ function drawHeroPortrait(slot) {
 }
 
 function drawPreview(slot) {
+  viewMode = "preview";
+  if (runtime) runtime.pause();
   drawFrame("대항해시대 II", [
     `SAVE ${slot.index + 1}: ${slot.memo}`,
     `항구: ${slot.portName}`,
     `주인공: ${slot.heroName}`,
     `소지금: ${slot.money.toLocaleString()} G`,
     `얼굴 후보 ID: ${slot.portraitIdCandidate}`,
-    "원본 MENU.DAT / MESSAGE.DAT 로드 완료",
+    "원본 MENU / MESSAGE / KAO / PORTMAP 로드",
   ]);
   drawHeroPortrait(slot);
+  $("runtime-status").textContent = "세이브 미리보기";
+}
+
+function drawOpeningScreen() {
+  if (!openingTitle) return;
+  viewMode = "opening";
+  if (runtime) runtime.pause();
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  drawOpeningFit(ctx, openingTitle, 0, 78, canvas.width, 150);
+  ctx.fillStyle = "#d7d7d7";
+  ctx.font = "16px Malgun Gothic, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("OPGRAPH.LZW 원본 GRAPH 레코드 직접 복원", 320, 274);
+  ctx.fillText(
+    `part ${openingTitle.partIndex} / record ${openingTitle.recordIndex} · ${openingTitle.width}×${openingTitle.height}`,
+    320, 302
+  );
+  ctx.fillStyle = "#8f98a8";
+  ctx.fillText("색상은 현재 16색 근사 팔레트 · 픽셀/압축 구조는 원본 데이터", 320, 334);
+  ctx.textAlign = "start";
+  $("runtime-status").textContent = "원본 OPGRAPH 오프닝 화면";
+  $("debug").textContent = JSON.stringify({
+    view: "opening",
+    parts: openingData.parts.length,
+    records: openingData.recordCount,
+    selectedRecord: {
+      part: openingTitle.partIndex,
+      record: openingTitle.recordIndex,
+      width: openingTitle.width,
+      height: openingTitle.height,
+    },
+  }, null, 2);
 }
 
 function renderRuntime() {
-  if (!runtime) return;
+  if (!runtime || viewMode !== "runtime") return;
   runtime.tick();
   const s = runtime.snapshot();
   const msg = messages[(s.frame >> 5) % Math.min(messages.length, 80)]?.text ?? "";
@@ -162,22 +276,36 @@ function renderRuntime() {
     msg.replace(/\n/g, " ").slice(0, 40),
   ]);
   $("runtime-status").textContent = runtime.running ? "실행 중" : "일시정지";
+  if (portAssets && runtime.slot?.port !== 0xff) {
+    const p = renderPortViewport(ctx, portAssets, runtime.slot.port, 330, 210, 280, 155);
+    if (p) {
+      ctx.strokeStyle = "#c9a95e";
+      ctx.strokeRect(329, 209, 282, 157);
+    }
+  }
   drawHeroPortrait(runtime.slot);
-  $("debug").textContent = JSON.stringify({ ...s, portraitIdCandidate: runtime.slot?.portraitIdCandidate }, null, 2);
+  $("debug").textContent = JSON.stringify({
+    ...s,
+    portraitIdCandidate: runtime.slot?.portraitIdCandidate,
+    port: runtime.slot?.port,
+  }, null, 2);
   requestAnimationFrame(renderRuntime);
 }
+
+$("opening-button").addEventListener("click", drawOpeningScreen);
 
 $("run-button").addEventListener("click", () => {
   if (!selected) return;
   runtime = new ReaGameRuntime(selected, menus, messages);
   runtime.start();
+  viewMode = "runtime";
   $("pause-button").disabled = false;
   $("pause-button").textContent = "일시정지";
   renderRuntime();
 });
 
 $("pause-button").addEventListener("click", () => {
-  if (!runtime) return;
+  if (!runtime || viewMode !== "runtime") return;
   if (runtime.running) {
     runtime.pause();
     $("pause-button").textContent = "계속";
@@ -187,8 +315,16 @@ $("pause-button").addEventListener("click", () => {
   }
 });
 
-Promise.all([loadManifest(), loadTables(), loadSaves(), loadPortraits()])
-  .catch(err => {
-    $("runtime-status").textContent = "로드 오류: " + err.message;
-    $("debug").textContent = err.stack || String(err);
-  });
+Promise.all([
+  loadManifest(),
+  loadTables(),
+  loadSaves(),
+  loadPortraits(),
+  loadPortMaps(),
+  loadOpeningGraphics(),
+]).then(() => {
+  drawOpeningScreen();
+}).catch(err => {
+  $("runtime-status").textContent = "로드 오류: " + err.message;
+  $("debug").textContent = err.stack || String(err);
+});

@@ -76,9 +76,9 @@ export function decodeKoreanChar(arrayBuffer) {
 }
 
 export function heroFrameIndex(facing, stepParity) {
-  // Shipped order is two frames each: up, left, down, right.
+  // Shipped order is two frames each: up, right, down, left.
   const base = facing === "up" ? 0 :
-               facing === "left" ? 2 :
+               facing === "right" ? 2 :
                facing === "down" ? 4 : 6;
   return base + (stepParity & 1);
 }

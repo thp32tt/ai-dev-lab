@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 native DX11 live D3D9 SM3 Z/W table Fog projection source translation (2026-10-29 KST)
+
+- TASK_ID: `CONVERSION-DX11-01152`, DX11 lane `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Independent *source-integrated* feature addition: actual live D3D9 projection fourth-column identification and authentic WFOG raster capability decide between affine device-Z or canonical eye-relative W fog coordinates. Original material C++/HLSL integration SHA `1821758df335621ad2141b0b6e64015e9f64e609` modifies `src/vr/d3d11/live_game_frame_bridge.cpp`, `src/vr/d3d11/live_game_sm3_table_fog.hpp`, and C++ positive/negative regression `tools/dx11_live_sm3_table_zfog_01005.cpp`. Native SM3 PS uses the matching per-pixel SV_Position Z / reciprocal-W coordinate; unknown source transform/COM/caps/floats, resource/RT/DS/poison and publication remain fail-closed. DX9Ex original Draw/input/FFB/SkyGlow and DXVK freeze preserved.
+- The initial exact-SHA `1821758d` DX11 Fast `40824173042` and Backend `40824173021` failed solely because inherited completed `01151` had `changed_source_files` but omitted canonical `changed_files`, not because game source failed compilation. Same-task causal bookkeeping correction and precise `01152` run registration at validation-bearing SHA `9e7cc0c090f4a14bb605795e4e35a274ed577e71`; no Gate/check bypass or separate score for CI repair.
+- Exact-SHA five mandatory **SUCCESS**: DX11 Fast `40824444626`, Backend Conversion `40824444229`, Windows Build `40824444287`, OpenXR VR architecture `40824444217`, HUD Inspector `40824444243`. This is **BUILD_VERIFIED**, not a measured native full frame, actual in-game Draw, published GPU desktop frame or Quest3/VDXR playability. `RUNTIME_VALIDATION=UNTESTED`; controller deployment unverified. Same TASK_ID/retry/C6/readback earns +0 additional; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2141 + one new independently integrated DX11 source implementation and five exact-SHA Gates +1 = 2142.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight new-SHA Korean lettering independent QA (2026-10-29 14:45 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1445KST-A0119-B0134-NEW-SHA8`. N100 checked 38 prior C1 reports containing 271 reviewed distinct candidate SHA. Selected 8 first-time SHA-verified exported PNGs: A-0119..0122 (ordinals 413–416), B-0131..0134 (ordinals 468–471). All 8 generated PNG SHA256 equal export evidence, all 8 original full-HD source SHA256 equal production manifest, all 8 files RGBA; 0 alpha>=32 canvas-border pixels. A/B queue untouched.

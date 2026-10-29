@@ -179,12 +179,16 @@ function setMusicForMode(mode = viewMode, force = false) {
 
 async function loadMusicSupport() {
   const buf = await loadBuffer("D2.MML");
-  musicPlayer = new D2MusicPlayer({ volume: 0.14 });
+  let manifest = null;
+  try {
+    const res = await fetch("./generated/music/manifest.json", { cache: "no-store" });
+    if (res.ok) manifest = await res.json();
+  } catch {}
+  musicPlayer = new D2MusicPlayer({ volume: 0.65, manifest });
   const parsed = musicPlayer.load(buf);
   setMusicForMode(viewMode, true);
   return parsed;
 }
-
 function tryAutostartMusic(event) {
   if (!musicAutostartPending || !musicPlayer?.songCount) return;
   if (event?.target?.closest?.("[data-action=\"sound\"]")) return;
@@ -1997,8 +2001,7 @@ window.addEventListener("uw2-controller-action", async event => {
   if (action === "track-prev" || action === "track-next") {
     musicAutostartPending = false;
     const delta = action === "track-prev" ? -1 : 1;
-    musicPlayer.setTrack(musicPlayer.track + delta);
-    await musicPlayer.play(musicPlayer.track);
+    await musicPlayer.next(delta);
     publishControllerState();
   }
 });

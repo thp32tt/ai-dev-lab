@@ -146,11 +146,13 @@ window.addEventListener("uw2-game-state", event => {
   const music = state.music;
   if (musicLabel) {
     if (!music?.loaded) musicLabel.textContent = "BGM 준비";
+    else if (!music?.rendered) musicLabel.textContent = "BGM 생성 필요";
     else musicLabel.textContent =
-      (music.playing ? "♪" : "×") + " D2 " + (music.track + 1) + "/" + music.songCount;
+      (music.playing ? "♪" : "×") + " FM " + (music.track + 1) + "/" + music.songCount;
   }
   if (soundButton) {
     const on = !!music?.playing;
+    soundButton.disabled = !music?.rendered;
     soundButton.classList.toggle("latched", on);
     soundButton.setAttribute("aria-pressed", String(on));
     soundButton.textContent = on ? "🔊 BGM" : "🔇 BGM";

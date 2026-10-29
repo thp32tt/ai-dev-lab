@@ -5,3 +5,6 @@ __pycache__/
 *.db
 *.sqlite
 *.sqlite3
+uw2-web/web/generated/music/*.ogg
+uw2-web/web/generated/music/*.wav
+uw2-web/web/generated/music/manifest.json

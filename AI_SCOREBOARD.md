@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens / +TIME / GOAL overcapture diagnostic integration (2026-10-29 KST)
+
+- User-directed material diagnostic expansion on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, final validation-bearing HEAD `c04e56514aa0eef7f3d7d1c164166a546020eb7b`. The source-integrated change deliberately overcaptures the three unresolved visual families without changing their render policy: lens source-linked/window-linked R30 physical results are no longer success-sampled away; R19 classic-SBS replacement logs projection UV, bilateral blit result and A/B pose/FOV join on every replacement frame; +TIME/GOAL queued node forensics include the exact GOAL time helper families; D3DX CPU Draw tracing is expanded to GoalTime020/GoalTime150/OutRunStagePrintf/ResultTextB9200; native D3DX Flush/End PRE/POST receipts record deferred physical submission ownership/HRESULT; R30 detailed physical GPU/matrix/eye-HRESULT telemetry now covers PLUS_TIME, GOAL_PERCENT, GOAL_TEXT, GOAL_TIME and GOAL_STAGE_PRINTF.
+- During validation, source-only diagnostic defects were repaired as part of the same achievement and do not score separately: malformed trace literal, stale test-harness producer enum, use of non-existent NativeSnapshot.producer, and direct D3DX helper types unavailable in this translation unit. Final code keeps the existing D3DX hook ABI and saves the pre-call producer explicitly for post-Flush/End receipts.
+- Exact final SHA verified **SUCCESS** so far on DX9Ex R26 User Test Build `40825578254`, VR GitHub General Test Build `40825578260`, OutRun EXE HUD Inspector CI `40825578257`, and Domain Isolation Guard `40825578266`; R26 User Test built both Win32 game DLL and x64 OpenXR host and produced artifact `OutRun2-VR-R26-VISUAL-OWNER-REPAIR-AA2-TEST-c04e56514aa0eef7f3d7d1c164166a546020eb7b`. Quest3/VDXR reproduction is still required to identify the optical root cause; `RUNTIME_VALIDATION=UNTESTED`. Same source work, compile/test repairs, workflow rechecks and later re-report earn +0. AI 1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2143 + one distinct source-integrated DX9Ex overcapture diagnostic achievement +1 = 2144.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 N100 REA 대항해시대2 DOS 실바이너리 초기 역분석 (2026-10-29 KST)
 
 - 신규 독립 분석 성과: 사용자 제공 `9969513B5D21CBC215.zip`을 N100으로 무결성 검증 전송(SHA-256 `a65fa9beaea200c6901a093f697818a1336711ed6e432808519de6defa8ea5df`)하고 REA 6.5.0 + Ghidra 12.1.4로 실제 DOS 바이너리를 분석했다. `MAIN.EXE`는 dos-mz / x86 16-bit Real Mode, 7개 메모리 블록과 1,261개 프로시저로 식별했으며 MZ CS:IP 진입점 `0000:32F4`(REA linear `0x132F4`)를 디컴파일해 CRT/메모리/BSS 초기화를 확인했다.

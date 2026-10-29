@@ -1,5 +1,5 @@
 import { decodeLS11 } from "./ls11.js";
-import { decodePlanarIndexed, HORIZON_KAO_PALETTE } from "./koei-image.js";
+import { decodePlanarIndexed, UW2_WORLD_PALETTE } from "./koei-image.js";
 
 export const PORT_TILE_SIZE = 16;
 export const PORT_MAP_WIDTH = 96;
@@ -12,6 +12,7 @@ export function decodePortAssets(portChipBuffer, portMapBuffer, chipNoBuffer) {
   const chipNo = new Uint8Array(chipNoBuffer);
 
   const banks = [];
+  const walkBounds = [];
   for (let bank = 0; bank < 7; bank++) {
     const entry = chipContainer.decoded[bank * 2];
     if (!entry || entry.data.length !== 30720) {
@@ -28,6 +29,11 @@ export function decodePortAssets(portChipBuffer, portMapBuffer, chipNoBuffer) {
       tiles.push(tile);
     }
     banks.push(tiles);
+    const meta = chipContainer.decoded[bank * 2 + 1];
+    if (!meta || meta.data.length !== 4) {
+      throw new Error(`PORTCHIP bank ${bank} missing 4-byte walk bounds`);
+    }
+    walkBounds.push(Array.from(meta.data));
   }
 
   const maps = mapContainer.decoded.map((entry, index) => {
@@ -41,7 +47,7 @@ export function decodePortAssets(portChipBuffer, portMapBuffer, chipNoBuffer) {
     throw new Error(`CHIP_NO.DAT size ${chipNo.length}, expected 100`);
   }
 
-  return { banks, maps, chipNo };
+  return { banks, maps, chipNo, walkBounds };
 }
 
 export function renderPortMapToCanvas(canvas, portAssets, portId, scale = 0.25) {
@@ -70,7 +76,7 @@ export function renderPortMapToCanvas(canvas, portAssets, portId, scale = 0.25) 
       for (let ty = 0; ty < PORT_TILE_SIZE; ty++) {
         for (let tx = 0; tx < PORT_TILE_SIZE; tx++) {
           const colorIndex = tile[ty * PORT_TILE_SIZE + tx];
-          const c = HORIZON_KAO_PALETTE[colorIndex] ?? [0, 0, 0];
+          const c = UW2_WORLD_PALETTE[colorIndex] ?? [0, 0, 0];
           const x = mx * PORT_TILE_SIZE + tx;
           const y = my * PORT_TILE_SIZE + ty;
           const p = (y * fullW + x) * 4;
@@ -140,7 +146,7 @@ export function renderPortViewport(ctx, portAssets, portId, dx, dy, dw, dh) {
       const tx = worldX & 15;
       const ty = worldY & 15;
       const ci = tile[ty * 16 + tx];
-      const c = HORIZON_KAO_PALETTE[ci] ?? [0, 0, 0];
+      const c = UW2_WORLD_PALETTE[ci] ?? [0, 0, 0];
       const p = (py * dw + px) * 4;
       img.data[p] = c[0];
       img.data[p + 1] = c[1];
@@ -152,4 +158,58 @@ export function renderPortViewport(ctx, portAssets, portId, dx, dy, dw, dh) {
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(tmp, dx, dy);
   return { bankId, startX, startY, backgroundTile: bg, focusX, focusY };
+}
+export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16) {
+  const bankId = portId < portAssets.chipNo.length ? portAssets.chipNo[portId] : 3;
+  const bank = portAssets.banks[bankId];
+  const map = portAssets.maps[portId];
+  if (!bank || !map) return null;
+
+  const viewTiles = 23;
+  const pxSize = viewTiles * PORT_TILE_SIZE;
+  const tmp = document.createElement("canvas");
+  tmp.width = pxSize;
+  tmp.height = pxSize;
+  const tctx = tmp.getContext("2d");
+  const img = tctx.createImageData(pxSize, pxSize);
+
+  for (let vy = 0; vy < viewTiles; vy++) {
+    for (let vx = 0; vx < viewTiles; vx++) {
+      const mx = state.viewX + vx;
+      const my = state.viewY + vy;
+      if (mx < 0 || my < 0 || mx >= PORT_MAP_WIDTH || my >= PORT_MAP_HEIGHT) continue;
+      const tileId = map[my * PORT_MAP_WIDTH + mx];
+      const tile = bank[tileId];
+      if (!tile) continue;
+      for (let ty = 0; ty < 16; ty++) {
+        for (let tx = 0; tx < 16; tx++) {
+          const ci = tile[ty * 16 + tx];
+          const c = UW2_WORLD_PALETTE[ci] ?? [0,0,0];
+          const x = vx * 16 + tx;
+          const y = vy * 16 + ty;
+          const pos = (y * pxSize + x) * 4;
+          img.data[pos] = c[0];
+          img.data[pos + 1] = c[1];
+          img.data[pos + 2] = c[2];
+          img.data[pos + 3] = 255;
+        }
+      }
+    }
+  }
+  tctx.putImageData(img, 0, 0);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(tmp, dx, dy);
+
+  // Temporary player marker until CHAR.LZW's Korean-edition layout is fully decoded.
+  const playerScreenX = dx + state.playerX * 16;
+  const playerScreenY = dy + state.playerY * 16;
+  ctx.save();
+  ctx.fillStyle = "rgba(255,238,128,.35)";
+  ctx.fillRect(playerScreenX, playerScreenY, 32, 32);
+  ctx.strokeStyle = "#ffe680";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(playerScreenX + 1, playerScreenY + 1, 30, 30);
+  ctx.restore();
+
+  return { bankId, width: pxSize, height: pxSize, playerScreenX, playerScreenY };
 }

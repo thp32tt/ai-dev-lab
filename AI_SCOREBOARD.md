@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 source-zero-density EXP/EXP2 Fog native live Draw admission (2026-10-29 KST)
+
+- TASK_ID: `CONVERSION-DX11-01150`; same task E001/E002 retry, inherited policy repair and static test repair all belong to ONE source achievement, no separate score. Original new game-path C++/C++ regression material commit `7746cf5d38a4907e64044595bf47d0db541daac5` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`; latest exact-source validation-bearing causal repair/result `50221dcc1e238e383897a65992d34ac663d7152d`.
+- Distinct actual behavior from 01149: source-live D3D9 programmable EXP/EXP2 fog density exactly zero is mathematically RGB-inert and now reads authentic density before unused color/start/end/range/caps, avoiding needless rejection of safe game-created native D3D11 Draw. Invalid modes, missing source COM state, nonzero active Fog and other RT/depth/poison/publication checks still fail closed. Full native menu/car/race rendering and Quest3/VDXR are NOT claimed. `RUNTIME_VALIDATION=UNTESTED`.
+- Five required GitHub **push** workflows verified **SUCCESS at identical exact `50221dcc1e238e383897a65992d34ac663d7152d`**: DX11 Fast 40815567628, Backend 40815567595, Build 40815567603, OpenXR VR architecture 40815567537, OutRun EXE HUD Inspector 40815567613. Initial failed 40813007429/40813007430 was inherited 01149 evidence omission; later 40813263121/40814628413 were causal source-static test acceptance and whitespace checks fixed in the SAME TASK_ID, not fresh development awards. No HMD/real-game proof, no DXVK or protected DX9Ex changes.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2133 + unique new source-integrated exact-five-Gate DX11 behavior +1 = 2134.** AI 1 separate. Same-task retry, CI repairs, C6, readbacks and re-report score +0.
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 eight first-time SHA independent Korean ROI QA (2026-10-29 12:45 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1245KST-A0103-B0118-NEW-SHA8`; 8 first-time SHA, not contained in the prior 34 N100 C1 QA reports (239 distinct prior candidate SHA). A ordinals 397–400 (A-0103..0106), B ordinals 452–455 (B-0115..0118). Available manifest-backed unreviewed exports before selection: A 38, B 30. All 8 candidate byte SHA256 equal independent production export evidence; all 8 original HD source SHA256 match manifest and all outputs are RGBA.

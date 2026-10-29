@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 original-game dirty-island source-coincident native GPU RGB output (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01169`, independent actual C++ native RAW source-Draw GPU output integration on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Previous source-aligned D3D11 GPU RGB publication required its whole diagnostic tile inside a D3D9 dirty Present region; real menu/car repaint islands could be smaller, forcing a displaced preview. The implementation crops only authenticated PRE/Draw/POST RGB-changed native GPU pixels to a verified exact original D3D9 dirty subregion, preserving original game pixel positions and rejecting malformed bounds, absent RGB and alpha-only changes. Production original game/DX9Ex, input/FFB and frozen DXVK unaffected. Does not claim full native menu/race or HMD.
+- Four-file actual C++ and compiled regression material commit `e63a715d6179a171667888f5f378c4969177241c`. Five mandatory **push** GitHub Actions confirmed success on identical exact SHA: DX11 Fast `40966837479`, Backend Conversion Gate `40966837380`, Build `40966837386`, OpenXR architecture `40966837282`, HUD Inspector `40966837285`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`, `RUNTIME_VALIDATION=UNTESTED`; no real game native GPU/Quest3/VDXR observation and no backend promotion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2194 + independent source-aligned small-dirty native RGB game output integration +1 = 2195.** Same TASK retry/C6/readback +0; AI 1 separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex R26+HUD nominal R29 lower actually targets R26 lens review (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01588`, independent LENS_FLARE_ONLY static route-provenance falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned pre-review SOURCE_HEAD `acfd2987f2d21a742805613e30b5dc2d8b0d38ef`. Source and fresh-cache CMake selection prove default R26+HUD `R30Draw*R29Hook` misleading names actually install all four R30 hooks on `Draw*DestR26`, whereas alternate R84 `stereo_renderer_r30.cpp` uses the R29 owner target. The default R30 `resultRoute=R29_FALLBACK`/`R30_NOT_ADMITTED` receipt cannot prove actual R29 replay, a completed stereo pair, or extra lens RGB. The downstream R26 either takes a proven write-free single original draw or delegates to R23. Protected R26+HUD 0cff83cf baseline has the same hook target: not a new runtime regression. This corrects inherited 01586/01587 lower-route terminology without rescoring their HRESULT/PMT hypotheses.

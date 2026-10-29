@@ -1,5 +1,17 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II Browser M3/M4 실제 항구 보행·출항·해상 이동 (2026-10-29 KST)
+
+- M2와 별개의 신규 실제 실행 성과. 사용자 한국어판 `KOUKAI2.DAT`에서 slot data base `page+0x97`, `+0x10/+0x12/+0x14/+0x16 = viewX/viewY/playerX/playerY`를 두 세이브와 `ZA_DAT.DAT` 문 좌표로 교차확정했다. SAVE1 튀니스 (16,89)은 주점 문 (16,88) 바로 아래, SAVE2 단치히 (22,52)는 항 문 (22,51) 바로 아래다.
+- `PORTCHIP.LZW` 7개 4-byte walk bounds의 원본 충돌식을 구현해 23×23 save viewport, 1칸 보행, view scroll, 장애물 우회, `ZA_DAT` 건물 자동 진입을 실제 브라우저에서 조작 가능하게 했다. Firefox: 튀니스 시작 → ↑ 주점 진입 → 원본 `GRAPH.DAT` vendor art → ESC 복귀 → ← 이동 PASS.
+- 세계지도는 사용자 `WORLDMAP.LZW` 3 parts(25,394/21,973/23,907)와 `DATA1.LZW` 19 parts를 직접 사용한다. 1080×540 cells → 2160×1080 chips, DATA1[18] 1024-byte quad table, DATA1[11] 앞 16KB 128×16×16 planar tiles, Korean MAIN.EXE 16-color palette로 브라우저 렌더링. DOS port table은 slot-relative `0x53BA`, 20-byte `nation+x+y+name[15]`; 단치히=(288,240).
+- 항 건물에서 ENTER/1/S로 실제 출항. 단치히 nearest valid 2×2 sea=(286,238), chip<0x34 sea-only + fleet 2×2 collision 적용. Firefox에서 북/북동은 coast-block, 동쪽으로 회전 후 (287,238)로 실제 한 칸 항해 PASS.
+- GitHub source-only `thp32tt/ai-dev-lab@uw2-web-port`. M4 report commit `74951b58c25653eba6512e5dbf7de342f9b95f16`, remote report blob `3c6e5c65b7e87590a55c25a1b3989d102689bd33`, world-map decoder blob `1db3c619d3ac2dd8047e9033ff28d4cc3f9aab22`. Original game assets are not committed. N100 HTTP server remains running on port 18082.
+- Full game behavior is still partial: exact Korean CHAR/ship sprites, sailing speed/wind/current/supplies, NPC fleets, transactions, scenario VM, combat, save write-back and audio remain. Same M3/M4 retry/readback/screenshots/re-report earns +0. AI 1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2149 + one distinct UW2 playable town-to-sea implementation achievement +1 = 2150.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX11 real source Fog FVF + SM3 RAW diagnostic integration (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX11-01153`, branch `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. A new cohesive native source implementation `5fc23727cf6965285c569378de80a8626354a6b8` changes actual `src/vr/d3d11/live_game_frame_bridge.cpp` and `live_game_sm3_table_fog.hpp` along with deterministic positive/negative C++ and source integration regression tests. Source-authentic D3D9 EXP/EXP2 density=0 enables exact inert-fog native FVF Draw; independently the opt-in isolated SM3 RAW tile may omit visual fog when source W-projection query fails only after authentic source mode/equation input reads and source fail-closed conditions. Production full-frame / input / FFB / DX9Ex fallback remain protected, DXVK frozen.

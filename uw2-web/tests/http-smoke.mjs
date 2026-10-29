@@ -1,0 +1,1 @@
+const urls=["http://127.0.0.1:18082/","http://127.0.0.1:18082/api/manifest","http://127.0.0.1:18082/game/KOUKAI2.DAT","http://127.0.0.1:18082/game/MESSAGE.DAT"];for(const u of urls){const r=await fetch(u);const b=await r.arrayBuffer();console.log(JSON.stringify({url:u,status:r.status,type:r.headers.get("content-type"),bytes:b.byteLength}));}

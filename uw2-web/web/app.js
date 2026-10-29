@@ -21,7 +21,7 @@ import {
   renderSeaView,
   SeaRuntime,
 } from "./world-map.js";
-import { decodeKoreanChar, drawHeroSprite } from "./char.js";
+import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from "./char.js";
 import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 
 const $ = (id) => document.getElementById(id);
@@ -352,7 +352,18 @@ function renderTownScreen() {
       `건물 진입: ${s.building.name} · 원본 GRAPH.DAT vendor art`;
   } else {
     renderTownView(ctx, portAssets, s.portId, s, 16, 16, !charAssets);
-    if (charAssets) drawHeroSprite(ctx, charAssets, selected?.heroId ?? 0, s, 16, 16);
+    if (charAssets) {
+      const fixedParity = s.stepParity & 1;
+      for (const actor of s.actors ?? []) {
+        if (!actor.active) continue;
+        const sx = actor.x - s.viewX;
+        const sy = actor.y - s.viewY;
+        if (sx < -1 || sy < -1 || sx > 22 || sy > 22) continue;
+        const frame = folkFrameIndex(actor, fixedParity);
+        drawFolkSprite(ctx, charAssets, frame, sx, sy, 16, 16);
+      }
+      drawHeroSprite(ctx, charAssets, selected?.heroId ?? 0, s, 16, 16);
+    }
     ctx.strokeStyle = "#c9a95e";
     ctx.lineWidth = 2;
     ctx.strokeRect(14, 14, 372, 372);

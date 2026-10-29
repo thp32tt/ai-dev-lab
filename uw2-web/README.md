@@ -79,3 +79,33 @@ LS11/bitplane 구조는 실제 제공된 KAO.LZW와 공개 프로젝트 `gcjjyy/
 주의:
 - OPGRAPH 색은 현재 16색 근사 팔레트다. 픽셀/압축 명령 구조는 원본이지만 정확한 장면별 EGA/VGA palette 전환은 추가 역분석 대상.
 - 항구 런타임 미니뷰는 실제 플레이어 좌표가 아직 확정되지 않아 배경 타일을 제외한 콘텐츠 중심으로 보여준다. 이를 플레이어 위치로 주장하지 않는다.
+
+## Browser M3/M4 — 실제 항구 보행 + 출항/해상 이동 (2026-10-29)
+
+### M3: save-position town walking
+- 한국어판 세이브 슬롯 데이터 기준점을 `page + 0x97`로 확정.
+- 슬롯 기준 `+0x10/+0x12/+0x14/+0x16` = `viewX/viewY/playerX/playerY`.
+- SAVE 1 튀니스: view=(1,72), player=(15,17), map=(16,89).
+- SAVE 2 단치히: view=(10,38), player=(12,14), map=(22,52).
+- ZA_DAT.DAT 101×24 바이트 = 항구 101개 × 건물 문 12개 × (x,y).
+- SAVE 1의 (16,89)은 튀니스 주점 문 (16,88) 바로 아래, SAVE 2의 (22,52)는 단치히 항 문 (22,51) 바로 아래로 두 독립 슬롯에서 검증.
+- PORTCHIP companion 4-byte walk bounds를 정확한 충돌 규칙으로 사용.
+- 23×23 실제 save viewport, 한 칸 이동, 원본식 view scroll, 우회 이동, 건물 자동 진입 구현.
+- 방향키/WASD/8·6·2·4로 실제 항구 이동.
+- GRAPH.DAT records 6..17의 원본 건물 vendor art 표시.
+- ESC로 건물에서 문 아래로 복귀.
+
+### M4: sail to world map
+- KOUKAI2.DAT DOS port table record = 20 bytes: `nation,u16le x,u16le y,name[15]`, table at slot-relative 0x53BA.
+- 튀니스 world chip=(242,372), 단치히=(288,240).
+- WORLDMAP.LZW 3 parts를 1080×540 cells로 복원.
+- DATA1.LZW[18] 1024-byte quad table + DATA1.LZW[11] 앞 16KB의 128 world tiles를 이용해 2160×1080 chip map을 on-demand 렌더링.
+- chip < 0x34만 항해 가능하며 함대 2×2 네 칩이 모두 바다여야 이동.
+- 항구 건물에서 ENTER/1/S로 출항.
+- 단치히의 nearest valid 2×2 sea = (286,238). 좌/우 회전, 전진, 해안 충돌 구현.
+- Firefox 실검증에서 북/북동 진행은 coast-block, 동쪽으로 회전 후 (287,238)로 실제 1칸 이동 PASS.
+
+### 정확성 경계
+- 항구 위치/충돌/문/세계지도/해상 칩 충돌은 사용자 원본 데이터 기반.
+- 항해 속도, 바람·해류, 선박 능력치, 날짜/식량, NPC 함대, 전투, 이벤트, 상거래 전체는 아직 완전 재구현되지 않음.
+- 항구 player/sea ship은 아직 diagnostic marker. 사용자 CHAR.LZW는 이식판 자료와 크기가 달라 별도 해석 중.

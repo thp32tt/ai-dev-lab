@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 native RAW FVF source SPECULAR with explicitly omitted active Fog (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX11-01159`; new **source-integrated DX11 RAW GPU pixel diagnostic** on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, distinct from preceding 01158 exact full native specular/table-fog integration. Actual C++ native GPU shader variant, D3D9 source Gouraud/SPECULAR/active-Fog bounded admission, unique variant owner cache, source pixel Draw, fail-closed partial-frame publication and positive/negative C++ regressions. Six functional source/test files in [material implementation](https://github.com/thp32tt/OutRun2006Tweaks/commit/76846a919aa30f25268406a6a39c07a0b11d1ec3), not a docs-only or enum-only task.
+- Same-task **causal required-CI repair** `911d284df69cada42394c670fa7135372890130c` restored 01158 acceptance evidence and tests. Five required `push` Actions exact this final validation-bearing SHA completed SUCCESS: DX11 Fast `40875444633`, Backend `40875444668`, Win32 Build `40875444642`, OpenXR architecture `40875444621`, HUD Inspector `40875444687`. Same task retry/CI record/C6 +0.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`, `RUNTIME_VALIDATION=UNTESTED`; original D3D9 game Draw/input/FFB preserved, DXVK frozen, no actual source-matched native Draw/published desktop frame or Quest3/VDXR evidence. RAW visual tile deliberately is not full native frame or renderer promotion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2170 + unique source implementation integrated and exact-SHA Gate-verified +1 = 2171.** AI 1 independent.
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 DX9Ex D79B opaque queue EXE_PROVEN diagnostic authority mismatch (2026-10-29 KST)
 
 - RUN_KEY `LENSFLARE-OPAQUE-QUEUE-EXE-PROOF-GAP-20261029-2123`; independent **LENS_FLARE_ONLY / REVIEW_ONLY** pinned-source verification at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `b7c0dcc0d25112e6566d802895e4bd823659a29c`. New, distinct from 01576 queue patch-count, the 18:29 reconstruction-derived field candidates, 01577 PMT pass fan-out and 01578 per-DIP eye join.

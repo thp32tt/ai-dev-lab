@@ -1,5 +1,23 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 web fresh-checkout runtime dependency recovery (2026-10-30 KST)
+
+- RUN_KEY `UW2-WEB-RUNTIME-DEPS-20261030-0134`; distinct repository-integrity/runtime achievement after the item terminal-trade state repair. GitHub `uw2-web/web/app.js` imported `pub.js`, `market.js`, and `buildings.js`, but those three required runtime modules were absent from `thp32tt/ai-dev-lab@uw2-web-port`, so a fresh branch checkout could not resolve all browser module imports even though the N100 live deployment contained the files.
+- Restored the three actual N100-proven source modules plus their focused regression suites and the existing bank regression to GitHub in material commit `e09abaf43775db6f6a281ff97ebfc7413ac5f6db` (`UW2 web: restore runtime trade and building modules`). Added paths: `web/buildings.js`, `web/market.js`, `web/pub.js`, and tests for buildings/market/pub/bank.
+- N100 artifact-backed tests all PASS against the user's Korean game data: buildings, market, pub, and bank. GitHub branch readback at `e09abaf...` reports 16 relative imports from `app.js` with **missing_imports=[]** and 21 browser source files. This score is for restoring fresh-checkout runtime dependency closure, not for re-reporting already existing N100 live files or status checks.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2178 + one distinct fresh-checkout runtime dependency recovery +1 = 2179.**
+
+Updated: 2026-10-30 KST
+
+## AI 2 UW2 web terminal item-trade state-machine repair (2026-10-30 KST)
+
+- RUN_KEY `UW2-WEB-ITEM-TERMINAL-TRADE-20261030-0134`; distinct game-runtime correctness achievement. The item-shop UI incorrectly re-checked state *after* a successful transaction: an exact-price purchase ending at 0 gold was relabeled as “no gold”, a purchase filling the twentieth inventory slot was relabeled as “inventory full”, and selling the last carried item was relabeled as “no items”, despite the underlying transaction already succeeding.
+- Material fix commit `b2aafcec57615f216fb0c071666a5e5915c9f74f` (`UW2 web: keep terminal item trades successful`) removes those post-transaction false-failure transitions while retaining pre-transaction validation. Added `uw2-web/tests/item-shop.test.mjs` covering exact-price purchase, final-slot purchase, last-item sale, restricted duplicates, deterministic Luck/Charm counteroffer, and shop time windows.
+- N100 validation PASS **6/6**, then exact GitHub files were deployed to the live `uw2-web` tree. HTTP smoke on port 18082 returned 200 for root HTML, manifest, `KOUKAI2.DAT`, and `MESSAGE.DAT`. Deployment/readback/retesting are evidence only and do not receive separate points.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2177 + one distinct terminal item-trade state-machine repair +1 = 2178.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex lens R23 cached request vs R24 view-space final fallback (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01582`, independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static cross-layer falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `27ecf6cd14f287936c2911b6345431c1467cb03e`. Unlike 01581 (R7 misleading SINGLE eye receipt) and R13 forced-mono (native draw without R7 receipt), this review tests **R23's requested cached binocular projection versus R24's actual final XR layer and diagnostic log authority**.

@@ -1,5 +1,6 @@
 import { decodeLS11 } from "./ls11.js";
 import { UW2_WORLD_PALETTE } from "./koei-image.js";
+import { environmentAt } from "./windcur.js";
 
 export const WORLD_CELL_W = 1080;
 export const WORLD_CELL_H = 540;
@@ -68,6 +69,27 @@ function decodeWorldChunk(chunk, band, cells) {
   }
 }
 
+function decodeSeaShips(raw) {
+  const first = 0x4000;
+  if (raw.length <= first) return [];
+  const count = Math.floor((raw.length - first) / 0x400);
+  const frames = [];
+  for (let k = 0; k < count; k++) {
+    const o = first + k * 0x400;
+    const px = new Uint8Array(32 * 32);
+    px.fill(255);
+    for (let i = 0; i < 0x200; i++) {
+      const b = raw[o + i], m = raw[o + 0x200 + i];
+      const y = Math.floor((i * 2) / 32), x = (i * 2) % 32;
+      const hi = b >> 4, lo = b & 15, mh = m >> 4, ml = m & 15;
+      if (mh !== 0xF) px[y * 32 + x] = hi;
+      if (ml !== 0xF) px[y * 32 + x + 1] = lo;
+    }
+    frames.push(px);
+  }
+  return frames;
+}
+
 function decodeWorldTiles(raw) {
   if(raw.length<16384) throw new Error("DATA1 chunk 11 lacks world tile atlas");
   const tiles=[];
@@ -99,8 +121,10 @@ export function decodeWorldAssets(worldBuffer,data1Buffer){
   if(d.decoded.length<19) throw new Error("DATA1 needs 19 parts");
   const quad=d.decoded[18].data;
   if(quad.length!==1024) throw new Error(`DATA1[18] ${quad.length}, expected 1024`);
-  const tiles=decodeWorldTiles(d.decoded[11].data);
-  return {cells,quad,tiles};
+  const chunk11 = d.decoded[11].data;
+  const tiles=decodeWorldTiles(chunk11);
+  const seaShips=decodeSeaShips(chunk11);
+  return {cells,quad,tiles,seaShips};
 }
 
 export function worldChipAt(assets,x,y){
@@ -163,8 +187,26 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
   t.putImageData(img,0,0);
   ctx.imageSmoothingEnabled=false;ctx.drawImage(tmp,dx,dy);
   const sx=dx+Math.floor(tilesWide/2)*16, sy=dy+Math.floor(tilesHigh/2)*16;
-  ctx.save();ctx.strokeStyle="#ffe680";ctx.lineWidth=3;ctx.strokeRect(sx+1,sy+1,30,30);
-  ctx.fillStyle="rgba(255,238,128,.24)";ctx.fillRect(sx,sy,32,32);ctx.restore();
+  const ships = assets.seaShips ?? [];
+  if (ships.length) {
+    const facingMap = [0,1,1,1,2,3,3,3];
+    const set = ships.length >= 16 ? 1 : 0; // Korean DOS: 0=oar, 1=sail
+    const frame = Math.min(ships.length - 1, set * 8 + facingMap[state.heading & 7] * 2 + (state.steps & 1));
+    const sp = ships[frame];
+    const sc = document.createElement("canvas"); sc.width = 32; sc.height = 32;
+    const sctx = sc.getContext("2d"); const simg = sctx.createImageData(32,32);
+    for (let i=0;i<sp.length;i++) {
+      const ci=sp[i], p=i*4;
+      if (ci===255) { simg.data[p+3]=0; continue; }
+      const c=UW2_WORLD_PALETTE[ci] ?? [0,0,0];
+      simg.data[p]=c[0]; simg.data[p+1]=c[1]; simg.data[p+2]=c[2]; simg.data[p+3]=255;
+    }
+    sctx.putImageData(simg,0,0);
+    ctx.drawImage(sc,sx,sy);
+  } else {
+    ctx.save();ctx.strokeStyle="#ffe680";ctx.lineWidth=3;ctx.strokeRect(sx+1,sy+1,30,30);
+    ctx.fillStyle="rgba(255,238,128,.24)";ctx.fillRect(sx,sy,32,32);ctx.restore();
+  }
   return {startX,startY,width:w,height:h};
 }
 
@@ -172,8 +214,9 @@ const DIRS=[
   [0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]
 ];
 export class SeaRuntime{
-  constructor(assets,start){
+  constructor(assets,start,windRaw=null,month=1){
     this.assets=assets;this.x=start.x;this.y=start.y;this.heading=0;this.steps=0;this.lastEvent="set-sail";
+    this.windRaw=windRaw;this.month=month;
   }
   turn(delta){this.heading=(this.heading+delta+8)%8;this.lastEvent="turn";return this.snapshot();}
   move(){
@@ -182,5 +225,8 @@ export class SeaRuntime{
     if(canFleetStand(this.assets,nx,ny)){this.x=nx;this.y=ny;this.steps++;this.lastEvent="sail";return true;}
     this.lastEvent="coast-block";return false;
   }
-  snapshot(){return {x:this.x,y:this.y,heading:this.heading,steps:this.steps,lastEvent:this.lastEvent};}
+  snapshot(){
+    const environment=this.windRaw ? environmentAt(this.windRaw,this.month,this.x,this.y) : null;
+    return {x:this.x,y:this.y,heading:this.heading,steps:this.steps,lastEvent:this.lastEvent,month:this.month,environment};
+  }
 }

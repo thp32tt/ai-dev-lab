@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex R30 native LEFT failure mono-backup-gap and poisoned Present lens-route review (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01589`: independent LENS_FLARE_ONLY R26+HUD static falsification on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `3f5f92867ba3334d5955f726a4a68907c77476d7`. Separate from earlier 01587 raw E_NOTIMPL and 01588 default actual R26 hook target: after R30's actual LEFT begins, `R9NoteStereoDrawWithoutMonoBackup` marks mono-backup gap; a LEFT HRESULT == E_NOTIMPL failure poisons `FrameStereoIncomplete` yet may conditionally delegate through R26->R23/R22/R9. On the normal R9 route, the poisoned frame may still issue a *separate mono-shadow RT Draw* and one original game-target Draw, but cannot accept a fresh eligible stereo Present and cannot restore the gapped mono shadow. Unlike protected R26+HUD baseline, the current recoverable pre-LEFT WVP E_NOTIMPL exits before this call's no-backup-gap marker. Conditional code-path proof only; no actual game LEFT E_NOTIMPL, same-eye GPU colour duplication, or HMD evidence; no optical fix.
+- Exactly one docs-only OutRun file `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01589.md` in commit `2b87d47b65429e5f29cfef1c40731af2d4a3dff3`, remote blob `10e5b0040d36638a5a4e09a0dc5cca631e381997`, sole changed path and matching target HEAD verified. `AUTOMATION_VALIDATION=PASS` (docs-only), `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; no CI skip; R84 remains nondefault, HMD root cause unresolved.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2195 + distinct post-LEFT gap/poison and baseline pre-LEFT call-order falsification +1 = 2196.** Same TASK retry/readback +0. AI 1 separate.
+
+Updated: 2026-10-30 KST
+
+
 ## AI 2 DX11 original-game dirty-island source-coincident native GPU RGB output (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01169`, independent actual C++ native RAW source-Draw GPU output integration on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Previous source-aligned D3D11 GPU RGB publication required its whole diagnostic tile inside a D3D9 dirty Present region; real menu/car repaint islands could be smaller, forcing a displaced preview. The implementation crops only authenticated PRE/Draw/POST RGB-changed native GPU pixels to a verified exact original D3D9 dirty subregion, preserving original game pixel positions and rejecting malformed bounds, absent RGB and alpha-only changes. Production original game/DX9Ex, input/FFB and frozen DXVK unaffected. Does not claim full native menu/race or HMD.

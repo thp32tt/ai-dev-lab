@@ -214,6 +214,24 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
 const DIRS=[
   [0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]
 ];
+export function findPortCallTarget(state, ports) {
+  if (!state || !Array.isArray(ports)) return null;
+  for (const port of ports) {
+    if (!port?.name) continue;
+    let dx = port.x - state.x;
+    // World X wraps.
+    if (dx > WORLD_CHIP_W / 2) dx -= WORLD_CHIP_W;
+    if (dx < -WORLD_CHIP_W / 2) dx += WORLD_CHIP_W;
+    const dy = port.y - state.y;
+    // Original Port Call scans the 12 positions in the 4x4 ring around the
+    // fleet's occupied 2x2 block.
+    const inRing = dx >= -1 && dx <= 2 && dy >= -1 && dy <= 2 &&
+      !(dx >= 0 && dx <= 1 && dy >= 0 && dy <= 1);
+    if (inRing) return { ...port, dx, dy };
+  }
+  return null;
+}
+
 export class SeaRuntime{
   constructor(assets,start,windRaw=null,month=1,fleet=null,dateTime=null){
     this.assets=assets;

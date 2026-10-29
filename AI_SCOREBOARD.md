@@ -1,5 +1,18 @@
 # AI Competition Scoreboard
 
+## AI 2 대항해시대 II Browser M8 한국어 OPEN.EXE 12-scene 오프닝 복원 (2026-10-30 KST)
+
+- 기존 M2의 정적/근사 OPGRAPH 표시와 별개의 신규 실제 역분석·실행 성과. 사용자 한국어판 `OPEN.EXE`를 직접 추적해 scene table `DS:0x0740`의 12개 함수 포인터와 메인 루프 `SI < 0x0C`를 확인했다. 따라서 공개 영문판의 13-scene 구조를 한국어판에 적용하던 이전 웹 구현을 폐기하고 **정확한 12-scene one-pass 구조**로 교체했다.
+- `OPEN.EXE`의 `0x18493` OPGRAPH part loader와 `0x14E58` GRAPH record lookup을 버퍼 상태와 함께 추적해 사용자 `OPGRAPH.LZW` 14 parts / 108 records의 실제 장면 사용을 전부 매핑했다. scene0 part0 `0,1,3,4,2`; title scene1 part0 `5,6,7,8,9,11..15,10`; 공통 caption part13 `0..9`; Otto/Catalina/Ernst/Pietro/Ali/story/antagonist/João/boarding 순서까지 artifact 기준으로 확정. 이전에 'unused'로 분류했던 7 records도 한국어판에서는 실제 사용됨을 확인해 **108/108 coverage**로 수정했다.
+- 브라우저 재생기를 한국어판 순서로 교체하고 가짜 13번째 `HIT ANY BUTTON` scene을 제거했다. scene1의 32×32 twinkle 11..15, story 장면의 실제 part/record groups, João scene의 Korean part3 재로드 + part10 조합, scene10 후반 part11/12 boarding transition, scene11 part12:0 closing을 반영했다. 소형 eye/sparkle overlay는 large GRAPH와 pixel matching으로 배치해 기존 임의 위치 합성을 줄였다.
+- Firefox 실검증: `openingSpeed=20`에서 scene 1/12 → 12/12 → title hold 전체 순서 PASS(약 4.82s). scene12 중간 프레임에서 part12:0 선박이 실제 화면 안으로 진입하는 것을 시각 확인. 일반 속도에서는 scene1 재생 중 Esc → `오프닝 건너뜀 · 타이틀` → 세이브 시작 → 튀니스 실제 항구 보행까지 회귀 PASS.
+- Node exact-record-map: 14 parts / 108 records / 12 scenes / 108 used PASS. CHAR/town/world-map 회귀도 PASS. N100 HTTP server port 18082 remains running.
+- GitHub source-only branch `thp32tt/ai-dev-lab@uw2-web-port`. Final opening source blob `d3bdfc7388cb5478c681e565f2289a20105b1f94`; report commit `babcfb41deb8197717ee0a66d91e4e655ae83bfa`, report blob `dc476920dcab34e2d89bb75fc78ac84c2cb598b9`. Original game assets are not committed.
+- 일부 저수준 rectangle blit/wipe는 아직 instruction-by-instruction framebuffer emulation이 아니라 시각적 동등 transition이며, D2.MML/FMDRV FM 오프닝 음악은 별도 미구현. 같은 M8 재검증/readback/re-report는 +0. AI 1 별도.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2175 + one distinct Korean OPEN.EXE 12-scene full opening reconstruction achievement +1 = 2176.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex lens R13 forced-mono native draw without R7 receipt (2026-10-30 KST)
 
 - RUN_KEY `LENSFLARE-R13-FORCED-MONO-R7-ABSENCE-20261030-0022`; independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static falsification at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` pinned SOURCE_HEAD `388e79d625ba5093159da49bd404256b0e0d7c32`. Different from 01581, which proved an *existing R7 SINGLE receipt* can misleadingly report a left-eye draw; this run proves **no R7 receipt at all** can accompany an original native draw in an upstream R13 forced-mono route.

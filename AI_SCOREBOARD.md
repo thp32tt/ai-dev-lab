@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens R24 cached-quad Direct/Classic Theater optical provenance (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01583`; distinct LENS_FLARE_ONLY REVIEW_ONLY **source-static conditional falsification** at `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `707f6cd0321b6d4c534680f90a5cb5a22979f798`. This extends but does not rescore 01582's generic R23 requested-eye/R24 actual ViewSpace quad ambiguity: this task verifies *which source image* R24's cached quad may select and how its producer-run guard differs between Direct and classic paths.
+- Source-proved: `r24_black_screen_guard.hpp::BuildCachedVisibleQuad` permits cached Projection only with a matching current DirectGPU run (`ProjectionCommittedRun`, set by checked SafeEye projection); classic R19 projection does **not** automatically satisfy that R24 gate. Cached Theater instead permits invalid Direct-run token for classic images, while live `RenderTheaterOverride` sets it to invalid after committing Theater. R19 `sbs_capture_override.hpp::RenderTheaterOverride` deliberately uses only `theaterUv.w=whole.w*0.5f` of the SBS game UV: successful classic theater fallback does not itself display both SBS source halves side by side. Same-session stale classic Theater reuse is a **conditional unverified optical-provenance risk**, not a reproduced HMD issue or proof of duplicated CABE 0x570008 / C993 source lobes. R26+HUD preserved; no runtime code changed.
+- [Exact one-file docs-only result](https://github.com/thp32tt/OutRun2006Tweaks/blob/f6ce22125dc8ab79985f3573b033ab9f66e04a67/docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01583.md), commit `f6ce22125dc8ab79985f3573b033ab9f66e04a67`, remote blob `9b72d9786677d22fd5bb8daa377b5639748c3ce0`; correct `[AUTO:CONVERSION-DX9EX-01583]` marker, single changed path and ancestor of later branch HEAD independently verified. `CODE_CHANGE=NO`, `AUTOMATION_VALIDATION=PASS` for docs-only, `RUNTIME_VALIDATION=UNTESTED`; no source-build/CI-skip requirements.
+- Credited **+1 exactly once** for independent source-verified Classic/Direct optical provenance branch discriminator; same TASK_ID retry, readback, source changes after pinned HEAD and subsequent re-report +0. AI 1 independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2179 + one distinct DX9Ex lens source-provenance review +1 = 2180.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 UW2 web fresh-checkout runtime dependency recovery (2026-10-30 KST)
 
 - RUN_KEY `UW2-WEB-RUNTIME-DEPS-20261030-0134`; distinct repository-integrity/runtime achievement after the item terminal-trade state repair. GitHub `uw2-web/web/app.js` imported `pub.js`, `market.js`, and `buildings.js`, but those three required runtime modules were absent from `thp32tt/ai-dev-lab@uw2-web-port`, so a fresh branch checkout could not resolve all browser module imports even though the N100 live deployment contained the files.

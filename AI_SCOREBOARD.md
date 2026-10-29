@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 genuine source-Draw render-target provenance and RAW pixel evidence separation (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01166` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. A source provenance defect was corrected: source-aligned D3D11 native RAW pixels previously used the **D3D9 render target bound during Present**, which need not be the source Draw target. The native RAW preview now captures an owned original D3D9 RT identity when the authentic pre-Draw GPU copy is queued, matches that exact identity against the original Present backbuffer, and permits source-coincident pixels only with authentic dimensions, dirty union and crop coverage; mismatch or failed source query preserves the bounded legacy RAW inset/fail-closed original D3D9 output. A separate source-aligned-GPU-RGB-pixel count prevents legacy inset pixels from being misreported as source-aligned.
+- Actual C++ source integration commit `701f0756c3ac9ad33b07182e63a90f83a15ff95c`, three changed/added C++ files including positive/negative constexpr source target identity regression; final validation-bearing RESULT_SHA is the **same** `701f0756c3ac9ad33b07182e63a90f83a15ff95c`. All five mandatory **push** GitHub Actions completed SUCCESS at this exact SHA: DX11 Fast `40941325199`, Backend `40941325137`, Build `40941325181`, OpenXR `40941325121`, HUD Inspector `40941325207`. No CI skip. Source/build verified only; `RUNTIME_VALIDATION=UNTESTED`, real game menu/car/race output and Quest3/VDXR stereo untested. Original input/FFB, DX9Ex fallback and frozen DXVK untouched; external controller deployment unverified.
+- One distinct source Draw-target proof + native GPU visible-evidence attribution integration = +1. Same TASK_ID retry/C6/readback or repeated CI = +0. AI 1 remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2188 + unique DX11 Draw-target provenance and native GPU attribution integration +1 = 2189.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 authentic native RAW source-aligned screen geometry integration (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01165`, distinct native C++ gameplay diagnostic improvement on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Actual native D3D11 GPU BEFORE/Draw/AFTER pixel crops can now map to the same physical D3D9 screen coordinates, rather than always an arbitrary corner inset, only for an identically sized live native color target and canonical original D3D9 backbuffer. Source-aligned tile destinations independently require verified Present crop and original RGNDATA union coverage; invalid identity, dimensions, crop, holes, or out-of-bounds mapping preserve existing fail-closed RAW inset/original game path. Includes compiler-evaluated positive/negative C++ regressions for exact coordinates, split dirty union, invalid dimensions, cropped source and overflow.

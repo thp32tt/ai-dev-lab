@@ -5,6 +5,7 @@ const modeLabel = document.getElementById("controller-mode");
 const musicLabel = document.getElementById("controller-music");
 const autoButton = controller?.querySelector('[data-action="auto-sail"]');
 const soundButton = controller?.querySelector('[data-action="sound"]');
+const portButton = controller?.querySelector('[data-key="p"]');
 
 function emitKey(key, options = {}) {
   const down = new KeyboardEvent("keydown", {
@@ -127,6 +128,19 @@ window.addEventListener("uw2-game-state", event => {
     const small = autoButton.querySelector("small");
     if (small) small.textContent = on ? "자동 ON" : "자동항해";
     autoButton.disabled = state.mode !== "sea";
+  }
+
+  if (portButton) {
+    const available = state.mode === "sea" && !!state.nearbyPort;
+    portButton.disabled = !available;
+    const small = portButton.querySelector("small");
+    if (small) small.textContent = available
+      ? String(state.nearbyPort).slice(0, 7)
+      : "기항";
+    portButton.setAttribute(
+      "aria-label",
+      available ? String(state.nearbyPort) + " 기항" : "기항 불가",
+    );
   }
 
   const music = state.music;

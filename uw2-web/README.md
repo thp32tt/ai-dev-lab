@@ -169,3 +169,14 @@ LS11/bitplane 구조는 실제 제공된 KAO.LZW와 공개 프로젝트 `gcjjyy/
 - scene/part/record 순서와 사용 여부는 사용자 OPEN.EXE/OPGRAPH 직접 근거.
 - 일부 저수준 rectangle blit/wipe는 브라우저에서 시각적으로 동등한 transition으로 재현하며, 아직 framebuffer instruction 단위 에뮬레이션은 아니다.
 - D2.MML/FMDRV FM 음악은 아직 브라우저 네이티브 재생 미구현.
+
+## Browser M10 — D2 음악 + 연속 항해 + 웹 컨트롤러 (2026-10-30)
+
+- 사용자 원본 `D2.MML`을 직접 파싱해 22곡/최대 4채널의 브라우저 음악 재생기를 추가했다. Firefox에서 AudioContext running, scheduler 재생 및 트랙 전환 PASS.
+- 현재 음원은 원본 D2 데이터를 사용하지만 `FMDRV.COM` OPL-II 명령/음색의 bit-exact 에뮬레이션은 아직 아니다.
+- 해상 AUTO/G 연속 항해를 추가했다. 기존 WINDCUR·원본 속도식·60단위 누산·20분 tick 위에서 동작하며 해안 충돌 시 자동 정지한다.
+- 날짜가 하루 넘어갈 때 함선별 선원 수만큼 식수/식량을 소비하도록 연결했다.
+- 웹 컨트롤러에 현재 모드/BGM 상태, AUTO, BGM on/off, 이전/다음 곡을 추가하고 A/B 배치를 정리했다.
+- P 기항 버튼은 실제 가까운 항구가 있을 때만 활성화되고 항구명을 표시한다.
+- Firefox 500px 폭에서 document/body scrollWidth=500으로 가로 스크롤 없음 PASS.
+- 상세 검증: `docs/BROWSER_M10_MUSIC_SAIL_CONTROLLER_20261030.md`.

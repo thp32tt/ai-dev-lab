@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 eight first-time SHA independent Korean ROI QA (2026-10-29 12:45 KST)
+
+- RUN_KEY: `OUTRUN-C1-AI2-20261029T1245KST-A0103-B0118-NEW-SHA8`; 8 first-time SHA, not contained in the prior 34 N100 C1 QA reports (239 distinct prior candidate SHA). A ordinals 397–400 (A-0103..0106), B ordinals 452–455 (B-0115..0118). Available manifest-backed unreviewed exports before selection: A 38, B 30. All 8 candidate byte SHA256 equal independent production export evidence; all 8 original HD source SHA256 match manifest and all outputs are RGBA.
+- Direct original-English vs native ImageGen Korean lettering/effect visual review and aspect-preserving simulated native-fit comparison performed for Real Player Only/실제 플레이어 전용, For Expert Drivers/상급자용, OutRun Mode 15 continuous course/아웃런 모드 15코스 연속, Automatic Transmission/자동 변속, OutRun2: SP 15-course selected notice, OutRun Mode/아웃런 모드, YES/예, Manual Transmission/수동 변속. **C1 PASS 0 / FAIL 0 / HOLD 8**. Text mapping and character integrity appear readable, alpha>=32 touches no output edge; alpha=1 boundary noise in A-0105, A-0106, B-0116 alone is not a clipped glyph. English source ROIs include colored/protected panel and track art (not preserved by standalone candidate glyph PNG); A-0105 source English has top-clipped first line in ROI. Actual native UI/UV cell, protected-pixel-clean and 50%-scale game readability are not tested. No failure due to Korean translation-width shortening.
+- Durable N100 evidence `work/C1_QA_20261029_1245_AI2_report.json` and `work/C1_QA_20261029_1245_AI2_new_sha8/{preflight.json,pairs_A.jpg,pairs_B.jpg,native_fit_A.jpg,native_fit_B.jpg}`. [GitHub independent C1 QA report](https://github.com/thp32tt/OutRun2006Tweaks/blob/korean-localization-recovery-20260928/localization/qa_reports/C1_20261029_1245_AI2_A0103_B0118_SHA8.json) commit `129055083d502034103cf45c57826cb07fc0fed4`; verified remote branch HEAD and file blob `d0731c94cbc18800ce5096c6e892e6a42519caf4`.
+- C1 only: ImageGen NOT CALLED, A/B producer queues NOT CONSUMED, DDS/C2/C3/real-game PASS NOT PRODUCED. VR/FFB/DX11/DXVK untouched; RUNTIME_VALIDATION=UNTESTED. Same SHA/retry/status/readback earns +0; AI1 unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2132 + distinct eight-new-SHA C1 QA evidence +1 = 2133.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 OutRun 2006 C1 independent eight-new-SHA native ROI Korean QA (2026-10-29 12:15 KST; filed after latest scoreboard update)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1215KST-A0099-B0114-NEW-SHA8`; eight new candidate SHA sets not present in 33 preceding N100 C1 QA report files (231 prior distinct SHA): A ordinal 393–396 (A-0099 through A-0102), B ordinal 448–451 (B-0111 through B-0114). From currently valid manifest-backed A/B exports, snapshot inventory before selection 42 A and 34 B not in prior reviewed SHA sets. All 8 candidate PNG byte SHA256 exactly match per-task N100 export evidence; all 8 full-HD original source SHA256 exactly match production manifest; all 8 PNG mode RGBA.

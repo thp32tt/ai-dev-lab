@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 live SM3 table-fog priority integrated C++ repair (2026-10-29 12:01 KST)
+
+- RUN_KEY: `CONVERSION-DX11-01149` source implementation; repeated E002 retry, CI causal metadata repair, C6 and re-report are NOT separately scored. Pin `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: material native game-source C++ + regression commit `0f004edd6778db23d05779e12627c27be68ce00f`; exact-SHA final causal repair / validation-bearing result `a3ecc6192fc069a5ece2fdae84d3812708b09746`; separate docs-only C6 `4b352f2a9a22cb27fec3312ffd70ad8fffd05895`.
+- Independent real-source correction: D3D9 pixel/table fog takes precedence over inherited vertex fog and RANGEFOGENABLE; previous `native_sm3_table_zfog_admission` incorrectly rejected valid active table EXP/EXP2/LINEAR game SM3 Draws whenever vertex or range state was inherited. The native D3D11 shader path retains actual table Z-fog PS constants, while vertex-only, invalid table/vertex enums, sRGB, unproven Z/W, invalid float/range and unsupported source safety remain fail-closed. Tests in `tools/dx11_live_sm3_table_zfog_01005.cpp` cover cross-product positives and destructive negatives. Microsoft Direct3D9 fog-state/vertex-fog source guidance independently confirms pixel fog precedence and vertex-only range behavior.
+- Original exact SHA `0f004edd` correctly triggered five Gates; Fast run `40807300127` and Backend run `40807300107` failed only on inherited `01148` C6 feature_id=null vs feature_contract identity. Same TASK_ID repaired that exact C6 record at `a3ecc619` without weakening the test. **Five original push Gates all exact-SHA SUCCESS on `a3ecc6192fc069a5ece2fdae84d3812708b09746`**: Backend Conversion Gate `40808403717`; DX11 Fast Structural Checks `40808403751`; Build `40808403713`; OpenXR VR architecture `40808403702`; OutRun EXE HUD Inspector CI `40808403680`. Distinct separate bookkeeping C6 does not own validation.
+- Scope: SOURCE/BUILD verified only. There is NO same-binary original-game native Draw/published full-frame result, no sustained menu/car/race visual proof, and no Quest 3/VDXR HMD validation; `RUNTIME_VALIDATION=UNTESTED`. No DXVK, DX9Ex fallback/input/FFB, master or localization modification. No measured development-time percentages. External controller adoption UNVERIFIED. AI1 tally independent.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2128 + new independent source-functional DX11 Fog admission repair with 5 required exact-SHA PASS +1 = 2129.**
+
+Updated: 2026-10-29 KST
+
+
 ## AI 2 OutRun 2006 C1 eight first-time SHA independent Korean ROI QA (2026-10-29 11:45 KST)
 
 - RUN_KEY: `OUTRUN-C1-AI2-20261029T1145KST-A0095-B0110-NEW-SHA8`; separate source ordinals A389–392 (A-0095..0098) and B444–447 (B-0107..0110), distinct from 11:15 and prior. 32 N100 prior QA report files, 223 previously reviewed distinct candidate SHA, and no overlap with the current 8. All 8 candidate PNG SHA256 match per-task N100 export evidence; all 8 original full-HD source SHA256 match unique-ID production manifest; all 8 are RGBA.

@@ -118,3 +118,13 @@ LS11/bitplane 구조는 실제 제공된 KAO.LZW와 공개 프로젝트 `gcjjyy/
 - `WINDCUR.DAT`: 30×15×3 pages, 72 world chips per cell. Browser now shows real seasonal wind and current at the live sea position.
 - Korean `HORIEDIT` fleet layouts are decoded and exposed: Catalina save=Galleon 1; João save=Caravel Latina/Brigantine/La Reale 3, total crew 80.
 - Next: prove remaining speed inputs and replace one-key-one-chip movement with the original 60-subunit tick integrator.
+
+## Browser M5 — exact Korean CHAR + saved townspeople (2026-10-29)
+
+- CHAR.LZW exact structure implemented: 6 protagonists × 8 frames and char6 × 24 town frames, all 32×32 RGBA.
+- Each 640-byte frame is four 16×16 quadrants; each quadrant has four 256-bit colour planes plus one 256-bit transparency plane.
+- Exact RGBA sheet hashes match independent extracted references for hero0, hero1, and char6.
+- Player marker replaced by the selected protagonist's real sprite.
+- Save actor table at saveBase+0x18 (8 × 3 bytes) restored and rendered with char6.
+- Saved townspeople participate in proximity collision and wall-around logic; walkers use the original direction/move probabilities.
+- Firefox validation: Tunis Catalina down frame on load, ArrowLeft changes to the real left walking frame; saved residents are visible around town.

@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 native FVF authenticated SPECULAR+TABLE FOG RGB integration (2026-10-29 KST)
+
+- TASK_ID `CONVERSION-DX11-01158`, existing feature `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME`; new source-live FVF game pixel semantic integration, distinct from 01157 standalone specular and 01156 standalone table-fog. Game-source Gouraud FVF COLOR1 post-stage0/stage1 SPECULAR RGB is composed BEFORE source-authenticated table Z/W fog, with original shader AlphaGate/discard, separate per-device (source, fog, specular) PS variant cache and original D3D9Ex/gamepad/FFB fail-closed fallback. Active unproven vertex/range/RAW fog mixes are rejected; DXVK remains frozen.
+- [Actual three-file C++ source+regression material commit](https://github.com/thp32tt/OutRun2006Tweaks/commit/9764a96693701186941ebeb515f31baaebb478d2) `9764a96693701186941ebeb515f31baaebb478d2`, branch `vr-dx11-native-r71`. The same commit is the exact validation-bearing material RESULT_SHA (no separate repair/retry score).
+- **All five mandatory GitHub Actions push checks completed/success at exact SHA `9764a96693701186941ebeb515f31baaebb478d2`:** DX11 Fast #40866504857; Backend Conversion Gate #40866504853 (validate + smoke); Build #40866504850; OpenXR VR architecture #40866504852; HUD Inspector #40866504932. Conditional VR PC Fast Test Build skipped, not one of the five required Gates. No CI-skip on result commit.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. Neither native game Draw/published frame nor Quest3/VDXR visual parity has been proved at this SHA. Development-time percentages not measured. Source SHA and resulting C6/bookkeeping share one task; retries/C6/checkpoint/source audit add +0. AI1 score remains separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2167 + new, distinct native source SPECULAR→TABLE FOG integration with exact-SHA five-Gate validation +1 = 2168.**
+
+Updated: 2026-10-29 KST
+
 ## AI 2 DX9Ex exact lens PMT pass/primitive cardinality and pre-DIP outcome falsification (2026-10-29 KST)
 
 - TASK_ID `CONVERSION-DX9EX-01577`; independent **LENS_FLARE_ONLY / REVIEW_ONLY** source-static validation. Pinned `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `45590a5859a906c20112505cb67b6daf2b7771a2`. Read focus `src/hooks_graphics.cpp::TraceLensOpaquePmtEntry`, `src/vr/game/render_semantics.hpp::LensOpaquePmtEntryReceipt`, `src/vr/d3d9/stereo_renderer_r7.inc::DrawIndexedPrimitiveDest/R7TraceVisualEyes`, R30 scope-gated trace, and original reconstructed 405890/404700 fan-out.

@@ -1,4 +1,4 @@
-import { parseOffsetTextTable, parseSaveSlots, stripMenuControls } from "./binary.js";
+import { parseOffsetTextTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls } from "./binary.js";
 import { ReaGameRuntime } from "./runtime.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
@@ -19,6 +19,7 @@ import {
   decodeWorldAssets,
   findNearestSea,
   renderSeaView,
+  findPortCallTarget,
   SeaRuntime,
 } from "./world-map.js";
 import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from "./char.js";
@@ -45,6 +46,7 @@ let worldAssets = null;
 let seaRuntime = null;
 let charAssets = null;
 let windCur = null;
+let portCatalog = [];
 
 async function loadBuffer(name) {
   const res = await fetch("/game/" + encodeURIComponent(name), { cache: "no-store" });
@@ -225,6 +227,7 @@ async function loadPortraits() {
 async function loadSaves() {
   const buf = await loadBuffer("KOUKAI2.DAT");
   slots = parseSaveSlots(buf);
+  portCatalog = parseKoreanPortTable(buf, 0);
   $("save-status").textContent =
     `KOUKAI2.DAT ${fmtBytes(buf.byteLength)} · 슬롯당 33,340 bytes`;
   const first = slots.find(x => !x.empty);
@@ -425,6 +428,57 @@ function startSeaFromPort() {
   return true;
 }
 
+function buildArrivalSlot(port, seaState) {
+  const mapId = port.mapId;
+  const doors = portDoors?.[mapId] ?? [];
+  const harbor = doors[3];
+  if (!harbor?.present) return null;
+
+  const mapX = harbor.x;
+  const mapY = harbor.y + 1;
+  const viewX = Math.max(0, Math.min(72, harbor.x - 12));
+  const viewY = Math.max(0, Math.min(72, harbor.y - 13));
+
+  const sameSavedPort = selected?.port === mapId;
+  return {
+    ...selected,
+    port: mapId,
+    portCatalogId: port.id,
+    portName: port.name,
+    portWorld: { nation: port.nation, x: port.x, y: port.y },
+    dateTime: { ...seaState.dateTime },
+    portState: {
+      viewX, viewY,
+      playerX: mapX - viewX,
+      playerY: mapY - viewY,
+      mapX, mapY,
+    },
+    townActors: sameSavedPort ? (selected?.townActors ?? []) : [],
+  };
+}
+
+function callNearbyPort() {
+  if (!seaRuntime || !portCatalog.length) return false;
+  const s = seaRuntime.snapshot();
+  const port = findPortCallTarget(s, portCatalog);
+  if (!port) {
+    seaRuntime.lastEvent = "no-port-call";
+    renderSeaScreen();
+    return false;
+  }
+  const arrival = buildArrivalSlot(port, s);
+  if (!arrival) {
+    seaRuntime.lastEvent = "port-map-unavailable";
+    renderSeaScreen();
+    return false;
+  }
+  selected = arrival;
+  townRuntime = new PortWalkingRuntime(arrival, portAssets, portDoors);
+  viewMode = "town";
+  renderTownScreen();
+  return true;
+}
+
 function renderSeaScreen() {
   if (!seaRuntime || !worldAssets) return;
   const s = seaRuntime.snapshot();
@@ -442,6 +496,7 @@ function renderSeaScreen() {
   ctx.fillStyle = "#e7edf5";
   ctx.font = "15px Malgun Gothic, sans-serif";
   const env=s.environment;
+  const nearbyPort=findPortCallTarget(s, portCatalog);
   const date=s.dateTime;
   const clock=date ? `${date.year}.${date.month}.${date.day} ${String(date.hour).padStart(2,"0")}:${String(date.minute).padStart(2,"0")}` : "";
   const lines = [
@@ -461,6 +516,7 @@ function renderSeaScreen() {
     "↑/W/8 : 20분 tick",
     "",
     "원본 속도식+해류 누산 적용",
+    nearbyPort ? `ENTER / P : ${nearbyPort.name} 기항` : "기항 가능 항구 없음",
   ];
   lines.forEach((line, i) => ctx.fillText(line, 408, 82 + i * 25));
   $("runtime-status").textContent =
@@ -469,6 +525,7 @@ function renderSeaScreen() {
     mode: "sea",
     fromPort: selected?.portName,
     portWorld: selected?.portWorld,
+    nearbyPort,
     ...s,
   }, null, 2);
 }
@@ -527,6 +584,11 @@ window.addEventListener("keydown", (event) => {
 
   if (viewMode === "sea" && seaRuntime) {
     let handled = true;
+    if (key === "enter" || key === "p") {
+      event.preventDefault();
+      callNearbyPort();
+      return;
+    }
     if (key === "arrowleft" || key === "a" || key === "4") seaRuntime.turn(-1);
     else if (key === "arrowright" || key === "d" || key === "6") seaRuntime.turn(1);
     else if (key === "arrowup" || key === "w" || key === "8" || key === " ") seaRuntime.move();

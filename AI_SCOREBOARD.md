@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 native GPU RGB across 2-D fragmented menu/game repaint (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX11-01172`: independent source integration in the ongoing `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME` feature. A real D3D9 RGNDATA repaint partitioned across BOTH X and Y with a narrow attached region can have a nonrectangular connected bounding box; earlier member/pair/component cropping could drop authentic DX11 GPU RGB from opposite corners. Added bounded original-member 2-D rectangle proposals to the existing source-coincident `native_raw_dirty_source_rgb_crop` path; final admission still requires the entire authentic D3D9 dirty union and GPU PRE/POST changed RGB at unchanged original source coordinates, without inventing pixels or replacing the full game frame. Compiled C++ grid/attached-tail positive and missing-center, forged-rcBound, alpha-only negative regression in `tests/native_raw_dual_tile_test.cpp`. This is partial opt-in native GPU RAW visible diagnostic only, NOT a complete native menu/car/race or Quest3 stereo result.
+- Material implementation and exact validation-bearing RESULT_SHA `7c1a5b2c5f50d0654a48672fa739af8209763f80` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`. Five mandatory same-exact-SHA push GitHub Actions SUCCESS: DX11 Fast `40986554378`, Backend Conversion Gate `40986554454`, Build `40986554358`, OpenXR `40986554470`, HUD Inspector `40986554376`. `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`; gameplay test and HMD test not performed. DX9Ex/input/FFB/SkyGlow unchanged, DXVK frozen. No measured development-time proportions.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2200 + one new substantive source integration with five exact-SHA PASS +1 = 2201.** Same-task C6/CI readback/retry +0; AI 1 separately managed.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 fragmented original dirty Present native GPU RGB source recovery (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01171`: substantive opt-in D3D11 native GPU PRE/Draw/POST RGB integration for the same unfinished `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME` feature. Original D3D9 RGNDATA game repaint split across multiple adjacent horizontal or vertical rectangles previously selected at most one rectangle's changed native RGB. Bounded pair and connected-component candidates now retain a genuinely source-coincident contiguous rectangular union only when the **entire original D3D9 dirty union, actual RGB pixels, source alignment, unchanged canonical target and per-Draw GPU provenance** validate. RGB-inert/alpha-only, gapped, forged-bounds, unsafe coverage remain fail-closed. This is partial RAW native GPU diagnostic, not native full menu/race or Quest3 stereo.

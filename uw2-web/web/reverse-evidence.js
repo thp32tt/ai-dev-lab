@@ -3,6 +3,16 @@
 // Raw offsets are file offsets in the exact binaries identified below.
 
 export const UW2_EVIDENCE_FILES = Object.freeze({
+  endExe: Object.freeze({
+    name: "END.EXE",
+    size: 52241,
+    sha256: "9265ca5e0dcc2d445a53e65921448ac99b3ae14e1b7e59c693ed6464e7e11a30",
+  }),
+  grpdrvExe: Object.freeze({
+    name: "GRPDRV.EXE",
+    size: 22063,
+    sha256: "bf9d3c82dcf347aaa1bac6dbb62143002f55b74a04fed46cc01a0fb6ed59064c",
+  }),
   openExe: Object.freeze({
     name: "OPEN.EXE",
     size: 42167,

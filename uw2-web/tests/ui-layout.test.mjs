@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { readGraphRecords, decodeGraphRecord } from "../web/graph-format.js";
-import { UI_LAYOUT, UI_GRAPH_RECORD, frameRecordForMode } from "../web/ui-layout.js";
+import { UI_LAYOUT, UI_GRAPH_RECORD, frameRecordForMode, buildingGraphRecordForPort } from "../web/ui-layout.js";
 
 const gd=process.env.UW2_GAME_DIR || "/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD";
 const raw=fs.readFileSync(gd+"/GRAPH.DAT");
@@ -34,6 +34,10 @@ assert.equal(UI_LAYOUT.viewport.tiles,24);
 assert.deepEqual(UI_LAYOUT.building,{x:104,y:16,w:136,h:112});
 assert.deepEqual(UI_LAYOUT.dialogue,{x:104,y:136,w:368,h:152});
 assert.deepEqual(UI_LAYOUT.yesNo,{x:480,y:336,w:144,h:56});
+assert.equal(buildingGraphRecordForPort(0,0),6);
+assert.equal(buildingGraphRecordForPort(10,0),16);
+assert.equal(buildingGraphRecordForPort(10,2),20);
+assert.equal(buildingGraphRecordForPort(11,2),17);
 
 // Exact Korean MAIN.EXE call-site evidence. These checks deliberately pin the
 // shipped executable rather than a browser-layout hypothesis.
@@ -44,6 +48,11 @@ assert.equal(main.subarray(0x202EA,0x202F8).toString("hex"),
   "b86800ba8800bb16009a535a0000"); // x=104,y=136,record=22
 assert.equal(main.subarray(0x4538E,0x4539A).toString("hex"),
   "e0015001f0015801d83bb70f"); // UI object x=480,y=336,... callback 0FB7:3BD8
+assert.equal(main.subarray(0xE11C,0xE135).toString("hex"),
+  "9ac3cd701f0bc0741083fe0a750bb86800ba1000bb1400eb09");
+assert.equal(main.subarray(0x318ED,0x31901).toString("hex"),
+  "a03a0c2ae48bf0807a9c027505b80100eb022bc0");
+assert.equal(main.subarray(0x3B39E,0x3B3AB).toString("ascii"),"C:CHIP_NO.DAT");
 
 console.log(JSON.stringify({
   frames:{sea:4,town:5},

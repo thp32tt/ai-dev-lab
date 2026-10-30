@@ -20,6 +20,11 @@
 // The standard GRAPH #22 caller at file 0x202EA passes AX=0x68, DX=0x88,
 // BX=0x16, proving the 368x152 dialogue origin is (104,136).
 //
+// The building dispatcher calls 1F70:CDC3 before drawing building id 10.
+// That function loads C:CHIP_NO.DAT, indexes its 100-byte table by the current
+// port id (0x0C3A), and returns 1 exactly when the entry is 2. In that case
+// building id 10 draws GRAPH #20 instead of its normal id+6 record (#16).
+//
 // GRAPH #0 is driven by the original UI-object table. The object whose callback
 // is the record-0 YES/NO renderer (0FB7:3BD8) has x=480,y=336 in MAIN.EXE;
 // the native 144x56 asset therefore ends at x=624,y=392.
@@ -40,4 +45,9 @@ export const UI_GRAPH_RECORD = Object.freeze({
 
 export function frameRecordForMode(mode) {
   return mode === "sea" ? UI_GRAPH_RECORD.sea : UI_GRAPH_RECORD.town;
+}
+
+export function buildingGraphRecordForPort(buildingId, chipBank) {
+  if (!Number.isInteger(buildingId) || buildingId < 0) return null;
+  return buildingId === 10 && chipBank === 2 ? 20 : buildingId + 6;
 }

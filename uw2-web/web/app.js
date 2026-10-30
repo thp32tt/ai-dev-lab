@@ -28,7 +28,7 @@ import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from
 import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 import { D2MusicPlayer } from "./music.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
-import { UI_LAYOUT, UI_GRAPH_RECORD } from "./ui-layout.js";
+import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -486,7 +486,9 @@ async function loadTownSupport() {
   ]);
   portDoors = parsePortDoors(zaBuf);
   const records = readGraphRecords(new Uint8Array(graphBuf));
-  buildingImages = records.slice(6, 18).map(decodeGraphRecord);
+  // Keep #6..#21: normal building records are id+6, and MAIN.EXE can
+  // substitute #20 for building id 10 when CHIP_NO[currentPort] == 2.
+  buildingImages = records.slice(6, 22).map(decodeGraphRecord);
   uiGraph = {
     yesNo: decodeGraphRecord(records[UI_GRAPH_RECORD.yesNo]),
     sea: decodeGraphRecord(records[UI_GRAPH_RECORD.sea]),
@@ -1564,7 +1566,9 @@ function renderTownScreen() {
   drawOriginalSceneFrame("town");
 
   if (st.building) {
-    const image = buildingImages[st.building.id];
+    const chipBank = portAssets.chipNo?.[st.portId];
+    const graphRecord = buildingGraphRecordForPort(st.building.id, chipBank);
+    const image = graphRecord == null ? null : buildingImages[graphRecord - 6];
     if (image) {
       const b = UI_LAYOUT.building;
       drawBuildingImage(image, b.x, b.y, image.width, image.height);
@@ -1593,7 +1597,11 @@ function renderTownScreen() {
 
   $("debug").textContent = JSON.stringify({
     mode: "town", hero: selected?.heroName, money: selected?.money, ...st,
-    buildingUi, fleet: selected?.fleet ?? null, dateTime: selected?.dateTime ?? null,
+    buildingUi,
+    buildingGraphRecord: st.building
+      ? buildingGraphRecordForPort(st.building.id, portAssets.chipNo?.[st.portId])
+      : null,
+    fleet: selected?.fleet ?? null, dateTime: selected?.dateTime ?? null,
   }, null, 2);
   publishControllerState();
 }

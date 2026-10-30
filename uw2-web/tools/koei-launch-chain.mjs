@@ -31,6 +31,9 @@ export function verifyKoeiLaunchChain(bytes,{expectedSha256=null}={}) {
   expectByte(bytes,0x120,0xcd,'EXEC INT');expectByte(bytes,0x121,0x21,'EXEC INT21');
   expectByte(bytes,0x125,0xb4,'MOV AH,4D');expectByte(bytes,0x126,0x4d,'DOS exit status');
   expectByte(bytes,0x127,0xcd,'EXIT INT');expectByte(bytes,0x128,0x21,'EXIT INT21');
+  expectByte(bytes,0,0xe9,'COM entry JMP rel16');
+  const entryRaw=3+signed16(u16(bytes,1));
+  if(entryRaw!==0x292)throw Error('KOEI original entry offset mismatch');
   const launches=ORIGINAL_KOEI_LAUNCH_SITES.map(site=>{
     const text=bytes.subarray(site.stringRaw,site.stringRaw+site.name.length).toString('ascii');
     if(text!==site.name||bytes[site.stringRaw+site.name.length]!==0)throw Error(`KOEI filename mismatch: ${site.name}`);
@@ -53,7 +56,7 @@ export function verifyKoeiLaunchChain(bytes,{expectedSha256=null}={}) {
   for(const [offset,opcode] of exactGuards)expectByte(bytes,offset,opcode,'post-execution condition');
   return {
     sha256,format:'DOS-COM',size:bytes.length,
-    entryRaw:0x291,entryPsp:0x391,
+    entryRaw,entryPsp:entryRaw+0x100,
     execWrapper:{raw:0x115,pspOffset:0x215,dosService:'INT 21h AX=4B00h',returnStatus:'INT 21h AH=4Dh'},
     orderedStaticLaunchSites:launches,
     conditions:[

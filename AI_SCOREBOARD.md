@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex projected C993 split c64 original-WVP negative-control boundary (2026-10-30 KST)
+
+- Distinct REVIEW_ONLY LENS_FLARE_ONLY `CONVERSION-DX9EX-01597` on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: exact SOURCE_HEAD `0c344eac3ba8bcc43d09dfe202dc383666bf3ca3`, remote one-file docs-only result `b29590667eb7c3eced31ccd7f63669f67b235e55` (commit files/readback confirmed). Unlike 01596's **fully published** same-shader original WVP alias risk, this source-backed negative control proves two successful `(c64,2)+(c66,2)` game shader constant uploads in a nonqueued projected C993 scope cannot themselves republish `LastGameWvpWriteValid`: each c64 touch invalidates, the exact WorldBillboard/LensFlareCentre assembler rejects projected `ProducerToken::None` and the queued ScreenHud assembler rejects nonqueued projected scope. Both R44 12-draw and extended 128-draw original WVP getters must then reject **before** age matching, assuming no intervening full/correct publisher. A successful full `(c64,4)` publication remains conditionally eligible for 01596's original source mismatch scenario. Baseline R26+HUD retains the same writer distinction; no new regression is alleged.
+- This is a new independent cross-function *conditional predicate negative control*, not proof of an actual split original PMT, HMD visible pixel error, duplicate original emitter, native fallback, or accepted OpenXR layer. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; no source, config, build, workflow, release or package changes. Same task retry/revalidation/re-report scores +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2215 + independent C993 projected split-only c64 republish negative control +1 = 2216.** AI 1 tracked separately.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 tight authentic RGB source islands across overlapping Draws (2026-10-30 KST)
 
 - Independent source-integrated `CONVERSION-DX11-01177` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: material C++/regression commit `de720614fe6b0c0cdd9879b9f3dfc178e68ec2d5` shrinks original-source-aligned native D3D11 BEFORE/AFTER GPU RGB diagnostic rectangles to their actual changed-pixel bounds BEFORE reserving game Present destination pixels. Two Draws whose full capture rectangles overlap can now preserve separate authentic game-coordinate RGB (e.g. 308,410 and 355,410), with verified 2x2 source mapping and duplicate/alpha-only/forged RGNDATA fail-closed regressions. Changes are three C++ source files plus one compiled C++ test, live opt-in RAW diagnostic source path, with original D3D9 Draw/input/FFB/SkyGlow, DX9Ex fallback and frozen DXVK unchanged.

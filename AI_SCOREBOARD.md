@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 Korean OPEN.EXE proven opening BGM browser integration (2026-10-30 KST)
+
+- Work key `UW2 proven-opening-default-route-20261030`; unique actual material web integration on `thp32tt/ai-dev-lab@uw2-web-port` after M25 music caller inventory. GitHub commits: music routing module `002760f3a817998b9200b9f991c8a8ce136724db`, app route `8313a92d5b31f917c94cfcac0e04e7d6855116da`, regression `c12649f0d9479520afb00bbe78c2b650b8898fda`, strict HTTP import smoke `152d0c42639a89c40f4a260ce069c4b9856fd907`. Previously default `musicApprox=0` blocked even proven OPEN.EXE song 1. New `music-routing.js` connects proven Korean opening FMDRV song #1 / rendered index 0 by default, supports first-gesture playback and controller BGM toggle, and pauses the proven opening when entering unproven system menu/town/sea modes; town/sea comparison mapping remains explicitly opt-in rather than fabricated as original.
+- Deployed exactly these GitHub source/test files to existing N100 `/home/chatgpt-runner/uw2-web` (no clone/worktree); Node routing, D2 media, executable evidence tests PASS; browser app `node --check` RC=0; strict HTTP smoke 7/7 PASS including imported JS; Firefox one-shot headless page screenshot RC=0. This does **not** prove audible browser playback or original FM timbre, system-menu/port/sea song mapping, full optical matching, or click-to-play E2E. Same-work deploy/test/readback +0; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2231 + one independently implemented, tested and deployed proven-original opening BGM route +1 = 2232.**
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 verified 24..39px authentic game RGB Present (2026-10-30 KST)
 
 - Independent material C++ feature `CONVERSION-DX11-01184` on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: source SHA `22a328491e857d8c11ac2115e5796f7972d672fa` admits a real-game 24..39px verified Present crop with canonical D3D9 Draw/Present backbuffer identity and exact native GPU target grid, then publishes ONLY source-aligned original GPU PRE/POST RGB islands through bounded D3D9 UpdateSurface. Previously the >=40px displaced diagnostic admission rejected these genuine small menu/HUD crops. New compiled small-crop and negative regressions retain unsafe/unproven/mismatched rejection, RAW default OFF, D3D9 game input/FFB/SkyGlow, DX9Ex fallback and frozen DXVK.

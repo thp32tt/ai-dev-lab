@@ -54,9 +54,12 @@ assert.equal(far.get16('SP'),0x100);
 const unsupported=new RealMode8086();
 unsupported.load(Uint8Array.of(0xcd,0x21),0,0);
 assert.throws(()=>unsupported.step(),/unsupported 8086 opcode cd/);
-const unsupportedMem=new RealMode8086();
-unsupportedMem.load(Uint8Array.of(0x0a,0x00),0,0);
-assert.throws(()=>unsupportedMem.step(),/fail closed/);
+// A ModR/M memory operand is now decoded, never fabricated or silently ignored.
+const supportedMem=new RealMode8086();
+supportedMem.set16('BX',0x100);supportedMem.set16('SI',3);
+supportedMem.set8('AL',0x80);supportedMem.write8(0,0x103,1);
+supportedMem.load(Uint8Array.of(0x0a,0x00),0,0);
+supportedMem.step();assert.equal(supportedMem.get8('AL'),0x81);
 
 // All return bytes, including signed-bit edges, checked against independently
 // recorded KOEI.COM guard outcomes. These are SYNTHETIC, not real DOS traces.
@@ -74,4 +77,50 @@ for(let al=0;al<256;al++)
   assert.equal(executeKoeiReturnGuard('mainAL',al),al===0);
 assert.throws(()=>executeKoeiReturnGuard('mainAH',256),/unsigned DOS/);
 assert.throws(()=>nextKoeiExecutable('OPEN.EXE',{terminationType:0}),/unsigned DOS/);
-console.log('UW2 P3 8086 real-mode subset/KOEI original guard synthetic regression: PASS');
+
+// 8086 16-bit memory address forms, displacement signs, segment defaults,
+// moffs transfers, and byte/word boundary wrapping. Synthetic CPU tests only.
+const mem=new RealMode8086();
+mem.set16('DS',0x200);mem.set16('SS',0x300);
+mem.set16('BP',0x100);mem.set16('BX',0x20);mem.set16('SI',0x10);
+mem.write16(0x300,0xfe,0x1234);
+mem.write16(0x200,0xfe,0x5678);
+mem.load(Uint8Array.of(0x8b,0x46,0xfe,0x3e,0x8b,0x46,0xfe),0,0);
+mem.step();assert.equal(mem.get16('AX'),0x1234); // SS:[BP-2]
+mem.step();assert.equal(mem.get16('AX'),0x5678); // DS override for one instruction
+mem.set16('CS',0x400);mem.set16('IP',0);
+mem.load(Uint8Array.of(0x8b,0x40,0x7f,0x8b,0x80,0x00,0x80),0x400,0);
+mem.write16(0x200,0xaf,0x1919); // [BX+SI+127]
+mem.write16(0x200,(0x30-0x8000)&0xffff,0x7878);
+mem.step();assert.equal(mem.get16('AX'),0x1919);
+mem.step();assert.equal(mem.get16('AX'),0x7878);
+mem.set16('CS',0x500);mem.set16('IP',0);
+mem.load(Uint8Array.of(0x89,0x1e,0xff,0xff,0x8b,0x06,0xff,0xff),0x500,0);
+mem.set16('BX',0xa1b2);
+mem.step();assert.equal(mem.read8(0x200,0xffff),0xb2);
+assert.equal(mem.read8(0x200,0),0xa1);
+mem.step();assert.equal(mem.get16('AX'),0xa1b2);
+mem.set16('CS',0x600);mem.set16('IP',0);
+mem.set16('ES',0x700);
+mem.load(Uint8Array.of(0x26,0xc6,0x06,0x34,0x12,0x81,
+  0x26,0xa0,0x34,0x12,0x26,0xa2,0x35,0x12),0x600,0);
+mem.step();assert.equal(mem.read8(0x700,0x1234),0x81);
+mem.step();assert.equal(mem.get8('AL'),0x81);
+mem.step();assert.equal(mem.read8(0x700,0x1235),0x81);
+mem.set16('CS',0x800);mem.set16('IP',0);
+mem.set16('AX',0x8000);mem.set16('BX',0x100);
+mem.write16(0x200,0x100,0x0001);
+mem.load(Uint8Array.of(0x0b,0x07),0x800,0); // OR AX,[BX]
+mem.step();assert.equal(mem.get16('AX'),0x8001);
+assert.equal(mem.flag('SF'),true);assert.equal(mem.flag('ZF'),false);
+assert.equal(mem.flag('PF'),false); // parity of low byte 0x01
+assert.equal(mem.flag('CF'),false);assert.equal(mem.flag('OF'),false);
+// Invalid group encodings and unhandled instructions never substitute behavior.
+const badMov=new RealMode8086();
+badMov.load(Uint8Array.of(0xc7,0x0e,0x20,0x00,0x34,0x12),0,0);
+assert.throws(()=>badMov.step(),/fail closed/);
+const badPrefix=new RealMode8086();
+badPrefix.load(new Uint8Array(10).fill(0x26),0,0);
+assert.throws(()=>badPrefix.step(),/prefix budget exceeded/);
+
+console.log('UW2 P3 8086 real-mode memory/segment and KOEI guard synthetic regression: PASS');

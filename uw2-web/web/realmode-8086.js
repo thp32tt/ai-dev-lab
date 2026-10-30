@@ -92,26 +92,78 @@ export class RealMode8086 {
     if(bytes.length>0x10000)throw new RangeError('load exceeds one segment');
     for(let i=0;i<bytes.length;i++)this.write8(segment,(offset+i)&0xffff,bytes[i]);
   }
-  logic8(result) {
-    // 8086 OR: CF/OF cleared; ZF/SF/PF set. AF is undefined and not interpreted.
+  // 8086 ModR/M 16-bit effective address: only the BP-containing forms
+  // default to SS. A segment override applies to this instruction alone.
+  memoryOperand(modrm, width, segmentOverride = null) {
+    const mode=modrm>>>6, rm=modrm&7;
+    if(width!==8&&width!==16)throw new RangeError('operand width');
+    if(mode===3){
+      const name=(width===8?R8:R16)[rm];
+      return {read:()=>width===8?this.get8(name):this.get16(name),
+              write:v=>width===8?this.set8(name,v):this.set16(name,v)};
+    }
+    const bx=this.get16('BX'),bp=this.get16('BP');
+    const si=this.get16('SI'),di=this.get16('DI');
+    const bases=[bx+si,bx+di,bp+si,bp+di,si,di,bp,bx];
+    const usesBP=rm===2||rm===3||(rm===6&&mode!==0);
+    const direct=mode===0&&rm===6;
+    const disp=direct?this.fetch16():mode===1?s8(this.fetch8()):mode===2?s16(this.fetch16()):0;
+    const offset=(direct?disp:bases[rm]+disp)&0xffff;
+    const segment=this.seg[segmentOverride??(usesBP?'SS':'DS')];
+    return {read:()=>width===8?this.read8(segment,offset):this.read16(segment,offset),
+            write:v=>width===8?this.write8(segment,offset,v):this.write16(segment,offset,v)};
+  }
+  logicResult(value,width) {
+    const result=width===8?value&255:value&0xffff;
     this.flags &= ~(FLAGS.CF|FLAGS.OF|FLAGS.ZF|FLAGS.SF|FLAGS.PF);
     if(result===0)this.flags|=FLAGS.ZF;
-    if(result&0x80)this.flags|=FLAGS.SF;
-    let n=result,p=0;for(let i=0;i<8;i++){p^=n&1;n>>>=1;}
+    if(result&(width===8?0x80:0x8000))this.flags|=FLAGS.SF;
+    let n=result&255,p=0;for(let i=0;i<8;i++){p^=n&1;n>>>=1;}
     if(p===0)this.flags|=FLAGS.PF;
     this.flags|=2;
   }
   step() {
-    const cs=this.seg.CS, at=this.ip, op=this.fetch8();
+    const cs=this.seg.CS, at=this.ip;
+    let op=this.fetch8(),segmentOverride=null,prefixes=0;
+    const segPrefix={0x26:'ES',0x2e:'CS',0x36:'SS',0x3e:'DS'};
+    while(Object.hasOwn(segPrefix,op)){
+      if(++prefixes>8)throw new Error('8086 segment prefix budget exceeded: fail closed');
+      segmentOverride=segPrefix[op];op=this.fetch8();
+    }
     if(op===0x90)return; // NOP
     if(op>=0xb8&&op<=0xbf){this.set16(R16[op-0xb8],this.fetch16());return;}
     if(op>=0xb0&&op<=0xb7){this.set8(R8[op-0xb0],this.fetch8());return;}
-    if(op===0x0a){ // OR r8,r/m8, ModR/M register mode ONLY
+    // Actual 8086 16-bit memory address formation; no inferred game rules.
+    if((op>=0x88&&op<=0x8b)||(op>=0x08&&op<=0x0b)){
+      const m=this.fetch8(),width=(op&1)?16:8;
+      const rm=this.memoryOperand(m,width,segmentOverride);
+      const name=(width===8?R8:R16)[(m>>>3)&7];
+      const reg=()=>width===8?this.get8(name):this.get16(name);
+      const setReg=v=>width===8?this.set8(name,v):this.set16(name,v);
+      const destIsReg=!!(op&2);
+      if(op>=0x88){
+        if(destIsReg)setReg(rm.read());else rm.write(reg());
+      }else{
+        const result=(destIsReg?reg():rm.read())|(destIsReg?rm.read():reg());
+        if(destIsReg)setReg(result);else rm.write(result);
+        this.logicResult(result,width);
+      }
+      return;
+    }
+    if(op===0xc6||op===0xc7){
       const m=this.fetch8();
-      if((m>>>6)!==3)throw new Error('8086 memory ModR/M unsupported: fail closed');
-      const dst=R8[(m>>>3)&7], src=R8[m&7];
-      const v=this.get8(dst)|this.get8(src);
-      this.set8(dst,v);this.logic8(v);return;
+      if(((m>>>3)&7)!==0)throw new Error('unsupported 8086 MOV immediate ModR/M extension: fail closed');
+      const width=op===0xc6?8:16,rm=this.memoryOperand(m,width,segmentOverride);
+      rm.write(width===8?this.fetch8():this.fetch16());return;
+    }
+    if(op>=0xa0&&op<=0xa3){
+      const off=this.fetch16(),seg=this.seg[segmentOverride??'DS'];
+      const width=(op&1)?16:8,write=!!(op&2);
+      if(write){if(width===8)this.write8(seg,off,this.get8('AL'));
+        else this.write16(seg,off,this.get16('AX'));}
+      else if(width===8)this.set8('AL',this.read8(seg,off));
+      else this.set16('AX',this.read16(seg,off));
+      return;
     }
     if(op===0x74||op===0x75||op===0xeb){
       const delta=s8(this.fetch8());

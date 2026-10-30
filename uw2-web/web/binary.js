@@ -259,7 +259,8 @@ export function parseSaveSlots(arrayBuffer) {
 
     const page = i * SAVE.PAGE_SIZE;
     const port = bytes[init + 12];
-    const ending = bytes[init + 13] !== 0;
+    const slotHeaderFlag = bytes[init + 13];
+    const ending = slotHeaderFlag !== 0;
     const heroId = bytes[page + SAVE.HERO_ID];
     const personBase = page + SAVE.PERSON + heroId * SAVE.PERSON_SIZE;
     const fname = decodeCString(bytes, personBase, 13);
@@ -314,6 +315,7 @@ export function parseSaveSlots(arrayBuffer) {
         minute: (timeTick % 3) * 20,
       },
       ending,
+      slotHeaderFlag,
       heroId,
       heroName: [fname, lname].filter(Boolean).join(" "),
       portraitIdCandidate: bytes[personBase + 26],

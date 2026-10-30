@@ -29,6 +29,7 @@ import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 import { D2MusicPlayer } from "./music.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
+import { ORIGINAL_SYSTEM_MENU_INDEX, SYSTEM_UI_LAYOUT, originalSaveSlotLine } from "./system-ui.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -125,6 +126,8 @@ let musicMode = null;
 let musicAutostartPending = true;
 let seaAutoTimer = null;
 let seaAutoActive = false;
+let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
+let systemMenuPending = false;
 
 const MUSIC_TRACK_BY_MODE = Object.freeze({
   opening: 0,
@@ -309,6 +312,209 @@ function drawOriginalPanelText(text, x, y, opts = {}) {
   ctx.fillText(String(text ?? ""), x, y);
   ctx.restore();
   return null;
+}
+
+
+function drawOriginalTextTop(text, x, y, opts = {}) {
+  if (fontAssets) {
+    return drawUw2Text(ctx, fontAssets, String(text ?? ""), x, y, {
+      color: opts.color ?? "#2b1a0e",
+      lineHeight: opts.lineHeight ?? 16,
+    });
+  }
+  return drawOriginalPanelText(text, x, y + 14, opts);
+}
+
+function drawSystemBase() {
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (openingTitle) {
+    drawOpeningFit(ctx, openingTitle, 0, 0, canvas.width, canvas.height, { noUpscale: true });
+  }
+}
+
+function drawSystemWindow(box) {
+  drawOriginalParchment(box.x, box.y, box.w, box.h);
+}
+
+function drawSystemMenu() {
+  drawSystemBase();
+  const menu = SYSTEM_UI_LAYOUT.menu;
+  const options = menuDefs[ORIGINAL_SYSTEM_MENU_INDEX]?.options ?? [];
+  drawSystemWindow(menu);
+  options.slice(0, menu.count).forEach((opt, i) => {
+    drawOriginalTextTop(opt, menu.textX, menu.textY + i * menu.rowH, {
+      color: i === systemUi.cursor ? "#8a2d13" : "#24160c",
+    });
+  });
+  viewMode = "system-menu";
+  $("runtime-status").textContent = "시스템 메뉴";
+  publishControllerState({ systemUi: { ...systemUi } });
+}
+
+function drawLoadSlots() {
+  drawSystemBase();
+  drawSystemWindow({ x: 192, y: 80, w: 256, h: 208 });
+  const layout = SYSTEM_UI_LAYOUT.slots;
+  for (let i = 0; i < layout.count; i++) {
+    const slot = slots[i] ?? { empty: true };
+    drawOriginalTextTop(
+      originalSaveSlotLine(slot, i),
+      layout.x1,
+      layout.y + i * layout.rowH,
+      { color: i === systemUi.slot ? "#8a2d13" : "#24160c" }
+    );
+  }
+  drawOriginalTextTop(
+    stripUw2MessageControls(messages[951]?.text ?? "데이터를 선택해 주세요."),
+    layout.promptX,
+    layout.promptY,
+    { color: "#24160c" }
+  );
+
+  if (systemUi.mode === "load-confirm") {
+    const c = SYSTEM_UI_LAYOUT.loadConfirm;
+    drawSystemWindow(c);
+    drawOriginalTextTop(
+      stripUw2MessageControls(messages[952]?.text ?? "로드하겠습니다. 좋습니까？"),
+      c.textX, c.textY, { color: "#24160c" }
+    );
+    const yn = UI_LAYOUT.yesNo;
+    drawOriginalGraph(uiGraph?.yesNo, yn.x, yn.y, yn.w, yn.h);
+  } else if (systemUi.mode === "load-empty") {
+    const e = SYSTEM_UI_LAYOUT.emptySlot;
+    drawSystemWindow(e);
+    drawOriginalTextTop(
+      stripUw2MessageControls(messages[953]?.text ?? "데이터가 기록되어 있지 않습니다."),
+      e.textX, e.textY, { color: "#24160c" }
+    );
+  }
+  viewMode = systemUi.mode;
+  $("runtime-status").textContent =
+    systemUi.mode === "load-confirm" ? "Load Data · 확인" :
+    systemUi.mode === "load-empty" ? "Load Data · 빈 슬롯" :
+    "Load Data · 슬롯 선택";
+  publishControllerState({ systemUi: { ...systemUi } });
+}
+
+function enterSystemMenu(cursor = 0) {
+  if (!fontAssets || !menuDefs[ORIGINAL_SYSTEM_MENU_INDEX] || !slots.length) {
+    systemMenuPending = true;
+    drawOpeningTitleHold("system-pending");
+    return false;
+  }
+  systemMenuPending = false;
+  systemUi = { mode: "system-menu", cursor, slot: 0, messageId: null };
+  drawSystemMenu();
+  return true;
+}
+
+function selectLoadedSlot(index) {
+  const slot = slots[index];
+  if (!slot || slot.empty) return false;
+  selected = slot;
+  if (saveBuffer && selected.raw?.page != null) {
+    portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
+  }
+  renderSlots();
+  renderSelectedPortMap();
+  startSelectedGame();
+  return true;
+}
+
+function handleSystemKey(event) {
+  const key = event.key.toLowerCase();
+  if (!["system-menu","load-select","load-confirm","load-empty"].includes(viewMode)) return false;
+
+  if (viewMode === "system-menu") {
+    const options = menuDefs[ORIGINAL_SYSTEM_MENU_INDEX]?.options ?? [];
+    if (key === "arrowup" || key === "w" || key === "8") {
+      event.preventDefault();
+      systemUi.cursor = (systemUi.cursor + options.length - 1) % Math.max(1, options.length);
+      drawSystemMenu();
+      return true;
+    }
+    if (key === "arrowdown" || key === "s" || key === "2") {
+      event.preventDefault();
+      systemUi.cursor = (systemUi.cursor + 1) % Math.max(1, options.length);
+      drawSystemMenu();
+      return true;
+    }
+    if (key === "enter") {
+      event.preventDefault();
+      if (systemUi.cursor === 0) {
+        systemUi.mode = "load-select";
+        const first = slots.findIndex(x => !x.empty);
+        systemUi.slot = first >= 0 ? first : 0;
+        drawLoadSlots();
+      } else if (systemUi.cursor === 3) {
+        drawSystemBase();
+        const q = SYSTEM_UI_LAYOUT.emptySlot;
+        drawSystemWindow(q);
+        drawOriginalTextTop(
+          stripUw2MessageControls(messages[958]?.text ?? "게임을 끝내겠습니다."),
+          q.textX, q.textY, { color: "#24160c" }
+        );
+        $("runtime-status").textContent = "Quit Game";
+      } else {
+        drawSystemMenu();
+      }
+      return true;
+    }
+    return true;
+  }
+
+  if (viewMode === "load-select") {
+    if (key === "escape") {
+      event.preventDefault();
+      enterSystemMenu(0);
+      return true;
+    }
+    if (key === "arrowup" || key === "w" || key === "8") {
+      event.preventDefault();
+      systemUi.slot = (systemUi.slot + 9) % 10;
+      drawLoadSlots();
+      return true;
+    }
+    if (key === "arrowdown" || key === "s" || key === "2") {
+      event.preventDefault();
+      systemUi.slot = (systemUi.slot + 1) % 10;
+      drawLoadSlots();
+      return true;
+    }
+    if (key === "enter") {
+      event.preventDefault();
+      systemUi.mode = slots[systemUi.slot]?.empty ? "load-empty" : "load-confirm";
+      drawLoadSlots();
+      return true;
+    }
+    return true;
+  }
+
+  if (viewMode === "load-empty") {
+    if (!["shift","control","alt","meta"].includes(key)) {
+      event.preventDefault();
+      systemUi.mode = "load-select";
+      drawLoadSlots();
+    }
+    return true;
+  }
+
+  if (viewMode === "load-confirm") {
+    if (key === "enter" || key === "y" || key === "1") {
+      event.preventDefault();
+      selectLoadedSlot(systemUi.slot);
+      return true;
+    }
+    if (key === "escape" || key === "n" || key === "0") {
+      event.preventDefault();
+      systemUi.mode = "load-select";
+      drawLoadSlots();
+      return true;
+    }
+    return true;
+  }
+  return false;
 }
 
 function drawOriginalDatePanel(date, label = "") {
@@ -567,14 +773,8 @@ async function loadSaves() {
   portCatalog = parseKoreanPortTable(buf, 0);
   $("save-status").textContent =
     `KOUKAI2.DAT ${fmtBytes(buf.byteLength)} · 슬롯당 33,340 bytes`;
-  const first = slots.find(x => !x.empty);
-  if (first) {
-    selected = first;
-    if (saveBuffer && selected?.raw?.page != null) {
-      portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
-    }
-    $("run-button").disabled = false;
-  }
+  selected = null;
+  $("run-button").disabled = true;
   renderSlots();
   renderSelectedPortMap();
 }
@@ -645,7 +845,7 @@ function drawOpeningTitleHold(reason = "complete") {
 
 function stopOpening(showTitle = false) {
   if (openingPlayer) openingPlayer.stop();
-  if (showTitle && openingTitle) drawOpeningTitleHold("skip");
+  if (showTitle && openingTitle) enterSystemMenu(0);
 }
 
 function startOpeningPlayback() {
@@ -674,7 +874,7 @@ function startOpeningPlayback() {
       }, null, 2);
     },
     onFinish: () => {
-      drawOpeningTitleHold("complete");
+      enterSystemMenu(0);
     },
   });
   openingPlayer.play().catch(err => {
@@ -740,7 +940,7 @@ function drawOriginalModalRows(rows, selectedIndex = -1, title = "") {
   visible.forEach((line, i) => {
     const absolute = start + i;
     const active = absolute === selectedIndex;
-    drawOriginalPanelText((active ? ">" : " ") + line, x + 16, baseY + i * 16, {
+    drawOriginalPanelText(line, x + 16, baseY + i * 16, {
       color: active ? "#8a2d13" : "#24160c"
     });
   });
@@ -966,7 +1166,7 @@ function renderBuildingInterface(s) {
     drawOriginalParchment(x,y,w,h);
     opts.slice(0,6).forEach((opt,i)=>{
       drawOriginalPanelText(
-        (i===ui.cursor?">":" ") + opt,
+        opt,
         x+16,
         y+30+i*16,
         {color:i===ui.cursor?"#8a2d13":"#24160c"}
@@ -1747,8 +1947,8 @@ function renderRuntime() {
 
 $("opening-button").addEventListener("click", startOpeningPlayback);
 
-$("run-button").addEventListener("click", () => {
-  if (!selected) return;
+function startSelectedGame() {
+  if (!selected) return false;
   stopOpening(false);
   if (selected.port !== 0xff && portAssets && portDoors) {
     if (runtime) runtime.pause();
@@ -1768,6 +1968,11 @@ $("run-button").addEventListener("click", () => {
   $("pause-button").disabled = false;
   $("pause-button").textContent = "일시정지";
   renderRuntime();
+  return true;
+}
+
+$("run-button").addEventListener("click", () => {
+  startSelectedGame();
 });
 
 window.addEventListener("keydown", (event) => {
@@ -1778,6 +1983,8 @@ window.addEventListener("keydown", (event) => {
     stopOpening(true);
     return;
   }
+
+  if (handleSystemKey(event)) return;
 
   if (viewMode === "sea" && seaRuntime) {
     let handled = true;
@@ -1900,6 +2107,7 @@ const gameBoot = Promise.allSettled([
     $("runtime-status").textContent = "게임 데이터 일부 로드 오류: " +
       failed.map(r => r.reason?.message ?? String(r.reason)).join("; ");
   }
+  if (systemMenuPending || viewMode === "opening-title") enterSystemMenu(0);
 });
 
 Promise.allSettled([openingBoot, gameBoot]);

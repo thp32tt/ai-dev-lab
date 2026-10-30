@@ -2,11 +2,16 @@
 // Reconstructed from the shipped format and cross-checked against two independent
 // reverse-engineering descriptions. A record stores four pixels per 16-bit unit.
 
-export const UW2_APPROX_PALETTE = Object.freeze([
-  [0,0,0], [0,65,211], [211,65,0], [243,65,195],
-  [0,162,97], [0,162,243], [243,162,0], [243,227,211],
-  [113,113,146], [162,162,195], [211,113,65], [0,97,195],
-  [0,97,97], [113,81,97], [162,113,81], [0,65,178],
+// Korean MAIN.EXE final 16-color VGA DAC state.
+// Recovered by executing the shipped MAIN.EXE graphics initialization and
+// recording complete index 0..15 writes to VGA ports 03C8h/03C9h. The game
+// emits 45 complete palette sets during the fade; this is the final set.
+// Each 6-bit DAC component is expanded to 8-bit as (v << 2) | (v >> 4).
+export const UW2_MAIN_VGA_PALETTE = Object.freeze([
+  [0,0,0], [0,65,211], [211,65,0], [211,97,162],
+  [0,162,97], [0,162,243], [243,162,97], [243,227,211],
+  [113,113,146], [0,65,195], [162,97,0], [227,178,81],
+  [0,130,243], [0,113,97], [0,178,97], [97,32,195],
 ]);
 
 function u16le(bytes, off) {
@@ -142,7 +147,7 @@ export function decodeGraphRecord(record) {
   return {width,height,table,indices:wordsToIndices(words,width,height,stride)};
 }
 
-export function graphIndicesToRgba(indices,palette=UW2_APPROX_PALETTE){
+export function graphIndicesToRgba(indices,palette=UW2_MAIN_VGA_PALETTE){
   const rgba=new Uint8ClampedArray(indices.length*4);
   for(let i=0;i<indices.length;i++){
     const c=palette[indices[i]] || [0,0,0], p=i*4;
@@ -151,7 +156,7 @@ export function graphIndicesToRgba(indices,palette=UW2_APPROX_PALETTE){
   return rgba;
 }
 
-export function drawGraphImage(canvas,image,scale=1,palette=UW2_APPROX_PALETTE){
+export function drawGraphImage(canvas,image,scale=1,palette=UW2_MAIN_VGA_PALETTE){
   canvas.width=image.width; canvas.height=image.height;
   canvas.style.width=`${image.width*scale}px`;
   canvas.style.height=`${image.height*scale}px`;

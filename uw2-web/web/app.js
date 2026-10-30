@@ -11,7 +11,7 @@ import {
   KoreanOpeningPlayer,
   KOREAN_OPENING_SCENE_PLAN,
 } from "./opening.js";
-import { readGraphRecords, decodeGraphRecord, graphIndicesToRgba, UW2_APPROX_PALETTE } from "./graph-format.js";
+import { readGraphRecords, decodeGraphRecord, graphIndicesToRgba, UW2_MAIN_VGA_PALETTE } from "./graph-format.js";
 import {
   parsePortDoors,
   PortWalkingRuntime,
@@ -255,7 +255,7 @@ function graphImageCanvas(image) {
   c = document.createElement("canvas");
   c.width = image.width; c.height = image.height;
   const g = c.getContext("2d");
-  const rgba = graphIndicesToRgba(image.indices, UW2_APPROX_PALETTE);
+  const rgba = graphIndicesToRgba(image.indices, UW2_MAIN_VGA_PALETTE);
   g.putImageData(new ImageData(rgba, image.width, image.height), 0, 0);
   uiCanvasCache.set(image, c);
   return c;

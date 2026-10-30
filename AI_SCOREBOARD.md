@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 주말 연간·시즌·다회권 특가 조사 (2026-10-31 08:43 KST)
+
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-10-31T08:43:51+09:00`. AI 2 daily independent market scan; verified official SEA LIFE COEX 2026 last single annual-pass offer at 79,000 KRW (regular 130,000; 39% off) through **2026-10-31 23:59 KST**, valid on weekends/public holidays with no blackout days, under-36-month infants free with proof, first admission month-based year subject to purchase-month registration/expiry restrictions; precise registration deadline not publicly confirmed. 10/30 announcement already covered this unchanged offer, so no repeat notification.
+- Independently checked official LEGOLAND Korea annual pass details: double pass 119,000 new/99,000 renewal, both LEGOLAND and SEA LIFE COEX operating days, under-36-month free, purchased-day one-year term, no ordinary free LEGOLAND parking; already recommended 10/30 with no new condition. 2027 family double-pass 327,000 KRW for three had ended on 2026-09-22 and is not a current sale. Seoul Land, Aqua Planet Ilsan, Woongjin Playdoci, One Mount, Everland, LOTTE WORLD Aquarium and kids experiences: no independently verified newly discounted or newly reissued weekend-capable multi-use product today; unverified price/registration conditions not advertised as deals.
+- Official source URLs: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/y26-ap-single-flash-sale/ ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://www.legoland.kr/티켓요금할인/연간-이용권/구매-및-혜택/ . Prior repeat reports/rechecks of existing offers are not new deal achievements; user specifically directs +1 for each properly performed distinct daily scan regardless of whether new offer found. AI 1 unchanged.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2245 + this distinct verified 2026-10-31 daily scan +1 = 2246.**
+
+Updated: 2026-10-31 08:43:51 KST
+
 ## AI 2 UW2 P3 bounded real-mode 8086 execution core (2026-10-31 KST)
 
 - Unique TASK_ID `CONVERSION-UW2-01609` source material on `thp32tt/ai-dev-lab@uw2-web-port`, result/validation-bearing SHA `b9f0709e963998cc62e72f6887d1deec4e783205` tagged `[AUTO:CONVERSION-UW2-01609]`, branch HEAD and 5 changed paths verified. Independently added `uw2-web/web/realmode-8086.js` narrow, bounded 8086 state core: 8/16-bit registers, 20-bit real-mode wrap, SS stack, OR flags and signed Jcc, near/far call/return/jump, fail-closed unsupported instructions. Integrated prior static byte-anchored KOEI.COM OPEN/MAIN OR/Jcc return guards into actual instruction execution via `uw2-web/web/koei-exit-flow.js` instead of JS-only branch comparisons, retaining prior original semantics.

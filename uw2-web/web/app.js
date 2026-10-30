@@ -31,6 +31,7 @@ import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
 import { ORIGINAL_SYSTEM_MENU_INDEX, SYSTEM_UI_LAYOUT, originalSaveSlotLine } from "./system-ui.js";
 import { selectWebMusicRoute } from "./music-routing.js";
+import { Uw2BootGate } from "./boot-sequence.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -129,10 +130,11 @@ let seaAutoTimer = null;
 let seaAutoActive = false;
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
 let systemMenuPending = false;
+const bootGate = new Uw2BootGate();
 
 const fidelityParams = new URLSearchParams(location.search);
 const allowApproximateMusic = fidelityParams.get("musicApprox") === "1";
-const allowApproximateOpening = fidelityParams.get("openingApprox") === "1";
+const allowApproximateOpening = fidelityParams.get("openingApprox") !== "0";
 
 function controllerMusicState() {
   return musicPlayer?.state() ?? {
@@ -849,13 +851,20 @@ function drawOpeningTitleHold(reason = "complete") {
   }, null, 2);
 }
 
+function completeOpening(reason = "complete") {
+  // OPEN.EXE owns boot until its last scene (or an intentional user skip).
+  // MAIN resources finishing independently never opens the menu early.
+  if (bootGate.finishOpening()) enterSystemMenu(0);
+  else if (bootGate.opening === "finished") drawOpeningTitleHold(reason);
+}
+
 function stopOpening(showTitle = false) {
   if (openingPlayer) openingPlayer.stop();
-  if (showTitle && openingTitle) enterSystemMenu(0);
+  if (showTitle && openingTitle) completeOpening("skip");
 }
 
 function startOpeningPlayback() {
-  if (!openingData || !openingTitle) return;
+  if (!openingData || !openingTitle || !bootGate.startOpening()) return;
   if (runtime) runtime.pause();
   if (openingPlayer) openingPlayer.stop();
 
@@ -870,8 +879,8 @@ function startOpeningPlayback() {
     onScene: (scene, cycle = 0) => {
       viewMode = "opening";
       $("runtime-status").textContent = scene.fidelity === "blocked-unverified"
-        ? "오프닝 역분석 재현 대기 · 추정 애니메이션 사용 안 함"
-        : `오프닝 비교모드 · scene ${scene.scene + 1}/${KOREAN_OPENING_SCENE_PLAN.length} · ${scene.name}`;
+        ? "오프닝 엄격 검증 모드 · 미확정 프레임 재현 대기"
+        : `원본 OPEN.EXE 장면 복원 · ${scene.scene + 1}/${KOREAN_OPENING_SCENE_PLAN.length} · ${scene.name}`;
       $("debug").textContent = JSON.stringify({
         view: "opening",
         scene: scene.scene,
@@ -882,10 +891,11 @@ function startOpeningPlayback() {
       }, null, 2);
     },
     onFinish: () => {
-      enterSystemMenu(0);
+      completeOpening("complete");
     },
   });
   openingPlayer.play().catch(err => {
+    bootGate.failOpening();
     $("runtime-status").textContent = "오프닝 재생 오류: " + err.message;
     $("debug").textContent = err.stack || String(err);
   });
@@ -2105,6 +2115,7 @@ const openingBoot = loadOpeningGraphics().then(() => {
     startOpeningPlayback();
   }
 }).catch(err => {
+  bootGate.failOpening();
   $("opening-status").textContent = "오프닝 로드 오류: " + err.message;
   $("debug").textContent = err.stack || String(err);
 });
@@ -2122,11 +2133,11 @@ const gameBoot = Promise.allSettled([
   loadMusicSupport(),
 ]).then(results => {
   const failed = results.filter(r => r.status === "rejected");
-  if (failed.length) {
+  if (failed.length && viewMode !== "opening") {
     $("runtime-status").textContent = "게임 데이터 일부 로드 오류: " +
       failed.map(r => r.reason?.message ?? String(r.reason)).join("; ");
   }
-  if (systemMenuPending || viewMode === "opening-title") enterSystemMenu(0);
+  if (bootGate.settleGameResources()) enterSystemMenu(0);
 });
 
 Promise.allSettled([openingBoot, gameBoot]);

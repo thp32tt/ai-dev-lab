@@ -21,7 +21,9 @@ export class RealMode8086 {
     this.ip = 0;
     this.flags = 2;
     this.interruptVectors = new Set();
+    this.interruptAdapters = new Map();
     this.portHandlers = new Map();
+    this.terminated = null;
   }
   physical(segment, offset) {
     return (((u16(segment,'segment') << 4) + u16(offset,'offset')) & 0xfffff);
@@ -95,11 +97,27 @@ export class RealMode8086 {
     if(!Number.isInteger(number)||number<0||number>255)
       throw new RangeError('8086 interrupt number must be uint8');
     u16(segment,'interrupt segment');u16(offset,'interrupt offset');
+    if(this.interruptAdapters.has(number))throw new Error('8086 interrupt already registered');
     this.write16(0,number*4,offset);
     this.write16(0,number*4+2,segment);
     this.interruptVectors.add(number);
   }
+  installInterruptAdapter(number,handler) {
+    if(!Number.isInteger(number)||number<0||number>255)
+      throw new RangeError('8086 interrupt number must be uint8');
+    if(typeof handler!=='function')throw new TypeError('interrupt adapter must be synchronous');
+    if(this.interruptVectors.has(number)||this.interruptAdapters.has(number))
+      throw new Error('8086 interrupt already registered');
+    this.interruptAdapters.set(number,handler);
+  }
   dispatchInterrupt(number) {
+    const adapter=this.interruptAdapters.get(number);
+    if(adapter){
+      const result=adapter(this);
+      if(result&&typeof result.then==='function')
+        throw new Error('asynchronous 8086 interrupt adapter: fail closed');
+      return;
+    }
     if(!this.interruptVectors.has(number))
       throw new Error(`8086 INT ${number.toString(16)} has no installed vector/DOS adapter: fail closed`);
     // Read IVT before pushing: an interrupt stack may alias physical 0000h.
@@ -287,6 +305,7 @@ export class RealMode8086 {
     return result;
   }
   step() {
+    if(this.terminated)throw new Error('DOS process terminated: cannot execute more instructions');
     const cs=this.seg.CS, at=this.ip;
     let op=this.fetch8(),segmentOverride=null,repeatPrefix=null,prefixes=0;
     const segPrefix={0x26:'ES',0x2e:'CS',0x36:'SS',0x3e:'DS'};
@@ -703,6 +722,6 @@ export class RealMode8086 {
   runSteps(count) {
     if(!Number.isInteger(count)||count<0||count>100000)
       throw new RangeError('bounded step count required');
-    for(let i=0;i<count;i++)this.step();
+    for(let i=0;i<count&&!this.terminated;i++)this.step();
   }
 }

@@ -99,7 +99,8 @@ export class RealMode8086 {
     if(width!==8&&width!==16)throw new RangeError('operand width');
     if(mode===3){
       const name=(width===8?R8:R16)[rm];
-      return {read:()=>width===8?this.get8(name):this.get16(name),
+      return {isRegister:true,
+              read:()=>width===8?this.get8(name):this.get16(name),
               write:v=>width===8?this.set8(name,v):this.set16(name,v)};
     }
     const bx=this.get16('BX'),bp=this.get16('BP');
@@ -110,7 +111,8 @@ export class RealMode8086 {
     const disp=direct?this.fetch16():mode===1?s8(this.fetch8()):mode===2?s16(this.fetch16()):0;
     const offset=(direct?disp:bases[rm]+disp)&0xffff;
     const segment=this.seg[segmentOverride??(usesBP?'SS':'DS')];
-    return {read:()=>width===8?this.read8(segment,offset):this.read16(segment,offset),
+    return {isRegister:false,segment,offset,
+            read:()=>width===8?this.read8(segment,offset):this.read16(segment,offset),
             write:v=>width===8?this.write8(segment,offset,v):this.write16(segment,offset,v)};
   }
   logicResult(value,width) {
@@ -161,6 +163,11 @@ export class RealMode8086 {
       segmentOverride=segPrefix[op];op=this.fetch8();
     }
     if(op===0x90)return; // NOP
+    // Explicit 8086 segment stack transfers. CS is push-only.
+    const pushSegment={0x06:'ES',0x0e:'CS',0x16:'SS',0x1e:'DS'}[op];
+    if(pushSegment){this.push16(this.get16(pushSegment));return;}
+    const popSegment={0x07:'ES',0x17:'SS',0x1f:'DS'}[op];
+    if(popSegment){this.set16(popSegment,this.pop16());return;}
     if(op>=0xb8&&op<=0xbf){this.set16(R16[op-0xb8],this.fetch16());return;}
     if(op>=0xb0&&op<=0xb7){this.set8(R8[op-0xb0],this.fetch8());return;}
     // Native 8086 register INC/DEC leave CF unchanged, unlike ADD/SUB.
@@ -228,6 +235,53 @@ export class RealMode8086 {
       if(kind!=='cmp')rm.write(value);
       return;
     }
+    // 8C/8E transfer segment registers, but 8E /1 cannot load CS.
+    if(op===0x8c||op===0x8e){
+      const m=this.fetch8(),selector=(m>>>3)&7;
+      const segments=['ES','CS','SS','DS'];
+      if(selector>3||(op===0x8e&&selector===1))
+        throw new Error('unsupported 8086 segment-register selector: fail closed');
+      const rm=this.memoryOperand(m,16,segmentOverride);
+      if(op===0x8c)rm.write(this.get16(segments[selector]));
+      else this.set16(segments[selector],rm.read());
+      return;
+    }
+    // LES/LDS load an m16:16 pointer, never a register-only operand.
+    if(op===0xc4||op===0xc5){
+      const m=this.fetch8();
+      if((m>>>6)===3)throw new Error('8086 LES/LDS requires memory: fail closed');
+      const rm=this.memoryOperand(m,16,segmentOverride);
+      const offset=rm.read(),selector=this.read16(rm.segment,(rm.offset+2)&0xffff);
+      this.set16(R16[(m>>>3)&7],offset);
+      this.set16(op===0xc4?'ES':'DS',selector);
+      return;
+    }
+    // FF /0..6: word INC/DEC, indirect near/far transfers and PUSH.
+    // Indirect far calls/jumps are a known unresolved P1 call-graph class.
+    if(op===0xff){
+      const m=this.fetch8(),extension=(m>>>3)&7;
+      if(extension===7)throw new Error('unsupported 8086 FF /7 extension: fail closed');
+      const rm=this.memoryOperand(m,16,segmentOverride);
+      if(extension===0||extension===1){
+        const cf=this.flags&FLAGS.CF;
+        const value=this.arithmeticResult(rm.read(),1,16,extension===1);
+        this.flags=(this.flags&~FLAGS.CF)|cf;
+        rm.write(value);return;
+      }
+      if(extension===2){const dest=rm.read();this.push16(this.ip);this.ip=dest;return;}
+      if(extension===3||extension===5){
+        if(rm.isRegister)throw new Error('8086 indirect far pointer requires memory: fail closed');
+        // Read both words before CALL pushes might overlap a pointer in SS.
+        const dest=rm.read(),destSegment=this.read16(rm.segment,(rm.offset+2)&0xffff);
+        if(extension===3){this.push16(this.seg.CS);this.push16(this.ip);}
+        this.seg.CS=destSegment;this.ip=dest;return;
+      }
+      if(extension===4){this.ip=rm.read();return;}
+      if(extension===6){
+        const value=rm.isRegister&&(m&7)===4?(this.get16('SP')-2)&0xffff:rm.read();
+        this.push16(value);return;
+      }
+    }
     if(op===0xc6||op===0xc7){
       const m=this.fetch8();
       if(((m>>>3)&7)!==0)throw new Error('unsupported 8086 MOV immediate ModR/M extension: fail closed');
@@ -256,10 +310,17 @@ export class RealMode8086 {
     if(op===0xe9){const delta=s16(this.fetch16());this.ip=(this.ip+delta)&0xffff;return;}
     if(op===0xe8){const delta=s16(this.fetch16());this.push16(this.ip);this.ip=(this.ip+delta)&0xffff;return;}
     if(op===0xc3){this.ip=this.pop16();return;}
+    if(op===0xc2){const bytes=this.fetch16();this.ip=this.pop16();
+      this.set16('SP',(this.get16('SP')+bytes)&0xffff);return;}
     if(op===0x9a){const dest=this.fetch16(),segment=this.fetch16();
       this.push16(this.seg.CS);this.push16(this.ip);
       this.seg.CS=segment;this.ip=dest;return;}
     if(op===0xcb){this.ip=this.pop16();this.seg.CS=this.pop16();return;}
+    if(op===0xca){const bytes=this.fetch16();
+      this.ip=this.pop16();this.seg.CS=this.pop16();
+      this.set16('SP',(this.get16('SP')+bytes)&0xffff);return;}
+    if(op===0xcf){const dest=this.pop16(),seg=this.pop16(),flags=this.pop16();
+      this.ip=dest;this.seg.CS=seg;this.set16('FLAGS',flags);return;}
     if(op===0xea){const dest=this.fetch16(),segment=this.fetch16();
       this.seg.CS=segment;this.ip=dest;return;}
     throw new Error(`unsupported 8086 opcode ${op.toString(16).padStart(2,'0')} at ${cs.toString(16)}:${at.toString(16)}`);

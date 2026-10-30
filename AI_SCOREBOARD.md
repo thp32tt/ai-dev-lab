@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 C-slot one-line persistent web-port loop, no TASK_ID (2026-10-31 KST)
+
+- Unique work key `UW2-SIMPLE-ONE-LINE-C-20261031`. Replaced the C-slot UW2 production-ID/terminal/rollover controller with a short persistent-project-chat sender on `thp32tt/OutRun2006Tweaks@chat-controller-downloads`. The **only** message sent to ChatGPT by C is `웹포팅 개발 계속진행해` at KST :00/:30, deferred while generating and delivered once idle. Legacy GitHub tagged-commit completion, TASK_ID allocation, C6/final-acceptance logic, periodic forced C rollover, long UW2 prompt, old obsolete test and prompt COPY removed. On first deployment, clears only UW2 task records from controller queue, preserves DX11 A and existing source/evidence/Chrome login; one new clean C chat then reuses it, creating a new chat only on UI error/length limit.
+- Official fidelity plan retained and updated at `thp32tt/ai-dev-lab@uw2-web-port` `uw2-web/docs/ORIGINAL_DOS_TO_WEB_DISASSEMBLY_MASTER_PLAN_20261031.md`, plan-policy commit `d32f9188ebef3b8c926641f36dd6f5a610c0971a`. Actual port/source/test/evidence data not deleted; plan remains the single automation guidance document. The DX11 A path and frozen B were not modified for this behavior.
+- Dedicated isolated Python tests `tools/chat-controller/v0.4/tests/test_uw2_simple_loop.py` **7/7 PASS** (one-line exact text/no IDs, two scheduled windows dedup, busy pending delivery, missed-window collapse, chat reuse, migration removal of old UW2 queue IDs preserving DX11, no generic task allocation); composed four-piece Python controller module parsed successfully. Regression commit `63920fdd5bdbf2d42dae2cfe04c6ff70737d5c90`; one-time cleanup + Compose follow-up on same code fix. **Portainer image redeploy and live controller readback are not included in these static PASS results.** Same implementation redeploy/recheck/retry +0; no original-game completion claim.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2247 + one new independently implemented and regression-tested controller simplification +1 = 2248.** AI1 separate.
+
+Updated: 2026-10-31 KST
+
+
 ## AI 2 UW2 verified COM + DOS process-boundary implementation (2026-10-31 KST)
 
 - New independently implemented material feature on `thp32tt/ai-dev-lab@uw2-web-port`: an SHA-pinned COM image loader using explicit original PSP/allocation/stack bounds, a synchronous fail-closed INT 21h adapter for DOS EXEC 4B00h, last-child status 4Dh and normal exit 4Ch, with actual 8086 CPU state/interrupt-adapter integration. Implementation commits `41cc32ed8234f9e7ad25a0afb15a3eb30a1d5ef8`, `7d7d94f6157453b194507f2b91c008e5db7f30c7`, `03b03b27090aa9440980d4c72d2667da4b7b01be`; new synthetic integration regression `66238e8fa11ea7c4cfad8c9956543558110b743e`; exact SHA validation-bearing gate `7f86afba2e19c3daabe6e457df42a453c7d277bc`, GitHub Actions `41147555220` completed **success**.

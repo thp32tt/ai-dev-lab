@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens-only poisoned DirectGPU Frame.v2 omission -> same-run cached Direct Projection XR fallback (2026-10-30 KST)
+
+- TASK_ID `CONVERSION-DX9EX-01590`: independent R26+HUD LENS_FLARE_ONLY static cross-boundary falsification, SOURCE_HEAD `2b87d47b65429e5f29cfef1c40731af2d4a3dff3`. Distinct from 01583's Direct/Classic R24 cache identity, 01584's classic Theater stale refresh, and 01589's native LEFT poison/mono-gap: traced conditional post-LEFT poisoned `directOnly=1 && stereoRequested=1 && directTransport=0` through **both R9 Frame.v2 no-publication gates**, R23 old completed Direct frame rejection and 1000ms bundle freshness, R32->R26->R24 fallback, and R24 same-run Direct Projection cache selector with **no frame-id/present-QPC age guard**. A previously committed Direct Projection slice0 may be accepted as a `ViewSpace/BOTH` flat quad if all predicates hold, even after a later failed game Present has published no fresh frame. This is a **conditional whole-image flattening/staleness discriminator, not a newly introduced regression, proven actual lens-only double emitter, or HMD root cause**; protected R26+HUD baseline retains the relevant publish/cache predicates.
+- Only OutRun target changed path `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01590.md`; docs-only result commit `bf41c4b292058313b04e9c2764237cbc09c287ba`, remote blob `5857c9e2e34412b61800613db0a4a4caa02afa2a`, exact one-file commit/branch HEAD/readback verified. `AUTOMATION_VALIDATION=PASS` (docs-only), `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. Neither source build nor Quest3/VDXR accepted-layer/source-pixel capture performed. R84 nondefault; no B9200 post-CALL/+5.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2198 + one distinct verified conditional R9 DirectGPU no-publication → R24 Direct cache age-gap lens-path review +1 = 2199.** Duplicate retry/readback/rollover +0; AI 1 separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 VR rendering research / Issue #100 official-source update (2026-10-30 KST)
 
 - RUN_KEY `VR-RESEARCH-20261030-ISSUE100`: independently verified official Khronos OpenXR SDK/Specification **1.1.65** release (2026-10-16), including `XR_EXT_app_consumed_swapchain`, `XR_EXT_enumerate_swapchain_formats2`, and Windows loader/API-layer fixes. Checked DXVK latest stable v3.1.1, still-open D3D9Ex user-memory/shared-import issue #5934 and unmerged PR #5972, plus conditional third-party depth-resource lifetime report #5889. Verified Virtual Desktop v1.34.8 actual release date **2025-09-20**, correcting previously mistaken 2026 date. No recent Microsoft D3D9Ex timing API changes established; no game code/CI/HMD test.

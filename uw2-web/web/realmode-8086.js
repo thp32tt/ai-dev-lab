@@ -310,6 +310,59 @@ export class RealMode8086 {
       if(kind!=='cmp')rm.write(value);
       return;
     }
+    // 8086 Group-3 F6/F7: original unsigned/signed arithmetic uses
+    // AX or DX:AX exactly, not JavaScript's implicit 32-bit bit operators.
+    // A real divide error raises interrupt 0; until DOS/BIOS interrupt
+    // delivery is implemented, fail closed without corrupting registers.
+    if(op===0xf6||op===0xf7){
+      const m=this.fetch8(),ext=(m>>>3)&7,width=op===0xf6?8:16;
+      if(ext===1)throw new Error('unsupported 8086 Group-3 /1: fail closed');
+      const rm=this.memoryOperand(m,width,segmentOverride);
+      const value=rm.read(),mask=width===8?0xff:0xffff;
+      const signed=v=>width===8?s8(v):s16(v);
+      if(ext===0){
+        const immediate=width===8?this.fetch8():this.fetch16();
+        this.aluResult('test',value,immediate,width);return;
+      }
+      if(ext===2){rm.write((~value)&mask);return;}
+      if(ext===3){rm.write(this.arithmeticResult(0,value,width,true));return;}
+      if(ext===4||ext===5){
+        const acc=width===8?this.get8('AL'):this.get16('AX');
+        const product=ext===5?signed(acc)*signed(value):acc*value;
+        if(width===8)this.set16('AX',product&0xffff);
+        else {
+          this.set16('AX',product&0xffff);
+          this.set16('DX',(product>>>16)&0xffff);
+        }
+        const overflow=ext===5?
+          product<-(width===8?128:32768)||product>(width===8?127:32767):
+          product>mask;
+        this.flags=(this.flags&~(FLAGS.CF|FLAGS.OF))|
+          (overflow?(FLAGS.CF|FLAGS.OF):0)|2;
+        return;
+      }
+      if(value===0)throw new Error('8086 divide error: zero divisor (INT 0 unimplemented): fail closed');
+      const dividend=width===8?this.get16('AX'):
+        this.get16('DX')*0x10000+this.get16('AX');
+      const signedDividend=width===8?s16(dividend):
+        (this.get16('DX')<<16)|this.get16('AX');
+      const quotient=Math.trunc((ext===7?signedDividend:dividend)/
+        (ext===7?signed(value):value));
+      const remainder=(ext===7?signedDividend:dividend)-
+        quotient*(ext===7?signed(value):value);
+      const min=ext===7?-(width===8?128:32768):0;
+      const max=ext===7?(width===8?127:32767):mask;
+      if(!Number.isFinite(quotient)||quotient<min||quotient>max)
+        throw new Error('8086 divide error: quotient overflow (INT 0 unimplemented): fail closed');
+      // DIV/IDIV flags are architecturally undefined. Keep their old bits,
+      // never invent a deterministic flag result absent original evidence.
+      if(width===8){
+        this.set8('AL',quotient&0xff);this.set8('AH',remainder&0xff);
+      }else{
+        this.set16('AX',quotient&0xffff);this.set16('DX',remainder&0xffff);
+      }
+      return;
+    }
     // 8C/8E transfer segment registers, but 8E /1 cannot load CS.
     if(op===0x8c||op===0x8e){
       const m=this.fetch8(),selector=(m>>>3)&7;

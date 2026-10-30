@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex exact lens WorldBillboard zero-depth XYZRHW gate falsification (2026-10-30 KST)
+
+- Distinct lens-only REVIEW_ONLY source control-flow falsification `CONVERSION-DX9EX-01594` on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned SOURCE_HEAD `f130074abcb8acfdc6eb1d76d404b08f7ea5de41`, docs-only commit `5d35c14bc0ff8dfa12cf9c2cd60bc0f26ef27228`; remote branch HEAD, exact one MD path, tag and blob verified. Earlier 01593 suspected an invalid projected-depth signature would independently reject the early R30 XYZRHW lens route. The verified `R30ConfigureXyzrhwWorldEffect` truth table **refutes that negative for direct exact WorldBillboard**: `semanticWorld` can set `worldEffect` and `worldEvidenceAuthoritative` despite `rhwDepthEvidence=0`, with physical-viewport XY normalization and full/bilateral affine world per-eye attempts when independent VS/FVF/pose/projection checks pass. SceneEffect zero-depth and unowned zero-depth still use separate controls. This is not observed C993 physical routing, duplicate material pixels, headset fix or runtime PASS; `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`. Prior 01593 work, retry and readback are not separately credited.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2208 + distinct source-verified lens depth-negative-control falsification +1 = 2209.** AI 1 remains independent.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 bounded multi-island native GPU RGB source publishing (2026-10-30 KST)
 
 - Unique `CONVERSION-DX11-01174` C++ source and compiled positive/negative regression at `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: validation-bearing material SHA `47bf9c37eb395a5216cf0a0bcb1a5291828b0df7`. A native real-game Draw GPU PRE/POST changed RGB source crop can now preserve up to four independent original-screen-position D3D9 dirty repaint islands (previously two); all prior source crops must be disjoint, the entire authentic dirty-region union must validate, and individual D3D9 SYSTEMMEM surfaces protect queued UpdateSurface lifetimes. Four-island, forged bounds, oversized exclusion, alpha-only and overlap compiled source regressions. Protected original game Draw/input/FFB and DX9Ex fallback preserved; DXVK frozen.

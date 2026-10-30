@@ -43,6 +43,6 @@ assert.equal(main.subarray(0x1b1eb,0x1b218).toString("hex"),
   "be05008bded1e3d1e38b876eab99" +
   "33c22bc2b90300d3f833c22bc28bcb8bde8bf98b9570ab9a7d7b00004e79d6");
 assert.equal(main.subarray(0xcf15,0xcf33).toString("hex"),
-  "2bc050ff362e04b8500050b8080050ff7608ff76fe900ee82f8a5d8be55dca0400");
+  "2bc050ff362e04b8500050b8080050ff7608ff76fe900ee82f8a8be55dca");
 
 console.log("UW2 KAO.LZW executable-derived portrait decoder: PASS");

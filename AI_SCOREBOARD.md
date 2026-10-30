@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex lens-only static world-particle canvas scope collision (2026-10-30 KST)
+
+- Independent REVIEW_ONLY source falsification `LENSFLARE-R26-WORLD-CANVAS-SCOPE-20261030-1114` on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, source pinned `2a4e28994db38f3f0247fe7860f3d65ecd577e01`, docs-only material commit `76efd40575bedffb93c865608c4f03baf8cc65ea` (remote file/blob/HEAD and one-path commit verified). The newly introduced `gameProjectedWorldSourceCanvas` gate accepts `worldEffect && rhwDepthEvidence && !projectedWorldMarker` without requiring retail 418CF0 or WorldParticle source provenance. A depth-qualified, non-HUD-plane SceneEffect/ProjectedScreenEffect2D XYZRHW lens draw (CABE/C993 scopes) is therefore *conditionally eligible* for game-screen particle XY normalization even though `UsesLogicalUiCanvas` excludes lens scopes. Source trace proves eligibility, **not** that an actual lens PMT reaches this gate, not a visible HMD regression, and not a confirmed lens root cause. This is a distinct lens-only safety/falsification finding from the earlier scored particle source repair, with no code change and no duplicate C-slot finding. `CODE_CHANGE=NO`; `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2203 + one independent lens-only source-scope safety falsification +1 = 2204.** Same task rechecks/readbacks +0; AI 1 separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX9Ex CPU-projected world particle source/depth recovery (2026-10-30 KST)
 
 - Independent DX9Ex R26+HUD source repair on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` after tracing the retail particle path to r4dius/outrun2-decomp `draw_418cf0`: grass/source-2 FVF `0x144` XYZRHW is CPU-projected with EXE `0x740C8C/90` screen coefficients, while RHW is explicitly `1.0` and perspective depth remains in screen-Z. The VR split had kept those game coefficients logical while R30 inverted XY against the physical XR viewport and then treated RHW=1 as clip-W depth. R26 now inverts depth-proven world XY using the original game-screen centre coefficients, reconstructs unit-RHW view-Z from screen-Z using the D3D projection equation, retains non-unit-RHW smoke/skid behavior, and still outputs through world stereo to the physical XR viewport without promoting particles to HUD.

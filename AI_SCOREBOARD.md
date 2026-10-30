@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex GOAL diagnostic safety and silent-rejection source review (2026-10-30 KST)
+
+- Independent new source-gated REVIEW_ONLY full-path inspection of `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `1edeff83d4dfe8b2d4b53944aa58cbe547f7939e`, previous baseline `d39c95e2f634de3b1ccdb977151e9dda7c6c23cb`. The two new GOAL diagnostics have independent unguarded queue-tail `kind_C` dereference after bounded reachability proof returns 0, and a `TagAppendedNodes` early-continue that suppresses rejection telemetry for rebuilt roots reusing an old tail pointer. Both are conditional source-level diagnostic risks, **not** a proven runtime crash or visual fix. Documented exact file/line evidence and Quest logs in docs-only commit `ca3488e4f83630c5eb4f2f4ecb89d44d659427e2` at `docs/reviews/dx9ex/automation/DX9EX-FULL-PATH-REVIEW-20261030-1738.md`. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`, no HMD/CI pass claimed. This distinct documented finding +1; duplicate reporting/retests +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2219 + independent DX9Ex GOAL queue diagnostic risk review +1 = 2220.** AI 1 unchanged.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 OutRun manual ChatGPT vision Q228 ROI recovery and writable bridge (2026-10-30 KST)
 
 - RUN_KEY `OUTRUN-Q228-MANUAL-VISION-RESTORE-20261030`: verified original full-HD Q228 actual visible glyphs `game lobby` and `multiplayer` in the N100 source image; captured SHA-verified nonoverlapping ROIs `[4,491,1132,647]` and `[4,803,1195,957]` with distinct reviewed translations `게임 로비` and `멀티플레이`. Corrected root-owned GPT OCR output folder permission blockage by creating a separate writable `image-src/text_roi_batches/manual_vision_outputs` review tree and updating SHA-bound `crop_to_imagegen_queue.py` bridge. Source GitHub result `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928` commit `f02f49f92fd36d6a54bc4551116497e3f14a868c`. Manual review stays human-review required, no fabricated response/coordinates and no change to existing OCR response state or DDS.

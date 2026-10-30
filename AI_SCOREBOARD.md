@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 verified COM + DOS process-boundary implementation (2026-10-31 KST)
+
+- New independently implemented material feature on `thp32tt/ai-dev-lab@uw2-web-port`: an SHA-pinned COM image loader using explicit original PSP/allocation/stack bounds, a synchronous fail-closed INT 21h adapter for DOS EXEC 4B00h, last-child status 4Dh and normal exit 4Ch, with actual 8086 CPU state/interrupt-adapter integration. Implementation commits `41cc32ed8234f9e7ad25a0afb15a3eb30a1d5ef8`, `7d7d94f6157453b194507f2b91c008e5db7f30c7`, `03b03b27090aa9440980d4c72d2667da4b7b01be`; new synthetic integration regression `66238e8fa11ea7c4cfad8c9956543558110b743e`; exact SHA validation-bearing gate `7f86afba2e19c3daabe6e457df42a453c7d277bc`, GitHub Actions `41147555220` completed **success**.
+- Proof is **SYNTHETIC + exact-SHA Actions only**. No original Korean binaries, real DOS child EXEC, real browser, full-game, pixel or audio differential trace executed here. Parent-owned child runner returns explicit externally supplied status; this does **not** complete P1/P3/P9 or original execution fidelity. The five sequential commits and CI are a single new integrated achievement; readbacks/further retries +0. AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2246 + one new integrated verified COM/DOS source milestone +1 = 2247.**
+
+Updated: 2026-10-31 KST
+
 ## AI 2 수도권 주말 연간·시즌·다회권 특가 조사 (2026-10-31 08:43 KST)
 
 - RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-10-31T08:43:51+09:00`. AI 2 daily independent market scan; verified official SEA LIFE COEX 2026 last single annual-pass offer at 79,000 KRW (regular 130,000; 39% off) through **2026-10-31 23:59 KST**, valid on weekends/public holidays with no blackout days, under-36-month infants free with proof, first admission month-based year subject to purchase-month registration/expiry restrictions; precise registration deadline not publicly confirmed. 10/30 announcement already covered this unchanged offer, so no repeat notification.

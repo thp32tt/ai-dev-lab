@@ -3,7 +3,7 @@
 // Missing instructions must throw rather than fabricate original-game behavior.
 const R16 = ['AX','CX','DX','BX','SP','BP','SI','DI'];
 const R8 = ['AL','CL','DL','BL','AH','CH','DH','BH'];
-const FLAGS = Object.freeze({CF:1,PF:4,AF:16,ZF:64,SF:128,TF:256,IF:512,OF:2048});
+const FLAGS = Object.freeze({CF:1,PF:4,AF:16,ZF:64,SF:128,TF:256,IF:512,DF:1024,OF:2048});
 const s8 = v => (v & 0x80) ? v - 0x100 : v;
 const s16 = v => (v & 0x8000) ? v - 0x10000 : v;
 const u16 = (v, label) => {
@@ -156,11 +156,62 @@ export class RealMode8086 {
   }
   step() {
     const cs=this.seg.CS, at=this.ip;
-    let op=this.fetch8(),segmentOverride=null,prefixes=0;
+    let op=this.fetch8(),segmentOverride=null,repeatPrefix=null,prefixes=0;
     const segPrefix={0x26:'ES',0x2e:'CS',0x36:'SS',0x3e:'DS'};
-    while(Object.hasOwn(segPrefix,op)){
-      if(++prefixes>8)throw new Error('8086 segment prefix budget exceeded: fail closed');
-      segmentOverride=segPrefix[op];op=this.fetch8();
+    while(Object.hasOwn(segPrefix,op)||op===0xf2||op===0xf3){
+      if(++prefixes>8)throw new Error('8086 prefix budget exceeded: fail closed');
+      if(Object.hasOwn(segPrefix,op))segmentOverride=segPrefix[op];
+      else repeatPrefix=op; // Last F2/F3 prefix wins on the 8086.
+      op=this.fetch8();
+    }
+    // Native 8086 string instructions share the CPU's segmented 1 MiB memory.
+    // Source is DS:SI (unless overridden), destination always ES:DI.
+    // REP is one architectural instruction, with at most 65535 iterations.
+    if((op>=0xa4&&op<=0xa7)||(op>=0xaa&&op<=0xaf)){
+      const width=(op&1)?16:8,amount=width>>>3;
+      const isMov=op===0xa4||op===0xa5;
+      const isCmp=op===0xa6||op===0xa7;
+      const isSto=op===0xaa||op===0xab;
+      const isLod=op===0xac||op===0xad;
+      const isSca=op===0xae||op===0xaf;
+      const sourceSegment=this.seg[segmentOverride??'DS'];
+      const destinationSegment=this.seg.ES;
+      const read=(segment,offset)=>width===8?
+        this.read8(segment,offset):this.read16(segment,offset);
+      const write=(segment,offset,value)=>width===8?
+        this.write8(segment,offset,value):this.write16(segment,offset,value);
+      const accName=width===8?'AL':'AX';
+      const accumulator=()=>width===8?this.get8(accName):this.get16(accName);
+      const increment=this.flag('DF')?-amount:amount;
+      let left=repeatPrefix===null?1:this.get16('CX');
+      while(left>0){
+        const si=this.get16('SI'),di=this.get16('DI');
+        if(isMov)write(destinationSegment,di,read(sourceSegment,si));
+        else if(isCmp)this.arithmeticResult(read(sourceSegment,si),
+          read(destinationSegment,di),width,true);
+        else if(isSto)write(destinationSegment,di,accumulator());
+        else if(isLod){
+          const value=read(sourceSegment,si);
+          if(width===8)this.set8(accName,value);
+          else this.set16(accName,value);
+        }else if(isSca)this.arithmeticResult(accumulator(),
+          read(destinationSegment,di),width,true);
+        if(isMov||isCmp||isLod)this.set16('SI',(si+increment)&0xffff);
+        if(isMov||isCmp||isSto||isSca)this.set16('DI',(di+increment)&0xffff);
+        if(repeatPrefix===null)break;
+        left--;
+        this.set16('CX',left);
+        // On REPE/REPNE CMPS/SCAS the continuation condition is evaluated
+        // after the first comparison; MOVS/STOS/LODS ignore ZF.
+        if((isCmp||isSca)&&this.flag('ZF')!==(repeatPrefix===0xf3))break;
+      }
+      return;
+    }
+    if(repeatPrefix!==null)
+      throw new Error('unsupported 8086 REP prefix/opcode combination: fail closed');
+    if(op===0xfc||op===0xfd){
+      this.flags=(this.flags&~FLAGS.DF)|(op===0xfd?FLAGS.DF:0)|2;
+      return;
     }
     if(op===0x90)return; // NOP
     // Explicit 8086 segment stack transfers. CS is push-only.

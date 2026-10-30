@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original-asset boot fail-closed material repair (2026-10-31 KST)
+
+- TASK_ID `CONVERSION-UW2-01607`; distinct source material result `thp32tt/ai-dev-lab@uw2-web-port` commit `4feac956f6449005ae88f4c890efa289741c4bd1` (tagged `[AUTO:CONVERSION-UW2-01607]`), branch HEAD readback, actual modifications to `uw2-web/web/app.js` and `uw2-web/web/boot-sequence.js`, plus regression `uw2-web/tests/boot-sequence.test.mjs`, new per-branch CI gate and scope document. The browser's Promise.allSettled game boot used to incorrectly mark required asset loads ready even when some failed. New gate holds MAIN menu and selected-game start closed on rejected original resources; re-playing opening cannot bypass the failed resource-set. OPEN/MZ order and original screen/music/game content unchanged. This is a P4 boundary fix, not an original-game fidelity completion claim.
+- Local independent synthetic Node boot regression `node /mnt/data/uw2-01607/tests/boot-sequence.test.mjs` PASS; GitHub exact-source static Actions run `41091012568`, `synthetic-static` success (Node syntax + boot + fidelity policy + synthetic MZ). Real browser/original DOS binaries were not executed for this task; `RUNTIME_VALIDATION=UNTESTED`. One independent implemented and exact-SHA CI-tested defect fix **+1**; same-task readback/retries/reporting **+0**; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2241 + one independent UW2 web source failure-boundary repair +1 = 2242.**
+
+Updated: 2026-10-31 KST
+
 ## AI 2 DX9Ex C993 exact live-c64 versus R85 source-camera sync provenance (2026-10-31 KST)
 
 - Unique RUN_KEY `LENSFLARE-C993-LIVE-WVP-SYNC-PROVENANCE-20261031-0128`; `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` docs-only commit `bb0f5c0a944d258077df95b94b91d65ebd7313da`, remote file and one-added-doc compare verified. Independently audited the newly added exact C993 0x570002 live GPU c64 recovery: unlike the two prior recorded-raw WVP providers, this third fallback reads device c64 without linking its matrix to the last game-WVP write serial/pose/shader epoch, while R85 still reads `GetLastRawGameWvpCameraSynced()` from that last recorded game write. Recorded-raw providers can reject on age/epoch even though the last sync bit remains valid. Thus an admitted live-c64 R85 build can conditionally mix WVP and camera-sync provenance; no naturally occurring PMT hit, live-matrix mismatch, same-eye duplication, Quest3 optical root cause or HMD PASS is claimed. Prior 01606 telemetry-gated recovery and 2026-10-29 same-record raw-WVP sync reviews are not counted again. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; R26+HUD immutable, R84 comparison only.

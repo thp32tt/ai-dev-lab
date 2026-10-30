@@ -30,6 +30,7 @@ import { D2MusicPlayer } from "./music.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
 import { ORIGINAL_SYSTEM_MENU_INDEX, SYSTEM_UI_LAYOUT, originalSaveSlotLine } from "./system-ui.js";
+import { PROVEN_OPENING_MUSIC } from "./reverse-evidence.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -130,11 +131,12 @@ let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
 let systemMenuPending = false;
 
 const APPROX_MUSIC_TRACK_BY_MODE = Object.freeze({
-  opening: 0,
+  // OPEN.EXE -> FMDRV song 1 is proven. Other entries remain comparison-only.
+  opening: PROVEN_OPENING_MUSIC.renderedTrackIndex,
   town: 19,
   sea: 21,
   runtime: 19,
-  preview: 0,
+  preview: PROVEN_OPENING_MUSIC.renderedTrackIndex,
 });
 const fidelityParams = new URLSearchParams(location.search);
 const allowApproximateMusic = fidelityParams.get("musicApprox") === "1";

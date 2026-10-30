@@ -1,3 +1,5 @@
+import { nextKoeiExecutable } from "./koei-exit-flow.js";
+
 // Boot ordering follows the original OPEN.EXE -> MAIN.EXE transition.
 // Loading game resources is independent, but it cannot display MAIN's menu.
 export class Uw2BootGate {
@@ -14,8 +16,18 @@ export class Uw2BootGate {
     return true;
   }
 
-  finishOpening() {
+  finishOpening({ dosTerminationType } = {}) {
     if (this.opening !== "playing") return false;
+    // Browser animation completion is not a captured DOS return status.
+    // When a verified DOS AH status is supplied, honor KOEI.COM's original
+    // conditional OPEN -> MAIN branch, rather than treating every exit as 0.
+    if (dosTerminationType !== undefined &&
+        nextKoeiExecutable("OPEN.EXE", {
+          terminationType: dosTerminationType, returnCode: 0,
+        }) !== "MAIN.EXE") {
+      this.opening = "failed";
+      return false;
+    }
     this.opening = "finished";
     return this.canShowSystemMenu();
   }

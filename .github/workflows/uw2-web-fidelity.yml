@@ -20,8 +20,11 @@ jobs:
         run: |
           node --check uw2-web/web/app.js
           node --check uw2-web/web/boot-sequence.js
+          node --check uw2-web/web/koei-exit-flow.js
+          node --check uw2-web/tools/koei-launch-chain.mjs
       - name: Boot and fidelity policies without copyrighted game assets
         run: |
           node uw2-web/tests/boot-sequence.test.mjs
+          node uw2-web/tests/koei-exit-flow.test.mjs
           node uw2-web/tests/fidelity-policy.test.mjs
           node uw2-web/tests/mz-relocation-callgraph.test.mjs

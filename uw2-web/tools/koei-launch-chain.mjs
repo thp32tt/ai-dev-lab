@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {nextKoeiExecutable} from '../web/koei-exit-flow.js';
 
 export const ORIGINAL_KOEI_LAUNCH_SITES=Object.freeze([
   {name:'FMDRV.COM',stringRaw:0x13,movDxRaw:0x254,nearCallRaw:0x257},
@@ -54,11 +55,28 @@ export function verifyKoeiLaunchChain(bytes,{expectedSha256=null}={}) {
     [0x273,0x0a],[0x274,0xc0],[0x275,0x74],[0x276,0x0b],
   ];
   for(const [offset,opcode] of exactGuards)expectByte(bytes,offset,opcode,'post-execution condition');
+  // These are short relative Jcc instructions: target = opcode position + 2 + sign8.
+  // Verify the proven skip targets before deriving any child-execution condition.
+  const branchTarget=(at)=>at+2+(bytes[at+1]&0x80?bytes[at+1]-0x100:bytes[at+1]);
+  const branches=[
+    {after:'OPEN.EXE',guardRaw:0x267,condition:'AH != 0',takenTargetRaw:branchTarget(0x267),skips:'MAIN.EXE'},
+    {after:'MAIN.EXE',guardRaw:0x271,condition:'AH != 0',takenTargetRaw:branchTarget(0x271),skips:'END.EXE'},
+    {after:'MAIN.EXE',guardRaw:0x275,condition:'AL == 0',takenTargetRaw:branchTarget(0x275),skips:'END.EXE'},
+  ];
+  if(branches[0].takenTargetRaw!==0x27f || branches[1].takenTargetRaw!==0x27f ||
+     branches[2].takenTargetRaw!==0x282)
+    throw Error('KOEI return guard skips do not reach verified exit paths');
+  if(nextKoeiExecutable('OPEN.EXE',{terminationType:0,returnCode:0})!=='MAIN.EXE' ||
+     nextKoeiExecutable('OPEN.EXE',{terminationType:1,returnCode:0})!==null ||
+     nextKoeiExecutable('MAIN.EXE',{terminationType:0,returnCode:1})!=='END.EXE' ||
+     nextKoeiExecutable('MAIN.EXE',{terminationType:0,returnCode:0})!==null)
+    throw Error('KOEI statically decoded return guards disagree with web exit model');
   return {
     sha256,format:'DOS-COM',size:bytes.length,
     entryRaw,entryPsp:entryRaw+0x100,
     execWrapper:{raw:0x115,pspOffset:0x215,dosService:'INT 21h AX=4B00h',returnStatus:'INT 21h AH=4Dh'},
     orderedStaticLaunchSites:launches,
+    verifiedReturnGuardBranches:branches,
     conditions:[
       {source:'after OPEN.EXE',raw:0x265,bytesSemantic:'OR AH,AH / JNZ +16h',meaning:'if returned AH is nonzero skip MAIN path'},
       {source:'after MAIN.EXE',raw:0x26f,bytesSemantic:'OR AH,AH / JNZ +0Ch',meaning:'if returned AH is nonzero skip END launch'},

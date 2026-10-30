@@ -726,12 +726,27 @@ function formattedMessage(messageId, values = []) {
   return text.replace(/\x1b./g, "");
 }
 
+
+function drawOriginalModalRows(rows, selectedIndex = -1, title = "") {
+  const { x, y, w, h } = UI_LAYOUT.dialogue;
+  drawOriginalParchment(x, y, w, h);
+  const maxRows = 7;
+  let start = selectedIndex >= maxRows ? selectedIndex - maxRows + 1 : 0;
+  const visible = rows.slice(start, start + maxRows);
+  if (title) drawOriginalPanelText(title, x + 16, y + 30, { color: "#24160c" });
+  const baseY = title ? y + 46 : y + 30;
+  visible.forEach((line, i) => {
+    const absolute = start + i;
+    const active = absolute === selectedIndex;
+    drawOriginalPanelText((active ? ">" : " ") + line, x + 16, baseY + i * 16, {
+      color: active ? "#8a2d13" : "#24160c"
+    });
+  });
+  return { start, visible: visible.length };
+}
+
 function drawBox(x, y, w, h, fill = "rgba(7,21,34,.97)") {
-  ctx.fillStyle = fill;
-  ctx.fillRect(x,y,w,h);
-  ctx.strokeStyle = "#f1d58b";
-  ctx.lineWidth = 2;
-  ctx.strokeRect(x+1,y+1,w-2,h-2);
+  drawOriginalParchment(x, y, w, h);
 }
 
 function drawBuildingMessage(ui) {
@@ -749,123 +764,41 @@ function drawBuildingMessage(ui) {
     drawOriginalPanelText("▼", x + Math.floor((w - 16) / 2), y + h - 12, {color:"#6e431b"});
   }
 }
+
 function drawHarborSupply(ui) {
   const ships = selected?.fleet?.ships ?? [];
   const prices = harborSupplyPrices(selected);
   ui.ship = Math.max(0, Math.min(ui.ship, Math.max(0, ships.length - 1)));
   ui.resource = Math.max(0, Math.min(ui.resource, 3));
-  const ship = ships[ui.ship];
   const resource = RESOURCE_KEYS[ui.resource];
-
-  drawBox(38, 44, 564, 308, "rgba(5,12,20,.985)");
-  ctx.fillStyle = "#f1d58b";
-  ctx.font = "bold 20px Malgun Gothic, sans-serif";
-  ctx.fillText(`보급 · ${ui.loadMode ? "적재" : "하역"}`, 58, 74);
-  ctx.font = "14px Malgun Gothic, sans-serif";
-  ctx.fillStyle = "#e7edf5";
-  ctx.fillText(`소지금 ${Number(selected?.money ?? 0).toLocaleString()} G`, 390, 74);
-
-  const priceText = RESOURCE_KEYS.map((k,i)=>{
-    const p=prices[k];
-    return `${RESOURCE_NAMES[i]} ${p==null?"?":p+"G"}`;
-  }).join("  ");
-  ctx.fillText(priceText,58,98);
-
-  ctx.font = "13px monospace";
-  (ships.length ? ships : [{name:"함선 없음"}]).slice(0,10).forEach((sh,i)=>{
-    const y=126+i*26;
-    const mark=i===ui.ship?"▶":" ";
-    const values=RESOURCE_KEYS.map(k=>String(resourceUnitsAboard(sh,k)).padStart(4," ")).join(" ");
-    ctx.fillStyle=i===ui.ship?"#f1d58b":"#d6dbe3";
-    ctx.fillText(`${mark} ${String(sh.name??"").slice(0,15).padEnd(15," ")} ${values}`,58,y);
-  });
-
+  const ship = ships[ui.ship];
+  const rows = ships.length ? ships.map(sh => {
+    const qty = RESOURCE_KEYS.map(k => resourceUnitsAboard(sh,k)).join("/");
+    return sh.name + " " + qty;
+  }) : ["함선 없음"];
+  const price = prices[resource];
+  const title = (ui.loadMode ? "적재 " : "하역 ") + RESOURCE_NAMES[ui.resource] + (price == null ? "" : " " + price + "G");
+  drawOriginalModalRows(rows, ships.length ? ui.ship : -1, title);
   if (ship) {
-    const max = ui.loadMode
-      ? maxSupplyLoad(selected,ship,resource)
-      : resourceUnitsAboard(ship,resource);
-    ctx.fillStyle="#e7edf5";
-    ctx.font="14px Malgun Gothic, sans-serif";
-    ctx.fillText(`선택: ${RESOURCE_NAMES[ui.resource]} · 현재 ${resourceUnitsAboard(ship,resource)} · 가능 ${max}`,58,300);
-    ctx.fillText(`화물 ${shipCargoUsed(ship)}/${ship.cargo} (빈칸 ${shipCargoFree(ship)}) · 총중량 ${ship.load} · ${ui.last || "←/→ 자원  ↑/↓ 함선"}`,58,324);
+    const max = ui.loadMode ? maxSupplyLoad(selected,ship,resource) : resourceUnitsAboard(ship,resource);
+    drawOriginalPanelText(resourceUnitsAboard(ship,resource) + "/" + max, UI_LAYOUT.dialogue.x + 272, UI_LAYOUT.dialogue.y + 30, {color:"#24160c"});
   }
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText("L 적재 / U 하역 / Enter 1개 / Shift+Enter 10개 / M 최대 / ESC 메뉴",58,344);
 }
+
 
 function drawItemShopTrade(ui, selling = false) {
   const shop=itemShopStock(selected);
   const rows=selling
-    ? carriedItems(selected).map(x=>({
-        inventorySlot:x.slot,
-        id:x.id,
-        item:x.item,
-        name:x.item.name,
-        price:itemSellStatus(selected,x.slot).offer ?? 0,
-      }))
-    : shop.items.map(item=>({
-        id:item.id,
-        item,
-        name:item.name,
-        price:item.price,
-      }));
+    ? carriedItems(selected).map(x=>({inventorySlot:x.slot,id:x.id,item:x.item,name:x.item.name,price:itemSellStatus(selected,x.slot).offer ?? 0}))
+    : shop.items.map(item=>({id:item.id,item,name:item.name,price:item.price}));
   ui.item=Math.max(0,Math.min(ui.item??0,Math.max(0,rows.length-1)));
-  const row=rows[ui.item];
-
-  drawBox(56,52,548,294,"rgba(5,12,20,.988)");
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 20px Malgun Gothic, sans-serif";
-  ctx.fillText(`아이템 상점 · ${selling?"매각":"구입"}`,76,82);
-  ctx.fillStyle="#e7edf5";
-  ctx.font="14px Malgun Gothic, sans-serif";
-  ctx.fillText(`소지금 ${Number(selected?.money??0).toLocaleString()} G · 보유 ${carriedItems(selected).length}/20`,310,82);
-
   if(shop.mode==="closed"){
-    ctx.fillStyle="#e7edf5";
-    ctx.fillText("현재 영업 시간이 아닙니다. 일반 08:00–20:00 / 비밀상점 02:00–03:00",76,118);
-    ctx.fillStyle="#9fb0c4";
-    ctx.fillText("ESC: 메뉴",76,326);
+    drawOriginalModalRows(["현재 영업 시간이 아닙니다."],-1,"아이템 상점");
     return;
   }
-
-  if(!selling){
-    ctx.fillStyle="#9fb0c4";
-    ctx.fillText(shop.mode==="secret"?"비밀상점 재고":"일반 재고",76,108);
-  }
-
-  rows.slice(0,10).forEach((it,i)=>{
-    const y=136+i*20;
-    const item=it.item;
-    ctx.fillStyle=i===ui.item?"#f1d58b":"#d7dde7";
-    const type=ITEM_TYPES[item.type]??`TYPE${item.type}`;
-    const suffix=selling
-      ? `${String(it.price).padStart(7," ")}G ${item.equipped?"[장착]":""}`
-      : `${String(it.price).padStart(7," ")}G`;
-    ctx.fillText(`${i===ui.item?"▶":" "} ${String(it.name).padEnd(12," ")} ${type.padEnd(5," ")} ${suffix}`,76,y);
-  });
-
-  if(!rows.length){
-    ctx.fillStyle="#aeb8c6";
-    ctx.fillText(selling?"매각할 아이템이 없습니다.":"판매 중인 아이템이 없습니다.",76,140);
-  }
-
-  if(row){
-    const it=row.item;
-    ctx.fillStyle="#e7edf5";
-    ctx.fillText(
-      `선택: ${it.name} · 등급값 ${it.rating} · 그림 ${it.picture} · ${ui.last||""}`,
-      76,314
-    );
-  }
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText(
-    selling
-      ?"↑↓ 선택 · Enter 기본가 매각 · C 흥정 후 매각 · ESC 메뉴"
-      :"↑↓ 선택 · Enter 구입 · ESC 메뉴",
-    76,336
-  );
+  const lines=rows.length ? rows.map(it=>it.name + " " + it.price + "G")
+    : [selling?"매각할 물품이 없습니다.":"판매 물품이 없습니다."];
+  drawOriginalModalRows(lines,rows.length?ui.item:-1,selling?"매각":"구입");
 }
 
 
@@ -874,20 +807,15 @@ function drawItemShopDecision(ui) {
   if(!p) return;
   let text="";
   if(ui.mode==="item-buy-confirm"){
-    text=`${formattedMessage(240,[p.item.name])}${Number(p.item.price).toLocaleString()}${formattedMessage(241)}\n구입하시겠습니까？`;
+    text=formattedMessage(240,[p.item.name]) + Number(p.item.price).toLocaleString() + formattedMessage(241);
   }else if(ui.mode==="item-sell-offer"){
-    text=`${formattedMessage(245,[p.item.name])}${Number(p.offer).toLocaleString()}${formattedMessage(247)}\n이 가격에 파시겠습니까？`;
+    text=formattedMessage(245,[p.item.name]) + Number(p.offer).toLocaleString() + formattedMessage(247);
   }else if(ui.mode==="item-sell-counter"){
-    text=`${formattedMessage(246)}${Number(p.counter?.offer??0).toLocaleString()}${formattedMessage(247)}\n흥정 가격에 파시겠습니까？`;
+    text=formattedMessage(246) + Number(p.counter?.offer??0).toLocaleString() + formattedMessage(247);
   }else return;
-
-  drawBox(96,172,448,126,"rgba(2,9,16,.985)");
-  ctx.fillStyle="#f4f4f4";
-  ctx.font="bold 15px Malgun Gothic, sans-serif";
-  wrapTownMessage(text,36).slice(0,4).forEach((line,i)=>ctx.fillText(line,112,200+i*21));
-  ctx.fillStyle="#f1d58b";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText("ENTER / Y: 예    N / ESC: 아니오",290,286);
+  drawOriginalModalRows(wrapTownMessage(text,31).slice(0,5),-1,"");
+  const yn=UI_LAYOUT.yesNo;
+  drawOriginalGraph(uiGraph?.yesNo,yn.x,yn.y,yn.w,yn.h);
 }
 
 function itemShopFailureText(status) {
@@ -895,134 +823,56 @@ function itemShopFailureText(status) {
   return formattedMessage(status.messageId) || status.reason || "거래할 수 없습니다.";
 }
 
+
 function drawMarketTrade(ui, selling = false) {
   const ships=selected?.fleet?.ships ?? [];
   ui.ship=Math.max(0,Math.min(ui.ship,Math.max(0,ships.length-1)));
   const pm=currentPortMarket(selected,marketAssets);
   const rows=selling ? carriedGoodsRows(selected,marketAssets) : (pm?.buy ?? []);
   ui.item=Math.max(0,Math.min(ui.item ?? 0,Math.max(0,rows.length-1)));
-  const row=rows[ui.item];
-
-  drawBox(34,40,572,316,"rgba(5,12,20,.988)");
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 20px Malgun Gothic, sans-serif";
-  ctx.fillText(`교역소 · ${selling?"매각":"구입"}`,54,70);
-  ctx.fillStyle="#e7edf5";
-  ctx.font="14px Malgun Gothic, sans-serif";
-  ctx.fillText(`소지금 ${Number(selected?.money??0).toLocaleString()} G · 경제 ${selected?.portMeta?.economy ?? 0}`,340,70);
-
-  ctx.font="13px Malgun Gothic, sans-serif";
-  rows.slice(0,11).forEach((it,i)=>{
-    const y=100+i*21;
-    ctx.fillStyle=i===ui.item?"#f1d58b":"#d7dde7";
-    if(selling){
-      ctx.fillText(`${i===ui.item?"▶":" "} ${String(it.name).padEnd(8," ")} ${String(it.quantity).padStart(4," ")}통  ${String(it.sellPrice).padStart(4," ")}G  ${it.shipName}`,54,y);
-    }else{
-      ctx.fillText(`${i===ui.item?"▶":" "} ${String(it.name).padEnd(8," ")} ${String(it.price).padStart(4," ")}G${it.specialty?"  ★특산":""}`,54,y);
-    }
-  });
-
-  if(!rows.length){
-    ctx.fillStyle="#aeb8c6";ctx.fillText(selling?"매각할 교역품이 없습니다.":"구입할 상품이 없습니다.",54,118);
-  }
-
-  if(row){
-    if(!selling){
-      const ship=ships[ui.ship];
-      ctx.fillStyle="#e7edf5";
-      ctx.fillText(`함선: ${ship?.name ?? "-"} · 화물 ${ship?shipCargoUsed(ship):0}/${ship?.cargo ?? 0} · 빈칸 ${ship?shipCargoFree(ship):0}`,330,302);
-      ctx.fillText(`선택 ${row.name} · ${row.price}G/통 · ${ui.last || "←/→ 함선 선택"}`,54,326);
-    }else{
-      ctx.fillStyle="#e7edf5";
-      ctx.fillText(`선택 ${row.name} · 매각 ${row.sellPrice}G/통 · ${row.shipName} · ${ui.last || ""}`,54,326);
-    }
-  }
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText(selling
-    ?"↑↓ 상품 · Enter 1통 · Shift+Enter 10통 · M 전량 · ESC 메뉴"
-    :"↑↓ 상품 · ←→ 함선 · Enter 1통 · Shift+Enter 10통 · M 최대 · ESC 메뉴",
-    54,348);
+  const lines=rows.length ? rows.map(it=> selling
+    ? it.name+" "+it.quantity+" "+it.sellPrice+"G"
+    : it.name+" "+it.price+"G"+(it.specialty?" *":""))
+    : [selling?"매각할 교역품이 없습니다.":"상품이 없습니다."];
+  drawOriginalModalRows(lines,rows.length?ui.item:-1,selling?"교역품 매각":"교역품 구입");
 }
+
 
 function drawMarketRates(ui) {
   const pm=currentPortMarket(selected,marketAssets);
-  drawBox(300,70,314,286,"rgba(5,12,20,.988)");
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 18px Malgun Gothic, sans-serif";
-  ctx.fillText("시세 · 물가",320,100);
-  ctx.font="14px Malgun Gothic, sans-serif";
-  GOODS_CATEGORY_NAMES.forEach((name,i)=>{
-    const rate=pm?.rates?.[i] ?? 0;
-    ctx.fillStyle="#e7edf5";
-    ctx.fillText(`${name.padEnd(5," ")} ${String(rate).padStart(3," ")}`,320,128+i*20);
-  });
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText("ENTER / ESC: 메뉴",320,342);
+  const lines=GOODS_CATEGORY_NAMES.map((name,i)=>name+" "+(pm?.rates?.[i] ?? 0));
+  drawOriginalModalRows(lines,-1,"시세");
 }
+
 
 function drawPubCrew(ui, dismissing = false) {
   const ships=selected?.fleet?.ships ?? [];
   ui.ship=Math.max(0,Math.min(ui.ship,Math.max(0,ships.length-1)));
-  const ship=ships[ui.ship];
   const offer=pubRecruitOffer(selected,ui.pubEnthusiasm);
-
-  drawBox(56,52,548,296,"rgba(5,12,20,.988)");
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 20px Malgun Gothic, sans-serif";
-  ctx.fillText(`주점 · ${dismissing?"선원 해고":"선원 고용"}`,76,82);
-  ctx.fillStyle="#e7edf5";
-  ctx.font="14px Malgun Gothic, sans-serif";
-  ctx.fillText(`열의 ${ui.pubEnthusiasm} · 1인 ${offer.unitPrice}G · 가능 ${offer.maximum}명`,76,108);
-
-  ships.forEach((sh,i)=>{
-    const y=140+i*30;
-    ctx.fillStyle=i===ui.ship?"#f1d58b":"#d7dde7";
-    ctx.fillText(`${i===ui.ship?"▶":" "} ${sh.name}  ${sh.currentCrew}/${sh.maxCrew}명`,76,y);
-  });
-  if(ship){
-    ctx.fillStyle="#e7edf5";
-    ctx.fillText(`선택 ${ship.name} · 현재 ${ship.currentCrew}명 · 빈선실 ${Math.max(0,ship.maxCrew-ship.currentCrew)}`,76,284);
-    ctx.fillText(ui.last||"",76,308);
-  }
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText(dismissing
-    ?"↑↓ 함선 · Enter 1명 · Shift+Enter 10명 · M 전원 · ESC 메뉴"
-    :"↑↓ 함선 · Enter 1명 · Shift+Enter 10명 · M 최대 · ESC 메뉴",76,334);
+  const lines=ships.length ? ships.map(sh=>sh.name+" "+sh.currentCrew+"/"+sh.maxCrew) : ["함선 없음"];
+  drawOriginalModalRows(lines,ships.length?ui.ship:-1,dismissing?"선원 해고":"선원 고용 "+offer.unitPrice+"G");
 }
 
+
 function drawBankAmount(ui) {
-  const mode=ui.mode;
   const meta={
     "bank-deposit":{title:"예금",max:bankDepositMaximum(selected)},
     "bank-withdraw":{title:"인출",max:bankWithdrawMaximum(selected)},
     "bank-borrow":{title:"대출",max:bankBorrowMaximum(selected)},
-    "bank-repay":{title:"상환",max:bankRepayMaximum(selected)},
-  }[mode];
+    "bank-repay":{title:"상환",max:bankRepayMaximum(selected)}
+  }[ui.mode];
   if(!meta) return;
-
   ui.bankAmount=Math.max(0,Math.min(meta.max,Math.floor(ui.bankAmount||0)));
-  drawBox(102,88,440,232,"rgba(5,12,20,.988)");
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 20px Malgun Gothic, sans-serif";
-  ctx.fillText(`은행 · ${meta.title}`,122,120);
-  ctx.fillStyle="#e7edf5";
-  ctx.font="15px Malgun Gothic, sans-serif";
-  const bal=Math.trunc(selected?.bankBalance??0);
-  ctx.fillText(`소지금: ${Number(selected?.money??0).toLocaleString()} G`,122,154);
-  ctx.fillText(`은행잔액: ${bal.toLocaleString()} G`,122,180);
-  ctx.fillText(`작위: ${selected?.rank??0} · 신용한도: ${bankCreditLine(selected).toLocaleString()} G`,122,206);
-  ctx.fillText(`금액: ${ui.bankAmount.toLocaleString()} / 최대 ${meta.max.toLocaleString()} G`,122,236);
-  if(ui.last){
-    ctx.fillStyle="#d7dde7";
-    ctx.fillText(ui.last,122,264);
-  }
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText("←/→ 100G · Shift+←/→ 10,000G · M 최대 · Enter 실행 · ESC 메뉴",122,302);
+  const lines=[
+    "소지금 "+Number(selected?.money??0).toLocaleString()+"G",
+    "잔액 "+Math.trunc(selected?.bankBalance??0).toLocaleString()+"G",
+    "신용 "+bankCreditLine(selected).toLocaleString()+"G",
+    "금액 "+ui.bankAmount.toLocaleString()+"G"
+  ];
+  if(ui.last) lines.push(ui.last);
+  drawOriginalModalRows(lines,-1,meta.title);
 }
+
 
 function drawPubTreat(ui) {
   const spec=pubSpecialty(selected);
@@ -1032,36 +882,19 @@ function drawPubTreat(ui) {
   const strength=Math.floor(ui.pubAmount*200/economy);
   const gain=Math.floor(strength*(selected?.charm??0)/10);
   const next=Math.min(100,ui.pubEnthusiasm+gain);
-
-  drawBox(106,96,430,214,"rgba(5,12,20,.988)");
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 20px Malgun Gothic, sans-serif";
-  ctx.fillText("주점 · 한턱내기",126,128);
-  ctx.fillStyle="#e7edf5";
-  ctx.font="15px Malgun Gothic, sans-serif";
-  ctx.fillText(`특산주: ${spec.name} · ${spec.price}G/병`,126,160);
-  ctx.fillText(`병수: ${ui.pubAmount} / 최대 ${max}`,126,188);
-  ctx.fillText(`비용: ${ui.pubAmount*spec.price}G`,126,214);
-  ctx.fillText(`열의: ${ui.pubEnthusiasm} → ${next} (+${gain})`,126,240);
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText("←/→ 1병 · Shift+←/→ 10병 · M 최대 · Enter 구매 · ESC 메뉴",126,286);
+  drawOriginalModalRows([
+    "특산주 "+spec.name+" "+spec.price+"G",
+    "병수 "+ui.pubAmount+"/"+max,
+    "비용 "+(ui.pubAmount*spec.price)+"G",
+    "열의 "+ui.pubEnthusiasm+" -> "+next
+  ],-1,"한턱내기");
 }
 
+
 function drawPortSupport(ui) {
-  drawBox(354,116,260,216);
-  ctx.fillStyle="#f1d58b";
-  ctx.font="bold 17px Malgun Gothic, sans-serif";
-  ctx.fillText("항구의 지지율",374,144);
-  ctx.font="14px Malgun Gothic, sans-serif";
   const support=selected?.portMeta?.support ?? [];
-  NATION_NAMES.forEach((name,i)=>{
-    ctx.fillStyle="#e7edf5";
-    ctx.fillText(`${name.padEnd(7," ")} ${String(support[i] ?? 0).padStart(3," ")}%`,374,172+i*23);
-  });
-  ctx.fillStyle="#9fb0c4";
-  ctx.font="12px Malgun Gothic, sans-serif";
-  ctx.fillText("ENTER / ESC: 돌아가기",374,318);
+  const lines=NATION_NAMES.map((name,i)=>name+" "+String(support[i] ?? 0)+"%");
+  drawOriginalModalRows(lines,-1,"항구의 지지율");
 }
 
 function renderBuildingInterface(s) {

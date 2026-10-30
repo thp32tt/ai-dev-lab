@@ -76,6 +76,23 @@ export function inspectMzRelocations(bytes,{name='<EXE>',expectedSha256=null,inc
   return {summary,controlTransferCandidates,...(includeEntries?{entries}:{})};
 }
 
+export function groupFarCandidates(audit) {
+  // A compact evidence-only *candidate* graph, not a reconstructed call graph.
+  const byTarget=new Map();
+  for(const edge of audit.controlTransferCandidates){
+    const key=`${edge.type}:${edge.targetImageRelative}`;
+    if(!byTarget.has(key))byTarget.set(key,{
+      type:edge.type,targetImageRelative:edge.targetImageRelative,
+      targetRaw:edge.targetRaw,targetRea:edge.targetRea,
+      targetRegion:edge.targetRegion,sourcesRaw:[]
+    });
+    byTarget.get(key).sourcesRaw.push(edge.sourceRaw);
+  }
+  return [...byTarget.values()].map(group=>({
+    ...group,sourcesRaw:group.sourcesRaw.sort((a,b)=>a-b)
+  })).sort((a,b)=>a.targetImageRelative-b.targetImageRelative||a.type.localeCompare(b.type));
+}
+
 export function findPinnedFarTransfer(audit,sourceRaw,targetImageRelative,{type='far-call-9a'}={}) {
   const hits=audit.controlTransferCandidates.filter(
     x=>x.sourceRaw===sourceRaw&&x.targetImageRelative===targetImageRelative&&x.type===type);
@@ -97,6 +114,7 @@ if(isMain){
     process.stdout.write(JSON.stringify({
       summary:audit.summary,
       ...(process.argv.includes('--candidates')?{controlTransferCandidates:audit.controlTransferCandidates}:{}),
+      ...(process.argv.includes('--grouped')?{candidateGraph:groupFarCandidates(audit)}:{}),
       ...(process.argv.includes('--details')?{entries:audit.entries}:{})
     },null,2)+'\n');
   }catch(error){process.stderr.write(`${error.message}\n`);process.exitCode=1;}

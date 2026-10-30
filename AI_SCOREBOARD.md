@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Docker Controller C slot → original Uncharted Waters II web port (2026-10-31 KST)
+
+- Unique work key `UW2-DOCKER-C-SLOT-REASSIGN-20261031`. Material controller changes on `thp32tt/OutRun2006Tweaks@chat-controller-downloads`, including `tools/chat-controller/v0.4/docker-compose.portainer-vr.yml`, `Dockerfile.portainer-vr`, `uw2_web_port.md`, and `src-vr-v2/controller.py.part00/part02/part03`. Existing DX9Ex lens-flare C automation disabled and historical active C state archived on first new runtime; C target becomes `thp32tt/ai-dev-lab@uw2-web-port`, scheduled minute 00 and 30 Asia/Seoul; A/DX11 minute 30 and frozen B/DXVK unchanged. New controller-side repository-specific commit discovery, safe source-changing task marker check, original-fidelity rollover and same TASK_ID protection; canonical `uw2-web/` source/tools and legacy `web/` accepted, docs-only/test-only rejected.
+- Controller concatenation Python compile PASS and lane/schedule simulations PASS, plus isolated material-terminal guard simulations 5/5 PASS on pinned GitHub sources. N100 live HTTP /status was **still on old C(DX9Ex REVIEW_ONLY)** at the check time; **Portainer rebuild and redeploy remain REQUIRED**; no deployed runtime or browser execution PASS was claimed. Do not score the subsequent redeploy/readback for this same result. No OutRun game branch or UW2 game code changed in this automation conversion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2236 + one distinct source-integrated and locally validated controller C-slot conversion +1 = 2237.** AI 1 separate; repeated verification/redeployment of this same implementation +0.
+
+Updated: 2026-10-31 KST
+
+
 ## AI 2 UW2 immutable-original disassembly/web port — P0 baseline and P1 real-mode source mapping (2026-10-31 KST)
 
 - Unique work key `UW2-ORIGINAL-BASELINE-P0-20261031`: new read-only `uw2-web/tools/original-inventory.mjs` and strict synthetic regression suite, source-pin additions of Korean `END.EXE`/`GRPDRV.EXE`, plus `uw2-web/docs/original-baseline-20261031.json`. Independently surveyed the 80 original-installation top-level files, preserved metadata-only SHA-256 for 6 original core executables + 55 candidate game assets, and verified **61/61 real local original exact hashes PASS** using `uw2-web/tests/original-baseline.test.mjs`. Main original bytes and other copyrighted assets were never committed, rewritten or copied to GitHub. Additional 19 tool/doc/aux files were intentionally excluded from published game baseline. +1 new validated provenance/immutability achievement (not an original gameplay port claim).

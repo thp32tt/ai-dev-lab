@@ -7,7 +7,7 @@ export class Uw2BootGate {
   }
 
   startOpening() {
-    if (this.opening !== "loading" && this.opening !== "finished")
+    if (this.opening === "failed")
       return false;
     this.opening = "playing";
     return true;

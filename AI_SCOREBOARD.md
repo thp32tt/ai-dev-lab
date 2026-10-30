@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 MAIN music dispatcher evidence-driven reconstruction (2026-10-30 KST)
+
+- New independent material reverse-engineering/implementation on `thp32tt/ai-dev-lab@uw2-web-port` commit `ecc8db9c161e0a7364acb44bf2d4b690fdffd0d6`. Re-traced Korean DOS `MAIN.EXE` music dispatch without assigning guessed scene semantics: pinned dispatcher `0000:94CA` / raw `0xE8CA`, exact logical-id -> FMDRV 1-based song table at raw `0x43FB8`, nine direct far-call sites `9A CA 94 00 00`, plus the proven selected-protagonist same-segment path. Added production helpers `mainMusicLogicalToFmdrvSong` / `mainMusicLogicalToRenderedTrackIndex`, executable byte-pin regression coverage, and M25 evidence document. Unknown caller meanings remain deliberately unlabeled; HORIEDIT.C excluded. N100 exact-SHA validation: reverse-evidence, reverse-engineered-only fidelity policy, KAO decoder, and system UI tests all PASS.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2225 + one new independent executable-grounded UW2 music-dispatch reconstruction +1 = 2226.** Re-runs, deployment sync, and repeated reporting are +0. AI 1 remains separate.
+
+Updated: 2026-10-30 KST
+
 
 ## AI 2 DX9Ex depth-off shader lens zero-disparity lower-hook review (2026-10-30 KST)
 

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+
+## AI 2 DX11 real GPU RGB uploadable dense tile across original dirty game panels (2026-10-30 KST)
+
+- Unique TASK_ID `CONVERSION-DX11-01180`. Original source material commit `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` SHA `6f92fa22ec6b7e926215813b676ecd1ed0544913`: `src/vr/d3d11/native_game_raw_present_coverage.hpp` and compiled `tests/native_raw_dual_tile_test.cpp`. In the opt-in native D3D11 GPU RGB -> original D3D9 source-aligned RAW Present path, fixed sparse-envelope ranking that lost a truly uploadable dense 4x4 native RGB repaint in a separate game dirty panel. Retains a disjoint residual original RGB pixel while rejecting alpha-only output and forged dirty rcBound. This is independent of 01179's maximal-rectangle extraction; game fallback and DXVK unchanged.
+- Inherited 01179 metadata acceptance was repaired, not double scored: exact source-policy CI-repair SHA `03713f934329add12184f91bf93db39c4fa0c424` (record-only). Five required GitHub Actions **push exact-SHA PASS**: DX11 Fast `41034562870`, Backend Conversion `41034562847`, Windows Build `41034562743`, OpenXR `41034562934`, HUD Inspector `41034562665`. Downloaded main and first-frame bundle; nested first-frame SHA256SUMS **12/12 matched**. C6 docs-only commit `6a98a4d54889ae538daf62d674cf63db4f296ee7` with `docs/automation/runs/CONVERSION-DX11-01180.json` remote blob readback confirmed. Target branch compare behind=0; no separate FEATURE_BRANCH was required or promoted.
+- `AUTOMATION_VALIDATION=PASS_EXACT_SHA`; `RUNTIME_VALIDATION=UNTESTED`. Source path is **partial opt-in RAW diagnostic**, not playable full DX11 native menu/car/race output, R175 shader parity, or native HMD OpenXR L/R eyes. No Quest3 or full game runtime PASS was claimed. Same TASK_ID rollover/retry/C6/readback re-report +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2223 + one new independent exact-SHA CI-validated DX11 source feature +1 = 2224.** AI 1 tracked separately.
+
+Updated: 2026-10-30 KST
 ## AI 2 OutRun C1 two new SHA Q228 Korean lettering independent QA (2026-10-30 KST)
 
 - Unique RUN_KEY `OUTRUN-C1-AI2-20261030T1815KST-Q228-NEW-SHA2`: verified full 2048×2048 original Q228 source SHA256 `861fb53409f132ebbf7f14babe28037421e29fde89bf8603e49d73cfdba13f9e`, exact authorized translations and untouched original ROI for A `multiplayer → 멀티플레이` and B `game lobby → 게임 로비`. Actual generated independent N100 PNG A SHA256 `d8824b00014bc7a1233ca156310d75a2deb0508ffd14039113f91df04afa2530`, B `312a2f13b9f52578afbf2453bf796eb368510cdf986340b2c0653b7788b4080b`; both previously unreviewed SHA, both export hashes match. Alpha is RGBA, no >=32 border contact, exact translation visible and legible in aspect-preserved native ROI and 50% previews. C1 light QA 2 PASS/0 FAIL, not an A/B queue advance or ImageGen production. Producer `REWORK_DIMENSIONS` canvas-size flags by themselves are not C1 failure evidence.

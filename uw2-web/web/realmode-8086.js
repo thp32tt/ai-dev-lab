@@ -178,6 +178,45 @@ export class RealMode8086 {
     this.logicResult(value,width);
     return width===8?value&255:value&0xffff;
   }
+
+  // 8086 Group-2 rotates and shifts. CL is NOT masked to five bits on the
+  // original 8086. Undefined OF (multi-bit counts) and AF are retained rather
+  // than reporting a fabricated, reference-validated flag outcome.
+  shiftRotateResult(extension, value, width, count) {
+    if(extension===6)throw new Error('unsupported 8086 Group-2 /6: fail closed');
+    if(!Number.isInteger(count)||count<0||count>255)
+      throw new RangeError('8086 shift count must be uint8');
+    const mask=width===8?0xff:0xffff, sign=width===8?0x80:0x8000;
+    const original=value&mask, priorFlags=this.flags;
+    if(count===0)return original; // No operand or flag changes.
+    let result=original, carry=(priorFlags&FLAGS.CF)?1:0;
+    for(let i=0;i<count;i++){
+      const top=(result&sign)?1:0,low=result&1;
+      switch(extension){
+        case 0: result=((result<<1)&mask)|top;carry=top;break; // ROL
+        case 1: result=(result>>>1)|(low?sign:0);carry=low;break; // ROR
+        case 2: result=((result<<1)&mask)|carry;carry=top;break; // RCL
+        case 3: result=(result>>>1)|(carry?sign:0);carry=low;break; // RCR
+        case 4: result=(result<<1)&mask;carry=top;break; // SHL/SAL
+        case 5: result=result>>>1;carry=low;break; // SHR
+        case 7: result=(result>>>1)|(top?sign:0);carry=low;break; // SAR
+        default: throw new Error('unsupported 8086 Group-2 extension: fail closed');
+      }
+    }
+    // OF is architecturally defined only for count=1. For a defined
+    // one-bit shift/rotate: left => MSB xor CF, right rotate => top 2 bits,
+    // SHR => old MSB, SAR => 0.
+    let overflow=false;
+    if(extension===1||extension===3)
+      overflow=!!((result^(result<<1))&sign);
+    else if(extension===5)overflow=!!(original&sign);
+    else if(extension!==7)overflow=!!(((result&sign)?1:0)^carry);
+    if(extension>=4)this.logicResult(result,width); // Shift updates S/Z/P.
+    this.flags=(this.flags&~(FLAGS.CF|FLAGS.OF))|
+      (carry?FLAGS.CF:0)|
+      (count===1?(overflow?FLAGS.OF:0):(priorFlags&FLAGS.OF))|2;
+    return result;
+  }
   step() {
     const cs=this.seg.CS, at=this.ip;
     let op=this.fetch8(),segmentOverride=null,repeatPrefix=null,prefixes=0;
@@ -383,6 +422,18 @@ export class RealMode8086 {
       }else{
         this.set16('AX',quotient&0xffff);this.set16('DX',remainder&0xffff);
       }
+      return;
+    }
+
+    // 8086 D0/D1=one bit, D2/D3=full unsigned CL repeat count.
+    // Do not accept 80186-only C0/C1 immediate-count encodings here.
+    if(op>=0xd0&&op<=0xd3){
+      const m=this.fetch8(),extension=(m>>>3)&7;
+      if(extension===6)throw new Error('unsupported 8086 Group-2 /6: fail closed');
+      const width=(op&1)?16:8,rm=this.memoryOperand(m,width,segmentOverride);
+      const count=op<0xd2?1:this.get8('CL');
+      if(count===0)return;
+      rm.write(this.shiftRotateResult(extension,rm.read(),width,count));
       return;
     }
     // XCHG always leaves flags intact. LEA computes the 16-bit effective

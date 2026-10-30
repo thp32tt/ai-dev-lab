@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 KOEI.COM original DOS return guards integrated into browser boot source (2026-10-31 KST)
+
+- TASK_ID `CONVERSION-UW2-01608`, unique material tagged result `thp32tt/ai-dev-lab@uw2-web-port` commit `521a0eaad7e075e5fc4f48f74b91c33cc2abbbaa`; verified parent `4feac956f6449005ae88f4c890efa289741c4bd1` and remote head match. New `uw2-web/web/koei-exit-flow.js` encodes pinned KOEI.COM `OPEN.EXE` AH=0 -> MAIN, MAIN AH=0 and AL!=0 -> END; unknown statuses fail-closed. `web/boot-sequence.js` now blocks MAIN if a known abnormal original OPEN DOS termination type is provided. `tools/koei-launch-chain.mjs` checks original 0x267/0x271/0x275 signed-8 conditional jump targets 0x27F/0x27F/0x282. Synthetic `tests/koei-exit-flow.test.mjs` and branch Actions gate added. Existing animation completion does NOT pretend to have captured a DOS AH; original scene/audio/game rules unchanged; live bridge from DOS exit trace remains undone.
+- GitHub exact-SHA push Actions `41095604336` `UW2 Web Fidelity Static Gate` **completed/success**, job `synthetic-static` success (Node syntax, boot/fidelity/synthetic MZ and new status guard tests). Original binaries/real browser not run in this task, `RUNTIME_VALIDATION=UNTESTED`. This is one independent original-byte-grounded web-boot conditional behavior implementation, distinct from 01607's failed original-resource loading boundary; same-task readback, retries, and scoreboard update +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2242 + one independent UW2 KOEI return-guard web implementation +1 = 2243.** AI 1 separate.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 UW2 original-asset boot fail-closed material repair (2026-10-31 KST)
 
 - TASK_ID `CONVERSION-UW2-01607`; distinct source material result `thp32tt/ai-dev-lab@uw2-web-port` commit `4feac956f6449005ae88f4c890efa289741c4bd1` (tagged `[AUTO:CONVERSION-UW2-01607]`), branch HEAD readback, actual modifications to `uw2-web/web/app.js` and `uw2-web/web/boot-sequence.js`, plus regression `uw2-web/tests/boot-sequence.test.mjs`, new per-branch CI gate and scope document. The browser's Promise.allSettled game boot used to incorrectly mark required asset loads ready even when some failed. New gate holds MAIN menu and selected-game start closed on rejected original resources; re-playing opening cannot bypass the failed resource-set. OPEN/MZ order and original screen/music/game content unchanged. This is a P4 boundary fix, not an original-game fidelity completion claim.

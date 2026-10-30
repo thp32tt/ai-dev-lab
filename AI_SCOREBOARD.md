@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex C993 exact live-c64 versus R85 source-camera sync provenance (2026-10-31 KST)
+
+- Unique RUN_KEY `LENSFLARE-C993-LIVE-WVP-SYNC-PROVENANCE-20261031-0128`; `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` docs-only commit `bb0f5c0a944d258077df95b94b91d65ebd7313da`, remote file and one-added-doc compare verified. Independently audited the newly added exact C993 0x570002 live GPU c64 recovery: unlike the two prior recorded-raw WVP providers, this third fallback reads device c64 without linking its matrix to the last game-WVP write serial/pose/shader epoch, while R85 still reads `GetLastRawGameWvpCameraSynced()` from that last recorded game write. Recorded-raw providers can reject on age/epoch even though the last sync bit remains valid. Thus an admitted live-c64 R85 build can conditionally mix WVP and camera-sync provenance; no naturally occurring PMT hit, live-matrix mismatch, same-eye duplication, Quest3 optical root cause or HMD PASS is claimed. Prior 01606 telemetry-gated recovery and 2026-10-29 same-record raw-WVP sync reviews are not counted again. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; R26+HUD immutable, R84 comparison only.
+- **Score reconciliation (not a new point):** GitHub chronological commits show C-slot conversion `2236+1=2237`, then two independent UW2 P1 achievements `2237+2=2239` in scoreboard commit `2020d3d0d23d0756baa9609bde67005ac36b67cd` at 2026-10-30 15:54:58 UTC. The later independent OCR achievement was added in `ae89c15224ac65868a2e2ab5a32b22fb0cee450f` at 16:06:01 UTC but reused stale baseline 2237 and printed 2238. Correct pre-review cumulative is **2239+1 OCR=2240**, not 2238. Reconciliation itself +0, no UW2/OCR double counting.
+- **AI 2 cumulative: reconciled previous confirmed unique-achievement total 2240 + this one distinct source-static provenance audit +1 = 2241.** Same RUN_KEY retries, docs readback, HMD pending, and status reporting +0. AI 1 separate.
+
+Updated: 2026-10-31 KST
+
+
 ## AI 2 OutRun OCR verified queue reconciliation, actual browser dispatch, and duplicate suppression (2026-10-31 KST)
 
 - RUN_KEY `OUTRUN-OCR-PRODUCTION-COVERAGE-RECOVERY-20261031`: material source repair on `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928` HEAD `ee0d0dbbc065b219b1e3134c5ba20ea211221375`. Traced the real controller HTTP status (AUTO_SEND=true, runtime GPT OCR retryable 0 and B `B_IDLE_C2_OCR_QUEUE_EMPTY`) against the N100 Python queue (14/83 initially). Confirmed the controller browser/response flow actually works: a source-SHA-bound C2 Q012 staged lease was sent by B and response consumed at 2026-10-31 00:50-00:51 KST, completed records 240->241 (NO_VALID_DETECTIONS, no fabricated recognition). Root issue is a discrepancy between local/host candidate discovery plus OCR re-requests for already registered A/B ROIs.

@@ -260,6 +260,28 @@ export class RealMode8086 {
     if(op>=0x58&&op<=0x5f){this.set16(R16[op-0x58],this.pop16());return;}
     if(op===0x9c){this.push16(this.flags);return;}
     if(op===0x9d){this.set16('FLAGS',this.pop16());return;}
+    // Basic 8086 data transformations preserve FLAGS unless documented.
+    if(op>=0x91&&op<=0x97){
+      const reg=R16[op&7],ax=this.get16('AX');
+      this.set16('AX',this.get16(reg));this.set16(reg,ax);return;
+    }
+    if(op===0x98){this.set16('AX',s8(this.get8('AL'))&0xffff);return;} // CBW
+    if(op===0x99){this.set16('DX',this.get16('AX')&0x8000?0xffff:0);return;} // CWD
+    if(op===0x9e){ // SAHF: AH replaces only low arithmetic condition bits.
+      this.flags=(this.flags&~0xd5)|(this.get8('AH')&0xd5)|2;return;
+    }
+    if(op===0x9f){this.set8('AH',this.flags&255);return;} // LAHF
+    if(op===0xa8||op===0xa9){
+      const width=op===0xa8?8:16;
+      this.aluResult('test',width===8?this.get8('AL'):this.get16('AX'),
+        width===8?this.fetch8():this.fetch16(),width);
+      return;
+    }
+    if(op===0xd7){ // XLAT: byte table in DS:BX + unsigned AL.
+      const offset=(this.get16('BX')+this.get8('AL'))&0xffff;
+      this.set8('AL',this.read8(this.seg[segmentOverride??'DS'],offset));
+      return;
+    }
     // Actual 8086 16-bit memory address formation; no inferred game rules.
     const arithmeticGroup=op&0xfc;
     const kindByGroup={0x00:'add',0x08:'or',0x10:'adc',0x18:'sbb',0x20:'and',0x28:'sub',0x30:'xor',0x38:'cmp'};
@@ -361,6 +383,23 @@ export class RealMode8086 {
       }else{
         this.set16('AX',quotient&0xffff);this.set16('DX',remainder&0xffff);
       }
+      return;
+    }
+    // XCHG always leaves flags intact. LEA computes the 16-bit effective
+    // address, never reads memory, and rejects register-only operands.
+    if(op===0x86||op===0x87||op===0x8d||op===0x8f){
+      const m=this.fetch8(),extension=(m>>>3)&7;
+      if(op===0x8f&&extension!==0)
+        throw new Error('unsupported 8086 POP r/m /nonzero: fail closed');
+      if(op===0x8d&&(m>>>6)===3)
+        throw new Error('8086 LEA requires memory addressing: fail closed');
+      const width=op===0x86?8:16,rm=this.memoryOperand(m,width,segmentOverride);
+      if(op===0x8d){this.set16(R16[extension],rm.offset);return;}
+      if(op===0x8f){rm.write(this.pop16());return;}
+      const name=(width===8?R8:R16)[extension];
+      const regValue=width===8?this.get8(name):this.get16(name);
+      const other=rm.read();rm.write(regValue);
+      if(width===8)this.set8(name,other);else this.set16(name,other);
       return;
     }
     // 8C/8E transfer segment registers, but 8E /1 cannot load CS.

@@ -30,7 +30,7 @@ import { D2MusicPlayer } from "./music.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
 import { ORIGINAL_SYSTEM_MENU_INDEX, SYSTEM_UI_LAYOUT, originalSaveSlotLine } from "./system-ui.js";
-import { PROVEN_OPENING_MUSIC } from "./reverse-evidence.js";
+import { selectWebMusicRoute } from "./music-routing.js";
 import {
   pubSpecialty,
   initialPubEnthusiasm,
@@ -130,14 +130,6 @@ let seaAutoActive = false;
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
 let systemMenuPending = false;
 
-const APPROX_MUSIC_TRACK_BY_MODE = Object.freeze({
-  // OPEN.EXE -> FMDRV song 1 is proven. Other entries remain comparison-only.
-  opening: PROVEN_OPENING_MUSIC.renderedTrackIndex,
-  town: 19,
-  sea: 21,
-  runtime: 19,
-  preview: PROVEN_OPENING_MUSIC.renderedTrackIndex,
-});
 const fidelityParams = new URLSearchParams(location.search);
 const allowApproximateMusic = fidelityParams.get("musicApprox") === "1";
 const allowApproximateOpening = fidelityParams.get("openingApprox") === "1";
@@ -161,6 +153,7 @@ function publishControllerState(extra = {}) {
     autoSail: seaAutoActive,
     nearbyPort,
     music: controllerMusicState(),
+    musicFidelity: selectWebMusicRoute(viewMode, allowApproximateMusic).fidelity,
     ...extra,
   };
   window.__uw2MusicState = () => controllerMusicState();
@@ -184,12 +177,14 @@ function setMusicForMode(mode = viewMode, force = false) {
     return;
   }
   musicMode = mode;
-  if (!allowApproximateMusic) {
-    publishControllerState({ musicFidelity: "mapping-unverified" });
+  const route = selectWebMusicRoute(mode, allowApproximateMusic);
+  if (route.track === null) {
+    // A proven opening song must not bleed into an unproven game mode.
+    musicPlayer.pause();
+    publishControllerState();
     return;
   }
-  const track = APPROX_MUSIC_TRACK_BY_MODE[mode] ?? APPROX_MUSIC_TRACK_BY_MODE.town;
-  musicPlayer.setTrack(track);
+  musicPlayer.setTrack(route.track);
   if (musicPlayer.desiredPlaying) {
     musicPlayer.unlock().then(publishControllerState).catch(() => publishControllerState());
   } else {
@@ -210,13 +205,13 @@ async function loadMusicSupport() {
   return parsed;
 }
 function tryAutostartMusic(event) {
-  if (!allowApproximateMusic) return;
   if (!musicAutostartPending || !musicPlayer?.songCount) return;
   if (event?.target?.closest?.("[data-action=\"sound\"]")) return;
+  const route = selectWebMusicRoute(viewMode, allowApproximateMusic);
+  if (route.track === null) return;
   musicAutostartPending = false;
-  const track = APPROX_MUSIC_TRACK_BY_MODE[viewMode] ?? APPROX_MUSIC_TRACK_BY_MODE.town;
   musicMode = viewMode;
-  musicPlayer.play(track).then(publishControllerState).catch(() => publishControllerState());
+  musicPlayer.play(route.track).then(publishControllerState).catch(() => publishControllerState());
 }
 
 window.addEventListener("pointerdown", tryAutostartMusic, { capture: true });
@@ -416,6 +411,7 @@ function enterSystemMenu(cursor = 0) {
   systemMenuPending = false;
   systemUi = { mode: "system-menu", cursor, slot: 0, messageId: null };
   drawSystemMenu();
+  setMusicForMode("system-menu");
   return true;
 }
 
@@ -2078,11 +2074,14 @@ window.addEventListener("uw2-controller-action", async event => {
     return;
   }
   if (action === "sound") {
-    if (!allowApproximateMusic) {
-      publishControllerState({ musicFidelity: "mapping-unverified" });
+    const route = selectWebMusicRoute(viewMode, allowApproximateMusic);
+    if (route.track === null) {
+      publishControllerState();
       return;
     }
     musicAutostartPending = false;
+    // The default mode is allowed to play only the proven OPEN.EXE song.
+    if (!allowApproximateMusic) musicPlayer.setTrack(route.track);
     await musicPlayer.toggle();
     publishControllerState();
     return;

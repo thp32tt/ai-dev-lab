@@ -1,0 +1,484 @@
+{
+  "schemaVersion": 1,
+  "createdKst": "2026-10-31",
+  "source": "User-held Korean DOS game installation, read-only N100 original-inventory.mjs",
+  "provenance": "hashes and metadata only; no proprietary bytes",
+  "selection": "Top-level core-executable plus original-looking data/resource file types; exclude third-party unKOEI tools, editors, DOS batches and HWP; unpinned assets still need independent authenticity confirmation",
+  "sourceCounts": {
+    "allRegularFiles": 80,
+    "includedCore": 6,
+    "includedGameData": 55,
+    "excludedCount": 19
+  },
+  "verification": {
+    "fileCount": 80,
+    "coreExecutableCount": 6,
+    "mzExecutableCount": 6,
+    "missingCore": [],
+    "invalidCoreExe": [],
+    "missingPinned": [],
+    "mismatchedPinned": [],
+    "gate": "PASS",
+    "note": "PASS confirms only pinned known SHA files and required core presence, not authenticity of unpinned files or gameplay fidelity"
+  },
+  "coreExecutables": [
+    {
+      "name": "END.EXE",
+      "classification": "core-executable",
+      "size": 52241,
+      "sha256": "9265ca5e0dcc2d445a53e65921448ac99b3ae14e1b7e59c693ed6464e7e11a30",
+      "verification": "MATCH",
+      "mz": {
+        "declaredBytes": 52241,
+        "headerBytes": 512,
+        "imageBytes": 51729,
+        "trailingBytes": 0,
+        "entry": {
+          "cs": 0,
+          "ip": 26254,
+          "imageOffset": 26254,
+          "insideImage": true
+        },
+        "stack": {
+          "ss": 3255,
+          "sp": 12288
+        },
+        "relocationCount": 22,
+        "overlayNumber": 0
+      }
+    },
+    {
+      "name": "FMDRV.COM",
+      "classification": "core-executable",
+      "size": 5162,
+      "sha256": "0e85962755e2b96ed72a133ba9c84340d754abb18c9af20b76ddd5a96b79677b",
+      "verification": "MATCH",
+      "com": {
+        "loadOffset": 256,
+        "fileBytes": 5162,
+        "entryOffset": 256,
+        "note": "COM loader layout only; no inferred program entry semantics"
+      }
+    },
+    {
+      "name": "GRPDRV.EXE",
+      "classification": "core-executable",
+      "size": 22063,
+      "sha256": "bf9d3c82dcf347aaa1bac6dbb62143002f55b74a04fed46cc01a0fb6ed59064c",
+      "verification": "MATCH",
+      "mz": {
+        "declaredBytes": 22063,
+        "headerBytes": 512,
+        "imageBytes": 21551,
+        "trailingBytes": 0,
+        "entry": {
+          "cs": 0,
+          "ip": 0,
+          "imageOffset": 0,
+          "insideImage": true
+        },
+        "stack": {
+          "ss": 1347,
+          "sp": 1024
+        },
+        "relocationCount": 6,
+        "overlayNumber": 0
+      }
+    },
+    {
+      "name": "KOEI.COM",
+      "classification": "core-executable",
+      "size": 776,
+      "sha256": "81968de0d3ced479d77d3b9d60c571bde74f850948f6fc6d02cebea2557a1d36",
+      "verification": "MATCH",
+      "com": {
+        "loadOffset": 256,
+        "fileBytes": 776,
+        "entryOffset": 256,
+        "note": "COM loader layout only; no inferred program entry semantics"
+      }
+    },
+    {
+      "name": "MAIN.EXE",
+      "classification": "core-executable",
+      "size": 288823,
+      "sha256": "1718bbbbcdd938dfe44403d9bd5254dfc02d431217dea39ae5fb3fcde1597747",
+      "verification": "MATCH",
+      "mz": {
+        "declaredBytes": 288823,
+        "headerBytes": 21504,
+        "imageBytes": 267319,
+        "trailingBytes": 0,
+        "entry": {
+          "cs": 0,
+          "ip": 13044,
+          "imageOffset": 13044,
+          "insideImage": true
+        },
+        "stack": {
+          "ss": 16843,
+          "sp": 14336
+        },
+        "relocationCount": 5245,
+        "overlayNumber": 0
+      }
+    },
+    {
+      "name": "OPEN.EXE",
+      "classification": "core-executable",
+      "size": 42167,
+      "sha256": "f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65",
+      "verification": "MATCH",
+      "mz": {
+        "declaredBytes": 42167,
+        "headerBytes": 512,
+        "imageBytes": 41655,
+        "trailingBytes": 0,
+        "entry": {
+          "cs": 0,
+          "ip": 11494,
+          "imageOffset": 11494,
+          "insideImage": true
+        },
+        "stack": {
+          "ss": 2618,
+          "sp": 12288
+        },
+        "relocationCount": 23,
+        "overlayNumber": 0
+      }
+    }
+  ],
+  "resources": [
+    {
+      "name": "ALL_FONT.16P",
+      "size": 104340,
+      "sha256": "c5b6227b310ddd0677cb1e2439172ae316fa4b86d4110aed842379247e70b843",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "CHAR.LZW",
+      "size": 16238,
+      "sha256": "f1d606475e653e87d5a3ddaf05523a1f59a1c70d16e5a4a3d6c6d513c6c4a537",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "CHIP_NO.DAT",
+      "size": 100,
+      "sha256": "0f76440952571894b10b07780a6a21426c2ebc0d1911dfb4ac823e22b0b1a516",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "COLONY.DAT",
+      "size": 21800,
+      "sha256": "16c00bb3faa91fef02091d808b4686e1a14c5860aee0a22c7157d72ec1b269ed",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "D2.MML",
+      "size": 27866,
+      "sha256": "dbf29098e4b5c0e3130a8ce367465b20e8d370247b565e4c0752148078403dae",
+      "verification": "MATCH"
+    },
+    {
+      "name": "DATA1.LZW",
+      "size": 104683,
+      "sha256": "b2c6f3430cb5b66c09bf77d7454b1346883f6c3eb62003848bf25ee0010907dc",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "ENDGRP.DAT",
+      "size": 394025,
+      "sha256": "9e691347ba542811a6192f836abc7ef2a8820d09b5f6d4b32da66344b73210ee",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "END_PUT.DAT",
+      "size": 40864,
+      "sha256": "d76c889646f59b080247a92cf87e40644bc8117572c9596f4b1213200fab4a56",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "EVENT0.DAT",
+      "size": 8541,
+      "sha256": "965abae2ba1aef22675938f75b8700520d6ff3e64727828dde44717caab8a211",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "EVENT1.DAT",
+      "size": 49059,
+      "sha256": "3afd207b3d1b4cdecad66551920b9e6fb54dbd947b8c65ffe520946ac1a8bc93",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "EVENT2.DAT",
+      "size": 62878,
+      "sha256": "f2c070b9cf6d61b916b67cf28cc1b06671a828d0dc1cf76f3c372fff9b169cbc",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "EVENT3.DAT",
+      "size": 46953,
+      "sha256": "7dbc53b492899c677f5bec2150c22cd9482429c8b89f7e467b85108b1f33582e",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "EVENT4.DAT",
+      "size": 44768,
+      "sha256": "38ccd35323170c05514f78e44331fd7506147b27c254ed55ea4469b61698a379",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "EVENT5.DAT",
+      "size": 54941,
+      "sha256": "fd9ca2c8ab52595e5b89c85e8fb592ff52a59c00a3660faf2b60bd54f42ee480",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "EVENT6.DAT",
+      "size": 38260,
+      "sha256": "463865ec9a80b18237ae06deb6ffccd972d199fe149096f16570a682eb266206",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "GRAPH.DAT",
+      "size": 441794,
+      "sha256": "b4a6e84343a62b2df39f20f5d3cd97c9b33165d147c4087ed1828a3abe0eb049",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "GRAPH2.DAT",
+      "size": 78875,
+      "sha256": "54c8d7d7fbffc52de3dd1a4f88e079e40c1b63509d8aa28f759ab85e25ac5f8e",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "HANKAKU.FNT",
+      "size": 1536,
+      "sha256": "f57d359d6d57c99e55461498f39b66275666b2e170e46f499c9789ed5c1a3026",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "HDAT.PUT",
+      "size": 31624,
+      "sha256": "0f54805370aad02434a5a6035c5048b22c12392d7646e92a0460af31b2e85e3f",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "IAE1.LZW",
+      "size": 38616,
+      "sha256": "148a580d7e521b2d888001f0b1b499491ab5cda7e1ce6fc4ebb05e0855124de6",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "IAP1.LZW",
+      "size": 52338,
+      "sha256": "1d51b75fe736157bee94e5197314ad8ef60cbcda2584b574fbf55a4fc11d3121",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "IAP2.LZW",
+      "size": 44830,
+      "sha256": "720a3d766a002dad2e3e841b3eec46e1e7c8f6ad5b3966f121bb2a4f68d208f3",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "IAP3.LZW",
+      "size": 48600,
+      "sha256": "46523b35d90a0257e94a1401f0116e1b6fe6a63215de878dab9501f3fc181de4",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "IAP4.LZW",
+      "size": 52144,
+      "sha256": "68ca1054ad539084d931c73743ca9df5d743af55328fe8126b03aaa526dac568",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "IAP5.LZW",
+      "size": 49466,
+      "sha256": "5ad4620a85617b4a60c9b70a165c83e93b431fbb350f89ce3438c68364dbcd12",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "IAP6.LZW",
+      "size": 49855,
+      "sha256": "7a0e71f14db6b45bef47f4350542079e60e33ac2c7e09d2c0ea64b7c7cb39f8f",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "ITEM.MES",
+      "size": 14500,
+      "sha256": "3885887dd011c808906c9cf2d4c461130732e7ef8714397929fd0310f59466c8",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "KAO.LZW",
+      "size": 465890,
+      "sha256": "ffd3fb6660f92fef089861aa42bc7c2a4a50370cb27017f3cd2149361580ef87",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "KOEI.DAT",
+      "size": 33792,
+      "sha256": "56d9f28c3eacdf42b4b5f3aaf48495ae3566bac72ef88233e60e03fbeae014a0",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "KOUKAI2.DAT",
+      "size": 333551,
+      "sha256": "ab81fcf9a38fa2bd8d3f7dc328287e80f0dcf74b92d3891e511c8fa230aa62e9",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "MENU.DAT",
+      "size": 2579,
+      "sha256": "32042e809e09399c7a433517e2bf70980af40734f5ab1fc0a2ac632a1ccc9461",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "MESSAGE.DAT",
+      "size": 45384,
+      "sha256": "7003f3224195b791ff226999bd55c01e5ee95398aaedfbf1fa8f2ac8edcb6a2d",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "MONSTER.DAT",
+      "size": 200,
+      "sha256": "d147596aeb092e473cc1f36ad9a7192f365a7b639783db2efc62c5c28bea1b98",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "NAME.TBL",
+      "size": 2496,
+      "sha256": "dce500ae70f64a96e55e740c4c28815ba17a4e8537981ed3ba2101cd9ad5e713",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "OPGRAPH.LZW",
+      "size": 443529,
+      "sha256": "f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "PORTCHIP.LZW",
+      "size": 124719,
+      "sha256": "e3c5253c12dc24d3e3d8fa8294d4160a116601ba67ebb4190e49c64cd37cc95b",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "PORTMAP.LZW",
+      "size": 138223,
+      "sha256": "ed3161c45b038fbc715840e9798bc4a2d3c5615d036b27c8048e93c8c6b7c25d",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR0.DAT",
+      "size": 11224,
+      "sha256": "d3f536b93775b4613c0bf1912e6a6f4afa7ba78e3f415d51bacddc815438e543",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR0.MES",
+      "size": 11729,
+      "sha256": "62b22a4ee91855e8167d896267fe6ebe86b0b5fe5fd32393f9a295413505b0ac",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR1.DAT",
+      "size": 15413,
+      "sha256": "708dca98fde24cb03bf36d4adc87c057e0e82eb071568dcd7aaad9b9a1cbbe00",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR1.MES",
+      "size": 65350,
+      "sha256": "8bc8d7a71e75624eb2f59f4e5bcf9a2634df376822dd1cab2673cb8c60412bfd",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR2.DAT",
+      "size": 12425,
+      "sha256": "1785bdf5f820d43fbbd6e58cb496334a6d0c91e480a2976ded111de9cee623c4",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR2.MES",
+      "size": 41183,
+      "sha256": "1883f6ec71f8209e3e7ea61aaf0c0d2fea7836b3769c63d93fd00f004726dd27",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR3.DAT",
+      "size": 8249,
+      "sha256": "7e87471104a7f620499dd62993a55c63fcfd9003d909a12103b089d54a76d166",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR3.MES",
+      "size": 27060,
+      "sha256": "d577e931d4eb86f00b3468193a0f00cb7c45e7abd7588e809eef171ce8c51485",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR4.DAT",
+      "size": 3934,
+      "sha256": "ed7d73ae2fe9d7fe16886e7ffadd2e8a68a9eb56c1c182e60a0b8f5cb1805ee0",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR4.MES",
+      "size": 12229,
+      "sha256": "c1aa22e1897b2491c66b6c2e0479514589a0b5c4c61bd044707ff1bce0579154",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR5.DAT",
+      "size": 5394,
+      "sha256": "4ebd0b87e7b97748240c7a9dc7cbc6712b24343caffcc03041c76e7313fde5ae",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR5.MES",
+      "size": 18940,
+      "sha256": "4c76c9434b01bc470fd6562825afdbb6faa18fe320e05ae8536dd3d618bed7db",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR6.DAT",
+      "size": 11670,
+      "sha256": "ffe745f6014b2a1c63a3b03df5775312c348d56e1cd3dfee23b9b66dd0c623db",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "SNR6.MES",
+      "size": 46510,
+      "sha256": "b95fc929123dd66c0249fd688ca7ad05e20cd94f6ea5ed230b0cf87d60dcf668",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "TRANSIT.DAT",
+      "size": 19200,
+      "sha256": "4323c52f00cd5bcd1a6535c2ec976b8b122e6cabf6c9256720255522b5c52329",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "WINDCUR.DAT",
+      "size": 1350,
+      "sha256": "2a005353a2a09b13bd8b09e208b99abb5cd26d95aa429a50aab9803fb5caf337",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "WORLDMAP.LZW",
+      "size": 48248,
+      "sha256": "135e89cb1c894a8a70c67168898b816fab00a6a7d13a61f5965bacfaec6986fa",
+      "verification": "UNPINNED"
+    },
+    {
+      "name": "ZA_DAT.DAT",
+      "size": 2424,
+      "sha256": "6760ebc1cdb7356b3f6a66c67fed1a3e29eb3e357a9958ff698b4598774ad92a",
+      "verification": "UNPINNED"
+    }
+  ]
+}

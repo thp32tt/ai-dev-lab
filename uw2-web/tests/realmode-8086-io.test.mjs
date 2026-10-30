@@ -1,0 +1,69 @@
+import assert from 'node:assert/strict';
+import {RealMode8086} from '../web/realmode-8086.js';
+
+// Entirely SYNTHETIC I/O instruction contract. No FMDRV/OPL, game or browser.
+function cpuFor(bytes,setup=()=>{}){
+  const cpu=new RealMode8086();
+  cpu.set16('CS',0x100);
+  cpu.set16('FLAGS',0xad7);
+  setup(cpu);cpu.load(Uint8Array.from(bytes),0x100,0);
+  return cpu;
+}
+const events=[];
+const device={
+  in8:(port,cpu)=>{events.push(['in8',port,cpu.get16('DX')]);return 0x7f;},
+  in16:(port,cpu)=>{events.push(['in16',port,cpu.get16('DX')]);return 0xbeef;},
+  out8:(port,val)=>{events.push(['out8',port,val]);},
+  out16:(port,val)=>{events.push(['out16',port,val]);}
+};
+const cases=[
+  {bytes:[0xe4,0xff],width:8,read:true,port:0xff,name:'in8',expect:0x7f},
+  {bytes:[0xe5,0xff],width:16,read:true,port:0xff,name:'in16',expect:0xbeef},
+  {bytes:[0xe6,0xff],width:8,read:false,port:0xff,name:'out8',expect:0x34},
+  {bytes:[0xe7,0xff],width:16,read:false,port:0xff,name:'out16',expect:0x1234},
+  {bytes:[0xec],width:8,read:true,port:0x388,name:'in8',expect:0x7f},
+  {bytes:[0xed],width:16,read:true,port:0x388,name:'in16',expect:0xbeef},
+  {bytes:[0xee],width:8,read:false,port:0x388,name:'out8',expect:0x34},
+  {bytes:[0xef],width:16,read:false,port:0x388,name:'out16',expect:0x1234}
+];
+for(const x of cases){
+  events.length=0;
+  const c=cpuFor(x.bytes,c=>{
+    c.set16('DX',0x388);c.set16('AX',0x1234);
+    c.registerIOPort(x.port,device);
+  });
+  c.step();
+  const record=events.at(-1);
+  assert.equal(record[0],x.name);
+  assert.equal(record[1],x.port); // imm8 zero-extends, DX uses full port.
+  assert.equal(record[2],x.read?0x388:x.expect);
+  assert.equal(c.get16('FLAGS'),0xad7);
+  assert.equal(c.get16('IP'),x.bytes.length);
+  if(x.read)assert.equal(x.width===8?c.get8('AL'):c.get16('AX'),x.expect);
+  else assert.equal(c.get16('AX'),0x1234);
+}
+// Absent device, missing width or invalid input MUST NOT invent data.
+const noDevice=cpuFor([0xec],c=>{c.set16('DX',0x388);c.set16('AX',0x1122);});
+assert.throws(()=>noDevice.step(),/IN port 388 width 8 has no device adapter: fail closed/);
+assert.equal(noDevice.get16('AX'),0x1122);
+assert.equal(noDevice.get16('FLAGS'),0xad7);
+const wrongWidth=cpuFor([0xed],c=>{
+  c.set16('DX',0x388);c.set16('AX',0x1122);
+  c.registerIOPort(0x388,{in8:()=>0});
+});
+assert.throws(()=>wrongWidth.step(),/width 16 has no device adapter/);
+assert.equal(wrongWidth.get16('AX'),0x1122);
+const noWriter=cpuFor([0xee],c=>{
+  c.set16('DX',0x388);c.set16('AX',0x1122);
+  c.registerIOPort(0x388,{in8:()=>0});
+});
+assert.throws(()=>noWriter.step(),/OUT port 388 width 8 has no device adapter/);
+const invalid=cpuFor([0xec],c=>{
+  c.set16('DX',0x388);c.set16('AX',0x1122);
+  c.registerIOPort(0x388,{in8:()=>256});
+});
+assert.throws(()=>invalid.step(),/invalid unsigned value/);
+assert.equal(invalid.get16('AX'),0x1122);
+assert.throws(()=>invalid.registerIOPort(-1,{in8:()=>0}),/uint16/);
+assert.throws(()=>invalid.registerIOPort(0,{out8:'faked'}),/explicit operation callbacks/);
+console.log('UW2 P3 8086 immediate/DX IN OUT bus-adapter synthetic regression: PASS');

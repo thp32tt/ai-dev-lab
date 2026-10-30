@@ -21,6 +21,7 @@ export class RealMode8086 {
     this.ip = 0;
     this.flags = 2;
     this.interruptVectors = new Set();
+    this.portHandlers = new Map();
   }
   physical(segment, offset) {
     return (((u16(segment,'segment') << 4) + u16(offset,'offset')) & 0xfffff);
@@ -109,6 +110,40 @@ export class RealMode8086 {
     this.push16(this.ip);
     this.flags=(this.flags&~(FLAGS.IF|FLAGS.TF))|2;
     this.seg.CS=cs;this.ip=dest;
+  }
+
+  // Port I/O is a host-supplied bus adapter, not a synthetic FM/VGA/DOS
+  // response. An unknown register/width must fail instead of returning zero.
+  registerIOPort(port, handlers) {
+    u16(port,'I/O port');
+    if(!handlers||typeof handlers!=='object'||Array.isArray(handlers))
+      throw new TypeError('I/O port handlers object required');
+    const keys=['in8','in16','out8','out16'];
+    if(!keys.some(k=>typeof handlers[k]==='function')||
+       Object.keys(handlers).some(k=>!keys.includes(k)||typeof handlers[k]!=='function'))
+      throw new TypeError('I/O port requires only explicit operation callbacks');
+    this.portHandlers.set(port,{...handlers});
+  }
+  readIOPort(port,width) {
+    u16(port,'I/O port');
+    const name=width===8?'in8':width===16?'in16':null;
+    const cb=name&&this.portHandlers.get(port)?.[name];
+    if(typeof cb!=='function')
+      throw new Error(`8086 IN port ${port.toString(16)} width ${width} has no device adapter: fail closed`);
+    const v=cb(port,this);
+    if(!Number.isInteger(v)||v<0||v>(width===8?0xff:0xffff))
+      throw new RangeError('I/O device returned an invalid unsigned value');
+    return v;
+  }
+  writeIOPort(port,width,value) {
+    u16(port,'I/O port');
+    const name=width===8?'out8':width===16?'out16':null;
+    const cb=name&&this.portHandlers.get(port)?.[name];
+    if(typeof cb!=='function')
+      throw new Error(`8086 OUT port ${port.toString(16)} width ${width} has no device adapter: fail closed`);
+    if(!Number.isInteger(value)||value<0||value>(width===8?0xff:0xffff))
+      throw new RangeError('I/O device value must match operation width');
+    cb(port,value,this);
   }
   load(bytes,segment,offset) {
     if(!(bytes instanceof Uint8Array))throw new TypeError('load requires bytes');
@@ -567,6 +602,22 @@ export class RealMode8086 {
       if(op===0xf9)this.flags|=FLAGS.CF;
       if(op===0xf5)this.flags^=FLAGS.CF;
       this.flags|=2;return;
+    }
+
+    // 8086 IN/OUT: immediate 8-bit port or full 16-bit DX selector.
+    // Neither synthesizes AdLib/OPL status nor modifies CPU flags.
+    if((op>=0xe4&&op<=0xe7)||(op>=0xec&&op<=0xef)){
+      const usesImmediate=op<0xec;
+      const port=usesImmediate?this.fetch8():this.get16('DX');
+      const width=(op&1)?16:8;
+      const isWrite=!!(op&2);
+      if(isWrite)this.writeIOPort(port,width,
+        width===8?this.get8('AL'):this.get16('AX'));
+      else{
+        const value=this.readIOPort(port,width);
+        if(width===8)this.set8('AL',value);else this.set16('AX',value);
+      }
+      return;
     }
     if(op===0xeb){this.ip=(this.ip+s8(this.fetch8()))&0xffff;return;}
     if(op===0xe9){const delta=s16(this.fetch16());this.ip=(this.ip+delta)&0xffff;return;}

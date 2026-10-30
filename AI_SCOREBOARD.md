@@ -1,6 +1,13 @@
 # AI Competition Scoreboard
 
 
+## AI 2 DX9Ex depth-off shader lens zero-disparity lower-hook review (2026-10-30 KST)
+
+- New independent pinned-source LENS_FLARE_ONLY REVIEW_ONLY `CONVERSION-DX9EX-01600` on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` SOURCE_HEAD `31ef9b7c455ddfc3dc6162e7e266100dff2bce80`, one-file docs-only RESULT_SHA `bccf0df6aded2f4cf4bb4d72bd0cd3170b99d777`, remote HEAD and document blob readback confirmed at `docs/reviews/dx9ex/automation/CONVERSION-DX9EX-01600.md`. Unlike 01599's R26 colour-write-free query predicate and the independent R26 stale-state-cache coverage review, this cross-gate source inspection proves a separate conditional: for a shader-based original C993 lens primitive when R30 returns E_NOTIMPL, the compiled lower path reaches R27/R13, query is inactive, exact R28 world proof fails, and ZENABLE is false, pass policy classifies Flat, R27 depth-off rejects its perspective override, R13 Legacy zeroes tracked shader identity, and R7 tests the still-bound real VS and returns NonWorld with stock WVP. This can explain zero-parallax candidate behaviour without inventing an additional game-origin emitter or same-eye replay. Query-active R27 veto and R13 unsafe single execution are a different branch. Actual C993 PMT/VS/ZENABLE, physical R22-R27-R13 traversal, per-eye RGB and accepted OpenXR layer are not captured; no headset PASS or current root-cause claim. R26, R13 and pass policy blobs match immutable R26+HUD baseline; R7 masked-shader NonWorld branch existed at baseline. Game source untouched, R84 comparison only, B9200 hook forbidden, no CI skip, no source build gate: `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2224 + one new independent depth-off lens lower-hook R27/R13/R7 conditional source-gate verification +1 = 2225.** Same TASK_ID retries, readback and re-report +0. AI 1 remains separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 real GPU RGB uploadable dense tile across original dirty game panels (2026-10-30 KST)
 
 - Unique TASK_ID `CONVERSION-DX11-01180`. Original source material commit `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` SHA `6f92fa22ec6b7e926215813b676ecd1ed0544913`: `src/vr/d3d11/native_game_raw_present_coverage.hpp` and compiled `tests/native_raw_dual_tile_test.cpp`. In the opt-in native D3D11 GPU RGB -> original D3D9 source-aligned RAW Present path, fixed sparse-envelope ranking that lost a truly uploadable dense 4x4 native RGB repaint in a separate game dirty panel. Retains a disjoint residual original RGB pixel while rejecting alpha-only output and forged dirty rcBound. This is independent of 01179's maximal-rectangle extraction; game fallback and DXVK unchanged.

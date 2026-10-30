@@ -12,18 +12,22 @@
 // tile coordinates 0..22, which also requires 24 background tiles to avoid
 // clipping the actor at the right/bottom edges.
 //
-// GRAPH #22 is 368x152, so the original-sized lower dialogue surface is inset
-// 8px from each horizontal playfield edge and bottom-aligned to y=392.
-// GRAPH #0 (144x56) is centered in that dialogue surface and bottom-inset 8px.
+// MAIN.EXE's GRAPH.DAT decoder proves the original destination contract:
+// AX=x pixel, DX=y pixel, BX=GRAPH record. The building dispatcher at file
+// 0xE108 selects BX=SI+6 (special record 20 for one building state) and calls
+// the decoder with AX=0x68, DX=0x10: building art starts at (104,16).
 //
-// Building art remains native 136x112. Its x=220 follows exact horizontal
-// centering in the 384px playfield. y remains provisional pending the direct
-// GRAPH building-blit caller trace.
+// The standard GRAPH #22 caller at file 0x202EA passes AX=0x68, DX=0x88,
+// BX=0x16, proving the 368x152 dialogue origin is (104,136).
+//
+// GRAPH #0 is driven by the original UI-object table. The object whose callback
+// is the record-0 YES/NO renderer (0FB7:3BD8) has x=480,y=336 in MAIN.EXE;
+// the native 144x56 asset therefore ends at x=624,y=392.
 export const UI_LAYOUT = Object.freeze({
   viewport: Object.freeze({ x: 96, y: 8, w: 384, h: 384, tiles: 24 }),
-  dialogue: Object.freeze({ x: 104, y: 240, w: 368, h: 152 }),
-  building: Object.freeze({ x: 220, y: 64, w: 136, h: 112 }),
-  yesNo: Object.freeze({ x: 216, y: 328, w: 144, h: 56 }),
+  building: Object.freeze({ x: 104, y: 16, w: 136, h: 112 }),
+  dialogue: Object.freeze({ x: 104, y: 136, w: 368, h: 152 }),
+  yesNo: Object.freeze({ x: 480, y: 336, w: 144, h: 56 }),
 });
 
 export const UI_GRAPH_RECORD = Object.freeze({

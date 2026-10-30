@@ -22,7 +22,7 @@ assert.deepEqual([town.width,town.height],[640,400]);
 assert.deepEqual([dialog.width,dialog.height],[368,152]);
 assert.deepEqual([yesNo.width,yesNo.height],[144,56]);
 
-for(let i=6;i<=17;i++){
+for(let i=6;i<=21;i++){
   const b=decodeGraphRecord(records[i]);
   assert.deepEqual([b.width,b.height],[136,112], "building record "+i);
 }
@@ -31,16 +31,19 @@ assert.equal(UI_LAYOUT.viewport.y,8);
 assert.equal(UI_LAYOUT.viewport.w,24*16);
 assert.equal(UI_LAYOUT.viewport.h,24*16);
 assert.equal(UI_LAYOUT.viewport.tiles,24);
-assert.equal(UI_LAYOUT.dialogue.x,UI_LAYOUT.viewport.x+8);
-assert.equal(UI_LAYOUT.dialogue.y,UI_LAYOUT.viewport.y+UI_LAYOUT.viewport.h-UI_LAYOUT.dialogue.h);
-assert.equal(UI_LAYOUT.building.w,136);
-assert.equal(UI_LAYOUT.building.h,112);
-assert.equal(UI_LAYOUT.building.x+UI_LAYOUT.building.w/2,UI_LAYOUT.viewport.x+UI_LAYOUT.viewport.w/2);
-assert.equal(UI_LAYOUT.yesNo.w,yesNo.width);
-assert.equal(UI_LAYOUT.yesNo.h,yesNo.height);
-assert.equal(UI_LAYOUT.yesNo.x+UI_LAYOUT.yesNo.w/2,UI_LAYOUT.dialogue.x+UI_LAYOUT.dialogue.w/2);
-assert.equal(UI_LAYOUT.yesNo.y+UI_LAYOUT.yesNo.h,UI_LAYOUT.dialogue.y+UI_LAYOUT.dialogue.h-8);
-assert.equal(UI_LAYOUT.yesNo.y,328);
+assert.deepEqual(UI_LAYOUT.building,{x:104,y:16,w:136,h:112});
+assert.deepEqual(UI_LAYOUT.dialogue,{x:104,y:136,w:368,h:152});
+assert.deepEqual(UI_LAYOUT.yesNo,{x:480,y:336,w:144,h:56});
+
+// Exact Korean MAIN.EXE call-site evidence. These checks deliberately pin the
+// shipped executable rather than a browser-layout hypothesis.
+const main=fs.readFileSync(gd+"/MAIN.EXE");
+assert.equal(main.subarray(0xE135,0xE13E).toString("hex"),
+  "8d5c06b86800ba1000"); // BX=SI+6, AX=104, DX=16
+assert.equal(main.subarray(0x202EA,0x202F8).toString("hex"),
+  "b86800ba8800bb16009a535a0000"); // x=104,y=136,record=22
+assert.equal(main.subarray(0x4538E,0x4539A).toString("hex"),
+  "e0015001f0015801d83bb70f"); // UI object x=480,y=336,... callback 0FB7:3BD8
 
 console.log(JSON.stringify({
   frames:{sea:4,town:5},
@@ -48,6 +51,6 @@ console.log(JSON.stringify({
   dialogue:UI_LAYOUT.dialogue,
   building:UI_LAYOUT.building,
   yesNo:UI_LAYOUT.yesNo,
-  buildingRecords:"6..17 = 136x112"
+  buildingRecords:"6..21 = 136x112"
 },null,2));
 console.log("UW2 original UI layout tests: PASS");

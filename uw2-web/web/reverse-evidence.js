@@ -98,3 +98,54 @@ export function fmdrvSongToRenderedTrackIndex(song) {
   const n = Number(song) | 0;
   return n >= 1 ? n - 1 : null;
 }
+
+export const PROVEN_SYSTEM_MENU_DISPATCH = Object.freeze({
+  menuIndex: 56,
+  tableRawFileOffset: 0x4557a,
+  entries: Object.freeze([
+    Object.freeze({ index: 0, label: "Load Data", far: "0FB7:6CDE", rawPhysical: 0x1bc4e }),
+    Object.freeze({ index: 1, label: "Start New Game", far: "0FB7:6D0C", rawPhysical: 0x1bc7c }),
+    Object.freeze({ index: 2, label: "Environment", far: "0FB7:6D68", rawPhysical: 0x1bcd8 }),
+    Object.freeze({ index: 3, label: "Quit Game", far: "0FB7:6D7A", rawPhysical: 0x1bcea }),
+    Object.freeze({ index: 4, label: "Save Data", far: "0137:431B", rawPhysical: 0x0aa8b }),
+  ]),
+  evidence: Object.freeze([
+    "MAIN.EXE raw 0x1BD57 loads MENU.DAT index 56",
+    "MAIN.EXE raw 0x1BD9A indexes 4-byte far pointers by selected menu item",
+    "far-pointer table begins at MAIN.EXE raw 0x4557A",
+  ]),
+});
+
+export const PROVEN_PROTAGONIST_SELECTION = Object.freeze({
+  systemMenuIndex: 1,
+  handlerRawPhysical: 0x1bc7c,
+  selectorRawPhysical: 0x1b21b,
+  count: 6,
+  selectedIdStorage: "DS:1241h",
+  evidence: Object.freeze([
+    "MENU #56 item 1 is Start New Game",
+    "system dispatch item 1 -> 0FB7:6D0C -> raw 0x1BC7C",
+    "MAIN.EXE raw 0x1BC87 calls raw 0x1B21B",
+    "MAIN.EXE raw 0x1B2A3 loads selector count 6",
+    "MAIN.EXE raw 0x1B2B3 stores returned AL to DS:1241h",
+  ]),
+});
+
+export const PROVEN_PROTAGONIST_MUSIC = Object.freeze({
+  logicalIndexBase: 4,
+  protagonistCount: 6,
+  fmdrvSongsByProtagonistId: Object.freeze([2, 3, 4, 7, 6, 5]),
+  renderedTrackIndicesByProtagonistId: Object.freeze([1, 2, 3, 6, 5, 4]),
+  evidence: Object.freeze([
+    "MAIN.EXE raw 0xD86B loads AL from DS:1241h",
+    "MAIN.EXE raw 0xD86E adds 4 to form logical music index",
+    "MAIN.EXE raw 0xD872 calls raw 0xE8CA music dispatcher",
+    "MAIN music map indices 4..9 -> FMDRV songs 2,3,4,7,6,5",
+  ]),
+});
+
+export function protagonistFmdrvSong(protagonistId) {
+  const id = Number(protagonistId) | 0;
+  if (id < 0 || id >= PROVEN_PROTAGONIST_MUSIC.protagonistCount) return null;
+  return PROVEN_PROTAGONIST_MUSIC.fmdrvSongsByProtagonistId[id];
+}

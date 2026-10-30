@@ -11,10 +11,10 @@ export const UW2_OPENING_PALETTE = Object.freeze([
 const TICK_MS = 1000 / 60;
 
 export const OPENING_FIDELITY_POLICY = Object.freeze({
-  defaultMode: "reverse-engineered-only",
-  approximatePlaybackOptIn: "openingApprox=1",
+  defaultMode: "korean-open-exe-record-sequence",
+  approximatePlaybackOptOut: "openingApprox=0",
   exactReplayReady: false,
-  reason: "OPEN.EXE scene blit/copy/timing transcript is not fully closed yet",
+  reason: "Original Korean 12-scene/108-record sequence proven; some frame blits, transitions and timing remain approximations",
 });
 
 export function decodeOpeningArchive(arrayBuffer) {
@@ -431,7 +431,7 @@ export class KoreanOpeningPlayer {
     onCycle = null,
     speed = 1,
     loop = false,
-    allowApproximate = false,
+    allowApproximate = true,
   } = {}) {
     this.opening = opening;
     this.canvas = canvas;
@@ -562,7 +562,8 @@ export class KoreanOpeningPlayer {
         sources: [],
         fidelity: "blocked-unverified",
       }, this.cycle);
-      this.onFinish?.({ fidelity: "blocked-unverified" });
+      // A blocked/failed opening is not completion of OPEN.EXE and must
+      // never open MAIN's system menu as a side effect.
       return;
     }
 
@@ -577,7 +578,7 @@ export class KoreanOpeningPlayer {
         this.cycle++;
         this.onCycle?.(this.cycle);
       } while (this.loop && !signal.aborted);
-      this.onFinish?.();
+      if (!signal.aborted) this.onFinish?.();
     } catch(err) {
       if (err?.name!=="AbortError") throw err;
     } finally {

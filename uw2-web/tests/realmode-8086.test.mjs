@@ -53,7 +53,7 @@ assert.equal(far.get16('SP'),0x100);
 // Unsupported DOS INT or memory ModR/M never silently reinterpret game state.
 const unsupported=new RealMode8086();
 unsupported.load(Uint8Array.of(0xcd,0x21),0,0);
-assert.throws(()=>unsupported.step(),/unsupported 8086 opcode cd/);
+assert.throws(()=>unsupported.step(),/INT 21 has no installed vector\/DOS adapter: fail closed/);
 // A ModR/M memory operand is now decoded, never fabricated or silently ignored.
 const supportedMem=new RealMode8086();
 supportedMem.set16('BX',0x100);supportedMem.set16('SI',3);

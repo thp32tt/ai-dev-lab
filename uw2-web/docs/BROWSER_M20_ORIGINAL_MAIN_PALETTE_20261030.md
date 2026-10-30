@@ -11,6 +11,30 @@ HORIEDIT.C is excluded from all evidence.
 
 ## Source
 
+## Static binary provenance
+
+The final palette is also present **verbatim** in the shipped Korean
+\`MAIN.EXE\` at file offset \`0x43FCE\`. It is 48 bytes: 16 B,R,G triplets
+with 4-bit components.
+
+\`\`\`text
+000000 0d0004 000d04 0a0d06
+06000a 0f000a 060f0a 0d0f0e
+090707 0c0004 000a06 050e0b
+0f0008 060007 06000b 0c0602
+\`\`\`
+
+The browser now stores this exact B,R,G source table and derives RGB through
+the original hardware conversion instead of hard-coding the final colors.
+
+The conversion is pinned to the original code:
+- \`MAIN.EXE 0x6993..0x69A7\`: source B/R/G extraction and \`<<2\`
+- \`MAIN.EXE 0x69BE..0x69CD\`: VGA DAC index/data writes to \`03C8h/03C9h\`
+
+A different 48-byte palette table exists at \`MAIN.EXE 0x45930\`; it corresponds
+to another palette state and must not replace the final MAIN-game table.
+
+
 Authoritative binary:
 
 - Korean `MAIN.EXE` from the user's original DOS installation.

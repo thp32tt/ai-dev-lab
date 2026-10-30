@@ -2,17 +2,36 @@
 // Reconstructed from the shipped format and cross-checked against two independent
 // reverse-engineering descriptions. A record stores four pixels per 16-bit unit.
 
-// Korean MAIN.EXE final 16-color VGA DAC state.
-// Recovered by executing the shipped MAIN.EXE graphics initialization and
-// recording complete index 0..15 writes to VGA ports 03C8h/03C9h. The game
-// emits 45 complete palette sets during the fade; this is the final set.
-// Each 6-bit DAC component is expanded to 8-bit as (v << 2) | (v >> 4).
-export const UW2_MAIN_VGA_PALETTE = Object.freeze([
-  [0,0,0], [0,65,211], [211,65,0], [211,97,162],
-  [0,162,97], [0,162,243], [243,162,97], [243,227,211],
-  [113,113,146], [0,65,195], [162,97,0], [227,178,81],
-  [0,130,243], [0,113,97], [0,178,97], [97,32,195],
+// Korean MAIN.EXE final 16-color VGA palette.
+//
+// Authoritative source: MAIN.EXE file offset 0x43FCE. The binary stores
+// 16 triplets in B,R,G order with 4-bit components. MAIN.EXE routine 0:696B
+// (file 0x696B) shifts each component left by two and writes RGB to VGA DAC
+// ports 03C8h/03C9h. Keep the source table, not hand-entered browser RGB,
+// so the port follows the original binary's representation.
+export const UW2_MAIN_PALETTE_BRG4 = Object.freeze([
+  Object.freeze([0,0,0]),   Object.freeze([13,0,4]),
+  Object.freeze([0,13,4]),  Object.freeze([10,13,6]),
+  Object.freeze([6,0,10]),  Object.freeze([15,0,10]),
+  Object.freeze([6,15,10]), Object.freeze([13,15,14]),
+  Object.freeze([9,7,7]),   Object.freeze([12,0,4]),
+  Object.freeze([0,10,6]),  Object.freeze([5,14,11]),
+  Object.freeze([15,0,8]),  Object.freeze([6,0,7]),
+  Object.freeze([6,0,11]),  Object.freeze([12,6,2]),
 ]);
+
+export function uw2Dac6ToRgb8(value) {
+  const v = value & 0x3f;
+  return ((v << 2) | (v >> 4)) & 0xff;
+}
+
+export const UW2_MAIN_VGA_PALETTE = Object.freeze(
+  UW2_MAIN_PALETTE_BRG4.map(([b,r,g]) => Object.freeze([
+    uw2Dac6ToRgb8(r << 2),
+    uw2Dac6ToRgb8(g << 2),
+    uw2Dac6ToRgb8(b << 2),
+  ]))
+);
 
 function u16le(bytes, off) {
   return bytes[off] | (bytes[off + 1] << 8);

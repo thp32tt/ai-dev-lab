@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex C993 physical-depth veto-activation guard gap (2026-10-30 KST)
+
+- Independent lens-flare-only REVIEW_ONLY `CONVERSION-DX9EX-01595` on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, pinned source HEAD `360ff3403618c147f182b13c682c0395b148a780`, docs-only review result `efff88f5b464a9ddc9e801032fe50cba0cb6ee2c`; exact one-file GitHub commit/tag/readback verified. After the 01593/01594 conditionally eligible early-XYZRHW finding and subsequent source veto `90c3a855`, this task independently cross-checked D3A5 original owner and `CapturePhysicalDrawCommand` with the new veto: original D3A5 lens producer/epoch alone does **not** activate `IsDirectWorldLensCentre`; a separate nonqueued physical `ExactLensCentreGpuDrawDepth` RAII guard is necessary before `lensCentreCallEpoch` is preserved on the command. No scope instantiation was found in the inspected active C993/D3A5/R30 source owners, but repository-wide unreachable/dead guard and real HMD root cause remain UNPROVEN. The projected C993 `ProjectedScreenEffect2D`/producer None path is an independent negative case. This identifies an independently testable static activation gap, distinct from 01594's zero-depth branch truth-table review. `CODE_CHANGE=NO`, `RUNTIME_VALIDATION=UNTESTED`; no runtime/Quest3 fix claimed.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2211 + independent source-grounded C993 guard activation precondition falsification +1 = 2212.** Same TASK_ID retry/re-report/readback +0. AI 1 remains separately unchanged.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 independent two-capture native RGB source-island publication (2026-10-30 KST)
 
 - Unique `CONVERSION-DX11-01175` source-integrated native D3D11 RAW PRE/POST GPU Draw update on `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: C++ implementation `a2758f21f670b2d2e88a7ff78d5afeaaeed61e6b` allows source-coincident authentic RGB from TWO separately sampled Draw regions to share one bounded four-island original-D3D9 dirty Present transaction. Each candidate is verified against full authentic RGNDATA and prior disjoint source crops, reserves initial space for both Draw sources, and independently owns its D3D9 SYSTEMMEM UpdateSurface staging. Added compiled two-source/four-island, forged-region, duplicate and alpha-only regressions; original Draw/input/FFB/SkyGlow, DX9Ex fallback and frozen DXVK preserved. This is additional cross-capture capability distinct from 01174 single-capture four-island and does NOT complete the entire native DX11 frame or stereo renderer.

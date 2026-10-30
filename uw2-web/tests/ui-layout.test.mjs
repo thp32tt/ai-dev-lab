@@ -26,9 +26,13 @@ for(let i=6;i<=17;i++){
   const b=decodeGraphRecord(records[i]);
   assert.deepEqual([b.width,b.height],[136,112], "building record "+i);
 }
-assert.equal(UI_LAYOUT.viewport.w,23*16);
-assert.equal(UI_LAYOUT.viewport.h,23*16);
+assert.equal(UI_LAYOUT.viewport.x,96);
+assert.equal(UI_LAYOUT.viewport.y,8);
+assert.equal(UI_LAYOUT.viewport.w,24*16);
+assert.equal(UI_LAYOUT.viewport.h,24*16);
+assert.equal(UI_LAYOUT.viewport.tiles,24);
 assert.equal(UI_LAYOUT.dialogue.x,UI_LAYOUT.viewport.x);
+assert.equal(UI_LAYOUT.dialogue.x,UI_LAYOUT.viewport.x+8);
 assert.equal(UI_LAYOUT.dialogue.y,UI_LAYOUT.viewport.y+UI_LAYOUT.viewport.h-UI_LAYOUT.dialogue.h);
 assert.equal(UI_LAYOUT.building.w,136);
 assert.equal(UI_LAYOUT.building.h,112);
@@ -37,6 +41,7 @@ assert.equal(UI_LAYOUT.yesNo.w,yesNo.width);
 assert.equal(UI_LAYOUT.yesNo.h,yesNo.height);
 assert.equal(UI_LAYOUT.yesNo.x+UI_LAYOUT.yesNo.w/2,UI_LAYOUT.dialogue.x+UI_LAYOUT.dialogue.w/2);
 assert.equal(UI_LAYOUT.yesNo.y+UI_LAYOUT.yesNo.h,UI_LAYOUT.dialogue.y+UI_LAYOUT.dialogue.h-8);
+assert.equal(UI_LAYOUT.yesNo.y,328);
 
 console.log(JSON.stringify({
   frames:{sea:4,town:5},

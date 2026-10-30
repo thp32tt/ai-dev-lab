@@ -1852,7 +1852,7 @@ function renderSeaScreen() {
   if (!seaRuntime || !worldAssets) return;
   const st = seaRuntime.snapshot();
   drawOriginalSceneFrame("sea");
-  renderSeaView(ctx, worldAssets, st, UI_VIEW_X, UI_VIEW_Y, 23, 23);
+  renderSeaView(ctx, worldAssets, st, UI_VIEW_X, UI_VIEW_Y, UI_LAYOUT.viewport.tiles, UI_LAYOUT.viewport.tiles);
   const nearbyPort = findPortCallTarget(st, portCatalog);
   const env = st.environment;
   const dirNames = ["북","북동","동","남동","남","남서","서","북서"];

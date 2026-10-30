@@ -165,7 +165,10 @@ export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16,
   const map = portAssets.maps[portId];
   if (!bank || !map) return null;
 
-  const viewTiles = 23;
+  // Korean GRAPH #4/#5 central playfield is 384x384 = 24x24 tiles.
+  // The 32x32 actor may have top-left tile coordinate 22, so a 23x23
+  // background would clip its right/bottom half at the legal edge.
+  const viewTiles = 24;
   const pxSize = viewTiles * PORT_TILE_SIZE;
   const tmp = document.createElement("canvas");
   tmp.width = pxSize;

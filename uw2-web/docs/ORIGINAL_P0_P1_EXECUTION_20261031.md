@@ -25,7 +25,7 @@
 
 ## P1 원본 파일 ↔ Ghidra 주소 교차검증 — 첫 단위 PASS
 - `tools/rea-source-map.mjs`, `tests/rea-source-map.test.mjs`: 원본 MZ 이미지 file offset ↔ Ghidra 16-bit load linear 주소(베이스 `0x10000`) 역변환, 원본 로딩 이미지 끝과 uninitialized DATA/BSS 분리.
-- **MAIN.EXE** raw `0x5400..0x46737` ↔ REA loaded `0x10000..0x51437` (이미지 267,319 bytes): REA CODE 파티션 5개 연속, BSS `0x51437..0x554B7` 16,512 bytes, entry `0x132F4`. REA 자동 탐지 1,261 함수 **후보**. 재배치 5,245개.
+- **MAIN.EXE** raw `0x5400..0x46837` ↔ REA loaded `0x10000..0x51437` (이미지 267,319 bytes): REA CODE 파티션 5개 연속, BSS `0x51437..0x554B7` 16,512 bytes, entry `0x132F4`. REA 자동 탐지 1,261 함수 **후보**. 재배치 5,245개.
 - **OPEN.EXE** raw `0x200..0xA4B7` ↔ REA loaded `0x10000..0x1A2B7` (이미지 41,655 bytes): REA CODE 파티션 3개 연속, BSS `0x1A2B7..0x1D3A7` 12,528 bytes, entry `0x12CE6`. REA 자동 탐지 248 함수 **후보**. 재배치 23개.
 - 원본 바이트 기반으로 P1 주소·이미지 크기·REA CODE 범위·BSS 시작·entry 역변환 검사 PASS. 기존 `main_analyze.stdout.json`, `open_analyze.json`, `main_entry_decompile.json`, `open_entry.json`와 대조.
 - 예: MAIN의 raw `0xE8CA` 음악 디스패처는 이미지 `0x94CA` → REA `0x194CA`. REA 주소와 raw file offset을 무심코 동일시하면 잘못된 코드를 역분석하므로 포팅 함수 증거에는 두 좌표를 모두 기록한다.

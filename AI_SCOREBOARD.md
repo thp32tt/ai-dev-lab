@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 bounded multi-island native GPU RGB source publishing (2026-10-30 KST)
+
+- Unique `CONVERSION-DX11-01174` C++ source and compiled positive/negative regression at `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: validation-bearing material SHA `47bf9c37eb395a5216cf0a0bcb1a5291828b0df7`. A native real-game Draw GPU PRE/POST changed RGB source crop can now preserve up to four independent original-screen-position D3D9 dirty repaint islands (previously two); all prior source crops must be disjoint, the entire authentic dirty-region union must validate, and individual D3D9 SYSTEMMEM surfaces protect queued UpdateSurface lifetimes. Four-island, forged bounds, oversized exclusion, alpha-only and overlap compiled source regressions. Protected original game Draw/input/FFB and DX9Ex fallback preserved; DXVK frozen.
+- Required GitHub Actions on the SAME source SHA all completed SUCCESS: DX11 Fast `40998144469`, Backend Conversion Gate `40998144365`, Windows Build `40998144588`, OpenXR VR architecture `40998144436`, HUD Inspector `40998144465`. Actual game frame/Quest3/VDXR `RUNTIME_VALIDATION=UNTESTED`; no full-frame parity or stereo promotion claims. This is new source-integrated multi-island presentation capability, not a new full renderer completion.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2207 + one distinct source-integrated multi-island DX11 GPU publication and exact-SHA five-Gate PASS +1 = 2208.** Same task retry/C6/checkpoint/docs/readback +0, AI 1 remains independent.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 authentic dual RGB island native Draw source and safe queued-D3D9 upload (2026-10-30 KST)
 
 - Unique `CONVERSION-DX11-01173` source integration in `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`: material C++ and compiled regression `b4e75f63207d7387d7cbf5d3fb7891f4fb2cebf4` preserves two separate, authentic source-coincident GPU RGB islands from the same native game Draw across disjoint original D3D9 dirty Presents; disjoint pixel/dirty-union/alpha-only negatives stay fail closed. Inherited 01172 record acceptance repair `642cd92102b64947dc2a6c8c60eff76f0c326558` is causal CI-only. MSVC C2065/C2737 source-scope repair `e11b47ffc63695fcd7e4c50478a92c9a9cb2cb60` and D3D9 queued SYSTEMMEM second-upload lifetime separation `9947d3c23e8d722d0f397e9a02796f4bbefdd0e0` complete the same source feature, not independent scores.

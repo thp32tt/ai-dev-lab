@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {verifyKoeiLaunchChain,ORIGINAL_KOEI_LAUNCH_SITES}
+ from '../tools/koei-launch-chain.mjs';
+const root=path.join(path.dirname(fileURLToPath(import.meta.url)),'..');
+const baseline=JSON.parse(fs.readFileSync(path.join(root,'docs/original-baseline-20261031.json'),'utf8'));
+const pin=baseline.coreExecutables.find(x=>x.name==='KOEI.COM');
+const dir=process.env.UW2_GAME_DIR||'/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD';
+const orig=fs.readFileSync(path.join(dir,'KOEI.COM'));
+const trace=verifyKoeiLaunchChain(orig,{expectedSha256:pin.sha256});
+assert.equal(trace.entryRaw,0x292);
+assert.equal(trace.entryPsp,0x392);
+assert.equal(trace.execWrapper.raw,0x115);
+assert.equal(trace.execWrapper.dosService,'INT 21h AX=4B00h');
+assert.deepEqual(trace.orderedStaticLaunchSites.map(x=>x.file),
+  ['FMDRV.COM','OPEN.EXE','MAIN.EXE','END.EXE']);
+assert.deepEqual(trace.orderedStaticLaunchSites.map(x=>x.stringRaw),[0x13,0x1d,0x26,0x2f]);
+assert.deepEqual(trace.orderedStaticLaunchSites.map(x=>x.movDxRaw),[0x254,0x25f,0x269,0x277]);
+assert.deepEqual(trace.orderedStaticLaunchSites.map(x=>x.callRaw),[0x257,0x262,0x26c,0x27a]);
+assert.equal(trace.conditions.length,3);
+assert.equal(trace.conditions[1].source,'after MAIN.EXE');
+assert.equal(ORIGINAL_KOEI_LAUNCH_SITES.length,4);
+const badName=Buffer.from(orig);badName[0x13]^=1;
+assert.throws(()=>verifyKoeiLaunchChain(badName),/filename mismatch/);
+const badTarget=Buffer.from(orig);badTarget[0x258]^=1;
+assert.throws(()=>verifyKoeiLaunchChain(badTarget),/does not call proven EXEC wrapper/);
+const badGuard=Buffer.from(orig);badGuard[0x271]^=1;
+assert.throws(()=>verifyKoeiLaunchChain(badGuard),/post-execution condition/);
+const badEntry=Buffer.from(orig);badEntry[1]^=1;
+assert.throws(()=>verifyKoeiLaunchChain(badEntry),/entry offset mismatch/);
+assert.throws(()=>verifyKoeiLaunchChain(orig,{expectedSha256:'0'.repeat(64)}),/SHA-256 mismatch/);
+console.log('UW2 P1 original KOEI.COM DOS EXEC launcher chain and conditional branching: PASS');

@@ -183,6 +183,16 @@ export class RealMode8086 {
     if(p===0)this.flags|=FLAGS.PF;
     this.flags|=2;
   }
+  // Only SF/ZF/PF are defined by 8086 decimal adjust and AAM/AAD.
+  // Keep CF/AF/OF (when undefined), and all control flags unchanged.
+  setSZP(value) {
+    const byte=value&0xff;
+    let parity=0;
+    for(let bit=0;bit<8;bit++)parity^=(byte>>>bit)&1;
+    this.flags=(this.flags&~(FLAGS.SF|FLAGS.ZF|FLAGS.PF))|
+      (byte&0x80?FLAGS.SF:0)|(byte===0?FLAGS.ZF:0)|
+      (parity===0?FLAGS.PF:0)|2;
+  }
   // Preserve the 8086 low-width arithmetic flags without changing IF/DF/TF.
   // All values are unsigned bit patterns; signed overflow uses the sign bit.
   arithmeticResult(left,right,width,subtract=false) {
@@ -373,6 +383,47 @@ export class RealMode8086 {
       const width=op===0xa8?8:16;
       this.aluResult('test',width===8?this.get8('AL'):this.get16('AX'),
         width===8?this.fetch8():this.fetch16(),width);
+      return;
+    }
+    // 8086 decimal arithmetic instructions: exact register/defined-flags
+    // transitions only. Undefined flags are intentionally retained, not
+    // claimed as original DOS traces or inferred gameplay semantics.
+    if(op===0x27||op===0x2f){ // DAA / DAS
+      const al=this.get8('AL'),oldCF=this.flag('CF'),oldAF=this.flag('AF');
+      const correction=(al&0x0f)>9||oldAF;
+      let result=al;
+      if(correction)result=(result+(op===0x27?6:-6))&0xff;
+      const high=al>0x99||oldCF;
+      if(high)result=(result+(op===0x27?0x60:-0x60))&0xff;
+      this.set8('AL',result);
+      this.flags=(this.flags&~(FLAGS.CF|FLAGS.AF))|
+        (high?FLAGS.CF:0)|(correction?FLAGS.AF:0)|2;
+      this.setSZP(result);
+      return;
+    }
+    if(op===0x37||op===0x3f){ // AAA / AAS
+      const correction=(this.get8('AL')&15)>9||this.flag('AF');
+      if(correction){
+        const delta=op===0x37?0x106:-0x106;
+        this.set16('AX',(this.get16('AX')+delta)&0xffff);
+      }
+      this.set8('AL',this.get8('AL')&15);
+      this.flags=(this.flags&~(FLAGS.CF|FLAGS.AF))|
+        (correction?(FLAGS.CF|FLAGS.AF):0)|2;
+      return; // SF/ZF/PF/OF are undefined on AAA/AAS.
+    }
+    if(op===0xd4||op===0xd5){ // AAM / AAD, encoded 8-bit base
+      const base=this.fetch8(),al=this.get8('AL'),ah=this.get8('AH');
+      if(op===0xd4){
+        if(base===0)
+          throw new Error('8086 AAM base zero raises INT 0 (unimplemented): fail closed');
+        this.set8('AH',Math.floor(al/base));
+        this.set8('AL',al%base);
+      }else{
+        this.set8('AL',(ah*base+al)&0xff);
+        this.set8('AH',0);
+      }
+      this.setSZP(this.get8('AL'));
       return;
     }
     if(op===0xd7){ // XLAT: byte table in DS:BX + unsigned AL.
@@ -595,6 +646,11 @@ export class RealMode8086 {
       this.set16('CX',cx);
       if(cx&&(op===0xe2||(op===0xe1?this.flag('ZF'):!this.flag('ZF'))))
         this.ip=(this.ip+delta)&0xffff;
+      return;
+    }
+    // CLI/STI modify IF only; no host interrupt scheduling is invented.
+    if(op===0xfa||op===0xfb){
+      this.flags=(this.flags&~FLAGS.IF)|(op===0xfb?FLAGS.IF:0)|2;
       return;
     }
     if(op===0xf8||op===0xf9||op===0xf5){

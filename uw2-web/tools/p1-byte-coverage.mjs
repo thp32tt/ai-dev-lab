@@ -76,6 +76,64 @@ export function auditP1ByteCoverage(input){
     caveat:'Static candidate/data ranges do not establish verified instructions, original DOS behavior or browser fidelity. A complete range ledger is not a full decompilation.'
   };
 }
+
+// Assemble independently extracted REA/Ghidra chunks into a deterministic
+// resume inventory WITHOUT pretending a container range proves disassembly.
+// The manifest references export digests, never copyrighted original bytes.
+export function auditP1CheckpointManifest(manifest){
+  if(!manifest||typeof manifest!=='object'||!Array.isArray(manifest.batches))
+    throw new TypeError('P1 checkpoint batches required');
+  const {moduleName,sha256,headerBytes,declaredBytes,batches}=manifest;
+  const ids=new Set(),sourceSpans=[],checkpoints=[];
+  const imageSize=declaredBytes-headerBytes;
+  // Basic bounds and original SHA are independently enforced again by
+  // auditP1ByteCoverage even when a batch does not cover any instructions.
+  const ordered=[...batches].sort((a,b)=>String(a?.batchId).localeCompare(String(b?.batchId),'en'));
+  for(const batch of ordered){
+    const id=batch?.batchId;
+    if(typeof id!=='string'||!/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$/.test(id)||ids.has(id))
+      throw new Error('P1 checkpoint batch ID missing or duplicate');
+    ids.add(id);
+    if(typeof batch.tool!=='string'||!['REA','GHIDRA','STATIC'].includes(batch.tool))
+      throw new Error('P1 checkpoint tool must be explicit REA/GHIDRA/STATIC');
+    if(typeof batch.exportSha256!=='string'||!/^[a-f0-9]{64}$/.test(batch.exportSha256))
+      throw new Error('P1 checkpoint requires exact export SHA-256');
+    integer(batch.start,'batch start');integer(batch.end,'batch end');
+    if(batch.start>=batch.end||batch.end>imageSize)
+      throw new RangeError('P1 checkpoint outside initialized MZ image');
+    if(batch.status!=='EXPORTED'&&batch.status!=='FAILED')
+      throw new Error('P1 checkpoint status must be EXPORTED or FAILED');
+    if(!Array.isArray(batch.spans)||batch.status==='FAILED'&&batch.spans.length)
+      throw new Error('P1 FAILED checkpoint cannot claim decoded spans');
+    const source=batch.tool+':'+id+'@'+batch.exportSha256;
+    if(batch.status==='FAILED'){
+      sourceSpans.push({kind:'FAILED',start:batch.start,end:batch.end,source});
+    }else{
+      for(const span of batch.spans){
+        if(!span||!Object.hasOwn(CLASSES,span.kind))
+          throw new Error('unknown P1 checkpoint span kind');
+        integer(span.start,'checkpoint span start');
+        integer(span.end,'checkpoint span end');
+        if(span.start<batch.start||span.end>batch.end||span.start>=span.end)
+          throw new RangeError('checkpoint span outside its batch');
+        sourceSpans.push({kind:span.kind,start:span.start,end:span.end,source});
+      }
+    }
+    checkpoints.push({batchId:id,tool:batch.tool,exportSha256:batch.exportSha256,
+      status:batch.status,start:batch.start,end:batch.end,spanRecords:batch.spans.length});
+  }
+  const audited=auditP1ByteCoverage({moduleName,sha256,headerBytes,declaredBytes,spans:sourceSpans});
+  const pendingRanges=audited.ranges.filter(r=>
+    r.kind==='UNOBSERVED'||r.kind==='UNRESOLVED'||
+    r.kind==='FAILED'||r.kind==='CONFLICT');
+  return {
+    ...audited,schemaVersion:2,batchCount:checkpoints.length,checkpoints,
+    pendingRanges,nextUnobserved:pendingRanges.find(r=>r.kind==='UNOBSERVED')??null,
+    checkpointGate:audited.gate,
+    caveat:'Checkpoint merge accounts for unobserved/failed/conflicting bytes. EXPORTED is not verified code, REA/Ghidra success, original DOS execution, or web fidelity.'
+  };
+}
+
 const main=process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url);
 if(main){
   const file=process.argv[2];

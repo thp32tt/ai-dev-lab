@@ -40,6 +40,7 @@ jobs:
           node uw2-web/tests/realmode-8086-io.test.mjs
           node uw2-web/tests/realmode-8086-decimal.test.mjs
           node uw2-web/tests/p1-byte-coverage.test.mjs
+          node uw2-web/tests/p1-checkpoint-merge.test.mjs
           node uw2-web/tests/mz-loader.test.mjs
           node uw2-web/tests/fidelity-policy.test.mjs
           node uw2-web/tests/mz-relocation-callgraph.test.mjs

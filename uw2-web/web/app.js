@@ -131,6 +131,7 @@ let seaAutoActive = false;
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
 let systemMenuPending = false;
 const bootGate = new Uw2BootGate();
+let gameResourceFailure = null;
 
 const fidelityParams = new URLSearchParams(location.search);
 const allowApproximateMusic = fidelityParams.get("musicApprox") === "1";
@@ -406,6 +407,7 @@ function drawLoadSlots() {
 }
 
 function enterSystemMenu(cursor = 0) {
+  if (!bootGate.canShowSystemMenu()) return false;
   if (!fontAssets || !menuDefs[ORIGINAL_SYSTEM_MENU_INDEX] || !slots.length) {
     systemMenuPending = true;
     drawOpeningTitleHold("system-pending");
@@ -856,7 +858,10 @@ function completeOpening(reason = "complete") {
   // OPEN.EXE owns boot until its last scene (or an intentional user skip).
   // MAIN resources finishing independently never opens the menu early.
   if (bootGate.finishOpening()) enterSystemMenu(0);
-  else if (bootGate.opening === "finished") drawOpeningTitleHold(reason);
+  else if (bootGate.opening === "finished") {
+    drawOpeningTitleHold(reason);
+    if (gameResourceFailure) $("runtime-status").textContent = gameResourceFailure;
+  }
 }
 
 function stopOpening(showTitle = false) {
@@ -1967,7 +1972,7 @@ function renderRuntime() {
 $("opening-button").addEventListener("click", startOpeningPlayback);
 
 function startSelectedGame() {
-  if (!selected) return false;
+  if (!bootGate.canShowSystemMenu() || !selected) return false;
   stopOpening(false);
   if (selected.port !== 0xff && portAssets && portDoors) {
     if (runtime) runtime.pause();
@@ -2134,9 +2139,12 @@ const gameBoot = Promise.allSettled([
   loadMusicSupport(),
 ]).then(results => {
   const failed = results.filter(r => r.status === "rejected");
-  if (failed.length && viewMode !== "opening") {
-    $("runtime-status").textContent = "게임 데이터 일부 로드 오류: " +
+  if (failed.length) {
+    gameResourceFailure = "게임 데이터 일부 로드 오류: " +
       failed.map(r => r.reason?.message ?? String(r.reason)).join("; ");
+    bootGate.failGameResources();
+    if (viewMode !== "opening") $("runtime-status").textContent = gameResourceFailure;
+    return; // Do not treat rejected original data as MAIN.EXE boot readiness.
   }
   if (bootGate.settleGameResources()) enterSystemMenu(0);
 });

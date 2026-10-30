@@ -29,4 +29,25 @@ assert.equal(earlyMain.startOpening(), true);
 assert.equal(earlyMain.canShowSystemMenu(), false);
 assert.equal(earlyMain.finishOpening(), true);
 
-console.log("UW2 OPEN.EXE first / MAIN menu after completion gate: PASS");
+// One rejected MAIN resource must not be mistaken for a settled resource set.
+const failedBeforeOpen = new Uw2BootGate();
+assert.equal(failedBeforeOpen.failGameResources(), false);
+assert.equal(failedBeforeOpen.settleGameResources(), false);
+assert.equal(failedBeforeOpen.gameResourcesSettled, false);
+assert.equal(failedBeforeOpen.gameResourcesFailed, true);
+assert.equal(failedBeforeOpen.startOpening(), true);
+assert.equal(failedBeforeOpen.finishOpening(), false);
+assert.equal(failedBeforeOpen.canShowSystemMenu(), false);
+
+// A late asset failure revokes readiness, including after the OPEN title hold.
+const failedAfterOpen = new Uw2BootGate();
+assert.equal(failedAfterOpen.startOpening(), true);
+assert.equal(failedAfterOpen.finishOpening(), false);
+assert.equal(failedAfterOpen.failGameResources(), false);
+assert.equal(failedAfterOpen.settleGameResources(), false);
+assert.equal(failedAfterOpen.canShowSystemMenu(), false);
+
+// Replaying OPEN cannot bypass missing original resources.
+assert.equal(failedBeforeOpen.startOpening(), true);
+assert.equal(failedBeforeOpen.finishOpening(), false);
+console.log("UW2 OPEN.EXE first / MAIN resource load must succeed, fail-closed: PASS");

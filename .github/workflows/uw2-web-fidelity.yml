@@ -1,0 +1,27 @@
+name: UW2 Web Fidelity Static Gate
+
+on:
+  push:
+    branches: [uw2-web-port]
+    paths:
+      - 'uw2-web/**'
+      - '.github/workflows/uw2-web-fidelity.yml'
+  workflow_dispatch:
+
+jobs:
+  synthetic-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate browser module and boot-order syntax
+        run: |
+          node --check uw2-web/web/app.js
+          node --check uw2-web/web/boot-sequence.js
+      - name: Boot and fidelity policies without copyrighted game assets
+        run: |
+          node uw2-web/tests/boot-sequence.test.mjs
+          node uw2-web/tests/fidelity-policy.test.mjs
+          node uw2-web/tests/mz-relocation-callgraph.test.mjs

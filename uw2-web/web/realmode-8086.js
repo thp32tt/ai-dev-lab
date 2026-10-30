@@ -122,6 +122,36 @@ export class RealMode8086 {
     if(p===0)this.flags|=FLAGS.PF;
     this.flags|=2;
   }
+  // Preserve the 8086 low-width arithmetic flags without changing IF/DF/TF.
+  // All values are unsigned bit patterns; signed overflow uses the sign bit.
+  arithmeticResult(left,right,width,subtract=false) {
+    const mask=width===8?0xff:0xffff, sign=width===8?0x80:0x8000;
+    const a=left&mask,b=right&mask;
+    const full=subtract?a-b:a+b, result=full&mask;
+    const flagMask=FLAGS.CF|FLAGS.PF|FLAGS.AF|FLAGS.ZF|FLAGS.SF|FLAGS.OF;
+    let bits=0;
+    if(subtract?a<b:full>mask)bits|=FLAGS.CF;
+    if((a^b^result)&0x10)bits|=FLAGS.AF;
+    if(subtract?((a^b)&(a^result)&sign):((~(a^b))&(a^result)&sign))bits|=FLAGS.OF;
+    if(result===0)bits|=FLAGS.ZF;
+    if(result&sign)bits|=FLAGS.SF;
+    let parity=0,low=result&255;
+    for(let i=0;i<8;i++){parity^=low&1;low>>>=1;}
+    if(parity===0)bits|=FLAGS.PF;
+    this.flags=(this.flags&~flagMask)|bits|2;
+    return result;
+  }
+  aluResult(kind,left,right,width) {
+    if(kind==='add')return this.arithmeticResult(left,right,width);
+    if(kind==='sub'||kind==='cmp')return this.arithmeticResult(left,right,width,true);
+    let value;
+    if(kind==='or')value=left|right;
+    else if(kind==='and'||kind==='test')value=left&right;
+    else if(kind==='xor')value=left^right;
+    else throw new Error('unsupported 8086 ALU kind: fail closed');
+    this.logicResult(value,width);
+    return width===8?value&255:value&0xffff;
+  }
   step() {
     const cs=this.seg.CS, at=this.ip;
     let op=this.fetch8(),segmentOverride=null,prefixes=0;
@@ -133,21 +163,69 @@ export class RealMode8086 {
     if(op===0x90)return; // NOP
     if(op>=0xb8&&op<=0xbf){this.set16(R16[op-0xb8],this.fetch16());return;}
     if(op>=0xb0&&op<=0xb7){this.set8(R8[op-0xb0],this.fetch8());return;}
+    // Native 8086 register INC/DEC leave CF unchanged, unlike ADD/SUB.
+    if(op>=0x40&&op<=0x4f){
+      const name=R16[op&7],before=this.get16(name),cf=this.flags&FLAGS.CF;
+      const result=this.arithmeticResult(before,1,16,op>=0x48);
+      this.flags=(this.flags&~FLAGS.CF)|cf;
+      this.set16(name,result);return;
+    }
+    if(op>=0x50&&op<=0x57){
+      // On the original 8086, PUSH SP stores the decremented SP.
+      this.push16(op===0x54?(this.get16('SP')-2)&0xffff:this.get16(R16[op-0x50]));
+      return;
+    }
+    if(op>=0x58&&op<=0x5f){this.set16(R16[op-0x58],this.pop16());return;}
+    if(op===0x9c){this.push16(this.flags);return;}
+    if(op===0x9d){this.set16('FLAGS',this.pop16());return;}
     // Actual 8086 16-bit memory address formation; no inferred game rules.
-    if((op>=0x88&&op<=0x8b)||(op>=0x08&&op<=0x0b)){
+    const arithmeticGroup=op&0xfc;
+    const kindByGroup={0x00:'add',0x08:'or',0x20:'and',0x28:'sub',0x30:'xor',0x38:'cmp'};
+    if((op>=0x88&&op<=0x8b)||Object.hasOwn(kindByGroup,arithmeticGroup)||
+       op===0x84||op===0x85){
       const m=this.fetch8(),width=(op&1)?16:8;
       const rm=this.memoryOperand(m,width,segmentOverride);
       const name=(width===8?R8:R16)[(m>>>3)&7];
       const reg=()=>width===8?this.get8(name):this.get16(name);
       const setReg=v=>width===8?this.set8(name,v):this.set16(name,v);
-      const destIsReg=!!(op&2);
-      if(op>=0x88){
-        if(destIsReg)setReg(rm.read());else rm.write(reg());
+      if(op>=0x88&&op<=0x8b){
+        if(op&2)setReg(rm.read());else rm.write(reg());
       }else{
-        const result=(destIsReg?reg():rm.read())|(destIsReg?rm.read():reg());
-        if(destIsReg)setReg(result);else rm.write(result);
-        this.logicResult(result,width);
+        const isTest=op===0x84||op===0x85;
+        const destIsReg=!isTest&&!!(op&2);
+        const left=destIsReg?reg():rm.read(),right=destIsReg?rm.read():reg();
+        const kind=isTest?'test':kindByGroup[arithmeticGroup];
+        const value=this.aluResult(kind,left,right,width);
+        if(kind!=='cmp'&&kind!=='test'){
+          if(destIsReg)setReg(value);else rm.write(value);
+        }
       }
+      return;
+    }
+    // Immediate AL/AX forms preserve operand width and 16-bit wrapping.
+    const immediateGroup=op&0xfe;
+    const immediateKind={0x04:'add',0x0c:'or',0x24:'and',
+                         0x2c:'sub',0x34:'xor',0x3c:'cmp'}[immediateGroup];
+    if(immediateKind){
+      const width=(op&1)?16:8,name=width===8?'AL':'AX';
+      const value=this.aluResult(immediateKind,
+        width===8?this.get8(name):this.get16(name),
+        width===8?this.fetch8():this.fetch16(),width);
+      if(immediateKind!=='cmp'){
+        if(width===8)this.set8(name,value);else this.set16(name,value);
+      }
+      return;
+    }
+    // Group-1 immediate: unimplemented ADC/SBB extensions deliberately fail.
+    if(op===0x80||op===0x81||op===0x83){
+      const m=this.fetch8(),extension=(m>>>3)&7;
+      const kind=['add','or',null,null,'and','sub','xor','cmp'][extension];
+      if(!kind)throw new Error('unsupported 8086 group-1 immediate extension: fail closed');
+      const width=op===0x80?8:16,rm=this.memoryOperand(m,width,segmentOverride);
+      const imm=op===0x83?s8(this.fetch8())&0xffff:
+        width===8?this.fetch8():this.fetch16();
+      const value=this.aluResult(kind,rm.read(),imm,width);
+      if(kind!=='cmp')rm.write(value);
       return;
     }
     if(op===0xc6||op===0xc7){
@@ -165,12 +243,16 @@ export class RealMode8086 {
       else this.set16('AX',this.read16(seg,off));
       return;
     }
-    if(op===0x74||op===0x75||op===0xeb){
+    if(op>=0x70&&op<=0x7f){
       const delta=s8(this.fetch8());
-      if(op===0xeb||(op===0x74?this.flag('ZF'):!this.flag('ZF')))
-        this.ip=(this.ip+delta)&0xffff;
+      const cf=this.flag('CF'),zf=this.flag('ZF'),sf=this.flag('SF');
+      const of=this.flag('OF'),pf=this.flag('PF');
+      const conditions=[of,!of,cf,!cf,zf,!zf,cf||zf,!cf&&!zf,
+        sf,!sf,pf,!pf,sf!==of,sf===of,zf||(sf!==of),!zf&&(sf===of)];
+      if(conditions[op-0x70])this.ip=(this.ip+delta)&0xffff;
       return;
     }
+    if(op===0xeb){this.ip=(this.ip+s8(this.fetch8()))&0xffff;return;}
     if(op===0xe9){const delta=s16(this.fetch16());this.ip=(this.ip+delta)&0xffff;return;}
     if(op===0xe8){const delta=s16(this.fetch16());this.push16(this.ip);this.ip=(this.ip+delta)&0xffff;return;}
     if(op===0xc3){this.ip=this.pop16();return;}

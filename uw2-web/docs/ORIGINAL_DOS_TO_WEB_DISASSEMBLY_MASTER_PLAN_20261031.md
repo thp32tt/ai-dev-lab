@@ -1,5 +1,5 @@
 # 대항해시대 II 한국어 DOS 원본 → 웹 완전동작 포팅 마스터 계획
-- 수립: 2026-10-31 KST
+- 수립: 2026-10-31 KST; 개정: 2026-10-31 KST (전체 디컴파일/하이브리드 런타임 우선)
 - 기준: `thp32tt/ai-dev-lab@uw2-web-port`; 실제 한국어판 DOS 설치 파일만 정본. REA/Ghidra 분석은 참고 출력이며 **실행 파일의 실제 바이트, DOS 참조 실행 결과**로 재확인한다.
 - 목표: **원본과 동일한 게임**을 브라우저에서 실행. 개조판·편의기능 추가·대사 재작성·현대식 밸런스 조정·새 인터페이스·임의의 음악/장면/동작 생성 **금지**.
 - 진행 상태 (2026-10-31 KST): **P0 원본 61개 해시 검증 PASS; P1 MAIN/OPEN 원본↔Ghidra 주소·BSS 검증 PASS, MZ 4개 실행 파일 재배치 5,296건 전수 검사 PASS, 정적 far 제어 이전 후보 5,038건/351개 타깃 그룹 추출 PASS, KOEI.COM 조건부 DOS EXEC 기동 경로 실물 검사 PASS.** P1 전체 함수·간접/near 호출·동적 상태 분석 미완료, P2~P9 미착수. 근거: `ORIGINAL_P0_P1_EXECUTION_20261031.md`, `ORIGINAL_P1_RELOCATION_LAUNCHER_20261031.md`, `p1-far-transfer-candidates-20261031.json`. **제어 이전 후보 수는 포팅 완료율/검증된 함수 수가 아님.**
@@ -17,6 +17,46 @@
 - 이미 증명된 최소 고정점: 한국어 OPEN 장면 12개/OPGRAPH 14파트 108레코드, MAIN 시스템 메뉴 #56, 여섯 주인공 선택 및 음악 분기, FMDRV INT 66h 호출, MAIN 음악 테이블. `web/reverse-evidence.js`와 `docs/BROWSER_M21..M25` 참조. 미검증 의미를 추가하지 않는다.
 - 소스 브랜치의 최근 선행 작업은 `uw2-web-port@3a3cf1122d8dad428ca11372461e8d2037c90c9a` (계획 수립 시점)이다. 이후 각 산출물은 자체 SHA/증거를 별도 기록한다.
 - 분석 데이터 모델: `artifact SHA -> MZ/COM segment/address -> function/basic block -> callsite -> memory layout -> game-state transition -> browser implementation -> differential test`의 **역추적 가능한 링크**.
+
+
+## 3-A. REA/Ghidra 전체 디컴파일 우선 및 JS/WASM 실행 엔진 설계 (2026-10-31 공식 개정)
+
+**우선순위 변경:** 기존 P0~P9 목표와 원본 무변경 계약은 유지한다. 개별 메뉴·상점·항해 기능을 추정해서 계속 덧붙이는 방식보다, 먼저 **원본 실행 모듈 전체를 배치 분석해 함수/기본블록/미해결 코드 영역을 추출하고**, 실제 8086 동작을 보존하는 **공통 실행 상태 + IR + 직접 변환 JS/WASM 블록 + 원본 명령 실행 폴백**을 구현한다. 기존 웹 포팅 모듈은 폐기/덮어쓰지 않고 원본 근거를 검증한 부분부터 연결한다.
+
+### A. 전체 역어셈블리·디컴파일 파이프라인 (P1 최우선)
+1. 입력 고정: 소유 한국어판 KOEI.COM, OPEN.EXE, MAIN.EXE, END.EXE, GRPDRV.EXE, FMDRV.COM과 필요한 로딩 오버레이를 기존 SHA-256 인벤토리로 검증한다. 현재 원본 확인 실적(61개 해시, MZ relocation 5,296건, 9A/EA 후보 5,038건, MAIN/OPEN REA 함수 후보 1,261/248개)은 보존하며 **후보를 검증 완료 함수 수로 간주하지 않는다**.
+2. REA 6.5.0/Ghidra 12.1.4의 기존 분석 프로젝트 및 실제 지원되는 추출/자동화 인터페이스를 조사한 다음, 모듈별 전체 메모리 영역에 대해 batch disassembly/decompile/CFG/xref/callsite/global access를 추출한다. 자동화 API 명칭이나 결과 구조는 실제 도구 확인 전 임의로 가정하지 않는다.
+3. 함수 후보와 **함수로 인식하지 못한 실행 코드**, 오류 반환, 데이터/코드 경계 충돌, BSS/overlay, 간접 호출(FF /3,/5 등), near/far call/ret, DOS/BIOS/드라이버 인터럽트·I/O 포트를 모두 별도 갭으로 목록화한다. 디컴파일에 성공한 의사코드도 원본 의미 검증 전에는 확정 소스로 쓰지 않는다.
+4. 원본 오프셋, 세그먼트:오프셋, REA/Ghidra 주소, load image/BSS를 분리한 stable ID를 사용한다. 각 기록에는 module SHA, byte region, basic block, direct/indirect edges, 읽기/쓰기 상태, 추출 성공/실패 사유, 실제 증거·도구 버전·출력 해시를 남긴다.
+5. 모듈별 범위 청크를 만들어 중간 체크포인트부터 재시도한다. 이미 성공한 코드를 매 실행 처음부터 분석하지 않는다. 전체 로딩 범위에서 identified code / data / unresolved / failed byte range가 빠짐없이 계량될 때만 batch inventory가 끝났다고 판단한다. **디컴파일 추출이 끝나도 포팅 완료는 아님**.
+6. 공개 저장소에는 직접 작성한 도구/테스트/런타임과 필요한 비저작권 구조 메타데이터·해시만 남긴다. 원본 바이너리/리소스, 대량의 디컴파일 유사 원문, 원작 저작권 소스에 준하는 재구성 코드를 공개 GitHub에 덤프하지 않는다. 원본과 상세 추출 데이터는 권한 있는 로컬 분석 환경에서 유지한다.
+
+### B. 8086 의미 보존 코어 + 공통 IR + JS/WASM 하이브리드 (P3)
+1. 공통 실행 상태에 8/16비트 레지스터, FLAGS(CF/ZF/OF 등), segment:offset 및 20-bit 실주소 wrap, stack, CALL/RET/IRET/near/far control transfer, 원본 16-bit 산술과 정수 오버플로, relocation/overlay, 메모리·시간·난수 상태를 정의한다.
+2. 디컴파일 C 의사코드를 기계적으로 JS로 번역하지 않는다. 검증된 명령/블록을 **입력 상태→명령 의미→부작용→다음 주소** IR로 변환하고, 빠르고 검증된 영역만 JS 또는 WASM 네이티브 블록으로 올린다.
+3. 복원되지 않은 명령/간접 호출은 **동일 CPU·메모리·전역 상태**를 쓰는 bounded 8086 실행 폴백으로 넘긴다. 임의로 함수 의미·게임 이벤트·화면·음악을 만들어 우회하지 않으며, 폴백의 원본 바이트 이용은 사용자 로컬 보유 원본/권리 준수 조건에서만 수행한다.
+4. DOS 파일/인터럽트/시계/키보드, VGA 화면/팔레트, FMDRV INT 66h/OPL, 원본 세이브 I/O 등은 별도 장치 어댑터로 연결한다. 원본에서 확인되지 않은 PC-98/다른 장치나 새로운 GUI 기능을 임의 추가하지 않는다.
+5. KOEI → OPEN → MAIN → 조건부 END 실제 실행 분기를 최소 수직 slice로 먼저 통과시킨다. OPEN에서 비정상 종료 시 MAIN을 실행하지 않는 기존 정적 검증과 실제 DOS 종료코드/Enter 건너뛰기 관찰은 구분한다. 이후 6인 선택→항구→항해→전투→이벤트→엔딩으로 확장한다.
+6. DOS 에뮬레이터에서 원본을 보여주는 단순 웹 화면 전달은 디버깅/대조 oracle로만 허용하고 최종 원본 네이티브 웹 포팅 완료로 취급하지 않는다.
+
+### C. 실제 원본 비교 및 정확성 승인 (P2~P9)
+- P2의 동일 입력·시간·난수 고정 DOS 참조 실행에서 call/branch/register/memory/save/video/palette/OPL trace를 채집한다. 확보하지 못한 부분은 UNTESTED/HOLD다.
+- 각 블록은 synthetic unit 통과와 DOS trace 정합성을 **별도 판정**한다. 프로그램 화면을 단순히 비슷하게 표시하는 것만으로 원본 동일성을 주장하지 않는다.
+- 함수 처리 현황은 DISCOVERED / DECOMPILED / VERIFIED / FAILED / UNRESOLVED, 테스트는 STATIC / SYNTHETIC / ORIGINAL_DOS / BROWSER / FULL_GAME으로 분리 보고한다. 지표의 분모는 확인한 실제 로딩 코드 바이트 및 통제된 실행 경로이며 후보 함수 개수로 포팅 완료율 계산 금지.
+- 기존 P4~P8 기능은 유지하되 추측/근사 경로를 원본 참조로 교체한다. 6인 전 경로·시나리오·게임 종료·세이브·음악·픽셀·브라우저 장기 동작을 검증한 P9만 FULL_GAME_COMPLETE로 승인한다.
+
+### D. 자동 C 슬롯 실행 정책 (00/30분 KST 유지)
+- GitHub uw2-web-port HEAD + 이 마스터 계획 + 마지막 batch/IR/trace 체크포인트가 SSOT. 매 실행 **다음 미완료 코드 범위**부터 이어간다. 새 구현 하나를 커밋했다고 전체 작업을 종료하거나 TASK_ID/시작 위치를 초기화하지 않는다.
+- 첫 개발 우선순위: 전체 REA/Ghidra 배치 추출 도구와 합성 회귀 구현 → 실물 실행으로 누락 및 실패 통계 검증 → 공통 8086 CPU/IR 최소 수직 실행 경로 구현 → 원본 DOS trace 대조. P1 도중 원본 근거가 있는 실행 단위는 병행 구현 가능.
+- 실제 source material 변경(uw2-web/tools/ 또는 uw2-web/web/ 등)과 회귀를 GitHub에 커밋. 문서만 쓰거나 후보를 출력한 것만으로 전체 작업을 완료하지 않는다. 같은 TASK_ID의 중간 결과는 checkpoint로 처리한다.
+- N100은 GitHub 또는 ChatGPT 로컬로 불가능한 **기존 REA/Ghidra 분석·원본 파일 읽기·소규모 실제 검증**에만 사용한다. N100 신규 clone/worktree, 불필요한 반복 풀 분석/대형 빌드는 피한다.
+- 기존 GitHub Actions는 exact SHA에 대해 검증하며, 실제 실행하지 않은 N100 분석·DOS 원본·브라우저·6인 인수 테스트를 PASS로 보고하지 않는다. 점수도 새로운 독립 검증 성과만 가산; 계획 변경/동일 TASK 재검증은 +0.
+
+### E. 다음 작업 산출물 (P1 재개)
+- P1-BATCH-001: 실제 설치된 REA/Ghidra 인터페이스 조사 및 모듈별 full-code batch manifest + 실패/갭 export 도구와 합성 fixture 테스트.
+- P1-BATCH-002: MAIN/OPEN 1,261/248 자동 후보의 결과를 전체 코드 범위와 교차해 디컴파일 성공/실패/unknown 및 indirect transfer 갭을 분리; KOEI/END/GRPDRV/FMDRV로 확대.
+- P3-CORE-001: 원본 부팅 분기에 필요한 16-bit register/flags/segment/near-far transfer/exit-code 의미를 공유 IR+웹 실행 코어에서 돌리고 original DOS trace와 비교. 미실행 original/binary 테스트를 PASS로 적지 않는다.
+
 
 ## 3. 실행 순서와 완료 게이트
 | 단계 | 실제 수행 | 필수 GitHub 산출물 | PASS 게이트 |
@@ -46,8 +86,13 @@
 - 확인된 오프닝 BGM index 0 외의 메뉴/항구/해상 BGM은 의미 검증 전 **재생 매핑 금지**; 원본 FMDRV 및 VGA 이벤트 확인 필요.
 - 현재 웹 전용 컨트롤/부가 화면, HTTP 뷰, 자동 이동 등은 배포용 원본 게임과 격리할 대상. **이 계획 작성만으로 기존 화면이 원본과 동일해진 것은 아니다.**
 
-## 6. 첫 실행 단위 (P0-A)
+## 6. 최초 실행 기록 (P0-A는 이미 완료; 이제 P1-BATCH-001부터)
 - 실행 파일(최소 KOEI.COM, OPEN.EXE, MAIN.EXE, END.EXE, GRPDRV.EXE, FMDRV.COM)과 전체 원본 설치 파일에 대해 크기·SHA-256 인덱스를 만들되 원본을 수정/업로드하지 않는다.
 - MZ 이미지 크기, 헤더·relocation table, CS:IP/SS:SP 및 잔여 overlay를 **바이너리 구조로 검사**하는 재현 가능한 분석기를 만든다. 불명확한 구조는 '추정'으로 분리.
 - 분석기 테스트는 합성 MZ/COM fixture로 실행하고 사용자 원본을 이용한 read-only P0 결과를 별도 문서에 기록한다.
 - P0 산출물은 완료 뒤 P1 call graph 추출의 입력 계약으로 사용한다.
+
+## 7. 현재 즉시 실행할 다음 작업
+- 기존 P0-A는 원본 SHA 기준선과 4개 MZ 재배치 감사로 **이미 수행**됨. 새 C 슬롯 작업의 시작점을 P0로 되돌리지 않는다.
+- 이 문서의 3-A/E 절에서 지정한 P1-BATCH-001/002 및 P3-CORE-001을 새 최우선 미완료 구현 단계로 취급한다.
+- 기존 P0~P9 단계 완료 게이트는 폐기하지 않는다. **원본 전체 게임 동등성은 여전히 미완료**다.

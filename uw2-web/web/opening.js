@@ -10,6 +10,13 @@ export const UW2_OPENING_PALETTE = Object.freeze([
 
 const TICK_MS = 1000 / 60;
 
+export const OPENING_FIDELITY_POLICY = Object.freeze({
+  defaultMode: "reverse-engineered-only",
+  approximatePlaybackOptIn: "openingApprox=1",
+  exactReplayReady: false,
+  reason: "OPEN.EXE scene blit/copy/timing transcript is not fully closed yet",
+});
+
 export function decodeOpeningArchive(arrayBuffer) {
   const archive = decodeLS11(arrayBuffer);
   const parts = archive.decoded.map((part, partIndex) => ({
@@ -424,6 +431,7 @@ export class KoreanOpeningPlayer {
     onCycle = null,
     speed = 1,
     loop = false,
+    allowApproximate = false,
   } = {}) {
     this.opening = opening;
     this.canvas = canvas;
@@ -433,6 +441,7 @@ export class KoreanOpeningPlayer {
     this.onCycle = onCycle;
     this.speed = Math.max(0.05, Number(speed) || 1);
     this.loop = !!loop;
+    this.allowApproximate = !!allowApproximate;
     this.controller = null;
     this.playing = false;
     this.sceneIndex = -1;
@@ -542,6 +551,21 @@ export class KoreanOpeningPlayer {
   }
 
   async play() {
+    if (!this.allowApproximate) {
+      this.stop();
+      clear(this.ctx, this.canvas);
+      this.playing = false;
+      this.sceneIndex = -1;
+      this.onScene?.({
+        scene: -1,
+        name: "OPEN.EXE exact replay pending",
+        sources: [],
+        fidelity: "blocked-unverified",
+      }, this.cycle);
+      this.onFinish?.({ fidelity: "blocked-unverified" });
+      return;
+    }
+
     this.stop();
     this.controller=new AbortController();
     const {signal}=this.controller;

@@ -129,13 +129,16 @@ let seaAutoActive = false;
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
 let systemMenuPending = false;
 
-const MUSIC_TRACK_BY_MODE = Object.freeze({
+const APPROX_MUSIC_TRACK_BY_MODE = Object.freeze({
   opening: 0,
   town: 19,
   sea: 21,
   runtime: 19,
   preview: 0,
 });
+const fidelityParams = new URLSearchParams(location.search);
+const allowApproximateMusic = fidelityParams.get("musicApprox") === "1";
+const allowApproximateOpening = fidelityParams.get("openingApprox") === "1";
 
 function controllerMusicState() {
   return musicPlayer?.state() ?? {
@@ -179,7 +182,11 @@ function setMusicForMode(mode = viewMode, force = false) {
     return;
   }
   musicMode = mode;
-  const track = MUSIC_TRACK_BY_MODE[mode] ?? MUSIC_TRACK_BY_MODE.town;
+  if (!allowApproximateMusic) {
+    publishControllerState({ musicFidelity: "mapping-unverified" });
+    return;
+  }
+  const track = APPROX_MUSIC_TRACK_BY_MODE[mode] ?? APPROX_MUSIC_TRACK_BY_MODE.town;
   musicPlayer.setTrack(track);
   if (musicPlayer.desiredPlaying) {
     musicPlayer.unlock().then(publishControllerState).catch(() => publishControllerState());
@@ -201,10 +208,11 @@ async function loadMusicSupport() {
   return parsed;
 }
 function tryAutostartMusic(event) {
+  if (!allowApproximateMusic) return;
   if (!musicAutostartPending || !musicPlayer?.songCount) return;
   if (event?.target?.closest?.("[data-action=\"sound\"]")) return;
   musicAutostartPending = false;
-  const track = MUSIC_TRACK_BY_MODE[viewMode] ?? MUSIC_TRACK_BY_MODE.town;
+  const track = APPROX_MUSIC_TRACK_BY_MODE[viewMode] ?? APPROX_MUSIC_TRACK_BY_MODE.town;
   musicMode = viewMode;
   musicPlayer.play(track).then(publishControllerState).catch(() => publishControllerState());
 }
@@ -856,14 +864,16 @@ function startOpeningPlayback() {
   viewMode = "opening";
   setMusicForMode("opening");
   publishControllerState();
-  const openingSpeed = Math.max(0.05, Number(new URLSearchParams(location.search).get("openingSpeed")) || 1);
+  const openingSpeed = Math.max(0.05, Number(fidelityParams.get("openingSpeed")) || 1);
   openingPlayer = new KoreanOpeningPlayer(openingData, canvas, {
     speed: openingSpeed,
     loop: false,
+    allowApproximate: allowApproximateOpening,
     onScene: (scene, cycle = 0) => {
       viewMode = "opening";
-      $("runtime-status").textContent =
-        `원본 오프닝 · scene ${scene.scene + 1}/${KOREAN_OPENING_SCENE_PLAN.length} · ${scene.name}`;
+      $("runtime-status").textContent = scene.fidelity === "blocked-unverified"
+        ? "오프닝 역분석 재현 대기 · 추정 애니메이션 사용 안 함"
+        : `오프닝 비교모드 · scene ${scene.scene + 1}/${KOREAN_OPENING_SCENE_PLAN.length} · ${scene.name}`;
       $("debug").textContent = JSON.stringify({
         view: "opening",
         scene: scene.scene,
@@ -2066,12 +2076,20 @@ window.addEventListener("uw2-controller-action", async event => {
     return;
   }
   if (action === "sound") {
+    if (!allowApproximateMusic) {
+      publishControllerState({ musicFidelity: "mapping-unverified" });
+      return;
+    }
     musicAutostartPending = false;
     await musicPlayer.toggle();
     publishControllerState();
     return;
   }
   if (action === "track-prev" || action === "track-next") {
+    if (!allowApproximateMusic) {
+      publishControllerState({ musicFidelity: "mapping-unverified" });
+      return;
+    }
     musicAutostartPending = false;
     const delta = action === "track-prev" ? -1 : 1;
     await musicPlayer.next(delta);

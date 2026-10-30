@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun OCR / ImageGen quality blocker root-cause triage (2026-10-31 KST)
+
+- TASK_ID `OUTRUN-OCR-QA-TRIAGE-20261031`: independently inspected N100 live producer state, 289 actual per-batch exported evidence files and 920 candidate metadata rows, GIF/image glyph alpha and size evidence, OCR state and 121 NO_VALID_DETECTIONS breakdown, OCR host watchdog and controller behavior, five protected icon/line-layout HOLDs, and current canonical localization evidence/scale policies. Found all 920 export-evidence entries mechanically `REWORK_DIMENSIONS` (NOT a claim all visually failed), OCR 86 duplicate-only and 35 unclassified/no-rejection records, four JSON_NOT_FOUND response holds, and host watchdog response-stall mismatch 2400s vs controller 600s plus C2 prefixed attempt-key mismatch. Confirmed the host watchdog does not dispatch work on `active=null`. Verified no actual DDS/ingame evidence for recently C1-approved two Q228 PNGs. No unrelated environment changed.
+- Delivered new evidence-backed fail-closed recovery plan with ordered guardrails and clear unverified portions at `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928`, commit `0df80ae54efc10ead99456d417b6be416da96412`, file `tools/chat-controller/localization-recovery-v1/OUTRUN_ERROR_TRIAGE_20261031.md`. Diagnosis and plan only: no image/DDS changes, no host/container restart, no false runtime PASS.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2233 + one distinct evidence-backed production/QA defect root-cause investigation and versioned recovery design +1 = 2234.** Existing error reports/status checks and same-task readback are not scored again; AI 1 unchanged.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 UW2 original OPEN.EXE-first startup/menu race repair (2026-10-31 KST)
 
 - Unique work key `UW2-BOOT-OPENEXE-FIRST-20261030`. Material source/test changes on `thp32tt/ai-dev-lab@uw2-web-port` latest exact SHA `3a3cf1122d8dad428ca11372461e8d2037c90c9a`. The old default `openingApprox=0` caused `KoreanOpeningPlayer.play()` to reject the existing Korean 12-scene OPGRAPH playback and invoke `onFinish` immediately, opening MAIN's system menu before animation. Separately, asynchronous `gameBoot` could show the system menu before opening finished. Fixed `web/opening.js` to replay original Korean scene record sequence by default with explicitly non-exact transition/timing fidelity (strict opt-out `openingApprox=0` never falsely fires onFinish); `web/app.js` now uses `web/boot-sequence.js` permission gating (resource settle cannot supersede the opening), explicit skip completion and safe replay; updated fidelity and new boot-unit/Firefox E2E regression tests.

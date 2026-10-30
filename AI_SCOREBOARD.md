@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun GPT vision OCR duplicate-bbox suppression and SHA-scoped prompt exclusions (2026-10-30 KST)
+
+- RUN_KEY `OUTRUN-GPT-OCR-DUPLICATE-HOLD-20261030`: implemented a distinct safe OCR pipeline repair on `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928`, material result SHA `2bccfd8c29182fc462a8e4ee75f68b2ee70935d7`. Existing duplicate-only `BBOX_DUPLICATES_EXISTING_REGION` responses now route to independent manual-review hold instead of wasting automatic retries; each next ChatGPT image OCR prompt enumerates historical boxes only when the original full-HD source SHA matches. Invalid/low-confidence or changed-phrase-fingerprint items remain retryable; no inferred bounding boxes, no OCR API, no unsafe auto-approval, no DDS/game changes. GitHub commit/readback and N100 fast-forward confirmed.
+- N100 regression checks: `tests/test_gpt_vision_chat_ocr.py` 14 PASS, `tests/test_b_idle_gpt_ocr_patch.py` 1 PASS, `tests/test_chatgpt_response_dom.py` PASS (16 checks). Read-only live-state classification: 51 unresolved sources/153 phrases split into 24 automatic retries/99 phrases, 16 manual bbox-review sources/38 phrases and 11 exhausted sources/16 phrases. SHA-verified 5 held icon/line-layout assets and prepared a separate rework manifest; no new images generated. `AUTOMATION_VALIDATION=PASS_LOCAL_TESTS`; Portainer container rebuild and actual runtime `UNVERIFIED`.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2201 + one distinct tested OCR source change +1 = 2202.** Same-task regression, triage and QA preparation +0; AI 1 unchanged.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 DX11 native GPU RGB across 2-D fragmented menu/game repaint (2026-10-30 KST)
 
 - TASK_ID `CONVERSION-DX11-01172`: independent source integration in the ongoing `DX11:FULL_RESOLUTION_NATIVE_GAME_FRAME` feature. A real D3D9 RGNDATA repaint partitioned across BOTH X and Y with a narrow attached region can have a nonrectangular connected bounding box; earlier member/pair/component cropping could drop authentic DX11 GPU RGB from opposite corners. Added bounded original-member 2-D rectangle proposals to the existing source-coincident `native_raw_dirty_source_rgb_crop` path; final admission still requires the entire authentic D3D9 dirty union and GPU PRE/POST changed RGB at unchanged original source coordinates, without inventing pixels or replacing the full game frame. Compiled C++ grid/attached-tail positive and missing-center, forged-rcBound, alpha-only negative regression in `tests/native_raw_dual_tile_test.cpp`. This is partial opt-in native GPU RAW visible diagnostic only, NOT a complete native menu/car/race or Quest3 stereo result.

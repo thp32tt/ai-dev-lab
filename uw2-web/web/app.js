@@ -158,6 +158,7 @@ function publishControllerState(extra = {}) {
     musicFidelity: selectWebMusicRoute(viewMode, allowApproximateMusic).fidelity,
     ...extra,
   };
+  window.__uw2BootState = () => ({ opening: bootGate.opening, gameResourcesSettled: bootGate.gameResourcesSettled, viewMode });
   window.__uw2MusicState = () => controllerMusicState();
   window.__uw2SeaState = () => seaRuntime?.snapshot?.() ?? null;
   window.__uw2VoyageState = () => ({

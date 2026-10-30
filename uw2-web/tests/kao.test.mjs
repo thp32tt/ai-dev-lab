@@ -37,7 +37,7 @@ for(let i=0;i<6;i++){
 }
 
 const main=fs.readFileSync(gameDir+"/MAIN.EXE");
-assert.equal(main.subarray(0x3b328,0x3b332).toString("ascii"),"C:KAO.LZW");
+assert.equal(main.subarray(0x3b328,0x3b331).toString("ascii"),"C:KAO.LZW");
 assert.equal(main.subarray(0x1add1,0x1addc).toString("hex"),"8d1e78090ee813ffa31604");
 assert.equal(main.subarray(0x1b1eb,0x1b218).toString("hex"),
   "be05008bded1e3d1e38b876eab99" +

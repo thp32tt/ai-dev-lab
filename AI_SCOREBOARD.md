@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex CPU-projected world particle source/depth recovery (2026-10-30 KST)
+
+- Independent DX9Ex R26+HUD source repair on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` after tracing the retail particle path to r4dius/outrun2-decomp `draw_418cf0`: grass/source-2 FVF `0x144` XYZRHW is CPU-projected with EXE `0x740C8C/90` screen coefficients, while RHW is explicitly `1.0` and perspective depth remains in screen-Z. The VR split had kept those game coefficients logical while R30 inverted XY against the physical XR viewport and then treated RHW=1 as clip-W depth. R26 now inverts depth-proven world XY using the original game-screen centre coefficients, reconstructs unit-RHW view-Z from screen-Z using the D3D projection equation, retains non-unit-RHW smoke/skid behavior, and still outputs through world stereo to the physical XR viewport without promoting particles to HUD.
+- Material source sequence: source-canvas repair `3c63b854f8e2d3021232be4edf526b984815bc47`; validation-bearing RHW1 depth repair `2a4e28994db38f3f0247fe7860f3d65ecd577e01`. Added `tools/verify_vr_r26_projected_particle_canvas.py` and wired it into DX9Ex Active Validation. On exact `2a4e2899`: Active Validation policy SUCCESS, static EXE SUCCESS, Domain Isolation SUCCESS, HUD Inspector SUCCESS, general build SUCCESS, and R26 User Test Build Win32 game DLL step SUCCESS; OpenXR-host/package assembly was still running at score write. `RUNTIME_VALIDATION=UNTESTED` on Quest3/VDXR; no claim of HMD PASS.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2202 + one distinct source-integrated DX9Ex projected-world particle coordinate/depth recovery with exact-SHA static/build validation +1 = 2203.** Same-session diagnostic logging, verifier repairs, CI readback and later package/readback are +0; AI 1 separate.
+
+Updated: 2026-10-30 KST
+
 ## AI 2 OutRun GPT vision OCR duplicate-bbox suppression and SHA-scoped prompt exclusions (2026-10-30 KST)
 
 - RUN_KEY `OUTRUN-GPT-OCR-DUPLICATE-HOLD-20261030`: implemented a distinct safe OCR pipeline repair on `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928`, material result SHA `2bccfd8c29182fc462a8e4ee75f68b2ee70935d7`. Existing duplicate-only `BBOX_DUPLICATES_EXISTING_REGION` responses now route to independent manual-review hold instead of wasting automatic retries; each next ChatGPT image OCR prompt enumerates historical boxes only when the original full-HD source SHA matches. Invalid/low-confidence or changed-phrase-fingerprint items remain retryable; no inferred bounding boxes, no OCR API, no unsafe auto-approval, no DDS/game changes. GitHub commit/readback and N100 fast-forward confirmed.

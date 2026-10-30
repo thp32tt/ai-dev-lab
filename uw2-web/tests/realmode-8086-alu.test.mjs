@@ -72,8 +72,8 @@ branch.load(Uint8Array.of(0x72,0x02,0x90,0x90,0x73,0xfc),0,0);
 branch.step();assert.equal(branch.ip,4);
 branch.step();assert.equal(branch.ip,6);
 const bad=new RealMode8086();
-bad.load(Uint8Array.of(0x83,0xdb,0x01),0,0); // /3 SBB not implemented
-assert.throws(()=>bad.step(),/fail closed/);
+bad.load(Uint8Array.of(0x82,0xdb,0x01),0,0); // undocumented group alias is not admitted
+assert.throws(()=>bad.step(),/unsupported 8086 opcode 82/);
 const dos=new RealMode8086();dos.load(Uint8Array.of(0xcd,0x21),0,0);
 assert.throws(()=>dos.step(),/unsupported 8086 opcode cd/);
 console.log('UW2 P3 ALU/condition/stack synthetic 8086 regression: PASS');

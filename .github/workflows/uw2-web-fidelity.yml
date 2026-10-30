@@ -32,6 +32,7 @@ jobs:
           node uw2-web/tests/realmode-8086-alu.test.mjs
           node uw2-web/tests/realmode-8086-indirect.test.mjs
           node uw2-web/tests/realmode-8086-strings.test.mjs
+          node uw2-web/tests/realmode-8086-carry-loop.test.mjs
           node uw2-web/tests/mz-loader.test.mjs
           node uw2-web/tests/fidelity-policy.test.mjs
           node uw2-web/tests/mz-relocation-callgraph.test.mjs

@@ -143,7 +143,31 @@ export class RealMode8086 {
     this.flags=(this.flags&~flagMask)|bits|2;
     return result;
   }
+  // ADC/SBB require a separate incoming CF. Using b+CF as a truncated
+  // signed operand loses OF at 0x7f+0+1 and 0x8000-0-1 boundaries.
+  carryResult(left,right,width,subtract=false) {
+    const mask=width===8?0xff:0xffff,sign=width===8?0x80:0x8000;
+    const a=left&mask,b=right&mask,carry=this.flag('CF')?1:0;
+    const full=subtract?a-b-carry:a+b+carry,result=full&mask;
+    const signed=v=>(v&sign)?v-(mask+1):v;
+    const signedFull=subtract?
+      signed(a)-signed(b)-carry:signed(a)+signed(b)+carry;
+    let bits=0;
+    if(subtract?a<b+carry:full>mask)bits|=FLAGS.CF;
+    if(subtract?(a&15)<(b&15)+carry:(a&15)+(b&15)+carry>15)
+      bits|=FLAGS.AF;
+    if(signedFull<-sign||signedFull>sign-1)bits|=FLAGS.OF;
+    if(result===0)bits|=FLAGS.ZF;
+    if(result&sign)bits|=FLAGS.SF;
+    let parity=0,low=result&255;
+    for(let i=0;i<8;i++){parity^=low&1;low>>>=1;}
+    if(parity===0)bits|=FLAGS.PF;
+    this.flags=(this.flags&~(FLAGS.CF|FLAGS.AF|FLAGS.OF|FLAGS.ZF|FLAGS.SF|FLAGS.PF))|bits|2;
+    return result;
+  }
   aluResult(kind,left,right,width) {
+    if(kind==='adc')return this.carryResult(left,right,width);
+    if(kind==='sbb')return this.carryResult(left,right,width,true);
     if(kind==='add')return this.arithmeticResult(left,right,width);
     if(kind==='sub'||kind==='cmp')return this.arithmeticResult(left,right,width,true);
     let value;
@@ -238,7 +262,7 @@ export class RealMode8086 {
     if(op===0x9d){this.set16('FLAGS',this.pop16());return;}
     // Actual 8086 16-bit memory address formation; no inferred game rules.
     const arithmeticGroup=op&0xfc;
-    const kindByGroup={0x00:'add',0x08:'or',0x20:'and',0x28:'sub',0x30:'xor',0x38:'cmp'};
+    const kindByGroup={0x00:'add',0x08:'or',0x10:'adc',0x18:'sbb',0x20:'and',0x28:'sub',0x30:'xor',0x38:'cmp'};
     if((op>=0x88&&op<=0x8b)||Object.hasOwn(kindByGroup,arithmeticGroup)||
        op===0x84||op===0x85){
       const m=this.fetch8(),width=(op&1)?16:8;
@@ -262,7 +286,7 @@ export class RealMode8086 {
     }
     // Immediate AL/AX forms preserve operand width and 16-bit wrapping.
     const immediateGroup=op&0xfe;
-    const immediateKind={0x04:'add',0x0c:'or',0x24:'and',
+    const immediateKind={0x04:'add',0x0c:'or',0x14:'adc',0x1c:'sbb',0x24:'and',
                          0x2c:'sub',0x34:'xor',0x3c:'cmp'}[immediateGroup];
     if(immediateKind){
       const width=(op&1)?16:8,name=width===8?'AL':'AX';
@@ -274,10 +298,10 @@ export class RealMode8086 {
       }
       return;
     }
-    // Group-1 immediate: unimplemented ADC/SBB extensions deliberately fail.
+    // Original 8086 Group-1 immediate: 80, 81, 83 (83 sign-extends imm8).
     if(op===0x80||op===0x81||op===0x83){
       const m=this.fetch8(),extension=(m>>>3)&7;
-      const kind=['add','or',null,null,'and','sub','xor','cmp'][extension];
+      const kind=['add','or','adc','sbb','and','sub','xor','cmp'][extension];
       if(!kind)throw new Error('unsupported 8086 group-1 immediate extension: fail closed');
       const width=op===0x80?8:16,rm=this.memoryOperand(m,width,segmentOverride);
       const imm=op===0x83?s8(this.fetch8())&0xffff:
@@ -356,6 +380,26 @@ export class RealMode8086 {
         sf,!sf,pf,!pf,sf!==of,sf===of,zf||(sf!==of),!zf&&(sf===of)];
       if(conditions[op-0x70])this.ip=(this.ip+delta)&0xffff;
       return;
+    }
+    if(op>=0xe0&&op<=0xe3){
+      const delta=s8(this.fetch8());
+      // JCXZ inspects CX without decrement; LOOPxx decrements CX even if
+      // the taken condition then fails. All preserve FLAGS.
+      if(op===0xe3){
+        if(this.get16('CX')===0)this.ip=(this.ip+delta)&0xffff;
+        return;
+      }
+      const cx=(this.get16('CX')-1)&0xffff;
+      this.set16('CX',cx);
+      if(cx&&(op===0xe2||(op===0xe1?this.flag('ZF'):!this.flag('ZF'))))
+        this.ip=(this.ip+delta)&0xffff;
+      return;
+    }
+    if(op===0xf8||op===0xf9||op===0xf5){
+      if(op===0xf8)this.flags&=~FLAGS.CF;
+      if(op===0xf9)this.flags|=FLAGS.CF;
+      if(op===0xf5)this.flags^=FLAGS.CF;
+      this.flags|=2;return;
     }
     if(op===0xeb){this.ip=(this.ip+s8(this.fetch8()))&0xffff;return;}
     if(op===0xe9){const delta=s16(this.fetch16());this.ip=(this.ip+delta)&0xffff;return;}

@@ -11,6 +11,19 @@ export function stripMenuControls(text) {
   return text.replace(/[\x00-\x1f]/g, " ").replace(/\s+/g, " ").trim();
 }
 
+export function stripUw2MessageControls(text) {
+  return String(text ?? "")
+    // Korean DOS MESSAGE.DAT uses three-byte display controls such as
+    // ESC C6, ESC F4 and ESC B7. They affect color/font state but have no
+    // printable width. Remove the complete command, not only ESC+opcode.
+    .replace(/\x1b[CFB][0-9A-Fa-f]/g, "")
+    // Be defensive for any unknown ESC command pair.
+    .replace(/\x1b./g, "")
+    // Other C0 controls are non-printing in message text. Preserve only
+    // line-feed, carriage-return and tab semantics.
+    .replace(/[\x00-\x08\x0b\x0c\x0e-\x1a]/g, "");
+}
+
 export function parseMenuTable(arrayBuffer) {
   const bytes = new Uint8Array(arrayBuffer);
   if (bytes.length < 2) return [];

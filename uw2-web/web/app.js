@@ -1,4 +1,4 @@
-import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls } from "./binary.js";
+import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { ReaGameRuntime } from "./runtime.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
@@ -725,7 +725,7 @@ function formattedMessage(messageId, values = []) {
   let text = Number.isInteger(messageId) ? (messages[messageId]?.text ?? `MESSAGE #${messageId}`) : "";
   let vi = 0;
   text = text.replace(/%[-+0-9.#hlL]*[duxs]/gi, () => String(values[vi++] ?? "…"));
-  return text.replace(/\x1b./g, "");
+  return stripUw2MessageControls(text);
 }
 
 
@@ -1530,9 +1530,9 @@ function handleBuildingKey(event) {
 function townMessageText(talk) {
   if (!talk || !Number.isInteger(talk.messageId)) return "";
   const raw = messages[talk.messageId]?.text ?? `MESSAGE #${talk.messageId}`;
-  return raw
-    .replace(/%[-+0-9.]*[sd]/g, "…")
-    .replace(/\x1b./g, "");
+  return stripUw2MessageControls(
+    raw.replace(/%[-+0-9.]*[sd]/g, "…")
+  );
 }
 
 function wrapTownMessage(text, width = 32) {

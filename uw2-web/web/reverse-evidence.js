@@ -99,6 +99,46 @@ export function fmdrvSongToRenderedTrackIndex(song) {
   return n >= 1 ? n - 1 : null;
 }
 
+export function mainMusicLogicalToFmdrvSong(logicalIndex) {
+  const i = Number(logicalIndex);
+  if (!Number.isInteger(i) || i < 0 || i >= PROVEN_MAIN_MUSIC_INDEX_TO_FMDRV_SONG.length) return null;
+  const song = PROVEN_MAIN_MUSIC_INDEX_TO_FMDRV_SONG[i] | 0;
+  return song >= 1 ? song : null;
+}
+
+export function mainMusicLogicalToRenderedTrackIndex(logicalIndex) {
+  return fmdrvSongToRenderedTrackIndex(mainMusicLogicalToFmdrvSong(logicalIndex));
+}
+
+export const PROVEN_MAIN_MUSIC_DISPATCH_CALLS = Object.freeze({
+  dispatcherFar: "0000:94CA",
+  dispatcherRawFileOffset: 0x0e8ca,
+  directFarCalls: Object.freeze([
+    Object.freeze({ rawFileOffset: 0x157fd, logicalIndex: 0x15, source: "immediate AL=15h" }),
+    Object.freeze({ rawFileOffset: 0x15861, logicalIndex: 0x11, source: "immediate AL=11h" }),
+    Object.freeze({ rawFileOffset: 0x15a1c, logicalIndex: 0x14, source: "immediate AL=14h" }),
+    Object.freeze({ rawFileOffset: 0x1be98, logicalIndex: 0x03, source: "immediate AL=03h" }),
+    Object.freeze({ rawFileOffset: 0x1c574, logicalIndex: 0x14, source: "immediate AL=14h" }),
+    Object.freeze({ rawFileOffset: 0x2019c, logicalIndex: null, source: "dynamic: local selector + 0Ah, else 0Fh" }),
+    Object.freeze({ rawFileOffset: 0x20526, logicalIndex: null, source: "branch: AL=13h when DI=1, AL=12h when DI=5" }),
+    Object.freeze({ rawFileOffset: 0x26197, logicalIndex: null, source: "replay DS:9606 current logical index" }),
+    Object.freeze({ rawFileOffset: 0x36940, logicalIndex: null, source: "wrapper forwards caller AL" }),
+  ]),
+  sameSegmentCalls: Object.freeze([
+    Object.freeze({
+      rawFileOffset: 0x0d872,
+      source: "AL=DS:1241h+4",
+      provenMeaning: "selected protagonist theme",
+    }),
+  ]),
+  evidence: Object.freeze([
+    "MAIN.EXE raw 0xE8CA is image address 0000:94CA because the MZ header is 0x5400 bytes",
+    "nine direct far calls encode 9A CA 94 00 00",
+    "MAIN.EXE raw 0xD86B loads selected protagonist id from DS:1241h and raw 0xD86E adds 4",
+    "semantic names for the nine far-call sites remain intentionally unassigned",
+  ]),
+});
+
 export const PROVEN_SYSTEM_MENU_DISPATCH = Object.freeze({
   menuIndex: 56,
   tableRawFileOffset: 0x4557a,

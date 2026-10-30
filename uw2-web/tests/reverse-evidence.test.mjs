@@ -6,7 +6,10 @@ import {
   PROVEN_OPENING_MUSIC,
   PROVEN_MAIN_MUSIC_INDEX_TO_FMDRV_SONG,
   PROVEN_MAIN_MUSIC_TABLE,
+  PROVEN_MAIN_MUSIC_DISPATCH_CALLS,
   fmdrvSongToRenderedTrackIndex,
+  mainMusicLogicalToFmdrvSong,
+  mainMusicLogicalToRenderedTrackIndex,
   PROVEN_SYSTEM_MENU_DISPATCH,
   PROVEN_PROTAGONIST_SELECTION,
   PROVEN_PROTAGONIST_MUSIC,
@@ -44,6 +47,29 @@ assert.equal(fmdrvSongToRenderedTrackIndex(1),0);
 assert.equal(fmdrvSongToRenderedTrackIndex(22),21);
 assert.equal(fmdrvSongToRenderedTrackIndex(0),null);
 
+assert.equal(mainMusicLogicalToFmdrvSong(0),21);
+assert.equal(mainMusicLogicalToFmdrvSong(1),19);
+assert.equal(mainMusicLogicalToFmdrvSong(2),22);
+assert.equal(mainMusicLogicalToFmdrvSong(3),18);
+assert.equal(mainMusicLogicalToFmdrvSong(4),2);
+assert.equal(mainMusicLogicalToFmdrvSong(21),12);
+assert.equal(mainMusicLogicalToFmdrvSong(22),null);
+assert.equal(mainMusicLogicalToFmdrvSong(23),null);
+assert.equal(mainMusicLogicalToFmdrvSong(-1),null);
+assert.equal(mainMusicLogicalToRenderedTrackIndex(0),20);
+assert.equal(mainMusicLogicalToRenderedTrackIndex(4),1);
+assert.equal(mainMusicLogicalToRenderedTrackIndex(22),null);
+
+assert.equal(PROVEN_MAIN_MUSIC_DISPATCH_CALLS.dispatcherFar,"0000:94CA");
+assert.equal(PROVEN_MAIN_MUSIC_DISPATCH_CALLS.dispatcherRawFileOffset,0xe8ca);
+assert.deepEqual(
+  PROVEN_MAIN_MUSIC_DISPATCH_CALLS.directFarCalls.map(x => [x.rawFileOffset,x.logicalIndex]),
+  [
+    [0x157fd,0x15],[0x15861,0x11],[0x15a1c,0x14],[0x1be98,0x03],
+    [0x1c574,0x14],[0x2019c,null],[0x20526,null],[0x26197,null],[0x36940,null],
+  ]
+);
+
 console.log("UW2 reverse-engineering evidence registry: PASS");
 
 assert.equal(PROVEN_SYSTEM_MENU_DISPATCH.tableRawFileOffset, 0x4557a);
@@ -79,4 +105,8 @@ assert.equal(main.subarray(0xd86b,0xd875).toString("hex"),
   "a041120404900ee85510");
 assert.equal(main.subarray(0x43fb8,0x43fd0).toString("hex"),
   "151316120203040706050b09080a010d0e0f1014110c0000");
+
+for (const raw of [0x157fd,0x15861,0x15a1c,0x1be98,0x1c574,0x2019c,0x20526,0x26197,0x36940]) {
+  assert.equal(main.subarray(raw,raw+5).toString("hex"),"9aca940000");
+}
 console.log("UW2 protagonist/system-menu raw executable pins: PASS");

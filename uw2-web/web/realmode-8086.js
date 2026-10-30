@@ -20,6 +20,7 @@ export class RealMode8086 {
     this.seg = {CS:0,DS:0,ES:0,SS:0};
     this.ip = 0;
     this.flags = 2;
+    this.interruptVectors = new Set();
   }
   physical(segment, offset) {
     return (((u16(segment,'segment') << 4) + u16(offset,'offset')) & 0xfffff);
@@ -85,6 +86,29 @@ export class RealMode8086 {
     const value=this.read16(this.seg.SS,this.regs[4]);
     this.regs[4]=(this.regs[4]+2)&0xffff;
     return value;
+  }
+
+  // Explicitly installed vectors only: the caller must provide an audited
+  // DOS/BIOS interrupt table. A zero-filled IVT is never a valid fallback.
+  installInterruptVector(number,segment,offset) {
+    if(!Number.isInteger(number)||number<0||number>255)
+      throw new RangeError('8086 interrupt number must be uint8');
+    u16(segment,'interrupt segment');u16(offset,'interrupt offset');
+    this.write16(0,number*4,offset);
+    this.write16(0,number*4+2,segment);
+    this.interruptVectors.add(number);
+  }
+  dispatchInterrupt(number) {
+    if(!this.interruptVectors.has(number))
+      throw new Error(`8086 INT ${number.toString(16)} has no installed vector/DOS adapter: fail closed`);
+    // Read IVT before pushing: an interrupt stack may alias physical 0000h.
+    const dest=this.read16(0,number*4);
+    const cs=this.read16(0,number*4+2);
+    this.push16(this.flags);
+    this.push16(this.seg.CS);
+    this.push16(this.ip);
+    this.flags=(this.flags&~(FLAGS.IF|FLAGS.TF))|2;
+    this.seg.CS=cs;this.ip=dest;
   }
   load(bytes,segment,offset) {
     if(!(bytes instanceof Uint8Array))throw new TypeError('load requires bytes');
@@ -557,6 +581,12 @@ export class RealMode8086 {
     if(op===0xca){const bytes=this.fetch16();
       this.ip=this.pop16();this.seg.CS=this.pop16();
       this.set16('SP',(this.get16('SP')+bytes)&0xffff);return;}
+
+    // Native 8086 software interrupt entry: INT3, INT imm8, INTO.
+    // No guessed INT 21h DOS service or BIOS behavior is supplied.
+    if(op===0xcc){this.dispatchInterrupt(3);return;}
+    if(op===0xcd){const number=this.fetch8();this.dispatchInterrupt(number);return;}
+    if(op===0xce){if(this.flag('OF'))this.dispatchInterrupt(4);return;}
     if(op===0xcf){const dest=this.pop16(),seg=this.pop16(),flags=this.pop16();
       this.ip=dest;this.seg.CS=seg;this.set16('FLAGS',flags);return;}
     if(op===0xea){const dest=this.fetch16(),segment=this.fetch16();

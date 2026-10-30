@@ -6,6 +6,8 @@
 
 - [원본 역어셈블리→웹 포팅 P0~P9 마스터 계획](docs/ORIGINAL_DOS_TO_WEB_DISASSEMBLY_MASTER_PLAN_20261031.md)
 - [실제 실행 결과: P0 원본 61개 SHA 확인 / P1 MAIN·OPEN 파일↔REA 매핑](docs/ORIGINAL_P0_P1_EXECUTION_20261031.md)
+- [P1 실제 역어셈블리 진행: 재배치 5,296건·far 후보 5,038건, KOEI.COM 원본 기동 경로](docs/ORIGINAL_P1_RELOCATION_LAUNCHER_20261031.md)
+- [정적 far 호출 후보 5,038건의 원본 해시 고정 주소 그래프](docs/p1-far-transfer-candidates-20261031.json)
 - [원본 61개 메타데이터 기준선](docs/original-baseline-20261031.json)
 
 **현재 웹판은 부분 포팅이며 원본 전체 동등성은 아직 검증되지 않았습니다.** 원본 바이너리·리소스는 GitHub에 포함하지 않습니다.

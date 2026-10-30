@@ -96,3 +96,33 @@ export async function loadVerifiedMz(cpu,bytes,{loadSegment,pspSegment,allocatio
     fidelity:'STRUCTURAL_MZ_ONLY__ORIGINAL_DOS_RUNTIME_UNTESTED'
   });
 }
+
+
+// The caller provides the authentic PSP/stack/allocation snapshot explicitly.
+// Do not synthesize a DOS environment or overwrite unknown memory regions.
+export async function loadVerifiedCom(cpu,bytes,{pspSegment,allocationParagraphs,initialSP,expectedSha256}={}){
+  if(!(cpu instanceof RealMode8086))throw new TypeError('COM loader requires RealMode8086');
+  if(!(bytes instanceof Uint8Array)||!bytes.length||bytes.length>0xff00)
+    throw new RangeError('COM image length must be 1..65280');
+  uint16(pspSegment,'pspSegment');uint16(initialSP,'initialSP');
+  if(!Number.isInteger(allocationParagraphs)||allocationParagraphs<1||allocationParagraphs>0x1000)
+    throw new RangeError('explicit COM allocationParagraphs must be 1..4096');
+  if(typeof expectedSha256!=='string'||!/^[a-f0-9]{64}$/.test(expectedSha256))
+    throw new Error('pinned original SHA-256 required: fail closed');
+  if(!globalThis.crypto?.subtle?.digest)
+    throw new Error('SHA-256 unavailable: fail closed');
+  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)));
+  if(digest!==expectedSha256)throw new Error('original COM SHA-256 mismatch');
+  const allocatedBytes=allocationParagraphs*16,codeEnd=0x100+bytes.length;
+  if(codeEnd>allocatedBytes||initialSP<codeEnd+2||initialSP+1>=allocatedBytes||(initialSP&1))
+    throw new Error('COM code/stack outside explicit DOS allocation: fail closed');
+  const base=pspSegment*16;
+  if(base+allocatedBytes>cpu.memory.length)
+    throw new RangeError('COM allocation exceeds physical memory: fail closed');
+  // Preflight complete: preserve the caller's PSP, BSS, IVT and stack contents.
+  cpu.memory.set(bytes,base+0x100);
+  for(const s of ['CS','DS','ES','SS'])cpu.set16(s,pspSegment);
+  cpu.set16('IP',0x100);cpu.set16('SP',initialSP);
+  return Object.freeze({pspSegment,entryIP:0x100,imageBytes:bytes.length,
+    fidelity:'STRUCTURAL_COM_ONLY__ORIGINAL_DOS_RUNTIME_UNTESTED'});
+}

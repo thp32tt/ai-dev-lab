@@ -31,7 +31,6 @@ assert.equal(UI_LAYOUT.viewport.y,8);
 assert.equal(UI_LAYOUT.viewport.w,24*16);
 assert.equal(UI_LAYOUT.viewport.h,24*16);
 assert.equal(UI_LAYOUT.viewport.tiles,24);
-assert.equal(UI_LAYOUT.dialogue.x,UI_LAYOUT.viewport.x);
 assert.equal(UI_LAYOUT.dialogue.x,UI_LAYOUT.viewport.x+8);
 assert.equal(UI_LAYOUT.dialogue.y,UI_LAYOUT.viewport.y+UI_LAYOUT.viewport.h-UI_LAYOUT.dialogue.h);
 assert.equal(UI_LAYOUT.building.w,136);

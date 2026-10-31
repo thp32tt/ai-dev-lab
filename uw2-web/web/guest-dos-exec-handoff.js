@@ -89,15 +89,19 @@ export function createSourceBoundDosExecHandoff(cpu){
   const executeChild=request=>{
     if(phase!=='CHILD_READY'||!readyResult)
       throw new Error('DOS EXEC native child has not completed: fail closed');
+    const expected={...parent,IP:(parent.IP+2)&0xffff};
+    const current=captureDosCpuFrame(cpu);
+    const frameDifferences=DOS_CPU_FRAME_NAMES.filter(k=>current[k]!==expected[k]);
     if(!request||request.filename!==pendingRequest.filename||
        request.parameterBlockSegment!==pendingRequest.parameterBlockSegment||
        request.parameterBlockOffset!==pendingRequest.parameterBlockOffset||
-       // The native INT21 opcode has consumed exactly its two bytes before
-       // the real DOS handler invokes this synchronous child-result callback.
-       !frameSame(captureDosCpuFrame(cpu),{
-         ...parent,IP:(parent.IP+2)&0xffff
-       }))
-      throw new Error('DOS EXEC completed status source mismatch: fail closed');
+       frameDifferences.length)
+      throw new Error('DOS EXEC completed status source mismatch: '+[
+        request?.filename===pendingRequest.filename?'':'filename',
+        request?.parameterBlockSegment===pendingRequest.parameterBlockSegment?'':'parameter-segment',
+        request?.parameterBlockOffset===pendingRequest.parameterBlockOffset?'':'parameter-offset',
+        ...frameDifferences
+      ].filter(Boolean).join(',')+': fail closed');
     const result=readyResult;
     readyResult=null;pendingRequest=null;parent=null;child=null;phase='IDLE';
     return result;

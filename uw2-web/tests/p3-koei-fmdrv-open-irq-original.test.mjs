@@ -447,6 +447,21 @@ if(syntheticIrqStep===128&&instructionBudget>=6000000){
  assert.equal(nativePart0RuntimeWitness.fullMatchSha256,graphEvidence.decodedSha256[0]);
  assert.equal(nativePart0RuntimeWitness.fullMatchStep,5715968);
 }
+if(syntheticIrqStep===128&&instructionBudget>=12000000){
+ const originalNativeFinalPart=nativeAllPartsRuntimeWitness[13];
+ assert.equal(originalNativeFinalPart.maxMatchingPrefix,64037);
+ assert.equal(originalNativeFinalPart.fullMatchStep,11425792);
+ assert.equal(originalNativeFinalPart.fullMatchSha256,graphEvidence.decodedSha256[13]);
+ assert.ok(originalVgaPlaneState.mode0Writes>0);
+}
+if(syntheticIrqStep===128&&instructionBudget>=13000000){
+ assert.equal(originalVgaPlaneState.mode0Writes,11648);
+ assert.equal(result.originalVgaFrameSha256,
+  'de5c45c4cbde52268f1ae98b8db9041fa24ceca1342d0c81ab908232aff98634');
+ assert.equal(originalVgaPaletteIndexHistogram[0],307002);
+ assert.deepEqual(originalVgaNonzeroBounds,{left:216,top:246,right:423,bottom:247});
+ assert.equal(observed.verifiedReadBytesTotal,91494);
+}
 if(syntheticIrqStep===128&&instructionBudget===260000){
   assert.equal(originalVgaPlaneState.graphicsMode,2);
   assert.equal(originalVgaPlaneState.sequencerMapMask,15);

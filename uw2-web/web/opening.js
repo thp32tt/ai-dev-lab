@@ -34,6 +34,35 @@ export function decodeOpeningArchive(arrayBuffer) {
   };
 }
 
+// Browser-original-resource bridge. Strictly admits the verified Korean
+// OPGRAPH SHA and *current JS decoder* part hashes. Native OPEN.EXE on-screen
+// timing/VGA blits remain UNTESTED; this function only selects source pixels.
+export function decodeOpeningVerifiedArchive(verified){
+  if(!verified||verified.decodedManifestVerified!==true||
+     verified.fidelity!=='SHA_PINNED_JS_LS11_GRAPH_DECODE__NATIVE_OPEN_DECOMPRESS_PARITY_UNTESTED'||
+     verified.dosPath!=='C:OPGRAPH.LZW'||!Array.isArray(verified.parts)||
+     typeof verified.getGraphRecord!=='function')
+    throw new Error('opening requires verified Korean OPGRAPH source/decoded part manifest');
+  const parts=verified.parts.map((part,partIndex)=>{
+    if(part.index!==partIndex||!Number.isInteger(part.recordCount)||
+       part.recordCount<1||part.recordCount>4096)
+      throw new Error('verified opening part metadata mismatch');
+    const records=[];
+    for(let recordIndex=0;recordIndex<part.recordCount;recordIndex++){
+      const record=verified.getGraphRecord(partIndex,recordIndex);
+      if(!(record instanceof Uint8Array))
+        throw new Error('verified opening GRAPH record must be raw bytes');
+      records.push({partIndex,recordIndex,...decodeGraphRecord(record)});
+    }
+    return {partIndex,records};
+  });
+  const count=parts.reduce((sum,x)=>sum+x.records.length,0);
+  if(count!==verified.totalRecords)
+    throw new Error('verified opening GRAPH record total mismatch');
+  return {magic:verified.magic,parts,recordCount:count,
+    resourceFidelity:verified.fidelity};
+}
+
 export function flattenOpening(opening) {
   return opening.parts.flatMap(p => p.records);
 }

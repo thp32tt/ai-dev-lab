@@ -10,6 +10,7 @@ import {RealMode8086} from '../web/realmode-8086.js';
 import {loadVerifiedCom} from '../web/mz-loader.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {installBiosInt10} from '../web/bios-int10.js';
+import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {verifyKoeiLaunchChain,ORIGINAL_KOEI_LAUNCH_SITES} from './koei-launch-chain.mjs';
 
 const dirname=path.dirname(fileURLToPath(import.meta.url));
@@ -21,7 +22,7 @@ const statuses=Object.freeze({
   'MAIN.EXE':{terminationType:0,returnCode:1},
   'END.EXE':{terminationType:0,returnCode:0}
 });
-export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses}={}){
+export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null}={}){
   if(!(original instanceof Uint8Array))throw new TypeError('original KOEI.COM byte buffer required');
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
     throw new RangeError('bounded KOEI instruction budget required');
@@ -33,6 +34,11 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   const pspSegment=0x200;
   await loadVerifiedCom(cpu,bytes,{pspSegment,allocationParagraphs:0x1000,
     initialSP:0xfffe,expectedSha256:pin.sha256});
+  // Only externally captured/declared IVT contents are admissible. Without
+  // a pinned IVT, original INT21 AH35 AL65 remains a hard fail-closed stop.
+  const ivt=initialIvt===null?null:await installPinnedDosIvtSnapshot(cpu,initialIvt.bytes,{
+    expectedSha256:initialIvt.expectedSha256,knownVectors:initialIvt.knownVectors
+  });
   const allowed=new Set(ORIGINAL_KOEI_LAUNCH_SITES.map(x=>x.name));
   const launches=[],videoRequests=[];
   installBiosInt10(cpu,{teletype:args=>{
@@ -67,6 +73,8 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
     moduleName:'KOEI.COM',sha256:chain.sha256,steps,
     entryPsp:chain.entryPsp,
     observedChildCalls:launches,observedBiosVideoRequests:videoRequests,
+    initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount,
+      provenance:'CALLER_SUPPLIED_NOT_ORIGINAL_DOS_VERIFIED'}:null,
     terminated:cpu.terminated??null,stopped,
     fidelity:'ORIGINAL_KOEI_BYTES__SYNTHETIC_PSP_AND_CHILD_STATUS__NOT_DOS_REFERENCE'
   };

@@ -525,3 +525,9 @@
 ### 2026-11-01 외부 IRQ 큐 native CPU 예산 소진 후 가짜 ISR 진입 방지
 
 - `dos-child-continuation`이 누적 실행 예산을 소진하고도 미처리 외부 IRQ를 다음 `runSlice()`에서 먼저 전달하여 **실제 CPU 명령 0개인 상태에서 IVT ISR로 guest IP/stack을 변경**할 수 있는 결함을 수리했다. 남은 예산 0이면 delivered edge가 없어야 하며 미처리 edge는 abort로만 폐기한다. 예산이 끝난 뒤의 새 external IRQ 입력은 거부한다. 합성 8086 `IF=0` native NOP 1개→step cap→남은 IRQ 1개 보유→재호출 시 0 step/0 IRQ/CPU frame 동일→abort 시 discarded=1 검증한다. 최초 IRQ edge source 통합의 직접 수리이므로 별도 점수 없음.
+
+### 2026-11-01 SHA 고정 외부 실측 IRQ 이벤트의 원본 8086 instruction-boundary 재생
+
+- `web/guest-pinned-external-irq-trace.js`는 외부에서 제공한 IRQ 이벤트 목록(각 5B: native 완료 명령 ordinal uint32LE + INT vector uint8)의 SHA-256과 strict increasing 순서·최대 길이·명시적 장치 source를 확인한 후에만 이벤트를 보유한다. 원본 저작권 파일을 포함하지 않고 **기존 DOS 참조에서 따로 취득한 실측 이벤트인지 여부는 해시만으로 증명할 수 없다**. 사용자의 원본 구간에 임의 타이머 틱을 자동 공급하지 않는다.
+- `createStagedDosChildContinuation({externalIrqEvidenceTape})`은 이 증거만 다음 guest native step 경계에서 최대 한 건 enqueue하며, 긴 `runSlice(maxSteps)`가 다음 증거 ordinal을 건너뛰지 않도록 해당 위치까지만 실행한다. 누락 이벤트 시 오류를 숨기지 않고 fail closed. 이벤트를 실제 CPU에 전달하는 하위 계층은 기존 IF mask/STI shadow/실제 installed IVT/IRET 검사와 각 세션의 명시적 edge queue 그대로다. 브라우저 DOS child 브리지 역시 검증된 tape 인자를 그대로 전달한다.
+- Synthetic SHA 핀·2개 ordinal 0/4에 대한 native 실제 ISR/IRET 및 DOS AH4C 종료·지나친 event ordinal/형식 오류·가짜 tape 소유권 거부를 Actions에서 검증한다. 실제 DOS reference IRQ trace를 확보하기 전까지 실제 원본 IRQ 타이밍/오프닝 시간/OPL 출력 동등성은 **UNTESTED/HOLD**이며 이 레코드 형식은 오직 해시 고정 경로 입구를 위한 형식이다.

@@ -6,6 +6,7 @@ import {RealMode8086} from './realmode-8086.js';
 import {DOS_CPU_FRAME_NAMES,captureDosCpuFrame} from './dos-com-child-runner.js';
 import {createGuestOriginalExecutionSession} from './guest-original-execution-session.js';
 import {createExternalGuestIrqEdgeQueue} from './guest-external-irq-queue.js';
+import {isPinnedExternalGuestIrqTrace} from './guest-pinned-external-irq-trace.js';
 
 const validFrame=frame=>{
   if(!frame||typeof frame!=='object'||Array.isArray(frame)||
@@ -32,7 +33,7 @@ const validStatus=status=>{
 
 export function createStagedDosChildContinuation(cpu,{
   initialFrame,maxTotalSteps=1000000,keyboardQueue,onBeforeInstruction,
-  maxQueuedExternalIrqs=128
+  maxQueuedExternalIrqs=128,externalIrqEvidenceTape
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('staged DOS child requires shared RealMode8086');
@@ -49,6 +50,9 @@ export function createStagedDosChildContinuation(cpu,{
   if(!Number.isSafeInteger(maxQueuedExternalIrqs)||maxQueuedExternalIrqs<1||
      maxQueuedExternalIrqs>1024)
     throw new RangeError('staged child external IRQ edge queue cap must be 1..1024');
+  if(externalIrqEvidenceTape!==undefined&&
+     !isPinnedExternalGuestIrqTrace(externalIrqEvidenceTape))
+    throw new TypeError('staged child external IRQ trace must be SHA-pinned');
   const parent=captureDosCpuFrame(cpu),parentTermination=cpu.terminated,
     parentIrqShadow=cpu.maskableIrqShadow;
   let guest=null,running=false;
@@ -83,7 +87,9 @@ export function createStagedDosChildContinuation(cpu,{
     });
   }catch(error){restoreParent();throw error;}
   const snapshot=()=>Object.freeze({state,steps,slices,result,
-    childFrame,irqEdges:irqEdges.snapshot(),restored:state!=='ACTIVE',
+    childFrame,irqEdges:irqEdges.snapshot(),
+    irqEvidence:externalIrqEvidenceTape?.snapshot()??null,
+    restored:state!=='ACTIVE',
     fidelity:'STAGED_ORIGINAL_GUEST_CHILD_STEPS__NO_DOS_EXEC_SCHEDULER'});
   const requireOwner=()=>{
     if(state!=='ACTIVE')throw new Error('DOS child session is not active');
@@ -104,8 +110,20 @@ export function createStagedDosChildContinuation(cpu,{
       // A hardware edge cannot consume guest stack or transfer into its
       // ISR once the owned native-instruction budget has been exhausted.
       // The caller must explicitly abort rather than resume with zero steps.
+      if(steps<maxTotalSteps&&externalIrqEvidenceTape)
+        externalIrqEvidenceTape.admitAt(steps,edge=>irqEdges.enqueue(edge));
       const irq=steps<maxTotalSteps?irqEdges.deliverOne():null;
-      const segment=guest.runSlice(maxSteps);
+      // The trace is indexed by completed *native guest* instructions.
+      // Stop exactly at the next pinned boundary instead of skipping its
+      // event within a large frame slice. Never infer clock cycles.
+      const due=externalIrqEvidenceTape?.nextDueStep()??null;
+      if(due!==null&&due<steps)
+        throw new Error('original IRQ trace event boundary skipped: fail closed');
+      const nextMaxSteps=due!==null&&steps<maxTotalSteps?
+        Math.min(maxSteps,due-steps):maxSteps;
+      if(nextMaxSteps<1)
+        throw new Error('original IRQ trace has an invalid due-now edge');
+      const segment=guest.runSlice(nextMaxSteps);
       steps=segment.totalExecutedSteps;slices++;
       childFrame=captureDosCpuFrame(cpu);
       if(segment.reason==='TERMINATED'){

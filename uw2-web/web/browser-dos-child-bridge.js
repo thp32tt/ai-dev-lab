@@ -8,7 +8,7 @@ import {createStagedDosChildContinuation} from './dos-child-continuation.js';
 
 export function createBrowserDosChildBridge({
   cpu,target,initialFrame,maxQueuedKeys=64,maxTotalSteps=1000000,
-  onBeforeInstruction
+  onBeforeInstruction,externalIrqEvidenceTape
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original browser child requires staged RealMode8086');
@@ -20,7 +20,8 @@ export function createBrowserDosChildBridge({
   let child;
   try{
     child=createStagedDosChildContinuation(cpu,{
-      initialFrame,keyboardQueue:queue,maxTotalSteps,onBeforeInstruction
+      initialFrame,keyboardQueue:queue,maxTotalSteps,onBeforeInstruction,
+      externalIrqEvidenceTape
     });
   }catch(error){
     // Failed child ownership must never leave a browser key listener behind.

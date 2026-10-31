@@ -106,7 +106,8 @@ installDosInt21(cpu,{
     openStarted=true;activePsp=0x600;
     try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:10000});}
     catch(error){openGuestFault={message:error.message,
-      cs:error.guestCS,ip:error.guestIP,steps:error.guestSteps};throw error;}
+      cs:error.guestCS,ip:error.guestIP,steps:error.guestSteps,
+      ax:error.guestAX,dx:error.guestDX};throw error;}
     finally{activePsp=0x200;}
     throw new Error('OPEN original unexpectedly terminated without a verified runtime');
   }

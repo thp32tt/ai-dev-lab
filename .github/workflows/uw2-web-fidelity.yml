@@ -43,6 +43,7 @@ jobs:
           node --check uw2-web/web/guest-staging-physical-map.js
           node --check uw2-web/web/guest-irq-boundary.js
           node --check uw2-web/web/guest-execution-hotspots.js
+          node --check uw2-web/web/guest-progress-witness.js
           node --check uw2-web/web/pinned-dos-resources.js
           node --check uw2-web/web/opgraph-original-archive.js
           node --check uw2-web/web/opgraph-korean-evidence.js
@@ -111,6 +112,7 @@ jobs:
           node uw2-web/tests/bios-int10-palette.test.mjs
           node uw2-web/tests/guest-irq-boundary.test.mjs
           node uw2-web/tests/guest-execution-hotspots.test.mjs
+          node uw2-web/tests/guest-progress-witness.test.mjs
           node uw2-web/tests/pinned-dos-resources.test.mjs
           node uw2-web/tests/opgraph-original-archive.test.mjs
           node uw2-web/tests/opening-verified-archive.test.mjs

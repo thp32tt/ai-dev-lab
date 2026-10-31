@@ -6,6 +6,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {RealMode8086} from '../web/realmode-8086.js';
 import {createGuestExecutionHotspotRecorder} from '../web/guest-execution-hotspots.js';
+import {createGuestProgressWitness} from '../web/guest-progress-witness.js';
 import {loadVerifiedMz} from '../web/mz-loader.js';
 import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
@@ -19,7 +20,7 @@ if(!pin)throw new Error('OPEN.EXE baseline fingerprint required');
 export async function probeOriginalOpen(original,{
  pspSegment=0x600,loadSegment=0x610,allocationParagraphs,
  maxSteps=10000,initialPsp=null,initialIvt=null,dosOptions={},cpu=null,traceLimit=24,
- enableHotspots=false,keyboardQueue=undefined
+ enableHotspots=false,enableProgressWitness=false,keyboardQueue=undefined
 }={}){
  if(!(original instanceof Uint8Array))
    throw new TypeError('original OPEN.EXE binary byte buffer required');
@@ -29,6 +30,8 @@ export async function probeOriginalOpen(original,{
    throw new RangeError('bounded original OPEN step budget required');
  if(typeof enableHotspots!=='boolean')
    throw new TypeError('guest execution hotspot opt-in must be boolean');
+ if(typeof enableProgressWitness!=='boolean')
+   throw new TypeError('guest execution progress opt-in must be boolean');
  if(!Number.isInteger(traceLimit)||traceLimit<0||traceLimit>128)
    throw new RangeError('bounded OPEN execution trace length required');
  const machine=cpu??new RealMode8086();
@@ -41,7 +44,23 @@ export async function probeOriginalOpen(original,{
  const ivt=initialIvt===null?null:await installPinnedDosIvtSnapshot(machine,initialIvt.bytes,{
    expectedSha256:initialIvt.expectedSha256,knownVectors:initialIvt.knownVectors
  });
- installDosInt21(machine,dosOptions);
+ // Progress is passive and optional: never replace an existing VGA/CPU
+ // memory witness installed by a reference DOS harness.
+ const progress=enableProgressWitness?createGuestProgressWitness():null;
+ if(progress&&machine.memoryWriteObserver!==null)
+   throw new Error('original OPEN progress observer requires unowned CPU write sink: fail closed');
+ const originalOnFileEvent=dosOptions.onFileEvent;
+ installDosInt21(machine,progress?{
+   ...dosOptions,
+   onFileEvent:(event,guest)=>{
+     if(originalOnFileEvent!==undefined){
+       const response=originalOnFileEvent(event,guest);
+       if(response!==undefined)return response; // DOS handler validates refusal
+     }
+     progress.observeFileEvent(event);
+   }
+ }:dosOptions);
+ if(progress)machine.installMemoryWriteObserver(progress.observeMemoryWrite);
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.
  if(keyboardQueue!==undefined)installBiosInt16(machine,{keyboardQueue});
  let steps=0,stopped=null,services=[],recent=[];
@@ -51,6 +70,7 @@ export async function probeOriginalOpen(original,{
  for(;steps<maxSteps&&!machine.terminated;steps++){
    const cs=machine.get16('CS'),ip=machine.get16('IP');
    if(hotspots)hotspots.observeInstruction({steps,cs,ip},machine);
+   if(progress)progress.observeInstruction({steps,cs,ip},machine);
    const record={cs,ip,ax:machine.get16('AX'),sp:machine.get16('SP')};
    if(traceLimit){recent.push(record);if(recent.length>traceLimit)recent.shift();}
    if(machine.read8(cs,ip)===0xcd&&machine.read8(cs,(ip+1)&65535)===0x21)
@@ -73,6 +93,7 @@ export async function probeOriginalOpen(original,{
    initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount}:null,
    steps,stopped,terminated:machine.terminated,services,recent,
    ...(hotspots?{executionHotspots:hotspots.summarize()}:{}),
+   ...(progress?{executionProgress:progress.summarize()}:{}),
    fidelity:'ORIGINAL_OPEN_MZ_BYTES__SYNTHETIC_DOS_PSP_MEMORY__NOT_REFERENCE_BOOT'
  });
 }

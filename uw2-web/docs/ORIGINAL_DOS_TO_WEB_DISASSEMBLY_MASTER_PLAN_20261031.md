@@ -395,3 +395,11 @@
 - `web/guest-bios-keyboard-step.js`는 한정된 실제 8086 실행 단계 전에 `INT 16h AH=00h` 직접 호출과 선택적 세그먼트 접두어를 확인한다. FIFO가 비어 있으면 **CPU IP/AX/FLAGS/큐 소비를 변경하지 않고 `WAIT_BIOS_INT16_AH00`를 반환**한다. 실제 입력 뒤 재호출하면 그 원본 게스트 INT16 명령이 동일 FIFO에서 dequeue한다. CPU 전체를 에뮬레이터가 임의 시간을 흘린 것처럼 진행하지 않고, 외부 PIT/IRQ/브라우저 반복 정책도 만들지 않는다. 합성 node 회귀는 wait→real event enqueue→INT16 resume, 게스트 IP와 AX·동일 FIFO, 지원/미지원 키, 취소 동작 및 bounded overflow를 검증한다.
 - `UW2 Web Fidelity Static Gate`에 두 새 모듈 문법 및 두 합성 회귀를 등록. **범위:** 이것은 선택적으로 연결 가능한 브라우저 키 입력 어댑터와 CPU 실행 대기 경계다. 기존 웹 프리뷰 `app.js`에 무조건 키 이벤트를 탈취하지 않으며, 사용자 보유 한국어판 원본 DOS `OPEN.EXE`에서 해당 BIOS 입력을 정상적으로 소비했거나 원본 DOS 스캔코드/IME/BIOS 대기·PIT IRQ 타이밍이 일치한 실측 결과는 아직 없다. OPEN 종료→MAIN 정상 시작/전체 원작 웹 게임 화면·음악·저장 및 실 DOS 동등성은 **UNTESTED/HOLD**.
 - **다음 연속 개발:** 실제 소유 원본의 OS/장치 스냅샷에서 키/IVT/PSP/MCB 대기 조건을 읽기 전용 대조한 뒤, 검증된 browser original-execution 진입점에만 위 두 어댑터를 실제로 결합한다. OPGRAPH 남은 12파트와 OPEN 장시간 실행 대기 분류, MAIN 진입·VGA/OPL·게임 단계는 기존 계획대로 이어간다.
+
+
+### 2026-11-01 원본 OPEN 장시간 실행의 CPU 쓰기·DOS 파일 진행 증거 분리
+
+- SHA-pinned 원본 `OPEN.EXE` 진단의 반복 CS:IP/레지스터 히스토리는 그래픽 디코더의 RAM 갱신이나 파일 읽기 진행과 독립적이므로 그 자체로 무한 루프를 증명하지 않는다. 신규 `web/guest-progress-witness.js`는 `RealMode8086.write8` 원본 게스트 소유 쓰기를 **수정 전 CPU observer 이벤트**에서만 집계하며 실제 이전 바이트와 새 바이트가 달라진 건수를 구분한다. 실주소 00000~9FFFF RAM / A0000~BFFFF VGA aperture / C0000~FFFFF upper-memory 쓰기를 분리하고, bounded window별 CPU instruction count, 실제 쓰기/변경 쓰기, 유일 주소(상한/overflow) 및 원본 DOS file handler의 실제 readBytes/메타 이벤트 수를 기록한다. 파일명·소유 원본 바이트·메모리 스냅샷·게임 화면은 **수집하지 않는다**.
+- `tools/p3-open-exec-probe.mjs`에 `enableProgressWitness:true`를 명시할 때만 설치한다. 기설치된 VGA/CPU write observer를 덮어쓰지 않고 충돌하면 즉시 거부한다. 기존 DOS 원본 file observer를 유지하며 그 결과가 성공했을 때에만 counters를 추가한다. 기본 probe, 기존 브라우저 게임, 사용자 보유 게임 파일은 변경하지 않는다. `enableHotspots`와 별도 선택 가능하며 `executionProgress`에 실제 메모리 갱신과 파일 전송량을 수치로 남긴다.
+- 새 합성 8086 MOV write8 회귀는 같은 주소에 같은 값 재쓰기 vs 값 변화, DOS read event, 주소 중복/overflow, 윈도우 보관 상한, 부정확한 20-bit 물리 근거 거부, 원본 파일명 노출 방지를 시험한다. 이 도구의 관측은 **합성 DOS 환경에서 실제 명령이 메모리를 쓰는지** 구별하는 데 유용할 뿐, 파일/IO/IRQ/VGA 디바이스의 모든 내부 상태 변화를 관측하는 것은 아니다. CPU 쓰기가 없거나 같은 주소가 반복돼도 원본 DOS 정지·무한루프를 단정하지 않는다. 개인 원본 실기 재실행 및 DOS 기준 실행/MAIN 시작·픽셀·오디오 동등성은 **UNTESTED/HOLD**.
+- 다음은 기존 private 원본 OPEN 100만 명령 진단에 본 집계를 낮은 비용으로 옵트인해 CPU hot sites와 CPU-write/actual file read가 동시에 진행되었는지 비교하는 일이다. 모든 실기 수치는 검증된 정확한 사용자 원본 SHA와 합성 DOS 환경을 함께 명시한다.

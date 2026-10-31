@@ -23,10 +23,12 @@ const statuses=Object.freeze({
   'MAIN.EXE':{terminationType:0,returnCode:1},
   'END.EXE':{terminationType:0,returnCode:0}
 });
-export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null,biosVideo=null,initialPsp=null,dosMemory=null}={}){
+export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null,biosVideo=null,initialPsp=null,dosMemory=null,traceLimit=0}={}){
   if(!(original instanceof Uint8Array))throw new TypeError('original KOEI.COM byte buffer required');
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
     throw new RangeError('bounded KOEI instruction budget required');
+  if(!Number.isInteger(traceLimit)||traceLimit<0||traceLimit>128)
+    throw new RangeError('bounded guest-register trace limit required');
   const bytes=Buffer.from(original),chain=verifyKoeiLaunchChain(bytes,{expectedSha256:pin.sha256});
   // Original KOEI.COM raw 02ACh includes C1 EB 04 (80186 SHR BX,4).
   const cpu=new RealMode8086(new Uint8Array(0x100000),{enable80186Shifts:true});
@@ -67,8 +69,14 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
     return status;
   }});
   let steps=0,stopped=null;
+  const recentSteps=[];
   for(;steps<maxSteps&&!cpu.terminated;steps++){
     const cs=cpu.get16('CS'),ip=cpu.get16('IP');
+    if(traceLimit){
+      recentSteps.push(Object.freeze({cs,ip,ax:cpu.get16('AX'),
+        sp:cpu.get16('SP'),flags:cpu.get16('FLAGS')}));
+      if(recentSteps.length>traceLimit)recentSteps.shift();
+    }
     try{cpu.step();}
     catch(e){
       stopped=Object.freeze({reason:'UNSUPPORTED_OR_MISSING_DOS_STATE',
@@ -80,6 +88,7 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
     stopped={reason:'STEP_BUDGET_EXHAUSTED',cs:cpu.get16('CS'),ip:cpu.get16('IP')};
   return {
     moduleName:'KOEI.COM',sha256:chain.sha256,steps,
+    recentSteps:traceLimit?recentSteps:undefined,
     entryPsp:chain.entryPsp,
     observedChildCalls:launches,observedBiosVideoRequests:videoRequests,
     externalVideoState:biosVideo?'CALLER_SUPPLIED_NOT_DOS_VERIFIED':null,

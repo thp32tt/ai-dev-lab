@@ -222,6 +222,10 @@ export class RealMode8086 {
     if(!keys.some(k=>typeof handlers[k]==='function')||
        Object.keys(handlers).some(k=>!keys.includes(k)||typeof handlers[k]!=='function'))
       throw new TypeError('I/O port requires only explicit operation callbacks');
+    // A mapped hardware port has exactly one owner. Replacing a live
+    // device could silently bypass the original FMDRV/VGA/PIT witness.
+    if(this.portHandlers.has(port))
+      throw new Error(`8086 I/O port ${port.toString(16)} already registered: fail closed`);
     this.portHandlers.set(port,{...handlers});
   }
   readIOPort(port,width) {
@@ -243,7 +247,12 @@ export class RealMode8086 {
       throw new Error(`8086 OUT port ${port.toString(16)} width ${width} has no device adapter: fail closed`);
     if(!Number.isInteger(value)||value<0||value>(width===8?0xff:0xffff))
       throw new RangeError('I/O device value must match operation width');
-    cb(port,value,this);
+    const result=cb(port,value,this);
+    // Device writes are synchronous CPU bus transactions. A Promise would
+    // let the next original instruction run before the device has accepted
+    // its OUT, invalidating the shared CPU/device execution order.
+    if(result&&typeof result.then==='function')
+      throw new Error('async 8086 OUT device adapter: fail closed');
   }
   load(bytes,segment,offset) {
     if(!(bytes instanceof Uint8Array))throw new TypeError('load requires bytes');

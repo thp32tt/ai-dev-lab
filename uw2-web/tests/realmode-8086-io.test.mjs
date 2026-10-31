@@ -66,4 +66,35 @@ assert.throws(()=>invalid.step(),/invalid unsigned value/);
 assert.equal(invalid.get16('AX'),0x1122);
 assert.throws(()=>invalid.registerIOPort(-1,{in8:()=>0}),/uint16/);
 assert.throws(()=>invalid.registerIOPort(0,{out8:'faked'}),/explicit operation callbacks/);
+// Device ownership is exclusive: a second adapter cannot intercept a live
+// FMDRV/VGA/PIT register or silently substitute its next IN response.
+const owner=cpuFor([0xec],c=>c.set16('DX',0x388));
+const first={in8:()=>0x42,out8:()=>undefined};
+owner.registerIOPort(0x388,first);
+assert.throws(()=>owner.registerIOPort(0x388,{in8:()=>0xff}),/already registered: fail closed/);
+assert.equal(owner.readIOPort(0x388,8),0x42);
+assert.doesNotThrow(()=>owner.registerIOPort(0x389,{out8:()=>undefined}));
+assert.throws(()=>owner.registerIOPort(0x389,{out8:()=>undefined}),/already registered/);
+// An OUT transaction returning a Promise is not allowed to continue as if
+// device state were already settled. The old path silently accepted it.
+for(const opcode of [0xe6,0xe7,0xee,0xef]){
+  const width=opcode===0xe6||opcode===0xee?8:16;
+  const c=cpuFor(opcode<0xec?[opcode,0x88]:[opcode],c=>{
+    c.set16('DX',0x388);c.set16('AX',0x1234);
+    c.registerIOPort(opcode<0xec?0x88:0x388,{
+      [width===8?'out8':'out16']:()=>Promise.resolve(undefined)
+    });
+  });
+  assert.throws(()=>c.step(),/async 8086 OUT device adapter: fail closed/);
+  assert.equal(c.get16('AX'),0x1234);
+  assert.equal(c.get16('FLAGS'),0xad7);
+}
+// Both 8-bit and 16-bit normal synchronous OUT remain supported.
+for(const width of [8,16]){
+  const c=cpuFor(width===8?[0xee]:[0xef],c=>{
+    c.set16('DX',0x388);c.set16('AX',0x5678);
+    c.registerIOPort(0x388,{[width===8?'out8':'out16']:()=>undefined});
+  });
+  assert.doesNotThrow(()=>c.step());
+}
 console.log('UW2 P3 8086 immediate/DX IN OUT bus-adapter synthetic regression: PASS');

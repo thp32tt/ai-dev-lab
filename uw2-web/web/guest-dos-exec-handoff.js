@@ -92,7 +92,11 @@ export function createSourceBoundDosExecHandoff(cpu){
     if(!request||request.filename!==pendingRequest.filename||
        request.parameterBlockSegment!==pendingRequest.parameterBlockSegment||
        request.parameterBlockOffset!==pendingRequest.parameterBlockOffset||
-       !frameSame(captureDosCpuFrame(cpu),parent))
+       // The native INT21 opcode has consumed exactly its two bytes before
+       // the real DOS handler invokes this synchronous child-result callback.
+       !frameSame(captureDosCpuFrame(cpu),{
+         ...parent,IP:(parent.IP+2)&0xffff
+       }))
       throw new Error('DOS EXEC completed status source mismatch: fail closed');
     const result=readyResult;
     readyResult=null;pendingRequest=null;parent=null;child=null;phase='IDLE';

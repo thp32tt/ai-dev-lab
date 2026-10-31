@@ -80,7 +80,7 @@ assert.equal(handoff.snapshot().phase,'CHILD_READY');
 assert.equal(parentSession.runSlice(30).reason,'TERMINATED');
 assert.equal(cpu.terminated.returnCode,0);
 assert.equal(cpu.read16(0x200,0x50),0x301);
-assert.equal(parentSession.snapshot().totalExecutedSteps,8);
+assert.equal(parentSession.snapshot().totalExecutedSteps,9);
 assert.equal(handoff.snapshot().phase,'IDLE');
 assert.equal(dos.pendingChildStatus(),null);
 assert.throws(()=>handoff.completeChild(child),/exact owned native child/);

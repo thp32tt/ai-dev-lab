@@ -51,8 +51,9 @@ export async function probeOriginalOpen(original,{
  // Progress is passive and optional: never replace an existing VGA/CPU
  // memory witness installed by a reference DOS harness.
  const progress=enableProgressWitness?createGuestProgressWitness():null;
- if(progress&&(machine.memoryWriteObserver!==null||machine.ioPortObserver!==null))
-   throw new Error('original OPEN progress observer requires unowned CPU write and I/O sinks: fail closed');
+ if(progress&&(machine.memoryWriteObserver!==null||machine.ioPortObserver!==null||
+              machine.memoryReadObserver!==null))
+   throw new Error('original OPEN progress observer requires unowned CPU write, read and I/O sinks: fail closed');
  const originalOnFileEvent=dosOptions.onFileEvent;
  installDosInt21(machine,progress?{
    ...dosOptions,
@@ -66,6 +67,7 @@ export async function probeOriginalOpen(original,{
  }:dosOptions);
  if(progress){
    machine.installMemoryWriteObserver(progress.observeMemoryWrite);
+   machine.installMemoryReadObserver(progress.observeProvidedMemoryRead);
    machine.installIOPortObserver(progress.observePortIO);
  }
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.

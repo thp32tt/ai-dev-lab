@@ -21,7 +21,8 @@ export function createGuestProgressWitness({
     ramWrites:0,vgaApertureWrites:0,upperMemoryWrites:0,
     fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0,
     ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
-    pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0};
+    pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0,
+    providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0};
   const open=(step)=>{
     if(window){
       windows.push(Object.freeze({...window,uniquePhysicalAddresses:seen.size,
@@ -33,7 +34,8 @@ export function createGuestProgressWitness({
       writeEvents:0,changedWrites:0,ramWrites:0,vgaApertureWrites:0,
       upperMemoryWrites:0,fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0,
       ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
-      pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0};
+      pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0,
+    providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0};
     seen=new Set();ports=new Set();
   };
   const observeInstruction=({steps,cs,ip}={},cpu)=>{
@@ -74,6 +76,25 @@ export function createGuestProgressWitness({
       else {totals.uniqueAddressOverflows++;window.uniqueAddressOverflows++;}
     }
     // CPU write8 performs the actual memory update after this passive observer.
+  };
+  // Provider-backed CPU read provenance, not an original VGA framebuffer.
+  const observeProvidedMemoryRead=(event,cpu)=>{
+    if(!(cpu instanceof RealMode8086)||!window)
+      throw new Error('progress provided read requires active guest instruction');
+    if(!event||typeof event!=='object')
+      throw new TypeError('progress provided read requires CPU memory event');
+    integer(event.physical,0,0xfffff,'progress provided physical address');
+    integer(event.segment,0,65535,'progress provided segment');
+    integer(event.offset,0,65535,'progress provided offset');
+    integer(event.value,0,255,'progress provided byte');
+    if(cpu.physical(event.segment,event.offset)!==event.physical)
+      throw new Error('progress provided read physical provenance mismatch');
+    for(const dest of [totals,window]){
+      dest.providedReadEvents++;
+      if(event.physical>=0xa0000&&event.physical<0xc0000)
+        dest.vgaProvidedReads++;
+      else dest.otherProvidedReads++;
+    }
   };
   // Passive CPU-port bus witness; not a claim that a VGA frame, PIT tick,
   // OPL sound or IRQ occurred. No port values survive into summarize().
@@ -122,10 +143,10 @@ export function createGuestProgressWitness({
     return Object.freeze({
       ...totals,stepsPerWindow,maxIOPortsPerWindow,discardedWindows,
       windows:Object.freeze(items.map(v=>Object.freeze({...v}))),
-      verdict:'OBSERVED_CPU_MEMORY_FILE_AND_IO_EVENTS_ONLY__NO_INFERRED_DEVICE_PROGRESS_OR_STALL',
+      verdict:'OBSERVED_CPU_MEMORY_FILE_IO_AND_PROVIDER_READS_ONLY__NO_INFERRED_DEVICE_PROGRESS_OR_STALL',
       fidelity:'ORIGINAL_GUEST_CPU_SOURCE_EVENTS__DOS_REFERENCE_AND_DEVICE_TIMING_UNTESTED'
     });
   };
-  return Object.freeze({observeInstruction,observeMemoryWrite,observePortIO,
-    observeFileEvent,summarize});
+  return Object.freeze({observeInstruction,observeMemoryWrite,
+    observeProvidedMemoryRead,observePortIO,observeFileEvent,summarize});
 }

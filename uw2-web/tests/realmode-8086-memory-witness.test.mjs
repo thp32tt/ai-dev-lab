@@ -34,3 +34,41 @@ native.step();native.step();
 assert.equal(native.read16(0xa000,0),0xabcd);
 assert.deepEqual(observed.map(e=>e.value),[0xcd,0xab]);
 console.log('UW2 native 8086 original VGA-aperture and regular byte-write passive witness: PASS');
+
+const providerCPU=new RealMode8086();
+providerCPU.load(Uint8Array.of(0xa0,0,0),0x340,0); // MOV AL,[0000]
+providerCPU.set16('CS',0x340);providerCPU.set16('DS',0xa000);
+const provided=[];
+providerCPU.installMemoryReadProvider(({physical})=>
+  physical===0xa0000?0x5c:undefined);
+providerCPU.installMemoryReadObserver((event,guest)=>{
+  assert.equal(guest,providerCPU);
+  assert.ok(Object.isFrozen(event));
+  provided.push(event);
+});
+providerCPU.step();
+assert.equal(providerCPU.get8('AL'),0x5c);
+assert.deepEqual(provided.map(x=>[x.physical,x.value]),[[0xa0000,0x5c]]);
+assert.throws(()=>providerCPU.installMemoryReadObserver(()=>{}),
+  /one synchronous passive/);
+providerCPU.removeMemoryReadObserver();
+providerCPU.installMemoryReadObserver(()=>undefined);
+providerCPU.set16('IP',0);providerCPU.step();
+providerCPU.removeMemoryReadObserver();
+const invalidProvider=new RealMode8086();
+invalidProvider.installMemoryReadProvider(()=>256);
+let badReadEvents=0;
+invalidProvider.installMemoryReadObserver(()=>{badReadEvents++;});
+assert.throws(()=>invalidProvider.read8(0,0),/must return uint8/);
+assert.equal(badReadEvents,0);
+const plainRAM=new RealMode8086();
+plainRAM.installMemoryReadObserver(()=>{badReadEvents++;});
+assert.equal(plainRAM.read8(0,0),0);
+assert.equal(badReadEvents,0);
+const refusingRead=new RealMode8086();
+refusingRead.installMemoryReadProvider(()=>77);
+refusingRead.installMemoryReadObserver(()=>99);
+assert.throws(()=>refusingRead.read8(0,0),/cannot replace provider bytes/);
+refusingRead.removeMemoryReadObserver();
+refusingRead.installMemoryReadObserver(()=>Promise.resolve());
+assert.throws(()=>refusingRead.read8(0,0),/async 8086 memory-read observer/);

@@ -112,3 +112,34 @@ assert.throws(()=>ioInvalid.observePortIO({direction:'out',port:0x388,width:8,
   value:10,cs:io.get16('CS'),ip:0},io),/provenance mismatch/);
 assert.equal(ioInvalid.summarize().ioWriteEvents,0);
 assert.throws(()=>createGuestProgressWitness({maxIOPortsPerWindow:0}),/I\/O port capacity/);
+
+const providerMachine=new RealMode8086();
+providerMachine.load(Uint8Array.of(0xa0,0,0,0xa0,1,0),0x350,0);
+providerMachine.set16('CS',0x350);providerMachine.set16('DS',0xa000);
+providerMachine.installMemoryReadProvider(({physical})=>
+  physical>=0xa0000&&physical<=0xa0001?physical&255:undefined);
+const providedWitness=createGuestProgressWitness();
+providerMachine.installMemoryReadObserver(providedWitness.observeProvidedMemoryRead);
+for(let n=0;n<2;n++){
+  providedWitness.observeInstruction({steps:n,cs:providerMachine.get16('CS'),
+    ip:providerMachine.get16('IP')},providerMachine);
+  providerMachine.step();
+}
+const providedResult=providedWitness.summarize();
+assert.equal(providedResult.providedReadEvents,2);
+assert.equal(providedResult.vgaProvidedReads,2);
+assert.equal(providedResult.otherProvidedReads,0);
+assert.ok(!JSON.stringify(providedResult).includes('"value"'));
+const providerGuard=createGuestProgressWitness();
+assert.throws(()=>providerGuard.observeProvidedMemoryRead({
+  segment:0xa000,offset:0,physical:0xa0000,value:0
+},providerMachine),/active guest instruction/);
+providerGuard.observeInstruction({steps:0,cs:providerMachine.get16('CS'),
+  ip:providerMachine.get16('IP')},providerMachine);
+assert.throws(()=>providerGuard.observeProvidedMemoryRead({
+  segment:0xa000,offset:0,physical:1,value:0
+},providerMachine),/provenance mismatch/);
+assert.throws(()=>providerGuard.observeProvidedMemoryRead({
+  segment:0xa000,offset:0,physical:0xa0000,value:256
+},providerMachine),/bounded integer/);
+assert.equal(providerGuard.summarize().providedReadEvents,0);

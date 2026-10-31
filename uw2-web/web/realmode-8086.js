@@ -41,6 +41,7 @@ export class RealMode8086 {
     this.maskableIrqShadow = 0;
     this.memoryWriteObserver = null; // Opt-in, never a synthetic VGA framebuffer.
     this.ioPortObserver = null; // Passive successful bus-transaction evidence only.
+    this.memoryReadObserver = null; // Passive explicit provider-backed byte read.
     this.memoryReadProvider = null; // Optional external, explicitly proven memory-mapped device.
   }
   installMemoryWriteObserver(observer) {
@@ -55,6 +56,20 @@ export class RealMode8086 {
     this.ioPortObserver=observer;
   }
   removeIOPortObserver() {this.ioPortObserver=null;}
+  installMemoryReadObserver(observer) {
+    if(typeof observer!=='function'||this.memoryReadObserver!==null)
+      throw new Error('8086 memory-read observer requires one synchronous passive callback');
+    this.memoryReadObserver=observer;
+  }
+  removeMemoryReadObserver() {this.memoryReadObserver=null;}
+  observeCompletedProvidedRead(event) {
+    if(this.memoryReadObserver===null)return;
+    const result=this.memoryReadObserver(Object.freeze(event),this);
+    if(result&&typeof result.then==='function')
+      throw new Error('async 8086 memory-read observer: fail closed');
+    if(result!==undefined)
+      throw new Error('8086 memory-read observer cannot replace provider bytes');
+  }
   observeCompletedIO(event) {
     if(this.ioPortObserver===null)return;
     const response=this.ioPortObserver(Object.freeze({
@@ -86,6 +101,9 @@ export class RealMode8086 {
       if(value!==undefined){
         if(!Number.isInteger(value)||value<0||value>255)
           throw new RangeError('8086 memory-read provider must return uint8 or undefined');
+        // Only after a real registered provider returned a valid byte.
+        // Ordinary RAM and failed device reads emit no observation.
+        this.observeCompletedProvidedRead({segment,offset,physical,value});
         return value;
       }
     }

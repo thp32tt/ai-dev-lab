@@ -55,17 +55,17 @@ assert.equal(child.runSlice(1).irq.reason,'MASKED_IF_CLEAR'); // IRET restores I
 assert.equal(child.runSlice(1).irq.delivered,true);
 assert.equal(pic.snapshot().irq0Delivered,2);
 assert.equal(pic.snapshot().irq0InService,true);
-assert.equal(child.runSlice(1).irq.reason,'DEFERRED_PIC_IRQ0_IN_SERVICE');
+assert.equal(child.runSlice(1).irq,null); // no third edge; second handler executes native EOI
 assert.equal(pic.snapshot().commands,2);
 assert.equal(pic.snapshot().irq0Eois,2);
-assert.equal(child.runSlice(1).irq.reason,'MASKED_IF_CLEAR');
+assert.equal(child.runSlice(1).irq,null); // second handler executes native IRET
 let end;
 do{end=child.runSlice(5);}while(end.state==='ACTIVE'&&end.reason!=='TOTAL_STEP_BUDGET_EXHAUSTED');
 assert.equal(end.state,'COMPLETED');
 assert.equal(end.result.returnCode,0);
 assert.deepEqual(captureDosCpuFrame(cpu),parent);
 assert.equal(child.snapshot().irqEdges.delivered,2);
-assert.equal(child.snapshot().irqEdges.picDeferred,2);
+assert.equal(child.snapshot().irqEdges.picDeferred,1);
 assert.equal(pic.snapshot().irq0InService,false);
 
 // IRET alone does not clear PIC service. The second explicit IRQ must

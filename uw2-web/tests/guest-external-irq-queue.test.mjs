@@ -64,3 +64,33 @@ assert.throws(()=>q.enqueue({vector:8,source:'unowned'}),/verified guest IVT/);
 assert.equal(q.snapshot().accepted,0);
 assert.throws(()=>createExternalGuestIrqEdgeQueue(cpu,{maxPending:0}),/cap/);
 console.log('UW2 external-source IRQ edge queued across native DOS child STI shadow, delivery, IRET and abort: PASS (synthetic)');
+
+
+// A queued IRQ cannot enter an ISR after the CPU's hard native-step budget
+// was reached. IF=0 on the first step leaves it pending until abort.
+const budgetCpu=new RealMode8086();
+budgetCpu.load(Uint8Array.of(0x90,0x90),0x620,0);
+budgetCpu.load(Uint8Array.of(0xcf),0x630,0);
+budgetCpu.installInterruptVector(8,0x630,0);
+budgetCpu.set16('CS',0x200);budgetCpu.set16('SS',0x200);
+budgetCpu.set16('SP',0xfffe);
+const budgetFrame={...frame,CS:0x620,DS:0x620,ES:0x620,
+ SS:0x620,SP:0xfffe,IP:0,FLAGS:0x002};
+const budgetChild=createStagedDosChildContinuation(budgetCpu,{
+ initialFrame:budgetFrame,maxTotalSteps:1
+});
+budgetChild.enqueueExternalIrqEdge({vector:8,source:'explicit-budget-test'});
+const firstBudget=budgetChild.runSlice(1);
+assert.equal(firstBudget.irq.reason,'MASKED_IF_CLEAR');
+assert.equal(firstBudget.reason,'TOTAL_STEP_BUDGET_EXHAUSTED');
+assert.equal(budgetChild.snapshot().irqEdges.pending,1);
+const stack=captureDosCpuFrame(budgetCpu);
+const noDelivery=budgetChild.runSlice(1);
+assert.equal(noDelivery.sliceSteps,0);
+assert.equal(noDelivery.irq,null);
+assert.deepEqual(captureDosCpuFrame(budgetCpu),stack);
+assert.equal(budgetChild.snapshot().irqEdges.delivered,0);
+assert.throws(()=>budgetChild.enqueueExternalIrqEdge({
+ vector:8,source:'late-irq'
+}),/after original instruction budget/);
+assert.equal(budgetChild.abort().irqEdges.discarded,1);

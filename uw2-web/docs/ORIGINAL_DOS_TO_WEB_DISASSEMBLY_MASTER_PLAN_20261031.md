@@ -521,3 +521,7 @@
 
 - N100 사용자 보유 `FMDRV.COM`/`OPEN.EXE`로 새로운 명시적 external IRQ0 단일 이벤트의 실제 원본 CPU 실행을 확인하는 중, 기존 private 테스트에 적힌 **가짜 INT08 초기 핸들러 0920:0000이 원본 OPEN.EXE 이미지 적재 영역과 실제 20-bit 주소에서 겹침**을 발견했다. 원본 FMDRV는 TSR 완료 후 guest INT08을 `0400:01DE`로 설치하고 미등록 OS 원래 핸들러로 체인하는데, 오래된 합성 IRET 스텁이 OPEN 적재 과정에서 덮여 **가짜 오류** `0000:0020 unsupported opcode DE`를 발생시켰다. 원본 FMDRV 실행 결함으로 간주하지 않는다.
 - `tests/p3-fmdrv-open-continuation-original.test.mjs`는 기존 `assertDisjointGuestPhysicalRegions`를 재사용해 FMDRV PSP+COM, OPEN PSP+MZ 실제 source imageBytes, 모든 synthetic IVT 스텁의 물리 위치를 원본 적재 **전에** 검증한다. OS 초기 synthetic IRET 스텁은 image와 분리된 `E000:E010:E020:E030:E040` 세그먼트로 격리하고, 이전 0920h 겹침이 실패하는 회귀 검사를 넣었다. 기본 모드(원본 FMDRV 30644+OPEN 80000명령) 및 명시적 `--synthetic-external-irq` 한 건 주입 모드 양쪽에서 **FMDRV 자체 INT08 0400:01DE를 거쳐 원본 OPEN 80000명령 완료 없이 예산 소진까지** 오류 없이 진행함을 N100에서 확인한다. irq 주입 시간·초기 IRQ 체인 벡터는 합성이라 실제 DOS/PIT 타이밍 증거가 아니며 OPEN 정상 종료/게임 동작은 UNTESTED.
+
+### 2026-11-01 외부 IRQ 큐 native CPU 예산 소진 후 가짜 ISR 진입 방지
+
+- `dos-child-continuation`이 누적 실행 예산을 소진하고도 미처리 외부 IRQ를 다음 `runSlice()`에서 먼저 전달하여 **실제 CPU 명령 0개인 상태에서 IVT ISR로 guest IP/stack을 변경**할 수 있는 결함을 수리했다. 남은 예산 0이면 delivered edge가 없어야 하며 미처리 edge는 abort로만 폐기한다. 예산이 끝난 뒤의 새 external IRQ 입력은 거부한다. 합성 8086 `IF=0` native NOP 1개→step cap→남은 IRQ 1개 보유→재호출 시 0 step/0 IRQ/CPU frame 동일→abort 시 discarded=1 검증한다. 최초 IRQ edge source 통합의 직접 수리이므로 별도 점수 없음.

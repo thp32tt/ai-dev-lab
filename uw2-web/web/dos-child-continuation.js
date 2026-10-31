@@ -101,7 +101,10 @@ export function createStagedDosChildContinuation(cpu,{
     try{
       // One explicit external device edge can be admitted before the next
       // guest instruction slice. IF/SS/STI guards keep a masked edge pending.
-      const irq=irqEdges.deliverOne();
+      // A hardware edge cannot consume guest stack or transfer into its
+      // ISR once the owned native-instruction budget has been exhausted.
+      // The caller must explicitly abort rather than resume with zero steps.
+      const irq=steps<maxTotalSteps?irqEdges.deliverOne():null;
       const segment=guest.runSlice(maxSteps);
       steps=segment.totalExecutedSteps;slices++;
       childFrame=captureDosCpuFrame(cpu);
@@ -134,6 +137,8 @@ export function createStagedDosChildContinuation(cpu,{
   const enqueueExternalIrqEdge=event=>{
     if(running)throw new Error('cannot enqueue hardware IRQ while guest runs');
     requireOwner();
+    if(steps>=maxTotalSteps)
+      throw new Error('external IRQ edge refused after original instruction budget: fail closed');
     return irqEdges.enqueue(event);
   };
   return Object.freeze({runSlice,snapshot,abort,enqueueExternalIrqEdge});

@@ -216,6 +216,33 @@ installDosInt21(cpu,{
     throw new Error('unknown original DOS console service');
  }
 });
+// Opt-in read-only native byte-write attribution, installed *after* the
+// externally staged original executable and DOS vector fixtures. This is NOT
+// VGA emulation; only guest physical address and exact byte writes are seen.
+const nativeMemoryWrites={
+  openProgramTotal:0,physical64kBands:Array(16).fill(0),
+  vgaA000Writes:0,vgaB000Writes:0,
+  vgaFirstBytes:[],sampleGuestWrites:[]
+};
+cpu.installMemoryWriteObserver((event,guest)=>{
+  if(activePsp!==0x600)return;
+  nativeMemoryWrites.openProgramTotal++;
+  const band=event.physical>>>16;
+  nativeMemoryWrites.physical64kBands[band]++;
+  if(event.physical>=0xa0000&&event.physical<0xb0000){
+    nativeMemoryWrites.vgaA000Writes++;
+    if(nativeMemoryWrites.vgaFirstBytes.length<24)
+      nativeMemoryWrites.vgaFirstBytes.push({
+        physical:event.physical,value:event.value,
+        cs:guest.get16('CS'),ip:guest.get16('IP')
+      });
+  }else if(event.physical>=0xb0000&&event.physical<0xc0000){
+    nativeMemoryWrites.vgaB000Writes++;
+  }
+  if(nativeMemoryWrites.sampleGuestWrites.length<16)
+    nativeMemoryWrites.sampleGuestWrites.push({physical:event.physical,
+      value:event.value,cs:guest.get16('CS'),ip:guest.get16('IP')});
+});
 let steps=0,stopped=null;
 const trace=[];
 for(;steps<3000&&!cpu.terminated;steps++){
@@ -267,6 +294,7 @@ const result={
  originalDosFileCalls:observed.originalDosFileCalls,
  verifiedFileRead:observed.verifiedFileRead,
  guestDecodedWitness,
+ nativeMemoryWrites,
  pinnedOpgraph:{sha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',bytes:opgraph.length,
   parts:pinnedOpgraph.partCount,decodedBytes:pinnedOpgraph.totalDecodedBytes,records:pinnedOpgraph.totalRecords},
 

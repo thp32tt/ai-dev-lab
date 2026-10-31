@@ -80,7 +80,12 @@ cpu.registerIOPort(0x388,oplBus.port388);
 cpu.registerIOPort(0x389,oplBus.port389);
 cpu.registerIOPort(0x61,{in8:()=>0,out8:()=>{portCount++;}});
 const picCommands=[];
+// The native FMDRV/OPEN bytes are owner SHA pinned, but this IRQ0 PIC
+// initial service state is SYNTHETIC, not a recorded DOS device snapshot.
+const syntheticIrq0PicGate=syntheticExternalIrq||syntheticPinnedIrq;
 const picWitness=createOriginalMasterPicCommandWitness({
+ irq0OwnerCpu:syntheticIrq0PicGate?cpu:undefined,
+ initialIrq0InService:syntheticIrq0PicGate?false:undefined,
  onCommand:event=>{picCommands.push(event);}
 });
 cpu.registerIOPort(0x20,picWitness.port20);
@@ -149,7 +154,8 @@ const pinnedIrqTape=syntheticPinnedIrq?
   }):undefined;
 const openSession=createStagedDosChildContinuation(cpu,{
  initialFrame:openFrame,maxTotalSteps:80000,
- externalIrqEvidenceTape:pinnedIrqTape
+ externalIrqEvidenceTape:pinnedIrqTape,
+ picCommandWitness:syntheticIrq0PicGate?picWitness:undefined
 });
 let explicitlyDelivered=null;
 if(syntheticExternalIrq){
@@ -180,6 +186,10 @@ if(syntheticPinnedIrq){
   assert.equal(openSession.snapshot().irqEdges.delivered,2);
   assert.equal(picWitness.snapshot().commands,1);
   assert.deepEqual(picCommands.map(x=>x.value),[0x20]);
+  assert.equal(picWitness.snapshot().irq0GateEnabled,true);
+  assert.equal(picWitness.snapshot().irq0Delivered,2);
+  assert.equal(picWitness.snapshot().irq0Eois,1);
+  assert.equal(picWitness.snapshot().irq0InService,true);
 }
 assert.deepEqual(captureDosCpuFrame(cpu),parent);
 assert.equal(cpu.getGuestInterruptVector(0x66).segment,0x400);
@@ -206,6 +216,7 @@ console.log(JSON.stringify({result:'ORIGINAL_FMDRV_TSR_TO_OPEN_SHARED_CPU',
  pinnedIrqEvidence:pinnedIrqTape?.snapshot()??null,
  pendingIrqs:openSession.snapshot().irqEdges,
  picCommands:picWitness.snapshot().commands,
+ picIrq0Service:picWitness.snapshot(),
  originalInt8,
  explicitIrqDelivery:explicitlyDelivered,stagingRegionCount:layout.regions.length,
  fidelity:'PRIVATE_ORIGINAL_FMDRV_OPEN_BYTES__SYNTHETIC_DOS_IVT_PORTS__NOT_REFERENCE'}));

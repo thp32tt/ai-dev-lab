@@ -502,3 +502,8 @@
 
 - 브라우저 DOS child의 종료·명시적 abort·실패 후 `keydown` 리스너가 남아 부모 웹 UI의 키를 가로채지 않도록 `browser-dos-child-bridge.js`에서 소유 리스너를 자동 해제한다. 입력 오류나 잘못된 실행 slice 인자로 아직 활성인 세션을 무조건 파괴하지 않고, child 상태가 실제 terminal/faulted인 경우에만 자동 해제한다. Native `IN AL,DX` I/O 장치 누락으로 child FAULTED→부모 frame 복원→키 리스너 제거 합성 검증을 추가했다. 이 수정은 최초 브라우저 child bridge 성과 내 수리이며 별도 점수 중복 없음.
 - 별도 N100 소유 원본 FMDRV TSR 30,644명령→OPEN 120,000명령 native 계속 실행 진단에서 사용자 소유 FMDRV `0400:0108` 및 OPEN `0610:1835` 주기 경로가 약 5,111회 반복된 것을 관측했다. 이 반복이 실제 원본 DOS의 시간/IRQ 동작과 동등하다는 자료는 아직 **없다**. 현재 합성 PORT/PIT/IVT 조건의 pending 하드웨어 증거 갭이며, 이 진단만으로 가짜 clock tick/INT66 응답·화면 프레임을 생성하거나 완료를 선언하지 않는다.
+
+### 2026-11-01 DOS 자식 종료 후 8086 BIOS INT16 장치 소유권 누출 수리
+
+- 실제 native 8086 `installBiosInt16()`이 설치한 인터럽트 어댑터는 자식 실행이 완료/abort/FAULTED해도 공유 CPU에 남아 다음 원본 DOS 자식의 BIOS 핸들러 등록을 방해하거나, 부모가 종료된 자식의 FIFO를 읽을 위험이 있었다. `RealMode8086.removeInterruptAdapter(number,exactHandler)`의 **정확한 등록 함수 동일성 검증**을 추가하고 `installBiosInt16` 소유 binding에 idempotent detach를 부여했다. `createGuestOriginalExecutionSession`은 해당 소유 binding을 한 번만 해제할 수 있으며 재개는 금지한다.
+- `createStagedDosChildContinuation`은 부모 CPU 프레임 복원 전에 **오직 자신이 등록한 BIOS INT16** 어댑터를 해제한다. 게스트/외부 FMDRV INT66 IVT는 건드리지 않으며 기존 부모 frame·IRQ shadow·guest IVT 변경은 유지한다. 합성 테스트는 첫 자식의 실제 BIOS AH00→DOS 4C 종료 후 동일 CPU에서 두 번째 자식이 BIOS를 정상 재등록하고 abort할 수 있음, 임의 owner 제거 시도 거부, 브라우저 child complete/abort/I/O fault 시 listener와 BIOS handler를 모두 해제함을 검증한다. 최초 브라우저 child integration의 생명주기 수리이므로 점수 중복 없음.

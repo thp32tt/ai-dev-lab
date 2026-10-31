@@ -67,3 +67,36 @@ assert.throws(()=>createStagedDosChildContinuation(cpu,{
  initialFrame:{...child,FLAGS:65536}
 }),/uint16/);
 console.log('UW2 persistent 8086 DOS child frame, real AH25 vector and AH31 TSR: PASS (synthetic)');
+
+// The child-owned BIOS adapter must not remain attached to the parent CPU
+// after child termination, abort, or a fault. A subsequent child must be
+// able to register a new owner without replacing a live original vector.
+const keyCpu=new RealMode8086();
+keyCpu.load(Uint8Array.of(0xb4,0,0xcd,0x16,0xb8,0,0x4c,0xcd,0x21),0x620,0);
+keyCpu.set16('CS',0x200);keyCpu.set16('SS',0x200);
+const keyParent=captureDosCpuFrame(keyCpu);
+installDosInt21(keyCpu);
+const keyQueue={
+  readKey(){return {available:true,ascii:65,scanCode:0x1e};},
+  checkKey(){return {available:true,ascii:65,scanCode:0x1e};}
+};
+const keyFrame={...child,CS:0x620,DS:0x620,ES:0x620,SS:0x620,IP:0};
+const firstChild=createStagedDosChildContinuation(keyCpu,{
+  initialFrame:keyFrame,keyboardQueue:keyQueue
+});
+assert.equal(firstChild.runSlice(10).state,'COMPLETED');
+assert.equal(keyCpu.interruptAdapters.has(0x16),false);
+assert.deepEqual(captureDosCpuFrame(keyCpu),keyParent);
+const secondChild=createStagedDosChildContinuation(keyCpu,{
+  initialFrame:keyFrame,keyboardQueue:keyQueue
+});
+assert.equal(secondChild.abort().state,'ABORTED');
+assert.equal(keyCpu.interruptAdapters.has(0x16),false);
+assert.deepEqual(captureDosCpuFrame(keyCpu),keyParent);
+const wrongOwner=new RealMode8086();
+const owner=()=>{};
+wrongOwner.installInterruptAdapter(0x16,owner);
+assert.throws(()=>wrongOwner.removeInterruptAdapter(0x16,()=>{}),/exact current owner/);
+assert.equal(wrongOwner.interruptAdapters.get(0x16),owner);
+wrongOwner.removeInterruptAdapter(0x16,owner);
+assert.equal(wrongOwner.interruptAdapters.has(0x16),false);

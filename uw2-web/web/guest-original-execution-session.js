@@ -20,7 +20,9 @@ export function createGuestOriginalExecutionSession(cpu,{
     throw new TypeError('original execution observer must be synchronous');
   // Fail on an existing BIOS vector/adapter, never silently override a
   // device already installed by another original DOS execution owner.
-  if(keyboardQueue!==undefined)installBiosInt16(cpu,{keyboardQueue});
+  const biosBinding=keyboardQueue!==undefined?
+    installBiosInt16(cpu,{keyboardQueue}):null;
+  let keyboardReleased=false;
   let executed=0,slices=0,lastReason=null,running=false,faulted=false;
   const status=()=>Object.freeze({
     totalExecutedSteps:executed,remainingSteps:maxTotalSteps-executed,
@@ -36,6 +38,7 @@ export function createGuestOriginalExecutionSession(cpu,{
     // advanced IP or partially committed guest/device state. This is never
     // a resumable key wait and must not silently skip the failed instruction.
     if(faulted)throw new Error('faulted original guest execution session cannot resume: fail closed');
+    if(keyboardReleased)throw new Error('released BIOS INT16 guest session cannot resume');
     running=true;
     let steps=0,reason='SLICE_STEP_BUDGET_EXHAUSTED';
     try{
@@ -84,5 +87,12 @@ export function createGuestOriginalExecutionSession(cpu,{
       throw error;
     }finally{running=false;}
   };
-  return Object.freeze({runSlice,snapshot:status});
+  const releaseKeyboardAdapter=()=>{
+    if(running)throw new Error('cannot release BIOS INT16 while guest is running');
+    if(!biosBinding||keyboardReleased)return false;
+    biosBinding.detach();
+    keyboardReleased=true;
+    return true;
+  };
+  return Object.freeze({runSlice,snapshot:status,releaseKeyboardAdapter});
 }

@@ -46,12 +46,21 @@ export function createStagedDosChildContinuation(cpu,{
     throw new TypeError('staged child observer must be synchronous');
   const parent=captureDosCpuFrame(cpu),parentTermination=cpu.terminated,
     parentIrqShadow=cpu.maskableIrqShadow;
+  let guest=null;
   let state='ACTIVE',result=null,steps=0,slices=0,childFrame=null,
     expectedFrame=null,expectedIrq=0,expectedTerminated=null;
   const restoreParent=()=>{
-    for(const name of DOS_CPU_FRAME_NAMES)cpu.set16(name,parent[name]);
-    cpu.terminated=parentTermination;
-    cpu.maskableIrqShadow=parentIrqShadow;
+    // A child-only BIOS queue belongs to this execution session. It must
+    // not outlive the child or intercept the suspended parent's INT16.
+    let cleanupError=null;
+    try{guest?.releaseKeyboardAdapter();}
+    catch(error){cleanupError=error;}
+    finally{
+      for(const name of DOS_CPU_FRAME_NAMES)cpu.set16(name,parent[name]);
+      cpu.terminated=parentTermination;
+      cpu.maskableIrqShadow=parentIrqShadow;
+    }
+    if(cleanupError)throw cleanupError;
   };
   try{
     for(const name of DOS_CPU_FRAME_NAMES)cpu.set16(name,initialFrame[name]);
@@ -59,7 +68,6 @@ export function createStagedDosChildContinuation(cpu,{
     expectedFrame=captureDosCpuFrame(cpu);
     expectedIrq=cpu.maskableIrqShadow;
   }catch(error){restoreParent();throw error;}
-  let guest;
   try{
     guest=createGuestOriginalExecutionSession(cpu,{
       maxTotalSteps,keyboardQueue,onBeforeInstruction

@@ -247,6 +247,13 @@ export class RealMode8086 {
       throw new Error('8086 interrupt already registered');
     this.interruptAdapters.set(number,handler);
   }
+  removeInterruptAdapter(number,handler) {
+    if(!Number.isInteger(number)||number<0||number>255)
+      throw new RangeError('8086 interrupt number must be uint8');
+    if(typeof handler!=='function'||this.interruptAdapters.get(number)!==handler)
+      throw new Error('8086 interrupt adapter removal requires exact current owner: fail closed');
+    this.interruptAdapters.delete(number);
+  }
   dispatchInterrupt(number) {
     const adapter=this.interruptAdapters.get(number);
     if(adapter){

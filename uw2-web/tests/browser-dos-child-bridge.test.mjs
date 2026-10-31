@@ -48,6 +48,7 @@ assert.equal(complete.steps,5);
 assert.deepEqual(captureDosCpuFrame(cpu),parent);
 assert.equal(cpu.read8(0x500,0x200),97);
 assert.equal(b.snapshot().queue.consumed,1);
+assert.equal(cpu.interruptAdapters.has(0x16),false); // child owned BIOS released
 assert.equal(b.snapshot().detached,true); // auto detach on real child exit
 assert.equal(listeners.has('keydown'),false);
 b.detach();b.detach();
@@ -70,6 +71,7 @@ const abortBridge=createBrowserDosChildBridge({
 assert.equal(abortBridge.runSlice(1).state,'ACTIVE');
 assert.equal(abortBridge.abort().state,'ABORTED');
 assert.equal(abortBridge.snapshot().detached,true); // explicit abort owns cleanup
+assert.equal(pending.interruptAdapters.has(0x16),false);
 abortBridge.detach();
 assert.equal(listeners.size,0);
 const faultCpu=new RealMode8086();
@@ -83,6 +85,7 @@ const faultBridge=createBrowserDosChildBridge({
 assert.throws(()=>faultBridge.runSlice(1),/no device adapter: fail closed/);
 assert.equal(faultBridge.snapshot().child.state,'FAULTED');
 assert.equal(faultBridge.snapshot().detached,true);
+assert.equal(faultCpu.interruptAdapters.has(0x16),false);
 assert.deepEqual(captureDosCpuFrame(faultCpu),faultParent);
 assert.equal(listeners.size,0);
 assert.ok(Object.isFrozen(b.snapshot()));

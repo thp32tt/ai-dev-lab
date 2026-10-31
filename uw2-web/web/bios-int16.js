@@ -20,7 +20,7 @@ export function installBiosInt16(cpu,{checkKey,readKey,keyboardQueue}={}){
     checkKey=keyboardQueue.checkKey;
     readKey=keyboardQueue.readKey;
   }
-  cpu.installInterruptAdapter(0x16,()=>{
+  const ownedHandler=()=>{
     const ah=cpu.get8('AH');
     if(ah===0x00){
       // BIOS AH00 is a blocking dequeue, never an empty-queue status poll.
@@ -65,8 +65,16 @@ export function installBiosInt16(cpu,{checkKey,readKey,keyboardQueue}={}){
       throw new Error('BIOS keyboard scan code and ASCII must be uint8');
     cpu.set16('AX',(scanCode<<8)|ascii);
     cpu.set16('FLAGS',cpu.get16('FLAGS')&~0x40);
-  });
+  };
+  cpu.installInterruptAdapter(0x16,ownedHandler);
+  let attached=true;
   return Object.freeze({
+    detach(){
+      if(attached){
+        cpu.removeInterruptAdapter(0x16,ownedHandler);
+        attached=false;
+      }
+    },
     supportedServices:Object.freeze(['INT16-AH01','INT16-AH00']),
     fidelity:'CALLER_KEYBOARD_STATUS_AND_DEQUEUE_ONLY__REAL_BIOS_KEY_TIMING_UNTESTED'
   });

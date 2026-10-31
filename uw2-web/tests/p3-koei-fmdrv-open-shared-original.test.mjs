@@ -64,7 +64,12 @@ const fmdrvChildFrame={
  CS:0x400,DS:0x400,ES:0x400,SS:0x400,IP:0x100,FLAGS:0x202
 };
 let activePsp=0x200;
-let fmdrvRun=null;
+let fmdrvRun=null,openGuestFault=null,openStarted=false;
+const openChildFrame={
+ AX:0,CX:0,DX:0,BX:0,SP:openMzHeader.sp,BP:0,SI:0,DI:0,
+ CS:openMz.entryCS,DS:0x600,ES:0x600,
+ SS:(0x610+openMzHeader.ss)&0xffff,IP:openMz.entryIP,FLAGS:0x202
+};
 const syntheticStatuses={
  'OPEN.EXE':{terminationType:0,returnCode:0},
  'MAIN.EXE':{terminationType:0,returnCode:1},
@@ -93,6 +98,14 @@ installDosInt21(cpu,{
     observed.calls.push({file:request.filename,status:fmdrvRun.terminationType});
     return {terminationType:fmdrvRun.terminationType,returnCode:fmdrvRun.returnCode};
   }
+  if(request.filename==='OPEN.EXE'){
+    openStarted=true;activePsp=0x600;
+    try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:10000});}
+    catch(error){openGuestFault={message:error.message,
+      cs:error.guestCS,ip:error.guestIP,steps:error.guestSteps};throw error;}
+    finally{activePsp=0x200;}
+    throw new Error('OPEN original unexpectedly terminated without a verified runtime');
+  }
   if(!Object.hasOwn(syntheticStatuses,request.filename))
     throw new Error('unknown original child '+request.filename);
   const status=syntheticStatuses[request.filename];
@@ -107,9 +120,15 @@ installDosInt21(cpu,{
  },
  resizeMemory:({segment,paragraphs})=>{
   observed.resizes.push({segment,paragraphs});
-  if(segment!==0x200||paragraphs!==0x7a)
-    throw new Error('unobserved synthetic KOEI PSP shrink');
+  if(!((segment===0x200&&paragraphs===0x7a)||
+       (segment===0x600&&paragraphs===6566)))
+    throw new Error('unobserved synthetic KOEI/OPEN PSP shrink');
   return {resized:true};
+ },
+ getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
+ getDeviceInfo:({handle})=>{
+   if(handle>4)throw new Error('OPEN original requested unobserved DOS handle');
+   return {deviceInfo:0x80d3}; // SYNTHETIC DOS handle flags
  },
  directConsoleIO:event=>{
   if(event.operation==='input')return {available:false};
@@ -127,7 +146,8 @@ for(;steps<3000&&!cpu.terminated;steps++){
  if(trace.length>16)trace.shift();
 }
 const result={
- original:{koeiSha:sha(koei),fmdrvSha:sha(fmdrv)},
+ original:{koeiSha:sha(koei),fmdrvSha:sha(fmdrv),openSha:sha(open)},
+ openStarted,openGuestFault,openMz,
  koeiSteps:steps,fmdrvChild:fmdrvRun,
  observedChildCalls:observed.calls,initialDosEnvironment:'SYNTHETIC',
  installedInt66:cpu.getGuestInterruptVector(0x66),
@@ -147,6 +167,12 @@ assert.equal(fmdrvRun.returnCode,1);
 assert.equal(fmdrvRun.residentParagraphs,0x26);
 assert.ok(fmdrvRun.steps>30000);
 assert.equal(observed.calls[0].file,'FMDRV.COM');
+assert.equal(result.original.openSha,openSha);
+assert.equal(openStarted,true);
+assert.ok(openGuestFault);
+assert.ok(openGuestFault.steps>583);
+assert.equal(cpu.getGuestInterruptVector(0x66).segment,0x400);
+assert.equal(result.stopped?.message,openGuestFault.message);
 assert.deepEqual(observed.resident,[{pspSegment:0x400,paragraphs:0x26,returnCode:1}]);
 console.log(JSON.stringify(result,null,2));
-console.log('UW2 real original KOEI -> FMDRV COM shared CPU: PASS (SYNTHETIC DOS, not original-game parity)');
+console.log('UW2 original KOEI EXEC FMDRV TSR -> original OPEN MZ -> FMDRV INT66 shared RAM: PASS (synthetic DOS, OPEN next blocker)');

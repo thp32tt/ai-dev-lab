@@ -25,8 +25,12 @@ ivt[0x66*4]=0;ivt[0x66*4+1]=0;ivt[0x66*4+2]=0;ivt[0x66*4+3]=9;
 ivt[0x65*4]=0;ivt[0x65*4+1]=0;ivt[0x65*4+2]=0x10;ivt[0x65*4+3]=9;
 ivt[0x08*4]=0;ivt[0x08*4+1]=0;ivt[0x08*4+2]=0x20;ivt[0x08*4+3]=9;
 psp.set([0xcd,0x20],0);
-const pitWrites=[];
+const pitWrites=[],residencyRequests=[];
 const synthetic=await probeOriginalFmdrv(orig,{
+ dosOptions:{pspSegment:0x300,stayResident:request=>{
+   residencyRequests.push({...request});
+   return {resident:true}; // explicit synthetic resident-allocator fixture ONLY
+ }},
  maxSteps:80000,
  ioPorts:[
    {number:0x43,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},
@@ -43,6 +47,11 @@ const synthetic=await probeOriginalFmdrv(orig,{
 });
 assert.ok(synthetic.steps>defaultProbe.steps);
 assert.equal(synthetic.initialIvt.knownVectorCount,3);
+assert.deepEqual(residencyRequests,[{pspSegment:0x300,paragraphs:0x26,returnCode:1}]);
+assert.deepEqual(synthetic.terminated,{terminationType:3,returnCode:1,
+  residentParagraphs:0x26,pspSegment:0x300});
+assert.deepEqual(cpu.getGuestInterruptVector(0x66),{segment:0x300,offset:0x108});
+assert.equal(cpu.getGuestInterruptVector(0x08).segment,0x300);
 assert.deepEqual(pitWrites.slice(0,3),[
  {port:0x43,value:0x36},{port:0x40,value:0},{port:0x40,value:0x10}
 ]);

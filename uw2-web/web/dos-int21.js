@@ -28,6 +28,21 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile}={}){
   };
   cpu.installInterruptAdapter(0x21,()=>{
     const ah=cpu.get8('AH');
+    if(ah===0x25){
+      // AH=25h AL=vector, DS:DX=guest handler address. KOEI.COM uses
+      // AX=2524h to install its own DOS critical-error INT 24h handler.
+      // No unknown DOS IVT default or host adapter is manufactured.
+      cpu.setGuestInterruptVector(cpu.get8('AL'),cpu.get16('DS'),cpu.get16('DX'));
+      return;
+    }
+    if(ah===0x35){
+      // AH=35h gets only a previously installed/verified IVT entry.
+      // Returning a zero-filled synthetic DOS vector would be incorrect.
+      const vector=cpu.getGuestInterruptVector(cpu.get8('AL'));
+      cpu.set16('ES',vector.segment);
+      cpu.set16('BX',vector.offset);
+      return;
+    }
     if(ah===0x4b){
       if(cpu.get8('AL')!==0)throw new Error('DOS EXEC other than 4B00h: fail closed');
       if(!executeChild)throw new Error('DOS EXEC requires a child runner: fail closed');

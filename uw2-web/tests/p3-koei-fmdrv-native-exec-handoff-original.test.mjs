@@ -37,12 +37,12 @@ await loadVerifiedCom(cpu,fm,{pspSegment:0x400,allocationParagraphs:0x1000,
 await loadVerifiedCom(cpu,ko,{pspSegment:0x200,allocationParagraphs:0x1000,
  initialSP:0xfffe,expectedSha256:sha(ko)});
 const ivt=new Uint8Array(1024);
-for(const [num,segment] of [[0x66,0xe000],[0x65,0xe010],[0x08,0xe020],[0x00,0xe030]]){
+for(const [num,segment] of [[0x66,0xe000],[0x65,0xe010],[0x08,0xe020],[0x00,0xe030],[0x67,0xe040]]){
  ivt[4*num+2]=segment&255;ivt[4*num+3]=segment>>8;
  cpu.load(Uint8Array.of(0xcf),segment,0);
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
- expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00]
+ expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67]
 });
 installBiosInt10(cpu,{
  teletype:()=>{},readMode:()=>({mode:3,columns:80,page:0}),

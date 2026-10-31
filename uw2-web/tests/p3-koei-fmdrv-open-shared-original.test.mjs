@@ -8,6 +8,7 @@ import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installBiosInt10} from '../web/bios-int10.js';
 import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
+import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {runStagedDosComChild,captureDosCpuFrame} from '../web/dos-com-child-runner.js';
 
@@ -47,7 +48,7 @@ for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
  expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67]});
-const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[]};
+const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[]};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
@@ -68,6 +69,9 @@ let syntheticVgaStatusReads=0;
 cpu.registerIOPort(0x3da,{in8:()=>{
  syntheticVgaStatusReads++;
  return syntheticVgaStatusReads%2===0?0x08:0x00; // synthetic retrace, not measured
+}});
+const vgaDac=installVgaDacWriteRecorder(cpu,{maxColors:20000,onColor:e=>{
+ if(observed.dacColors.length<32)observed.dacColors.push({...e});
 }});
 const fmdrvChildFrame={
  AX:0,CX:0,DX:0,BX:0,SP:0xfffe,BP:0,SI:0,DI:0,
@@ -167,7 +171,7 @@ const result={
  originalPitWrites:observed.io.filter(x=>x.port===0x40||x.port===0x43).slice(0,4),
  vgaWrites:observed.vgaWrites,vgaWriteCount:indexedVga.writtenCount(),
  paletteWrites:observed.paletteWrites,
- syntheticVgaStatusReads,
+ syntheticVgaStatusReads,dacColors:observed.dacColors,dacColorCount:vgaDac.writtenColors(),
  koeiModeRequests:observed.biosModes,
  freed:observed.freed,resizes:observed.resizes,
  koeiTerminated:cpu.terminated,stopped,trace,

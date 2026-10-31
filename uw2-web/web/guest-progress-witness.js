@@ -21,7 +21,8 @@ export function createGuestProgressWitness({
   const open=(step)=>{
     if(window){
       windows.push(Object.freeze({...window,uniquePhysicalAddresses:seen.size}));
-      if(windows.length>maxWindows){windows.shift();discardedWindows++;}
+      // The active new window consumes one slot as well.
+      if(windows.length>=maxWindows){windows.shift();discardedWindows++;}
     }
     window={firstStep:step,lastStep:step,instructionBoundaries:0,
       writeEvents:0,changedWrites:0,ramWrites:0,vgaApertureWrites:0,

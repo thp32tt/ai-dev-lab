@@ -341,7 +341,12 @@ if(syntheticIrqStep===128&&instructionBudget===260000){
   assert.deepEqual(result.originalVgaFramePixelPrefix,Array(16).fill(0));
   assert.equal(nativeMemoryWrites.vgaA000Writes,38400);
 }
-assert.deepEqual(observed.originalFileRequests.slice(0,1),['C:OPGRAPH.LZW']);
+// A deliberately shorter native instruction budget may stop before the
+// original 3D00 resource-open call; never manufacture an observed filename.
+if(observed.originalFileRequests.length)
+  assert.equal(observed.originalFileRequests[0],'C:OPGRAPH.LZW');
+if(syntheticIrqStep===128&&instructionBudget===260000)
+  assert.deepEqual(observed.originalFileRequests,['C:OPGRAPH.LZW']);
 assert.ok(indexedVga.writtenCount()>=6);
 assert.ok(vgaDac.writtenColors()>=16);
 assert.ok(observed.paletteWrites.length>=16);

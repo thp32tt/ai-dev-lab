@@ -22,7 +22,7 @@ const statuses=Object.freeze({
   'MAIN.EXE':{terminationType:0,returnCode:1},
   'END.EXE':{terminationType:0,returnCode:0}
 });
-export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null}={}){
+export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null,biosVideo=null}={}){
   if(!(original instanceof Uint8Array))throw new TypeError('original KOEI.COM byte buffer required');
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
     throw new RangeError('bounded KOEI instruction budget required');
@@ -41,7 +41,9 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   });
   const allowed=new Set(ORIGINAL_KOEI_LAUNCH_SITES.map(x=>x.name));
   const launches=[],videoRequests=[];
-  installBiosInt10(cpu,{teletype:args=>{
+  if(biosVideo!==null&&(!biosVideo||typeof biosVideo!=='object'||Array.isArray(biosVideo)))
+    throw new TypeError('explicit BIOS video provider object required');
+  installBiosInt10(cpu,{...(biosVideo||{}),teletype:args=>{
     if(videoRequests.length>=32)throw new Error('synthetic BIOS video event budget exhausted');
     videoRequests.push(args);
   }});
@@ -73,6 +75,7 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
     moduleName:'KOEI.COM',sha256:chain.sha256,steps,
     entryPsp:chain.entryPsp,
     observedChildCalls:launches,observedBiosVideoRequests:videoRequests,
+    externalVideoState:biosVideo?'CALLER_SUPPLIED_NOT_DOS_VERIFIED':null,
     initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount,
       provenance:'CALLER_SUPPLIED_NOT_ORIGINAL_DOS_VERIFIED'}:null,
     terminated:cpu.terminated??null,stopped,

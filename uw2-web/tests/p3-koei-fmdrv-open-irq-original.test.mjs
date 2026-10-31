@@ -7,6 +7,7 @@ import {loadVerifiedCom,loadVerifiedMz,inspectMzForLoad} from '../web/mz-loader.
 import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installBiosInt10} from '../web/bios-int10.js';
+import {installBiosInt16} from '../web/bios-int16.js';
 import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
 import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
 import {installDosInt21} from '../web/dos-int21.js';
@@ -68,6 +69,7 @@ installBiosInt10(cpu,{
  setMode:({mode})=>{observed.biosModes.push(mode);},
  setPaletteRegister:entry=>{observed.paletteWrites.push({...entry});}
 });
+installBiosInt16(cpu,{checkKey:()=>({available:false})}); // SYNTHETIC empty keyboard queue
 for(const [port,handlers] of [
  [0x43,{out8:(p,v)=>observed.io.push({port:p,value:v})}],
  [0x40,{out8:(p,v)=>observed.io.push({port:p,value:v})}],

@@ -27,7 +27,7 @@ const syntheticIrqStep=process.argv[2]===undefined?2048:Number(process.argv[2]);
 const instructionBudget=process.argv[3]===undefined?60000:Number(process.argv[3]);
 if(!Number.isInteger(syntheticIrqStep)||syntheticIrqStep<32||syntheticIrqStep>65535)
  throw new RangeError('explicit synthetic IRQ step interval must be 32..65535');
-if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>5000000)
+if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>10000000)
  throw new RangeError('explicit bounded original OPEN instruction budget required');
 const dir=process.env.UW2_GAME_DIR||
  '/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD';
@@ -355,7 +355,10 @@ const result={
  vgaWrites:observed.vgaWrites,vgaWriteCount:indexedVga.writtenCount(),
  paletteWrites:observed.paletteWrites,
  syntheticVgaStatusReads,dacColors:observed.dacColors,dacColorCount:vgaDac.writtenColors(),
- syntheticPitIrqStep:syntheticIrqStep,syntheticPitIrqEdges:observed.pitIrqEdges,originalPicWrites:observed.picWrites,
+ syntheticPitIrqStep:syntheticIrqStep,syntheticPitIrqEventCount:observed.pitIrqEdges.length,
+ syntheticPitIrqDeliveredCount:observed.pitIrqEdges.filter(e=>e.delivered).length,
+ syntheticPitIrqFirst:observed.pitIrqEdges.slice(0,5),
+ originalPicWriteCount:observed.picWrites.length,originalPicFirst:observed.picWrites.slice(0,12),
  koeiModeRequests:observed.biosModes,
  freed:observed.freed,resizes:observed.resizes,
  koeiTerminated:cpu.terminated,stopped,trace,

@@ -425,3 +425,8 @@
 
 - CPU의 새 단일 소유자 `externalIrqObserver`는 실제 호출된 `deliverExternalMaskableIrq()`의 검증된 외부 요청에서 IF=0 거부, STI/SS 그림자 지연, IVT 설치 후 실제 게스트 인터럽트 전달을 구분한다. 전달 기록은 `dispatchInterrupt()` 성공 이후에만 발생하며 unknown IVT/잘못된 요청을 성공으로 기록하지 않는다. 새 진단값은 bounded instruction window별 세 결정의 **횟수만** 기록하며 장치 이름·비트·게스트 원본 바이트는 남기지 않는다.
 - 실제 PIT/PIC 클록이나 IRQ 신호를 생성하지 않고, 이미 존재하는 장치 스케줄러의 명시적 요청만 관측한다. 외부 원본 참조 IRQ 타이밍, MAIN 진입, VGA/OPL 재생은 **UNTESTED/HOLD**. 합성 회귀는 실제 guest IVT+IRET, IF 마스크, observer 소유권/비동기/값 반환 거부와 잘못된 벡터를 검사한다.
+
+### 2026-11-01 P3 원본 8086 실행 세션 — BIOS 키 대기 후 상태 보존 재개
+
+- `web/guest-original-execution-session.js`는 원본 CPU를 재적재하지 않고 외부에서 받은 실제 BIOS 키 FIFO 하나를 소유해 반복 `runSlice()`로 계속 실행할 수 있도록 한다. 빈 INT16 AH00은 CS:IP·레지스터·큐를 변경하지 않은 채 WAIT로 반환하고, 실제 키 enqueue 이후 동일 명령에서 재개한다. 누적 명령(최대 15M)과 각 실행 슬라이스(최대 100k)에 독립적으로 명시적 한도를 두며, 슬라이스가 여러 번 호출되어도 누적 한도를 초과하지 않는다. DOS 타이머·키 이벤트·미확인 장치 결과를 스스로 생성하지 않는다.
+- OPEN 원본 진단의 기존 `keyboardQueue` opt-in은 위 실행 세션의 단일 명령 slice 경유로 연결한다. 현재 기본 비입력 실행 경로는 그대로 보존한다. 합성 8086 INT16 AH00 대기→실제 FIFO 키 소비→RAM 변경→DOS AH4C 종료, 재대기, 누적 한도, 이전 BIOS owner 충돌, 부정확한 입력 차단을 CI에서 검사한다. 이 세션은 선택적으로 연결되는 실행 기반일 뿐 한국어판 원본 OPEN의 실제 키 입력 필요 여부, 원본 DOS 시간, MAIN 전환이나 브라우저 전체 게임 완료는 **UNTESTED/HOLD**.

@@ -12,8 +12,7 @@ import {loadVerifiedMz} from '../web/mz-loader.js';
 import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installDosInt21} from '../web/dos-int21.js';
-import {installBiosInt16} from '../web/bios-int16.js';
-import {runGuestUntilKeyboardWait} from '../web/guest-bios-keyboard-step.js';
+import {createGuestOriginalExecutionSession} from '../web/guest-original-execution-session.js';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
 const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
@@ -72,7 +71,8 @@ export async function probeOriginalOpen(original,{
    machine.installExternalIrqObserver(progress.observeExternalIrq);
  }
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.
- if(keyboardQueue!==undefined)installBiosInt16(machine,{keyboardQueue});
+ const keyboardSession=keyboardQueue===undefined?null:
+   createGuestOriginalExecutionSession(machine,{keyboardQueue,maxTotalSteps:maxSteps});
  let steps=0,stopped=null,recent=[];
  const serviceHistory=createGuestDosCallWindow({maxEvents:maxServiceEvents});
  const hotspots=enableHotspots?createGuestExecutionHotspotRecorder({
@@ -90,7 +90,7 @@ export async function probeOriginalOpen(original,{
      if(keyboardQueue!==undefined){
        // A pending original BIOS AH00 must not advance the MZ guest IP
        // before a genuine external key has entered the shared FIFO.
-       const gate=runGuestUntilKeyboardWait(machine,{keyboardQueue,maxSteps:1});
+       const gate=keyboardSession.runSlice(1);
        if(gate.reason==='WAIT_BIOS_INT16_AH00'){
          stopped={cs,ip,reason:gate.reason};break;
        }

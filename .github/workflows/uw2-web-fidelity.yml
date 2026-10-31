@@ -53,6 +53,7 @@ jobs:
           node --check uw2-web/web/bios-keyboard-queue.js
           node --check uw2-web/web/browser-bios-keyboard.js
           node --check uw2-web/web/guest-bios-keyboard-step.js
+          node --check uw2-web/web/guest-original-execution-session.js
           node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/web/dos-original-files.js
           node --check uw2-web/tools/koei-launch-chain.mjs
@@ -125,6 +126,7 @@ jobs:
           node uw2-web/tests/bios-keyboard-queue.test.mjs
           node uw2-web/tests/browser-bios-keyboard.test.mjs
           node uw2-web/tests/guest-bios-keyboard-step.test.mjs
+          node uw2-web/tests/guest-original-execution-session.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs
           node uw2-web/tests/dos-readonly-files-process.test.mjs
           node uw2-web/tests/dos-file-duplication.test.mjs

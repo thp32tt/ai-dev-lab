@@ -45,7 +45,7 @@ invoke(0x42,0);assert.equal(c.get16('AX'),0);
 c.set16('BX',handle);c.set16('CX',0xffff);c.set16('DX',0xffff);
 invoke(0x42,0);assert.equal(c.flag('CF'),true);
 assert.equal(c.get16('AX'),1); // cannot seek before beginning
-c.set16('BX',handle);c.set16('CX',0);c.set16('DX',0x62);
+c.set16('BX',handle);c.set16('CX',1);c.set16('DX',0x62);
 invoke(0x3f);assert.equal(c.read8(0x300,0x62),1); // failed seek left cursor at zero
 c.set16('BX',handle);invoke(0x3e);
 assert.equal(c.flag('CF'),false);

@@ -110,5 +110,16 @@ export function createGuestOriginalExecutionSession(cpu,{
     keyboardReleased=true;
     return true;
   };
-  return Object.freeze({runSlice,snapshot:status,releaseKeyboardAdapter});
+  // Only after an actual external vector becomes registered can the
+  // owner remove stale wait metadata. No guest instruction is executed.
+  const acknowledgeResolvedWait=()=>{
+    if(running||faulted||!waiting)
+      throw new Error('no owned pending guest source wait to resolve');
+    if(!cpu.interruptVectors.has(waiting.missingInterruptVector))
+      throw new Error('pending guest interrupt vector is not installed');
+    waiting=null;
+    return status();
+  };
+  return Object.freeze({runSlice,snapshot:status,releaseKeyboardAdapter,
+    acknowledgeResolvedWait});
 }

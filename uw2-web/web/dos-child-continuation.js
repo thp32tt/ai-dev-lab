@@ -182,7 +182,9 @@ export function createStagedDosChildContinuation(cpu,{
       const result=await supplyPinnedGuestDosIvtVector(cpu,{
         number,bytes,expectedSha256
       });
-      requireOwner();waiting=null;
+      requireOwner();
+      guest.acknowledgeResolvedWait();
+      waiting=null;
       return result;
     }finally{provisioning=false;}
   };

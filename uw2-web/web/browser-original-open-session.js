@@ -18,7 +18,8 @@ const shaHex=bytes=>Array.from(bytes,
 export async function createBrowserOriginalOpenSession({
   cpu,original,target,allocationParagraphs,pspSegment=0x600,
   loadSegment=0x610,initialPsp,initialIvt,
-  maxTotalSteps=1000000,maxQueuedKeys=64
+  maxTotalSteps=1000000,maxQueuedKeys=64,
+  pauseOnMissingDosIvt=false,pauseOnMissingGuestInterrupt=false
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('browser original OPEN requires shared RealMode8086');
@@ -41,8 +42,10 @@ export async function createBrowserOriginalOpenSession({
   // keyboard handler. No optional override of the Korean OPEN fingerprint.
   if(!globalThis.crypto?.subtle?.digest)
     throw new Error('SHA-256 unavailable for original browser OPEN: fail closed');
+  // The double-check and the MZ load must use one pinned original buffer.
+  const originalBytes=Uint8Array.from(original);
   const hash=shaHex(new Uint8Array(
-    await globalThis.crypto.subtle.digest('SHA-256',original)));
+    await globalThis.crypto.subtle.digest('SHA-256',originalBytes)));
   if(hash!==KOREAN_ORIGINAL_OPEN_SHA256)
     throw new Error('original Korean OPEN.EXE fingerprint mismatch: fail closed');
   if(cpu.interruptVectors.has(0x16)||cpu.interruptAdapters.has(0x16)||
@@ -53,7 +56,7 @@ export async function createBrowserOriginalOpenSession({
   const psp=await loadPinnedDosPsp(cpu,initialPsp.bytes,{
     pspSegment,expectedSha256:initialPsp.expectedSha256
   });
-  const image=await loadVerifiedMz(cpu,original,{
+  const image=await loadVerifiedMz(cpu,originalBytes,{
     pspSegment,loadSegment,allocationParagraphs,
     expectedSha256:KOREAN_ORIGINAL_OPEN_SHA256
   });
@@ -61,11 +64,13 @@ export async function createBrowserOriginalOpenSession({
     expectedSha256:initialIvt.expectedSha256,knownVectors:initialIvt.knownVectors
   });
   const bridge=createBrowserOriginalGuestBridge({
-    cpu,target,maxTotalSteps,maxQueuedKeys
+    cpu,target,maxTotalSteps,maxQueuedKeys,
+    pauseOnMissingDosIvt,pauseOnMissingGuestInterrupt
   });
   return Object.freeze({
     image,initialPsp:psp,initialIvt:ivt,
     runSlice:steps=>bridge.runSlice(steps),
+    supplyPinnedDosIvtVector:entry=>bridge.supplyPinnedDosIvtVector(entry),
     detach:()=>bridge.detach(),
     snapshot:()=>Object.freeze({
       execution:bridge.snapshot().execution,

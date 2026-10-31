@@ -50,3 +50,38 @@ console.log(JSON.stringify({
   executedSteps:step.totalExecutedSteps,attached,detached,
   fidelity:'PRIVATE_ORIGINAL_BYTES_SYNTHETIC_PSP_IVT_EVENT_TARGET__NOT_BROWSER_OR_DOS_REFERENCE'
 }));
+
+// Second original-byte path: the caller does NOT pretend to know IVT 00h.
+// Pauses before the authentic original INT21 AH35, then uses ONLY a
+// caller-supplied SHA-pinned SYNTHETIC DOS 00h vector for further tracing.
+const missingCpu=new RealMode8086();
+installDosInt21(missingCpu,{
+  getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
+  resizeMemory:()=>({resized:true}),
+  getDeviceInfo:()=>({deviceInfo:0x80d3})
+});
+const unprovenIvt=new Uint8Array(1024);
+unprovenIvt[0x67*4+2]=0x00;unprovenIvt[0x67*4+3]=0x09;
+const staged=await createBrowserOriginalOpenSession({
+  cpu:missingCpu,original,target,allocationParagraphs:7000,maxTotalSteps:1600,
+  pauseOnMissingDosIvt:true,pauseOnMissingGuestInterrupt:true,
+  initialPsp:{bytes:psp,expectedSha256:sha(psp)},
+  initialIvt:{bytes:unprovenIvt,expectedSha256:sha(unprovenIvt),knownVectors:[0x67]}
+});
+const missing=staged.runSlice(1600);
+assert.equal(missing.reason,'WAIT_EXTERNAL_DOS_IVT_VECTOR');
+assert.equal(missing.totalExecutedSteps,470);
+assert.equal(missing.waiting.missingInterruptVector,0);
+assert.equal(missingCpu.get16('IP'),0x2de1);
+const source00=Uint8Array.of(0,0,0,9);
+await staged.supplyPinnedDosIvtVector({
+ number:0,bytes:source00,expectedSha256:sha(source00)
+});
+assert.equal(staged.snapshot().execution.waiting,null);
+const waitingDriver=staged.runSlice(1600);
+assert.equal(waitingDriver.reason,'WAIT_EXTERNAL_GUEST_INTERRUPT_HANDLER');
+assert.equal(waitingDriver.waiting.missingInterruptVector,0x66);
+assert.equal(waitingDriver.totalExecutedSteps,583);
+assert.equal(missingCpu.get16('IP'),0x1831);
+staged.detach();
+assert.equal(staged.snapshot().detached,true);

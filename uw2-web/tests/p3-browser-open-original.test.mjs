@@ -70,7 +70,9 @@ const staged=await createBrowserOriginalOpenSession({
 });
 const missing=staged.runSlice(1600);
 assert.equal(missing.reason,'WAIT_EXTERNAL_DOS_IVT_VECTOR');
-assert.equal(missing.totalExecutedSteps,470);
+// Explicitly staged browser PSP/IVT differs from standalone OPEN probe
+// synthetic initial RAM: 472 (not 470) original instructions to same CS:IP.
+assert.equal(missing.totalExecutedSteps,472);
 assert.equal(missing.waiting.missingInterruptVector,0);
 assert.equal(missingCpu.get16('IP'),0x2de1);
 const source00=Uint8Array.of(0,0,0,9);
@@ -81,7 +83,9 @@ assert.equal(staged.snapshot().execution.waiting,null);
 const waitingDriver=staged.runSlice(1600);
 assert.equal(waitingDriver.reason,'WAIT_EXTERNAL_GUEST_INTERRUPT_HANDLER');
 assert.equal(waitingDriver.waiting.missingInterruptVector,0x66);
-assert.equal(waitingDriver.totalExecutedSteps,583);
+// The second bound under this fixture is 589, not standalone probe 583;
+ // the same original driver wait CS:IP is observed without inferred timing.
+assert.equal(waitingDriver.totalExecutedSteps,589);
 assert.equal(missingCpu.get16('IP'),0x1831);
 staged.detach();
 assert.equal(staged.snapshot().detached,true);

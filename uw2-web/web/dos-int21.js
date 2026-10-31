@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -22,6 +22,8 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('getDosVersion must be a synchronous external DOS version provider');
   if(getDeviceInfo!==undefined&&typeof getDeviceInfo!=='function')
     throw new TypeError('getDeviceInfo must be a synchronous external DOS IOCTL provider');
+  if(getCurrentDrive!==undefined&&typeof getCurrentDrive!=='function')
+    throw new TypeError('getCurrentDrive must be a synchronous external DOS drive provider');
   if(stayResident&&typeof pspSegment!=='function'&&
      (!Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
     throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
@@ -101,6 +103,20 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
         throw new Error('DOS AH09 console output must not synthesize status');
       // Actual DOS 2.1-7.0 documented by RBIL: AL=24h on return.
       cpu.set8('AL',0x24);
+      return;
+    }
+    if(ah===0x19){
+      // DOS current drive: AL=0 for A:, 1 for B:, etc. DOS owns the
+      // current drive/PSP environment; never manufacture a default C:.
+      if(!getCurrentDrive)
+        throw new Error('DOS AH19 needs an external current-drive snapshot: fail closed');
+      const response=getCurrentDrive(Object.freeze({service:0x19}),cpu);
+      if(response&&typeof response.then==='function')
+        throw new Error('async DOS current-drive provider: fail closed');
+      if(!response||typeof response!=='object'||Array.isArray(response)||
+         !Number.isInteger(response.drive)||response.drive<0||response.drive>25)
+        throw new Error('DOS AH19 drive must be an explicit 0..25 value: fail closed');
+      cpu.set8('AL',response.drive);
       return;
     }
     if(ah===0x25){

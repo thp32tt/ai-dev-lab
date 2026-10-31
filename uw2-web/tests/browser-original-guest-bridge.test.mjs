@@ -42,6 +42,8 @@ assert.equal(done.reason,'TERMINATED');
 assert.equal(done.totalExecutedSteps,5);
 assert.equal(cpu.read8(0x200,0x200),97);
 assert.equal(bridge.snapshot().queue.consumed,1);
+assert.equal(bridge.snapshot().detached,true); // child reached DOS termination
+assert.equal(cpu.interruptAdapters.has(0x16),false); // no stranded owner
 bridge.detach();bridge.detach();
 assert.equal(removes,1);
 assert.equal(listeners.has('keydown'),false);
@@ -65,4 +67,14 @@ const cap=createBrowserOriginalGuestBridge({cpu:limited,target,
 assert.equal(cap.runSlice(10).reason,'TOTAL_STEP_BUDGET_EXHAUSTED');
 assert.equal(cap.snapshot().execution.remainingSteps,0);
 cap.detach();
+assert.equal(limited.interruptAdapters.has(0x16),false);
+const rejectCpu=new RealMode8086();
+rejectCpu.set16('CS',0x350);
+rejectCpu.set16('DX',0x388);
+rejectCpu.load(Uint8Array.of(0xec),0x350,0); // original IN AL,DX without device
+const failBridge=createBrowserOriginalGuestBridge({cpu:rejectCpu,target});
+assert.throws(()=>failBridge.runSlice(1),/no device adapter: fail closed/);
+assert.equal(failBridge.snapshot().detached,true);
+assert.equal(rejectCpu.interruptAdapters.has(0x16),false);
+assert.equal(listeners.size,0);
 console.log('UW2 opt-in browser trusted BIOS event -> same native guest CPU wait/resume: PASS (synthetic)');

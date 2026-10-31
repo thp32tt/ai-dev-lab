@@ -507,3 +507,7 @@
 
 - 실제 native 8086 `installBiosInt16()`이 설치한 인터럽트 어댑터는 자식 실행이 완료/abort/FAULTED해도 공유 CPU에 남아 다음 원본 DOS 자식의 BIOS 핸들러 등록을 방해하거나, 부모가 종료된 자식의 FIFO를 읽을 위험이 있었다. `RealMode8086.removeInterruptAdapter(number,exactHandler)`의 **정확한 등록 함수 동일성 검증**을 추가하고 `installBiosInt16` 소유 binding에 idempotent detach를 부여했다. `createGuestOriginalExecutionSession`은 해당 소유 binding을 한 번만 해제할 수 있으며 재개는 금지한다.
 - `createStagedDosChildContinuation`은 부모 CPU 프레임 복원 전에 **오직 자신이 등록한 BIOS INT16** 어댑터를 해제한다. 게스트/외부 FMDRV INT66 IVT는 건드리지 않으며 기존 부모 frame·IRQ shadow·guest IVT 변경은 유지한다. 합성 테스트는 첫 자식의 실제 BIOS AH00→DOS 4C 종료 후 동일 CPU에서 두 번째 자식이 BIOS를 정상 재등록하고 abort할 수 있음, 임의 owner 제거 시도 거부, 브라우저 child complete/abort/I/O fault 시 listener와 BIOS handler를 모두 해제함을 검증한다. 최초 브라우저 child integration의 생명주기 수리이므로 점수 중복 없음.
+
+### 2026-11-01 독립 browser-original-guest bridge 입력 핸들러 소유권 수명 수리
+
+- 기존 원본 CPU `browser-original-guest-bridge.js`에서도 브라우저 키down 리스너만 제거하고 CPU `INT16` adapter는 남겨 다음 원본 DOS 프로세스가 같은 8086 기계를 사용할 때 점유 충돌을 일으키던 경로를 수리했다. 같은 source owner `guest-original-execution-session.releaseKeyboardAdapter()`를 이용하므로 정확한 등록 함수의 INT16만 해제하고 FMDRV 등의 제3자 IVT/adapter는 변경하지 않는다. 실제 종료·명시적 detach·native CPU 실패에서 정확히 한 번 해제하며, release 이후 해당 키보드 세션의 재실행은 거부한다. Synthetic DOS AH4C, unsupported IN 포트, 명시 detach regression을 GitHub Actions에 포함한다. 기존 브라우저/세션 생명주기 수정의 후속 repair이므로 별도 점수 없음.

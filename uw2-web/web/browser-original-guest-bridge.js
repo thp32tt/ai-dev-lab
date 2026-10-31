@@ -26,11 +26,24 @@ export function createBrowserOriginalGuestBridge({
     throw error;
   }
   let detached=false;
+  const detach=()=>{
+    if(!detached){
+      session.releaseKeyboardAdapter();
+      binding.detach();detached=true;
+    }
+  };
+  const runSlice=steps=>{
+    try{
+      const result=session.runSlice(steps);
+      if(result.reason==='TERMINATED')detach();
+      return result;
+    }catch(error){
+      if(session.snapshot().faulted)detach();
+      throw error;
+    }
+  };
   return Object.freeze({
-    runSlice:steps=>session.runSlice(steps),
-    detach(){
-      if(!detached){binding.detach();detached=true;}
-    },
+    runSlice,detach,
     snapshot:()=>Object.freeze({
       execution:session.snapshot(),
       keyboard:binding.snapshot(),

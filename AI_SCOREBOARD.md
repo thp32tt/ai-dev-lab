@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original guest I/O and bounded long-run DOS call tracing (2026-11-01 KST)
+
+- **Independent CPU I/O progress integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material exact SHA `9246eda8cceead217bab172c5f8a66d3e1a50924` adds one opt-in passive successful IN/OUT CPU observer, source-aware bounded OPL(388/389)/VGA(3B0–3DF)/PIT(40–43)/other port write plus read counters in the existing memory/DOS progress witness, and OPEN probe ownership checks. Existing hardware adapter callbacks are not replaced. Synthetic code and error/ownership regressions included. GitHub Actions `41242377238` `synthetic-static` **SUCCESS** at that exact SHA.
+- **Independent original-execution diagnostic boundedness (+1):** `uw2-web-port` material exact SHA `4743b2776768c5a6b229982998be872164f54fc7` raises opt-in original OPEN probe maximum from 100,000 to 1,000,000 8086 steps and replaces unbounded DOS INT21 attempt history with a fixed-size ring (default 4,096, max 65,536), retaining total and discarded event counts and source CS:IP/AH/AL checks. Synthetic native guest INT21 execution, invalid provenance, limit and retention tests are in the static gate. GitHub Actions `41242557991` `synthetic-static` **SUCCESS** at the exact SHA. The same second commit also corrects escaped line breaks in the existing master plan (docs-only correction +0).
+- **Fidelity boundary:** Synthetic CI proves source behavior only. Neither commit is evidence of actual private Korean OPEN.EXE runtime reaching MAIN.EXE, authentic PC BIOS/VGA/PIT/OPL device timing, original DOS equivalence, browser gameplay/audio/graphics or saved-game parity. **UNTESTED/HOLD** until original-file and DOS-reference verification. Docs, CI readback, status checks and repeated reporting of either outcome +0; AI 1 is distinct.
+- **AI 2 cumulative: previous confirmed 2312 + two independent verified source outcomes (+2) = 2314.**
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 original OPEN CPU-write/DOS-file bounded progress witness (2026-11-01 KST)
 
 - **One independent integrated original-code diagnostic implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` new `web/guest-progress-witness.js` observes actual guest `RealMode8086.write8` byte event provenance and actual source DOS file-event metadata, with byte-changed vs repeated-write separation, 20-bit RAM/VGA/upper-memory bins, bounded unique physical addresses/windows and no collected original bytes, filenames, audio or pixel snapshots. `tools/p3-open-exec-probe.mjs` adds explicit `enableProgressWitness:true` using a single owned CPU write observer, rejects any pre-existing VGA observer rather than displacing it, and preserves preexisting DOS onFileEvent callbacks. Normal OPEN execution and browser frontend are unchanged by default.

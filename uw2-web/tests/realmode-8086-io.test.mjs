@@ -98,3 +98,51 @@ for(const width of [8,16]){
   assert.doesNotThrow(()=>c.step());
 }
 console.log('UW2 P3 8086 immediate/DX IN OUT bus-adapter synthetic regression: PASS');
+
+// Passive, source-backed I/O bus observation: executed IN/OUT only; no
+// unregistered, invalid, async or rejected device transaction is counted.
+const portObserved=[];
+const observed=cpuFor([0xb0,0x21,0xe6,0x88,0xe4,0x88,0xe7,0x43],c=>{
+  c.set16('AX',0x1200);
+  c.registerIOPort(0x88,{out8:()=>undefined,in8:()=>0x7a});
+  c.registerIOPort(0x43,{out16:()=>undefined});
+});
+observed.installIOPortObserver((event,guest)=>{
+  assert.equal(guest,observed);
+  assert.ok(Object.isFrozen(event));
+  portObserved.push(event);
+});
+assert.throws(()=>observed.installIOPortObserver(()=>{}),/one synchronous passive/);
+for(let n=0;n<4;n++)observed.step();
+assert.deepEqual(portObserved.map(({direction,port,width,value})=>[direction,port,width,value]),[
+  ['out',0x88,8,0x21],['in',0x88,8,0x7a],['out',0x43,16,0x127a]
+]);
+assert.equal(portObserved[0].cs,0x100);
+assert.equal(portObserved[0].ip,4); // real post-fetch CPU boundary
+observed.removeIOPortObserver();
+assert.doesNotThrow(()=>observed.installIOPortObserver(()=>undefined));
+observed.removeIOPortObserver();
+const refusedPort=cpuFor([0xee],c=>{
+  c.set16('DX',0x398);
+  c.registerIOPort(0x398,{out8:()=>{throw Error('device refused OUT');}});
+});
+let refusedCount=0;
+refusedPort.installIOPortObserver(()=>{refusedCount++;});
+assert.throws(()=>refusedPort.step(),/device refused OUT/);
+assert.equal(refusedCount,0);
+const asyncPort=cpuFor([0xee],c=>{
+  c.set16('DX',0x398);
+  c.registerIOPort(0x398,{out8:()=>Promise.resolve()});
+});
+asyncPort.installIOPortObserver(()=>{refusedCount++;});
+assert.throws(()=>asyncPort.step(),/async 8086 OUT device adapter/);
+assert.equal(refusedCount,0);
+const observerGuard=cpuFor([0xee],c=>{
+  c.set16('DX',0x398);c.registerIOPort(0x398,{out8:()=>undefined});
+});
+observerGuard.installIOPortObserver(()=>123);
+assert.throws(()=>observerGuard.step(),/cannot synthesize device values/);
+observerGuard.removeIOPortObserver();
+observerGuard.installIOPortObserver(()=>Promise.resolve());
+observerGuard.set16('IP',0);
+assert.throws(()=>observerGuard.step(),/async 8086 I\/O port observer/);

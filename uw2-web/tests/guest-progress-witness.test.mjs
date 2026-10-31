@@ -64,3 +64,51 @@ for(const p of [0,1,2])overflow.observeMemoryWrite({
 assert.equal(overflow.summarize().uniqueAddressOverflows,2);
 assert.equal(overflow.summarize().windows[0].uniquePhysicalAddresses,1);
 console.log('UW2 original guest CPU write and DOS file progress bounded evidence: PASS');
+
+// Actual guest machine-code port transactions across OPL, VGA, PIT and a
+// generic port, without capturing original output bytes or device state.
+const io=new RealMode8086();
+const program=Uint8Array.of(
+  0xba,0x88,0x03,0xb0,0x20,0xee, // OPL address OUT 388h
+  0xba,0x89,0x03,0xee,           // OPL data OUT 389h
+  0xba,0xc0,0x03,0xee,           // VGA attribute OUT 3c0h
+  0xba,0x43,0x00,0xee,           // PIT command OUT 43h
+  0xba,0x99,0x00,0xee,0xec       // other OUT 99h, IN 99h
+);
+io.load(program,0x310,0);
+io.set16('CS',0x310);
+for(const port of [0x388,0x389,0x3c0,0x43,0x99])
+  io.registerIOPort(port,{out8:()=>undefined,...(port===0x99?{in8:()=>0x5a}:{})});
+const ioWitness=createGuestProgressWitness({stepsPerWindow:100,maxIOPortsPerWindow:4});
+io.installIOPortObserver(ioWitness.observePortIO);
+let ioSteps=0;
+while(io.get16('IP')<program.length){
+  ioWitness.observeInstruction({steps:ioSteps++,
+    cs:io.get16('CS'),ip:io.get16('IP')},io);
+  io.step();
+}
+const ioReport=ioWitness.summarize();
+assert.equal(ioReport.ioWriteEvents,5);
+assert.equal(ioReport.ioReadEvents,1);
+assert.equal(ioReport.oplPortWrites,2);
+assert.equal(ioReport.vgaPortWrites,1);
+assert.equal(ioReport.pitPortWrites,1);
+assert.equal(ioReport.otherPortWrites,1);
+assert.equal(ioReport.windows[0].uniqueIOPorts,4);
+assert.equal(ioReport.uniqueIOPortOverflows,2);
+assert.equal(ioReport.windows[0].ioWriteEvents,5);
+assert.equal(io.get8('AL'),0x5a);
+assert.ok(!JSON.stringify(ioReport).includes('"value"'));
+assert.ok(Object.isFrozen(ioReport.windows[0]));
+const ioInvalid=createGuestProgressWitness({maxIOPortsPerWindow:1});
+assert.throws(()=>ioInvalid.observePortIO({direction:'in',port:0,width:8,value:0,cs:0,ip:0},io),
+  /active guest instruction/);
+ioInvalid.observeInstruction({steps:0,cs:io.get16('CS'),ip:io.get16('IP')},io);
+assert.throws(()=>ioInvalid.observePortIO({direction:'out',port:0x388,width:8,
+  value:256,cs:io.get16('CS'),ip:io.get16('IP')},io),/bounded integer/);
+assert.throws(()=>ioInvalid.observePortIO({direction:'out',port:0x388,width:9,
+  value:10,cs:io.get16('CS'),ip:io.get16('IP')},io),/width/);
+assert.throws(()=>ioInvalid.observePortIO({direction:'out',port:0x388,width:8,
+  value:10,cs:io.get16('CS'),ip:0},io),/provenance mismatch/);
+assert.equal(ioInvalid.summarize().ioWriteEvents,0);
+assert.throws(()=>createGuestProgressWitness({maxIOPortsPerWindow:0}),/I\/O port capacity/);

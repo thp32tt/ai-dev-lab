@@ -9,25 +9,32 @@ const integer=(v,min,max,label)=>{
   return v;
 };
 export function createGuestProgressWitness({
-  stepsPerWindow=4096,maxWindows=128,maxAddressesPerWindow=8192
+  stepsPerWindow=4096,maxWindows=128,maxAddressesPerWindow=8192,
+  maxIOPortsPerWindow=256
 }={}){
   integer(stepsPerWindow,1,1000000,'progress window size');
   integer(maxWindows,1,1024,'progress window count');
   integer(maxAddressesPerWindow,1,65536,'progress address capacity');
-  let lastStep=-1,window=null,seen=new Set(),windows=[],discardedWindows=0;
+  integer(maxIOPortsPerWindow,1,65536,'progress I/O port capacity');
+  let lastStep=-1,window=null,seen=new Set(),ports=new Set(),windows=[],discardedWindows=0;
   const totals={instructionBoundaries:0,writeEvents:0,changedWrites:0,
     ramWrites:0,vgaApertureWrites:0,upperMemoryWrites:0,
-    fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0};
+    fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0,
+    ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
+    pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0};
   const open=(step)=>{
     if(window){
-      windows.push(Object.freeze({...window,uniquePhysicalAddresses:seen.size}));
+      windows.push(Object.freeze({...window,uniquePhysicalAddresses:seen.size,
+        uniqueIOPorts:ports.size}));
       // The active new window consumes one slot as well.
       if(windows.length>=maxWindows){windows.shift();discardedWindows++;}
     }
     window={firstStep:step,lastStep:step,instructionBoundaries:0,
       writeEvents:0,changedWrites:0,ramWrites:0,vgaApertureWrites:0,
-      upperMemoryWrites:0,fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0};
-    seen=new Set();
+      upperMemoryWrites:0,fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0,
+      ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
+      pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0};
+    seen=new Set();ports=new Set();
   };
   const observeInstruction=({steps,cs,ip}={},cpu)=>{
     if(!(cpu instanceof RealMode8086))
@@ -68,6 +75,35 @@ export function createGuestProgressWitness({
     }
     // CPU write8 performs the actual memory update after this passive observer.
   };
+  // Passive CPU-port bus witness; not a claim that a VGA frame, PIT tick,
+  // OPL sound or IRQ occurred. No port values survive into summarize().
+  const observePortIO=(event,cpu)=>{
+    if(!(cpu instanceof RealMode8086)||!window)
+      throw new Error('progress I/O requires active guest instruction');
+    if(!event||typeof event!=='object'||
+       (event.direction!=='in'&&event.direction!=='out'))
+      throw new TypeError('progress I/O requires native IN/OUT direction');
+    integer(event.port,0,65535,'progress I/O port');
+    if(event.width!==8&&event.width!==16)
+      throw new RangeError('progress I/O width must be 8 or 16');
+    integer(event.value,0,event.width===8?255:65535,'progress I/O value');
+    if(event.cs!==cpu.get16('CS')||event.ip!==cpu.get16('IP'))
+      throw new Error('progress I/O guest CPU provenance mismatch');
+    for(const dest of [totals,window]){
+      if(event.direction==='in')dest.ioReadEvents++;
+      else {
+        dest.ioWriteEvents++;
+        if(event.port===0x388||event.port===0x389)dest.oplPortWrites++;
+        else if(event.port>=0x3b0&&event.port<=0x3df)dest.vgaPortWrites++;
+        else if(event.port>=0x40&&event.port<=0x43)dest.pitPortWrites++;
+        else dest.otherPortWrites++;
+      }
+    }
+    if(!ports.has(event.port)){
+      if(ports.size<maxIOPortsPerWindow)ports.add(event.port);
+      else {totals.uniqueIOPortOverflows++;window.uniqueIOPortOverflows++;}
+    }
+  };
   const observeFileEvent=event=>{
     if(!window)
       throw new Error('DOS progress event requires active witnessed instruction');
@@ -81,13 +117,15 @@ export function createGuestProgressWitness({
   };
   const summarize=()=>{
     const items=window?
-      [...windows,Object.freeze({...window,uniquePhysicalAddresses:seen.size})]:windows;
+      [...windows,Object.freeze({...window,uniquePhysicalAddresses:seen.size,
+        uniqueIOPorts:ports.size})]:windows;
     return Object.freeze({
-      ...totals,stepsPerWindow,discardedWindows,
+      ...totals,stepsPerWindow,maxIOPortsPerWindow,discardedWindows,
       windows:Object.freeze(items.map(v=>Object.freeze({...v}))),
-      verdict:'OBSERVED_WRITES_AND_FILE_EVENTS_ONLY__NO_INFERRED_STALL_OR_GAME_PROGRESS',
+      verdict:'OBSERVED_CPU_MEMORY_FILE_AND_IO_EVENTS_ONLY__NO_INFERRED_DEVICE_PROGRESS_OR_STALL',
       fidelity:'ORIGINAL_GUEST_CPU_SOURCE_EVENTS__DOS_REFERENCE_AND_DEVICE_TIMING_UNTESTED'
     });
   };
-  return Object.freeze({observeInstruction,observeMemoryWrite,observeFileEvent,summarize});
+  return Object.freeze({observeInstruction,observeMemoryWrite,observePortIO,
+    observeFileEvent,summarize});
 }

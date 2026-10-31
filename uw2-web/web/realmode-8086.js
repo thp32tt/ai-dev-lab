@@ -40,6 +40,7 @@ export class RealMode8086 {
     // No host PIT/PIC clock is created by this architectural guard.
     this.maskableIrqShadow = 0;
     this.memoryWriteObserver = null; // Opt-in, never a synthetic VGA framebuffer.
+    this.ioPortObserver = null; // Passive successful bus-transaction evidence only.
     this.memoryReadProvider = null; // Optional external, explicitly proven memory-mapped device.
   }
   installMemoryWriteObserver(observer) {
@@ -48,6 +49,22 @@ export class RealMode8086 {
     this.memoryWriteObserver=observer;
   }
   removeMemoryWriteObserver() {this.memoryWriteObserver=null;}
+  installIOPortObserver(observer) {
+    if(typeof observer!=='function'||this.ioPortObserver!==null)
+      throw new Error('8086 I/O port observer requires one synchronous passive callback');
+    this.ioPortObserver=observer;
+  }
+  removeIOPortObserver() {this.ioPortObserver=null;}
+  observeCompletedIO(event) {
+    if(this.ioPortObserver===null)return;
+    const response=this.ioPortObserver(Object.freeze({
+      ...event,cs:this.get16('CS'),ip:this.get16('IP')
+    }),this);
+    if(response&&typeof response.then==='function')
+      throw new Error('async 8086 I/O port observer: fail closed');
+    if(response!==undefined)
+      throw new Error('8086 I/O port observer cannot synthesize device values');
+  }
   installMemoryReadProvider(provider) {
     if(typeof provider!=='function'||this.memoryReadProvider!==null)
       throw new Error('8086 memory-read provider must be a single synchronous callback');
@@ -237,6 +254,8 @@ export class RealMode8086 {
     const v=cb(port,this);
     if(!Number.isInteger(v)||v<0||v>(width===8?0xff:0xffff))
       throw new RangeError('I/O device returned an invalid unsigned value');
+    // Only count transactions after a real, installed device accepted them.
+    this.observeCompletedIO({direction:'in',port,width,value:v});
     return v;
   }
   writeIOPort(port,width,value) {
@@ -253,6 +272,7 @@ export class RealMode8086 {
     // its OUT, invalidating the shared CPU/device execution order.
     if(result&&typeof result.then==='function')
       throw new Error('async 8086 OUT device adapter: fail closed');
+    this.observeCompletedIO({direction:'out',port,width,value});
   }
   load(bytes,segment,offset) {
     if(!(bytes instanceof Uint8Array))throw new TypeError('load requires bytes');

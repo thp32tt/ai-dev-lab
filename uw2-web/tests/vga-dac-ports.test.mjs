@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import {RealMode8086} from '../web/realmode-8086.js';
+import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
+const cpu=new RealMode8086(),colors=[];
+const a=installVgaDacWriteRecorder(cpu,{maxColors:2,onColor:e=>{
+ assert.ok(Object.isFrozen(e));colors.push({...e});
+}});
+assert.throws(()=>cpu.writeIOPort(0x3c9,8,1),/without write-index/);
+cpu.writeIOPort(0x3c8,8,255);
+for(const b of [0,63,127,32,16,8])cpu.writeIOPort(0x3c9,8,b);
+assert.deepEqual(colors,[{index:255,red:0,green:63,blue:127},
+ {index:0,red:32,green:16,blue:8}]);
+assert.equal(a.writtenColors(),2);
+assert.match(a.fidelity,/UNTESTED/);
+assert.throws(()=>cpu.writeIOPort(0x3c9,8,1),/budget exhausted/);
+assert.throws(()=>cpu.readIOPort(0x3c8,8),/no device adapter/);
+const reset=new RealMode8086(),seen=[];
+installVgaDacWriteRecorder(reset,{onColor:e=>seen.push(e)});
+reset.writeIOPort(0x3c8,8,2);
+reset.writeIOPort(0x3c9,8,1);
+reset.writeIOPort(0x3c8,8,3);
+for(const b of [10,20,30])reset.writeIOPort(0x3c9,8,b);
+assert.deepEqual(seen.map(x=>[x.index,x.red,x.green,x.blue]),[[3,10,20,30]]);
+const collision=new RealMode8086();
+collision.registerIOPort(0x3c8,{out8:()=>{}});
+assert.throws(()=>installVgaDacWriteRecorder(collision,{onColor:()=>{}}),/already owned/);
+const asyncCpu=new RealMode8086();
+installVgaDacWriteRecorder(asyncCpu,{onColor:()=>Promise.resolve()});
+asyncCpu.writeIOPort(0x3c8,8,1);
+for(const x of [1,2])asyncCpu.writeIOPort(0x3c9,8,x);
+assert.throws(()=>asyncCpu.writeIOPort(0x3c9,8,3),/async VGA DAC/);
+console.log('UW2 original OPEN VGA DAC raw 3C8/3C9 triplet and auto-increment regression: PASS');

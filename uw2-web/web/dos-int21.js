@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive,allocateMemory}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -24,6 +24,8 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('getDeviceInfo must be a synchronous external DOS IOCTL provider');
   if(getCurrentDrive!==undefined&&typeof getCurrentDrive!=='function')
     throw new TypeError('getCurrentDrive must be a synchronous external DOS drive provider');
+  if(allocateMemory!==undefined&&typeof allocateMemory!=='function')
+    throw new TypeError('allocateMemory must be a synchronous external DOS MCB allocator');
   if(stayResident&&typeof pspSegment!=='function'&&
      (!Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
     throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
@@ -186,6 +188,40 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
       if(!Number.isInteger(info)||info<0||info>0xffff)
         throw new RangeError('DOS IOCTL DX deviceInfo must be uint16');
       cpu.set16('DX',info);
+      cpu.set16('FLAGS',cpu.get16('FLAGS')&~1);
+      return;
+    }
+    if(ah===0x48){
+      // DOS AH48 allocates BX paragraphs; on success AX is segment, CF=0.
+      // MCB ownership, free list, and zeroed/uninitialized memory are NOT
+      // invented. A verified caller-owned allocator must supply the block.
+      if(!allocateMemory)
+        throw new Error('DOS AH48 requires an external MCB allocator: fail closed');
+      const paragraphs=cpu.get16('BX');
+      const result=allocateMemory(Object.freeze({paragraphs}),cpu);
+      if(result&&typeof result.then==='function')
+        throw new Error('async DOS AH48 allocator: fail closed');
+      if(!result||typeof result!=='object'||Array.isArray(result))
+        throw new Error('DOS AH48 requires explicit memory allocation result');
+      if(Object.hasOwn(result,'errorCode')){
+        const error=result.errorCode;
+        if(error!==7&&error!==8)
+          throw new Error('DOS AH48 error must be 07h or 08h: fail closed');
+        if(error===8){
+          const max=result.maxAvailableParagraphs;
+          if(!Number.isInteger(max)||max<0||max>0xffff)
+            throw new Error('DOS AH48 failure requires available paragraph maximum');
+          cpu.set16('BX',max);
+        }
+        cpu.set16('AX',error);
+        cpu.set16('FLAGS',cpu.get16('FLAGS')|1);
+        return;
+      }
+      const segment=result.segment;
+      if(!paragraphs||!Number.isInteger(segment)||segment<0||segment>0xffff||
+         segment*16+paragraphs*16>cpu.memory.length)
+        throw new Error('DOS AH48 allocated segment outside guest physical memory: fail closed');
+      cpu.set16('AX',segment);
       cpu.set16('FLAGS',cpu.get16('FLAGS')&~1);
       return;
     }

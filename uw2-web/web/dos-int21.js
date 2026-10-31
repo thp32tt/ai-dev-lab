@@ -69,6 +69,139 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
       }
       return;
     }
+    if(ah===0x09){
+      // DOS AH09 prints DS:DX '
+      // AH=25h AL=vector, DS:DX=guest handler address. KOEI.COM uses
+      // AX=2524h to install its own DOS critical-error INT 24h handler.
+      // No unknown DOS IVT default or host adapter is manufactured.
+      cpu.setGuestInterruptVector(cpu.get8('AL'),cpu.get16('DS'),cpu.get16('DX'));
+      return;
+    }
+    if(ah===0x35){
+      // AH=35h gets only a previously installed/verified IVT entry.
+      // Returning a zero-filled synthetic DOS vector would be incorrect.
+      const vector=cpu.getGuestInterruptVector(cpu.get8('AL'));
+      cpu.set16('ES',vector.segment);
+      cpu.set16('BX',vector.offset);
+      return;
+    }
+    if(ah===0x49){
+      // Original KOEI.COM reads its environment segment from PSP:002Ch
+      // and asks DOS to release it. The real DOS MCB allocator is external.
+      if(!freeMemory)
+        throw new Error('DOS AH49 requires a captured allocation owner: fail closed');
+      const segment=cpu.get16('ES');
+      if(segment===0)
+        throw new Error('DOS AH49 cannot free absent PSP environment segment: fail closed');
+      const result=freeMemory(Object.freeze({segment}),cpu);
+      if(result&&typeof result.then==='function')
+        throw new Error('async DOS free-memory allocator: fail closed');
+      if(!result||typeof result!=='object'||Array.isArray(result))
+        throw new Error('DOS AH49 requires explicit allocator result: fail closed');
+      if(Object.hasOwn(result,'errorCode')){
+        const error=result.errorCode;
+        if(error!==7&&error!==9)
+          throw new Error('DOS AH49 error must be 07h or 09h: fail closed');
+        cpu.set16('AX',error);
+        cpu.set16('FLAGS',cpu.get16('FLAGS')|1);
+        return;
+      }
+      if(result.freed!==true)
+        throw new Error('DOS AH49 allocator must acknowledge explicit free: fail closed');
+      cpu.set16('FLAGS',cpu.get16('FLAGS')&~1);
+      return;
+    }
+    if(ah===0x4a){
+      // AH=4Ah changes the ES-owned DOS memory block to BX paragraphs.
+      // Actual MCB ownership, free-list coalescing and expansion are external.
+      if(!resizeMemory)
+        throw new Error('DOS AH4A requires a captured allocation owner: fail closed');
+      const segment=cpu.get16('ES'),paragraphs=cpu.get16('BX');
+      if(segment===0)
+        throw new Error('DOS AH4A cannot resize absent memory block: fail closed');
+      const result=resizeMemory(Object.freeze({segment,paragraphs}),cpu);
+      if(result&&typeof result.then==='function')
+        throw new Error('async DOS resize-memory allocator: fail closed');
+      if(!result||typeof result!=='object'||Array.isArray(result))
+        throw new Error('DOS AH4A requires explicit allocator result: fail closed');
+      if(Object.hasOwn(result,'errorCode')){
+        const error=result.errorCode;
+        if(error!==7&&error!==8&&error!==9)
+          throw new Error('DOS AH4A error must be 07h, 08h or 09h: fail closed');
+        if(error===8){
+          const max=result.maxAvailableParagraphs;
+          if(!Number.isInteger(max)||max<0||max>0xffff)
+            throw new Error('DOS AH4A insufficient-memory maximum required: fail closed');
+          cpu.set16('BX',max);
+        }
+        cpu.set16('AX',error);
+        cpu.set16('FLAGS',cpu.get16('FLAGS')|1);
+        return;
+      }
+      if(result.resized!==true)
+        throw new Error('DOS AH4A allocator must acknowledge explicit resize: fail closed');
+      cpu.set16('FLAGS',cpu.get16('FLAGS')&~1);
+      return;
+    }
+    if(ah===0x4b){
+      if(cpu.get8('AL')!==0)throw new Error('DOS EXEC other than 4B00h: fail closed');
+      if(!executeChild)throw new Error('DOS EXEC requires a child runner: fail closed');
+      const result=executeChild(Object.freeze({...readPath(),
+        parameterBlockSegment:cpu.get16('ES'),parameterBlockOffset:cpu.get16('BX')}));
+      if(result&&typeof result.then==='function')throw new Error('async DOS EXEC: fail closed');
+      if(!result||typeof result!=='object')throw new Error('missing DOS EXEC result: fail closed');
+      if(Object.hasOwn(result,'errorCode')){
+        const error=result.errorCode;
+        if(!Number.isInteger(error)||error<1||error>0xffff)
+          throw new RangeError('DOS EXEC errorCode must be uint16 and nonzero');
+        cpu.set16('AX',error);cpu.set16('FLAGS',cpu.get16('FLAGS')|1);
+        return;
+      }
+      completedChild=Object.freeze({
+        terminationType:byte(result.terminationType,'terminationType'),
+        returnCode:byte(result.returnCode,'returnCode')
+      });
+      cpu.set16('FLAGS',cpu.get16('FLAGS')&~1);
+      return;
+    }
+    if(ah===0x4d){
+      if(!completedChild)throw new Error('DOS 4Dh missing completed child: fail closed');
+      cpu.set16('AX',(completedChild.terminationType<<8)|completedChild.returnCode);
+      completedChild=null;return;
+    }
+    if(ah===0x4c){
+      cpu.terminated=Object.freeze({terminationType:0,returnCode:cpu.get8('AL')});
+      return;
+    }
+    if(fileHandler&&fileHandler(ah))return;
+    throw new Error(`unsupported DOS INT 21h AH=${ah.toString(16)}: fail closed`);
+  });
+  return Object.freeze({pendingChildStatus:()=>completedChild});
+}
+-terminated bytes without guessed codepage.
+      // Read with 16-bit real-mode offset wrap, bounded to a full segment.
+      if(!directConsoleIO)
+        throw new Error('DOS AH09 requires an external console device: fail closed');
+      const segment=cpu.get16('DS'),offset=cpu.get16('DX'),bytes=[];
+      let terminator=false;
+      for(let i=0;i<0x10000;i++){
+        const b=cpu.read8(segment,(offset+i)&0xffff);
+        if(b===0x24){terminator=true;break;}
+        bytes.push(b);
+      }
+      if(!terminator)
+        throw new Error('DOS AH09 string missing $ terminator within segment: fail closed');
+      const event=Object.freeze({operation:'string-output',segment,offset,
+        bytes:Uint8Array.from(bytes)});
+      const response=directConsoleIO(event,cpu);
+      if(response&&typeof response.then==='function')
+        throw new Error('async DOS AH09 console device: fail closed');
+      if(response!==undefined)
+        throw new Error('DOS AH09 console output must not synthesize status');
+      // Actual DOS 2.1-7.0 documented by RBIL: AL=24h on return.
+      cpu.set8('AL',0x24);
+      return;
+    }
     if(ah===0x25){
       // AH=25h AL=vector, DS:DX=guest handler address. KOEI.COM uses
       // AX=2524h to install its own DOS critical-error INT 24h handler.

@@ -145,7 +145,7 @@ installDosInt21(cpu,{
     });}
     catch(error){openGuestFault={message:error.message,
       cs:error.guestCS,ip:error.guestIP,steps:error.guestSteps,
-      ax:error.guestAX,dx:error.guestDX};throw error;}
+      ax:error.guestAX,dx:error.guestDX,bx:error.guestBX,es:error.guestES};throw error;}
     finally{activePsp=0x200;}
     throw new Error('OPEN original unexpectedly terminated without a verified runtime');
   }
@@ -170,6 +170,7 @@ installDosInt21(cpu,{
  },
  getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
  getCurrentDrive:()=>({drive:2}), // EXPLICIT SYNTHETIC C:, NOT actual DOS drive state
+ allocateMemory:({paragraphs})=>{throw new Error('OPEN_AH48_ALLOCATION_REQUEST:'+paragraphs);},
  readOriginalFile:request=>{
    observed.originalFileRequests.push(request.filename);
    return pinnedOpgraph.resolve(request);

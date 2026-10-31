@@ -119,7 +119,7 @@ const observer=new RealMode8086();
 observer.installInterruptVector(8,0x500,0x100);
 observer.set16('FLAGS',2);
 const decisions=[];
-observer.installExternalIrqObserver(event=>decisions.push(event));
+observer.installExternalIrqObserver(event=>{decisions.push(event);});
 assert.throws(()=>observer.installExternalIrqObserver(()=>{}),/one synchronous passive/);
 assert.equal(deliverExternalMaskableIrq(observer,{vector:8,
   source:'tested-masked'}).delivered,false);

@@ -35,6 +35,8 @@ jobs:
           node --check uw2-web/web/vga-dac-ports.js
           node --check uw2-web/web/guest-irq-boundary.js
           node --check uw2-web/web/pinned-dos-resources.js
+          node --check uw2-web/web/opgraph-original-archive.js
+          node --check uw2-web/web/opgraph-korean-evidence.js
           node --check uw2-web/web/bios-int16.js
           node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/web/dos-original-files.js
@@ -83,6 +85,7 @@ jobs:
           node uw2-web/tests/bios-int10-palette.test.mjs
           node uw2-web/tests/guest-irq-boundary.test.mjs
           node uw2-web/tests/pinned-dos-resources.test.mjs
+          node uw2-web/tests/opgraph-original-archive.test.mjs
           node uw2-web/tests/dos-int21-drive.test.mjs
           node uw2-web/tests/dos-int21-allocate.test.mjs
           node uw2-web/tests/dos-int21-disk-reset.test.mjs

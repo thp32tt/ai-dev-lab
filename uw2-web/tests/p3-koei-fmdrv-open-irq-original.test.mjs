@@ -157,6 +157,7 @@ installDosInt21(cpu,{
   return {resized:true};
  },
  getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
+ getCurrentDrive:()=>({drive:2}), // EXPLICIT SYNTHETIC C:, NOT actual DOS drive state
  getDeviceInfo:({handle})=>{
    if(handle>4)throw new Error('OPEN original requested unobserved DOS handle');
    return {deviceInfo:0x80d3}; // SYNTHETIC DOS handle flags
@@ -206,6 +207,7 @@ assert.equal(result.original.openSha,openSha);
 assert.equal(openStarted,true);
 assert.ok(openGuestFault);
 assert.ok(openGuestFault.steps>=syntheticIrqStep);
+assert.match(result.fidelity,/NOT_DOS_REFERENCE/);
 assert.ok(observed.pitIrqEdges.length>=1);
 assert.ok(observed.pitIrqEdges.some(x=>x.delivered));
 assert.ok(indexedVga.writtenCount()>=6);

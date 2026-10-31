@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive,allocateMemory}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive,allocateMemory,resetDisk}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -26,6 +26,8 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('getCurrentDrive must be a synchronous external DOS drive provider');
   if(allocateMemory!==undefined&&typeof allocateMemory!=='function')
     throw new TypeError('allocateMemory must be a synchronous external DOS MCB allocator');
+  if(resetDisk!==undefined&&typeof resetDisk!=='function')
+    throw new TypeError('resetDisk must be a synchronous external DOS disk device callback');
   if(stayResident&&typeof pspSegment!=='function'&&
      (!Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
     throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
@@ -105,6 +107,18 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
         throw new Error('DOS AH09 console output must not synthesize status');
       // Actual DOS 2.1-7.0 documented by RBIL: AL=24h on return.
       cpu.set8('AL',0x24);
+      return;
+    }
+    if(ah===0x0d){
+      // DOS INT21 AH0Dh disk reset/flush does not return a synthesized
+      // status; original DOS disk buffers and timing belong to provider.
+      if(!resetDisk)
+        throw new Error('DOS AH0D requires an external disk reset device: fail closed');
+      const response=resetDisk(Object.freeze({service:0x0d}),cpu);
+      if(response&&typeof response.then==='function')
+        throw new Error('async DOS AH0D disk reset: fail closed');
+      if(response!==undefined)
+        throw new Error('DOS AH0D disk reset device must not fabricate registers');
       return;
     }
     if(ah===0x19){

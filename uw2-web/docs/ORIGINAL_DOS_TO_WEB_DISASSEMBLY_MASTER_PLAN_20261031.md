@@ -289,3 +289,12 @@
 - 파일 핸들 경계에서 검증되지 않은 DOS 표준 장치 0..4 강제 복제, 미확인 JFT 용량 확장, source=destination의 DOS 3.30 예외 상황은 원본 동작으로 가장하지 않고 fail-closed한다. 어댑터의 현재 경계 5..36은 기존 구현 한도이지 원본 DOS PSP/JFT 스냅샷 검증치가 아니다.
 - 소스/테스트와 GitHub Actions 작업흐름 커밋 `a49db79d00116d504ad5f908781d9194595c844d`, 검증 포함 후속 SHA `1754c2e81366cbd2080425b6b8cca5d1ce7ee5d4`. GitHub Actions UW2 Web Fidelity Static Gate `synthetic-static` run `41215554965` SUCCESS; `tests/dos-file-duplication.test.mjs` 결과 PASS 및 기존 synthetic gate PASS. 첫 SHA CI 실패는 테스트 이벤트 옵저버가 `Array.push` 반환값을 무심코 노출한 데 기인해 같은 성과 내에서 수정했다. 독립 실 DOS 실기·원본 게임 바이너리·브라우저 전체 플레이는 UNTESTED이며 원본 세이브 쓰기 경로는 계속 봉쇄한다.
 - 다음 실제 게이트: 사용자 소유 DOS 기준 PSP의 JFT 길이·핸들 0..4의 device/redirection·DUP2 대상 범위 및 원본 OPEN 실행 중 AH45/46 진입 여부를 읽기 전용으로 검증한다. 이후 OPEN→MAIN 전환 및 실제 파일/화면/OPL 타이밍 동등성 추적을 이어간다.
+
+
+### 실제 원본 파일 읽기의 PSP 증거 연결 및 합성 EXEC 복귀 검증 (2026-11-01 KST)
+
+- `54bdecacdf06e64775f05bd5075b462476b0e726`: 원본 읽기 전용 파일 감사 이벤트에 외부에서 지정한 PSP를 명시적으로 기록한다. 미지정 PSP의 기존 단일 프로세스 감사 구조는 변경하지 않는다. 이는 DOS PSP를 CS/DS로 유추하는 편법이 아니라 기존 소유자 스냅샷 전달 계약이다.
+- `tests/dos-exec-file-inheritance.test.mjs`: 원본 저작권 데이터 없이 실제 8086 명령과 DOS INT21을 순차 실행하는 합성 부모→자식 `4B00h` 경로를 구축했다. 부모 `3D/3F`, 자식 상속 핸들 `3F/3E/4C`, 부모 `3F` 재개에서 원본-byte fixture의 바이트 11,12 → 13 → 14와 각 PSP·파일 오프셋을 대조하고, 자식 JFT 종료 후 부모 SFT 커서 연속성을 검증한다.
+- 비공개 `tests/p3-koei-fmdrv-open-irq-original.test.mjs`는 실제 소유 한국어판 `OPEN.EXE` 파일 접근 이벤트의 PSP가 사전에 공급한 **합성 `0600h`**인지 검증하도록 수정했다. GitHub Actions에서 실행하는 자산 없는 합성 검사와 별개이며, 이 변경 후 **원본 실행 테스트는 재실행하지 않았으므로 UNTESTED**다.
+- 소스 SHA `54bdecacdf06e64775f05bd5075b462476b0e726`의 필수 `UW2 Web Fidelity Static Gate` run `41215502892`: `synthetic-static` **SUCCESS**. 파생된 개인 원본 실행·실 DOS PSP/JFT/IRQ 캡처·브라우저 화면/항구/항해/교역/전투/세이브 동등성은 **HOLD/UNTESTED**.
+- 다음에는 원본 소유 파일을 갖춘 환경에서 제한된 기존 OPEN 추적 스크립트를 재실행해 PSP별 DOS file provenance를 확인하고, 원본 해제 14파트 중 아직 직접 CPU parity가 입증되지 않은 12파트, 완전 VGA 영상/OPL/MAIN 분기를 계속 추적한다.

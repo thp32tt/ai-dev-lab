@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex Quest 21:53 menu/Miles/exact-570002 runtime-path repair (2026-10-31 KST)
+
+- **Independent new material achievement:** analyzed the owner-supplied Quest runtime bundle `20261031-215308.zip` from exact source `b7e425f9ef373e995f025ca09f4af4da82d26b6c` and repaired three runtime-proven gaps in `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, material SHA `d777d9e5f1992b2bfc725a18425e1cc0b9158087`. (1) TITLE/MAIN never executed the prior `R23RenderWorldLockedMenuProjection` crop; actual frames were `menu-local-fixed-quad-fresh/cached`, so the 1920x1080 logical source crop now runs in the real `R23RenderTheater` LOCAL-quad path and is limited to states 0x04/0x09, preserving the HMD-correct TRYAGAIN/selector/gameplay paths. (2) `STATE_OUTRUNMILES` 0x22 was absent from the game-side VR front-end physical-canvas set; it is now included without host-cropping its already-correct race background. (3) exact C993 object 0x570002 had source serial/sequence + INLINE_405360_542A flush + exact PMT pass=1 + base-admitted R30 proof but no game c64 callback/raw-WVP capture; it now reads currently bound c64 only under that exact synchronous source/flush/PMT/shader owner before either eye mutation, then uses the existing R85 asymmetric-FOV projected-ray path. 0x570006/57000F/570010/CABE and the already-fixed particle/HUD paths remain excluded.
+- **Validation:** exact-SHA GitHub Actions all SUCCESS: DX9Ex OFFICIAL FOCUS R26 HUD Test and Debug `41204364848`, R26 User Test Build `41204364840`, DX9Ex Active Validation `41204364917`, Full Source Impact Review `41204364870`, OutRun EXE HUD Inspector `41204364854`, Domain Isolation Guard `41204364920`, VR GitHub General Test Build `41204364882`. User test artifact `13044371528` is built from exact material SHA. New Quest optical behavior remains UNTESTED until the user runs this package; later readback/retest alone is +0 unless it produces a distinct implementation.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2274 + independently implemented/runtime-grounded DX9Ex menu/Miles/exact-570002 repair +1 = 2275.** AI1 separately tracked; package download/status polling/retest are not separately scored.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 UW2 response-complete continuous auto-run repair (2026-10-31 KST)
 
 - Work key `UW2-REPLY-COMPLETE-CONTINUATION-20261031`. User observed tiny web-port work then 30-minute idle periods. Live N100 controller `2026-10-31-uw2-simple-one-line-v3` was healthy at 21:28 KST but last UW2 C send was 21:00:13 and code only created C wake-ups on :00/:30. This is a verified scheduler design gap rather than a stopped container.

@@ -313,6 +313,7 @@
 
 - 화면 모드 세대 격리: `invalidateAfterBiosModeSet({mode})`는 외부 BIOS INT10 AH00 장치가 **모드 설정을 실제 수락했을 때만** 이전 4개 plane 유효성·GC/SEQ 레지스터 증거를 제거한다. 8086 MOV A000h 쓰기→동일 주소 CPU 읽기에서 VGA write-mode-2 CPU AL=05h와 GC04 plane-read FFh/00h의 차이, BIOS 모드 재설정 후 stale 픽셀 거부를 합성 회귀로 고정했다. 원본 DOS 실제 BIOS 상태 및 게임화면 비교는 아직 미확인이다.
 
-### 원본 OPEN CPU 실행 경계에서 확인한 DOS JFT 이벤트 PSP 누락 결함 (2026-11-01 KST)
-- N100 소유 원본 KOEI/FMDRV/OPEN 8086 경로의 **명시적 합성 DOS 환경**에서 66,295명령 위치에 `original OPEN file event crossed a foreign PSP` 중단이 확인되었다. 파일핸들 검증을 해제하지 않고 `web/dos-readonly-files.js`의 AH45 DUP 및 AH46 FORCEDUP이 다른 open/read/seek/close 이벤트와 달리 `emitFileEvent` 경로를 우회하는 소스 결함을 확인하여 교정했다. 원본 기계어를 수정하거나 PSP를 임의 추정하지 않는다.
-- 합성 테스트 `dos-file-duplication.test.mjs`가 부모 PSP 0200h와 자식 PSP 0240h의 DUP/FORCEDUP 이벤트에 정확한 소유자 정보가 남는지 검증한다. 실 DOS PSP/IVT·전체 OPEN 실행 성공은 별도 미검증 상태를 유지한다. 초기 N100 분석에 사용한 128명령 synthetic IRQ와 원본 바이트는 원본 DOS 하드웨어 근거가 아니다.
+### 원본 OPEN CPU 실행 경계와 DOS JFT 이벤트 PSP 누락 교정 (2026-11-01 KST)
+- **실행 환경 정정:** N100 원본 KOEI/FMDRV/OPEN 합성 DOS 시험의 66,295명령 위치 `original OPEN file event crossed a foreign PSP` 중단은 N100에 남아 있던 오래된 `web/dos-int21.js`가 `getFileProcessPsp` 옵션을 전달하지 않았기 때문으로 확인했다. 이는 GitHub 최신 소스의 동일 결함 증거가 아니다. 해당 보조 환경 파일을 최신 GitHub 코드로 맞춘 후 **원본 OPEN 260,000명령 한도까지** 실행했고 PSP 중단은 없어졌다. 260,000은 **STEP_BUDGET_EXHAUSTED**일 뿐 OPEN 완료가 아니다. 합성 IRQ 128명령 간격, 합성 PSP/IVT 등은 실제 DOS 참조가 아니다.
+- **독립적인 실제 GitHub 소스 결함:** `web/dos-readonly-files.js`의 AH45 DUP 및 AH46 FORCEDUP 파일 이벤트는 같은 코드의 open/read/seek/close와 달리 `emitFileEvent` 경로를 우회하여 **scoped PSP 필드를 빼먹고 있었다**. 이를 `emitFileEvent`로 교정하고 `dos-file-duplication.test.mjs`에서 부모 PSP 0200h 및 자식 PSP 0240h의 duplicate/force-duplicate 소유자 정보를 검증했다. N100의 66,295 지점 오류와는 **원인이 다른 결함**이며 두 결과를 동일 성과로 주장하지 않는다.
+- N100 opt-in `vga-read-mode0` 원본 바이트+합성 DOS 시험에서 위 260,000명령 구간 내 **검증된 A000h plane read=0건**. 미관측이 GPU 읽기가 전혀 없음을 뜻하지 않으며, 원본 DOS VGA·브라우저 픽셀/음악/완성 화면/게임 동등성은 **UNTESTED/HOLD**.

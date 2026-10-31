@@ -114,3 +114,24 @@ runStagedDosComChild(parentShadow,{initialFrame:{...frame,CS:0x610},
 assert.deepEqual(captureDosCpuFrame(parentShadow),prior);
 assert.equal(parentShadow.isMaskableIrqShadowed(),true);
 console.log('UW2 original 8086 STI/POP SS/MOV SS one-instruction IRQ shadow, nested STI, DOS EXEC isolation and IRQ guest IVT: PASS');
+
+const observer=new RealMode8086();
+observer.installInterruptVector(8,0x500,0x100);
+observer.set16('FLAGS',2);
+const decisions=[];
+observer.installExternalIrqObserver(event=>decisions.push(event));
+assert.throws(()=>observer.installExternalIrqObserver(()=>{}),/one synchronous passive/);
+assert.equal(deliverExternalMaskableIrq(observer,{vector:8,
+  source:'tested-masked'}).delivered,false);
+assert.equal(decisions.length,1);
+assert.equal(decisions[0].decision,'masked');
+assert.ok(Object.isFrozen(decisions[0]));
+observer.removeExternalIrqObserver();
+observer.installExternalIrqObserver(()=>42);
+assert.throws(()=>deliverExternalMaskableIrq(observer,{vector:8,
+  source:'tested-invalid-observer'}),/cannot synthesize delivery/);
+observer.removeExternalIrqObserver();
+observer.installExternalIrqObserver(()=>Promise.resolve());
+assert.throws(()=>deliverExternalMaskableIrq(observer,{vector:8,
+  source:'tested-async-observer'}),/async 8086 external IRQ observer/);
+observer.removeExternalIrqObserver();

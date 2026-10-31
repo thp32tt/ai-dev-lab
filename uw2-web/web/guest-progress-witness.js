@@ -22,7 +22,8 @@ export function createGuestProgressWitness({
     fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0,
     ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
     pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0,
-    providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0};
+    providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0,
+    externalIrqDelivered:0,externalIrqMasked:0,externalIrqDeferred:0};
   const open=(step)=>{
     if(window){
       windows.push(Object.freeze({...window,uniquePhysicalAddresses:seen.size,
@@ -35,7 +36,8 @@ export function createGuestProgressWitness({
       upperMemoryWrites:0,fileEvents:0,fileReadBytes:0,uniqueAddressOverflows:0,
       ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
       pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0,
-    providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0};
+    providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0,
+    externalIrqDelivered:0,externalIrqMasked:0,externalIrqDeferred:0};
     seen=new Set();ports=new Set();
   };
   const observeInstruction=({steps,cs,ip}={},cpu)=>{
@@ -125,6 +127,32 @@ export function createGuestProgressWitness({
       else {totals.uniqueIOPortOverflows++;window.uniqueIOPortOverflows++;}
     }
   };
+  // Only explicitly requested maskable guest IRQ decisions from the
+  // external edge adapter, never synthetic PIT/PIC device progress.
+  const observeExternalIrq=(event,cpu)=>{
+    if(!(cpu instanceof RealMode8086)||!window)
+      throw new Error('progress IRQ requires active guest instruction boundary');
+    if(!event||typeof event!=='object'||
+       !['delivered','masked','deferred'].includes(event.decision))
+      throw new TypeError('progress IRQ requires explicit delivery decision');
+    integer(event.vector,0,255,'progress IRQ vector');
+    for(const key of ['fromCS','fromIP','cs','ip'])
+      integer(event[key],0,65535,'progress IRQ '+key);
+    if(typeof event.source!=='string'||!event.source.trim()||event.source.length>128)
+      throw new Error('progress IRQ requires declared external device source');
+    if(cpu.get16('CS')!==event.cs||cpu.get16('IP')!==event.ip)
+      throw new Error('progress IRQ CPU post-dispatch provenance mismatch');
+    if(event.decision!=='delivered'&&
+       (event.fromCS!==event.cs||event.fromIP!==event.ip))
+      throw new Error('progress refused IRQ cannot move guest IP');
+    if(event.decision==='delivered'&&!cpu.interruptVectors.has(event.vector))
+      throw new Error('progress delivered IRQ requires installed guest IVT');
+    for(const dest of [totals,window]){
+      if(event.decision==='delivered')dest.externalIrqDelivered++;
+      else if(event.decision==='masked')dest.externalIrqMasked++;
+      else dest.externalIrqDeferred++;
+    }
+  };
   const observeFileEvent=event=>{
     if(!window)
       throw new Error('DOS progress event requires active witnessed instruction');
@@ -143,10 +171,11 @@ export function createGuestProgressWitness({
     return Object.freeze({
       ...totals,stepsPerWindow,maxIOPortsPerWindow,discardedWindows,
       windows:Object.freeze(items.map(v=>Object.freeze({...v}))),
-      verdict:'OBSERVED_CPU_MEMORY_FILE_IO_AND_PROVIDER_READS_ONLY__NO_INFERRED_DEVICE_PROGRESS_OR_STALL',
+      verdict:'OBSERVED_CPU_MEMORY_FILE_IO_PROVIDER_READS_AND_DECLARED_IRQ_DECISIONS_ONLY',
       fidelity:'ORIGINAL_GUEST_CPU_SOURCE_EVENTS__DOS_REFERENCE_AND_DEVICE_TIMING_UNTESTED'
     });
   };
   return Object.freeze({observeInstruction,observeMemoryWrite,
-    observeProvidedMemoryRead,observePortIO,observeFileEvent,summarize});
+    observeProvidedMemoryRead,observePortIO,observeExternalIrq,
+    observeFileEvent,summarize});
 }

@@ -52,8 +52,8 @@ export async function probeOriginalOpen(original,{
  // memory witness installed by a reference DOS harness.
  const progress=enableProgressWitness?createGuestProgressWitness():null;
  if(progress&&(machine.memoryWriteObserver!==null||machine.ioPortObserver!==null||
-              machine.memoryReadObserver!==null))
-   throw new Error('original OPEN progress observer requires unowned CPU write, read and I/O sinks: fail closed');
+              machine.memoryReadObserver!==null||machine.externalIrqObserver!==null))
+   throw new Error('original OPEN progress observer requires unowned CPU write, read, I/O and IRQ sinks: fail closed');
  const originalOnFileEvent=dosOptions.onFileEvent;
  installDosInt21(machine,progress?{
    ...dosOptions,
@@ -69,6 +69,7 @@ export async function probeOriginalOpen(original,{
    machine.installMemoryWriteObserver(progress.observeMemoryWrite);
    machine.installMemoryReadObserver(progress.observeProvidedMemoryRead);
    machine.installIOPortObserver(progress.observePortIO);
+   machine.installExternalIrqObserver(progress.observeExternalIrq);
  }
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.
  if(keyboardQueue!==undefined)installBiosInt16(machine,{keyboardQueue});

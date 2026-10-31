@@ -420,3 +420,8 @@
 
 - 일반 8086 RAM 읽기와 장치의 명시적 `memoryReadProvider`가 유효한 바이트를 제공한 읽기를 구분한다. 새 단일 소유자 `memoryReadObserver`는 외부 제공자가 실제 유효 8-bit 데이터를 반환한 경우에만 호출되며, 기존 읽기 응답이나 장치 소유자를 대체하지 않는다. 반환값·비동기 observer는 거부하고 기존 read observer가 있으면 OPEN 진단 설치를 거부한다.
 - 메모리·DOS·I/O 진행 진단은 A0000h~BFFFFh 제공자 읽기 수와 기타 제공자 읽기 수를 bounded instruction window별로만 집계한다. 원본 바이트·팔레트·픽셀은 기록하지 않으며 provider 응답을 DOS 실기 VGA 정답이라고 주장하지 않는다. Native 8086 `MOV AL,[moffs16]`, 정상 장치 읽기, RAM fallback, 거부/비동기/물리 주소 불일치 합성 테스트로 검증. 실제 소유 원본 DOS와의 하드웨어 정합성은 **UNTESTED/HOLD**.
+
+### 2026-11-01 P3 명시적 외부 IRQ 전달 결론 진단
+
+- CPU의 새 단일 소유자 `externalIrqObserver`는 실제 호출된 `deliverExternalMaskableIrq()`의 검증된 외부 요청에서 IF=0 거부, STI/SS 그림자 지연, IVT 설치 후 실제 게스트 인터럽트 전달을 구분한다. 전달 기록은 `dispatchInterrupt()` 성공 이후에만 발생하며 unknown IVT/잘못된 요청을 성공으로 기록하지 않는다. 새 진단값은 bounded instruction window별 세 결정의 **횟수만** 기록하며 장치 이름·비트·게스트 원본 바이트는 남기지 않는다.
+- 실제 PIT/PIC 클록이나 IRQ 신호를 생성하지 않고, 이미 존재하는 장치 스케줄러의 명시적 요청만 관측한다. 외부 원본 참조 IRQ 타이밍, MAIN 진입, VGA/OPL 재생은 **UNTESTED/HOLD**. 합성 회귀는 실제 guest IVT+IRET, IF 마스크, observer 소유권/비동기/값 반환 거부와 잘못된 벡터를 검사한다.

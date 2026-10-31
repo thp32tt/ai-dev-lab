@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {RealMode8086} from '../web/realmode-8086.js';
 import {createGuestProgressWitness} from '../web/guest-progress-witness.js';
+import {deliverExternalMaskableIrq} from '../web/guest-irq-boundary.js';
 // Genuine 8086 MOV AL,imm / MOV [DS:0100],AL; same-byte write must not
 // be incorrectly promoted to proof that the guest memory changed.
 const cpu=new RealMode8086();
@@ -143,3 +144,32 @@ assert.throws(()=>providerGuard.observeProvidedMemoryRead({
   segment:0xa000,offset:0,physical:0xa0000,value:256
 },providerMachine),/bounded integer/);
 assert.equal(providerGuard.summarize().providedReadEvents,0);
+
+const irqMachine=new RealMode8086();
+irqMachine.load(Uint8Array.of(0x90),0x280,0);
+irqMachine.load(Uint8Array.of(0xcf),0x400,0x100); // authentic IRET
+irqMachine.set16('CS',0x280);irqMachine.set16('SS',0x280);
+irqMachine.set16('SP',0xfffe);irqMachine.set16('FLAGS',2);
+irqMachine.installInterruptVector(8,0x400,0x100);
+const irqProgress=createGuestProgressWitness();
+irqMachine.installExternalIrqObserver(irqProgress.observeExternalIrq);
+irqProgress.observeInstruction({steps:0,cs:0x280,ip:0},irqMachine);
+assert.equal(deliverExternalMaskableIrq(irqMachine,{vector:8,
+  source:'declared-synthetic-IRQ0'}).reason,'MASKED_IF_CLEAR');
+irqMachine.set16('FLAGS',0x202);
+irqProgress.observeInstruction({steps:1,cs:0x280,ip:0},irqMachine);
+assert.equal(deliverExternalMaskableIrq(irqMachine,{vector:8,
+  source:'declared-synthetic-IRQ0'}).delivered,true);
+assert.equal(irqMachine.get16('CS'),0x400);
+assert.equal(irqProgress.summarize().externalIrqMasked,1);
+assert.equal(irqProgress.summarize().externalIrqDelivered,1);
+assert.equal(irqProgress.summarize().externalIrqDeferred,0);
+assert.ok(!JSON.stringify(irqProgress.summarize()).includes('declared-synthetic'));
+irqMachine.step(); // IRET restores genuine guest CS:IP
+assert.equal(irqMachine.get16('CS'),0x280);
+const wrongIrq=createGuestProgressWitness();
+wrongIrq.observeInstruction({steps:0,cs:0,ip:0},new RealMode8086());
+assert.throws(()=>wrongIrq.observeExternalIrq({vector:8,
+  source:'x',decision:'delivered',fromCS:0,fromIP:0,cs:0,ip:0},
+  new RealMode8086()),/installed guest IVT/);
+assert.equal(wrongIrq.summarize().externalIrqDelivered,0);

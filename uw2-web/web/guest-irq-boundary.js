@@ -14,16 +14,26 @@ export function deliverExternalMaskableIrq(cpu,{
     throw new Error('external IRQ must declare device source: fail closed');
   if(cpu.terminated)
     throw new Error('cannot deliver IRQ to terminated guest');
-  if(!cpu.flag('IF'))
+  const fromCS=cpu.get16('CS'),fromIP=cpu.get16('IP');
+  const observe=decision=>cpu.observeExternalIrqDecision({
+    vector,source,decision,fromCS,fromIP,
+    cs:cpu.get16('CS'),ip:cpu.get16('IP')
+  });
+  if(!cpu.flag('IF')){
+    observe('masked');
     return Object.freeze({delivered:false,vector,source,
       reason:'MASKED_IF_CLEAR'});
-  if(cpu.isMaskableIrqShadowed())
+  }
+  if(cpu.isMaskableIrqShadowed()){
+    observe('deferred');
     return Object.freeze({delivered:false,vector,source,
       reason:'DEFERRED_AFTER_STI_OR_SS'});
+  }
   // Do not manufacture an IVT vector from zero-filled RAM.
   if(!cpu.interruptVectors.has(vector))
     throw new Error('external IRQ has no installed guest vector: fail closed');
   cpu.dispatchInterrupt(vector);
+  observe('delivered'); // Only after a registered IVT dispatch completed.
   return Object.freeze({delivered:true,vector,source,
     fidelity:'EXPLICIT_GUEST_IRQ_EDGE_ONLY__PIT_PIC_TIMING_UNTESTED'});
 }

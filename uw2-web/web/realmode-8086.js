@@ -42,6 +42,7 @@ export class RealMode8086 {
     this.memoryWriteObserver = null; // Opt-in, never a synthetic VGA framebuffer.
     this.ioPortObserver = null; // Passive successful bus-transaction evidence only.
     this.memoryReadObserver = null; // Passive explicit provider-backed byte read.
+    this.externalIrqObserver = null; // External device edges only, no synthetic IRQ clock.
     this.memoryReadProvider = null; // Optional external, explicitly proven memory-mapped device.
   }
   installMemoryWriteObserver(observer) {
@@ -62,6 +63,20 @@ export class RealMode8086 {
     this.memoryReadObserver=observer;
   }
   removeMemoryReadObserver() {this.memoryReadObserver=null;}
+  installExternalIrqObserver(observer) {
+    if(typeof observer!=='function'||this.externalIrqObserver!==null)
+      throw new Error('8086 external IRQ observer requires one synchronous passive callback');
+    this.externalIrqObserver=observer;
+  }
+  removeExternalIrqObserver() {this.externalIrqObserver=null;}
+  observeExternalIrqDecision(event) {
+    if(this.externalIrqObserver===null)return;
+    const response=this.externalIrqObserver(Object.freeze({...event}),this);
+    if(response&&typeof response.then==='function')
+      throw new Error('async 8086 external IRQ observer: fail closed');
+    if(response!==undefined)
+      throw new Error('8086 external IRQ observer cannot synthesize delivery');
+  }
   observeCompletedProvidedRead(event) {
     if(this.memoryReadObserver===null)return;
     const result=this.memoryReadObserver(Object.freeze(event),this);

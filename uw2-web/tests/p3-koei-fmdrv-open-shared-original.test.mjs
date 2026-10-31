@@ -64,6 +64,11 @@ for(const [port,handlers] of [
 const indexedVga=installVgaIndexedWriteRecorder(cpu,{maxWrites:50000,onWrite:event=>{
  if(observed.vgaWrites.length<32)observed.vgaWrites.push({...event});
 }});
+let syntheticVgaStatusReads=0;
+cpu.registerIOPort(0x3da,{in8:()=>{
+ syntheticVgaStatusReads++;
+ return syntheticVgaStatusReads%2===0?0x08:0x00; // synthetic retrace, not measured
+}});
 const fmdrvChildFrame={
  AX:0,CX:0,DX:0,BX:0,SP:0xfffe,BP:0,SI:0,DI:0,
  CS:0x400,DS:0x400,ES:0x400,SS:0x400,IP:0x100,FLAGS:0x202
@@ -162,6 +167,7 @@ const result={
  originalPitWrites:observed.io.filter(x=>x.port===0x40||x.port===0x43).slice(0,4),
  vgaWrites:observed.vgaWrites,vgaWriteCount:indexedVga.writtenCount(),
  paletteWrites:observed.paletteWrites,
+ syntheticVgaStatusReads,
  koeiModeRequests:observed.biosModes,
  freed:observed.freed,resizes:observed.resizes,
  koeiTerminated:cpu.terminated,stopped,trace,

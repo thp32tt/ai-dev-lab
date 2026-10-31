@@ -10,6 +10,7 @@ import {loadVerifiedMz} from '../web/mz-loader.js';
 import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installDosInt21} from '../web/dos-int21.js';
+import {installBiosInt16} from '../web/bios-int16.js';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
 const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
@@ -17,7 +18,7 @@ if(!pin)throw new Error('OPEN.EXE baseline fingerprint required');
 export async function probeOriginalOpen(original,{
  pspSegment=0x600,loadSegment=0x610,allocationParagraphs,
  maxSteps=10000,initialPsp=null,initialIvt=null,dosOptions={},cpu=null,traceLimit=24,
- enableHotspots=false
+ enableHotspots=false,keyboardQueue=undefined
 }={}){
  if(!(original instanceof Uint8Array))
    throw new TypeError('original OPEN.EXE binary byte buffer required');
@@ -40,6 +41,8 @@ export async function probeOriginalOpen(original,{
    expectedSha256:initialIvt.expectedSha256,knownVectors:initialIvt.knownVectors
  });
  installDosInt21(machine,dosOptions);
+ // Externally captured keys only, strictly opt-in: no fake BIOS queue.
+ if(keyboardQueue!==undefined)installBiosInt16(machine,{keyboardQueue});
  let steps=0,stopped=null,services=[],recent=[];
  const hotspots=enableHotspots?createGuestExecutionHotspotRecorder({
    sampleEvery:127,maxSites:4096,maxStates:8192,top:16

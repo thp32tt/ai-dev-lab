@@ -379,3 +379,11 @@
 - `web/bios-int16.js`: 기존 AH01 키 상태/peek 경로를 유지하고 별도의 AH00 blocking-read/dequeue callback을 추가했다. 실제 제공된 큐 항목(`ascii`, `scanCode`)을 꺼내 AX로 전달하며 AH00에서 FLAGS/ZF를 임의 변경하지 않는다. 키가 없거나 제공자가 비동기/불완전하면 fail-closed, 가상의 키와 대기 시간·반복 입력은 생성하지 않는다.
 - `tests/bios-int16.test.mjs`: AH01 peek→AH00 dequeue 두 번의 큐 순서, CR/extended scan, 플래그 보존, missing/empty/bad/asynchronous source 거부를 합성 INT16로 검증한다.
 - 이는 **원본 입력 기능 구현**이지만 실제 `OPEN.EXE`의 AH00 도달, 브라우저 키 이벤트 연동, 키 타이밍, `MAIN.EXE` 정상 진입은 별도 실기 근거가 없으므로 **UNTESTED/HOLD**다.
+
+### 2026-11-01 원본 DOS BIOS INT16 호스트 실키 입력 FIFO 통합
+
+- 새 `web/bios-keyboard-queue.js`는 실제 호스트가 공급한 `{ascii,scanCode}` 쌍만 최대 1..1024건 FIFO로 수용하고, 유효하지 않은 값·초과 이벤트를 원자적으로 거부한다. `AH01` 상태/peek는 키를 소비하지 않고 `AH00` read만 정확히 하나를 소비하며, 입력 원본 객체 변경에도 보관된 쌍이 영향을 받지 않는다.
+- `installBiosInt16(cpu,{keyboardQueue})`는 두 BIOS 서비스를 동일 큐로 묶는다. 별도 `checkKey/readKey`와 큐를 동시에 주어 입력 소유자가 갈라지는 경우에는 등록을 거부한다. 기존 독립 외부 콜백 API는 유지한다.
+- `tools/p3-open-exec-probe.mjs`는 `keyboardQueue` opt-in을 제공한다. 정당한 입력이 들어왔을 때에만 SHA 고정 원본 `OPEN.EXE`의 실제 INT16 명령을 전달한다. 기본 실행은 이전과 동일하게 키 입력 서비스 자동 생성이 없다.
+- 회귀 검증 `tests/bios-keyboard-queue.test.mjs`: 게스트 8086 INT16 5회, 빈 큐 ZF 및 AX 보존, 실제 키 2개 FIFO/확장키, 플래그 보존, overflow/유효성/소유자 혼합 거부. GitHub 원본 파일 없는 synthetic-static CI에 등록한다.
+- 이 결과는 **키보드 어댑터의 합성 테스트**다. 브라우저 `KeyboardEvent`→키보드 scan/ASCII 변환, 실제 한국어판 OPEN의 해당 분기, DOS 기준의 대기·키 반복/타이밍, OPEN→MAIN 게임 완료는 모두 **UNTESTED/HOLD**.

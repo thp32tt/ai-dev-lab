@@ -48,6 +48,7 @@ jobs:
           node --check uw2-web/web/opgraph-korean-evidence.js
           node --check uw2-web/web/opening.js
           node --check uw2-web/web/bios-int16.js
+          node --check uw2-web/web/bios-keyboard-queue.js
           node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/web/dos-original-files.js
           node --check uw2-web/tools/koei-launch-chain.mjs
@@ -115,6 +116,7 @@ jobs:
           node uw2-web/tests/dos-int21-allocate.test.mjs
           node uw2-web/tests/dos-int21-disk-reset.test.mjs
           node uw2-web/tests/bios-int16.test.mjs
+          node uw2-web/tests/bios-keyboard-queue.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs
           node uw2-web/tests/dos-readonly-files-process.test.mjs
           node uw2-web/tests/dos-file-duplication.test.mjs

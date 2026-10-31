@@ -3,13 +3,23 @@
 // invented. Only caller-supplied keyboard queue observations are admissible.
 import {RealMode8086} from './realmode-8086.js';
 
-export function installBiosInt16(cpu,{checkKey,readKey}={}){
+export function installBiosInt16(cpu,{checkKey,readKey,keyboardQueue}={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('BIOS keyboard boundary requires RealMode8086');
   if(checkKey!==undefined&&typeof checkKey!=='function')
     throw new TypeError('BIOS keyboard status device must be synchronous');
   if(readKey!==undefined&&typeof readKey!=='function')
     throw new TypeError('BIOS keyboard read device must be synchronous');
+  if(keyboardQueue!==undefined){
+    if(checkKey!==undefined||readKey!==undefined)
+      throw new Error('BIOS keyboard queue cannot mix independent callbacks: fail closed');
+    if(!keyboardQueue||typeof keyboardQueue!=='object'||
+       typeof keyboardQueue.checkKey!=='function'||
+       typeof keyboardQueue.readKey!=='function')
+      throw new TypeError('BIOS keyboard queue requires checkKey and readKey');
+    checkKey=keyboardQueue.checkKey;
+    readKey=keyboardQueue.readKey;
+  }
   cpu.installInterruptAdapter(0x16,()=>{
     const ah=cpu.get8('AH');
     if(ah===0x00){

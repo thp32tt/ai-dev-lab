@@ -61,7 +61,7 @@ for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
  expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67]});
-const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[]};
+const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[]};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
@@ -129,7 +129,13 @@ installDosInt21(cpu,{
   if(request.filename==='OPEN.EXE'){
     openStarted=true;activePsp=0x600;
     try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:instructionBudget,
-      onInstructionBoundary:({steps},guest)=>{
+      onInstructionBoundary:({steps,cs,ip},guest)=>{
+        if(observed.originalDosFileCalls.length<64&&
+           guest.read8(cs,ip)===0xcd&&guest.read8(cs,(ip+1)&0xffff)===0x21&&
+           [0x3d,0x3f,0x42,0x3e].includes(guest.get8('AH'))){
+          observed.originalDosFileCalls.push({steps,ah:guest.get8('AH'),
+            bx:guest.get16('BX'),cx:guest.get16('CX'),dx:guest.get16('DX')});
+        }
         if(steps>0&&steps%syntheticIrqStep===0){
           const x=deliverExternalMaskableIrq(guest,{vector:8,
             source:'SYNTHETIC_FIXED_STEP_IRQ0_NOT_REAL_PIT_CLOCK'});
@@ -197,6 +203,7 @@ const result={
  originalFmdrvResidency:observed.resident,
  originalPitWrites:observed.io.filter(x=>x.port===0x40||x.port===0x43).slice(0,4),
  originalFileRequests:observed.originalFileRequests,
+ originalDosFileCalls:observed.originalDosFileCalls,
  pinnedOpgraph:{sha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',bytes:opgraph.length},
  vgaWrites:observed.vgaWrites,vgaWriteCount:indexedVga.writtenCount(),
  paletteWrites:observed.paletteWrites,

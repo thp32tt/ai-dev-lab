@@ -11,6 +11,7 @@ import {installBiosInt16} from '../web/bios-int16.js';
 import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
 import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
 import {createOriginalVgaMode12PlaneWitness} from '../web/vga-mode12-planar-witness.js';
+import {installVgaMode12ReadPlaneAdapter} from '../web/vga-mode12-read-adapter.js';
 import {createOriginalOpl2WriteBus} from '../web/opl2-raw-write-bus.js';
 import {createOriginalPitChannel0WriteBus} from '../web/pit8253-counter0-witness.js';
 import {installDosInt21} from '../web/dos-int21.js';
@@ -25,6 +26,11 @@ import {assertDisjointGuestPhysicalRegions} from '../web/guest-staging-physical-
 // or sound reproduction is claimed. This test is private-N100-only, NOT CI.
 const syntheticIrqStep=process.argv[2]===undefined?2048:Number(process.argv[2]);
 const instructionBudget=process.argv[3]===undefined?60000:Number(process.argv[3]);
+// Explicitly opt-in via fourth CLI argument for evidence-gated VGA reads.
+// The synthetic BIOS/IVT baseline remains opt-in and cannot claim DOS parity.
+const nativeVgaReadProbe=process.argv[4]==='vga-read-mode0';
+if(process.argv[4]!==undefined&&!nativeVgaReadProbe)
+ throw new Error('unknown original VGA probe argument: fail closed');
 if(!Number.isInteger(syntheticIrqStep)||syntheticIrqStep<32||syntheticIrqStep>65535)
  throw new RangeError('explicit synthetic IRQ step interval must be 32..65535');
 if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>15000000)
@@ -89,7 +95,12 @@ const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resi
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
- setMode:({mode})=>{observed.biosModes.push(mode);},
+ setMode:({mode})=>{
+  observed.biosModes.push(mode);
+  // A completed BIOS AH00 may have invalidated old native VRAM and register
+  // evidence. Do not re-use the old mode's bytes for an opted-in read probe.
+  if(nativeVgaReadProbe)vgaPlaneWitness.invalidateAfterBiosModeSet({mode});
+ },
  setPaletteRegister:entry=>{observed.paletteWrites.push({...entry});}
 });
 installBiosInt16(cpu,{checkKey:()=>({available:false})}); // SYNTHETIC empty keyboard queue
@@ -330,6 +341,11 @@ cpu.installMemoryWriteObserver((event,guest)=>{
     nativeMemoryWrites.sampleGuestWrites.push({physical:event.physical,
       value:event.value,cs:guest.get16('CS'),ip:guest.get16('IP')});
 });
+// Opt-in original CPU A000h readback. Unknown initial GC04/read mode or
+// unwitnessed plane bytes stop the original execution instead of silently
+// reading the emulated linear RAM shadow. Never synthesize missing VGA bytes.
+const vgaNativeReadAdapter=nativeVgaReadProbe?
+  installVgaMode12ReadPlaneAdapter(cpu,vgaPlaneWitness,{maxReads:1000000}):null;
 let steps=0,stopped=null;
 const trace=[];
 for(;steps<3000&&!cpu.terminated;steps++){
@@ -415,6 +431,10 @@ const result={
  nativePart0RuntimeWitness,
  nativeAllPartsRuntimeWitness,
  nativeMemoryWrites,
+ originalVgaCpuReadMode0Probe:nativeVgaReadProbe?{
+  enabled:true,verifiedReads:vgaNativeReadAdapter.readCount(),
+  note:'ORIGINAL_EXE_CPU_IN_SYNTHETIC_DOS__NOT_AUTHENTIC_VGA_REFERENCE'
+ }:null,
  originalVgaPlaneState,
  originalVgaFrameSha256:originalVgaFrame?sha(originalVgaFrame):null,
  originalVgaPaletteIndexHistogram,originalVgaNonzeroBounds,

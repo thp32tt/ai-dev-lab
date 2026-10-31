@@ -30,6 +30,7 @@ jobs:
           node --check uw2-web/tools/p3-koei-exec-probe.mjs
           node --check uw2-web/tools/p3-fmdrv-exec-probe.mjs
           node --check uw2-web/tools/p3-open-exec-probe.mjs
+          node --check uw2-web/tests/p3-koei-fmdrv-open-irq-original.test.mjs
           node --check uw2-web/web/dos-com-child-runner.js
           node --check uw2-web/web/vga-indexed-ports.js
           node --check uw2-web/web/vga-dac-ports.js

@@ -23,7 +23,7 @@ const statuses=Object.freeze({
   'MAIN.EXE':{terminationType:0,returnCode:1},
   'END.EXE':{terminationType:0,returnCode:0}
 });
-export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null,biosVideo=null,initialPsp=null,dosMemory=null,traceLimit=0}={}){
+export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null,biosVideo=null,initialPsp=null,dosMemory=null,dosConsole=null,traceLimit=0}={}){
   if(!(original instanceof Uint8Array))throw new TypeError('original KOEI.COM byte buffer required');
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
     throw new RangeError('bounded KOEI instruction budget required');
@@ -55,8 +55,10 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   }});
   if(dosMemory!==null&&(!dosMemory||typeof dosMemory!=='object'||Array.isArray(dosMemory)))
     throw new TypeError('explicit DOS allocator device object required');
+  if(dosConsole!==null&&(!dosConsole||typeof dosConsole!=='object'||Array.isArray(dosConsole)))
+    throw new TypeError('explicit DOS console device object required');
   installDosInt21(cpu,{freeMemory:dosMemory?.freeMemory,
-    resizeMemory:dosMemory?.resizeMemory,executeChild:input=>{
+    resizeMemory:dosMemory?.resizeMemory,directConsoleIO:dosConsole?.io,executeChild:input=>{
     if(!allowed.has(input.filename))
       throw new Error('KOEI executable name not in SHA-pinned original launch sites');
     if(input.parameterBlockSegment!==pspSegment)

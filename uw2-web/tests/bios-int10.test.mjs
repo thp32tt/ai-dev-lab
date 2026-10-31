@@ -32,7 +32,7 @@ const unknown=new RealMode8086();
 unknown.load(Uint8Array.of(0xcd,0x10),0,0);
 unknown.set16('AX',0x0013);
 installBiosInt10(unknown,{teletype:()=>{throw Error('should not run');}});
-assert.throws(()=>unknown.step(),/unsupported BIOS INT 10h AH=0/);
+assert.throws(()=>unknown.step(),/BIOS video set-mode device absent/);
 const asynchronous=new RealMode8086();
 asynchronous.load(Uint8Array.of(0xcd,0x10),0,0);
 asynchronous.set16('AX',0x0e07);

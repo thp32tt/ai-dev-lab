@@ -17,6 +17,9 @@ export function deliverExternalMaskableIrq(cpu,{
   if(!cpu.flag('IF'))
     return Object.freeze({delivered:false,vector,source,
       reason:'MASKED_IF_CLEAR'});
+  if(cpu.isMaskableIrqShadowed())
+    return Object.freeze({delivered:false,vector,source,
+      reason:'DEFERRED_AFTER_STI_OR_SS'});
   // Do not manufacture an IVT vector from zero-filled RAM.
   if(!cpu.interruptVectors.has(vector))
     throw new Error('external IRQ has no installed guest vector: fail closed');

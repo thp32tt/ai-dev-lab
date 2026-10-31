@@ -35,10 +35,14 @@ export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000,onInstruc
   if(cpu.terminated)
     throw new Error('cannot start DOS child from already terminated parent');
   const parent=captureDosCpuFrame(cpu),parentTerminated=cpu.terminated;
+  // Hardware IRQ inhibition is CPU process state, not part of the
+  // visible 14-register DOS EXEC frame. Never leak it across children.
+  const parentIrqShadow=cpu.maskableIrqShadow;
   let steps=0,result=null;
   try{
     for(const name of DOS_CPU_FRAME_NAMES)cpu.set16(name,initialFrame[name]);
     cpu.terminated=null;
+    cpu.maskableIrqShadow=0;
     for(;steps<maxSteps&&!cpu.terminated;steps++){
       const cs=cpu.get16('CS'),ip=cpu.get16('IP');
       try{
@@ -75,6 +79,7 @@ export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000,onInstruc
   }finally{
     for(const name of DOS_CPU_FRAME_NAMES)cpu.set16(name,parent[name]);
     cpu.terminated=parentTerminated;
+    cpu.maskableIrqShadow=parentIrqShadow;
   }
   return Object.freeze({terminationType:result.terminationType,
     returnCode:result.returnCode,steps,

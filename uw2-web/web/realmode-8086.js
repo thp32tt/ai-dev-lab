@@ -27,6 +27,10 @@ export class RealMode8086 {
     this.interruptAdapters = new Map();
     this.portHandlers = new Map();
     this.terminated = null;
+    // An original 8086 STI, MOV SS or POP SS defers maskable
+    // hardware IRQ acceptance through the *following* instruction.
+    // No host PIT/PIC clock is created by this architectural guard.
+    this.maskableIrqShadow = 0;
     this.memoryWriteObserver = null; // Opt-in, never a synthetic VGA framebuffer.
   }
   installMemoryWriteObserver(observer) {
@@ -351,7 +355,16 @@ export class RealMode8086 {
       (count===1?(overflow?FLAGS.OF:0):(priorFlags&FLAGS.OF))|2;
     return result;
   }
+  isMaskableIrqShadowed() { return this.maskableIrqShadow !== 0; }
   step() {
+    if(this.terminated)throw new Error('DOS process terminated: cannot execute more instructions');
+    // The external host delivers IRQs only at instruction boundaries.
+    // Consume the previous inhibition on entry, but a fresh STI/SS load
+    // performed below starts a new one-instruction inhibition.
+    if(this.maskableIrqShadow>0)this.maskableIrqShadow--;
+    return this.executeInstruction();
+  }
+  executeInstruction() {
     if(this.terminated)throw new Error('DOS process terminated: cannot execute more instructions');
     const cs=this.seg.CS, at=this.ip;
     let op=this.fetch8(),segmentOverride=null,repeatPrefix=null,prefixes=0;
@@ -416,7 +429,11 @@ export class RealMode8086 {
     const pushSegment={0x06:'ES',0x0e:'CS',0x16:'SS',0x1e:'DS'}[op];
     if(pushSegment){this.push16(this.get16(pushSegment));return;}
     const popSegment={0x07:'ES',0x17:'SS',0x1f:'DS'}[op];
-    if(popSegment){this.set16(popSegment,this.pop16());return;}
+    if(popSegment){
+      this.set16(popSegment,this.pop16());
+      if(popSegment==='SS')this.maskableIrqShadow=1;
+      return;
+    }
     if(op>=0xb8&&op<=0xbf){this.set16(R16[op-0xb8],this.fetch16());return;}
     if(op>=0xb0&&op<=0xb7){this.set8(R8[op-0xb0],this.fetch8());return;}
     // Native 8086 register INC/DEC leave CF unchanged, unlike ADD/SUB.
@@ -661,7 +678,10 @@ export class RealMode8086 {
         throw new Error('unsupported 8086 segment-register selector: fail closed');
       const rm=this.memoryOperand(m,16,segmentOverride);
       if(op===0x8c)rm.write(this.get16(segments[selector]));
-      else this.set16(segments[selector],rm.read());
+      else {
+        this.set16(segments[selector],rm.read());
+        if(segments[selector]==='SS')this.maskableIrqShadow=1;
+      }
       return;
     }
     // LES/LDS load an m16:16 pointer, never a register-only operand.
@@ -750,9 +770,12 @@ export class RealMode8086 {
         this.ip=(this.ip+delta)&0xffff;
       return;
     }
-    // CLI/STI modify IF only; no host interrupt scheduling is invented.
+    // STI does not permit a maskable hardware IRQ until AFTER the
+    // next full 8086 instruction. CLI remains immediate.
     if(op===0xfa||op===0xfb){
       this.flags=(this.flags&~FLAGS.IF)|(op===0xfb?FLAGS.IF:0)|2;
+      if(op===0xfb)this.maskableIrqShadow=1;
+      else this.maskableIrqShadow=0;
       return;
     }
     if(op===0xf8||op===0xf9||op===0xf5){

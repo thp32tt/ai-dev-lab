@@ -17,7 +17,7 @@ const events=[];
 const boundary=installDosInt21(cpu,{
   getFileProcessPsp:()=>psp,
   readOriginalFile:({filename})=>files[filename]?{bytes:files[filename]}:null,
-  onFileEvent:event=>events.push(event)
+  onFileEvent:event=>{events.push(event);}
 });
 const call=(ah,{al=0,bx=0,cx=0,dx=0x40}={})=>{
   cpu.set16('AX',(ah<<8)|al);cpu.set16('BX',bx);

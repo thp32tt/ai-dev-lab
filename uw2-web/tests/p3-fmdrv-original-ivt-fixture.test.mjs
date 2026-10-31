@@ -30,7 +30,9 @@ const synthetic=await probeOriginalFmdrv(orig,{
  ioPorts:[
    {number:0x43,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},
    {number:0x40,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},
-   {number:0x61,handlers:{in8:()=>0x00,out8:(port,value)=>pitWrites.push({port,value})}} // synthetic port-B latch, not hardware trace
+   {number:0x61,handlers:{in8:()=>0x00,out8:(port,value)=>pitWrites.push({port,value})}},
+   {number:0x388,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},
+   {number:0x389,handlers:{out8:(port,value)=>pitWrites.push({port,value})}} // observed OPL writes only, no synthesized register/timer response
  ],
  cpu,
  initialIvt:{bytes:ivt,expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08]},

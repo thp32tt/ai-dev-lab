@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 explicit external guest IRQ edge decision evidence (2026-11-01 KST)
+
+- **One independent source outcome (+1):** `thp32tt/ai-dev-lab@uw2-web-port` native 8086 CPU single-owner `externalIrqObserver` now receives the actual `deliverExternalMaskableIrq` outcomes for masked IF, deferred STI/SS shadow, or a successfully dispatched installed IVT vector. The original OPEN opt-in bounded progress witness counts those explicit externally requested outcomes without storing source names/bytes or generating PIT/PIC edges. Source material SHA `2b20a2ba2344e316ade0998c9f8ea6d39b29b04d`. First Actions `41242990403` failed on a synthetic-only test callback accidentally returning Array.push length; repaired within the same achievement at final **validation-bearing SHA `2356e654269b88332c6b3cb65ecf0add31110998`**, exact-SHA Actions `41243023547` `synthetic-static` **SUCCESS**. The same test fixture correction is +0.
+- **Boundaries:** This does not create an authentic external IRQ clock or verify private Korean OPEN, reference DOS PIT/PIC/IVT state, OPEN→MAIN execution, browser game visuals, music, save/play or full gameplay. Those remain **UNTESTED/HOLD**; follow-up CI/readback/docs/repair of this identical outcome +0, AI 1 independent.
+- **AI 2 cumulative: previous confirmed 2315 + one independently validated source outcome (+1) = 2316.**
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 provider-backed guest memory-read evidence (2026-11-01 KST)
 
 - **One independent source-verified memory-map observation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact material/validation SHA `22b22b114327a337373634293ca827d7e2090d26` adds a single passive, opt-in memory-read observer that fires only for a successful explicit external memoryReadProvider uint8 response; ordinary guest RAM reads, rejected bytes and async providers are not counted. The bounded progress witness distinguishes A0000h–BFFFFh provider-backed VGA-area reads from other provider-backed reads, stores counts only, and never records raw bytes. Existing OPEN observer ownership check covers CPU write, port and provider-read observers. Native 8086 MOV moffs/phys-address/owner/async-failure synthetic tests and the existing static suite passed.

@@ -89,6 +89,7 @@ jobs:
           node uw2-web/tests/dos-int21-version.test.mjs
           node uw2-web/tests/dos-int21-ioctl.test.mjs
           node uw2-web/tests/vga-indexed-ports.test.mjs
+          node uw2-web/tests/vga-indexed-readback.test.mjs
           node uw2-web/tests/vga-dac-ports.test.mjs
           node uw2-web/tests/vga-mode12-planar-witness.test.mjs
           node uw2-web/tests/vga-mode12-read-adapter.test.mjs

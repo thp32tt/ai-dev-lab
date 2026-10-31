@@ -629,6 +629,18 @@ export class RealMode8086 {
         this.push16(value);return;
       }
     }
+    // 8086 FE /0 and /1: byte INC/DEC (preserve incoming CF).
+    // Other FE extensions have no documented 8086 semantics here.
+    if(op===0xfe){
+      const m=this.fetch8(),extension=(m>>>3)&7;
+      if(extension!==0&&extension!==1)
+        throw new Error('unsupported 8086 FE extension: fail closed');
+      const rm=this.memoryOperand(m,8,segmentOverride);
+      const cf=this.flags&FLAGS.CF;
+      const value=this.arithmeticResult(rm.read(),1,8,extension===1);
+      this.flags=(this.flags&~FLAGS.CF)|cf;
+      rm.write(value);return;
+    }
     if(op===0xc6||op===0xc7){
       const m=this.fetch8();
       if(((m>>>3)&7)!==0)throw new Error('unsupported 8086 MOV immediate ModR/M extension: fail closed');

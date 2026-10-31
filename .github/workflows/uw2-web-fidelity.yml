@@ -24,6 +24,7 @@ jobs:
           node --check uw2-web/web/realmode-8086.js
           node --check uw2-web/web/mz-loader.js
           node --check uw2-web/web/dos-int21.js
+          node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/tools/koei-launch-chain.mjs
       - name: Boot and fidelity policies without copyrighted game assets
         run: |
@@ -44,5 +45,7 @@ jobs:
           node uw2-web/tests/p1-checkpoint-merge.test.mjs
           node uw2-web/tests/mz-loader.test.mjs
           node uw2-web/tests/dos-int21-launch.test.mjs
+          node uw2-web/tests/dos-readonly-files.test.mjs
+          node uw2-web/tests/realmode-8086-fe.test.mjs
           node uw2-web/tests/fidelity-policy.test.mjs
           node uw2-web/tests/mz-relocation-callgraph.test.mjs

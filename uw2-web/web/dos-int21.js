@@ -1,14 +1,18 @@
 // Narrow DOS INT 21h process boundary. This does not claim a DOS kernel,
 // original binary execution, or invented child process behavior.
 import {RealMode8086} from './realmode-8086.js';
+import {createDosReadOnlyFileHandler} from './dos-readonly-files.js';
 const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
+  // No host file provider => no DOS file service; never synthesize original assets.
+  const fileHandler=readOriginalFile===undefined?null:
+    createDosReadOnlyFileHandler(cpu,readOriginalFile);
   let completedChild=null;
   const readPath=()=>{
     const bytes=[],segment=cpu.get16('DS'),offset=cpu.get16('DX');
@@ -54,6 +58,7 @@ export function installDosInt21(cpu,{executeChild}={}){
       cpu.terminated=Object.freeze({terminationType:0,returnCode:cpu.get8('AL')});
       return;
     }
+    if(fileHandler&&fileHandler(ah))return;
     throw new Error(`unsupported DOS INT 21h AH=${ah.toString(16)}: fail closed`);
   });
   return Object.freeze({pendingChildStatus:()=>completedChild});

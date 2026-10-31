@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 resumable multi-REA snapshot merger (UW2-P1-REA-MULTI-BATCH-20261031)
+
+- Independent source milestone on `thp32tt/ai-dev-lab@uw2-web-port`: `uw2-web/tools/p1-rea-batch-merge.mjs` merges independently exported REA/Ghidra function-dossier snapshots only when they match the same SHA-256 pinned original Korean MZ image. Deterministic SHA-sorted replay-safe dedup, conflicts across overlapping instructions, mixed provenance and function/byte/gap accounting remain fail-closed. One synthetic regression `tests/p1-rea-batch-merge.test.mjs` and workflow check; implementation `b585d794ceaa54b7f043a8b47ec67c6767f82f8c`, regression fix `495dbdba4d6193d41a414e9068f04dd22b19c233`, exact-SHA GitHub Actions run `41150831677` / `synthetic-static` completed **success**. Follow-up sole master-plan documentation `233780f5fca3bb5c9ff970892ef36896f87e7d0c` is the same milestone (+0).
+- Original asset SHA and local existing REA snapshots read-only: MAIN.EXE 4 recorded dossiers / 864 instruction candidates / 2,126 candidate bytes / 265,193 unobserved / 120 unresolved, `HOLD_UNRESOLVED_FLOW`; OPEN.EXE 0 dossiers / 41,655 unobserved, `HOLD_INCOMPLETE`. These counts did **not** increase with merger; new achievement is validated **resumable multi-snapshot aggregation**, not extraction of newly decoded game bytes. Original binaries and pseudocode not committed.
+- Verification: synthetic local Node test PASS and exact-SHA Actions SUCCESS; static pinned Korean original readback PASS. Real DOS reference execution, all-game native browser, graphics/OPL, save and P9 acceptance remain **UNTESTED/HOLD**. Do not double count retries, tests, same implementation docs, or task rollover; AI 1 remains distinct.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2249 + independently implemented validated reusable REA batch merger +1 = 2250.**
+
+Updated: 2026-10-31 KST
+
 ## AI 2 UW2 original REA instruction evidence bridge (2026-10-31 KST)
 
 - Independent material development on `thp32tt/ai-dev-lab@uw2-web-port`: `uw2-web/tools/p1-instruction-ledger.mjs` and `p1-rea-snapshot-bridge.mjs` SHA-pinned decoded instruction/address->original-MZ-byte digests, direct/indirect control-flow candidates, unresolved coverage, malformed and overlapping analysis guards. Two new synthetic regressions enforced by `UW2 Web Fidelity Static Gate`; exact implementation validation SHA `fc06b8672aba9c930c1a7cbf3d5bb6fd3bca98a5`, Actions run `41149636335` completed **success**. Later master-plan-only evidence checkpoint `0f612253dbb16c0d46ff74b12f0f8088cebe05f7` is the same achievement (+0 separately).

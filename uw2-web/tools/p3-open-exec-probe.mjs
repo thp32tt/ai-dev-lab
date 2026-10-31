@@ -90,7 +90,7 @@ export async function createOriginalOpenProbeSession(original,{
      serviceHistory.observe({ah:machine.get8('AH'),al:machine.get8('AL'),cs,ip},machine);
  };
  const cpuSession=createGuestOriginalExecutionSession(machine,{
-   keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction
+   keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction:beforeInstruction
  });
  const snapshot=()=>{
    const dosCalls=serviceHistory.summarize();

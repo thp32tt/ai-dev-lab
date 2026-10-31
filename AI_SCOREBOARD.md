@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun R26 no-mono-shadow performance test source and Win32 binary (2026-11-01 KST)
+
+- **Independent new source capability:** On `thp32tt/OutRun2006Tweaks@test/r26-no-mono-shadow-20261101`, implementation `41645e4439b7fd91fc38188f490c49a918d6d7e7` eliminates the third center-mono backbuffer Draw and Clear for normal VR stereo frames. R7 left/right eye drawing remains intact; incomplete stereo frames are not republished into the host's last-good projection. Menu/non-failed mono fallback remains eligible; gap/mono seeding is explicitly invalid so the old shadow cannot be restored. New R9 counters: elidedDraws, elidedClears, heldFrames. No AA, reflection, render-scale or filter reductions.
+- **Exact-SHA CI binary verification:** Test workflow `VR Mono Shadow Elision Test Build` run `41214226914` **SUCCESS** for SHA `7f7d348eb4debd462195979d25fe1fcbfd4599f1`: Windows Win32 Release `dinput8.dll` compiled, PE32 machine x86 verified, new telemetry marker verified, and ZIP artifact `13047254139` uploaded. Artifact digest `sha256:764d27b1a3839743fde0e624a6eed84c8177b6c9089baaab82329b03b7541839`. Follow-up SHA `c38a8e1c17ad79aaa40ff4453de23153e67ed333` only adds the matching x64 OpenXR host to the same test-package CI; it is the **same TASK**, with no second score.
+- **Bounds:** In-game Quest/GPU frame-time change, partial-failure visual correctness and full x64 host-package CI remain untested at this scoring point. Production/focus/perf baseline branches were not modified. Original standard Build CI is separately blocked by inherited missing `docs/reverse/LINDBERGH_FFB_MAP.md`; the isolated VR test workflow does not disable that original gate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2284 + one material no-shadow optimization with exact-SHA compiled DLL +1 = 2285.** AI 1 unchanged; no duplicate score for this task's extra build, smoke test or re-report.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 DX9Ex Quest 23:57 mirror-fit + complete sun-family PMT repair (2026-11-01 KST)
 
 - **Independent runtime-log-driven source repair:** owner `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, source implementation SHA `d21105f04828c2b1f0dbcd10270644e056adcff0`, validation-bearing follow-up SHA `5b9d26d07e95e181b861bdedb50c42e67d6413e0` (follow-up only updates the regression ordering after PMT-first ownership). Owner Quest bundle `DX9EX_LOG_R26_VISUAL_OWNER_REPAIR_AA2_TEST_20261031-235757.zip` disproved the previous menu assumption: host emitted 33 `MENU QUAD LOGICAL CANVAS` hits sampling literal top-left UV `0,0,0.55814,0.75`, while the same run's game log proved the real PC mirror was `monitor=3440x1440 logical=1920x1080 fittedWindow=2560x1440 origin=440,0 preserveAspect=true`. The host now reconstructs that centered logical-aspect fit, yielding the runtime-proven 440,0 / 2560x1440 source region instead of the left black bar + partial game image; gameplay recovery sentinel remains excluded.

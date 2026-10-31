@@ -170,7 +170,12 @@ installDosInt21(cpu,{
  },
  getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
  getCurrentDrive:()=>({drive:2}), // EXPLICIT SYNTHETIC C:, NOT actual DOS drive state
- allocateMemory:({paragraphs})=>{throw new Error('OPEN_AH48_ALLOCATION_REQUEST:'+paragraphs);},
+ allocateMemory:({paragraphs})=>{
+  if(paragraphs!==0x1000)
+    throw new Error('unexpected original OPEN DOS AH48 memory size '+paragraphs);
+  // EXPLICIT synthetic nonoverlapping DOS allocation. No MCB is guessed.
+  return {segment:0x3000};
+ },
  readOriginalFile:request=>{
    observed.originalFileRequests.push(request.filename);
    return pinnedOpgraph.resolve(request);

@@ -69,7 +69,7 @@ const unknown=new RealMode8086();
 unknown.set8('AH',0x30);
 unknown.load(Uint8Array.of(0xcd,0x21),0,0);
 installDosInt21(unknown);
-assert.throws(()=>unknown.step(),/unsupported DOS/);
+assert.throws(()=>unknown.step(),/AH30 requires external DOS-version snapshot/);
 // DOS EXEC error path: CF and AX only, without manufacturing a child status.
 const failed=new RealMode8086();
 failed.set16('DS',0x110);failed.set16('DX',0x80);

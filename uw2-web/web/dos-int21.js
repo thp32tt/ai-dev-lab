@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -16,6 +16,10 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('resizeMemory must be a synchronous DOS allocator boundary');
   if(directConsoleIO!==undefined&&typeof directConsoleIO!=='function')
     throw new TypeError('directConsoleIO must be a synchronous DOS console boundary');
+  if(stayResident!==undefined&&typeof stayResident!=='function')
+    throw new TypeError('stayResident must be a synchronous DOS TSR memory-owner callback');
+  if(stayResident&&( !Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
+    throw new RangeError('DOS TSR current PSP segment must be explicit uint16');
   // No host file provider => no DOS file service; never synthesize original assets.
   const fileHandler=readOriginalFile===undefined?null:
     createDosReadOnlyFileHandler(cpu,readOriginalFile);
@@ -192,6 +196,26 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
       if(!completedChild)throw new Error('DOS 4Dh missing completed child: fail closed');
       cpu.set16('AX',(completedChild.terminationType<<8)|completedChild.returnCode);
       completedChild=null;return;
+    }
+    if(ah===0x31){
+      // Original FMDRV.COM calls AX=3101h, DX=0026h after hooking INT 66h,
+      // INT 08h, PIT, and probing OPL status. This boundary does not install
+      // a fake resident driver: only a verified external DOS MCB owner may
+      // acknowledge retaining PSP+DX paragraphs and the original byte image.
+      if(!stayResident)
+        throw new Error('DOS AH31 requires explicit resident memory owner: fail closed');
+      const paragraphs=cpu.get16('DX'),returnCode=cpu.get8('AL');
+      if(!paragraphs)
+        throw new Error('DOS AH31 zero resident paragraph count: fail closed');
+      const request=Object.freeze({pspSegment,paragraphs,returnCode});
+      const response=stayResident(request,cpu);
+      if(response&&typeof response.then==='function')
+        throw new Error('async DOS AH31 residency owner: fail closed');
+      if(!response||typeof response!=='object'||response.resident!==true)
+        throw new Error('DOS AH31 residency owner must explicitly acknowledge: fail closed');
+      cpu.terminated=Object.freeze({terminationType:3,returnCode,
+        residentParagraphs:paragraphs,pspSegment});
+      return;
     }
     if(ah===0x4c){
       cpu.terminated=Object.freeze({terminationType:0,returnCode:cpu.get8('AL')});

@@ -11,6 +11,7 @@ import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {installBiosInt16} from '../web/bios-int16.js';
+import {runGuestUntilKeyboardWait} from '../web/guest-bios-keyboard-step.js';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
 const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
@@ -54,7 +55,16 @@ export async function probeOriginalOpen(original,{
    if(traceLimit){recent.push(record);if(recent.length>traceLimit)recent.shift();}
    if(machine.read8(cs,ip)===0xcd&&machine.read8(cs,(ip+1)&65535)===0x21)
      services.push({ah:machine.get8('AH'),al:machine.get8('AL'),cs,ip});
-   try{machine.step();}catch(e){stopped={cs,ip,message:e.message};break;}
+   try{
+     if(keyboardQueue!==undefined){
+       // A pending original BIOS AH00 must not advance the MZ guest IP
+       // before a genuine external key has entered the shared FIFO.
+       const gate=runGuestUntilKeyboardWait(machine,{keyboardQueue,maxSteps:1});
+       if(gate.reason==='WAIT_BIOS_INT16_AH00'){
+         stopped={cs,ip,reason:gate.reason};break;
+       }
+     }else machine.step();
+   }catch(e){stopped={cs,ip,message:e.message};break;}
  }
  if(!stopped&&!machine.terminated)
    stopped={reason:'STEP_BUDGET_EXHAUSTED',cs:machine.get16('CS'),ip:machine.get16('IP')};

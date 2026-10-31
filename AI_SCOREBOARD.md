@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original VGA GC06 A000 aperture write/read provenance repair (2026-11-01 KST)
+
+- **Independent source bug repair:** `thp32tt/ai-dev-lab@uw2-web-port` actual material source SHA `3624c1e3cdc1459098c98ca5e7deead31271d789`; validation-bearing follow-up SHA `7a46d29489abbc39f4db8042ffb0df9bd3c17f8c`. The previous VGA Mode12 original native planar writer accepted A0000h CPU writes with known mode0/2 GC03/05/08 and SEQ02 but **no observed GC06 mapping**; an unrelated B000/B800 aperture, text mode, or odd/even chained configuration could falsely ground graphics pixels. The witness now requires explicitly observed GC06=01h/05h (graphics, unchained A0000h mapped) for both writes and selected-plane readback; no BIOS defaults or original pixels were invented. Mandatory synthetic regression covers missing GC06, wrong aperture, text and chained modes, correct A000 128K/64K mappings, and old pixel coverage behavior.
+- **Exact-SHA GitHub Actions:** `UW2 Web Fidelity Static Gate` `synthetic-static` run `41220487145` **SUCCESS** for `7a46d29489abbc39f4db8042ffb0df9bd3c17f8c` after message-contract CI repair. Initial `3624c1e3` run `41220441514` failed only because its preexisting `/exact observed/` test assertion did not match new diagnostic text; the follow-up restored that contract. Native Korean original DOS VGA visual parity, OPEN→MAIN, browser playing, graphics/audio/game/save equivalence remain **UNTESTED / HOLD**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2292 + independently repaired VGA GC06 original-source provenance bug +1 = 2293.** Same-task CI repair/readback/re-report +0; AI 1 remains separate.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 DX9Ex Quest Sumo-FE canvas ownership + PMT sun-direction repair (2026-11-01 KST)
 
 - **Distinct HMD-log-driven bug repair:** owner `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, material source SHA `4cd62ba40c622b65db1f768e6a7a0a089eb2eeb0`, validation-bearing SHA `9e26abe49fc414ae8eeaa9f3bbebe16ab618d385`. Owner Quest bundle `DX9EX_LOG_R26_VISUAL_OWNER_REPAIR_AA2_TEST_20261101-004915.zip` falsified the prior front-end state assumption: host used the correct published mirror rect `440,0,2560,1440`, but active theater states were decimal 32 (`STATE_SUMO_FE=0x20`) and 28 while `MENU AUTHORED 4_3 FULL` and game-side `VR TRACE FRONTEND VIRTUAL CANVAS` were absent. The game front-end physical-canvas owner now explicitly includes `STATE_SUMO_FE`, so the completed 1920x1080/640x480-authored menu transform is mapped into the XR physical D3D9Ex target instead of remaining at its upper-left; `STATE_GAME` stays excluded and compile-time guards pin the enum separation.

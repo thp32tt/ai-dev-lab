@@ -20,9 +20,9 @@ assert.equal(w.readPixelIndex(15,0),10);
 assert.equal(w.readPixelIndex(16,0),null);
 assert.deepEqual(w.getState(),{
  width:640,height:480,strideBytes:80,observedWrites:2,
- visibleWrites:2,fullyCoveredBytes:2,mode0Writes:0,mode1Writes:0,mode2Writes:2,visibleBytes:38400,planeBytes:65536,configKnown:true,
+ visibleWrites:2,fullyCoveredBytes:2,mode0Writes:0,mode1Writes:0,mode2Writes:2,mode3Writes:0,visibleBytes:38400,planeBytes:65536,configKnown:true,
  graphicsMode:2,sequencerMapMask:15,
- fidelity:'VGA_PLANAR_64K_WRITE012_READ01_LATCHES__SYNTHETIC_DOS_UNTESTED'
+ fidelity:'VGA_PLANAR_64K_WRITE0123_READ01_LATCHES__SYNTHETIC_DOS_UNTESTED'
 });
 const masks=make();mode(masks,1);
 masks.observeNativeByte({physical:0xa0000,value:1});

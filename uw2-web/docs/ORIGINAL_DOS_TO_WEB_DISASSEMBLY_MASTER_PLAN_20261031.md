@@ -328,3 +328,5 @@
 - VGA GC06 주소 선택(128KiB A000–BFFF, 64KiB A000–AFFF, B000/B800 text apertures)의 디코딩 경계 추가: 알려진 매핑에서 미구현 B000/B800 접근을 일반 게스트 RAM인 것처럼 반환하지 않고 읽기/쓰기 witness에서 fail-closed한다. A000-only 선택 후 B000 접근은 VRAM이라고 주장하지 않으며 일반 메모리와 구별한다. 원본 참조 실행/물리 VGA 동등성은 계속 HOLD.
 
 - VGA DAC 레지스터가 원본에서 먼저 OUT으로 완전하게 관측된 경우에만 옵트인 3C7h read-index/3C9h RGB read stream을 제공한다. 팔레트 read 인덱스 선택·3바이트 순서·255→0 wrap·부분 덮어쓰기 무효화·read budget을 테스트한다. 6bit 범위를 초과하는 원시 OUT 데이터는 임의 클리핑/정규화하지 않고 IN을 거부한다. 리얼 VGA 초기 팔레트 및 실제 OPEN 호환성은 **UNTESTED**.
+
+- 2026-11-01 P3 VGA correctness: GC05 bit3(read compare)와 bit1:0(write mode)을 분리한다. 이전에는 GC05=08h/09h/0Ah가 허용된 쓰기 0/1/2를 불필요하게 차단했다. VGA 쓰기 모드3은 IBM-compatible rotated CPU data & GC08 mask, GC00 set/reset 4-plane constant, prior native read-latch, GC03 raster operation 순서를 도입했다. 이전에 모드 3을 모드 0/2로 잘못 가장하지 않는다. 원본 8086 REP MOVSB가 A000 소스 읽기로 latches를 채우고 A000 다른 주소에 mode1 복사하는 경계를 CI synthetic로 시험했다. 원본 OPEN에서 실제 호출 여부와 DOS/브라우저 시각 동등성은 미검증이다.

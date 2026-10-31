@@ -95,6 +95,7 @@ jobs:
           node uw2-web/tests/vga-mode12-planar-witness.test.mjs
           node uw2-web/tests/vga-mode12-read-adapter.test.mjs
           node uw2-web/tests/vga-mode12-latch-readmode1.test.mjs
+          node uw2-web/tests/vga-write-mode3-native-strings.test.mjs
           node uw2-web/tests/opl2-pit-raw-witness.test.mjs
           node uw2-web/tests/guest-staging-physical-map.test.mjs
           node uw2-web/tests/dos-file-transfer-provenance.test.mjs

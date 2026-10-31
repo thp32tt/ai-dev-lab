@@ -166,6 +166,14 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
         throw new Error('DOS read buffer crosses 20-bit memory boundary: fail closed');
       const fileOffset=file.position;
       const length=Math.min(count,Math.max(0,file.bytes.length-file.position));
+      // DOS AH3F is a *kernel* memory transfer, not an original guest MOV.
+      // The direct RAM fast path bypasses the native 8086 memory-write
+      // observer and its VGA GC/SEQ 4-plane ownership. Never silently
+      // present a file-to-A000/B800 transfer as ordinary linear RAM or
+      // verified VGA pixels. A separate witnessed DOS/VGA kernel bus is
+      // required before this aperture can be admitted.
+      if(length&&physical<0xc0000&&physical+length>0xa0000)
+        throw new Error('DOS AH3F file transfer crosses unmodeled VGA physical aperture: fail closed');
       // Resolve and bound the entire transfer before mutating guest memory.
       if(length)cpu.memory.set(file.bytes.subarray(file.position,file.position+length),physical);
       file.position+=length;

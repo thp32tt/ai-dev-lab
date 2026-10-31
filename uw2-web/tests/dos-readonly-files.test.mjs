@@ -75,4 +75,36 @@ asyncFile.load(Uint8Array.of(0xcd,0x21),0,0);
 installDosInt21(asyncFile,{readOriginalFile:()=>Promise.resolve({bytes:new Uint8Array()})});
 asyncFile.set16('AX',0x3d00);
 assert.throws(()=>asyncFile.step(),/async DOS original file resolver/);
+// A direct AH3F cpu.memory.set bypasses the CPU/VGA write observer. Reject
+// video aperture overlap *before* changing any RAM, cursor or DOS registers;
+// conventional segment buffers remain supported, including after refusal.
+const video=new RealMode8086();
+video.set16('CS',0x100);video.set16('DS',0x300);
+video.load(Uint8Array.of(0xcd,0x21),0x100,0);
+video.write8(0x300,0x40,0x58);video.write8(0x300,0x41,0);
+installDosInt21(video,{readOriginalFile:()=>({bytes:new Uint8Array(800).fill(0x5a)})});
+const vcall=(ax,{bx=0,cx=0,dx=0x40,ds=0x300}={})=>{
+  video.set16('AX',ax);video.set16('BX',bx);
+  video.set16('CX',cx);video.set16('DX',dx);
+  video.set16('DS',ds);video.set16('IP',0);video.step();
+};
+vcall(0x3d00);assert.equal(video.get16('AX'),5);
+for(const {ds,dx,cx} of [
+ {ds:0x9ff0,dx:0,cx:0x200}, // extends from conventional RAM into A0000
+ {ds:0xa000,dx:0,cx:0x20}, // planar framebuffer A000
+ {ds:0xb800,dx:0,cx:0x20} // text aperture B800
+]){
+  assert.throws(()=>vcall(0x3f00,{bx:5,cx,dx,ds}),
+    /unmodeled VGA physical aperture: fail closed/);
+  assert.equal(video.memory[0x9ff00],0);
+  assert.equal(video.memory[0xa0000],0);
+  assert.equal(video.memory[0xb8000],0);
+  assert.equal(video.get16('AX'),0x3f00); // no DOS file success on rejection
+}
+vcall(0x3f00,{bx:5,cx:0,dx:0,ds:0xa000}); // EOF/no-op transfer is safe
+assert.equal(video.get16('AX'),0);
+vcall(0x3f00,{bx:5,cx:16,dx:0x200,ds:0x300});
+assert.equal(video.get16('AX'),16);
+assert.deepEqual([...video.memory.slice(0x3200,0x3210)],new Array(16).fill(0x5a));
+
 console.log('UW2 P3 read-only original-byte DOS 3D/3F/42/3E synthetic regression: PASS');

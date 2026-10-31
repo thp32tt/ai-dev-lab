@@ -14,6 +14,8 @@ import {captureDosCpuFrame} from '../web/dos-com-child-runner.js';
 import {assertDisjointGuestPhysicalRegions} from '../web/guest-staging-physical-map.js';
 import {createPinnedExternalGuestIrqTrace} from '../web/guest-pinned-external-irq-trace.js';
 import {createOriginalMasterPicCommandWitness} from '../web/guest-pic8259-command-witness.js';
+import {createOriginalPitChannel0WriteBus} from '../web/pit8253-counter0-witness.js';
+import {createOriginalOpl2WriteBus} from '../web/opl2-raw-write-bus.js';
 const fsBase='/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD/';
 const syntheticExternalIrq=process.argv[2]==='--synthetic-external-irq';
 const syntheticPinnedIrq=process.argv[2]==='--synthetic-pinned-irq';
@@ -62,13 +64,21 @@ installBiosInt10(cpu,{
  setMode:()=>{modeCount++;},
  setPaletteRegister:()=>{paletteCount++;}
 });
-for(const [port,handlers] of [
- [0x43,{out8:()=>{portCount++;}}],
- [0x40,{out8:()=>{portCount++;}}],
- [0x61,{in8:()=>0,out8:()=>{portCount++;}}],
- [0x388,{in8:()=>0,out8:()=>{portCount++;}}],
- [0x389,{out8:()=>{portCount++;}}]
-])cpu.registerIOPort(port,handlers);
+const pitReloads=[];
+const pitBus=createOriginalPitChannel0WriteBus({
+  onReload:event=>{pitReloads.push(event);}
+});
+cpu.registerIOPort(0x43,pitBus.port43);
+cpu.registerIOPort(0x40,pitBus.port40);
+const oplRegisters=[];
+const oplBus=createOriginalOpl2WriteBus({
+  // This status=0 is a fixture-only synthetic response, not a YM3812 chip.
+  readStatus:()=>0,
+  onRegisterWrite:event=>{if(oplRegisters.length<24)oplRegisters.push(event);}
+});
+cpu.registerIOPort(0x388,oplBus.port388);
+cpu.registerIOPort(0x389,oplBus.port389);
+cpu.registerIOPort(0x61,{in8:()=>0,out8:()=>{portCount++;}});
 const picCommands=[];
 const picWitness=createOriginalMasterPicCommandWitness({
  onCommand:event=>{picCommands.push(event);}
@@ -178,6 +188,11 @@ assert.equal(op?.reason,'TOTAL_STEP_BUDGET_EXHAUSTED');
 assert.equal(problem,null);
 assert.equal(vga.writtenCount(),6);
 assert.equal(dac.writtenColors(),16);
+assert.equal(pitBus.getState().commands,1);
+assert.equal(pitBus.getState().dataWrites,2);
+assert.equal(pitBus.getState().lastReload.effectiveDivisor,4096);
+assert.equal(oplBus.getState().registerDataWrites,6);
+assert.equal(oplBus.getState().registerSelectWrites,6);
 console.log(JSON.stringify({result:'ORIGINAL_FMDRV_TSR_TO_OPEN_SHARED_CPU',
  shaFMDRV:sha(fm),shaOPEN:sha(open),
  fmdrvSteps:fmr.steps,fmdrvTerminated:fmr.result,
@@ -185,7 +200,9 @@ console.log(JSON.stringify({result:'ORIGINAL_FMDRV_TSR_TO_OPEN_SHARED_CPU',
  openReason:op?.reason??null,openFault:problem,
  originalInstalledInt66:cpu.getGuestInterruptVector(0x66),
  video:{modeCount,paletteCount,vgaWrites:vga.writtenCount(),dacColors:dac.writtenColors(),retrace},
- ports:portCount,tsrCount,syntheticExternalIrq,syntheticPinnedIrq,
+ ports:portCount,tsrCount,pitState:pitBus.getState(),
+ oplState:oplBus.getState(),oplFirstWrites:oplRegisters.slice(0,8),
+ syntheticExternalIrq,syntheticPinnedIrq,
  pinnedIrqEvidence:pinnedIrqTape?.snapshot()??null,
  pendingIrqs:openSession.snapshot().irqEdges,
  picCommands:picWitness.snapshot().commands,

@@ -536,3 +536,7 @@
 
 - 사용자가 보유한 원본 `FMDRV.COM` TSR 등록 후 동일 CPU에서 `OPEN.EXE`를 실행하면서, 명시적으로 supplied synthetic IRQ ordinal 0/4000을 SHA-256 핀으로 전달한 결과 실제 FMDRV ISR이 두 차례 실행됐다. 둘째 IRQ에서는 실제 FMDRV가 `OUT 20h, 20h`를 수행했으나 기존 minimal shared CPU test에 PIC 20h adapter가 없어 fail-closed했다. 이는 원본 CPU opcode 누락이나 게임 프로그램 오류가 아니라 **다음 외부 PIC 장치 경계 부족**으로 식별했다.
 - `guest-pic8259-command-witness.js`를 만들어 실제 원본이 수행한 **master PIC command 0x20 raw write**만 CS:IP·ordinal과 기록하게 했다. 0x20 이외의 명령/다른 포트·콜백 반환값 위조·비동기 응답·상한 초과는 거부한다. 이 모듈은 EOI에 따른 PIC interrupt in-service 비트 변화나 EOI 승인·다음 IRQ 우선순위/스케줄을 시뮬레이션하지 않는 **source evidence-only** sink이며, 실제 PIC와 동등하다는 보장은 없다. 새로운 private regression에서 일반 원본 FMDRV→OPEN 80000명령·단일 synthetic IRQ 및 2건 SHA-pin synthetic replay 모드에 각각 성공; 두 IRQ를 실제 FMDRV `INT08 0400:01DE`로 전달하고 20h 출력 1건을 관측했음을 고정한다. 기본/실험 모드 모두 사용자의 원본 SHA를 검증하며 GitHub에 원본 바이트를 게시하지 않는다.
+
+### 2026-11-01 FMDRV 원본 하드웨어 포트 명령을 구체적 관측기로 연결
+
+- 기존 shared original `FMDRV.COM` TSR→`OPEN.EXE` private regression의 임의 `port 43/40/388/389` 카운트 핸들러를 이미 검증한 `createOriginalPitChannel0WriteBus`와 `createOriginalOpl2WriteBus`로 교체했다. 2026-11-01 사용자 소유 원본 FMDRV COM 기계어에서 실제 PIT `OUT 43h,36h` / `OUT 40h,00h` / `OUT 40h,10h`를 **1회 프로그램**하여 ch0 mode3 원시 분주 4096을 확인했고, OPL 388/389 register select+data **6쌍**을 입증했다. 읽기 388h의 status=0은 명시적 **합성** 장치 응답으로 한정한다. PIC `OUT 20h,20h` 한 건과 합성 IRQ 2건을 같은 pinned native test에서 구별 기록한다. 기본 모드·명시적 1 IRQ·SHA pinned 2 IRQ 실행 모두 FMDRV 30,644 + OPEN 80,000명령 원본 SHA를 확인하며 정상 원작 오디오·클럭 도달성은 주장하지 않는다. 이 작업은 기존 PIT/OPL 원본 관측기 재사용/회귀 정밀화이며 이전 독립 성과에 중복 가산하지 않는다.

@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -18,6 +18,8 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('directConsoleIO must be a synchronous DOS console boundary');
   if(stayResident!==undefined&&typeof stayResident!=='function')
     throw new TypeError('stayResident must be a synchronous DOS TSR memory-owner callback');
+  if(getDosVersion!==undefined&&typeof getDosVersion!=='function')
+    throw new TypeError('getDosVersion must be a synchronous external DOS version provider');
   if(stayResident&&typeof pspSegment!=='function'&&
      (!Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
     throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
@@ -104,6 +106,32 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
       // AX=2524h to install its own DOS critical-error INT 24h handler.
       // No unknown DOS IVT default or host adapter is manufactured.
       cpu.setGuestInterruptVector(cpu.get8('AL'),cpu.get16('DS'),cpu.get16('DX'));
+      return;
+    }
+    if(ah===0x30){
+      // DOS 2.x+ INT21 AH30: AL=major AH=minor BH=OEM number,
+      // BL/CX=24-bit serial. NO guessed DOS version or distribution;
+      // the provider must supply each field from an external DOS snapshot.
+      if(!getDosVersion)
+        throw new Error('DOS AH30 requires external DOS-version snapshot: fail closed');
+      const value=getDosVersion(Object.freeze({requestAL:cpu.get8('AL')}),cpu);
+      if(value&&typeof value.then==='function')
+        throw new Error('async DOS version provider: fail closed');
+      if(!value||typeof value!=='object'||Array.isArray(value))
+        throw new Error('DOS version provider must supply explicit registers');
+      const names=['major','minor','oem','serialHigh','serialLow'];
+      if(names.some(name=>!Object.hasOwn(value,name)))
+        throw new Error('DOS version snapshot missing a register: fail closed');
+      const major=byte(value.major,'DOS major'),
+        minor=byte(value.minor,'DOS minor'),
+        oem=byte(value.oem,'DOS OEM'),
+        serialHigh=byte(value.serialHigh,'DOS serial high');
+      const serialLow=value.serialLow;
+      if(!Number.isInteger(serialLow)||serialLow<0||serialLow>0xffff)
+        throw new RangeError('DOS serial low must be uint16');
+      cpu.set8('AL',major);cpu.set8('AH',minor);
+      cpu.set8('BH',oem);cpu.set8('BL',serialHigh);
+      cpu.set16('CX',serialLow);
       return;
     }
     if(ah===0x35){

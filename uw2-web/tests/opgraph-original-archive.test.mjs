@@ -43,7 +43,7 @@ const raw=Uint8Array.from('C:OPGRAPH.LZW',c=>c.charCodeAt(0));
 const resolved=archive.resolveDosFile({filename:'C:OPGRAPH.LZW',raw});
 assert.deepEqual(resolved.bytes.subarray(296),data);
 resolved.bytes[296]=255;
-assert.equal(archive.resolveDosFile({filename:'C:OPGRAPH.LZW',raw}).bytes[296],1);
+assert.equal(archive.resolveDosFile({filename:'C:OPGRAPH.LZW',raw}).bytes[296],0);
 assert.equal(archive.resolveDosFile({filename:'OPGRAPH.LZW',
  raw:raw.subarray(2)}),null);
 assert.throws(()=>archive.getGraphRecord(1,0),/bounded integer/);

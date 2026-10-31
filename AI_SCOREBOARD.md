@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original 8086 interruptible REP iteration source integration (2026-11-01 KST)
+
+- **Independent new material capability:** `thp32tt/ai-dev-lab@uw2-web-port` source commit `4b7b606449f7281e2777faf8bb287dde5cfab811` implements an explicit `interruptibleRepStrings:true` 8086 core execution mode. For REP MOVS/CMPS/STOS/LODS/SCAS it exposes genuine per-iteration original-byte CPU state (CX/SI/DI/FLAGS/DS/ES) and rewinds the full prefix IP for guest IRQ entry and IRET resumption; REPE/REPNE stop, DF/16bit wrap and STI/MOV SS/POP SS full-instruction shadow are verified. The historic atomic default remains OFF to preserve recorded 13M original OPEN step-count receipts. This is CPU fidelity progress, not an original DOS/PIC clock implementation or completed native-web game.
+- **Exact-SHA verification:** UW2 Web Fidelity Static Gate Actions run `41213070497` completed `synthetic-static` SUCCESS on exact source SHA `4b7b606449f7281e2777faf8bb287dde5cfab811`. Added `tests/realmode-8086-rep-interruptible.test.mjs`, mandatory workflow coverage. Sole master-plan follow-up docs-only commit `7a2e105519db7bc3da32064b91e770c9289408eb` adds no further point. Original Korean DOS IRQ trace, browser render/audio/game completion remain UNTESTED.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2281 + independent 8086 original CPU REP/IRQ-resumption source implementation +1 = 2282.** AI1 separate; synthetic CI, re-report, and docs-only are included in one achievement.
+
+Updated: 2026-11-01 KST
+
 ## AI 1 OutRun Korean ROI A-0149 Turkey transparent candidate Library-persisted (2026-11-01 KST)
 
 - Unique TASK_ID `OUTRUN-ROI-A-0149-81AEEAEA`, approved source Q049 / `Turkey!` -> Korean `터키!`. Exactly one ImageGen result, cropped to content and alpha-preserving resampled into a text-only transparent RGBA PNG `Q049_d376b4138af8349a_k.png` (465×171 px, alpha bbox [26,16,461,161]), within the source's 470×171 ROI maximum. No background/vehicle/icon/replacement original HD canvas. Local PNG SHA-256 `661b9b45b944500aa169dabef65f77ed90f96b03c695eb3c32e79acb09351a04`, 100213 bytes. Uploaded to persistent Library `/아웃런 한글화 신규/Q049_d376b4138af8349a_k.png` and independently re-listed identical basename and size, Library ID `libfile_e72baf946b1c8191939dd3659dda68bd`. This proves generation and Library persistence, not independent C1 QA, DDS application or in-game PASS; candidate remains unapproved pending QA.

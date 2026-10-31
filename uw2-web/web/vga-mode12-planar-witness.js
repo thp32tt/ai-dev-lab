@@ -8,15 +8,19 @@
 // This is a passive GPU-memory evidence layer, NOT an authentic VGA BIOS,
 // vertical-retrace clock, palette renderer, or original visual parity.
 const WIDTH=640,HEIGHT=480,STRIDE=WIDTH>>>3,VISIBLE=STRIDE*HEIGHT;
-const VRAM_PHYSICAL=0xa0000,VRAM_END=0xb0000;
+const VRAM_PHYSICAL=0xa0000,VRAM_END=0xb0000,PLANE_BYTES=0x10000;
 const validByte=v=>Number.isInteger(v)&&v>=0&&v<=255;
 export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={}){
   if(!Number.isInteger(maxObservedWrites)||maxObservedWrites<1||maxObservedWrites>2000000)
     throw new RangeError('bounded mode 12h guest byte-write budget required');
   const gc=new Map(),seq=new Map();
-  const planes=Array.from({length:4},()=>new Uint8Array(VISIBLE));
-  const validity=Array.from({length:4},()=>new Uint8Array(VISIBLE));
-  let observedWrites=0,visibleWrites=0,fullyCoveredBytes=0,mode0Writes=0,mode2Writes=0;
+  // VGA planes are 64 KiB each, even though a 640x480x16 frame displays
+  // only the first 38,400 bytes. Guest code may use the rest as scratch VRAM.
+  const planes=Array.from({length:4},()=>new Uint8Array(PLANE_BYTES));
+  const validity=Array.from({length:4},()=>new Uint8Array(PLANE_BYTES));
+  const latches=new Uint8Array(4),latchValid=new Uint8Array(4);
+  let observedWrites=0,visibleWrites=0,fullyCoveredBytes=0;
+  let mode0Writes=0,mode1Writes=0,mode2Writes=0;
   // GC06 controls which CPU address aperture actually reaches VGA. The
   // native A000 witness is only valid in graphics mode with planar addressing,
   // not in text mode, odd/even-chained addressing or B000/B800 mappings.
@@ -24,18 +28,27 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
   const mapsPlanarA000=()=>gc.get(6)===0x01||gc.get(6)===0x05;
   const isReady=()=>{
     const mode=gc.get(5);
-    return mapsPlanarA000()&&gc.get(3)===0&&gc.get(8)===255&&
-      (mode===2||(mode===0&&gc.get(1)===0))&&
-      Number.isInteger(seq.get(2))&&(seq.get(2)&0xf)!==0;
+    if(!mapsPlanarA000()||![0,1,2].includes(mode)||
+       !Number.isInteger(seq.get(2))||(seq.get(2)&15)===0)
+      return false;
+    if(mode===1)return true; // VGA write mode 1 ignores CPU data, GC03/08
+    if(!gc.has(3)||!gc.has(8))return false;
+    return mode===2||(gc.has(1)&&((gc.get(1)&15)===0||gc.has(0)));
+  };
+  const loadLatches=offset=>{
+    for(let p=0;p<4;p++){
+      latches[p]=planes[p][offset];
+      latchValid[p]=validity[p][offset];
+    }
   };
   const snapshot=()=>Object.freeze({
     width:WIDTH,height:HEIGHT,strideBytes:STRIDE,
-    observedWrites,visibleWrites,fullyCoveredBytes,mode0Writes,mode2Writes,
-    visibleBytes:VISIBLE,
+    observedWrites,visibleWrites,fullyCoveredBytes,mode0Writes,mode1Writes,mode2Writes,
+    visibleBytes:VISIBLE,planeBytes:PLANE_BYTES,
     configKnown:isReady(),
     graphicsMode:gc.has(5)?gc.get(5):null,
     sequencerMapMask:seq.has(2)?seq.get(2):null,
-    fidelity:'ORIGINAL_CPU_WRITE_MODE0_MODE2_VGA_PLANES_ONLY__NO_BIOS_OR_FRAME_PARITY'
+    fidelity:'VGA_PLANAR_64K_WRITE012_READ01_LATCHES__SYNTHETIC_DOS_UNTESTED'
   });
   return Object.freeze({
     invalidateAfterBiosModeSet({mode}={}){
@@ -48,7 +61,8 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
         throw new RangeError('BIOS video mode byte required to invalidate VGA evidence');
       for(const plane of planes)plane.fill(0);
       for(const known of validity)known.fill(0);
-      gc.clear();seq.clear();fullyCoveredBytes=0;
+      gc.clear();seq.clear();latches.fill(0);latchValid.fill(0);
+      fullyCoveredBytes=0;
     },
     noteIndexedRegister(event){
       if(!event||typeof event!=='object'||!validByte(event.index)||
@@ -69,45 +83,84 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       if(observedWrites>=maxObservedWrites)
         throw new Error('VGA mode12 original-CPU write budget exceeded: fail closed');
       if(!isReady())
-        throw new Error('VGA planar write requires exact observed GC06 graphics A000 planar aperture, mode0/mode2 GC01/03/05/08 and SEQ02: fail closed');
-      // With full bitmask, rotate=0, and logical operation=replace, mode0
-      // writes the CPU data byte unchanged to enabled planes. With mode2,
-      // each AL bit expands to FFh/00h in one destination plane.
-      const mode=gc.get(5);
-      observedWrites++;
-      if(mode===0)mode0Writes++;else mode2Writes++;
-      const offset=address-VRAM_PHYSICAL;
-      if(offset>=VISIBLE)return; // beyond visible 640x480, still raw VGA RAM
-      visibleWrites++;
-      const mask=seq.get(2)&15;
-      let previouslyCovered=true;
-      for(let p=0;p<4;p++)if(!validity[p][offset])previouslyCovered=false;
-      for(let p=0;p<4;p++)if(mask&(1<<p)){
-        planes[p][offset]=mode===0?event.value:((event.value&(1<<p))?255:0);
+        throw new Error('VGA planar write requires exact observed GC06 graphics A000 planar aperture, mode0/mode1/mode2 GC/SEQ registers: fail closed');
+      const offset=address-VRAM_PHYSICAL,mode=gc.get(5)&3;
+      const mapMask=seq.get(2)&15,bitMask=gc.get(8);
+      const rotate=gc.get(3)&7;
+      const rotated=((event.value>>>rotate)|(event.value<<(8-rotate)))&255;
+      // Build every affected plane before mutating evidence. A partially
+      // witnessed latch can never silently become a fabricated pixel.
+      const next=[];
+      for(let p=0;p<4;p++){
+        if(!(mapMask&(1<<p)))continue;
+        if(mode===1){
+          if(!latchValid[p])
+            throw new Error('VGA write-mode1 requires previously read, verified latch plane: fail closed');
+          next.push([p,latches[p]]);
+          continue;
+        }
+        let input=mode===2?((event.value&(1<<p))?255:0):
+          ((gc.get(1)&(1<<p))?((gc.get(0)&(1<<p))?255:0):rotated);
+        const operation=(gc.get(3)>>>3)&3;
+        if(operation!==0||bitMask!==255){
+          if(!latchValid[p])
+            throw new Error('VGA logical or masked write requires previously read, verified latch plane: fail closed');
+          if(operation===1)input&=latches[p];
+          else if(operation===2)input|=latches[p];
+          else if(operation===3)input^=latches[p];
+        }
+        next.push([p,((input&bitMask)|(latches[p]&(~bitMask&255)))&255]);
+      }
+      const visible=offset<VISIBLE;
+      let covered=visible;
+      if(visible)for(let p=0;p<4;p++)if(!validity[p][offset])covered=false;
+      for(const [p,value] of next){
+        planes[p][offset]=value;
         validity[p][offset]=1;
       }
-      if(!previouslyCovered&&validity.every(a=>a[offset]===1))
-        fullyCoveredBytes++;
+      observedWrites++;
+      if(mode===0)mode0Writes++;
+      else if(mode===1)mode1Writes++;
+      else mode2Writes++;
+      if(visible){
+        visibleWrites++;
+        if(!covered&&validity.every(plane=>plane[offset]===1))
+          fullyCoveredBytes++;
+      }
     },
     readSelectedPlaneByte(physical){
-      // 8086 CPU VGA read mode 0 returns the byte from GC04's selected
-      // physical plane, NOT the linear guest-RAM shadow of the last OUT/MOV.
-      // Require an observed aperture/map, read mode and initialized bytes;
-      // no guessed BIOS VGA baseline, latches, or mode-1 compare result.
+      // Each VGA CPU read populates all four latches. Read mode 0 returns
+      // GC04's selected plane; read mode 1 compares only GC07 cared planes
+      // against GC02. Unknown plane bytes remain unknown, including the
+      // off-screen A000:9600-FFFF region, until written by native guest code.
       if(!Number.isInteger(physical)||physical<VRAM_PHYSICAL||
          physical>=VRAM_END)
         throw new RangeError('VGA planar read outside A0000-AFFFF aperture');
       const offset=physical-VRAM_PHYSICAL;
-      if(offset>=VISIBLE)
-        throw new Error('VGA planar read outside witnessed visible mode12 bytes: fail closed');
-      const readMap=gc.get(4),graphicsMode=gc.get(5);
-      if(!Number.isInteger(readMap)||readMap<0||readMap>3||
-         !Number.isInteger(graphicsMode)||(graphicsMode&8)!==0||
+      const graphicsMode=gc.get(5);
+      if(!Number.isInteger(graphicsMode)||(graphicsMode&0x10)!==0||
          !mapsPlanarA000())
-        throw new Error('VGA read requires observed GC04/GC05 read-mode0/GC06 A000 aperture: fail closed');
-      if(!validity[readMap][offset])
-        throw new Error('VGA read selected original plane byte is unverified: fail closed');
-      return planes[readMap][offset];
+        throw new Error('VGA read requires observed GC05 planar mode/GC06 A000 aperture: fail closed');
+      if((graphicsMode&8)===0){
+        const readMap=gc.get(4);
+        if(!Number.isInteger(readMap)||readMap<0||readMap>3)
+          throw new Error('VGA read requires observed GC04/GC05 read-mode0/GC06 A000 aperture: fail closed');
+        if(!validity[readMap][offset])
+          throw new Error('VGA read selected original plane byte is unverified: fail closed');
+        loadLatches(offset);
+        return planes[readMap][offset];
+      }
+      const compare=gc.get(2),care=gc.get(7);
+      if(!validByte(compare)||!validByte(care))
+        throw new Error('VGA read-mode1 requires observed GC02/GC07: fail closed');
+      let result=255;
+      for(let p=0;p<4;p++)if(care&(1<<p)){
+        if(!validity[p][offset])
+          throw new Error('VGA read-mode1 compared original plane byte is unverified: fail closed');
+        result&=(compare&(1<<p))?planes[p][offset]:(~planes[p][offset]&255);
+      }
+      loadLatches(offset);
+      return result;
     },
     readPixelIndex(x,y){
       if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||x>=WIDTH||y<0||y>=HEIGHT)

@@ -33,7 +33,7 @@ assert.equal(reader.readCount(),5);
 assert.throws(()=>cpu.read8(0xa000,1),/unverified/);
 assert.equal(reader.readCount(),5); // only successful original reads count
 reg('graphics-controller',5,8); // read mode 1 requires latch/compare modeling
-assert.throws(()=>cpu.read8(0xa000,0),/read-mode0/);
+assert.throws(()=>cpu.read8(0xa000,0),/GC02\/GC07/);
 reg('graphics-controller',5,0);
 reg('graphics-controller',6,0x0c); // B8000 map, not A000
 assert.throws(()=>cpu.read8(0xa000,0),/A000 aperture/);
@@ -47,7 +47,7 @@ reg('graphics-controller',6,5);
 reg('graphics-controller',4,4);
 assert.throws(()=>cpu.read8(0xa000,0),/GC04/);
 reg('graphics-controller',4,0);
-assert.throws(()=>cpu.read8(0xa000,0x9600),/outside witnessed visible/);
+assert.throws(()=>cpu.read8(0xa000,0x9600),/unverified/);
 assert.equal(reader.readCount(),5);
 assert.equal(cpu.read8(0xa000,0),0x11);
 assert.equal(cpu.read8(0xa000,0),0x11);

@@ -29,7 +29,8 @@ const vector=Uint8Array.of(0x44,0x22,0x77,0x11);
 const cpu=setup(),parent=captureDosCpuFrame(cpu);
 const seen=[];
 const child=createStagedDosChildContinuation(cpu,{
- initialFrame:frame,maxTotalSteps:20,onBeforeInstruction:({ip})=>{seen.push(ip);}
+ initialFrame:frame,maxTotalSteps:20,onBeforeInstruction:({ip})=>{seen.push(ip);},
+ pauseOnMissingExternalInterrupts:true
 });
 const s=child.runSlice(50);
 assert.equal(s.reason,'WAIT_EXTERNAL_DOS_IVT_VECTOR');
@@ -108,7 +109,7 @@ const browserCpu=setup();
 browserCpu.set16('CS',0x250);
 const originalParent=captureDosCpuFrame(browserCpu);
 const bridge=createBrowserDosChildBridge({cpu:browserCpu,target,
- initialFrame:frame,maxTotalSteps:20});
+ initialFrame:frame,maxTotalSteps:20,pauseOnMissingExternalInterrupts:true});
 assert.equal(bridge.runSlice(20).reason,'WAIT_EXTERNAL_DOS_IVT_VECTOR');
 assert.equal(listeners.has('keydown'),true);
 assert.equal(bridge.snapshot().detached,false);
@@ -126,3 +127,15 @@ await assert.rejects(bridge.supplyPinnedDosIvtVector({
  number:0,bytes:vector,expectedSha256:hash(vector)
 }),/not active/);
 console.log('UW2 original native session DOS AH35/INT66 source waits and SHA-pinned browser child continuation: PASS (synthetic)');
+
+// Compatibility: explicit opt-in is required. The existing original OPEN
+// probe's default missing-vector fault remains fail-closed and not resumable.
+const legacy=setup();
+for(const name of ['CS','DS','ES','SS','IP','AX','BX','CX','DX','SP','BP','SI','DI','FLAGS'])
+ legacy.set16(name,frame[name]);
+const oldSession=createGuestOriginalExecutionSession(legacy,{maxTotalSteps:10});
+assert.throws(()=>oldSession.runSlice(5),/unknown initial DOS interrupt vector 00h/);
+assert.equal(oldSession.snapshot().faulted,true);
+assert.throws(()=>createGuestOriginalExecutionSession(new RealMode8086(),{
+ pauseOnMissingExternalInterrupts:'yes'
+}),/opt-in must be boolean/);

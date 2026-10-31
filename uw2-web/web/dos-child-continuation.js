@@ -34,7 +34,8 @@ const validStatus=status=>{
 
 export function createStagedDosChildContinuation(cpu,{
   initialFrame,maxTotalSteps=1000000,keyboardQueue,onBeforeInstruction,
-  maxQueuedExternalIrqs=128,externalIrqEvidenceTape,picCommandWitness
+  maxQueuedExternalIrqs=128,externalIrqEvidenceTape,picCommandWitness,
+  pauseOnMissingExternalInterrupts=false
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('staged DOS child requires shared RealMode8086');
@@ -84,7 +85,8 @@ export function createStagedDosChildContinuation(cpu,{
   }catch(error){restoreParent();throw error;}
   try{
     guest=createGuestOriginalExecutionSession(cpu,{
-      maxTotalSteps,keyboardQueue,onBeforeInstruction
+      maxTotalSteps,keyboardQueue,onBeforeInstruction,
+      pauseOnMissingExternalInterrupts
     });
     // Pin a trace to exactly one original CPU execution owner. Reusing a
     // partially-consumed tape for the next child would silently omit events.

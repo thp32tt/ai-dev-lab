@@ -8,7 +8,8 @@ import {pendingGuestDosIvtVector} from './guest-dos-ivt-await.js';
 import {pendingGuestExternalInterrupt} from './guest-external-interrupt-await.js';
 
 export function createGuestOriginalExecutionSession(cpu,{
-  keyboardQueue,maxTotalSteps=1000000,onBeforeInstruction
+  keyboardQueue,maxTotalSteps=1000000,onBeforeInstruction,
+  pauseOnMissingExternalInterrupts=false
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original execution session requires RealMode8086');
@@ -18,6 +19,8 @@ export function createGuestOriginalExecutionSession(cpu,{
     throw new TypeError('original execution session requires a shared external BIOS FIFO');
   if(!Number.isSafeInteger(maxTotalSteps)||maxTotalSteps<1||maxTotalSteps>15000000)
     throw new RangeError('original execution total step budget must be 1..15000000');
+  if(typeof pauseOnMissingExternalInterrupts!=='boolean')
+    throw new TypeError('native source dependency wait opt-in must be boolean');
   if(onBeforeInstruction!==undefined&&typeof onBeforeInstruction!=='function')
     throw new TypeError('original execution observer must be synchronous');
   // Fail on an existing BIOS vector/adapter, never silently override a
@@ -52,8 +55,8 @@ export function createGuestOriginalExecutionSession(cpu,{
           // Source-backed unresolved DOS AH35 or native INT imm8 is not a
           // fault: do not advance guest IP, stack, counters or observers.
           // Resume only after a real external provider installs the handler.
-          waiting=pendingGuestDosIvtVector(cpu)||
-            pendingGuestExternalInterrupt(cpu);
+          waiting=pauseOnMissingExternalInterrupts?
+            (pendingGuestDosIvtVector(cpu)||pendingGuestExternalInterrupt(cpu)):null;
           if(waiting){reason=waiting.reason;break;}
           // Exactly one genuine CPU instruction per owned boundary.
           // A blocked AH00 must leave the guest CS:IP and FIFO untouched.

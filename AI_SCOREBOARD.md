@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 BIOS INT16 original keyboard AH00 source-backed dequeue (2026-11-01 KST)
+
+- **Independent source implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material SHA `d7182f812f79957c0d0e10aaa7f8fada3ef32d71` implements opt-in BIOS INT16/AH00 real caller-supplied keyboard dequeue (scan code, ASCII), preserving FLAGS and AH01 peek semantics. No fabricated key, key repeat, device clock, or skip-on-empty behavior. Synthetic queue/peek/dequeue, extended scan, invalid/missing/asynchronous callback tests. A test assertion from the previous unsupported-AH00 contract was repaired in the same achievement (validation-bearing SHA `bc5dbc590efed10d640d95d5cb103ad2825c4579`).
+- **Exact SHA validation:** `UW2 Web Fidelity Static Gate` Actions `41232973865` **SUCCESS**, synthetic-static job passed. The prior material SHA run `41232960714` failed solely before the assertion was updated and is not claimed as a pass. Original Korean OPEN AH00 execution, browser input integration and OPEN→MAIN original gameplay remain **UNTESTED/HOLD**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2308 + independent validated keyboard read implementation (+1) = 2309.** Same achievement follow-up test repair / CI retry / bookkeeping / re-report +0. AI 1 unchanged.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 original DOS AH3F 20-bit physical wrap correction (2026-11-01 KST)
 
 - **Independent native DOS compatibility implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material SHA `c33bb95c0ecedfa4226f4892115248270c2b023b` fixes AH3F read-only original-file transfer across 8086 FFFFFh→00000h physical wrap without a 16-bit offset wrap. Both physical spans are preflight-checked against A0000h–BFFFFh unmodeled VGA apertures before writing RAM. Synthetic 8086 INT21 read, byte spans, DOS flags/cursor/physical provenance, previous VGA guard covered in `uw2-web/tests/dos-readonly-files.test.mjs`.

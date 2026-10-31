@@ -91,6 +91,7 @@ jobs:
           node uw2-web/tests/vga-indexed-ports.test.mjs
           node uw2-web/tests/vga-indexed-readback.test.mjs
           node uw2-web/tests/vga-dac-ports.test.mjs
+          node uw2-web/tests/vga-dac-readback.test.mjs
           node uw2-web/tests/vga-mode12-planar-witness.test.mjs
           node uw2-web/tests/vga-mode12-read-adapter.test.mjs
           node uw2-web/tests/vga-mode12-latch-readmode1.test.mjs

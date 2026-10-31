@@ -326,3 +326,5 @@
 - 검증: `tests/vga-mode12-latch-readmode1.test.mjs`, `tests/vga-indexed-readback.test.mjs`, 기존 planar/read adapter 합성 회귀 및 UW2 GitHub Actions. **실 DOS 부팅/OPEN 정상 종료/MAIN 진입/브라우저 원작 픽셀·음악 동등성: UNTESTED/HOLD**.
 
 - VGA GC06 주소 선택(128KiB A000–BFFF, 64KiB A000–AFFF, B000/B800 text apertures)의 디코딩 경계 추가: 알려진 매핑에서 미구현 B000/B800 접근을 일반 게스트 RAM인 것처럼 반환하지 않고 읽기/쓰기 witness에서 fail-closed한다. A000-only 선택 후 B000 접근은 VRAM이라고 주장하지 않으며 일반 메모리와 구별한다. 원본 참조 실행/물리 VGA 동등성은 계속 HOLD.
+
+- VGA DAC 레지스터가 원본에서 먼저 OUT으로 완전하게 관측된 경우에만 옵트인 3C7h read-index/3C9h RGB read stream을 제공한다. 팔레트 read 인덱스 선택·3바이트 순서·255→0 wrap·부분 덮어쓰기 무효화·read budget을 테스트한다. 6bit 범위를 초과하는 원시 OUT 데이터는 임의 클리핑/정규화하지 않고 IN을 거부한다. 리얼 VGA 초기 팔레트 및 실제 OPEN 호환성은 **UNTESTED**.

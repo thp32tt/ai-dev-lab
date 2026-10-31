@@ -184,6 +184,7 @@
 - N100 개인 실제 원본 실행 `tests/p3-opgraph-original-decoded.test.mjs`: **14개 파트 전체 해제 SHA PASS**, **108개 GRAPH 레코드**와 기존 파서의 이미지 픽셀 인덱스 총 **3,235,136개**를 서로 전부 대조 PASS. 비교 기준은 기존 **두 JS 경로**이며, 두 디코더가 공통 구현을 쓰기 때문에 **독립적인 원본 OPEN.EXE 화면/압축 알고리즘 동등성 증거가 아니다.** `tests/p3-koei-fmdrv-open-irq-original.test.mjs` 기존 기계어 실행과 같은 원본 SHA 검증 아카이브를 연결하고, DOS `AH42/3F`의 `OPGRAPH.LZW` **16바이트 오프셋/256바이트** 실제 읽기 게스트 RAM 비교 및 원본 OPEN 260,000명령 상한 실행을 다시 확인했다. 이는 **원본 파일 바이트→게스트 RAM** 구간에 한해서만 원본 바이트 완전 일치다.
 - 저작권 원본은 공개 저장소에 올리지 않았으며, `tests/opgraph-original-archive.test.mjs`, `tests/opening-verified-archive.test.mjs`는 자산 없는 합성 LS11/GRAPH 테스트. 검증된 `uw2-web-port` CI source SHA `068ebefd399553950b71e3810642af0f266c343d`의 `synthetic-static` 실행 결과는 GitHub Actions run `41167349469` 참조. 스테이징 파일·테스트·마스터 계획 갱신은 하나의 개발 작업이다.
 - 남은 P3/P4 작업: 원본 `OPEN.EXE` 압축 해제 함수의 **실제 기계어 출력 메모리 SHA와 JS 파트 SHA 교차 비교**, VGA VRAM/팔레트·하드웨어 3DA/OPL/PIT 기준 프레임 및 음악 시간표 수집, 원본 오프닝의 장면/페이드/플레인별 픽셀 배치의 정확한 참조 검증. 현재 기존 `KoreanOpeningPlayer`는 `exactReplayReady:false`로 남아 있고 일부 애니메이션·타이밍이 근사치다. **원본 화면·음악·게임 전체 완성 아님.**
+- 후속 네이티브 비교 실험: SHA가 일치하는 원본 KOEI→FMDRV→OPEN 코드를 명시적 **합성 IRQ 128명령 간격**에서 260,000명령까지 실행 후 공유 게스트 1MiB RAM을 읽기 전용으로 조사. 현재 JS LS11 해제 파트 0~3의 연속 원시 출력 첫 16바이트 서명 일치 후보 **각 0건**, 전체 파트 완전 일치 **0건**. 이 음성 결과는 실 DOS 기준 실행에서 해당 출력이 없음을 증명하지 않으며, 레코드 단위·VGA 플레인 단위 변환이나 재사용 버퍼/IRQ 진행 차이 때문일 수 있다. 추정으로 동일성 PASS 처리하지 않는다. N100 전용 진단 테스트 `tests/p3-koei-fmdrv-open-irq-original.test.mjs` 변경 `aa29ce05d3130c48eeaf45f2f9783ed92927780a`, 다른 점수 없음.
 
 
 ## 3. 실행 순서와 완료 게이트

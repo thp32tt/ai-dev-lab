@@ -6,10 +6,12 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
+  if(freeMemory!==undefined&&typeof freeMemory!=='function')
+    throw new TypeError('freeMemory must be a synchronous DOS allocator boundary');
   // No host file provider => no DOS file service; never synthesize original assets.
   const fileHandler=readOriginalFile===undefined?null:
     createDosReadOnlyFileHandler(cpu,readOriginalFile);
@@ -41,6 +43,32 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile}={}){
       const vector=cpu.getGuestInterruptVector(cpu.get8('AL'));
       cpu.set16('ES',vector.segment);
       cpu.set16('BX',vector.offset);
+      return;
+    }
+    if(ah===0x49){
+      // Original KOEI.COM reads its environment segment from PSP:002Ch
+      // and asks DOS to release it. The real DOS MCB allocator is external.
+      if(!freeMemory)
+        throw new Error('DOS AH49 requires a captured allocation owner: fail closed');
+      const segment=cpu.get16('ES');
+      if(segment===0)
+        throw new Error('DOS AH49 cannot free absent PSP environment segment: fail closed');
+      const result=freeMemory(Object.freeze({segment}),cpu);
+      if(result&&typeof result.then==='function')
+        throw new Error('async DOS free-memory allocator: fail closed');
+      if(!result||typeof result!=='object'||Array.isArray(result))
+        throw new Error('DOS AH49 requires explicit allocator result: fail closed');
+      if(Object.hasOwn(result,'errorCode')){
+        const error=result.errorCode;
+        if(error!==7&&error!==9)
+          throw new Error('DOS AH49 error must be 07h or 09h: fail closed');
+        cpu.set16('AX',error);
+        cpu.set16('FLAGS',cpu.get16('FLAGS')|1);
+        return;
+      }
+      if(result.freed!==true)
+        throw new Error('DOS AH49 allocator must acknowledge explicit free: fail closed');
+      cpu.set16('FLAGS',cpu.get16('FLAGS')&~1);
       return;
     }
     if(ah===0x4b){

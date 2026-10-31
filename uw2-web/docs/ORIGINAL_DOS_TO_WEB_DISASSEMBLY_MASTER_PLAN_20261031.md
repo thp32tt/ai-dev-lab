@@ -312,3 +312,7 @@
 - 외부 원본 DOS·OPEN.EXE에서 해당 읽기 분기가 실제 호출되는지, VGA RAM 초기 상태·전체 화면·브라우저 표시가 동일한지는 **UNTESTED**. 이번 합성 CPU+VGA 장치 회귀만 GitHub 정적 게이트 대상이다. 원본 8086 CPU가 실제로 읽는 순서가 증명되면 추적 가능한 게스트의 같은 메모리에 선택적으로 장착하며, 검증 전에 기본 웹 게임 자산/화면을 바꾸지 않는다.
 
 - 화면 모드 세대 격리: `invalidateAfterBiosModeSet({mode})`는 외부 BIOS INT10 AH00 장치가 **모드 설정을 실제 수락했을 때만** 이전 4개 plane 유효성·GC/SEQ 레지스터 증거를 제거한다. 8086 MOV A000h 쓰기→동일 주소 CPU 읽기에서 VGA write-mode-2 CPU AL=05h와 GC04 plane-read FFh/00h의 차이, BIOS 모드 재설정 후 stale 픽셀 거부를 합성 회귀로 고정했다. 원본 DOS 실제 BIOS 상태 및 게임화면 비교는 아직 미확인이다.
+
+### 원본 OPEN CPU 실행 경계에서 확인한 DOS JFT 이벤트 PSP 누락 결함 (2026-11-01 KST)
+- N100 소유 원본 KOEI/FMDRV/OPEN 8086 경로의 **명시적 합성 DOS 환경**에서 66,295명령 위치에 `original OPEN file event crossed a foreign PSP` 중단이 확인되었다. 파일핸들 검증을 해제하지 않고 `web/dos-readonly-files.js`의 AH45 DUP 및 AH46 FORCEDUP이 다른 open/read/seek/close 이벤트와 달리 `emitFileEvent` 경로를 우회하는 소스 결함을 확인하여 교정했다. 원본 기계어를 수정하거나 PSP를 임의 추정하지 않는다.
+- 합성 테스트 `dos-file-duplication.test.mjs`가 부모 PSP 0200h와 자식 PSP 0240h의 DUP/FORCEDUP 이벤트에 정확한 소유자 정보가 남는지 검증한다. 실 DOS PSP/IVT·전체 OPEN 실행 성공은 별도 미검증 상태를 유지한다. 초기 N100 분석에 사용한 128명령 synthetic IRQ와 원본 바이트는 원본 DOS 하드웨어 근거가 아니다.

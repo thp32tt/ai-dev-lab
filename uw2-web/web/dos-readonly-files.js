@@ -106,7 +106,7 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
         if(duplicate>=37){fail(4);return true;}
         table.set(duplicate,file);
         cpu.set16('AX',duplicate);ok();
-        emit({operation:'duplicate',filename:file.filename,
+        emitFileEvent({operation:'duplicate',filename:file.filename,
           sourceHandle,handle:duplicate,position:file.position});
         return true;
       }
@@ -119,7 +119,7 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
       const replaced=table.get(destination);
       table.set(destination,file); // implicit close of the old JFT entry
       ok(); // AH46 success specifies CF only; preserve AX
-      emit({operation:'force-duplicate',filename:file.filename,
+      emitFileEvent({operation:'force-duplicate',filename:file.filename,
         sourceHandle,handle:destination,replacedFilename:replaced?.filename??null,
         position:file.position});
       return true;

@@ -67,9 +67,15 @@ assert.equal(boundary.releaseReadOnlyFileHandles(0x240),4);
 assert.equal(read(7,0x108).ax,1);
 assert.equal(cpu.read8(0x300,0x108),20);
 assert.deepEqual(events.filter(e=>e.operation==='duplicate').map(e=>e.handle),[6,8]);
+// DUP/FORCEDUP are DOS JFT events owned by the same PSP as open/read/close.
+// The origin of a duplicated SFT cursor must not erase the calling process.
+assert.deepEqual(events.filter(e=>e.operation==='duplicate').map(e=>e.psp),[0x200,0x240]);
 assert.deepEqual(events.filter(e=>e.operation==='force-duplicate')
   .map(e=>[e.sourceHandle,e.handle,e.replacedFilename]),
   [[5,7,'B.DAT'],[6,5,'B.DAT']]);
+assert.deepEqual(events.filter(e=>e.operation==='force-duplicate').map(e=>e.psp),
+  [0x200,0x240]);
+assert.ok(events.every(e=>e.psp===0x200||e.psp===0x240));
 const noFiles=new RealMode8086();
 noFiles.load(Uint8Array.of(0xcd,0x21),0,0);
 installDosInt21(noFiles);noFiles.set16('AX',0x4500);

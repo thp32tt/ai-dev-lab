@@ -351,3 +351,11 @@
 
 - **개인 원본 추출 SHA:** OPEN b1f83cba8a2fc1c602dd021f3d5db3a907ed400dac732e359d6e28215d97743e, END 1dc5399b7b39e2c7990839ce62e5509faaef6c72c08231755c04742499b2a4bc, GRPDRV 493a61fbd644f75428c1edc7f21a02a82eba82c9ac795fbf5d4516f77f3903b4. MAIN 창 순서: ebf899442e01a20e2dfe62004d210eeba1fb4ac696f22fc4c3a4f6898d3de03c, 0738fac098000295fd3cb962519886c2f2bab770ad7ef4addcba07a433c74e6f, 73bfef35e39f20970bddd7186bb3a3189f7b9d33a861e1bf339e0cd7d3b278dc, 173846dccc18b0de9ef0769eda44b8023fb0509d0f1a1463cdbcba27eff6cfe1, fc38e536a3dca8dbc48141ca2096bd08f0a56109a02f3c55fc4cf0735e287a60. 최초 OPEN 8KiB 별도 실험은 전체 분석과 중복되므로 완성률에 가산하지 않는다.
 - **다음 순서:** (1) MAIN 미관측 62,800바이트와 미해결 정적 흐름 4,798건을 largestUnobservedRanges/unresolvedFlowTypes 기준으로 재분류, (2) OPEN 14,401 미관측 바이트 및 실제 DOS 초기화/정상 종료 지점을 연결, (3) GRPDRV·FMDRV의 미관측 영역과 원본 IRQ/PIT/OPL 및 DOS PSP를 대조, (4) 실제 DOS reference trace로만 후보 검증 후 공통 IR+8086 실행·브라우저 포팅에 연결한다. 6개 파일 배치 출력이 있어도 전체 디컴파일·원작 동등성·MAIN 게임화면은 미완료이다.
+
+
+### 2026-11-01 8086 원본 CPU 장치 버스·AAM 예외 정확성 보강
+
+- `web/realmode-8086.js`: 한 CPU 물리 I/O 포트를 이중 `registerIOPort`로 덮어쓸 수 있었던 경로를 폐쇄했다. 장치 소유자 교체로 기존 FMDRV/OPL/PIT/VGA 응답이 묵시적으로 바뀌는 위험을 차단하며, 중복 등록 시 기존 소유자와 상태는 보존한다.
+- 동일 코어의 `OUT` 명령 (즉시포트/DX, 8/16비트)은 장치 콜백이 Promise를 반환하면 기존의 묵시적 진행 대신 동기 실행 실패로 판정한다. 합성 동기 장치의 정상 기능은 유지한다. CPU 테스트: `tests/realmode-8086-io.test.mjs`, 실소스 커밋 `e4aa7ac2e3c8e5e865480d0495c4b47bef113c01`, exact-SHA synthetic GitHub Actions `41227776036` SUCCESS.
+- Intel 8086/AAM 규칙상 `D4 00`은 0으로 나누기 타입 0 인터럽트다. 초기 구현은 유효 INT0 벡터 또는 명시적 어댑터가 있어도 무조건 호스트에서 종료했다. 기존 DIV/IDIV와 같은 알려진 벡터 경로로 전달하도록 수정했고, 미확정 IVT에서는 기존처럼 fail-closed 한다. 저장 IP/CS/FLAGS·AX 보존·벡터 없는 거부를 `tests/realmode-8086-decimal.test.mjs` 합성 사례로 확인. 실소스 커밋 `f7c13aadfe0e1c69200dc18eb3f131ad0b82f012`, exact-SHA synthetic GitHub Actions `41227845487` SUCCESS.
+- **범위 제한:** 두 수정은 원본 한국어판 바이트의 실행을 위한 범용 CPU·장치 버스 의미 수정이며, 원본 DOS 참조 환경에서 해당 I/O 중복 또는 AAM 00 예외 분기가 관측됐다는 주장은 아니다. KOEI/FMDRV/OPEN·MAIN의 실제 DOS 부팅, 게임 전체 화면·음악·저장·브라우저 픽셀 동등성은 **UNTESTED/HOLD**. 다음 단계는 원본 OPEN 100만 명령 합성 추적의 핫스팟과 원본 DOS 하드웨어/PSP 상태를 실제 참조 자료로 검증하는 일이다.

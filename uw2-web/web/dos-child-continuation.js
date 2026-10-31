@@ -33,7 +33,7 @@ const validStatus=status=>{
 
 export function createStagedDosChildContinuation(cpu,{
   initialFrame,maxTotalSteps=1000000,keyboardQueue,onBeforeInstruction,
-  maxQueuedExternalIrqs=128,externalIrqEvidenceTape
+  maxQueuedExternalIrqs=128,externalIrqEvidenceTape,picCommandWitness
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('staged DOS child requires shared RealMode8086');
@@ -57,7 +57,7 @@ export function createStagedDosChildContinuation(cpu,{
     parentIrqShadow=cpu.maskableIrqShadow;
   let guest=null,running=false;
   const irqEdges=createExternalGuestIrqEdgeQueue(cpu,{
-    maxPending:maxQueuedExternalIrqs
+    maxPending:maxQueuedExternalIrqs,picCommandWitness
   });
   let state='ACTIVE',result=null,steps=0,slices=0,childFrame=null,
     expectedFrame=null,expectedIrq=0,expectedTerminated=null;

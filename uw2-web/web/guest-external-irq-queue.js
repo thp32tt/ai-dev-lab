@@ -3,18 +3,27 @@
 // No guest CPU instruction executes as a side effect of enqueue().
 import {RealMode8086} from './realmode-8086.js';
 import {deliverExternalMaskableIrq} from './guest-irq-boundary.js';
+import {isOriginalMasterPicCommandWitness} from './guest-pic8259-command-witness.js';
 
-export function createExternalGuestIrqEdgeQueue(cpu,{maxPending=128}={}){
+export function createExternalGuestIrqEdgeQueue(cpu,{
+  maxPending=128,picCommandWitness
+}={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original IRQ edge queue requires shared RealMode8086');
   if(!Number.isSafeInteger(maxPending)||maxPending<1||maxPending>1024)
     throw new RangeError('original IRQ edge queue cap must be 1..1024');
+  if(picCommandWitness!==undefined&&
+     (!isOriginalMasterPicCommandWitness(picCommandWitness)||
+      !picCommandWitness.ownsIrq0Cpu(cpu)))
+    throw new Error('external IRQ0 PIC gate needs exact original CPU witness');
   const pending=[];
-  let accepted=0,delivered=0,masked=0,deferred=0,discarded=0;
+  let accepted=0,delivered=0,masked=0,deferred=0,picDeferred=0,discarded=0;
   const snapshot=()=>Object.freeze({
-    pending:pending.length,accepted,delivered,masked,deferred,discarded,
-    maxPending,
-    fidelity:'EXPLICIT_HOST_IRQ_EDGE_ONLY__PIT_PIC_CLOCK_TIMING_UNTESTED'
+    pending:pending.length,accepted,delivered,masked,deferred,picDeferred,discarded,
+    maxPending,picIrq0GateEnabled:picCommandWitness!==undefined,
+    fidelity:picCommandWitness!==undefined?
+      'EXPLICIT_IRQ0_EDGE_WITH_GUEST_EOI_GATE__PIT_PIC_TIMING_UNTESTED':
+      'EXPLICIT_HOST_IRQ_EDGE_ONLY__PIT_PIC_CLOCK_TIMING_UNTESTED'
   });
   const enqueue=({vector,source}={})=>{
     if(!Number.isInteger(vector)||vector<0||vector>255)
@@ -24,6 +33,8 @@ export function createExternalGuestIrqEdgeQueue(cpu,{maxPending=128}={}){
     if(cpu.terminated)throw new Error('terminated guest cannot queue hardware IRQ');
     if(!cpu.interruptVectors.has(vector))
       throw new Error('hardware IRQ edge needs verified guest IVT vector: fail closed');
+    if(picCommandWitness!==undefined&&vector!==8)
+      throw new Error('opted-in PIC IRQ0 gate refuses other interrupt lines');
     if(pending.length>=maxPending)
       throw new Error('hardware IRQ edge queue overflow: fail closed');
     pending.push(Object.freeze({vector,source}));accepted++;
@@ -32,8 +43,17 @@ export function createExternalGuestIrqEdgeQueue(cpu,{maxPending=128}={}){
   const deliverOne=()=>{
     if(!pending.length)return null;
     const edge=pending[0];
+    if(picCommandWitness!==undefined&&
+       !picCommandWitness.canAdmitIrq0(cpu,edge)){
+      picDeferred++;
+      return Object.freeze({delivered:false,...edge,
+        reason:'DEFERRED_PIC_IRQ0_IN_SERVICE'});
+    }
     const result=deliverExternalMaskableIrq(cpu,edge);
-    if(result.delivered){pending.shift();delivered++;}
+    if(result.delivered){
+      picCommandWitness?.confirmDeliveredIrq0(cpu,edge);
+      pending.shift();delivered++;
+    }
     else if(result.reason==='MASKED_IF_CLEAR')masked++;
     else if(result.reason==='DEFERRED_AFTER_STI_OR_SS')deferred++;
     else throw new Error('unknown external IRQ delivery decision: fail closed');

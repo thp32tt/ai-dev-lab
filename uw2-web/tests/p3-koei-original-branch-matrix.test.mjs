@@ -29,7 +29,8 @@ const probe=childStatuses=>probeOriginalKoeiWithSyntheticDos(original,{
         throw new Error('unexpected synthetic allocation');
       return {resized:true};
     }
-  },childStatuses
+  },dosConsole:{io:({operation})=>
+      operation==='input'?{available:false}:undefined},childStatuses
 });
 const good={terminationType:0,returnCode:0},bad={terminationType:1,returnCode:1};
 const scenario=[
@@ -50,6 +51,7 @@ for(const s of scenario){
  const r=await probe(s.result);
  const visited=r.observedChildCalls.map(x=>x.file);
  assert.deepEqual(visited,s.files,s.name);
+ console.log(JSON.stringify({scenario:s.name,steps:r.steps,stop:r.stopped?.message,visited}));
  assert.match(r.stopped?.message??'',/8086 INT 66 has no installed vector/);
  assert.equal(r.terminated,null);
  assert.match(r.fidelity,/NOT_DOS_REFERENCE/);

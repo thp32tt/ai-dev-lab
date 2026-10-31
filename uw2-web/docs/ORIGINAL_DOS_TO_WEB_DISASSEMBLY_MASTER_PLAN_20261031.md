@@ -487,3 +487,8 @@
 
 - `web/dos-child-continuation.js`는 기존 `runStagedDosComChild()` 일괄 실행 API를 변경하지 않고, **명시적 원본 CPU 자식 프레임** 및 `createGuestOriginalExecutionSession()`을 사용해 같은 CPU/물리 RAM/IVT/장치를 여러 `runSlice` 사이에 유지한다. DOS 자식이 실제 AH31/4C 등으로 종료한 경우에만 원래 부모 14개 레지스터·종료 상태·maskable IRQ inhibit shadow를 복원한다. 원본에서 발생한 guest-selected INT66 25h IVT 등록과 RAM/장치 변경은 복원 시에도 유지된다.
 - 도중에 session 상태가 외부로부터 변조되면 실패 폐쇄, 별도 abort에서만 부모 프레임을 되돌린다. 원본 게스트가 아직 종료하지 않은 상태에서 **완료 상태를 만들어 부모 실행을 재개하지 않는다**. 실행 예산과 슬라이스는 엄격히 상한을 유지하며 실제 FMDRV TSR 원본과 KOEI nested EXEC 전체 연결은 후속 실물 검증 전까지 UNTESTED/HOLD다. Actions 합성 네이티브 8086 DOS AH25 INT66 설치→AH31 TSR 복구, 중단/재개, 부모 shadow 및 side effects 보존 테스트로 게이트한다.
+
+### 2026-11-01 N100에서 사용자 보유 원본 FMDRV TSR → OPEN 동일 CPU 분할 실행
+
+- `tests/p3-fmdrv-open-continuation-original.test.mjs`는 사용자 소유 한국어 원본 FMDRV.COM·OPEN.EXE **기존 SHA 핀**만 읽는 비공개 자산 테스트 소스다. `createStagedDosChildContinuation()`으로 원본 FMDRV COM을 **8개 slice, 30,644개 실제 8086 명령** 실행하여 TSR 26h 문단/반환코드 1, guest `INT 66h` 벡터 `0400:0108`, 부모 CPU 복원을 확인했다. 그다음 동일 CPU·RAM·드라이버 소유권에 OPEN 원본 MZ(재배치 23건)를 적재하고, 원본 OPEN **80,000개 실제 명령을 4,000명령씩 분할 실행**했다. 기존 미등록 INT66h 즉시 실패 대신 FMDRV 실제 설치 벡터를 통과했으며 synthetic reference에서 VGA indexed write 6건, DAC 16색, BIOS 팔레트 16건, VGA 3DA retrace read 64건을 관측했다.
+- 위 CPU 경로는 `KOEI.COM`의 정식 DOS EXEC 단계와 파일 시스템·DOS 메모리 소유권을 모두 통과한 참조 기록이 **아니며**, 실제 DOS/BIOS 포트 장치 버전·초기 IVT/PSP·PIT/OPL 응답은 명시적 합성 설정이다. 80,000명령은 일시 예산 소진일 뿐 오프닝 완료·게임 화면/소리의 원작 동등성은 **HOLD**다. 테스트는 일반 CI에서 실행하지 않고 `node --check`만 수행해 저작권 원본을 저장소에 넣지 않는다.

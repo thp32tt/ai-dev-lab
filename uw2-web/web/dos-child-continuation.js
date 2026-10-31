@@ -130,7 +130,7 @@ export function createStagedDosChildContinuation(cpu,{
         throw new Error('original IRQ trace has an invalid due-now edge');
       const segment=guest.runSlice(nextMaxSteps);
       steps=segment.totalExecutedSteps;slices++;
-      waiting=segment.waiting;slices=slices;
+      waiting=segment.waiting;slices++;
       childFrame=captureDosCpuFrame(cpu);
       if(segment.reason==='TERMINATED'){
         result=validStatus(cpu.terminated);

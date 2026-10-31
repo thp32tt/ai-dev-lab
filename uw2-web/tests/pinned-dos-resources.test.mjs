@@ -19,13 +19,14 @@ assert.equal(handler.resolve({filename:'c:OPGRAPH.LZW',
  raw:Uint8Array.from('c:OPGRAPH.LZW',x=>x.charCodeAt(0))}),null);
 assert.throws(()=>handler.resolve({filename:'WRONG',raw}),/raw path\/decoded name mismatch/);
 await assert.rejects(preparePinnedDosReadOnlyResources([{...config,bytes:Uint8Array.of(1)}]),/SHA-256 mismatch/);
-await assert.rejects(preparePinnedDosReadOnlyResources([config,config]),/duplicate exact/);
+const fresh={...config,bytes:Uint8Array.of(0x4f,0x50,0x47,0x7f,0,1)};
+await assert.rejects(preparePinnedDosReadOnlyResources([fresh,fresh]),/duplicate exact/);
 await assert.rejects(preparePinnedDosReadOnlyResources([
  {...config,dosPath:'C:../OPGRAPH.LZW'}
 ]),/safe ASCII path/);
 await assert.rejects(preparePinnedDosReadOnlyResources([
  {...config,dosPath:'C:\\OPGRAPH.LZW'}
 ]),/safe ASCII path/);
-await assert.rejects(preparePinnedDosReadOnlyResources([config],{maxTotalBytes:3}),/quota exceeded/);
+await assert.rejects(preparePinnedDosReadOnlyResources([fresh],{maxTotalBytes:3}),/quota exceeded/);
 assert.equal(config.expectedSha256,sha(Uint8Array.of(0x4f,0x50,0x47,0x7f,0,1)));
 console.log('UW2 exact C:OPGRAPH.LZW SHA-pinned immutable DOS original-byte resolver: PASS');

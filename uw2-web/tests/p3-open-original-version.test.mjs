@@ -81,7 +81,7 @@ const withIoctl=await probeOriginalOpen(original,{
    }
  }
 });
-assert.deepEqual(ioctlRequests,[0]);
+assert.deepEqual(ioctlRequests,[4,3,2,1,0]); // original OPEN enumerates DOS handles in reverse
 assert.ok(withIoctl.steps>withIvt.steps);
 console.log(JSON.stringify({withSyntheticIoctlSteps:withIoctl.steps,
  ioctlRequests,stopped:withIoctl.stopped,services:withIoctl.services,

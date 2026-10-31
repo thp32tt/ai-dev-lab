@@ -62,7 +62,7 @@ for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
  expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67,0x33]});
-const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[]};
+const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[],verifiedFileRead:null};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
@@ -93,6 +93,7 @@ const fmdrvChildFrame={
  AX:0,CX:0,DX:0,BX:0,SP:0xfffe,BP:0,SI:0,DI:0,
  CS:0x400,DS:0x400,ES:0x400,SS:0x400,IP:0x100,FLAGS:0x202
 };
+let pendingRead=null;
 let activePsp=0x200;
 let fmdrvRun=null,openGuestFault=null,openStarted=false;
 const openChildFrame={
@@ -132,11 +133,26 @@ installDosInt21(cpu,{
     openStarted=true;activePsp=0x600;
     try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:instructionBudget,
       onInstructionBoundary:({steps,cs,ip},guest)=>{
+        if(pendingRead!==null){
+          const readCount=guest.get16('AX');
+          if(readCount!==256||pendingRead.requested!==256)
+            throw new Error('unexpected original OPEN 256-byte DOS read receipt');
+          const actual=new Uint8Array(readCount);
+          for(let i=0;i<readCount;i++)actual[i]=guest.read8(pendingRead.segment,(pendingRead.offset+i)&65535);
+          const expected=opgraph.subarray(16,16+readCount);
+          if(!actual.every((value,i)=>value===expected[i]))
+            throw new Error('original OPEN DOS RAM bytes differ from pinned OPGRAPH.LZW +16');
+          observed.verifiedFileRead={readCount,fileOffset:16,
+            sha256:sha(actual)};
+          pendingRead=null;
+        }
         if(observed.originalDosFileCalls.length<64&&
            guest.read8(cs,ip)===0xcd&&guest.read8(cs,(ip+1)&0xffff)===0x21&&
            [0x3d,0x3f,0x42,0x3e].includes(guest.get8('AH'))){
           observed.originalDosFileCalls.push({steps,ah:guest.get8('AH'),
-            bx:guest.get16('BX'),cx:guest.get16('CX'),dx:guest.get16('DX')});
+            al:guest.get8('AL'),bx:guest.get16('BX'),cx:guest.get16('CX'),dx:guest.get16('DX')});
+          if(guest.get8('AH')===0x3f)
+            pendingRead={segment:guest.get16('DS'),offset:guest.get16('DX'),requested:guest.get16('CX')};
         }
         if(steps>0&&steps%syntheticIrqStep===0){
           const x=deliverExternalMaskableIrq(guest,{vector:8,
@@ -213,6 +229,7 @@ const result={
  originalPitWrites:observed.io.filter(x=>x.port===0x40||x.port===0x43).slice(0,4),
  originalFileRequests:observed.originalFileRequests,
  originalDosFileCalls:observed.originalDosFileCalls,
+ verifiedFileRead:observed.verifiedFileRead,
  pinnedOpgraph:{sha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',bytes:opgraph.length},
  vgaWrites:observed.vgaWrites,vgaWriteCount:indexedVga.writtenCount(),
  paletteWrites:observed.paletteWrites,

@@ -72,7 +72,7 @@ for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
  expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67,0x33]});
-const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[],verifiedFileRead:null,originalOplRegisters:[],originalPitReloads:[]};
+const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[],verifiedFileRead:null,originalOplRegisters:[],originalPitReloads:[],fileTransfers:[],verifiedReadBytesTotal:0};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
@@ -116,7 +116,6 @@ const fmdrvChildFrame={
 };
 const originalLateHotspots=new Map();
 let lastLateSamples=[];
-let pendingRead=null;
 let activePsp=0x200;
 let fmdrvRun=null,openGuestFault=null,openStarted=false;
 const openChildFrame={
@@ -162,26 +161,11 @@ installDosInt21(cpu,{
           if(steps%4096===0&&lastLateSamples.length<32)
             lastLateSamples.push({steps,cs,ip,ax:guest.get16('AX'),flags:guest.get16('FLAGS')});
         }
-        if(pendingRead!==null){
-          const readCount=guest.get16('AX');
-          if(readCount!==256||pendingRead.requested!==256)
-            throw new Error('unexpected original OPEN 256-byte DOS read receipt');
-          const actual=new Uint8Array(readCount);
-          for(let i=0;i<readCount;i++)actual[i]=guest.read8(pendingRead.segment,(pendingRead.offset+i)&65535);
-          const expected=opgraph.subarray(16,16+readCount);
-          if(!actual.every((value,i)=>value===expected[i]))
-            throw new Error('original OPEN DOS RAM bytes differ from pinned OPGRAPH.LZW +16');
-          observed.verifiedFileRead={readCount,fileOffset:16,
-            sha256:sha(actual)};
-          pendingRead=null;
-        }
         if(observed.originalDosFileCalls.length<64&&
            guest.read8(cs,ip)===0xcd&&guest.read8(cs,(ip+1)&0xffff)===0x21&&
            [0x3d,0x3f,0x42,0x3e].includes(guest.get8('AH'))){
           observed.originalDosFileCalls.push({steps,ah:guest.get8('AH'),
             al:guest.get8('AL'),bx:guest.get16('BX'),cx:guest.get16('CX'),dx:guest.get16('DX')});
-          if(guest.get8('AH')===0x3f)
-            pendingRead={segment:guest.get16('DS'),offset:guest.get16('DX'),requested:guest.get16('CX')};
         }
         if(steps>0&&steps%syntheticIrqStep===0){
           const x=deliverExternalMaskableIrq(guest,{vector:8,
@@ -228,6 +212,25 @@ installDosInt21(cpu,{
    observed.originalFileRequests.push(request.filename);
    return pinnedOpgraph.resolveDosFile(request);
  }, // only verified original C:OPGRAPH.LZW; all other paths get DOS file-not-found
+ onFileEvent:(event,guest)=>{
+   if(observed.fileTransfers.length>=512)
+     throw new Error('original DOS OPGRAPH file transfer trace budget exceeded');
+   observed.fileTransfers.push({...event});
+   if(event.operation!=='read')return;
+   if(event.filename!=='C:OPGRAPH.LZW')
+     throw new Error('unexpected original DOS file source path');
+   const expected=opgraph.subarray(event.fileOffset,event.fileOffset+event.readBytes);
+   if(expected.length!==event.readBytes)
+     throw new Error('original DOS file read outside source file');
+   const actual=Uint8Array.from(guest.memory.subarray(event.physical,event.physical+event.readBytes));
+   if(actual.length!==event.readBytes||actual.some((value,i)=>value!==expected[i]))
+     throw new Error('original DOS file transfer differs from verified OPGRAPH source bytes');
+   observed.verifiedReadBytesTotal+=event.readBytes;
+   if(observed.verifiedReadBytesTotal>1000000)
+     throw new Error('original DOS file validated transfer budget exceeded');
+   if(event.fileOffset===16&&event.readBytes===256)
+     observed.verifiedFileRead={fileOffset:16,readCount:256,sha256:sha(actual)};
+ },
  getDeviceInfo:({handle})=>{
    if(handle>4)throw new Error('OPEN original requested unobserved DOS handle');
    return {deviceInfo:0x80d3}; // SYNTHETIC DOS handle flags
@@ -322,6 +325,8 @@ const result={
  originalLateHotspots:Array.from(originalLateHotspots.entries()).sort((a,b)=>b[1]-a[1]).slice(0,16),
  originalLateSamples:lastLateSamples,
  originalFileRequests:observed.originalFileRequests,
+ originalFileTransfers:observed.fileTransfers,
+ verifiedReadBytesTotal:observed.verifiedReadBytesTotal,
  originalDosFileCalls:observed.originalDosFileCalls,
  verifiedFileRead:observed.verifiedFileRead,
  guestDecodedWitness,

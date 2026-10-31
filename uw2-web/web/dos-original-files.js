@@ -43,7 +43,8 @@ export async function preparePinnedOriginalDosFiles(entries){
     if(!/^[A-Za-z0-9_$~!-]{1,8}(?:\.[A-Za-z0-9_$~!-]{1,3})?$/.test(name))
       return null;
     const bytes=stored.get(name.toUpperCase());
-    return bytes?{bytes}:null;
+    // Never expose the verified backing snapshot for mutation by a caller.
+    return bytes?{bytes:Uint8Array.from(bytes)}:null;
   };
   return Object.freeze({
     readOriginalFile:resolve,

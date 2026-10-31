@@ -18,6 +18,9 @@ assert.equal(verified.readOriginalFile({raw:raw('../OPEN.EXE')}),null);
 assert.equal(verified.readOriginalFile({raw:Uint8Array.of(0xff,0x41)}),null);
 source.fill(0); // Snapshot, not caller's mutable input.
 assert.deepEqual([...verified.readOriginalFile({raw:raw('OPEN.EXE')}).bytes],[0x11,0x22,0x33]);
+const exposed=verified.readOriginalFile({raw:raw('OPEN.EXE')}).bytes;
+exposed[0]=0;
+assert.equal(verified.readOriginalFile({raw:raw('OPEN.EXE')}).bytes[0],0x11);
 const cpu=new RealMode8086();
 cpu.set16('CS',0x100);cpu.set16('DS',0x300);
 cpu.memory.set(raw('OPEN.EXE\0'),cpu.physical(0x300,0x40));

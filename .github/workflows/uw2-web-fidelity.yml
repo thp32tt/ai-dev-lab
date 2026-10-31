@@ -29,6 +29,10 @@ jobs:
           node --check uw2-web/web/dos-psp-snapshot.js
           node --check uw2-web/tools/p3-koei-exec-probe.mjs
           node --check uw2-web/tools/p3-fmdrv-exec-probe.mjs
+          node --check uw2-web/tools/p3-open-exec-probe.mjs
+          node --check uw2-web/web/dos-com-child-runner.js
+          node --check uw2-web/web/vga-indexed-ports.js
+          node --check uw2-web/web/vga-dac-ports.js
           node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/web/dos-original-files.js
           node --check uw2-web/tools/koei-launch-chain.mjs
@@ -68,6 +72,12 @@ jobs:
           node uw2-web/tests/dos-int21-console.test.mjs
           node uw2-web/tests/dos-int21-string.test.mjs
           node uw2-web/tests/dos-int21-tsr.test.mjs
+          node uw2-web/tests/dos-com-child-runner.test.mjs
+          node uw2-web/tests/dos-int21-version.test.mjs
+          node uw2-web/tests/dos-int21-ioctl.test.mjs
+          node uw2-web/tests/vga-indexed-ports.test.mjs
+          node uw2-web/tests/vga-dac-ports.test.mjs
+          node uw2-web/tests/bios-int10-palette.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs
           node uw2-web/tests/realmode-8086-fe.test.mjs
           node uw2-web/tests/realmode-8086-divide-interrupt.test.mjs

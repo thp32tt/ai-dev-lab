@@ -39,7 +39,7 @@ const synthetic=await probeOriginalFmdrv(orig,{
 assert.ok(synthetic.steps>defaultProbe.steps);
 assert.equal(synthetic.initialIvt.knownVectorCount,3);
 assert.deepEqual(pitWrites.slice(0,3),[
- {port:0x43,value:0x36},{port:0x40,value:0},{port:0x40,value:0}
+ {port:0x43,value:0x36},{port:0x40,value:0},{port:0x40,value:0x10}
 ]);
 console.log(JSON.stringify({steps:synthetic.steps,stopped:synthetic.stopped,
   services:synthetic.serviceCalls,last:synthetic.recentSteps.slice(-18)}));

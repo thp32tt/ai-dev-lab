@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX9Ex C993 same-source cross-PMT WVP predicate falsification (2026-10-31 KST)
+
+- Independent **review-only source contract** validation on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`: new `projected_lens_inline_source.hpp::OwnsRawWvp` accepts a different original PMT object/node/mesh from the one whose native full c64..c67 upload populated the snapshot, when sourceSerial/sequence/objectId, pose/shader epoch and draw-age match. `SameInlinePmt` validates identity only before/after the individual upload; `RawWvpStamp` does not carry PMT object/node/mesh identity. Explicit independent static truth-table counterexample admits PMT A and different PMT B. This refutes a *strict same-PMT identity* claim, **not** the narrower same-C993-source guarantee and **not** a demonstrated optical regression: multi-mesh original WVP sharing may be legitimate. Quest3/HMD current-build optical result remains UNTESTED; no source/host/config/workflow change.
+- Single docs-only review commit `48e188adf132cbd54cd158d071fccef50e1b86d2` on `vr-d3d9ex-focus`, file `docs/reviews/dx9ex/automation/LENSFLARE-C993-PMT-POINTER-IDENTITY-20261031-1145.md`; remote file and exact HEAD verified. The earlier source-integrated C993 repair `49d73b13` and its Windows CI successes are **previously scored** and not counted again. Need actual PMT multiplicity, native per-PMT WVP/hash, L/R RGB, accepted XR frame and two-yaw Quest3 before considering any patch.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2256 + one independent newly verified source-contract counterexample +1 = 2257.** No score for retry, duplicate C slot evidence, code build/status or unproven HMD fix. AI 1 separate.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 DX9Ex Quest-log-driven exact C993 projected lens WVP ownership repair (2026-10-31 KST)
 
 - Distinct source-integrated runtime-log-driven DX9Ex lens repair on `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`. Quest3 log `DX9EX_LOG_R26_VISUAL_OWNER_REPAIR_AA2_TEST_20261031-000107.zip` from source `83aa33d92827b0c07059113d999c7bf9fb4aab55` proved the original multi-lobe count is intentional and excluded same-PMT replay: 104,142 R30 lens physical receipts had unique PMT entry serials with successful L/R/restore. The defect instead concentrated in C993 projected-sun objects: 0x570002 was 6,939/6,939 lower-R7 fallback, 0x570006 was 8,933/9,143 lower fallback, with R7 `worldStereo=0`, while CABE mostly reached R30 stereo. The same run proved exact synchronous original PMT ownership for 0x570002 and 0x570006 through `INLINE_405360_542A`, pass 1, and full original c64..c67 uploads; 0x57000F/010 were deferred SceneD44B and deliberately excluded.

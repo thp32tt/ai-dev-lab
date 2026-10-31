@@ -387,3 +387,11 @@
 - `tools/p3-open-exec-probe.mjs`는 `keyboardQueue` opt-in을 제공한다. 정당한 입력이 들어왔을 때에만 SHA 고정 원본 `OPEN.EXE`의 실제 INT16 명령을 전달한다. 기본 실행은 이전과 동일하게 키 입력 서비스 자동 생성이 없다.
 - 회귀 검증 `tests/bios-keyboard-queue.test.mjs`: 게스트 8086 INT16 5회, 빈 큐 ZF 및 AX 보존, 실제 키 2개 FIFO/확장키, 플래그 보존, overflow/유효성/소유자 혼합 거부. GitHub 원본 파일 없는 synthetic-static CI에 등록한다.
 - 이 결과는 **키보드 어댑터의 합성 테스트**다. 브라우저 `KeyboardEvent`→키보드 scan/ASCII 변환, 실제 한국어판 OPEN의 해당 분기, DOS 기준의 대기·키 반복/타이밍, OPEN→MAIN 게임 완료는 모두 **UNTESTED/HOLD**.
+
+
+### 2026-11-01 원본 BIOS 키 입력의 브라우저→8086 동기 대기 경계
+
+- `web/browser-bios-keyboard.js`는 실제 브라우저 `KeyboardEvent`의 `isTrusted=true`인 keydown만 옵트인으로 BIOS FIFO에 적재한다. 표준 물리 `code`를 PC/XT BIOS 스캔 값으로, 관측된 ASCII `key`를 ASCII 값으로 전달한다. 지원 범위는 영문 숫자·문장부호·Space, Enter/Escape/Backspace/Tab, 방향/편집키, F1~F10에 한정된다. IME/한글·제어/Alt/Meta 조합·텍스트 입력 필드·지원하지 않는 키·합성 화면 컨트롤러 이벤트는 **임의 DOS 문자로 변환하지 않고 제외**한다. 실제 호스트에서 들어온 repeat keydown은 허용하지만 게스트 시간·가짜 반복 이벤트는 만들지 않는다. FIFO 초과 시 덮어쓰지 않고 거부하며 `accepted/ignored/overflow` 진단만 집계한다. 바인딩은 명시적으로 연결·해제할 수 있다.
+- `web/guest-bios-keyboard-step.js`는 한정된 실제 8086 실행 단계 전에 `INT 16h AH=00h` 직접 호출과 선택적 세그먼트 접두어를 확인한다. FIFO가 비어 있으면 **CPU IP/AX/FLAGS/큐 소비를 변경하지 않고 `WAIT_BIOS_INT16_AH00`를 반환**한다. 실제 입력 뒤 재호출하면 그 원본 게스트 INT16 명령이 동일 FIFO에서 dequeue한다. CPU 전체를 에뮬레이터가 임의 시간을 흘린 것처럼 진행하지 않고, 외부 PIT/IRQ/브라우저 반복 정책도 만들지 않는다. 합성 node 회귀는 wait→real event enqueue→INT16 resume, 게스트 IP와 AX·동일 FIFO, 지원/미지원 키, 취소 동작 및 bounded overflow를 검증한다.
+- `UW2 Web Fidelity Static Gate`에 두 새 모듈 문법 및 두 합성 회귀를 등록. **범위:** 이것은 선택적으로 연결 가능한 브라우저 키 입력 어댑터와 CPU 실행 대기 경계다. 기존 웹 프리뷰 `app.js`에 무조건 키 이벤트를 탈취하지 않으며, 사용자 보유 한국어판 원본 DOS `OPEN.EXE`에서 해당 BIOS 입력을 정상적으로 소비했거나 원본 DOS 스캔코드/IME/BIOS 대기·PIT IRQ 타이밍이 일치한 실측 결과는 아직 없다. OPEN 종료→MAIN 정상 시작/전체 원작 웹 게임 화면·음악·저장 및 실 DOS 동등성은 **UNTESTED/HOLD**.
+- **다음 연속 개발:** 실제 소유 원본의 OS/장치 스냅샷에서 키/IVT/PSP/MCB 대기 조건을 읽기 전용 대조한 뒤, 검증된 browser original-execution 진입점에만 위 두 어댑터를 실제로 결합한다. OPGRAPH 남은 12파트와 OPEN 장시간 실행 대기 분류, MAIN 진입·VGA/OPL·게임 단계는 기존 계획대로 이어간다.

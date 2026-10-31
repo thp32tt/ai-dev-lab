@@ -30,7 +30,7 @@ const parent=captureDosCpuFrame(cpu);
 const seen=[];
 const pic=createOriginalMasterPicCommandWitness({
   irq0OwnerCpu:cpu,initialIrq0InService:false,
-  onCommand:event=>seen.push(event)
+  onCommand:event=>{seen.push(event);}
 });
 cpu.registerIOPort(0x20,pic.port20);
 const child=createStagedDosChildContinuation(cpu,{

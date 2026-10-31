@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original DOS AH3F 20-bit physical wrap correction (2026-11-01 KST)
+
+- **Independent native DOS compatibility implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material SHA `c33bb95c0ecedfa4226f4892115248270c2b023b` fixes AH3F read-only original-file transfer across 8086 FFFFFh→00000h physical wrap without a 16-bit offset wrap. Both physical spans are preflight-checked against A0000h–BFFFFh unmodeled VGA apertures before writing RAM. Synthetic 8086 INT21 read, byte spans, DOS flags/cursor/physical provenance, previous VGA guard covered in `uw2-web/tests/dos-readonly-files.test.mjs`.
+- **Exact SHA validation:** `UW2 Web Fidelity Static Gate` Actions run `41232772335` **SUCCESS**, synthetic-static job and browser module/fidelity policy steps PASS. This is **not** a real original DOS execution, authenticated OPEN→MAIN completion or browser gameplay equivalence; those remain **UNTESTED/HOLD**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2307 + new independently validated source correctness (+1) = 2308.** Documentation/test/CI/rechecking this same fix receive +0. AI 1 separate.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 DOS AH3F VGA transfer barrier and original OPEN bounded execution evidence (2026-11-01 KST)
 
 - **Distinct source correctness (+1):** material SHA `35356604e6367960ec5d8ca9d0eef3a6bbd10374` rejects unwitnessed DOS INT21 AH3F file-to-A000/B800 VGA aperture writes before RAM/cursor/AX mutation, while preserving ordinary RAM transfers and zero-byte reads. Synthetic regression `uw2-web/tests/dos-readonly-files.test.mjs`. Exact-SHA UW2 Web Fidelity Static Gate run `41230280721` SUCCESS.

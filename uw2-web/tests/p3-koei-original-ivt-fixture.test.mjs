@@ -41,4 +41,28 @@ assert.equal(withExternalVideo.terminated,null);
 console.log(JSON.stringify({withSyntheticVideoSteps:withExternalVideo.steps,
   nextMissingContract:withExternalVideo.stopped}));
 
+const psp=new Uint8Array(256);
+psp.set([0xcd,0x20],0);psp[0x2c]=0x50;psp[0x2d]=0x02;
+const pspSha=createHash('sha256').update(psp).digest('hex');
+const syntheticFrees=[],syntheticModeSets=[];
+const withExternalPsp=await probeOriginalKoeiWithSyntheticDos(original,{
+  initialIvt:{bytes,expectedSha256,knownVectors:[0x65]},
+  initialPsp:{bytes:psp,expectedSha256:pspSha},
+  biosVideo:{readMode:()=>({mode:3,columns:80,page:0}),
+    setMode:({mode})=>{syntheticModeSets.push(mode);}},
+  dosMemory:{freeMemory:({segment})=>{
+    syntheticFrees.push(segment);
+    if(segment!==0x250)throw new Error('unobserved DOS memory block');
+    return {freed:true};
+  }}
+});
+assert.equal(withExternalPsp.initialPsp.environmentSegment,0x250);
+assert.deepEqual(syntheticModeSets,[0x12]);
+assert.deepEqual(syntheticFrees,[0x250]);
+assert.ok(withExternalPsp.steps>withExternalVideo.steps);
+assert.match(withExternalPsp.fidelity,/NOT_DOS_REFERENCE/);
+console.log(JSON.stringify({withSyntheticPspSteps:withExternalPsp.steps,
+ nextMissingContract:withExternalPsp.stopped,
+ observedChildCalls:withExternalPsp.observedChildCalls}));
+
 console.log('UW2 original-byte KOEI injected UNVERIFIED DOS IVT probe: PASS (NOT DOS reference)');

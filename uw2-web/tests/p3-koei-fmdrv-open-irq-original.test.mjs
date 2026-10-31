@@ -11,6 +11,7 @@ import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
 import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {deliverExternalMaskableIrq} from '../web/guest-irq-boundary.js';
+import {preparePinnedDosReadOnlyResources} from '../web/pinned-dos-resources.js';
 import {runStagedDosComChild,captureDosCpuFrame} from '../web/dos-com-child-runner.js';
 
 // PRIVATE ORIGINAL KOEI + FMDRV bytes. ALL DOS/BIOS/OPL initial values below
@@ -27,6 +28,11 @@ const dir=process.env.UW2_GAME_DIR||
 const koei=readFileSync(join(dir,'KOEI.COM'));
 const fmdrv=readFileSync(join(dir,'FMDRV.COM'));
 const open=readFileSync(join(dir,'OPEN.EXE'));
+const opgraph=readFileSync(join(dir,'OPGRAPH.LZW'));
+const pinnedOpgraph=await preparePinnedDosReadOnlyResources([{
+  dosPath:'C:OPGRAPH.LZW',bytes:opgraph,
+  expectedSha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d'
+}]);
 const sha=x=>createHash('sha256').update(x).digest('hex');
 const koeiSha='81968de0d3ced479d77d3b9d60c571bde74f850948f6fc6d02cebea2557a1d36';
 const fmdrvSha='0e85962755e2b96ed72a133ba9c84340d754abb18c9af20b76ddd5a96b79677b';
@@ -55,7 +61,7 @@ for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
  expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67]});
-const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[]};
+const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[]};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
@@ -158,7 +164,10 @@ installDosInt21(cpu,{
  },
  getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
  getCurrentDrive:()=>({drive:2}), // EXPLICIT SYNTHETIC C:, NOT actual DOS drive state
- readOriginalFile:({filename})=>{throw new Error('OPEN_ORIGINAL_FILE_REQUEST:'+filename);},
+ readOriginalFile:request=>{
+   observed.originalFileRequests.push(request.filename);
+   return pinnedOpgraph.resolve(request);
+ }, // only verified original C:OPGRAPH.LZW; all other paths get DOS file-not-found
  getDeviceInfo:({handle})=>{
    if(handle>4)throw new Error('OPEN original requested unobserved DOS handle');
    return {deviceInfo:0x80d3}; // SYNTHETIC DOS handle flags
@@ -187,6 +196,8 @@ const result={
  initialInt66:{segment:0x900,offset:0},
  originalFmdrvResidency:observed.resident,
  originalPitWrites:observed.io.filter(x=>x.port===0x40||x.port===0x43).slice(0,4),
+ originalFileRequests:observed.originalFileRequests,
+ pinnedOpgraph:{sha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',bytes:opgraph.length},
  vgaWrites:observed.vgaWrites,vgaWriteCount:indexedVga.writtenCount(),
  paletteWrites:observed.paletteWrites,
  syntheticVgaStatusReads,dacColors:observed.dacColors,dacColorCount:vgaDac.writtenColors(),
@@ -211,6 +222,7 @@ assert.ok(openGuestFault.steps>=syntheticIrqStep);
 assert.match(result.fidelity,/NOT_DOS_REFERENCE/);
 assert.ok(observed.pitIrqEdges.length>=1);
 assert.ok(observed.pitIrqEdges.some(x=>x.delivered));
+assert.deepEqual(observed.originalFileRequests.slice(0,1),['C:OPGRAPH.LZW']);
 assert.ok(indexedVga.writtenCount()>=6);
 assert.ok(vgaDac.writtenColors()>=16);
 assert.ok(observed.paletteWrites.length>=16);

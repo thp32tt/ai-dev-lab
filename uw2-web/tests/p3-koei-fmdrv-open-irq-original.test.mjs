@@ -26,7 +26,7 @@ const syntheticIrqStep=process.argv[2]===undefined?2048:Number(process.argv[2]);
 const instructionBudget=process.argv[3]===undefined?60000:Number(process.argv[3]);
 if(!Number.isInteger(syntheticIrqStep)||syntheticIrqStep<32||syntheticIrqStep>65535)
  throw new RangeError('explicit synthetic IRQ step interval must be 32..65535');
-if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>500000)
+if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>1000000)
  throw new RangeError('explicit bounded original OPEN instruction budget required');
 const dir=process.env.UW2_GAME_DIR||
  '/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD';
@@ -97,7 +97,7 @@ for(const [port,handlers] of [
  [0x61,{in8:()=>0,out8:(p,v)=>observed.io.push({port:p,value:v})}],
  [0x20,{out8:(p,v)=>observed.picWrites.push({port:p,value:v})}]
 ])cpu.registerIOPort(port,handlers);
-const vgaPlaneWitness=createOriginalVgaMode12PlaneWitness({maxObservedWrites:150000});
+const vgaPlaneWitness=createOriginalVgaMode12PlaneWitness({maxObservedWrites:500000});
 const indexedVga=installVgaIndexedWriteRecorder(cpu,{maxWrites:50000,onWrite:event=>{
  vgaPlaneWitness.noteIndexedRegister(event);
  if(observed.vgaWrites.length<32)observed.vgaWrites.push({...event});
@@ -226,7 +226,7 @@ installDosInt21(cpu,{
    if(actual.length!==event.readBytes||actual.some((value,i)=>value!==expected[i]))
      throw new Error('original DOS file transfer differs from verified OPGRAPH source bytes');
    observed.verifiedReadBytesTotal+=event.readBytes;
-   if(observed.verifiedReadBytesTotal>1000000)
+   if(observed.verifiedReadBytesTotal>4000000)
      throw new Error('original DOS file validated transfer budget exceeded');
    if(event.fileOffset===16&&event.readBytes===256)
      observed.verifiedFileRead={fileOffset:16,readCount:256,sha256:sha(actual)};

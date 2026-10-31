@@ -4,6 +4,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {prepareOriginalOpgraphArchive} from '../web/opgraph-original-archive.js';
 import {KOREAN_OPGRAPH_JS_DECODE_EVIDENCE as evidence} from '../web/opgraph-korean-evidence.js';
+import {decodeOpeningVerifiedArchive,decodeOpeningArchive} from '../web/opening.js';
 import {readGraphRecords} from '../web/graph-format.js';
 
 // This test reads ORIGINAL bytes only from the user's private N100 game dir.
@@ -48,6 +49,22 @@ await assert.rejects(prepareOriginalOpgraphArchive(bytes,{
  expectedDecodedSha256:[...evidence.decodedSha256.slice(0,1).map(()=>"0".repeat(64)),
   ...evidence.decodedSha256.slice(1)]
 }),/decoded part SHA-256 mismatch/);
+const verifiedOpening=decodeOpeningVerifiedArchive(archive);
+const legacyOpening=decodeOpeningArchive(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+assert.equal(verifiedOpening.recordCount,108);
+assert.equal(legacyOpening.recordCount,108);
+let pixelsChecked=0;
+for(let part=0;part<14;part++){
+ for(let record=0;record<verifiedOpening.parts[part].records.length;record++){
+  const current=verifiedOpening.parts[part].records[record];
+  const previous=legacyOpening.parts[part].records[record];
+  assert.equal(current.width,previous.width);
+  assert.equal(current.height,previous.height);
+  assert.equal(sha(current.indices),sha(previous.indices));
+  pixelsChecked+=current.indices.length;
+ }
+}
+assert.ok(pixelsChecked>500000);
 const originalRead=archive.resolveDosFile({
  filename:'C:OPGRAPH.LZW',
  raw:Uint8Array.from('C:OPGRAPH.LZW',c=>c.charCodeAt(0))
@@ -61,6 +78,7 @@ assert.deepEqual(archive.resolveDosFile({
 console.log(JSON.stringify({
  originalArchiveSha256:expected,parts:archive.partCount,records:archive.totalRecords,
  decodedTotalBytes:archive.totalDecodedBytes,manifest,
+ verifiedOpeningRecords:verifiedOpening.recordCount,pixelsChecked,
  fidelity:archive.fidelity
 },null,2));
 console.log('UW2 private original OPGRAPH LS11 stored/decoded part archive SHA/count/GRAPH bounded records: PASS (NOT native decompressor parity)');

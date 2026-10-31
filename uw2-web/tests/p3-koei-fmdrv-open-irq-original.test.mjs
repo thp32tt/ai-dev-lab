@@ -10,6 +10,7 @@ import {installBiosInt10} from '../web/bios-int10.js';
 import {installBiosInt16} from '../web/bios-int16.js';
 import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
 import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
+import {createOriginalVgaMode12PlaneWitness} from '../web/vga-mode12-planar-witness.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {deliverExternalMaskableIrq} from '../web/guest-irq-boundary.js';
 import {prepareOriginalOpgraphArchive} from '../web/opgraph-original-archive.js';
@@ -85,7 +86,9 @@ for(const [port,handlers] of [
  [0x389,{out8:(p,v)=>observed.io.push({port:p,value:v})}],
  [0x20,{out8:(p,v)=>observed.picWrites.push({port:p,value:v})}]
 ])cpu.registerIOPort(port,handlers);
+const vgaPlaneWitness=createOriginalVgaMode12PlaneWitness({maxObservedWrites:150000});
 const indexedVga=installVgaIndexedWriteRecorder(cpu,{maxWrites:50000,onWrite:event=>{
+ vgaPlaneWitness.noteIndexedRegister(event);
  if(observed.vgaWrites.length<32)observed.vgaWrites.push({...event});
 }});
 let syntheticVgaStatusReads=0;
@@ -226,6 +229,7 @@ const nativeMemoryWrites={
 };
 cpu.installMemoryWriteObserver((event,guest)=>{
   if(activePsp!==0x600)return;
+  vgaPlaneWitness.observeNativeByte(event);
   nativeMemoryWrites.openProgramTotal++;
   const band=event.physical>>>16;
   nativeMemoryWrites.physical64kBands[band]++;
@@ -281,6 +285,9 @@ for(let part=0;part<4;part++){
    exactPhysical,provenance:'READ_ONLY_GUEST_MEMORY_SCAN__NO_NATIVE_DECODE_PARITY_ASSUMED'});
 }
 
+const originalVgaPlaneState=vgaPlaneWitness.getState();
+const originalVgaFrame=originalVgaPlaneState.fullyCoveredBytes===38400?
+  vgaPlaneWitness.captureCompleteIndexedFrame():null;
 const result={
  original:{koeiSha:sha(koei),fmdrvSha:sha(fmdrv),openSha:sha(open)},
  openStarted,openGuestFault,openMz,
@@ -295,6 +302,9 @@ const result={
  verifiedFileRead:observed.verifiedFileRead,
  guestDecodedWitness,
  nativeMemoryWrites,
+ originalVgaPlaneState,
+ originalVgaFrameSha256:originalVgaFrame?sha(originalVgaFrame):null,
+ originalVgaFramePixelPrefix:originalVgaFrame?Array.from(originalVgaFrame.slice(0,16)):null,
  pinnedOpgraph:{sha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',bytes:opgraph.length,
   parts:pinnedOpgraph.partCount,decodedBytes:pinnedOpgraph.totalDecodedBytes,records:pinnedOpgraph.totalRecords},
 

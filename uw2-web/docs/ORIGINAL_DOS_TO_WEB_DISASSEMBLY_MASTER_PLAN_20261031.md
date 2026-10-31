@@ -482,3 +482,8 @@
 
 - `guest-external-interrupt-await.js`는 원본 CPU의 다음 **direct INT imm8** 바이트와 등록된 host adapter 또는 명시적 guest IVT vector만 검사하여, 미등록 인터럽트를 GPU/타이머/TSR 의미로 추측하는 대신 `WAIT_EXTERNAL_GUEST_INTERRUPT_HANDLER`로 원본 CS/IP, stack, FLAGS 및 누적 계량을 보존한다. 기본값 OFF인 `pauseOnMissingGuestInterrupt:true`로 원본 OPEN 실행 probe에 옵트인 연결; synthetic `INT 66h`의 반복 대기→별도 드라이버 설치→정확한 CPU 명령/정상 종료 검증을 CI에 포함한다.
 - 사용자 보유 한국어 원본 OPEN.EXE 파일(기존 고정 SHA)을 **합성 DOS version/MCB/IOCTL·합성 IVT 00h=0900:0000** 환경에서 실행: 원본 470명령 `INT21 AH35 AL00` 사전 대기, 핀 검증 이후 583명령(원본 CS:IP `0610:1831`)에서 아직 등록되지 않은 **INT66h(FMDRV 런타임 선행조건)**를 정확히 대기했다. 원본 DOS 상의 실제 진행 재현/음악 재생/OPEN 종료라고 표시하지 않는다. 원본 소유 바이너리 없이 동작하는 synthetic tests와 사용자 로컬 private test를 별도로 보관하며 참조 FMDRV TSR 실물 설치가 없으면 HOLD.
+
+### 2026-11-01 FMDRV/OPEN 동일 CPU 자식 실행을 위한 유지형 DOS EXEC child 세션
+
+- `web/dos-child-continuation.js`는 기존 `runStagedDosComChild()` 일괄 실행 API를 변경하지 않고, **명시적 원본 CPU 자식 프레임** 및 `createGuestOriginalExecutionSession()`을 사용해 같은 CPU/물리 RAM/IVT/장치를 여러 `runSlice` 사이에 유지한다. DOS 자식이 실제 AH31/4C 등으로 종료한 경우에만 원래 부모 14개 레지스터·종료 상태·maskable IRQ inhibit shadow를 복원한다. 원본에서 발생한 guest-selected INT66 25h IVT 등록과 RAM/장치 변경은 복원 시에도 유지된다.
+- 도중에 session 상태가 외부로부터 변조되면 실패 폐쇄, 별도 abort에서만 부모 프레임을 되돌린다. 원본 게스트가 아직 종료하지 않은 상태에서 **완료 상태를 만들어 부모 실행을 재개하지 않는다**. 실행 예산과 슬라이스는 엄격히 상한을 유지하며 실제 FMDRV TSR 원본과 KOEI nested EXEC 전체 연결은 후속 실물 검증 전까지 UNTESTED/HOLD다. Actions 합성 네이티브 8086 DOS AH25 INT66 설치→AH31 TSR 복구, 중단/재개, 부모 shadow 및 side effects 보존 테스트로 게이트한다.

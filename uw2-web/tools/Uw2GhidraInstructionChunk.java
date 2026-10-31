@@ -1,5 +1,5 @@
 // @category UW2
-// Native Ghidra 12.x headless post-script. Read-only candidate metadata.
+// Native Ghidra 12.x headless post-script. Read-only candidate metadata.\n// For DOS COM the pinned PSP-relative file starts at linear 0x10100;\n// EXE uses MZ image linear 0x10000. Both are candidates until DOS replay.
 // No original instructions, game bytes, pseudocode or private file paths are exported.
 // Arguments: <metadata-out.json> <module-name> <expected-sha256> <image-length>
 //            <image-start> <image-end> [load-base-hex]
@@ -59,12 +59,12 @@ public class Uw2GhidraInstructionChunk extends GhidraScript {
             throw new IllegalArgumentException("expected 6 or 7 bounded arguments");
         Path destination = Paths.get(a[0]).toAbsolutePath().normalize();
         String module = a[1].toUpperCase(Locale.ROOT), sha = a[2];
-        if (!module.matches("[A-Z0-9_-]{1,8}\\.EXE") || !sha.matches("[a-f0-9]{64}"))
+        if (!module.matches("[A-Z0-9_-]{1,8}\\.(EXE|COM)") || !sha.matches("[a-f0-9]{64}"))
             throw new IllegalArgumentException("pinned Korean original MZ identity required");
         long imageSize = unsigned(a[3]), start = unsigned(a[4]), end = unsigned(a[5]);
         long loadBase = a.length == 7 ? Long.parseLong(a[6], 16) : 0x10000L;
         if (imageSize < 1 || imageSize > 0x1000000L || start >= end ||
-            end > imageSize || end-start > 0x10000L || loadBase != 0x10000L)
+            end > imageSize || end-start > 0x10000L || (module.endsWith(".COM") ? loadBase != 0x10100L : loadBase != 0x10000L))
             throw new IllegalArgumentException("invalid bounded original image window");
         if (!currentProgram.getLanguageID().getIdAsString().equals("x86:LE:16:Real Mode"))
             throw new IllegalArgumentException("unexpected Ghidra 8086 processor");

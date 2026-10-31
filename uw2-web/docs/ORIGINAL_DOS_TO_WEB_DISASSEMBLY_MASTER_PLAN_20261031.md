@@ -305,3 +305,8 @@
 - `web/vga-mode12-planar-witness.js`에 `captureGroundedIndexedRect(x,y,width,height)`를 구현했다. 기존 `captureCompleteIndexedFrame()`은 640×480 전체 픽셀 확인을 계속 요구하지만, 새 메서드는 실제 원본 CPU가 기록해 4개 VGA plane의 유효성이 확인된 지정 사각형만 엄격히 추출한다. 비트 단위 경계/화면 가장자리와 행 단위 바이트 주소를 정확히 계산하며, 확인되지 않은 VRAM 배경·패딩은 채우지 않는다. 호출자가 픽셀 배열을 바꿔도 내부 근거 plane은 변경되지 않는다.
 - 소스+회귀검사 SHA `900b906dc17617af8a4c06aaffe8afa435625506`; GitHub UW2 Web Fidelity Static Gate run `41215806444`의 `synthetic-static` **SUCCESS** (syntax+원본 파일 없는 전체 synthetic gate, `tests/vga-mode12-planar-witness.test.mjs`의 일부 영역·미관측 바이트 거부·두 바이트 경계·반환 복사 검증 PASS).
 - 이는 원본 `OPEN.EXE`의 CPU 기록에서 추출 가능한 화면 일부를 JS 그래픽 디코딩 결과와 이후 비교하기 위한 **증거 API**일 뿐, VGA BIOS 초기 메모리·원본 DOS/PIT/OPL·16색 팔레트·완전 오프닝 프레임·브라우저 재생 동등성을 증명하지 않는다. 원본 게임이 제공하지 않은 픽셀/장면을 생성하지 않는다. 후속: 원본 한국어판 VGA 포트·모드·화면 캡처 시각/주소를 외부에서 검증한 뒤 원본 OPEN 쓰기와 JS OPGRAPH 지역 좌표를 대조하고, 실제 DOS 기준 MZ MAIN 진입 검증으로 이어간다.
+
+### VGA Mode12 원본 CPU plane read 경계 (2026-11-01 KST)
+- 새 8086 동기 memory-read provider는 **명시적으로 opt-in**한 장치 aperture의 uint8 반환만 받으며 일반 RAM 읽기는 기존과 동일하다. Promise·임의 반환값·중복 provider는 거부한다.
+- 새 `web/vga-mode12-read-adapter.js`와 기존 VGA witness의 `readSelectedPlaneByte`는 **실제 GC04 선택 plane / GC05 read-mode-0 / GC06 A000h aperture** 레지스터가 관측되고 해당 plane byte가 원본 CPU 쓰기로 입증된 경우만 게스트 A0000h 읽기를 처리한다. 미확인/미가시 VRAM, read-mode-1/latch compare는 추측하지 않고 중단한다.
+- 외부 원본 DOS·OPEN.EXE에서 해당 읽기 분기가 실제 호출되는지, VGA RAM 초기 상태·전체 화면·브라우저 표시가 동일한지는 **UNTESTED**. 이번 합성 CPU+VGA 장치 회귀만 GitHub 정적 게이트 대상이다. 원본 8086 CPU가 실제로 읽는 순서가 증명되면 추적 가능한 게스트의 같은 메모리에 선택적으로 장착하며, 검증 전에 기본 웹 게임 자산/화면을 바꾸지 않는다.

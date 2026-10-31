@@ -34,6 +34,7 @@ jobs:
           node --check uw2-web/web/vga-indexed-ports.js
           node --check uw2-web/web/vga-dac-ports.js
           node --check uw2-web/web/vga-mode12-planar-witness.js
+          node --check uw2-web/web/vga-mode12-read-adapter.js
           node --check uw2-web/web/opl2-raw-write-bus.js
           node --check uw2-web/web/pit8253-counter0-witness.js
           node --check uw2-web/web/guest-staging-physical-map.js
@@ -89,6 +90,7 @@ jobs:
           node uw2-web/tests/vga-indexed-ports.test.mjs
           node uw2-web/tests/vga-dac-ports.test.mjs
           node uw2-web/tests/vga-mode12-planar-witness.test.mjs
+          node uw2-web/tests/vga-mode12-read-adapter.test.mjs
           node uw2-web/tests/opl2-pit-raw-witness.test.mjs
           node uw2-web/tests/guest-staging-physical-map.test.mjs
           node uw2-web/tests/dos-file-transfer-provenance.test.mjs

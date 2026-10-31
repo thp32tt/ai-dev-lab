@@ -72,6 +72,27 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       if(!previouslyCovered&&validity.every(a=>a[offset]===1))
         fullyCoveredBytes++;
     },
+    readSelectedPlaneByte(physical){
+      // 8086 CPU VGA read mode 0 returns the byte from GC04's selected
+      // physical plane, NOT the linear guest-RAM shadow of the last OUT/MOV.
+      // Require an observed aperture/map, read mode and initialized bytes;
+      // no guessed BIOS VGA baseline, latches, or mode-1 compare result.
+      if(!Number.isInteger(physical)||physical<VRAM_PHYSICAL||
+         physical>=VRAM_END)
+        throw new RangeError('VGA planar read outside A0000-AFFFF aperture');
+      const offset=physical-VRAM_PHYSICAL;
+      if(offset>=VISIBLE)
+        throw new Error('VGA planar read outside witnessed visible mode12 bytes: fail closed');
+      const readMap=gc.get(4),graphicsMode=gc.get(5),memoryMap=gc.get(6);
+      if(!Number.isInteger(readMap)||readMap<0||readMap>3||
+         !Number.isInteger(graphicsMode)||(graphicsMode&8)!==0||
+         !Number.isInteger(memoryMap)||
+         ((memoryMap&12)!==0&&(memoryMap&12)!==4))
+        throw new Error('VGA read requires observed GC04/GC05 read-mode0/GC06 A000 aperture: fail closed');
+      if(!validity[readMap][offset])
+        throw new Error('VGA read selected original plane byte is unverified: fail closed');
+      return planes[readMap][offset];
+    },
     readPixelIndex(x,y){
       if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||x>=WIDTH||y<0||y>=HEIGHT)
         throw new RangeError('VGA mode12 pixel coordinate outside 640x480');

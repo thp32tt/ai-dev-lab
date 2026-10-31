@@ -40,6 +40,7 @@ export class RealMode8086 {
     // No host PIT/PIC clock is created by this architectural guard.
     this.maskableIrqShadow = 0;
     this.memoryWriteObserver = null; // Opt-in, never a synthetic VGA framebuffer.
+    this.memoryReadProvider = null; // Optional external, explicitly proven memory-mapped device.
   }
   installMemoryWriteObserver(observer) {
     if(typeof observer!=='function'||this.memoryWriteObserver!==null)
@@ -47,10 +48,32 @@ export class RealMode8086 {
     this.memoryWriteObserver=observer;
   }
   removeMemoryWriteObserver() {this.memoryWriteObserver=null;}
+  installMemoryReadProvider(provider) {
+    if(typeof provider!=='function'||this.memoryReadProvider!==null)
+      throw new Error('8086 memory-read provider must be a single synchronous callback');
+    this.memoryReadProvider=provider;
+  }
+  removeMemoryReadProvider() {this.memoryReadProvider=null;}
   physical(segment, offset) {
     return (((u16(segment,'segment') << 4) + u16(offset,'offset')) & 0xfffff);
   }
-  read8(segment, offset) { return this.memory[this.physical(segment, offset)]; }
+  read8(segment, offset) {
+    const physical=this.physical(segment,offset);
+    if(this.memoryReadProvider!==null){
+      // The provider may answer only for an explicitly owned device aperture.
+      // Undefined means normal guest RAM. Never quietly fall back for a device
+      // byte that the provider has rejected as unverified.
+      const value=this.memoryReadProvider(Object.freeze({segment,offset,physical}),this);
+      if(value&&typeof value.then==='function')
+        throw new Error('async 8086 memory-read provider: fail closed');
+      if(value!==undefined){
+        if(!Number.isInteger(value)||value<0||value>255)
+          throw new RangeError('8086 memory-read provider must return uint8 or undefined');
+        return value;
+      }
+    }
+    return this.memory[physical];
+  }
   write8(segment, offset, value) {
     if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('byte must be uint8');
     const physical=this.physical(segment,offset);

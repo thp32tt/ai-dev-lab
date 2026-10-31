@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 DOS original-file DUP/FORCEDUP PSP event provenance repair (2026-11-01 KST)
+
+- **Distinct material bug fix:** `thp32tt/ai-dev-lab@uw2-web-port` exact source+synthetic regression SHA `d503f5557ba3743612368232f51ee9097b3c5e13`. Both original-file AH45 DUP and AH46 FORCEDUP event paths called unscoped `emit()` instead of the process-aware `emitFileEvent()`, omitting owner PSP even when the JFT owner was explicitly known. Repair preserves shared SFT seek cursor semantics and adds process-scoped parent `0200h` / child `0240h` assertions to the mandatory duplication regression. Distinct from already scored ordinary open/read/close PSP provenance; no double counting for a re-run or docs-only clarification.
+- **Exact-SHA CI:** UW2 Web Fidelity Static Gate `synthetic-static` run `41218581867` **SUCCESS** for `d503f5557ba3743612368232f51ee9097b3c5e13`. Separately, original Korean KOEI→FMDRV→OPEN auxiliary CPU experiment required refreshing a **stale N100 `dos-int21.js`** missing `getFileProcessPsp`: the prior ~66,295-instruction foreign-PSP halt was environment skew, **not** evidence this DUP fix removed that halt. With the N100 file updated, original OPEN advanced to the configured 260,000-step budget with no foreign-PSP stop; original DOS reference video/audio/game parity remains **UNTESTED**, and this N100 sync adds no score.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2290 + independently repaired scoped DUP/FORCEDUP file-event defect +1 = 2291.** AI 1 remains separate. N100 environment repair/docs/revalidation +0.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 native 8086 VGA plane readback + mode lifetime evidence (2026-11-01 KST)
 
 - **Distinct new source capability:** `thp32tt/ai-dev-lab@uw2-web-port` implements explicit synchronous 8086 memory-read device provider, evidence-gated mode12 A0000h selected-plane read mode 0 (observed GC04/GC05/GC06, original CPU-write-per-plane byte validity), and bounded read adapter. Source material SHA `d0150c9bd1672aeb73374a71c10688258fb366c8`; same capability continuation `8758b6fac22ee0330d40ce2b962741c2b32bbaf9` rejects stale VGA evidence after explicit BIOS mode changes and verifies native 8086 MOV write-mode-2 -> read-mode-0 values. No original asset bytes or cosmetic game changes were committed.

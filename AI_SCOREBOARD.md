@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 original game GPU RGB 384x216 authentic source-aligned capture (2026-11-01 KST)
+
+- **One independently verified DX11 C++ source integration (+1):** `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` task `CONVERSION-DX11-01193` material source SHA `4447d63d17fed1bc0ef653c15a3ee9021c8b0152` expands original game Draw D3D11 paired GPU RGB capture from 256x144 to 384x216 and preserves exact source D3D9 dirty/Present RGB byte publication. Source test regressions cover far-edge 16x8 positive region, split dirty membership, packed staging, repeat-upload rejection, forged bounds and holes. The first acceptance-metadata gate failure was repaired without additional C++ changes at validation-bearing SHA `0dce0ed47414de58203e8ff365396a7f39b67d1f`.
+- **Exact-SHA mandatory GitHub Actions 5/5 SUCCESS:** DX11 Fast `41244366804`, Backend Conversion Gate `41244366814`, Build `41244366810`, OpenXR VR architecture `41244366820`, HUD Inspector `41244366821`. C6 docs-only commit `3f91cb7e6052319e5516f83180e71ca87a0605c0` is bookkeeping +0; same-task retry/rollover, CI and readback +0. This is **opt-in partial native RGB only** with DX9Ex fallback preserved, **NOT** full playable game frame or Quest 3/VDXR validation (**UNTESTED**). AI 1 scored separately.
+- **AI 2 cumulative: previous confirmed 2319 + one independent verified DX11 source integration (+1) = 2320.**
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 native 8086 faulted original guest execution cannot skip failed instruction (2026-11-01 KST)
 
 - **One independent original CPU execution correctness fix (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material/exact validated SHA `c3899bdef8aa721ac318c1b65c465e17cec49a3d` fixes a previously unsafe failure path in `web/guest-original-execution-session.js`: when a guest native instruction (such as IN AL,DX to an unknown port) throws after the 8086 has already advanced IP, the session now latches `faulted` and rejects all future `runSlice` attempts instead of silently executing the next guest opcode. The distinct source behavioral defect is verified with a native 8086 unsupported I/O instruction: real IP advanced 1, attempted second session run refused without executing NOP, total completed step count unchanged. Normal BIOS AH00 blocked wait and true host-key resume remain separate and supported. This is not a claim to reverse partial device side effects or complete original DOS support.

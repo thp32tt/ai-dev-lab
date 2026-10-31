@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {RealMode8086} from '../web/realmode-8086.js';
+import {installBiosInt16} from '../web/bios-int16.js';
+const make=(checkKey,ah=1)=>{
+ const cpu=new RealMode8086();
+ cpu.load(Uint8Array.of(0xcd,0x16),0,0);
+ cpu.set16('AX',(ah<<8)|0x40);cpu.set16('FLAGS',0x203);
+ installBiosInt16(cpu,checkKey?{checkKey}:{});
+ return cpu;
+};
+const noKey=make(()=>({available:false}));
+noKey.step();
+assert.equal(noKey.flag('ZF'),true);
+assert.equal(noKey.get16('AX'),0x0140);
+const key=make(()=>({available:true,ascii:0x61,scanCode:0x1e}));
+key.step();assert.equal(key.flag('ZF'),false);assert.equal(key.get16('AX'),0x1e61);
+assert.throws(()=>make().step(),/external keyboard queue/);
+assert.throws(()=>make(()=>({available:true})).step(),/uint8/);
+assert.throws(()=>make(()=>({available:false,ascii:1})).step(),/cannot carry a key/);
+assert.throws(()=>make(()=>Promise.resolve({available:false})).step(),/async BIOS keyboard/);
+assert.throws(()=>make(()=>({available:false}),0).step(),/unsupported BIOS INT16 AH=0/);
+assert.throws(()=>installBiosInt16(new RealMode8086(),{checkKey:1}),/must be synchronous/);
+console.log('UW2 original OPEN BIOS INT16 AH01 externally supplied keyboard queue with ZF/AX invariants: PASS');

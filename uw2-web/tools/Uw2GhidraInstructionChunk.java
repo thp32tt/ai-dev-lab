@@ -16,7 +16,7 @@ public class Uw2GhidraInstructionChunk extends GhidraScript {
         if (!x.matches("[0-9]+")) throw new IllegalArgumentException("decimal unsigned integer required");
         return Long.parseLong(x);
     }
-    private static String flow(Instruction ins) {
+    private static String flow(Instruction ins) throws Exception {
         String mnemonic = ins.getMnemonicString().toUpperCase(Locale.ROOT);
         if (mnemonic.equals("RET") || mnemonic.equals("RETF") ||
             mnemonic.equals("IRET") || mnemonic.equals("RETN")) return "RETURN";

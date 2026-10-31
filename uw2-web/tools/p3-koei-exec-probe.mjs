@@ -9,6 +9,7 @@ import {fileURLToPath} from 'node:url';
 import {RealMode8086} from '../web/realmode-8086.js';
 import {loadVerifiedCom} from '../web/mz-loader.js';
 import {installDosInt21} from '../web/dos-int21.js';
+import {installBiosInt10} from '../web/bios-int10.js';
 import {verifyKoeiLaunchChain,ORIGINAL_KOEI_LAUNCH_SITES} from './koei-launch-chain.mjs';
 
 const dirname=path.dirname(fileURLToPath(import.meta.url));
@@ -32,7 +33,11 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   await loadVerifiedCom(cpu,bytes,{pspSegment,allocationParagraphs:0x1000,
     initialSP:0xfffe,expectedSha256:pin.sha256});
   const allowed=new Set(ORIGINAL_KOEI_LAUNCH_SITES.map(x=>x.name));
-  const launches=[];
+  const launches=[],videoRequests=[];
+  installBiosInt10(cpu,{teletype:args=>{
+    if(videoRequests.length>=32)throw new Error('synthetic BIOS video event budget exhausted');
+    videoRequests.push(args);
+  }});
   installDosInt21(cpu,{executeChild:input=>{
     if(!allowed.has(input.filename))
       throw new Error('KOEI executable name not in SHA-pinned original launch sites');
@@ -60,7 +65,7 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   return {
     moduleName:'KOEI.COM',sha256:chain.sha256,steps,
     entryPsp:chain.entryPsp,
-    observedChildCalls:launches,
+    observedChildCalls:launches,observedBiosVideoRequests:videoRequests,
     terminated:cpu.terminated??null,stopped,
     fidelity:'ORIGINAL_KOEI_BYTES__SYNTHETIC_PSP_AND_CHILD_STATUS__NOT_DOS_REFERENCE'
   };

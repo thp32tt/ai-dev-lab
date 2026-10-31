@@ -48,6 +48,7 @@ const syntheticFrees=[],syntheticModeSets=[],syntheticResizes=[];
 const withExternalPsp=await probeOriginalKoeiWithSyntheticDos(original,{
   initialIvt:{bytes,expectedSha256,knownVectors:[0x65]},
   initialPsp:{bytes:psp,expectedSha256:pspSha},
+  traceLimit:48,
   biosVideo:{readMode:()=>({mode:3,columns:80,page:0}),
     setMode:({mode})=>{syntheticModeSets.push(mode);}},
   dosMemory:{freeMemory:({segment})=>{
@@ -68,6 +69,7 @@ assert.ok(withExternalPsp.steps>withExternalVideo.steps);
 assert.match(withExternalPsp.fidelity,/NOT_DOS_REFERENCE/);
 console.log(JSON.stringify({withSyntheticPspSteps:withExternalPsp.steps,
  nextMissingContract:withExternalPsp.stopped,
- observedChildCalls:withExternalPsp.observedChildCalls}));
+ observedChildCalls:withExternalPsp.observedChildCalls,
+ recentTrace:withExternalPsp.recentSteps.slice(-25)}));
 
 console.log('UW2 original-byte KOEI injected UNVERIFIED DOS IVT probe: PASS (NOT DOS reference)');

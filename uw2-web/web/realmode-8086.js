@@ -757,7 +757,8 @@ export class RealMode8086 {
       }
       return;
     }
-    if(op===0xeb){this.ip=(this.ip+s8(this.fetch8()))&0xffff;return;}
+    if(op===0xeb){const delta=s8(this.fetch8());
+      this.ip=(this.ip+delta)&0xffff;return;}
     if(op===0xe9){const delta=s16(this.fetch16());this.ip=(this.ip+delta)&0xffff;return;}
     if(op===0xe8){const delta=s16(this.fetch16());this.push16(this.ip);this.ip=(this.ip+delta)&0xffff;return;}
     if(op===0xc3){this.ip=this.pop16();return;}

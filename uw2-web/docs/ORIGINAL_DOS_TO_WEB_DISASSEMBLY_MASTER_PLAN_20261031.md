@@ -373,3 +373,9 @@
 - `web/dos-readonly-files.js`: 기존 AH=3Fh가 `DS:DX`의 유효 16비트 오프셋 범위 안에서도 마지막 물리 주소 `FFFFFh`를 넘는 읽기를 무조건 거절하던 문제를 수정한다. 같은 `RealMode8086.physical()` 20비트 주소 랩어라운드에 맞춰 끝부분과 `00000h` 시작 영역에 원본 파일 바이트를 나눠 기록한다. 실제 전송 길이만큼만 커서를 이동한다.
 - 양쪽 물리 구간 모두 VGA A0000h–BFFFFh와 겹치는지 쓰기 전에 검증하고, 확인되지 않은 영상 영역은 계속 fail-closed한다. 원본 세이브 쓰기·화면·음악 등은 변경하지 않는다.
 - `tests/dos-readonly-files.test.mjs`: 실제 8086 INT21 코드 호출로 `FFFF8h`→`00000h` 40바이트 전송, AX/CF·커서·이벤트 원본 시작 물리 주소·기존 VGA 거부를 합성 검증한다. DOS 참조 실기/OPEN→MAIN/브라우저 parity는 **UNTESTED**.
+
+### 2026-11-01 원본 BIOS INT16 키보드 dequeue 경계
+
+- `web/bios-int16.js`: 기존 AH01 키 상태/peek 경로를 유지하고 별도의 AH00 blocking-read/dequeue callback을 추가했다. 실제 제공된 큐 항목(`ascii`, `scanCode`)을 꺼내 AX로 전달하며 AH00에서 FLAGS/ZF를 임의 변경하지 않는다. 키가 없거나 제공자가 비동기/불완전하면 fail-closed, 가상의 키와 대기 시간·반복 입력은 생성하지 않는다.
+- `tests/bios-int16.test.mjs`: AH01 peek→AH00 dequeue 두 번의 큐 순서, CR/extended scan, 플래그 보존, missing/empty/bad/asynchronous source 거부를 합성 INT16로 검증한다.
+- 이는 **원본 입력 기능 구현**이지만 실제 `OPEN.EXE`의 AH00 도달, 브라우저 키 이벤트 연동, 키 타이밍, `MAIN.EXE` 정상 진입은 별도 실기 근거가 없으므로 **UNTESTED/HOLD**다.

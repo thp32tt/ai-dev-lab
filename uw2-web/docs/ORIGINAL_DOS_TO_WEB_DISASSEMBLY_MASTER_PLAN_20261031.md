@@ -2,7 +2,7 @@
 - 수립: 2026-10-31 KST; 개정: 2026-10-31 KST (전체 디컴파일/하이브리드 런타임 우선)
 - 기준: `thp32tt/ai-dev-lab@uw2-web-port`; 실제 한국어판 DOS 설치 파일만 정본. REA/Ghidra 분석은 참고 출력이며 **실행 파일의 실제 바이트, DOS 참조 실행 결과**로 재확인한다.
 - 목표: **원본과 동일한 게임**을 브라우저에서 실행. 개조판·편의기능 추가·대사 재작성·현대식 밸런스 조정·새 인터페이스·임의의 음악/장면/동작 생성 **금지**.
-- 진행 상태 (2026-10-31 KST): **P0 원본 61개 해시 검증 PASS; P1 MAIN/OPEN 원본↔Ghidra 주소·BSS 검증 PASS, MZ 4개 실행 파일 재배치 5,296건 전수 검사 PASS, 정적 far 제어 이전 후보 5,038건/351개 타깃 그룹 추출 PASS, KOEI.COM 조건부 DOS EXEC 기동 경로 실물 검사 PASS.** P1 전체 함수·간접/near 호출·동적 상태 분석 미완료, P2~P9 미착수. 근거: `ORIGINAL_P0_P1_EXECUTION_20261031.md`, `ORIGINAL_P1_RELOCATION_LAUNCHER_20261031.md`, `p1-far-transfer-candidates-20261031.json`. **제어 이전 후보 수는 포팅 완료율/검증된 함수 수가 아님.**
+- 진행 상태 (2026-10-31 KST): **P0 원본 61개 해시 검증 PASS; P1 MAIN/OPEN 원본↔Ghidra 주소·BSS 검증 PASS, MZ 4개 실행 파일 재배치 5,296건 전수 검사 PASS, 정적 far 제어 이전 후보 5,038건/351개 타깃 그룹 추출 PASS, KOEI.COM 조건부 DOS EXEC 기동 경로 실물 검사 PASS.** P1 전체 함수·간접/near 호출·동적 상태 분석 미완료. P3의 CPU/BIOS/DOS 일부 구현 및 원본 KOEI.COM 26명령 부분 실행까지 진행했지만 초기 DOS INT65h 벡터 미확보로 실제 DOS 실행·게임 부팅은 HOLD; P2 실제 기준 트레이스와 P4~P9 전체 원작 동등성은 미완료. 근거: `ORIGINAL_P0_P1_EXECUTION_20261031.md`, `ORIGINAL_P1_RELOCATION_LAUNCHER_20261031.md`, `p1-far-transfer-candidates-20261031.json`. **제어 이전 후보 수는 포팅 완료율/검증된 함수 수가 아님.**
 
 ## 1. 변경 금지 계약 (전 단계 공통)
 1. 한국어 DOS 원본의 화면(해상도·팔레트·폰트·좌표·애니메이션·순서·타이밍), 입출력, 음악/효과음, 게임 규칙(16-bit 정수 오버플로·난수·틱), 이벤트/시나리오/엔딩, 저장/불러오기 형식을 동일하게 유지한다. 웹 API로 대체하는 외피만 허용하고, 게임에 보이는 결과는 바꾸지 않는다.
@@ -112,6 +112,17 @@
 
 - 모든 COM 수치는 **정적 Ghidra가 진입점부터 찾은 후보**이며 \`verifiedCodeBytes=0\`, \`verifiedFunctionCount=0\`. KOEI의 기존 REA 함수 후보 4건과 이번 Ghidra 시작점 후보 2건은 자동 함수 인식 범위가 다르므로 동일 함수 수로 비교하지 않는다. FMDRV의 실제 INT 66h/OPL 레지스터 동작, KOEI 실제 OPEN→MAIN→END child 종료, DOS PSP/메모리 할당 및 원본 플레이 실행은 여전히 **UNTESTED / HOLD**.
 - 다음 작업: 근거 있는 원본 KOEI.COM near/far call 관계 및 FMDRV 장치 경계 원본 코드 후보를 상세 분류하고, 6개 실행 모듈의 각 미관측 바이트를 데이터/미분석 코드/세그먼트·overlay로 구분한다. DOS 참조 실행 트레이스가 확보되어야 JavaScript 공통 8086 실행 코어/원본 웹 실행의 검증 지표를 올릴 수 있다.
+
+
+### J. 실제 KOEI.COM 바이트의 CPU·BIOS·DOS 부분 실행 진전 (2026-10-31 KST)
+
+- 원본 SHA-256 \`81968de0d3ced479d77d3b9d60c571bde74f850948f6fc6d02cebea2557a1d36\`로 검증한 **사용자 소유 한국어판 KOEI.COM 원본 명령 바이트**를 이미 존재하는 \`RealMode8086\` 코어에 적재하여 \`tools/p3-koei-exec-probe.mjs\`로 제한된 step-by-step 실행 진단을 수행했다. CPU 바이트는 원본이나, PSP=\`0x200\`, 전체 메모리 초기화와 스택, BIOS teletype 소비 sink, 나중의 child EXEC 결과는 **명시적인 합성 조건**이다. 이는 **DOSBox/DOS 실제 기준 실행 트레이스가 아니다**.
+- 관측된 첫 정지: 원본 entry부터 **6 명령어 실행 후** BIOS \`INT 10h\` \`AH=0Eh\`, \`AL=07h\`, \`BH=00h\`, \`BL=07h\` 호출. 신규 \`web/bios-int10.js\`는 이 **한 가지 서비스**의 문자·페이지·색상만 소비자가 제공한 동기 장치 sink로 넘기고, VGA·벨소리·커서 또는 반환 레지스터를 임의로 만들어 주지 않는다. 다른 BIOS 서비스는 명시적으로 실패한다.
+- 다음 정지: 원본 \`KOEI.COM\` 파일 raw \`0x2AC\`에 **\`C1 EB 04\` = 80186 계열 \`SHR BX,4\`** 명령이 존재한다. 순수 8086 코어는 이를 지원하지 않으므로 기존 strict 8086 모드를 유지하는 \`enable80186Shifts:true\` 옵션을 추가했다. \`C0/C1\` immediate shift/rotate는 지원 근거가 생긴 범위만 게이트를 열고, count>31 및 다른 80186 명령은 무조건 실패한다. 비활성화 상태에서는 여전히 \`unsupported 8086 opcode\`. 구조적 원본 바이트 근거는 80186 opcode이지만 **원작이 어떤 CPU/BIOS 환경에서 성공적으로 실행됐는지까지 증명하지는 않는다**.
+- 다음 진전: **23 명령어 실행** 뒤 KOEI의 \`INT 21h AH=25h, AL=24h\` 인터럽트 벡터 쓰기를 확인. \`web/realmode-8086.js\`는 게스트가 실제 전달한 \`DS:DX\` 대상만 IVT에 설치·교체하고, \`web/dos-int21.js\`는 DOS AH25/AH35를 지원한다. AH35는 현재 메모리에서 **명시적으로 알려진 벡터만** \`ES:BX\`로 반환한다. 비어 있는 DOS IVT 값을 원작 값인 것처럼 \`0000:0000\` 또는 에뮬레이터 함수로 만드는 것은 금지한다.
+- 현재 원본 바이트 probe는 **26 명령어 실행 후** \`INT 21h AX=3565h\` (DOS 인터럽트 벡터 \`65h\` 조회)에서 정지한다. 실제 원본 DOS의 시작 시점 INT65h 벡터 내용·관련 드라이버 설치 순서는 확보되지 않았으므로 게이트는 **\`unknown initial DOS interrupt vector: fail closed\`**, child 실행 건수 0으로 유지한다. 이 수치는 진전된 원본 바이트 실행 경계이지 기동 완료나 게임/음악 재현 성공이 아니다.
+- \`tests/bios-int10.test.mjs\`, \`tests/realmode-80186-koei-shift.test.mjs\`, \`tests/dos-int21-vectors.test.mjs\`는 합성 CPU·DOS 장치 의미 검증이며 필수 \`UW2 Web Fidelity Static Gate\`에 포함했다. \`tests/p3-koei-original-probe.test.mjs\`는 N100의 소유 원본을 로컬에서만 읽어 26단계 및 미해결 INT65h를 검증(**PASS**), CI 자산 없는 환경에서는 강제 실행하지 않는다. GitHub Actions 원본 자산 없는 합성 CI의 검증 SHA \`7df53e29861d06ef8625002eda2a2780738ce658\`, \`synthetic-static\` **SUCCESS**, Actions run \`41156164486\`. 기존 8086 레거시 오류 메시지 테스트를 잠시 위반했던 CI 회귀는 \`08c4657b3b925961c26e9697756ba7c3fb11a46a\`에서 복구, exact-SHA CI PASS.
+- **다음 행동**: 동작이 검증된 DOS/BIOS 참조 환경에서 프로세스 생성 직전 INT65h 벡터·드라이버 설치 순서 및 KOEI의 PSP/환경/할당 상태를 채집해 명시적 입력 스냅샷으로 넣는다. 그 전에는 임의 벡터를 삽입해 OPEN/MAIN이 성공했다고 보이게 만들지 않는다. 원본 KOEI 구동 후에도 OPEN·MAIN·END, VGA/OPL/키보드, 세이브 및 게임 플레이까지 단계별 실제 참조 트레이스와 동일성을 검증해야 한다.
 
 ## 3. 실행 순서와 완료 게이트
 | 단계 | 실제 수행 | 필수 GitHub 산출물 | PASS 게이트 |

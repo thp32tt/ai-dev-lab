@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 DOS JFT DUP/FORCEDUP per-PSP shared SFT source integration (2026-11-01 KST)
+
+- **Independent material implementation:** `thp32tt/ai-dev-lab@uw2-web-port` implements read-only DOS INT 21h AH=45h duplicate and AH=46h force duplicate in the existing per-PSP JFT adapter. Source commit `a49db79d00116d504ad5f908781d9194595c844d`; exact-SHA corrected regression commit `1754c2e81366cbd2080425b6b8cca5d1ce7ee5d4`. Shared original-file SFT cursor persists across duplicated handles and explicitly inherited child PSP tables; replacing a destination handle does not mutate the parent's JFT and invalid/unknown device handle behavior fails closed.
+- **Verified at exact SHA:** UW2 Web Fidelity Static Gate GitHub Actions `synthetic-static` run `41215554965` **SUCCESS** at `1754c2e81366cbd2080425b6b8cca5d1ce7ee5d4`, including `dos-file-duplication.test.mjs` PASS, syntax/remaining mandatory synthetic gates PASS. The initial same-task source SHA CI failure was due to an event observer returning a non-undefined status and was corrected. Documentation-only `516207c020a59501559f3f00d31acef62a24de3b` adds no score. Original Korean DOS JFT/PSP reference, native game execution, browser display/audio/play and full-game equivalence remain **UNTESTED/HOLD**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2285 + independent original-file DOS duplication implementation and exact-SHA CI +1 = 2286.** AI 1 separately tracked; same task retry, initial failure, documentation or revalidation +0.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 OutRun R26 no-mono-shadow performance test source and Win32 binary (2026-11-01 KST)
 
 - **Independent new source capability:** On `thp32tt/OutRun2006Tweaks@test/r26-no-mono-shadow-20261101`, implementation `41645e4439b7fd91fc38188f490c49a918d6d7e7` eliminates the third center-mono backbuffer Draw and Clear for normal VR stereo frames. R7 left/right eye drawing remains intact; incomplete stereo frames are not republished into the host's last-good projection. Menu/non-failed mono fallback remains eligible; gap/mono seeding is explicitly invalid so the old shadow cannot be restored. New R9 counters: elidedDraws, elidedClears, heldFrames. No AA, reflection, render-scale or filter reductions.

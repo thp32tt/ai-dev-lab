@@ -61,7 +61,7 @@ for(const [device,index,value] of [
 assert.throws(()=>noGc6.observeNativeByte({physical:0xa0000,value:7}),/GC06 graphics A000/);
 const rejected=make();mode(rejected);
 rejected.noteIndexedRegister({device:'graphics-controller',index:8,value:0x7f});
-assert.throws(()=>rejected.observeNativeByte({physical:0xa0000,value:1}),/exact observed/);
+assert.throws(()=>rejected.observeNativeByte({physical:0xa0000,value:1}),/verified latch/);
 assert.equal(rejected.readPixelIndex(0,0),null);
 const budget=createOriginalVgaMode12PlaneWitness({maxObservedWrites:1});mode(budget);
 budget.observeNativeByte({physical:0xa0000,value:0});

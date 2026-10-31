@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 8086 STI/SS interrupt-inhibit core integration (2026-10-31 KST)
+
+- **Independent new implementation:** `thp32tt/ai-dev-lab@uw2-web-port` source SHA `beb907d4c64f8c2b4186935d78491003fa327cb2` implements original 8086 one-instruction maskable IRQ inhibition after STI, MOV SS, POP SS in the shared guest CPU. `guest-irq-boundary.js` respects the inhibited external IRQ admission without inventing PIC pending edge, and DOS EXEC `dos-com-child-runner.js` isolates/restores parent inhibit state. Existing IF=0, INT, IVT behaviors remain independent. This is a real CPU core improvement, not a docs/test-only scoreboard event.
+- **Verification:** exact-SHA GitHub Actions `UW2 Web Fidelity Static Gate` run `41197383631` synthetic-static SUCCESS; synthetic tests exercise STI, consecutive STI, POP SS/MOV SS, interrupt IVT entry and DOS child isolation. Sole master plan docs-only continuation commit `bd709238f2e75b43df21a84a02d15b88c54d513d` +0. Native original Korean DOS IRQ/timing comparison and full browser game parity UNTESTED; no original assets committed.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2267 + independent 8086 IRQ inhibition/EXEC isolation source implementation +1 = 2268.** AI1 scored separately; retries, CI rechecks, plan updates and repeat reports +0.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 DX9Ex main-menu/restart theater + grass-particle source-canvas repair (2026-10-31 KST)
 
 - **Independent new material implementation:** `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` source SHA `cb449af9c9505cf933cb029bdaae32e563d32b68` repairs two related Quest-visible logical-vs-physical canvas failures without reopening already-correct ESC/rival/rank/+TIME/GOAL ownership. For the canonical 0x418CF0 grass/gravel path, the existing PC `FixParticleRendering` halves the original full-resolution screen values; VR now correspondingly uses half of the live 1920x1080 screen variables as the actual 960x540 projected source centre instead of misreading 1920x1080 as the centre and mapping particles into the XR upper-left quadrant. For theater/front-end states, the host now crops the verified top-left 1920x1080 logical 2D canvas out of a portrait XR physical source before LOCAL-fixed projection, limited to title/menu/continue/gameover/game-exit/reset/try-again states; Ferrari selector/gameplay remain excluded. The PC mirror aspect fit now uses the actual D3D9Ex BackBuffer dimensions and the existing black backdrop covers monitor remainder instead of exposing desktop.

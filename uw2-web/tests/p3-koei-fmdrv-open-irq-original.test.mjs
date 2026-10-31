@@ -18,6 +18,7 @@ import {deliverExternalMaskableIrq} from '../web/guest-irq-boundary.js';
 import {prepareOriginalOpgraphArchive} from '../web/opgraph-original-archive.js';
 import {KOREAN_OPGRAPH_JS_DECODE_EVIDENCE as graphEvidence} from '../web/opgraph-korean-evidence.js';
 import {runStagedDosComChild,captureDosCpuFrame} from '../web/dos-com-child-runner.js';
+import {assertDisjointGuestPhysicalRegions} from '../web/guest-staging-physical-map.js';
 
 // PRIVATE ORIGINAL KOEI + FMDRV bytes. ALL DOS/BIOS/OPL initial values below
 // are explicitly SYNTHETIC. No original DOS reference, child OPEN/MAIN run,
@@ -48,6 +49,19 @@ const sha=x=>createHash('sha256').update(x).digest('hex');
 const koeiSha='81968de0d3ced479d77d3b9d60c571bde74f850948f6fc6d02cebea2557a1d36';
 const fmdrvSha='0e85962755e2b96ed72a133ba9c84340d754abb18c9af20b76ddd5a96b79677b';
 const openSha='f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65';
+const openMzHeader=inspectMzForLoad(open);
+const syntheticIvtStubs=[[0x66,0xe000],[0x65,0xe010],[0x08,0xe020],[0x00,0xe030],[0x67,0xe040],[0x33,0xe050]];
+const stagingProof=assertDisjointGuestPhysicalRegions([
+ {label:'KOEI PSP',segment:0x200,length:256},
+ {label:'KOEI original COM',segment:0x200,offset:256,length:koei.length},
+ {label:'FMDRV PSP',segment:0x400,length:256},
+ {label:'FMDRV original COM',segment:0x400,offset:256,length:fmdrv.length},
+ {label:'OPEN PSP',segment:0x600,length:256},
+ {label:'OPEN original MZ image',segment:0x610,length:openMzHeader.imageBytes},
+ ...syntheticIvtStubs.map(([number,segment])=>({
+  label:'SYNTHETIC IVT handler '+number.toString(16),segment,length:1
+ }))
+]);
 const cpu=new RealMode8086(new Uint8Array(0x100000),{enable80186Shifts:true});
 const pspKo=new Uint8Array(256),pspFm=new Uint8Array(256),pspOpen=new Uint8Array(256);
 pspKo.set([0xcd,0x20]);pspKo.set([0x50,0x02],0x2c);
@@ -59,13 +73,12 @@ await loadPinnedDosPsp(cpu,pspOpen,{pspSegment:0x600,expectedSha256:sha(pspOpen)
 // only after preflight is the parent's KOEI.COM entry restored.
 await loadVerifiedCom(cpu,fmdrv,{pspSegment:0x400,allocationParagraphs:0x1000,
  initialSP:0xfffe,expectedSha256:fmdrvSha});
-const openMzHeader=inspectMzForLoad(open);
 const openMz=await loadVerifiedMz(cpu,open,{pspSegment:0x600,loadSegment:0x610,
  allocationParagraphs:7000,expectedSha256:openSha});
 await loadVerifiedCom(cpu,koei,{pspSegment:0x200,allocationParagraphs:0x1000,
  initialSP:0xfffe,expectedSha256:koeiSha});
 const ivt=new Uint8Array(1024);
-for(const [n,seg] of [[0x66,0xe000],[0x65,0xe010],[0x08,0xe020],[0x00,0xe030],[0x67,0xe040],[0x33,0xe050]]){
+for(const [n,seg] of syntheticIvtStubs){
  ivt[n*4]=0;ivt[n*4+1]=0;
  ivt[n*4+2]=seg&255;ivt[n*4+3]=seg>>>8;
  cpu.load(Uint8Array.of(0xcf),seg,0); // synthetic original handler IRET
@@ -312,6 +325,8 @@ const originalVgaFrame=originalVgaPlaneState.fullyCoveredBytes===38400?
   vgaPlaneWitness.captureCompleteIndexedFrame():null;
 const result={
  original:{koeiSha:sha(koei),fmdrvSha:sha(fmdrv),openSha:sha(open)},
+ stagingRegions:stagingProof.regions.length,
+ syntheticIvtStubs
  openStarted,openGuestFault,openMz,
  koeiSteps:steps,fmdrvChild:fmdrvRun,
  observedChildCalls:observed.calls,initialDosEnvironment:'SYNTHETIC',

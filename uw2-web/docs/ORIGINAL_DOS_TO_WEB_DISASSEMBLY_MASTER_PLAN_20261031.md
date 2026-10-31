@@ -97,6 +97,22 @@
 - private artifact: \`rea-analysis/uncharted-waters-2/p1-chunks/\` (N100에만 저장, 체크포인트 자체는 GitHub에 푸시하지 않음). GitHub exact-SHA \`d234d99a4a40313f6de90490aa8f10895831e1d2\` \`UW2 Web Fidelity Static Gate\` synthetic-static 작업 **SUCCESS**, Actions run \`41153640239\` (이는 Java/Ghidra 원본 분석 자체를 Actions에서 재현한 것이 아니며 N100의 read-only 원본 분석과 분리 판정). 원본 DOS 실행/플레이·화면/오디오·항구/항해/교역/전투/세이브·브라우저 일치 여부 **UNTESTED / HOLD**.
 - 다음 연속 작업: KOEI.COM·FMDRV.COM은 DOS COM 메모리 매핑/실제 실행 진입점이 달라 MZ exporter 재사용만으로 완료 처리하지 않는다. COM용 로더/원본 해시/세그먼트 주소 대응을 별도 증명하고 스캔한다. 이후 4개 MZ의 미관측 데이터/코드 경계 및 간접 호출 4,985건을 제어흐름·원본 스냅샷과 대조하고, 원본 DOS 런타임 trace를 확보한 뒤에만 verified 영역과 P3 실행 블록을 올린다.
 
+
+### I. 원본 COM 재배치 없는 PSP+0x100 정적 분석 연결 (2026-10-31 KST)
+
+- \`KOEI.COM\`·\`FMDRV.COM\` 원본 파일을 SHA-256 및 정확한 길이로 선행 검증한 후, 네이티브 Ghidra 12.1.4 \`BinaryLoader\`를 사용해 파일 시작을 분석 선형 주소 \`0x10100\`에 배치했다. COM 파일에는 MZ 헤더/entry/relocation 테이블이 없으므로 \`0x10000\` MZ 주소 대응을 사용하지 않는다. 재생 가능한 PC/DOS PSP 실행 상태는 아직 증명되지 않았다.
+- 자동 로더는 엔트리 명령을 발견하지 못하여 처음에 후보 수 0으로 나왔고 이를 **분석 실패(누락)**로 취급했다. \`Uw2GhidraInstructionChunk.java\`는 **COM 형식에 한해서만** 실제 COM 진입점 PSP:0100h를 확인하고 임시 Ghidra 프로젝트에서 entry disassemble/createFunction을 수행하도록 수정했다. 원본 바이트는 변경하지 않는다. 이를 통해 실제 원본 정적 코드 후보를 얻었지만 스스로 코드/함수를 검증 완료로 승격하지 않는다.
+- 신규 소스: \`tools/run-ghidra-p1-com.py\`, \`tools/p1-ghidra-com-import.mjs\`, 회귀 \`tests/p1-ghidra-com-import.test.mjs\`. importer는 모듈별 원본 SHA를 다시 계산한 뒤 Ghidra linear address에서 \`0x10100\`을 빼 원본 파일 오프셋으로 대응시키며, 잘못된 엔트리·겹친 바이트·무허가 타깃·원본 불일치를 거부한다. 결과에서 원본 바이트/어셈블리/ROM을 공개하지 않고 집계치만 출력한다.
+- 실제 원본 읽기 전용 정적 결과:
+
+  | 원본 COM | 원본 파일 바이트 | 명령어 후보 | 함수 시작점 후보 | 후보 바이트 | 미관측 바이트 | 정적 흐름 미해결 |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+  | KOEI.COM | 776 | 141 | 2 | 321 | 455 | 20 |
+  | FMDRV.COM | 5,162 | 339 | 2 | 754 | 4,408 | 9 |
+
+- 모든 COM 수치는 **정적 Ghidra가 진입점부터 찾은 후보**이며 \`verifiedCodeBytes=0\`, \`verifiedFunctionCount=0\`. KOEI의 기존 REA 함수 후보 4건과 이번 Ghidra 시작점 후보 2건은 자동 함수 인식 범위가 다르므로 동일 함수 수로 비교하지 않는다. FMDRV의 실제 INT 66h/OPL 레지스터 동작, KOEI 실제 OPEN→MAIN→END child 종료, DOS PSP/메모리 할당 및 원본 플레이 실행은 여전히 **UNTESTED / HOLD**.
+- 다음 작업: 근거 있는 원본 KOEI.COM near/far call 관계 및 FMDRV 장치 경계 원본 코드 후보를 상세 분류하고, 6개 실행 모듈의 각 미관측 바이트를 데이터/미분석 코드/세그먼트·overlay로 구분한다. DOS 참조 실행 트레이스가 확보되어야 JavaScript 공통 8086 실행 코어/원본 웹 실행의 검증 지표를 올릴 수 있다.
+
 ## 3. 실행 순서와 완료 게이트
 | 단계 | 실제 수행 | 필수 GitHub 산출물 | PASS 게이트 |
 | --- | --- | --- | --- |

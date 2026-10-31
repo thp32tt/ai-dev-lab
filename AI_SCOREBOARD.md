@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 authentic large-raster native GPU source sampling (CONVERSION-DX11-01195; 2026-11-01 KST)
+
+- **Independent game-renderer C++ source integration (+1):** `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` material SHA `7cc235370130c698da8ffec4850b0dbffcb85ebd` extends the opt-in native D3D11 Draw PRE/POST source-capture path from fixed center/corner-only samples to a bounded sweep of real viewport/scissor raster cells, preserving two independent source readbacks and refusing an overlapping secondary GPU region. Changes `native_game_raw_dual_tile.hpp`, live `native_game_raw_visual_diagnostic.hpp` invocation and `native_raw_dual_tile_test.cpp`. Static regression verifies 3440x1440 race-source 35-cell 512x288 sweep, scissored menu/HUD raster, 512x288 single-cell fallback and 1024x288 true disjoint pair; this is a new real source-path behavior, not a status/test-only change.
+- **Exact-SHA 5/5 mandatory Actions SUCCESS:** DX11 Fast Structural Checks `41253020268`, Backend Conversion Gate `41253020398`, Build `41253024883`, OpenXR VR architecture `41253020288`, OutRun EXE HUD Inspector CI `41253024884`. Bookkeeping-only C6 source-branch commit `57078f6e74c13f176174d47606502c1024a38730` (+0), record `docs/automation/runs/CONVERSION-DX11-01195.json`.
+- **Proof boundary:** Source/CI verified only. Partial opt-in diagnostic native GPU capture does NOT establish native full menu/car/race frame, pixel parity, playable input, Quest3/VDXR stereo or real HMD test. `RUNTIME_VALIDATION=UNTESTED`; no new DXVK/DX9Ex work. Rechecks, CI duplicates, C6, retry/rollover and same-feature repairs receive +0. AI1 stays separate.
+- **AI 2 cumulative: previous confirmed 2335 + independently verified DX11 raster sampling (+1) = 2336.**
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 explicit browser source to original DOS child IRQ0/PIC integration (2026-11-01 KST)
 
 - **One new independently verified native browser bridge functionality (+1):** source `thp32tt/ai-dev-lab@uw2-web-port` material commit `06e4240d34f13c7947e6b09ec48cb22d153189f5` wires caller-supplied explicit external IRQ0 records through `createBrowserDosChildBridge` into the already-owned native DOS child, optional exact guest CPU/port20 PIC witness, and bounded pending-IRQ queue. Provides host `enqueueExternalIrqEdge` without fabricating PIT ticks or automatic IRQs. New synthetic original-free browser event-target test covers two queued synthetic IRQ0s, original 8086-compatible STI shadow, actual native ISR `OUT 20h,AL`/IRET, BIOS INT16 AH00 wait and trusted keyboard resume, DOS termination, restored parent CPU frame and attached-listener cleanup; wrong PIC port owner fails closed without leaked listener. Full UW2 static synthetic Actions `41252058582` SUCCESS at exact implementation SHA. Development plan bookkeeping commit `58a1aadeae48c178564cc03666c0431d065fe820` (+0).

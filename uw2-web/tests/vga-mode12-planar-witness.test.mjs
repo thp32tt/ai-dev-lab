@@ -20,9 +20,9 @@ assert.equal(w.readPixelIndex(15,0),10);
 assert.equal(w.readPixelIndex(16,0),null);
 assert.deepEqual(w.getState(),{
  width:640,height:480,strideBytes:80,observedWrites:2,
- visibleWrites:2,fullyCoveredBytes:2,visibleBytes:38400,configKnown:true,
+ visibleWrites:2,fullyCoveredBytes:2,mode0Writes:0,mode2Writes:2,visibleBytes:38400,configKnown:true,
  graphicsMode:2,sequencerMapMask:15,
- fidelity:'ORIGINAL_CPU_WRITE_MODE2_VGA_PLANES_ONLY__NO_BIOS_OR_FRAME_PARITY'
+ fidelity:'ORIGINAL_CPU_WRITE_MODE0_MODE2_VGA_PLANES_ONLY__NO_BIOS_OR_FRAME_PARITY'
 });
 const masks=make();mode(masks,1);
 masks.observeNativeByte({physical:0xa0000,value:1});
@@ -46,6 +46,27 @@ assert.equal(pixels.length,640*480);
 assert.deepEqual(pixels.slice(0,9),Uint8Array.of(15,15,15,15,15,15,15,15,0));
 assert.equal(pixels[640*479+639],0);
 assert.equal(frame.getState().fullyCoveredBytes,38400);
+const mode0=make();mode(mode0,15);
+mode0.observeNativeByte({physical:0xa0000,value:0});
+mode0.noteIndexedRegister({device:'graphics-controller',index:1,value:0});
+mode0.noteIndexedRegister({device:'graphics-controller',index:5,value:0});
+mode0.noteIndexedRegister({device:'sequencer',index:2,value:1});
+mode0.observeNativeByte({physical:0xa0000,value:0x80});
+assert.equal(mode0.readPixelIndex(0,0),1);
+assert.equal(mode0.readPixelIndex(1,0),0);
+assert.equal(mode0.getState().mode0Writes,1);
+assert.equal(mode0.getState().mode2Writes,1);
+const unknownMode0=make();mode(unknownMode0);
+unknownMode0.noteIndexedRegister({device:'graphics-controller',index:5,value:0});
+assert.throws(()=>unknownMode0.observeNativeByte({physical:0xa0000,value:0x80}),/requires exact observed/);
+unknownMode0.noteIndexedRegister({device:'graphics-controller',index:1,value:1});
+assert.throws(()=>unknownMode0.observeNativeByte({physical:0xa0000,value:0x80}),/requires exact observed/);
+const literal=make();mode(literal);
+literal.noteIndexedRegister({device:'graphics-controller',index:1,value:0});
+literal.noteIndexedRegister({device:'graphics-controller',index:5,value:0});
+literal.noteIndexedRegister({device:'sequencer',index:2,value:1});
+literal.observeNativeByte({physical:0xa0000,value:0xff});
+assert.equal(literal.readPixelIndex(0,0),null); // planes 1..3 never initialized
 assert.throws(()=>frame.readPixelIndex(640,0),/outside 640x480/);
 assert.throws(()=>frame.readPixelIndex(0,480),/outside 640x480/);
 console.log('UW2 original VGA write-mode2 exact 4-plane 640x480 bitplane color/witness coverage contract: PASS');

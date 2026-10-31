@@ -62,7 +62,7 @@ const withExternalPsp=await probeOriginalKoeiWithSyntheticDos(original,{
   }}
 });
 assert.equal(withExternalPsp.initialPsp.environmentSegment,0x250);
-assert.deepEqual(syntheticModeSets,[0x12]);
+assert.deepEqual(syntheticModeSets,[0x12,0x03]); // original exit restores captured BIOS mode
 assert.deepEqual(syntheticFrees,[0x250]);
 assert.deepEqual(syntheticResizes,[{segment:0x200,paragraphs:0x7a}]);
 assert.ok(withExternalPsp.steps>withExternalVideo.steps);

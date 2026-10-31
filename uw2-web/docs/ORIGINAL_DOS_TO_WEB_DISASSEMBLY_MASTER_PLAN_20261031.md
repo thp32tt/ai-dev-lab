@@ -265,3 +265,11 @@
 - `web/dos-com-child-runner.js`: 자식 DOS CPU frame 시작 시 shadow를 초기화하고 종료 및 실패 시에도 부모 CPU의 shadow를 복원. 원본 기계어 저장 영역은 변경하지 않는다.
 - `tests/guest-irq-boundary.test.mjs`에서 STI 1-instruction 지연, 연속 STI, POP SS, MOV SS, DOS EXEC 독립성, 실제 guest IVT 진입을 합성 fixture로 확인. source/validation SHA `beb907d4c64f8c2b4186935d78491003fa327cb2`, GitHub Actions `UW2 Web Fidelity Static Gate` run `41197383631` **SUCCESS**. 이것은 **합성 CPU 회귀**이며, 사용자 한국어판 원본 OPEN/MAIN 실행/PIT 실시간 인터럽트·브라우저 원작 영상·오디오의 실제 DOS 일치 검증은 **UNTESTED**.
 - 다음 작업은 원본 KOEI→FMDRV→OPEN의 기존 소유 원본 정적·동적 경로에서, 외부 IRQ 주입 시점별 CS:IP/IF/SS/ISR 전이 차이를 기록하고 실제 DOS PIT/PIC 기준 trace와 비교하는 것. 이후 OPGRAPH 나머지 12파트의 native decoder parity, 완전한 VGA 화면, OPEN 종료→MAIN 호출, 전체 항구/해상/교역/전투/세이브 순서로 진행하며 임의 장면·음악으로 대체하지 않는다.
+
+## 10. 2026-11-01 P3 반복 문자열 명령 중간 인터럽트 가능 실행 경계
+
+- 원본 한국어판 OPEN/FMDRV 초기 실행에서 합성 고정 128/2048명령 간격 IRQ 주입만으로는 **8086의 REP 반복 문자열 명령 내부** 인터럽트 경계를 표현하지 못했다. 기존 `RealMode8086.step()`은 REP 전체를 호스트 한 단계에 실행했다. 이는 의미적 문자열 복사 결과가 같더라도 게스트 ISR 진입 가능한 중간 CS:IP/CX/DS/ES/SI/DI 시점을 놓치는 결함이다.
+- 실제 구현 SHA `4b7b606449f7281e2777faf8bb287dde5cfab811`: 8086 CPU `interruptibleRepStrings:true` 명시적 옵션을 추가했다. REP MOVS/CMPS/STOS/LODS/SCAS를 각 반복 회차 뒤 외부 IRQ 경계에서 관측 가능하게 하고, 남은 CX>0이고 조건이 계속 맞으면 명령 시작 **전체 접두어 주소**로 IP를 되감아 ISR 후 IRET에서 수정된 CX/SI/DI/FLAGS로 재개한다. REPE/REPNE 비교 중단, CF/ZF, DF 역방향, 16-bit 오프셋 wrap, 레지스터와 소스 세그먼트 오버라이드 의미를 유지한다.
+- 외부 maskable IRQ는 기존 IVT/IF 검증을 그대로 거친다. 앞선 `STI/MOV SS/POP SS`로 **다음 전체 명령**을 보호할 때는 REP 내부 회차를 쪼개지 않고 실행해 후속 명령 전체의 인터럽트 억제를 유지한다. 새로운 PIT/PIC IRQ 시계/대기 큐·우선순위는 절대 꾸며내지 않는다.
+- 공개 원본 미포함 CI 게이트에 `tests/realmode-8086-rep-interruptible.test.mjs` 포함: 합성 REP/IRQ/IRET 실제 게스트 IVT 진입·prefix resume, MOVSW/SCASB/CMPSB/STOSW/LODSW, STI·SS 억제, CX=0, 레거시 기본 atomic 모드 비교. GitHub `UW2 Web Fidelity Static Gate` run `41213070497`, source SHA `4b7b606449f7281e2777faf8bb287dde5cfab811`, synthetic-static **SUCCESS**.
+- 원본 실기 플래그는 **기본 OFF**: 기존 OPEN 13M-step 구간/OPGRAPH part0·13 해제 SHA·VGA 원본 CPU 검증 시점 수치를 갑자기 바꾸지 않는다. 다음에는 소유 원본 입력을 사용한 별도 `interruptibleRepStrings:true` 고정 조건에서 guest original OPEN/FMDRV의 REP 내부 중단·재개 및 초기 화면/파일 해제 출력 차이를 **경량 구간**부터 대조하고, 가능할 때 실제 DOS/PIT/PIC 참조 트레이스와 검증한다. 이 새로운 모드의 ORIGINAL_DOS_RUNTIME / FULL_GAME / BROWSER_PARITY는 아직 **UNTESTED**다.

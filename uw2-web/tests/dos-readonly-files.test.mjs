@@ -28,12 +28,12 @@ invoke(0x3f);
 assert.equal(c.get16('AX'),4);
 assert.equal(c.read8(0x300,0xfffc),1);
 assert.equal(c.read8(0x300,0xffff),4);
-c.set16('BX',handle);c.set16('CX',0);c.set16('DX',0x60);
+c.set16('BX',handle);c.set16('CX',2);c.set16('DX',0x60);
 invoke(0x3f);
 assert.equal(c.get16('AX'),2);
 assert.equal(c.read8(0x300,0x60),5);
 assert.equal(c.read8(0x300,0x61),6);
-c.set16('BX',handle);c.set16('CX',0);c.set16('DX',0x60);
+c.set16('BX',handle);c.set16('CX',2);c.set16('DX',0x60);
 invoke(0x3f);
 assert.equal(c.get16('AX'),0); // EOF
 c.set16('BX',handle);c.set16('CX',0xffff);c.set16('DX',0xfffe);

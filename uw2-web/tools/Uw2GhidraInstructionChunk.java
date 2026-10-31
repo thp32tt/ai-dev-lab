@@ -74,6 +74,21 @@ public class Uw2GhidraInstructionChunk extends GhidraScript {
         if (!Files.isDirectory(destination.getParent()))
             throw new IOException("pre-existing private metadata output directory required");
 
+        // A raw DOS .COM has no MZ entry header. Only its pinned PSP+0100h
+        // entry is established by the COM load contract. The generic binary
+        // loader otherwise has no entry point and yields 0 decoded instructions.
+        if (module.endsWith(".COM")) {
+            Address entry = currentProgram.getAddressFactory()
+                .getDefaultAddressSpace().getAddress(loadBase);
+            if (!currentProgram.getMemory().contains(entry))
+                throw new IOException("original DOS COM load base missing from Ghidra memory");
+            if (currentProgram.getListing().getInstructionAt(entry) == null) {
+                if (!disassemble(entry))
+                    throw new IOException("Ghidra did not decode pinned COM entry");
+                createFunction(entry, null);
+            }
+        }
+
         // Temporary output is atomic: failed/cancelled analysis never becomes a valid chunk.
         Path temporary = Files.createTempFile(destination.getParent(), ".uw2-ghidra-", ".part");
         boolean completed = false;

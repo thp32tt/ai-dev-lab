@@ -70,8 +70,14 @@ export function installVgaDacWriteRecorder(cpu,{
       throw new Error('VGA DAC RGB6 sample requires completed, observed 6-bit palette triplet: fail closed');
     return Object.freeze({red:color[0],green:color[1],blue:color[2]});
   };
+  const invalidateAfterBiosModeSet=({mode}={})=>{
+    if(!Number.isInteger(mode)||mode<0||mode>255)
+      throw new RangeError('BIOS DAC reset requires uint8 video mode');
+    known.clear();index=null;part=0;raw.length=0;
+    readIndex=null;readPart=0;
+  };
   return Object.freeze({writtenColors:()=>count,knownReadCount:()=>reads,
-    sampleKnownColor6,
+    sampleKnownColor6,invalidateAfterBiosModeSet,
     fidelity:allowKnownReadback?
       'RAW_DAC_KNOWN_COMPLETE_6BIT_IN_STREAM_ONLY__ORIGINAL_DOS_UNTESTED':
       'ORIGINAL_RAW_DAC_BYTE_TRIPLETS_ONLY__DISPLAY_OUTPUT_UNTESTED'});

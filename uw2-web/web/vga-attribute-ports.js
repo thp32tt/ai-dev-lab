@@ -84,8 +84,12 @@ export function installOriginalVgaAttributeController(cpu,{
     const low=mode&0x80?(entry&15)|((colorSelect&3)<<4):entry;
     return (low|((colorSelect&12)<<4))&255;
   };
+  const invalidateAfterBiosModeSet=({mode}={})=>{
+    if(!isByte(mode))throw new RangeError('BIOS mode reset requires uint8 mode');
+    regs.clear();selected=null;displayEnabled=null;phase='unknown';
+  };
   return Object.freeze({
-    noteInputStatusRead,getGroundedDacIndex,
+    noteInputStatusRead,getGroundedDacIndex,invalidateAfterBiosModeSet,
     writtenCount:()=>writes,knownReadCount:()=>reads,
     getState:()=>Object.freeze({phase,selected,displayEnabled,writes,reads,
       knownRegisterCount:regs.size}),

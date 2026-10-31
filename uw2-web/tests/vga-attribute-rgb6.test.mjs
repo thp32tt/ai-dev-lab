@@ -91,4 +91,19 @@ const unknown=installOriginalVgaAttributeController(untouched);
 assert.throws(()=>unknown.getGroundedDacIndex(5),/display enable/);
 assert.throws(()=>untouched.readIOPort(0x3c1,8),/opt-in/);
 assert.throws(()=>installOriginalVgaAttributeController(untouched),/already owned/);
+// No stale palette/display state after an externally accepted BIOS AH00.
+attr.invalidateAfterBiosModeSet({mode:0x12});
+dac.invalidateAfterBiosModeSet({mode:0x12});
+assert.throws(()=>attr.getGroundedDacIndex(5),/display enable/);
+assert.throws(()=>dac.sampleKnownColor6(0x12),/observed/);
+assert.throws(()=>cpu.writeIOPort(0x3c0,8,5),/flip-flop unknown/);
+assert.throws(()=>cpu.readIOPort(0x3c1,8),/witnessed register/);
+assert.throws(()=>attr.invalidateAfterBiosModeSet({mode:-1}),/uint8/);
+assert.throws(()=>dac.invalidateAfterBiosModeSet({mode:256}),/uint8/);
+set(0x10,1);set(0x12,15);set(0x14,0);set(5,0x12);
+cpu.readIOPort(0x3da,8);cpu.writeIOPort(0x3c0,8,0x25);
+writeDac(0x12,4,8,12);
+assert.deepEqual(dac.sampleKnownColor6(attr.getGroundedDacIndex(5)),{
+ red:4,green:8,blue:12
+});
 console.log('UW2 witnessed 8086 3C0 flip-flop, attribute-to-DAC Mode12 palette and original RGB6 rectangular evidence: PASS (synthetic)');

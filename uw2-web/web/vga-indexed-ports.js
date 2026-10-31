@@ -79,7 +79,14 @@ export function installVgaIndexedWriteRecorder(cpu,{
     }
     cpu.registerIOPort(port+1,dataHandlers);
   }
+  const invalidateAfterBiosModeSet=({mode}={})=>{
+    if(!Number.isInteger(mode)||mode<0||mode>255)
+      throw new RangeError('BIOS indexed VGA reset requires uint8 video mode');
+    last.clear();
+    for(const regs of known.values())regs.clear();
+  };
   return Object.freeze({writtenCount:()=>writes,knownReadCount:()=>reads,
+    invalidateAfterBiosModeSet,
     fidelity:allowKnownReadback?
       'VGA_GC_SEQ_KNOWN_WRITE_READBACK_ONLY__ORIGINAL_DOS_UNTESTED':
       'RAW_VGA_INDEXED_WRITES_ONLY__VGA_DISPLAY_STATE_UNTESTED'});

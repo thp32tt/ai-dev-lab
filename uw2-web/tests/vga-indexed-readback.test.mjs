@@ -49,4 +49,17 @@ const absent=new RealMode8086();
 installVgaIndexedWriteRecorder(absent,{allowKnownReadback:true,onWrite:()=>{}});
 absent.writeIOPort(0x3ce,16,0x3333);
 assert.throws(()=>absent.readIOPort(0x3cf,8),/previously written/);
+const resetCpu=new RealMode8086();
+const indexedReset=installVgaIndexedWriteRecorder(resetCpu,{
+ allowKnownReadback:true,onWrite:()=>{}
+});
+resetCpu.writeIOPort(0x3ce,16,0x0506);
+assert.equal(resetCpu.readIOPort(0x3cf,8),5);
+indexedReset.invalidateAfterBiosModeSet({mode:0x12});
+assert.throws(()=>resetCpu.readIOPort(0x3cf,8),/previously written/);
+resetCpu.writeIOPort(0x3ce,8,6);
+assert.throws(()=>resetCpu.readIOPort(0x3cf,8),/previously written/);
+resetCpu.writeIOPort(0x3cf,8,1);
+assert.equal(resetCpu.readIOPort(0x3cf,8),1);
+assert.throws(()=>indexedReset.invalidateAfterBiosModeSet({mode:-1}),/uint8/);
 console.log('UW2 original VGA GC/SEQ indexed register known-write IN readback: PASS (synthetic)');

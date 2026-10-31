@@ -24,4 +24,21 @@ assert.match(injected.fidelity,/NOT_REFERENCE_BOOT/);
 console.log(JSON.stringify({steps:injected.steps,stopped:injected.stopped,
  services:injected.services,last:injected.recent.slice(-12),
  fidelity:injected.fidelity}));
+const resizeRequests=[];
+const withResize=await probeOriginalOpen(original,{
+ allocationParagraphs:3390,maxSteps:10000,
+ dosOptions:{
+   getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
+   resizeMemory:({segment,paragraphs})=>{
+      resizeRequests.push({segment,paragraphs});
+      return {resized:true}; // SYNTHETIC DOS MCB, not measured allocation
+   }
+ }
+});
+assert.ok(withResize.steps>injected.steps);
+assert.equal(resizeRequests.length,1);
+console.log(JSON.stringify({withSyntheticResizeSteps:withResize.steps,
+ resizeRequests,stopped:withResize.stopped,
+ services:withResize.services,trace:withResize.recent.slice(-10)}));
+
 console.log('UW2 original OPEN MZ execution past explicit synthetic DOS AH30 version: PASS (not DOS reference)');

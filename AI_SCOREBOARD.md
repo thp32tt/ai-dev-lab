@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 VGA 64KiB planar latch/readmode1 + optional indexed readback (2026-11-01 KST)
+
+- **Independent original-source hardware modeling #1 (+1):** `thp32tt/ai-dev-lab@uw2-web-port` VGA material SHA `13f40dd6fc02793c42680c90ecf91d9f0332dd00`, validation-bearing SHA `18457571878278bbbecb9802a932df165904c697`. Extend native A000 graphics plane evidence to 64KiB per plane while keeping only 38,400 bytes of 640x480 visible coverage. Add GC02/GC07 read-mode-1 comparison, CPU-read latch capture, source-witnessed write modes 0/1/2 with rotate/set-reset/ROP/mask and fail-closed unverified latches. Exact-SHA GitHub `UW2 Web Fidelity Static Gate` run `41223105827` **SUCCESS**; original DOS and browser screen parity UNTESTED.
+- **Independent original-source I/O interoperability #2 (+1):** same UW2 branch material SHA `e266824b2b614f1a1b036252041d14b0825ab405`, validation-bearing SHA `ca6c9d096d6b3b08a2b3fe27fc217bf31e7dee35`. Opt-in original 8086 VGA GC/Sequencer IN byte readback strictly limited to previously accepted device register writes; unknown registers/selectors, CRTC reads and unobserved power-on defaults fail closed, with separate read budget. Add independent native IN AL,DX and rejected-read synthetic tests; exact-SHA `UW2 Web Fidelity Static Gate` run `41223303062` **SUCCESS**. Existing master plan updated, no extra task/progress document.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2296 + two independently implemented and CI-validated hardware paths (+2) = 2298.** The intermediate CI assertion corrections and repeated readbacks are +0; AI 1 remains separate.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 DX9Ex Quest menu regression rollback + split sun/outer-flare pose repair (2026-11-01 KST)
 
 - **Distinct owner-HMD regression repair:** `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` exact material/validation SHA `ed3057b61e82ee09b4ffb008dd4facd868596001`, driven by owner bundle `DX9EX_LOG_R26_VISUAL_OWNER_REPAIR_AA2_TEST_20261101-015146.zip` and screenshots. The immediately prior `24a9d986` experiment applied a uniform 1.30 logical-to-XR game-matrix scale plus Y=642 px offset directly to each front-end sprite; runtime `VR TRACE FRONTEND VIRTUAL CANVAS` confirmed that transform and the owner observed title/menu content compressed into an upper strip with detached controls/black regions. The repair removes SYSTEM/START from that game-matrix owner and restores the pre-regression Sumo-FE transform from `9e26abe4`; SYSTEM/START/menu size adjustment stays host-side in the LOCAL OpenXR theater, with `MenuScale=0.75` also admitted for states 0x00/0x0D/0x20. Gameplay/HUD remain excluded.

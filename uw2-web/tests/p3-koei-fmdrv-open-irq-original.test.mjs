@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {RealMode8086} from '../web/realmode-8086.js';
+import {createGuestExecutionHotspotRecorder} from '../web/guest-execution-hotspots.js';
 import {loadVerifiedCom,loadVerifiedMz,inspectMzForLoad} from '../web/mz-loader.js';
 import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
@@ -152,7 +153,9 @@ const fmdrvChildFrame={
  AX:0,CX:0,DX:0,BX:0,SP:0xfffe,BP:0,SI:0,DI:0,
  CS:0x400,DS:0x400,ES:0x400,SS:0x400,IP:0x100,FLAGS:0x202
 };
-const originalLateHotspots=new Map();
+const originalLateHotspots=createGuestExecutionHotspotRecorder({
+  startStep:205000,sampleEvery:127,maxSites:4096,maxStates:8192,top:16
+});
 let lastLateSamples=[];
 const nativePart0Expected=pinnedOpgraph.getDecodedPart(0).bytes;
 const nativePartBytes=pinnedOpgraph.parts.map((_,index)=>pinnedOpgraph.getDecodedPart(index).bytes);
@@ -236,8 +239,7 @@ installDosInt21(cpu,{
           }
         }
         if(steps>=205000){
-          const key=cs.toString(16).padStart(4,'0')+':'+ip.toString(16).padStart(4,'0');
-          originalLateHotspots.set(key,(originalLateHotspots.get(key)||0)+1);
+          originalLateHotspots.observeInstruction({steps,cs,ip},guest);
           if(steps%4096===0&&lastLateSamples.length<32)
             lastLateSamples.push({steps,cs,ip,ax:guest.get16('AX'),flags:guest.get16('FLAGS')});
         }
@@ -449,7 +451,8 @@ const result={
  originalPitState:originalPitBus.getState(),
  originalOplState:originalOplBus.getState(),
  originalOplFirstWrites:observed.originalOplRegisters,
- originalLateHotspots:Array.from(originalLateHotspots.entries()).sort((a,b)=>b[1]-a[1]).slice(0,16),
+ originalLateHotspots:originalLateHotspots.summarize().topSites.map(x=>[x.address,x.visits]),
+ originalRegisterRepeatDiagnostics:originalLateHotspots.summarize(),
  originalLateSamples:lastLateSamples,
  originalFileRequests:observed.originalFileRequests,
  originalFileTransfers:observed.fileTransfers,

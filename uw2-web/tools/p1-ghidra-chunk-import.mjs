@@ -102,6 +102,25 @@ export function auditGhidraOriginalChunks(exports,original,{moduleName,expectedS
     loadBase:0x10000,instructions:ins.sort((a,b)=>a.reaAddress-b.reaAddress)
   };
   const audit=auditP1InstructionLedger(ledger);
+  // Prioritize future *analysis*, never promote candidates into verified
+  // executable bytes. These are non-copyrighted address/count summaries only.
+  const gaps=audit.pendingByteRanges.filter(x=>x.kind==='UNOBSERVED');
+  const unresolved=audit.flowRecords.filter(x=>x.status==='UNRESOLVED_STATIC');
+  const flowCounts={};
+  for(const item of unresolved)flowCounts[item.type]=(flowCounts[item.type]||0)+1;
+  const largestGaps=[...gaps].sort((a,b)=>
+    (b.imageEnd-b.imageStart)-(a.imageEnd-a.imageStart)||
+    a.imageStart-b.imageStart).slice(0,12).map(x=>({
+      imageStart:x.imageStart,imageEnd:x.imageEnd,
+      bytes:x.imageEnd-x.imageStart
+    }));
+  const unresolvedDirectTargets=unresolved
+    .filter(x=>x.targetRea!==null)
+    .sort((a,b)=>a.sourceRea-b.sourceRea)
+    .slice(0,16).map(x=>({
+      sourceRaw:x.sourceRaw,targetRaw:x.targetRaw,type:x.type,
+      targetInstructionObserved:x.targetInstructionObserved
+    }));
   return {report:{
     moduleName,sha256:expectedSha256,
     providerVersion:versions[0],uniqueChunks:windows.length,
@@ -110,7 +129,9 @@ export function auditGhidraOriginalChunks(exports,original,{moduleName,expectedS
     instructionCandidates:audit.decodedCandidateCount,
     codeCandidateBytes:audit.decodedCandidateBytes,
     unobservedImageBytes:audit.counts.UNOBSERVED,
+    unobservedRangeCount:gaps.length,largestUnobservedRanges:largestGaps,
     unresolvedStaticFlows:audit.unresolvedStaticFlowCount,
+    unresolvedFlowTypes:flowCounts,unresolvedDirectTargets,
     firstUnobserved:audit.pendingByteRanges.find(x=>x.kind==='UNOBSERVED')??null,
     verifiedCodeBytes:0,verifiedFunctionCount:0,
     gate:audit.gate,

@@ -30,6 +30,11 @@ assert.equal(r.report.functionEntryCandidates,2);
 assert.equal(r.report.codeCandidateBytes,9);
 assert.equal(r.report.unobservedImageBytes,55);
 assert.equal(r.report.unresolvedStaticFlows,1);
+assert.deepEqual(r.report.unresolvedFlowTypes,{INDIRECT_JUMP:1});
+assert.equal(r.report.unobservedRangeCount,1);
+assert.deepEqual(r.report.largestUnobservedRanges[0],
+ {imageStart:9,imageEnd:64,bytes:55});
+assert.deepEqual(r.report.unresolvedDirectTargets,[]);
 assert.equal(r.report.verifiedCodeBytes,0);
 assert.equal(r.report.verifiedFunctionCount,0);
 assert.equal(r.report.gate,'HOLD_UNRESOLVED_FLOW');

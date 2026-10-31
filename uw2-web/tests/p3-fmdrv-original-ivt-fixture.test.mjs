@@ -25,7 +25,12 @@ ivt[0x66*4]=0;ivt[0x66*4+1]=0;ivt[0x66*4+2]=0;ivt[0x66*4+3]=9;
 ivt[0x65*4]=0;ivt[0x65*4+1]=0;ivt[0x65*4+2]=0x10;ivt[0x65*4+3]=9;
 ivt[0x08*4]=0;ivt[0x08*4+1]=0;ivt[0x08*4+2]=0x20;ivt[0x08*4+3]=9;
 psp.set([0xcd,0x20],0);
+const pitWrites=[];
 const synthetic=await probeOriginalFmdrv(orig,{
+ ioPorts:[
+   {number:0x43,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},
+   {number:0x40,handlers:{out8:(port,value)=>pitWrites.push({port,value})}}
+ ],
  cpu,
  initialIvt:{bytes:ivt,expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08]},
  initialPsp:{bytes:psp,expectedSha256:sha(psp)},
@@ -33,6 +38,9 @@ const synthetic=await probeOriginalFmdrv(orig,{
 });
 assert.ok(synthetic.steps>defaultProbe.steps);
 assert.equal(synthetic.initialIvt.knownVectorCount,3);
+assert.deepEqual(pitWrites.slice(0,3),[
+ {port:0x43,value:0x36},{port:0x40,value:0},{port:0x40,value:0}
+]);
 console.log(JSON.stringify({steps:synthetic.steps,stopped:synthetic.stopped,
   services:synthetic.serviceCalls,last:synthetic.recentSteps.slice(-18)}));
 console.log('UW2 FMDRV.COM original-byte DOS old-INT66 synthetic-vectored probe: PASS (NOT real driver)');

@@ -2,7 +2,7 @@
 - 수립: 2026-10-31 KST; 개정: 2026-10-31 KST (전체 디컴파일/하이브리드 런타임 우선)
 - 기준: `thp32tt/ai-dev-lab@uw2-web-port`; 실제 한국어판 DOS 설치 파일만 정본. REA/Ghidra 분석은 참고 출력이며 **실행 파일의 실제 바이트, DOS 참조 실행 결과**로 재확인한다.
 - 목표: **원본과 동일한 게임**을 브라우저에서 실행. 개조판·편의기능 추가·대사 재작성·현대식 밸런스 조정·새 인터페이스·임의의 음악/장면/동작 생성 **금지**.
-- 진행 상태 (2026-10-31 KST): **P0 원본 61개 해시 검증 PASS; P1 MAIN/OPEN 원본↔Ghidra 주소·BSS 검증 PASS, MZ 4개 실행 파일 재배치 5,296건 전수 검사 PASS, 정적 far 제어 이전 후보 5,038건/351개 타깃 그룹 추출 PASS, KOEI.COM 조건부 DOS EXEC 기동 경로 실물 검사 PASS.** P1 전체 함수·간접/near 호출·동적 상태 분석 미완료. P3 CPU/BIOS/DOS 일부 구현 및 원본 KOEI.COM 기본 26명령 부분 실행, 명시적 합성 DOS 환경에서 4분기 최대 190명령 실행/INT66h 중단 확인까지 진행했으나 실제 초기 DOS IVT·PSP·FMDRV 미확보로 실제 DOS 실행·게임 부팅은 HOLD; P2 실제 기준 트레이스와 P4~P9 전체 원작 동등성은 미완료. 근거: `ORIGINAL_P0_P1_EXECUTION_20261031.md`, `ORIGINAL_P1_RELOCATION_LAUNCHER_20261031.md`, `p1-far-transfer-candidates-20261031.json`. **제어 이전 후보 수는 포팅 완료율/검증된 함수 수가 아님.**
+- 진행 상태 (2026-10-31 KST): **P0 원본 61개 해시 검증 PASS; P1 MAIN/OPEN 원본↔Ghidra 주소·BSS 검증 PASS, MZ 4개 실행 파일 재배치 5,296건 전수 검사 PASS, 정적 far 제어 이전 후보 5,038건/351개 타깃 그룹 추출 PASS, KOEI.COM 조건부 DOS EXEC 기동 경로 실물 검사 PASS.** P1 전체 함수·간접/near 호출·동적 상태 분석 미완료. P3 CPU/BIOS/DOS 일부 구현 및 원본 KOEI.COM 기본 26명령 부분 실행, 명시적 합성 DOS 환경에서 4분기 최대 190명령 실행/INT66h 중단 확인까지 진행했으나 실제 초기 DOS IVT·PSP·FMDRV 하드웨어/참조 실행 스냅샷 미확보로 실제 DOS 실행·게임 부팅은 HOLD; FMDRV 원본 바이트의 합성 조건 30,644명령 상주·원본 INT66h 핸들러 29명령 호출·복귀는 별도 PASS(음악 재현 아님); P2 실제 기준 트레이스와 P4~P9 전체 원작 동등성은 미완료. 근거: `ORIGINAL_P0_P1_EXECUTION_20261031.md`, `ORIGINAL_P1_RELOCATION_LAUNCHER_20261031.md`, `p1-far-transfer-candidates-20261031.json`. **제어 이전 후보 수는 포팅 완료율/검증된 함수 수가 아님.**
 
 ## 1. 변경 금지 계약 (전 단계 공통)
 1. 한국어 DOS 원본의 화면(해상도·팔레트·폰트·좌표·애니메이션·순서·타이밍), 입출력, 음악/효과음, 게임 규칙(16-bit 정수 오버플로·난수·틱), 이벤트/시나리오/엔딩, 저장/불러오기 형식을 동일하게 유지한다. 웹 API로 대체하는 외피만 허용하고, 게임에 보이는 결과는 바꾸지 않는다.
@@ -142,6 +142,17 @@
 - 로컬 원본 SHA 검사: tests/p3-koei-original-probe.test.mjs 기본 26-step 게이트 PASS; tests/p3-koei-original-ivt-fixture.test.mjs 합성 PSP/BIOS/메모리로 130단계 및 원본 비디오 모드 복귀까지 PASS; tests/p3-koei-original-branch-matrix.test.mjs 원본 CPU 분기 4종 PASS. 원본 보유 디렉터리에서만 구동하며 GitHub Actions에는 원본 바이너리를 업로드하지 않는다.
 - 합성 CI 테스트 추가: realmode-8086-jmp-short, dos-ivt-snapshot, dos-psp-snapshot, bios-int10-modes, dos-int21-memory, dos-int21-resize, dos-int21-console, dos-int21-string. 검증 SHA 3188080bbfd7d1b34a5ef1d676f4d7b628f45324의 GitHub Actions synthetic-static **SUCCESS**, run 41158909649. 실제 DOS trace나 브라우저 런타임 환경 검증으로 격상하지 않는다.
 - 다음 연속 구현: FMDRV.COM 실제 DOS/TSR 상주 드라이버의 INT 66h 핸들러 설치·전역 상태·OPL I/O를 원본 바이트와 참조 실행으로 확인한 뒤 RealMode8086 같은 메모리에서 실행하도록 연결. DOS 초기 IVT 65h, PSP+환경 메모리, 메모리 MCB, 비디오 모드 값은 실제 DOS 기준 스냅샷을 확보하기 전에는 샘플값을 정상값으로 간주하지 않는다. 이후 FMDRV→OPEN→MAIN→END 프로그램 본문·게임 자산·항해/항구/교역/전투/세이브의 원작 실행 일치성을 각각 검증한다.
+
+### L. FMDRV.COM 원본 바이트 상주 기동·INT66 종료 진입 (2026-10-31 KST)
+
+- 입력: 사용자 소유 한국어판 `FMDRV.COM` 5,162바이트, SHA-256 `0e85962755e2b96ed72a133ba9c84340d754abb18c9af20b76ddd5a96b79677b`. 새 `tools/p3-fmdrv-exec-probe.mjs`는 실제 원본 COM 바이트를 `loadVerifiedCom`과 공유 RealMode8086 상태에 적재하고, 명령어·DOS 호출의 위치/레지스터를 한정된 횟수만 추적한다. **기존과 별도 원본 DOS 실기 트레이스가 아니며 합성 PSP·초기 IVT 및 하드웨어 입력은 참조 진실이 아니다.** 원본/역어셈블리/음악 자산은 공개 GitHub에 올리지 않는다.
+- 기본 fail-closed 실행: FMDRV 원본 진입 후 **11개 명령어** 실행, `INT 21h AH=35h, AL=66h`(이전 INT66 벡터 조회)에서 초기 DOS IVT 불명으로 중단. 이후 소유자를 갖춘 **명시적 합성 벡터** `66h/65h/08h` 및 각 벡터의 합성 IRET 코드만 넣었을 때 원본 코드가 `AH=25h`로 INT66h, INT08h를 설치하는 요청을 관측했다. 이는 드라이버가 실제로 DOS에 설치되었다는 증명이 아니라 테스트용 DOS 커널의 IVT 추적이다.
+- 이후 동일 실제 명령 바이트가 PIT `OUT 43h=36h`, `OUT 40h=00h`, `OUT 40h=10h`, 포트 `61h` 입출력, OPL `388h/389h` 쓰기 및 `IN 388h` 상태 읽기를 요청한다. `registerIOPort` 외부 콜백으로 원본 쓰기 이벤트만 전달한다. 포트 `61h` 읽기 및 OPL 상태 레지스터를 포함한 실제 하드웨어 반환값은 확보되지 않았다.
+- 입력 OPL 상태를 명시적으로 **합성 `00h`**로 제공하면 FMDRV 원본 타이머 검출의 `CX=7530h` 대기 LOOP를 거쳐, **30,644개 원본 명령 실행 후** `INT 21h AX=3101h`, `DX=0026h`를 호출하여 DOS 상주 종료를 요청한다. `web/dos-int21.js`에 `AH=31h` 외부 메모리 소유자의 **명시적 승인** 없이는 종료하지 않는 상주 처리 계약과 `tests/dos-int21-tsr.test.mjs` 회귀 테스트를 추가. 합성 콜백 승인 시 `terminationType=3`, `returnCode=1`, `residentParagraphs=0x26`, `pspSegment=0x300` 기록. `0x26`은 해당 합성 실행에서 실제 코드가 제공한 값이지 일반 DOS 환경에서의 검증된 최종 메모리 배치가 아니다.
+- 같은 메모리에 남겨 놓은 **실제 원본 FMDRV 상주 INT66 핸들러**를 합성 부모가 `AX=FF03h`로 호출하자 **29개 원본 명령**을 실행한 뒤 호출자 코드로 복귀하고, 원래의 합성 INT66 벡터(`0900:0000`)를 복원했다. `tests/p3-fmdrv-original-ivt-fixture.test.mjs` 원본 SHA/readback과 로컬 단일 기계어 코어 시험 **PASS**. 이 트레이스는 실기 DOS 프로세스 전환이 아닌 테스트의 `terminated` 해제/외부 CPU 레지스터 준비를 사용했다. 따라서 KOEI→FMDRV 연동 전체가 완료되었다거나 음악이 원본과 일치한다는 증거가 아니다.
+- 원본이 없는 GitHub Actions에서도 `tools/p3-fmdrv-exec-probe.mjs` 문법 및 합성 `tests/dos-int21-tsr.test.mjs`는 강제 통과. exact-SHA validation-bearing source commit `c3bba7cdca8b555ad44fbdaf117eeef132aadb05`, `synthetic-static` **SUCCESS**, run `41160973225`. N100 원본 시험 두 구간(기본 11단계 게이트, 명시적 합성 환경에서 30,644단계 TSR 및 29단계 INT66 FF03h) 모두 PASS.
+- 다음 단계: **실제 DOS 6.x 환경에서 FMDRV 설치 직전의 INT66/65/08 벡터, DOS PSP·MCB, PIT·OPL 상태 및 실음악 OPL 레지스터 기록**을 읽기 전용으로 채집하고, 원본 드라이버 레지스터/메모리/OPL 핸들러의 동일성 시험에 반영. 이어 KOEI.COM의 진짜 DOS EXEC와 원본 FMDRV 상주 메모리 공유, OPEN.EXE/MAIN.EXE의 진짜 CPU 바이트 실행으로 연결. 합성 IRET나 상태 `00h`을 게임 배포 경로의 기본값으로 넣지 않는다.
+
 
 ## 3. 실행 순서와 완료 게이트
 | 단계 | 실제 수행 | 필수 GitHub 산출물 | PASS 게이트 |

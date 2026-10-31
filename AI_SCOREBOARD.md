@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 DOS per-PSP original-file handle isolation and inherited cursor (2026-11-01 KST)
+
+- **Independent new source capability:** `thp32tt/ai-dev-lab@uw2-web-port` implementation commit `4cf3e210e9c7b9ff60accb7c28e301d218dcaf60` splits original-byte DOS INT21 3Dh/3Eh/3Fh/42h read-only handle tables by externally supplied current PSP, provides explicitly owned parent/child JFT inheritance sharing one file-position SFT descriptor, ensures closing/reopening child handle #5 never mutates the parent handle table, and exposes explicit PSP cleanup. Invalid/async PSPs and inferred DOS inheritance fail closed; legacy single-process behavior remains the default. New synthetic CPU+INT21 regression `uw2-web/tests/dos-readonly-files-process.test.mjs` is mandatory CI.
+- **Exact-SHA validation:** `UW2 Web Fidelity Static Gate` run `41213267899` `synthetic-static` **SUCCESS** at the identical material commit `4cf3e210e9c7b9ff60accb7c28e301d218dcaf60`. Follow-up `9a7a9e8ca4f4abc16c0a93401b117aba1975357c` only wires externally selected PSPs into the pre-existing private original OPEN fixture and appends a single master-plan record; no independent new score. Real Korean DOS PSP/JFT/SFT reference, original-game binary rerun, browser play, and full-game equivalence remain **UNTESTED/HOLD**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2282 + independent PSP-scoped original DOS file-boundary implementation and exact-SHA CI +1 = 2283.** AI 1 remains separately tracked. Same-task test, docs, readback or retries add +0.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 original 8086 interruptible REP iteration source integration (2026-11-01 KST)
 
 - **Independent new material capability:** `thp32tt/ai-dev-lab@uw2-web-port` source commit `4b7b606449f7281e2777faf8bb287dde5cfab811` implements an explicit `interruptibleRepStrings:true` 8086 core execution mode. For REP MOVS/CMPS/STOS/LODS/SCAS it exposes genuine per-iteration original-byte CPU state (CX/SI/DI/FLAGS/DS/ES) and rewinds the full prefix IP for guest IRQ entry and IRET resumption; REPE/REPNE stop, DF/16bit wrap and STI/MOV SS/POP SS full-instruction shadow are verified. The historic atomic default remains OFF to preserve recorded 13M original OPEN step-count receipts. This is CPU fidelity progress, not an original DOS/PIC clock implementation or completed native-web game.

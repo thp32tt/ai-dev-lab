@@ -5,6 +5,7 @@
 import {RealMode8086} from './realmode-8086.js';
 import {DOS_CPU_FRAME_NAMES,captureDosCpuFrame} from './dos-com-child-runner.js';
 import {createGuestOriginalExecutionSession} from './guest-original-execution-session.js';
+import {createExternalGuestIrqEdgeQueue} from './guest-external-irq-queue.js';
 
 const validFrame=frame=>{
   if(!frame||typeof frame!=='object'||Array.isArray(frame)||
@@ -30,7 +31,8 @@ const validStatus=status=>{
 };
 
 export function createStagedDosChildContinuation(cpu,{
-  initialFrame,maxTotalSteps=1000000,keyboardQueue,onBeforeInstruction
+  initialFrame,maxTotalSteps=1000000,keyboardQueue,onBeforeInstruction,
+  maxQueuedExternalIrqs=128
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('staged DOS child requires shared RealMode8086');
@@ -44,12 +46,19 @@ export function createStagedDosChildContinuation(cpu,{
     throw new Error('staged DOS child INT16 adapter ownership collision');
   if(onBeforeInstruction!==undefined&&typeof onBeforeInstruction!=='function')
     throw new TypeError('staged child observer must be synchronous');
+  if(!Number.isSafeInteger(maxQueuedExternalIrqs)||maxQueuedExternalIrqs<1||
+     maxQueuedExternalIrqs>1024)
+    throw new RangeError('staged child external IRQ edge queue cap must be 1..1024');
   const parent=captureDosCpuFrame(cpu),parentTermination=cpu.terminated,
     parentIrqShadow=cpu.maskableIrqShadow;
-  let guest=null;
+  let guest=null,running=false;
+  const irqEdges=createExternalGuestIrqEdgeQueue(cpu,{
+    maxPending:maxQueuedExternalIrqs
+  });
   let state='ACTIVE',result=null,steps=0,slices=0,childFrame=null,
     expectedFrame=null,expectedIrq=0,expectedTerminated=null;
   const restoreParent=()=>{
+    irqEdges.clear();
     // A child-only BIOS queue belongs to this execution session. It must
     // not outlive the child or intercept the suspended parent's INT16.
     let cleanupError=null;
@@ -74,7 +83,7 @@ export function createStagedDosChildContinuation(cpu,{
     });
   }catch(error){restoreParent();throw error;}
   const snapshot=()=>Object.freeze({state,steps,slices,result,
-    childFrame,restored:state!=='ACTIVE',
+    childFrame,irqEdges:irqEdges.snapshot(),restored:state!=='ACTIVE',
     fidelity:'STAGED_ORIGINAL_GUEST_CHILD_STEPS__NO_DOS_EXEC_SCHEDULER'});
   const requireOwner=()=>{
     if(state!=='ACTIVE')throw new Error('DOS child session is not active');
@@ -87,8 +96,12 @@ export function createStagedDosChildContinuation(cpu,{
   const runSlice=(maxSteps=256)=>{
     if(!Number.isSafeInteger(maxSteps)||maxSteps<1||maxSteps>100000)
       throw new RangeError('staged DOS child slice must be 1..100000');
-    requireOwner();
+    if(running)throw new Error('reentrant staged DOS child execution: fail closed');
+    requireOwner();running=true;
     try{
+      // One explicit external device edge can be admitted before the next
+      // guest instruction slice. IF/SS/STI guards keep a masked edge pending.
+      const irq=irqEdges.deliverOne();
       const segment=guest.runSlice(maxSteps);
       steps=segment.totalExecutedSteps;slices++;
       childFrame=captureDosCpuFrame(cpu);
@@ -102,20 +115,26 @@ export function createStagedDosChildContinuation(cpu,{
         expectedTerminated=cpu.terminated;
       }
       return Object.freeze({...snapshot(),reason:segment.reason,
-        sliceSteps:segment.steps});
+        sliceSteps:segment.steps,irq});
     }catch(error){
       state='FAULTED';
       childFrame=captureDosCpuFrame(cpu);
       restoreParent();
       throw error;
-    }
+    }finally{running=false;}
   };
   const abort=()=>{
+    if(running)throw new Error('cannot abort executing DOS child');
     requireOwner();
     childFrame=captureDosCpuFrame(cpu);
     state='ABORTED';
     restoreParent();
     return snapshot();
   };
-  return Object.freeze({runSlice,snapshot,abort});
+  const enqueueExternalIrqEdge=event=>{
+    if(running)throw new Error('cannot enqueue hardware IRQ while guest runs');
+    requireOwner();
+    return irqEdges.enqueue(event);
+  };
+  return Object.freeze({runSlice,snapshot,abort,enqueueExternalIrqEdge});
 }

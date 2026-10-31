@@ -511,3 +511,8 @@
 ### 2026-11-01 독립 browser-original-guest bridge 입력 핸들러 소유권 수명 수리
 
 - 기존 원본 CPU `browser-original-guest-bridge.js`에서도 브라우저 키down 리스너만 제거하고 CPU `INT16` adapter는 남겨 다음 원본 DOS 프로세스가 같은 8086 기계를 사용할 때 점유 충돌을 일으키던 경로를 수리했다. 같은 source owner `guest-original-execution-session.releaseKeyboardAdapter()`를 이용하므로 정확한 등록 함수의 INT16만 해제하고 FMDRV 등의 제3자 IVT/adapter는 변경하지 않는다. 실제 종료·명시적 detach·native CPU 실패에서 정확히 한 번 해제하며, release 이후 해당 키보드 세션의 재실행은 거부한다. Synthetic DOS AH4C, unsupported IN 포트, 명시 detach regression을 GitHub Actions에 포함한다. 기존 브라우저/세션 생명주기 수정의 후속 repair이므로 별도 점수 없음.
+
+### 2026-11-01 외부 PIT/IRQ 신호의 분할 실행 자식 세션 연결
+
+- `web/guest-external-irq-queue.js`는 명시적으로 소유한 CPU·설치된 guest IVT vector와 장치 원인 `source`가 실제 호출자에게 제공된 경우에만 hardware IRQ edge를 용량 상한 큐에 수락한다. `createStagedDosChildContinuation.enqueueExternalIrqEdge()`로 입력한 edge는 이후 자식 `runSlice()` 경계에서 **최대 1건** `deliverExternalMaskableIrq()`에 전달된다. IF=0 또는 STI/SS 1-instruction inhibit 상태에서는 edge를 소비하지 않고 보류하며, 실제 native guest ISR 진입과 IRET 실행 후에만 `delivered` 카운터가 변한다. 종료/abort/FAULTED 시 잔여 edge는 부모 CPU로 넘기지 않고 `discarded`로 분리한다. 세션이 실행 중이면 외부 추가를 거부한다.
+- 이 연결은 **호출자가 외부에서 이미 관측·검증한 edge**만 수용하고, CPU instruction 수에서 PIT tick을 만들어내거나 정기적인 PIC IRQ를 생성하지 않는다. `createOriginalPitChannel0WriteBus()`는 원본 OUT 43h/40h reload 관측에 한정, 실제 클럭·PIC/EOI·IRQ 발생 스케줄은 미확보. Synthetic CLI/STI→1명령 지연→IVT ISR `INC [200h];IRET`→DOS 종료, IF 마스크, queue overflow·abort 및 부모 frame 보존 검증을 GitHub Actions에 추가했다. 사용자 원본 OPEN 루프에 임의 IRQ를 주입해 달라진 결과를 DOS 참조 PASS로 주장하지 않는다.

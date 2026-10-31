@@ -4,7 +4,7 @@ import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
 import {
-  decodeOpeningArchive,
+  decodeOpeningVerifiedArchive,
   chooseTitleLikeRecord,
   chooseOpeningGallery,
   drawOpeningFit,
@@ -12,6 +12,8 @@ import {
   KOREAN_OPENING_SCENE_PLAN,
 } from "./opening.js";
 import { readGraphRecords, decodeGraphRecord, graphIndicesToRgba, UW2_MAIN_VGA_PALETTE } from "./graph-format.js";
+import {prepareOriginalOpgraphArchive} from "./opgraph-original-archive.js";
+import {KOREAN_OPGRAPH_JS_DECODE_EVIDENCE as koeiGraphEvidence} from "./opgraph-korean-evidence.js";
 import {
   parsePortDoors,
   PortWalkingRuntime,
@@ -625,7 +627,18 @@ async function loadTables() {
 
 async function loadOpeningGraphics() {
   const buf = await loadBuffer("OPGRAPH.LZW");
-  openingData = decodeOpeningArchive(buf);
+  const verified = await prepareOriginalOpgraphArchive(new Uint8Array(buf),{
+    expectedSha256:koeiGraphEvidence.sourceSha256,
+    expectedPartCount:koeiGraphEvidence.partCount,
+    expectedDecodedSha256:koeiGraphEvidence.decodedSha256.slice(),
+    maxFileBytes:1024*1024,maxPartBytes:8*1024*1024,
+    maxTotalDecodedBytes:64*1024*1024
+  });
+  if(verified.fileBytes!==koeiGraphEvidence.originalFileBytes||
+     verified.totalRecords!==koeiGraphEvidence.totalRecords||
+     verified.totalDecodedBytes!==koeiGraphEvidence.totalDecodedBytes)
+    throw new Error("Korean OPGRAPH decoded metadata differs from verified original baseline");
+  openingData = decodeOpeningVerifiedArchive(verified);
   openingTitle = chooseTitleLikeRecord(openingData);
   $("opening-button").disabled = !openingTitle;
 

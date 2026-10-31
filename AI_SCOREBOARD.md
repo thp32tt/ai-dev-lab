@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 VR third-mono draw/clear elimination after verified DirectGPU bootstrap (2026-11-01 KST)
+
+- **Distinct implementation:** repository `thp32tt/OutRun2006Tweaks`, branch `test/r26-focus-perf-mono-elide-20261101`, exact source SHA `66fa5878437531d0ad788f803926e724bbd3478b`. On the visual-focus + all safe R26 performance baseline, added verified DirectGPU-first-frame gate `R9MonoElisionArmed` that removes the extra third center-mono Draw and Clear in steady-state, while preserving left/right eye rendering. Initial cold-start safety shadow is retained only before first proven host-ready DirectGPU stereo; incomplete frames hold last known-good projection; three consecutive failures re-arm bootstrap fallback, and Reset disarms elision. Retains VR telemetry false and host full trace/pixel-probe disabled. The unconditional prior no-mono patch that caused white screen is not reused.
+- **Verified result:** GitHub Actions Windows compile/test run `41223502149` **SUCCESS**, full original focus visual/renderer regression checks PASS, mono bootstrap/elision/3-failure recovery source gate PASS; compiled exact-SHA Win32 `dinput8.dll` and x64 `outrun-vr-host.exe`, validated PE architectures, packaged direct launcher. Artifact `13050893221`, SHA256 outer ZIP `8918a4a82bdd0ab81dbe695c23722a71f81bd4039ed049e4a122cce7cf266231`, inner ZIP SHA256 `AF2EF000BA60A307ECCA70468E2382CA5F193D0A04AE120920CC796E01008589`. Real Quest HMD FPS/optical correctness remains **UNTESTED**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2299 + new verified steady-state third-mono-draw removal with exact-SHA compiled package +1 = 2300.** This new rendering implementation is separate from earlier copy/math/quiet package; same-task packaging and static re-verification +0. AI 1 unchanged.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 native VGA DAC known-palette readback (2026-11-01 KST)
 
 - **Independent game-hardware source implementation:** `thp32tt/ai-dev-lab@uw2-web-port` material and validation-bearing SHA `4097eb0d4e3efea224d5ef747cef18540b34a26a`. Add opt-in original 8086 DAC 3C7h read-index and 3C9h RGB read-stream adapter using only previous complete witnessed 3C8/3C9 palette triplets, 255→0 auto-index wrap, unknown/partial update invalidation, read-budget guards and no unproven high-bit truncation. New native IN AL,DX tests `uw2-web/tests/vga-dac-readback.test.mjs`, exact-SHA `UW2 Web Fidelity Static Gate` run `41223747043` **SUCCESS**. Actual original OPEN.EXE usage and DOS/monitor color parity still UNTESTED. Prior related VGA B000 aperture fail-closed correction was a same-task follow-up at `035da7402c5b9854e4e09ad8fed0654156d1d981` run `41223545682` **SUCCESS**, scored +0.

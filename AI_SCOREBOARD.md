@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 trusted browser BIOS keyboard and original OPEN AH00 wait/resume (2026-11-01 KST)
+
+- **One independent combined implementation (+1):** source material `d00ea31c0d0d0775a37f82457332e3cb4b4861a3` adds opt-in `web/browser-bios-keyboard.js` (trusted native keydown only, standard ASCII/PC scan pairs, IME/modifier/untrusted/unsupported refusal, FIFO overflow metrics) and `web/guest-bios-keyboard-step.js` (bounded 8086 execution, preserves guest IP/AX/queue when BIOS INT16 AH00 is awaiting a real key, resumes after supplied key). Browser/CPU synthetic regressions registered with the existing UW2 CI. Same-task synthetic test fixture reloading AH00: `b56c03219a4a9ef15c537f7920e1d9f1e47bb57f`, Actions `41237748513` SUCCESS. Initial `d00ea31c` run `41237691518` failed due solely to missing AH00 reload in the test; no extra score.
+- **Final original-probe integration, same achievement (+0):** `tools/p3-open-exec-probe.mjs` now opts into the exact same wait boundary when an external keyboardQueue is supplied, so an empty AH00 stops with `WAIT_BIOS_INT16_AH00` without executing past its guest CS:IP. **Final validation-bearing branch SHA** `f9640326294b8b50af84a632c2eb2947884381f8`, `UW2 Web Fidelity Static Gate` GitHub Actions `41237833107` synthetic-static **SUCCESS** for both new tests and all existing required checks.
+- **Fidelity limits:** The opt-in bridge is not globally attached to current synthetic browser preview. GitHub CI has no private original game binaries; source-backed Korean OPEN.EXE actual keyboard call/normal exit, DOS BIOS scan/IME/IRQ timing, OPEN→MAIN and original visual/audio/save parity remain **UNTESTED/HOLD**. Source/readback, further tests, docs, retry and rollout of this same feature +0. AI 1 unchanged.
+- **AI 2 cumulative: previous confirmed 2310 + one independently validated integrated outcome (+1) = 2311.**
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 shared source-backed BIOS keyboard FIFO and OPEN probe wiring (2026-11-01 KST)
 
 - **Independent integration outcome (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material/validated SHA `dcb0fd555731f8e4bb5f7bfe6df4c6e4c84186e8`. New `web/bios-keyboard-queue.js` validates bounded externally supplied key events, preserves FIFO ordering, and exposes one shared device for BIOS INT16 AH01 non-consuming peek and AH00 consuming dequeue. `web/bios-int16.js` rejects mixed independent callbacks+queue; `tools/p3-open-exec-probe.mjs` accepts opt-in `keyboardQueue` for authentic MZ instruction execution without fabricated keys. New actual synthetic guest INT16 tests cover empty status, two-key FIFO, extended key, AX/FLAGS, queue overflow, missing data and callback ownership.

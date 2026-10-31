@@ -225,6 +225,35 @@ for(;steps<3000&&!cpu.terminated;steps++){
  trace.push(before);
  if(trace.length>16)trace.shift();
 }
+// Read-only diagnostic for future native OPEN.EXE unpacker parity. A suffix
+// hash of JS output is NOT by itself a real DOS native decode reference;
+// only identical full image bytes in guest RAM would be a candidate witness.
+const guestDecodedWitness=[];
+for(let part=0;part<4;part++){
+ const expected=pinnedOpgraph.getDecodedPart(part).bytes;
+ let cursor=0,prefixCandidates=0;
+ const exactPhysical=[];
+ const memory=cpu.memory;
+ const last=memory.length-expected.length;
+ while(cursor<=last){
+   const start=memory.indexOf(expected[0],cursor);
+   if(start<0||start>last)break;
+   cursor=start+1;
+   let prefix=true;
+   for(let j=1;j<16;j++)if(memory[start+j]!==expected[j]){prefix=false;break;}
+   if(!prefix)continue;
+   prefixCandidates++;
+   let matches=true;
+   for(let j=16;j<expected.length;j++){
+     if(memory[start+j]!==expected[j]){matches=false;break;}
+   }
+   if(matches)exactPhysical.push(start);
+   if(prefixCandidates>256)throw new Error('native unpack witness prefix candidate budget exceeded');
+ }
+ guestDecodedWitness.push({part,bytes:expected.length,prefixCandidates,
+   exactPhysical,provenance:'READ_ONLY_GUEST_MEMORY_SCAN__NO_NATIVE_DECODE_PARITY_ASSUMED'});
+}
+
 const result={
  original:{koeiSha:sha(koei),fmdrvSha:sha(fmdrv),openSha:sha(open)},
  openStarted,openGuestFault,openMz,
@@ -237,6 +266,7 @@ const result={
  originalFileRequests:observed.originalFileRequests,
  originalDosFileCalls:observed.originalDosFileCalls,
  verifiedFileRead:observed.verifiedFileRead,
+ guestDecodedWitness,
  pinnedOpgraph:{sha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',bytes:opgraph.length,
   parts:pinnedOpgraph.partCount,decodedBytes:pinnedOpgraph.totalDecodedBytes,records:pinnedOpgraph.totalRecords},
 

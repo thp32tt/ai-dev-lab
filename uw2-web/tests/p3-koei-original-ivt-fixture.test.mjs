@@ -44,7 +44,7 @@ console.log(JSON.stringify({withSyntheticVideoSteps:withExternalVideo.steps,
 const psp=new Uint8Array(256);
 psp.set([0xcd,0x20],0);psp[0x2c]=0x50;psp[0x2d]=0x02;
 const pspSha=createHash('sha256').update(psp).digest('hex');
-const syntheticFrees=[],syntheticModeSets=[];
+const syntheticFrees=[],syntheticModeSets=[],syntheticResizes=[];
 const withExternalPsp=await probeOriginalKoeiWithSyntheticDos(original,{
   initialIvt:{bytes,expectedSha256,knownVectors:[0x65]},
   initialPsp:{bytes:psp,expectedSha256:pspSha},
@@ -54,11 +54,16 @@ const withExternalPsp=await probeOriginalKoeiWithSyntheticDos(original,{
     syntheticFrees.push(segment);
     if(segment!==0x250)throw new Error('unobserved DOS memory block');
     return {freed:true};
+  },resizeMemory:({segment,paragraphs})=>{
+    syntheticResizes.push({segment,paragraphs});
+    if(segment!==0x200||paragraphs!==0x7a)throw new Error('unobserved DOS MCB resize');
+    return {resized:true};
   }}
 });
 assert.equal(withExternalPsp.initialPsp.environmentSegment,0x250);
 assert.deepEqual(syntheticModeSets,[0x12]);
 assert.deepEqual(syntheticFrees,[0x250]);
+assert.deepEqual(syntheticResizes,[{segment:0x200,paragraphs:0x7a}]);
 assert.ok(withExternalPsp.steps>withExternalVideo.steps);
 assert.match(withExternalPsp.fidelity,/NOT_DOS_REFERENCE/);
 console.log(JSON.stringify({withSyntheticPspSteps:withExternalPsp.steps,

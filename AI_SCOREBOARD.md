@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun C1 independent Q043 A/B new-SHA QA (2026-10-31 KST)
+
+- Unique run key `OUTRUN-C1-AI2-20261031T2115KST-Q043-NEW-SHA2`. N100 persisted A-0143 PlayStation output `Q043_8c2673128986a6c8_k.png` SHA256 `a188160c74496eb7f2027b1aaa087f59171e813bab19a3d32498538472addd62` and B-0147 Switch `Q043_ff4cb68946ab376b_k.png` SHA256 `45063e76377c10e58739da302f629282f5ca1bd54fcf0976b3e9adff864b6637`. Both actual PNGs independently inspected with SHA-pinned 2048×2048 HD originals, native-fit and 50% visual preview; verified unseen candidate SHA against 197 earlier QA reports (925 prior unique SHA). Results: **2 new C1 lettering-layer PASS, 0 FAIL, 0 HOLD**. Original/source/export hashes match, RGBA, edge alpha>=32 empty; Korean `축하합니다!` readable. Producer `REWORK_DIMENSIONS` state unchanged; final DDS/UI composition/C2/C3/ingame UNTESTED. Evidence file in `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` commit `46c1f33d8063f1563dfceb7cbf6b0cbb8911af5c`, path `localization/qa_evidence/C1_QA_20261031_2115_AI2_NEW_SHA2.json`. No image generation, no queue consumption, no VR code modifications.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2271 + one newly completed independently evidenced C1 QA milestone +1 = 2272.** Same SHA review/recheck/retry +0; no separate score for commit/push; AI 1 unchanged.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 OutRun ImageGen A-0144 transparent Korean asset saved to Library (2026-10-31 KST)
 
 - Unique task ID `OUTRUN-ROI-A-0144-73D63CBB` (output `Q043_611d77bb8595b600_k.png`). Generated exactly one transparent Korean `축하합니다!` candidate from source Q043/XBOX's `CONGRATULATIONS!` reference; isolated text only, constrained output graphic to source ROI size, RGBA 1982×189. Local file 208820 bytes was uploaded into the existing Library folder `/아웃런 한글화 신규/Q043_611d77bb8595b600_k.png` and independently re-listed from Library, ID `libfile_20c681074d3c8191b843138ade952a4a`. This proves file generation and Library persistence only; independent C1 QA, DDS and in-game PASS remain NOT verified.

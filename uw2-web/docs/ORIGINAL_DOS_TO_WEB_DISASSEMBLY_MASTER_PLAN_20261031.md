@@ -310,3 +310,5 @@
 - 새 8086 동기 memory-read provider는 **명시적으로 opt-in**한 장치 aperture의 uint8 반환만 받으며 일반 RAM 읽기는 기존과 동일하다. Promise·임의 반환값·중복 provider는 거부한다.
 - 새 `web/vga-mode12-read-adapter.js`와 기존 VGA witness의 `readSelectedPlaneByte`는 **실제 GC04 선택 plane / GC05 read-mode-0 / GC06 A000h aperture** 레지스터가 관측되고 해당 plane byte가 원본 CPU 쓰기로 입증된 경우만 게스트 A0000h 읽기를 처리한다. 미확인/미가시 VRAM, read-mode-1/latch compare는 추측하지 않고 중단한다.
 - 외부 원본 DOS·OPEN.EXE에서 해당 읽기 분기가 실제 호출되는지, VGA RAM 초기 상태·전체 화면·브라우저 표시가 동일한지는 **UNTESTED**. 이번 합성 CPU+VGA 장치 회귀만 GitHub 정적 게이트 대상이다. 원본 8086 CPU가 실제로 읽는 순서가 증명되면 추적 가능한 게스트의 같은 메모리에 선택적으로 장착하며, 검증 전에 기본 웹 게임 자산/화면을 바꾸지 않는다.
+
+- 화면 모드 세대 격리: `invalidateAfterBiosModeSet({mode})`는 외부 BIOS INT10 AH00 장치가 **모드 설정을 실제 수락했을 때만** 이전 4개 plane 유효성·GC/SEQ 레지스터 증거를 제거한다. 8086 MOV A000h 쓰기→동일 주소 CPU 읽기에서 VGA write-mode-2 CPU AL=05h와 GC04 plane-read FFh/00h의 차이, BIOS 모드 재설정 후 stale 픽셀 거부를 합성 회귀로 고정했다. 원본 DOS 실제 BIOS 상태 및 게임화면 비교는 아직 미확인이다.

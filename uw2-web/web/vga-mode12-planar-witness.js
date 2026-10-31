@@ -33,6 +33,18 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
     fidelity:'ORIGINAL_CPU_WRITE_MODE0_MODE2_VGA_PLANES_ONLY__NO_BIOS_OR_FRAME_PARITY'
   });
   return Object.freeze({
+    invalidateAfterBiosModeSet({mode}={}){
+      // INT10 AH00 may reset VGA registers and framebuffer. The ROM's
+      // actual memory contents are not inferred from a BIOS mode request.
+      // Discard all previous per-plane evidence and stale register settings.
+      // Only subsequent native writes with freshly witnessed GC/SEQ settings
+      // can again make a pixel or CPU read provable.
+      if(!validByte(mode))
+        throw new RangeError('BIOS video mode byte required to invalidate VGA evidence');
+      for(const plane of planes)plane.fill(0);
+      for(const known of validity)known.fill(0);
+      gc.clear();seq.clear();fullyCoveredBytes=0;
+    },
     noteIndexedRegister(event){
       if(!event||typeof event!=='object'||!validByte(event.index)||
          !validByte(event.value))

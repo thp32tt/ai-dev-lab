@@ -151,6 +151,9 @@ const syntheticStatuses={
 };
 installDosInt21(cpu,{
  pspSegment:()=>activePsp,
+ // Child resource handles follow the test owner's explicitly selected PSP.
+ // These PSP assignments remain synthetic, NOT original DOS snapshots.
+ getFileProcessPsp:()=>activePsp,
  stayResident:request=>{
   if(activePsp!==0x400||request.pspSegment!==0x400||
      request.paragraphs!==0x26||request.returnCode!==1)

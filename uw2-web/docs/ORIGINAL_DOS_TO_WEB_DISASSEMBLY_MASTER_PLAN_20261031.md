@@ -273,3 +273,11 @@
 - 외부 maskable IRQ는 기존 IVT/IF 검증을 그대로 거친다. 앞선 `STI/MOV SS/POP SS`로 **다음 전체 명령**을 보호할 때는 REP 내부 회차를 쪼개지 않고 실행해 후속 명령 전체의 인터럽트 억제를 유지한다. 새로운 PIT/PIC IRQ 시계/대기 큐·우선순위는 절대 꾸며내지 않는다.
 - 공개 원본 미포함 CI 게이트에 `tests/realmode-8086-rep-interruptible.test.mjs` 포함: 합성 REP/IRQ/IRET 실제 게스트 IVT 진입·prefix resume, MOVSW/SCASB/CMPSB/STOSW/LODSW, STI·SS 억제, CX=0, 레거시 기본 atomic 모드 비교. GitHub `UW2 Web Fidelity Static Gate` run `41213070497`, source SHA `4b7b606449f7281e2777faf8bb287dde5cfab811`, synthetic-static **SUCCESS**.
 - 원본 실기 플래그는 **기본 OFF**: 기존 OPEN 13M-step 구간/OPGRAPH part0·13 해제 SHA·VGA 원본 CPU 검증 시점 수치를 갑자기 바꾸지 않는다. 다음에는 소유 원본 입력을 사용한 별도 `interruptibleRepStrings:true` 고정 조건에서 guest original OPEN/FMDRV의 REP 내부 중단·재개 및 초기 화면/파일 해제 출력 차이를 **경량 구간**부터 대조하고, 가능할 때 실제 DOS/PIT/PIC 참조 트레이스와 검증한다. 이 새로운 모드의 ORIGINAL_DOS_RUNTIME / FULL_GAME / BROWSER_PARITY는 아직 **UNTESTED**다.
+
+## 11. 2026-11-01 P3 DOS PSP별 원본 파일 핸들 소유권·상속 범위
+
+- 기존 `web/dos-readonly-files.js`의 단일 read-only handle `Map`은 동일한 8086 CPU를 쓰는 부모 KOEI와 자식 FMDRV/OPEN에서 프로세스별 핸들 번호를 구분하지 못했다. 서로 다른 부모/자식의 handle #5 열기·읽기·닫기가 충돌하거나 seek 위치를 오염시킬 수 있는 결함이다.
+- source SHA `4cf3e210e9c7b9ff60accb7c28e301d218dcaf60`에서 `getFileProcessPsp` 옵트인으로 PSP별 JFT를 분리하고, `inheritReadOnlyFileHandles(parentPsp,childPsp)`에만 동일 SFT(원본 byte snapshot과 공유 seek cursor)를 명시적으로 상속한다. 자식의 JFT close 또는 재사용은 부모 핸들을 지우지 않는다. `releaseReadOnlyFileHandles(psp)`는 소유자가 종료를 확인할 때만 호출하도록 격리했다. 기존 단일 프로세스 호출자는 동일한 unscoped 경로를 사용한다. 확인되지 않은 DOS PSP, 비동기 소유자, 자동 승계·가상 DOS 기본값은 거부한다.
+- 새 `tests/dos-readonly-files-process.test.mjs`는 8086 CPU + INT21 adapter에서 부모/자식의 각기 독립적인 #5, 명시적 상속 후 SFT seek 공유, 자식 close 이후 부모 파일 유지, 명시적 정리, 잘못된 PSP/비동기 반환 거부를 **합성 테스트**로 검사했다. 동일 소스 SHA에 대한 GitHub `UW2 Web Fidelity Static Gate` run `41213267899` **SUCCESS**; 이로써 DOS 참조 실행 동등성이 증명된 것은 아니다.
+- 이어 `tests/p3-koei-fmdrv-open-irq-original.test.mjs`의 기존 외부 설정 `activePsp=0200h/0400h/0600h`을 `getFileProcessPsp`로 실제 DOS 파일 서비스에 연결한다. 해당 환경은 여전히 **명시적 합성 PSP/IRQ/OPL/BIOS**다. 비공개 원본 재실행과 독립 DOS 캡처 비교는 **UNTESTED**이고, 실제 DOS EXEC JFT 상속 규칙·종료·TSR 메모리 책임은 DOS 참조 PSP/JFT/MCB 스냅샷 전에는 자동 구현하지 않는다.
+- 다음은 원본 `KOEI → FMDRV TSR → OPEN` 파일 열기/read/seek/close를 PSP별 근거와 함께 재검증하고, DOS 실제 기기/인터럽트 트레이스 확보 및 OPGRAPH 미검증 12파트 원본 기계어 출력 비교를 계속한다. `MAIN.EXE`의 전체 진행 및 전체 게임 동등성은 여전히 **HOLD/UNTESTED**다.

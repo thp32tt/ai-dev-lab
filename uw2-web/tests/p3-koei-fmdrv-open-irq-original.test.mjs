@@ -16,6 +16,12 @@ import {runStagedDosComChild,captureDosCpuFrame} from '../web/dos-com-child-runn
 // PRIVATE ORIGINAL KOEI + FMDRV bytes. ALL DOS/BIOS/OPL initial values below
 // are explicitly SYNTHETIC. No original DOS reference, child OPEN/MAIN run,
 // or sound reproduction is claimed. This test is private-N100-only, NOT CI.
+const syntheticIrqStep=process.argv[2]===undefined?2048:Number(process.argv[2]);
+const instructionBudget=process.argv[3]===undefined?60000:Number(process.argv[3]);
+if(!Number.isInteger(syntheticIrqStep)||syntheticIrqStep<32||syntheticIrqStep>65535)
+ throw new RangeError('explicit synthetic IRQ step interval must be 32..65535');
+if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>500000)
+ throw new RangeError('explicit bounded original OPEN instruction budget required');
 const dir=process.env.UW2_GAME_DIR||
  '/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD';
 const koei=readFileSync(join(dir,'KOEI.COM'));
@@ -116,9 +122,9 @@ installDosInt21(cpu,{
   }
   if(request.filename==='OPEN.EXE'){
     openStarted=true;activePsp=0x600;
-    try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:60000,
+    try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:instructionBudget,
       onInstructionBoundary:({steps},guest)=>{
-        if(steps>0&&steps%2048===0){
+        if(steps>0&&steps%syntheticIrqStep===0){
           const x=deliverExternalMaskableIrq(guest,{vector:8,
             source:'SYNTHETIC_FIXED_STEP_IRQ0_NOT_REAL_PIT_CLOCK'});
           observed.pitIrqEdges.push({steps,delivered:x.delivered});
@@ -182,7 +188,7 @@ const result={
  vgaWrites:observed.vgaWrites,vgaWriteCount:indexedVga.writtenCount(),
  paletteWrites:observed.paletteWrites,
  syntheticVgaStatusReads,dacColors:observed.dacColors,dacColorCount:vgaDac.writtenColors(),
- syntheticPitIrqEdges:observed.pitIrqEdges,originalPicWrites:observed.picWrites,
+ syntheticPitIrqStep:syntheticIrqStep,syntheticPitIrqEdges:observed.pitIrqEdges,originalPicWrites:observed.picWrites,
  koeiModeRequests:observed.biosModes,
  freed:observed.freed,resizes:observed.resizes,
  koeiTerminated:cpu.terminated,stopped,trace,
@@ -199,7 +205,7 @@ assert.equal(observed.calls[0].file,'FMDRV.COM');
 assert.equal(result.original.openSha,openSha);
 assert.equal(openStarted,true);
 assert.ok(openGuestFault);
-assert.ok(openGuestFault.steps>=2048);
+assert.ok(openGuestFault.steps>=syntheticIrqStep);
 assert.ok(observed.pitIrqEdges.length>=1);
 assert.ok(observed.pitIrqEdges.some(x=>x.delivered));
 assert.ok(indexedVga.writtenCount()>=6);

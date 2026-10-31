@@ -27,7 +27,7 @@ const syntheticIrqStep=process.argv[2]===undefined?2048:Number(process.argv[2]);
 const instructionBudget=process.argv[3]===undefined?60000:Number(process.argv[3]);
 if(!Number.isInteger(syntheticIrqStep)||syntheticIrqStep<32||syntheticIrqStep>65535)
  throw new RangeError('explicit synthetic IRQ step interval must be 32..65535');
-if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>10000000)
+if(!Number.isInteger(instructionBudget)||instructionBudget<5000||instructionBudget>15000000)
  throw new RangeError('explicit bounded original OPEN instruction budget required');
 const dir=process.env.UW2_GAME_DIR||
  '/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD';
@@ -422,6 +422,11 @@ assert.ok(openGuestFault.steps>=syntheticIrqStep);
 assert.match(result.fidelity,/NOT_DOS_REFERENCE/);
 assert.ok(observed.pitIrqEdges.length>=1);
 assert.ok(observed.pitIrqEdges.some(x=>x.delivered));
+if(syntheticIrqStep===128&&instructionBudget>=6000000){
+ assert.equal(nativePart0RuntimeWitness.maxMatchingPrefix,52748);
+ assert.equal(nativePart0RuntimeWitness.fullMatchSha256,graphEvidence.decodedSha256[0]);
+ assert.equal(nativePart0RuntimeWitness.fullMatchStep,5715968);
+}
 if(syntheticIrqStep===128&&instructionBudget===260000){
   assert.equal(originalVgaPlaneState.graphicsMode,2);
   assert.equal(originalVgaPlaneState.sequencerMapMask,15);

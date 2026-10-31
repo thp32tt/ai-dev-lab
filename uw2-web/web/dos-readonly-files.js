@@ -88,11 +88,42 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
     return file;
   };
   const handle=ah=>{
-    if(ah!==0x3d&&ah!==0x3e&&ah!==0x3f&&ah!==0x42)return false;
+    if(![0x3d,0x3e,0x3f,0x42,0x45,0x46].includes(ah))return false;
     const {table,psp}=handles();
     // A process-scoped DOS JFT number is ambiguous without its PSP.
     // Never infer a PSP from CS, DS or guessed executable boundaries.
     const emitFileEvent=e=>emit(scoped?{...e,psp}:e);
+    if(ah===0x45||ah===0x46){
+      // DOS 2+ DUP/FORCEDUP JFT entries must reference the *same* SFT
+      // cursor, not a copied file position. This bounded adapter only
+      // owns original-file handles 5..36; standard devices 0..4 and
+      // arbitrary DOS JFT expansion remain with the external DOS owner.
+      const sourceHandle=cpu.get16('BX'),file=get(table);
+      if(!file)return true;
+      if(ah===0x45){
+        let duplicate=5;
+        while(table.has(duplicate)&&duplicate<37)duplicate++;
+        if(duplicate>=37){fail(4);return true;}
+        table.set(duplicate,file);
+        cpu.set16('AX',duplicate);ok();
+        emit({operation:'duplicate',filename:file.filename,
+          sourceHandle,handle:duplicate,position:file.position});
+        return true;
+      }
+      const destination=cpu.get16('CX');
+      if(destination<5)
+        throw new Error('DOS forced duplicate of external standard device needs DOS JFT owner: fail closed');
+      if(destination>=37){fail(6);return true;}
+      if(sourceHandle===destination)
+        throw new Error('DOS forced duplicate source equals destination is unverified: fail closed');
+      const replaced=table.get(destination);
+      table.set(destination,file); // implicit close of the old JFT entry
+      ok(); // AH46 success specifies CF only; preserve AX
+      emit({operation:'force-duplicate',filename:file.filename,
+        sourceHandle,handle:destination,replacedFilename:replaced?.filename??null,
+        position:file.position});
+      return true;
+    }
     if(ah===0x3d){
       // Only read-only AL=00 is supported; sharing, writes and flags are not
       // invented in the absence of original DOS reference semantics.

@@ -19,7 +19,7 @@ export function captureDosCpuFrame(cpu){
   for(const name of DOS_CPU_FRAME_NAMES)frame[name]=cpu.get16(name);
   return Object.freeze(frame);
 }
-export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000}={}){
+export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000,onInstructionBoundary}={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('DOS child runner requires shared RealMode8086');
   if(!initialFrame||typeof initialFrame!=='object'||Array.isArray(initialFrame))
@@ -30,6 +30,8 @@ export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000}={}){
   for(const name of DOS_CPU_FRAME_NAMES)word(initialFrame[name],name);
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>1000000)
     throw new RangeError('DOS child bounded instruction budget required');
+  if(onInstructionBoundary!==undefined&&typeof onInstructionBoundary!=='function')
+    throw new TypeError('DOS child instruction boundary observer must be synchronous');
   if(cpu.terminated)
     throw new Error('cannot start DOS child from already terminated parent');
   const parent=captureDosCpuFrame(cpu),parentTerminated=cpu.terminated;
@@ -39,7 +41,16 @@ export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000}={}){
     cpu.terminated=null;
     for(;steps<maxSteps&&!cpu.terminated;steps++){
       const cs=cpu.get16('CS'),ip=cpu.get16('IP');
-      try{cpu.step();}catch(error){
+      try{
+        if(onInstructionBoundary!==undefined){
+          const outcome=onInstructionBoundary(Object.freeze({steps,cs,ip}),cpu);
+          if(outcome&&typeof outcome.then==='function')
+            throw new Error('async DOS instruction boundary observer: fail closed');
+          if(outcome!==undefined)
+            throw new Error('DOS instruction boundary observer must not invent status');
+        }
+        cpu.step();
+      }catch(error){
         if(error instanceof Error){
           error.guestCS=cs;error.guestIP=ip;error.guestSteps=steps;
           error.guestAX=cpu.get16('AX');error.guestDX=cpu.get16('DX');

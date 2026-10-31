@@ -467,3 +467,8 @@
 - `web/browser-original-open-session.js`를 추가했다. **사용자가 직접 제공한 한국어 원본 `OPEN.EXE` 바이트**의 고정 SHA-256 검증을 가장 먼저 수행하고, 사용자가 따로 제공·SHA 고정한 DOS PSP 256B·IVT 1024B 및 명시적 MZ allocation으로 동일 8086 CPU 메모리에 적재한다. 진단 프리뷰의 합성 화면이나 자동 키/IVT/파일 내용을 생성하지 않는다.
 - 스냅샷/원본 적재가 성공하고 INT16 소유권 충돌이 없는 경우에만 기존 browser trusted key → BIOS FIFO → 실행 세션을 명시적 event target에 연결한다. 전역 DOM listener·웹 전용 게임 조작기·자동 실행 타이머는 추가하지 않는다. CPU/DOS 장치 및 실제 BIOS 값의 준비는 호출자가 별도로 책임진다. SHA 일치 그 자체는 DOS 스냅샷의 실제 출처·정합성을 보장하지 않는다.
 - GitHub Actions에는 원본 EXE를 넣지 않고 synthetic 가짜 MZ와 누락 PSP/IVT로 SHA 거부, 기동 미변경·무등록 listener 등 실패 경계만 검사한다. 별도 N100 원본 파일로 성공 staging 진단을 수행하기 전까지 실제 브라우저 실행 성공·OPEN→MAIN·OPL/VGA·DOS 등가성은 **UNTESTED/HOLD**.
+
+### 2026-11-01 N100 원본 OPEN 브라우저 준비 경로 실물 검증 보강
+
+- GitHub source `web/browser-original-open-session.js`와 한국어판 원본 OPEN.EXE 고정 SHA를 사용한 N100 private 테스트에서 `loadPinnedDosPsp`·`loadVerifiedMz`·`installPinnedDosIvtSnapshot`·브라우저 키보드 source bridge를 순서대로 실행했다. 원본 이미지 SHA 고정·재배치 23건, 명시적 IVT vector 00h 1건, 원본 8086 명령 1개 실행, event target listener 등록/해제 1회 성공. 사용된 PSP/IVT 및 DOS 버전은 명시적으로 **합성 입력**이고 브라우저 event target 역시 모의 객체이다. 따라서 실제 Browser KeyboardEvent, DOS/BIOS hardware, 시각 화면·음악, MAIN 전환, 사용자의 게임 플레이 성공을 증명하지 않는다.
+- 재현 가능한 private-file 테스트 `tests/p3-browser-open-original.test.mjs`의 직접 작성한 코드만 GitHub에 추가하고, 원본 자산·원본 1KiB IVT 덤프·PSP 덤프는 업로드하지 않는다. `node --check`만 public Actions에서 검사하고 사용자의 실제 원본을 가진 N100에서 별도 실행한다. 정품 DOS 부팅 환경에서 읽은 INT 00h 포함 IVT 검증값 확보는 계속 **HOLD**.

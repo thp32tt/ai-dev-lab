@@ -85,7 +85,7 @@ def extract_chunk(original_path: Path, start: int, size: int, output: Path,
     if completed.returncode != 0 or not output.is_file():
         # Never silently report success based on the import stage alone.
         output.unlink(missing_ok=True)
-        tail = "\n".join(completed.stdout.splitlines()[-16:])
+        tail = "\n".join(completed.stdout.splitlines()[-90:])
         raise RuntimeError("Ghidra post-script failed (not exported):\n" + tail)
     metadata = json.loads(output.read_text("utf-8"))
     if (metadata.get("moduleName") != module_name or

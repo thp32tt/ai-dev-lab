@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native 8086 VGA plane readback + mode lifetime evidence (2026-11-01 KST)
+
+- **Distinct new source capability:** `thp32tt/ai-dev-lab@uw2-web-port` implements explicit synchronous 8086 memory-read device provider, evidence-gated mode12 A0000h selected-plane read mode 0 (observed GC04/GC05/GC06, original CPU-write-per-plane byte validity), and bounded read adapter. Source material SHA `d0150c9bd1672aeb73374a71c10688258fb366c8`; same capability continuation `8758b6fac22ee0330d40ce2b962741c2b32bbaf9` rejects stale VGA evidence after explicit BIOS mode changes and verifies native 8086 MOV write-mode-2 -> read-mode-0 values. No original asset bytes or cosmetic game changes were committed.
+- **Exact-SHA GitHub validation:** UW2 Web Fidelity Static Gate `synthetic-static` **SUCCESS** at initial source SHA run `41218008820` and at continuation SHA `8758b6fac22ee0330d40ce2b962741c2b32bbaf9`, run `41218196882`. New and existing mandatory 8086/VGA/Bios synthetic checks pass. This remains **SYNTHETIC_STATIC**; Korean original DOS hardware VGA modes, OPEN native CPU game scene/display, browser full play and music are **UNTESTED/HOLD**. The second commit is same capability, not a second independent point.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2289 + one independent validated native VGA read-path capability +1 = 2290.** AI 1 remains separate; docs/CI/rechecks +0.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 DX9Ex Quest 4:3 front-end + flare scale/depth tuning (2026-11-01 KST)
 
 - **Distinct new runtime-driven refinement:** owner `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, source implementation `e9429c2ab86cdb101bf6816bddd778018444afc1`, validation-bearing SHA `67cf7bad871d5005cbd02ed45f4b0da418a92101`. Owner HMD feedback confirmed the prior PMT repair removed flare doubling, but the repaired flare was optically too large/flat and the main front-end remained top-left while only white boot cards looked 16:9. This change preserves the successful one-image PMT/angular-ray ownership while scaling each flare sprite about its own authored local origin to 0.50x and restoring only 2.5% of physical eye translation for shallow finite stereo depth; full fake-plane IPD/eye cant remains excluded to avoid reintroducing the doubled flare.

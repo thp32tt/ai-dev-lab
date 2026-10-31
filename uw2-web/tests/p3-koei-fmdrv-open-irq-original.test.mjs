@@ -11,6 +11,8 @@ import {installBiosInt16} from '../web/bios-int16.js';
 import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
 import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
 import {createOriginalVgaMode12PlaneWitness} from '../web/vga-mode12-planar-witness.js';
+import {createOriginalOpl2WriteBus} from '../web/opl2-raw-write-bus.js';
+import {createOriginalPitChannel0WriteBus} from '../web/pit8253-counter0-witness.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {deliverExternalMaskableIrq} from '../web/guest-irq-boundary.js';
 import {prepareOriginalOpgraphArchive} from '../web/opgraph-original-archive.js';
@@ -70,7 +72,7 @@ for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
  expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67,0x33]});
-const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[],verifiedFileRead:null};
+const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[],verifiedFileRead:null,originalOplRegisters:[],originalPitReloads:[]};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
@@ -78,12 +80,21 @@ installBiosInt10(cpu,{
  setPaletteRegister:entry=>{observed.paletteWrites.push({...entry});}
 });
 installBiosInt16(cpu,{checkKey:()=>({available:false})}); // SYNTHETIC empty keyboard queue
+const originalOplBus=createOriginalOpl2WriteBus({
+ readStatus:()=>0, // EXPLICIT SYNTHETIC OPL 0388h status; not original chip behavior
+ maxRegisterWrites:250000,onRegisterWrite:event=>{
+  if(observed.originalOplRegisters.length<128)
+   observed.originalOplRegisters.push({...event});
+ }});
+const originalPitBus=createOriginalPitChannel0WriteBus({
+ onReload:event=>{observed.originalPitReloads.push({...event});}
+});
+cpu.registerIOPort(0x43,originalPitBus.port43);
+cpu.registerIOPort(0x40,originalPitBus.port40);
+cpu.registerIOPort(0x388,originalOplBus.port388);
+cpu.registerIOPort(0x389,originalOplBus.port389);
 for(const [port,handlers] of [
- [0x43,{out8:(p,v)=>observed.io.push({port:p,value:v})}],
- [0x40,{out8:(p,v)=>observed.io.push({port:p,value:v})}],
  [0x61,{in8:()=>0,out8:(p,v)=>observed.io.push({port:p,value:v})}],
- [0x388,{in8:()=>0,out8:(p,v)=>observed.io.push({port:p,value:v})}],
- [0x389,{out8:(p,v)=>observed.io.push({port:p,value:v})}],
  [0x20,{out8:(p,v)=>observed.picWrites.push({port:p,value:v})}]
 ])cpu.registerIOPort(port,handlers);
 const vgaPlaneWitness=createOriginalVgaMode12PlaneWitness({maxObservedWrites:150000});
@@ -296,7 +307,10 @@ const result={
  installedInt66:cpu.getGuestInterruptVector(0x66),
  initialInt66:{segment:0x900,offset:0},
  originalFmdrvResidency:observed.resident,
- originalPitWrites:observed.io.filter(x=>x.port===0x40||x.port===0x43).slice(0,4),
+ originalPitWrites:observed.originalPitReloads,
+ originalPitState:originalPitBus.getState(),
+ originalOplState:originalOplBus.getState(),
+ originalOplFirstWrites:observed.originalOplRegisters,
  originalFileRequests:observed.originalFileRequests,
  originalDosFileCalls:observed.originalDosFileCalls,
  verifiedFileRead:observed.verifiedFileRead,

@@ -12,9 +12,12 @@ const u16 = (v, label) => {
   return v;
 };
 export class RealMode8086 {
-  constructor(memory = new Uint8Array(0x100000)) {
+  constructor(memory = new Uint8Array(0x100000), {enable80186Shifts=false}={}) {
     if (!(memory instanceof Uint8Array) || memory.length !== 0x100000)
       throw new TypeError('real mode requires exactly 1 MiB of byte-addressable memory');
+    if(typeof enable80186Shifts!=='boolean')
+      throw new TypeError('explicit 80186 immediate-shift capability must be boolean');
+    this.enable80186Shifts=enable80186Shifts;
     this.memory = memory;
     this.regs = new Uint16Array(8);
     this.seg = {CS:0,DS:0,ES:0,SS:0};
@@ -563,8 +566,23 @@ export class RealMode8086 {
       return;
     }
 
-    // 8086 D0/D1=one bit, D2/D3=full unsigned CL repeat count.
-    // Do not accept 80186-only C0/C1 immediate-count encodings here.
+    // 80186/80286 Group-2 C0/C1 immediate-count shifts are opt-in: exact
+    // original Korean KOEI.COM at raw 02ACh has C1 EB 04 (SHR BX,4).
+    // Older 8086-only callers still fail closed on C0/C1. Counts above 31
+    // require separate processor-specific reference verification.
+    if(op===0xc0||op===0xc1){
+      if(!this.enable80186Shifts)
+        throw new Error('80186 immediate shift requires explicit capability: fail closed');
+      const m=this.fetch8(),extension=(m>>>3)&7;
+      if(extension===6)throw new Error('unsupported 80186 Group-2 /6: fail closed');
+      const width=op===0xc0?8:16,rm=this.memoryOperand(m,width,segmentOverride);
+      const count=this.fetch8();
+      if(count>31)throw new Error('unverified 80186 immediate shift count >31: fail closed');
+      if(count===0)return;
+      rm.write(this.shiftRotateResult(extension,rm.read(),width,count));
+      return;
+    }
+    // Native 8086 D0/D1=one bit, D2/D3=full unsigned CL repeat count.
     if(op>=0xd0&&op<=0xd3){
       const m=this.fetch8(),extension=(m>>>3)&7;
       if(extension===6)throw new Error('unsupported 8086 Group-2 /6: fail closed');

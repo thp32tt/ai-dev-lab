@@ -40,13 +40,13 @@ const openMz=await loadVerifiedMz(cpu,open,{pspSegment:0x600,loadSegment:0x610,
 await loadVerifiedCom(cpu,koei,{pspSegment:0x200,allocationParagraphs:0x1000,
  initialSP:0xfffe,expectedSha256:koeiSha});
 const ivt=new Uint8Array(1024);
-for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930]]){
+for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,0x940]]){
  ivt[n*4]=0;ivt[n*4+1]=0;
  ivt[n*4+2]=seg&255;ivt[n*4+3]=seg>>>8;
  cpu.load(Uint8Array.of(0xcf),seg,0); // synthetic original handler IRET
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
- expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00]});
+ expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67]});
 const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[]};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},

@@ -403,4 +403,15 @@
 - `tools/p3-open-exec-probe.mjs`에 `enableProgressWitness:true`를 명시할 때만 설치한다. 기설치된 VGA/CPU write observer를 덮어쓰지 않고 충돌하면 즉시 거부한다. 기존 DOS 원본 file observer를 유지하며 그 결과가 성공했을 때에만 counters를 추가한다. 기본 probe, 기존 브라우저 게임, 사용자 보유 게임 파일은 변경하지 않는다. `enableHotspots`와 별도 선택 가능하며 `executionProgress`에 실제 메모리 갱신과 파일 전송량을 수치로 남긴다.
 - 새 합성 8086 MOV write8 회귀는 같은 주소에 같은 값 재쓰기 vs 값 변화, DOS read event, 주소 중복/overflow, 윈도우 보관 상한, 부정확한 20-bit 물리 근거 거부, 원본 파일명 노출 방지를 시험한다. 이 도구의 관측은 **합성 DOS 환경에서 실제 명령이 메모리를 쓰는지** 구별하는 데 유용할 뿐, 파일/IO/IRQ/VGA 디바이스의 모든 내부 상태 변화를 관측하는 것은 아니다. CPU 쓰기가 없거나 같은 주소가 반복돼도 원본 DOS 정지·무한루프를 단정하지 않는다. 개인 원본 실기 재실행 및 DOS 기준 실행/MAIN 시작·픽셀·오디오 동등성은 **UNTESTED/HOLD**.
 - 다음은 기존 private 원본 OPEN 100만 명령 진단에 본 집계를 낮은 비용으로 옵트인해 CPU hot sites와 CPU-write/actual file read가 동시에 진행되었는지 비교하는 일이다. 모든 실기 수치는 검증된 정확한 사용자 원본 SHA와 합성 DOS 환경을 함께 명시한다.
-\n\n### 2026-11-01 P3 원본 CPU 포트 IN/OUT 진행 증거 (장치 비동등성 유지)\n\n- `web/realmode-8086.js`의 단일 소유자 장치 포트 bus에 **완료된 IN/OUT만** 보고하는 선택적 동기/읽기전용 observer를 추가. 기존 VGA/OPL/PIT adapter를 대체·중복 등록하지 않고 이미 있는 호출 순서와 레지스터 반환을 유지한다. 장치가 거부하거나 없는 포트·폭 오류, 비동기 OUT은 완료 사건으로 기록하지 않는다. observer가 값을 만들어 반환하거나 비동기 처리하려 하면 fail closed.\n- `web/guest-progress-witness.js`는 bounded instruction window에 실제 CPU 포트 읽기/쓰기 수, OPL(388h/389h), VGA(3B0h~3DFh), PIT(40h~43h), 기타 OUT 수와 유일 포트 수/상한 초과만 기록한다. 원본 IN/OUT 바이트, 등록된 장치 상태, 음악·화면 데이터는 요약에 저장하지 않는다. 분류는 **주소 단위 진단**으로, 사운드 발생·픽셀 갱신·타이머 IRQ 성공을 뜻하지 않는다.\n- `tools/p3-open-exec-probe.mjs`의 기존 `enableProgressWitness:true`에서 CPU 메모리 observer와 새 포트 observer 소유권을 **둘 다 선점 검사**한 뒤 하나의 동일 집계기로 연결한다. 원본 실행 및 브라우저 기본 경로는 비옵트인. 테스트는 기존 `realmode-8086-io.test.mjs` / `guest-progress-witness.test.mjs`에서 실제 8086 명령, 정상/거부/비동기 장치, 읽기값, bounded 포트 보관/상한, 오염 없는 집계로 검증한다. 별도의 사설 원본 OPEN 실 DOS 기준·포트 디바이스 완전 동등성 및 실제 웹 항해/음원은 계속 **UNTESTED/HOLD**.\n
+
+
+### 2026-11-01 P3 원본 CPU 포트 IN/OUT 진행 증거 (장치 비동등성 유지)
+
+- `web/realmode-8086.js`의 단일 소유자 장치 포트 bus에 **완료된 IN/OUT만** 보고하는 선택적 동기/읽기전용 observer를 추가. 기존 VGA/OPL/PIT adapter를 대체·중복 등록하지 않고 이미 있는 호출 순서와 레지스터 반환을 유지한다. 장치가 거부하거나 없는 포트·폭 오류, 비동기 OUT은 완료 사건으로 기록하지 않는다. observer가 값을 만들어 반환하거나 비동기 처리하려 하면 fail closed.
+- `web/guest-progress-witness.js`는 bounded instruction window에 실제 CPU 포트 읽기/쓰기 수, OPL(388h/389h), VGA(3B0h~3DFh), PIT(40h~43h), 기타 OUT 수와 유일 포트 수/상한 초과만 기록한다. 원본 IN/OUT 바이트, 등록된 장치 상태, 음악·화면 데이터는 요약에 저장하지 않는다. 분류는 **주소 단위 진단**으로, 사운드 발생·픽셀 갱신·타이머 IRQ 성공을 뜻하지 않는다.
+- `tools/p3-open-exec-probe.mjs`의 기존 `enableProgressWitness:true`에서 CPU 메모리 observer와 새 포트 observer 소유권을 **둘 다 선점 검사**한 뒤 하나의 동일 집계기로 연결한다. 원본 실행 및 브라우저 기본 경로는 비옵트인. 테스트는 기존 `realmode-8086-io.test.mjs` / `guest-progress-witness.test.mjs`에서 실제 8086 명령, 정상/거부/비동기 장치, 읽기값, bounded 포트 보관/상한, 오염 없는 집계로 검증한다. 별도의 사설 원본 OPEN 실 DOS 기준·포트 디바이스 완전 동등성 및 실제 웹 항해/음원은 계속 **UNTESTED/HOLD**.
+
+### 2026-11-01 P3 원본 OPEN 장시간 INT21 실행 기록의 메모리 상한
+
+- `tools/p3-open-exec-probe.mjs`의 게스트 실행 예산을 명시적 1~1,000,000 명령으로 확장한다(실 원본 실행 결과를 의미하지 않음). 예전 `services` 무제한 배열 대신 `web/guest-dos-call-window.js`의 고정 용량 순환 기록(기본 4,096, 최대 65,536)을 사용한다. 보관 개수보다 호출이 많아지면 과거 것부터 버리되 총 시도 수와 폐기 수를 따로 보고하여 진단 기록 일부가 없음을 숨기지 않는다.
+- 원본 8086 CS:IP의 `INT 21h` 및 AH/AL 일치로 기록을 검증하고 주소/서비스 번호 외 원본 파일명·버퍼·자산 바이트는 저장하지 않는다. 기록은 **DOS 호출 시도**이며 DOS 함수 성공/반환/원본 종료의 증거가 아니다. 합성 테스트는 실제 8086 INT 21h 실행, 순환 순서·메모리 상한·불일치 거부·요약 불변성을 CI에서 확인한다. 사설 한국어 원본 100만 명령 실행, 실 DOS 결과, 실제 화면·음악·게임 진행은 **UNTESTED/HOLD**.

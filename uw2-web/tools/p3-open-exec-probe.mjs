@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {RealMode8086} from '../web/realmode-8086.js';
 import {createGuestExecutionHotspotRecorder} from '../web/guest-execution-hotspots.js';
 import {createGuestProgressWitness} from '../web/guest-progress-witness.js';
+import {createGuestDosCallWindow} from '../web/guest-dos-call-window.js';
 import {loadVerifiedMz} from '../web/mz-loader.js';
 import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
@@ -20,20 +21,23 @@ if(!pin)throw new Error('OPEN.EXE baseline fingerprint required');
 export async function probeOriginalOpen(original,{
  pspSegment=0x600,loadSegment=0x610,allocationParagraphs,
  maxSteps=10000,initialPsp=null,initialIvt=null,dosOptions={},cpu=null,traceLimit=24,
+ maxServiceEvents=4096,
  enableHotspots=false,enableProgressWitness=false,keyboardQueue=undefined
 }={}){
  if(!(original instanceof Uint8Array))
    throw new TypeError('original OPEN.EXE binary byte buffer required');
  if(!Number.isInteger(allocationParagraphs)||allocationParagraphs<1||allocationParagraphs>65535)
    throw new Error('explicit synthetic OPEN allocation paragraphs required');
- if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
-   throw new RangeError('bounded original OPEN step budget required');
+ if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>1000000)
+   throw new RangeError('original OPEN step budget must be 1..1000000');
  if(typeof enableHotspots!=='boolean')
    throw new TypeError('guest execution hotspot opt-in must be boolean');
  if(typeof enableProgressWitness!=='boolean')
    throw new TypeError('guest execution progress opt-in must be boolean');
  if(!Number.isInteger(traceLimit)||traceLimit<0||traceLimit>128)
    throw new RangeError('bounded OPEN execution trace length required');
+ if(!Number.isInteger(maxServiceEvents)||maxServiceEvents<1||maxServiceEvents>65536)
+   throw new RangeError('bounded OPEN DOS service history capacity required');
  const machine=cpu??new RealMode8086();
  const psp=initialPsp===null?null:await loadPinnedDosPsp(machine,initialPsp.bytes,{
    pspSegment,expectedSha256:initialPsp.expectedSha256
@@ -66,7 +70,8 @@ export async function probeOriginalOpen(original,{
  }
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.
  if(keyboardQueue!==undefined)installBiosInt16(machine,{keyboardQueue});
- let steps=0,stopped=null,services=[],recent=[];
+ let steps=0,stopped=null,recent=[];
+ const serviceHistory=createGuestDosCallWindow({maxEvents:maxServiceEvents});
  const hotspots=enableHotspots?createGuestExecutionHotspotRecorder({
    sampleEvery:127,maxSites:4096,maxStates:8192,top:16
  }):null;
@@ -77,7 +82,7 @@ export async function probeOriginalOpen(original,{
    const record={cs,ip,ax:machine.get16('AX'),sp:machine.get16('SP')};
    if(traceLimit){recent.push(record);if(recent.length>traceLimit)recent.shift();}
    if(machine.read8(cs,ip)===0xcd&&machine.read8(cs,(ip+1)&65535)===0x21)
-     services.push({ah:machine.get8('AH'),al:machine.get8('AL'),cs,ip});
+     serviceHistory.observe({ah:machine.get8('AH'),al:machine.get8('AL'),cs,ip},machine);
    try{
      if(keyboardQueue!==undefined){
        // A pending original BIOS AH00 must not advance the MZ guest IP
@@ -91,10 +96,13 @@ export async function probeOriginalOpen(original,{
  }
  if(!stopped&&!machine.terminated)
    stopped={reason:'STEP_BUDGET_EXHAUSTED',cs:machine.get16('CS'),ip:machine.get16('IP')};
+ const dosCalls=serviceHistory.summarize();
  return Object.freeze({
    name:'OPEN.EXE',sha256:pin.sha256,image,initialPsp:psp,
    initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount}:null,
-   steps,stopped,terminated:machine.terminated,services,recent,
+   steps,stopped,terminated:machine.terminated,
+   services:dosCalls.calls,totalDosServiceCalls:dosCalls.totalCalls,
+   discardedDosServiceCalls:dosCalls.discardedCalls,recent,
    ...(hotspots?{executionHotspots:hotspots.summarize()}:{}),
    ...(progress?{executionProgress:progress.summarize()}:{}),
    fidelity:'ORIGINAL_OPEN_MZ_BYTES__SYNTHETIC_DOS_PSP_MEMORY__NOT_REFERENCE_BOOT'

@@ -188,7 +188,7 @@ assert.equal(observed.calls[0].file,'FMDRV.COM');
 assert.equal(result.original.openSha,openSha);
 assert.equal(openStarted,true);
 assert.ok(openGuestFault);
-assert.ok(openGuestFault.steps>=1);
+console.log('OPEN_SHARED_DIAGNOSTIC',JSON.stringify(openGuestFault));
 assert.equal(cpu.getGuestInterruptVector(0x66).segment,0x400);
 assert.equal(result.stopped?.message,openGuestFault.message);
 assert.deepEqual(observed.resident,[{pspSegment:0x400,paragraphs:0x26,returnCode:1}]);

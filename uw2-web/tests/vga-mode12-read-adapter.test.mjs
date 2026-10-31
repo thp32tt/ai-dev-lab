@@ -37,6 +37,12 @@ assert.throws(()=>cpu.read8(0xa000,0),/read-mode0/);
 reg('graphics-controller',5,0);
 reg('graphics-controller',6,0x0c); // B8000 map, not A000
 assert.throws(()=>cpu.read8(0xa000,0),/A000 aperture/);
+reg('graphics-controller',6,0x08); // B0000 map, not A000
+assert.throws(()=>cpu.read8(0xa000,0),/A000 aperture/);
+reg('graphics-controller',6,0x04); // text mode, A000 map bits alone insufficient
+assert.throws(()=>cpu.read8(0xa000,0),/A000 aperture/);
+reg('graphics-controller',6,0x07); // odd/even chain is not planar-mode12
+assert.throws(()=>cpu.read8(0xa000,0),/A000 aperture/);
 reg('graphics-controller',6,5);
 reg('graphics-controller',4,4);
 assert.throws(()=>cpu.read8(0xa000,0),/GC04/);

@@ -17,9 +17,14 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
   const planes=Array.from({length:4},()=>new Uint8Array(VISIBLE));
   const validity=Array.from({length:4},()=>new Uint8Array(VISIBLE));
   let observedWrites=0,visibleWrites=0,fullyCoveredBytes=0,mode0Writes=0,mode2Writes=0;
+  // GC06 controls which CPU address aperture actually reaches VGA. The
+  // native A000 witness is only valid in graphics mode with planar addressing,
+  // not in text mode, odd/even-chained addressing or B000/B800 mappings.
+  // 01h maps A0000-BFFFF; 05h maps A0000-AFFFF (Mode 12h observed).
+  const mapsPlanarA000=()=>gc.get(6)===0x01||gc.get(6)===0x05;
   const isReady=()=>{
     const mode=gc.get(5);
-    return gc.get(3)===0&&gc.get(8)===255&&
+    return mapsPlanarA000()&&gc.get(3)===0&&gc.get(8)===255&&
       (mode===2||(mode===0&&gc.get(1)===0))&&
       Number.isInteger(seq.get(2))&&(seq.get(2)&0xf)!==0;
   };
@@ -64,7 +69,7 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       if(observedWrites>=maxObservedWrites)
         throw new Error('VGA mode12 original-CPU write budget exceeded: fail closed');
       if(!isReady())
-        throw new Error('VGA planar write requires exact observed mode0/mode2 GC01/03/05/08 and SEQ02: fail closed');
+        throw new Error('VGA planar write requires observed GC06 graphics A000 planar aperture, mode0/mode2 GC01/03/05/08 and SEQ02: fail closed');
       // With full bitmask, rotate=0, and logical operation=replace, mode0
       // writes the CPU data byte unchanged to enabled planes. With mode2,
       // each AL bit expands to FFh/00h in one destination plane.
@@ -95,11 +100,10 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       const offset=physical-VRAM_PHYSICAL;
       if(offset>=VISIBLE)
         throw new Error('VGA planar read outside witnessed visible mode12 bytes: fail closed');
-      const readMap=gc.get(4),graphicsMode=gc.get(5),memoryMap=gc.get(6);
+      const readMap=gc.get(4),graphicsMode=gc.get(5);
       if(!Number.isInteger(readMap)||readMap<0||readMap>3||
          !Number.isInteger(graphicsMode)||(graphicsMode&8)!==0||
-         !Number.isInteger(memoryMap)||
-         ((memoryMap&12)!==0&&(memoryMap&12)!==4))
+         !mapsPlanarA000())
         throw new Error('VGA read requires observed GC04/GC05 read-mode0/GC06 A000 aperture: fail closed');
       if(!validity[readMap][offset])
         throw new Error('VGA read selected original plane byte is unverified: fail closed');

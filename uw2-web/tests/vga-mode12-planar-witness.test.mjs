@@ -4,7 +4,7 @@ const make=()=>createOriginalVgaMode12PlaneWitness({maxObservedWrites:50000});
 const mode=(w,mask=15)=>{
   for(const [device,index,value] of [
     ['graphics-controller',3,0],['graphics-controller',5,2],
-    ['graphics-controller',8,255],['sequencer',2,mask]
+    ['graphics-controller',6,5],['graphics-controller',8,255],['sequencer',2,mask]
   ])w.noteIndexedRegister({device,index,value});
 };
 const w=make();
@@ -31,6 +31,34 @@ masks.noteIndexedRegister({device:'sequencer',index:2,value:14});
 masks.observeNativeByte({physical:0xa0000,value:14});
 assert.equal(masks.readPixelIndex(0,0),15);
 assert.equal(masks.getState().fullyCoveredBytes,1);
+// CPU address A0000h can only populate planar pixels while GC06 actually
+// maps that aperture in non-chained graphics mode. These changes must not
+// silently turn ordinary guest RAM writes into "original screen" evidence.
+const aperture=make();
+mode(aperture);
+for(const [registerValue,label] of [
+  [0x0d,'B800 map'],[0x09,'B000 map'],[0x04,'text mode'],
+  [0x07,'odd/even addressing']
+]){
+  aperture.noteIndexedRegister({device:'graphics-controller',index:6,value:registerValue});
+  assert.equal(aperture.getState().configKnown,false,label);
+  assert.throws(()=>aperture.observeNativeByte({physical:0xa0000,value:15}),/GC06 graphics A000/,label);
+  assert.equal(aperture.getState().observedWrites,0,label);
+  assert.equal(aperture.readPixelIndex(0,0),null,label);
+}
+aperture.noteIndexedRegister({device:'graphics-controller',index:6,value:1});
+assert.equal(aperture.getState().configKnown,true);
+aperture.observeNativeByte({physical:0xa0000,value:9});
+assert.equal(aperture.readPixelIndex(0,0),9);
+aperture.noteIndexedRegister({device:'graphics-controller',index:6,value:5});
+aperture.observeNativeByte({physical:0xa0001,value:6});
+assert.equal(aperture.readPixelIndex(8,0),6);
+const noGc6=make();
+for(const [device,index,value] of [
+  ['graphics-controller',3,0],['graphics-controller',5,2],
+  ['graphics-controller',8,255],['sequencer',2,15]
+])noGc6.noteIndexedRegister({device,index,value});
+assert.throws(()=>noGc6.observeNativeByte({physical:0xa0000,value:7}),/GC06 graphics A000/);
 const rejected=make();mode(rejected);
 rejected.noteIndexedRegister({device:'graphics-controller',index:8,value:0x7f});
 assert.throws(()=>rejected.observeNativeByte({physical:0xa0000,value:1}),/exact observed/);

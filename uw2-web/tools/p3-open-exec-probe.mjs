@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {RealMode8086} from '../web/realmode-8086.js';
 import {loadVerifiedMz} from '../web/mz-loader.js';
 import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
+import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installDosInt21} from '../web/dos-int21.js';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
@@ -14,7 +15,7 @@ const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
 if(!pin)throw new Error('OPEN.EXE baseline fingerprint required');
 export async function probeOriginalOpen(original,{
  pspSegment=0x600,loadSegment=0x610,allocationParagraphs,
- maxSteps=10000,initialPsp=null,dosOptions={},cpu=null,traceLimit=24
+ maxSteps=10000,initialPsp=null,initialIvt=null,dosOptions={},cpu=null,traceLimit=24
 }={}){
  if(!(original instanceof Uint8Array))
    throw new TypeError('original OPEN.EXE binary byte buffer required');
@@ -31,6 +32,9 @@ export async function probeOriginalOpen(original,{
  const image=await loadVerifiedMz(machine,original,{
    pspSegment,loadSegment,allocationParagraphs,expectedSha256:pin.sha256
  });
+ const ivt=initialIvt===null?null:await installPinnedDosIvtSnapshot(machine,initialIvt.bytes,{
+   expectedSha256:initialIvt.expectedSha256,knownVectors:initialIvt.knownVectors
+ });
  installDosInt21(machine,dosOptions);
  let steps=0,stopped=null,services=[],recent=[];
  for(;steps<maxSteps&&!machine.terminated;steps++){
@@ -45,6 +49,7 @@ export async function probeOriginalOpen(original,{
    stopped={reason:'STEP_BUDGET_EXHAUSTED',cs:machine.get16('CS'),ip:machine.get16('IP')};
  return Object.freeze({
    name:'OPEN.EXE',sha256:pin.sha256,image,initialPsp:psp,
+   initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount}:null,
    steps,stopped,terminated:machine.terminated,services,recent,
    fidelity:'ORIGINAL_OPEN_MZ_BYTES__SYNTHETIC_DOS_PSP_MEMORY__NOT_REFERENCE_BOOT'
  });

@@ -61,6 +61,13 @@
 - P3-CORE-001: 원본 부팅 분기에 필요한 16-bit register/flags/segment/near-far transfer/exit-code 의미를 공유 IR+웹 실행 코어에서 돌리고 original DOS trace와 비교. 미실행 original/binary 테스트를 PASS로 적지 않는다.
 
 
+### F. 기존 REA 기록과 원본 실행 파일의 명령어별 증거 연결 (2026-10-31 KST)
+- 신규 직접 작성 도구: `tools/p1-instruction-ledger.mjs`, `tools/p1-rea-snapshot-bridge.mjs`; 별도 합성 회귀 2종. 이미 저장된 REA/Ghidra function-dossier `assembly` + `basic_blocks`의 주소 범위를 **사용자 보유 동일 SHA 원본 MZ 바이트**에 대응하고, 명령어 단위 SHA/후보 주소, 직접·간접 제어흐름, 관측되지 않은 전체 이미지 영역을 계산한다. byte/code boundary 충돌과 원본 SHA 불일치는 거부한다. 원본 바이트·디컴파일 원문은 커밋하지 않는다.
+- N100 기존 기록과 실제 정본 비교: `MAIN.EXE` SHA `1718bbbbcdd938dfe44403d9bd5254dfc02d431217dea39ae5fb3fcde1597747`; 기존 REA 스냅샷의 **함수 상세 기록 4건 / 어셈블리 행 864개 / 명령어 후보 864개 / 후보 영역 2,126바이트 / 미관측 265,193바이트 / 정적 제어흐름 미해결 120건**. 이미지 전체 267,319바이트. 이 4건은 REA가 자동 탐지한 1,261개 함수 후보의 전체 출력이 아니다.
+- `OPEN.EXE` SHA `f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65`: 기존 REA snapshot에는 `analyze_function` 상세 record가 **0건**이므로 41,655바이트 전체가 아직 미관측으로 남는다. 일반 의사코드 텍스트를 명령어 경계로 추측하여 승격하지 않는다.
+- 증거 범위: 원본 정적 SHA + 기존 REA 12.1.4 상세 출력의 소규모 실물 대조, GitHub Actions exact-SHA 합성 정적 검증. **실제 DOS 실행 트레이스·브라우저 원작 동등성·음악/화면·저장·전체 게임: UNTESTED / HOLD.** `verifiedCodeBytes=0`; 이 숫자들로 완성률 계산 금지.
+- 이어서 기존 분석 툴의 실제 지원 인터페이스를 확인한 뒤 모듈 전체 범위의 상세 함수/기본블록/명령어를 **작은 재개 가능 청크**로 추출해 위 도구에 전달한다. 특별히 MAIN 미관측 265,193바이트, OPEN 상세 기록 0건, 간접 제어 이전 미해결을 우선 줄이며 해당 엔진의 CPU/DOS 참조 실행·영상·OPL 대조를 계속한다.
+
 ## 3. 실행 순서와 완료 게이트
 | 단계 | 실제 수행 | 필수 GitHub 산출물 | PASS 게이트 |
 | --- | --- | --- | --- |

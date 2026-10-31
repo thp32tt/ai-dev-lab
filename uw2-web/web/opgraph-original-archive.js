@@ -21,7 +21,7 @@ export async function prepareOriginalOpgraphArchive(original,{
   maxFileBytes=DEFAULT_MAX_FILE_BYTES,
   maxPartBytes=DEFAULT_MAX_PART_BYTES,
   maxTotalDecodedBytes=DEFAULT_MAX_TOTAL_DECODED,
-  expectedPartCount
+  expectedPartCount,expectedDecodedSha256
 }={}){
   if(!(original instanceof Uint8Array))
     throw new TypeError('OPGRAPH requires owner-supplied original Uint8Array');
@@ -32,6 +32,10 @@ export async function prepareOriginalOpgraphArchive(original,{
   uint(maxTotalDecodedBytes,'OPGRAPH max total decoded',1,256*1024*1024);
   if(expectedPartCount!==undefined)
     uint(expectedPartCount,'OPGRAPH expected part count',1,1024);
+  if(expectedDecodedSha256!==undefined&&(!Array.isArray(expectedDecodedSha256)||
+     expectedDecodedSha256.length<1||expectedDecodedSha256.length>1024||
+     expectedDecodedSha256.some(x=>!lowerSha(x))))
+    throw new Error('OPGRAPH decoded SHA manifest requires bounded lowercase SHA-256 array');
   if(original.length>maxFileBytes)
     throw new RangeError('OPGRAPH original archive exceeds configured byte budget');
   // Hash-verification precedes any archive decode or guest resource publication.
@@ -60,26 +64,38 @@ export async function prepareOriginalOpgraphArchive(original,{
   const archive=decodeLS11(buffer);
   if(archive.decoded.length!==header.entries.length)
     throw new Error('OPGRAPH LS11 decoded part count differs from verified header');
-  const parts=archive.decoded.map((entry,index)=>{
+  if(expectedDecodedSha256!==undefined&&expectedDecodedSha256.length!==archive.decoded.length)
+    throw new Error('OPGRAPH decoded SHA manifest part count mismatch');
+  const parts=[];
+  for(let index=0;index<archive.decoded.length;index++){
+    const entry=archive.decoded[index];
     if(!(entry.data instanceof Uint8Array)||entry.data.length!==entry.uncompSize)
       throw new Error('OPGRAPH decoded part length mismatches original header');
     const offsets=readGraphOffsets(entry.data);
     if(offsets.length<2)
       throw new Error('OPGRAPH decoded GRAPH record table is empty');
-    return {
+    const bytes=Uint8Array.from(entry.data);
+    if(expectedDecodedSha256!==undefined){
+      const digest=Array.from(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)),
+        b=>b.toString(16).padStart(2,'0')).join('');
+      if(digest!==expectedDecodedSha256[index])
+        throw new Error('OPGRAPH decoded part SHA-256 mismatch at index '+index+': fail closed');
+    }
+    parts.push({
       metadata:Object.freeze({index,compSize:entry.compSize,
         uncompSize:entry.uncompSize,offset:entry.offset,
         recordCount:offsets.length-1}),
-      bytes:Uint8Array.from(entry.data),
+      bytes,
       offsets:offsets.slice()
-    };
-  });
+    });
+  }
   const partMetadata=Object.freeze(parts.map(x=>x.metadata));
   return Object.freeze({
     dosPath:ORIGINAL_PATH,sourceSha256:expectedSha256,
     fileBytes:trusted.length,magic:header.magic,
     partCount:parts.length,totalDecodedBytes:totalDecoded,
     totalRecords:parts.reduce((sum,x)=>sum+x.metadata.recordCount,0),
+    decodedManifestVerified:expectedDecodedSha256!==undefined,
     parts:partMetadata,
     fidelity:'SHA_PINNED_JS_LS11_GRAPH_DECODE__NATIVE_OPEN_DECOMPRESS_PARITY_UNTESTED',
     resolveDosFile(request){return resources.resolve(request);},

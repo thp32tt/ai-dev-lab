@@ -35,6 +35,10 @@ await rejects({...item,expectedSha256:'0'.repeat(64)},/SHA-256 mismatch/);
 await rejects({...item,expectedSize:4},/size mismatch/);
 await rejects({...item,name:'../../A'},/8.3 basename/);
 await rejects({...item,expectedSha256:'invalid'},/must be pinned/);
-await assert.rejects(preparePinnedOriginalDosFiles([item,{...item,name:'open.exe'}]),/duplicate/);
+const duplicateBytes=Uint8Array.of(0x11,0x22,0x33);
+await assert.rejects(preparePinnedOriginalDosFiles([
+  {...item,bytes:duplicateBytes},
+  {...item,bytes:duplicateBytes,name:'open.exe'}
+]),/duplicate/);
 await assert.rejects(preparePinnedOriginalDosFiles([]),/inventory required/);
 console.log('UW2 P3 SHA-pinned original DOS resolver -> synchronous INT21 synthetic regression: PASS');

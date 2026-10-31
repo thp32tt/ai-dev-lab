@@ -97,7 +97,7 @@ public class Uw2GhidraInstructionChunk extends GhidraScript {
                     if (monitor.isCancelled()) throw new IOException("Ghidra analysis cancelled");
                     Instruction ins = it.next();
                     Address address = ins.getAddress();
-                    if (!address.isMemoryAddress() || !address.getAddressSpace().isDefaultSpace()) continue;
+                    if (!address.isMemoryAddress() || !address.getAddressSpace().equals(currentProgram.getAddressFactory().getDefaultAddressSpace())) continue;
                     long relative = address.getOffset() - loadBase;
                     int length = ins.getLength();
                     if (relative < start || relative >= end) continue;
@@ -112,7 +112,7 @@ public class Uw2GhidraInstructionChunk extends GhidraScript {
                     if (targetRequired(type)) {
                         Address[] targets = ins.getFlows();
                         if (targets.length != 1 ||
-                            !targets[0].getAddressSpace().isDefaultSpace())
+                            !targets[0].getAddressSpace().equals(currentProgram.getAddressFactory().getDefaultAddressSpace()))
                             throw new IOException("direct Ghidra flow without unique linear target");
                         out.name("targetRea").value(targets[0].getOffset());
                     }
@@ -127,7 +127,7 @@ public class Uw2GhidraInstructionChunk extends GhidraScript {
                     if (monitor.isCancelled()) throw new IOException("Ghidra analysis cancelled");
                     Function f = functions.next();
                     Address addr = f.getEntryPoint();
-                    if (!addr.isMemoryAddress() || !addr.getAddressSpace().isDefaultSpace()) continue;
+                    if (!addr.isMemoryAddress() || !addr.getAddressSpace().equals(currentProgram.getAddressFactory().getDefaultAddressSpace())) continue;
                     long relative = addr.getOffset() - loadBase;
                     if (relative >= start && relative < end) {
                         out.value(addr.getOffset());

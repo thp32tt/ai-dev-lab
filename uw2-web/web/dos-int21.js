@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive,allocateMemory,resetDisk}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,onFileEvent,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive,allocateMemory,resetDisk}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -33,7 +33,7 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
   // No host file provider => no DOS file service; never synthesize original assets.
   const fileHandler=readOriginalFile===undefined?null:
-    createDosReadOnlyFileHandler(cpu,readOriginalFile);
+    createDosReadOnlyFileHandler(cpu,readOriginalFile,{onFileEvent});
   let completedChild=null;
   const readPath=()=>{
     const bytes=[],segment=cpu.get16('DS'),offset=cpu.get16('DX');

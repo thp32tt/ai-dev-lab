@@ -18,7 +18,7 @@ assert.throws(()=>make().step(),/external keyboard queue/);
 assert.throws(()=>make(()=>({available:true})).step(),/uint8/);
 assert.throws(()=>make(()=>({available:false,ascii:1})).step(),/cannot carry a key/);
 assert.throws(()=>make(()=>Promise.resolve({available:false})).step(),/async BIOS keyboard/);
-assert.throws(()=>make(()=>({available:false}),0).step(),/unsupported BIOS INT16 AH=0/);
+assert.throws(()=>make(()=>({available:false}),0).step(),/external keyboard dequeue/);
 assert.throws(()=>installBiosInt16(new RealMode8086(),{checkKey:1}),/must be synchronous/);
 
 // Explicit AH00 consumes a real supplied queue item. AH01 only peeks;

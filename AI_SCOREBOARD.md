@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun Korean ROI A-0149 Turkey transparent candidate Library-persisted (2026-11-01 KST)
+
+- Unique TASK_ID `OUTRUN-ROI-A-0149-81AEEAEA`, approved source Q049 / `Turkey!` -> Korean `터키!`. Exactly one ImageGen result, cropped to content and alpha-preserving resampled into a text-only transparent RGBA PNG `Q049_d376b4138af8349a_k.png` (465×171 px, alpha bbox [26,16,461,161]), within the source's 470×171 ROI maximum. No background/vehicle/icon/replacement original HD canvas. Local PNG SHA-256 `661b9b45b944500aa169dabef65f77ed90f96b03c695eb3c32e79acb09351a04`, 100213 bytes. Uploaded to persistent Library `/아웃런 한글화 신규/Q049_d376b4138af8349a_k.png` and independently re-listed identical basename and size, Library ID `libfile_e72baf946b1c8191939dd3659dda68bd`. This proves generation and Library persistence, not independent C1 QA, DDS application or in-game PASS; candidate remains unapproved pending QA.
+- **AI 1 cumulative: previous confirmed GitHub SSOT 1779 + one distinct newly generated and verified Library asset +1 = 1780.** No repeat scoring for same TASK_ID, recheck, retry or readback. AI 2 separately remains 2281 as of the previously fetched SSOT.
+
+Updated: 2026-11-01 KST
+
+
 
 ## AI 2 DX11 authentic sparse dirty full-size Present GPU RGB source integration (2026-10-31 KST)
 

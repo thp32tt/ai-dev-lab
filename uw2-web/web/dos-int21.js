@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -14,6 +14,8 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('freeMemory must be a synchronous DOS allocator boundary');
   if(resizeMemory!==undefined&&typeof resizeMemory!=='function')
     throw new TypeError('resizeMemory must be a synchronous DOS allocator boundary');
+  if(directConsoleIO!==undefined&&typeof directConsoleIO!=='function')
+    throw new TypeError('directConsoleIO must be a synchronous DOS console boundary');
   // No host file provider => no DOS file service; never synthesize original assets.
   const fileHandler=readOriginalFile===undefined?null:
     createDosReadOnlyFileHandler(cpu,readOriginalFile);
@@ -32,6 +34,41 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
   };
   cpu.installInterruptAdapter(0x21,()=>{
     const ah=cpu.get8('AH');
+    if(ah===0x06){
+      // DOS 21h/06h is direct console output (DL!=FFh) or nonblocking
+      // input (DL=FFh). No keyboard/video state is manufactured here.
+      if(!directConsoleIO)
+        throw new Error('DOS AH06 requires an external console device: fail closed');
+      const dl=cpu.get8('DL');
+      const read=dl===0xff;
+      const response=directConsoleIO(Object.freeze(read?
+        {operation:'input'}:{operation:'output',character:dl}),cpu);
+      if(response&&typeof response.then==='function')
+        throw new Error('async DOS direct console device: fail closed');
+      if(!read){
+        if(response!==undefined)
+          throw new Error('DOS console output must not fabricate device status');
+        // DOS 2.1-7.0 returns the actual character in AL (RBIL 2106).
+        cpu.set8('AL',dl);
+        return;
+      }
+      if(!response||typeof response!=='object'||Array.isArray(response)||
+         typeof response.available!=='boolean')
+        throw new Error('DOS console input requires explicit availability: fail closed');
+      if(response.available){
+        const ch=response.character;
+        if(!Number.isInteger(ch)||ch<0||ch>255)
+          throw new Error('DOS console input character must be uint8');
+        cpu.set8('AL',ch);
+        cpu.set16('FLAGS',cpu.get16('FLAGS')&~0x40);
+      }else{
+        if(response.character!==undefined)
+          throw new Error('DOS console no-input cannot carry character');
+        cpu.set8('AL',0);
+        cpu.set16('FLAGS',cpu.get16('FLAGS')|0x40);
+      }
+      return;
+    }
     if(ah===0x25){
       // AH=25h AL=vector, DS:DX=guest handler address. KOEI.COM uses
       // AX=2524h to install its own DOS critical-error INT 24h handler.

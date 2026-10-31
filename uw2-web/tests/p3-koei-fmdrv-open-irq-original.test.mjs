@@ -13,6 +13,7 @@ import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {deliverExternalMaskableIrq} from '../web/guest-irq-boundary.js';
 import {prepareOriginalOpgraphArchive} from '../web/opgraph-original-archive.js';
+import {KOREAN_OPGRAPH_JS_DECODE_EVIDENCE as graphEvidence} from '../web/opgraph-korean-evidence.js';
 import {runStagedDosComChild,captureDosCpuFrame} from '../web/dos-com-child-runner.js';
 
 // PRIVATE ORIGINAL KOEI + FMDRV bytes. ALL DOS/BIOS/OPL initial values below
@@ -33,10 +34,13 @@ const opgraph=readFileSync(join(dir,'OPGRAPH.LZW'));
 const pinnedOpgraph=await prepareOriginalOpgraphArchive(opgraph,{
  expectedSha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',
  expectedPartCount:14,maxFileBytes:1024*1024,maxPartBytes:8*1024*1024,
- maxTotalDecodedBytes:64*1024*1024
+ maxTotalDecodedBytes:64*1024*1024,
+ expectedDecodedSha256:graphEvidence.decodedSha256.slice()
 });
 assert.equal(pinnedOpgraph.totalRecords,108);
 assert.equal(pinnedOpgraph.totalDecodedBytes,512912);
+assert.equal(pinnedOpgraph.decodedManifestVerified,true);
+assert.deepEqual(pinnedOpgraph.parts.map(x=>x.recordCount),graphEvidence.recordCounts);
 const sha=x=>createHash('sha256').update(x).digest('hex');
 const koeiSha='81968de0d3ced479d77d3b9d60c571bde74f850948f6fc6d02cebea2557a1d36';
 const fmdrvSha='0e85962755e2b96ed72a133ba9c84340d754abb18c9af20b76ddd5a96b79677b';

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+
+## AI 2 OutRun ImageGen A-0147 transparent Korean candidate saved to Library (2026-10-31 KST)
+
+- Unique TASK_ID `OUTRUN-ROI-A-0147-78A8C54D`, approved source Q137 `SELECT TRANSMISSION` -> Korean `변속기 선택`. One ImageGen image candidate produced and postprocessed into a text-only transparent RGBA PNG `Q137_61bbbac3283b424a_k.png` (478×82 px; graphical alpha bbox [11,8,474,72]) below the source ROI's 889×82 bound. Verified transparent corners and SHA-256 `c1c8057b7c872343fabec8825d45a07a4a33aeb413d8cb71867b1ece8d3d4d15` (30,875 bytes). Uploaded to persistent Library `/아웃런 한글화 신규/Q137_61bbbac3283b424a_k.png` and independently re-listed the matching saved filename, 30,875 bytes and Library ID `libfile_8199066f03b08191a70a0227e8b0b4a6`. This verifies text-only image creation and persistence; independent C1 QA, DDS integration, protected-art placement and real-game PASS are UNTESTED. Generated image is still a candidate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2278 + one distinct verified ImageGen Library asset +1 = 2279.** No second score for recheck, retries or same-task report. AI 1 unchanged.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 OutRun OCR direct-vision eight ROI rescue (2026-10-31 KST)
 
 - RUN_KEY `OUTRUN-OCR-VISUAL-EIGHT-RECOVERY-20261031`: On N100 manually confirmed source PNG SHA and exact crop pixels for eight genuinely visible English phrases with reviewed Korean, Q106 Music Change, Q135 CLASS, Q137 SELECT TRANSMISSION, Q048 NEW Record!!/Slipstream, Q049 Strike!/Turkey!, Q111 Drift!; the live A/B production manifest automatically accepted 8 reviewed ROIs: **973 -> 981 total and 925 -> 933 approved**, without overwriting originals or DDS. Added SHA-bound review evidence for 6 original-sprite-absent phrases (Q225/Q154/Q135) and GitHub source `4d65870433b448f66a82eeab0308f768be7b3ac5` safe skip filter. N100 regression tests **22 GPT OCR + 10 bridge + 1 B-lane PASS**; local remaining OCR **34 sources / 65 phrases**, no automatic localization claim. Eight new rows still require A/B ImageGen, C1 and DDS tests; operator Portainer rebuild required for new absent filter, attempted N100 docker socket access denied. Evidence report `work/ocr_visual_recovery_report_20261031.json`.

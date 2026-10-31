@@ -115,7 +115,7 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
       // BL/CX=24-bit serial. NO guessed DOS version or distribution;
       // the provider must supply each field from an external DOS snapshot.
       if(!getDosVersion)
-        throw new Error('DOS AH30 requires external DOS-version snapshot: fail closed');
+        throw new Error('unsupported DOS INT 21h AH=30: DOS AH30 requires external DOS-version snapshot: fail closed');
       const value=getDosVersion(Object.freeze({requestAL:cpu.get8('AL')}),cpu);
       if(value&&typeof value.then==='function')
         throw new Error('async DOS version provider: fail closed');

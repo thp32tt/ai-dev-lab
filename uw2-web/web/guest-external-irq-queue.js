@@ -50,6 +50,12 @@ export function createExternalGuestIrqEdgeQueue(cpu,{
     const edge=pending[0];
     if(picCommandWitness!==undefined&&
        !picCommandWitness.canAdmitIrq0(cpu,edge)){
+      // Only a passive CPU boundary event: do not dispatch or drop an IRQ.
+      const cs=cpu.get16('CS'),ip=cpu.get16('IP');
+      cpu.observeExternalIrqDecision({
+        vector:edge.vector,source:edge.source,decision:'deferred',
+        blockedByPic:true,fromCS:cs,fromIP:ip,cs,ip
+      });
       picDeferred++;
       return Object.freeze({delivered:false,...edge,
         reason:'DEFERRED_PIC_IRQ0_IN_SERVICE'});

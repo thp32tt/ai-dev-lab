@@ -23,7 +23,8 @@ export function createGuestProgressWitness({
     ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
     pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0,
     providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0,
-    externalIrqDelivered:0,externalIrqMasked:0,externalIrqDeferred:0};
+    externalIrqDelivered:0,externalIrqMasked:0,externalIrqDeferred:0,
+    externalIrqPicDeferred:0};
   const open=(step)=>{
     if(window){
       windows.push(Object.freeze({...window,uniquePhysicalAddresses:seen.size,
@@ -37,7 +38,8 @@ export function createGuestProgressWitness({
       ioReadEvents:0,ioWriteEvents:0,oplPortWrites:0,vgaPortWrites:0,
       pitPortWrites:0,otherPortWrites:0,uniqueIOPortOverflows:0,
     providedReadEvents:0,vgaProvidedReads:0,otherProvidedReads:0,
-    externalIrqDelivered:0,externalIrqMasked:0,externalIrqDeferred:0};
+    externalIrqDelivered:0,externalIrqMasked:0,externalIrqDeferred:0,
+    externalIrqPicDeferred:0};
     seen=new Set();ports=new Set();
   };
   const observeInstruction=({steps,cs,ip}={},cpu)=>{
@@ -145,12 +147,17 @@ export function createGuestProgressWitness({
     if(event.decision!=='delivered'&&
        (event.fromCS!==event.cs||event.fromIP!==event.ip))
       throw new Error('progress refused IRQ cannot move guest IP');
+    if(event.blockedByPic!==undefined&&
+       (event.blockedByPic!==true||event.decision!=='deferred'||
+        event.vector!==8))
+      throw new Error('progress PIC IRQ0 defer evidence requires pending IRQ0');
     if(event.decision==='delivered'&&!cpu.interruptVectors.has(event.vector))
       throw new Error('progress delivered IRQ requires installed guest IVT');
     for(const dest of [totals,window]){
       if(event.decision==='delivered')dest.externalIrqDelivered++;
       else if(event.decision==='masked')dest.externalIrqMasked++;
       else dest.externalIrqDeferred++;
+      if(event.blockedByPic===true)dest.externalIrqPicDeferred++;
     }
   };
   const observeFileEvent=event=>{

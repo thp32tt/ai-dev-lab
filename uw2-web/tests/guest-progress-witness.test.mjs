@@ -2,6 +2,10 @@ import assert from 'node:assert/strict';
 import {RealMode8086} from '../web/realmode-8086.js';
 import {createGuestProgressWitness} from '../web/guest-progress-witness.js';
 import {deliverExternalMaskableIrq} from '../web/guest-irq-boundary.js';
+import {createExternalGuestIrqEdgeQueue}
+  from '../web/guest-external-irq-queue.js';
+import {createOriginalMasterPicCommandWitness}
+  from '../web/guest-pic8259-command-witness.js';
 // Genuine 8086 MOV AL,imm / MOV [DS:0100],AL; same-byte write must not
 // be incorrectly promoted to proof that the guest memory changed.
 const cpu=new RealMode8086();
@@ -173,3 +177,41 @@ assert.throws(()=>wrongIrq.observeExternalIrq({vector:8,
   source:'x',decision:'delivered',fromCS:0,fromIP:0,cs:0,ip:0},
   new RealMode8086()),/installed guest IVT/);
 assert.equal(wrongIrq.summarize().externalIrqDelivered,0);
+
+// Source PIC in-service refusal is now included in passive CPU telemetry.
+// These input events are synthetic and are not a real DOS reference trace.
+const picCpu=new RealMode8086();
+picCpu.set16('CS',0x260);picCpu.set16('SS',0x260);
+picCpu.set16('SP',0xfffe);picCpu.set16('FLAGS',0x202);
+picCpu.load(Uint8Array.of(0xcf),0x480,0);
+picCpu.installInterruptVector(8,0x480,0);
+const pic=createOriginalMasterPicCommandWitness({
+  irq0OwnerCpu:picCpu,initialIrq0InService:false
+});
+picCpu.registerIOPort(0x20,pic.port20);
+const sourceQueue=createExternalGuestIrqEdgeQueue(picCpu,{
+  picCommandWitness:pic,maxPending:2
+});
+const picProgress=createGuestProgressWitness();
+picCpu.installExternalIrqObserver(picProgress.observeExternalIrq);
+picProgress.observeInstruction({steps:0,cs:0x260,ip:0},picCpu);
+sourceQueue.enqueue({vector:8,source:'explicit-pic-evidence-first'});
+sourceQueue.enqueue({vector:8,source:'explicit-pic-evidence-second'});
+assert.equal(sourceQueue.deliverOne().delivered,true);
+const current={cs:picCpu.get16('CS'),ip:picCpu.get16('IP')};
+picProgress.observeInstruction({steps:1,...current},picCpu);
+const refused=sourceQueue.deliverOne();
+assert.equal(refused.reason,'DEFERRED_PIC_IRQ0_IN_SERVICE');
+assert.deepEqual({cs:picCpu.get16('CS'),ip:picCpu.get16('IP')},current);
+assert.equal(picProgress.summarize().externalIrqDelivered,1);
+assert.equal(picProgress.summarize().externalIrqDeferred,1);
+assert.equal(picProgress.summarize().externalIrqPicDeferred,1);
+assert.equal(picProgress.summarize().windows[0].externalIrqPicDeferred,1);
+assert.equal(sourceQueue.snapshot().pending,1);
+assert.equal(sourceQueue.snapshot().picDeferred,1);
+assert.throws(()=>picProgress.observeExternalIrq({
+  vector:9,source:'synthetic',decision:'deferred',blockedByPic:true,
+  fromCS:current.cs,fromIP:current.ip,cs:current.cs,ip:current.ip
+},picCpu),/progress PIC IRQ0 defer evidence/);
+assert.equal(picProgress.summarize().externalIrqPicDeferred,1);
+console.log('UW2 original IRQ0 PIC service defer is visible to native CPU progress telemetry: PASS (synthetic)');

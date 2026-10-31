@@ -26,7 +26,8 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
     throw new RangeError('bounded KOEI instruction budget required');
   const bytes=Buffer.from(original),chain=verifyKoeiLaunchChain(bytes,{expectedSha256:pin.sha256});
-  const cpu=new RealMode8086();
+  // Original KOEI.COM raw 02ACh includes C1 EB 04 (80186 SHR BX,4).
+  const cpu=new RealMode8086(new Uint8Array(0x100000),{enable80186Shifts:true});
   // Synthetic memory state: NOT a measured PSP, DOS allocator, environment, or
   // hardware state. Work is ONLY used to find missing 8086/DOS primitives.
   const pspSegment=0x200;

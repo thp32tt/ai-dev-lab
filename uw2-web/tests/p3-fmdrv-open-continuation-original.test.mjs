@@ -11,11 +11,34 @@ import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {createStagedDosChildContinuation} from '../web/dos-child-continuation.js';
 import {captureDosCpuFrame} from '../web/dos-com-child-runner.js';
+import {assertDisjointGuestPhysicalRegions} from '../web/guest-staging-physical-map.js';
 const fsBase='/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD/';
+const syntheticExternalIrq=process.argv[2]==='--synthetic-external-irq';
+if(process.argv[2]!==undefined&&!syntheticExternalIrq)
+  throw new Error('unknown private original IRQ test option: fail closed');
 const fm=readFileSync(fsBase+'FMDRV.COM'),open=readFileSync(fsBase+'OPEN.EXE');
 const sha=b=>createHash('sha256').update(b).digest('hex');
 assert.equal(sha(fm),'0e85962755e2b96ed72a133ba9c84340d754abb18c9af20b76ddd5a96b79677b');
 assert.equal(sha(open),'f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65');
+// The previous 0920h synthetic INT08 stub overlapped original OPEN.EXE's
+// relocation image. Its bytes were overwritten by source loading and caused
+// a false guest fault at 0000:0020 on explicit IRQ. Reject that *test setup*.
+const mzInfo=inspectMzForLoad(open);
+const stubs=[[0x66,0xe000],[0x65,0xe010],[0x08,0xe020],
+  [0x00,0xe030],[0x67,0xe040]];
+const regions=[
+  {label:'FMDRV PSP',segment:0x400,length:256},
+  {label:'FMDRV original COM',segment:0x400,offset:256,length:fm.length},
+  {label:'OPEN PSP',segment:0x600,length:256},
+  {label:'OPEN original MZ image',segment:0x610,length:mzInfo.imageBytes},
+  ...stubs.map(([n,seg])=>({label:'synthetic external IVT '+n,segment:seg,length:1}))
+];
+const layout=assertDisjointGuestPhysicalRegions(regions);
+assert.equal(layout.regions.length,9);
+assert.throws(()=>assertDisjointGuestPhysicalRegions([
+  {label:'OPEN original MZ image',segment:0x610,length:mzInfo.imageBytes},
+  {label:'old unsafe synthetic IRQ8 stub',segment:0x920,length:1}
+]),/guest staging memory overlap/);
 const cpu=new RealMode8086(new Uint8Array(0x100000),{enable80186Shifts:true});
 const pFm=new Uint8Array(256),pOpen=new Uint8Array(256);
 pFm.set([0xcd,0x20]);pOpen.set([0xcd,0x20]);
@@ -24,7 +47,7 @@ await loadPinnedDosPsp(cpu,pOpen,{pspSegment:0x600,expectedSha256:sha(pOpen)});
 await loadVerifiedCom(cpu,fm,{pspSegment:0x400,allocationParagraphs:0x1000,
  initialSP:0xfffe,expectedSha256:sha(fm)});
 const ivt=new Uint8Array(1024);
-for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,0x940]]){
+for(const [n,seg] of stubs){
  ivt[n*4+2]=seg&255;ivt[n*4+3]=seg>>>8;
  cpu.load(Uint8Array.of(0xcf),seg,0);
 }
@@ -86,7 +109,7 @@ assert.equal(fmr.result.terminationType,3);
 assert.equal(tsrCount,1);
 assert.equal(cpu.getGuestInterruptVector(0x66).segment,0x400);
 assert.deepEqual(captureDosCpuFrame(cpu),parent);
-const info=inspectMzForLoad(open);
+const info=mzInfo;
 const loaded=await loadVerifiedMz(cpu,open,{pspSegment:0x600,
  loadSegment:0x610,allocationParagraphs:7000,expectedSha256:sha(open)});
 // MZ loader establishes its authentic entry registers; suspend the
@@ -96,9 +119,25 @@ const openFrame={AX:0,CX:0,DX:0,BX:0,SP:info.sp,BP:0,SI:0,DI:0,
  CS:loaded.entryCS,DS:0x600,ES:0x600,SS:(0x610+info.ss)&65535,
  IP:loaded.entryIP,FLAGS:0x202};
 activePsp=0x600;
+const originalInt8=cpu.getGuestInterruptVector(8);
+assert.deepEqual(originalInt8,{segment:0x400,offset:0x1de});
 const openSession=createStagedDosChildContinuation(cpu,{
  initialFrame:openFrame,maxTotalSteps:80000
 });
+let explicitlyDelivered=null;
+if(syntheticExternalIrq){
+  // Opt-in fixture ONLY. This is not a real PIT tick or original DOS trace.
+  const entered=openSession.enqueueExternalIrqEdge({
+    vector:8,source:'USER_EXPLICIT_SYNTHETIC_IRQ0_NOT_DOS_REFERENCE'
+  });
+  assert.equal(entered.pending,1);
+  const first=openSession.runSlice(1);
+  assert.equal(first.irq.delivered,true);
+  assert.equal(first.irq.vector,8);
+  explicitlyDelivered=first.irq;
+  assert.equal(first.steps,1);
+  assert.equal(openSession.snapshot().irqEdges.pending,0);
+}
 let op=null,problem=null;
 try{
  for(let n=0;n<30;n++){
@@ -122,5 +161,6 @@ console.log(JSON.stringify({result:'ORIGINAL_FMDRV_TSR_TO_OPEN_SHARED_CPU',
  openReason:op?.reason??null,openFault:problem,
  originalInstalledInt66:cpu.getGuestInterruptVector(0x66),
  video:{modeCount,paletteCount,vgaWrites:vga.writtenCount(),dacColors:dac.writtenColors(),retrace},
- ports:portCount,tsrCount,
+ ports:portCount,tsrCount,syntheticExternalIrq,originalInt8,
+ explicitIrqDelivery:explicitlyDelivered,stagingRegionCount:layout.regions.length,
  fidelity:'PRIVATE_ORIGINAL_FMDRV_OPEN_BYTES__SYNTHETIC_DOS_IVT_PORTS__NOT_REFERENCE'}));

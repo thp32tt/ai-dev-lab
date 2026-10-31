@@ -34,6 +34,8 @@ jobs:
           node --check uw2-web/web/dos-com-child-runner.js
           node --check uw2-web/web/vga-indexed-ports.js
           node --check uw2-web/web/vga-dac-ports.js
+          node --check uw2-web/web/vga-attribute-ports.js
+          node --check uw2-web/web/vga-rgb6-evidence.js
           node --check uw2-web/web/vga-mode12-planar-witness.js
           node --check uw2-web/web/vga-mode12-read-adapter.js
           node --check uw2-web/web/opl2-raw-write-bus.js
@@ -92,6 +94,7 @@ jobs:
           node uw2-web/tests/vga-indexed-readback.test.mjs
           node uw2-web/tests/vga-dac-ports.test.mjs
           node uw2-web/tests/vga-dac-readback.test.mjs
+          node uw2-web/tests/vga-attribute-rgb6.test.mjs
           node uw2-web/tests/vga-mode12-planar-witness.test.mjs
           node uw2-web/tests/vga-mode12-read-adapter.test.mjs
           node uw2-web/tests/vga-mode12-latch-readmode1.test.mjs

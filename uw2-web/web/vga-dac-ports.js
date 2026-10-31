@@ -62,7 +62,16 @@ export function installVgaDacWriteRecorder(cpu,{
     };
   }
   cpu.registerIOPort(0x3c9,handlers);
+  const sampleKnownColor6=paletteIndex=>{
+    if(!Number.isInteger(paletteIndex)||paletteIndex<0||paletteIndex>255)
+      throw new RangeError('VGA DAC palette index must be uint8');
+    const color=known.get(paletteIndex);
+    if(!color||color.some(v=>v>63))
+      throw new Error('VGA DAC RGB6 sample requires completed, observed 6-bit palette triplet: fail closed');
+    return Object.freeze({red:color[0],green:color[1],blue:color[2]});
+  };
   return Object.freeze({writtenColors:()=>count,knownReadCount:()=>reads,
+    sampleKnownColor6,
     fidelity:allowKnownReadback?
       'RAW_DAC_KNOWN_COMPLETE_6BIT_IN_STREAM_ONLY__ORIGINAL_DOS_UNTESTED':
       'ORIGINAL_RAW_DAC_BYTE_TRIPLETS_ONLY__DISPLAY_OUTPUT_UNTESTED'});

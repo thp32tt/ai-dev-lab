@@ -114,6 +114,8 @@ const fmdrvChildFrame={
  AX:0,CX:0,DX:0,BX:0,SP:0xfffe,BP:0,SI:0,DI:0,
  CS:0x400,DS:0x400,ES:0x400,SS:0x400,IP:0x100,FLAGS:0x202
 };
+const originalLateHotspots=new Map();
+let lastLateSamples=[];
 let pendingRead=null;
 let activePsp=0x200;
 let fmdrvRun=null,openGuestFault=null,openStarted=false;
@@ -154,6 +156,12 @@ installDosInt21(cpu,{
     openStarted=true;activePsp=0x600;
     try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:instructionBudget,
       onInstructionBoundary:({steps,cs,ip},guest)=>{
+        if(steps>=205000){
+          const key=cs.toString(16).padStart(4,'0')+':'+ip.toString(16).padStart(4,'0');
+          originalLateHotspots.set(key,(originalLateHotspots.get(key)||0)+1);
+          if(steps%4096===0&&lastLateSamples.length<32)
+            lastLateSamples.push({steps,cs,ip,ax:guest.get16('AX'),flags:guest.get16('FLAGS')});
+        }
         if(pendingRead!==null){
           const readCount=guest.get16('AX');
           if(readCount!==256||pendingRead.requested!==256)
@@ -311,6 +319,8 @@ const result={
  originalPitState:originalPitBus.getState(),
  originalOplState:originalOplBus.getState(),
  originalOplFirstWrites:observed.originalOplRegisters,
+ originalLateHotspots:Array.from(originalLateHotspots.entries()).sort((a,b)=>b[1]-a[1]).slice(0,16),
+ originalLateSamples:lastLateSamples,
  originalFileRequests:observed.originalFileRequests,
  originalDosFileCalls:observed.originalDosFileCalls,
  verifiedFileRead:observed.verifiedFileRead,

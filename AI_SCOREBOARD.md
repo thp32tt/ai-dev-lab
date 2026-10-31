@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 shared source-backed BIOS keyboard FIFO and OPEN probe wiring (2026-11-01 KST)
+
+- **Independent integration outcome (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material/validated SHA `dcb0fd555731f8e4bb5f7bfe6df4c6e4c84186e8`. New `web/bios-keyboard-queue.js` validates bounded externally supplied key events, preserves FIFO ordering, and exposes one shared device for BIOS INT16 AH01 non-consuming peek and AH00 consuming dequeue. `web/bios-int16.js` rejects mixed independent callbacks+queue; `tools/p3-open-exec-probe.mjs` accepts opt-in `keyboardQueue` for authentic MZ instruction execution without fabricated keys. New actual synthetic guest INT16 tests cover empty status, two-key FIFO, extended key, AX/FLAGS, queue overflow, missing data and callback ownership.
+- **Exact-SHA CI:** UW2 Web Fidelity Static Gate GitHub Actions `41235222396` `synthetic-static` **SUCCESS** at the same SHA. Separate N100 **existing local** 60,000-instruction original-file harness run (non-SSOT local code) observed actual SHA-pinned KOEI/FMDRV/OPEN bytes and FMDRV TSR, but OPEN exhausted the set budget at CS:IP 0610:46A7; it does **not** prove this new queue ran inside original OPEN, original DOS boot completion, original keyboard mapping, VGA parity or MAIN execution.
+- **AI 2 cumulative: previous confirmed 2309 + independent source/CI integration (+1) = 2310.** Retry/status checks/N100 readback/documentation for the same outcome +0. AI 1 separate.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 BIOS INT16 original keyboard AH00 source-backed dequeue (2026-11-01 KST)
 
 - **Independent source implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material SHA `d7182f812f79957c0d0e10aaa7f8fada3ef32d71` implements opt-in BIOS INT16/AH00 real caller-supplied keyboard dequeue (scan code, ASCII), preserving FLAGS and AH01 peek semantics. No fabricated key, key repeat, device clock, or skip-on-empty behavior. Synthetic queue/peek/dequeue, extended scan, invalid/missing/asynchronous callback tests. A test assertion from the previous unsupported-AH00 contract was repaired in the same achievement (validation-bearing SHA `bc5dbc590efed10d640d95d5cb103ad2825c4579`).

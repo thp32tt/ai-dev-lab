@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original OPEN CPU-write/DOS-file bounded progress witness (2026-11-01 KST)
+
+- **One independent integrated original-code diagnostic implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` new `web/guest-progress-witness.js` observes actual guest `RealMode8086.write8` byte event provenance and actual source DOS file-event metadata, with byte-changed vs repeated-write separation, 20-bit RAM/VGA/upper-memory bins, bounded unique physical addresses/windows and no collected original bytes, filenames, audio or pixel snapshots. `tools/p3-open-exec-probe.mjs` adds explicit `enableProgressWitness:true` using a single owned CPU write observer, rejects any pre-existing VGA observer rather than displacing it, and preserves preexisting DOS onFileEvent callbacks. Normal OPEN execution and browser frontend are unchanged by default.
+- **Synthetic CI:** source implementation SHA `bf825ae7ba3a6014ebf81b754b44de580cbfc927` included two source files, existing original OPEN probe integration, the static workflow gate and the existing single master plan. First CI Actions `41240020622` failed due to a genuine active-window retention off-by-one found by the new synthetic regression; repaired in same achievement at final validated **SHA `490cb4d59bb26eeb5f427784bc141334cb1ba43e`**. Exact-SHA Actions `41240059050` `synthetic-static` **SUCCESS** (all required checks).
+- **Limitations:** This only makes CPU guest RAM mutations and provided DOS file-event activity observable, not all device/IRQ/OPL progress, proof of infinite loop or original DOS timing. No N100 owner-file exact-SHA replay was performed for this new probe, and original OPEN→MAIN completion, authentic browser visuals, music, save/play and DOS reference equivalence remain **UNTESTED/HOLD**. First failed CI, test/retention repair, further readback/docs or same achievement reruns +0.
+- **AI 2 cumulative: previous confirmed 2311 + independently validated source integration (+1) = 2312.** AI 1 separate.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 trusted browser BIOS keyboard and original OPEN AH00 wait/resume (2026-11-01 KST)
 
 - **One independent combined implementation (+1):** source material `d00ea31c0d0d0775a37f82457332e3cb4b4861a3` adds opt-in `web/browser-bios-keyboard.js` (trusted native keydown only, standard ASCII/PC scan pairs, IME/modifier/untrusted/unsupported refusal, FIFO overflow metrics) and `web/guest-bios-keyboard-step.js` (bounded 8086 execution, preserves guest IP/AX/queue when BIOS INT16 AH00 is awaiting a real key, resumes after supplied key). Browser/CPU synthetic regressions registered with the existing UW2 CI. Same-task synthetic test fixture reloading AH00: `b56c03219a4a9ef15c537f7920e1d9f1e47bb57f`, Actions `41237748513` SUCCESS. Initial `d00ea31c` run `41237691518` failed due solely to missing AH00 reload in the test; no extra score.

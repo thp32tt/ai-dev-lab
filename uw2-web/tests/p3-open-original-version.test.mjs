@@ -65,4 +65,26 @@ console.log(JSON.stringify({withSyntheticIvtSteps:withIvt.steps,
  stopped:withIvt.stopped,services:withIvt.services,
  trace:withIvt.recent.slice(-10)}));
 
+const ioctlRequests=[];
+const withIoctl=await probeOriginalOpen(original,{
+ allocationParagraphs:7000,maxSteps:15000,
+ initialIvt:{bytes:ivtBytes,expectedSha256:ivtSha,knownVectors:[0]},
+ dosOptions:{
+   getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
+   resizeMemory:({segment,paragraphs})=>{
+     assert.deepEqual({segment,paragraphs},{segment:0x600,paragraphs:6566});
+     return {resized:true};
+   },
+   getDeviceInfo:({handle})=>{
+      ioctlRequests.push(handle);
+      return {deviceInfo:0x80d3}; // SYNTHETIC character-device flags
+   }
+ }
+});
+assert.deepEqual(ioctlRequests,[0]);
+assert.ok(withIoctl.steps>withIvt.steps);
+console.log(JSON.stringify({withSyntheticIoctlSteps:withIoctl.steps,
+ ioctlRequests,stopped:withIoctl.stopped,services:withIoctl.services,
+ trace:withIoctl.recent.slice(-12)}));
+
 console.log('UW2 original OPEN MZ execution past explicit synthetic DOS AH30 version: PASS (not DOS reference)');

@@ -47,6 +47,7 @@ jobs:
           node uw2-web/tests/p1-rea-snapshot-bridge.test.mjs
           node uw2-web/tests/p1-rea-batch-merge.test.mjs
           node uw2-web/tests/p1-ghidra-chunk-import.test.mjs
+          node uw2-web/tests/p1-ghidra-com-import.test.mjs
           node uw2-web/tests/p1-checkpoint-merge.test.mjs
           node uw2-web/tests/mz-loader.test.mjs
           node uw2-web/tests/dos-int21-launch.test.mjs

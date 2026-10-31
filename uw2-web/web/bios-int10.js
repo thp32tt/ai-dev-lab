@@ -13,10 +13,10 @@ const sync=(result,label)=>{
     throw new Error('async BIOS '+label+' device sink: fail closed');
 };
 
-export function installBiosInt10(cpu,{teletype,readMode,setMode}={}){
+export function installBiosInt10(cpu,{teletype,readMode,setMode,setPaletteRegister}={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('BIOS video dispatcher requires RealMode8086');
-  for(const [name,callback] of Object.entries({teletype,readMode,setMode})){
+  for(const [name,callback] of Object.entries({teletype,readMode,setMode,setPaletteRegister})){
     if(callback!==undefined&&typeof callback!=='function')
       throw new TypeError('BIOS '+name+' must be a synchronous device sink');
   }
@@ -69,10 +69,29 @@ export function installBiosInt10(cpu,{teletype,readMode,setMode}={}){
         throw new Error('BIOS set-mode device cannot supply unproven return value');
       return;
     }
+    if(ah===0x10){
+      // Original OPEN.EXE uses AX=1000h VGA palette-register write.
+      // BIOS convention: BL=register index, BH=palette value. This module
+      // does not create a VGA palette, DAC, color conversion, or framebuffer.
+      const service=cpu.get8('AL');
+      if(service!==0)
+        throw new Error('unsupported BIOS INT10 AH10 palette subfunction: fail closed');
+      if(!setPaletteRegister)
+        throw new Error('BIOS palette register sink absent: fail closed');
+      const args=Object.freeze({
+        index:byte(cpu.get8('BL'),'VGA palette index'),
+        value:byte(cpu.get8('BH'),'VGA palette value')
+      });
+      const response=setPaletteRegister(args,cpu);
+      sync(response,'palette');
+      if(response!==undefined)
+        throw new Error('BIOS palette device must not fabricate register values');
+      return;
+    }
     throw new Error('unsupported BIOS INT 10h AH='+ah.toString(16)+': fail closed');
   });
   return Object.freeze({
-    supportedServices:Object.freeze(['INT10-AH00','INT10-AH0E','INT10-AH0F']),
+    supportedServices:Object.freeze(['INT10-AH00','INT10-AH0E','INT10-AH0F','INT10-AX1000']),
     fidelity:'CALLER_DEVICE_VIDEO_ONLY__ORIGINAL_BIOS_REGISTER_AND_SCREEN_UNTESTED'
   });
 }

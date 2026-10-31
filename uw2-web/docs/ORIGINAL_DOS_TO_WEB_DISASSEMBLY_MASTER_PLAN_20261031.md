@@ -430,3 +430,8 @@
 
 - `web/guest-original-execution-session.js`는 원본 CPU를 재적재하지 않고 외부에서 받은 실제 BIOS 키 FIFO 하나를 소유해 반복 `runSlice()`로 계속 실행할 수 있도록 한다. 빈 INT16 AH00은 CS:IP·레지스터·큐를 변경하지 않은 채 WAIT로 반환하고, 실제 키 enqueue 이후 동일 명령에서 재개한다. 누적 명령(최대 15M)과 각 실행 슬라이스(최대 100k)에 독립적으로 명시적 한도를 두며, 슬라이스가 여러 번 호출되어도 누적 한도를 초과하지 않는다. DOS 타이머·키 이벤트·미확인 장치 결과를 스스로 생성하지 않는다.
 - OPEN 원본 진단의 기존 `keyboardQueue` opt-in은 위 실행 세션의 단일 명령 slice 경유로 연결한다. 현재 기본 비입력 실행 경로는 그대로 보존한다. 합성 8086 INT16 AH00 대기→실제 FIFO 키 소비→RAM 변경→DOS AH4C 종료, 재대기, 누적 한도, 이전 BIOS owner 충돌, 부정확한 입력 차단을 CI에서 검사한다. 이 세션은 선택적으로 연결되는 실행 기반일 뿐 한국어판 원본 OPEN의 실제 키 입력 필요 여부, 원본 DOS 시간, MAIN 전환이나 브라우저 전체 게임 완료는 **UNTESTED/HOLD**.
+
+### 2026-11-01 P3 브라우저 원본 8086 실키 FIFO → 동기 실행 경계의 옵트인 통합
+
+- `web/browser-original-guest-bridge.js`에서 이미 존재하는 신뢰 키 이벤트 번역기·BIOS FIFO·실행 세션을 연결한다. 검증된 caller의 `RealMode8086`와 명시적 event target만 허용하고 실제 keydown을 enqueue하여 키 대기 중인 원본 `INT16 AH00`이 이후 `runSlice` 호출에서 동일 CS:IP로 실행된다. 브라우저 문서 전체를 임의 탈취하거나 자동 타이머·가짜 키·원작 UI를 생성하지 않는다. 해제(detach) 가능하며 기존 BIOS 소유자가 있으면 연결 실패 시 event listener를 반드시 정리한다.
+- 테스트는 synthetic trusted/untrusted 이벤트와 실제 8086 머신 명령을 이용해 입력 누락→WAIT→실제 FIFO 수락/넘침→동일 IP 재개→메모리 기록→DOS 종료, 이벤트 해제/예외 소유권 정리와 누적 명령 한도를 확인한다. `app.js` 기본 프리뷰에 연결하지 않았고 실제 브라우저 운영체제 KeyboardEvent, 한국어 원본 `OPEN.EXE` 실행, VGA/음악/저장 및 `OPEN→MAIN`은 **UNTESTED/HOLD**.

@@ -37,7 +37,7 @@ cap.port388.out8(0x388,0x20,cpu);
 cap.port389.out8(0x389,5,cpu);
 assert.throws(()=>cap.port389.out8(0x389,6,cpu),/budget exhausted/);
 
-const pit=createOriginalPitChannel0WriteBus({onReload:e=>loads.push(e)});
+const pit=createOriginalPitChannel0WriteBus({onReload:e=>{loads.push(e);}});
 cpu.registerIOPort(0x43,pit.port43);
 cpu.registerIOPort(0x40,pit.port40);
 assert.throws(()=>cpu.writeIOPort(0x40,8,1),/needs captured 36h/);

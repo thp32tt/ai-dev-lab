@@ -502,8 +502,8 @@ export class RealMode8086 {
     }
     // 8086 Group-3 F6/F7: original unsigned/signed arithmetic uses
     // AX or DX:AX exactly, not JavaScript's implicit 32-bit bit operators.
-    // A real divide error raises interrupt 0; until DOS/BIOS interrupt
-    // delivery is implemented, fail closed without corrupting registers.
+    // Original 8086 divide faults use INT 0; trap only through an explicitly
+    // installed vector/adapter. Otherwise preserve the fail-closed boundary.
     if(op===0xf6||op===0xf7){
       const m=this.fetch8(),ext=(m>>>3)&7,width=op===0xf6?8:16;
       if(ext===1)throw new Error('unsupported 8086 Group-3 /1: fail closed');
@@ -531,7 +531,12 @@ export class RealMode8086 {
           (overflow?(FLAGS.CF|FLAGS.OF):0)|2;
         return;
       }
-      if(value===0)throw new Error('8086 divide error: zero divisor (INT 0 unimplemented): fail closed');
+       if(value===0){
+         if(this.interruptVectors.has(0)||this.interruptAdapters.has(0)){
+           this.dispatchInterrupt(0);return;
+         }
+         throw new Error('8086 divide error: zero divisor (INT 0 unimplemented): fail closed');
+       }
       const dividend=width===8?this.get16('AX'):
         this.get16('DX')*0x10000+this.get16('AX');
       const signedDividend=width===8?s16(dividend):
@@ -542,8 +547,12 @@ export class RealMode8086 {
         quotient*(ext===7?signed(value):value);
       const min=ext===7?-(width===8?128:32768):0;
       const max=ext===7?(width===8?127:32767):mask;
-      if(!Number.isFinite(quotient)||quotient<min||quotient>max)
+      if(!Number.isFinite(quotient)||quotient<min||quotient>max){
+        if(this.interruptVectors.has(0)||this.interruptAdapters.has(0)){
+          this.dispatchInterrupt(0);return;
+        }
         throw new Error('8086 divide error: quotient overflow (INT 0 unimplemented): fail closed');
+      }
       // DIV/IDIV flags are architecturally undefined. Keep their old bits,
       // never invent a deterministic flag result absent original evidence.
       if(width===8){

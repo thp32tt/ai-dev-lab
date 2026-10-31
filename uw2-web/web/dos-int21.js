@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,onFileEvent,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo,getCurrentDrive,allocateMemory,resetDisk}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,onFileEvent,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getFileProcessPsp,getDosVersion,getDeviceInfo,getCurrentDrive,allocateMemory,resetDisk}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -33,7 +33,7 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,onFileEvent,f
     throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
   // No host file provider => no DOS file service; never synthesize original assets.
   const fileHandler=readOriginalFile===undefined?null:
-    createDosReadOnlyFileHandler(cpu,readOriginalFile,{onFileEvent});
+    createDosReadOnlyFileHandler(cpu,readOriginalFile,{onFileEvent,getCurrentPsp:getFileProcessPsp});
   let completedChild=null;
   const readPath=()=>{
     const bytes=[],segment=cpu.get16('DS'),offset=cpu.get16('DX');
@@ -353,5 +353,16 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,onFileEvent,f
     if(fileHandler&&fileHandler(ah))return;
     throw new Error(`unsupported DOS INT 21h AH=${ah.toString(16)}: fail closed`);
   });
-  return Object.freeze({pendingChildStatus:()=>completedChild});
+  return Object.freeze({
+    pendingChildStatus:()=>completedChild,
+    // Caller must explicitly prove DOS EXEC PSP ownership and JFT inheritance.
+    inheritReadOnlyFileHandles:(parentPsp,childPsp)=>{
+      if(!fileHandler)throw new Error('DOS read-only file boundary not installed');
+      return fileHandler.inheritForChild(parentPsp,childPsp);
+    },
+    releaseReadOnlyFileHandles:psp=>{
+      if(!fileHandler)throw new Error('DOS read-only file boundary not installed');
+      return fileHandler.releaseForProcess(psp);
+    }
+  });
 }

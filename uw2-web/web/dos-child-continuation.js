@@ -9,6 +9,9 @@ import {createExternalGuestIrqEdgeQueue} from './guest-external-irq-queue.js';
 import {isPinnedExternalGuestIrqTrace} from './guest-pinned-external-irq-trace.js';
 import {supplyPinnedGuestDosIvtVector} from './guest-dos-ivt-await.js';
 
+const trustedNativeDosChildren=new WeakSet();
+export const isStagedDosChildContinuation=value=>trustedNativeDosChildren.has(value);
+
 const validFrame=frame=>{
   if(!frame||typeof frame!=='object'||Array.isArray(frame)||
      Object.keys(frame).length!==DOS_CPU_FRAME_NAMES.length||
@@ -188,6 +191,8 @@ export function createStagedDosChildContinuation(cpu,{
       return result;
     }finally{provisioning=false;}
   };
-  return Object.freeze({runSlice,snapshot,abort,enqueueExternalIrqEdge,
+  const api=Object.freeze({runSlice,snapshot,abort,enqueueExternalIrqEdge,
     supplyPinnedDosIvtVector});
+  trustedNativeDosChildren.add(api);
+  return api;
 }

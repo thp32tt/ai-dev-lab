@@ -62,6 +62,7 @@ jobs:
           node --check uw2-web/web/browser-bios-keyboard.js
           node --check uw2-web/web/guest-bios-keyboard-step.js
           node --check uw2-web/web/guest-original-execution-session.js
+          node --check uw2-web/web/guest-dos-exec-handoff.js
           node --check uw2-web/web/guest-dos-ivt-await.js
           node --check uw2-web/web/guest-external-interrupt-await.js
           node --check uw2-web/web/browser-original-guest-bridge.js
@@ -152,6 +153,7 @@ jobs:
           node uw2-web/tests/browser-dos-child-bridge.test.mjs
           node uw2-web/tests/browser-dos-child-irq0.test.mjs
           node uw2-web/tests/guest-original-dos-wait-resume.test.mjs
+          node uw2-web/tests/guest-dos-exec-handoff.test.mjs
           node uw2-web/tests/pinned-async-source-immutability.test.mjs
           node uw2-web/tests/browser-original-open-session.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs

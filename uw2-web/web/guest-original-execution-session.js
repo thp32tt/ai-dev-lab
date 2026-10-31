@@ -6,12 +6,14 @@ import {installBiosInt16} from './bios-int16.js';
 import {runGuestUntilKeyboardWait} from './guest-bios-keyboard-step.js';
 import {pendingGuestDosIvtVector} from './guest-dos-ivt-await.js';
 import {pendingGuestExternalInterrupt} from './guest-external-interrupt-await.js';
+import {isSourceBoundDosExecHandoff} from './guest-dos-exec-handoff.js';
 
 export function createGuestOriginalExecutionSession(cpu,{
   keyboardQueue,maxTotalSteps=1000000,onBeforeInstruction,
   pauseOnMissingExternalInterrupts=false,
   pauseOnMissingDosIvt=pauseOnMissingExternalInterrupts,
-  pauseOnMissingGuestInterrupt=pauseOnMissingExternalInterrupts
+  pauseOnMissingGuestInterrupt=pauseOnMissingExternalInterrupts,
+  dosExecHandoff
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original execution session requires RealMode8086');
@@ -25,6 +27,10 @@ export function createGuestOriginalExecutionSession(cpu,{
      typeof pauseOnMissingDosIvt!=='boolean'||
      typeof pauseOnMissingGuestInterrupt!=='boolean')
     throw new TypeError('native source dependency wait opt-in must be boolean');
+  if(dosExecHandoff!==undefined&&
+     (!isSourceBoundDosExecHandoff(dosExecHandoff)||
+       !dosExecHandoff.ownsCpu(cpu)))
+    throw new Error('original DOS EXEC handoff requires exact native CPU owner');
   if(onBeforeInstruction!==undefined&&typeof onBeforeInstruction!=='function')
     throw new TypeError('original execution observer must be synchronous');
   // Fail on an existing BIOS vector/adapter, never silently override a
@@ -59,7 +65,8 @@ export function createGuestOriginalExecutionSession(cpu,{
           // Source-backed unresolved DOS AH35 or native INT imm8 is not a
           // fault: do not advance guest IP, stack, counters or observers.
           // Resume only after a real external provider installs the handler.
-          waiting=(pauseOnMissingDosIvt?pendingGuestDosIvtVector(cpu):null)||
+          waiting=dosExecHandoff?.pending()||
+            (pauseOnMissingDosIvt?pendingGuestDosIvtVector(cpu):null)||
             (pauseOnMissingGuestInterrupt?pendingGuestExternalInterrupt(cpu):null);
           if(waiting){reason=waiting.reason;break;}
           // Exactly one genuine CPU instruction per owned boundary.

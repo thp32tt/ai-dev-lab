@@ -37,7 +37,15 @@ export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000}={}){
   try{
     for(const name of DOS_CPU_FRAME_NAMES)cpu.set16(name,initialFrame[name]);
     cpu.terminated=null;
-    for(;steps<maxSteps&&!cpu.terminated;steps++)cpu.step();
+    for(;steps<maxSteps&&!cpu.terminated;steps++){
+      const cs=cpu.get16('CS'),ip=cpu.get16('IP');
+      try{cpu.step();}catch(error){
+        if(error instanceof Error){
+          error.guestCS=cs;error.guestIP=ip;error.guestSteps=steps;
+        }
+        throw error;
+      }
+    }
     if(!cpu.terminated)
       throw new Error('DOS child instruction budget exhausted: fail closed');
     result=cpu.terminated;

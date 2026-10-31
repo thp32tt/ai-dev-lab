@@ -4,7 +4,7 @@ import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
 const cpu=new RealMode8086();
 const events=[];
 const recorded=installVgaIndexedWriteRecorder(cpu,{
- maxWrites:8,maxReads:3,allowKnownReadback:true,onWrite:e=>events.push(e)
+ maxWrites:8,maxReads:3,allowKnownReadback:true,onWrite:e=>{events.push(e);}
 });
 assert.throws(()=>cpu.readIOPort(0x3cf,8),/previously written/);
 cpu.writeIOPort(0x3ce,8,6);

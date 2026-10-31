@@ -17,7 +17,7 @@ const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
 const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
 if(!pin)throw new Error('OPEN.EXE baseline fingerprint required');
-export async function probeOriginalOpen(original,{
+export async function createOriginalOpenProbeSession(original,{
  pspSegment=0x600,loadSegment=0x610,allocationParagraphs,
  maxSteps=10000,initialPsp=null,initialIvt=null,dosOptions={},cpu=null,traceLimit=24,
  maxServiceEvents=4096,
@@ -71,7 +71,7 @@ export async function probeOriginalOpen(original,{
    machine.installExternalIrqObserver(progress.observeExternalIrq);
  }
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.
- let steps=0,stopped=null,recent=[];
+ let steps=0,stopped=null,recent=[],faulted=false,running=false;
  const serviceHistory=createGuestDosCallWindow({maxEvents:maxServiceEvents});
  const hotspots=enableHotspots?createGuestExecutionHotspotRecorder({
    sampleEvery:127,maxSites:4096,maxStates:8192,top:16
@@ -92,28 +92,70 @@ export async function probeOriginalOpen(original,{
  const cpuSession=createGuestOriginalExecutionSession(machine,{
    keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction
  });
- for(;steps<maxSteps&&!machine.terminated;steps++){
-   const cs=machine.get16('CS'),ip=machine.get16('IP');
+ const snapshot=()=>{
+   const dosCalls=serviceHistory.summarize();
+   return Object.freeze({
+     name:'OPEN.EXE',sha256:pin.sha256,image,initialPsp:psp,
+     initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount}:null,
+     steps,stopped:stopped?Object.freeze({...stopped}):null,
+     terminated:machine.terminated,
+     services:dosCalls.calls,totalDosServiceCalls:dosCalls.totalCalls,
+     discardedDosServiceCalls:dosCalls.discardedCalls,
+     recent:Object.freeze(recent.map(x=>Object.freeze({...x}))),
+     ...(hotspots?{executionHotspots:hotspots.summarize()}:{}),
+     ...(progress?{executionProgress:progress.summarize()}:{}),
+     fidelity:'ORIGINAL_OPEN_MZ_BYTES__SYNTHETIC_DOS_PSP_MEMORY__NOT_REFERENCE_BOOT'
+   });
+ };
+ // Explicit bounded segments on one SHA-pinned original OPEN image: the
+ // guest CPU, DOS files, observers and real BIOS keyboard FIFO survive calls.
+ // This never fabricates the DOS environment or advances past an empty AH00.
+ const runSlice=(sliceSteps=10000)=>{
+   if(!Number.isSafeInteger(sliceSteps)||sliceSteps<1||sliceSteps>100000)
+     throw new RangeError('original OPEN slice must be 1..100000 guest steps');
+   if(running)throw new Error('reentrant original OPEN session: fail closed');
+   if(faulted)throw new Error('faulted original OPEN session cannot resume: fail closed');
+   if(machine.terminated)return snapshot();
+   if(steps>=maxSteps){
+     stopped={reason:'STEP_BUDGET_EXHAUSTED',cs:machine.get16('CS'),ip:machine.get16('IP')};
+     return snapshot();
+   }
+   running=true;stopped=null;
    try{
-     const gate=cpuSession.runSlice(1);
-     if(gate.reason==='WAIT_BIOS_INT16_AH00'){
-       stopped={cs,ip,reason:gate.reason};break;
+     for(let performed=0;performed<sliceSteps&&steps<maxSteps&&!machine.terminated;){
+       const cs=machine.get16('CS'),ip=machine.get16('IP');
+       try{
+         const gate=cpuSession.runSlice(1);
+         if(gate.reason==='WAIT_BIOS_INT16_AH00'){
+           stopped={cs,ip,reason:gate.reason};break;
+         }
+         if(gate.steps!==1)
+           throw new Error('original OPEN guest failed to execute an owned step');
+         steps++;performed++;
+       }catch(error){
+         stopped={cs,ip,message:error?.message??String(error)};
+         faulted=true;
+         break;
+       }
      }
-   }catch(e){stopped={cs,ip,message:e.message};break;}
- }
- if(!stopped&&!machine.terminated)
-   stopped={reason:'STEP_BUDGET_EXHAUSTED',cs:machine.get16('CS'),ip:machine.get16('IP')};
- const dosCalls=serviceHistory.summarize();
- return Object.freeze({
-   name:'OPEN.EXE',sha256:pin.sha256,image,initialPsp:psp,
-   initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount}:null,
-   steps,stopped,terminated:machine.terminated,
-   services:dosCalls.calls,totalDosServiceCalls:dosCalls.totalCalls,
-   discardedDosServiceCalls:dosCalls.discardedCalls,recent,
-   ...(hotspots?{executionHotspots:hotspots.summarize()}:{}),
-   ...(progress?{executionProgress:progress.summarize()}:{}),
-   fidelity:'ORIGINAL_OPEN_MZ_BYTES__SYNTHETIC_DOS_PSP_MEMORY__NOT_REFERENCE_BOOT'
- });
+     if(!stopped&&!machine.terminated)
+       stopped={reason:steps>=maxSteps?'STEP_BUDGET_EXHAUSTED':
+         'SLICE_STEP_BUDGET_EXHAUSTED',
+         cs:machine.get16('CS'),ip:machine.get16('IP')};
+     return snapshot();
+   }finally{running=false;}
+ };
+ return Object.freeze({runSlice,snapshot});
+}
+export async function probeOriginalOpen(original,options={}){
+ // Historical one-shot entrypoint remains stable. It uses the same
+ // resumable implementation rather than a separate non-pausable CPU loop.
+ const session=await createOriginalOpenProbeSession(original,options);
+ const budget=options.maxSteps??10000;
+ let result=session.runSlice(Math.min(100000,budget));
+ while(result.stopped?.reason==='SLICE_STEP_BUDGET_EXHAUSTED')
+   result=session.runSlice(Math.min(100000,budget-result.steps));
+ return result;
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
   try{

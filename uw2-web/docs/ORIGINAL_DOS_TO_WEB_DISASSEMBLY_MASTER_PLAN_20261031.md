@@ -450,3 +450,9 @@
 
 - `createGuestOriginalExecutionSession`은 명시적 BIOS FIFO가 없을 때 기존 CPU의 실제 설치된 DOS/BIOS/장치만 사용하여 bounded instruction slice를 실행한다. 없는 키보드 장치를 임의로 설치하지 않으며 실제 `INT16`을 만났을 때 기존 CPU의 vector/adapter를 정확히 따른다. FIFO가 있는 경우에는 이전의 키 대기·재개 경계로 실행한다. 두 경로 모두 단일 `onBeforeInstruction` 검증 훅을 공유하며 CPU 오류 뒤 재실행은 금지한다.
 - `tools/p3-open-exec-probe.mjs`에서 키보드 여부에 따라 분기하던 8086 루프를 하나의 실행 세션 호출로 통합하여 이후 원본 실행 중간 재개의 전제 구조를 만든다. 기존 one-shot API 결과와 샘플 진단 필드는 유지한다. 합성 테스트는 무키보드 원본 스타일 NOP→DOS 4Ch 종료, 훅 순서, 기존 INT16 미등록, 반환값 위조 거부를 검증한다. 한국어판 원본 전체 부팅은 **UNTESTED/HOLD**.
+
+### 2026-11-01 P3 SHA 검증 원본 OPEN.EXE 중단/재개 진단 세션
+
+- `tools/p3-open-exec-probe.mjs`에 `createOriginalOpenProbeSession()`을 추가하여 **원본 SHA 확인·MZ 재배치·DOS/PSP/IVT 장치 등록을 한 번만 수행**하고, 이후 `runSlice(1~100000)` 호출 때 동일 CPU·파일 핸들·BIOS FIFO·장치 관측·DOS 서비스 링 버퍼를 재사용한다. 명령 총량은 기존 1,000,000 하드 상한 안에서 단조 누적되며 각 실행 슬라이스와 전체 예산 소진을 별도 중단 사유로 보고한다.
+- 미입력 BIOS `INT16 AH00`으로 반환된 세션은 원본 실행 위치와 명령 집계가 그대로 유지되며 외부 실제 키가 들어온 경우에만 같은 위치에서 다음 실행 슬라이스를 시작한다. 장치 오류가 발생하면 해당 세션을 영구 faulted로 차단한다. 기존 `probeOriginalOpen()` 1회 호출 API는 내부에서 동일 세션을 예산 끝까지 진행하되, 새로운 중단형 API로 실측 진행을 분할할 수 있다.
+- 도구가 반환하는 것은 원본 OPEN의 구조적 SHA/CPU/진단 증거일 뿐 실제 DOS 동일 환경·IVT·PSP·게임 화면이 아니다. 한국어판 원본 실제 실행 재검증과 OPEN→MAIN 원작 동등성은 별도 **UNTESTED/HOLD**. 누적 명령·중복 기록·키 대기·장치 오류 및 snapshot 불변성은 synthetic 게스트 세션에서 확인하고, 원본 바이너리를 GitHub에 보관하지 않는다.

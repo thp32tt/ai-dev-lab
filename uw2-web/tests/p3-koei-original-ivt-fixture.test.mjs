@@ -26,4 +26,19 @@ assert.deepEqual(r.observedChildCalls,[]);
 assert.equal(r.terminated,null);
 console.log(JSON.stringify({steps:r.steps,stopped:r.stopped,
   provenance:r.initialIvt.provenance}));
+const syntheticVideoWrites=[];
+const withExternalVideo=await probeOriginalKoeiWithSyntheticDos(original,{
+  initialIvt:{bytes,expectedSha256,knownVectors:[0x65]},
+  biosVideo:{
+    readMode:()=>({mode:3,columns:80,page:0}),
+    setMode:({mode})=>syntheticVideoWrites.push(mode)
+  }
+});
+assert.deepEqual(syntheticVideoWrites,[0x12]);
+assert.ok(withExternalVideo.steps>r.steps);
+assert.equal(withExternalVideo.externalVideoState,'CALLER_SUPPLIED_NOT_DOS_VERIFIED');
+assert.equal(withExternalVideo.terminated,null);
+console.log(JSON.stringify({withSyntheticVideoSteps:withExternalVideo.steps,
+  nextMissingContract:withExternalVideo.stopped}));
+
 console.log('UW2 original-byte KOEI injected UNVERIFIED DOS IVT probe: PASS (NOT DOS reference)');

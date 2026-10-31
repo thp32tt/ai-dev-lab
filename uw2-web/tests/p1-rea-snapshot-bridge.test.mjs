@@ -65,6 +65,12 @@ invalid(x=>{x.bytes[0x42]^=1;},/original executable SHA/);
 invalid(x=>{x.snap.evidence_bundle.artifacts=[];},/artifact SHA/);
 invalid(x=>{x.snap.binding.provider.version='';},/provider identity/);
 invalid(x=>{x.snap.evidence_bundle.records[0].subject.digest.sha256='f'.repeat(64);},/subject SHA/);
-invalid(x=>{x.snap.evidence_bundle.records[0].normalized_result.assembly[1]='???';},
-  /UNPARSEABLE_ASSEMBLY/); // Reported gap, not a fabricated candidate.
+const damaged=fixture();
+damaged.snap.evidence_bundle.records[0].normalized_result.assembly[1]='???';
+const gap=extractReaSnapshotCandidates(damaged.snap,damaged.bytes,{
+  moduleName:'MAIN.EXE',expectedSha256:damaged.digest
+});
+assert.equal(gap.report.discardedRows,1);
+assert.equal(gap.report.gaps[0].reason,'UNPARSEABLE_ASSEMBLY');
+assert.ok(gap.report.instructionsExtracted<5);
 console.log('UW2 P1 REA snapshot to original MZ SHA instruction bridge synthetic regression: PASS');

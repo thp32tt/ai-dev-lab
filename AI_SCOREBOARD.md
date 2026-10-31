@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original 8086 I/O device ownership and AAM fault fixes (2026-11-01 KST)
+
+- **Independent native 8086 I/O-bus correctness (+1):** material source `e4aa7ac2e3c8e5e865480d0495c4b47bef113c01` rejects a duplicate port owner and asynchronous guest OUT handlers; synchronous 8-/16-bit immediate/DX register traffic remains supported, with regression coverage. Exact source-SHA UW2 Web Fidelity Static Gate Actions `41227776036` SUCCESS.
+- **Independent CPU exception correctness (+1):** material source `f7c13aadfe0e1c69200dc18eb3f131ad0b82f012` delivers documented AAM imm8=0 divide error through a known guest INT 0 vector or opt-in adapter. Synthetic tests verify saved guest IP/CS/FLAGS, preserved AX and unknown-vector rejection. Exact source-SHA Actions `41227845487` SUCCESS.
+- **Fidelity boundary:** CPU/I/O synthetic validation only; original DOS, OPEN→MAIN, browser VGA/OPL, music and complete gameplay remain UNTESTED/HOLD. Documentation-only checkpoint `ecde3ca119c880dcb5463e84519d0e42614fd9f2` adds no additional score.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2303 + two independent source fixes (+2) = 2305.** Same achievement CI/reports/retry are +0; AI 1 unaffected.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 native Mode3 + VGA attribute RGB6 + six-module Ghidra static evidence (2026-11-01 KST)
 
 - **Independent implementation 1 (+1):** UW2 source SHA `91d5d6874e7e4004ffe63df7a5a4f62bddcee799` implements VGA GC05 independent read/write mode bits and source-witnessed native planar write mode3 including rotate/bitmask/latches. Native 8086 REP MOVSB latch-copy and fail-closed synthetic tests added. GitHub UW2 Web Fidelity Static Gate exact SHA Actions `41225348810` SUCCESS.

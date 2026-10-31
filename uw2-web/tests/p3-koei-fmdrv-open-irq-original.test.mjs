@@ -65,7 +65,7 @@ const openMz=await loadVerifiedMz(cpu,open,{pspSegment:0x600,loadSegment:0x610,
 await loadVerifiedCom(cpu,koei,{pspSegment:0x200,allocationParagraphs:0x1000,
  initialSP:0xfffe,expectedSha256:koeiSha});
 const ivt=new Uint8Array(1024);
-for(const [n,seg] of [[0x66,0x900],[0x65,0x910],[0x08,0x920],[0x00,0x930],[0x67,0x940],[0x33,0x950]]){
+for(const [n,seg] of [[0x66,0xe000],[0x65,0xe010],[0x08,0xe020],[0x00,0xe030],[0x67,0xe040],[0x33,0xe050]]){
  ivt[n*4]=0;ivt[n*4+1]=0;
  ivt[n*4+2]=seg&255;ivt[n*4+3]=seg>>>8;
  cpu.load(Uint8Array.of(0xcf),seg,0); // synthetic original handler IRET
@@ -316,7 +316,7 @@ const result={
  koeiSteps:steps,fmdrvChild:fmdrvRun,
  observedChildCalls:observed.calls,initialDosEnvironment:'SYNTHETIC',
  installedInt66:cpu.getGuestInterruptVector(0x66),
- initialInt66:{segment:0x900,offset:0},
+ initialInt66:{segment:0xe000,offset:0},
  originalFmdrvResidency:observed.resident,
  originalPitWrites:observed.originalPitReloads,
  originalPitState:originalPitBus.getState(),

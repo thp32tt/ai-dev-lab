@@ -547,8 +547,16 @@ export class RealMode8086 {
     if(op===0xd4||op===0xd5){ // AAM / AAD, encoded 8-bit base
       const base=this.fetch8(),al=this.get8('AL'),ah=this.get8('AH');
       if(op===0xd4){
-        if(base===0)
+        if(base===0){
+          // Intel specifies a divide-error interrupt for AAM imm8=00h.
+          // Like the already supported DIV/IDIV failure path, dispatch
+          // only a known guest INT 0 vector or explicit DOS/CPU adapter;
+          // never fall through to JavaScript division or fabricate an IVT.
+          if(this.interruptVectors.has(0)||this.interruptAdapters.has(0)){
+            this.dispatchInterrupt(0);return;
+          }
           throw new Error('8086 AAM base zero raises INT 0 (unimplemented): fail closed');
+        }
         this.set8('AH',Math.floor(al/base));
         this.set8('AL',al%base);
       }else{

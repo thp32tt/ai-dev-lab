@@ -57,6 +57,32 @@ invalid.load(Uint8Array.of(0xd4,0),0,0);
 assert.throws(()=>invalid.step(),/AAM base zero raises INT 0/);
 assert.equal(invalid.get16('AX'),0xabcd);
 assert.equal(invalid.get16('FLAGS'),IF|AF|CF|2);
+// AAM base=00h is a real #DE/type-0 interrupt, not an unconditional host
+// error when an original DOS vector or explicit CPU adapter is installed.
+const trapped=new RealMode8086();
+trapped.set16('CS',0x1000);trapped.set16('SS',0x3000);
+trapped.set16('SP',0x0100);trapped.set16('AX',0xabcd);
+trapped.set16('FLAGS',IF|AF|CF|DF);
+trapped.load(Uint8Array.of(0xd4,0x00),0x1000,0);
+trapped.installInterruptVector(0,0x5000,0x0020);
+trapped.step();
+assert.equal(trapped.get16('CS'),0x5000);
+assert.equal(trapped.get16('IP'),0x0020);
+assert.equal(trapped.get16('AX'),0xabcd); // no result written on fault
+assert.equal(trapped.get16('SP'),0x00fa);
+assert.equal(trapped.read16(0x3000,0x00fa),2); // saved post-immediate IP
+assert.equal(trapped.read16(0x3000,0x00fc),0x1000);
+assert.equal(trapped.read16(0x3000,0x00fe),IF|AF|CF|DF|2);
+assert.equal(trapped.flag('IF'),false);
+const adapterFault=new RealMode8086();
+adapterFault.load(Uint8Array.of(0xd4,0),0,0);
+adapterFault.set16('AX',0xbeef);
+let faults=0;
+adapterFault.installInterruptAdapter(0,()=>{faults++;});
+adapterFault.step();
+assert.equal(faults,1);
+assert.equal(adapterFault.get16('AX'),0xbeef);
+assert.equal(adapterFault.get16('IP'),2);
 // CLI and STI change only IF while preserving arithmetic and direction flags.
 const ifState=new RealMode8086();
 ifState.set16('FLAGS',IF|DF|AF|CF|PF);

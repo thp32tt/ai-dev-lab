@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 DOS AH3F VGA transfer barrier and original OPEN bounded execution evidence (2026-11-01 KST)
+
+- **Distinct source correctness (+1):** material SHA `35356604e6367960ec5d8ca9d0eef3a6bbd10374` rejects unwitnessed DOS INT21 AH3F file-to-A000/B800 VGA aperture writes before RAM/cursor/AX mutation, while preserving ordinary RAM transfers and zero-byte reads. Synthetic regression `uw2-web/tests/dos-readonly-files.test.mjs`. Exact-SHA UW2 Web Fidelity Static Gate run `41230280721` SUCCESS.
+- **Distinct original-execution diagnostic implementation (+1):** material SHA `d6de0ba1948b901e501f43d3da5b7ec55bc3459a` adds bounded sampled live CS:IP and guest-register-state repeat evidence, integrates opt-in original OPEN MZ probe and the private KOEI→FMDRV→OPEN harness, and CI-bound synthetic loop/variable-state/overflow regression. Exact-SHA Actions `41230412889` SUCCESS.
+- **Fidelity limit:** no newly performed N100 original DOS run or complete browser/runtime reproduction. Identical registers can occur while RAM/device state changes; no stall/MAIN completion claim. Original DOS environment, audio, save and browser pixel parity remain UNTESTED/HOLD. Plan checkpoint commit `cf506c90f92ba94cf904789a602c499e7158cf5d` is docs-only (+0).
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2305 + independently validated work (+2) = 2307.** Same achievement CI/note/rollover/recheck scores +0. AI 1 unaffected.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 original 8086 I/O device ownership and AAM fault fixes (2026-11-01 KST)
 
 - **Independent native 8086 I/O-bus correctness (+1):** material source `e4aa7ac2e3c8e5e865480d0495c4b47bef113c01` rejects a duplicate port owner and asynchronous guest OUT handlers; synchronous 8-/16-bit immediate/DX register traffic remains supported, with regression coverage. Exact source-SHA UW2 Web Fidelity Static Gate Actions `41227776036` SUCCESS.

@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import {RealMode8086} from '../web/realmode-8086.js';
+import {installDosInt21} from '../web/dos-int21.js';
+
+const make=handler=>{
+ const cpu=new RealMode8086();
+ cpu.load(Uint8Array.of(0xcd,0x21),0,0);
+ cpu.set16('AX',0x4900);
+ cpu.set16('ES',0x250);
+ cpu.set16('FLAGS',0x203);
+ installDosInt21(cpu,handler?{freeMemory:handler}:{});
+ return cpu;
+};
+const seen=[];
+const ok=make(({segment})=>{seen.push(segment);return {freed:true};});
+ok.step();
+assert.deepEqual(seen,[0x250]);
+assert.equal(ok.get16('AX'),0x4900);
+assert.equal(ok.flag('CF'),false);
+const denied=make(()=>({errorCode:9}));
+denied.step();assert.equal(denied.get16('AX'),9);assert.equal(denied.flag('CF'),true);
+const missing=make();
+assert.throws(()=>missing.step(),/requires a captured allocation owner/);
+const zero=make(()=>{throw new Error('should never be called');});
+zero.set16('ES',0);
+assert.throws(()=>zero.step(),/absent PSP environment segment/);
+const notAcknowledged=make(()=>({freed:false}));
+assert.throws(()=>notAcknowledged.step(),/must acknowledge explicit free/);
+const wrongCode=make(()=>({errorCode:2}));
+assert.throws(()=>wrongCode.step(),/must be 07h or 09h/);
+const asynchronous=make(()=>Promise.resolve({freed:true}));
+assert.throws(()=>asynchronous.step(),/async DOS free-memory/);
+const malformed=make(()=>true);
+assert.throws(()=>malformed.step(),/explicit allocator result/);
+const invalidCpu=new RealMode8086();
+assert.throws(()=>installDosInt21(invalidCpu,{freeMemory:2}),/must be a synchronous DOS allocator/);
+console.log('UW2 original KOEI DOS AH49 memory-free explicit allocator synthetic regression: PASS');

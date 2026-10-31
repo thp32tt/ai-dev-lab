@@ -40,15 +40,17 @@ export async function supplyPinnedGuestDosIvtVector(cpu,{
     throw new Error('DOS IVT SHA-256 unavailable: fail closed');
   if(cpu.interruptAdapters.has(number)||cpu.interruptVectors.has(number))
     throw new Error('DOS IVT vector already owned: fail closed');
+  const pinnedBytes=Uint8Array.from(bytes);
   const actual=asHex(new Uint8Array(await globalThis.crypto.subtle.digest(
-    'SHA-256',bytes)));
+    'SHA-256',pinnedBytes)));
   if(actual!==expectedSha256)
     throw new Error('DOS IVT vector SHA-256 mismatch: fail closed');
   // Recheck ownership after the digest to reject overlapping asynchronous
   // caller updates. The running guest must be separately paused by owner.
   if(cpu.interruptAdapters.has(number)||cpu.interruptVectors.has(number))
     throw new Error('DOS IVT vector ownership changed: fail closed');
-  const offset=bytes[0]|(bytes[1]<<8),segment=bytes[2]|(bytes[3]<<8);
+  const offset=pinnedBytes[0]|(pinnedBytes[1]<<8),
+    segment=pinnedBytes[2]|(pinnedBytes[3]<<8);
   cpu.installInterruptVector(number,segment,offset);
   return Object.freeze({number,segment,offset,sha256:actual,
     fidelity:'CALLER_SUPPLIED_PINNED_IVT_VECTOR__DOS_ORIGIN_NOT_PROVEN'});

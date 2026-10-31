@@ -24,13 +24,16 @@ export async function preparePinnedOriginalDosFiles(entries){
       throw new Error('DOS original file size must be pinned');
     if(entry.bytes.length!==entry.expectedSize)
       throw new Error('DOS original file size mismatch: '+key);
+    // Capture both the identity claim and bytes BEFORE async hashing.
+    // Caller mutation during the digest cannot alter what INT21 later reads.
+    const expectedSha256=entry.expectedSha256,expectedSize=entry.expectedSize;
+    const pinnedBytes=Uint8Array.from(entry.bytes);
     const digest=hex(new Uint8Array(
-      await globalThis.crypto.subtle.digest('SHA-256',entry.bytes)));
-    if(digest!==entry.expectedSha256)
+      await globalThis.crypto.subtle.digest('SHA-256',pinnedBytes)));
+    if(digest!==expectedSha256)
       throw new Error('DOS original file SHA-256 mismatch: '+key);
-    // Verified content snapshots do not depend on callers retaining their buffers.
-    stored.set(key,Uint8Array.from(entry.bytes));
-    metadata.push(Object.freeze({name:key,size:entry.expectedSize,sha256:digest}));
+    stored.set(key,pinnedBytes);
+    metadata.push(Object.freeze({name:key,size:expectedSize,sha256:digest}));
   }
   const resolve=({raw})=>{
     if(!(raw instanceof Uint8Array)||raw.length===0||raw.length>12)return null;

@@ -29,13 +29,18 @@ export async function installPinnedDosIvtSnapshot(cpu,bytes,{
       throw new Error('DOS IVT vector conflicts with live guest/host handler');
     seen.add(number);
   }
-  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)));
+  const pinnedBytes=Uint8Array.from(bytes);
+  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',pinnedBytes)));
   if(digest!==expectedSha256)
     throw new Error('DOS IVT snapshot SHA-256 mismatch: fail closed');
   // Authenticity of supplied bytes is NOT determined by a self-reported hash.
   // Use the whole original IVT in guest physical RAM, but register ONLY the
   // original-vector addresses explicitly marked known by the caller.
-  cpu.memory.set(bytes,0);
+  // Async digest yielded control: ownership must still be clear at commit.
+  for(const number of seen)
+    if(cpu.interruptVectors.has(number)||cpu.interruptAdapters.has(number))
+      throw new Error('DOS IVT vector ownership changed during digest: fail closed');
+  cpu.memory.set(pinnedBytes,0);
   for(const number of seen)cpu.interruptVectors.add(number);
   return Object.freeze({
     sha256:digest,size:1024,knownVectorCount:seen.size,

@@ -17,13 +17,14 @@ export async function loadPinnedDosPsp(cpu,bytes,{pspSegment,expectedSha256}={})
   const base=pspSegment*16;
   if(base+256>cpu.memory.length)
     throw new RangeError('DOS PSP snapshot exceeds physical memory');
-  if(bytes[0]!==0xcd||bytes[1]!==0x20)
+  const pinnedBytes=Uint8Array.from(bytes);
+  if(pinnedBytes[0]!==0xcd||pinnedBytes[1]!==0x20)
     throw new Error('DOS PSP INT 20h entry signature missing: fail closed');
-  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)));
+  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',pinnedBytes)));
   if(digest!==expectedSha256)
     throw new Error('DOS PSP snapshot SHA-256 mismatch: fail closed');
-  const environmentSegment=bytes[0x2c]|(bytes[0x2d]<<8);
-  cpu.memory.set(bytes,base);
+  const environmentSegment=pinnedBytes[0x2c]|(pinnedBytes[0x2d]<<8);
+  cpu.memory.set(pinnedBytes,base);
   return Object.freeze({pspSegment,sha256:digest,environmentSegment,
     fidelity:'CALLER_PINNED_PSP_ONLY__DOS_REFERENCE_AUTHENTICITY_UNTESTED'});
 }

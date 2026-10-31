@@ -51,9 +51,14 @@ export async function loadVerifiedMz(cpu,bytes,{loadSegment,pspSegment,allocatio
     throw new Error('pinned original SHA-256 is required: fail closed');
   if(!globalThis.crypto?.subtle?.digest)
     throw new Error('SHA-256 verification unavailable: fail closed');
-  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)));
+  if(!(bytes instanceof Uint8Array))
+    throw new TypeError('MZ executable must be caller supplied Uint8Array');
+  // Caller buffers are mutable across the async digest. Hash, parse,
+  // relocate and load ONE stable snapshot, never its live input reference.
+  const pinnedBytes=Uint8Array.from(bytes);
+  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',pinnedBytes)));
   if(digest!==expectedSha256)throw new Error('original MZ SHA-256 mismatch');
-  const mz=inspectMzForLoad(bytes);
+  const mz=inspectMzForLoad(pinnedBytes);
   const {imageParas,imageBytes,minExtra,maxExtra}=mz;
   const extra=allocationParagraphs-imageParas;
   if(extra<minExtra||(maxExtra!==0xffff&&extra>maxExtra))
@@ -73,7 +78,7 @@ export async function loadVerifiedMz(cpu,bytes,{loadSegment,pspSegment,allocatio
   // All preflight checks and relocation arithmetic occur on a private copy.
   // Any invalid input leaves CPU registers and the shared memory unchanged.
   const image=new Uint8Array(cpu.memory);
-  image.set(bytes.subarray(mz.headerBytes,mz.declaredBytes),base);
+  image.set(pinnedBytes.subarray(mz.headerBytes,mz.declaredBytes),base);
   let bssRelocations=0;
   for(const r of mz.entries){
     const at=base+r.relative;
@@ -111,7 +116,8 @@ export async function loadVerifiedCom(cpu,bytes,{pspSegment,allocationParagraphs
     throw new Error('pinned original SHA-256 required: fail closed');
   if(!globalThis.crypto?.subtle?.digest)
     throw new Error('SHA-256 unavailable: fail closed');
-  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)));
+  const pinnedBytes=Uint8Array.from(bytes);
+  const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',pinnedBytes)));
   if(digest!==expectedSha256)throw new Error('original COM SHA-256 mismatch');
   const allocatedBytes=allocationParagraphs*16,codeEnd=0x100+bytes.length;
   if(codeEnd>allocatedBytes||initialSP<codeEnd+2||initialSP+1>=allocatedBytes||(initialSP&1))
@@ -120,7 +126,7 @@ export async function loadVerifiedCom(cpu,bytes,{pspSegment,allocationParagraphs
   if(base+allocatedBytes>cpu.memory.length)
     throw new RangeError('COM allocation exceeds physical memory: fail closed');
   // Preflight complete: preserve the caller's PSP, BSS, IVT and stack contents.
-  cpu.memory.set(bytes,base+0x100);
+  cpu.memory.set(pinnedBytes,base+0x100);
   for(const s of ['CS','DS','ES','SS'])cpu.set16(s,pspSegment);
   cpu.set16('IP',0x100);cpu.set16('SP',initialSP);
   return Object.freeze({pspSegment,entryIP:0x100,imageBytes:bytes.length,

@@ -6,7 +6,7 @@ const byte=(v,label)=>{
   if(!Number.isInteger(v)||v<0||v>255)throw new RangeError(label+' must be uint8');
   return v;
 };
-export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion}={}){
+export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,resizeMemory,directConsoleIO,stayResident,pspSegment,getDosVersion,getDeviceInfo}={}){
   if(!(cpu instanceof RealMode8086))throw new TypeError('DOS adapter requires RealMode8086');
   if(executeChild!==undefined&&typeof executeChild!=='function')
     throw new TypeError('executeChild must be synchronous');
@@ -20,6 +20,8 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('stayResident must be a synchronous DOS TSR memory-owner callback');
   if(getDosVersion!==undefined&&typeof getDosVersion!=='function')
     throw new TypeError('getDosVersion must be a synchronous external DOS version provider');
+  if(getDeviceInfo!==undefined&&typeof getDeviceInfo!=='function')
+    throw new TypeError('getDeviceInfo must be a synchronous external DOS IOCTL provider');
   if(stayResident&&typeof pspSegment!=='function'&&
      (!Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
     throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
@@ -140,6 +142,35 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
       const vector=cpu.getGuestInterruptVector(cpu.get8('AL'));
       cpu.set16('ES',vector.segment);
       cpu.set16('BX',vector.offset);
+      return;
+    }
+    if(ah===0x44){
+      // DOS IOCTL AL00 returns DX device-info bits for a caller-owned handle.
+      // OPEN.EXE queries this during startup. Device classification must
+      // come from the original DOS handle table, never guessed as console.
+      if(cpu.get8('AL')!==0)
+        throw new Error('unsupported DOS IOCTL subfunction: fail closed');
+      if(!getDeviceInfo)
+        throw new Error('DOS AH44 AL00 requires external handle table: fail closed');
+      const handle=cpu.get16('BX');
+      const result=getDeviceInfo(Object.freeze({handle}),cpu);
+      if(result&&typeof result.then==='function')
+        throw new Error('async DOS IOCTL device provider: fail closed');
+      if(!result||typeof result!=='object'||Array.isArray(result))
+        throw new Error('DOS IOCTL provider requires explicit handle info');
+      if(Object.hasOwn(result,'errorCode')){
+        const error=result.errorCode;
+        if(!Number.isInteger(error)||error<1||error>0xffff)
+          throw new RangeError('DOS IOCTL error code must be nonzero uint16');
+        cpu.set16('AX',error);
+        cpu.set16('FLAGS',cpu.get16('FLAGS')|1);
+        return;
+      }
+      const info=result.deviceInfo;
+      if(!Number.isInteger(info)||info<0||info>0xffff)
+        throw new RangeError('DOS IOCTL DX deviceInfo must be uint16');
+      cpu.set16('DX',info);
+      cpu.set16('FLAGS',cpu.get16('FLAGS')&~1);
       return;
     }
     if(ah===0x49){

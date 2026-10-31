@@ -15,7 +15,7 @@ assert.match(a.fidelity,/UNTESTED/);
 assert.throws(()=>cpu.writeIOPort(0x3c9,8,1),/budget exhausted/);
 assert.throws(()=>cpu.readIOPort(0x3c8,8),/no device adapter/);
 const reset=new RealMode8086(),seen=[];
-installVgaDacWriteRecorder(reset,{onColor:e=>seen.push(e)});
+installVgaDacWriteRecorder(reset,{onColor:e=>{seen.push(e);}});
 reset.writeIOPort(0x3c8,8,2);
 reset.writeIOPort(0x3c9,8,1);
 reset.writeIOPort(0x3c8,8,3);

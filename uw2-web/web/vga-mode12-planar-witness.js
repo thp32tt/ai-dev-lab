@@ -1,8 +1,9 @@
-// Narrow original-CPU VGA 640x480x16 planar write MODE 2 witness.
+// Narrow original-CPU VGA 640x480x16 planar MODE 2 / MODE 0 write witness.
 // IBM-compatible VGA write-mode-2 data expansion is documented by OSDev
 // VGA Hardware and 82C451 Graphics Controller Registers. We intentionally
-// support ONLY observed register conditions: GC05=02h, GC03=00h,
-// GC08=FFh, Sequencer02 map mask. This excludes latch/ROP/masked writes;
+// support ONLY observed register conditions: GC05=02h (mode2) or
+// GC05=00h with GC01=00h (mode0), GC03=00h, GC08=FFh,
+// Sequencer02 map mask. This excludes latch/ROP/masked writes;
 // a different mode is NOT silently treated as a real rendered pixel.
 // This is a passive GPU-memory evidence layer, NOT an authentic VGA BIOS,
 // vertical-retrace clock, palette renderer, or original visual parity.
@@ -15,19 +16,21 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
   const gc=new Map(),seq=new Map();
   const planes=Array.from({length:4},()=>new Uint8Array(VISIBLE));
   const validity=Array.from({length:4},()=>new Uint8Array(VISIBLE));
-  let observedWrites=0,visibleWrites=0,fullyCoveredBytes=0;
+  let observedWrites=0,visibleWrites=0,fullyCoveredBytes=0,mode0Writes=0,mode2Writes=0;
   const isReady=()=>{
-    return gc.get(3)===0&&gc.get(5)===2&&gc.get(8)===255&&
+    const mode=gc.get(5);
+    return gc.get(3)===0&&gc.get(8)===255&&
+      (mode===2||(mode===0&&gc.get(1)===0))&&
       Number.isInteger(seq.get(2))&&(seq.get(2)&0xf)!==0;
   };
   const snapshot=()=>Object.freeze({
     width:WIDTH,height:HEIGHT,strideBytes:STRIDE,
-    observedWrites,visibleWrites,fullyCoveredBytes,
+    observedWrites,visibleWrites,fullyCoveredBytes,mode0Writes,mode2Writes,
     visibleBytes:VISIBLE,
     configKnown:isReady(),
     graphicsMode:gc.has(5)?gc.get(5):null,
     sequencerMapMask:seq.has(2)?seq.get(2):null,
-    fidelity:'ORIGINAL_CPU_WRITE_MODE2_VGA_PLANES_ONLY__NO_BIOS_OR_FRAME_PARITY'
+    fidelity:'ORIGINAL_CPU_WRITE_MODE0_MODE2_VGA_PLANES_ONLY__NO_BIOS_OR_FRAME_PARITY'
   });
   return Object.freeze({
     noteIndexedRegister(event){
@@ -49,12 +52,13 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       if(observedWrites>=maxObservedWrites)
         throw new Error('VGA mode12 original-CPU write budget exceeded: fail closed');
       if(!isReady())
-        throw new Error('VGA write mode2 requires exact observed GC03/05/08 and SEQ02: fail closed');
-      // The remaining bits of GC05 and masked logical operations cannot be
-      // verified from this narrow contract. Fail rather than guess.
-      if(gc.get(5)!==0x02||gc.get(3)!==0||gc.get(8)!==0xff)
-        throw new Error('unsupported VGA planar write state: fail closed');
+        throw new Error('VGA planar write requires exact observed mode0/mode2 GC01/03/05/08 and SEQ02: fail closed');
+      // With full bitmask, rotate=0, and logical operation=replace, mode0
+      // writes the CPU data byte unchanged to enabled planes. With mode2,
+      // each AL bit expands to FFh/00h in one destination plane.
+      const mode=gc.get(5);
       observedWrites++;
+      if(mode===0)mode0Writes++;else mode2Writes++;
       const offset=address-VRAM_PHYSICAL;
       if(offset>=VISIBLE)return; // beyond visible 640x480, still raw VGA RAM
       visibleWrites++;
@@ -62,7 +66,7 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       let previouslyCovered=true;
       for(let p=0;p<4;p++)if(!validity[p][offset])previouslyCovered=false;
       for(let p=0;p<4;p++)if(mask&(1<<p)){
-        planes[p][offset]=(event.value&(1<<p))?255:0;
+        planes[p][offset]=mode===0?event.value:((event.value&(1<<p))?255:0);
         validity[p][offset]=1;
       }
       if(!previouslyCovered&&validity.every(a=>a[offset]===1))

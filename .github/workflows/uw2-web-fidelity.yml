@@ -28,6 +28,7 @@ jobs:
           node --check uw2-web/web/dos-ivt-snapshot.js
           node --check uw2-web/web/dos-psp-snapshot.js
           node --check uw2-web/tools/p3-koei-exec-probe.mjs
+          node --check uw2-web/tools/p3-fmdrv-exec-probe.mjs
           node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/web/dos-original-files.js
           node --check uw2-web/tools/koei-launch-chain.mjs
@@ -66,6 +67,7 @@ jobs:
           node uw2-web/tests/dos-int21-resize.test.mjs
           node uw2-web/tests/dos-int21-console.test.mjs
           node uw2-web/tests/dos-int21-string.test.mjs
+          node uw2-web/tests/dos-int21-tsr.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs
           node uw2-web/tests/realmode-8086-fe.test.mjs
           node uw2-web/tests/realmode-8086-divide-interrupt.test.mjs

@@ -11,6 +11,7 @@ import {loadVerifiedCom} from '../web/mz-loader.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {installBiosInt10} from '../web/bios-int10.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
+import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {verifyKoeiLaunchChain,ORIGINAL_KOEI_LAUNCH_SITES} from './koei-launch-chain.mjs';
 
 const dirname=path.dirname(fileURLToPath(import.meta.url));
@@ -22,7 +23,7 @@ const statuses=Object.freeze({
   'MAIN.EXE':{terminationType:0,returnCode:1},
   'END.EXE':{terminationType:0,returnCode:0}
 });
-export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null,biosVideo=null}={}){
+export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000,childStatuses=statuses,initialIvt=null,biosVideo=null,initialPsp=null,dosMemory=null}={}){
   if(!(original instanceof Uint8Array))throw new TypeError('original KOEI.COM byte buffer required');
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
     throw new RangeError('bounded KOEI instruction budget required');
@@ -32,6 +33,9 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   // Synthetic memory state: NOT a measured PSP, DOS allocator, environment, or
   // hardware state. Work is ONLY used to find missing 8086/DOS primitives.
   const pspSegment=0x200;
+  const psp=initialPsp===null?null:await loadPinnedDosPsp(cpu,initialPsp.bytes,{
+    pspSegment,expectedSha256:initialPsp.expectedSha256
+  });
   await loadVerifiedCom(cpu,bytes,{pspSegment,allocationParagraphs:0x1000,
     initialSP:0xfffe,expectedSha256:pin.sha256});
   // Only externally captured/declared IVT contents are admissible. Without
@@ -47,7 +51,9 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
     if(videoRequests.length>=32)throw new Error('synthetic BIOS video event budget exhausted');
     videoRequests.push(args);
   }});
-  installDosInt21(cpu,{executeChild:input=>{
+  if(dosMemory!==null&&(!dosMemory||typeof dosMemory!=='object'||Array.isArray(dosMemory)))
+    throw new TypeError('explicit DOS allocator device object required');
+  installDosInt21(cpu,{freeMemory:dosMemory?.freeMemory,executeChild:input=>{
     if(!allowed.has(input.filename))
       throw new Error('KOEI executable name not in SHA-pinned original launch sites');
     if(input.parameterBlockSegment!==pspSegment)
@@ -76,6 +82,8 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
     entryPsp:chain.entryPsp,
     observedChildCalls:launches,observedBiosVideoRequests:videoRequests,
     externalVideoState:biosVideo?'CALLER_SUPPLIED_NOT_DOS_VERIFIED':null,
+    initialPsp:psp?{sha256:psp.sha256,environmentSegment:psp.environmentSegment,
+      provenance:'CALLER_SUPPLIED_NOT_ORIGINAL_DOS_VERIFIED'}:null,
     initialIvt:ivt?{sha256:ivt.sha256,knownVectorCount:ivt.knownVectorCount,
       provenance:'CALLER_SUPPLIED_NOT_ORIGINAL_DOS_VERIFIED'}:null,
     terminated:cpu.terminated??null,stopped,

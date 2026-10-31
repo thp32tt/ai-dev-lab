@@ -39,6 +39,7 @@ def scan_com(original: Path, destination: Path, timeout: int = 150) -> dict:
     with tempfile.TemporaryDirectory(prefix="uw2-p1-com-") as project:
         args = [str(headless), project, "uw2_original_com", "-import", str(original),
                 "-processor", "x86:LE:16:Real Mode",
+                "-loader", "BinaryLoader", "-loader-baseAddr", "0x10100",
                 "-scriptPath", str(script.parent), "-max-cpu", "1",
                 "-analysisTimeoutPerFile", str(min(timeout - 15, 160)),
                 "-deleteProject", "-postScript", script.name, str(destination),

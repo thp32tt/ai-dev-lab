@@ -53,7 +53,8 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
   }});
   if(dosMemory!==null&&(!dosMemory||typeof dosMemory!=='object'||Array.isArray(dosMemory)))
     throw new TypeError('explicit DOS allocator device object required');
-  installDosInt21(cpu,{freeMemory:dosMemory?.freeMemory,executeChild:input=>{
+  installDosInt21(cpu,{freeMemory:dosMemory?.freeMemory,
+    resizeMemory:dosMemory?.resizeMemory,executeChild:input=>{
     if(!allowed.has(input.filename))
       throw new Error('KOEI executable name not in SHA-pinned original launch sites');
     if(input.parameterBlockSegment!==pspSegment)

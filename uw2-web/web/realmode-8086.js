@@ -596,7 +596,7 @@ export class RealMode8086 {
     // require separate processor-specific reference verification.
     if(op===0xc0||op===0xc1){
       if(!this.enable80186Shifts)
-        throw new Error('80186 immediate shift requires explicit capability: fail closed');
+        throw new Error('unsupported 8086 opcode '+op.toString(16)+': 80186 immediate shift requires explicit capability: fail closed');
       const m=this.fetch8(),extension=(m>>>3)&7;
       if(extension===6)throw new Error('unsupported 80186 Group-2 /6: fail closed');
       const width=op===0xc0?8:16,rm=this.memoryOperand(m,width,segmentOverride);

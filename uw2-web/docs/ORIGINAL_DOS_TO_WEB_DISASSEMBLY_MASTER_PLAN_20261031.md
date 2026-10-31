@@ -99,3 +99,14 @@
 - 기존 P0-A는 원본 SHA 기준선과 4개 MZ 재배치 감사로 **이미 수행**됨. 새 C 슬롯 작업의 시작점을 P0로 되돌리지 않는다.
 - 이 문서의 3-A/E 절에서 지정한 P1-BATCH-001/002 및 P3-CORE-001을 새 최우선 미완료 구현 단계로 취급한다.
 - 기존 P0~P9 단계 완료 게이트는 폐기하지 않는다. **원본 전체 게임 동등성은 여전히 미완료**다.
+
+
+## 8. 2026-10-31 09:06 KST P3 실행 코어 부분 체크포인트
+
+- 실행 소스 SHA: 5fa82953372873ce44d6423dbdc146b8267d13c0; GitHub Actions synthetic static gate 41148278867 = SUCCESS. 이 SHA는 전체 원작 웹포팅 완료가 아니라 부분 실행 코어 체크포인트다.
+- dos-int21.js + dos-readonly-files.js: INT 21h 3D00/3F/42/3E 읽기 전용 파일 열기/읽기/탐색/닫기, 호스트 제공 원본 bytes 외 입력·미지원 서비스는 fail-closed. 쓰기·삭제·파일 경로 추측·게임 세이브는 구현하지 않음.
+- dos-original-files.js: 사용자 로컬 DOS 8.3 파일명/크기/원본 SHA-256을 사전 검증한 byte snapshot에서만 동기 DOS 읽기 인터페이스 생성; 저작권 원본 bytes 비커밋. 반환 값은 방어적 복사.
+- realmode-8086.js: FE /0,/1 byte INC/DEC(CF 보존), DIV/IDIV zero divisor/overflow가 설치된 INT 0으로 분기하고 벡터 미설치면 명시적 실패.
+- 새로운 테스트: dos-readonly-files.test.mjs, dos-original-files.test.mjs, realmode-8086-fe.test.mjs, realmode-8086-divide-interrupt.test.mjs. 기존 인벤토리/기동 회귀 포함 최종 SHA synthetic gate 성공.
+- 원본 한국어판 KOEI.COM->OPEN.EXE->MAIN.EXE 실행, DOS PSP/디바이스 trace, 원본 음악/픽셀/세이브/브라우저 전 경로는 이 테스트에서 실행하지 않음: ORIGINAL_DOS_RUNTIME=UNTESTED; BROWSER_RUNTIME=UNTESTED; FULL_GAME=UNTESTED.
+- 다음: P1 실제 REA/Ghidra 지원 API를 조사하고 전체 모듈 코드/데이터/실패 범위·간접 흐름 gap을 export/검증. 이후 원본 DOS 비교 trace와 장치 어댑터를 연결하고 여섯 인물, 항구/항해, 교역, 전투, 저장, 이벤트, 엔딩 전 기능을 실제 실행 결과에 따라 수렴. 소단위 커밋이나 CI PASS로 P9 종료 처리 금지.

@@ -324,3 +324,5 @@
 - GC05 bit3 read-mode1 비교는 GC02 Color Compare/GC07 Color Don't Care의 **관측된** 값과 이미 확인된 plane byte만으로 수행한다. 원본 CPU 읽기마다 실제 plane read latch를 갱신한다. write mode0/2의 Rotate/Set-Reset/ROP/Bit Mask 및 write mode1 latch copy는 필요한 latch가 증명된 경우만 허용하고 실패 시 전체 쓰기 거부로 상태를 보존한다. 16비트 DOS 원본 트레이스 동등성이나 BIOS 초기 VRAM 상태는 주장하지 않는다.
 - VGA GC/Sequencer 8-bit indexed `IN`은 명시적 옵트인에서 **동일 CPU가 사전에 OUT으로 기록한 단순 레지스터 값만** 반환한다. 미기록 selector/register, CRTC read, VGA 초기값, 숨겨진 HW side-effect는 거부한다. 읽기 횟수 예산과 원본 프로그램의 실제 IN 분기는 이후 별도 대조한다.
 - 검증: `tests/vga-mode12-latch-readmode1.test.mjs`, `tests/vga-indexed-readback.test.mjs`, 기존 planar/read adapter 합성 회귀 및 UW2 GitHub Actions. **실 DOS 부팅/OPEN 정상 종료/MAIN 진입/브라우저 원작 픽셀·음악 동등성: UNTESTED/HOLD**.
+
+- VGA GC06 주소 선택(128KiB A000–BFFF, 64KiB A000–AFFF, B000/B800 text apertures)의 디코딩 경계 추가: 알려진 매핑에서 미구현 B000/B800 접근을 일반 게스트 RAM인 것처럼 반환하지 않고 읽기/쓰기 witness에서 fail-closed한다. A000-only 선택 후 B000 접근은 VRAM이라고 주장하지 않으며 일반 메모리와 구별한다. 원본 참조 실행/물리 VGA 동등성은 계속 HOLD.

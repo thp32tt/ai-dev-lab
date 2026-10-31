@@ -35,6 +35,21 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
     if(!gc.has(3)||!gc.has(8))return false;
     return mode===2||(gc.has(1)&&((gc.get(1)&15)===0||gc.has(0)));
   };
+  const classifyPhysicalAperture=physical=>{
+    if(!Number.isInteger(physical)||physical<0xa0000||physical>=0xc0000)
+      return 'NOT_MAPPED';
+    const map=gc.get(6);
+    if(!Number.isInteger(map))return 'UNKNOWN_MAPPING';
+    const chosen=map&0x0c;
+    const decoded=chosen===0?
+      physical>=0xa0000&&physical<0xc0000:
+      chosen===4?physical>=0xa0000&&physical<0xb0000:
+      chosen===8?physical>=0xb0000&&physical<0xb8000:
+      physical>=0xb8000&&physical<0xc0000;
+    if(!decoded)return 'NOT_MAPPED';
+    if(physical<0xb0000&&mapsPlanarA000())return 'GROUNDED_A000';
+    return 'UNSUPPORTED_MAPPED_APERTURE';
+  };
   const loadLatches=offset=>{
     for(let p=0;p<4;p++){
       latches[p]=planes[p][offset];
@@ -51,6 +66,7 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
     fidelity:'VGA_PLANAR_64K_WRITE012_READ01_LATCHES__SYNTHETIC_DOS_UNTESTED'
   });
   return Object.freeze({
+    classifyPhysicalAperture,
     invalidateAfterBiosModeSet({mode}={}){
       // INT10 AH00 may reset VGA registers and framebuffer. The ROM's
       // actual memory contents are not inferred from a BIOS mode request.
@@ -79,6 +95,8 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
          event.physical>=0x100000||!validByte(event.value))
         throw new Error('original 8086 physical VGA byte-write witness required');
       const address=event.physical;
+      if(classifyPhysicalAperture(address)==='UNSUPPORTED_MAPPED_APERTURE')
+        throw new Error('unsupported mapped VGA aperture must not be treated as guest RAM: fail closed');
       if(address<VRAM_PHYSICAL||address>=VRAM_END)return;
       if(observedWrites>=maxObservedWrites)
         throw new Error('VGA mode12 original-CPU write budget exceeded: fail closed');

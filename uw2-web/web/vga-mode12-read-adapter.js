@@ -7,13 +7,19 @@ import {RealMode8086} from './realmode-8086.js';
 export function installVgaMode12ReadPlaneAdapter(cpu,witness,{maxReads=100000}={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('VGA planar CPU read adapter requires RealMode8086');
-  if(!witness||typeof witness.readSelectedPlaneByte!=='function')
+  if(!witness||typeof witness.readSelectedPlaneByte!=='function'||
+     typeof witness.classifyPhysicalAperture!=='function')
     throw new TypeError('VGA planar CPU read adapter requires an evidence witness');
   if(!Number.isInteger(maxReads)||maxReads<1||maxReads>2000000)
     throw new RangeError('bounded VGA native CPU read budget required');
   let reads=0;
   cpu.installMemoryReadProvider(({physical})=>{
-    if(physical<0xa0000||physical>=0xb0000)return undefined;
+    if(physical<0xa0000||physical>=0xc0000)return undefined;
+    if(physical>=0xb0000){
+      if(witness.classifyPhysicalAperture(physical)==='UNSUPPORTED_MAPPED_APERTURE')
+        throw new Error('unsupported mapped VGA aperture read must not fall back to guest RAM: fail closed');
+      return undefined;
+    }
     if(reads>=maxReads)
       throw new Error('VGA original CPU read budget exhausted: fail closed');
     const byte=witness.readSelectedPlaneByte(physical);

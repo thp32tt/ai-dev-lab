@@ -116,4 +116,21 @@ assert.throws(()=>crop.captureGroundedIndexedRect(0.5,0,1,1),/outside 640x480/);
 assert.throws(()=>crop.captureGroundedIndexedRect(0,0,0,1),/outside 640x480/);
 assert.throws(()=>crop.captureGroundedIndexedRect(0,0,8,2),/unverified original plane byte/);
 
+
+const mapped=make();
+mode(mapped); // witnessed graphics GC06=05: only A000-AFFFF
+assert.equal(mapped.classifyPhysicalAperture(0xa0000),'GROUNDED_A000');
+assert.equal(mapped.classifyPhysicalAperture(0xb0000),'NOT_MAPPED');
+mapped.noteIndexedRegister({device:'graphics-controller',index:6,value:1});
+assert.equal(mapped.classifyPhysicalAperture(0xb0000),'UNSUPPORTED_MAPPED_APERTURE');
+assert.equal(mapped.classifyPhysicalAperture(0xbffff),'UNSUPPORTED_MAPPED_APERTURE');
+assert.throws(()=>mapped.observeNativeByte({physical:0xb0000,value:1}),/unsupported mapped VGA aperture/);
+assert.equal(mapped.getState().observedWrites,0);
+mapped.noteIndexedRegister({device:'graphics-controller',index:6,value:0x0d});
+assert.equal(mapped.classifyPhysicalAperture(0xb8000),'UNSUPPORTED_MAPPED_APERTURE');
+assert.equal(mapped.classifyPhysicalAperture(0xb0000),'NOT_MAPPED');
+assert.equal(mapped.classifyPhysicalAperture(0xa0000),'NOT_MAPPED');
+mapped.noteIndexedRegister({device:'graphics-controller',index:6,value:0x09});
+assert.equal(mapped.classifyPhysicalAperture(0xb7fff),'UNSUPPORTED_MAPPED_APERTURE');
+assert.equal(mapped.classifyPhysicalAperture(0xb8000),'NOT_MAPPED');
 console.log('UW2 original VGA write-mode2 exact 4-plane 640x480 bitplane color/witness coverage contract: PASS');

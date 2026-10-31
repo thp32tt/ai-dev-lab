@@ -118,4 +118,21 @@ assert.equal(nativePlanes.readPixelIndex(0,0),10);
 assert.equal(native.read8(0xa000,0),0);
 assert.equal(nativePlanes.getState().fullyCoveredBytes,1);
 assert.throws(()=>nativePlanes.invalidateAfterBiosModeSet({mode:-1}),/video mode byte/);
+const busCpu=new RealMode8086();
+const busPlanes=createOriginalVgaMode12PlaneWitness();
+const setBusMap=value=>busPlanes.noteIndexedRegister({
+ device:'graphics-controller',index:6,value
+});
+const busAdapter=installVgaMode12ReadPlaneAdapter(busCpu,busPlanes);
+setBusMap(1); // graphics aperture includes both A000 and B000
+assert.throws(()=>busCpu.read8(0xb000,0),/unsupported mapped VGA aperture/);
+assert.equal(busAdapter.readCount(),0);
+setBusMap(5); // A000-AFFFF only, B000 is NOT this device
+busCpu.memory[0xb0000]=0x3c;
+assert.equal(busCpu.read8(0xb000,0),0x3c);
+setBusMap(0x0d); // B800 video aperture, unsupported
+assert.throws(()=>busCpu.read8(0xb800,0),/unsupported mapped VGA aperture/);
+setBusMap(0x09); // B000-B7FFF video aperture, unsupported
+assert.throws(()=>busCpu.read8(0xb000,0),/unsupported mapped VGA aperture/);
+assert.equal(busAdapter.readCount(),0);
 console.log('UW2 original VGA selected read plane, 8086 MOV write-read and BIOS mode-epoch discard: PASS (synthetic)');

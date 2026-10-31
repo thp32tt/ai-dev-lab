@@ -327,7 +327,7 @@ cpu.installMemoryWriteObserver((event,guest)=>{
   nativeMemoryWrites.openProgramTotal++;
   const band=event.physical>>>16;
   nativeMemoryWrites.physical64kBands[band]++;
-  if(event.physical>=0xa0000&&event.physical<0xb0000){
+  if(event.physical>=0xa0000&&event.physical<0xc0000){
     nativeMemoryWrites.vgaA000Writes++;
     if(nativeMemoryWrites.vgaFirstBytes.length<24)
       nativeMemoryWrites.vgaFirstBytes.push({

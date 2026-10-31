@@ -57,4 +57,30 @@ assert.deepEqual(pitWrites.slice(0,3),[
 ]);
 console.log(JSON.stringify({steps:synthetic.steps,stopped:synthetic.stopped,
   services:synthetic.serviceCalls,last:synthetic.recentSteps.slice(-18)}));
+
+// A SYNTHETIC parent scheduler now releases the terminated CPU so that the
+// native original RESIDENT FMDRV INT66 handler can be called from a second
+// guest segment. This does NOT establish DOS MCB/parent PSP correctness.
+assert.equal(cpu.terminated.terminationType,3);
+cpu.terminated=null; // test-only parent scheduler, never a DOS implementation
+cpu.set16('CS',0x500);cpu.set16('DS',0x500);cpu.set16('ES',0x500);
+cpu.set16('SS',0x500);cpu.set16('SP',0xfffe);cpu.set16('IP',0x100);
+cpu.set16('FLAGS',0x202);
+cpu.set16('AX',0xff03); // exact KOEI.COM final INT66 service selector
+cpu.load(Uint8Array.of(0xcd,0x66,0x90),0x500,0x100);
+let invoked=0,handlerStop=null,returnToCaller=false;
+for(;invoked<2000;invoked++){
+  if(cpu.get16('CS')===0x500&&cpu.get16('IP')===0x102){
+    returnToCaller=true;break;
+  }
+  const cs=cpu.get16('CS'),ip=cpu.get16('IP');
+  try{cpu.step();}catch(error){
+    handlerStop={cs,ip,message:error.message};break;
+  }
+}
+assert.ok(invoked>1);
+console.log(JSON.stringify({originalFmdrvInt66FF03Steps:invoked,
+  returnToCaller,handlerStop,
+  originalInt66Installed:cpu.getGuestInterruptVector(0x66)}));
+
 console.log('UW2 FMDRV.COM original-byte DOS old-INT66 synthetic-vectored probe: PASS (NOT real driver)');

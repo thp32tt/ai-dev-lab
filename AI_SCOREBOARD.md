@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 browser trusted-input bridge to resumable original 8086 execution (2026-11-01 KST)
+
+- **One independent original execution-path integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact SHA `7a3658b88ea0da150853be2fcdd69cdfb3b2f023` adds opt-in `web/browser-original-guest-bridge.js`, composing the existing strict trusted-key browser event translator, one bounded BIOS FIFO, and the new cumulative-budget guest CPU session. An explicit owner-supplied event target feeds genuine accepted ASCII/scan pairs, then explicit `runSlice` continues the same staged 8086 guest at its actual waiting INT16 AH00. The bridge does not globally install listeners or invent a DOS timer/keypress; detach and cleanup on existing BIOS interrupt owner conflict are covered. Native synthetic guest instructions test wait/resume, trusted/untrusted acceptance, queue overflow, byte write, DOS AH4C exit, detach, conflict cleanup, and total execution budget.
+- **Exact SHA CI:** GitHub Actions `41243480506` `UW2 Web Fidelity Static Gate` `synthetic-static` **SUCCESS**. The new integration is NOT attached to default `app.js`, and GitHub CI did not run private original Korean OPEN.EXE or a real browser source event. Original DOS execution, OPEN→MAIN, authentic VGA, OPL music, saves, full gameplay remain **UNTESTED/HOLD**. Testing/readback/docs and follow-up repairs of the same outcome +0.
+- **AI 2 cumulative: previous confirmed 2317 + one independently verified source integration (+1) = 2318.** AI 1 separate.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 resumable original guest execution session with real BIOS keyboard wait (2026-11-01 KST)
 
 - **One independent source implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material/validation-bearing SHA `fd1be7e27c3d85be1552b39d5a9b0e3d90a81260` adds opt-in `web/guest-original-execution-session.js` owning one explicit external keyboard FIFO and actual BIOS INT16 AH00 guest step gate. It retains CPU state and CS:IP on empty keyboard wait, resumes only after caller enqueues real keys, and enforces independently bounded instruction slices and cumulative total budget without fabricating clock, keys, or game logic. `tools/p3-open-exec-probe.mjs` connects its existing opt-in keyboard queue through the shared session. New native 8086 synthetic test covers waiting, unchanged IP, real queue consumption, RAM write, actual DOS INT21 AH4C termination, total budget, invalid input and BIOS owner collision.

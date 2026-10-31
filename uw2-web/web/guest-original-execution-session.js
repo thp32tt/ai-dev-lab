@@ -4,6 +4,8 @@
 import {RealMode8086} from './realmode-8086.js';
 import {installBiosInt16} from './bios-int16.js';
 import {runGuestUntilKeyboardWait} from './guest-bios-keyboard-step.js';
+import {pendingGuestDosIvtVector} from './guest-dos-ivt-await.js';
+import {pendingGuestExternalInterrupt} from './guest-external-interrupt-await.js';
 
 export function createGuestOriginalExecutionSession(cpu,{
   keyboardQueue,maxTotalSteps=1000000,onBeforeInstruction
@@ -23,10 +25,10 @@ export function createGuestOriginalExecutionSession(cpu,{
   const biosBinding=keyboardQueue!==undefined?
     installBiosInt16(cpu,{keyboardQueue}):null;
   let keyboardReleased=false;
-  let executed=0,slices=0,lastReason=null,running=false,faulted=false;
+  let executed=0,slices=0,lastReason=null,running=false,faulted=false,waiting=null;
   const status=()=>Object.freeze({
     totalExecutedSteps:executed,remainingSteps:maxTotalSteps-executed,
-    slices,lastReason,terminated:!!cpu.terminated,faulted,
+    slices,lastReason,waiting,terminated:!!cpu.terminated,faulted,
     cs:cpu.get16('CS'),ip:cpu.get16('IP'),
     fidelity:'ORIGINAL_GUEST_STEPS_ONLY__NO_HOST_CLOCK_OR_SYNTHETIC_KEY_EVENTS'
   });
@@ -41,11 +43,18 @@ export function createGuestOriginalExecutionSession(cpu,{
     if(keyboardReleased)throw new Error('released BIOS INT16 guest session cannot resume');
     running=true;
     let steps=0,reason='SLICE_STEP_BUDGET_EXHAUSTED';
+    waiting=null;
     try{
       if(cpu.terminated)reason='TERMINATED';
       else if(executed>=maxTotalSteps)reason='TOTAL_STEP_BUDGET_EXHAUSTED';
       else{
         while(steps<maxSteps&&executed<maxTotalSteps&&!cpu.terminated){
+          // Source-backed unresolved DOS AH35 or native INT imm8 is not a
+          // fault: do not advance guest IP, stack, counters or observers.
+          // Resume only after a real external provider installs the handler.
+          waiting=pendingGuestDosIvtVector(cpu)||
+            pendingGuestExternalInterrupt(cpu);
+          if(waiting){reason=waiting.reason;break;}
           // Exactly one genuine CPU instruction per owned boundary.
           // A blocked AH00 must leave the guest CS:IP and FIFO untouched.
           if(keyboardQueue!==undefined){
@@ -78,7 +87,7 @@ export function createGuestOriginalExecutionSession(cpu,{
       lastReason=reason;slices++;
       return Object.freeze({steps,reason,...status()});
     }catch(error){
-      faulted=true;lastReason='FAULTED';
+      faulted=true;lastReason='FAULTED';waiting=null;
       if(error instanceof Error){
         error.guestCS=cpu.get16('CS');
         error.guestIP=cpu.get16('IP');

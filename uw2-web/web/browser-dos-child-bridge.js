@@ -59,6 +59,9 @@ export function createBrowserDosChildBridge({
   // Browser host must explicitly supply an externally observed edge. The
   // bridge never schedules PIT ticks, fabricates EOI or auto-injects an IRQ.
   const enqueueExternalIrqEdge=event=>child.enqueueExternalIrqEdge(event);
+  // The browser provides no guessed DOS vector. Only a matching, externally
+  // SHA-pinned 4-byte IVT record can resume an actually waiting native child.
+  const supplyPinnedDosIvtVector=entry=>child.supplyPinnedDosIvtVector(entry);
   return Object.freeze({runSlice,abort,detach,snapshot,
-    enqueueExternalIrqEdge});
+    enqueueExternalIrqEdge,supplyPinnedDosIvtVector});
 }

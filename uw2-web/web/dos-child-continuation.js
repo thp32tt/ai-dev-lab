@@ -7,6 +7,7 @@ import {DOS_CPU_FRAME_NAMES,captureDosCpuFrame} from './dos-com-child-runner.js'
 import {createGuestOriginalExecutionSession} from './guest-original-execution-session.js';
 import {createExternalGuestIrqEdgeQueue} from './guest-external-irq-queue.js';
 import {isPinnedExternalGuestIrqTrace} from './guest-pinned-external-irq-trace.js';
+import {supplyPinnedGuestDosIvtVector} from './guest-dos-ivt-await.js';
 
 const validFrame=frame=>{
   if(!frame||typeof frame!=='object'||Array.isArray(frame)||
@@ -55,12 +56,12 @@ export function createStagedDosChildContinuation(cpu,{
     throw new TypeError('staged child external IRQ trace must be SHA-pinned');
   const parent=captureDosCpuFrame(cpu),parentTermination=cpu.terminated,
     parentIrqShadow=cpu.maskableIrqShadow;
-  let guest=null,running=false;
+  let guest=null,running=false,provisioning=false;
   const irqEdges=createExternalGuestIrqEdgeQueue(cpu,{
     maxPending:maxQueuedExternalIrqs,picCommandWitness
   });
   let state='ACTIVE',result=null,steps=0,slices=0,childFrame=null,
-    expectedFrame=null,expectedIrq=0,expectedTerminated=null;
+    expectedFrame=null,expectedIrq=0,expectedTerminated=null,waiting=null;
   const restoreParent=()=>{
     irqEdges.clear();
     // A child-only BIOS queue belongs to this execution session. It must
@@ -90,7 +91,7 @@ export function createStagedDosChildContinuation(cpu,{
     externalIrqEvidenceTape?.claimOwner();
   }catch(error){restoreParent();throw error;}
   const snapshot=()=>Object.freeze({state,steps,slices,result,
-    childFrame,irqEdges:irqEdges.snapshot(),
+    childFrame,waiting,provisioning,irqEdges:irqEdges.snapshot(),
     irqEvidence:externalIrqEvidenceTape?.snapshot()??null,
     restored:state!=='ACTIVE',
     fidelity:'STAGED_ORIGINAL_GUEST_CHILD_STEPS__NO_DOS_EXEC_SCHEDULER'});
@@ -106,6 +107,7 @@ export function createStagedDosChildContinuation(cpu,{
     if(!Number.isSafeInteger(maxSteps)||maxSteps<1||maxSteps>100000)
       throw new RangeError('staged DOS child slice must be 1..100000');
     if(running)throw new Error('reentrant staged DOS child execution: fail closed');
+    if(provisioning)throw new Error('DOS child IVT provisioning in progress: fail closed');
     requireOwner();running=true;
     try{
       // One explicit external device edge can be admitted before the next
@@ -128,6 +130,7 @@ export function createStagedDosChildContinuation(cpu,{
         throw new Error('original IRQ trace has an invalid due-now edge');
       const segment=guest.runSlice(nextMaxSteps);
       steps=segment.totalExecutedSteps;slices++;
+      waiting=segment.waiting;slices=slices;
       childFrame=captureDosCpuFrame(cpu);
       if(segment.reason==='TERMINATED'){
         result=validStatus(cpu.terminated);
@@ -148,7 +151,7 @@ export function createStagedDosChildContinuation(cpu,{
     }finally{running=false;}
   };
   const abort=()=>{
-    if(running)throw new Error('cannot abort executing DOS child');
+    if(running||provisioning)throw new Error('cannot abort executing or provisioning DOS child');
     requireOwner();
     childFrame=captureDosCpuFrame(cpu);
     state='ABORTED';
@@ -156,11 +159,31 @@ export function createStagedDosChildContinuation(cpu,{
     return snapshot();
   };
   const enqueueExternalIrqEdge=event=>{
-    if(running)throw new Error('cannot enqueue hardware IRQ while guest runs');
+    if(running||provisioning)throw new Error('cannot enqueue hardware IRQ while guest runs or provisions IVT');
     requireOwner();
     if(steps>=maxTotalSteps)
       throw new Error('external IRQ edge refused after original instruction budget: fail closed');
     return irqEdges.enqueue(event);
   };
-  return Object.freeze({runSlice,snapshot,abort,enqueueExternalIrqEdge});
+  // Caller-provided SHA-pin establishes byte integrity, not DOS origin.
+  // Provision ONLY the currently requested missing DOS vector while the
+  // child is quiescent. Async hashing holds a lock against slice/abort/IRQ.
+  const supplyPinnedDosIvtVector=async ({number,bytes,expectedSha256}={})=>{
+    if(running||provisioning)
+      throw new Error('DOS child IVT provisioning already active: fail closed');
+    requireOwner();
+    if(waiting?.reason!=='WAIT_EXTERNAL_DOS_IVT_VECTOR'||
+       number!==waiting.missingInterruptVector)
+      throw new Error('DOS child must be waiting for exact requested IVT vector');
+    provisioning=true;
+    try{
+      const result=await supplyPinnedGuestDosIvtVector(cpu,{
+        number,bytes,expectedSha256
+      });
+      requireOwner();waiting=null;
+      return result;
+    }finally{provisioning=false;}
+  };
+  return Object.freeze({runSlice,snapshot,abort,enqueueExternalIrqEdge,
+    supplyPinnedDosIvtVector});
 }

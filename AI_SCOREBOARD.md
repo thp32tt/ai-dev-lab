@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 C1 independent QA of eight new A/B SHA (2026-11-01 KST)
+
+- **One distinct independently completed C1 QA batch (+1):** RUN_KEY `OUTRUN-C1-AI2-20261101T0845KST-NEW-SHA8`. GitHub `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` verified QA commit `65d8ed1ad25509f756136fe751f85e78c6f97c88`, evidence `localization/qa_evidence/C1_QA_20261101_0845_AI2_NEW_SHA8.json`. N100 actual saved candidate PNGs were checked for byte SHA256 versus producer exports and prior QA SHA dedup, original SHA-pinned source crop, transparent RGBA, native-fit and 50% readability, visually compared independent of A/B self QA. Eight never-before-reviewed SHA candidates (A4/B4) received **C1_KOREAN_LETTERING_LAYER_ONLY PASS**; 0 FAIL/HOLD. Original inventory 11 unreviewed SHA; 3 remain at snapshot. Existing 928 reviewed SHAs including prior addendum were excluded.
+- **Limits and non-double-counting:** Producer `REWORK_DIMENSIONS` remains unchanged on all eight; producer pairing order-only is not promoted. No final DDS, C2/C3, protected-art actual composition or user game test; `RUNTIME_VALIDATION=UNTESTED`. Neither ImageGen nor A/B queue was touched. Subsequent readback, status report, same TASK_ID retry/rollover +0. AI1 independent.
+- **AI 2 cumulative: previous confirmed 2336 + new independently verified C1 QA batch (+1) = 2337.**
+
+Updated: 2026-11-01 KST
+
 ## AI 2 DX11 authentic large-raster native GPU source sampling (CONVERSION-DX11-01195; 2026-11-01 KST)
 
 - **Independent game-renderer C++ source integration (+1):** `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` material SHA `7cc235370130c698da8ffec4850b0dbffcb85ebd` extends the opt-in native D3D11 Draw PRE/POST source-capture path from fixed center/corner-only samples to a bounded sweep of real viewport/scissor raster cells, preserving two independent source readbacks and refusing an overlapping secondary GPU region. Changes `native_game_raw_dual_tile.hpp`, live `native_game_raw_visual_diagnostic.hpp` invocation and `native_raw_dual_tile_test.cpp`. Static regression verifies 3440x1440 race-source 35-cell 512x288 sweep, scissored menu/HUD raster, 512x288 single-cell fallback and 1024x288 true disjoint pair; this is a new real source-path behavior, not a status/test-only change.

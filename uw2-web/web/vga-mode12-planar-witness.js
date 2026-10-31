@@ -83,6 +83,32 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       }
       return color;
     },
+    captureGroundedIndexedRect(x,y,width,height){
+      // Unlike a full-frame claim, a rectangular comparison can use the
+      // partial original OPEN.EXE CPU writes that are already verified.
+      // All four VGA planes must be proven at every touched byte: a crop
+      // may start/end in the middle of a byte, but unknown bits are never
+      // filled with an assumed background color.
+      if(![x,y,width,height].every(Number.isInteger)||x<0||y<0||
+         width<1||height<1||x>=WIDTH||y>=HEIGHT||
+         width>WIDTH-x||height>HEIGHT-y)
+        throw new RangeError('VGA mode12 grounded rectangle outside 640x480');
+      const firstByte=x>>>3,lastByte=(x+width-1)>>>3;
+      for(let row=y;row<y+height;row++)
+        for(let b=firstByte;b<=lastByte;b++)
+          for(let p=0;p<4;p++)
+            if(!validity[p][row*STRIDE+b])
+              throw new Error('VGA mode12 rectangle has an unverified original plane byte: fail closed');
+      const indices=new Uint8Array(width*height);
+      for(let row=0;row<height;row++)
+        for(let col=0;col<width;col++){
+          const offset=(y+row)*STRIDE+((x+col)>>>3),bit=1<<(7-((x+col)&7));
+          let color=0;
+          for(let p=0;p<4;p++)if(planes[p][offset]&bit)color|=1<<p;
+          indices[row*width+col]=color;
+        }
+      return indices; // owned copy; never expose mutable evidence planes
+    },
     captureCompleteIndexedFrame(){
       if(fullyCoveredBytes!==VISIBLE)
         throw new Error('VGA mode12 not every pixel is grounded by native CPU writes');

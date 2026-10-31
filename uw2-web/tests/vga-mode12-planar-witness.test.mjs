@@ -69,4 +69,23 @@ literal.observeNativeByte({physical:0xa0000,value:0xff});
 assert.equal(literal.readPixelIndex(0,0),null); // planes 1..3 never initialized
 assert.throws(()=>frame.readPixelIndex(640,0),/outside 640x480/);
 assert.throws(()=>frame.readPixelIndex(0,480),/outside 640x480/);
+
+const crop=createOriginalVgaMode12PlaneWitness({maxObservedWrites:5});
+mode(crop);
+assert.throws(()=>crop.captureGroundedIndexedRect(0,0,8,1),/unverified original plane byte/);
+crop.observeNativeByte({physical:0xa0000,value:5});
+assert.deepEqual(crop.captureGroundedIndexedRect(2,0,4,1),Uint8Array.of(5,5,5,5));
+assert.throws(()=>crop.captureGroundedIndexedRect(7,0,2,1),/unverified original plane byte/);
+crop.observeNativeByte({physical:0xa0001,value:10});
+assert.deepEqual(crop.captureGroundedIndexedRect(6,0,4,1),
+  Uint8Array.of(5,5,10,10));
+const output=crop.captureGroundedIndexedRect(0,0,8,1);
+output.fill(0);
+assert.equal(crop.readPixelIndex(0,0),5); // no mutable witness-plane leak
+assert.throws(()=>crop.captureGroundedIndexedRect(639,0,2,1),/outside 640x480/);
+assert.throws(()=>crop.captureGroundedIndexedRect(0,479,1,2),/outside 640x480/);
+assert.throws(()=>crop.captureGroundedIndexedRect(0.5,0,1,1),/outside 640x480/);
+assert.throws(()=>crop.captureGroundedIndexedRect(0,0,0,1),/outside 640x480/);
+assert.throws(()=>crop.captureGroundedIndexedRect(0,0,8,2),/unverified original plane byte/);
+
 console.log('UW2 original VGA write-mode2 exact 4-plane 640x480 bitplane color/witness coverage contract: PASS');

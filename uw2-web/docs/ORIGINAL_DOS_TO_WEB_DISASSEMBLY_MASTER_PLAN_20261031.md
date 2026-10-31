@@ -298,3 +298,10 @@
 - 비공개 `tests/p3-koei-fmdrv-open-irq-original.test.mjs`는 실제 소유 한국어판 `OPEN.EXE` 파일 접근 이벤트의 PSP가 사전에 공급한 **합성 `0600h`**인지 검증하도록 수정했다. GitHub Actions에서 실행하는 자산 없는 합성 검사와 별개이며, 이 변경 후 **원본 실행 테스트는 재실행하지 않았으므로 UNTESTED**다.
 - 소스 SHA `54bdecacdf06e64775f05bd5075b462476b0e726`의 필수 `UW2 Web Fidelity Static Gate` run `41215502892`: `synthetic-static` **SUCCESS**. 파생된 개인 원본 실행·실 DOS PSP/JFT/IRQ 캡처·브라우저 화면/항구/항해/교역/전투/세이브 동등성은 **HOLD/UNTESTED**.
 - 다음에는 원본 소유 파일을 갖춘 환경에서 제한된 기존 OPEN 추적 스크립트를 재실행해 PSP별 DOS file provenance를 확인하고, 원본 해제 14파트 중 아직 직접 CPU parity가 입증되지 않은 12파트, 완전 VGA 영상/OPL/MAIN 분기를 계속 추적한다.
+
+
+### 원본 VGA Mode12 부분 영역 증거만 추출하는 검증 경계 (2026-11-01 KST)
+
+- `web/vga-mode12-planar-witness.js`에 `captureGroundedIndexedRect(x,y,width,height)`를 구현했다. 기존 `captureCompleteIndexedFrame()`은 640×480 전체 픽셀 확인을 계속 요구하지만, 새 메서드는 실제 원본 CPU가 기록해 4개 VGA plane의 유효성이 확인된 지정 사각형만 엄격히 추출한다. 비트 단위 경계/화면 가장자리와 행 단위 바이트 주소를 정확히 계산하며, 확인되지 않은 VRAM 배경·패딩은 채우지 않는다. 호출자가 픽셀 배열을 바꿔도 내부 근거 plane은 변경되지 않는다.
+- 소스+회귀검사 SHA `900b906dc17617af8a4c06aaffe8afa435625506`; GitHub UW2 Web Fidelity Static Gate run `41215806444`의 `synthetic-static` **SUCCESS** (syntax+원본 파일 없는 전체 synthetic gate, `tests/vga-mode12-planar-witness.test.mjs`의 일부 영역·미관측 바이트 거부·두 바이트 경계·반환 복사 검증 PASS).
+- 이는 원본 `OPEN.EXE`의 CPU 기록에서 추출 가능한 화면 일부를 JS 그래픽 디코딩 결과와 이후 비교하기 위한 **증거 API**일 뿐, VGA BIOS 초기 메모리·원본 DOS/PIT/OPL·16색 팔레트·완전 오프닝 프레임·브라우저 재생 동등성을 증명하지 않는다. 원본 게임이 제공하지 않은 픽셀/장면을 생성하지 않는다. 후속: 원본 한국어판 VGA 포트·모드·화면 캡처 시각/주소를 외부에서 검증한 뒤 원본 OPEN 쓰기와 JS OPGRAPH 지역 좌표를 대조하고, 실제 DOS 기준 MZ MAIN 진입 검증으로 이어간다.

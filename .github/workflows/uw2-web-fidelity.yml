@@ -49,6 +49,7 @@ jobs:
           node --check uw2-web/web/guest-irq-boundary.js
           node --check uw2-web/web/guest-external-irq-queue.js
           node --check uw2-web/web/guest-pinned-external-irq-trace.js
+          node --check uw2-web/web/guest-pic8259-command-witness.js
           node --check uw2-web/web/guest-execution-hotspots.js
           node --check uw2-web/web/guest-progress-witness.js
           node --check uw2-web/web/guest-dos-call-window.js
@@ -128,6 +129,7 @@ jobs:
           node uw2-web/tests/guest-irq-boundary.test.mjs
           node uw2-web/tests/guest-external-irq-queue.test.mjs
           node uw2-web/tests/guest-pinned-external-irq-trace.test.mjs
+          node uw2-web/tests/guest-pic8259-command-witness.test.mjs
           node uw2-web/tests/guest-execution-hotspots.test.mjs
           node uw2-web/tests/guest-progress-witness.test.mjs
           node uw2-web/tests/guest-dos-call-window.test.mjs

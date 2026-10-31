@@ -12,9 +12,12 @@ import {installDosInt21} from '../web/dos-int21.js';
 import {createStagedDosChildContinuation} from '../web/dos-child-continuation.js';
 import {captureDosCpuFrame} from '../web/dos-com-child-runner.js';
 import {assertDisjointGuestPhysicalRegions} from '../web/guest-staging-physical-map.js';
+import {createPinnedExternalGuestIrqTrace} from '../web/guest-pinned-external-irq-trace.js';
+import {createOriginalMasterPicCommandWitness} from '../web/guest-pic8259-command-witness.js';
 const fsBase='/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD/';
 const syntheticExternalIrq=process.argv[2]==='--synthetic-external-irq';
-if(process.argv[2]!==undefined&&!syntheticExternalIrq)
+const syntheticPinnedIrq=process.argv[2]==='--synthetic-pinned-irq';
+if(process.argv[2]!==undefined&&!syntheticExternalIrq&&!syntheticPinnedIrq)
   throw new Error('unknown private original IRQ test option: fail closed');
 const fm=readFileSync(fsBase+'FMDRV.COM'),open=readFileSync(fsBase+'OPEN.EXE');
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -66,6 +69,11 @@ for(const [port,handlers] of [
  [0x388,{in8:()=>0,out8:()=>{portCount++;}}],
  [0x389,{out8:()=>{portCount++;}}]
 ])cpu.registerIOPort(port,handlers);
+const picCommands=[];
+const picWitness=createOriginalMasterPicCommandWitness({
+ onCommand:event=>{picCommands.push(event);}
+});
+cpu.registerIOPort(0x20,picWitness.port20);
 const vga=installVgaIndexedWriteRecorder(cpu,{maxWrites:50000,
  onWrite:()=>{vgaCount++;}});
 let retrace=0;
@@ -121,8 +129,17 @@ const openFrame={AX:0,CX:0,DX:0,BX:0,SP:info.sp,BP:0,SI:0,DI:0,
 activePsp=0x600;
 const originalInt8=cpu.getGuestInterruptVector(8);
 assert.deepEqual(originalInt8,{segment:0x400,offset:0x1de});
+// SYNTHETIC instruction markers, not an authentic captured DOS IRQ trace.
+// Both records are SHA-pinned to validate deterministic delivery boundaries.
+const pinnedIrqRecords=Uint8Array.of(0,0,0,0,8, 0xa0,0x0f,0,0,8);
+const pinnedIrqTape=syntheticPinnedIrq?
+  await createPinnedExternalGuestIrqTrace(pinnedIrqRecords,{
+    expectedSha256:sha(pinnedIrqRecords),
+    source:'EXPLICIT_SYNTHETIC_TWO_STEP_MARKERS_NOT_DOS_REFERENCE'
+  }):undefined;
 const openSession=createStagedDosChildContinuation(cpu,{
- initialFrame:openFrame,maxTotalSteps:80000
+ initialFrame:openFrame,maxTotalSteps:80000,
+ externalIrqEvidenceTape:pinnedIrqTape
 });
 let explicitlyDelivered=null;
 if(syntheticExternalIrq){
@@ -147,6 +164,13 @@ try{
 }catch(e){problem={message:e.message,guestCS:e.guestCS,guestIP:e.guestIP};}
 if(!problem&&op.state==='ACTIVE')openSession.abort();
 activePsp=0x400;
+if(syntheticPinnedIrq){
+  assert.equal(pinnedIrqTape.snapshot().admitted,2);
+  assert.equal(openSession.snapshot().irqEdges.accepted,2);
+  assert.equal(openSession.snapshot().irqEdges.delivered,2);
+  assert.equal(picWitness.snapshot().commands,1);
+  assert.deepEqual(picCommands.map(x=>x.value),[0x20]);
+}
 assert.deepEqual(captureDosCpuFrame(cpu),parent);
 assert.equal(cpu.getGuestInterruptVector(0x66).segment,0x400);
 assert.equal(op?.steps,80000);
@@ -161,6 +185,10 @@ console.log(JSON.stringify({result:'ORIGINAL_FMDRV_TSR_TO_OPEN_SHARED_CPU',
  openReason:op?.reason??null,openFault:problem,
  originalInstalledInt66:cpu.getGuestInterruptVector(0x66),
  video:{modeCount,paletteCount,vgaWrites:vga.writtenCount(),dacColors:dac.writtenColors(),retrace},
- ports:portCount,tsrCount,syntheticExternalIrq,originalInt8,
+ ports:portCount,tsrCount,syntheticExternalIrq,syntheticPinnedIrq,
+ pinnedIrqEvidence:pinnedIrqTape?.snapshot()??null,
+ pendingIrqs:openSession.snapshot().irqEdges,
+ picCommands:picWitness.snapshot().commands,
+ originalInt8,
  explicitIrqDelivery:explicitlyDelivered,stagingRegionCount:layout.regions.length,
  fidelity:'PRIVATE_ORIGINAL_FMDRV_OPEN_BYTES__SYNTHETIC_DOS_IVT_PORTS__NOT_REFERENCE'}));

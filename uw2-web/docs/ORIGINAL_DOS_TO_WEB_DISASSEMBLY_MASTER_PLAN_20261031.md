@@ -492,3 +492,8 @@
 
 - `tests/p3-fmdrv-open-continuation-original.test.mjs`는 사용자 소유 한국어 원본 FMDRV.COM·OPEN.EXE **기존 SHA 핀**만 읽는 비공개 자산 테스트 소스다. `createStagedDosChildContinuation()`으로 원본 FMDRV COM을 **8개 slice, 30,644개 실제 8086 명령** 실행하여 TSR 26h 문단/반환코드 1, guest `INT 66h` 벡터 `0400:0108`, 부모 CPU 복원을 확인했다. 그다음 동일 CPU·RAM·드라이버 소유권에 OPEN 원본 MZ(재배치 23건)를 적재하고, 원본 OPEN **80,000개 실제 명령을 4,000명령씩 분할 실행**했다. 기존 미등록 INT66h 즉시 실패 대신 FMDRV 실제 설치 벡터를 통과했으며 synthetic reference에서 VGA indexed write 6건, DAC 16색, BIOS 팔레트 16건, VGA 3DA retrace read 64건을 관측했다.
 - 위 CPU 경로는 `KOEI.COM`의 정식 DOS EXEC 단계와 파일 시스템·DOS 메모리 소유권을 모두 통과한 참조 기록이 **아니며**, 실제 DOS/BIOS 포트 장치 버전·초기 IVT/PSP·PIT/OPL 응답은 명시적 합성 설정이다. 80,000명령은 일시 예산 소진일 뿐 오프닝 완료·게임 화면/소리의 원작 동등성은 **HOLD**다. 테스트는 일반 CI에서 실행하지 않고 `node --check`만 수행해 저작권 원본을 저장소에 넣지 않는다.
+
+### 2026-11-01 웹 호스트 키보드→원본 DOS 자식 실행 세션 연결
+
+- `browser-dos-child-bridge.js`는 이미 별도 stage된 원본 8086 child CPU frame과 명시적 사용자 소유 이벤트 타깃을 받는다. 기존 `attachBrowserBiosKeyboard`의 신뢰 가능한 이벤트 필터→원본 BIOS 키 FIFO를 `createStagedDosChildContinuation`의 동일 CPU 경로에 전달한다. BIOS INT16 AH00는 실제 키가 없으면 같은 CS:IP로 기다리고, 입력이 오면 원본 명령을 실행하며 자식 정상 종료 시 부모 CPU 프레임을 복원한다. 전역 listener/자동 프레임 타이머/게임화면 현대화/가짜 DOS 종료 상태를 만들지 않는다.
+- 잘못된 초기 child frame이나 이미 점유한 INT16을 만나면 등록한 키 이벤트 리스너를 제거한다. 실행 슬라이스·자식 abort·키 이벤트 detach는 명시적 API로만 제어한다. 합성 JS event-target/8086 opcode 회귀로 키 없는 대기, 검증 실패한 이벤트 거부, trusted 이벤트 처리, 원본 DOS AH4C 종료·프레임 복원·중복 리스너 제거를 검증했다. 실제 브라우저 키보드 권한·최종 OPEN/MAIN 시각/음향·원작 등가성은 **UNTESTED/HOLD**.

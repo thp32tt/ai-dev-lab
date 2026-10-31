@@ -133,7 +133,12 @@ export async function createOriginalOpenProbeSession(original,{
            throw new Error('original OPEN guest failed to execute an owned step');
          steps++;performed++;
        }catch(error){
-         stopped={cs,ip,message:error?.message??String(error)};
+         stopped={cs,ip,message:error?.message??String(error),
+           ...(error?.code==='DOS_IVT_VECTOR_UNVERIFIED'&&
+               Number.isInteger(error?.interruptVector)?{
+                 requirement:'EXTERNAL_ORIGINAL_DOS_IVT_VECTOR_REQUIRED',
+                 missingInterruptVector:error.interruptVector
+               }:{})};
          faulted=true;
          break;
        }

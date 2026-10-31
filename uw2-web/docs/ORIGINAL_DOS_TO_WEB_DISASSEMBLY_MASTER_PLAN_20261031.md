@@ -456,3 +456,8 @@
 - `tools/p3-open-exec-probe.mjs`에 `createOriginalOpenProbeSession()`을 추가하여 **원본 SHA 확인·MZ 재배치·DOS/PSP/IVT 장치 등록을 한 번만 수행**하고, 이후 `runSlice(1~100000)` 호출 때 동일 CPU·파일 핸들·BIOS FIFO·장치 관측·DOS 서비스 링 버퍼를 재사용한다. 명령 총량은 기존 1,000,000 하드 상한 안에서 단조 누적되며 각 실행 슬라이스와 전체 예산 소진을 별도 중단 사유로 보고한다.
 - 미입력 BIOS `INT16 AH00`으로 반환된 세션은 원본 실행 위치와 명령 집계가 그대로 유지되며 외부 실제 키가 들어온 경우에만 같은 위치에서 다음 실행 슬라이스를 시작한다. 장치 오류가 발생하면 해당 세션을 영구 faulted로 차단한다. 기존 `probeOriginalOpen()` 1회 호출 API는 내부에서 동일 세션을 예산 끝까지 진행하되, 새로운 중단형 API로 실측 진행을 분할할 수 있다.
 - 도구가 반환하는 것은 원본 OPEN의 구조적 SHA/CPU/진단 증거일 뿐 실제 DOS 동일 환경·IVT·PSP·게임 화면이 아니다. 한국어판 원본 실제 실행 재검증과 OPEN→MAIN 원작 동등성은 별도 **UNTESTED/HOLD**. 누적 명령·중복 기록·키 대기·장치 오류 및 snapshot 불변성은 synthetic 게스트 세션에서 확인하고, 원본 바이너리를 GitHub에 보관하지 않는다.
+
+### 2026-11-01 실제 한국어판 OPEN.EXE 470명령 원본 실행의 첫 IVT 선행조건
+
+- N100 사용자 보유 한국어 원본 `OPEN.EXE` SHA-256 `f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65`를 1회 적재하고 선언된 **합성 DOS 6.22 version/resize/IOCTL** 어댑터를 붙여 실행한 결과, 일괄 실행 및 37명령씩 분할 세션의 **470명령 / 실제 원본 MZ 재배치 23건 / DOS INT21 시도 4회 / 동일 CS:IP 0610:2DE1**이 일치했다. 정지 위치는 원본 DOS `INT21 AH35 AL00`, 즉 아직 제공되지 않은 **원본 DOS 초기 인터럽트 벡터 00h 조회**다. `INT 00h`의 진짜 원본 DOS 제공자 값을 확보하지 못했으므로 0으로 채우거나 임의 ISR을 배정하지 않고 HOLD한다.
+- 새로운 CPU 거부 진단은 누락 벡터 번호를 `DOS_IVT_VECTOR_UNVERIFIED` 및 `interruptVector`로 구조화한다. OPEN 프로브는 `EXTERNAL_ORIGINAL_DOS_IVT_VECTOR_REQUIRED`와 `missingInterruptVector`를 전파하여 필요한 DOS 참조 스냅샷의 정확한 부분을 명시한다. 기존 fail-closed 원칙과 AH35 미등록 벡터의 ES:BX 비변경을 지키고 합성 회귀를 추가한다. 이 원본 실험은 **합성 DOS 장치·가정된 초기 메모리**가 포함되어 있으므로 원본 DOS에서의 장면·음악·OPEN→MAIN 완료 근거가 아니다.

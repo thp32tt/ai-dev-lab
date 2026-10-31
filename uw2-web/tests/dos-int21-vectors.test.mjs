@@ -27,7 +27,19 @@ assert.equal(cpu.get16('BX'),0x04ab);
 assert.equal(cpu.get16('FLAGS'),0x203);
 assert.equal(cpu.get16('AX'),0x3524);
 // Original KOEI probes INT 65h: unknown DOS snapshot must be blocked.
-assert.throws(()=>invoke(0x3565),/unknown initial DOS interrupt vector/);
+const missingVectorError=assert.throws(()=>invoke(0x3565),/unknown initial DOS interrupt vector/);
+assert.equal(missingVectorError,undefined); // assert.throws returns undefined in this runtime
+const unverified=assert.throws(()=>cpu.getGuestInterruptVector(0x65),
+  /unknown initial DOS interrupt vector 65h: fail closed/);
+assert.equal(unverified,undefined);
+try{cpu.getGuestInterruptVector(0x65);assert.fail('must throw');}
+catch(error){
+ assert.equal(error.code,'DOS_IVT_VECTOR_UNVERIFIED');
+ assert.equal(error.interruptVector,0x65);
+}
+const checksum=cpu.memory.slice(0x65*4,0x65*4+4);
+assert.equal(cpu.interruptVectors.has(0x65),false);
+assert.deepEqual(cpu.memory.slice(0x65*4,0x65*4+4),checksum);
 assert.equal(cpu.get16('ES'),0x220);assert.equal(cpu.get16('BX'),0x04ab);
 cpu.set16('DS',0x240);cpu.set16('DX',0x4321);
 invoke(0x2524); // DOS can replace the installed guest pointer.

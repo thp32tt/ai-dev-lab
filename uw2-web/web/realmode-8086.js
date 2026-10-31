@@ -226,8 +226,13 @@ export class RealMode8086 {
   getGuestInterruptVector(number) {
     if(!Number.isInteger(number)||number<0||number>255)
       throw new RangeError('guest interrupt number must be uint8');
-    if(!this.interruptVectors.has(number))
-      throw new Error('unknown initial DOS interrupt vector: fail closed');
+    if(!this.interruptVectors.has(number)){
+      const error=new Error('unknown initial DOS interrupt vector '+
+        number.toString(16).padStart(2,'0')+'h: fail closed');
+      error.code='DOS_IVT_VECTOR_UNVERIFIED';
+      error.interruptVector=number;
+      throw error;
+    }
     return Object.freeze({
       offset:this.read16(0,number*4),
       segment:this.read16(0,number*4+2)

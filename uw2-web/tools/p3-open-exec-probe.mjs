@@ -13,6 +13,7 @@ import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {createGuestOriginalExecutionSession} from '../web/guest-original-execution-session.js';
+import {pendingGuestDosIvtVector,supplyPinnedGuestDosIvtVector} from '../web/guest-dos-ivt-await.js';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
 const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
@@ -21,7 +22,8 @@ export async function createOriginalOpenProbeSession(original,{
  pspSegment=0x600,loadSegment=0x610,allocationParagraphs,
  maxSteps=10000,initialPsp=null,initialIvt=null,dosOptions={},cpu=null,traceLimit=24,
  maxServiceEvents=4096,
- enableHotspots=false,enableProgressWitness=false,keyboardQueue=undefined
+ enableHotspots=false,enableProgressWitness=false,keyboardQueue=undefined,
+ pauseOnMissingDosIvt=false
 }={}){
  if(!(original instanceof Uint8Array))
    throw new TypeError('original OPEN.EXE binary byte buffer required');
@@ -33,6 +35,8 @@ export async function createOriginalOpenProbeSession(original,{
    throw new TypeError('guest execution hotspot opt-in must be boolean');
  if(typeof enableProgressWitness!=='boolean')
    throw new TypeError('guest execution progress opt-in must be boolean');
+ if(typeof pauseOnMissingDosIvt!=='boolean')
+   throw new TypeError('original DOS IVT pause opt-in must be boolean');
  if(!Number.isInteger(traceLimit)||traceLimit<0||traceLimit>128)
    throw new RangeError('bounded OPEN execution trace length required');
  if(!Number.isInteger(maxServiceEvents)||maxServiceEvents<1||maxServiceEvents>65536)
@@ -71,7 +75,7 @@ export async function createOriginalOpenProbeSession(original,{
    machine.installExternalIrqObserver(progress.observeExternalIrq);
  }
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.
- let steps=0,stopped=null,recent=[],faulted=false,running=false;
+ let steps=0,stopped=null,recent=[],faulted=false,running=false,supplying=false;
  const serviceHistory=createGuestDosCallWindow({maxEvents:maxServiceEvents});
  const hotspots=enableHotspots?createGuestExecutionHotspotRecorder({
    sampleEvery:127,maxSites:4096,maxStates:8192,top:16
@@ -113,7 +117,7 @@ export async function createOriginalOpenProbeSession(original,{
  const runSlice=(sliceSteps=10000)=>{
    if(!Number.isSafeInteger(sliceSteps)||sliceSteps<1||sliceSteps>100000)
      throw new RangeError('original OPEN slice must be 1..100000 guest steps');
-   if(running)throw new Error('reentrant original OPEN session: fail closed');
+   if(running||supplying)throw new Error('reentrant original OPEN session: fail closed');
    if(faulted)throw new Error('faulted original OPEN session cannot resume: fail closed');
    if(machine.terminated)return snapshot();
    if(steps>=maxSteps){
@@ -125,6 +129,10 @@ export async function createOriginalOpenProbeSession(original,{
      for(let performed=0;performed<sliceSteps&&steps<maxSteps&&!machine.terminated;){
        const cs=machine.get16('CS'),ip=machine.get16('IP');
        try{
+         if(pauseOnMissingDosIvt){
+           const pending=pendingGuestDosIvtVector(machine);
+           if(pending){stopped=pending;break;}
+         }
          const gate=cpuSession.runSlice(1);
          if(gate.reason==='WAIT_BIOS_INT16_AH00'){
            stopped={cs,ip,reason:gate.reason};break;
@@ -150,7 +158,28 @@ export async function createOriginalOpenProbeSession(original,{
      return snapshot();
    }finally{running=false;}
  };
- return Object.freeze({runSlice,snapshot});
+ const supplyPinnedDosIvtVector=async ({number,bytes,expectedSha256}={})=>{
+   if(!pauseOnMissingDosIvt)
+     throw new Error('DOS IVT resume requires explicit pause opt-in');
+   if(running||supplying)
+     throw new Error('concurrent original OPEN DOS IVT installation: fail closed');
+   if(faulted||machine.terminated)
+     throw new Error('faulted or terminated original OPEN cannot install DOS IVT');
+   if(stopped?.reason!=='WAIT_EXTERNAL_DOS_IVT_VECTOR'||
+      stopped.missingInterruptVector!==number)
+     throw new Error('DOS IVT supply must match currently paused guest vector');
+   // Never permit the guest to execute concurrently with a digest. Failed
+   // SHA/ownership verification leaves its IP, counters and wait unchanged.
+   supplying=true;
+   try{
+     const accepted=await supplyPinnedGuestDosIvtVector(machine,{
+       number,bytes,expectedSha256
+     });
+     stopped=null;
+     return accepted;
+   }finally{supplying=false;}
+ };
+ return Object.freeze({runSlice,snapshot,supplyPinnedDosIvtVector});
 }
 export async function probeOriginalOpen(original,options={}){
  // Historical one-shot entrypoint remains stable. It uses the same

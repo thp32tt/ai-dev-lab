@@ -472,3 +472,8 @@
 
 - GitHub source `web/browser-original-open-session.js`와 한국어판 원본 OPEN.EXE 고정 SHA를 사용한 N100 private 테스트에서 `loadPinnedDosPsp`·`loadVerifiedMz`·`installPinnedDosIvtSnapshot`·브라우저 키보드 source bridge를 순서대로 실행했다. 원본 이미지 SHA 고정·재배치 23건, 명시적 IVT vector 00h 1건, 원본 8086 명령 1개 실행, event target listener 등록/해제 1회 성공. 사용된 PSP/IVT 및 DOS 버전은 명시적으로 **합성 입력**이고 브라우저 event target 역시 모의 객체이다. 따라서 실제 Browser KeyboardEvent, DOS/BIOS hardware, 시각 화면·음악, MAIN 전환, 사용자의 게임 플레이 성공을 증명하지 않는다.
 - 재현 가능한 private-file 테스트 `tests/p3-browser-open-original.test.mjs`의 직접 작성한 코드만 GitHub에 추가하고, 원본 자산·원본 1KiB IVT 덤프·PSP 덤프는 업로드하지 않는다. `node --check`만 public Actions에서 검사하고 사용자의 실제 원본을 가진 N100에서 별도 실행한다. 정품 DOS 부팅 환경에서 읽은 INT 00h 포함 IVT 검증값 확보는 계속 **HOLD**.
+
+### 2026-11-01 P3 원본 DOS AH35 IVT 의존성 이전 안전 대기/재개
+
+- `guest-dos-ivt-await.js`는 **실제 CPU가 다음에 실행할 직접 INT 21h / AH=35h**와 명시적 DOS 21h 어댑터 및 현재 알려진 IVT 여부만 확인한다. 누락된 벡터는 CPU IP·레지스터·stack·실행수·DOS 호출 기록을 소비하기 전 `WAIT_EXTERNAL_DOS_IVT_VECTOR`로 반환한다. 현재 원본 OPEN 0610:2DE1의 누락 `00h`를 디바이스 응답 추정 없이 정지하도록 `createOriginalOpenProbeSession({pauseOnMissingDosIvt:true})` 옵션으로 연결했다. 기존 기본 동작/실패시 재개 금지는 유지된다.
+- 소유자가 **DOS 참조에서 별도 입수한 4바이트 벡터** 및 SHA-256을 명시적으로 제출할 때만 `supplyPinnedDosIvtVector()`가 해당 벡터를 기존 CPU IVT에 기록하고 동일 세션의 다음 slice가 원래 INT 21h를 실행한다. SHA 핀은 전달 파일의 무결성만 인증하며 DOS 참조 출처를 증명하지 않는다. 모르는 벡터의 0 채움·자동 stub·임의 ISR은 금지. CPU가 running이면 공급을 거부하며 실패/불일치/충돌은 원래 wait 상태를 유지한다. Synthetic 8086 INT21 AH35→AH4C 회귀를 Actions에 추가했다. 진짜 DOS 참조값이 없을 경우 원본 게임 완성/장면·음악은 **UNTESTED/HOLD**.

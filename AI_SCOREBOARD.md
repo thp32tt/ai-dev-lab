@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 verified C6 record parser repair, UW2 continuity verified (2026-10-31 KST)
+
+- Unique work key `DX11-ANNOTATED-C6-RECORD-PARSER-20261031`. User reported automation appeared stopped. N100 live status `2026-10-31-uw2-simple-one-line-v3` at 20:36 KST was healthy; UW2 C one-sentence message was sent 20:30:18 and source actually committed on `thp32tt/ai-dev-lab@uw2-web-port` at 20:33:55 KST (`beb907d4c64f8c2b4186935d78491003fa327cb2`), with master-plan docs commit at 20:35:51 KST (`bd709238f2e75b43df21a84a02d15b88c54d513d`). These are earlier scored UW2 work, not points for this status check.
+- Independent DX11 controller bug identified: live A lane `CONVERSION-DX11-01184` stuck `WAIT_ACTIONS` from 2026-10-30 22:36 KST, despite required `Backend Conversion Gate` exact-SHA `b6dbd1c15f398d3203e58f5e1104cad9cd0b4a9f` run `41064653779` SUCCESS and existing `docs/automation/runs/CONVERSION-DX11-01184.json` C6 PASS. Its `attempt` field `2/3 (rollover; no retry increment)` was incorrectly rejected by `parse_task_record_counter`, collapsing the durable C6 read into `RUN_RECORD_NOT_FOUND`.
+- Implemented narrow fail-closed parser support only for this known annotated suffix in `thp32tt/OutRun2006Tweaks@chat-controller-downloads` `tools/chat-controller/v0.4/src-vr-v2/controller.py.part00` commit `c0d3c3946e2d2b52183557e949b85acb6aee1420`. Added `tests/test_dx11_annotated_c6_record.py` and verified exact record shape, malformed suffix/range rejection, and C6 exact-SHA acceptance **3/3 PASS**. Existing UW2 simple C loop tests **7/7 PASS**. Controller status summary now shows C last send time instead of appearing absent, commit `3aacd226e15c03d358d5c65441dc3b25bab7340e`.
+- **Deployment caveat:** N100 live runtime still uses prior built image until Portainer image rebuild/redeploy. Static tests do not establish that A advanced to DONE after deployment. No VR runtime/HMD validation was performed, and no prior UW2 achievement is scored twice.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2268 + one new independently implemented and tested DX11 C6 state-machine parser fix +1 = 2269.** AI1 separate.
+
+Updated: 2026-10-31 KST
+
+
 ## AI 2 UW2 8086 STI/SS interrupt-inhibit core integration (2026-10-31 KST)
 
 - **Independent new implementation:** `thp32tt/ai-dev-lab@uw2-web-port` source SHA `beb907d4c64f8c2b4186935d78491003fa327cb2` implements original 8086 one-instruction maskable IRQ inhibition after STI, MOV SS, POP SS in the shared guest CPU. `guest-irq-boundary.js` respects the inhibited external IRQ admission without inventing PIC pending edge, and DOS EXEC `dos-com-child-runner.js` isolates/restores parent inhibit state. Existing IF=0, INT, IVT behaviors remain independent. This is a real CPU core improvement, not a docs/test-only scoreboard event.

@@ -78,7 +78,12 @@ for(;invoked<2000;invoked++){
     handlerStop={cs,ip,message:error.message};break;
   }
 }
-assert.ok(invoked>1);
+assert.equal(invoked,29);
+assert.equal(returnToCaller,true);
+assert.equal(handlerStop,null);
+assert.deepEqual(cpu.getGuestInterruptVector(0x66),{offset:0,segment:0x900});
+// The ORIGINAL resident FMDRV handler restored the caller-provided old
+// vector after KOEI's native INT66 FF03 call, without external fake audio.
 console.log(JSON.stringify({originalFmdrvInt66FF03Steps:invoked,
   returnToCaller,handlerStop,
   originalInt66Installed:cpu.getGuestInterruptVector(0x66)}));

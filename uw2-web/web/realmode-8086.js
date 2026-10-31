@@ -105,6 +105,30 @@ export class RealMode8086 {
     this.write16(0,number*4+2,segment);
     this.interruptVectors.add(number);
   }
+  // INT 21h AH=25h may write an authentic guest-selected IVT vector.
+  // This does NOT invent DOS/BIOS vectors: reads of untouched IVT entries
+  // remain unavailable. A host interrupt adapter cannot be overwritten.
+  setGuestInterruptVector(number,segment,offset) {
+    if(!Number.isInteger(number)||number<0||number>255)
+      throw new RangeError('guest interrupt number must be uint8');
+    u16(segment,'guest interrupt segment');u16(offset,'guest interrupt offset');
+    if(this.interruptAdapters.has(number))
+      throw new Error('guest interrupt cannot overwrite a host adapter: fail closed');
+    this.write16(0,number*4,offset);
+    this.write16(0,number*4+2,segment);
+    this.interruptVectors.add(number);
+  }
+  getGuestInterruptVector(number) {
+    if(!Number.isInteger(number)||number<0||number>255)
+      throw new RangeError('guest interrupt number must be uint8');
+    if(!this.interruptVectors.has(number))
+      throw new Error('unknown initial DOS interrupt vector: fail closed');
+    return Object.freeze({
+      offset:this.read16(0,number*4),
+      segment:this.read16(0,number*4+2)
+    });
+  }
+
   installInterruptAdapter(number,handler) {
     if(!Number.isInteger(number)||number<0||number>255)
       throw new RangeError('8086 interrupt number must be uint8');

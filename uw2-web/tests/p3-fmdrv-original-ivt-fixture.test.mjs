@@ -27,6 +27,7 @@ ivt[0x08*4]=0;ivt[0x08*4+1]=0;ivt[0x08*4+2]=0x20;ivt[0x08*4+3]=9;
 psp.set([0xcd,0x20],0);
 const pitWrites=[];
 const synthetic=await probeOriginalFmdrv(orig,{
+ maxSteps:80000,
  ioPorts:[
    {number:0x43,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},
    {number:0x40,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},

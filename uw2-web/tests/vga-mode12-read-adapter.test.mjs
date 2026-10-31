@@ -108,7 +108,7 @@ installBiosInt10(native,{setMode:({mode})=>nativePlanes.invalidateAfterBiosModeS
 native.set16('AX',0x0012);
 native.dispatchInterrupt(0x10);
 assert.equal(nativePlanes.readPixelIndex(0,0),null);
-assert.throws(()=>native.read8(0xa000,0),/GC04\/GC05/);
+assert.throws(()=>native.read8(0xa000,0),/GC05 planar mode/);
 assert.throws(()=>nativePlanes.captureGroundedIndexedRect(0,0,1,1),/unverified/);
 for(const [i,v] of [[1,0],[3,0],[5,2],[6,5],[8,255],[4,0]])
   writeReg('graphics-controller',i,v);

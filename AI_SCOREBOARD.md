@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native-grounded VGA mode12 rectangular indexed extraction (2026-11-01 KST)
+
+- **Independent material implementation:** `thp32tt/ai-dev-lab@uw2-web-port` source+test SHA `900b906dc17617af8a4c06aaffe8afa435625506` adds `captureGroundedIndexedRect` to original-CPU VGA Mode12 plane witness. Unlike complete-frame-only export, this exposes only selected original native-written rectangles whose all four bitplanes are verified, with byte-crossing pixel precision, no invented background or palette, strict bounds and isolated copies. `tests/vga-mode12-planar-witness.test.mjs` covers unknown-plane rejection, partial pixels, cross-byte cropping, immutable source plane and bounds.
+- **Exact-SHA CI verification:** UW2 Web Fidelity Static Gate `synthetic-static` run `41215806444` **SUCCESS** at `900b906dc17617af8a4c06aaffe8afa435625506` (mandatory synthetic suite PASS). Docs-only `594dac9d698433be3fa90c4a94bf22497648694f` does not affect score. Real Korean OPEN.EXE displayed frame comparison, original DOS/VGA/PIT/OPL, and full browser play remain **UNTESTED**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2287 + independent grounded partial-VGA-pixel evidence implementation with exact-SHA CI +1 = 2288.** AI 1 separate; subsequent documentation, tests or re-report for the same change +0.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 original DOS file event PSP attribution through actual 8086 EXEC flow (2026-11-01 KST)
 
 - **Independent source capability:** `thp32tt/ai-dev-lab@uw2-web-port` material commit `54bdecacdf06e64775f05bd5075b462476b0e726` adds explicit caller-provided PSP ownership to the audited original DOS INT21 open/seek/read/close event stream (only when owner supplies a PSP). This resolves previously indistinguishable handle #5 resource events from KOEI, FMDRV and OPEN without guessing source CS/DS. It preserves every old unscoped audit event. The separate owner-held original OPEN CPU probe now rejects a file access tagged with a foreign PSP; original native rerun remains UNTESTED.

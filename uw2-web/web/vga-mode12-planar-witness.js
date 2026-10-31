@@ -69,7 +69,7 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
       if(observedWrites>=maxObservedWrites)
         throw new Error('VGA mode12 original-CPU write budget exceeded: fail closed');
       if(!isReady())
-        throw new Error('VGA planar write requires observed GC06 graphics A000 planar aperture, mode0/mode2 GC01/03/05/08 and SEQ02: fail closed');
+        throw new Error('VGA planar write requires exact observed GC06 graphics A000 planar aperture, mode0/mode2 GC01/03/05/08 and SEQ02: fail closed');
       // With full bitmask, rotate=0, and logical operation=replace, mode0
       // writes the CPU data byte unchanged to enabled planes. With mode2,
       // each AL bit expands to FFh/00h in one destination plane.

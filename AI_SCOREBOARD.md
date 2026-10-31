@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original DOS file event PSP attribution through actual 8086 EXEC flow (2026-11-01 KST)
+
+- **Independent source capability:** `thp32tt/ai-dev-lab@uw2-web-port` material commit `54bdecacdf06e64775f05bd5075b462476b0e726` adds explicit caller-provided PSP ownership to the audited original DOS INT21 open/seek/read/close event stream (only when owner supplies a PSP). This resolves previously indistinguishable handle #5 resource events from KOEI, FMDRV and OPEN without guessing source CS/DS. It preserves every old unscoped audit event. The separate owner-held original OPEN CPU probe now rejects a file access tagged with a foreign PSP; original native rerun remains UNTESTED.
+- **Distinct functional integration evidence:** Mandatory `tests/dos-exec-file-inheritance.test.mjs` executes actual synthetic 8086 parent INT21 open/read/4B00 and child inherited read/close/4C, returning to parent's continuing shared cursor. It proves read source bytes 11/12 → 13 → 14 have the correct independently tagged PSP and byte offset with guest execution, not only direct JS file-handler calls. Exact material SHA GitHub `UW2 Web Fidelity Static Gate` run `41215502892` synthetic-static **SUCCESS**. Sole master plan docs-only `faa1549e109137a9fd847794b1d3d98870e826c1` adds no point. Distinct from earlier JFT split/inheritance and DOS DUP cursor implementations; no repeated score for their original outcomes.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2286 + independent DOS file event PSP provenance and 8086 EXEC flow integration +1 = 2287.** AI1 remains separate. Real DOS PSP reference, full original Korean game, browser display and music remain UNTESTED.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 DOS JFT DUP/FORCEDUP per-PSP shared SFT source integration (2026-11-01 KST)
 
 - **Independent material implementation:** `thp32tt/ai-dev-lab@uw2-web-port` implements read-only DOS INT 21h AH=45h duplicate and AH=46h force duplicate in the existing per-PSP JFT adapter. Source commit `a49db79d00116d504ad5f908781d9194595c844d`; exact-SHA corrected regression commit `1754c2e81366cbd2080425b6b8cca5d1ce7ee5d4`. Shared original-file SFT cursor persists across duplicated handles and explicitly inherited child PSP tables; replacing a destination handle does not mutate the parent's JFT and invalid/unknown device handle behavior fails closed.

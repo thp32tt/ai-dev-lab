@@ -130,6 +130,11 @@ const fmdrvChildFrame={
 const originalLateHotspots=new Map();
 let lastLateSamples=[];
 const nativePart0Expected=pinnedOpgraph.getDecodedPart(0).bytes;
+const nativePartBytes=pinnedOpgraph.parts.map((_,index)=>pinnedOpgraph.getDecodedPart(index).bytes);
+const nativeAllPartsRuntimeWitness=nativePartBytes.map((bytes,part)=>({
+ part,bytes:bytes.length,maxMatchingPrefix:0,fullMatchStep:null,fullMatchSha256:null
+}));
+let nativeCurrentPart=0;
 const nativePart0RuntimeWitness={sourcePhysical:0x30000,expectedBytes:nativePart0Expected.length,
  maxMatchingPrefix:0,atStep:0,fullMatchStep:null,fullMatchSha256:null};
 let activePsp=0x200;
@@ -187,6 +192,19 @@ installDosInt21(cpu,{
           if(match===nativePart0Expected.length){
             nativePart0RuntimeWitness.fullMatchStep=steps;
             nativePart0RuntimeWitness.fullMatchSha256=sha(guest.memory.subarray(start,start+match));
+          }
+        }
+        if(steps>=200000&&steps%1024===0){
+          const expected=nativePartBytes[nativeCurrentPart];
+          const item=nativeAllPartsRuntimeWitness[nativeCurrentPart];
+          if(item&&item.fullMatchStep===null){
+            let matched=0;
+            while(matched<expected.length&&guest.memory[0x30000+matched]===expected[matched])matched++;
+            if(matched>item.maxMatchingPrefix)item.maxMatchingPrefix=matched;
+            if(matched===expected.length){
+              item.fullMatchStep=steps;
+              item.fullMatchSha256=sha(guest.memory.subarray(0x30000,0x30000+matched));
+            }
           }
         }
         if(steps>=205000){
@@ -251,6 +269,8 @@ installDosInt21(cpu,{
      throw new Error('original DOS OPGRAPH file transfer trace budget exceeded');
    observed.fileTransfers.push({...event});
    if(event.operation!=='read')return;
+   const candidate=pinnedOpgraph.parts.findIndex(x=>event.fileOffset>=x.offset&&event.fileOffset<x.offset+x.compSize);
+   if(candidate>=0)nativeCurrentPart=candidate;
    if(event.filename!=='C:OPGRAPH.LZW')
      throw new Error('unexpected original DOS file source path');
    const expected=opgraph.subarray(event.fileOffset,event.fileOffset+event.readBytes);
@@ -367,6 +387,7 @@ const result={
  verifiedFileRead:observed.verifiedFileRead,
  guestDecodedWitness,
  nativePart0RuntimeWitness,
+ nativeAllPartsRuntimeWitness,
  nativeMemoryWrites,
  originalVgaPlaneState,
  originalVgaFrameSha256:originalVgaFrame?sha(originalVgaFrame):null,

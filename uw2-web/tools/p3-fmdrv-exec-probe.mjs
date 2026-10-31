@@ -17,7 +17,7 @@ const pinned=baseline.coreExecutables.find(x=>x.name==='FMDRV.COM');
 if(!pinned)throw new Error('missing original FMDRV.COM SHA baseline');
 export async function probeOriginalFmdrv(original,{maxSteps=4096,
   traceLimit=32,initialIvt=null,initialPsp=null,
-  cpu=null,pspSegment=0x300,dosOptions={}
+  cpu=null,pspSegment=0x300,dosOptions={},ioPorts=[]
 }={}){
   if(!(original instanceof Uint8Array))
     throw new TypeError('original FMDRV.COM bytes must be Uint8Array');
@@ -37,6 +37,13 @@ export async function probeOriginalFmdrv(original,{maxSteps=4096,
   const ivt=initialIvt===null?null:await installPinnedDosIvtSnapshot(guest,initialIvt.bytes,{
     expectedSha256:initialIvt.expectedSha256,knownVectors:initialIvt.knownVectors
   });
+  if(!Array.isArray(ioPorts)||ioPorts.length>256)
+    throw new TypeError('FMDRV requires a bounded list of explicit port adapters');
+  for(const port of ioPorts){
+    if(!port||typeof port!=='object'||Array.isArray(port))
+      throw new TypeError('FMDRV port adapter entry must be an object');
+    guest.registerIOPort(port.number,port.handlers);
+  }
   installDosInt21(guest,dosOptions);
   let steps=0,stopped=null;
   const last=[],serviceCalls=[];

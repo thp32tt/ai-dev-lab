@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import {RealMode8086} from '../web/realmode-8086.js';
+import {installDosInt21} from '../web/dos-int21.js';
+
+const setup=handler=>{
+ const c=new RealMode8086();
+ c.load(Uint8Array.of(0xcd,0x21),0,0);
+ c.set16('AX',0x4a00);c.set16('BX',0x7a);c.set16('ES',0x200);
+ c.set16('FLAGS',0x203);
+ installDosInt21(c,handler?{resizeMemory:handler}:{});
+ return c;
+};
+const received=[];
+const c=setup(({segment,paragraphs})=>{
+ received.push({segment,paragraphs});
+ return {resized:true};
+});
+c.step();
+assert.deepEqual(received,[{segment:0x200,paragraphs:0x7a}]);
+assert.equal(c.flag('CF'),false);
+assert.equal(c.get16('AX'),0x4a00);
+assert.equal(c.get16('BX'),0x7a);
+const insufficient=setup(()=>({errorCode:8,maxAvailableParagraphs:0x70}));
+insufficient.step();
+assert.equal(insufficient.get16('AX'),8);
+assert.equal(insufficient.get16('BX'),0x70);
+assert.equal(insufficient.flag('CF'),true);
+const wrong=setup(()=>({errorCode:9}));
+wrong.step();
+assert.equal(wrong.get16('AX'),9);
+assert.equal(wrong.get16('BX'),0x7a);
+const noProvider=setup();
+assert.throws(()=>noProvider.step(),/requires a captured allocation owner/);
+const noBlock=setup(()=>{throw Error('must not run');});
+noBlock.set16('ES',0);
+assert.throws(()=>noBlock.step(),/absent memory block/);
+const bogus=setup(()=>({resized:false}));
+assert.throws(()=>bogus.step(),/must acknowledge explicit resize/);
+const noLimit=setup(()=>({errorCode:8}));
+assert.throws(()=>noLimit.step(),/insufficient-memory maximum required/);
+const bogusCode=setup(()=>({errorCode:3}));
+assert.throws(()=>bogusCode.step(),/07h, 08h or 09h/);
+const later=setup(()=>Promise.resolve({resized:true}));
+assert.throws(()=>later.step(),/async DOS resize-memory/);
+assert.throws(()=>installDosInt21(new RealMode8086(),{resizeMemory:0}),/synchronous DOS allocator/);
+console.log('UW2 original KOEI DOS AH4A allocator resize/insufficient-memory bounds synthetic regression: PASS');

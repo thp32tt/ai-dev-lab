@@ -42,6 +42,7 @@ export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000}={}){
       try{cpu.step();}catch(error){
         if(error instanceof Error){
           error.guestCS=cs;error.guestIP=ip;error.guestSteps=steps;
+          error.guestAX=cpu.get16('AX');error.guestDX=cpu.get16('DX');
         }
         throw error;
       }

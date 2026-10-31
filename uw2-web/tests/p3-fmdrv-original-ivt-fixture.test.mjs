@@ -32,7 +32,7 @@ const synthetic=await probeOriginalFmdrv(orig,{
    {number:0x40,handlers:{out8:(port,value)=>pitWrites.push({port,value})}},
    {number:0x61,handlers:{in8:()=>0x00,out8:(port,value)=>pitWrites.push({port,value})}},
    {number:0x388,handlers:{out8:(port,value)=>pitWrites.push({port,value}),
-     in8:()=>0x00}} // explicit synthetic OPL status, NOT authentic device,
+     in8:()=>0x00}}, // explicit synthetic OPL status, NOT authentic device
    {number:0x389,handlers:{out8:(port,value)=>pitWrites.push({port,value})}} // observed OPL writes only, no synthesized register/timer response
  ],
  cpu,

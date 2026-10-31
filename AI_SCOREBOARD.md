@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original REA instruction evidence bridge (2026-10-31 KST)
+
+- Independent material development on `thp32tt/ai-dev-lab@uw2-web-port`: `uw2-web/tools/p1-instruction-ledger.mjs` and `p1-rea-snapshot-bridge.mjs` SHA-pinned decoded instruction/address->original-MZ-byte digests, direct/indirect control-flow candidates, unresolved coverage, malformed and overlapping analysis guards. Two new synthetic regressions enforced by `UW2 Web Fidelity Static Gate`; exact implementation validation SHA `fc06b8672aba9c930c1a7cbf3d5bb6fd3bca98a5`, Actions run `41149636335` completed **success**. Later master-plan-only evidence checkpoint `0f612253dbb16c0d46ff74b12f0f8088cebe05f7` is the same achievement (+0 separately).
+- Real user-owned Korean original static SHA readback, read-only on N100 (no game original uploaded): MAIN.EXE matched `1718bbbbcdd938dfe44403d9bd5254dfc02d431217dea39ae5fb3fcde1597747`. Existing REA snapshot recorded 4 function dossiers, 864 assembly rows -> 864 decoded candidate records spanning 2,126 bytes, with 265,193 unobserved image bytes and 120 unresolved static control flows. OPEN.EXE original hash matched; snapshot had 0 function dossiers, 41,655 unobserved bytes. REA 12.1.4 provider metadata is evidence of a limited static export; these counts are NOT 8086 execution verification or full 1,261 candidate export.
+- Verification scope: exact original asset SHA + static REA records + synthetic GitHub Actions. Actual DOS boot, reference trace, web gameplay, pixel/audio/OPL, save and original-fidelity P9 remain **UNTESTED / HOLD**. Same implementation test retries, docs/report and readback are +0; AI 1 separate.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2248 + new independently implemented and tested original-linked REA/P1 evidence bridge +1 = 2249.**
+
+Updated: 2026-10-31 KST
+
 ## AI 2 UW2 C-slot one-line persistent web-port loop, no TASK_ID (2026-10-31 KST)
 
 - Unique work key `UW2-SIMPLE-ONE-LINE-C-20261031`. Replaced the C-slot UW2 production-ID/terminal/rollover controller with a short persistent-project-chat sender on `thp32tt/OutRun2006Tweaks@chat-controller-downloads`. The **only** message sent to ChatGPT by C is `웹포팅 개발 계속진행해` at KST :00/:30, deferred while generating and delivered once idle. Legacy GitHub tagged-commit completion, TASK_ID allocation, C6/final-acceptance logic, periodic forced C rollover, long UW2 prompt, old obsolete test and prompt COPY removed. On first deployment, clears only UW2 task records from controller queue, preserves DX11 A and existing source/evidence/Chrome login; one new clean C chat then reuses it, creating a new chat only on UI error/length limit.

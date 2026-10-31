@@ -175,7 +175,7 @@ const result={
  koeiModeRequests:observed.biosModes,
  freed:observed.freed,resizes:observed.resizes,
  koeiTerminated:cpu.terminated,stopped,trace,
- fidelity:'TWO_ORIGINAL_EXECUTABLE_BYTECODES__SHARED_CPU_RAM__SYNTHETIC_DOS_DEVICE_STATE__NOT_DOS_REFERENCE'
+ fidelity:'THREE_ORIGINAL_EXECUTABLE_BYTECODES__SHARED_CPU_RAM__OPEN_WAIT_BOUNDARY__SYNTHETIC_DOS_DEVICE_STATE__NOT_DOS_REFERENCE'
 };
 assert.equal(result.original.koeiSha,koeiSha);
 assert.equal(result.original.fmdrvSha,fmdrvSha);
@@ -188,7 +188,13 @@ assert.equal(observed.calls[0].file,'FMDRV.COM');
 assert.equal(result.original.openSha,openSha);
 assert.equal(openStarted,true);
 assert.ok(openGuestFault);
-assert.ok(openGuestFault.steps>=809);
+assert.equal(openGuestFault.steps,60000);
+assert.equal(openGuestFault.cs,0x610);
+assert.equal(openGuestFault.ip,0x1835);
+assert.match(openGuestFault.message,/budget exhausted/);
+assert.equal(indexedVga.writtenCount(),6);
+assert.equal(vgaDac.writtenColors(),16);
+assert.equal(observed.paletteWrites.length,16);
 assert.ok(observed.dacColors.length>0);
 assert.equal(cpu.getGuestInterruptVector(0x66).segment,0x400);
 assert.equal(result.stopped?.message,openGuestFault.message);

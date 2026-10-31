@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun ImageGen A-0144 transparent Korean asset saved to Library (2026-10-31 KST)
+
+- Unique task ID `OUTRUN-ROI-A-0144-73D63CBB` (output `Q043_611d77bb8595b600_k.png`). Generated exactly one transparent Korean `축하합니다!` candidate from source Q043/XBOX's `CONGRATULATIONS!` reference; isolated text only, constrained output graphic to source ROI size, RGBA 1982×189. Local file 208820 bytes was uploaded into the existing Library folder `/아웃런 한글화 신규/Q043_611d77bb8595b600_k.png` and independently re-listed from Library, ID `libfile_20c681074d3c8191b843138ade952a4a`. This proves file generation and Library persistence only; independent C1 QA, DDS and in-game PASS remain NOT verified.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2270 + one new verified, library-saved Korean ImageGen asset +1 = 2271.** Retries and status readbacks of this same task +0; AI 1 unchanged.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 OutRun exact-source pixel OCR alternative and 6 verified cross-console ROIs (2026-10-31 KST)
 
 - RUN_KEY `OUTRUN-PIXEL-ROI-TRANSFER-20261031`: implemented the user-requested alternative `pixel ROI extraction -> original/registered pixel masking -> cross-console exact RGBA transfer -> ChatGPT cropped vision review`, in `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928` head `cd4b974b0e09d6bfcfb953381761ff57f40687c9`. New `pixel_roi_ocr_queue.py` was actually run on N100 with SHA-verified full-HD sources: 8 originals, 92 review crop PNGs and a contact preview, **0 auto-approved unverified crops**. Visual inspection correctly found some icons/art and chopped glyphs, so these outputs remain QA only; no external OCR API was used.

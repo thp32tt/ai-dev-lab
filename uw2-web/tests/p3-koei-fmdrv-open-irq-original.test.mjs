@@ -10,6 +10,8 @@ import {installBiosInt10} from '../web/bios-int10.js';
 import {installBiosInt16} from '../web/bios-int16.js';
 import {installVgaIndexedWriteRecorder} from '../web/vga-indexed-ports.js';
 import {installVgaDacWriteRecorder} from '../web/vga-dac-ports.js';
+import {installOriginalVgaAttributeController} from '../web/vga-attribute-ports.js';
+import {captureGroundedVgaMode12Rgb6Rect} from '../web/vga-rgb6-evidence.js';
 import {createOriginalVgaMode12PlaneWitness} from '../web/vga-mode12-planar-witness.js';
 import {installVgaMode12ReadPlaneAdapter} from '../web/vga-mode12-read-adapter.js';
 import {createOriginalOpl2WriteBus} from '../web/opl2-raw-write-bus.js';
@@ -28,7 +30,8 @@ const syntheticIrqStep=process.argv[2]===undefined?2048:Number(process.argv[2]);
 const instructionBudget=process.argv[3]===undefined?60000:Number(process.argv[3]);
 // Explicitly opt-in via fourth CLI argument for evidence-gated VGA reads.
 // The synthetic BIOS/IVT baseline remains opt-in and cannot claim DOS parity.
-const nativeVgaReadProbe=process.argv[4]==='vga-read-mode0';
+const nativeVgaRgb6Probe=process.argv[4]==='vga-rgb6';
+const nativeVgaReadProbe=process.argv[4]==='vga-read-mode0'||nativeVgaRgb6Probe;
 if(process.argv[4]!==undefined&&!nativeVgaReadProbe)
  throw new Error('unknown original VGA probe argument: fail closed');
 if(!Number.isInteger(syntheticIrqStep)||syntheticIrqStep<32||syntheticIrqStep>65535)
@@ -91,7 +94,7 @@ for(const [n,seg] of syntheticIvtStubs){
 }
 await installPinnedDosIvtSnapshot(cpu,ivt,{
  expectedSha256:sha(ivt),knownVectors:[0x66,0x65,0x08,0x00,0x67,0x33]});
-const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[],verifiedFileRead:null,originalOplRegisters:[],originalPitReloads:[],fileTransfers:[],verifiedReadBytesTotal:0};
+const observed={biosModes:[],teletype:[],io:[],calls:[],freed:[],resizes:[],resident:[],vgaWrites:[],paletteWrites:[],dacColors:[],attributeWrites:[],pitIrqEdges:[],picWrites:[],originalFileRequests:[],originalDosFileCalls:[],verifiedFileRead:null,originalOplRegisters:[],originalPitReloads:[],fileTransfers:[],verifiedReadBytesTotal:0};
 installBiosInt10(cpu,{
  teletype:x=>{observed.teletype.push(x.character);},
  readMode:()=>({mode:3,columns:80,page:0}),
@@ -100,6 +103,11 @@ installBiosInt10(cpu,{
   // A completed BIOS AH00 may have invalidated old native VRAM and register
   // evidence. Do not re-use the old mode's bytes for an opted-in read probe.
   if(nativeVgaReadProbe)vgaPlaneWitness.invalidateAfterBiosModeSet({mode});
+  if(nativeVgaRgb6Probe){
+    indexedVga.invalidateAfterBiosModeSet({mode});
+    vgaAttribute.invalidateAfterBiosModeSet({mode});
+    vgaDac.invalidateAfterBiosModeSet({mode});
+  }
  },
  setPaletteRegister:entry=>{observed.paletteWrites.push({...entry});}
 });
@@ -129,11 +137,17 @@ const indexedVga=installVgaIndexedWriteRecorder(cpu,{maxWrites:50000,onWrite:eve
 let syntheticVgaStatusReads=0;
 cpu.registerIOPort(0x3da,{in8:()=>{
  syntheticVgaStatusReads++;
+ if(vgaAttribute)vgaAttribute.noteInputStatusRead(0x3da);
  return syntheticVgaStatusReads%2===0?0x08:0x00; // synthetic retrace, not measured
 }});
 const vgaDac=installVgaDacWriteRecorder(cpu,{maxColors:20000,onColor:e=>{
  if(observed.dacColors.length<32)observed.dacColors.push({...e});
 }});
+const vgaAttribute=nativeVgaRgb6Probe?installOriginalVgaAttributeController(cpu,{
+  maxWrites:50000,allowKnownReadback:true,onRegisterWrite:entry=>{
+    if(observed.attributeWrites.length<32)observed.attributeWrites.push({...entry});
+  }
+}):null;
 const fmdrvChildFrame={
  AX:0,CX:0,DX:0,BX:0,SP:0xfffe,BP:0,SI:0,DI:0,
  CS:0x400,DS:0x400,ES:0x400,SS:0x400,IP:0x100,FLAGS:0x202
@@ -328,14 +342,13 @@ cpu.installMemoryWriteObserver((event,guest)=>{
   const band=event.physical>>>16;
   nativeMemoryWrites.physical64kBands[band]++;
   if(event.physical>=0xa0000&&event.physical<0xc0000){
-    nativeMemoryWrites.vgaA000Writes++;
+    if(event.physical<0xb0000)nativeMemoryWrites.vgaA000Writes++;
+    else nativeMemoryWrites.vgaB000Writes++;
     if(nativeMemoryWrites.vgaFirstBytes.length<24)
       nativeMemoryWrites.vgaFirstBytes.push({
         physical:event.physical,value:event.value,
         cs:guest.get16('CS'),ip:guest.get16('IP')
       });
-  }else if(event.physical>=0xb0000&&event.physical<0xc0000){
-    nativeMemoryWrites.vgaB000Writes++;
   }
   if(nativeMemoryWrites.sampleGuestWrites.length<16)
     nativeMemoryWrites.sampleGuestWrites.push({physical:event.physical,
@@ -387,6 +400,22 @@ for(let part=0;part<4;part++){
 const originalVgaPlaneState=vgaPlaneWitness.getState();
 const originalVgaFrame=originalVgaPlaneState.fullyCoveredBytes===38400?
   vgaPlaneWitness.captureCompleteIndexedFrame():null;
+// Raw CPU graphics evidence only: 16-pixel hash, never an original CRT claim.
+let originalVgaRgb6Evidence=null;
+if(nativeVgaRgb6Probe){
+ if(originalVgaFrame){
+  try{
+   const crop=captureGroundedVgaMode12Rgb6Rect(
+    vgaPlaneWitness,vgaAttribute,vgaDac,{x:0,y:0,width:16,height:1});
+   originalVgaRgb6Evidence={
+    state:'WITNESSED_SYNTHETIC_DOS_NOT_REFERENCE_PARITY',
+    sampleWidth:16,sampleHeight:1,sha256:sha(crop.pixels)
+   };
+  }catch(e){
+   originalVgaRgb6Evidence={state:'HOLD_UNKNOWN_ATTRIBUTE_OR_DAC',reason:e.message};
+  }
+ }else originalVgaRgb6Evidence={state:'HOLD_INCOMPLETE_VGA_PLANES'};
+}
 const originalVgaPaletteIndexHistogram=Array(16).fill(0);
 let originalVgaNonzeroBounds=null;
 if(originalVgaFrame){
@@ -435,7 +464,8 @@ const result={
   enabled:true,verifiedReads:vgaNativeReadAdapter.readCount(),
   note:'ORIGINAL_EXE_CPU_IN_SYNTHETIC_DOS__NOT_AUTHENTIC_VGA_REFERENCE'
  }:null,
- originalVgaPlaneState,
+ originalVgaPlaneState,originalVgaRgb6Evidence,
+ originalVgaAttributeWrites:observed.attributeWrites,
  originalVgaFrameSha256:originalVgaFrame?sha(originalVgaFrame):null,
  originalVgaPaletteIndexHistogram,originalVgaNonzeroBounds,
  originalVgaFramePixelPrefix:originalVgaFrame?Array.from(originalVgaFrame.slice(0,16)):null,

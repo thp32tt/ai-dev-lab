@@ -9,11 +9,21 @@ const code = (value, label) => {
     throw new RangeError(label+' must be nonzero DOS error uint16');
   return value;
 };
-export function createDosReadOnlyFileHandler(cpu, readOriginalFile) {
+export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent}={}) {
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('DOS file boundary requires RealMode8086');
   if(typeof readOriginalFile!=='function')
     throw new TypeError('readOriginalFile must be a synchronous original-byte resolver');
+  if(onFileEvent!==undefined&&typeof onFileEvent!=='function')
+    throw new TypeError('DOS file event observer must be synchronous');
+  const emit=e=>{
+    if(onFileEvent===undefined)return;
+    const response=onFileEvent(Object.freeze(e),cpu);
+    if(response&&typeof response.then==='function')
+      throw new Error('async DOS file event observer: fail closed');
+    if(response!==undefined)
+      throw new Error('DOS file event observer must not fabricate file status');
+  };
   const open=new Map();
   const fail=error=>{
     cpu.set16('AX',code(error,'DOS file error'));
@@ -62,13 +72,18 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile) {
       let handle=5;
       while(open.has(handle)&&handle<37)handle++;
       if(handle>=37){fail(4);return true;} // DOS too many open files
-      open.set(handle,{bytes:Uint8Array.from(supplied.bytes),position:0});
-      cpu.set16('AX',handle);ok();return true;
+      open.set(handle,{bytes:Uint8Array.from(supplied.bytes),position:0,filename:name.filename});
+      cpu.set16('AX',handle);ok();
+      emit({operation:'open',filename:name.filename,handle,fileBytes:supplied.bytes.length});
+      return true;
     }
     const file=get();
     if(!file)return true;
     if(ah===0x3e){
-      open.delete(cpu.get16('BX'));ok();return true;
+      const handle=cpu.get16('BX');
+      open.delete(handle);ok();
+      emit({operation:'close',filename:file.filename,handle,position:file.position});
+      return true;
     }
     if(ah===0x3f){
       const count=cpu.get16('CX'),offset=cpu.get16('DX');
@@ -77,11 +92,16 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile) {
       const physical=cpu.physical(cpu.get16('DS'),offset);
       if(physical+count>cpu.memory.length)
         throw new Error('DOS read buffer crosses 20-bit memory boundary: fail closed');
+      const fileOffset=file.position;
       const length=Math.min(count,Math.max(0,file.bytes.length-file.position));
       // Resolve and bound the entire transfer before mutating guest memory.
       if(length)cpu.memory.set(file.bytes.subarray(file.position,file.position+length),physical);
       file.position+=length;
-      cpu.set16('AX',length);ok();return true;
+      cpu.set16('AX',length);ok();
+      emit({operation:'read',filename:file.filename,handle:cpu.get16('BX'),
+        fileOffset,requested:count,readBytes:length,
+        segment:cpu.get16('DS'),offset,physical});
+      return true;
     }
     // AH=42h, AL=0/1/2 origin; CX:DX signed 32-bit displacement.
     const origin=cpu.get8('AL');
@@ -91,9 +111,13 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile) {
     const base=origin===0?0:origin===1?file.position:file.bytes.length;
     const position=base+displacement;
     if(position<0||position>0xffffffff){fail(1);return true;}
+    const previousPosition=file.position;
     file.position=position;
     cpu.set16('AX',position&0xffff);
     cpu.set16('DX',Math.floor(position/0x10000));
-    ok();return true;
+    ok();
+    emit({operation:'seek',filename:file.filename,handle:cpu.get16('BX'),
+      previousPosition,position,origin,displacement});
+    return true;
   };
 }

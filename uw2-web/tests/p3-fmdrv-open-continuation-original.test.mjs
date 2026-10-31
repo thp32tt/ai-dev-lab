@@ -183,12 +183,19 @@ activePsp=0x400;
 if(syntheticPinnedIrq){
   assert.equal(pinnedIrqTape.snapshot().admitted,2);
   assert.equal(openSession.snapshot().irqEdges.accepted,2);
-  assert.equal(openSession.snapshot().irqEdges.delivered,2);
-  assert.equal(picWitness.snapshot().commands,1);
-  assert.deepEqual(picCommands.map(x=>x.value),[0x20]);
+  // With the optional PIC service gate enabled, authentic OPEN executes
+  // 80k guest instructions without OUT 20h,20h after the first admitted IRQ.
+  // The second SYNTHETIC edge must not enter the ISR just because IF/IRET
+  // permitted it. Earlier no-PIC replay admitted both and produced one EOI.
+  const gated=openSession.snapshot().irqEdges;
+  assert.equal(gated.delivered,1);
+  assert.equal(gated.picDeferred>0,true);
+  assert.equal(gated.discarded,1); // Aborting releases pending child-only edge.
+  assert.equal(picWitness.snapshot().commands,0);
+  assert.deepEqual(picCommands.map(x=>x.value),[]);
   assert.equal(picWitness.snapshot().irq0GateEnabled,true);
-  assert.equal(picWitness.snapshot().irq0Delivered,2);
-  assert.equal(picWitness.snapshot().irq0Eois,1);
+  assert.equal(picWitness.snapshot().irq0Delivered,1);
+  assert.equal(picWitness.snapshot().irq0Eois,0);
   assert.equal(picWitness.snapshot().irq0InService,true);
 }
 assert.deepEqual(captureDosCpuFrame(cpu),parent);

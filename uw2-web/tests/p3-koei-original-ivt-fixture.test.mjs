@@ -31,7 +31,7 @@ const withExternalVideo=await probeOriginalKoeiWithSyntheticDos(original,{
   initialIvt:{bytes,expectedSha256,knownVectors:[0x65]},
   biosVideo:{
     readMode:()=>({mode:3,columns:80,page:0}),
-    setMode:({mode})=>syntheticVideoWrites.push(mode)
+    setMode:({mode})=>{syntheticVideoWrites.push(mode);}
   }
 });
 assert.deepEqual(syntheticVideoWrites,[0x12]);

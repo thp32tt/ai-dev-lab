@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {RealMode8086} from '../web/realmode-8086.js';
+import {installDosInt21} from '../web/dos-int21.js';
+const make=resetDisk=>{
+ const c=new RealMode8086();
+ c.load(Uint8Array.of(0xcd,0x21),0,0);
+ c.set16('AX',0x0d21);c.set16('BX',0x1234);c.set16('FLAGS',0x203);
+ installDosInt21(c,resetDisk?{resetDisk}:{});
+ return c;
+};
+let seen=0;
+const ok=make(({service})=>{assert.equal(service,0x0d);seen++;});
+ok.step();
+assert.equal(seen,1);
+assert.equal(ok.get16('AX'),0x0d21);
+assert.equal(ok.get16('BX'),0x1234);
+assert.equal(ok.get16('FLAGS'),0x203);
+assert.throws(()=>make().step(),/external disk reset device/);
+assert.throws(()=>make(()=>true).step(),/must not fabricate registers/);
+assert.throws(()=>make(()=>Promise.resolve()).step(),/async DOS AH0D/);
+assert.throws(()=>installDosInt21(new RealMode8086(),{resetDisk:42}),/synchronous external DOS disk device/);
+console.log('UW2 original OPEN DOS AH0D externally owned disk reset and no fabricated status: PASS');

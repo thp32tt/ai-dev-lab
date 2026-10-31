@@ -16,6 +16,7 @@ const tape=await createPinnedExternalGuestIrqTrace(bytes,{
  expectedSha256:hash,source:'explicit-synthetic-fixture-IRQ0'
 });
 assert.equal(tape.snapshot().eventCount,2);
+assert.equal(tape.snapshot().ownerClaimed,false);
 assert.equal(tape.snapshot().nextStep,0);
 assert.ok(Object.isFrozen(tape.snapshot()));
 assert.throws(()=>tape.admitAt(1,()=>{}),/event boundary skipped/);
@@ -34,6 +35,7 @@ const frame={AX:0,BX:0,CX:0,DX:0,SP:0xfffe,BP:0,SI:0,DI:0,
 const child=createStagedDosChildContinuation(c,{
  initialFrame:frame,maxTotalSteps:20,externalIrqEvidenceTape:tape
 });
+assert.equal(tape.snapshot().ownerClaimed,true);
 const first=child.runSlice(100);
 assert.equal(first.irq.delivered,true);
 assert.equal(first.sliceSteps,4);
@@ -51,6 +53,11 @@ assert.equal(second.steps,10); // 8 body instructions + 2 real ISR IRETs
 assert.equal(second.result.returnCode,0);
 assert.deepEqual(captureDosCpuFrame(c),parent);
 assert.equal(child.snapshot().irqEdges.pending,0);
+// A trace already consumed by one DOS process cannot be silently reused.
+assert.throws(()=>createStagedDosChildContinuation(c,{
+ initialFrame:frame,maxTotalSteps:20,externalIrqEvidenceTape:tape
+}),/already owned/);
+assert.deepEqual(captureDosCpuFrame(c),parent);
 const invalid=Uint8Array.of(4,0,0,0,8, 3,0,0,0,8);
 await assert.rejects(()=>createPinnedExternalGuestIrqTrace(invalid,{
  expectedSha256:createHash('sha256').update(invalid).digest('hex'),

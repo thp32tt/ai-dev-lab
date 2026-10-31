@@ -540,3 +540,7 @@
 ### 2026-11-01 FMDRV 원본 하드웨어 포트 명령을 구체적 관측기로 연결
 
 - 기존 shared original `FMDRV.COM` TSR→`OPEN.EXE` private regression의 임의 `port 43/40/388/389` 카운트 핸들러를 이미 검증한 `createOriginalPitChannel0WriteBus`와 `createOriginalOpl2WriteBus`로 교체했다. 2026-11-01 사용자 소유 원본 FMDRV COM 기계어에서 실제 PIT `OUT 43h,36h` / `OUT 40h,00h` / `OUT 40h,10h`를 **1회 프로그램**하여 ch0 mode3 원시 분주 4096을 확인했고, OPL 388/389 register select+data **6쌍**을 입증했다. 읽기 388h의 status=0은 명시적 **합성** 장치 응답으로 한정한다. PIC `OUT 20h,20h` 한 건과 합성 IRQ 2건을 같은 pinned native test에서 구별 기록한다. 기본 모드·명시적 1 IRQ·SHA pinned 2 IRQ 실행 모두 FMDRV 30,644 + OPEN 80,000명령 원본 SHA를 확인하며 정상 원작 오디오·클럭 도달성은 주장하지 않는다. 이 작업은 기존 PIT/OPL 원본 관측기 재사용/회귀 정밀화이며 이전 독립 성과에 중복 가산하지 않는다.
+
+### 2026-11-01 원본 native IRQ 기록의 소유권 재사용 차단
+
+- SHA-256으로 고정한 IRQ trace의 cursor는 실행 세션에서 소비되는 상태이므로 동일 tape를 두 번째 DOS child에 재사용하면 이미 건너뛴 이벤트를 조용히 누락시킬 위험이 있다. `createPinnedExternalGuestIrqTrace`의 one-owner claim을 실제 `createStagedDosChildContinuation`의 guest BIOS 소유권이 확정되는 시점에만 수행하고, 다른 세션 재사용을 fail closed 한다. 실패 시 첫 세션의 완료 상태나 반환된 부모 CPU frame은 보존하며 새 tape를 다시 검증해 만들어야 한다. 외부 DOS source timing 동등성은 여전히 UNTESTED, 신규 기능의 직접 완전성 수리로서 중복 점수 +0.

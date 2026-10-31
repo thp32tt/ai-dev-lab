@@ -33,12 +33,17 @@ export async function createPinnedExternalGuestIrqTrace(bytes,{
     previous=step;
     events.push(Object.freeze({step,vector:original[i+4],source}));
   }
-  let cursor=0;
+  let cursor=0,claimed=false;
   const snapshot=()=>Object.freeze({
     sha256:digest,eventCount:events.length,admitted:cursor,
+    ownerClaimed:claimed,
     nextStep:cursor<events.length?events[cursor].step:null,
     fidelity:'CALLER_SHA_PINNED_NATIVE_STEP_IRQ_TRACE__NOT_DOS_REFERENCE_OR_TIMING'
   });
+  const claimOwner=()=>{
+    if(claimed)throw new Error('pinned IRQ trace already owned by another guest execution');
+    claimed=true;
+  };
   const nextDueStep=()=>events[cursor]?.step??null;
   const admitAt=(completedSteps,enqueue)=>{
     if(!Number.isSafeInteger(completedSteps)||completedSteps<0||
@@ -59,7 +64,7 @@ export async function createPinnedExternalGuestIrqTrace(bytes,{
     cursor++;
     return Object.freeze({step:next.step,vector:next.vector,source:next.source});
   };
-  const api=Object.freeze({nextDueStep,admitAt,snapshot});
+  const api=Object.freeze({nextDueStep,admitAt,snapshot,claimOwner});
   ownedTapes.add(api);
   return api;
 }

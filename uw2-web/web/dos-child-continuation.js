@@ -85,6 +85,9 @@ export function createStagedDosChildContinuation(cpu,{
     guest=createGuestOriginalExecutionSession(cpu,{
       maxTotalSteps,keyboardQueue,onBeforeInstruction
     });
+    // Pin a trace to exactly one original CPU execution owner. Reusing a
+    // partially-consumed tape for the next child would silently omit events.
+    externalIrqEvidenceTape?.claimOwner();
   }catch(error){restoreParent();throw error;}
   const snapshot=()=>Object.freeze({state,steps,slices,result,
     childFrame,irqEdges:irqEdges.snapshot(),

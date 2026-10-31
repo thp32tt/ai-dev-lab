@@ -104,6 +104,7 @@ jobs:
           node uw2-web/tests/bios-int16.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs
           node uw2-web/tests/dos-readonly-files-process.test.mjs
+          node uw2-web/tests/dos-exec-file-inheritance.test.mjs
           node uw2-web/tests/realmode-8086-fe.test.mjs
           node uw2-web/tests/realmode-8086-divide-interrupt.test.mjs
           node uw2-web/tests/dos-original-files.test.mjs

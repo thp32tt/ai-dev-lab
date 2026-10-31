@@ -268,6 +268,10 @@ installDosInt21(cpu,{
    return pinnedOpgraph.resolveDosFile(request);
  }, // only verified original C:OPGRAPH.LZW; all other paths get DOS file-not-found
  onFileEvent:(event,guest)=>{
+   // Synthetic PSP=0600h is supplied by this test owner, never inferred
+   // from OPEN's far CS or its resource buffer DS.
+   if(event.psp!==0x600)
+     throw new Error('original OPEN file event crossed a foreign PSP');
    if(observed.fileTransfers.length>=1024)
      throw new Error('original DOS OPGRAPH file transfer trace budget exceeded');
    observed.fileTransfers.push({...event});

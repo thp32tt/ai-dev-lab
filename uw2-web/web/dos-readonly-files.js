@@ -37,13 +37,13 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
   };
   const scoped=getCurrentPsp!==undefined;
   const handles=()=>{
-    if(!scoped)return legacyOpen;
+    if(!scoped)return {table:legacyOpen,psp:null};
     const psp=getCurrentPsp();
     if(psp&&typeof psp.then==='function')
       throw new Error('async DOS file PSP resolver: fail closed');
     checkPsp(psp,'current DOS file PSP');
     if(!processTables.has(psp))processTables.set(psp,new Map());
-    return processTables.get(psp);
+    return {table:processTables.get(psp),psp};
   };
   const inherit=(parentPsp,childPsp)=>{
     if(!scoped)throw new Error('DOS file inheritance requires explicit PSP resolver');
@@ -89,7 +89,10 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
   };
   const handle=ah=>{
     if(ah!==0x3d&&ah!==0x3e&&ah!==0x3f&&ah!==0x42)return false;
-    const table=handles();
+    const {table,psp}=handles();
+    // A process-scoped DOS JFT number is ambiguous without its PSP.
+    // Never infer a PSP from CS, DS or guessed executable boundaries.
+    const emitFileEvent=e=>emit(scoped?{...e,psp}:e);
     if(ah===0x3d){
       // Only read-only AL=00 is supported; sharing, writes and flags are not
       // invented in the absence of original DOS reference semantics.
@@ -112,7 +115,7 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
       if(handle>=37){fail(4);return true;} // DOS too many open files
       table.set(handle,{bytes:Uint8Array.from(supplied.bytes),position:0,filename:name.filename});
       cpu.set16('AX',handle);ok();
-      emit({operation:'open',filename:name.filename,handle,fileBytes:supplied.bytes.length});
+      emitFileEvent({operation:'open',filename:name.filename,handle,fileBytes:supplied.bytes.length});
       return true;
     }
     const file=get(table);
@@ -120,7 +123,7 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
     if(ah===0x3e){
       const handle=cpu.get16('BX');
       table.delete(handle);ok();
-      emit({operation:'close',filename:file.filename,handle,position:file.position});
+      emitFileEvent({operation:'close',filename:file.filename,handle,position:file.position});
       return true;
     }
     if(ah===0x3f){
@@ -136,7 +139,7 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
       if(length)cpu.memory.set(file.bytes.subarray(file.position,file.position+length),physical);
       file.position+=length;
       cpu.set16('AX',length);ok();
-      emit({operation:'read',filename:file.filename,handle:cpu.get16('BX'),
+      emitFileEvent({operation:'read',filename:file.filename,handle:cpu.get16('BX'),
         fileOffset,requested:count,readBytes:length,
         segment:cpu.get16('DS'),offset,physical});
       return true;
@@ -154,7 +157,7 @@ export function createDosReadOnlyFileHandler(cpu, readOriginalFile,{onFileEvent,
     cpu.set16('AX',position&0xffff);
     cpu.set16('DX',Math.floor(position/0x10000));
     ok();
-    emit({operation:'seek',filename:file.filename,handle:cpu.get16('BX'),
+    emitFileEvent({operation:'seek',filename:file.filename,handle:cpu.get16('BX'),
       previousPosition,position,origin,displacement});
     return true;
   };

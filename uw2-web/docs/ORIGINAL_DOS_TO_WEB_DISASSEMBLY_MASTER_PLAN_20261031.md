@@ -281,3 +281,11 @@
 - 새 `tests/dos-readonly-files-process.test.mjs`는 8086 CPU + INT21 adapter에서 부모/자식의 각기 독립적인 #5, 명시적 상속 후 SFT seek 공유, 자식 close 이후 부모 파일 유지, 명시적 정리, 잘못된 PSP/비동기 반환 거부를 **합성 테스트**로 검사했다. 동일 소스 SHA에 대한 GitHub `UW2 Web Fidelity Static Gate` run `41213267899` **SUCCESS**; 이로써 DOS 참조 실행 동등성이 증명된 것은 아니다.
 - 이어 `tests/p3-koei-fmdrv-open-irq-original.test.mjs`의 기존 외부 설정 `activePsp=0200h/0400h/0600h`을 `getFileProcessPsp`로 실제 DOS 파일 서비스에 연결한다. 해당 환경은 여전히 **명시적 합성 PSP/IRQ/OPL/BIOS**다. 비공개 원본 재실행과 독립 DOS 캡처 비교는 **UNTESTED**이고, 실제 DOS EXEC JFT 상속 규칙·종료·TSR 메모리 책임은 DOS 참조 PSP/JFT/MCB 스냅샷 전에는 자동 구현하지 않는다.
 - 다음은 원본 `KOEI → FMDRV TSR → OPEN` 파일 열기/read/seek/close를 PSP별 근거와 함께 재검증하고, DOS 실제 기기/인터럽트 트레이스 확보 및 OPGRAPH 미검증 12파트 원본 기계어 출력 비교를 계속한다. `MAIN.EXE`의 전체 진행 및 전체 게임 동등성은 여전히 **HOLD/UNTESTED**다.
+
+
+### DOS 원본 파일 핸들 DUP/FORCEDUP와 PSP별 SFT 위치 공유 (2026-11-01 KST)
+
+- 기존 읽기 전용 원본 바이트 경계에 DOS INT21 AH=45h DUP, AH=46h FORCEDUP(기존 대상 핸들 교체)를 구현했다. 한 PSP의 개별 JFT 엔트리는 동일 SFT 파일 위치를 참조하며 자식 PSP로 명시적으로 상속된 복제 핸들도 같은 읽기 위치를 공유한다. 46h 성공 시 AX를 임의로 갱신하지 않고 CF만 정리하며, 실패는 명시적 DOS 오류를 반환한다.
+- 파일 핸들 경계에서 검증되지 않은 DOS 표준 장치 0..4 강제 복제, 미확인 JFT 용량 확장, source=destination의 DOS 3.30 예외 상황은 원본 동작으로 가장하지 않고 fail-closed한다. 어댑터의 현재 경계 5..36은 기존 구현 한도이지 원본 DOS PSP/JFT 스냅샷 검증치가 아니다.
+- 소스/테스트와 GitHub Actions 작업흐름 커밋 `a49db79d00116d504ad5f908781d9194595c844d`, 검증 포함 후속 SHA `1754c2e81366cbd2080425b6b8cca5d1ce7ee5d4`. GitHub Actions UW2 Web Fidelity Static Gate `synthetic-static` run `41215554965` SUCCESS; `tests/dos-file-duplication.test.mjs` 결과 PASS 및 기존 synthetic gate PASS. 첫 SHA CI 실패는 테스트 이벤트 옵저버가 `Array.push` 반환값을 무심코 노출한 데 기인해 같은 성과 내에서 수정했다. 독립 실 DOS 실기·원본 게임 바이너리·브라우저 전체 플레이는 UNTESTED이며 원본 세이브 쓰기 경로는 계속 봉쇄한다.
+- 다음 실제 게이트: 사용자 소유 DOS 기준 PSP의 JFT 길이·핸들 0..4의 device/redirection·DUP2 대상 범위 및 원본 OPEN 실행 중 AH45/46 진입 여부를 읽기 전용으로 검증한다. 이후 OPEN→MAIN 전환 및 실제 파일/화면/OPL 타이밍 동등성 추적을 이어간다.

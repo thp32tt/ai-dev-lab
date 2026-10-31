@@ -51,7 +51,7 @@ export async function probeOriginalKoeiWithSyntheticDos(original,{maxSteps=50000
     try{cpu.step();}
     catch(e){
       stopped=Object.freeze({reason:'UNSUPPORTED_OR_MISSING_DOS_STATE',
-        cs,ip,message:e.message});
+        cs,ip,ax:cpu.get16('AX'),bx:cpu.get16('BX'),cx:cpu.get16('CX'),dx:cpu.get16('DX'),es:cpu.get16('ES'),ds:cpu.get16('DS'),flags:cpu.get16('FLAGS'),message:e.message});
       break;
     }
   }

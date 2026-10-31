@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native 8086 faulted original guest execution cannot skip failed instruction (2026-11-01 KST)
+
+- **One independent original CPU execution correctness fix (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material/exact validated SHA `c3899bdef8aa721ac318c1b65c465e17cec49a3d` fixes a previously unsafe failure path in `web/guest-original-execution-session.js`: when a guest native instruction (such as IN AL,DX to an unknown port) throws after the 8086 has already advanced IP, the session now latches `faulted` and rejects all future `runSlice` attempts instead of silently executing the next guest opcode. The distinct source behavioral defect is verified with a native 8086 unsupported I/O instruction: real IP advanced 1, attempted second session run refused without executing NOP, total completed step count unchanged. Normal BIOS AH00 blocked wait and true host-key resume remain separate and supported. This is not a claim to reverse partial device side effects or complete original DOS support.
+- **Exact-SHA GitHub Actions:** `UW2 Web Fidelity Static Gate` run `41243598013` `synthetic-static` **SUCCESS** at the above SHA. No N100 original Korean DOS replay, DOS reference equivalence, actual OPEN→MAIN game execution, VGA/OPL/saves or browser full gameplay were verified (**UNTESTED/HOLD**). CI checks, docs and readbacks +0. AI1 separate.
+- **AI 2 cumulative: previous confirmed 2318 + independent verified guest-fault correctness fix (+1) = 2319.**
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 browser trusted-input bridge to resumable original 8086 execution (2026-11-01 KST)
 
 - **One independent original execution-path integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact SHA `7a3658b88ea0da150853be2fcdd69cdfb3b2f023` adds opt-in `web/browser-original-guest-bridge.js`, composing the existing strict trusted-key browser event translator, one bounded BIOS FIFO, and the new cumulative-budget guest CPU session. An explicit owner-supplied event target feeds genuine accepted ASCII/scan pairs, then explicit `runSlice` continues the same staged 8086 guest at its actual waiting INT16 AH00. The bridge does not globally install listeners or invent a DOS timer/keypress; detach and cleanup on existing BIOS interrupt owner conflict are covered. Native synthetic guest instructions test wait/resume, trusted/untrusted acceptance, queue overflow, byte write, DOS AH4C exit, detach, conflict cleanup, and total execution budget.

@@ -158,6 +158,7 @@ installDosInt21(cpu,{
  },
  getDosVersion:()=>({major:6,minor:22,oem:0,serialHigh:0,serialLow:0}),
  getCurrentDrive:()=>({drive:2}), // EXPLICIT SYNTHETIC C:, NOT actual DOS drive state
+ readOriginalFile:({filename})=>{throw new Error('OPEN_ORIGINAL_FILE_REQUEST:'+filename);},
  getDeviceInfo:({handle})=>{
    if(handle>4)throw new Error('OPEN original requested unobserved DOS handle');
    return {deviceInfo:0x80d3}; // SYNTHETIC DOS handle flags

@@ -334,3 +334,20 @@
 - 2026-11-01 P3 원본 표시 팔레트 경계: VGA Attribute Controller 3C0h index/data flip-flop을 분리한 장치로 구현. **실제 포트 3BA/3DA IN이 관측될 때만** selector 상태를 index로 리셋하며, 속성 00..0F/10/12/14와 display enable에 원본 OUT 근거가 있어야 Mode12 pixel index를 DAC index로 매핑한다. DAC 3C8/3C9는 이미 관측된 RGB6 3중 바이트만 반환하고 완전한 4-plane indexed rectangle을 RGB6 값으로 변환하는 읽기 전용 비교 API를 추가했다. 미확인 초기 BIOS 팔레트/실제 CRT gamma/8-bit 색 변환/개인 파일 원본 DOS 화면은 보충하지 않으며 **HOLD**. Synthetic 검증: `tests/vga-attribute-rgb6.test.mjs`.
 
 - 2026-11-01 BIOS 비디오 모드 전환에 따른 VGA 증거 세대 격리: 확인된 INT10/AH00 이후 VGA plane뿐 아니라 GC/SEQ readback, attribute 3C0 flip-flop/palette, DAC RGB6 캐시를 모두 폐기한다. BIOS 팔레트 초기값은 추측하지 않는다. 개인 원본 KOEI→FMDRV→OPEN 합성 DOS 스크립트에 opt-in `vga-rgb6` 플래그를 연결했다. 합성 3DA 상태 IN으로 증명된 속성 접근과 원본 CPU가 작성한 plane/DAC 16px crop이 모두 확인되면 SHA만 출력하고, 부분 증거는 HOLD로 남긴다. 원본 게임 바이너리 실기/참조 DOS·MAIN 진입은 **UNTESTED**.
+
+### 2026-11-01 P1 원본 6개 모듈 Ghidra 12.1.4 전체 이미지 배치 분석 실제 결과
+
+- **입력:** 소유 한국어판 DOS 6개 모듈의 SHA-256/크기 기준선을 각 실행에서 대조한다. Ghidra x86:LE:16:Real Mode, max-cpu=1, MZ 64KiB 이하 청크, COM PSP+0100h 좌표. 로컬 추출 원본 메타데이터 및 바이너리·디컴파일 원문은 저장소에 올리지 않는다.
+- **독립 검증:** N100의 run-ghidra-p1-batch.py / run-ghidra-p1-com.py가 생성한 결과를 사용자의 SHA 고정된 원본 파일과 p1-ghidra-chunk-import.mjs / p1-ghidra-com-import.mjs로 다시 감사해 PASS. 정적 후보만이며 실제 실행으로 검증된 원본 함수 및 명령 바이트는 0이다.
+
+| 원본 | 초기화 이미지/COM 바이트 | 창 | 함수 진입점 후보 | 명령어 후보 | 코드 후보 바이트 | 미관측 바이트 | 미해결 정적 흐름 | 판정 |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| KOEI.COM | 776 | 1 | 2 | 141 | 321 | 455 | 20 | HOLD_UNRESOLVED_FLOW |
+| FMDRV.COM | 5,162 | 1 | 2 | 339 | 754 | 4,408 | 9 | HOLD_UNRESOLVED_FLOW |
+| OPEN.EXE | 41,655 | 1 | 248 | 13,418 | 27,254 | 14,401 | 81 | HOLD_UNRESOLVED_FLOW |
+| MAIN.EXE | 267,319 | 5 | 1,261 | 82,644 | 204,519 | 62,800 | 4,798 | HOLD_UNRESOLVED_FLOW |
+| END.EXE | 51,729 | 1 | 259 | 11,864 | 24,266 | 27,463 | 90 | HOLD_UNRESOLVED_FLOW |
+| GRPDRV.EXE | 21,551 | 1 | 10 | 453 | 970 | 20,581 | 15 | HOLD_UNRESOLVED_FLOW |
+
+- **개인 원본 추출 SHA:** OPEN b1f83cba8a2fc1c602dd021f3d5db3a907ed400dac732e359d6e28215d97743e, END 1dc5399b7b39e2c7990839ce62e5509faaef6c72c08231755c04742499b2a4bc, GRPDRV 493a61fbd644f75428c1edc7f21a02a82eba82c9ac795fbf5d4516f77f3903b4. MAIN 창 순서: ebf899442e01a20e2dfe62004d210eeba1fb4ac696f22fc4c3a4f6898d3de03c, 0738fac098000295fd3cb962519886c2f2bab770ad7ef4addcba07a433c74e6f, 73bfef35e39f20970bddd7186bb3a3189f7b9d33a861e1bf339e0cd7d3b278dc, 173846dccc18b0de9ef0769eda44b8023fb0509d0f1a1463cdbcba27eff6cfe1, fc38e536a3dca8dbc48141ca2096bd08f0a56109a02f3c55fc4cf0735e287a60. 최초 OPEN 8KiB 별도 실험은 전체 분석과 중복되므로 완성률에 가산하지 않는다.
+- **다음 순서:** (1) MAIN 미관측 62,800바이트와 미해결 정적 흐름 4,798건을 largestUnobservedRanges/unresolvedFlowTypes 기준으로 재분류, (2) OPEN 14,401 미관측 바이트 및 실제 DOS 초기화/정상 종료 지점을 연결, (3) GRPDRV·FMDRV의 미관측 영역과 원본 IRQ/PIT/OPL 및 DOS PSP를 대조, (4) 실제 DOS reference trace로만 후보 검증 후 공통 IR+8086 실행·브라우저 포팅에 연결한다. 6개 파일 배치 출력이 있어도 전체 디컴파일·원작 동등성·MAIN 게임화면은 미완료이다.

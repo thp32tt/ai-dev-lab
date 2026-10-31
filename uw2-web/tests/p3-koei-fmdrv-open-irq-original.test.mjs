@@ -297,7 +297,7 @@ for(;steps<3000&&!cpu.terminated;steps++){
 const guestDecodedWitness=[];
 for(let part=0;part<4;part++){
  const expected=pinnedOpgraph.getDecodedPart(part).bytes;
- let cursor=0,prefixCandidates=0;
+ let cursor=0,prefixCandidates=0,longestPrefix=0,longestPhysical=null;
  const exactPhysical=[];
  const memory=cpu.memory;
  const last=memory.length-expected.length;
@@ -309,15 +309,15 @@ for(let part=0;part<4;part++){
    for(let j=1;j<16;j++)if(memory[start+j]!==expected[j]){prefix=false;break;}
    if(!prefix)continue;
    prefixCandidates++;
-   let matches=true;
-   for(let j=16;j<expected.length;j++){
-     if(memory[start+j]!==expected[j]){matches=false;break;}
-   }
-   if(matches)exactPhysical.push(start);
+   let matched=16;
+   while(matched<expected.length&&memory[start+matched]===expected[matched])matched++;
+   if(matched>longestPrefix){longestPrefix=matched;longestPhysical=start;}
+   if(matched===expected.length)exactPhysical.push(start);
    if(prefixCandidates>256)throw new Error('native unpack witness prefix candidate budget exceeded');
  }
  guestDecodedWitness.push({part,bytes:expected.length,prefixCandidates,
-   exactPhysical,provenance:'READ_ONLY_GUEST_MEMORY_SCAN__NO_NATIVE_DECODE_PARITY_ASSUMED'});
+   longestPrefix,longestPhysical,exactPhysical,
+   provenance:'READ_ONLY_GUEST_MEMORY_SCAN__PARTIAL_PREFIX_ONLY_NOT_FULL_NATIVE_DECODER_PARITY'});
 }
 
 const originalVgaPlaneState=vgaPlaneWitness.getState();

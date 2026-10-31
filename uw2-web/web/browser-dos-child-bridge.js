@@ -8,7 +8,8 @@ import {createStagedDosChildContinuation} from './dos-child-continuation.js';
 
 export function createBrowserDosChildBridge({
   cpu,target,initialFrame,maxQueuedKeys=64,maxTotalSteps=1000000,
-  onBeforeInstruction,externalIrqEvidenceTape
+  onBeforeInstruction,externalIrqEvidenceTape,
+  picCommandWitness,maxQueuedExternalIrqs=128
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original browser child requires staged RealMode8086');
@@ -21,7 +22,7 @@ export function createBrowserDosChildBridge({
   try{
     child=createStagedDosChildContinuation(cpu,{
       initialFrame,keyboardQueue:queue,maxTotalSteps,onBeforeInstruction,
-      externalIrqEvidenceTape
+      externalIrqEvidenceTape,picCommandWitness,maxQueuedExternalIrqs
     });
   }catch(error){
     // Failed child ownership must never leave a browser key listener behind.
@@ -55,5 +56,9 @@ export function createBrowserDosChildBridge({
     detach();
     return result;
   };
-  return Object.freeze({runSlice,abort,detach,snapshot});
+  // Browser host must explicitly supply an externally observed edge. The
+  // bridge never schedules PIT ticks, fabricates EOI or auto-injects an IRQ.
+  const enqueueExternalIrqEdge=event=>child.enqueueExternalIrqEdge(event);
+  return Object.freeze({runSlice,abort,detach,snapshot,
+    enqueueExternalIrqEdge});
 }

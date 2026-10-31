@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun ImageGen B-0149 Korean title Library-persisted (2026-10-31 KST)
+
+- Unique task ID `OUTRUN-ROI-B-0149-B3DBEE23` and approved output `Q054_36654298c628bfa0_k.png`: one ImageGen generation for source Q054 / PlayStation target `Match the total!` and Korean `합계를 맞히세요!`. Generated a text-only RGBA image, then resized and alpha-checked the actual output to exactly 520×74 with graphic alpha bbox (2,2,518,72). No DDS, protected icon or background layer produced. Verified generated final file SHA-256 `8910ba369898272aa62cf6448780aa2841c4cc737bb67a752270b09db9853feb` (71,881 bytes), uploaded to persistent Library `/아웃런 한글화 신규/Q054_36654298c628bfa0_k.png`, and independently relisted the exact persisted path (Library ID `libfile_c3b641a98de08191a332ba826e8aacea`). This verifies file generation and persistence only: independent C1/C2 QA, source DDS integration and in-game verification are UNTESTED. The generated title remains a candidate until QA.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2272 + one independently completed and verified new Library-saved Korean ImageGen candidate +1 = 2273.** Same task retry, recheck or duplicate report +0; AI 1 unchanged.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 OutRun C1 independent Q043 A/B new-SHA QA (2026-10-31 KST)
 
 - Unique run key `OUTRUN-C1-AI2-20261031T2115KST-Q043-NEW-SHA2`. N100 persisted A-0143 PlayStation output `Q043_8c2673128986a6c8_k.png` SHA256 `a188160c74496eb7f2027b1aaa087f59171e813bab19a3d32498538472addd62` and B-0147 Switch `Q043_ff4cb68946ab376b_k.png` SHA256 `45063e76377c10e58739da302f629282f5ca1bd54fcf0976b3e9adff864b6637`. Both actual PNGs independently inspected with SHA-pinned 2048×2048 HD originals, native-fit and 50% visual preview; verified unseen candidate SHA against 197 earlier QA reports (925 prior unique SHA). Results: **2 new C1 lettering-layer PASS, 0 FAIL, 0 HOLD**. Original/source/export hashes match, RGBA, edge alpha>=32 empty; Korean `축하합니다!` readable. Producer `REWORK_DIMENSIONS` state unchanged; final DDS/UI composition/C2/C3/ingame UNTESTED. Evidence file in `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` commit `46c1f33d8063f1563dfceb7cbf6b0cbb8911af5c`, path `localization/qa_evidence/C1_QA_20261031_2115_AI2_NEW_SHA2.json`. No image generation, no queue consumption, no VR code modifications.

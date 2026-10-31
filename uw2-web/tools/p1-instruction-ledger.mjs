@@ -58,10 +58,10 @@ export function auditP1InstructionLedger(input){
       throw new RangeError('decoded instruction crosses original MZ initialized image or BSS');
     sha(row.bytesSha256,'instruction byte digest');
     if(!FLOWS.has(row.flow))throw new Error('unknown decoded flow type');
-    if(DIRECT.has(row.flow)!==Object.hasOwn(row,'targetRea'))
-      throw new Error('near direct flow requires only one explicit targetRea');
     if(row.flow==='RETURN'&&row.targetRea!==undefined)
       throw new Error('return target must be runtime-resolved');
+    if(DIRECT.has(row.flow)!==Object.hasOwn(row,'targetRea'))
+      throw new Error('near direct flow requires only one explicit targetRea');
     const imageStart=address-loadBase, imageEnd=imageStart+length;
     for(let pos=imageStart;pos<imageEnd;pos++){
       if(used[pos])throw new Error('overlapping decoded instructions at image offset '+pos);

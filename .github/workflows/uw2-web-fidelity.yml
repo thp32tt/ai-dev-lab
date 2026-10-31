@@ -25,6 +25,8 @@ jobs:
           node --check uw2-web/web/mz-loader.js
           node --check uw2-web/web/dos-int21.js
           node --check uw2-web/web/bios-int10.js
+          node --check uw2-web/web/dos-ivt-snapshot.js
+          node --check uw2-web/web/dos-psp-snapshot.js
           node --check uw2-web/tools/p3-koei-exec-probe.mjs
           node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/web/dos-original-files.js
@@ -41,8 +43,10 @@ jobs:
           node uw2-web/tests/realmode-8086-group3.test.mjs
           node uw2-web/tests/realmode-8086-data-moves.test.mjs
           node uw2-web/tests/realmode-8086-shifts.test.mjs
+          node uw2-web/tests/realmode-8086-jmp-short.test.mjs
           node uw2-web/tests/realmode-80186-koei-shift.test.mjs
           node uw2-web/tests/bios-int10.test.mjs
+          node uw2-web/tests/bios-int10-modes.test.mjs
           node uw2-web/tests/realmode-8086-interrupts.test.mjs
           node uw2-web/tests/realmode-8086-io.test.mjs
           node uw2-web/tests/realmode-8086-decimal.test.mjs
@@ -56,6 +60,12 @@ jobs:
           node uw2-web/tests/mz-loader.test.mjs
           node uw2-web/tests/dos-int21-launch.test.mjs
           node uw2-web/tests/dos-int21-vectors.test.mjs
+          node uw2-web/tests/dos-ivt-snapshot.test.mjs
+          node uw2-web/tests/dos-psp-snapshot.test.mjs
+          node uw2-web/tests/dos-int21-memory.test.mjs
+          node uw2-web/tests/dos-int21-resize.test.mjs
+          node uw2-web/tests/dos-int21-console.test.mjs
+          node uw2-web/tests/dos-int21-string.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs
           node uw2-web/tests/realmode-8086-fe.test.mjs
           node uw2-web/tests/realmode-8086-divide-interrupt.test.mjs

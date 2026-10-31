@@ -43,12 +43,12 @@ const originalRead=archive.resolveDosFile({
  filename:'C:OPGRAPH.LZW',
  raw:Uint8Array.from('C:OPGRAPH.LZW',c=>c.charCodeAt(0))
 });
-assert.deepEqual(originalRead.Uint8Array.from(bytes.subarray(16,272)),Uint8Array.from(bytes.subarray(16,272)));
+assert.deepEqual(originalRead.bytes.subarray(16,272),Uint8Array.from(bytes.subarray(16,272)));
 originalRead.bytes[16]^=255;
 assert.deepEqual(archive.resolveDosFile({
  filename:'C:OPGRAPH.LZW',
  raw:Uint8Array.from('C:OPGRAPH.LZW',c=>c.charCodeAt(0))
-}).Uint8Array.from(bytes.subarray(16,272)),Uint8Array.from(bytes.subarray(16,272)));
+}).bytes.subarray(16,272),Uint8Array.from(bytes.subarray(16,272)));
 console.log(JSON.stringify({
  originalArchiveSha256:expected,parts:archive.partCount,records:archive.totalRecords,
  decodedTotalBytes:archive.totalDecodedBytes,manifest,

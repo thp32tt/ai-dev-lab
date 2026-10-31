@@ -129,6 +129,9 @@ const fmdrvChildFrame={
 };
 const originalLateHotspots=new Map();
 let lastLateSamples=[];
+const nativePart0Expected=pinnedOpgraph.getDecodedPart(0).bytes;
+const nativePart0RuntimeWitness={sourcePhysical:0x30000,expectedBytes:nativePart0Expected.length,
+ maxMatchingPrefix:0,atStep:0,fullMatchStep:null,fullMatchSha256:null};
 let activePsp=0x200;
 let fmdrvRun=null,openGuestFault=null,openStarted=false;
 const openChildFrame={
@@ -168,6 +171,24 @@ installDosInt21(cpu,{
     openStarted=true;activePsp=0x600;
     try{runStagedDosComChild(cpu,{initialFrame:openChildFrame,maxSteps:instructionBudget,
       onInstructionBoundary:({steps,cs,ip},guest)=>{
+        // The original OPEN decoder uses its externally allocated 3000h
+        // buffer. Observe its *live* bytes before the next part overwrites it.
+        // Never inject decoded bytes: compare guest RAM to independently
+        // SHA-pinned JS LS11 part0 output at a bounded instruction cadence.
+        if(steps>=200000&&steps%1024===0&&nativePart0RuntimeWitness.fullMatchStep===null){
+          let match=0;
+          const start=nativePart0RuntimeWitness.sourcePhysical;
+          while(match<nativePart0Expected.length&&
+            guest.memory[start+match]===nativePart0Expected[match])match++;
+          if(match>nativePart0RuntimeWitness.maxMatchingPrefix){
+            nativePart0RuntimeWitness.maxMatchingPrefix=match;
+            nativePart0RuntimeWitness.atStep=steps;
+          }
+          if(match===nativePart0Expected.length){
+            nativePart0RuntimeWitness.fullMatchStep=steps;
+            nativePart0RuntimeWitness.fullMatchSha256=sha(guest.memory.subarray(start,start+match));
+          }
+        }
         if(steps>=205000){
           const key=cs.toString(16).padStart(4,'0')+':'+ip.toString(16).padStart(4,'0');
           originalLateHotspots.set(key,(originalLateHotspots.get(key)||0)+1);
@@ -345,6 +366,7 @@ const result={
  originalDosFileCalls:observed.originalDosFileCalls,
  verifiedFileRead:observed.verifiedFileRead,
  guestDecodedWitness,
+ nativePart0RuntimeWitness,
  nativeMemoryWrites,
  originalVgaPlaneState,
  originalVgaFrameSha256:originalVgaFrame?sha(originalVgaFrame):null,

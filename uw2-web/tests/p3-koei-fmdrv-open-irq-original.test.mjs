@@ -326,7 +326,7 @@ const originalVgaFrame=originalVgaPlaneState.fullyCoveredBytes===38400?
 const result={
  original:{koeiSha:sha(koei),fmdrvSha:sha(fmdrv),openSha:sha(open)},
  stagingRegions:stagingProof.regions.length,
- syntheticIvtStubs
+ syntheticIvtStubs,
  openStarted,openGuestFault,openMz,
  koeiSteps:steps,fmdrvChild:fmdrvRun,
  observedChildCalls:observed.calls,initialDosEnvironment:'SYNTHETIC',

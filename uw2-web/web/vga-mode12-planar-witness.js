@@ -95,7 +95,7 @@ export function createOriginalVgaMode12PlaneWitness({maxObservedWrites=250000}={
          event.physical>=0x100000||!validByte(event.value))
         throw new Error('original 8086 physical VGA byte-write witness required');
       const address=event.physical;
-      if(classifyPhysicalAperture(address)==='UNSUPPORTED_MAPPED_APERTURE')
+      if(address>=VRAM_END&&classifyPhysicalAperture(address)==='UNSUPPORTED_MAPPED_APERTURE')
         throw new Error('unsupported mapped VGA aperture must not be treated as guest RAM: fail closed');
       if(address<VRAM_PHYSICAL||address>=VRAM_END)return;
       if(observedWrites>=maxObservedWrites)

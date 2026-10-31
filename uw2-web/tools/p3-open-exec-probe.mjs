@@ -89,21 +89,15 @@ export async function probeOriginalOpen(original,{
    if(machine.read8(cs,ip)===0xcd&&machine.read8(cs,(ip+1)&65535)===0x21)
      serviceHistory.observe({ah:machine.get8('AH'),al:machine.get8('AL'),cs,ip},machine);
  };
- const keyboardSession=keyboardQueue===undefined?null:
-   createGuestOriginalExecutionSession(machine,{
-     keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction
-   });
+ const cpuSession=createGuestOriginalExecutionSession(machine,{
+   keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction
+ });
  for(;steps<maxSteps&&!machine.terminated;steps++){
    const cs=machine.get16('CS'),ip=machine.get16('IP');
    try{
-     if(keyboardSession){
-       const gate=keyboardSession.runSlice(1);
-       if(gate.reason==='WAIT_BIOS_INT16_AH00'){
-         stopped={cs,ip,reason:gate.reason};break;
-       }
-     }else{
-       beforeInstruction({cs,ip});
-       machine.step();
+     const gate=cpuSession.runSlice(1);
+     if(gate.reason==='WAIT_BIOS_INT16_AH00'){
+       stopped={cs,ip,reason:gate.reason};break;
      }
    }catch(e){stopped={cs,ip,message:e.message};break;}
  }

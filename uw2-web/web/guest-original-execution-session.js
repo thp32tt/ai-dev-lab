@@ -10,8 +10,9 @@ export function createGuestOriginalExecutionSession(cpu,{
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original execution session requires RealMode8086');
-  if(!keyboardQueue||typeof keyboardQueue.checkKey!=='function'||
-     typeof keyboardQueue.readKey!=='function')
+  if(keyboardQueue!==undefined&&
+     (!keyboardQueue||typeof keyboardQueue.checkKey!=='function'||
+      typeof keyboardQueue.readKey!=='function'))
     throw new TypeError('original execution session requires a shared external BIOS FIFO');
   if(!Number.isSafeInteger(maxTotalSteps)||maxTotalSteps<1||maxTotalSteps>15000000)
     throw new RangeError('original execution total step budget must be 1..15000000');
@@ -19,7 +20,7 @@ export function createGuestOriginalExecutionSession(cpu,{
     throw new TypeError('original execution observer must be synchronous');
   // Fail on an existing BIOS vector/adapter, never silently override a
   // device already installed by another original DOS execution owner.
-  installBiosInt16(cpu,{keyboardQueue});
+  if(keyboardQueue!==undefined)installBiosInt16(cpu,{keyboardQueue});
   let executed=0,slices=0,lastReason=null,running=false,faulted=false;
   const status=()=>Object.freeze({
     totalExecutedSteps:executed,remainingSteps:maxTotalSteps-executed,
@@ -44,13 +45,28 @@ export function createGuestOriginalExecutionSession(cpu,{
         while(steps<maxSteps&&executed<maxTotalSteps&&!cpu.terminated){
           // Exactly one genuine CPU instruction per owned boundary.
           // A blocked AH00 must leave the guest CS:IP and FIFO untouched.
-          const result=runGuestUntilKeyboardWait(cpu,{keyboardQueue,maxSteps:1,
-            onBeforeInstruction});
-          if(result.reason==='WAIT_BIOS_INT16_AH00'){
-            reason=result.reason;break;
+          if(keyboardQueue!==undefined){
+            const result=runGuestUntilKeyboardWait(cpu,{keyboardQueue,maxSteps:1,
+              onBeforeInstruction});
+            if(result.reason==='WAIT_BIOS_INT16_AH00'){
+              reason=result.reason;break;
+            }
+            if(result.steps!==1)
+              throw new Error('original CPU step did not complete or block: fail closed');
+          }else{
+            // No invented BIOS keyboard owner: the real guest CPU/installed
+            // original DOS adapters either execute or fail closed.
+            if(onBeforeInstruction!==undefined){
+              const before=onBeforeInstruction(Object.freeze({
+                cs:cpu.get16('CS'),ip:cpu.get16('IP')
+              }),cpu);
+              if(before&&typeof before.then==='function')
+                throw new Error('async guest instruction observer: fail closed');
+              if(before!==undefined)
+                throw new Error('guest instruction observer cannot synthesize execution');
+            }
+            cpu.step();
           }
-          if(result.steps!==1)
-            throw new Error('original CPU step did not complete or block: fail closed');
           steps++;executed++;
         }
         if(cpu.terminated)reason='TERMINATED';

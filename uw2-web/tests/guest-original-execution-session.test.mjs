@@ -103,3 +103,27 @@ traceQueue.enqueue({ascii:32,scanCode:0x39});
 assert.equal(tracedSession.runSlice(2).steps,2);
 assert.deepEqual(seenAt,[0,2,4]);
 assert.equal(tracedSession.snapshot().faulted,false);
+
+// A source-staged original CPU can run without claiming a host BIOS keyboard.
+// No fabricated INT16 adapter is installed in this mode.
+const noKeyCpu=new RealMode8086();
+noKeyCpu.load(Uint8Array.of(0x90,0xb8,0x00,0x4c,0xcd,0x21),0x3a0,0);
+noKeyCpu.set16('CS',0x3a0);installDosInt21(noKeyCpu);
+const plainSeen=[];
+const plainSession=createGuestOriginalExecutionSession(noKeyCpu,{
+  maxTotalSteps:10,onBeforeInstruction:frame=>{plainSeen.push(frame.ip);}
+});
+assert.equal(noKeyCpu.interruptAdapters.has(0x16),false);
+assert.equal(plainSession.runSlice(2).steps,2);
+assert.equal(plainSession.runSlice(5).reason,'TERMINATED');
+assert.deepEqual(plainSeen,[0,1,4]);
+assert.equal(plainSession.snapshot().totalExecutedSteps,3);
+assert.equal(noKeyCpu.terminated.returnCode,0);
+const noKeyInvalid=new RealMode8086();
+noKeyInvalid.load(Uint8Array.of(0x90),0,0);
+const denied=createGuestOriginalExecutionSession(noKeyInvalid,{
+  onBeforeInstruction:()=>123
+});
+assert.throws(()=>denied.runSlice(1),/observer cannot synthesize/);
+assert.equal(noKeyInvalid.get16('IP'),0);
+assert.equal(denied.snapshot().faulted,true);

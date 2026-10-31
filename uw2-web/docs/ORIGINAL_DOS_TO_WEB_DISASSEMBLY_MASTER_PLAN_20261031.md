@@ -445,3 +445,8 @@
 
 - `runGuestUntilKeyboardWait`에 비동기·반환값을 거부하는 단일 명령 직전 훅을 추가하고 BIOS `INT16 AH00` 실제 FIFO가 비었을 때는 훅이 호출되지 않게 한다. 원본 `createGuestOriginalExecutionSession`과 `p3-open-exec-probe.mjs`는 이 경계를 공유한다. 기존 진단기가 원본 명령을 실행하기 전에 무조건 기록하던 방식에서, 미처리 BIOS 키 대기를 실제 명령·메모리 진행으로 잘못 계산하던 상황을 분리한다.
 - synthetic 8086 native `MOV AH,0 → INT16 AH00`에 대해 키 없는 세 번의 실행 요청에서도 대기 명령 IP가 동일하고 관측 훅 횟수가 늘지 않음을 확인하며 실제 키 입력 후 정상 재개를 검증한다. 훅의 비동기·상태 위조 반환은 fail closed. 이 변경은 원본 DOS 참조의 실행 타이밍을 증명하지 않으며 원본 파일이 없는 GitHub CI 판정은 **SYNTHETIC**이다.
+
+### 2026-11-01 원본 DOS 이미지의 키보드 미사용 실행 경로 단일화
+
+- `createGuestOriginalExecutionSession`은 명시적 BIOS FIFO가 없을 때 기존 CPU의 실제 설치된 DOS/BIOS/장치만 사용하여 bounded instruction slice를 실행한다. 없는 키보드 장치를 임의로 설치하지 않으며 실제 `INT16`을 만났을 때 기존 CPU의 vector/adapter를 정확히 따른다. FIFO가 있는 경우에는 이전의 키 대기·재개 경계로 실행한다. 두 경로 모두 단일 `onBeforeInstruction` 검증 훅을 공유하며 CPU 오류 뒤 재실행은 금지한다.
+- `tools/p3-open-exec-probe.mjs`에서 키보드 여부에 따라 분기하던 8086 루프를 하나의 실행 세션 호출로 통합하여 이후 원본 실행 중간 재개의 전제 구조를 만든다. 기존 one-shot API 결과와 샘플 진단 필드는 유지한다. 합성 테스트는 무키보드 원본 스타일 NOP→DOS 4Ch 종료, 훅 순서, 기존 INT16 미등록, 반환값 위조 거부를 검증한다. 한국어판 원본 전체 부팅은 **UNTESTED/HOLD**.

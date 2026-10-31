@@ -364,6 +364,25 @@ for(let part=0;part<4;part++){
 const originalVgaPlaneState=vgaPlaneWitness.getState();
 const originalVgaFrame=originalVgaPlaneState.fullyCoveredBytes===38400?
   vgaPlaneWitness.captureCompleteIndexedFrame():null;
+const originalVgaPaletteIndexHistogram=Array(16).fill(0);
+let originalVgaNonzeroBounds=null;
+if(originalVgaFrame){
+  for(let i=0;i<originalVgaFrame.length;i++){
+    const color=originalVgaFrame[i];
+    if(color>=16)throw new Error('original VGA color index exceeds four-bit depth');
+    originalVgaPaletteIndexHistogram[color]++;
+    if(!color)continue;
+    const x=i%640,y=Math.floor(i/640);
+    if(originalVgaNonzeroBounds===null)
+      originalVgaNonzeroBounds={left:x,top:y,right:x,bottom:y};
+    else{
+      originalVgaNonzeroBounds.left=Math.min(originalVgaNonzeroBounds.left,x);
+      originalVgaNonzeroBounds.top=Math.min(originalVgaNonzeroBounds.top,y);
+      originalVgaNonzeroBounds.right=Math.max(originalVgaNonzeroBounds.right,x);
+      originalVgaNonzeroBounds.bottom=Math.max(originalVgaNonzeroBounds.bottom,y);
+    }
+  }
+}
 const result={
  original:{koeiSha:sha(koei),fmdrvSha:sha(fmdrv),openSha:sha(open)},
  stagingRegions:stagingProof.regions.length,
@@ -391,6 +410,7 @@ const result={
  nativeMemoryWrites,
  originalVgaPlaneState,
  originalVgaFrameSha256:originalVgaFrame?sha(originalVgaFrame):null,
+ originalVgaPaletteIndexHistogram,originalVgaNonzeroBounds,
  originalVgaFramePixelPrefix:originalVgaFrame?Array.from(originalVgaFrame.slice(0,16)):null,
  pinnedOpgraph:{sha256:'f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d',bytes:opgraph.length,
   parts:pinnedOpgraph.partCount,decodedBytes:pinnedOpgraph.totalDecodedBytes,records:pinnedOpgraph.totalRecords},

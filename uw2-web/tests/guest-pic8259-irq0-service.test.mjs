@@ -111,8 +111,18 @@ assert.throws(()=>createExternalGuestIrqEdgeQueue(cpu,{
 assert.throws(()=>createExternalGuestIrqEdgeQueue(cpu,{
  picCommandWitness:noEoiPic
 }),/exact original CPU witness/);
-const otherQueue=createExternalGuestIrqEdgeQueue(cpu,{
+// The correct CPU owner is insufficient unless its real OUT 20h handler
+// is registered. Do not enable a gate that could never observe guest EOI.
+assert.throws(()=>createExternalGuestIrqEdgeQueue(cpu,{
  picCommandWitness:initialHeld
+}),/exact guest port 20h handler/);
+const parentBeforeFailedStage=captureDosCpuFrame(cpu);
+assert.throws(()=>createStagedDosChildContinuation(cpu,{
+ initialFrame:frame,picCommandWitness:initialHeld
+}),/exact guest port 20h handler/);
+assert.deepEqual(captureDosCpuFrame(cpu),parentBeforeFailedStage);
+const otherQueue=createExternalGuestIrqEdgeQueue(cpu,{
+ picCommandWitness:pic
 });
 assert.throws(()=>otherQueue.enqueue({vector:9,source:'second PIC line'}),
  /verified guest IVT|other interrupt lines/);

@@ -16,6 +16,11 @@ export function createExternalGuestIrqEdgeQueue(cpu,{
      (!isOriginalMasterPicCommandWitness(picCommandWitness)||
       !picCommandWitness.ownsIrq0Cpu(cpu)))
     throw new Error('external IRQ0 PIC gate needs exact original CPU witness');
+  // A service bit cannot be released if OUT 20h reaches another provider.
+  // Require the *exact* witnessed I/O handler before admitting any IRQ0.
+  if(picCommandWitness!==undefined&&
+     cpu.portHandlers.get(0x20)!==picCommandWitness.port20)
+    throw new Error('PIC IRQ0 gate requires exact guest port 20h handler');
   const pending=[];
   let accepted=0,delivered=0,masked=0,deferred=0,picDeferred=0,discarded=0;
   const snapshot=()=>Object.freeze({

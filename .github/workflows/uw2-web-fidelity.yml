@@ -32,6 +32,7 @@ jobs:
           node --check uw2-web/tools/p3-open-exec-probe.mjs
           node --check uw2-web/tests/p3-open-session-original.test.mjs
           node --check uw2-web/tests/p3-browser-open-original.test.mjs
+          node --check uw2-web/tests/p3-open-external-await-original.test.mjs
           node --check uw2-web/tests/p3-koei-fmdrv-open-irq-original.test.mjs
           node --check uw2-web/web/dos-com-child-runner.js
           node --check uw2-web/web/vga-indexed-ports.js
@@ -57,6 +58,7 @@ jobs:
           node --check uw2-web/web/guest-bios-keyboard-step.js
           node --check uw2-web/web/guest-original-execution-session.js
           node --check uw2-web/web/guest-dos-ivt-await.js
+          node --check uw2-web/web/guest-external-interrupt-await.js
           node --check uw2-web/web/browser-original-guest-bridge.js
           node --check uw2-web/web/browser-original-open-session.js
           node --check uw2-web/web/dos-readonly-files.js
@@ -133,6 +135,7 @@ jobs:
           node uw2-web/tests/guest-bios-keyboard-step.test.mjs
           node uw2-web/tests/guest-original-execution-session.test.mjs
           node uw2-web/tests/guest-dos-ivt-await.test.mjs
+          node uw2-web/tests/guest-external-interrupt-await.test.mjs
           node uw2-web/tests/browser-original-guest-bridge.test.mjs
           node uw2-web/tests/browser-original-open-session.test.mjs
           node uw2-web/tests/dos-readonly-files.test.mjs

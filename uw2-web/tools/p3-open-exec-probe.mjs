@@ -14,6 +14,7 @@ import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {createGuestOriginalExecutionSession} from '../web/guest-original-execution-session.js';
 import {pendingGuestDosIvtVector,supplyPinnedGuestDosIvtVector} from '../web/guest-dos-ivt-await.js';
+import {pendingGuestExternalInterrupt} from '../web/guest-external-interrupt-await.js';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
 const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
@@ -23,7 +24,7 @@ export async function createOriginalOpenProbeSession(original,{
  maxSteps=10000,initialPsp=null,initialIvt=null,dosOptions={},cpu=null,traceLimit=24,
  maxServiceEvents=4096,
  enableHotspots=false,enableProgressWitness=false,keyboardQueue=undefined,
- pauseOnMissingDosIvt=false
+ pauseOnMissingDosIvt=false,pauseOnMissingGuestInterrupt=false
 }={}){
  if(!(original instanceof Uint8Array))
    throw new TypeError('original OPEN.EXE binary byte buffer required');
@@ -37,6 +38,8 @@ export async function createOriginalOpenProbeSession(original,{
    throw new TypeError('guest execution progress opt-in must be boolean');
  if(typeof pauseOnMissingDosIvt!=='boolean')
    throw new TypeError('original DOS IVT pause opt-in must be boolean');
+ if(typeof pauseOnMissingGuestInterrupt!=='boolean')
+   throw new TypeError('original guest IRQ/INT pause opt-in must be boolean');
  if(!Number.isInteger(traceLimit)||traceLimit<0||traceLimit>128)
    throw new RangeError('bounded OPEN execution trace length required');
  if(!Number.isInteger(maxServiceEvents)||maxServiceEvents<1||maxServiceEvents>65536)
@@ -131,6 +134,10 @@ export async function createOriginalOpenProbeSession(original,{
        try{
          if(pauseOnMissingDosIvt){
            const pending=pendingGuestDosIvtVector(machine);
+           if(pending){stopped=pending;break;}
+         }
+         if(pauseOnMissingGuestInterrupt){
+           const pending=pendingGuestExternalInterrupt(machine);
            if(pending){stopped=pending;break;}
          }
          const gate=cpuSession.runSlice(1);

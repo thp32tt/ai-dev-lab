@@ -477,3 +477,8 @@
 
 - `guest-dos-ivt-await.js`는 **실제 CPU가 다음에 실행할 직접 INT 21h / AH=35h**와 명시적 DOS 21h 어댑터 및 현재 알려진 IVT 여부만 확인한다. 누락된 벡터는 CPU IP·레지스터·stack·실행수·DOS 호출 기록을 소비하기 전 `WAIT_EXTERNAL_DOS_IVT_VECTOR`로 반환한다. 현재 원본 OPEN 0610:2DE1의 누락 `00h`를 디바이스 응답 추정 없이 정지하도록 `createOriginalOpenProbeSession({pauseOnMissingDosIvt:true})` 옵션으로 연결했다. 기존 기본 동작/실패시 재개 금지는 유지된다.
 - 소유자가 **DOS 참조에서 별도 입수한 4바이트 벡터** 및 SHA-256을 명시적으로 제출할 때만 `supplyPinnedDosIvtVector()`가 해당 벡터를 기존 CPU IVT에 기록하고 동일 세션의 다음 slice가 원래 INT 21h를 실행한다. SHA 핀은 전달 파일의 무결성만 인증하며 DOS 참조 출처를 증명하지 않는다. 모르는 벡터의 0 채움·자동 stub·임의 ISR은 금지. CPU가 running이면 공급을 거부하며 실패/불일치/충돌은 원래 wait 상태를 유지한다. Synthetic 8086 INT21 AH35→AH4C 회귀를 Actions에 추가했다. 진짜 DOS 참조값이 없을 경우 원본 게임 완성/장면·음악은 **UNTESTED/HOLD**.
+
+### 2026-11-01 원본 OPEN 583명령 다음 실제 인터럽트 드라이버 선행조건
+
+- `guest-external-interrupt-await.js`는 원본 CPU의 다음 **direct INT imm8** 바이트와 등록된 host adapter 또는 명시적 guest IVT vector만 검사하여, 미등록 인터럽트를 GPU/타이머/TSR 의미로 추측하는 대신 `WAIT_EXTERNAL_GUEST_INTERRUPT_HANDLER`로 원본 CS/IP, stack, FLAGS 및 누적 계량을 보존한다. 기본값 OFF인 `pauseOnMissingGuestInterrupt:true`로 원본 OPEN 실행 probe에 옵트인 연결; synthetic `INT 66h`의 반복 대기→별도 드라이버 설치→정확한 CPU 명령/정상 종료 검증을 CI에 포함한다.
+- 사용자 보유 한국어 원본 OPEN.EXE 파일(기존 고정 SHA)을 **합성 DOS version/MCB/IOCTL·합성 IVT 00h=0900:0000** 환경에서 실행: 원본 470명령 `INT21 AH35 AL00` 사전 대기, 핀 검증 이후 583명령(원본 CS:IP `0610:1831`)에서 아직 등록되지 않은 **INT66h(FMDRV 런타임 선행조건)**를 정확히 대기했다. 원본 DOS 상의 실제 진행 재현/음악 재생/OPEN 종료라고 표시하지 않는다. 원본 소유 바이너리 없이 동작하는 synthetic tests와 사용자 로컬 private test를 별도로 보관하며 참조 FMDRV TSR 실물 설치가 없으면 HOLD.

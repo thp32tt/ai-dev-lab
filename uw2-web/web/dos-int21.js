@@ -18,8 +18,9 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
     throw new TypeError('directConsoleIO must be a synchronous DOS console boundary');
   if(stayResident!==undefined&&typeof stayResident!=='function')
     throw new TypeError('stayResident must be a synchronous DOS TSR memory-owner callback');
-  if(stayResident&&( !Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
-    throw new RangeError('DOS TSR current PSP segment must be explicit uint16');
+  if(stayResident&&typeof pspSegment!=='function'&&
+     (!Number.isInteger(pspSegment)||pspSegment<0||pspSegment>0xffff))
+    throw new RangeError('DOS TSR current PSP segment must be explicit uint16 or a synchronous resolver');
   // No host file provider => no DOS file service; never synthesize original assets.
   const fileHandler=readOriginalFile===undefined?null:
     createDosReadOnlyFileHandler(cpu,readOriginalFile);
@@ -207,14 +208,17 @@ export function installDosInt21(cpu,{executeChild,readOriginalFile,freeMemory,re
       const paragraphs=cpu.get16('DX'),returnCode=cpu.get8('AL');
       if(!paragraphs)
         throw new Error('DOS AH31 zero resident paragraph count: fail closed');
-      const request=Object.freeze({pspSegment,paragraphs,returnCode});
+      const currentPsp=typeof pspSegment==='function'?pspSegment():pspSegment;
+      if(!Number.isInteger(currentPsp)||currentPsp<0||currentPsp>0xffff)
+        throw new RangeError('DOS AH31 current process PSP must resolve to uint16: fail closed');
+      const request=Object.freeze({pspSegment:currentPsp,paragraphs,returnCode});
       const response=stayResident(request,cpu);
       if(response&&typeof response.then==='function')
         throw new Error('async DOS AH31 residency owner: fail closed');
       if(!response||typeof response!=='object'||response.resident!==true)
         throw new Error('DOS AH31 residency owner must explicitly acknowledge: fail closed');
       cpu.terminated=Object.freeze({terminationType:3,returnCode,
-        residentParagraphs:paragraphs,pspSegment});
+        residentParagraphs:paragraphs,pspSegment:currentPsp});
       return;
     }
     if(ah===0x4c){

@@ -62,6 +62,8 @@ assert.equal(held.report.uniqueInstructionCandidates,0);
 assert.equal(held.report.unobservedBytes,64);
 assert.equal(held.report.gate,'HOLD_INCOMPLETE');
 const corrupt=fixture();
+corrupt.a.evidence_bundle.records[0].normalized_result.assembly.push('0x10006: NOP','0x10007: NOP');
+corrupt.a.evidence_bundle.records[0].normalized_result.basic_blocks[0].end='0x10008';
 corrupt.b.evidence_bundle.records[0].normalized_result.assembly[0]='0x10006: RETF';
 assert.throws(()=>mergeReaSnapshotBatches([corrupt.a,corrupt.b],corrupt.bytes,{
   moduleName:'MAIN.EXE',expectedSha256:corrupt.sha

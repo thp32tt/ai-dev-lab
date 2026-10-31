@@ -332,6 +332,15 @@ assert.ok(openGuestFault.steps>=syntheticIrqStep);
 assert.match(result.fidelity,/NOT_DOS_REFERENCE/);
 assert.ok(observed.pitIrqEdges.length>=1);
 assert.ok(observed.pitIrqEdges.some(x=>x.delivered));
+if(syntheticIrqStep===128&&instructionBudget===260000){
+  assert.equal(originalVgaPlaneState.graphicsMode,2);
+  assert.equal(originalVgaPlaneState.sequencerMapMask,15);
+  assert.equal(originalVgaPlaneState.visibleWrites,38400);
+  assert.equal(originalVgaPlaneState.fullyCoveredBytes,38400);
+  assert.equal(originalVgaFrameSha256,'7818f5542a0404157573be6cffc0e0c8e68ce3c0f5d17d07ccdd9313fb700baf');
+  assert.deepEqual(originalVgaFramePixelPrefix,Array(16).fill(0));
+  assert.equal(nativeMemoryWrites.vgaA000Writes,38400);
+}
 assert.deepEqual(observed.originalFileRequests.slice(0,1),['C:OPGRAPH.LZW']);
 assert.ok(indexedVga.writtenCount()>=6);
 assert.ok(vgaDac.writtenColors()>=16);

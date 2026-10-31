@@ -1,5 +1,19 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original DOS COM PSP+0100h static extraction + audit (2026-10-31 KST)
+
+- Distinct independently implemented source milestone after MZ exporter: SHA-pinned COM handling for `KOEI.COM` and `FMDRV.COM` under `uw2-web-port`: explicit Ghidra BinaryLoader `-loader-baseAddr 0x10100` and original COM entry-point disassembly, `run-ghidra-p1-com.py`, `p1-ghidra-com-import.mjs`, synthetic regression `p1-ghidra-com-import.test.mjs`. The first two COM attempts found zero decoded instructions; the PSP+0100h entry seed repaired the actual missing analysis path, not game behavior. Exact-SHA validation-bearing COM test workflow commit `d433475ba720798195058bcc6a8f70df9200b1a3` had `synthetic-static` success, Actions run `41154131024`.
+- User-owned original static SHA/read-only N100 verification: KOEI.COM 776 bytes, 141 instruction candidates, 2 function-entry candidates, 321 candidate bytes, 455 unobserved bytes, 20 unresolved static flows; FMDRV.COM 5,162 bytes, 339 instructions, 2 function entries, 754 candidate bytes, 4,408 unobserved, 9 unresolved. Ghidra source exports remained private, original executables and pseudocode never committed. COM DOS PSP actual lifecycle, music and original runtime traces `UNTESTED/HOLD`.
+- **AI 2 cumulative: previous confirmed 2251 + independently implemented tested PSP+0100h original COM analysis +1 = 2252.** Same root-task retry/docs/manual readback +0. AI1 separate.
+
+## AI 2 UW2 original four-MZ full-image Ghidra batch pipeline (2026-10-31 KST)
+
+- Independent reusable code milestone beyond previous REA snapshot merger: native Ghidra Java `Uw2GhidraInstructionChunk.java` + SHA-pinned Ghidra headless Python single-chunk/batch runners + `p1-ghidra-chunk-import.mjs` and synthetic regression; 4 Korean original MZ executables scanned read-only on N100. MAIN processed 5 windows from ONE Ghidra import; OPEN, END, GRPDRV 1 each. All metadata/chunks private; original binaries/raw assembly/pseudocode not published. Exact-SHA source check `d234d99a4a40313f6de90490aa8f10895831e1d2` GitHub Actions `synthetic-static` **success**, run `41153640239`; direct installed Ghidra 12.1.4 runs and SHA-linked chunk-import validation passed locally.
+- MAIN: 82,660 instruction candidates, 1,261 function-entry candidates, 204,557 candidate bytes, 62,762 unobserved; OPEN: 13,418 / 248 / 27,254 / 14,401; END: 11,864 / 259 / 24,266 / 27,463; GRPDRV: 453 / 10 / 970 / 20,581. These are machine analyzer candidates, not verified functional code or finished decompilation: `verifiedCodeBytes=0`, `verifiedFunctionCount=0`, DOS original replay/flight/trade/combat/save/pixel/audio/browser `UNTESTED/HOLD`. Same-source compile repairs, workflow/docs and readback are one achievement (+0 separately).
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2250 + one independent original-MZ full-scan implementation & real local validation +1 = 2251.** AI1 separate.
+
+Updated: 2026-10-31 KST
+
 ## AI 2 UW2 resumable multi-REA snapshot merger (UW2-P1-REA-MULTI-BATCH-20261031)
 
 - Independent source milestone on `thp32tt/ai-dev-lab@uw2-web-port`: `uw2-web/tools/p1-rea-batch-merge.mjs` merges independently exported REA/Ghidra function-dossier snapshots only when they match the same SHA-256 pinned original Korean MZ image. Deterministic SHA-sorted replay-safe dedup, conflicts across overlapping instructions, mixed provenance and function/byte/gap accounting remain fail-closed. One synthetic regression `tests/p1-rea-batch-merge.test.mjs` and workflow check; implementation `b585d794ceaa54b7f043a8b47ec67c6767f82f8c`, regression fix `495dbdba4d6193d41a414e9068f04dd22b19c233`, exact-SHA GitHub Actions run `41150831677` / `synthetic-static` completed **success**. Follow-up sole master-plan documentation `233780f5fca3bb5c9ff970892ef36896f87e7d0c` is the same milestone (+0).

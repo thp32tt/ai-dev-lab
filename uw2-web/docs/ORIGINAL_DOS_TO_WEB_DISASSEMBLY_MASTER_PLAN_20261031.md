@@ -461,3 +461,9 @@
 
 - N100 사용자 보유 한국어 원본 `OPEN.EXE` SHA-256 `f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65`를 1회 적재하고 선언된 **합성 DOS 6.22 version/resize/IOCTL** 어댑터를 붙여 실행한 결과, 일괄 실행 및 37명령씩 분할 세션의 **470명령 / 실제 원본 MZ 재배치 23건 / DOS INT21 시도 4회 / 동일 CS:IP 0610:2DE1**이 일치했다. 정지 위치는 원본 DOS `INT21 AH35 AL00`, 즉 아직 제공되지 않은 **원본 DOS 초기 인터럽트 벡터 00h 조회**다. `INT 00h`의 진짜 원본 DOS 제공자 값을 확보하지 못했으므로 0으로 채우거나 임의 ISR을 배정하지 않고 HOLD한다.
 - 새로운 CPU 거부 진단은 누락 벡터 번호를 `DOS_IVT_VECTOR_UNVERIFIED` 및 `interruptVector`로 구조화한다. OPEN 프로브는 `EXTERNAL_ORIGINAL_DOS_IVT_VECTOR_REQUIRED`와 `missingInterruptVector`를 전파하여 필요한 DOS 참조 스냅샷의 정확한 부분을 명시한다. 기존 fail-closed 원칙과 AH35 미등록 벡터의 ES:BX 비변경을 지키고 합성 회귀를 추가한다. 이 원본 실험은 **합성 DOS 장치·가정된 초기 메모리**가 포함되어 있으므로 원본 DOS에서의 장면·음악·OPEN→MAIN 완료 근거가 아니다.
+
+### 2026-11-01 P3 원본 OPEN.EXE 브라우저 실행 이미지 로더 연결 (엄격한 스냅샷 소유)
+
+- `web/browser-original-open-session.js`를 추가했다. **사용자가 직접 제공한 한국어 원본 `OPEN.EXE` 바이트**의 고정 SHA-256 검증을 가장 먼저 수행하고, 사용자가 따로 제공·SHA 고정한 DOS PSP 256B·IVT 1024B 및 명시적 MZ allocation으로 동일 8086 CPU 메모리에 적재한다. 진단 프리뷰의 합성 화면이나 자동 키/IVT/파일 내용을 생성하지 않는다.
+- 스냅샷/원본 적재가 성공하고 INT16 소유권 충돌이 없는 경우에만 기존 browser trusted key → BIOS FIFO → 실행 세션을 명시적 event target에 연결한다. 전역 DOM listener·웹 전용 게임 조작기·자동 실행 타이머는 추가하지 않는다. CPU/DOS 장치 및 실제 BIOS 값의 준비는 호출자가 별도로 책임진다. SHA 일치 그 자체는 DOS 스냅샷의 실제 출처·정합성을 보장하지 않는다.
+- GitHub Actions에는 원본 EXE를 넣지 않고 synthetic 가짜 MZ와 누락 PSP/IVT로 SHA 거부, 기동 미변경·무등록 listener 등 실패 경계만 검사한다. 별도 N100 원본 파일로 성공 staging 진단을 수행하기 전까지 실제 브라우저 실행 성공·OPEN→MAIN·OPL/VGA·DOS 등가성은 **UNTESTED/HOLD**.

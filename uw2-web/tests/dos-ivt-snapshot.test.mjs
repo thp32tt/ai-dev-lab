@@ -1,0 +1,44 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {RealMode8086} from '../web/realmode-8086.js';
+import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
+import {installDosInt21} from '../web/dos-int21.js';
+
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const original=new Uint8Array(1024);
+original[0x65*4]=0x34;original[0x65*4+1]=0x12;
+original[0x65*4+2]=0x78;original[0x65*4+3]=0x56;
+const pinned=hash(original);
+const cpu=new RealMode8086();
+cpu.memory.fill(0xa5,0,1024);
+const ivt=await installPinnedDosIvtSnapshot(cpu,original,{
+ expectedSha256:pinned,knownVectors:[0x65]
+});
+assert.equal(ivt.size,1024);
+assert.equal(ivt.knownVectorCount,1);
+assert.match(ivt.fidelity,/UNTESTED/);
+assert.deepEqual(cpu.getGuestInterruptVector(0x65),{offset:0x1234,segment:0x5678});
+assert.throws(()=>cpu.getGuestInterruptVector(0x64),/unknown initial DOS/);
+assert.equal(cpu.read8(0,0x64*4),0);
+cpu.load(Uint8Array.of(0xcd,0x21),0x100,0);
+cpu.set16('CS',0x100);cpu.set16('AX',0x3565);
+installDosInt21(cpu);
+cpu.step();
+assert.equal(cpu.get16('ES'),0x5678);assert.equal(cpu.get16('BX'),0x1234);
+cpu.set16('IP',0);cpu.set16('AX',0x2565);
+cpu.set16('DS',0x3456);cpu.set16('DX',0x0fed);cpu.step();
+assert.deepEqual(cpu.getGuestInterruptVector(0x65),{offset:0x0fed,segment:0x3456});
+const bad=new RealMode8086();
+bad.memory.fill(0xcc,0,1024);
+const before=bad.memory.subarray(0,1024).slice();
+const badOpts={expectedSha256:pinned,knownVectors:[0x65]};
+await assert.rejects(installPinnedDosIvtSnapshot(bad,new Uint8Array(1023),badOpts),/1024-byte/);
+await assert.rejects(installPinnedDosIvtSnapshot(bad,original,{...badOpts,knownVectors:[0x65,0x65]}),/duplicate/);
+await assert.rejects(installPinnedDosIvtSnapshot(bad,original,{...badOpts,knownVectors:[0x65,0x100]}),/uint8/);
+await assert.rejects(installPinnedDosIvtSnapshot(bad,original,{...badOpts,expectedSha256:'0'.repeat(64)}),/SHA-256 mismatch/);
+assert.deepEqual(bad.memory.subarray(0,1024),before);
+assert.equal(bad.interruptVectors.size,0);
+bad.installInterruptAdapter(0x65,()=>{});
+await assert.rejects(installPinnedDosIvtSnapshot(bad,original,badOpts),/conflicts/);
+assert.deepEqual(bad.memory.subarray(0,1024),before);
+console.log('UW2 SHA-pinned external DOS IVT snapshot fail-closed synthetic regression: PASS');

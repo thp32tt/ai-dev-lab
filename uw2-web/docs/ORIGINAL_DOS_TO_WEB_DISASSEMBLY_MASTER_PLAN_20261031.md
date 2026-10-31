@@ -256,3 +256,11 @@
 - 새로운 테스트: dos-readonly-files.test.mjs, dos-original-files.test.mjs, realmode-8086-fe.test.mjs, realmode-8086-divide-interrupt.test.mjs. 기존 인벤토리/기동 회귀 포함 최종 SHA synthetic gate 성공.
 - 원본 한국어판 KOEI.COM->OPEN.EXE->MAIN.EXE 실행, DOS PSP/디바이스 trace, 원본 음악/픽셀/세이브/브라우저 전 경로는 이 테스트에서 실행하지 않음: ORIGINAL_DOS_RUNTIME=UNTESTED; BROWSER_RUNTIME=UNTESTED; FULL_GAME=UNTESTED.
 - 다음: P1 실제 REA/Ghidra 지원 API를 조사하고 전체 모듈 코드/데이터/실패 범위·간접 흐름 gap을 export/검증. 이후 원본 DOS 비교 trace와 장치 어댑터를 연결하고 여섯 인물, 항구/항해, 교역, 전투, 저장, 이벤트, 엔딩 전 기능을 실제 실행 결과에 따라 수렴. 소단위 커밋이나 CI PASS로 P9 종료 처리 금지.
+
+## 9. 2026-10-31 P3 인터럽트 억제 정확성 및 다음 원본 검증
+
+- CPU 본문 `web/realmode-8086.js`: `STI`, `MOV SS`, `POP SS` 직후 다음 한 **명령어** 완료까지 실제 8086 maskable 외부 IRQ 인수 금지. 다음 명령어 처리 뒤 허용하며 연속 STI는 억제 기간을 새로 시작한다. `CLI`는 즉시 IF=0이며 software `INT`는 별도 분기다.
+- `web/guest-irq-boundary.js`: IF=0과 명령어 직후 shadow를 구분해 원본 외부 IRQ 전달을 차단. 기존 IVT 확인 및 호스트 명시적 IRQ 이벤트 요구는 유지한다. 불명 PIT/PIC IRQ phase·하드웨어 pending edge를 임의 합성하거나 자동 재전달하지 않는다.
+- `web/dos-com-child-runner.js`: 자식 DOS CPU frame 시작 시 shadow를 초기화하고 종료 및 실패 시에도 부모 CPU의 shadow를 복원. 원본 기계어 저장 영역은 변경하지 않는다.
+- `tests/guest-irq-boundary.test.mjs`에서 STI 1-instruction 지연, 연속 STI, POP SS, MOV SS, DOS EXEC 독립성, 실제 guest IVT 진입을 합성 fixture로 확인. source/validation SHA `beb907d4c64f8c2b4186935d78491003fa327cb2`, GitHub Actions `UW2 Web Fidelity Static Gate` run `41197383631` **SUCCESS**. 이것은 **합성 CPU 회귀**이며, 사용자 한국어판 원본 OPEN/MAIN 실행/PIT 실시간 인터럽트·브라우저 원작 영상·오디오의 실제 DOS 일치 검증은 **UNTESTED**.
+- 다음 작업은 원본 KOEI→FMDRV→OPEN의 기존 소유 원본 정적·동적 경로에서, 외부 IRQ 주입 시점별 CS:IP/IF/SS/ISR 전이 차이를 기록하고 실제 DOS PIT/PIC 기준 trace와 비교하는 것. 이후 OPGRAPH 나머지 12파트의 native decoder parity, 완전한 VGA 화면, OPEN 종료→MAIN 호출, 전체 항구/해상/교역/전투/세이브 순서로 진행하며 임의 장면·음악으로 대체하지 않는다.

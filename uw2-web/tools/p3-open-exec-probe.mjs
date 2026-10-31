@@ -71,30 +71,40 @@ export async function probeOriginalOpen(original,{
    machine.installExternalIrqObserver(progress.observeExternalIrq);
  }
  // Externally captured keys only, strictly opt-in: no fake BIOS queue.
- const keyboardSession=keyboardQueue===undefined?null:
-   createGuestOriginalExecutionSession(machine,{keyboardQueue,maxTotalSteps:maxSteps});
  let steps=0,stopped=null,recent=[];
  const serviceHistory=createGuestDosCallWindow({maxEvents:maxServiceEvents});
  const hotspots=enableHotspots?createGuestExecutionHotspotRecorder({
    sampleEvery:127,maxSites:4096,maxStates:8192,top:16
  }):null;
- for(;steps<maxSteps&&!machine.terminated;steps++){
-   const cs=machine.get16('CS'),ip=machine.get16('IP');
+ // A blocked BIOS AH00 must not create a phantom instruction, file
+ // call or progress window. The hook runs only after the authentic queue
+ // preflight has accepted that this guest instruction may start.
+ const beforeInstruction=({cs,ip})=>{
    if(hotspots)hotspots.observeInstruction({steps,cs,ip},machine);
    if(progress)progress.observeInstruction({steps,cs,ip},machine);
-   const record={cs,ip,ax:machine.get16('AX'),sp:machine.get16('SP')};
-   if(traceLimit){recent.push(record);if(recent.length>traceLimit)recent.shift();}
+   if(traceLimit){
+     recent.push({cs,ip,ax:machine.get16('AX'),sp:machine.get16('SP')});
+     if(recent.length>traceLimit)recent.shift();
+   }
    if(machine.read8(cs,ip)===0xcd&&machine.read8(cs,(ip+1)&65535)===0x21)
      serviceHistory.observe({ah:machine.get8('AH'),al:machine.get8('AL'),cs,ip},machine);
+ };
+ const keyboardSession=keyboardQueue===undefined?null:
+   createGuestOriginalExecutionSession(machine,{
+     keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction
+   });
+ for(;steps<maxSteps&&!machine.terminated;steps++){
+   const cs=machine.get16('CS'),ip=machine.get16('IP');
    try{
-     if(keyboardQueue!==undefined){
-       // A pending original BIOS AH00 must not advance the MZ guest IP
-       // before a genuine external key has entered the shared FIFO.
+     if(keyboardSession){
        const gate=keyboardSession.runSlice(1);
        if(gate.reason==='WAIT_BIOS_INT16_AH00'){
          stopped={cs,ip,reason:gate.reason};break;
        }
-     }else machine.step();
+     }else{
+       beforeInstruction({cs,ip});
+       machine.step();
+     }
    }catch(e){stopped={cs,ip,message:e.message};break;}
  }
  if(!stopped&&!machine.terminated)

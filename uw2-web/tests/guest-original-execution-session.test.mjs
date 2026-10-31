@@ -84,3 +84,22 @@ assert.equal(failedSession.snapshot().totalExecutedSteps,0);
 assert.throws(()=>failedSession.runSlice(10),/faulted original guest execution session cannot resume/);
 assert.equal(failedCpu.get16('IP'),ipAfterFault); // never advance into NOP
 assert.equal(failedSession.snapshot().totalExecutedSteps,0);
+
+// The outer long-running session must inherit the same preflight callback
+// boundary: repeated empty AH00 retries cannot inflate diagnostic counters.
+const traceCpu=new RealMode8086();
+traceCpu.load(Uint8Array.of(0xb4,0,0xcd,0x16,0x90),0x390,0);
+traceCpu.set16('CS',0x390);
+const traceQueue=createBiosKeyboardQueue();
+const seenAt=[];
+const tracedSession=createGuestOriginalExecutionSession(traceCpu,{
+  keyboardQueue:traceQueue,
+  onBeforeInstruction:frame=>{seenAt.push(frame.ip);}
+});
+assert.equal(tracedSession.runSlice(10).reason,'WAIT_BIOS_INT16_AH00');
+assert.equal(tracedSession.runSlice(10).reason,'WAIT_BIOS_INT16_AH00');
+assert.deepEqual(seenAt,[0]);
+traceQueue.enqueue({ascii:32,scanCode:0x39});
+assert.equal(tracedSession.runSlice(2).steps,2);
+assert.deepEqual(seenAt,[0,2,4]);
+assert.equal(tracedSession.snapshot().faulted,false);

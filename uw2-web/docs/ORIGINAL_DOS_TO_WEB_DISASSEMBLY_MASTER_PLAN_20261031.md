@@ -440,3 +440,8 @@
 
 - `createGuestOriginalExecutionSession`은 **실제 BIOS AH00 키 대기(WAIT)** 와 하드웨어/DOS/지원하지 않는 명령 실행 중 발생한 예외를 엄격하게 분리한다. 오류 시 일부 I/O 부작용이나 IP 선진행이 발생했을 가능성이 있으므로 세션을 `faulted`로 래치하고 이후 `runSlice`를 fail closed 거부한다. 재대기는 WAIT로만 표시하며 정상적인 키 대기/재개/종료에는 영향을 주지 않는다.
 - 합성 `IN AL,DX`의 미등록 388h 장치 접근 오류는 예외 시 실제 IP가 하나 선진행하는 것을 관찰하며, 오류 이후 원본 명령을 임의로 건너뛰는 재실행이 차단되는지를 기존 세션 회귀와 전체 GitHub CI에서 검증한다. 본 조치는 원본 DOS 장치를 구현한 것이 아니며 모든 CPU 스텝을 원자적으로 롤백한다는 주장은 하지 않는다. 실제 원본의 장치/실행 경로는 계속 **UNTESTED/HOLD**.
+
+### 2026-11-01 P3 BIOS 대기 경계에서 원본 진행 기록의 허위 증가 방지
+
+- `runGuestUntilKeyboardWait`에 비동기·반환값을 거부하는 단일 명령 직전 훅을 추가하고 BIOS `INT16 AH00` 실제 FIFO가 비었을 때는 훅이 호출되지 않게 한다. 원본 `createGuestOriginalExecutionSession`과 `p3-open-exec-probe.mjs`는 이 경계를 공유한다. 기존 진단기가 원본 명령을 실행하기 전에 무조건 기록하던 방식에서, 미처리 BIOS 키 대기를 실제 명령·메모리 진행으로 잘못 계산하던 상황을 분리한다.
+- synthetic 8086 native `MOV AH,0 → INT16 AH00`에 대해 키 없는 세 번의 실행 요청에서도 대기 명령 IP가 동일하고 관측 훅 횟수가 늘지 않음을 확인하며 실제 키 입력 후 정상 재개를 검증한다. 훅의 비동기·상태 위조 반환은 fail closed. 이 변경은 원본 DOS 참조의 실행 타이밍을 증명하지 않으며 원본 파일이 없는 GitHub CI 판정은 **SYNTHETIC**이다.

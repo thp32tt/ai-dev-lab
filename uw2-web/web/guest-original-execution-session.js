@@ -6,7 +6,7 @@ import {installBiosInt16} from './bios-int16.js';
 import {runGuestUntilKeyboardWait} from './guest-bios-keyboard-step.js';
 
 export function createGuestOriginalExecutionSession(cpu,{
-  keyboardQueue,maxTotalSteps=1000000
+  keyboardQueue,maxTotalSteps=1000000,onBeforeInstruction
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original execution session requires RealMode8086');
@@ -15,6 +15,8 @@ export function createGuestOriginalExecutionSession(cpu,{
     throw new TypeError('original execution session requires a shared external BIOS FIFO');
   if(!Number.isSafeInteger(maxTotalSteps)||maxTotalSteps<1||maxTotalSteps>15000000)
     throw new RangeError('original execution total step budget must be 1..15000000');
+  if(onBeforeInstruction!==undefined&&typeof onBeforeInstruction!=='function')
+    throw new TypeError('original execution observer must be synchronous');
   // Fail on an existing BIOS vector/adapter, never silently override a
   // device already installed by another original DOS execution owner.
   installBiosInt16(cpu,{keyboardQueue});
@@ -42,7 +44,8 @@ export function createGuestOriginalExecutionSession(cpu,{
         while(steps<maxSteps&&executed<maxTotalSteps&&!cpu.terminated){
           // Exactly one genuine CPU instruction per owned boundary.
           // A blocked AH00 must leave the guest CS:IP and FIFO untouched.
-          const result=runGuestUntilKeyboardWait(cpu,{keyboardQueue,maxSteps:1});
+          const result=runGuestUntilKeyboardWait(cpu,{keyboardQueue,maxSteps:1,
+            onBeforeInstruction});
           if(result.reason==='WAIT_BIOS_INT16_AH00'){
             reason=result.reason;break;
           }

@@ -2,13 +2,15 @@
 // run the CPU over an empty blocking read or invent elapsed DOS time.
 import {RealMode8086} from './realmode-8086.js';
 
-export function runGuestUntilKeyboardWait(cpu,{keyboardQueue,maxSteps=256}={}){
+export function runGuestUntilKeyboardWait(cpu,{keyboardQueue,maxSteps=256,onBeforeInstruction}={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('guest keyboard step boundary requires RealMode8086');
   if(!keyboardQueue||typeof keyboardQueue.checkKey!=='function')
     throw new TypeError('guest keyboard step boundary requires keyboard FIFO');
   if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>100000)
     throw new RangeError('guest keyboard step budget must be 1..100000');
+  if(onBeforeInstruction!==undefined&&typeof onBeforeInstruction!=='function')
+    throw new TypeError('guest instruction observer must be a synchronous function');
   if(cpu.terminated)
     return Object.freeze({steps:0,reason:'TERMINATED',cs:cpu.get16('CS'),ip:cpu.get16('IP')});
   let steps=0,reason='STEP_BUDGET_EXHAUSTED';
@@ -28,6 +30,15 @@ export function runGuestUntilKeyboardWait(cpu,{keyboardQueue,maxSteps=256}={}){
       if(!state||typeof state!=='object'||typeof state.available!=='boolean')
         throw new Error('guest keyboard FIFO returned invalid availability: fail closed');
       if(!state.available){reason='WAIT_BIOS_INT16_AH00';break;}
+    }
+    // Do not count a blocked BIOS read as an executed/attempted instruction.
+    // Any supported source observer sees a verified, non-waiting CS:IP only.
+    if(onBeforeInstruction!==undefined){
+      const response=onBeforeInstruction(Object.freeze({cs,ip}),cpu);
+      if(response&&typeof response.then==='function')
+        throw new Error('async guest instruction observer: fail closed');
+      if(response!==undefined)
+        throw new Error('guest instruction observer cannot synthesize execution');
     }
     cpu.step();steps++;
   }

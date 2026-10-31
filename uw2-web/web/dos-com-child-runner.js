@@ -28,7 +28,7 @@ export function runStagedDosComChild(cpu,{initialFrame,maxSteps=100000,onInstruc
      DOS_CPU_FRAME_NAMES.some(name=>!Object.hasOwn(initialFrame,name)))
     throw new Error('DOS child initial CPU frame must specify exactly 14 registers');
   for(const name of DOS_CPU_FRAME_NAMES)word(initialFrame[name],name);
-  if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>5000000)
+  if(!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>10000000)
     throw new RangeError('DOS child bounded instruction budget required');
   if(onInstructionBoundary!==undefined&&typeof onInstructionBoundary!=='function')
     throw new TypeError('DOS child instruction boundary observer must be synchronous');

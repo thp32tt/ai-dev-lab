@@ -367,3 +367,9 @@
 - **장시간 원본 OPEN 실행 분석 경로:** 새 `web/guest-execution-hotspots.js`는 사용자가 지정한 실행 단계부터 SHA 고정 원본 바이트를 실행하는 CPU의 **CS:IP 방문 횟수와 레지스터 상태 반복**을 한정된 키 개수·샘플 주기로 집계한다. CPU 게스트 RAM·원본 명령·그래픽/파일 내용은 기록하지 않는다. `tools/p3-open-exec-probe.mjs`에서 `enableHotspots:true`로 사용하며, 기존 N100 전용 `tests/p3-koei-fmdrv-open-irq-original.test.mjs`의 205,000 명령 이후 주소 집계도 메모리 상한이 있는 동일 분석기로 전환했다. 레지스터 재방문은 **메모리/포트/IRQ 상태 미관측 때문에 실제 스톨 증명이 아니며**, 원본 DOS/브라우저 완료율에 가산하지 않는다.
 - 합성 루프·상태 변화·주소/키 상한·부적절한 입력을 검사하는 `tests/guest-execution-hotspots.test.mjs` 추가, UW2 Web Fidelity Static Gate에 등록. 구현 `d6de0ba1948b901e501f43d3da5b7ec55bc3459a`, GitHub Actions `41230412889` **SUCCESS**. CI에는 원본 바이너리가 없으므로 N100 실제 원본을 통한 신규 진단 실행은 이번 커밋에서 **UNTESTED**.
 - **다음 개발:** 검증된 원본 장치/포트 상태와 CPU 반복 상태 샘플을 나란히 비교해, OPEN의 장시간 정체가 원본 그래픽 디코더 진행, 합성 PIT/IRQ 응답 또는 구현 누락 중 무엇과 일치하는지 구별해야 한다. 실제 DOS 레퍼런스/PSP/MCB 및 초기 하드웨어 스냅샷 없이는 무한 루프라 단정하거나 합성 값으로 MAIN 실행 완료를 만들지 않는다. 원본 14파트/640×480 출력의 DOS 및 브라우저 픽셀 동등성, MAIN 게임 진행, OPL/저장 동등성은 **UNTESTED/HOLD**.
+
+### 2026-11-01 DOS 원본 파일 20비트 랩어라운드 전송 복구
+
+- `web/dos-readonly-files.js`: 기존 AH=3Fh가 `DS:DX`의 유효 16비트 오프셋 범위 안에서도 마지막 물리 주소 `FFFFFh`를 넘는 읽기를 무조건 거절하던 문제를 수정한다. 같은 `RealMode8086.physical()` 20비트 주소 랩어라운드에 맞춰 끝부분과 `00000h` 시작 영역에 원본 파일 바이트를 나눠 기록한다. 실제 전송 길이만큼만 커서를 이동한다.
+- 양쪽 물리 구간 모두 VGA A0000h–BFFFFh와 겹치는지 쓰기 전에 검증하고, 확인되지 않은 영상 영역은 계속 fail-closed한다. 원본 세이브 쓰기·화면·음악 등은 변경하지 않는다.
+- `tests/dos-readonly-files.test.mjs`: 실제 8086 INT21 코드 호출로 `FFFF8h`→`00000h` 40바이트 전송, AX/CF·커서·이벤트 원본 시작 물리 주소·기존 VGA 거부를 합성 검증한다. DOS 참조 실기/OPEN→MAIN/브라우저 parity는 **UNTESTED**.

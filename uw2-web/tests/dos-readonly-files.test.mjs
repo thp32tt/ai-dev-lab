@@ -107,4 +107,40 @@ vcall(0x3f00,{bx:5,cx:16,dx:0x200,ds:0x300});
 assert.equal(video.get16('AX'),16);
 assert.deepEqual([...video.memory.slice(0x3200,0x3210)],new Array(16).fill(0x5a));
 
+
+// The original 8086 address bus wraps from FFFFFh to 00000h. DOS AH3F
+// must match CPU segmented addressing for a non-wrapping DS:DX offset range.
+const wrappedCpu=new RealMode8086();
+wrappedCpu.set16('CS',0x100);wrappedCpu.set16('DS',0x300);
+wrappedCpu.load(Uint8Array.of(0xcd,0x21),0x100,0);
+wrappedCpu.write8(0x300,0x40,0x57);wrappedCpu.write8(0x300,0x41,0);
+const transferred=Uint8Array.from({length:40},(_,i)=>i+1);
+const wrappedEvents=[];
+installDosInt21(wrappedCpu,{
+  readOriginalFile:()=>({bytes:transferred}),
+  onFileEvent:e=>{wrappedEvents.push(e);}
+});
+const wcall=(ax,{bx=0,cx=0,dx=0x40,ds=0x300}={})=>{
+  wrappedCpu.set16('AX',ax);wrappedCpu.set16('BX',bx);
+  wrappedCpu.set16('CX',cx);wrappedCpu.set16('DX',dx);
+  wrappedCpu.set16('DS',ds);wrappedCpu.set16('IP',0);wrappedCpu.step();
+};
+wcall(0x3d00);
+assert.equal(wrappedCpu.get16('AX'),5);
+assert.equal(wrappedCpu.physical(0xffff,0x0008),0xffff8);
+wcall(0x3f00,{bx:5,cx:40,dx:0x0008,ds:0xffff});
+assert.equal(wrappedCpu.flag('CF'),false);
+assert.equal(wrappedCpu.get16('AX'),40);
+assert.deepEqual([...wrappedCpu.memory.subarray(0xffff8,0x100000)],
+  [...transferred.subarray(0,8)]);
+assert.deepEqual([...wrappedCpu.memory.subarray(0,32)],
+  [...transferred.subarray(8)]);
+assert.equal(wrappedEvents.at(-1).physical,0xffff8);
+assert.equal(wrappedEvents.at(-1).fileOffset,0);
+assert.equal(wrappedEvents.at(-1).readBytes,40);
+// The cursor advances by actual bytes, not requested bytes or physical spans.
+wcall(0x3f00,{bx:5,cx:1,dx:0x10,ds:0x300});
+assert.equal(wrappedCpu.get16('AX'),0);
+assert.deepEqual([...transferred],Array.from({length:40},(_,i)=>i+1));
+
 console.log('UW2 P3 read-only original-byte DOS 3D/3F/42/3E synthetic regression: PASS');

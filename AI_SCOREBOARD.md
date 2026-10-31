@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 resumable original guest execution session with real BIOS keyboard wait (2026-11-01 KST)
+
+- **One independent source implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material/validation-bearing SHA `fd1be7e27c3d85be1552b39d5a9b0e3d90a81260` adds opt-in `web/guest-original-execution-session.js` owning one explicit external keyboard FIFO and actual BIOS INT16 AH00 guest step gate. It retains CPU state and CS:IP on empty keyboard wait, resumes only after caller enqueues real keys, and enforces independently bounded instruction slices and cumulative total budget without fabricating clock, keys, or game logic. `tools/p3-open-exec-probe.mjs` connects its existing opt-in keyboard queue through the shared session. New native 8086 synthetic test covers waiting, unchanged IP, real queue consumption, RAM write, actual DOS INT21 AH4C termination, total budget, invalid input and BIOS owner collision.
+- **Exact-SHA Actions:** `UW2 Web Fidelity Static Gate` run `41243311468` `synthetic-static` **SUCCESS** at the exact SHA above. This is synthetic execution only: no N100 private original Korean OPEN.EXE replay, original DOS reference, OPEN→MAIN transition, browser key/DOM binding, audio/VGA/save or complete-game parity is proven (**UNTESTED/HOLD**). Tests, CI, docs, readback and same-achievement follow-ups +0.
+- **AI 2 cumulative: previous confirmed 2316 + one independent verified source implementation (+1) = 2317.** AI 1 separate.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 explicit external guest IRQ edge decision evidence (2026-11-01 KST)
 
 - **One independent source outcome (+1):** `thp32tt/ai-dev-lab@uw2-web-port` native 8086 CPU single-owner `externalIrqObserver` now receives the actual `deliverExternalMaskableIrq` outcomes for masked IF, deferred STI/SS shadow, or a successfully dispatched installed IVT vector. The original OPEN opt-in bounded progress witness counts those explicit externally requested outcomes without storing source names/bytes or generating PIT/PIC edges. Source material SHA `2b20a2ba2344e316ade0998c9f8ea6d39b29b04d`. First Actions `41242990403` failed on a synthetic-only test callback accidentally returning Array.push length; repaired within the same achievement at final **validation-bearing SHA `2356e654269b88332c6b3cb65ecf0add31110998`**, exact-SHA Actions `41243023547` `synthetic-static` **SUCCESS**. The same test fixture correction is +0.

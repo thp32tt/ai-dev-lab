@@ -68,3 +68,19 @@ for(const budget of [0,-1,15000001,1.5,Infinity])
     keyboardQueue:createBiosKeyboardQueue(),maxTotalSteps:budget
   }),/total step budget/);
 console.log('UW2 native original guest execution session wait/resume/total bound and DOS exit: PASS');
+
+const failedCpu=new RealMode8086();
+failedCpu.load(Uint8Array.of(0xec,0x90),0x380,0); // IN AL,DX; NOP
+failedCpu.set16('CS',0x380);failedCpu.set16('DX',0x388);
+const failedSession=createGuestOriginalExecutionSession(failedCpu,{
+  keyboardQueue:createBiosKeyboardQueue()
+});
+assert.throws(()=>failedSession.runSlice(10),/no device adapter: fail closed/);
+const ipAfterFault=failedCpu.get16('IP');
+assert.equal(ipAfterFault,1); // real IN instruction consumed opcode before failure
+assert.equal(failedSession.snapshot().faulted,true);
+assert.equal(failedSession.snapshot().lastReason,'FAULTED');
+assert.equal(failedSession.snapshot().totalExecutedSteps,0);
+assert.throws(()=>failedSession.runSlice(10),/faulted original guest execution session cannot resume/);
+assert.equal(failedCpu.get16('IP'),ipAfterFault); // never advance into NOP
+assert.equal(failedSession.snapshot().totalExecutedSteps,0);

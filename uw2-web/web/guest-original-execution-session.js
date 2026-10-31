@@ -18,10 +18,10 @@ export function createGuestOriginalExecutionSession(cpu,{
   // Fail on an existing BIOS vector/adapter, never silently override a
   // device already installed by another original DOS execution owner.
   installBiosInt16(cpu,{keyboardQueue});
-  let executed=0,slices=0,lastReason=null,running=false;
+  let executed=0,slices=0,lastReason=null,running=false,faulted=false;
   const status=()=>Object.freeze({
     totalExecutedSteps:executed,remainingSteps:maxTotalSteps-executed,
-    slices,lastReason,terminated:!!cpu.terminated,
+    slices,lastReason,terminated:!!cpu.terminated,faulted,
     cs:cpu.get16('CS'),ip:cpu.get16('IP'),
     fidelity:'ORIGINAL_GUEST_STEPS_ONLY__NO_HOST_CLOCK_OR_SYNTHETIC_KEY_EVENTS'
   });
@@ -29,6 +29,10 @@ export function createGuestOriginalExecutionSession(cpu,{
     if(!Number.isSafeInteger(maxSteps)||maxSteps<1||maxSteps>100000)
       throw new RangeError('original execution slice must be 1..100000 steps');
     if(running)throw new Error('reentrant original guest execution is forbidden');
+    // An I/O, BIOS, DOS, IRQ or unsupported-opcode fault may already have
+    // advanced IP or partially committed guest/device state. This is never
+    // a resumable key wait and must not silently skip the failed instruction.
+    if(faulted)throw new Error('faulted original guest execution session cannot resume: fail closed');
     running=true;
     let steps=0,reason='SLICE_STEP_BUDGET_EXHAUSTED';
     try{
@@ -52,6 +56,7 @@ export function createGuestOriginalExecutionSession(cpu,{
       lastReason=reason;slices++;
       return Object.freeze({steps,reason,...status()});
     }catch(error){
+      faulted=true;lastReason='FAULTED';
       if(error instanceof Error){
         error.guestCS=cpu.get16('CS');
         error.guestIP=cpu.get16('IP');

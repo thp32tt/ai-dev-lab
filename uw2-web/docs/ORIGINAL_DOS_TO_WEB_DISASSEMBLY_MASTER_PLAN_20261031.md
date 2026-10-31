@@ -435,3 +435,8 @@
 
 - `web/browser-original-guest-bridge.js`에서 이미 존재하는 신뢰 키 이벤트 번역기·BIOS FIFO·실행 세션을 연결한다. 검증된 caller의 `RealMode8086`와 명시적 event target만 허용하고 실제 keydown을 enqueue하여 키 대기 중인 원본 `INT16 AH00`이 이후 `runSlice` 호출에서 동일 CS:IP로 실행된다. 브라우저 문서 전체를 임의 탈취하거나 자동 타이머·가짜 키·원작 UI를 생성하지 않는다. 해제(detach) 가능하며 기존 BIOS 소유자가 있으면 연결 실패 시 event listener를 반드시 정리한다.
 - 테스트는 synthetic trusted/untrusted 이벤트와 실제 8086 머신 명령을 이용해 입력 누락→WAIT→실제 FIFO 수락/넘침→동일 IP 재개→메모리 기록→DOS 종료, 이벤트 해제/예외 소유권 정리와 누적 명령 한도를 확인한다. `app.js` 기본 프리뷰에 연결하지 않았고 실제 브라우저 운영체제 KeyboardEvent, 한국어 원본 `OPEN.EXE` 실행, VGA/음악/저장 및 `OPEN→MAIN`은 **UNTESTED/HOLD**.
+
+### 2026-11-01 P3 원본 CPU 실행 장치 오류 후 재개 금지
+
+- `createGuestOriginalExecutionSession`은 **실제 BIOS AH00 키 대기(WAIT)** 와 하드웨어/DOS/지원하지 않는 명령 실행 중 발생한 예외를 엄격하게 분리한다. 오류 시 일부 I/O 부작용이나 IP 선진행이 발생했을 가능성이 있으므로 세션을 `faulted`로 래치하고 이후 `runSlice`를 fail closed 거부한다. 재대기는 WAIT로만 표시하며 정상적인 키 대기/재개/종료에는 영향을 주지 않는다.
+- 합성 `IN AL,DX`의 미등록 388h 장치 접근 오류는 예외 시 실제 IP가 하나 선진행하는 것을 관찰하며, 오류 이후 원본 명령을 임의로 건너뛰는 재실행이 차단되는지를 기존 세션 회귀와 전체 GitHub CI에서 검증한다. 본 조치는 원본 DOS 장치를 구현한 것이 아니며 모든 CPU 스텝을 원자적으로 롤백한다는 주장은 하지 않는다. 실제 원본의 장치/실행 경로는 계속 **UNTESTED/HOLD**.

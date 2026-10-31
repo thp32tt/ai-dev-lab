@@ -34,12 +34,25 @@ export function createBrowserDosChildBridge({
     queue:queue.snapshot(),detached,
     fidelity:'EXPLICIT_BROWSER_KEYS_TO_STAGED_ORIGINAL_DOS_CHILD__DOS_REFERENCE_UNTESTED'
   });
-  return Object.freeze({
-    runSlice:maxSteps=>child.runSlice(maxSteps),
-    abort:()=>child.abort(),
-    detach(){
-      if(!detached){binding.detach();detached=true;}
-    },
-    snapshot
-  });
+  const detach=()=>{
+    if(!detached){binding.detach();detached=true;}
+  };
+  const runSlice=maxSteps=>{
+    try{
+      const result=child.runSlice(maxSteps);
+      // Once a native DOS child has finished, no parent input may be
+      // intercepted by the former child keyboard owner.
+      if(result.state!=='ACTIVE')detach();
+      return result;
+    }catch(error){
+      if(child.snapshot().state!=='ACTIVE')detach();
+      throw error;
+    }
+  };
+  const abort=()=>{
+    const result=child.abort();
+    detach();
+    return result;
+  };
+  return Object.freeze({runSlice,abort,detach,snapshot});
 }

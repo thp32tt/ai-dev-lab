@@ -48,6 +48,8 @@ assert.equal(complete.steps,5);
 assert.deepEqual(captureDosCpuFrame(cpu),parent);
 assert.equal(cpu.read8(0x500,0x200),97);
 assert.equal(b.snapshot().queue.consumed,1);
+assert.equal(b.snapshot().detached,true); // auto detach on real child exit
+assert.equal(listeners.has('keydown'),false);
 b.detach();b.detach();
 assert.equal(removed,1);
 assert.equal(b.snapshot().detached,true);
@@ -67,7 +69,21 @@ const abortBridge=createBrowserDosChildBridge({
 });
 assert.equal(abortBridge.runSlice(1).state,'ACTIVE');
 assert.equal(abortBridge.abort().state,'ABORTED');
+assert.equal(abortBridge.snapshot().detached,true); // explicit abort owns cleanup
 abortBridge.detach();
+assert.equal(listeners.size,0);
+const faultCpu=new RealMode8086();
+faultCpu.load(Uint8Array.of(0xec),0x700,0);
+faultCpu.set16('DX',0x388);
+const faultParent=captureDosCpuFrame(faultCpu);
+const faultFrame={...frame,CS:0x700,DS:0x700,ES:0x700,SS:0x700};
+const faultBridge=createBrowserDosChildBridge({
+  cpu:faultCpu,target,initialFrame:faultFrame
+});
+assert.throws(()=>faultBridge.runSlice(1),/no device adapter: fail closed/);
+assert.equal(faultBridge.snapshot().child.state,'FAULTED');
+assert.equal(faultBridge.snapshot().detached,true);
+assert.deepEqual(captureDosCpuFrame(faultCpu),faultParent);
 assert.equal(listeners.size,0);
 assert.ok(Object.isFrozen(b.snapshot()));
 console.log('UW2 browser trusted key to original DOS child pause/resume/parent-frame restoration: PASS (synthetic)');

@@ -497,3 +497,8 @@
 
 - `browser-dos-child-bridge.js`는 이미 별도 stage된 원본 8086 child CPU frame과 명시적 사용자 소유 이벤트 타깃을 받는다. 기존 `attachBrowserBiosKeyboard`의 신뢰 가능한 이벤트 필터→원본 BIOS 키 FIFO를 `createStagedDosChildContinuation`의 동일 CPU 경로에 전달한다. BIOS INT16 AH00는 실제 키가 없으면 같은 CS:IP로 기다리고, 입력이 오면 원본 명령을 실행하며 자식 정상 종료 시 부모 CPU 프레임을 복원한다. 전역 listener/자동 프레임 타이머/게임화면 현대화/가짜 DOS 종료 상태를 만들지 않는다.
 - 잘못된 초기 child frame이나 이미 점유한 INT16을 만나면 등록한 키 이벤트 리스너를 제거한다. 실행 슬라이스·자식 abort·키 이벤트 detach는 명시적 API로만 제어한다. 합성 JS event-target/8086 opcode 회귀로 키 없는 대기, 검증 실패한 이벤트 거부, trusted 이벤트 처리, 원본 DOS AH4C 종료·프레임 복원·중복 리스너 제거를 검증했다. 실제 브라우저 키보드 권한·최종 OPEN/MAIN 시각/음향·원작 등가성은 **UNTESTED/HOLD**.
+
+### 2026-11-01 브라우저 DOS 자식 종료 시 입력 소유권 수리 및 원본 120k 폴링 증거
+
+- 브라우저 DOS child의 종료·명시적 abort·실패 후 `keydown` 리스너가 남아 부모 웹 UI의 키를 가로채지 않도록 `browser-dos-child-bridge.js`에서 소유 리스너를 자동 해제한다. 입력 오류나 잘못된 실행 slice 인자로 아직 활성인 세션을 무조건 파괴하지 않고, child 상태가 실제 terminal/faulted인 경우에만 자동 해제한다. Native `IN AL,DX` I/O 장치 누락으로 child FAULTED→부모 frame 복원→키 리스너 제거 합성 검증을 추가했다. 이 수정은 최초 브라우저 child bridge 성과 내 수리이며 별도 점수 중복 없음.
+- 별도 N100 소유 원본 FMDRV TSR 30,644명령→OPEN 120,000명령 native 계속 실행 진단에서 사용자 소유 FMDRV `0400:0108` 및 OPEN `0610:1835` 주기 경로가 약 5,111회 반복된 것을 관측했다. 이 반복이 실제 원본 DOS의 시간/IRQ 동작과 동등하다는 자료는 아직 **없다**. 현재 합성 PORT/PIT/IVT 조건의 pending 하드웨어 증거 갭이며, 이 진단만으로 가짜 clock tick/INT66 응답·화면 프레임을 생성하거나 완료를 선언하지 않는다.

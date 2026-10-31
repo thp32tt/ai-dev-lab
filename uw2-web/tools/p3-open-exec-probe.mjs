@@ -13,8 +13,7 @@ import {loadPinnedDosPsp} from '../web/dos-psp-snapshot.js';
 import {installPinnedDosIvtSnapshot} from '../web/dos-ivt-snapshot.js';
 import {installDosInt21} from '../web/dos-int21.js';
 import {createGuestOriginalExecutionSession} from '../web/guest-original-execution-session.js';
-import {pendingGuestDosIvtVector,supplyPinnedGuestDosIvtVector} from '../web/guest-dos-ivt-await.js';
-import {pendingGuestExternalInterrupt} from '../web/guest-external-interrupt-await.js';
+import {supplyPinnedGuestDosIvtVector} from '../web/guest-dos-ivt-await.js';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const metadata=JSON.parse(fs.readFileSync(path.join(base,'docs/original-baseline-20261031.json'),'utf8'));
 const pin=metadata.coreExecutables.find(x=>x.name==='OPEN.EXE');
@@ -97,7 +96,8 @@ export async function createOriginalOpenProbeSession(original,{
      serviceHistory.observe({ah:machine.get8('AH'),al:machine.get8('AL'),cs,ip},machine);
  };
  const cpuSession=createGuestOriginalExecutionSession(machine,{
-   keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction:beforeInstruction
+   keyboardQueue,maxTotalSteps:maxSteps,onBeforeInstruction:beforeInstruction,
+   pauseOnMissingDosIvt,pauseOnMissingGuestInterrupt
  });
  const snapshot=()=>{
    const dosCalls=serviceHistory.summarize();
@@ -132,15 +132,10 @@ export async function createOriginalOpenProbeSession(original,{
      for(let performed=0;performed<sliceSteps&&steps<maxSteps&&!machine.terminated;){
        const cs=machine.get16('CS'),ip=machine.get16('IP');
        try{
-         if(pauseOnMissingDosIvt){
-           const pending=pendingGuestDosIvtVector(machine);
-           if(pending){stopped=pending;break;}
-         }
-         if(pauseOnMissingGuestInterrupt){
-           const pending=pendingGuestExternalInterrupt(machine);
-           if(pending){stopped=pending;break;}
-         }
          const gate=cpuSession.runSlice(1);
+         // The exact source preflight is owned by this same native CPU
+         // execution session, not duplicated in the outer OPEN probe.
+         if(gate.waiting){stopped=gate.waiting;break;}
          if(gate.reason==='WAIT_BIOS_INT16_AH00'){
            stopped={cs,ip,reason:gate.reason};break;
          }

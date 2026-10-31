@@ -139,3 +139,22 @@ assert.equal(oldSession.snapshot().faulted,true);
 assert.throws(()=>createGuestOriginalExecutionSession(new RealMode8086(),{
  pauseOnMissingExternalInterrupts:'yes'
 }),/opt-in must be boolean/);
+
+// Independent selection of external prerequisites is source-gated, never
+// a blanket bypass of an actually unsupported INT instruction.
+const onlyDos=new RealMode8086();
+onlyDos.load(Uint8Array.of(0xcd,0x66),0x500,0);
+onlyDos.set16('CS',0x500);
+const dosOnly=createGuestOriginalExecutionSession(onlyDos,{
+ pauseOnMissingDosIvt:true,pauseOnMissingGuestInterrupt:false
+});
+assert.throws(()=>dosOnly.runSlice(2),/unknown initial DOS interrupt vector|no installed|not registered|unowned|unsupported|unknown/i);
+assert.equal(dosOnly.snapshot().faulted,true);
+const onlyExternal=new RealMode8086();
+onlyExternal.load(Uint8Array.of(0xcd,0x66),0x500,0);
+onlyExternal.set16('CS',0x500);
+const externalOnly=createGuestOriginalExecutionSession(onlyExternal,{
+ pauseOnMissingGuestInterrupt:true,pauseOnMissingDosIvt:false
+});
+assert.equal(externalOnly.runSlice(3).reason,'WAIT_EXTERNAL_GUEST_INTERRUPT_HANDLER');
+assert.equal(externalOnly.snapshot().totalExecutedSteps,0);

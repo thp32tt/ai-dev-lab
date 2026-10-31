@@ -9,7 +9,9 @@ import {pendingGuestExternalInterrupt} from './guest-external-interrupt-await.js
 
 export function createGuestOriginalExecutionSession(cpu,{
   keyboardQueue,maxTotalSteps=1000000,onBeforeInstruction,
-  pauseOnMissingExternalInterrupts=false
+  pauseOnMissingExternalInterrupts=false,
+  pauseOnMissingDosIvt=pauseOnMissingExternalInterrupts,
+  pauseOnMissingGuestInterrupt=pauseOnMissingExternalInterrupts
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original execution session requires RealMode8086');
@@ -19,7 +21,9 @@ export function createGuestOriginalExecutionSession(cpu,{
     throw new TypeError('original execution session requires a shared external BIOS FIFO');
   if(!Number.isSafeInteger(maxTotalSteps)||maxTotalSteps<1||maxTotalSteps>15000000)
     throw new RangeError('original execution total step budget must be 1..15000000');
-  if(typeof pauseOnMissingExternalInterrupts!=='boolean')
+  if(typeof pauseOnMissingExternalInterrupts!=='boolean'||
+     typeof pauseOnMissingDosIvt!=='boolean'||
+     typeof pauseOnMissingGuestInterrupt!=='boolean')
     throw new TypeError('native source dependency wait opt-in must be boolean');
   if(onBeforeInstruction!==undefined&&typeof onBeforeInstruction!=='function')
     throw new TypeError('original execution observer must be synchronous');
@@ -55,8 +59,8 @@ export function createGuestOriginalExecutionSession(cpu,{
           // Source-backed unresolved DOS AH35 or native INT imm8 is not a
           // fault: do not advance guest IP, stack, counters or observers.
           // Resume only after a real external provider installs the handler.
-          waiting=pauseOnMissingExternalInterrupts?
-            (pendingGuestDosIvtVector(cpu)||pendingGuestExternalInterrupt(cpu)):null;
+          waiting=(pauseOnMissingDosIvt?pendingGuestDosIvtVector(cpu):null)||
+            (pauseOnMissingGuestInterrupt?pendingGuestExternalInterrupt(cpu):null);
           if(waiting){reason=waiting.reason;break;}
           // Exactly one genuine CPU instruction per owned boundary.
           // A blocked AH00 must leave the guest CS:IP and FIFO untouched.

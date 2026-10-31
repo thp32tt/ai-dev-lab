@@ -27,14 +27,34 @@ export class RealMode8086 {
     this.interruptAdapters = new Map();
     this.portHandlers = new Map();
     this.terminated = null;
+    this.memoryWriteObserver = null; // Opt-in, never a synthetic VGA framebuffer.
   }
+  installMemoryWriteObserver(observer) {
+    if(typeof observer!=='function'||this.memoryWriteObserver!==null)
+      throw new Error('8086 memory write observer must be a single synchronous callback');
+    this.memoryWriteObserver=observer;
+  }
+  removeMemoryWriteObserver() {this.memoryWriteObserver=null;}
   physical(segment, offset) {
     return (((u16(segment,'segment') << 4) + u16(offset,'offset')) & 0xfffff);
   }
   read8(segment, offset) { return this.memory[this.physical(segment, offset)]; }
   write8(segment, offset, value) {
     if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('byte must be uint8');
-    this.memory[this.physical(segment, offset)] = value;
+    const physical=this.physical(segment,offset);
+    // An optional passive sink can record original byte writes, including
+    // A000/B800 apertures. It may not synthesize values or access history.
+    // Observe before committing RAM so a refused callback cannot mutate it.
+    if(this.memoryWriteObserver!==null){
+      const response=this.memoryWriteObserver(Object.freeze({
+        segment,offset,physical,value,previous:this.memory[physical]
+      }),this);
+      if(response&&typeof response.then==='function')
+        throw new Error('async 8086 memory-write observer: fail closed');
+      if(response!==undefined)
+        throw new Error('8086 memory-write observer cannot synthesize values');
+    }
+    this.memory[physical] = value;
   }
   read16(segment, offset) {
     return this.read8(segment, offset) | (this.read8(segment, (offset + 1) & 0xffff) << 8);

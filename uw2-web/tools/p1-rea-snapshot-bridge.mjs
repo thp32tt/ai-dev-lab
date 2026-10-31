@@ -43,7 +43,7 @@ export function extractReaSnapshotCandidates(snapshot,bytes,{
   if(!Array.isArray(artifact)||!artifact.some(a=>a.digest?.sha256===expectedSha256))
     throw new Error('REA artifact SHA-256 does not match original executable');
   const binding=snapshot.binding?.provider;
-  if(binding?.id!=='ghidra'||typeof binding.version!=='string')
+  if(binding?.id!=='ghidra'||typeof binding.version!=='string'||!binding.version.trim())
     throw new Error('Ghidra provider identity/version missing from REA snapshot');
   const records=snapshot.evidence_bundle?.records;
   if(!Array.isArray(records))throw new Error('REA evidence records missing');

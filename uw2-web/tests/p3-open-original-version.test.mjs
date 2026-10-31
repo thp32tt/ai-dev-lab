@@ -9,7 +9,7 @@ const baseline=await probeOriginalOpen(original,{allocationParagraphs:3390});
 assert.equal(baseline.sha256,'f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65');
 assert.equal(baseline.image.relocations,23);
 assert.equal(baseline.steps,1);
-assert.match(baseline.stopped.message,/AH=30/);
+assert.match(baseline.stopped.message,/AH30/);
 const supplied=[];
 const injected=await probeOriginalOpen(original,{
  allocationParagraphs:3390,maxSteps:10000,

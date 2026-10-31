@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 VR focus visual recovery + all safe R26 performance and quiet launcher (2026-11-01 KST)
+
+- **Distinct implementation:** `thp32tt/OutRun2006Tweaks@test/r26-focus-all-perf-no-trace-20261101` final exact source/build SHA `9e53199adb49ed939797136e969c2b83723f6802`, based on focus visual source `9e26abe49fc414ae8eeaa9f3bbebe16ab618d385`. Merged five R26 copy/math optimization commits `0b39f432`, `36d5882d`, `6b75e5cb`, `73e1bfc5`, `8ee0bc11` while preserving focus XR/menu/HUD/lens/+TIME fixes. Game VR telemetry defaults false; the host's per-XR-frame full trace is opt-in and skips its per-frame string construction by default; the XR pixel probe is disabled in the native high-resolution DirectGPU-only quiet launcher. The previously white-screen-producing unconditional mono removal was intentionally excluded.
+- **Exact-SHA compilation and CI:** dedicated `R26 Focus Visual + All Safe Performance Quiet Test Build` run `41221914246` **SUCCESS**, source `9e53199adb49ed939797136e969c2b83723f6802`: focus XR/UI/R26 +TIME/particle/flare regression gates PASS, integrated performance/quiet configuration PASS, Windows Win32 `dinput8.dll` compiled, matching x64 `outrun-vr-host.exe` compiled, full runnable ZIP and launcher packaged. Artifact ID `13050333129`, GitHub Actions artifact outer SHA-256 `decdbda7c80d882041e4e64981475109f4210365e9489cb9b1f9553047ff06ea`. Quest runtime GPU frametime, image correctness and performance improvement remain **UNTESTED**.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2294 + independent visual-owner-preserving integrated performance build and exact-SHA CI +1 = 2295.** Same-task debugging/retry/packaging checks count +0. AI 1 unchanged.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 DX9Ex Quest contained front-end/loading + PMT counter-lock repair (2026-11-01 KST)
 
 - **Distinct HMD-log-driven source repair:** owner `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, initial material SHA `58978baa5f86ba74935e9d683e98c830b19d2cef`, final source/validation-bearing SHA `24a9d986905a84a8d733354f7fcddd082df69300`. Owner bundle `DX9EX_LOG_R26_VISUAL_OWNER_REPAIR_AA2_TEST_20261101-012323.zip` and screenshots proved the prior physical-canvas mapping stretched the 1920x1080 logical front-end independently into the 2496x2688 XR target (`scaleX=1.30`, `scaleY=2.48888898`), matching the face-close oversized menu, lower-bar overrun, upper-left loading image and detached black rectangles. The mapping now uses one contain scale 1.30 with centered placement (current Quest extent gives Y offset 642 px), admits observed `STATE_SYSTEM` and `STATE_START` front-end/loading owners, and still excludes `STATE_GAME`.

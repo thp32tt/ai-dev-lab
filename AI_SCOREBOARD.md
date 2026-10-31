@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native VGA DAC known-palette readback (2026-11-01 KST)
+
+- **Independent game-hardware source implementation:** `thp32tt/ai-dev-lab@uw2-web-port` material and validation-bearing SHA `4097eb0d4e3efea224d5ef747cef18540b34a26a`. Add opt-in original 8086 DAC 3C7h read-index and 3C9h RGB read-stream adapter using only previous complete witnessed 3C8/3C9 palette triplets, 255→0 auto-index wrap, unknown/partial update invalidation, read-budget guards and no unproven high-bit truncation. New native IN AL,DX tests `uw2-web/tests/vga-dac-readback.test.mjs`, exact-SHA `UW2 Web Fidelity Static Gate` run `41223747043` **SUCCESS**. Actual original OPEN.EXE usage and DOS/monitor color parity still UNTESTED. Prior related VGA B000 aperture fail-closed correction was a same-task follow-up at `035da7402c5b9854e4e09ad8fed0654156d1d981` run `41223545682` **SUCCESS**, scored +0.
+- **AI 2 cumulative: previous confirmed GitHub SSOT 2298 + new independent VGA DAC readback source path +1 = 2299.** Repeated CI, assertion repairs and previous VGA aperture follow-ups +0. AI 1 remains separate.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 VGA 64KiB planar latch/readmode1 + optional indexed readback (2026-11-01 KST)
 
 - **Independent original-source hardware modeling #1 (+1):** `thp32tt/ai-dev-lab@uw2-web-port` VGA material SHA `13f40dd6fc02793c42680c90ecf91d9f0332dd00`, validation-bearing SHA `18457571878278bbbecb9802a932df165904c697`. Extend native A000 graphics plane evidence to 64KiB per plane while keeping only 38,400 bytes of 640x480 visible coverage. Add GC02/GC07 read-mode-1 comparison, CPU-read latch capture, source-witnessed write modes 0/1/2 with rotate/set-reset/ROP/mask and fail-closed unverified latches. Exact-SHA GitHub `UW2 Web Fidelity Static Gate` run `41223105827` **SUCCESS**; original DOS and browser screen parity UNTESTED.

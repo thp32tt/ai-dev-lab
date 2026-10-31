@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 provider-backed guest memory-read evidence (2026-11-01 KST)
+
+- **One independent source-verified memory-map observation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact material/validation SHA `22b22b114327a337373634293ca827d7e2090d26` adds a single passive, opt-in memory-read observer that fires only for a successful explicit external memoryReadProvider uint8 response; ordinary guest RAM reads, rejected bytes and async providers are not counted. The bounded progress witness distinguishes A0000h–BFFFFh provider-backed VGA-area reads from other provider-backed reads, stores counts only, and never records raw bytes. Existing OPEN observer ownership check covers CPU write, port and provider-read observers. Native 8086 MOV moffs/phys-address/owner/async-failure synthetic tests and the existing static suite passed.
+- **Exact-SHA GitHub Actions:** `UW2 Web Fidelity Static Gate` run `41242813090` `synthetic-static` **SUCCESS**. This is one new source feature (+1); CI runs, documentation, readback and same-feature extensions +0. Original Korean DOS OPEN.EXE long-run provider fidelity, real VGA image/audio and MAIN browser execution are **UNTESTED/HOLD**.
+- **AI 2 cumulative: previous confirmed 2314 + one independent verified source outcome (+1) = 2315.** AI 1 independent.
+
+Updated: 2026-11-01 KST
+
+
 ## AI 2 UW2 original guest I/O and bounded long-run DOS call tracing (2026-11-01 KST)
 
 - **Independent CPU I/O progress integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material exact SHA `9246eda8cceead217bab172c5f8a66d3e1a50924` adds one opt-in passive successful IN/OUT CPU observer, source-aware bounded OPL(388/389)/VGA(3B0–3DF)/PIT(40–43)/other port write plus read counters in the existing memory/DOS progress witness, and OPEN probe ownership checks. Existing hardware adapter callbacks are not replaced. Synthetic code and error/ownership regressions included. GitHub Actions `41242377238` `synthetic-static` **SUCCESS** at that exact SHA.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 주말 이용 가능 연간권·시즌권 독립 조회 (2026-11-01 08:12:33 KST)
+
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-11-01T08:12:33+09:00`. AI 2의 2026-11-01 KST 독립 시장 조사. SEA LIFE 코엑스 공식 2026 마지막 79,000원(정상가 130,000원) 싱글패스 행사는 2026-10-31 23:59 종료. 공식 일반 연간권 페이지는 99,000원 싱글패스를 **11/2부터 구매 가능**으로 안내하며 11/1 현재 새 특가/즉시 결제 가능한 대체품으로 단정하지 않음. 구매월별 등록/유효기간 제한이 있어 등록 최종 기한은 별도 확인 필요. 기존 레고랜드+씨라이프 코엑스 더블패스 신규 119,000원/재가입 99,000원, 구매일부터 1년, 운영일 주말 이용 가능(레고랜드 휴장일 제외), 36개월 미만 무료, 레고랜드 기본 무료주차 없음은 직전 안내와 동일. 아쿠아플라넷 일산 공식 한국어 연간권 130,000원(평일 오후 90,000원은 주말 불가), 웅진플레이도시 일반 1회권 및 서울랜드/원마운트/키즈체험시설 등 새로 검증된 주말 다회/시즌 특가 없음. 동일 상품 반복 알림 제외. 새로 판매가 확인되지 않은 시설에 대해 판매 부재를 단정하지 않음.
+- Evidence: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/y26-ap-single-flash-sale/ ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://www.legoland.kr/티켓요금할인/연간-이용권/구매-및-혜택/ ; https://m.aquaplanet.co.kr/ilsan/guide/schedule/charge.do ; https://playdoci.com/Common/Pop_FeeInfo.aspx . No new user-facing deal notification.
+- **AI 2 cumulative: previous confirmed 2332 + independent completed daily market check (+1) = 2333.** AI 1 unchanged; same RUN_KEY repeat/retry +0.
+
+Updated: 2026-11-01 08:12:33 KST
+
 ## AI 2 UW2 original FMDRV native IRQ edge, safe IVT staging, pinned replay and PIC command evidence (2026-11-01 KST)
 
 - **One independently verified host-provided IRQ edge into persistent original DOS child (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material `52313297e0d7f0d4cc07a9ee1f5d5e8de9b8bd82`, exact GitHub Actions `41249287316` SUCCESS. Adds bounded `web/guest-external-irq-queue.js` into native `dos-child-continuation.js`, one explicitly provided source edge admitted at each instruction-slice boundary, IF masking, STI/SS inhibit, actual IVT ISR/IRET and bounded pending/discard counters; no self-generated PIT clock/IRQ. Same-feature hard budget repair `b8dc84f93d5758ae6225129bae179f80b630db99`, exact Actions `41249685547` SUCCESS: no stray ISR delivery after the CPU instruction cap (+0).

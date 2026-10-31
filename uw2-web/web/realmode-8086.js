@@ -12,12 +12,20 @@ const u16 = (v, label) => {
   return v;
 };
 export class RealMode8086 {
-  constructor(memory = new Uint8Array(0x100000), {enable80186Shifts=false}={}) {
+  constructor(memory = new Uint8Array(0x100000), {
+    enable80186Shifts=false,interruptibleRepStrings=false
+  }={}) {
     if (!(memory instanceof Uint8Array) || memory.length !== 0x100000)
       throw new TypeError('real mode requires exactly 1 MiB of byte-addressable memory');
     if(typeof enable80186Shifts!=='boolean')
       throw new TypeError('explicit 80186 immediate-shift capability must be boolean');
+    if(typeof interruptibleRepStrings!=='boolean')
+      throw new TypeError('interruptible REP string capability must be boolean');
     this.enable80186Shifts=enable80186Shifts;
+    // Explicit opt-in: each REP iteration is one host-observable boundary,
+    // without changing the architectural 8086 instruction or guest bytes.
+    // The default keeps historical synthetic trace step budgets unchanged.
+    this.interruptibleRepStrings=interruptibleRepStrings;
     this.memory = memory;
     this.regs = new Uint16Array(8);
     this.seg = {CS:0,DS:0,ES:0,SS:0};
@@ -358,13 +366,14 @@ export class RealMode8086 {
   isMaskableIrqShadowed() { return this.maskableIrqShadow !== 0; }
   step() {
     if(this.terminated)throw new Error('DOS process terminated: cannot execute more instructions');
-    // The external host delivers IRQs only at instruction boundaries.
-    // Consume the previous inhibition on entry, but a fresh STI/SS load
-    // performed below starts a new one-instruction inhibition.
-    if(this.maskableIrqShadow>0)this.maskableIrqShadow--;
-    return this.executeInstruction();
+    // STI/MOV SS/POP SS delay an IRQ through the complete following
+    // architectural instruction. REP iterations become interruptible only
+    // without this one-instruction hardware mask.
+    const shadowedFollower=this.maskableIrqShadow!==0;
+    this.maskableIrqShadow=0;
+    return this.executeInstruction(shadowedFollower);
   }
-  executeInstruction() {
+  executeInstruction(shadowedFollower=false) {
     if(this.terminated)throw new Error('DOS process terminated: cannot execute more instructions');
     const cs=this.seg.CS, at=this.ip;
     let op=this.fetch8(),segmentOverride=null,repeatPrefix=null,prefixes=0;
@@ -413,8 +422,16 @@ export class RealMode8086 {
         left--;
         this.set16('CX',left);
         // On REPE/REPNE CMPS/SCAS the continuation condition is evaluated
-        // after the first comparison; MOVS/STOS/LODS ignore ZF.
+        // after each comparison; MOVS/STOS/LODS ignore ZF.
         if((isCmp||isSca)&&this.flag('ZF')!==(repeatPrefix===0xf3))break;
+        // A repeated string operation is one 8086 instruction, but real
+        // hardware may accept an IRQ *between* REP iterations. Rewinding
+        // to the start of all prefixes makes the saved INT/IRET return IP
+        // resume with the updated CX/SI/DI/FLAGS, not replay the prior byte.
+        // Do not yield across a preceding STI or SS-load inhibition.
+        if(this.interruptibleRepStrings&&!shadowedFollower&&left>0){
+          this.ip=at;break;
+        }
       }
       return;
     }

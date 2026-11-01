@@ -103,6 +103,7 @@ jobs:
           node uw2-web/tests/native-checkpoint-singleflight.test.mjs
           node uw2-web/tests/native-korean-save-source.test.mjs
           node uw2-web/tests/native-port-arrival.test.mjs
+          node uw2-web/tests/native-port-call-recovery.test.mjs
           node uw2-web/tests/native-town-message-source.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs
           node uw2-web/tests/native-char-canvas-cache.test.mjs

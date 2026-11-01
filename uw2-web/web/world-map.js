@@ -270,21 +270,35 @@ const DIRS=[
   [0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]
 ];
 export function findPortCallTarget(state, ports) {
-  if (!state || !Array.isArray(ports)) return null;
+  if (!state || !Array.isArray(ports) ||
+      !Number.isSafeInteger(state.x)||!Number.isSafeInteger(state.y))
+    return null;
+  const candidates=[];
   for (const port of ports) {
-    if (!port?.name) continue;
+    if (!port?.name||!Number.isSafeInteger(port.x)||
+        !Number.isSafeInteger(port.y))continue;
     let dx = port.x - state.x;
     // World X wraps.
     if (dx > WORLD_CHIP_W / 2) dx -= WORLD_CHIP_W;
     if (dx < -WORLD_CHIP_W / 2) dx += WORLD_CHIP_W;
     const dy = port.y - state.y;
-    // Original Port Call scans the 12 positions in the 4x4 ring around the
-    // fleet's occupied 2x2 block.
+    // Preserve the traced original 12-position 4x4 admission ring first.
     const inRing = dx >= -1 && dx <= 2 && dy >= -1 && dy <= 2 &&
       !(dx >= 0 && dx <= 1 && dy >= 0 && dy <= 1);
-    if (inRing) return { ...port, dx, dy };
+    if (inRing) return { ...port, dx, dy, approach:'SOURCE_RING_4X4' };
+    // Native-web departure recovery ONLY: the unmodified original 130
+    // KOUKAI2 port coordinates + WORLDMAP-derived first navigable sea
+    // positions show 59 departures at dx=-2 or dy=-2. The known 4x4
+    // ring incorrectly strands those ports on the very first ship tile.
+    // This broader, bounded two-chip approach is *not* asserted to be
+    // an original DOS Port Call rule. Reject ambiguity rather than
+    // invent a destination. Never recover from a distant position.
+    const inRecovery = dx >= -2 && dx <= 2 && dy >= -2 && dy <= 2 &&
+      !(dx >= 0 && dx <= 1 && dy >= 0 && dy <= 1);
+    if (inRecovery)candidates.push({...port,dx,dy,
+      approach:'NATIVE_SOURCE_NEAREST_SEA_2CHIP_RECOVERY'});
   }
-  return null;
+  return candidates.length===1 ? candidates[0] : null;
 }
 
 export class SeaRuntime{

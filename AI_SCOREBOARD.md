@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 browser-native source-backed item-shop confirmation (2026-11-02 08:46 KST)
+
+- **RUN_KEY:** `UW2-NATIVE-ITEM-QUOTE-20261102-acd2e047`; **AI 2**; previous confirmed **2424**; change **+1**; new cumulative **2425**; confirmed KST **2026-11-02 08:46 KST**.
+- **Independent material actual web-game integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` source/validation-bearing SHA **`acd2e047953bab67afafde8c2293a7dcaa53befb`** rewires actual `web/app.js` item-shop purchase, accepted sale and negotiated sale to new native `web/native-item-shop-confirm.js`. Before paying or removing an item, it rechecks original-port shop stock and open-hours/quoted source item price, held inventory-slot ID, original sell offer, and bounded charm-derived counteroffer. Stale source quotes, new port stock, mutated price, emptied/replaced item and inflated offer are rejected without mutating inventory or money; existing 600M G caps, exact-price success and secret-shop mode remain. Shipping path is JS/Canvas and does not use original DOS/8086 emulator. Added `tests/native-item-shop-confirm.test.mjs`, corrected same-feature app-callsite tests, wired GitHub Fidelity CI and updated master plan.
+- **Exact-SHA verification:** `UW2 Web Fidelity Static Gate` GitHub Actions **41363653041 SUCCESS** on SHA `acd2e047953bab67afafde8c2293a7dcaa53befb`. Prior intermediate CI failures arose from old direct-call static assertions; tests/CI repairs/docs/rechecks are **+0** additional. Korean-owned original assets Firefox end-to-end, original DOS differential and binary DOS save serialization **RUNTIME_VALIDATION=UNTESTED**.
+- **Score:** AI 2 previous confirmed 2424 + 1 new independent tested native item-shop confirmation integration = **2425**. Same function retry/report/rollover +0; AI 1 untouched.
+
 ## AI 2 Model2VR native UP draw vertex provenance and CPU projection correlation (2026-11-02 08:44 KST)
 
 - **RUN_KEY:** `MODEL2VR-UP-CPU-GPU-CORRELATION-20261102-33bf5108`; **AI 2**; previous confirmed **2423**; change **+1**; new cumulative **2424**; confirmed KST **2026-11-02 08:44 KST**.

@@ -99,6 +99,15 @@ try:
  js("document.querySelectorAll('#save-slots button:not(:disabled)')[1].click();document.getElementById('run-button').click();return true;")
  time.sleep(.5)
  started=state()
+ # Native gameplay mode must disable original save-slot arrows; otherwise
+ # a background slot preview silently replaces the active game screen.
+ navBefore=state()
+ navDisabled=js("return [...document.querySelectorAll('[data-action=save-prev],[data-action=save-next]')].every(x=>x.disabled)")
+ if not navDisabled:raise Exception('SAVE_SLOT_NAV_STILL_ACTIVE_DURING_TOWN')
+ js("document.querySelector('[data-action=save-next]').click();return true")
+ navAfter=state()
+ if navAfter['mode']!='town' or navAfter['debug'].get('portId')!=39:
+  raise Exception('SAVE_SLOT_BUTTON_INTERRUPTED_TOWN')
  if started['mode']!='town':
   raise Exception('START_NOT_TOWN '+json.dumps(started,ensure_ascii=False)[:1200])
  js("document.querySelector('[data-action=checkpoint-save]').click();return true;")
@@ -167,6 +176,30 @@ try:
    raise Exception('NATIVE_SEA_RESTORE_UI_MISMATCH')
  else:
   raise Exception('ORIGINAL_HARBOR_SAIL_CONFIRM_NOT_ENTERED_SEA '+json.dumps(seaStart,ensure_ascii=False)[:1100])
+ # Original Tunis (slot 1) has a DIFFERENT page of the 130-port
+ # directory. Save while in Tunis; switch to the Danzig slot preview;
+ # restore must use Tunis's own pinned original source page, not the
+ # currently visible Danzig port table.
+ reload_and_finish_original_intro()
+ js("document.querySelectorAll('#save-slots button:not(:disabled)')[0].click();document.getElementById('run-button').click();return true")
+ time.sleep(.3)
+ tunisStart=state()
+ if tunisStart['mode']!='town' or tunisStart['debug'].get('portId')!=5 or tunisStart['debug'].get('mapX')!=16:
+  raise Exception('TUNIS_SOURCE_SAVE_LOAD_FAILED '+json.dumps(tunisStart,ensure_ascii=False)[:900])
+ js("document.querySelector('[data-action=checkpoint-save]').click();return true")
+ time.sleep(.3)
+ tunisSaved=state()
+ if tunisSaved['choice']!='town' or not tunisSaved['townStored']:
+  raise Exception('TUNIS_CHECKPOINT_SAVE_FAILED '+json.dumps(tunisSaved,ensure_ascii=False)[:900])
+ js("document.querySelectorAll('#save-slots button:not(:disabled)')[1].click();return true")
+ time.sleep(.3)
+ if state()['mode']!='preview':
+  raise Exception('SOURCE_SLOT_SWITCH_PREVIEW_FAILED')
+ js("document.querySelector('[data-action=checkpoint-load]').click();return true")
+ time.sleep(.5)
+ tunisRestored=state()
+ if tunisRestored['mode']!='town' or tunisRestored['debug'].get('portId')!=5 or tunisRestored['debug'].get('mapX')!=16:
+  raise Exception('SOURCE_SLOT_CATALOG_ISOLATION_FAILURE '+json.dumps(tunisRestored,ensure_ascii=False)[:1300])
  result={'result':'BROWSER_REAL_ORIGINAL_KOREAN_NATIVE_CHECKPOINT_SMOKE',
   'ready':{'mode':ready['mode'],'slots':ready['slots']},
   'start':{'mode':started['mode'],'position':[started['debug'].get('mapX'),started['debug'].get('mapY')]},
@@ -179,6 +212,10 @@ try:
   'seaRestored':None if seaRestored is None else {'mode':seaRestored['mode'],'choice':seaRestored['choice'],'feedback':seaRestored['feedback'],'x':seaRestored['debug'].get('x'),'ticks':seaRestored['debug'].get('ticks')},
   'reloadTown':{'mode':afterTownReload['mode'],'x':afterTownReload['debug'].get('mapX')},
   'reloadSea':{'mode':afterSeaReload['mode'],'ticks':afterSeaReload['debug'].get('ticks')},
+  'gameplaySaveSlotNavGuard':navDisabled,
+  'crossSlotTunis':{'savedPort':tunisSaved['debug'].get('portId'),
+   'restoredPort':tunisRestored['debug'].get('portId'),
+   'restoredX':tunisRestored['debug'].get('mapX')},
   'boundary':'REAL_FIREFOX_NATIVE_WEB_BROWSER__NOT_DOS_REFERENCE_FRAME_PARITY'}
  print(json.dumps(result,ensure_ascii=False))
 except Exception as ex:

@@ -23,6 +23,8 @@ button:active:not(:disabled){transform:translateY(1px) scale(.98)}
 }
 .controller-head{grid-area:head;min-width:0;display:flex;justify-content:space-between;gap:10px;padding:0 3px;color:#9fb0c4;font-size:11px}
 .controller-head strong{color:#f1d58b;letter-spacing:.05em}
+#checkpoint-feedback{color:#a9d8b0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}
+.controller-head{flex-wrap:wrap}
 .dpad{grid-area:dpad;justify-self:center;width:168px;height:168px;display:grid;grid-template-columns:56px 56px 56px;grid-template-rows:56px 56px 56px;grid-template-areas:". up ." "left center right" ". down ."}
 .pad{background:linear-gradient(#303844,#20262f);border:1px solid #485463;font-size:22px;font-weight:900;box-shadow:inset 0 1px #ffffff18,0 2px 5px #0009}
 .pad.up{grid-area:up;border-radius:10px 10px 4px 4px}.pad.left{grid-area:left;border-radius:10px 4px 4px 10px}.pad.right{grid-area:right;border-radius:4px 10px 10px 4px}.pad.down{grid-area:down;border-radius:4px 4px 10px 10px}

@@ -3,6 +3,7 @@ if (controller) controller.dataset.ready = "1";
 
 const modeLabel = document.getElementById("controller-mode");
 const musicLabel = document.getElementById("controller-music");
+const checkpointLabel=document.getElementById("checkpoint-feedback");
 const autoButton = controller?.querySelector('[data-action="auto-sail"]');
 const soundButton = controller?.querySelector('[data-action="sound"]');
 const portButton = controller?.querySelector('[data-key="p"]');
@@ -112,6 +113,8 @@ controller?.addEventListener("contextmenu", event => event.preventDefault());
 
 window.addEventListener("uw2-game-state", event => {
   const state = event.detail || {};
+  if(checkpointLabel&&typeof state.checkpointFeedback==="string")
+    checkpointLabel.textContent=state.checkpointFeedback.slice(0,180);
   const labels = {
     loading: "로딩",
     opening: "오프닝",

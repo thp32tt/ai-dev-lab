@@ -108,6 +108,7 @@ let menuDefs = [];
 let messages = [];
 let saveBuffer = null;
 let originalSaveSha256 = null;
+let checkpointFeedback = "";
 let viewMode = "loading";
 let kaoPortraits = [];
 let portAssets = null;
@@ -160,6 +161,7 @@ function publishControllerState(extra = {}) {
     : null;
   const detail = {
     mode: viewMode,
+    checkpointFeedback,
     autoSail: seaAutoActive,
     nearbyPort,
     music: controllerMusicState(),
@@ -2053,6 +2055,7 @@ window.addEventListener("uw2-controller-action", async event => {
         });
         $("runtime-status").textContent=
           `웹 전용 임시저장 완료 · 슬롯 ${result.index+1} · 원본 DOS 저장 파일 미변경`;
+        checkpointFeedback = `웹 임시저장 완료 · 슬롯 ${result.index+1}`;
       }else{
         const restored=await loadNativeTownCheckpoint({
           ...dependencies,storage:window.localStorage,
@@ -2087,10 +2090,12 @@ window.addEventListener("uw2-controller-action", async event => {
         renderTownScreen();
         $("runtime-status").textContent=
           "웹 전용 임시저장 복원 완료 · 원본 DOS 세이브와 별개";
+        checkpointFeedback = "웹 이어하기 완료";
       }
     }catch(error){
       $("runtime-status").textContent=
         "웹 임시저장/복원 보류: "+(error?.message??String(error));
+      checkpointFeedback = "웹 임시저장/복원 실패: "+(error?.message??String(error));
     }
     publishControllerState();
     return;

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 Ghost Forest two-line transparent Korean PNG (2026-11-01 KST)
+
+- **TASK_ID: `OUTRUN-ROI-A-0155-63B9486D` — one newly completed image artifact (+1):** Approved `Ghost Forest` → `고스트 포레스트` on two rows (`고스트` / `포레스트`), output named `Q046_b45e1466e6342b9b_k.png`, transparent RGBA 255×135. Generated one image via ImageGen, fit within the specified original 255×135 target bbox, saved exact output to the user's existing personal Library folder `/아웃런 한글화 신규/`, and independently verified matching file/path with library listing (46,057 bytes).
+- **Proof boundary:** ImageGen output and personal Library storage verified only; independent C1 review, source-cleanplate composition, DDS, actual game runtime PASS **NOT CLAIMED**. One image, cleanup, resize, Library upload and readback count as **one** achievement; retries/status reports +0. AI 1 untouched.
+- **AI 2 cumulative: previous confirmed 2346 + one new verified Korean UI image (+1) = 2347.**
+
+Updated: 2026-11-01 KST
+
 ## AI 2 OutRun 2006 Korean two-line Water Falls UI PNG output (2026-11-01 KST)
 
 - **TASK_ID: `OUTRUN-ROI-B-0157-F630360E` — one newly completed image artifact (+1):** Approved `Water Falls` → `워터폴스` transparent text-only PNG, original two rows maintained as `워터 / 폴스`, final 207×140 RGBA. First image generator pass did not preserve the original two-row layout; final file was rebuilt locally to ensure two rows and saved as `Q046_343e81afc790e636_k.png` (SHA256 `a154fed7a59d55751af10579cbbeaa73138a89c8a1cd1e73b1214ba177ea5eca`). User's existing Library folder `/아웃런 한글화 신규/` upload succeeded and independent library listing verified the exact file/path and 23,753-byte stored copy.

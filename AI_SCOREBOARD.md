@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun 2006 Sector2 Korean transparent HD-ROI asset (2026-11-01 KST)
+
+- **New distinct image-generation and Library-delivery outcome (+1):** TASK_ID \`OUTRUN-ROI-A-0157-08FE4E79\`, A-0157; independently generated single approved Korean text \`Sector2 → 섹터 2\` from supplied full-HD original \`Q044_19CEDB9_BASE_READABLE_FLIPY.png\` ROI [6,97,198,166]. Generated one RGBA transparent PNG, cropped and resized to 190×61 (within 192×69 target), output \`Q044_8f2fb4bb6e3a34b0_k.png\`, sha256 \`8db34a44df1591040218af4e7cf57bbc540f28f9a7934d52f4ec421d777d857b\`. Exact file uploaded to personal Library \`/아웃런 한글화 신규/\`; upload status succeeded and independent Library listing shows exact name and 16,025 bytes. No claim of independent visual QA PASS, DDS or in-game success. Independent new output from earlier no-OCR production queue admission, not retry/status recheck; AI 2 unchanged.
+- **AI 1 cumulative: previous confirmed 1781 + one new confirmed Korean asset delivery (+1) = 1782.**
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 browser-native original 130-port landing, immutable Korean save, isolated live town session, source CHAR Canvas reuse (2026-11-01 KST)
 
 - **New independently implemented source-backed harbor landing (+1):** Shipping `uw2-web/web/app.js` integrates `web/native-port-arrival.js` to validate original KOUKAI2 130 port entries, 100 distinct town map + 30 supply ports sharing map100, original ZA_DAT door 3, world coordinates, source PORTMAP/PORTCHIP collision, and native SeaRuntime time. Original owner data validated 130/130 ports, Danzig saved `(10,38,12,14,22,52)` exactly matched; no invented actors for other ports. Source `2129207f9d55768cdaf4c55954570279ffd20a85`, same implementation fixes for door-relative view Y and supply-bank 3 synthetic test `9e9028835bcdb765e7bca11a174a4d203519a9ba`, `e0a2790a450e6438f6d0f0abe8566ad44bed4856` (+0 same achievement). Exact GitHub Actions `41291702550` SUCCESS, N100 private original 130-port test PASS.

@@ -60,8 +60,12 @@ assert.equal(rolloverPubDailyRecruitment({dayFlags:999},seaBefore,sea.dateTime),
 // The actual playable app must clear the known bit at all three real
 // game-time mutation points, not just in an unused standalone helper.
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.match(app,/advanceDateTicks\(selected\.dateTime,ticks\);\s*rolloverPubDailyRecruitment\(selected,before,selected\.dateTime\)/);
-assert.match(app,/lodgeCheckIn\(selected\.dateTime\);\s*rolloverPubDailyRecruitment\(selected,before,selected\.dateTime\)/);
+assert.match(app,/prepareNativeTownTimeTransition/);
+const nativeTown=fs.readFileSync(new URL('../web/native-town-time-transaction.js',import.meta.url),'utf8');
+assert.match(nativeTown,/advanceDateTicks/);
+assert.match(nativeTown,/lodgeCheckIn/);
+assert.match(nativeTown,/rolloverPubDailyRecruitment/);
+assert.match(nativeTown,/applyBankInterestCrossings/);
 assert.ok(app.includes('advanceNativeSeaVoyageStep({session:selected,runtime:seaRuntime})'));
 const voyage=fs.readFileSync(new URL('../web/native-sea-voyage-step.js',import.meta.url),'utf8');
 assert.match(voyage,/if\(dayChanged\)\s*\{[\s\S]*rolloverPubDailyRecruitment\(next,before,next\.dateTime\)/);

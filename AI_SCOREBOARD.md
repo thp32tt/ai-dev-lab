@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 browser-native atomic town calendar advancement (2026-11-02 KST)
+
+- **One distinct shipping browser-gameplay calendar implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` actual gameplay source/verification SHA `41c8b250969e4d5885af279a0c934e432a97e9a8` changes `uw2-web/web/buildings.js` time advancement used by town visit, pub recruitment day rollover, bank interest crossing, and inn lodging. It preflights Korean-source-shaped 20-minute clock/year/month/day fields and bounded tick requests, stages multi-tick day/month/year rollover, and commits only after validating the full new clock. Corrupt clock/tick, unbounded processing and year-9999 overflow cannot leave partial date mutations or an un-restorable session. Existing 28-day February and previously implemented date progression rules are preserved; **no unverified original DOS leap-year semantics are asserted**.
+- **Exact-SHA GitHub Actions:** `UW2 Web Fidelity Static Gate` run **41345902417 SUCCESS**, `synthetic-static` SUCCESS, on the exact SHA `41c8b250969e4d5885af279a0c934e432a97e9a8`. New original-free `uw2-web/tests/native-calendar-integrity.test.mjs` checks actual app callsites, 20-minute ticks, month/year rollover, bounded requests, invalid clock unchanged, 9999 refusal and valid lodging. Same feature test, CI, docs and result recheck +0 separately. Original Korean DOS differential, actual Firefox game and DOS save roundtrip **RUNTIME_VALIDATION=UNTESTED**.
+- **AI 2 cumulative: previous confirmed 2407 + one new independently CI-verified native calendar integration (+1) = 2408.** AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 browser-native pub transactions and fleet crew integrity (2026-11-02 KST)
 
 - **One independent shipping browser-gameplay implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact implementation/verification SHA `e589c379cd0a5908e6366748430135cb274b0e46` hardens the actual `uw2-web/web/pub.js` functions invoked by the shipping `web/app.js` pub/treat/crew actions. Browser pub drinks, recruitment and dismissal now preflight real Korean-source-shaped money (integer 0..600M G), verified port economy/drink/rank/day flags, safe quantities, source u16 ship crew capacities, all fleet ships, and coherent count/crew totals before mutation. Invalid/corrupted state cannot mint workers/gold, corrupt source-shaped ship crews or partially mutate the fleet. Valid purchase/enthusiasm, daily recruitment, and crew dismissal preserve existing browser gameplay; no unverified original DOS pub rule is claimed.

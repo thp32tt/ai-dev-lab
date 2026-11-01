@@ -1,13 +1,39 @@
 export const RESOURCE_KEYS = Object.freeze(["water","food","lumber","shot"]);
 export const RESOURCE_NAMES = Object.freeze(["물","식량","자재","포탄"]);
+// Browser-native transaction ceilings: the original ship instance fields
+// are u16 source records. No unverified DOS supply-price parity is asserted.
+const U16_MAX=65535;
+const GOLD_LIMIT=600_000_000;
+const u16=n=>Number.isSafeInteger(n)&&n>=0&&n<=U16_MAX;
+function validSupplyShip(ship){
+  return !!ship&&
+    ['cargo','load','water','food','lumber','shot'].every(k=>u16(ship[k]))&&
+    Array.isArray(ship.goods)&&ship.goods.length===5&&
+    ship.goods.every((g,i)=>g&&g.slot===i&&u16(g.quantity)&&u16(g.id)&&g.id<=255);
+}
+function validSupplySlot(slot){
+  return !!slot&&Number.isSafeInteger(slot.money)&&
+    slot.money>=0&&slot.money<=GOLD_LIMIT;
+}
+function validSupplyPriceSource(slot){
+  const rates=slot?.portMeta?.rates;
+  return Array.isArray(rates)&&rates.length>=10&&
+    [rates[2],rates[9]].every(x=>u16(x)&&x<=255);
+}
+function validSupplyFleet(slot){
+  const ships=slot?.fleet?.ships;
+  return validSupplySlot(slot)&&Array.isArray(ships)&&
+    ships.length>=1&&ships.length<=10&&
+    ships.every(ship=>validSupplyShip(ship)&&u16(ship.currentCrew)&&
+      u16(ship.navigationPercent)&&ship.navigationPercent<=100);
+}
 
 export function harborSupplyPrices(slot) {
-  const meta = slot?.portMeta;
-  if (!meta) {
+  if (!validSupplyPriceSource(slot)) {
     return { water: 0, food: null, lumber: null, shot: null, unresolved: true };
   }
-  const rate2 = meta.rates?.[2] ?? 0;
-  const rate9 = meta.rates?.[9] ?? 0;
+  const rate2 = slot.portMeta.rates[2];
+  const rate9 = slot.portMeta.rates[9];
   return {
     water: 0,
     food: Math.floor(20 * (rate2 + 50) / 100),
@@ -18,7 +44,7 @@ export function harborSupplyPrices(slot) {
 }
 
 export function shipCargoUsed(ship) {
-  if (!ship) return 0;
+  if (!validSupplyShip(ship)) return 0;
   const provisions =
     Math.floor((ship.water ?? 0) / 10) +
     Math.floor((ship.food ?? 0) / 10) +
@@ -29,9 +55,10 @@ export function shipCargoUsed(ship) {
 }
 
 export function shipCargoFree(ship) {
-  // The active ship instance's cargo field (+0x17 in the instance record)
-  // is the game's cargo-space limit. Model capacity is a different quantity.
-  return Math.max(0, (ship?.cargo ?? 0) - shipCargoUsed(ship));
+  // The active ship's original u16 cargo limit is not the model capacity.
+  // Invalid fields/overfull source records cannot mint new cargo space.
+  if(!validSupplyShip(ship))return 0;
+  return Math.max(0,ship.cargo-shipCargoUsed(ship));
 }
 
 function adjustSpeedLoad(ship, deltaCargo) {
@@ -39,7 +66,7 @@ function adjustSpeedLoad(ship, deltaCargo) {
 }
 
 export function resourceUnitsAboard(ship, resource) {
-  if (!ship) return 0;
+  if (!validSupplyShip(ship)||!RESOURCE_KEYS.includes(resource)) return 0;
   if (resource === "water" || resource === "food") {
     return Math.floor((ship[resource] ?? 0) / 10);
   }
@@ -47,48 +74,61 @@ export function resourceUnitsAboard(ship, resource) {
 }
 
 export function maxSupplyLoad(slot, ship, resource) {
-  if (!slot || !ship || !RESOURCE_KEYS.includes(resource)) return 0;
-  const free = shipCargoFree(ship);
-  if (free <= 0) return 0;
-  const prices = harborSupplyPrices(slot);
-  const price = prices[resource];
-  if (price == null) return 0;
-  if (price === 0) return free;
-  return Math.max(0, Math.min(free, Math.floor((slot.money ?? 0) / price)));
+  if(!validSupplySlot(slot)||!validSupplyShip(ship)||
+     !validSupplyPriceSource(slot)||!RESOURCE_KEYS.includes(resource))return 0;
+  const free=shipCargoFree(ship);
+  const price=harborSupplyPrices(slot)[resource];
+  if(free<=0||!Number.isSafeInteger(price)||price<0)return 0;
+  // Ship resources and the velocity load are actual u16 source records.
+  const remainingResource=resource==='water'||resource==='food'
+    ?Math.floor((U16_MAX-ship[resource])/10)
+    :U16_MAX-ship[resource];
+  const max=Math.min(free,U16_MAX-ship.load,remainingResource);
+  if(max<=0)return 0;
+  return price===0?max:Math.min(max,Math.floor(slot.money/price));
 }
 
 export function loadSupply(slot, shipIndex, resource, requested) {
-  const ship = slot?.fleet?.ships?.[shipIndex];
-  if (!ship || !RESOURCE_KEYS.includes(resource)) return { quantity: 0, cost: 0 };
-  const max = maxSupplyLoad(slot, ship, resource);
-  const quantity = Math.max(0, Math.min(max, Math.floor(requested || 0)));
-  if (!quantity) return { quantity: 0, cost: 0 };
-
-  const price = harborSupplyPrices(slot)[resource] ?? 0;
-  const cost = price * quantity;
-  if (resource === "water" || resource === "food") ship[resource] += quantity * 10;
-  else ship[resource] += quantity;
-  adjustSpeedLoad(ship, quantity);
-  slot.money = Math.max(0, slot.money - cost);
-  return { quantity, cost, unitPrice: price };
+  const ship=slot?.fleet?.ships?.[shipIndex];
+  if(!Number.isSafeInteger(shipIndex)||shipIndex<0||
+     !Number.isSafeInteger(requested)||requested<=0||
+     !validSupplySlot(slot)||!validSupplyShip(ship)||
+     !validSupplyPriceSource(slot)||!RESOURCE_KEYS.includes(resource))
+    return {quantity:0,cost:0,reason:'invalid-supply-state'};
+  const max=maxSupplyLoad(slot,ship,resource);
+  const quantity=Math.min(max,requested);
+  if(quantity<=0)return {quantity:0,cost:0,reason:'supply-limit'};
+  const price=harborSupplyPrices(slot)[resource];
+  const cost=price*quantity;
+  // All limits and wallet affordability are checked before any mutation.
+  if(!Number.isSafeInteger(cost)||cost<0||cost>slot.money)
+    return {quantity:0,cost:0,reason:'supply-cost-invalid'};
+  if(resource==='water'||resource==='food')ship[resource]+=quantity*10;
+  else ship[resource]+=quantity;
+  adjustSpeedLoad(ship,quantity);
+  slot.money-=cost;
+  return {quantity,cost,unitPrice:price};
 }
 
 export function unloadSupply(slot, shipIndex, resource, requested) {
-  const ship = slot?.fleet?.ships?.[shipIndex];
-  if (!ship || !RESOURCE_KEYS.includes(resource)) return { quantity: 0 };
-  const aboard = resourceUnitsAboard(ship, resource);
-  const quantity = Math.max(0, Math.min(aboard, Math.floor(requested || 0)));
-  if (!quantity) return { quantity: 0 };
-
-  if (resource === "water" || resource === "food") ship[resource] -= quantity * 10;
-  else ship[resource] -= quantity;
-  adjustSpeedLoad(ship, -quantity);
-  return { quantity };
+  const ship=slot?.fleet?.ships?.[shipIndex];
+  if(!Number.isSafeInteger(shipIndex)||shipIndex<0||
+     !Number.isSafeInteger(requested)||requested<=0||
+     !validSupplySlot(slot)||!validSupplyShip(ship)||
+     !RESOURCE_KEYS.includes(resource))
+    return {quantity:0,reason:'invalid-supply-state'};
+  const quantity=Math.min(resourceUnitsAboard(ship,resource),requested);
+  if(quantity<=0)return {quantity:0,reason:'no-supply'};
+  if(resource==='water'||resource==='food')ship[resource]-=quantity*10;
+  else ship[resource]-=quantity;
+  adjustSpeedLoad(ship,-quantity);
+  return {quantity};
 }
 
 export function harborDepartureStatus(slot) {
-  const ships = slot?.fleet?.ships ?? [];
-  if (!ships.length) return { allowed: false, messageId: 59, days: 0, reason: "no-ships" };
+  const ships=slot?.fleet?.ships??[];
+  if(!ships.length)return {allowed:false,messageId:59,days:0,reason:'no-ships'};
+  if(!validSupplyFleet(slot))return {allowed:false,messageId:59,days:0,reason:'invalid-supply-state'};
 
   for (const ship of ships) {
     const navCrew = Math.floor((ship.currentCrew ?? 0) * (ship.navigationPercent ?? 0) / 100);
@@ -110,9 +150,13 @@ export function harborDepartureStatus(slot) {
 }
 
 export function consumeDepartureDay(slot) {
-  const ships = slot?.fleet?.ships ?? [];
+  // Preflight the whole fleet: a malformed later ship must not leave an
+  // already-mutated earlier ship's source-derived supplies or velocity load.
+  if(!validSupplyFleet(slot))
+    return {consumed:false,reason:'invalid-supply-state'};
+  const ships=slot.fleet.ships;
   for (const ship of ships) {
-    const crew = Math.max(0, ship.currentCrew ?? 0);
+    const crew = ship.currentCrew;
     const beforeWaterUnits = Math.floor((ship.water ?? 0) / 10);
     const beforeFoodUnits = Math.floor((ship.food ?? 0) / 10);
     ship.water = Math.max(0, (ship.water ?? 0) - crew);
@@ -122,6 +166,7 @@ export function consumeDepartureDay(slot) {
     const released = (beforeWaterUnits-afterWaterUnits)+(beforeFoodUnits-afterFoodUnits);
     adjustSpeedLoad(ship, -released);
   }
+  return {consumed:true};
 }
 
 const MONTH_DAYS = Object.freeze([31,28,31,30,31,30,31,31,30,31,30,31]);

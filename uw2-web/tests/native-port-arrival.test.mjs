@@ -23,7 +23,7 @@ assert.deepEqual(arrival.arrivalEvidence,{
 const supply=buildNativePortArrival({...opts,port:{
  ...port,id:100,mapId:100},portDoors:Array.from({length:101},(_,i)=>i===100?doors[0]:[]) ,
  portAssets:{...assets,maps:Array.from({length:101},()=>new Uint8Array(96*96)),
- chipNo:new Uint8Array(100)}});
+ chipNo:new Uint8Array(100),walkBounds:Array.from({length:4},()=>[0,100,200,250])}});
 assert.equal(supply.port,100);
 assert.equal(supply.arrivalEvidence.actorStatus,'OTHER_PORT_ACTORS_NOT_VERIFIED');
 assert.deepEqual(supply.townActors,[]);

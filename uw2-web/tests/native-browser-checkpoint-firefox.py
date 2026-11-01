@@ -39,6 +39,8 @@ def req(method,path,data=None):
   return json.loads(resp.read().decode() or '{}')
 def js(script):
  return req('POST',f'/session/{sid}/execute/sync',{'script':script,'args':[]})['value']
+def js_async(script):
+ return req('POST',f'/session/{sid}/execute/async',{'script':script,'args':[]})['value']
 def state():
  return js("""return {mode:window.__uw2BootState?.()?.viewMode,
       gate:window.__uw2BootState?.(),
@@ -98,6 +100,33 @@ try:
   raise Exception('ORIGINAL_INTRO_NOT_FINISHED '+json.dumps(ready,ensure_ascii=False)[:1200])
  js("document.querySelectorAll('#save-slots button:not(:disabled)')[1].click();document.getElementById('run-button').click();return true;")
  time.sleep(.5)
+ # Actual Firefox native ES modules and source asset bytes must give
+ # the same 130/130 departure->same Port Call admission as owner Node tests.
+ browserPortSweep=js_async("""
+ const done=arguments[arguments.length-1];
+ (async()=>{
+  const [{findNearestSea,findPortCallTarget,decodeWorldAssets},
+         {parseKoreanPortTable},save,world,data1]=await Promise.all([
+    import('/world-map.js'),import('/binary.js'),
+    fetch('/game/KOUKAI2.DAT').then(r=>r.arrayBuffer()),
+    fetch('/game/WORLDMAP.LZW').then(r=>r.arrayBuffer()),
+    fetch('/game/DATA1.LZW').then(r=>r.arrayBuffer())
+  ]);
+  const ports=parseKoreanPortTable(save),assets=decodeWorldAssets(world,data1);
+  let exact=0,recovery=0;const bad=[];
+  for(const p of ports){
+   const pos=findNearestSea(assets,p.x,p.y,40);
+   const hit=pos&&findPortCallTarget(pos,ports);
+   if(!hit||hit.id!==p.id){bad.push(p.id);continue;}
+   if(hit.approach==='SOURCE_RING_4X4')exact++;
+   else if(hit.approach==='NATIVE_SOURCE_NEAREST_SEA_2CHIP_RECOVERY')recovery++;
+   else bad.push(p.id);
+  }
+  done({total:ports.length,exact,recovery,bad});
+ })().catch(e=>done({error:String(e)}));
+ """)
+ if browserPortSweep.get('total')!=130 or browserPortSweep.get('exact')!=71 or browserPortSweep.get('recovery')!=59 or browserPortSweep.get('bad'):
+  raise Exception('FIREFOX_ACTUAL_BROWSER_PORT_SWEEP_FAILED '+json.dumps(browserPortSweep,ensure_ascii=False))
  started=state()
  # Native gameplay mode must disable original save-slot arrows; otherwise
  # a background slot preview silently replaces the active game screen.
@@ -239,6 +268,7 @@ try:
   'reloadSea':{'mode':afterSeaReload['mode'],'ticks':afterSeaReload['debug'].get('ticks')},
   'gameplaySaveSlotNavGuard':navDisabled,
   'singleflightBrowserTransitions':flights,
+  'browserNativePortSweep':browserPortSweep,
   'seaToSourcePort':{'mode':arrived['mode'],'portId':arrived['debug'].get('portId'),'mapX':arrived['debug'].get('mapX'),'mapY':arrived['debug'].get('mapY')},
   'crossSlotTunis':{'savedPort':tunisSaved['debug'].get('portId'),
    'restoredPort':tunisRestored['debug'].get('portId'),

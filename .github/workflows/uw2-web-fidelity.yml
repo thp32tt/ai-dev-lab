@@ -19,6 +19,8 @@ jobs:
       - name: Validate browser module and boot-order syntax
         run: |
           node --check uw2-web/web/app.js
+          node --check uw2-web/web/native-graph-canvas.js
+          node --check uw2-web/tools/assert-native-web-entry.mjs
           node --check uw2-web/web/boot-sequence.js
           node --check uw2-web/web/koei-exit-flow.js
           node --check uw2-web/web/realmode-8086.js
@@ -74,6 +76,10 @@ jobs:
           node --check uw2-web/tools/koei-launch-chain.mjs
       - name: Boot and fidelity policies without copyrighted game assets
         run: |
+          node uw2-web/tools/assert-native-web-entry.mjs
+          node uw2-web/tests/native-graph-canvas.test.mjs
+          node uw2-web/tests/native-web-entry-boundary.test.mjs
+          node uw2-web/tests/pinned-dos-resources-mutation.test.mjs
           node uw2-web/tests/boot-sequence.test.mjs
           node uw2-web/tests/koei-exit-flow.test.mjs
           node uw2-web/tests/realmode-8086.test.mjs

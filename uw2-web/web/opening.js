@@ -1,5 +1,6 @@
 import { decodeLS11 } from "./ls11.js";
 import { readGraphRecords, decodeGraphRecord } from "./graph-format.js";
+import { createNativeGraphCanvas } from "./native-graph-canvas.js";
 
 export const UW2_OPENING_PALETTE = Object.freeze([
   [0,0,0], [0,43,204], [204,43,0], [204,85,153],
@@ -68,22 +69,7 @@ export function flattenOpening(opening) {
 }
 
 function imageCanvas(image, transparentZero = false, palette = UW2_OPENING_PALETTE) {
-  const c = document.createElement("canvas");
-  c.width = image.width;
-  c.height = image.height;
-  const x = c.getContext("2d");
-  const rgba = new Uint8ClampedArray(image.indices.length * 4);
-  for (let i = 0; i < image.indices.length; i++) {
-    const idx = image.indices[i];
-    const p = i * 4;
-    const col = palette[idx] ?? [0,0,0];
-    rgba[p] = col[0];
-    rgba[p + 1] = col[1];
-    rgba[p + 2] = col[2];
-    rgba[p + 3] = transparentZero && idx === 0 ? 0 : 255;
-  }
-  x.putImageData(new ImageData(rgba, image.width, image.height), 0, 0);
-  return c;
+  return createNativeGraphCanvas(image,{palette,transparentZero});
 }
 
 export function drawOpeningFit(ctx, image, x, y, w, h, opts = {}) {

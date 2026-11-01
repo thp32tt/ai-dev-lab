@@ -11,7 +11,8 @@ import {
   KoreanOpeningPlayer,
   KOREAN_OPENING_SCENE_PLAN,
 } from "./opening.js";
-import { readGraphRecords, decodeGraphRecord, graphIndicesToRgba, UW2_MAIN_VGA_PALETTE } from "./graph-format.js";
+import { readGraphRecords, decodeGraphRecord, UW2_MAIN_VGA_PALETTE } from "./graph-format.js";
+import { createNativeGraphCanvas } from "./native-graph-canvas.js";
 import {prepareOriginalOpgraphArchive} from "./opgraph-original-archive.js";
 import {KOREAN_OPGRAPH_JS_DECODE_EVIDENCE as koeiGraphEvidence} from "./opgraph-korean-evidence.js";
 import {
@@ -263,11 +264,7 @@ function graphImageCanvas(image) {
   if (!image) return null;
   let c = uiCanvasCache.get(image);
   if (c) return c;
-  c = document.createElement("canvas");
-  c.width = image.width; c.height = image.height;
-  const g = c.getContext("2d");
-  const rgba = graphIndicesToRgba(image.indices, UW2_MAIN_VGA_PALETTE);
-  g.putImageData(new ImageData(rgba, image.width, image.height), 0, 0);
+  c = createNativeGraphCanvas(image,{palette:UW2_MAIN_VGA_PALETTE});
   uiCanvasCache.set(image, c);
   return c;
 }

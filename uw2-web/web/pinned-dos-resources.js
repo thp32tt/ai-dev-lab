@@ -32,10 +32,14 @@ export async function preparePinnedDosReadOnlyResources(entries,{maxTotalBytes=6
     bytesTotal+=bytes.length;
     if(!Number.isSafeInteger(bytesTotal)||bytesTotal>maxTotalBytes)
       throw new RangeError('DOS original resource memory quota exceeded');
-    const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)));
+    // Browser-owned resource bytes are copied BEFORE the asynchronous hash.
+    // Mutation by a caller during digest must not reach LS11/GRAPH or the
+    // image shown on screen. This adapter does not execute DOS code.
+    const stable=Uint8Array.from(bytes);
+    const digest=hex(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',stable)));
     if(digest!==expectedSha256)
       throw new Error('original DOS resource SHA-256 mismatch: fail closed');
-    verified.set(dosPath,Uint8Array.from(bytes));
+    verified.set(dosPath,stable);
   }
   // Snapshot the input bytes. Every independent DOS open returns an isolated
   // copy via the existing DOS read-only 3D/3F/42 adapter.

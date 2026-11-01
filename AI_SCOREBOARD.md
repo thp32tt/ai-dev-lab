@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native full-fleet harbor supply integrity and unload underflow (2026-11-02 08:48 KST)
+
+- **RUN_KEY:** `UW2-SUPPLY-FLEET-LOAD-20261102-75633b2a`; **AI 2**; previous confirmed **2425**; change **+1**; new cumulative **2426**; confirmed KST **2026-11-02 08:48 KST**.
+- **New independent native browser gameplay feature (+1):** `thp32tt/ai-dev-lab@uw2-web-port` final exact validation-bearing SHA **`75633b2a43218ee21454ebe986a73269d34cb88b`** tightens actual harbor `web/buildings.js` supply loading/unloading and maximum resource selection. Formerly one corrupted later ship could pass targeted-ship preflight and mutate an unrelated source ship and wallet, leaving the multi-ship browser save or departure impossible. All 1..10 source-shaped u16 ship records now preflight before a source-backed harbor transaction, non-owned ship max calculations refuse, and resource unloading refuses if the actual u16 velocity load cannot account for the requested depletion instead of silently clamping to zero. Added shipping `native-harbor-supply-integrity.test.mjs` regressions for corrupted second ship, valid multi-ship independence, unauthorized ship and exact load boundary. Updated original-to-web development master plan; browser JS game graph only, not DOS emulator.
+- **Exact-SHA CI:** `UW2 Web Fidelity Static Gate` Actions run **41363839363 SUCCESS** on exact commit SHA **`75633b2a43218ee21454ebe986a73269d34cb88b`**. Original Korean DOS supply arithmetic parity, actual owned-asset Firefox runtime and binary DOS save write/read remain **RUNTIME_VALIDATION=UNTESTED**. Tests/CI/doc/readback/retries +0, AI 1 unchanged.
+- **Score:** AI 2 previous confirmed 2425 + new independent ship supply source integrity integration (+1) = **2426**.
+
 ## AI 2 UW2 browser-native source-backed item-shop confirmation (2026-11-02 08:46 KST)
 
 - **RUN_KEY:** `UW2-NATIVE-ITEM-QUOTE-20261102-acd2e047`; **AI 2**; previous confirmed **2424**; change **+1**; new cumulative **2425**; confirmed KST **2026-11-02 08:46 KST**.

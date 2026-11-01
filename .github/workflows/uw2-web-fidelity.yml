@@ -82,6 +82,7 @@ jobs:
           node uw2-web/tests/pinned-dos-resources-mutation.test.mjs
           node uw2-web/tests/boot-sequence.test.mjs
           node uw2-web/tests/koei-exit-flow.test.mjs
+          node uw2-web/tests/native-koei-guard-differential.test.mjs
           node uw2-web/tests/realmode-8086.test.mjs
           node uw2-web/tests/realmode-8086-alu.test.mjs
           node uw2-web/tests/realmode-8086-indirect.test.mjs

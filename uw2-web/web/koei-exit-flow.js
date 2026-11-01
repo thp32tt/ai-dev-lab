@@ -1,4 +1,6 @@
-import { RealMode8086 } from './realmode-8086.js';
+// Native JavaScript port of the PROVEN Korean KOEI.COM OR reg,reg + Jcc
+// return guards. The DOS CPU interpreter is deliberately restricted to
+// offline differential tests, not shipped to the web game.
 
 // Korean KOEI.COM raw 0x265..0x276, cross-checked by tools/koei-launch-chain.mjs.
 // Execute *only* the verified 8086 OR/Jcc slice, using synthetically assembled
@@ -18,14 +20,17 @@ export function executeKoeiReturnGuard(which,value) {
   const guard=guards[which];
   if(!guard)throw new RangeError('unknown original KOEI.COM guard');
   byte(value,which);
-  const cpu=new RealMode8086();
-  cpu.set8(guard.register,value);
-  cpu.set16('IP',guard.at);
-  cpu.load(Uint8Array.of(0x0a,guard.modrm,guard.jcc,guard.delta),0,guard.at);
-  cpu.runSteps(2);
-  if(cpu.ip!==guard.target&&cpu.ip!==guard.at+4)
-    throw new Error('KOEI guard fell outside verified branch destinations');
-  return cpu.ip===guard.target;
+  // Original 0Ah /r OR AH,AH or OR AL,AL sets ZF iff value is zero.
+  // This is the native web equivalent of the proven four-byte sequence,
+  // without executing its guest x86 opcodes or emulating the DOS machine.
+  const expectedModrm=guard.register==='AH'?0xe4:0xc0;
+  const signedDelta=guard.delta&0x80?guard.delta-0x100:guard.delta;
+  if(guard.modrm!==expectedModrm||
+     ![0x74,0x75].includes(guard.jcc)||
+     guard.target!==guard.at+4+signedDelta)
+    throw new Error('KOEI original guard metadata inconsistent: fail closed');
+  const zero=(value|value)===0;
+  return guard.jcc===0x74?zero:!zero;
 }
 export function nextKoeiExecutable(completed,{terminationType,returnCode}={}) {
   const ah=byte(terminationType,'terminationType (AH)');

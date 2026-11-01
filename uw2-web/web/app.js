@@ -1092,13 +1092,18 @@ function drawMarketTrade(ui, selling = false) {
   const ships=selected?.fleet?.ships ?? [];
   ui.ship=Math.max(0,Math.min(ui.ship,Math.max(0,ships.length-1)));
   const pm=currentPortMarket(selected,marketAssets);
-  const rows=selling ? carriedGoodsRows(selected,marketAssets) : (pm?.buy ?? []);
+  const rows=selling
+    ? carriedGoodsRows(selected,marketAssets,{shipIndex:ui.ship})
+    : (pm?.buy ?? []);
   ui.item=Math.max(0,Math.min(ui.item ?? 0,Math.max(0,rows.length-1)));
   const lines=rows.length ? rows.map(it=> selling
     ? it.name+" "+it.quantity+" "+it.sellPrice+"G"
     : it.name+" "+it.price+"G"+(it.specialty?" *":""))
-    : [selling?"매각할 교역품이 없습니다.":"상품이 없습니다."];
-  drawOriginalModalRows(lines,rows.length?ui.item:-1,selling?"교역품 매각":"교역품 구입");
+    : [selling?"이 함선에 매각할 교역품이 없습니다.":"상품이 없습니다."];
+  const shipName=ships[ui.ship]?.name??"함선 없음";
+  const shipLabel=ships.length?` · ${ui.ship+1}/${ships.length} ${shipName}`:"";
+  drawOriginalModalRows(lines,rows.length?ui.item:-1,
+    (selling?"교역품 매각":"교역품 구입")+shipLabel);
 }
 
 
@@ -1203,12 +1208,14 @@ function renderBuildingInterface(s) {
   }
   if (ui.mode === "market-buy") {
     drawMarketTrade(ui,false);
-    $("runtime-status").textContent = "교역소 · 구입 · DATA1 시장/항구 시세 적용";
+    $("runtime-status").textContent = ui.last ||
+      "교역소 · 구입 · DATA1 시장/항구 시세 적용";
     return;
   }
   if (ui.mode === "market-sell") {
     drawMarketTrade(ui,true);
-    $("runtime-status").textContent = "교역소 · 매각 · 함선 교역품 5칸 적용";
+    $("runtime-status").textContent = ui.last ||
+      "교역소 · 매각 · 함선 교역품 5칸 적용";
     return;
   }
   if (ui.mode === "market-rates") {
@@ -1677,9 +1684,11 @@ function handleBuildingKey(event) {
     const selling=ui.mode==="market-sell";
     const ships=selected?.fleet?.ships ?? [];
     const pm=currentPortMarket(selected,marketAssets);
-    const rows=selling ? carriedGoodsRows(selected,marketAssets) : (pm?.buy ?? []);
-    ui.item=Math.max(0,Math.min(ui.item??0,Math.max(0,rows.length-1)));
     ui.ship=Math.max(0,Math.min(ui.ship??0,Math.max(0,ships.length-1)));
+    const rows=selling
+      ? carriedGoodsRows(selected,marketAssets,{shipIndex:ui.ship})
+      : (pm?.buy ?? []);
+    ui.item=Math.max(0,Math.min(ui.item??0,Math.max(0,rows.length-1)));
 
     if (key === "escape") {
       event.preventDefault();
@@ -1699,15 +1708,17 @@ function handleBuildingKey(event) {
       renderTownScreen();
       return true;
     }
-    if (!selling && (key === "arrowleft" || key === "a")) {
+    if (key === "arrowleft" || key === "a") {
       event.preventDefault();
       ui.ship=Math.max(0,ui.ship-1);
+      ui.item=0; ui.last="";
       renderTownScreen();
       return true;
     }
-    if (!selling && (key === "arrowright" || key === "d")) {
+    if (key === "arrowright" || key === "d") {
       event.preventDefault();
       ui.ship=Math.min(Math.max(0,ships.length-1),ui.ship+1);
+      ui.item=0; ui.last="";
       renderTownScreen();
       return true;
     }

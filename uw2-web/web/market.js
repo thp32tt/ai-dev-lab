@@ -234,19 +234,33 @@ export function sellGoods(slot,marketAssets,shipIndex,goodsSlotIndex,requested) 
   return {quantity,revenue,unitPrice:item.price,good:item.good,name:item.name,slot:goodsSlotIndex};
 }
 
-export function carriedGoodsRows(slot,marketAssets) {
+// Source fleet indexes and ship.index from the binary are not equivalent.
+// UI selection must use the array-position that sellGoods actually receives.
+// A ship-specific filter makes the same ship selector usable for buying and
+// selling; the default still supports aggregate fleet inspection.
+export function carriedGoodsRows(slot,marketAssets,{shipIndex=null}={}) {
+  const ships=slot?.fleet?.ships;
+  if(!Array.isArray(ships)||ships.length>10)return [];
+  if(shipIndex!==null&&(!Number.isSafeInteger(shipIndex)||
+     shipIndex<0||shipIndex>=ships.length))return [];
   const pm=currentPortMarket(slot,marketAssets);
   const rows=[];
-  for(const ship of slot?.fleet?.ships??[]){
-    for(const g of ship.goods??[]){
-      if(g.id===0xff || !g.quantity) continue;
+  for(const [fleetIndex,ship] of ships.entries()){
+    if(shipIndex!==null&&fleetIndex!==shipIndex)continue;
+    if(!Array.isArray(ship?.goods)||ship.goods.length>5)continue;
+    for(const [goodsSlot,g] of ship.goods.entries()){
+      if(!g||!Number.isSafeInteger(g.id)||g.id<0||
+         g.id>=GOODS_NAMES.length||
+         !Number.isSafeInteger(g.quantity)||g.quantity<=0||g.quantity>65535)
+        continue;
       const sell=pm?.sell[g.id];
       rows.push({
-        shipIndex:ship.index,
+        shipIndex:fleetIndex,
+        sourceShipIndex:ship.index,
         shipName:ship.name,
-        goodsSlot:g.slot,
+        goodsSlot,
         good:g.id,
-        name:GOODS_NAMES[g.id]??`#${g.id}`,
+        name:GOODS_NAMES[g.id],
         quantity:g.quantity,
         sellPrice:sell?.price??0,
       });

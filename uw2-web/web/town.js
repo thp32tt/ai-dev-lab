@@ -52,7 +52,15 @@ function doorAt(doors, x, y) {
 export function townPersonMessageId(slot, actor) {
   if (!actor) return null;
   switch (actor.slot) {
-    case 0: return 0x282 + (slot.port ?? 0); // market woman: port lore
+    case 0: {
+      // Korean MESSAGE.DAT 0x282..0x2e5 is the 100-entry source
+      // port-specific lore table, keyed by the 0..99 ordinary-port ID.
+      // Supply settlements 100..129 share PORTMAP #100; extending this
+      // formula selects entirely unrelated game messages instead.
+      const sourcePort=slot?.portCatalogId??slot?.port;
+      return Number.isInteger(sourcePort)&&sourcePort>=0&&sourcePort<100
+        ? 0x282+sourcePort : null;
+    }
     case 1: return 0x276 + (((slot.dateTime?.day ?? 1) - 1 + 10) % 10); // pub tips
     case 2: return 0x281; // used-ship stock fallback: sold out when stock is not reconstructed yet
     case 3: return 0x26f + ((slot.portWorld?.nation ?? 0) & 7); // local-language greeting
@@ -204,9 +212,16 @@ export class PortWalkingRuntime {
     const targetY = this.mapY + dy;
     const actor = this._findActorNear(targetX, targetY);
     if (actor && this.talkCounter >= 10) {
+      const verifiedMessage=townPersonMessageId(this.slot, actor);
+      if (verifiedMessage==null) {
+        // Do not show an unrelated original MESSAGE.DAT record.
+        // Preserve the original blocking actor and the walk position.
+        this.lastEvent="source-npc-dialogue-unverified";
+        return {moved:false,unverifiedMessage:true,actorSlot:actor.slot};
+      }
       this.talk = {
         actorSlot: actor.slot,
-        messageId: townPersonMessageId(this.slot, actor),
+        messageId: verifiedMessage,
       };
       this.talkCounter = 0;
       this.lastEvent = "talk";

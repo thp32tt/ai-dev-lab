@@ -40,12 +40,17 @@ assert.equal(npc.runtime.talk.messageId,0x282);
 assert.equal(npc.session.portState.mapX,22);
 // All refusals leave live runtime and session identical.
 function hold(s,expected){
- const save=structuredClone(s.session),st=s.runtime.snapshot();
+ const save=structuredClone(s.session);
+ // The malformed-actor regression must itself avoid calling snapshot(),
+ // which intentionally assumes a source-shaped actors array.
+ const st=Array.isArray(s.runtime.actors)?s.runtime.snapshot():null;
+ const rawActors=structuredClone(s.runtime.actors);
  const r=prepareNativeTownMovement({...s,direction:'right',rng:()=>.99});
  assert.equal(r.allowed,false,expected||r.reason);
  if(expected)assert.equal(r.reason,expected);
  assert.deepEqual(s.session,save);
- assert.deepEqual(s.runtime.snapshot(),st);
+ if(st)assert.deepEqual(s.runtime.snapshot(),st);
+ assert.deepEqual(s.runtime.actors,rawActors);
  assert.equal(commitNativeTownMovement(r),false);
 }
 const drift=setup();

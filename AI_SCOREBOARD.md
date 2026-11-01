@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 R26+HUD stereo-only transactional safety repair and test build (2026-11-01 KST)
+
+- **One distinct completed safety fix (+1):** `thp32tt/OutRun2006Tweaks`, separate branch `test/r26-focus-stereo-only-safety-repair-20261101`, commit `0728bc7bdb40e37f34eb022e9d0dbf6b2cb98d58`. Corrected the prior stereo-only test's nontransactional host frame copy: candidate D3D11 L/R textures now complete the GPU EVENT fence, then the exact shared frame metadata is reread before the host swaps the accepted left/right pair. Failed/timeout/mismatched copies cannot overwrite the last accepted pair; candidates without trustworthy fences are quarantined. Host invalidates old VR projection on ResetEx's explicit disabled zero-frame packet, keeps SBS 250ms separate from actual accepted DirectGPU stereo hold, and reuses the inactive texture pair. R9 latches DirectGPU/no-mono policy at the first main Clear for each Present and clears it on Present/Reset; the game stops claiming its own producer publication proves host acceptance.
+- **Verification:** GitHub Actions run `41287799902` **SUCCESS**; R26 focal visual safety and stereo-only regression source gates PASS; Win32 `dinput8.dll` and x64 `outrun-vr-host.exe` built; paired archive uploaded with artifact ID `13074889559`, outer SHA256 `e00e57ba4fb881714417ceae1410c408319c41fe3b7940d4964ac8c6e377703b`, inner ZIP SHA256 `6CCA096A8B16FB5CEFBBE568D9ACB2B5E8F4E05838E4C3B11EF1A83C06756DC3`. Quest HMD runtime visual parity, motion comfort and FPS/GPU benefit remain **UNTESTED**. Intermediate retries and status checks are +0. AI 1 unchanged.
+- **AI 2 cumulative: previous confirmed 2351 + distinct completed VR safety repair/build (+1) = 2352.**
+
+Updated: 2026-11-01 KST
+
 ## AI 2 OutRun VR R26+HUD DirectGPU stereo-only / last-good host test artifact (2026-11-01 KST)
 
 - **One distinct new implemented VR renderer/host architecture and verified CI artifact (+1):** `thp32tt/OutRun2006Tweaks`, branch `test/r26-focus-stereo-only-lastgood-20261101`, final source commit `844019793daaf59f703f8e80d523a85a286735be`. R9 omits the *third independent mono safety Draw/Clear/RT* only when true headset DirectGPU stereo is ready; original 2D/menu/theater/offscreen remain untouched. R20 replaces mono-color/depth bootstrap requirements with right-eye color and current verified depth/stencil lineage. R13 preserves single-execution side effects and suppresses incomplete stereo. Last verified DirectGPU frame publication and host-private D3D11 stereo snapshot remain until next valid frame or reset/session/presentation change, while SBS retains 250ms grace. Quiet 10-second `stereoOnlySavedDraw`/`stereoOnlySavedClear`/`lastGoodHeld` measurement included.

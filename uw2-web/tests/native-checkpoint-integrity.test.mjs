@@ -85,7 +85,11 @@ for(const mutation of [
  s=>{s.fleet.ships[0].oared='false';},
  s=>{s.portMeta.rates[2]=NaN;},
  s=>{s.portMeta=null;},
- s=>{s.dateTime={...s.dateTime,month:2,day:31};}
+ s=>{s.dateTime={...s.dateTime,month:2,day:31};},
+ s=>{s.portActorMemory={'130':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:[]}};},
+ s=>{s.portActorMemory={'0':{source:'UNKNOWN',actors:[]}};},
+ s=>{s.portActorMemory={'0':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:[{slot:0,x:255,y:10,type:0,active:true}]}};},
+ s=>{s.portActorMemory={'0':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:Array(9).fill({slot:0,x:1,y:1,type:0,active:true})}};}
 ]){
  const beforeTown=data.get(NATIVE_TOWN_CHECKPOINT_KEY);
  const beforeSea=data.get(NATIVE_SEA_CHECKPOINT_KEY);
@@ -111,6 +115,8 @@ live.fleet.ships[0].water=40;
 live.fleet.ships[0].food=20;
 live.fleet.ships[0].goods[0]={slot:0,id:2,quantity:6};
 live.fleet.ships[0].load=9;
+live.portActorMemory={'0':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',
+ actors:[{slot:0,x:24,y:52,type:1,active:true}]}};
 assert.equal(validateNativeCheckpointSessionEconomy(live,original),true);
 await saveNativeTownCheckpoint({...deps,session:live,town});
 await saveNativeSeaCheckpoint({...deps,session:live,sea});

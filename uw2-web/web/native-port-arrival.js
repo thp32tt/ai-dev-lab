@@ -1,4 +1,5 @@
 import {canStandAt} from './town.js';
+import {prepareNativePortActorContinuity} from './native-port-actor-memory.js';
 // Browser-native port arrival derives coordinates from Korean original
 // ZA_DAT.DAT door #3, CHIP_NO/PORTMAP/PORTCHIP collision tiles and the
 // KOUKAI2.DAT 130-port source directory. It is NOT a DOS emulator and
@@ -50,17 +51,9 @@ export function buildNativePortArrival(args={}){
  if(!geometry)return null;
  const {port,previous}=args;
  const {time,mapX,mapY,viewX,viewY}=geometry;
- // The original 30 supply ports share PORTMAP bank #100, but they are
- // distinct geographic places and must never inherit another supply port's
- // people. mapId equality alone is NOT port/catalog identity.
- // Original ordinary ports have unambiguous id==mapId. Original saves
- // positioned at generic supply-map 100 have no confirmed catalog id;
- // preserve actors only after this native session has visited a specific
- // catalog port and explicitly recorded its portCatalogId.
- const sameSavedPort=previous.port===port.mapId&&(
-   previous.portCatalogId===port.id||
-   (port.id<100&&previous.portCatalogId==null)
- );
+ // Persist source-proven people by full original catalog identity before
+ // overwriting the active town with a new port. Unknown ports stay empty.
+ const actors=prepareNativePortActorContinuity(previous,port);
  return {
   ...previous,
   port:port.mapId,
@@ -74,13 +67,11 @@ export function buildNativePortArrival(args={}){
    playerX:mapX-viewX,playerY:mapY-viewY,
    mapX,mapY
   },
-  // Only the user's same-port original/known in-memory actors can be
-  // retained. Actors at another port are not present in this save page;
-  // show no invented characters and record missing evidence explicitly.
-  townActors:sameSavedPort?structuredClone(previous.townActors??[]):[],
+  townActors:actors.townActors,
+  portActorMemory:actors.portActorMemory,
   arrivalEvidence:{
    source:'ORIGINAL_PORT_TABLE_ZA_DAT_PORTCHIP_COLLISION',
-   actorStatus:sameSavedPort?'CURRENT_PORT_SOURCE_ACTORS':'OTHER_PORT_ACTORS_NOT_VERIFIED'
+   actorStatus:actors.actorStatus
   }
  };
 }

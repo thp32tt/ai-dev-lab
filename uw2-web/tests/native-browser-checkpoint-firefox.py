@@ -110,12 +110,25 @@ try:
   raise Exception('SAVE_SLOT_BUTTON_INTERRUPTED_TOWN')
  if started['mode']!='town':
   raise Exception('START_NOT_TOWN '+json.dumps(started,ensure_ascii=False)[:1200])
- js("document.querySelector('[data-action=checkpoint-save]').click();return true;")
+ js("""window.__uw2CheckpointTransitions=[];
+ window.addEventListener('uw2-game-state',event=>{
+   window.__uw2CheckpointTransitions.push(!!event.detail.checkpointInFlight)
+ });
+ document.querySelector('[data-action=checkpoint-save]').click();
+ // Immediate concurrent load on same event turn must be rejected until
+ // WebCrypto-backed save + active checkpoint pointer are committed.
+ window.dispatchEvent(new CustomEvent('uw2-controller-action',{
+   detail:{action:'checkpoint-load'}
+ }));
+ return true;""")
  for _ in range(30):
   time.sleep(.1)
   z=state()
   if z['townStored']:break
  saved=state()
+ flights=js("return window.__uw2CheckpointTransitions")
+ if not flights or True not in flights or flights[-1] is not False:
+  raise Exception('NATIVE_WEB_CHECKPOINT_SINGLEFLIGHT_UI_UNVERIFIED '+str(flights))
  if not saved['townStored'] or saved['choice']!='town':
   raise Exception('TOWN_SAVE_FAILED '+json.dumps(saved,ensure_ascii=False)[:1300])
  reloadTown=reload_and_finish_original_intro()
@@ -176,6 +189,18 @@ try:
    raise Exception('NATIVE_SEA_RESTORE_UI_MISMATCH')
  else:
   raise Exception('ORIGINAL_HARBOR_SAIL_CONFIRM_NOT_ENTERED_SEA '+json.dumps(seaStart,ensure_ascii=False)[:1100])
+ # Actual native sea -> nearby original source port call -> town state,
+ # then source-owned people and original harbor coordinates must be coherent.
+ js("window.dispatchEvent(new KeyboardEvent('keydown',{key:'p',bubbles:true,cancelable:true}));return true")
+ time.sleep(.35)
+ arrived=state()
+ if arrived['mode']!='town' or arrived['debug'].get('portId')!=39 or arrived['debug'].get('mapX')!=22 or arrived['debug'].get('mapY')!=52:
+  raise Exception('SOURCE_PORT_CALL_ARRIVAL_FAILED '+json.dumps(arrived,ensure_ascii=False)[:1300])
+ js("document.querySelector('[data-action=checkpoint-save]').click();return true")
+ time.sleep(.25)
+ arrivedSave=state()
+ if arrivedSave['choice']!='town' or not arrivedSave['townStored']:
+  raise Exception('RETURNED_PORT_CHECKPOINT_FAILED '+json.dumps(arrivedSave,ensure_ascii=False)[:1300])
  # Original Tunis (slot 1) has a DIFFERENT page of the 130-port
  # directory. Save while in Tunis; switch to the Danzig slot preview;
  # restore must use Tunis's own pinned original source page, not the
@@ -213,6 +238,8 @@ try:
   'reloadTown':{'mode':afterTownReload['mode'],'x':afterTownReload['debug'].get('mapX')},
   'reloadSea':{'mode':afterSeaReload['mode'],'ticks':afterSeaReload['debug'].get('ticks')},
   'gameplaySaveSlotNavGuard':navDisabled,
+  'singleflightBrowserTransitions':flights,
+  'seaToSourcePort':{'mode':arrived['mode'],'portId':arrived['debug'].get('portId'),'mapX':arrived['debug'].get('mapX'),'mapY':arrived['debug'].get('mapY')},
   'crossSlotTunis':{'savedPort':tunisSaved['debug'].get('portId'),
    'restoredPort':tunisRestored['debug'].get('portId'),
    'restoredX':tunisRestored['debug'].get('mapX')},

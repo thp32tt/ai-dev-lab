@@ -1,5 +1,5 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
-import { ReaGameRuntime } from "./runtime.js";
+import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -103,7 +103,6 @@ let menus = [];
 let menuDefs = [];
 let messages = [];
 let saveBuffer = null;
-let runtime = null;
 let viewMode = "loading";
 let kaoPortraits = [];
 let portAssets = null;
@@ -428,8 +427,7 @@ function selectLoadedSlot(index) {
   }
   renderSlots();
   renderSelectedPortMap();
-  startSelectedGame();
-  return true;
+  return startSelectedGame();
 }
 
 function handleSystemKey(event) {
@@ -828,7 +826,6 @@ function drawHeroPortrait(slot) {
 
 function drawPreview(slot) {
   viewMode = "preview";
-  if (runtime) runtime.pause();
   drawFrame("대항해시대 II", [
     `SAVE ${slot.index + 1}: ${slot.memo}`,
     `항구: ${slot.portName}`,
@@ -881,7 +878,6 @@ function stopOpening(showTitle = false) {
 
 function startOpeningPlayback() {
   if (!openingData || !openingTitle || !bootGate.startOpening()) return;
-  if (runtime) runtime.pause();
   if (openingPlayer) openingPlayer.stop();
 
   viewMode = "opening";
@@ -1950,58 +1946,33 @@ function renderSeaScreen() {
     nearbyPort, ...st,
   }, null, 2);
 }
-function renderRuntime() {
-  if (!runtime || viewMode !== "runtime") return;
-  runtime.tick();
-  const s = runtime.snapshot();
-  const msg = messages[(s.frame >> 5) % Math.min(messages.length, 80)]?.text ?? "";
-  drawFrame(s.hero || "대항해시대 II", [
-    `Frame ${s.frame} · SAVE ${(s.slot ?? 0) + 1}`,
-    `Money ${Number(s.money).toLocaleString()} G`,
-    `REA state 0x426=${s.state426} 0x56F=${s.state56F} 0x570=${s.state570}`,
-    stripMenuControls(menus[s.state56F % menus.length]?.text ?? ""),
-    msg.replace(/\n/g, " ").slice(0, 40),
-  ]);
-  $("runtime-status").textContent = runtime.running ? "실행 중" : "일시정지";
-  if (portAssets && runtime.slot?.port !== 0xff) {
-    const p = renderPortViewport(ctx, portAssets, runtime.slot.port, 330, 210, 280, 155);
-    if (p) {
-      ctx.strokeStyle = "#c9a95e";
-      ctx.strokeRect(329, 209, 282, 157);
-    }
-  }
-  drawHeroPortrait(runtime.slot);
-  $("debug").textContent = JSON.stringify({
-    ...s,
-    portraitIdCandidate: runtime.slot?.portraitIdCandidate,
-    port: runtime.slot?.port,
-  }, null, 2);
-  requestAnimationFrame(renderRuntime);
-}
-
 $("opening-button").addEventListener("click", startOpeningPlayback);
 
 function startSelectedGame() {
   if (!bootGate.canShowSystemMenu() || !selected) return false;
-  stopOpening(false);
-  if (selected.port !== 0xff && portAssets && portDoors) {
-    if (runtime) runtime.pause();
-    townRuntime = new PortWalkingRuntime(selected, portAssets, portDoors);
-    viewMode = "town";
-    setMusicForMode("town");
-    publishControllerState();
-    $("pause-button").disabled = true;
-    renderTownScreen();
-    return;
+  const entry = classifyNativeSaveEntry(selected, { portAssets, portDoors });
+  if (entry.route !== "town") {
+    // Leave the ORIGINAL system/load screen visible, rather than display
+    // an invented playable "REA runtime" whose frame/money/dialogue never
+    // came from MAIN.EXE. At-sea save coordinates require source proof.
+    stopSeaAuto();
+    systemUi.mode = "load-select";
+    viewMode = "load-select";
+    drawLoadSlots();
+    $("runtime-status").textContent =
+      entry.reason === "AT_SEA_COORDINATE_LAYOUT_UNVERIFIED"
+        ? "원본 해상 세이브 좌표·방향 구조 미확인 · 복원 보류"
+        : "원본 저장 데이터/항구 지도 검증 미완료 · 복원 보류";
+    publishControllerState({ nativeSaveHold: entry.reason });
+    return false;
   }
-  runtime = new ReaGameRuntime(selected, menus, messages);
-  runtime.start();
-  viewMode = "runtime";
-  setMusicForMode("runtime");
+  stopOpening(false);
+  townRuntime = new PortWalkingRuntime(selected, portAssets, portDoors);
+  viewMode = "town";
+  setMusicForMode("town");
   publishControllerState();
-  $("pause-button").disabled = false;
-  $("pause-button").textContent = "일시정지";
-  renderRuntime();
+  $("pause-button").disabled = true;
+  renderTownScreen();
   return true;
 }
 
@@ -2069,17 +2040,6 @@ window.addEventListener("keydown", (event) => {
   moveTown(direction);
 });
 
-$("pause-button").addEventListener("click", () => {
-  if (!runtime || viewMode !== "runtime") return;
-  if (runtime.running) {
-    runtime.pause();
-    $("pause-button").textContent = "계속";
-  } else {
-    runtime.start();
-    $("pause-button").textContent = "일시정지";
-  }
-});
-
 window.addEventListener("uw2-controller-action", async event => {
   const action = event.detail?.action;
   if (action === "controller-ready") {
@@ -2127,7 +2087,7 @@ window.addEventListener("uw2-controller-action", async event => {
 // The original OPEN.EXE intro is the boot sequence.  Do not hold it behind
 // unrelated save, portrait, port-map, or world-data fetches.
 const openingBoot = loadOpeningGraphics().then(() => {
-  if (viewMode !== "town" && viewMode !== "sea" && viewMode !== "runtime" && viewMode !== "preview") {
+  if (viewMode !== "town" && viewMode !== "sea" && viewMode !== "preview") {
     startOpeningPlayback();
   }
 }).catch(err => {

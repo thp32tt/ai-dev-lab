@@ -14,7 +14,7 @@ const pins={
  'PORTCHIP.LZW':'e3c5253c12dc24d3e3d8fa8294d4160a116601ba67ebb4190e49c64cd37cc95b',
  'PORTMAP.LZW':'ed3161c45b038fbc715840e9798bc4a2d3c5615d036b27c8048e93c8c6b7c25d',
  'CHIP_NO.DAT':'0f76440952571894b10b07780a6a21426c2ebc0d1911dfb4ac823e22b0b1a516',
- 'ZA_DAT.DAT':'b60f1549ce68f3853bdbfe0747a0338ccf6a411fa79eaee2f894caed22d56192'
+ 'ZA_DAT.DAT':'6760ebc1cdb7356b3f6a66c67fed1a3e29eb3e357a9958ff698b4598774ad92a'
 };
 const raw=name=>{
  const b=fs.readFileSync(join(root,name));

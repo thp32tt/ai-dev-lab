@@ -12,8 +12,8 @@ const unchanged=(t,run)=>{
   assert.deepEqual(t,prior);
 };
 const game=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.match(game,/advanceDateTicks\(selected\.dateTime,ticks\)/);
-assert.match(game,/lodgeCheckIn\(selected\.dateTime\)/);
+assert.match(game,/prepareNativeTownTimeTransition/);
+assert.match(game,/Object\.assign\(selected,prepared\.updates\)/);
 
 {
   const t=clock(1522,7,6,70);

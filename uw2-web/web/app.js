@@ -5,6 +5,7 @@ import { prepareNativePortCall } from "./native-port-call-transaction.js";
 import { advanceNativeSeaAuto } from "./native-sea-auto.js";
 import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
 import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
+import { prepareNativeTownTimeTransition } from "./native-town-time-transaction.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
@@ -572,24 +573,21 @@ function drawOriginalDatePanel(date, label = "") {
   if (label) drawOriginalPanelText(label, 500, 65, {size:11,bold:true});
 }
 
-function advanceSelectedDateTicks(ticks) {
-  if (!selected?.dateTime) return [];
-  const before={...selected.dateTime};
-  advanceDateTicks(selected.dateTime,ticks);
-  rolloverPubDailyRecruitment(selected,before,selected.dateTime);
-  const events=applyBankInterestCrossings(selected,before,selected.dateTime);
-  if(events.length) selected.lastBankInterest=events.at(-1);
-  return events;
+function commitNativeTownTime(kind,ticks) {
+  const prepared=prepareNativeTownTimeTransition({session:selected,kind,ticks});
+  if(!prepared.allowed){
+    $("runtime-status").textContent="시간 진행 보류: "+prepared.reason;
+    return false;
+  }
+  // PortWalkingRuntime.slot === selected remains true after this commit.
+  Object.assign(selected,prepared.updates);
+  return true;
 }
-
+function advanceSelectedDateTicks(ticks) {
+  return commitNativeTownTime("visit",ticks);
+}
 function lodgeSelected() {
-  if (!selected?.dateTime) return [];
-  const before={...selected.dateTime};
-  lodgeCheckIn(selected.dateTime);
-  rolloverPubDailyRecruitment(selected,before,selected.dateTime);
-  const events=applyBankInterestCrossings(selected,before,selected.dateTime);
-  if(events.length) selected.lastBankInterest=events.at(-1);
-  return events;
+  return commitNativeTownTime("lodge");
 }
 
 function tickSeaWithBankInterest() {
@@ -1246,7 +1244,7 @@ function renderBuildingInterface(s) {
 
 function exitBuildingWithVisitTime() {
   if (buildingUi?.visitTicks && selected?.dateTime) {
-    advanceSelectedDateTicks(buildingUi.visitTicks);
+    if(!advanceSelectedDateTicks(buildingUi.visitTicks))return;
   }
   buildingUi=null;
   townRuntime.leaveBuilding();
@@ -1359,7 +1357,7 @@ function runBuildingCommand(ui, buildingId) {
 
   if (buildingId === 4) {
     if (cursor === 2) {
-      lodgeSelected();
+      if(!lodgeSelected())return;
       buildingUi=null;
       townRuntime.leaveBuilding();
       townRuntime.lastEvent="lodge-check-in";

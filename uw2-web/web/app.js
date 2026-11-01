@@ -1,5 +1,6 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
+import { buildNativePortArrival } from "./native-port-arrival.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -1864,36 +1865,6 @@ function startSeaFromPort() {
   return true;
 }
 
-function buildArrivalSlot(port, seaState) {
-  const mapId = port.mapId;
-  const doors = portDoors?.[mapId] ?? [];
-  const harbor = doors[3];
-  if (!harbor?.present) return null;
-
-  const mapX = harbor.x;
-  const mapY = harbor.y + 1;
-  const viewX = Math.max(0, Math.min(72, harbor.x - 12));
-  const viewY = Math.max(0, Math.min(72, harbor.y - 13));
-
-  const sameSavedPort = selected?.port === mapId;
-  return {
-    ...selected,
-    port: mapId,
-    portCatalogId: port.id,
-    portName: port.name,
-    portWorld: { nation: port.nation, x: port.x, y: port.y },
-    portMeta: port.meta ? structuredClone(port.meta) : null,
-    dateTime: { ...seaState.dateTime },
-    portState: {
-      viewX, viewY,
-      playerX: mapX - viewX,
-      playerY: mapY - viewY,
-      mapX, mapY,
-    },
-    townActors: sameSavedPort ? (selected?.townActors ?? []) : [],
-  };
-}
-
 function callNearbyPort() {
   if (!seaRuntime || !portCatalog.length) return false;
   const s = seaRuntime.snapshot();
@@ -1903,7 +1874,9 @@ function callNearbyPort() {
     renderSeaScreen();
     return false;
   }
-  const arrival = buildArrivalSlot(port, s);
+  const arrival = buildNativePortArrival({
+    port, seaState: s, previous: selected, portDoors, portAssets
+  });
   if (!arrival) {
     seaRuntime.lastEvent = "port-map-unavailable";
     renderSeaScreen();

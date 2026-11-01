@@ -1,0 +1,59 @@
+import {canStandAt} from './town.js';
+// Browser-native port arrival derives coordinates from Korean original
+// ZA_DAT.DAT door #3, CHIP_NO/PORTMAP/PORTCHIP collision tiles and the
+// KOUKAI2.DAT 130-port source directory. It is NOT a DOS emulator and
+// does NOT claim that unobserved local NPC actors were simulated.
+const uint=(x,max)=>Number.isSafeInteger(x)&&x>=0&&x<=max;
+export function buildNativePortArrival({port,seaState,previous,portDoors,portAssets}={}){
+ if(!port||!seaState||!previous||!Array.isArray(portDoors)||
+    !portAssets||!Array.isArray(portAssets.maps))
+   return null;
+ if(!uint(port.id,129)||!uint(port.mapId,100)||
+    port.mapId!==(port.id>=100?100:port.id)||
+    typeof port.name!=='string'||!port.name.length||
+    !uint(port.x,2159)||!uint(port.y,1079)||
+    !uint(port.nation,255)||
+    !portAssets.maps[port.mapId])
+   return null;
+ // All fields are sourced directly from PORT table or the actual sea
+ // clock. No synthesized landing port, actor positions or game time.
+ const time=seaState.dateTime;
+ if(!time||!uint(time.year,9999)||time.year<1501||
+    !uint(time.month,12)||time.month<1||
+    !uint(time.day,31)||time.day<1||
+    !uint(time.timeTick,71)||
+    time.hour!==Math.floor(time.timeTick/3)||
+    time.minute!==(time.timeTick%3)*20)
+   return null;
+ const harbor=portDoors[port.mapId]?.[3];
+ if(!harbor?.present||!uint(harbor.x,94)||!uint(harbor.y,93))
+   return null;
+ const mapX=harbor.x,mapY=harbor.y+1;
+ // Source-grounded collision check, unlike the old blind y+1 shift.
+ if(!canStandAt(portAssets,port.mapId,mapX,mapY))return null;
+ const viewX=Math.max(0,Math.min(72,mapX-12));
+ const viewY=Math.max(0,Math.min(72,mapY-13));
+ const sameSavedPort=previous.port===port.mapId;
+ return {
+  ...previous,
+  port:port.mapId,
+  portCatalogId:port.id,
+  portName:port.name,
+  portWorld:{nation:port.nation,x:port.x,y:port.y},
+  portMeta:port.meta?structuredClone(port.meta):null,
+  dateTime:{...time},
+  portState:{
+   viewX,viewY,
+   playerX:mapX-viewX,playerY:mapY-viewY,
+   mapX,mapY
+  },
+  // Only the user's same-port original/known in-memory actors can be
+  // retained. Actors at another port are not present in this save page;
+  // show no invented characters and record missing evidence explicitly.
+  townActors:sameSavedPort?structuredClone(previous.townActors??[]):[],
+  arrivalEvidence:{
+   source:'ORIGINAL_PORT_TABLE_ZA_DAT_PORTCHIP_COLLISION',
+   actorStatus:sameSavedPort?'CURRENT_PORT_SOURCE_ACTORS':'OTHER_PORT_ACTORS_NOT_VERIFIED'
+  }
+ };
+}

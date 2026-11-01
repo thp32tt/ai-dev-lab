@@ -21,6 +21,7 @@ jobs:
           node --check uw2-web/web/app.js
           node --check uw2-web/web/native-graph-canvas.js
           node --check uw2-web/web/native-save-entry.js
+          node --check uw2-web/web/native-port-arrival.js
           node --check uw2-web/web/native-original-file.js
           node --check uw2-web/tools/assert-native-web-entry.mjs
           node --check uw2-web/web/boot-sequence.js
@@ -84,6 +85,7 @@ jobs:
           node uw2-web/tools/assert-native-web-entry.mjs
           node uw2-web/tests/native-graph-canvas.test.mjs
           node uw2-web/tests/native-save-entry.test.mjs
+          node uw2-web/tests/native-port-arrival.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs
           node uw2-web/tests/native-town-view-canvas.test.mjs
           node uw2-web/tests/native-original-file.test.mjs

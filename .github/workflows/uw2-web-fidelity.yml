@@ -38,6 +38,7 @@ jobs:
           node --check uw2-web/tests/p3-browser-open-original.test.mjs
           node --check uw2-web/tests/p3-original-native-graph-browser-original.test.mjs
           node --check uw2-web/tests/native-sea-view-original.test.mjs
+          node --check uw2-web/tests/native-town-view-original.test.mjs
           node --check uw2-web/tests/p3-open-external-await-original.test.mjs
           node --check uw2-web/tests/p3-fmdrv-open-continuation-original.test.mjs
           node --check uw2-web/tests/p3-koei-fmdrv-native-exec-handoff-original.test.mjs

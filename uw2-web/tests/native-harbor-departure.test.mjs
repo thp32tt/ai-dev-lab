@@ -78,8 +78,8 @@ assert.equal(rejected(()=>{}, {cells:new Uint8Array(1080*540).fill(15),
  quad:new Uint8Array(1024)}),'source-sea-unavailable');
 assert.equal(rejected(s=>{s.fleet.ships[1].currentCrew=Infinity;}),
  'invalid-supply-state');
-assert.equal(rejected(s=>{s.fleet.ships[1].water=0;}),
- 'no-provisions' /* both ships still have a valid day collectively? */);
+assert.equal(rejected(s=>{for(const sh of s.fleet.ships)sh.water=0;}),
+ 'no-provisions');
 for(const v of [0,1,5,-1,NaN,Infinity,2.5,'2',undefined])
  assert.equal(rejected(()=>{},seaMap(),v),'visit-clock-invalid');
 for(const change of [
@@ -99,6 +99,11 @@ for(const change of [
 {
  const s=fixture();
  s.fleet.ships[1].currentCrew=0;
- assert.equal(run(s).allowed,true,'at least the original source helm crew can sail');
+ s.fleet.totalCrew=5;
+ const original=structuredClone(s);
+ const result=run(s);
+ assert.equal(result.allowed,false,'every source ship needs navigation crew');
+ assert.equal(result.reason,'no-navigation-crew');
+ assert.deepEqual(s,original);
 }
 console.log('UW2 actual native port departure staging, source sea landing, clock, bank and fleet atomicity PASS');

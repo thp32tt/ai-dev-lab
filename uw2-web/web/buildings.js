@@ -8,7 +8,7 @@ const u16=n=>Number.isSafeInteger(n)&&n>=0&&n<=U16_MAX;
 function validSupplyShip(ship){
   return !!ship&&
     ['cargo','load','water','food','lumber','shot'].every(k=>u16(ship[k]))&&
-    Array.isArray(ship.goods)&&ship.goods.length===5&&
+    Array.isArray(ship.goods)&&ship.goods.length>=1&&ship.goods.length<=5&&
     ship.goods.every((g,i)=>g&&g.slot===i&&u16(g.quantity)&&u16(g.id)&&g.id<=255);
 }
 function validSupplySlot(slot){

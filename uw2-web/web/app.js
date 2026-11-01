@@ -4,6 +4,8 @@ import { buildNativePortArrival } from "./native-port-arrival.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
+import {saveNativeSeaCheckpoint,loadNativeSeaCheckpoint,restoreNativeSeaRuntime,
+ NATIVE_CHECKPOINT_CHOICE_KEY} from "./native-sea-checkpoint.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -2040,62 +2042,97 @@ window.addEventListener("uw2-controller-action", async event => {
   if(action==="checkpoint-save"||action==="checkpoint-load"){
     const dependencies={
       sourceSha256:originalSaveSha256,sourceSlots:slots,
-      portAssets,portCatalog
+      portAssets,worldAssets,portCatalog
+    };
+    const sourceCatalogForSlot=index=>{
+      const source=slots[index];
+      if(!source||source.empty||
+         !Number.isSafeInteger(source.raw?.page)||!saveBuffer)
+        throw new Error("검증된 원본 슬롯 항구 테이블을 찾을 수 없습니다.");
+      return parseKoreanPortTable(saveBuffer,source.raw.page);
     };
     try{
       if(!bootGate.canShowSystemMenu()||!originalSaveSha256||
-         !portAssets||!portDoors)
+         !portAssets||!portDoors||!worldAssets)
         throw new Error("원본 게임 데이터 로딩이 아직 완료되지 않았습니다.");
+      const storage=window.localStorage;
       if(action==="checkpoint-save"){
-        if(viewMode!=="town"||!townRuntime||!selected)
-          throw new Error("항구에서만 웹 임시저장을 할 수 있습니다.");
-        const result=await saveNativeTownCheckpoint({
-          ...dependencies,storage:window.localStorage,
-          session:selected,town:townRuntime.snapshot()
-        });
+        if(!selected)throw new Error("선택된 원본 저장 슬롯이 없습니다.");
+        if(viewMode==="town"&&townRuntime){
+          const result=await saveNativeTownCheckpoint({
+            ...dependencies,storage,session:selected,
+            town:townRuntime.snapshot()
+          });
+          storage.setItem(NATIVE_CHECKPOINT_CHOICE_KEY,"town");
+          checkpointFeedback=`웹 항구 임시저장 완료 · 슬롯 ${result.index+1}`;
+        }else if(viewMode==="sea"&&seaRuntime){
+          const result=await saveNativeSeaCheckpoint({
+            ...dependencies,storage,session:selected,
+            sea:seaRuntime.snapshot()
+          });
+          storage.setItem(NATIVE_CHECKPOINT_CHOICE_KEY,"sea");
+          checkpointFeedback=`웹 항해 임시저장 완료 · 슬롯 ${result.index+1}`;
+        }else{
+          throw new Error("항구 또는 항해 중에만 웹 임시저장할 수 있습니다.");
+        }
         $("runtime-status").textContent=
-          `웹 전용 임시저장 완료 · 슬롯 ${result.index+1} · 원본 DOS 저장 파일 미변경`;
-        checkpointFeedback = `웹 임시저장 완료 · 슬롯 ${result.index+1}`;
+          checkpointFeedback+" · 원본 DOS 저장 파일 미변경";
       }else{
-        const restored=await loadNativeTownCheckpoint({
-          ...dependencies,storage:window.localStorage,
-          portCatalogForSlot:(index)=>{
-            const source=slots[index];
-            if(!source||source.empty||
-               !Number.isSafeInteger(source.raw?.page)||
-               !saveBuffer)
-              throw new Error("검증된 원본 슬롯 항구 테이블을 찾을 수 없습니다.");
-            return parseKoreanPortTable(saveBuffer,source.raw.page);
-          }
-        });
-        if(!restored)throw new Error("저장된 웹 전용 체크포인트가 없습니다.");
-        const entry=classifyNativeSaveEntry(restored.session,{
-          portAssets,portDoors
-        });
-        if(entry.route!=="town")
-          throw new Error("원본 항구 좌표 복원 검증이 실패했습니다.");
-        const nextRuntime=new PortWalkingRuntime(
-          restored.session,portAssets,portDoors
-        );
-        resumeNativeTownRuntime(nextRuntime,restored.town);
-        // Commit only after checksum/source, geometry, slot and runtime
-        // preflight; failed loads keep the previous running game intact.
-        stopSeaAuto();
-        stopOpening(false);
-        selected=restored.session;
-        portCatalog=restored.portCatalog;
-        townRuntime=nextRuntime;
-        viewMode="town";
-        setMusicForMode("town");
-        renderTownScreen();
+        const choice=storage.getItem(NATIVE_CHECKPOINT_CHOICE_KEY);
+        if(choice!==null&&choice!=="town"&&choice!=="sea")
+          throw new Error("웹 체크포인트 종류가 올바르지 않습니다.");
+        if(choice==="sea"){
+          const restored=await loadNativeSeaCheckpoint({
+            ...dependencies,storage,portCatalogForSlot:sourceCatalogForSlot
+          });
+          if(!restored)
+            throw new Error("저장된 웹 항해 체크포인트가 없습니다.");
+          const nextRuntime=restoreNativeSeaRuntime({
+            ...restored,worldAssets,windCur
+          });
+          stopSeaAuto();
+          stopOpening(false);
+          selected=restored.session;
+          portCatalog=restored.portCatalog;
+          townRuntime=null;
+          seaRuntime=nextRuntime;
+          viewMode="sea";
+          setMusicForMode("sea");
+          renderSeaScreen();
+          checkpointFeedback="웹 항해 이어하기 완료";
+        }else{
+          const restored=await loadNativeTownCheckpoint({
+            ...dependencies,storage,portCatalogForSlot:sourceCatalogForSlot
+          });
+          if(!restored)
+            throw new Error("저장된 웹 항구 체크포인트가 없습니다.");
+          const entry=classifyNativeSaveEntry(restored.session,{
+            portAssets,portDoors
+          });
+          if(entry.route!=="town")
+            throw new Error("원본 항구 좌표 복원 검증이 실패했습니다.");
+          const nextRuntime=new PortWalkingRuntime(
+            restored.session,portAssets,portDoors
+          );
+          resumeNativeTownRuntime(nextRuntime,restored.town);
+          stopSeaAuto();
+          stopOpening(false);
+          selected=restored.session;
+          portCatalog=restored.portCatalog;
+          townRuntime=nextRuntime;
+          seaRuntime=null;
+          viewMode="town";
+          setMusicForMode("town");
+          renderTownScreen();
+          checkpointFeedback="웹 항구 이어하기 완료";
+        }
         $("runtime-status").textContent=
-          "웹 전용 임시저장 복원 완료 · 원본 DOS 세이브와 별개";
-        checkpointFeedback = "웹 이어하기 완료";
+          checkpointFeedback+" · 원본 DOS 저장 파일과 별개";
       }
     }catch(error){
-      $("runtime-status").textContent=
-        "웹 임시저장/복원 보류: "+(error?.message??String(error));
-      checkpointFeedback = "웹 임시저장/복원 실패: "+(error?.message??String(error));
+      checkpointFeedback="웹 임시저장/복원 실패: "+
+        (error?.message??String(error));
+      $("runtime-status").textContent=checkpointFeedback;
     }
     publishControllerState();
     return;

@@ -127,7 +127,7 @@ window.addEventListener("uw2-game-state", event => {
   controller.dataset.mode = state.mode || "";
 
   if(checkpointSaveButton)
-    checkpointSaveButton.disabled=state.mode!=="town";
+    checkpointSaveButton.disabled=!["town","sea"].includes(state.mode);
   if(checkpointLoadButton)
     checkpointLoadButton.disabled=state.mode==="loading"||state.mode==="opening";
   if (autoButton) {

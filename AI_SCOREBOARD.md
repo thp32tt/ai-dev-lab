@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 source-authentic large FVF GPU island coverage rotation (2026-11-02 KST)
+
+- **TASK_ID CONVERSION-DX11-01204 — one independent real C++ native GPU capture improvement (+1):** `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` material implementation `afd37bd2a693ad5498840cda4c3788dffecb5c05` changes `native_game_raw_fvf_island_sampling.hpp` and `native_raw_dual_tile_test.cpp`: each original game FVF triangle's source-authentic native D3D11 PRE/POST RGB sampling advances across the interior on successive Draw captures; later islands offer both physically disjoint source tiles, with a same-island GPU fallback. This repairs repeated first-corner starvation for two large separated menu/vehicle/HUD/race source primitives without inventing pixels, bypassing source scissor/RT/IA/fence checks, or changing D3D9 Draw/Present/input/FFB/DX9Ex fallback.
+- **Exact-SHA 5/5 CI PASS:** Same-task causal older 01203 policy-record repair `862d0ee41ac10ce273966b77cd0b9da4736eaf7f` is the final validation-bearing commit: DX11 Fast Structural `41332203812`, Backend Conversion `41332203854`, Build `41332203827`, OpenXR VR architecture `41332203792`, HUD Inspector `41332203903`, each SUCCESS. 01204 C6 bookkeeping SHA `cd3d94fb454f7d2d3bcc4e85780164fffd09103c` is separate and +0. Real Windows game native frame, Quest3/VDXR stereo still **RUNTIME_VALIDATION=UNTESTED**; source-stage only, not playable DX11 acceptance.
+- **AI 2 cumulative: previous confirmed 2397 + one distinct exact-SHA verified source-render integration (+1) = 2398.** Causal metadata repair, tests, CI rerun, documentation and earlier task replay +0; AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 native web gameplay calendar and trade transaction repairs (2026-11-02 KST)
 
 - **Independent playable-native pub day lifecycle repair (+1):** On `thp32tt/ai-dev-lab@uw2-web-port`, commit `cbe8d75802270f8476b34539569adc9ef2f667c7` changes shipping `web/app.js` and `web/pub.js` to expire only the known `dayFlags & 1` same-day recruitment lock on all existing in-browser clock paths (building elapsed time, inn next-day check-in, and sea-day transition). Other source save flag bits are preserved; native `hireCrew` becomes available on a later day rather than permanently blocked after the first hire. Synthetic gameplay regression `native-pub-daily-rollover.test.mjs` and exact-SHA GitHub Actions `41332751070` synthetic-static **SUCCESS**. Original DOS differential and private asset Firefox gameplay `RUNTIME_VALIDATION=UNTESTED`.

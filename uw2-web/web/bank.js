@@ -54,21 +54,42 @@ export function bankWithdraw(slot,requested) {
   return {quantity,balance:slot.bankBalance,messageId:110,max};
 }
 
+// The native bank's displayed maximum must be the same limit enforced
+// when the actual transaction commits. Do not create gold or a deeper
+// debt if a credit line is larger than the source save's storage limits.
+// This is a browser transaction invariant; DOS lending parity is untested.
+function validLoanState(slot) {
+  return Number.isSafeInteger(slot?.bankBalance) &&
+    slot.bankBalance>=-BANK_MAX_DEBT &&
+    slot.bankBalance<=BANK_MAX_SAVINGS &&
+    Number.isSafeInteger(slot?.money) &&
+    slot.money>=0 && slot.money<=BANK_CASH_LIMIT;
+}
+
 export function bankBorrowMaximum(slot) {
-  const balance=Math.trunc(slot?.bankBalance??0);
-  if(balance>0) return 0;
-  return bankCreditLine(slot);
+  if(!validLoanState(slot) || slot.bankBalance>0) return 0;
+  return Math.max(0,Math.min(
+    bankCreditLine(slot),
+    BANK_MAX_DEBT+slot.bankBalance,
+    BANK_CASH_LIMIT-slot.money,
+  ));
 }
 
 export function bankBorrow(slot,requested) {
-  const balance=Math.trunc(slot?.bankBalance??0);
+  if(!validLoanState(slot))
+    return {quantity:0,reason:"invalid-bank-state",messageId:113};
+  const balance=slot.bankBalance;
   if(balance>0) return {quantity:0,reason:"savings-exist",messageId:111};
+  if(slot.money>=BANK_CASH_LIMIT)
+    return {quantity:0,reason:"cash-limit",messageId:107};
+  if(balance<=-BANK_MAX_DEBT)
+    return {quantity:0,reason:"debt-limit",messageId:113};
   const max=bankBorrowMaximum(slot);
   if(max<=0) return {quantity:0,reason:"credit-fail",messageId:113};
   const quantity=clampInt(requested,0,max);
   if(!quantity) return {quantity:0,reason:"zero",messageId:115,max};
   slot.bankBalance=balance-quantity;
-  slot.money=Math.trunc(slot?.money??0)+quantity;
+  slot.money+=quantity;
   return {quantity,balance:slot.bankBalance,messageId:116,max};
 }
 

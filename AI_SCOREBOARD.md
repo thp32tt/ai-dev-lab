@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 browser-native pub transactions and fleet crew integrity (2026-11-02 KST)
+
+- **One independent shipping browser-gameplay implementation (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact implementation/verification SHA `e589c379cd0a5908e6366748430135cb274b0e46` hardens the actual `uw2-web/web/pub.js` functions invoked by the shipping `web/app.js` pub/treat/crew actions. Browser pub drinks, recruitment and dismissal now preflight real Korean-source-shaped money (integer 0..600M G), verified port economy/drink/rank/day flags, safe quantities, source u16 ship crew capacities, all fleet ships, and coherent count/crew totals before mutation. Invalid/corrupted state cannot mint workers/gold, corrupt source-shaped ship crews or partially mutate the fleet. Valid purchase/enthusiasm, daily recruitment, and crew dismissal preserve existing browser gameplay; no unverified original DOS pub rule is claimed.
+- **Exact-SHA GitHub Actions SUCCESS:** `UW2 Web Fidelity Static Gate` run **41345655201**, `synthetic-static` SUCCESS, on the exact SHA `e589c379cd0a5908e6366748430135cb274b0e46`. Added original-free `uw2-web/tests/native-pub-transaction-integrity.test.mjs` to shipping CI; retained daily rollover and source-shape regression tests. User-owned Korean DOS differential, actual Firefox browser gameplay and DOS save roundtrip remain **RUNTIME_VALIDATION=UNTESTED**. Rechecks/docs/CI for this same implementation +0 separately.
+- **AI 2 cumulative: previous confirmed 2406 + one independently verified shipping native pub transaction repair (+1) = 2407.** AI 1 unchanged; same change and retries not scored again.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 DX11 authentic source polygon/scissor GPU RGB capture integration (2026-11-02 KST)
 
 - **TASK_ID CONVERSION-DX11-01206 — one independent source implementation (+1):** On `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, material C++/regression source commit `ad77590f5bd99db6d317d6294bfd8c927f842f84` changes `src/vr/d3d11/native_game_raw_fvf_clip_capture.hpp`, `src/vr/d3d11/native_game_raw_fvf_island_sampling.hpp` and `tests/native_raw_dual_tile_test.cpp`. Genuine source D3D9 FVF triangle list/strip/fan primitives must intersect the LIVE source scissor as polygons, not merely overlap via AABB, before source-authentic native D3D11 PRE/POST GPU RGB capture-island sampling. Negative diagonal menu AABB-only, positive in-scissor, and mixed-source regressions guard false candidate attribution. Original whole-IA admission, opt-in-only diagnostics, source RT/event/GPU proof, D3D9 Draw/Present/FFB and DX9Ex fallback are preserved; no complete native full-frame/VR claim.

@@ -364,15 +364,28 @@ export class SeaRuntime{
     return false;
   }
 
-  tick(){
+  // Pure projection of the same ship/wind/current rules used by tick().
+  // The browser-only auto-sail controller must inspect motion BEFORE any
+  // game clock, provisions, or bank interest are advanced.
+  projectedVelocity(){
     const environment=this.windRaw ? environmentAt(this.windRaw,this.month,this.x,this.y) : null;
     const speedInfo=fleetSeaSpeed(this.fleet,this.heading,environment?.wind ?? {dir:0,speed:0});
     const [hdx,hdy]=DIRS[this.heading];
     const current=environment?.current ?? {dir:0,speed:0};
     const [cdx,cdy]=DIRS[current.dir&7];
+    return Object.freeze({
+      x:hdx*speedInfo.speed + cdx*current.speed,
+      y:hdy*speedInfo.speed + cdy*current.speed
+    });
+  }
 
-    const vx=hdx*speedInfo.speed + cdx*current.speed;
-    const vy=hdy*speedInfo.speed + cdy*current.speed;
+  hasNetMotion(){
+    const velocity=this.projectedVelocity();
+    return velocity.x!==0||velocity.y!==0;
+  }
+
+  tick(){
+    const {x:vx,y:vy}=this.projectedVelocity();
     this.accX+=vx; this.accY+=vy;
 
     let mx=0,my=0;

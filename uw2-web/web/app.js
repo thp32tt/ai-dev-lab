@@ -1,6 +1,7 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { buildNativePortArrival, canBuildNativePortArrival } from "./native-port-arrival.js";
+import { advanceNativeSeaAuto } from "./native-sea-auto.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
@@ -264,6 +265,13 @@ function toggleSeaAuto() {
     renderSeaScreen();
     return false;
   }
+  // No zero-velocity auto loop: a stationary fleet must not consume days,
+  // provisions or interest solely because the 220ms browser timer runs.
+  if (!seaRuntime.hasNetMotion()) {
+    stopSeaAuto("auto-no-net-motion");
+    renderSeaScreen();
+    return false;
+  }
   seaAutoActive = true;
   publishControllerState();
   seaAutoTimer = setInterval(() => {
@@ -271,7 +279,12 @@ function toggleSeaAuto() {
       stopSeaAuto();
       return;
     }
-    tickSeaWithBankInterest();
+    const advance=advanceNativeSeaAuto(seaRuntime,tickSeaWithBankInterest);
+    if(!advance.advanced){
+      stopSeaAuto(advance.reason);
+      renderSeaScreen();
+      return;
+    }
     const snap = seaRuntime.snapshot();
     if (snap.lastEvent === "coast-block") {
       stopSeaAuto("auto-coast-block");
@@ -1943,9 +1956,11 @@ function renderSeaScreen() {
   }
   drawOriginalPanelText(seaAutoActive ? "AUTO" : "", 503, 282, {size:11,bold:true,color:"#7a260f"});
   if (nearbyPort) drawOriginalPanelText(nearbyPort.name, 500, 304, {size:11,bold:true});
-  $("runtime-status").textContent = nearbyPort
-    ? `항해 · ${nearbyPort.name} 기항 가능 · AUTO ${seaAutoActive ? "ON" : "OFF"}`
-    : `항해 · AUTO ${seaAutoActive ? "ON" : "OFF"}`;
+  $("runtime-status").textContent = st.lastEvent === "auto-no-net-motion"
+    ? "항해 · 자동항해 정지 (선박·해류 합산 이동량 0)"
+    : nearbyPort
+      ? `항해 · ${nearbyPort.name} 기항 가능 · AUTO ${seaAutoActive ? "ON" : "OFF"}`
+      : `항해 · AUTO ${seaAutoActive ? "ON" : "OFF"}`;
   publishControllerState({ nearbyPort: nearbyPort?.name ?? null });
   $("debug").textContent = JSON.stringify({
     mode: "sea", fromPort: selected?.portName, portWorld: selected?.portWorld,

@@ -35,7 +35,17 @@ export function buildNativePortArrival({port,seaState,previous,portDoors,portAss
  // Korean saved Danzig original: harbor door Y=51, player Y=52,
  // viewY=38 (relative Y=14). Anchor to door row, not player row.
  const viewY=Math.max(0,Math.min(72,harbor.y-13));
- const sameSavedPort=previous.port===port.mapId;
+ // The original 30 supply ports share PORTMAP bank #100, but they are
+ // distinct geographic places and must never inherit another supply port's
+ // people. mapId equality alone is NOT port/catalog identity.
+ // Original ordinary ports have unambiguous id==mapId. Original saves
+ // positioned at generic supply-map 100 have no confirmed catalog id;
+ // preserve actors only after this native session has visited a specific
+ // catalog port and explicitly recorded its portCatalogId.
+ const sameSavedPort=previous.port===port.mapId&&(
+   previous.portCatalogId===port.id||
+   (port.id<100&&previous.portCatalogId==null)
+ );
  return {
   ...previous,
   port:port.mapId,

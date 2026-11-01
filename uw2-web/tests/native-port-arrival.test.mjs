@@ -27,6 +27,38 @@ const supply=buildNativePortArrival({...opts,port:{
 assert.equal(supply.port,100);
 assert.equal(supply.arrivalEvidence.actorStatus,'OTHER_PORT_ACTORS_NOT_VERIFIED');
 assert.deepEqual(supply.townActors,[]);
+// Regression: 130 source PORT entries contain 30 supply ports reusing
+// map100. Crossing supply A -> B must never leak actors just because both
+// locations have identical shared source tile map and harbor door pixels.
+const supplyOpts={...opts,portDoors:Array.from({length:101},
+ (_,i)=>i===100?doors[0]:[]),
+ portAssets:{...assets,maps:Array.from({length:101},
+  ()=>new Uint8Array(96*96)),chipNo:new Uint8Array(100),
+  walkBounds:Array.from({length:4},()=>[0,100,200,250])}};
+const supplyA={...port,id:100,mapId:100,name:'supply-A',x:300,y:400};
+const supplyB={...port,id:101,mapId:100,name:'supply-B',x:800,y:100};
+const sameSupply=buildNativePortArrival({...supplyOpts,port:supplyA,
+ previous:{...previous,port:100,portCatalogId:100}});
+assert.deepEqual(sameSupply.townActors,actors);
+assert.equal(sameSupply.arrivalEvidence.actorStatus,'CURRENT_PORT_SOURCE_ACTORS');
+const differentSupply=buildNativePortArrival({...supplyOpts,port:supplyB,
+ previous:{...sameSupply,townActors:actors}});
+assert.deepEqual(differentSupply.townActors,[]);
+assert.equal(differentSupply.arrivalEvidence.actorStatus,
+ 'OTHER_PORT_ACTORS_NOT_VERIFIED');
+assert.equal(differentSupply.portCatalogId,101);
+assert.notDeepEqual(differentSupply.portWorld,sameSupply.portWorld);
+const unknownOriginalSupply=buildNativePortArrival({...supplyOpts,port:supplyA,
+ previous:{...previous,port:100}});
+assert.deepEqual(unknownOriginalSupply.townActors,[]);
+assert.equal(unknownOriginalSupply.arrivalEvidence.actorStatus,
+ 'OTHER_PORT_ACTORS_NOT_VERIFIED');
+// Prevent a stale native catalog id from carrying actors into a new
+// ordinary port whose map id happens to match an older source save.
+const mismatched=buildNativePortArrival({...opts,
+ previous:{...previous,portCatalogId:5}});
+assert.deepEqual(mismatched.townActors,[]);
+
 const invalidCases=[
  {...opts,port:{...port,id:100,mapId:0}},
  {...opts,port:{...port,x:99999}},

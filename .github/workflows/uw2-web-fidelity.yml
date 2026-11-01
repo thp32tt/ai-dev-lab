@@ -20,6 +20,8 @@ jobs:
         run: |
           node --check uw2-web/web/app.js
           node --check uw2-web/web/native-sea-voyage-step.js
+          node --check uw2-web/web/native-sea-auto.js
+          node --check uw2-web/tests/native-sea-auto-port-stop.test.mjs
           node --check uw2-web/tests/native-sea-voyage-integrity.test.mjs
           node --check uw2-web/web/pub.js
           node --check uw2-web/tests/native-pub-transaction-integrity.test.mjs
@@ -129,6 +131,7 @@ jobs:
           node uw2-web/tests/native-checkpoint-integrity.test.mjs
           node uw2-web/tests/native-sea-checkpoint.test.mjs
           node uw2-web/tests/native-sea-auto.test.mjs
+          node uw2-web/tests/native-sea-auto-port-stop.test.mjs
           node uw2-web/tests/native-sea-voyage-integrity.test.mjs
           node uw2-web/tests/native-pub-daily-rollover.test.mjs
           node uw2-web/tests/native-calendar-integrity.test.mjs

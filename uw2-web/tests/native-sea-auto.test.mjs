@@ -50,7 +50,7 @@ assert.throws(()=>advanceNativeSeaAuto(moving,null),/synchronous voyage tick/);
 // the native bank-interest/provision-carrying 220ms callback.
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.ok(app.includes('if (!seaRuntime.hasNetMotion()) {'));
-assert.ok(app.includes('advanceNativeSeaAuto(seaRuntime,tickSeaWithBankInterest)'));
+assert.ok(app.includes('seaRuntime,tickSeaWithBankInterest,findReadyNativePortCall'));
 assert.ok(app.includes('stopSeaAuto(advance.reason)'));
 const refused=advanceNativeSeaAuto(moving,()=>({advanced:false,reason:'native-voyage-clock-invalid'}));
 assert.deepEqual(refused,{advanced:false,reason:'native-voyage-clock-invalid'});

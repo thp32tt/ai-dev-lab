@@ -271,6 +271,12 @@ function toggleSeaAuto() {
     renderSeaScreen();
     return false;
   }
+  // Preserve an already reachable original source harbor for manual P/Enter.
+  if (findReadyNativePortCall(seaRuntime.snapshot())) {
+    stopSeaAuto("auto-port-arrived");
+    renderSeaScreen();
+    return false;
+  }
   // No zero-velocity auto loop: a stationary fleet must not consume days,
   // provisions or interest solely because the 220ms browser timer runs.
   if (!seaRuntime.hasNetMotion()) {
@@ -285,8 +291,9 @@ function toggleSeaAuto() {
       stopSeaAuto();
       return;
     }
-    const advance=advanceNativeSeaAuto(seaRuntime,tickSeaWithBankInterest);
-    if(!advance.advanced){
+    const advance=advanceNativeSeaAuto(
+      seaRuntime,tickSeaWithBankInterest,findReadyNativePortCall);
+    if(!advance.advanced||advance.stopAtPort){
       stopSeaAuto(advance.reason);
       renderSeaScreen();
       return;

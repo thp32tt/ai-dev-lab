@@ -8,6 +8,8 @@ const autoButton = controller?.querySelector('[data-action="auto-sail"]');
 const soundButton = controller?.querySelector('[data-action="sound"]');
 const portButton = controller?.querySelector('[data-key="p"]');
 const checkpointSaveButton=controller?.querySelector('[data-action="checkpoint-save"]');
+const saveNavButtons=[...controller?.querySelectorAll(
+  '[data-action="save-prev"],[data-action="save-next"]')??[]];
 const checkpointLoadButton=controller?.querySelector('[data-action="checkpoint-load"]');
 
 function emitKey(key, options = {}) {
@@ -43,8 +45,15 @@ function changeSave(delta) {
 function runAction(action) {
   if (action === "start") document.getElementById("run-button")?.click();
   else if (action === "opening") document.getElementById("opening-button")?.click();
-  else if (action === "save-prev") changeSave(-1);
-  else if (action === "save-next") changeSave(1);
+  else if (action === "save-prev" || action === "save-next") {
+    // Hidden source Save Data buttons must not replace an actively running
+    // town/sea game with the unrelated "preview" screen.
+    // Slot selection belongs only to the original system/load/preview UI.
+    const mode=controller?.dataset.mode??"";
+    if(!["system-menu","load-select","load-confirm","load-empty","preview"]
+       .includes(mode))return;
+    changeSave(action==="save-prev"?-1:1);
+  }
   else emitAction(action);
 }
 
@@ -125,6 +134,10 @@ window.addEventListener("uw2-game-state", event => {
   };
   if (modeLabel) modeLabel.textContent = labels[state.mode] || String(state.mode || "게임");
   controller.dataset.mode = state.mode || "";
+  const saveSelectionAvailable=["system-menu","load-select","load-confirm",
+    "load-empty","preview"].includes(state.mode);
+  for(const button of saveNavButtons)
+    button.disabled=!saveSelectionAvailable;
 
   if(checkpointSaveButton)
     checkpointSaveButton.disabled=!["town","sea"].includes(state.mode);

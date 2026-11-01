@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native bank borrowing cash/debt ceiling repair (2026-11-02 KST)
+
+- **One distinct shipping native gameplay banking transaction repair (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material commit `dd1f62dd46b689d66396d4d5aff7daa2523c493f` fixes `web/bank.js`: the real browser bank lending maximum now simultaneously enforces native 600,000,000 G cash and 1,000,000 G negative-balance ceilings, refuses corrupt non-integer/out-of-range source fields, and keeps both cash/debt unchanged on refusal. The native bank UI already calls the corrected `bankBorrowMaximum` and `bankBorrow`; new original-free regression `tests/native-bank-borrow-ceiling.test.mjs` tests both caps, exact limits, repeated lending refusals, malformed state, and live app call-site.
+- **Exact-SHA CI:** GitHub Actions `41335218117` `UW2 Web Fidelity Static Gate` **SUCCESS** on `dd1f62dd46b689d66396d4d5aff7daa2523c493f`. This validates synthetic native JS behavior only: user-owned Korean DOS file reference bank arithmetic, actual Firefox gameplay and save round-trip remain **RUNTIME_VALIDATION=UNTESTED**. The bank cap is a native safety invariant, not an inferred original DOS overflow rule.
+- **AI 2 cumulative: previous confirmed 2398 + one distinct verified shipping bank transaction fix (+1) = 2399.** Same change's regression/CI/scorekeeping/readback +0. AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 DX11 source-authentic large FVF GPU island coverage rotation (2026-11-02 KST)
 
 - **TASK_ID CONVERSION-DX11-01204 — one independent real C++ native GPU capture improvement (+1):** `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` material implementation `afd37bd2a693ad5498840cda4c3788dffecb5c05` changes `native_game_raw_fvf_island_sampling.hpp` and `native_raw_dual_tile_test.cpp`: each original game FVF triangle's source-authentic native D3D11 PRE/POST RGB sampling advances across the interior on successive Draw captures; later islands offer both physically disjoint source tiles, with a same-island GPU fallback. This repairs repeated first-corner starvation for two large separated menu/vehicle/HUD/race source primitives without inventing pixels, bypassing source scissor/RT/IA/fence checks, or changing D3D9 Draw/Present/input/FFB/DX9Ex fallback.

@@ -99,7 +99,7 @@ export async function saveNativeTownCheckpoint({storage,sourceSha256,sourceSlots
   bytes:envelope.length,fidelity:'BROWSER_ONLY_TOWN_CHECKPOINT__NOT_DOS_SAVE'};
 }
 export async function loadNativeTownCheckpoint({storage,sourceSha256,sourceSlots,
- portAssets,portCatalog}){
+ portAssets,portCatalog,portCatalogForSlot}){
  if(!storage||typeof storage.getItem!=='function')
   throw new Error('browser checkpoint storage unavailable');
  const bytes=storage.getItem(NATIVE_TOWN_CHECKPOINT_KEY);
@@ -115,9 +115,16 @@ export async function loadNativeTownCheckpoint({storage,sourceSha256,sourceSlots
  const body=JSON.stringify(envelope.payload);
  if(typeof body!=='string'||await hash(body)!==envelope.checksum)
   throw new Error('browser checkpoint integrity mismatch');
- return validateNativeTownCheckpoint(envelope.payload,{
-  sourceSha256,sourceSlots,portAssets,portCatalog
+ // The source PORT table is save-page-specific. A checkpoint for slot 2
+ // must never restore using the current screen's slot 1 port directory.
+ const sourceSlotIndex=envelope.payload?.session?.index;
+ const resolvedCatalog=typeof portCatalogForSlot==='function'
+  ? portCatalogForSlot(sourceSlotIndex)
+  : portCatalog;
+ const restored=validateNativeTownCheckpoint(envelope.payload,{
+  sourceSha256,sourceSlots,portAssets,portCatalog:resolvedCatalog
  });
+ return {...restored,portCatalog:resolvedCatalog};
 }
 export function resumeNativeTownRuntime(runtime,town){
  if(!runtime||!town||runtime.portId!==town.portId||

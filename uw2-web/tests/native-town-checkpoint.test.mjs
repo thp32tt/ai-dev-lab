@@ -33,12 +33,25 @@ assert.equal(saved.fidelity,'BROWSER_ONLY_TOWN_CHECKPOINT__NOT_DOS_SAVE');
 const read=await loadNativeTownCheckpoint({...deps,storage});
 assert.deepEqual(read.session,session);
 assert.deepEqual(read.town,town);
+assert.deepEqual(read.portCatalog,[port]);
+
 assert.notEqual(read.session,session);
 const runtime=new PortWalkingRuntime(read.session,assets,[[]]);
 assert.equal(resumeNativeTownRuntime(runtime,read.town),runtime);
 assert.equal(runtime.facing,'right');assert.equal(runtime.stepParity,1);
 assert.equal(runtime.talkCounter,7);
 assert.equal(original.money,100);
+// Browsing another save's port catalog must not corrupt checkpoint restore.
+const wrongCatalog=[{...port,name:'another saved directory name'}];
+await assert.rejects(loadNativeTownCheckpoint({...deps,
+ portCatalog:wrongCatalog,storage}),/port ownership invalid/);
+const resolved=await loadNativeTownCheckpoint({...deps,
+ portCatalog:wrongCatalog,storage,portCatalogForSlot:index=>{
+   assert.equal(index,1);
+   return [port];
+ }});
+assert.equal(resolved.session.portName,'source port');
+assert.equal(resolved.portCatalog[0].name,'source port');
 const text=mem.get(NATIVE_TOWN_CHECKPOINT_KEY);
 const tampered=JSON.parse(text);tampered.payload.session.money=5000;
 mem.set(NATIVE_TOWN_CHECKPOINT_KEY,JSON.stringify(tampered));

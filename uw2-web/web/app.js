@@ -2055,7 +2055,15 @@ window.addEventListener("uw2-controller-action", async event => {
           `웹 전용 임시저장 완료 · 슬롯 ${result.index+1} · 원본 DOS 저장 파일 미변경`;
       }else{
         const restored=await loadNativeTownCheckpoint({
-          ...dependencies,storage:window.localStorage
+          ...dependencies,storage:window.localStorage,
+          portCatalogForSlot:(index)=>{
+            const source=slots[index];
+            if(!source||source.empty||
+               !Number.isSafeInteger(source.raw?.page)||
+               !saveBuffer)
+              throw new Error("검증된 원본 슬롯 항구 테이블을 찾을 수 없습니다.");
+            return parseKoreanPortTable(saveBuffer,source.raw.page);
+          }
         });
         if(!restored)throw new Error("저장된 웹 전용 체크포인트가 없습니다.");
         const entry=classifyNativeSaveEntry(restored.session,{
@@ -2072,6 +2080,7 @@ window.addEventListener("uw2-controller-action", async event => {
         stopSeaAuto();
         stopOpening(false);
         selected=restored.session;
+        portCatalog=restored.portCatalog;
         townRuntime=nextRuntime;
         viewMode="town";
         setMusicForMode("town");

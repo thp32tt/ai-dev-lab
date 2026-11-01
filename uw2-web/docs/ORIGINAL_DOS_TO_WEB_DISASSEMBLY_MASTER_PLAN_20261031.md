@@ -646,3 +646,9 @@
 ### 2026-11-01 원본 native IRQ 기록의 소유권 재사용 차단
 
 - SHA-256으로 고정한 IRQ trace의 cursor는 실행 세션에서 소비되는 상태이므로 동일 tape를 두 번째 DOS child에 재사용하면 이미 건너뛴 이벤트를 조용히 누락시킬 위험이 있다. `createPinnedExternalGuestIrqTrace`의 one-owner claim을 실제 `createStagedDosChildContinuation`의 guest BIOS 소유권이 확정되는 시점에만 수행하고, 다른 세션 재사용을 fail closed 한다. 실패 시 첫 세션의 완료 상태나 반환된 부모 CPU frame은 보존하며 새 tape를 다시 검증해 만들어야 한다. 외부 DOS source timing 동등성은 여전히 UNTESTED, 신규 기능의 직접 완전성 수리로서 중복 점수 +0.
+
+## 2026-11-02 네이티브 기항 판정: 원본 항구 목록 순서와 목적지 오선택 분리
+
+- 배포 코드 `web/world-map.js`의 `findPortCallTarget`에서 원본 4×4 후보를 첫 번째 배열 항목으로 바로 확정하던 동작을 수정. 동일 반경에 여러 정본 항구가 있다면 어느 것을 기항할지 검증되지 않았으므로 `null`(기항 보류)로 처리한다. 4×4 후보가 유일하면 원래 우선순위를 유지하고, 그 경우에만 2칩 복구 후보보다 우선한다. 2칩 복구 역시 유일한 후보일 때만 허용한다. 원본 표의 유효 좌표·항구 ID 범위 밖의 자료는 무시한다.
+- 브라우저 기항 버튼·화면과 실제 입항 코드는 같은 함수를 사용하므로 잘못된 포트로의 임의 진입을 방지. `tests/native-port-call-recovery.test.mjs`는 정본 4×4 복수 후보, 4×4 대 복구 우선순위, 복구 복수 후보, 세계 X 연결 경계, 유효하지 않은 원본 좌표를 검사한다. 보유 원본의 130항구 첫 출항 재기항 전수 검사 `native-port-call-original.test.mjs`는 별도 owner-only로 유지.
+- 한계: 모호한 경우 사용자 입력으로 항구를 선택하거나 원래 DOS의 항구 선택 규칙과 동등하다고 추정하지 않는다. 실제 원본 DOS/브라우저 플레이의 정확한 기항 타이밍은 **UNTESTED**.

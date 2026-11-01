@@ -273,32 +273,40 @@ export function findPortCallTarget(state, ports) {
   if (!state || !Array.isArray(ports) ||
       !Number.isSafeInteger(state.x)||!Number.isSafeInteger(state.y))
     return null;
-  const candidates=[];
+  // The Korean source directory is a catalog, not a priority list.
+  // A valid nearby call must not depend on its entry ordering. Multiple
+  // matching source ports are ambiguous and must not silently choose one.
+  if(state.x<0||state.x>=WORLD_CHIP_W||state.y<0||state.y>=WORLD_CHIP_H)
+    return null;
+  const ringCandidates=[],recoveryCandidates=[];
   for (const port of ports) {
-    if (!port?.name||!Number.isSafeInteger(port.x)||
-        !Number.isSafeInteger(port.y))continue;
+    if (!port?.name||!Number.isSafeInteger(port.id)||
+        port.id<0||port.id>129||!Number.isSafeInteger(port.x)||
+        port.x<0||port.x>=WORLD_CHIP_W||!Number.isSafeInteger(port.y)||
+        port.y<0||port.y>=WORLD_CHIP_H)continue;
     let dx = port.x - state.x;
-    // World X wraps.
+    // World X wraps; source port positions are already bounded.
     if (dx > WORLD_CHIP_W / 2) dx -= WORLD_CHIP_W;
     if (dx < -WORLD_CHIP_W / 2) dx += WORLD_CHIP_W;
     const dy = port.y - state.y;
-    // Preserve the traced original 12-position 4x4 admission ring first.
+    // Preserve the traced original 12-position 4x4 admission ring FIRST.
     const inRing = dx >= -1 && dx <= 2 && dy >= -1 && dy <= 2 &&
       !(dx >= 0 && dx <= 1 && dy >= 0 && dy <= 1);
-    if (inRing) return { ...port, dx, dy, approach:'SOURCE_RING_4X4' };
-    // Native-web departure recovery ONLY: the unmodified original 130
-    // KOUKAI2 port coordinates + WORLDMAP-derived first navigable sea
-    // positions show 59 departures at dx=-2 or dy=-2. The known 4x4
-    // ring incorrectly strands those ports on the very first ship tile.
-    // This broader, bounded two-chip approach is *not* asserted to be
-    // an original DOS Port Call rule. Reject ambiguity rather than
-    // invent a destination. Never recover from a distant position.
+    if (inRing) {
+      ringCandidates.push({...port,dx,dy,approach:'SOURCE_RING_4X4'});
+      continue;
+    }
+    // The observed 59 source departures need a separate, bounded 2-chip
+    // native-web recovery. This is NOT an asserted original DOS rule.
     const inRecovery = dx >= -2 && dx <= 2 && dy >= -2 && dy <= 2 &&
       !(dx >= 0 && dx <= 1 && dy >= 0 && dy <= 1);
-    if (inRecovery)candidates.push({...port,dx,dy,
+    if (inRecovery)recoveryCandidates.push({...port,dx,dy,
       approach:'NATIVE_SOURCE_NEAREST_SEA_2CHIP_RECOVERY'});
   }
-  return candidates.length===1 ? candidates[0] : null;
+  // An ambiguous original-ring match is NOT permission to recover another
+  // port. The historical ring takes precedence only when it is unique.
+  if(ringCandidates.length)return ringCandidates.length===1?ringCandidates[0]:null;
+  return recoveryCandidates.length===1?recoveryCandidates[0]:null;
 }
 
 export class SeaRuntime{

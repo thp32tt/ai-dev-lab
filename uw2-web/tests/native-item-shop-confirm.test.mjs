@@ -40,7 +40,7 @@ const purchased=buy(live,liveQuote);
 assert.equal(purchased.quantity,1);
 assert.equal(live.money,0,'exact-price confirmation is successful');
 assert.equal(live.inventory[0],3);
-unchanged(live,liveQuote,()=>buy(live,liveQuote),'insufficient-gold');
+unchanged(live,liveQuote,()=>buy(live,liveQuote),'no-gold');
 
 const wrongStock=make(),wrongQuote=quotation(wrongStock);
 wrongStock.portMeta.regularItems=[4,255,255];

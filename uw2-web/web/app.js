@@ -2,6 +2,7 @@ import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTa
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { buildNativePortArrival, canBuildNativePortArrival } from "./native-port-arrival.js";
 import { advanceNativeSeaAuto } from "./native-sea-auto.js";
+import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
@@ -1410,10 +1411,12 @@ function handleBuildingKey(event) {
   if (ui.mode === "sail-confirm") {
     if (key === "enter" || key === "y" || key === "1") {
       event.preventDefault();
-      advanceSelectedDateTicks(ui.visitTicks);
-      consumeDepartureDay(selected);
-      buildingUi=null;
-      startSeaFromPort();
+      if(!startSeaFromPort(ui.visitTicks)){
+        ui.mode="message";
+        ui.messageId=null;
+        ui.messageText="출항 보류: 유효한 해상 위치·날짜·선단 상태를 확인할 수 없습니다.";
+        renderTownScreen();
+      }
       return true;
     }
     if (key === "escape" || key === "n") {
@@ -1891,23 +1894,21 @@ function moveTown(direction) {
   renderTownScreen();
 }
 
-function startSeaFromPort() {
-  if (!selected?.portWorld || !worldAssets) return false;
-  const start = findNearestSea(worldAssets, selected.portWorld.x, selected.portWorld.y, 40);
-  if (!start) {
-    $("runtime-status").textContent = "출항 실패: 항구 근처 항해 가능 바다를 찾지 못했습니다.";
+function startSeaFromPort(visitTicks) {
+  const prepared=prepareNativeHarborDeparture({
+    session:selected,worldAssets,windCur,visitTicks
+  });
+  if(!prepared.allowed){
+    $("runtime-status").textContent="출항 보류: "+prepared.reason;
     return false;
   }
+  // Commit all dated bank, fleet and voyage state together ONLY once the
+  // browser's source-backed navigable sea and SeaRuntime are ready.
   stopSeaAuto();
-  seaRuntime = new SeaRuntime(
-    worldAssets,
-    start,
-    windCur,
-    selected?.dateTime?.month ?? 1,
-    selected?.fleet ?? null,
-    selected?.dateTime ?? null,
-  );
-  viewMode = "sea";
+  selected=prepared.session;
+  seaRuntime=prepared.sea;
+  buildingUi=null;
+  viewMode="sea";
   setMusicForMode("sea");
   publishControllerState();
   renderSeaScreen();

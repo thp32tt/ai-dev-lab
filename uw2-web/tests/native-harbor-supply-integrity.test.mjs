@@ -110,6 +110,6 @@ const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 for(const needle of [
  'loadSupply(selected,ui.ship,resource,q)',
  'unloadSupply(selected,ui.ship,resource,q)',
- 'harborDepartureStatus(selected)','consumeDepartureDay(selected)'
+ 'harborDepartureStatus(selected)','prepareNativeHarborDeparture({'
 ])assert.ok(app.includes(needle));
 console.log('UW2 native harbor supply load/unload/departure u16 and wallet atomicity: PASS');

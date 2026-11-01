@@ -20,6 +20,15 @@ function validSupplyPriceSource(slot){
   return Array.isArray(rates)&&rates.length>=10&&
     [rates[2],rates[9]].every(x=>u16(x)&&x<=255);
 }
+function sourceSupplyPrice(slot,resource){
+  if(!RESOURCE_KEYS.includes(resource))return null;
+  // The 30 source supply ports use common town map #100 and do not have
+  // the 100 ordinary ports' price metadata. Keep original free water in
+  // that already-supported native browser path; other prices remain HOLD.
+  if(resource==='water'&&slot?.port===100&&slot?.portMeta==null)return 0;
+  if(!validSupplyPriceSource(slot))return null;
+  return harborSupplyPrices(slot)[resource];
+}
 function validSupplyFleet(slot){
   const ships=slot?.fleet?.ships;
   return validSupplySlot(slot)&&Array.isArray(ships)&&
@@ -75,9 +84,9 @@ export function resourceUnitsAboard(ship, resource) {
 
 export function maxSupplyLoad(slot, ship, resource) {
   if(!validSupplySlot(slot)||!validSupplyShip(ship)||
-     !validSupplyPriceSource(slot)||!RESOURCE_KEYS.includes(resource))return 0;
+     !RESOURCE_KEYS.includes(resource))return 0;
   const free=shipCargoFree(ship);
-  const price=harborSupplyPrices(slot)[resource];
+  const price=sourceSupplyPrice(slot,resource);
   if(free<=0||!Number.isSafeInteger(price)||price<0)return 0;
   // Ship resources and the velocity load are actual u16 source records.
   const remainingResource=resource==='water'||resource==='food'
@@ -93,12 +102,12 @@ export function loadSupply(slot, shipIndex, resource, requested) {
   if(!Number.isSafeInteger(shipIndex)||shipIndex<0||
      !Number.isSafeInteger(requested)||requested<=0||
      !validSupplySlot(slot)||!validSupplyShip(ship)||
-     !validSupplyPriceSource(slot)||!RESOURCE_KEYS.includes(resource))
+     sourceSupplyPrice(slot,resource)===null)
     return {quantity:0,cost:0,reason:'invalid-supply-state'};
   const max=maxSupplyLoad(slot,ship,resource);
   const quantity=Math.min(max,requested);
   if(quantity<=0)return {quantity:0,cost:0,reason:'supply-limit'};
-  const price=harborSupplyPrices(slot)[resource];
+  const price=sourceSupplyPrice(slot,resource);
   const cost=price*quantity;
   // All limits and wallet affordability are checked before any mutation.
   if(!Number.isSafeInteger(cost)||cost<0||cost>slot.money)

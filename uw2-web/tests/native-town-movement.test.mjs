@@ -70,7 +70,8 @@ badActors.runtime.actors={invalid:true};
 hold(badActors,'native-town-owner-invalid');
 // The active keyboard movement path must use the staged transaction.
 const app=readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.match(app,/prepareNativeTownMovement[\\s\\S]*session:selected,runtime:townRuntime,assets:portAssets,direction/);
+assert.ok(app.includes('const step=prepareNativeTownMovement({'));
+assert.ok(app.includes('session:selected,runtime:townRuntime,assets:portAssets,direction'));
 assert.match(app,/commitNativeTownMovement\(step\)/);
 assert.doesNotMatch(app,/\btownRuntime\.move\(direction\)/);
 console.log('UW2 browser town walking stages source geometry/NPC/dialogue before committing active state: PASS');

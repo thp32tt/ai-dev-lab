@@ -22,6 +22,7 @@ jobs:
           node --check uw2-web/web/native-graph-canvas.js
           node --check uw2-web/web/native-save-entry.js
           node --check uw2-web/web/native-save-session.js
+          node --check uw2-web/web/native-town-checkpoint.js
           node --check uw2-web/web/native-korean-save-source.js
           node --check uw2-web/tests/native-korean-save-source-original.test.mjs
           node --check uw2-web/tests/native-save-session-original.test.mjs
@@ -92,6 +93,7 @@ jobs:
           node uw2-web/tests/native-graph-canvas.test.mjs
           node uw2-web/tests/native-save-entry.test.mjs
           node uw2-web/tests/native-save-session.test.mjs
+          node uw2-web/tests/native-town-checkpoint.test.mjs
           node uw2-web/tests/native-korean-save-source.test.mjs
           node uw2-web/tests/native-port-arrival.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs

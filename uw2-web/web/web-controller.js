@@ -6,6 +6,8 @@ const musicLabel = document.getElementById("controller-music");
 const autoButton = controller?.querySelector('[data-action="auto-sail"]');
 const soundButton = controller?.querySelector('[data-action="sound"]');
 const portButton = controller?.querySelector('[data-key="p"]');
+const checkpointSaveButton=controller?.querySelector('[data-action="checkpoint-save"]');
+const checkpointLoadButton=controller?.querySelector('[data-action="checkpoint-load"]');
 
 function emitKey(key, options = {}) {
   const down = new KeyboardEvent("keydown", {
@@ -121,6 +123,10 @@ window.addEventListener("uw2-game-state", event => {
   if (modeLabel) modeLabel.textContent = labels[state.mode] || String(state.mode || "게임");
   controller.dataset.mode = state.mode || "";
 
+  if(checkpointSaveButton)
+    checkpointSaveButton.disabled=state.mode!=="town";
+  if(checkpointLoadButton)
+    checkpointLoadButton.disabled=state.mode==="loading"||state.mode==="opening";
   if (autoButton) {
     const on = !!state.autoSail;
     autoButton.classList.toggle("latched", on);

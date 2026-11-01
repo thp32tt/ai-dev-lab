@@ -3,6 +3,7 @@ import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { buildNativePortArrival } from "./native-port-arrival.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
+import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -106,6 +107,7 @@ let menus = [];
 let menuDefs = [];
 let messages = [];
 let saveBuffer = null;
+let originalSaveSha256 = null;
 let viewMode = "loading";
 let kaoPortraits = [];
 let portAssets = null;
@@ -793,6 +795,7 @@ async function loadSaves() {
   const verified = await readVerifiedKoreanSaveSource(new Uint8Array(buf));
   // All screen data is sourced from the SHA-bound snapshot, never from
   // a caller-owned async fetch buffer that can change during WebCrypto.
+  originalSaveSha256 = verified.sourceSha256;
   saveBuffer = verified.copyBytes().buffer;
   slots = verified.slots;
   portCatalog = verified.portCatalog;
@@ -2027,6 +2030,59 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("uw2-controller-action", async event => {
   const action = event.detail?.action;
   if (action === "controller-ready") {
+    publishControllerState();
+    return;
+  }
+  // These commands are explicitly separate from the original DOS Save Data
+  // menu. Only an idle source-verified native town can be checkpointed.
+  if(action==="checkpoint-save"||action==="checkpoint-load"){
+    const dependencies={
+      sourceSha256:originalSaveSha256,sourceSlots:slots,
+      portAssets,portCatalog
+    };
+    try{
+      if(!bootGate.canShowSystemMenu()||!originalSaveSha256||
+         !portAssets||!portDoors)
+        throw new Error("원본 게임 데이터 로딩이 아직 완료되지 않았습니다.");
+      if(action==="checkpoint-save"){
+        if(viewMode!=="town"||!townRuntime||!selected)
+          throw new Error("항구에서만 웹 임시저장을 할 수 있습니다.");
+        const result=await saveNativeTownCheckpoint({
+          ...dependencies,storage:window.localStorage,
+          session:selected,town:townRuntime.snapshot()
+        });
+        $("runtime-status").textContent=
+          `웹 전용 임시저장 완료 · 슬롯 ${result.index+1} · 원본 DOS 저장 파일 미변경`;
+      }else{
+        const restored=await loadNativeTownCheckpoint({
+          ...dependencies,storage:window.localStorage
+        });
+        if(!restored)throw new Error("저장된 웹 전용 체크포인트가 없습니다.");
+        const entry=classifyNativeSaveEntry(restored.session,{
+          portAssets,portDoors
+        });
+        if(entry.route!=="town")
+          throw new Error("원본 항구 좌표 복원 검증이 실패했습니다.");
+        const nextRuntime=new PortWalkingRuntime(
+          restored.session,portAssets,portDoors
+        );
+        resumeNativeTownRuntime(nextRuntime,restored.town);
+        // Commit only after checksum/source, geometry, slot and runtime
+        // preflight; failed loads keep the previous running game intact.
+        stopSeaAuto();
+        stopOpening(false);
+        selected=restored.session;
+        townRuntime=nextRuntime;
+        viewMode="town";
+        setMusicForMode("town");
+        renderTownScreen();
+        $("runtime-status").textContent=
+          "웹 전용 임시저장 복원 완료 · 원본 DOS 세이브와 별개";
+      }
+    }catch(error){
+      $("runtime-status").textContent=
+        "웹 임시저장/복원 보류: "+(error?.message??String(error));
+    }
     publishControllerState();
     return;
   }

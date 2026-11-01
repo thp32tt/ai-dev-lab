@@ -10,8 +10,7 @@ const makeRuntime=fleet=>new SeaRuntime(assets,{x:100,y:100},null,7,fleet,dateTi
 const still=makeRuntime(null);
 const before=still.snapshot();
 const stillMotion=still.projectedVelocity();
-assert.equal(stillMotion.x,0);
-assert.equal(stillMotion.y,0); // -0 and +0 both mean no physical motion
+assert.ok(stillMotion.x===0&&stillMotion.y===0); // signed zero is motionless
 assert.equal(still.hasNetMotion(),false);
 let ticks=0;
 const blocked=advanceNativeSeaAuto(still,()=>{ticks++;still.tick();});

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun VR v0.01 Beta dual 2D/VR entrypoint + shared FFB release correction (2026-11-02 KST)
+
+- **One distinct verified release/entrypoint integration (+1):** On `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, final published SHA `e1635a956cdb30f69eea461592cd515070456b2b` corrects the beta packaging so one shared `dinput8.dll` retains normal Tweaks + wheel FFB + VR code while launch ownership is explicit: direct `OR2006C2C.exe` and selector mode 1 disable only VR hooks for **2D + FFB**, selector mode 2 / `Start-OutRun-VR.cmd` opt into **VR + FFB**. The CMD VR path now carries the validated DX9Ex Focus launch profile that earlier test PS1 scripts supplied (D3D9Ex, DirectGPU, OpenXR eye resolution, cadence, mirror/HUD/menu settings), while release telemetry/file logging remain OFF; no PowerShell runtime dependency is shipped. Stale `VR.Enabled=true` user INI state cannot force direct-EXE VR in the release package.
+- **Exact-SHA verification/publication:** GitHub Actions **VR Release v0.01 Beta run 41330981354 SUCCESS**: release policy/static checks PASS, Win32 shared FFB+VR `dinput8.dll` build PASS, x64 OpenXR host build PASS, ZIP assembly/profile validation PASS, artifact upload PASS, prerelease publication PASS. Release tag `vr-v0.01-beta`, asset `OutRun2_VR_v0.01_Beta.zip`, SHA256 `71098f2e60bcd421d83e490613eb776cedaab4683d3c5e801ddb20ceb116e952`. Existing Quest3/VDXR Focus renderer state was user-confirmed earlier; the newly separated direct-EXE/CMD entrypoints are CI/static-verified but their post-change user-PC runtime check remains pending and is not claimed.
+- **AI 2 cumulative: previous confirmed 2393 + one new verified release/entrypoint integration (+1) = 2394.** AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 browser-native zero-motion auto-sail resource burn repair (2026-11-02 KST)
 
 - **One distinct actual shipping-web gameplay correction (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material source commit `f6fc74dba942c117962b526fe8e33b35f7b1eeed` extracts the existing Korean-world wind/current/ship speed projection once in `world-map.js` and adds `hasNetMotion()`. Real browser game `app.js` auto-sail start and its 220ms continuation now refuse a zero resultant movement vector before `tickSeaWithBankInterest` can advance calendar, expend voyage provisions or trigger bank interest in a perpetual stationary AUTO loop; an explicit manual time-advance still works. `native-sea-auto.js` is the tested synchronous auto-only guard; `native-sea-auto.test.mjs` covers zero-motion unchanged date/ticks, manual wait, and a verified oared ship's genuine sea progress. `UW2 Web Fidelity Static Gate` workflow includes the new test.

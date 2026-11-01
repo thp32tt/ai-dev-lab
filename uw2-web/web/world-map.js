@@ -222,9 +222,6 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
       throw new Error('native sea original tile unavailable for index '+id);
     drawTileToImage(img,w,tile,vx*16,vy*16);
   }
-  raster.worldCtx.putImageData(img,0,0);
-  ctx.imageSmoothingEnabled=false;
-  ctx.drawImage(raster.worldCanvas,dx,dy);
   const sx=dx+Math.floor(tilesWide/2)*16,sy=dy+Math.floor(tilesHigh/2)*16;
   const ships=assets.seaShips;
   if(!Array.isArray(ships)||!ships.length)
@@ -257,7 +254,12 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
     if(!c)throw new Error('native sea source sprite palette index invalid: '+ci);
     simg.data[p]=c[0];simg.data[p+1]=c[1];simg.data[p+2]=c[2];simg.data[p+3]=255;
   }
+  // Preflight and build both outputs BEFORE changing the destination.
+  // Missing source sprites/metadata must not leave a half-painted frame.
+  raster.worldCtx.putImageData(img,0,0);
   raster.shipCtx.putImageData(simg,0,0);
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(raster.worldCanvas,dx,dy);
   ctx.drawImage(raster.shipCanvas,sx,sy);
   return {startX,startY,width:w,height:h};
 }

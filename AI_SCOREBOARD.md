@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 QuestCockpitV2 Phase-0 bounded source frame-correlation integration (2026-11-02 KST)
+
+- **One distinct diagnostic source integration (+1):** On `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, material source SHA `18eaaaa8e56f72dc740cfdf478fe379bfe27188e` adds a default-OFF, bounded thread-local `QuestCockpitV2` Present-window probe and live read-only game callbacks. It observes native camera mode/SceneEffect/culling-camera borrowing, player-car render entry, D3D9 Begin/EndScene success, XR latched pose sequence/epoch and Present/reset without changing existing camera, vehicle, driver, HUD, OpenXR stereo, 2D launcher, FFB or release quiet policy. Explicitly marks game `frame_render_449050` epoch **UNOBSERVED** and **never enables cockpit**. Standalone diagnostic launchers opt in; later doc/head `afc64927609d258662390216d681e12d6ac39172` captures guarded clean V2 replacement plan.
+- **Verification:** Exact source SHA `18eaaaa8e56f72dc740cfdf478fe379bfe27188e`: `VR GitHub General Test Build` GitHub Actions **41334885472 SUCCESS** (Windows game DLL and OpenXR host build). Source-preserving CI wiring SHA `7327e97e5752f77c10c5ac1f101434fd4c125a5c`: `DX9Ex Review Source Audit` **41335128249 SUCCESS**, including new C++17 -Wall -Wextra -Werror -pedantic bounded probe runtime smoke. Initial R26/debug workflows failed an **older verifier incorrectly requiring user INI Telemetry=true**; separate same-task CI policy fix `cf323717a6ea7837d3819b91d9a368966bcbfb43` restores quiet beta versus diagnostic opt-in distinction. Full diagnostic ZIP CI and Quest3 HMD correlation remain pending and are **not** claimed passed. **RUNTIME_VALIDATION=UNTESTED**.
+- **AI 2 cumulative: previous confirmed 2399 + one distinct Windows-build/C++17 validated cockpit diagnostic implementation (+1) = 2400.** Debug launcher changes, source audits, CI corrections, docs and later checks +0; AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 native bank borrowing cash/debt ceiling repair (2026-11-02 KST)
 
 - **One distinct shipping native gameplay banking transaction repair (+1):** `thp32tt/ai-dev-lab@uw2-web-port` material commit `dd1f62dd46b689d66396d4d5aff7daa2523c493f` fixes `web/bank.js`: the real browser bank lending maximum now simultaneously enforces native 600,000,000 G cash and 1,000,000 G negative-balance ceilings, refuses corrupt non-integer/out-of-range source fields, and keeps both cash/debt unchanged on refusal. The native bank UI already calls the corrected `bankBorrowMaximum` and `bankBorrow`; new original-free regression `tests/native-bank-borrow-ceiling.test.mjs` tests both caps, exact limits, repeated lending refusals, malformed state, and live app call-site.

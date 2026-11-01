@@ -50,6 +50,20 @@ def state():
       seaStored:!!localStorage.getItem('uw2-web-native-sea-checkpoint-v1'),
       slots:document.querySelectorAll('#save-slots button:not(:disabled)').length
     }""")
+def reload_and_finish_original_intro():
+ req('POST',f'/session/{sid}/url',{'url':f'http://127.0.0.1:{PORT}/'})
+ last=None
+ for _ in range(230):
+  try:
+   last=state()
+   gate=last.get('gate')
+   if gate and gate.get('opening')=='finished' and gate.get('gameResourcesSettled') and last.get('slots',0)>=2:
+    return last
+   if gate and last.get('mode') in ('opening','opening-title'):
+    js("window.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));return true")
+  except Exception:pass
+  time.sleep(.2)
+ raise Exception('RELOADED_ORIGINAL_INTRO_NOT_READY '+json.dumps(last,ensure_ascii=False)[:1400])
 try:
  proc=subprocess.Popen([os.environ.get('UW2_GECKODRIVER','/snap/bin/geckodriver'),'--port',str(DRIVER)],
   stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
@@ -95,6 +109,14 @@ try:
  saved=state()
  if not saved['townStored'] or saved['choice']!='town':
   raise Exception('TOWN_SAVE_FAILED '+json.dumps(saved,ensure_ascii=False)[:1300])
+ reloadTown=reload_and_finish_original_intro()
+ if reloadTown['choice']!='town' or not reloadTown['townStored']:
+  raise Exception('TOWN_STORAGE_LOST_AFTER_BROWSER_RELOAD')
+ js("document.querySelector('[data-action=checkpoint-load]').click();return true;")
+ time.sleep(.4)
+ afterTownReload=state()
+ if afterTownReload['mode']!='town' or afterTownReload['debug'].get('mapX')!=22:
+  raise Exception('TOWN_RELOAD_RESTORE_FAIL '+json.dumps(afterTownReload,ensure_ascii=False)[:1300])
  js("window.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));return true;")
  time.sleep(.2)
  moved=state()
@@ -123,6 +145,14 @@ try:
   js("document.querySelector('[data-action=checkpoint-save]').click();return true;")
   time.sleep(.3)
   seaSaved=state()
+  reloadSea=reload_and_finish_original_intro()
+  if reloadSea['choice']!='sea' or not reloadSea['seaStored']:
+   raise Exception('SEA_STORAGE_LOST_AFTER_BROWSER_RELOAD')
+  js("document.querySelector('[data-action=checkpoint-load]').click();return true;")
+  time.sleep(.4)
+  afterSeaReload=state()
+  if afterSeaReload['mode']!='sea' or afterSeaReload['debug'].get('ticks')!=seaSaved['debug'].get('ticks'):
+   raise Exception('SEA_RELOAD_RESTORE_FAIL '+json.dumps(afterSeaReload,ensure_ascii=False)[:1300])
   js("window.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true,cancelable:true}));return true;")
   time.sleep(.2)
   js("document.querySelector('[data-action=checkpoint-load]').click();return true;")
@@ -147,6 +177,8 @@ try:
   'seaStart':{'mode':seaStart['mode'],'status':seaStart['status']},
   'seaSaved':None if seaSaved is None else {'mode':seaSaved['mode'],'choice':seaSaved['choice'],'feedback':seaSaved['feedback'],'x':seaSaved['debug'].get('x'),'ticks':seaSaved['debug'].get('ticks')},
   'seaRestored':None if seaRestored is None else {'mode':seaRestored['mode'],'choice':seaRestored['choice'],'feedback':seaRestored['feedback'],'x':seaRestored['debug'].get('x'),'ticks':seaRestored['debug'].get('ticks')},
+  'reloadTown':{'mode':afterTownReload['mode'],'x':afterTownReload['debug'].get('mapX')},
+  'reloadSea':{'mode':afterSeaReload['mode'],'ticks':afterSeaReload['debug'].get('ticks')},
   'boundary':'REAL_FIREFOX_NATIVE_WEB_BROWSER__NOT_DOS_REFERENCE_FRAME_PARITY'}
  print(json.dumps(result,ensure_ascii=False))
 except Exception as ex:

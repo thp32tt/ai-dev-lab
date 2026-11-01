@@ -230,8 +230,19 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
   if(!Array.isArray(ships)||!ships.length)
     throw new Error('native sea original ship sprite frames unavailable');
   const facingMap=[0,1,1,1,2,3,3,3];
-  const set=ships.length>=16?1:0; // Korean DOS: 0=oar, 1=sail
-  const frame=Math.min(ships.length-1,set*8+facingMap[state.heading&7]*2+(state.steps&1));
+  // Korean DATA1 graphic bank: 0..7 oar / 8..15 sail. The old
+  // ships.length>=16 shortcut unconditionally drew sail graphics, even
+  // for an original oared flagship. The native game's parsed Ship3 model
+  // supplies the existing source-backed oared class.
+  let set=0;
+  if(ships.length>=16){
+    if(typeof state.flagshipOared!=='boolean')
+      throw new Error('native sea 16-frame ship rendering needs verified flagship oar class');
+    set=state.flagshipOared?0:1;
+  }
+  const frame=set*8+facingMap[state.heading&7]*2+(state.steps&1);
+  if(frame<0||frame>=ships.length)
+    throw new Error('native sea original ship direction frame unavailable');
   const sp=ships[frame];
   if(!(sp instanceof Uint8Array)||sp.length!==32*32)
     throw new Error('native sea original ship frame missing');
@@ -366,6 +377,9 @@ export class SeaRuntime{
     return {
       x:this.x,y:this.y,heading:this.heading,steps:this.steps,ticks:this.ticks,
       accX:this.accX,accY:this.accY,
+      // Original Korean Ship3 model classification of the leading ship,
+      // never inferred from the number of decoded sprite frames.
+      flagshipOared:this.fleet?.ships?.[0]?.oared,
       speed,lastEvent:this.lastEvent,month:this.month,dateTime:{...this.dateTime},environment,
     };
   }

@@ -42,7 +42,7 @@ try{
     draws.push({width:surface.width,height:surface.height,x,y,
       bytes:Uint8ClampedArray.from(surface.surface.latest)});
   }};
-  const state={x:0,y:0,heading:0,steps:0};
+  const state={x:0,y:0,heading:0,steps:0,flagshipOared:false};
   const bounds=renderSeaView(target,assets,state,9,11,3,3);
   assert.deepEqual(bounds,{startX:-1,startY:-1,width:48,height:48});
   assert.equal(made.length,2);assert.equal(draws.length,2);
@@ -70,14 +70,28 @@ try{
     shipExpected.set(c?[...c,255]:[0,0,0,0],i*4);
   }
   assert.deepEqual(draws[1].bytes,shipExpected);
+  // Original oared flagship must use the 0..7 sprite bank rather than the
+  // previous hard-coded 8..15 sail bank. The geometry stays the same.
+  const oarState={...state,flagshipOared:true};
+  renderSeaView(target,assets,oarState,9,11,3,3);
+  assert.equal(draws.length,4);
+  const oaredFrame=new Uint8ClampedArray(32*32*4);
+  for(let i=0;i<seaShips[0].length;i++){
+    const v=seaShips[0][i];
+    oaredFrame.set(v===255?[0,0,0,0]:[...UW2_WORLD_PALETTE[v],255],i*4);
+  }
+  assert.deepEqual(draws[3].bytes,oaredFrame);
+  assert.notDeepEqual(draws[1].bytes,draws[3].bytes);
+  assert.throws(()=>renderSeaView(target,assets,{...state,flagshipOared:undefined},9,11,3,3),
+    /verified flagship oar class/);
   // Each later frame repaints reused surfaces instead of creating new DOM
   // canvases or leaking the last frame's pixels.
   seaShips[8][0]=3;
   state.steps=2;
   renderSeaView(target,assets,state,9,11,3,3);
   assert.equal(made.length,2);
-  assert.equal(draws.length,4);
-  assert.deepEqual([...draws[3].bytes.slice(0,4)],
+  assert.equal(draws.length,6);
+  assert.deepEqual([...draws[5].bytes.slice(0,4)],
     [...UW2_WORLD_PALETTE[3],255]);
   renderSeaView(target,assets,{...state,heading:2,steps:1},9,11,2,2);
   assert.equal(made.length,4); // new dimension gets one reusable pair

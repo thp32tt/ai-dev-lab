@@ -1,7 +1,8 @@
 export const RESOURCE_KEYS = Object.freeze(["water","food","lumber","shot"]);
 export const RESOURCE_NAMES = Object.freeze(["물","식량","자재","포탄"]);
 // Browser-native transaction ceilings: the original ship instance fields
-// are u16 source records. No unverified DOS supply-price parity is asserted.
+// are u16 source records. Mutating a single ship requires the complete
+// source-shaped fleet to preflight. No DOS price parity is asserted.
 const U16_MAX=65535;
 const GOLD_LIMIT=600_000_000;
 const u16=n=>Number.isSafeInteger(n)&&n>=0&&n<=U16_MAX;
@@ -83,7 +84,8 @@ export function resourceUnitsAboard(ship, resource) {
 }
 
 export function maxSupplyLoad(slot, ship, resource) {
-  if(!validSupplySlot(slot)||!validSupplyShip(ship)||
+  if(!validSupplyFleet(slot)||!validSupplyShip(ship)||
+     !slot.fleet.ships.includes(ship)||
      !RESOURCE_KEYS.includes(resource))return 0;
   const free=shipCargoFree(ship);
   const price=sourceSupplyPrice(slot,resource);
@@ -101,7 +103,7 @@ export function loadSupply(slot, shipIndex, resource, requested) {
   const ship=slot?.fleet?.ships?.[shipIndex];
   if(!Number.isSafeInteger(shipIndex)||shipIndex<0||
      !Number.isSafeInteger(requested)||requested<=0||
-     !validSupplySlot(slot)||!validSupplyShip(ship)||
+     !validSupplyFleet(slot)||!validSupplyShip(ship)||
      sourceSupplyPrice(slot,resource)===null)
     return {quantity:0,cost:0,reason:'invalid-supply-state'};
   const max=maxSupplyLoad(slot,ship,resource);
@@ -123,11 +125,14 @@ export function unloadSupply(slot, shipIndex, resource, requested) {
   const ship=slot?.fleet?.ships?.[shipIndex];
   if(!Number.isSafeInteger(shipIndex)||shipIndex<0||
      !Number.isSafeInteger(requested)||requested<=0||
-     !validSupplySlot(slot)||!validSupplyShip(ship)||
+     !validSupplyFleet(slot)||!validSupplyShip(ship)||
      !RESOURCE_KEYS.includes(resource))
     return {quantity:0,reason:'invalid-supply-state'};
   const quantity=Math.min(resourceUnitsAboard(ship,resource),requested);
   if(quantity<=0)return {quantity:0,reason:'no-supply'};
+  // The source u16 velocity-load cannot be debited below zero: the
+  // former clamping path silently erased an accounting mismatch.
+  if(ship.load<quantity)return {quantity:0,reason:'source-load-invalid'};
   if(resource==='water'||resource==='food')ship[resource]-=quantity*10;
   else ship[resource]-=quantity;
   adjustSpeedLoad(ship,-quantity);

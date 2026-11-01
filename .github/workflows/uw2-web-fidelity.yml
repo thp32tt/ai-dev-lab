@@ -59,6 +59,8 @@ jobs:
           node --check uw2-web/tests/native-harbor-departure.test.mjs
           node --check uw2-web/web/native-port-arrival.js
           node --check uw2-web/web/native-port-actor-memory.js
+          node --check uw2-web/web/native-port-economy-history.js
+          node --check uw2-web/tests/native-port-economy-history.test.mjs
           node --check uw2-web/tests/native-port-actor-memory.test.mjs
           node --check uw2-web/web/native-original-file.js
           node --check uw2-web/tools/assert-native-web-entry.mjs
@@ -153,6 +155,7 @@ jobs:
           node uw2-web/tests/native-port-arrival.test.mjs
           node uw2-web/tests/native-port-call-transaction.test.mjs
           node uw2-web/tests/native-port-actor-memory.test.mjs
+          node uw2-web/tests/native-port-economy-history.test.mjs
           node uw2-web/tests/native-port-call-recovery.test.mjs
           node uw2-web/tests/native-town-message-source.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs

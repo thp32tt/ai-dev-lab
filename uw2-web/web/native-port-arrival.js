@@ -1,5 +1,6 @@
 import {canStandAt} from './town.js';
 import {prepareNativePortActorContinuity} from './native-port-actor-memory.js';
+import {prepareNativePortEconomyContinuity} from './native-port-economy-history.js';
 // Browser-native port arrival derives coordinates from Korean original
 // ZA_DAT.DAT door #3, CHIP_NO/PORTMAP/PORTCHIP collision tiles and the
 // KOUKAI2.DAT 130-port source directory. It is NOT a DOS emulator and
@@ -54,13 +55,15 @@ export function buildNativePortArrival(args={}){
  // Persist source-proven people by full original catalog identity before
  // overwriting the active town with a new port. Unknown ports stay empty.
  const actors=prepareNativePortActorContinuity(previous,port);
+ const economy=prepareNativePortEconomyContinuity(previous,port);
  return {
   ...previous,
   port:port.mapId,
   portCatalogId:port.id,
   portName:port.name,
   portWorld:{nation:port.nation,x:port.x,y:port.y},
-  portMeta:port.meta?structuredClone(port.meta):null,
+  portMeta:economy.portMeta,
+  portEconomyHistory:economy.portEconomyHistory,
   dateTime:{...time},
   portState:{
    viewX,viewY,
@@ -71,7 +74,8 @@ export function buildNativePortArrival(args={}){
   portActorMemory:actors.portActorMemory,
   arrivalEvidence:{
    source:'ORIGINAL_PORT_TABLE_ZA_DAT_PORTCHIP_COLLISION',
-   actorStatus:actors.actorStatus
+   actorStatus:actors.actorStatus,
+   economyStatus:economy.economyStatus
   }
  };
 }

@@ -1,3 +1,4 @@
+import {validNativePortEconomyHistory} from './native-port-economy-history.js';
 import {validNativePortActorMemory} from './native-port-actor-memory.js';
 // Shared browser-native checkpoint admission for Korean-source-shaped state.
 // The original KOUKAI2.DAT bytes remain immutable: these are bounded in-memory
@@ -68,6 +69,8 @@ export function validateNativeCheckpointSessionEconomy(session,original){
   // checkpoint restore, but malformed/unbounded injected actors cannot.
   if(!validNativePortActorMemory(session.portActorMemory))
     throw new Error('native checkpoint port actor history invalid');
+  if(!validNativePortEconomyHistory(session.portEconomyHistory))
+    throw new Error('native checkpoint port economy history invalid');
   if(own(original,'inventory')){
     if(!Array.isArray(original.inventory)||!Array.isArray(session.inventory)||
        session.inventory.length!==original.inventory.length||

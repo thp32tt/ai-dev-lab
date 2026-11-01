@@ -89,7 +89,11 @@ for(const mutation of [
  s=>{s.portActorMemory={'130':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:[]}};},
  s=>{s.portActorMemory={'0':{source:'UNKNOWN',actors:[]}};},
  s=>{s.portActorMemory={'0':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:[{slot:0,x:255,y:10,type:0,active:true}]}};},
- s=>{s.portActorMemory={'0':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:Array(9).fill({slot:0,x:1,y:1,type:0,active:true})}};}
+ s=>{s.portActorMemory={'0':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:Array(9).fill({slot:0,x:1,y:1,type:0,active:true})}};},
+ s=>{s.portEconomyHistory={'100':{source:'SOURCE_KOUKAI2_PORT_ECONOMY_IN_NATIVE_BROWSER',meta:{economy:1000,marketId:0,rates:Array(10).fill(50)}}};},
+ s=>{s.portEconomyHistory={'0':{source:'SOURCE_KOUKAI2_PORT_ECONOMY_IN_NATIVE_BROWSER',meta:{economy:-1,marketId:0,rates:Array(10).fill(50)}}};},
+ s=>{s.portEconomyHistory={'0':{source:'SOURCE_KOUKAI2_PORT_ECONOMY_IN_NATIVE_BROWSER',meta:{economy:1000,marketId:0,rates:Array(10).fill(256)}}};},
+ s=>{s.portEconomyHistory={'0':{source:'unverified',meta:{economy:1000,marketId:0,rates:Array(10).fill(50)}}};}
 ]){
  const beforeTown=data.get(NATIVE_TOWN_CHECKPOINT_KEY);
  const beforeSea=data.get(NATIVE_SEA_CHECKPOINT_KEY);
@@ -117,6 +121,10 @@ live.fleet.ships[0].goods[0]={slot:0,id:2,quantity:6};
 live.fleet.ships[0].load=9;
 live.portActorMemory={'0':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',
  actors:[{slot:0,x:24,y:52,type:1,active:true}]}};
+live.portEconomyHistory={'0':{
+ source:'SOURCE_KOUKAI2_PORT_ECONOMY_IN_NATIVE_BROWSER',
+ meta:{economy:1000,marketId:0,rates:Array(10).fill(52)}
+}};
 assert.equal(validateNativeCheckpointSessionEconomy(live,original),true);
 await saveNativeTownCheckpoint({...deps,session:live,town});
 await saveNativeSeaCheckpoint({...deps,session:live,sea});

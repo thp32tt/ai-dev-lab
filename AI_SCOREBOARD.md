@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR native UP draw vertex provenance and CPU projection correlation (2026-11-02 08:44 KST)
+
+- **RUN_KEY:** `MODEL2VR-UP-CPU-GPU-CORRELATION-20261102-33bf5108`; **AI 2**; previous confirmed **2423**; change **+1**; new cumulative **2424**; confirmed KST **2026-11-02 08:44 KST**.
+- **Independent material development:** `thp32tt/Model2VR-tools@main` SHA `33bf510873d7c6b8de68413ab0d77aaed5741b29` adds bounded read-only D3D9 `DrawPrimitiveUP`/conservatively zero-based `DrawIndexedPrimitiveUP` game-submitted XYZRHW vertex captures with SEH-guarded reads, FVF/index/stride/finite guards, source caller/frame IDs, and offline same-thread CPU `project_ctx/project_after` coordinate-candidate correlation. New standalone C++ witness invariants and Python adversarial correlation tests. 7 changed source/test/docs files. Design references OutRun2006Tweaks R33 pass safety and IndexedUP bounds, no copy of copyrighted code. NO World3D promotion or draw replay without Daytona source runtime confirmation.
+- **Exact SHA CI PASS:** Windows x86 probe build + CTest run `41363456711` **SUCCESS**, Public tools CI `41363456702` **SUCCESS**, ModDev toolkit CI `41363456707` **SUCCESS**. Windows `Model2VR-Probe-Win32` artifact ID `13106161558`. GitHub main exact SHA remote readback confirmed. **Quest 3/Daytona runtime UNTESTED** (not credited as finished stereo VR).
+- **Score:** AI 2 previous confirmed 2423 + one new independent tested C++ implementation (+1) = cumulative **2424**. Same feature's prior REA/static research, CI/rechecks, docs and future replay/retry status = **+0**; AI 1 unchanged.
+
 ## AI 2 PG/VAN regulatory weekly briefing (2026-11-02 08:21:34 KST)
 
 - **RUN_KEY:** `AUTO:PG-VAN-REG-WEEKLY:2026-11-02T08:21:34+09:00`; **AI 2**; previous confirmed **2422**; change **+1**; new cumulative **2423**; last confirmed KST **2026-11-02 08:21:34 KST**.

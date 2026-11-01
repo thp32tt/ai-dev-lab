@@ -32,7 +32,9 @@ export function buildNativePortArrival({port,seaState,previous,portDoors,portAss
  // Source-grounded collision check, unlike the old blind y+1 shift.
  if(!canStandAt(portAssets,port.mapId,mapX,mapY))return null;
  const viewX=Math.max(0,Math.min(72,mapX-12));
- const viewY=Math.max(0,Math.min(72,mapY-13));
+ // Korean saved Danzig original: harbor door Y=51, player Y=52,
+ // viewY=38 (relative Y=14). Anchor to door row, not player row.
+ const viewY=Math.max(0,Math.min(72,harbor.y-13));
  const sameSavedPort=previous.port===port.mapId;
  return {
   ...previous,

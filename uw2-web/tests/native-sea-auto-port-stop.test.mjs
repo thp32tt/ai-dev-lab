@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {SeaRuntime} from '../web/world-map.js';
-import {advanceNativeSeaAuto} from '../web/native-sea-auto.js';
+import {advanceNativeSeaAuto,createNativeAutoOriginPortProbe} from '../web/native-sea-auto.js';
 const world={cells:new Uint8Array(1080*540),quad:new Uint8Array(1024)};
 const clock=()=>({year:1522,month:7,day:5,timeTick:5,hour:1,minute:40});
 const fleet=()=>({ships:[{index:0,modelId:0,name:'oared',
@@ -45,8 +45,44 @@ const bad=advanceNativeSeaAuto(invalid,()=>{throw Error('tick must not run');},
 assert.deepEqual(bad,{advanced:false,reason:'auto-port-probe-unavailable'});
 assert.equal(invalid.ticks,0);
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.ok(app.includes('findReadyNativePortCall(seaRuntime.snapshot())'));
-assert.ok(app.includes('seaRuntime,tickSeaWithBankInterest,findReadyNativePortCall'));
+assert.ok(app.includes('autoPortProbe(seaRuntime.snapshot())'));
+assert.ok(app.includes('createNativeAutoOriginPortProbe({'));
+assert.ok(app.includes('portCandidate:state=>findPortCallTarget(state,portCatalog)'));
+assert.ok(app.includes('seaRuntime,tickSeaWithBankInterest,autoPortProbe'));
 assert.ok(app.includes('!advance.advanced||advance.stopAtPort'));
 assert.ok(app.includes('stopSeaAuto(advance.reason)'));
+// The original departure harbor is not a new port arrival. Without a
+// source-ring latch the just-departed ship could never start auto sailing.
+const origin={id:39,mapId:39},elsewhere={id:40,mapId:40};
+const candidate=state=>state.x===100||state.x===101?origin:
+ state.x===103?elsewhere:null;
+const probe=createNativeAutoOriginPortProbe({
+ originPortId:39,portCandidate:candidate,portReady:candidate
+});
+assert.equal(probe({x:100}),null);
+assert.equal(probe({x:101}),null);
+assert.equal(probe({x:102}),null); // first point outside the original ring
+assert.deepEqual(probe({x:100}),origin); // returning is a real arrival
+assert.deepEqual(probe({x:103}),elsewhere);
+const active=make();
+const from=createNativeAutoOriginPortProbe({
+ originPortId:39,portCandidate:candidate,portReady:candidate
+});
+const depart=advanceNativeSeaAuto(active,()=>{
+ active.x=102;active.tick();return {advanced:true,sea:active};
+},from);
+assert.equal(depart.advanced,true);
+assert.equal(depart.stopAtPort,undefined);
+const returnArrival=advanceNativeSeaAuto(active,()=>{
+ active.x=100;active.tick();return {advanced:true,sea:active};
+},from);
+assert.equal(returnArrival.stopAtPort,true);
+assert.equal(returnArrival.reason,'auto-port-arrived');
+const unknownOrigin=createNativeAutoOriginPortProbe({
+ originPortId:null,portCandidate:candidate,portReady:candidate
+});
+assert.deepEqual(unknownOrigin({x:100}),origin);
+assert.throws(()=>createNativeAutoOriginPortProbe({
+ originPortId:130,portCandidate:candidate,portReady:candidate
+}),/original catalog port/);
 console.log('UW2 source-backed auto-sail port arrival stop before next voyage tick PASS');

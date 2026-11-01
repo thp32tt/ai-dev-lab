@@ -31,3 +31,25 @@ export function advanceNativeSeaAuto(runtime,onVoyageTick,portReady=null){
  }
  return Object.freeze({advanced:true,reason:next.lastEvent});
 }
+
+// An initial source-backed sea anchor is intentionally near the port just
+// departed. It is not a new ARRIVAL. Arm the original-port stop only after
+// the fleet leaves that port's source catalog call ring; other source ports
+// are eligible immediately. The callback retains state within one auto run.
+export function createNativeAutoOriginPortProbe({
+ originPortId=null,portCandidate,portReady
+}={}){
+ if(typeof portCandidate!=='function'||typeof portReady!=='function')
+  throw new TypeError('native sea auto source-port probes required');
+ if(originPortId!==null&&(!Number.isSafeInteger(originPortId)||
+    originPortId<0||originPortId>129))
+  throw new TypeError('native sea auto original catalog port invalid');
+ let originExited=false;
+ return state=>{
+  const source=portCandidate(state);
+  const ready=portReady(state);
+  if(!source||source.id!==originPortId)originExited=true;
+  if(ready&&ready.id===originPortId&&!originExited)return null;
+  return ready;
+ };
+}

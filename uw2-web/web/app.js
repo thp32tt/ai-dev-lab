@@ -2,7 +2,7 @@ import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTa
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
-import { advanceNativeSeaAuto } from "./native-sea-auto.js";
+import { advanceNativeSeaAuto, createNativeAutoOriginPortProbe } from "./native-sea-auto.js";
 import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
 import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
 import { prepareNativeTownTimeTransition } from "./native-town-time-transaction.js";
@@ -271,8 +271,18 @@ function toggleSeaAuto() {
     renderSeaScreen();
     return false;
   }
-  // Preserve an already reachable original source harbor for manual P/Enter.
-  if (findReadyNativePortCall(seaRuntime.snapshot())) {
+  // The original harbor is within the departure sea anchor's call ring.
+  // Only stop for that SAME origin after the ship has left the ring first.
+  // Other ports remain immediately eligible for an automatic stop.
+  const originPortId=selected?.portCatalogId ??
+    (Number.isSafeInteger(selected?.port)&&selected.port>=0&&selected.port<100
+      ?selected.port:null);
+  const autoPortProbe=createNativeAutoOriginPortProbe({
+    originPortId,
+    portCandidate:state=>findPortCallTarget(state,portCatalog),
+    portReady:findReadyNativePortCall,
+  });
+  if(autoPortProbe(seaRuntime.snapshot())){
     stopSeaAuto("auto-port-arrived");
     renderSeaScreen();
     return false;
@@ -292,7 +302,7 @@ function toggleSeaAuto() {
       return;
     }
     const advance=advanceNativeSeaAuto(
-      seaRuntime,tickSeaWithBankInterest,findReadyNativePortCall);
+      seaRuntime,tickSeaWithBankInterest,autoPortProbe);
     if(!advance.advanced||advance.stopAtPort){
       stopSeaAuto(advance.reason);
       renderSeaScreen();

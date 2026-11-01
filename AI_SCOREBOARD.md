@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun VR R26+HUD DirectGPU stereo-only / last-good host test artifact (2026-11-01 KST)
+
+- **One distinct new implemented VR renderer/host architecture and verified CI artifact (+1):** `thp32tt/OutRun2006Tweaks`, branch `test/r26-focus-stereo-only-lastgood-20261101`, final source commit `844019793daaf59f703f8e80d523a85a286735be`. R9 omits the *third independent mono safety Draw/Clear/RT* only when true headset DirectGPU stereo is ready; original 2D/menu/theater/offscreen remain untouched. R20 replaces mono-color/depth bootstrap requirements with right-eye color and current verified depth/stencil lineage. R13 preserves single-execution side effects and suppresses incomplete stereo. Last verified DirectGPU frame publication and host-private D3D11 stereo snapshot remain until next valid frame or reset/session/presentation change, while SBS retains 250ms grace. Quiet 10-second `stereoOnlySavedDraw`/`stereoOnlySavedClear`/`lastGoodHeld` measurement included.
+- **Build evidence:** Windows GitHub Actions `41270647115` **SUCCESS**, Win32 `dinput8.dll`, x64 `outrun-vr-host.exe`, original focus/visual regression source gates and new R9/R13/R20/host last-good source gates **PASS**. Final artifact ID `13068744612`, name `OutRun-VR-FOCUS-STEREO-ONLY-844019793daaf59f703f8e80d523a85a286735be`, uploaded 2,975,455 bytes, outer SHA256 `54c6fe49618a9e47fa69055cabc15d5b5f35f48889a93625cdb3983651ba7a7f`, packaged inner ZIP SHA256 `8065B0AB3002B258B2ECA1761A59548B585AB184409196F7A23040AA6063C85B`. HMD/Quest visual stability, runtime safety and actual FPS/GPU gains **UNTESTED**. Separate rollback R26 mono-gap repair retained. This is distinct from previous gap-only optimization; retries and intermediate builds are +0.
+- **AI 2 cumulative: previous confirmed 2350 + newly completed independent stereo-only build (+1) = 2351.** AI 1 unchanged.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 DX9Ex five-pass state/menu capture static repair (2026-11-01 KST)
 
 - **Independent presentation-state repair (+1):** `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` commit `581cceb9e5414588e9705a9104a3a89bf6c9d966` makes the shared `Game::is_vr_gameplay_presentation()` honor the original START progress gate (`game_start_progress_code == 65`) instead of classifying all `STATE_START` frames as gameplay. This removes the prior ownership disagreement where F11/telemetry could publish Gameplay while the R7 Frame.v2 producer still published Theater during loading. The verifier pins the exact progress value and rejects unconditional START.

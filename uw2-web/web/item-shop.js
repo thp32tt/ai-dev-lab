@@ -44,14 +44,22 @@ export function firstEmptyItemSlot(slot) {
 }
 
 export function itemBuyStatus(slot,itemId) {
+  if(!Number.isSafeInteger(slot?.money)||slot.money<0||slot.money>GOLD_LIMIT||
+     !Array.isArray(slot?.inventory)||slot.inventory.length!==ITEM_INVENTORY_SIZE)
+    return {allowed:false,reason:"invalid-purchase-state",messageId:239};
   const item=slot?.itemDefinitions?.[itemId];
   if(!item) return {allowed:false,reason:"missing-item",messageId:239};
-  if((slot?.money??0)<=0) return {allowed:false,reason:"no-gold",messageId:236};
+  // Prices in the native source definition must be positive whole gold.
+  // A broken/missing price must never credit the wallet on purchase.
+  if(!Number.isSafeInteger(item.price)||item.price<=0||item.price>GOLD_LIMIT||
+     !Number.isSafeInteger(item.type)||item.type<0||item.type>=ITEM_TYPES.length)
+    return {allowed:false,reason:"purchase-price-unverified",messageId:239};
+  if(slot.money<=0) return {allowed:false,reason:"no-gold",messageId:236};
   if(firstEmptyItemSlot(slot)<0) return {allowed:false,reason:"inventory-full",messageId:237};
-  if(item.type<7&&(slot.inventory??[]).includes(itemId)){
+  if(item.type<7&&slot.inventory.includes(itemId)){
     return {allowed:false,reason:"restricted-duplicate",messageId:332};
   }
-  if((slot?.money??0)<item.price) return {allowed:false,reason:"insufficient-gold",messageId:239};
+  if(slot.money<item.price) return {allowed:false,reason:"insufficient-gold",messageId:239};
   return {allowed:true,item,price:item.price};
 }
 

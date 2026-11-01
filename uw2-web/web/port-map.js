@@ -159,6 +159,25 @@ export function renderPortViewport(ctx, portAssets, portId, dx, dy, dw, dh) {
   ctx.drawImage(tmp, dx, dy);
   return { bankId, startX, startY, backgroundTile: bg, focusX, focusY };
 }
+// Actual in-game browser-native 24x24 town viewport: one reusable Canvas
+// and ImageData per source asset object. All 147,456 pixels are rebuilt
+// from original PORTMAP/PORTCHIP data on each walking redraw, so no stale
+// paint and no dependency on DOS/VGA device execution.
+const nativeTownRasterCache=new WeakMap();
+function townRasterSurface(assets,pxSize){
+  let raster=nativeTownRasterCache.get(assets);
+  if(raster&&raster.canvas.width===pxSize&&raster.canvas.height===pxSize)
+    return raster;
+  const canvas=document.createElement('canvas');
+  canvas.width=pxSize;canvas.height=pxSize;
+  const ctx=canvas.getContext('2d');
+  if(!ctx||typeof ctx.createImageData!=='function')
+    throw new Error('native town Canvas2D source surface unavailable');
+  raster={canvas,ctx,image:ctx.createImageData(pxSize,pxSize)};
+  nativeTownRasterCache.set(assets,raster);
+  return raster;
+}
+
 export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16, drawFallbackMarker = true) {
   const bankId = portId < portAssets.chipNo.length ? portAssets.chipNo[portId] : 3;
   const bank = portAssets.banks[bankId];
@@ -170,11 +189,11 @@ export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16,
   // background would clip its right/bottom half at the legal edge.
   const viewTiles = 24;
   const pxSize = viewTiles * PORT_TILE_SIZE;
-  const tmp = document.createElement("canvas");
-  tmp.width = pxSize;
-  tmp.height = pxSize;
-  const tctx = tmp.getContext("2d");
-  const img = tctx.createImageData(pxSize, pxSize);
+  const raster=townRasterSurface(portAssets,pxSize);
+  const tmp=raster.canvas,tctx=raster.ctx,img=raster.image;
+  // A viewport can legitimately include out-of-bound black/transparent
+  // rows. Clear the *entire* previous raster to avoid stale source pixels.
+  img.data.fill(0);
 
   for (let vy = 0; vy < viewTiles; vy++) {
     for (let vx = 0; vx < viewTiles; vx++) {
@@ -183,11 +202,13 @@ export function renderTownView(ctx, portAssets, portId, state, dx = 16, dy = 16,
       if (mx < 0 || my < 0 || mx >= PORT_MAP_WIDTH || my >= PORT_MAP_HEIGHT) continue;
       const tileId = map[my * PORT_MAP_WIDTH + mx];
       const tile = bank[tileId];
-      if (!tile) continue;
+      if(!(tile instanceof Uint8Array)||tile.length!==PORT_TILE_SIZE*PORT_TILE_SIZE)
+        throw new Error('native town original PORTCHIP tile unavailable: '+tileId);
       for (let ty = 0; ty < 16; ty++) {
         for (let tx = 0; tx < 16; tx++) {
           const ci = tile[ty * 16 + tx];
-          const c = UW2_WORLD_PALETTE[ci] ?? [0,0,0];
+          const c = UW2_WORLD_PALETTE[ci];
+          if(!c)throw new Error('native town original tile color unverified: '+ci);
           const x = vx * 16 + tx;
           const y = vy * 16 + ty;
           const pos = (y * pxSize + x) * 4;

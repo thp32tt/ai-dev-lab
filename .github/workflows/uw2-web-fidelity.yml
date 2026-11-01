@@ -84,6 +84,7 @@ jobs:
           node uw2-web/tests/native-graph-canvas.test.mjs
           node uw2-web/tests/native-save-entry.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs
+          node uw2-web/tests/native-town-view-canvas.test.mjs
           node uw2-web/tests/native-original-file.test.mjs
           node uw2-web/tests/native-opening-canvas-cache.test.mjs
           node uw2-web/tests/native-web-entry-boundary.test.mjs

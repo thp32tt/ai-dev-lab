@@ -2,6 +2,7 @@ import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTa
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { buildNativePortArrival } from "./native-port-arrival.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
+import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -789,11 +790,14 @@ async function loadPortraits() {
 
 async function loadSaves() {
   const buf = await loadBuffer("KOUKAI2.DAT");
-  saveBuffer = buf;
-  slots = parseSaveSlots(buf);
-  portCatalog = parseKoreanPortTable(buf, 0);
+  const verified = await readVerifiedKoreanSaveSource(new Uint8Array(buf));
+  // All screen data is sourced from the SHA-bound snapshot, never from
+  // a caller-owned async fetch buffer that can change during WebCrypto.
+  saveBuffer = verified.copyBytes().buffer;
+  slots = verified.slots;
+  portCatalog = verified.portCatalog;
   $("save-status").textContent =
-    `KOUKAI2.DAT ${fmtBytes(buf.byteLength)} · 슬롯당 33,340 bytes`;
+    `KOUKAI2.DAT ${fmtBytes(verified.byteLength)} · SHA 확인 · 슬롯당 33,340 bytes`;
   selected = null;
   $("run-button").disabled = true;
   renderSlots();

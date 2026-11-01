@@ -15,7 +15,8 @@ const session={port:39,portCatalogId:39,portName:port.name,
 const bank=Array.from({length:240},()=>new Uint8Array(256));
 const portAssets={
  maps:Array.from({length:101},()=>new Uint8Array(96*96)),
- chipNo:new Uint8Array(100),banks:[bank],walkBounds:[[0,100,200,250]]
+ chipNo:new Uint8Array(100),banks:[bank],
+ walkBounds:Array.from({length:4},()=>[0,100,200,250])
 };
 const portDoors=Array.from({length:101},(_,i)=>i===39?
  [null,null,null,{id:3,present:true,x:22,y:51}]:[]);

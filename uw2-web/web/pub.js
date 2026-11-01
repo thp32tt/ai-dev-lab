@@ -5,77 +5,121 @@ export const PUB_SPECIALTIES = Object.freeze([
   {name:"페니",price:2},{name:"매실주",price:3},{name:"사케",price:2},
 ]);
 
+// Browser-native pub transactions share the Korean save's 600M-G cash
+// ceiling, u8 personnel/flag fields and u16 ship crew counts. These are
+// admission invariants, NOT claims of byte-exact original DOS pub logic.
+const GOLD_LIMIT=600_000_000;
+const between=(v,min,max)=>Number.isSafeInteger(v)&&v>=min&&v<=max;
+const u8=v=>between(v,0,255);
+const u16=v=>between(v,0,65535);
+const has=(obj,key)=>Object.prototype.hasOwnProperty.call(obj??{},key);
+const validWallet=s=>!!s&&between(s.money,0,GOLD_LIMIT);
+const validPubSource=s=>validWallet(s)&&!!s.portMeta&&
+  u16(s.portMeta.economy)&&
+  u8(s.portMeta.pubDrinkId)&&s.portMeta.pubDrinkId<PUB_SPECIALTIES.length;
+const validCrewState=s=>{
+  const fleet=s?.fleet,ships=fleet?.ships;
+  if(!validWallet(s)||!Array.isArray(ships)||!between(ships.length,1,10))
+    return false;
+  let sum=0;
+  for(const sh of ships){
+    if(!sh||!u16(sh.maxCrew)||!u16(sh.currentCrew)||
+       sh.currentCrew>sh.maxCrew)return false;
+    sum+=sh.currentCrew;
+  }
+  return (!has(fleet,'count')||fleet.count===ships.length)&&
+    (!has(fleet,'totalCrew')||fleet.totalCrew===sum);
+};
+const validRecruitState=s=>validPubSource(s)&&validCrewState(s)&&
+  u8(s.dayFlags)&&u8(s.rank);
+const validEnthusiasm=e=>between(e,0,100);
+
 export function pubSpecialty(slot) {
   const id=slot?.portMeta?.pubDrinkId ?? 0;
   return {id,...(PUB_SPECIALTIES[id] ?? PUB_SPECIALTIES[0])};
 }
 
 export function initialPubEnthusiasm(slot) {
-  return Math.min(100,Math.floor((slot?.charm ?? 0)/3));
+  return u8(slot?.charm)?Math.min(100,Math.floor(slot.charm/3)):0;
 }
 
 export function pubTreatMaximum(slot) {
-  const spec=pubSpecialty(slot);
-  return Math.min(50,Math.floor((slot?.money ?? 0)/Math.max(1,spec.price)));
+  if(!validPubSource(slot)||!u8(slot.charm))return 0;
+  return Math.min(50,Math.floor(slot.money/pubSpecialty(slot).price));
 }
 
 export function pubTreat(slot, enthusiasm, bottles) {
   const spec=pubSpecialty(slot);
-  const max=pubTreatMaximum(slot);
-  const amount=Math.max(0,Math.min(max,Math.floor(bottles||0)));
-  if(!amount) return {bottles:0,cost:0,enthusiasm,gain:0,specialty:spec};
-  const economy=Math.max(1,slot?.portMeta?.economy ?? 0);
+  const safeEnthusiasm=validEnthusiasm(enthusiasm)?enthusiasm:0;
+  if(!validPubSource(slot)||!u8(slot.charm)||
+     !validEnthusiasm(enthusiasm)||!Number.isSafeInteger(bottles)||bottles<0)
+    return {bottles:0,cost:0,enthusiasm:safeEnthusiasm,gain:0,specialty:spec,
+      reason:'invalid-pub-state'};
+  const amount=Math.min(pubTreatMaximum(slot),bottles);
+  if(amount===0)
+    return {bottles:0,cost:0,enthusiasm,gain:0,specialty:spec};
+  const economy=Math.max(1,slot.portMeta.economy);
   const strength=Math.floor(amount*200/economy);
-  const gain=Math.floor(strength*(slot?.charm ?? 0)/10);
-  const next=Math.min(100,Math.max(0,enthusiasm)+gain);
+  const gain=Math.floor(strength*slot.charm/10);
+  const next=Math.min(100,enthusiasm+gain);
   const cost=amount*spec.price;
-  slot.money=Math.max(0,(slot.money??0)-cost);
+  if(!Number.isSafeInteger(cost)||cost>slot.money)
+    return {bottles:0,cost:0,enthusiasm,gain:0,specialty:spec,reason:'invalid-pub-state'};
+  slot.money-=cost;
   return {bottles:amount,cost,enthusiasm:next,gain,specialty:spec,strength};
 }
 
 export function fleetFreeBunks(slot) {
-  return (slot?.fleet?.ships??[]).reduce(
-    (n,s)=>n+Math.max(0,(s.maxCrew??0)-(s.currentCrew??0)),0
-  );
+  if(!validCrewState(slot))return 0;
+  return slot.fleet.ships.reduce((n,s)=>n+(s.maxCrew-s.currentCrew),0);
 }
 
 export function pubRecruitOffer(slot, enthusiasm) {
-  const economy=Math.max(0,slot?.portMeta?.economy ?? 0);
-  const rank=Math.max(0,slot?.rank ?? 0);
-  const e=Math.max(0,Math.min(100,Math.floor(enthusiasm??0)));
+  if(!validRecruitState(slot)||!validEnthusiasm(enthusiasm))
+    return {economy:0,rank:0,enthusiasm:0,available:0,unitPrice:0,freeBunks:0,maximum:0};
+  const economy=slot.portMeta.economy,rank=slot.rank,e=enthusiasm;
   const available=Math.min(Math.floor(e*economy/500),(rank+1)*e);
   const unitPrice=Math.floor(economy/20)+5;
   const freeBunks=fleetFreeBunks(slot);
-  const byMoney=unitPrice>0?Math.floor((slot?.money??0)/unitPrice):freeBunks;
+  const byMoney=Math.floor(slot.money/unitPrice);
   const maximum=Math.max(0,Math.min(available,freeBunks,byMoney));
   return {economy,rank,enthusiasm:e,available,unitPrice,freeBunks,maximum};
 }
 
 export function hireCrew(slot, shipIndex, requested, enthusiasm) {
-  const ship=slot?.fleet?.ships?.[shipIndex];
-  if(!ship) return {quantity:0,cost:0,reason:"no-ship"};
-  if((slot.dayFlags??0)&1) return {quantity:0,cost:0,reason:"used-today"};
+  if(!Number.isSafeInteger(shipIndex)||shipIndex<0||
+     !slot?.fleet?.ships?.[shipIndex])
+    return {quantity:0,cost:0,reason:"no-ship"};
+  if(!validRecruitState(slot)||!validEnthusiasm(enthusiasm)||
+     !Number.isSafeInteger(requested)||requested<=0)
+    return {quantity:0,cost:0,reason:'invalid-pub-state'};
+  if(slot.dayFlags&1)return {quantity:0,cost:0,reason:"used-today"};
   const offer=pubRecruitOffer(slot,enthusiasm);
-  const shipFree=Math.max(0,(ship.maxCrew??0)-(ship.currentCrew??0));
-  const quantity=Math.max(0,Math.min(
-    Math.floor(requested||0),offer.maximum,shipFree
-  ));
-  if(!quantity) return {quantity:0,cost:0,reason:offer.maximum?"ship-full":"none-available",offer};
+  const ship=slot.fleet.ships[shipIndex];
+  const quantity=Math.min(requested,offer.maximum,ship.maxCrew-ship.currentCrew);
+  if(quantity<=0)
+    return {quantity:0,cost:0,reason:offer.maximum?"ship-full":"none-available",offer};
   const cost=quantity*offer.unitPrice;
+  if(!Number.isSafeInteger(cost)||cost>slot.money||!u16(ship.currentCrew+quantity))
+    return {quantity:0,cost:0,reason:'invalid-pub-state',offer};
+  // All source and account preconditions are verified before any mutation.
   ship.currentCrew+=quantity;
-  slot.money=Math.max(0,(slot.money??0)-cost);
-  slot.dayFlags=(slot.dayFlags??0)|1;
-  if(slot.fleet) slot.fleet.totalCrew=(slot.fleet.totalCrew??0)+quantity;
+  slot.money-=cost;
+  slot.dayFlags|=1;
+  slot.fleet.totalCrew=slot.fleet.ships.reduce((n,s)=>n+s.currentCrew,0);
   return {quantity,cost,unitPrice:offer.unitPrice,offer};
 }
 
 export function dismissCrew(slot, shipIndex, requested) {
-  const ship=slot?.fleet?.ships?.[shipIndex];
-  if(!ship) return {quantity:0,reason:"no-ship"};
-  const quantity=Math.max(0,Math.min(ship.currentCrew??0,Math.floor(requested||0)));
-  if(!quantity)return {quantity:0,reason:"zero"};
+  if(!Number.isSafeInteger(shipIndex)||shipIndex<0||
+     !slot?.fleet?.ships?.[shipIndex])return {quantity:0,reason:"no-ship"};
+  if(!validCrewState(slot)||!Number.isSafeInteger(requested)||requested<=0)
+    return {quantity:0,reason:'invalid-pub-state'};
+  const ship=slot.fleet.ships[shipIndex];
+  const quantity=Math.min(ship.currentCrew,requested);
+  if(quantity===0)return {quantity:0,reason:"zero"};
   ship.currentCrew-=quantity;
-  if(slot.fleet)slot.fleet.totalCrew=Math.max(0,(slot.fleet.totalCrew??0)-quantity);
+  slot.fleet.totalCrew=slot.fleet.ships.reduce((n,s)=>n+s.currentCrew,0);
   return {quantity};
 }
 

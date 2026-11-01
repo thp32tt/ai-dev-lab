@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun VR R26+HUD verified mono-gap replay repair (2026-11-01 KST)
+
+- **Distinct implemented fix (+1):** `thp32tt/OutRun2006Tweaks` branch `test/r26-focus-perf-mono-gap-repair-20261101`, source SHA `32e4cf1bacf6d601ee21e7f6cc4aee85f2fa25ce`. The preexisting R30 safe two-eye bypass sets `R9MonoBackupGap=true` because the independent center-mono backup is no longer complete and cannot be restored. Old R9 kept replaying expensive redundant mono Draws and partial Clears despite that gap. This focused R9 repair skips *only* those unusable backups, but preserves all original pre-gap mono safety, stereo left/right render, poisoned-frame fallback and a verified complete main color Clear to re-seed a full mono backup. This is **not** the earlier global no-mono-after-warmup experiment; the original stable R26 focus+five-perf base is retained.
+- **Verified:** Windows GitHub Actions run `41264588325` **SUCCESS**, source gate for invalid-gap Draw/Clear and verified full Clear reseed PASS, original visual regression suite PASS, Win32 `dinput8.dll` and x64 `outrun-vr-host.exe` compiled successfully, PE architectures validated, paired package uploaded as artifact `13067042170` SHA256 `2b4a06c17df17793e2e5a9ffa3ac44d9a1aec4556acbaafda7723b7ea9021acf` (outer ZIP), inner ZIP SHA256 `B3D067E13FBA654A3022C70A7BBFBD73D14634B7BB3AABFAECA52256EA0726D4`. **Real Quest visual/FPS improvement UNTESTED**; skipped draw count is workload-dependent, not guaranteed.
+- **AI 2 cumulative: previous confirmed 2347 + one independent successful targeted mono-gap source fix and compiled test package +1 = 2348.** Same fix build/checks/status reporting +0. AI 1 unchanged.
+
+Updated: 2026-11-01 KST
+
 ## AI 2 OutRun 2006 Ghost Forest two-line transparent Korean PNG (2026-11-01 KST)
 
 - **TASK_ID: `OUTRUN-ROI-A-0155-63B9486D` — one newly completed image artifact (+1):** Approved `Ghost Forest` → `고스트 포레스트` on two rows (`고스트` / `포레스트`), output named `Q046_b45e1466e6342b9b_k.png`, transparent RGBA 255×135. Generated one image via ImageGen, fit within the specified original 255×135 target bbox, saved exact output to the user's existing personal Library folder `/아웃런 한글화 신규/`, and independently verified matching file/path with library listing (46,057 bytes).

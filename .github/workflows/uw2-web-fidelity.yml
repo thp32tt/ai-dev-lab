@@ -43,6 +43,7 @@ jobs:
           node --check uw2-web/tests/p3-original-native-graph-browser-original.test.mjs
           node --check uw2-web/tests/native-sea-view-original.test.mjs
           node --check uw2-web/tests/native-town-view-original.test.mjs
+          node --check uw2-web/tests/native-char-canvas-original.test.mjs
           node --check uw2-web/tests/native-port-arrival-original.test.mjs
           node --check uw2-web/tests/p3-open-external-await-original.test.mjs
           node --check uw2-web/tests/p3-fmdrv-open-continuation-original.test.mjs
@@ -93,6 +94,7 @@ jobs:
           node uw2-web/tests/native-korean-save-source.test.mjs
           node uw2-web/tests/native-port-arrival.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs
+          node uw2-web/tests/native-char-canvas-cache.test.mjs
           node uw2-web/tests/native-town-view-canvas.test.mjs
           node uw2-web/tests/native-original-file.test.mjs
           node uw2-web/tests/native-opening-canvas-cache.test.mjs

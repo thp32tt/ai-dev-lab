@@ -73,9 +73,23 @@ export function flattenOpening(opening) {
 // Cache only by verified record identity, palette reference and alpha policy;
 // no DOM screenshots, DOS/VGA execution or guessed frames are involved.
 const openingGraphCanvasCache=new WeakMap();
+function paletteSignature(palette){
+  // A real palette-change/cycling event may mutate the same RGB array
+  // object. Reuse cached source pixels only while all 16 RGB triplets are
+  // identical, not merely while the palette object is the same.
+  if(!Array.isArray(palette)||palette.length!==16)
+    throw new Error('opening native palette requires 16 source colors');
+  return palette.map(color=>{
+    if(!Array.isArray(color)||color.length!==3||
+       color.some(v=>!Number.isInteger(v)||v<0||v>255))
+      throw new Error('opening native palette source must contain RGB8 triplets');
+    return color.join(',');
+  }).join('|');
+}
 function imageCanvas(image, transparentZero = false, palette = UW2_OPENING_PALETTE) {
   if(!image||typeof image!=='object')
     throw new TypeError('opening GRAPH requires decoded source record object');
+  const signature=paletteSignature(palette);
   let palettes=openingGraphCanvasCache.get(image);
   if(!palettes){
     palettes=new Map();
@@ -87,12 +101,13 @@ function imageCanvas(image, transparentZero = false, palette = UW2_OPENING_PALET
     palettes.set(palette,variants);
   }
   const key=transparentZero===true;
-  let canvas=variants.get(key);
-  if(!canvas){
-    canvas=createNativeGraphCanvas(image,{palette,transparentZero:key});
-    variants.set(key,canvas);
+  let entry=variants.get(key);
+  if(!entry||entry.signature!==signature){
+    const canvas=createNativeGraphCanvas(image,{palette,transparentZero:key});
+    entry={signature,canvas};
+    variants.set(key,entry);
   }
-  return canvas;
+  return entry.canvas;
 }
 
 export function drawOpeningFit(ctx, image, x, y, w, h, opts = {}) {

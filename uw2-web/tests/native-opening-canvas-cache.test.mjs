@@ -40,10 +40,21 @@ try{
  assert.equal(created,3);
  drawOpeningNative(target,first,0,0,{palette:alt});
  assert.equal(created,3);
+ // Native palette cycling on the same array MUST invalidate stale RGBA.
+ alt[1][0]=(alt[1][0]+1)&255;
+ drawOpeningNative(target,first,0,0,{palette:alt});
+ assert.equal(created,4);
+ drawOpeningNative(target,first,0,0,{palette:alt});
+ assert.equal(created,4);
+ alt[1][0]=999;
+ assert.throws(()=>drawOpeningNative(target,first,0,0,{palette:alt}),/RGB8 triplets/);
+ alt[1][0]=0;
+ drawOpeningNative(target,first,0,0,{palette:alt});
+ assert.equal(created,5);
  drawOpeningNative(target,{width:4,height:1,indices:Uint8Array.of(1,2,3,4)},0,0);
- assert.equal(created,4); // different decoded verified source identity
+ assert.equal(created,6); // different decoded verified source identity
  assert.equal(target.imageSmoothingEnabled,false);
- assert.equal(images.length,8);
+ assert.equal(images.length,11);
 }finally{
  if(originalDoc===undefined)delete globalThis.document;else globalThis.document=originalDoc;
  if(originalImageData===undefined)delete globalThis.ImageData;else globalThis.ImageData=originalImageData;

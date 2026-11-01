@@ -121,5 +121,5 @@ assert.equal(malformedInv.money,200);
 
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.match(app,/buyGoods\(selected,marketAssets/);
-assert.match(app,/buyItem\(selected,/);
+assert.match(app,/confirmNativeItemPurchase\(selected,p\)/);
 console.log('UW2 native commodity/item purchases preserve wallet and cargo/inventory atomically: PASS');

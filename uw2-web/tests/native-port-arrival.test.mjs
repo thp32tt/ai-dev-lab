@@ -20,7 +20,8 @@ arrival.townActors[0].x=99;
 assert.equal(previous.townActors[0].x,5);
 assert.deepEqual(arrival.arrivalEvidence,{
  source:'ORIGINAL_PORT_TABLE_ZA_DAT_PORTCHIP_COLLISION',
- actorStatus:'CURRENT_PORT_SOURCE_ACTORS'});
+ actorStatus:'CURRENT_PORT_SOURCE_ACTORS',
+ economyStatus:'SUPPLY_PORT_ECONOMY_UNAVAILABLE'});
 const supply=buildNativePortArrival({...opts,port:{
  ...port,id:100,mapId:100},portDoors:Array.from({length:101},(_,i)=>i===100?doors[0]:[]) ,
  portAssets:{...assets,maps:Array.from({length:101},()=>new Uint8Array(96*96)),

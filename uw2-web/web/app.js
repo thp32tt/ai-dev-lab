@@ -111,6 +111,7 @@ let messages = [];
 let saveBuffer = null;
 let originalSaveSha256 = null;
 let checkpointFeedback = "";
+let checkpointInFlight = false;
 let viewMode = "loading";
 let kaoPortraits = [];
 let portAssets = null;
@@ -164,6 +165,7 @@ function publishControllerState(extra = {}) {
   const detail = {
     mode: viewMode,
     checkpointFeedback,
+    checkpointInFlight,
     autoSail: seaAutoActive,
     nearbyPort,
     music: controllerMusicState(),
@@ -2040,6 +2042,12 @@ window.addEventListener("uw2-controller-action", async event => {
   // These commands are explicitly separate from the original DOS Save Data
   // menu. Only an idle source-verified native town can be checkpointed.
   if(action==="checkpoint-save"||action==="checkpoint-load"){
+    // Two asynchronous WebCrypto reads/writes must NEVER race each other.
+    // Otherwise a slow older Save can overwrite the newest active-mode
+    // checkpoint pointer, or Load can read half of a pending Save.
+    if(checkpointInFlight)return;
+    checkpointInFlight=true;
+    publishControllerState();
     const dependencies={
       sourceSha256:originalSaveSha256,sourceSlots:slots,
       portAssets,worldAssets,portCatalog
@@ -2133,8 +2141,10 @@ window.addEventListener("uw2-controller-action", async event => {
       checkpointFeedback="웹 임시저장/복원 실패: "+
         (error?.message??String(error));
       $("runtime-status").textContent=checkpointFeedback;
+    }finally{
+      checkpointInFlight=false;
+      publishControllerState();
     }
-    publishControllerState();
     return;
   }
   if (action === "auto-sail") {

@@ -140,9 +140,9 @@ window.addEventListener("uw2-game-state", event => {
     button.disabled=!saveSelectionAvailable;
 
   if(checkpointSaveButton)
-    checkpointSaveButton.disabled=!["town","sea"].includes(state.mode);
+    checkpointSaveButton.disabled=!!state.checkpointInFlight||!["town","sea"].includes(state.mode);
   if(checkpointLoadButton)
-    checkpointLoadButton.disabled=state.mode==="loading"||state.mode==="opening";
+    checkpointLoadButton.disabled=!!state.checkpointInFlight||state.mode==="loading"||state.mode==="opening";
   if (autoButton) {
     const on = !!state.autoSail;
     autoButton.classList.toggle("latched", on);

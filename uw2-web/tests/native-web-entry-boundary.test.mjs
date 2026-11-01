@@ -9,6 +9,9 @@ assert.ok(real.modules.includes('opening.js'));
 assert.ok(real.modules.includes('native-graph-canvas.js'));
 assert.ok(!real.modules.includes('realmode-8086.js'));
 assert.ok(!real.modules.includes('dos-int21.js'));
+assert.ok(real.modules.includes('native-original-file.js'));
+assert.ok(!real.modules.includes('pinned-dos-resources.js'));
+
 const dir=mkdtempSync(join(tmpdir(),'uw2-native-graph-'));
 try{
  const web=join(dir,'web');mkdirSync(web);

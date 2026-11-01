@@ -2,7 +2,7 @@
 // resource and bounded LS11+GRAPH decoding in one explicit evidence path.
 // This is the existing JS format decoder, NOT a claim that ORIGINAL OPEN.EXE
 // native unpacker/video output has passed byte- or frame-parity validation.
-import {preparePinnedDosReadOnlyResources} from './pinned-dos-resources.js';
+import {prepareVerifiedOriginalWebFile} from './native-original-file.js';
 import {inspectLS11,decodeLS11} from './ls11.js';
 import {readGraphOffsets} from './graph-format.js';
 
@@ -38,12 +38,12 @@ export async function prepareOriginalOpgraphArchive(original,{
     throw new Error('OPGRAPH decoded SHA manifest requires bounded lowercase SHA-256 array');
   if(original.length>maxFileBytes)
     throw new RangeError('OPGRAPH original archive exceeds configured byte budget');
-  // Hash-verification precedes any archive decode or guest resource publication.
-  const resources=await preparePinnedDosReadOnlyResources([{
-    dosPath:ORIGINAL_PATH,bytes:original,expectedSha256
-  }],{maxTotalBytes:maxFileBytes});
-  const pathname=Uint8Array.from(ORIGINAL_PATH,c=>c.charCodeAt(0));
-  const trusted=resources.resolve({filename:ORIGINAL_PATH,raw:pathname}).bytes;
+  // Browser-native, directly SHA-pinned original resource. No guest DOS
+  // filesystem, INT21 or CPU required anywhere on the shipping path.
+  const verifiedFile=await prepareVerifiedOriginalWebFile(original,{
+    expectedSha256,maxBytes:maxFileBytes
+  });
+  const trusted=verifiedFile.copyBytes();
   const buffer=trusted.buffer.slice(trusted.byteOffset,trusted.byteOffset+trusted.byteLength);
   const header=inspectLS11(buffer);
   if(header.magic!=='LS11')
@@ -98,7 +98,19 @@ export async function prepareOriginalOpgraphArchive(original,{
     decodedManifestVerified:expectedDecodedSha256!==undefined,
     parts:partMetadata,
     fidelity:'SHA_PINNED_JS_LS11_GRAPH_DECODE__NATIVE_OPEN_DECOMPRESS_PARITY_UNTESTED',
-    resolveDosFile(request){return resources.resolve(request);},
+    // Compatibility for isolated original DOS comparison tests only.
+    // Browser rendering uses getGraphRecord()/getDecodedPart(), never this
+    // path resolver or any guest filesystem execution.
+    resolveDosFile(request){
+      if(!request||!(request.raw instanceof Uint8Array))
+        throw new TypeError('DOS pathname requires original raw bytes');
+      if(request.raw.length>260)
+        throw new RangeError('DOS raw pathname too long');
+      const filename=String.fromCharCode(...request.raw);
+      if(filename!==request.filename)
+        throw new Error('DOS raw path/decoded name mismatch: fail closed');
+      return filename===ORIGINAL_PATH?{bytes:verifiedFile.copyBytes()}:null;
+    },
     getDecodedPart(index){
       uint(index,'OPGRAPH part index',0,parts.length-1);
       const p=parts[index];

@@ -1,13 +1,12 @@
 import {SeaRuntime,canFleetStand,WORLD_CHIP_W,WORLD_CHIP_H} from './world-map.js';
+import {validateNativeCheckpointSessionEconomy,validNativeCheckpointClock} from './native-checkpoint-integrity.js';
 // Independent JS/Web Canvas runtime checkpoint, NOT a DOS save-state,
 // DOS/8086 emulator serialization or reverse-engineered port=FF record.
 export const NATIVE_SEA_CHECKPOINT_KEY='uw2-web-native-sea-checkpoint-v1';
 export const NATIVE_CHECKPOINT_CHOICE_KEY='uw2-web-native-checkpoint-choice-v1';
 const MAX=256*1024;
 const int=(x,a,b)=>Number.isSafeInteger(x)&&x>=a&&x<=b;
-const timeValid=t=>t&&int(t.year,1501,9999)&&int(t.month,1,12)&&
- int(t.day,1,31)&&int(t.timeTick,0,71)&&
- t.hour===Math.floor(t.timeTick/3)&&t.minute===(t.timeTick%3)*20;
+const timeValid=validNativeCheckpointClock;
 const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 const sha=async text=>hex(await globalThis.crypto.subtle.digest(
  'SHA-256',new TextEncoder().encode(text)));
@@ -28,10 +27,9 @@ export function validateNativeSeaCheckpoint(payload,{
     session.memo!==original.memo||
     JSON.stringify(session.raw)!==JSON.stringify(original.raw))
   throw new Error('native sea checkpoint original save identity invalid');
- if(!int(session.port,0,100)||!int(session.money,0,4294967295)||
-    !session.fleet||!Array.isArray(session.fleet.ships)||
-    session.fleet.ships.length<1||session.fleet.ships.length>10)
+ if(!int(session.port,0,100))
   throw new Error('native sea checkpoint source fleet/economy invalid');
+ validateNativeCheckpointSessionEconomy(session,original);
  const catalogId=session.portCatalogId??session.port;
  const port=portCatalog.find(x=>x.id===catalogId);
  if(!port||port.mapId!==session.port||

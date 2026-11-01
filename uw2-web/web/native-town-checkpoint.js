@@ -1,4 +1,5 @@
 import {canStandAt} from './town.js';
+import {validateNativeCheckpointSessionEconomy,validNativeCheckpointClock} from './native-checkpoint-integrity.js';
 
 // NOT the original DOS "Save Data" command. A browser-only checkpoint of an
 // idle town session. It is scoped to a SHA-verified Korean KOUKAI2.DAT source
@@ -33,14 +34,10 @@ function validateIdleTown(payload,{sourceSha256,sourceSlots,portAssets,portCatal
     session.memo!==original.memo||
     JSON.stringify(session.raw)!==JSON.stringify(original.raw))
   throw new Error('browser checkpoint original save slot identity mismatch');
- if(!number(session.port,0,100)||!number(session.money,0,4294967295)||
-    !session.fleet||!Array.isArray(session.fleet.ships)||
-    session.fleet.ships.length<1||session.fleet.ships.length>10)
+ if(!number(session.port,0,100))
   throw new Error('browser checkpoint source player economy/fleet invalid');
- const t=session.dateTime;
- if(!t||!number(t.year,1501,9999)||!number(t.month,1,12)||
-    !number(t.day,1,31)||!number(t.timeTick,0,71)||
-    t.hour!==Math.floor(t.timeTick/3)||t.minute!==(t.timeTick%3)*20)
+ validateNativeCheckpointSessionEconomy(session,original);
+ if(!validNativeCheckpointClock(session.dateTime))
   throw new Error('browser checkpoint original game clock invalid');
  const catalogId=session.portCatalogId??session.port;
  const port=portCatalog.find(x=>x.id===catalogId);

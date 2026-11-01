@@ -106,6 +106,39 @@ for(let i=0;i<fleet.fleet.ships.length;i++){
  assert.equal(fleet.fleet.ships[i].water,before[i][0]-5);
  assert.equal(fleet.fleet.ships[i].food,before[i][1]-5);
 }
+// One broken source ship must not let a different ship mutate while
+// the fleet can no longer be saved or departed as a coherent unit.
+const multi=makeSlot(1000);
+multi.fleet.ships.push({...makeShip(),index:1,goods:makeShip().goods.map(g=>({...g}))});
+multi.fleet.ships[1].water=Infinity;
+const multiBefore=structuredClone(multi);
+assert.equal(maxSupplyLoad(multi,multi.fleet.ships[0],'food'),0);
+assert.equal(loadSupply(multi,0,'food',2).reason,'invalid-supply-state');
+assert.equal(unloadSupply(multi,0,'food',1).reason,'invalid-supply-state');
+assert.deepEqual(multi,multiBefore);
+multi.fleet.ships[1].water=20;
+const preservedSecond=structuredClone(multi.fleet.ships[1]);
+assert.equal(loadSupply(multi,0,'food',2).quantity,2);
+assert.equal(unloadSupply(multi,0,'food',1).quantity,1);
+assert.deepEqual(multi.fleet.ships[1],preservedSecond,
+ 'a valid multi-ship transaction only modifies the selected source ship');
+assert.equal(maxSupplyLoad(multi,{...multi.fleet.ships[0]},'water'),0,
+ 'a detached/foreign ship is not an owned fleet load target');
+
+// Once the source velocity load cannot account for provision removal,
+// reject the entire unload; the old Math.max(0,load-q) masked corruption.
+const underload=makeSlot(100);
+underload.fleet.ships[0].load=0;
+const underloadBefore=structuredClone(underload);
+assert.equal(unloadSupply(underload,0,'food',1).reason,'source-load-invalid');
+assert.deepEqual(underload,underloadBefore,
+ 'underload must preserve source provision units and velocity load');
+const exactUnload=makeSlot(100);
+exactUnload.fleet.ships[0].load=1;
+assert.equal(unloadSupply(exactUnload,0,'food',1).quantity,1);
+assert.equal(exactUnload.fleet.ships[0].load,0);
+assert.equal(exactUnload.fleet.ships[0].food,0);
+
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 for(const needle of [
  'loadSupply(selected,ui.ship,resource,q)',

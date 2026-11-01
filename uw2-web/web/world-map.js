@@ -173,41 +173,81 @@ function drawTileToImage(img,pitch,tile,px,py){
   }
 }
 
+// Reusable browser-native Canvas2D raster surfaces. No DOS/BIOS/VGA CPU
+// dependency: only owner-file decoded 16x16 tiles and 32x32 ship indices.
+// The staging surfaces are per-asset and per-viewport-size; EVERY output
+// pixel is repopulated each render (no stale tile/ship/palette caching).
+const seaRasterCache=new WeakMap();
+function seaRasterSurfaces(assets,w,h){
+  let sizes=seaRasterCache.get(assets);
+  if(!sizes){sizes=new Map();seaRasterCache.set(assets,sizes);}
+  const key=w+'x'+h;
+  let entry=sizes.get(key);
+  if(entry)return entry;
+  const worldCanvas=document.createElement('canvas');
+  worldCanvas.width=w;worldCanvas.height=h;
+  const worldCtx=worldCanvas.getContext('2d');
+  if(!worldCtx||typeof worldCtx.createImageData!=='function')
+    throw new Error('native sea world Canvas2D unavailable');
+  const shipCanvas=document.createElement('canvas');
+  shipCanvas.width=32;shipCanvas.height=32;
+  const shipCtx=shipCanvas.getContext('2d');
+  if(!shipCtx||typeof shipCtx.createImageData!=='function')
+    throw new Error('native sea ship Canvas2D unavailable');
+  entry={
+    worldCanvas,worldCtx,worldImage:worldCtx.createImageData(w,h),
+    shipCanvas,shipCtx,shipImage:shipCtx.createImageData(32,32)
+  };
+  sizes.set(key,entry);
+  return entry;
+}
+
 export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHigh=23){
+  if(!assets||!assets.cells||!assets.quad||!Array.isArray(assets.tiles)||
+     !state||!Number.isInteger(state.x)||!Number.isInteger(state.y)||
+     !Number.isInteger(state.heading)||!Number.isInteger(state.steps))
+    throw new Error('native sea renderer requires decoded source map and finite ship state');
+  if(!Number.isInteger(tilesWide)||tilesWide<1||tilesWide>40||
+     !Number.isInteger(tilesHigh)||tilesHigh<1||tilesHigh>25)
+    throw new RangeError('native sea viewport exceeds source game bounds');
   const w=tilesWide*16,h=tilesHigh*16;
-  const tmp=document.createElement("canvas");tmp.width=w;tmp.height=h;
-  const t=tmp.getContext("2d"),img=t.createImageData(w,h);
+  const raster=seaRasterSurfaces(assets,w,h),img=raster.worldImage;
   const startX=state.x-Math.floor(tilesWide/2), startY=state.y-Math.floor(tilesHigh/2);
   for(let vy=0;vy<tilesHigh;vy++)for(let vx=0;vx<tilesWide;vx++){
     const wx=((startX+vx)%WORLD_CHIP_W+WORLD_CHIP_W)%WORLD_CHIP_W;
     const wy=startY+vy;
     const id=worldChipAt(assets,wx,wy);
-    const tile=assets.tiles[id]??assets.tiles[0];
+    const tile=assets.tiles[id];
+    if(!(tile instanceof Uint8Array)||tile.length!==16*16)
+      throw new Error('native sea original tile unavailable for index '+id);
     drawTileToImage(img,w,tile,vx*16,vy*16);
   }
-  t.putImageData(img,0,0);
-  ctx.imageSmoothingEnabled=false;ctx.drawImage(tmp,dx,dy);
-  const sx=dx+Math.floor(tilesWide/2)*16, sy=dy+Math.floor(tilesHigh/2)*16;
-  const ships = assets.seaShips ?? [];
-  if (ships.length) {
-    const facingMap = [0,1,1,1,2,3,3,3];
-    const set = ships.length >= 16 ? 1 : 0; // Korean DOS: 0=oar, 1=sail
-    const frame = Math.min(ships.length - 1, set * 8 + facingMap[state.heading & 7] * 2 + (state.steps & 1));
-    const sp = ships[frame];
-    const sc = document.createElement("canvas"); sc.width = 32; sc.height = 32;
-    const sctx = sc.getContext("2d"); const simg = sctx.createImageData(32,32);
-    for (let i=0;i<sp.length;i++) {
-      const ci=sp[i], p=i*4;
-      if (ci===255) { simg.data[p+3]=0; continue; }
-      const c=UW2_WORLD_PALETTE[ci] ?? [0,0,0];
-      simg.data[p]=c[0]; simg.data[p+1]=c[1]; simg.data[p+2]=c[2]; simg.data[p+3]=255;
+  raster.worldCtx.putImageData(img,0,0);
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(raster.worldCanvas,dx,dy);
+  const sx=dx+Math.floor(tilesWide/2)*16,sy=dy+Math.floor(tilesHigh/2)*16;
+  const ships=assets.seaShips;
+  if(!Array.isArray(ships)||!ships.length)
+    throw new Error('native sea original ship sprite frames unavailable');
+  const facingMap=[0,1,1,1,2,3,3,3];
+  const set=ships.length>=16?1:0; // Korean DOS: 0=oar, 1=sail
+  const frame=Math.min(ships.length-1,set*8+facingMap[state.heading&7]*2+(state.steps&1));
+  const sp=ships[frame];
+  if(!(sp instanceof Uint8Array)||sp.length!==32*32)
+    throw new Error('native sea original ship frame missing');
+  const simg=raster.shipImage;
+  for(let i=0;i<sp.length;i++){
+    const ci=sp[i],p=i*4;
+    if(ci===255){
+      simg.data[p]=0;simg.data[p+1]=0;simg.data[p+2]=0;simg.data[p+3]=0;
+      continue;
     }
-    sctx.putImageData(simg,0,0);
-    ctx.drawImage(sc,sx,sy);
-  } else {
-    ctx.save();ctx.strokeStyle="#ffe680";ctx.lineWidth=3;ctx.strokeRect(sx+1,sy+1,30,30);
-    ctx.fillStyle="rgba(255,238,128,.24)";ctx.fillRect(sx,sy,32,32);ctx.restore();
+    const c=UW2_WORLD_PALETTE[ci];
+    if(!c)throw new Error('native sea source sprite palette index invalid: '+ci);
+    simg.data[p]=c[0];simg.data[p+1]=c[1];simg.data[p+2]=c[2];simg.data[p+3]=255;
   }
+  raster.shipCtx.putImageData(simg,0,0);
+  ctx.drawImage(raster.shipCanvas,sx,sy);
   return {startX,startY,width:w,height:h};
 }
 

@@ -73,5 +73,5 @@ assert.equal(itemSlot.inventory[7],ITEM_EMPTY);
 // Both paths are used by the actual browser game entrypoint.
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.match(app,/sellGoods\(selected,marketAssets/);
-assert.match(app,/sellItem\(selected,/);
+assert.match(app,/confirmNativeItemSale\(selected,p,/);
 console.log('UW2 native market and item sales preserve gold cap, inventory and cargo on refused transactions: PASS');

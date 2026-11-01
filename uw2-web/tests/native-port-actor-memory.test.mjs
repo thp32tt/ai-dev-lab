@@ -57,6 +57,16 @@ assert.equal(s2ToS1.portActorMemory['101'],undefined);
 const unowned=enter({...seededSupply,portCatalogId:undefined},S2);
 assert.deepEqual(unowned.townActors,[]);
 assert.equal(unowned.portActorMemory['100'],undefined);
+// Wrong saved catalog provenance must NEVER mint actors at a different
+// source location, including when that different port is visited later.
+const wrongNormal=enter({...original,portCatalogId:40},B);
+assert.deepEqual(wrongNormal.townActors,[]);
+assert.equal(wrongNormal.portActorMemory['40'],undefined);
+assert.equal(wrongNormal.portActorMemory['39'],undefined);
+const wrongSupply=enter({...seededSupply,portCatalogId:101},S2);
+assert.deepEqual(wrongSupply.townActors,[]);
+assert.equal(wrongSupply.portActorMemory['101'],undefined);
+assert.equal(wrongSupply.portActorMemory['100'],undefined);
 // A malformed remembered actor cannot mutate caller or create passengers.
 const corrupt={...original,portActorMemory:{
  '39':{source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',

@@ -45,6 +45,8 @@ jobs:
           node --check uw2-web/tests/native-sea-checkpoint-original.test.mjs
           python3 -m py_compile uw2-web/tests/native-browser-checkpoint-firefox.py
           node --check uw2-web/tests/native-save-session-original.test.mjs
+          node --check uw2-web/web/native-port-call-transaction.js
+          node --check uw2-web/tests/native-port-call-transaction.test.mjs
           node --check uw2-web/web/native-harbor-departure.js
           node --check uw2-web/tests/native-harbor-departure.test.mjs
           node --check uw2-web/web/native-port-arrival.js
@@ -134,6 +136,7 @@ jobs:
           node uw2-web/tests/native-checkpoint-singleflight.test.mjs
           node uw2-web/tests/native-korean-save-source.test.mjs
           node uw2-web/tests/native-port-arrival.test.mjs
+          node uw2-web/tests/native-port-call-transaction.test.mjs
           node uw2-web/tests/native-port-call-recovery.test.mjs
           node uw2-web/tests/native-town-message-source.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs

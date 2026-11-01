@@ -1,6 +1,7 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
-import { buildNativePortArrival, canBuildNativePortArrival } from "./native-port-arrival.js";
+import { canBuildNativePortArrival } from "./native-port-arrival.js";
+import { prepareNativePortCall } from "./native-port-call-transaction.js";
 import { advanceNativeSeaAuto } from "./native-sea-auto.js";
 import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
 import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
@@ -1912,17 +1913,18 @@ function callNearbyPort() {
     renderSeaScreen();
     return false;
   }
-  const arrival = buildNativePortArrival({
-    port, seaState: s, previous: selected, portDoors, portAssets
+  const prepared=prepareNativePortCall({
+    session:selected,runtime:seaRuntime,portCatalog,portDoors,portAssets
   });
-  if (!arrival) {
-    seaRuntime.lastEvent = "port-map-unavailable";
+  if(!prepared.allowed){
+    seaRuntime.lastEvent=prepared.reason;
     renderSeaScreen();
     return false;
   }
+  // Commit the proven port session and fully constructed town together.
   stopSeaAuto();
-  selected = arrival;
-  townRuntime = new PortWalkingRuntime(arrival, portAssets, portDoors);
+  selected=prepared.session;
+  townRuntime=prepared.town;
   viewMode = "town";
   setMusicForMode("town");
   publishControllerState();

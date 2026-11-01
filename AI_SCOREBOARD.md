@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 focus validated performance profile alignment (2026-11-02 KST)
+
+- **TASK_ID `USER-R26-FOCUS-PERF-PROFILE-20261102` — one distinct focus runtime-profile integration (+1):** On `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, material commit `73c85e56946e2c679cfc8f5b9b30dffb309a7672` aligns the current focus runtime with the user-validated mono-elide + sand-particle performance conditions while explicitly retaining VR telemetry: `DirectGpuOnly=true`, `Graphics.ReflectionUpdateRate=0.25`, `Graphics.TransparencySupersampling=false`, `VR.TransparencySupersampling=false`, and `OUTRUN_VR_R23_PIXEL_PROBE=0`; `[VR] Telemetry=true` remains unchanged. Same-task verifier-only adaptation `24a43075445fbb2a9a5d03650eae5e6e70f5d132` updates the FULL-trace contract so the user performance runner is probe-off while the official diagnostic runner remains probe-on (+0). The branch later advanced one unrelated front-end letterbox commit to `cf220f26b78d8a632ced83c93484ec394cee38bf`; compare/readback confirms the performance settings are inherited unchanged. Exact latest user-build Actions **41324572253 SUCCESS**, artifact **13091335034**, outer digest `sha256:b839a4c289f72ab3b2afb2e91c588536a0bc402232f5ef11bc74cb9ad4f91fbd`. Extracted runnable ZIP `OutRun2_VR_R26_VISUAL_OWNER_REPAIR_AA2_TEST_cf220f26b78d.zip` SHA256 `e52fa20ba5a73c2ab2ff3ce91354bcffda2e55c8102581ce542796c5ea1ef06a`; package SOURCE_SHA is `cf220f26...`, INI and launcher readback confirm all five requested values, `VR_TELEMETRY_EXPECTED=true`, and compiled `dinput8.dll` SHA256 `571cef62e015985014acb2622179ccd188ce7379bde766cd5feca603bb90f89a` still contains both verified DirectGPU mono-elide and exact 418CF0 particle-fastpath markers. This scores the new integrated runtime profile once; verifier retry and descendant packaging are +0.
+- **AI 2 cumulative: previous confirmed 2385 + one distinct verified focus performance-profile integration (+1) = 2386.** AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
 
 ## AI 2 DX11 01202 authentic assembled FVF triangle source GPU attribution (2026-11-02 KST)
 

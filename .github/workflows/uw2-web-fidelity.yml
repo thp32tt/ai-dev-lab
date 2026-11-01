@@ -39,6 +39,8 @@ jobs:
           node --check uw2-web/web/native-graph-canvas.js
           node --check uw2-web/web/native-save-entry.js
           node --check uw2-web/web/native-save-session.js
+          node --check uw2-web/web/native-town-building-exit.js
+          node --check uw2-web/tests/native-town-building-exit.test.mjs
           node --check uw2-web/web/native-town-movement.js
           node --check uw2-web/tests/native-town-movement.test.mjs
           node --check uw2-web/web/native-checkpoint-integrity.js
@@ -132,6 +134,7 @@ jobs:
           node uw2-web/tests/native-save-entry.test.mjs
           node uw2-web/tests/native-save-session.test.mjs
           node uw2-web/tests/native-town-movement.test.mjs
+          node uw2-web/tests/native-town-building-exit.test.mjs
           node uw2-web/tests/native-town-checkpoint.test.mjs
           node uw2-web/tests/native-checkpoint-integrity.test.mjs
           node uw2-web/tests/native-sea-checkpoint.test.mjs

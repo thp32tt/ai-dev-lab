@@ -68,8 +68,31 @@ export function flattenOpening(opening) {
   return opening.parts.flatMap(p => p.records);
 }
 
+// Immutable decoded Korean GRAPH records are reused by scene animation.
+// A new Canvas/ImageData per frame would re-decode pixel colors at 60 Hz.
+// Cache only by verified record identity, palette reference and alpha policy;
+// no DOM screenshots, DOS/VGA execution or guessed frames are involved.
+const openingGraphCanvasCache=new WeakMap();
 function imageCanvas(image, transparentZero = false, palette = UW2_OPENING_PALETTE) {
-  return createNativeGraphCanvas(image,{palette,transparentZero});
+  if(!image||typeof image!=='object')
+    throw new TypeError('opening GRAPH requires decoded source record object');
+  let palettes=openingGraphCanvasCache.get(image);
+  if(!palettes){
+    palettes=new Map();
+    openingGraphCanvasCache.set(image,palettes);
+  }
+  let variants=palettes.get(palette);
+  if(!variants){
+    variants=new Map();
+    palettes.set(palette,variants);
+  }
+  const key=transparentZero===true;
+  let canvas=variants.get(key);
+  if(!canvas){
+    canvas=createNativeGraphCanvas(image,{palette,transparentZero:key});
+    variants.set(key,canvas);
+  }
+  return canvas;
 }
 
 export function drawOpeningFit(ctx, image, x, y, w, h, opts = {}) {

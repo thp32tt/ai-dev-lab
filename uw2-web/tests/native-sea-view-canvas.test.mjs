@@ -100,6 +100,13 @@ try{
     /original ship sprite frames unavailable/);
   assert.throws(()=>renderSeaView(target,{...assets,tiles:[]},state,0,0,2,2),
     /original tile unavailable/);
+  const invalidTiles=assets.tiles.slice();
+  invalidTiles[0]=Uint8Array.from(invalidTiles[0]);
+  invalidTiles[0][0]=0xfe; // unknown 4-bit palette index, no guessed black
+  const previousDraws=draws.length;
+  assert.throws(()=>renderSeaView(target,{...assets,tiles:invalidTiles},state,0,0,2,2),
+    /tile color index unverified/);
+  assert.equal(draws.length,previousDraws);
   assert.throws(()=>renderSeaView(target,assets,{...state,x:NaN},0,0,2,2),
     /finite ship state/);
   assert.throws(()=>renderSeaView(target,assets,state,0,0,41,2),

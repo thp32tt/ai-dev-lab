@@ -167,7 +167,9 @@ export function findNearestSea(assets,x,y,radius=24){
 
 function drawTileToImage(img,pitch,tile,px,py){
   for(let y=0;y<16;y++)for(let x=0;x<16;x++){
-    const c=UW2_WORLD_PALETTE[tile[y*16+x]]??[0,0,0];
+    const colorIndex=tile[y*16+x];
+    const c=UW2_WORLD_PALETTE[colorIndex];
+    if(!c)throw new Error('native sea original tile color index unverified: '+colorIndex);
     const p=((py+y)*pitch+(px+x))*4;
     img.data[p]=c[0];img.data[p+1]=c[1];img.data[p+2]=c[2];img.data[p+3]=255;
   }

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun VR v0.01 Beta quiet-runtime logging elimination (2026-11-02 KST)
+
+- **One distinct verified DX9Ex/OpenXR runtime performance integration (+1):** On `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, final release SHA `a034c086b55d6d31d73bab1be13398ecec66d9c0` ships the user-confirmed Focus state as **OutRun 2006 VR v0.01 Beta** while disabling diagnostics at the generation path, not merely suppressing output files. `VR.Telemetry=false` bypasses game-side R30/R26 telemetry hot paths; quiet mode sets the game spdlog logger to OFF and omits its file sink; the x64 host bypasses per-projection/per-XR-frame full-trace string construction, recurring menu/pipeline/timing diagnostic construction, eye/full-trace/pipeline/pacing files, and keeps the R23 pixel probe opt-in/OFF. Development launchers explicitly restore telemetry/file logging, so diagnostic capability is retained without release overhead. Existing DirectGpuOnly=true, reflection rate 0.25, transparency supersampling OFF, mono-elision, exact 0x418CF0 particle fastpath, menu/loading/letterbox and lens fixes are retained.
+- **Exact-SHA verification/release:** GitHub Actions **VR Release v0.01 Beta run 41328023812 SUCCESS**: quiet profile PASS, Win32 R26+HUD DLL build PASS, x64 OpenXR host build PASS, package assembly/upload PASS, GitHub prerelease publication PASS. Release tag `vr-v0.01-beta`, asset `OutRun2_VR_v0.01_Beta.zip`, SHA256 `34b7ae1dd9c1bcac68d73039664c9e652ddde39fc6e7d31ced0cf549c408654f`. User had already confirmed the immediately preceding visual/runtime state normal; this release changes diagnostics/performance behavior only.
+- **AI 2 cumulative: previous confirmed 2389 + one new verified quiet-runtime performance integration (+1) = 2390.** AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
+
 ## AI 2 UW2 browser-native Port Call readiness/arrival source gate integration (2026-11-02 KST)
 
 - **One distinct verified native browser gameplay integration (+1):** On `thp32tt/ai-dev-lab@uw2-web-port`, material source/test/plan commit `ab7afc06a8ed3c1faa100d12744bbd6ce4985392` extracts an identical read-only landing preflight `canBuildNativePortArrival` from `buildNativePortArrival` in `web/native-port-arrival.js`: Korean original ZA_DAT.DAT harbor door, original PORTMAP/PORTCHIP collision, validated source port ID and current sea time. The real shipping `web/app.js` now uses `findReadyNativePortCall` to gate the visible nearby-port label, browser controller Port Call affordance, and actual arrival against that identical evidence, instead of advertising a port that could not enter its source town. Previously usable source-backed port routes remain available; source-unsupported arrivals remain HOLD with existing `port-map-unavailable` diagnostics, without inventing a port. This is separate from the previous catalog-order ambiguity fix `aff2513f...`, not a retest of that outcome.

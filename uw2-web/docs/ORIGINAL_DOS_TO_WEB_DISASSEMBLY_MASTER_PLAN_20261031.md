@@ -1,4 +1,10 @@
 # 대항해시대 II 한국어 DOS 원본 → 웹 완전동작 포팅 마스터 계획
+## 2026-11-02 실제 아이템 상점 구매·판매 확인의 원본 품목·보유 슬롯 재검증
+
+- 출고 브라우저의 `app.js` 아이템 상점 구매 확인/판매 제안/흥정 승인은 한 차례 조회한 항목을 `itemPending`에 보유했다. 예전에는 승인 순간 `buyItem(selected,id)` / `sellItem(selected,inventorySlot,price)`를 직접 호출했으므로, 확인 도중 원본 판매 시간·항구 재고·정의 가격·실제 소지 슬롯이 바뀌어도 **동일 원본 품목이라는 검증 없이 거래**할 수 있었다.
+- 신규 `web/native-item-shop-confirm.js`로 **현재 항구의 원본 판매 목록과 영업시간/원본 가격/현재 아이템 정체성/보유 슬롯·최초 매입 제안을 다시 확인한 뒤에만** 기존 `item-shop.js` 원자적 소지금·인벤토리 거래 함수를 실행한다. 흥정 증액도 현재 원본 캐릭터 Charm 기반 기존 계산 결과의 범위만 허용한다. 변경된 확인값은 금액·아이템·슬롯을 전혀 변경하지 않는다.
+- 실제 브라우저 메뉴 확인 세 경로를 연결하고, 소지금 정확 지급·600,000,000G 한도·영업시간·비밀상점·가격/보유 슬롯 변경과 확인값 위조 회귀 `tests/native-item-shop-confirm.test.mjs`를 GitHub Fidelity gate에 추가했다. 원본 DOS의 미확정 상점 로직을 신규 구현한 것이 아니며 실제 소유 한국어판 자산 Firefox 실기 및 DOS 차등은 **RUNTIME_VALIDATION=UNTESTED**.
+
 ## 2026-11-02 실제 항구 건물/여관 퇴장 후 보행 연속성 복구
 
 - 브라우저 네이티브 `app.js` 건물 ESC 퇴장과 여관 숙박이 `PortWalkingRuntime.leaveBuilding()`만 실행하여 화면 캐릭터는 건물 문 아래로 1칸 움직였지만 `selected.portState`는 이전 좌표를 보유했다. 다음 방향키는 `prepareNativeTownMovement`의 session/runtime 위치 일치 조건에서 거부될 수 있었다.

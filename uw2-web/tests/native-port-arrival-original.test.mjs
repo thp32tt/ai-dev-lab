@@ -54,6 +54,34 @@ for(const port of ports){
  }
 }
 assert.equal(normal,100);assert.equal(supply,30);
+
+// Two distinct ORIGINAL KOUKAI2 source supply ports share bank #100
+// but have independent port IDs and geographic positions. The actual
+// native arrival handler must not leak a cached supply-town actor when
+// calling the next geographically distinct supply port.
+const origA=ports[100],origB=ports[101];
+assert.equal(origA.mapId,100);assert.equal(origB.mapId,100);
+assert.notDeepEqual([origA.x,origA.y],[origB.x,origB.y]);
+const sourceActor={slot:0,x:17,y:65,type:1,active:true};
+const knownSupply=buildNativePortArrival({
+ port:origA,seaState:{dateTime:date},
+ previous:{...slots[1],port:100,portCatalogId:100,
+   townActors:[sourceActor]},
+ portDoors:doors,portAssets:assets
+});
+assert.ok(knownSupply);
+assert.equal(knownSupply.townActors.length,1);
+const movedSupply=buildNativePortArrival({
+ port:origB,seaState:{dateTime:date},
+ previous:knownSupply,portDoors:doors,portAssets:assets
+});
+assert.ok(movedSupply);
+assert.equal(movedSupply.portCatalogId,101);
+assert.equal(movedSupply.port,100);
+assert.deepEqual(movedSupply.townActors,[]);
+assert.equal(movedSupply.arrivalEvidence.actorStatus,
+ 'OTHER_PORT_ACTORS_NOT_VERIFIED');
+
 console.log(JSON.stringify({
  result:'OWNER_ORIGINAL_130_SOURCE_PORTS_NATIVE_LANDING_COLLISION_PROVEN',
  ports:ports.length,normal,supply,

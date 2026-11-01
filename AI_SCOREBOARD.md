@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 01203 native FVF disjoint-island authentic GPU source capture (2026-11-02 KST)
+
+- **TASK_ID `CONVERSION-DX11-01203` — one distinct real native-renderer source integration (+1):** On `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71`, C++ material implementation `0c806a7c2e94fd96849f8ec9bc64d777e72f2d6b` connects real indexed/unindexed D3D9 FVF triangle-list/strip/fan GPU PRE/POST RGB collection to individually clipped, source-authentic visible primitive islands rather than capturing the often empty union of far-separated menu/vehicle/HUD triangles. Opt-in real native D3D11 capture now rotates the 512x288 readback through up to two physically disjoint primitive regions under original RT/viewport/scissor, native GPU pixel delta/fence and D3D9 source Present provenance; it preserves invalid-IA broad fallback, the original D3D9 renderer/input/FFB/SkyGlow, DX9Ex fallback and frozen DXVK. Integrated C++ positive/negative regressions run in the Fast Gate. Same-task CI fixture-only correction `b05367f2a70e5a7c7e40c9315bf086e7d46213fc` accommodates two vertical GPU sample regions inside one legitimate scissored polygon and scores **+0** separately. Five mandatory exact **push** SHA GitHub Actions SUCCESS: Fast `41327285190`, Backend Conversion `41327285213`, Windows Build `41327285228`, OpenXR VR architecture `41327285280`, HUD Inspector `41327285186`. Separate docs-only C6 checkpoint `35d05d475095d48854e36ee051603ffe457cbdd7` ([skip ci], +0). This remains partial opt-in GPU capture, **not** full native menu-to-race display; no desktop game or Quest 3/VDXR testing was performed: `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 cumulative: previous confirmed 2390 + one new verified DX11 C++ integration (+1) = 2391.** AI 1 unchanged.
+
+Updated: 2026-11-02 KST
+
+
+
 ## AI 2 OutRun VR v0.01 Beta quiet-runtime logging elimination (2026-11-02 KST)
 
 - **One distinct verified DX9Ex/OpenXR runtime performance integration (+1):** On `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus`, final release SHA `a034c086b55d6d31d73bab1be13398ecec66d9c0` ships the user-confirmed Focus state as **OutRun 2006 VR v0.01 Beta** while disabling diagnostics at the generation path, not merely suppressing output files. `VR.Telemetry=false` bypasses game-side R30/R26 telemetry hot paths; quiet mode sets the game spdlog logger to OFF and omits its file sink; the x64 host bypasses per-projection/per-XR-frame full-trace string construction, recurring menu/pipeline/timing diagnostic construction, eye/full-trace/pipeline/pacing files, and keeps the R23 pixel probe opt-in/OFF. Development launchers explicitly restore telemetry/file logging, so diagnostic capability is retained without release overhead. Existing DirectGpuOnly=true, reflection rate 0.25, transparency supersampling OFF, mono-elision, exact 0x418CF0 particle fastpath, menu/loading/letterbox and lens fixes are retained.

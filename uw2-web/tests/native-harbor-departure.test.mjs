@@ -80,8 +80,15 @@ assert.equal(rejected(s=>{s.fleet.ships[1].currentCrew=Infinity;}),
  'invalid-supply-state');
 assert.equal(rejected(s=>{for(const sh of s.fleet.ships)sh.water=0;}),
  'no-provisions');
-for(const v of [0,1,5,-1,NaN,Infinity,2.5,'2',undefined])
+for(const v of [0,1,5,-1,NaN,Infinity,2.5,'2'])
  assert.equal(rejected(()=>{},seaMap(),v),'visit-clock-invalid');
+{
+ const source=fixture(),before=structuredClone(source);
+ const missing=prepareNativeHarborDeparture({session:source,worldAssets:seaMap()});
+ assert.equal(missing.allowed,false);
+ assert.equal(missing.reason,'visit-clock-invalid');
+ assert.deepEqual(source,before);
+}
 for(const change of [
  s=>{s.dateTime.day=32;},
  s=>{s.dateTime.timeTick=72;},

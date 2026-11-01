@@ -134,7 +134,9 @@ for(const [name,maximum,commit] of [
   assert.ok(app.includes('"bank-'+name+'":'+maximum+'(selected)'));
   assert.ok(app.includes('tx='+commit+'(selected,ui.bankAmount)'));
 }
-assert.match(app,/prepareNativeTownTimeTransition/);
+assert.match(app,/prepareNativeTownBuildingExit/);
+const exitTx=fs.readFileSync(new URL('../web/native-town-building-exit.js',import.meta.url),'utf8');
+assert.match(exitTx,/prepareNativeTownTimeTransition/);
 const townTx=fs.readFileSync(new URL('../web/native-town-time-transaction.js',import.meta.url),'utf8');
 assert.match(townTx,/applyBankInterestCrossings/);
 console.log('UW2 native bank four-way transactional integrity and calendar interest: PASS');

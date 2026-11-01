@@ -1,6 +1,7 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { buildNativePortArrival } from "./native-port-arrival.js";
+import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -422,7 +423,7 @@ function enterSystemMenu(cursor = 0) {
 function selectLoadedSlot(index) {
   const slot = slots[index];
   if (!slot || slot.empty) return false;
-  selected = slot;
+  selected = openNativeSaveSession(slot);
   if (saveBuffer && selected.raw?.page != null) {
     portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
   }
@@ -748,7 +749,7 @@ function renderSlots() {
       ? `${slot.index + 1}. No data`
       : `${slot.index + 1}. ${slot.memo} · ${slot.portName} · ${slot.heroName} · ${slot.money.toLocaleString()} G${slot.ending ? " · END" : ""}`;
     btn.addEventListener("click", () => {
-      selected = slot;
+      selected = openNativeSaveSession(slot);
       if (saveBuffer && selected?.raw?.page != null) {
         portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
       }
@@ -1794,6 +1795,12 @@ function drawTownDialogue(talk) {
 function renderTownScreen() {
   if (!townRuntime || !portAssets) return;
   const st = townRuntime.snapshot();
+  const committed=syncNativeTownSession(selected,st,portAssets);
+  if(!committed.updated){
+    $("runtime-status").textContent="원본 항구 상태 정합성 검증 실패 · 갱신 보류";
+    publishControllerState({nativeTownHold:committed.reason});
+    return;
+  }
   drawOriginalSceneFrame("town");
 
   if (st.building) {

@@ -179,45 +179,50 @@ export function consumeDepartureDay(slot) {
 }
 
 const MONTH_DAYS = Object.freeze([31,28,31,30,31,30,31,31,30,31,30,31]);
-
-export function advanceDateTicks(dateTime, ticks) {
-  if (!dateTime) return null;
-  for (let i=0;i<Math.max(0,Math.floor(ticks));i++) {
-    dateTime.timeTick = ((dateTime.timeTick ?? 0) + 1) % 72;
-    if (dateTime.timeTick === 0) {
-      dateTime.day = (dateTime.day ?? 1) + 1;
-      const md = MONTH_DAYS[((dateTime.month ?? 1)-1)%12] ?? 30;
-      if (dateTime.day > md) {
-        dateTime.day = 1;
-        dateTime.month = (dateTime.month ?? 1) + 1;
-        if (dateTime.month > 12) {
-          dateTime.month = 1;
-          dateTime.year = (dateTime.year ?? 1501) + 1;
-        }
-      }
-    }
+const clockInt=(v,min,max)=>Number.isSafeInteger(v)&&v>=min&&v<=max;
+function validNativeGameClock(t) {
+  return !!t&&clockInt(t.year,1501,9999)&&
+    clockInt(t.month,1,12)&&
+    clockInt(t.day,1,MONTH_DAYS[t.month-1])&&
+    clockInt(t.timeTick,0,71)&&
+    t.hour===Math.floor(t.timeTick/3)&&
+    t.minute===(t.timeTick%3)*20;
+}
+function nextNativeGameDay(t) {
+  t.day++;
+  if(t.day>MONTH_DAYS[t.month-1]){
+    t.day=1;t.month++;
+    if(t.month>12){t.month=1;t.year++;}
   }
-  dateTime.hour = Math.floor((dateTime.timeTick ?? 0) / 3);
-  dateTime.minute = ((dateTime.timeTick ?? 0) % 3) * 20;
+  return t.year<=9999;
+}
+
+// The shipping browser advances time in 20-minute source-shaped ticks.
+// Validate before processing and stage the entire transition: an invalid
+// state, unbounded request or 9999-year overflow must not partially modify
+// a live game clock (or cause an unbounded browser main-thread loop).
+export function advanceDateTicks(dateTime,ticks) {
+  if(!validNativeGameClock(dateTime)||
+     !clockInt(ticks,0,72*366))return null;
+  const next={...dateTime};
+  for(let i=0;i<ticks;i++){
+    next.timeTick=(next.timeTick+1)%72;
+    if(next.timeTick===0&&!nextNativeGameDay(next))return null;
+  }
+  next.hour=Math.floor(next.timeTick/3);
+  next.minute=(next.timeTick%3)*20;
+  Object.assign(dateTime,next);
   return dateTime;
 }
 
 export function lodgeCheckIn(dateTime) {
-  if (!dateTime) return null;
-  // Check In returns at 08:00 next day.
-  dateTime.day = (dateTime.day ?? 1) + 1;
-  let md = MONTH_DAYS[((dateTime.month ?? 1)-1)%12] ?? 30;
-  if (dateTime.day > md) {
-    dateTime.day = 1;
-    dateTime.month = (dateTime.month ?? 1) + 1;
-    if (dateTime.month > 12) {
-      dateTime.month = 1;
-      dateTime.year = (dateTime.year ?? 1501) + 1;
-    }
-  }
-  dateTime.timeTick = 24;
-  dateTime.hour = 8;
-  dateTime.minute = 0;
+  if(!validNativeGameClock(dateTime))return null;
+  const next={...dateTime};
+  if(!nextNativeGameDay(next))return null;
+  next.timeTick=24;
+  next.hour=8;
+  next.minute=0;
+  Object.assign(dateTime,next);
   return dateTime;
 }
 

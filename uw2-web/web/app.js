@@ -7,6 +7,7 @@ import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
 import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
 import { prepareNativeTownTimeTransition } from "./native-town-time-transaction.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
+import {prepareNativeTownMovement,commitNativeTownMovement} from "./native-town-movement.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
 import {saveNativeSeaCheckpoint,loadNativeSeaCheckpoint,restoreNativeSeaRuntime,
@@ -1876,7 +1877,15 @@ function renderTownScreen() {
 }
 function moveTown(direction) {
   if (!townRuntime || viewMode !== "town") return;
-  townRuntime.move(direction);
+  const step=prepareNativeTownMovement({
+    session:selected,runtime:townRuntime,assets:portAssets,direction
+  });
+  if(!step.allowed){
+    $("runtime-status").textContent="항구 이동 보류: "+step.reason;
+    publishControllerState({nativeTownHold:step.reason});
+    return;
+  }
+  commitNativeTownMovement(step);
   renderTownScreen();
 }
 

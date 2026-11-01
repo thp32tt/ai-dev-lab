@@ -12,7 +12,7 @@ assert.equal(findPortCallTarget({x:286,y:238},ports)?.approach,'SOURCE_RING_4X4'
 assert.equal(findPortCallTarget({x:100,y:100},ports),null);
 assert.equal(findPortCallTarget({x:142,y:372},ports),null);
 assert.equal(findPortCallTarget({x:144,y:373},[
- a,{...a,id:20,x:143,y:373,name:'overlapping source'}]),null);
+ a,{...a,id:20,x:142,y:373,name:'overlapping source'}]),null);
 assert.equal(findPortCallTarget({x:WORLD_CHIP_W-2,y:300},
  [{id:4,name:'wrapped',x:0,y:300}])?.id,4);
 assert.equal(findPortCallTarget({x:8.5,y:372},ports),null);

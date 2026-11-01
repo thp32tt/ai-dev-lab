@@ -50,6 +50,7 @@ import {
   pubRecruitOffer,
   hireCrew,
   dismissCrew,
+  rolloverPubDailyRecruitment,
 } from "./pub.js";
 import {
   GOODS_CATEGORY_NAMES,
@@ -572,6 +573,7 @@ function advanceSelectedDateTicks(ticks) {
   if (!selected?.dateTime) return [];
   const before={...selected.dateTime};
   advanceDateTicks(selected.dateTime,ticks);
+  rolloverPubDailyRecruitment(selected,before,selected.dateTime);
   const events=applyBankInterestCrossings(selected,before,selected.dateTime);
   if(events.length) selected.lastBankInterest=events.at(-1);
   return events;
@@ -581,6 +583,7 @@ function lodgeSelected() {
   if (!selected?.dateTime) return [];
   const before={...selected.dateTime};
   lodgeCheckIn(selected.dateTime);
+  rolloverPubDailyRecruitment(selected,before,selected.dateTime);
   const events=applyBankInterestCrossings(selected,before,selected.dateTime);
   if(events.length) selected.lastBankInterest=events.at(-1);
   return events;
@@ -598,6 +601,7 @@ function tickSeaWithBankInterest() {
       before.dateTime?.month !== after.dateTime?.month ||
       before.dateTime?.day !== after.dateTime?.day;
     if(dayChanged) {
+      rolloverPubDailyRecruitment(selected,before.dateTime,after.dateTime);
       consumeDepartureDay(selected);
       selected.lastSeaProvisionDate = {
         year: after.dateTime.year,

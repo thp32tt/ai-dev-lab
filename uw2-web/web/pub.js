@@ -78,3 +78,21 @@ export function dismissCrew(slot, shipIndex, requested) {
   if(slot.fleet)slot.fleet.totalCrew=Math.max(0,(slot.fleet.totalCrew??0)-quantity);
   return {quantity};
 }
+
+// Browser-native daily pub recruitment reset. Korean KOUKAI2.DAT's
+// saveBase+0x0c is an 8-bit dayFlags field; hireCrew owns only bit 0.
+// Preserve all other source flags rather than guessing their meanings.
+// This is a native calendar lifecycle fix, NOT an original DOS trace claim.
+export function rolloverPubDailyRecruitment(slot,beforeDate,afterDate){
+  const dateIndex=d=>(
+    d&&Number.isSafeInteger(d.year)&&d.year>=1501&&d.year<=9999&&
+    Number.isSafeInteger(d.month)&&d.month>=1&&d.month<=12&&
+    Number.isSafeInteger(d.day)&&d.day>=1&&d.day<=31
+  ) ? d.year*372+(d.month-1)*31+(d.day-1) : null;
+  const before=dateIndex(beforeDate),after=dateIndex(afterDate);
+  if(before===null||after===null||after<=before||
+     !Number.isSafeInteger(slot?.dayFlags)||slot.dayFlags<0||slot.dayFlags>255||
+     (slot.dayFlags&1)===0) return false;
+  slot.dayFlags &= ~1;
+  return true;
+}

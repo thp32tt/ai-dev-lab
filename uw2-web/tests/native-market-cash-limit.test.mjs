@@ -10,7 +10,8 @@ const marketAssets={markets:[{
  id:0,listed:[],salePrices:Array(46).fill(salePrice)
 }]};
 const goodsSlot={slot:0,id:0,quantity:5};
-const ship={index:0,name:'ship',load:5,goods:[goodsSlot]};
+const ship={index:0,name:'ship',cargo:100,load:5,
+ water:0,food:0,lumber:0,shot:0,goods:[goodsSlot]};
 const portMeta={
  marketId:0,economy:1000,rates:Array(10).fill(50),
  specialtyGoodsId:255,specialtyEconomyThreshold:100,

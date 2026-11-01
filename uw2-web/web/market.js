@@ -134,26 +134,39 @@ function adjustRates(slot,category,total,sign){
   }
 }
 
-// Source save cargo slots and price metadata are integers. Fail closed on
-// corrupted transactions: zero/negative/NaN prices must not mint cargo, and
-// an FF empty slot carrying units must never be silently overwritten.
-function validBuyCargoState(ship) {
-  return Number.isSafeInteger(ship?.cargo) && ship.cargo>=0 &&
-    Number.isSafeInteger(ship?.load) && ship.load>=0 &&
-    Array.isArray(ship?.goods) && ship.goods.every(g=>
-      Number.isSafeInteger(g?.id) &&
-      (g.id===0xff || (g.id>=0 && g.id<GOODS_NAMES.length)) &&
-      Number.isSafeInteger(g.quantity) && g.quantity>=0 &&
-      (g.id!==0xff || g.quantity===0)
-    );
+// Trade preflight matches source-shaped Korean save cargo and port market
+// records, before any mutation. This is a browser transaction invariant,
+// not a claim of unknown original DOS trade/arithmetic behavior.
+const U16=65535;
+const u16=n=>Number.isSafeInteger(n)&&n>=0&&n<=U16;
+function validTradeCargoShip(ship){
+  return !!ship&&
+    ['cargo','load','water','food','lumber','shot'].every(k=>u16(ship[k]))&&
+    Array.isArray(ship.goods)&&ship.goods.length>=1&&ship.goods.length<=5&&
+    ship.goods.every((g,i)=>g&&g.slot===i&&u16(g.id)&&
+      (g.id===0xff||g.id<GOODS_NAMES.length)&&u16(g.quantity)&&
+      (g.id!==0xff||g.quantity===0));
+}
+function tradePreflight(slot,marketAssets,shipIndex){
+  const meta=slot?.portMeta;
+  const ships=slot?.fleet?.ships;
+  if(!Number.isSafeInteger(slot?.money)||slot.money<0||
+     slot.money>GOLD_LIMIT||!Array.isArray(ships)||ships.length<1||
+     ships.length>10||!Number.isSafeInteger(shipIndex)||
+     shipIndex<0||shipIndex>=ships.length||
+     !validTradeCargoShip(ships[shipIndex])||!meta||
+     !u16(meta.economy)||!Number.isSafeInteger(meta.marketId)||
+     !Array.isArray(marketAssets?.markets)||
+     !marketAssets.markets[meta.marketId]||
+     !Array.isArray(meta.rates)||meta.rates.length!==10||
+     !meta.rates.every(rate=>Number.isSafeInteger(rate)&&rate>=0&&rate<=255))
+    return null;
+  return ships[shipIndex];
 }
 
 export function buyGoods(slot,marketAssets,shipIndex,goodId,requested,{taxFree=false}={}) {
-  const ship=slot?.fleet?.ships?.[shipIndex];
-  if(!ship) return {quantity:0,cost:0,reason:"unavailable"};
-  if(!Number.isSafeInteger(slot?.money)||slot.money<0||slot.money>GOLD_LIMIT||
-     !validBuyCargoState(ship))
-    return {quantity:0,cost:0,reason:"invalid-trade-state"};
+  const ship=tradePreflight(slot,marketAssets,shipIndex);
+  if(!ship)return {quantity:0,cost:0,reason:"invalid-trade-state"};
   const pm=currentPortMarket(slot,marketAssets,{taxFree});
   const item=pm?.buy.find(x=>x.good===goodId);
   if(!item) return {quantity:0,cost:0,reason:"unavailable"};
@@ -169,11 +182,11 @@ export function buyGoods(slot,marketAssets,shipIndex,goodId,requested,{taxFree=f
   if(!Number.isSafeInteger(free)||free<=0)
     return {quantity:0,cost:0,reason:"no-capacity-or-money"};
   const byMoney=Math.floor(slot.money/item.price);
-  const quantity=Math.max(0,Math.min(free,byMoney,requested));
-  if(!quantity) return {quantity:0,cost:0,reason:"no-capacity-or-money"};
-  if(!Number.isSafeInteger(cargoSlot.quantity+quantity)||
-     !Number.isSafeInteger(ship.load+quantity))
-    return {quantity:0,cost:0,reason:"invalid-trade-state"};
+  // Original source ship cargo slot and velocity load are u16, not JS
+  // arbitrary-precision integers. Never overflow on the last purchase.
+  const quantity=Math.min(free,byMoney,requested,
+    U16-cargoSlot.quantity,U16-ship.load);
+  if(quantity<=0)return {quantity:0,cost:0,reason:"no-capacity-or-money"};
 
   const cost=item.price*quantity;
   // All invariants are checked before touching the wallet or cargo slot.
@@ -186,34 +199,37 @@ export function buyGoods(slot,marketAssets,shipIndex,goodId,requested,{taxFree=f
 }
 
 export function sellGoods(slot,marketAssets,shipIndex,goodsSlotIndex,requested) {
-  const ship=slot?.fleet?.ships?.[shipIndex];
-  const cargo=ship?.goods?.[goodsSlotIndex];
-  if(!ship || !cargo || cargo.id===0xff || !cargo.quantity) {
+  const ship=tradePreflight(slot,marketAssets,shipIndex);
+  if(!ship)return {quantity:0,revenue:0,reason:"invalid-trade-state"};
+  if(!Number.isSafeInteger(goodsSlotIndex)||goodsSlotIndex<0||
+     goodsSlotIndex>=ship.goods.length||
+     !Number.isSafeInteger(requested)||requested<=0)
+    return {quantity:0,revenue:0,reason:"invalid-quantity"};
+  const cargo=ship.goods[goodsSlotIndex];
+  if(cargo.id===0xff||cargo.quantity===0)
     return {quantity:0,revenue:0,reason:"empty"};
-  }
+  // A source-shaped sale must be backed by the ship's u16 load. The old
+  // Math.max(0, load - quantity) could turn malformed goods into gold.
+  if(ship.load<cargo.quantity)
+    return {quantity:0,revenue:0,reason:"source-load-invalid"};
   const pm=currentPortMarket(slot,marketAssets);
   const item=pm?.sell[cargo.id];
-  if(!item) return {quantity:0,revenue:0,reason:"unavailable"};
-  // Keep the verified browser gold ceiling consistent with item sales.
-  // Never remove cargo unless the entire per-unit sale revenue fits.
-  // This is a native transaction safeguard, not a traced DOS overflow rule.
-  const cash=slot.money;
-  if(!Number.isSafeInteger(cash)||cash<0||cash>GOLD_LIMIT)
-    return {quantity:0,revenue:0,reason:"cash-invalid"};
+  if(!item)return {quantity:0,revenue:0,reason:"unavailable"};
   if(!Number.isSafeInteger(item.price)||item.price<=0)
     return {quantity:0,revenue:0,reason:"sale-price-unverified"};
+  const cash=slot.money;
   const affordableUnits=Math.floor((GOLD_LIMIT-cash)/item.price);
-  const quantity=Math.max(0,Math.min(
-    cargo.quantity,Math.floor(requested||0),affordableUnits
-  ));
-  if(!quantity) return {quantity:0,revenue:0,
+  const quantity=Math.min(cargo.quantity,requested,affordableUnits);
+  if(quantity<=0)return {quantity:0,revenue:0,
     reason:affordableUnits===0?"cash-limit":"zero"};
-
   const revenue=item.price*quantity;
+  if(!Number.isSafeInteger(revenue)||revenue<=0||revenue>GOLD_LIMIT-cash)
+    return {quantity:0,revenue:0,reason:"sale-value-invalid"};
+  // All ship/market/price/rate/wallet checks completed before mutation.
   cargo.quantity-=quantity;
-  ship.load=Math.max(0,(ship.load??0)-quantity);
+  ship.load-=quantity;
   slot.money=cash+revenue;
-  if(cargo.quantity===0) cargo.id=0xff;
+  if(cargo.quantity===0)cargo.id=0xff;
   adjustRates(slot,item.category,revenue,-1);
   return {quantity,revenue,unitPrice:item.price,good:item.good,name:item.name,slot:goodsSlotIndex};
 }

@@ -30,6 +30,7 @@ jobs:
           node --check uw2-web/tests/native-calendar-integrity.test.mjs
           node --check uw2-web/tests/native-harbor-supply-integrity.test.mjs
           node --check uw2-web/web/market.js
+          node --check uw2-web/tests/native-market-trade-integrity.test.mjs
           node --check uw2-web/web/item-shop.js
           node --check uw2-web/tests/native-market-purchase-integrity.test.mjs
           node --check uw2-web/web/native-graph-canvas.js
@@ -131,6 +132,7 @@ jobs:
           node uw2-web/tests/native-pub-transaction-integrity.test.mjs
           node uw2-web/tests/native-market-cash-limit.test.mjs
           node uw2-web/tests/native-market-purchase-integrity.test.mjs
+          node uw2-web/tests/native-market-trade-integrity.test.mjs
           node uw2-web/tests/native-harbor-supply-integrity.test.mjs
           node uw2-web/tests/native-harbor-departure.test.mjs
           node --test uw2-web/tests/item-shop.test.mjs

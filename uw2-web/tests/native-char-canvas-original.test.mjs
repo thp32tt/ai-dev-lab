@@ -8,7 +8,7 @@ const root=process.env.UW2_GAME_DIR||
  '/home/chatgpt-runner/rea-input/uncharted-waters-2/game/C HDD';
 const bytes=fs.readFileSync(join(root,'CHAR.LZW'));
 const hash=createHash('sha256').update(bytes).digest('hex');
-assert.equal(hash,'3ac507d9ff6fa23907e3d0937570690f9faaf00120b750ee9016883c1c408fd1');
+assert.equal(hash,'f1d606475e653e87d5a3ddaf05523a1f59a1c70d16e5a4a3d6c6d513c6c4a537');
 const chars=decodeKoreanChar(bytes.buffer.slice(
  bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
 assert.equal(chars.heroes.length,6);

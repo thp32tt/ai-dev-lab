@@ -43,7 +43,8 @@ assert.equal(buyGoods(oneSlot,marketAssets,0,0,1).reason,'no-goods-slot');
 assert.equal(oneSlot.money,1000);
 
 for(const money of [-1,GOLD_LIMIT+1,NaN,Infinity,'1000',1.5,undefined]){
-  const invalid=player(money);
+  const invalid=player(500);
+  invalid.money=money; // Explicit undefined, not the fixture's default argument.
   const before=structuredClone(invalid);
   const tx=buyGoods(invalid,marketAssets,0,0,2);
   assert.equal(tx.quantity,0);

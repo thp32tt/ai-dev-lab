@@ -28,7 +28,13 @@ export function validNativePortActorMemory(memory){
 }
 function originalCatalogId(previous){
  const id=previous?.portCatalogId;
- if(uint(id,129))return id;
+ // Once a concrete full source id exists it MUST match the active map.
+ // A stale supply-catalog id, or ordinary id from another port, cannot
+ // turn the current NPCs into people from that different city.
+ if(id!==undefined&&id!==null){
+  if(uint(id,129)&&(id>=100?100:id)===previous?.port)return id;
+  return null;
+ }
  // Only ordinary source ports 0..99 uniquely map mapId -> catalog id.
  if(uint(previous?.port,99))return previous.port;
  return null;

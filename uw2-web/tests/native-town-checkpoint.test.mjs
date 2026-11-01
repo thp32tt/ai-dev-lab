@@ -84,7 +84,7 @@ assert.ok(app.includes('resumeNativeTownRuntime(nextRuntime,restored.town)'));
 assert.ok(html.includes('data-action="checkpoint-save"'));
 assert.ok(html.includes('data-action="checkpoint-load"'));
 assert.ok(html.includes('id="checkpoint-feedback"'));
-assert.ok(app.includes('checkpointFeedback = "웹 이어하기 완료"'));
-assert.ok(app.includes('checkpointFeedback = `웹 임시저장 완료'));
+assert.ok(app.includes('checkpointFeedback="웹 항구 이어하기 완료"'));
+assert.ok(app.includes('checkpointFeedback=`웹 항구 임시저장 완료'));
 
 console.log('UW2 source-SHA scoped web-only town checkpoint save/load and original source isolation: PASS');

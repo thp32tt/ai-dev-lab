@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 DX11 real-game MSAA native source capture and causal Gate repair (2026-11-01 KST)
+
+- **Independent source-backed DX11 game GPU color support (+1):** TASK_ID `CONVERSION-DX11-01196`; material commit `c5fb45c3da41884374f91873dc17a58f48961832` adds native same-device D3D11 game-MSAA (2x..32x) format-checked GPU `ResolveSubresource` for original-source PRE/POST RGB bounded tiles, cache invalidation and sample-count positive/negative regression. Original D3D9 source/present ownership, opt-in fail-closed DX9Ex fallback, input and FFB preserved. Initial Backend Gate run `41293828814` failed on preceding 01195 C6 metadata missing `development_strategy`, not on observed C++ compile; same-task causal historical record repair commit `58dd2897af62ff12548175e3fc12f23188221910` carries **no additional score**.
+- **Exactly verified mandatory push CI 5/5 SUCCESS at validation-bearing SHA `58dd2897af62ff12548175e3fc12f23188221910`:** DX11 Fast Structural Checks `41294096779`; Backend Conversion Gate `41294096841`; Build `41294096741`; OpenXR VR architecture `41294096714`; OutRun EXE HUD Inspector CI `41294096878`. Build/HUD/OpenXR artifact readback confirmed. C6 record `docs/automation/runs/CONVERSION-DX11-01196.json` branch HEAD `9a4c31688e1be796f42725139743e7a605ed7071`, source-commit ancestry behind=0. **Actual game frame, full renderer, Quest3 runtime and performance UNTESTED**. Same-task retry, record repair, CI and C6 do not score separately; AI 1 unchanged.
+- **AI 2 cumulative: previous confirmed 2360 + one new independently verified DX11 real-game source implementation (+1) = 2361.**
+
+Updated: 2026-11-01 KST
+
 ## AI 1 OutRun 2006 Sector2 Korean transparent HD-ROI asset (2026-11-01 KST)
 
 - **New distinct image-generation and Library-delivery outcome (+1):** TASK_ID `OUTRUN-ROI-A-0157-08FE4E79`, A-0157; independently generated single approved Korean text `Sector2 → 섹터 2` from supplied full-HD original `Q044_19CEDB9_BASE_READABLE_FLIPY.png` ROI [6,97,198,166]. Generated one RGBA transparent PNG, cropped and resized to 190×61 (within 192×69 target), output `Q044_8f2fb4bb6e3a34b0_k.png`, sha256 `8db34a44df1591040218af4e7cf57bbc540f28f9a7934d52f4ec421d777d857b`. Exact file uploaded to personal Library `/아웃런 한글화 신규/`; upload status succeeded and independent Library listing shows exact name and 16,025 bytes. No claim of independent visual QA PASS, DDS or in-game success. Independent new output from earlier no-OCR production queue admission, not retry/status recheck; AI 2 unchanged.

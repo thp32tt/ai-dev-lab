@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 QuestCockpitV2 isolated original-game frame/vehicle source cutover (2026-11-02 08:59 KST)
+
+- **RUN_KEY:** `QUEST-COCKPIT-V2-ISOLATED-20261102-a69d7c79`; **AI 2**; previous confirmed **2426**; change **+1**; new cumulative **2427**.
+- **New distinct material C++ source outcome (+1):** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2` isolated from the stable DX9Ex beta baseline. Implemented original Quest mode-1 frame owner/pose/player admission, independently validated B0/F0 affine occupant-model matrix correction and render-local scoped F0 restore, added bounded original PC game-frame and player event provenance diagnostics, and removed unstable active legacy DriverSeat camera-offset/scale/driver/global-glass detours while preserving R26 Z precision, car shadow and non-cockpit rendering. Initial material commit `a69d7c79a6d8e8f7e85a4ce87a885bb874453645`, native trace extension `f2e805eb43a05db0e08047cdcb6bf47f9669fe01`.
+- **Verification:** initial exact SHA `a69d7c79a6d8e8f7e85a4ce87a885bb874453645` VR GitHub General Test Build run **41363959629 SUCCESS** (Windows Win32 game DLL/x64 OpenXR host and ZIP); initial QuestCockpitV2 core test **41363959697 SUCCESS**; latest native-frame 3-site signature-match + original event-source C++17 deterministic contract **41364395083 SUCCESS** on extension SHA `f2e805eb43a05db0e08047cdcb6bf47f9669fe01`. Latest Windows build was pending at score entry and is not falsely asserted passed. Native game-to-XR mapping and working Quest3 seat are **RUNTIME_VALIDATION=UNTESTED**, cockpit gameplay deliberately OFF. Same task's later CI, logs, docs, ZIP and reruns **+0**; AI 1 unchanged.
+- **AI 2 score:** previous confirmed 2426 + one independently integrated, verified isolated C++ core/legacy cutover (+1) = cumulative **2427**.
+
 ## AI 2 UW2 native full-fleet harbor supply integrity and unload underflow (2026-11-02 08:48 KST)
 
 - **RUN_KEY:** `UW2-SUPPLY-FLEET-LOAD-20261102-75633b2a`; **AI 2**; previous confirmed **2425**; change **+1**; new cumulative **2426**; confirmed KST **2026-11-02 08:48 KST**.

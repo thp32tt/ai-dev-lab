@@ -13,5 +13,10 @@ export function advanceNativeSeaAuto(runtime,onVoyageTick){
   const result=onVoyageTick();
   if(result&&typeof result.then==='function')
     throw new TypeError('native sea auto voyage tick must be synchronous');
+  if(result&&typeof result==='object'&&result.advanced===false){
+    const reason=typeof result.reason==='string'?result.reason:'native-voyage-hold';
+    runtime.lastEvent=reason;
+    return Object.freeze({advanced:false,reason});
+  }
   return Object.freeze({advanced:true,reason:runtime.lastEvent});
 }

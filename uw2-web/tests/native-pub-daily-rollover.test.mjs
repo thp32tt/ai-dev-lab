@@ -62,5 +62,7 @@ assert.equal(rolloverPubDailyRecruitment({dayFlags:999},seaBefore,sea.dateTime),
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.match(app,/advanceDateTicks\(selected\.dateTime,ticks\);\s*rolloverPubDailyRecruitment\(selected,before,selected\.dateTime\)/);
 assert.match(app,/lodgeCheckIn\(selected\.dateTime\);\s*rolloverPubDailyRecruitment\(selected,before,selected\.dateTime\)/);
-assert.match(app,/if\(dayChanged\)\s*\{\s*rolloverPubDailyRecruitment\(selected,before\.dateTime,after\.dateTime\)/);
+assert.ok(app.includes('advanceNativeSeaVoyageStep({session:selected,runtime:seaRuntime})'));
+const voyage=fs.readFileSync(new URL('../web/native-sea-voyage-step.js',import.meta.url),'utf8');
+assert.match(voyage,/if\(dayChanged\)\s*\{[\s\S]*rolloverPubDailyRecruitment\(next,before,next\.dateTime\)/);
 console.log('UW2 native pub recruitment daily flag clears after town visit, inn and sea midnight: PASS');

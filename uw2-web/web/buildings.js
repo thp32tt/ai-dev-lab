@@ -158,6 +158,10 @@ export function harborDepartureStatus(slot) {
   return { allowed: true, needsConfirm: true, messageId: 58, days, reason: "six-months-plus" };
 }
 
+export function validNativeVoyageFleet(slot) {
+  return validSupplyFleet(slot);
+}
+
 export function consumeDepartureDay(slot) {
   // Preflight the whole fleet: a malformed later ship must not leave an
   // already-mutated earlier ship's source-derived supplies or velocity load.

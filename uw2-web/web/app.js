@@ -2,6 +2,7 @@ import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTa
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import { buildNativePortArrival, canBuildNativePortArrival } from "./native-port-arrival.js";
 import { advanceNativeSeaAuto } from "./native-sea-auto.js";
+import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
 import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
@@ -591,29 +592,15 @@ function lodgeSelected() {
 }
 
 function tickSeaWithBankInterest() {
-  if (!seaRuntime) return false;
-  const before=seaRuntime.snapshot();
-  const moved=seaRuntime.move();
-  const after=seaRuntime.snapshot();
-  if(selected){
-    selected.dateTime={...after.dateTime};
-    const dayChanged =
-      before.dateTime?.year !== after.dateTime?.year ||
-      before.dateTime?.month !== after.dateTime?.month ||
-      before.dateTime?.day !== after.dateTime?.day;
-    if(dayChanged) {
-      rolloverPubDailyRecruitment(selected,before.dateTime,after.dateTime);
-      consumeDepartureDay(selected);
-      selected.lastSeaProvisionDate = {
-        year: after.dateTime.year,
-        month: after.dateTime.month,
-        day: after.dateTime.day,
-      };
-    }
-    const events=applyBankInterestCrossings(selected,before.dateTime,after.dateTime);
-    if(events.length) selected.lastBankInterest=events.at(-1);
+  const result=advanceNativeSeaVoyageStep({session:selected,runtime:seaRuntime});
+  if(!result.advanced){
+    if(seaRuntime)seaRuntime.lastEvent=result.reason;
+    return result;
   }
-  return moved;
+  // Commit the calendar, fleet, bank and sea position together.
+  selected=result.session;
+  seaRuntime=result.sea;
+  return result;
 }
 
 async function loadBuffer(name) {

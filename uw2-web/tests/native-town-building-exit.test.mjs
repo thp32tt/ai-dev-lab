@@ -66,7 +66,13 @@ reject(noDoor,'visit',2,'native-building-source-door-invalid');
 const forged=setup();forged.runtime.insideBuilding={...forged.runtime.insideBuilding};
 reject(forged,'visit',2,'native-building-source-door-invalid');
 const blocked=setup();blocked.assets.maps[0][54*96+22]=240;
-reject(blocked,'visit',2,'ORIGINAL_TOWN_GEOMETRY_UNVERIFIED');
+const blockedExit=prepare(blocked,'visit',2);
+assert.equal(blockedExit.allowed,true,blockedExit.reason);
+assert.equal(blockedExit.updates.portState.mapY,52,
+ 'original leaveBuilding keeps the player in place when below-door tile is blocked');
+assert.equal(commit(blockedExit),true);
+assert.equal(blocked.runtime.insideBuilding,null);
+assert.equal(blocked.session.portState.mapY,blocked.runtime.mapY);
 const badOrigin=setup();badOrigin.assets.maps[0][53*96+22]=240;
 reject(badOrigin,'visit',2,'ORIGINAL_TOWN_GEOMETRY_UNVERIFIED');
 const npc=setup();npc.session.townActors[0].x=5;

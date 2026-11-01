@@ -1,6 +1,6 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
-import { buildNativePortArrival } from "./native-port-arrival.js";
+import { buildNativePortArrival, canBuildNativePortArrival } from "./native-port-arrival.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
@@ -158,9 +158,21 @@ function controllerMusicState() {
   };
 }
 
+// The controller must never advertise "port available" when the real
+// Korean ZA_DAT harbor door or PORTCHIP collision admission cannot land.
+// These are read-only geometry checks, not an invented town transition.
+function findReadyNativePortCall(seaState) {
+  if(!seaState||!portCatalog.length)return null;
+  const port=findPortCallTarget(seaState,portCatalog);
+  if(!port)return null;
+  return canBuildNativePortArrival({
+    port,seaState,previous:selected,portDoors,portAssets
+  })?port:null;
+}
+
 function publishControllerState(extra = {}) {
-  const nearbyPort = viewMode === "sea" && seaRuntime && portCatalog.length
-    ? (findPortCallTarget(seaRuntime.snapshot(), portCatalog)?.name ?? null)
+  const nearbyPort = viewMode === "sea" && seaRuntime
+    ? (findReadyNativePortCall(seaRuntime.snapshot())?.name ?? null)
     : null;
   const detail = {
     mode: viewMode,
@@ -1888,9 +1900,10 @@ function startSeaFromPort() {
 function callNearbyPort() {
   if (!seaRuntime || !portCatalog.length) return false;
   const s = seaRuntime.snapshot();
-  const port = findPortCallTarget(s, portCatalog);
+  const port = findReadyNativePortCall(s);
   if (!port) {
-    seaRuntime.lastEvent = "no-port-call";
+    seaRuntime.lastEvent = findPortCallTarget(s, portCatalog)
+      ? "port-map-unavailable" : "no-port-call";
     renderSeaScreen();
     return false;
   }
@@ -1917,7 +1930,7 @@ function renderSeaScreen() {
   const st = seaRuntime.snapshot();
   drawOriginalSceneFrame("sea");
   renderSeaView(ctx, worldAssets, st, UI_VIEW_X, UI_VIEW_Y, UI_LAYOUT.viewport.tiles, UI_LAYOUT.viewport.tiles);
-  const nearbyPort = findPortCallTarget(st, portCatalog);
+  const nearbyPort = findReadyNativePortCall(st);
   const env = st.environment;
   const dirNames = ["북","북동","동","남동","남","남서","서","북서"];
   drawOriginalDatePanel(st.dateTime, "항해");

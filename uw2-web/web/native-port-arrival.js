@@ -4,7 +4,10 @@ import {canStandAt} from './town.js';
 // KOUKAI2.DAT 130-port source directory. It is NOT a DOS emulator and
 // does NOT claim that unobserved local NPC actors were simulated.
 const uint=(x,max)=>Number.isSafeInteger(x)&&x>=0&&x<=max;
-export function buildNativePortArrival({port,seaState,previous,portDoors,portAssets}={}){
+// Preflight used by the real browser's Port Call button and by the
+// actual source-backed town arrival. It only checks original geometry,
+// so rendering a nearby port never clones or mutates the active save.
+function nativePortLandingGeometry({port,seaState,previous,portDoors,portAssets}={}){
  if(!port||!seaState||!previous||!Array.isArray(portDoors)||
     !portAssets||!Array.isArray(portAssets.maps))
    return null;
@@ -35,6 +38,18 @@ export function buildNativePortArrival({port,seaState,previous,portDoors,portAss
  // Korean saved Danzig original: harbor door Y=51, player Y=52,
  // viewY=38 (relative Y=14). Anchor to door row, not player row.
  const viewY=Math.max(0,Math.min(72,harbor.y-13));
+ return {time,mapX,mapY,viewX,viewY};
+}
+
+export function canBuildNativePortArrival(args={}){
+ return nativePortLandingGeometry(args)!==null;
+}
+
+export function buildNativePortArrival(args={}){
+ const geometry=nativePortLandingGeometry(args);
+ if(!geometry)return null;
+ const {port,previous}=args;
+ const {time,mapX,mapY,viewX,viewY}=geometry;
  // The original 30 supply ports share PORTMAP bank #100, but they are
  // distinct geographic places and must never inherit another supply port's
  // people. mapId equality alone is NOT port/catalog identity.

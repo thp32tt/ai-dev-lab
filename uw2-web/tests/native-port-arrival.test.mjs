@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {buildNativePortArrival} from '../web/native-port-arrival.js';
+import {buildNativePortArrival,canBuildNativePortArrival} from '../web/native-port-arrival.js';
 const bank=Array.from({length:240},()=>new Uint8Array(256));
 const assets={maps:[new Uint8Array(96*96)],chipNo:Uint8Array.of(0),
  walkBounds:[[0,100,200,250]],banks:[bank]};
@@ -9,6 +9,7 @@ const time={year:1522,month:7,day:6,timeTick:49,hour:16,minute:20};
 const seaState={dateTime:time},actors=[{slot:0,x:5,y:4,type:1,active:true}];
 const previous={port:0,heroName:'saved',townActors:actors,money:100};
 const opts={port,seaState,previous,portDoors:doors,portAssets:assets};
+assert.equal(canBuildNativePortArrival(opts),true);
 const arrival=buildNativePortArrival(opts);
 assert.deepEqual(arrival.portState,{viewX:10,viewY:38,playerX:12,
  playerY:14,mapX:22,mapY:52});
@@ -69,6 +70,17 @@ const invalidCases=[
  {...opts,portDoors:[[null,null,null,{id:3,present:true,x:22,y:94}]]},
  {...opts,portAssets:{...assets,walkBounds:[[0,0,0,0]]}}
 ];
-for(const input of invalidCases)
+for(const input of invalidCases){
+ assert.equal(canBuildNativePortArrival(input),false);
  assert.equal(buildNativePortArrival(input),null);
+}
+// The read-only readiness gate must not alter the original source game
+// state, unlike the actual arrival's authorized cloned session.
+const original=structuredClone(previous);
+assert.equal(canBuildNativePortArrival(opts),true);
+assert.deepEqual(previous,original);
+// An invalid landing must not be advertised as a navigable harbor.
+const blocked={...assets,walkBounds:[[0,0,0,0]]};
+assert.equal(canBuildNativePortArrival({...opts,portAssets:blocked}),false);
+assert.equal(buildNativePortArrival({...opts,portAssets:blocked}),null);
 console.log('UW2 native original 130-port harbor landing uses verified source door/collision/date: PASS');

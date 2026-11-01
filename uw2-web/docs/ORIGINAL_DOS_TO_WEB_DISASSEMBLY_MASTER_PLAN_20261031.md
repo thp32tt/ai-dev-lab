@@ -1,4 +1,10 @@
 # 대항해시대 II 한국어 DOS 원본 → 웹 완전동작 포팅 마스터 계획
+## 2026-11-02 실제 항구 건물/여관 퇴장 후 보행 연속성 복구
+
+- 브라우저 네이티브 `app.js` 건물 ESC 퇴장과 여관 숙박이 `PortWalkingRuntime.leaveBuilding()`만 실행하여 화면 캐릭터는 건물 문 아래로 1칸 움직였지만 `selected.portState`는 이전 좌표를 보유했다. 다음 방향키는 `prepareNativeTownMovement`의 session/runtime 위치 일치 조건에서 거부될 수 있었다.
+- 실제 게임 키/메뉴 경로를 신규 `native-town-building-exit.js`에 연결해 원본 ZA_DAT 건물문 소유권, 기존 player/NPC 저장 위치, PORTCHIP/PORTMAP 앞뒤 통행 가능 판정, 방문 2~4×20분 또는 여관 다음날 08:00, 달 경계 은행 이자와 주점 일일 플래그까지 **변경 전 검증 후** town runtime과 세션에 동시에 적용한다. 막힌 문 아래는 기존 그대로 이동하지 않고, 유효하지 않은 시계/위치/문은 원래 상태를 보존한다. 이후 방향키 이동 회귀 테스트에 포함.
+- 원본 사용자 데이터 Firefox 실기와 DOS 바이트 차등검증은 **RUNTIME_VALIDATION=UNTESTED**; 브라우저 독립 JS/Canvas 경로만 수정하며 새 DOS 실행기가 아니다.
+
 - 수립: 2026-10-31 KST; 최신 개정: 2026-11-01 KST (독립 JavaScript/WASM 웹게임 전용 경로 고정)
 - 기준: `thp32tt/ai-dev-lab@uw2-web-port`; 실제 한국어판 DOS 설치 파일만 정본. REA/Ghidra 분석은 참고 출력이며 **실행 파일의 실제 바이트, DOS 참조 실행 결과**로 재확인한다.
 - 목표: **원본과 동일한 게임**을 브라우저에서 실행.

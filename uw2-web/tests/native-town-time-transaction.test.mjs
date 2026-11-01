@@ -52,10 +52,10 @@ for(const [s,kind,ticks,reason] of [
  assert.equal(r.reason,reason);
 }
 const app=readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.match(app,/prepareNativeTownTimeTransition/);
-assert.match(app,/Object\.assign\(selected,prepared\.updates\)/);
-assert.match(app,/if\(!lodgeSelected\(\)\)return;/);
-assert.match(app,/if\(!advanceSelectedDateTicks\(buildingUi\.visitTicks\)\)return;/);
+assert.match(app,/prepareNativeTownBuildingExit/);
+assert.match(app,/commitNativeTownBuildingExit/);
+assert.match(app,/exitNativeTownBuilding\("lodge"\)/);
+assert.match(app,/exitNativeTownBuilding\("visit",buildingUi\?\.visitTicks\)/);
 assert.doesNotMatch(app,/advanceDateTicks\(selected\.dateTime,ticks\)/);
 assert.doesNotMatch(app,/lodgeCheckIn\(selected\.dateTime\)/);
 console.log('UW2 native town clock/pub/bank visit and lodging atomic transaction: PASS');

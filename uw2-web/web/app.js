@@ -5,7 +5,7 @@ import { prepareNativePortCall } from "./native-port-call-transaction.js";
 import { advanceNativeSeaAuto, createNativeAutoOriginPortProbe } from "./native-sea-auto.js";
 import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
 import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
-import { prepareNativeTownTimeTransition } from "./native-town-time-transaction.js";
+import {prepareNativeTownBuildingExit,commitNativeTownBuildingExit} from "./native-town-building-exit.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {prepareNativeTownMovement,commitNativeTownMovement} from "./native-town-movement.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
@@ -589,23 +589,6 @@ function drawOriginalDatePanel(date, label = "") {
   drawOriginalPanelText(`${date.year}.${date.month}.${date.day}`, 505, 26, {size:12,bold:true});
   drawOriginalPanelText(`${String(date.hour).padStart(2,"0")}:${String(date.minute).padStart(2,"0")}`, 555, 45, {size:11});
   if (label) drawOriginalPanelText(label, 500, 65, {size:11,bold:true});
-}
-
-function commitNativeTownTime(kind,ticks) {
-  const prepared=prepareNativeTownTimeTransition({session:selected,kind,ticks});
-  if(!prepared.allowed){
-    $("runtime-status").textContent="시간 진행 보류: "+prepared.reason;
-    return false;
-  }
-  // PortWalkingRuntime.slot === selected remains true after this commit.
-  Object.assign(selected,prepared.updates);
-  return true;
-}
-function advanceSelectedDateTicks(ticks) {
-  return commitNativeTownTime("visit",ticks);
-}
-function lodgeSelected() {
-  return commitNativeTownTime("lodge");
 }
 
 function tickSeaWithBankInterest() {
@@ -1267,13 +1250,21 @@ function renderBuildingInterface(s) {
   }
 }
 
-function exitBuildingWithVisitTime() {
-  if (buildingUi?.visitTicks && selected?.dateTime) {
-    if(!advanceSelectedDateTicks(buildingUi.visitTicks))return;
+function exitNativeTownBuilding(kind,ticks) {
+  const tx=prepareNativeTownBuildingExit({
+    session:selected,runtime:townRuntime,assets:portAssets,kind,ticks
+  });
+  if(!tx.allowed){
+    $("runtime-status").textContent="건물 퇴장 보류: "+tx.reason;
+    return false;
   }
+  commitNativeTownBuildingExit(tx);
   buildingUi=null;
-  townRuntime.leaveBuilding();
   renderTownScreen();
+  return true;
+}
+function exitBuildingWithVisitTime() {
+  return exitNativeTownBuilding("visit",buildingUi?.visitTicks);
 }
 
 function runBuildingCommand(ui, buildingId) {
@@ -1382,11 +1373,7 @@ function runBuildingCommand(ui, buildingId) {
 
   if (buildingId === 4) {
     if (cursor === 2) {
-      if(!lodgeSelected())return;
-      buildingUi=null;
-      townRuntime.leaveBuilding();
-      townRuntime.lastEvent="lodge-check-in";
-      renderTownScreen();
+      exitNativeTownBuilding("lodge");
       return;
     }
     if (cursor === 1) {

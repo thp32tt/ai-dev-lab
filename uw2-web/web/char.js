@@ -83,32 +83,29 @@ export function heroFrameIndex(facing, stepParity) {
   return base + (stepParity & 1);
 }
 
-// Cache original Korean CHAR.LZW 32x32 WebGL-free Canvas sprite surfaces.
-// All source frames are decoded original RGBA; no guessed animation/actors.
-// Fingerprint all 4096 bytes to invalidate a frame if its backing source
-// pixels change (typed arrays cannot be Object.freeze()'d in browsers).
+// Cache original Korean CHAR.LZW 32x32 browser Canvas surfaces.
+// Compare all 4096 source bytes (rather than a collision-prone 32-bit hash)
+// before reuse. This guarantees a changed original source pixel is repainted.
 const originalCharacterCanvasCache=new WeakMap();
-function spritePixelFingerprint(frame){
-  let h=2166136261;
-  for(let i=0;i<frame.length;i++){
-    h=Math.imul(h^frame[i],16777619);
-  }
-  return h>>>0;
+function spriteSourceChanged(cached,frame){
+  if(!cached||cached.sourcePixels.length!==frame.length)return true;
+  for(let i=0;i<frame.length;i++)
+    if(cached.sourcePixels[i]!==frame[i])return true;
+  return false;
 }
 function drawRgbaFrame(ctx, frame, x, y) {
   if (!frame) return false;
   if(!(frame instanceof Uint8ClampedArray)||frame.length!==32*32*4)
     throw new Error('native original CHAR source frame must be 32x32 RGBA');
-  const fingerprint=spritePixelFingerprint(frame);
   let cached=originalCharacterCanvasCache.get(frame);
-  if(!cached||cached.fingerprint!==fingerprint){
+  if(spriteSourceChanged(cached,frame)){
     const canvas=document.createElement('canvas');
     canvas.width=32;canvas.height=32;
     const sc=canvas.getContext('2d');
     if(!sc||typeof sc.putImageData!=='function')
       throw new Error('native CHAR Canvas2D image surface unavailable');
     sc.putImageData(new ImageData(frame,32,32),0,0);
-    cached={canvas,fingerprint};
+    cached={canvas,sourcePixels:Uint8ClampedArray.from(frame)};
     originalCharacterCanvasCache.set(frame,cached);
   }
   ctx.imageSmoothingEnabled=false;

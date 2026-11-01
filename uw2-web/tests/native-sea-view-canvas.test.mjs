@@ -90,8 +90,8 @@ try{
   state.steps=2;
   renderSeaView(target,assets,state,9,11,3,3);
   assert.equal(made.length,2);
-  assert.equal(draws.length,6);
-  assert.deepEqual([...draws[5].bytes.slice(0,4)],
+  assert.equal(draws.length,7);
+  assert.deepEqual([...draws[6].bytes.slice(0,4)],
     [...UW2_WORLD_PALETTE[3],255]);
   renderSeaView(target,assets,{...state,heading:2,steps:1},9,11,2,2);
   assert.equal(made.length,4); // new dimension gets one reusable pair

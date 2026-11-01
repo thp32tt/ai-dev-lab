@@ -9,7 +9,9 @@ const dateTime={year:1522,month:7,day:31,timeTick:71,hour:23,minute:40};
 const makeRuntime=fleet=>new SeaRuntime(assets,{x:100,y:100},null,7,fleet,dateTime);
 const still=makeRuntime(null);
 const before=still.snapshot();
-assert.deepEqual(still.projectedVelocity(),{x:0,y:0});
+const stillMotion=still.projectedVelocity();
+assert.equal(stillMotion.x,0);
+assert.equal(stillMotion.y,0); // -0 and +0 both mean no physical motion
 assert.equal(still.hasNetMotion(),false);
 let ticks=0;
 const blocked=advanceNativeSeaAuto(still,()=>{ticks++;still.tick();});

@@ -97,13 +97,20 @@ export function itemSellStatus(slot,inventorySlot) {
 export function sellItem(slot,inventorySlot,price=null) {
   const status=itemSellStatus(slot,inventorySlot);
   if(!status.allowed) return {...status,quantity:0};
-  const revenue=Math.max(0,Math.floor(price??status.offer));
-  const room=Math.max(0,GOLD_LIMIT-Math.trunc(slot?.money??0));
-  const actual=Math.min(revenue,room);
-  slot.money+=actual;
+  // A confirmed full-price sale must never erase an owned item for
+  // zero/partial payout at the browser's established 600M gold ceiling.
+  const revenue=Math.floor(price??status.offer);
+  const cash=slot?.money;
+  if(!Number.isSafeInteger(revenue)||revenue<=0||
+     !Number.isSafeInteger(cash)||cash<0||cash>GOLD_LIMIT)
+    return {allowed:false,quantity:0,reason:"sale-value-unverified"};
+  if(revenue>GOLD_LIMIT-cash)
+    return {allowed:false,quantity:0,reason:"cash-limit",
+      requestedRevenue:revenue};
+  slot.money=cash+revenue;
   slot.inventory[inventorySlot]=ITEM_EMPTY;
   return {
-    allowed:true,quantity:1,item:status.item,revenue:actual,
+    allowed:true,quantity:1,item:status.item,revenue,
     requestedRevenue:revenue,inventorySlot,messageId:248,
   };
 }

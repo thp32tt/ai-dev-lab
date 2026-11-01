@@ -1,5 +1,6 @@
 import { decodeLS11 } from "./ls11.js";
 import { shipCargoFree } from "./buildings.js";
+import { GOLD_LIMIT } from "./item-shop.js";
 
 export const GOODS_NAMES = Object.freeze([
   "정향","계피","후추","육두구","피망","생강",
@@ -166,13 +167,25 @@ export function sellGoods(slot,marketAssets,shipIndex,goodsSlotIndex,requested) 
   const pm=currentPortMarket(slot,marketAssets);
   const item=pm?.sell[cargo.id];
   if(!item) return {quantity:0,revenue:0,reason:"unavailable"};
-  const quantity=Math.max(0,Math.min(cargo.quantity,Math.floor(requested||0)));
-  if(!quantity) return {quantity:0,revenue:0,reason:"zero"};
+  // Keep the verified browser gold ceiling consistent with item sales.
+  // Never remove cargo unless the entire per-unit sale revenue fits.
+  // This is a native transaction safeguard, not a traced DOS overflow rule.
+  const cash=slot.money;
+  if(!Number.isSafeInteger(cash)||cash<0||cash>GOLD_LIMIT)
+    return {quantity:0,revenue:0,reason:"cash-invalid"};
+  if(!Number.isSafeInteger(item.price)||item.price<=0)
+    return {quantity:0,revenue:0,reason:"sale-price-unverified"};
+  const affordableUnits=Math.floor((GOLD_LIMIT-cash)/item.price);
+  const quantity=Math.max(0,Math.min(
+    cargo.quantity,Math.floor(requested||0),affordableUnits
+  ));
+  if(!quantity) return {quantity:0,revenue:0,
+    reason:affordableUnits===0?"cash-limit":"zero"};
 
+  const revenue=item.price*quantity;
   cargo.quantity-=quantity;
   ship.load=Math.max(0,(ship.load??0)-quantity);
-  const revenue=item.price*quantity;
-  slot.money=(slot.money??0)+revenue;
+  slot.money=cash+revenue;
   if(cargo.quantity===0) cargo.id=0xff;
   adjustRates(slot,item.category,revenue,-1);
   return {quantity,revenue,unitPrice:item.price,good:item.good,name:item.name,slot:goodsSlotIndex};

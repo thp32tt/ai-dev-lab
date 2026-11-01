@@ -6,6 +6,7 @@ import { advanceNativeSeaAuto, createNativeAutoOriginPortProbe } from "./native-
 import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
 import { prepareNativeHarborDeparture } from "./native-harbor-departure.js";
 import {prepareNativeTownBuildingExit,commitNativeTownBuildingExit} from "./native-town-building-exit.js";
+import {confirmNativeItemPurchase,confirmNativeItemSale} from "./native-item-shop-confirm.js";
 import {openNativeSaveSession,syncNativeTownSession} from "./native-save-session.js";
 import {prepareNativeTownMovement,commitNativeTownMovement} from "./native-town-movement.js";
 import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
@@ -1433,7 +1434,7 @@ function handleBuildingKey(event) {
       event.preventDefault();
       if(yes){
         const p=ui.itemPending;
-        const tx=p ? buyItem(selected,p.id) : {quantity:0,reason:"missing-pending"};
+        const tx=p ? confirmNativeItemPurchase(selected,p) : {quantity:0,reason:"missing-pending"};
         ui.itemPending=null;
         if(tx.quantity){
           // The transaction already validated pre-buy gold and inventory space.
@@ -1458,7 +1459,7 @@ function handleBuildingKey(event) {
       event.preventDefault();
       const p=ui.itemPending;
       if(yes){
-        const tx=p ? sellItem(selected,p.inventorySlot,p.offer) : {quantity:0,reason:"missing-pending"};
+        const tx=p ? confirmNativeItemSale(selected,p,p.offer) : {quantity:0,reason:"missing-pending"};
         ui.itemPending=null;
         if(tx.quantity){
           // Selling the last carried item is still a successful sale; the
@@ -1492,7 +1493,7 @@ function handleBuildingKey(event) {
       event.preventDefault();
       const p=ui.itemPending;
       if(yes){
-        const tx=p ? sellItem(selected,p.inventorySlot,p.counter?.offer??p.offer) : {quantity:0,reason:"missing-pending"};
+        const tx=p ? confirmNativeItemSale(selected,p,p.counter?.offer??p.offer) : {quantity:0,reason:"missing-pending"};
         ui.itemPending=null;
         if(tx.quantity){
           // Selling the last carried item is still a successful sale; the
@@ -1541,6 +1542,7 @@ function handleBuildingKey(event) {
               id:row.id,
               item:st.item,
               offer:st.offer,
+              mode:shop.mode,
             };
             ui.mode="item-sell-offer";
             ui.last="";
@@ -1548,7 +1550,7 @@ function handleBuildingKey(event) {
         }else{
           const st=itemBuyStatus(selected,row.id);
           if(st.allowed){
-            ui.itemPending={id:row.id,item:st.item};
+            ui.itemPending={id:row.id,item:st.item,price:st.price,mode:shop.mode};
             ui.mode="item-buy-confirm";
             ui.last="";
           }else ui.last=itemShopFailureText(st);

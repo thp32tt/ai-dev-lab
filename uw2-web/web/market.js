@@ -134,26 +134,53 @@ function adjustRates(slot,category,total,sign){
   }
 }
 
+// Source save cargo slots and price metadata are integers. Fail closed on
+// corrupted transactions: zero/negative/NaN prices must not mint cargo, and
+// an FF empty slot carrying units must never be silently overwritten.
+function validBuyCargoState(ship) {
+  return Number.isSafeInteger(ship?.cargo) && ship.cargo>=0 &&
+    Number.isSafeInteger(ship?.load) && ship.load>=0 &&
+    Array.isArray(ship?.goods) && ship.goods.every(g=>
+      Number.isSafeInteger(g?.id) &&
+      (g.id===0xff || (g.id>=0 && g.id<GOODS_NAMES.length)) &&
+      Number.isSafeInteger(g.quantity) && g.quantity>=0 &&
+      (g.id!==0xff || g.quantity===0)
+    );
+}
+
 export function buyGoods(slot,marketAssets,shipIndex,goodId,requested,{taxFree=false}={}) {
   const ship=slot?.fleet?.ships?.[shipIndex];
+  if(!ship) return {quantity:0,cost:0,reason:"unavailable"};
+  if(!Number.isSafeInteger(slot?.money)||slot.money<0||slot.money>GOLD_LIMIT||
+     !validBuyCargoState(ship))
+    return {quantity:0,cost:0,reason:"invalid-trade-state"};
   const pm=currentPortMarket(slot,marketAssets,{taxFree});
   const item=pm?.buy.find(x=>x.good===goodId);
-  if(!ship || !item) return {quantity:0,cost:0,reason:"unavailable"};
+  if(!item) return {quantity:0,cost:0,reason:"unavailable"};
+  if(!Number.isSafeInteger(item.price)||item.price<=0)
+    return {quantity:0,cost:0,reason:"purchase-price-unverified"};
+  if(!Number.isSafeInteger(requested)||requested<=0)
+    return {quantity:0,cost:0,reason:"invalid-quantity"};
 
   let cargoSlot=matchingGoodsSlot(ship,goodId);
   if(!cargoSlot) cargoSlot=emptyGoodsSlot(ship);
   if(!cargoSlot) return {quantity:0,cost:0,reason:"no-goods-slot"};
-
   const free=shipCargoFree(ship);
-  const byMoney=item.price>0?Math.floor((slot.money??0)/item.price):free;
-  const quantity=Math.max(0,Math.min(free,byMoney,Math.floor(requested||0)));
+  if(!Number.isSafeInteger(free)||free<=0)
+    return {quantity:0,cost:0,reason:"no-capacity-or-money"};
+  const byMoney=Math.floor(slot.money/item.price);
+  const quantity=Math.max(0,Math.min(free,byMoney,requested));
   if(!quantity) return {quantity:0,cost:0,reason:"no-capacity-or-money"};
+  if(!Number.isSafeInteger(cargoSlot.quantity+quantity)||
+     !Number.isSafeInteger(ship.load+quantity))
+    return {quantity:0,cost:0,reason:"invalid-trade-state"};
 
+  const cost=item.price*quantity;
+  // All invariants are checked before touching the wallet or cargo slot.
   if(cargoSlot.id!==goodId){ cargoSlot.id=goodId; cargoSlot.quantity=0; }
   cargoSlot.quantity+=quantity;
-  ship.load=(ship.load??0)+quantity;
-  const cost=item.price*quantity;
-  slot.money=Math.max(0,(slot.money??0)-cost);
+  ship.load+=quantity;
+  slot.money-=cost;
   adjustRates(slot,item.category,cost,+1);
   return {quantity,cost,unitPrice:item.price,good:goodId,name:item.name,slot:cargoSlot.slot};
 }

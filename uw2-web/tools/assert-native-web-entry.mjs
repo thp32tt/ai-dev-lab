@@ -7,7 +7,10 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const ownDir=path.dirname(fileURLToPath(import.meta.url));
 const defaultWeb=path.join(ownDir,'../web');
-const staticImports=/(?:\bimport\s+(?:[\s\S]*?\s+from\s*)?|\bexport\s+[\s\S]*?\s+from\s*)['"]([^'"]+)['"]/g;
+// Match declarative imports/exports only at statement boundaries. The
+// preceding broad regex could mistake a comment mentioning "import" plus
+// a later string for a dependency and fabricate an emulator import.
+const staticImports=/(?:^|\n)\s*(?:import\s+(?:[^'"]*?\s+from\s+)?|export\s+[^'"]*?\s+from\s+)['"]([^'"]+)['"]/g;
 const dynamicLiteral=/\bimport\s*\(\s*(['"])(.*?)\1\s*\)/g;
 const forbidden=/^(?:realmode-8086|mz-loader|dos-int21|dos-ivt-snapshot|dos-psp-snapshot|dos-child-continuation|dos-com-child-runner|guest-.*|browser-original-.*|browser-dos-child-.*|bios-.*|vga-.*|opl2-.*|pit8253-.*)\.js$/;
 export function auditNativeWebEntry(webDir=defaultWeb){
@@ -16,13 +19,13 @@ export function auditNativeWebEntry(webDir=defaultWeb){
   if(!entryMatches.length)
     throw new Error('native web must have explicit real HTML module entrypoints');
   const visited=new Set(),paths=[];
-  const visit=(filename)=>{
+  const visit=(filename,parents=[])=>{
     const resolved=path.resolve(webDir,filename);
     if(resolved!==webDir&&!resolved.startsWith(webDir+path.sep))
       throw new Error('shipping web module escapes source tree: '+filename);
     const short=path.relative(webDir,resolved).replaceAll(path.sep,'/');
     if(forbidden.test(path.basename(short)))
-      throw new Error('shipping web entry imports DOS/8086 execution module: '+short);
+      throw new Error('shipping web entry imports DOS/8086 execution module: '+[...parents,short].join(' -> '));
     if(visited.has(resolved))return;
     visited.add(resolved);paths.push(short);
     const src=fs.readFileSync(resolved,'utf8');
@@ -37,7 +40,7 @@ export function auditNativeWebEntry(webDir=defaultWeb){
         throw new Error('shipping web import is not local: '+spec);
       if(!spec.endsWith('.js'))
         throw new Error('shipping web source import must name .js: '+spec);
-      visit(path.relative(webDir,path.resolve(path.dirname(resolved),spec)));
+      visit(path.relative(webDir,path.resolve(path.dirname(resolved),spec)),[...parents,short]);
     }
   };
   for(const match of entryMatches){

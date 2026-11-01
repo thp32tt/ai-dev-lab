@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native browser building/inn exit and continued town movement (2026-11-02 08:20 KST)
+
+- **New independent user-visible native game path (+1):** `thp32tt/ai-dev-lab@uw2-web-port` fixes a gameplay soft-lock: actual `web/app.js` building ESC and inn lodging previously invoked `PortWalkingRuntime.leaveBuilding()` without syncing `selected.portState`, so source-backed town walking would reject the next keyboard movement as `native-town-session-drift`. The new `web/native-town-building-exit.js` stages source ZA_DAT door ownership, original PORTMAP/PORTCHIP geometry and NPC/position checks, original-shaped town position copy, 2..4 tick visit / next-day 08:00 inn calendar, bank month interest and pub-day reset; it commits the runtime and session together only when the complete transition is valid. The original rule for a blocked tile below a building door is preserved (remain on the door square). Actual shipping browser import graph includes the module; synthetic test verifies both exits, next keyboard move, month interest, invalid geometry, stale positions, original door ownership and malformed calendar remain atomic.
+- **Code and exact-SHA verification:** implementation commit `2bb8875400dc1a98fc6cc300e2499c09f36c3248`; same-feature CI fixtures and stale static-callsite assertion repairs `992ca0f71c2c679a5e7218f5f7f245385a6d8039`, `04395d26e4e5e8f71d85c92644a46f1b2135bef6`, final validation-bearing exact SHA **`4eb73ae441b753c4f44c92bdf26f84ae58a8ed40`**; `UW2 Web Fidelity Static Gate` Actions **41361563202 SUCCESS** on exact final SHA. Tests, fixture corrections, CI and documentation are part of this single new behavior and independently add **+0**.
+- **Validation boundary:** browser-native JavaScript/Canvas source state and GitHub synthetic-static CI PASS; actual private Korean DOS game assets in Firefox, original DOS differential, complete story and binary DOS-save roundtrip **RUNTIME_VALIDATION=UNTESTED**. No DOS/8086 emulator shipped. AI1 separate.
+- **AI 2 cumulative: previous confirmed 2421 + new independently validated native building/inn gameplay continuity (+1) = 2422.**
+
+Updated: 2026-11-02 08:20 KST
+
 ## AI 2 수도권 연간·시즌·다회권 신규 판매 및 등록조건 확인 (2026-11-02 08:14:35 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-02T08:14:35+09:00`; AI 2; previous confirmed **2420**; change **+1**; new cumulative **2421**; last confirmed KST **2026-11-02 08:14:35 KST**.

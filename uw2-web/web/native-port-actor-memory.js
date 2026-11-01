@@ -26,14 +26,23 @@ export function validNativePortActorMemory(memory){
     record.source===evidence&&validActors(record.actors);
  });
 }
-function originalCatalogId(previous){
+function originalCatalogId(previous,portCatalog){
  const id=previous?.portCatalogId;
- // Once a concrete full source id exists it MUST match the active map.
- // A stale supply-catalog id, or ordinary id from another port, cannot
- // turn the current NPCs into people from that different city.
+ // Once a full source id exists, it must match the active map. Supply
+ // towns 100..129 all have mapId 100, so map identity alone CANNOT
+ // establish geographic ownership: cross-check the original PORT table
+ // coordinates and nation before retaining source people.
  if(id!==undefined&&id!==null){
-  if(uint(id,129)&&(id>=100?100:id)===previous?.port)return id;
-  return null;
+  if(!uint(id,129)||(id>=100?100:id)!==previous?.port)return null;
+  if(id>=100){
+   const source=Array.isArray(portCatalog)
+     ?portCatalog.find(p=>p?.id===id):null;
+   const at=previous?.portWorld;
+   if(!source||source.mapId!==100||!at||
+      source.x!==at.x||source.y!==at.y||
+      source.nation!==at.nation)return null;
+  }
+  return id;
  }
  // Only ordinary source ports 0..99 uniquely map mapId -> catalog id.
  if(uint(previous?.port,99))return previous.port;
@@ -45,12 +54,12 @@ function knownCurrentActors(previous){
  return tag==null||tag==='CURRENT_PORT_SOURCE_ACTORS'||
    tag==='KNOWN_PORT_BROWSER_ACTORS';
 }
-export function prepareNativePortActorContinuity(previous,target){
+export function prepareNativePortActorContinuity(previous,target,portCatalog=null){
  if(!previous||!uint(target?.id,129)||
     !validNativePortActorMemory(previous.portActorMemory)||
     !validActors(previous.townActors))
   throw new Error('native port actor source/memory invalid');
- const from=originalCatalogId(previous);
+ const from=originalCatalogId(previous,portCatalog);
  const memory=structuredClone(previous.portActorMemory??{});
  const owns=from!==null&&knownCurrentActors(previous);
  // Store known people at their TRUE original port, even when the next

@@ -21,7 +21,7 @@ const original={index:1,port:39,portName:'source 39',
  townActors:[actor()]};
 const enter=(previous,port)=>buildNativePortArrival({
  previous,port,portDoors:doors,portAssets:assets,
- seaState:{dateTime:time}
+ portCatalog:[A,B,S1,S2],seaState:{dateTime:time}
 });
 // A => B: source people from A remain in browser memory; B is unknown.
 const aToB=enter(original,B);
@@ -43,6 +43,7 @@ assert.equal(backToB.portActorMemory['39'].actors[0].x,33);
 assert.equal(backToB.portActorMemory['40'],undefined);
 // No supply-map conflation (100 and 101 use the SAME source town art bank).
 const seededSupply={...original,port:100,portCatalogId:100,
+ portWorld:{nation:S1.nation,x:S1.x,y:S1.y},portName:S1.name,
  townActors:[actor(18)]};
 const sToS2=enter(seededSupply,S2);
 assert.deepEqual(sToS2.townActors,[]);
@@ -83,7 +84,7 @@ for(const bad of [null,[],{'130':{source:'bad',actors:[]}},
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 const arrival=fs.readFileSync(new URL('../web/native-port-arrival.js',import.meta.url),'utf8');
 assert.ok(app.includes('const prepared=prepareNativePortCall({'));
-assert.ok(arrival.includes('prepareNativePortActorContinuity(previous,port)'));
+assert.ok(arrival.includes('prepareNativePortActorContinuity(previous,port,args.portCatalog)'));
 assert.equal(prepareNativePortActorContinuity(original,A).actorStatus,
  'CURRENT_PORT_SOURCE_ACTORS');
 console.log('UW2 browser-native sourced NPC identity A->B->A and supply-map provenance preserved: PASS');

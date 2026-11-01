@@ -54,7 +54,7 @@ export function buildNativePortArrival(args={}){
  const {time,mapX,mapY,viewX,viewY}=geometry;
  // Persist source-proven people by full original catalog identity before
  // overwriting the active town with a new port. Unknown ports stay empty.
- const actors=prepareNativePortActorContinuity(previous,port);
+ const actors=prepareNativePortActorContinuity(previous,port,args.portCatalog);
  const economy=prepareNativePortEconomyContinuity(previous,port);
  return {
   ...previous,

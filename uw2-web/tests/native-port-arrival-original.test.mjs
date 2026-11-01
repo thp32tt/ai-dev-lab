@@ -64,15 +64,16 @@ assert.equal(origA.mapId,100);assert.equal(origB.mapId,100);
 assert.notDeepEqual([origA.x,origA.y],[origB.x,origB.y]);
 const sourceActor={slot:0,x:17,y:65,type:1,active:true};
 const knownSupply=buildNativePortArrival({
- port:origA,seaState:{dateTime:date},
+ port:origA,seaState:{dateTime:date},portCatalog:ports,
  previous:{...slots[1],port:100,portCatalogId:100,
-   townActors:[sourceActor]},
+   portWorld:{nation:origA.nation,x:origA.x,y:origA.y},
+   portName:origA.name,townActors:[sourceActor]},
  portDoors:doors,portAssets:assets
 });
 assert.ok(knownSupply);
 assert.equal(knownSupply.townActors.length,1);
 const movedSupply=buildNativePortArrival({
- port:origB,seaState:{dateTime:date},
+ port:origB,seaState:{dateTime:date},portCatalog:ports,
  previous:knownSupply,portDoors:doors,portAssets:assets
 });
 assert.ok(movedSupply);

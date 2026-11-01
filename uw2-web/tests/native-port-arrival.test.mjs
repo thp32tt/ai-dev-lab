@@ -40,10 +40,13 @@ const supplyOpts={...opts,portDoors:Array.from({length:101},
 const supplyA={...port,id:100,mapId:100,name:'supply-A',x:300,y:400};
 const supplyB={...port,id:101,mapId:100,name:'supply-B',x:800,y:100};
 const sameSupply=buildNativePortArrival({...supplyOpts,port:supplyA,
- previous:{...previous,port:100,portCatalogId:100}});
+ portCatalog:[supplyA,supplyB],
+ previous:{...previous,port:100,portCatalogId:100,
+  portWorld:{nation:supplyA.nation,x:supplyA.x,y:supplyA.y}}});
 assert.deepEqual(sameSupply.townActors,actors);
 assert.equal(sameSupply.arrivalEvidence.actorStatus,'CURRENT_PORT_SOURCE_ACTORS');
 const differentSupply=buildNativePortArrival({...supplyOpts,port:supplyB,
+ portCatalog:[supplyA,supplyB],
  previous:{...sameSupply,townActors:actors}});
 assert.deepEqual(differentSupply.townActors,[]);
 assert.equal(differentSupply.arrivalEvidence.actorStatus,

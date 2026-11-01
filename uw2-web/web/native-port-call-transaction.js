@@ -41,7 +41,8 @@ export function prepareNativePortCall({
     port=findPortCallTarget(state,portCatalog);
     if(!port)return reject('no-port-call');
     arrival=buildNativePortArrival({
-      port,seaState:state,previous:session,portDoors,portAssets
+      port,seaState:state,previous:session,portDoors,portAssets,
+      portCatalog
     });
     if(!arrival)return reject('port-map-unavailable');
     town=new PortWalkingRuntime(arrival,portAssets,portDoors);

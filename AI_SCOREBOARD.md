@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 Korean two-line Water Falls UI PNG output (2026-11-01 KST)
+
+- **TASK_ID: `OUTRUN-ROI-B-0157-F630360E` — one newly completed image artifact (+1):** Approved `Water Falls` → `워터폴스` transparent text-only PNG, original two rows maintained as `워터 / 폴스`, final 207×140 RGBA. First image generator pass did not preserve the original two-row layout; final file was rebuilt locally to ensure two rows and saved as `Q046_343e81afc790e636_k.png` (SHA256 `a154fed7a59d55751af10579cbbeaa73138a89c8a1cd1e73b1214ba177ea5eca`). User's existing Library folder `/아웃런 한글화 신규/` upload succeeded and independent library listing verified the exact file/path and 23,753-byte stored copy.
+- **Proof boundary:** Image output and personal Library storage verified only; independent production C1 QA, game DDS integration and actual game runtime PASS NOT CLAIMED. Same task image regeneration/cleanup, upload readback, retry and report are one +1 achievement total; no duplicate points. AI 1 untouched.
+- **AI 2 cumulative: previous confirmed 2345 + one newly verified Korean image asset (+1) = 2346.**
+
+Updated: 2026-11-01 KST
+
 ## AI 2 UW2 native standalone browser game execution and original GRAPH pixel port (2026-11-01 KST)
 
 - **One independent native browser GRAPH rendering integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` actual shipping `web/app.js` MAIN GRAPH and `web/opening.js` original OPGRAPH indexed-pixel output now call `web/native-graph-canvas.js`: the source Korean GAME GRAPH 4-bit color indices are converted directly into RGB8/alpha4-channel bytes and `Canvas2D.putImageData` without any DOS BIOS, 8086 CPU interpreter or emulator in the browser entrypoint. Proper explicit source palette, 640×400 size, index validity, transparent index 0 are checked; no synthetic scenes are added. Core material SHA `27ccd5b3aa30ed90752971345d6c36b0b25d67aa`, static dependency audit fix `640feb54db978eb9822584ee6f85a381925b3051`. Owner ORIGINAL OPGRAPH.LZW SHA `f66bbd7417283c39ed425e14c3b09480a23edad55242b485851a0db85dbcbd1d` (443,529 bytes) with independent JS LS11/GRAPH decode verified 14 parts / 108 records / **3,235,136 actual original indexed pixels** flowed into pure JavaScript RGBA, including 640x128 original title record; private N100 exact-source file proof at `5495c9fa6438682279d8c4d2871ddf083624efd0`, rerun PASS after later direct WebCrypto asset-path refactor. The original text/graphics/filename hashes are not copyrighted assets and no original bytes or frame images were committed. **DOS framebuffer frame parity, VGA DAC palette, original layer placement/timing and true browser gameplay remain UNTESTED.**

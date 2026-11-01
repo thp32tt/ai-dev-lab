@@ -39,17 +39,18 @@ tx=bankRepay(cat,200);
 assert.equal(tx.quantity,Math.min(200,Math.abs(-Math.min(500,credit))));
 assert.equal(cat.money,moneyAfterBorrow-tx.quantity);
 
-const saver={bankBalance:100_000};
+// Interest uses a complete, valid saved bank/cash state.
+const saver={money:0,bankBalance:100_000};
 let ix=applyMonthlyBankInterest(saver);
 assert.deepEqual(ix,{before:100000,after:103000,interest:3000,rate:3});
-const debtor={bankBalance:-100_000};
+const debtor={money:0,bankBalance:-100_000};
 ix=applyMonthlyBankInterest(debtor);
 assert.deepEqual(ix,{before:-100000,after:-110000,interest:-10000,rate:10});
-const capped={bankBalance:999_999};
+const capped={money:0,bankBalance:999_999};
 applyMonthlyBankInterest(capped);
 assert.equal(capped.bankBalance,BANK_MAX_SAVINGS);
 
-const crossSlot={bankBalance:100_000};
+const crossSlot={money:0,bankBalance:100_000};
 const cross=applyBankInterestCrossings(
   crossSlot,
   {year:1501,month:1,day:31},
@@ -58,7 +59,7 @@ const cross=applyBankInterestCrossings(
 assert.equal(cross.length,1);
 assert.equal(crossSlot.bankBalance,103_000);
 
-const twoMonths={bankBalance:-100_000};
+const twoMonths={money:0,bankBalance:-100_000};
 const cross2=applyBankInterestCrossings(
   twoMonths,
   {year:1501,month:11,day:30},

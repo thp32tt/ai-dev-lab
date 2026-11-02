@@ -22,6 +22,22 @@ assert.equal(get(source,'ad-date'),'1522.07.06');
 assert.equal(get(source,'commerce-value'),'750');
 assert.equal(get(source,'industry-value'),'760');
 assert.equal(get(source,'average-market-rate'),'51');
+const locate=(s,name)=>originalTownHudEntries(s).find(row=>row.name===name);
+// Original GRAPH #5 has left-hand labels for fame / gold coins / bars.
+// Painting at x=13 overwrites the glyphs; the verified value column
+// begins at x=48. The date belongs on the top-RIGHT scroll, not x=8.
+for(const name of ['fame-maximum','gold-coins','gold-bars']){
+ assert.equal(locate(source,name).x,48,name+' must not cover left label');
+}
+assert.deepEqual(
+ [locate(source,'fame-maximum').y,
+  locate(source,'gold-coins').y,locate(source,'gold-bars').y],
+ [256,321,355]);
+assert.equal(locate(source,'ad-date').x,500);
+assert.equal(locate(source,'ad-date').y,18);
+assert.ok(locate(source,'ad-date').x>=480 &&
+ locate(source,'ad-date').x+10*8<=632);
+
 // The HUD is LIVE: browser transactions mutate slot.money, so next render
 // must use the new value; source KOUKAI2.DAT itself remains read-only.
 const after={...source,money:599805192-10100,tradeFame:73};

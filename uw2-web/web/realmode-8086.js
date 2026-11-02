@@ -13,7 +13,7 @@ const u16 = (v, label) => {
 };
 export class RealMode8086 {
   constructor(memory = new Uint8Array(0x100000), {
-    enable80186Shifts=false,interruptibleRepStrings=false
+    enable80186Shifts=false,enable80186Instructions=false,interruptibleRepStrings=false
   }={}) {
     if (!(memory instanceof Uint8Array) || memory.length !== 0x100000)
       throw new TypeError('real mode requires exactly 1 MiB of byte-addressable memory');
@@ -21,7 +21,10 @@ export class RealMode8086 {
       throw new TypeError('explicit 80186 immediate-shift capability must be boolean');
     if(typeof interruptibleRepStrings!=='boolean')
       throw new TypeError('interruptible REP string capability must be boolean');
+    if(typeof enable80186Instructions!=='boolean')
+      throw new TypeError('explicit 80186 instruction capability must be boolean');
     this.enable80186Shifts=enable80186Shifts;
+    this.enable80186Instructions=enable80186Instructions;
     // Explicit opt-in: each REP iteration is one host-observable boundary,
     // without changing the architectural 8086 instruction or guest bytes.
     // The default keeps historical synthetic trace step budgets unchanged.
@@ -539,6 +542,62 @@ export class RealMode8086 {
       return;
     }
     if(op===0x90)return; // NOP
+    // 80186 additions are gated independently from the source-observed
+    // Korean KOEI.COM C0/C1 immediate shifts. The default 8086 guest
+    // continues to reject these opcodes rather than invent a CPU model.
+    if(op===0x60||op===0x61||op===0x68||op===0x6a||
+       op===0x69||op===0x6b||op===0xc8||op===0xc9){
+      if(!this.enable80186Instructions)
+        throw new Error('80186 stack/IMUL/frame instruction requires explicit capability: fail closed');
+      if(op===0x60){ // PUSHA saves SP as it was before the first push.
+        const originalSP=this.get16('SP');
+        for(const name of ['AX','CX','DX','BX','SP','BP','SI','DI'])
+          this.push16(name==='SP'?originalSP:this.get16(name));
+        return;
+      }
+      if(op===0x61){ // POPA discards the saved SP word, never loads it.
+        for(const name of ['DI','SI','BP',null,'BX','DX','CX','AX']){
+          const value=this.pop16();
+          if(name!==null)this.set16(name,value);
+        }
+        return;
+      }
+      if(op===0x68||op===0x6a){ // PUSH imm16 / sign-extended imm8
+        this.push16(op===0x68?this.fetch16():(s8(this.fetch8())&0xffff));
+        return;
+      }
+      if(op===0x69||op===0x6b){ // signed IMUL r16,r/m16,immediate
+        const modrm=this.fetch8(),source=this.memoryOperand(modrm,16,segmentOverride);
+        const multiplier=op===0x69?s16(this.fetch16()):s8(this.fetch8());
+        const product=s16(source.read())*multiplier;
+        this.set16(R16[(modrm>>>3)&7],product&0xffff);
+        const overflow=product<-32768||product>32767;
+        // 80186 IMUL defines only CF and OF; all other flags are undefined.
+        this.flags=(this.flags&~(FLAGS.CF|FLAGS.OF))|
+          (overflow?(FLAGS.CF|FLAGS.OF):0)|2;
+        return;
+      }
+      if(op===0xc8){ // ENTER local-frame-size, nesting-level (low 5 bits)
+        const allocation=this.fetch16(),level=this.fetch8()&31;
+        this.push16(this.get16('BP'));
+        const newBP=this.get16('SP');
+        if(level!==0){
+          let priorBP=this.get16('BP');
+          for(let i=1;i<level;i++){
+            priorBP=(priorBP-2)&0xffff;
+            this.push16(this.read16(this.seg.SS,priorBP));
+          }
+          this.push16(newBP);
+        }
+        this.set16('BP',newBP);
+        this.set16('SP',(this.get16('SP')-allocation)&0xffff);
+        return;
+      }
+      // LEAVE: SP <- BP then POP BP, including wraparound at 0xffff.
+      this.set16('SP',this.get16('BP'));
+      this.set16('BP',this.pop16());
+      return;
+    }
     // Explicit 8086 segment stack transfers. CS is push-only.
     const pushSegment={0x06:'ES',0x0e:'CS',0x16:'SS',0x1e:'DS'}[op];
     if(pushSegment){this.push16(this.get16(pushSegment));return;}

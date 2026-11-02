@@ -96,6 +96,7 @@ jobs:
           node --check uw2-web/web/boot-sequence.js
           node --check uw2-web/web/koei-exit-flow.js
           node --check uw2-web/web/realmode-8086.js
+          node --check uw2-web/tests/realmode-80186-stack-arithmetic.test.mjs
           node --check uw2-web/web/mz-loader.js
           node --check uw2-web/web/dos-int21.js
           node --check uw2-web/web/bios-int10.js
@@ -225,6 +226,7 @@ jobs:
           node uw2-web/tests/realmode-8086-shifts.test.mjs
           node uw2-web/tests/realmode-8086-jmp-short.test.mjs
           node uw2-web/tests/realmode-80186-koei-shift.test.mjs
+          node uw2-web/tests/realmode-80186-stack-arithmetic.test.mjs
           node uw2-web/tests/bios-int10.test.mjs
           node uw2-web/tests/bios-int10-modes.test.mjs
           node uw2-web/tests/realmode-8086-interrupts.test.mjs

@@ -25,8 +25,8 @@ export function originalTownHudEntries(slot){
  const coins=unsigned(slot.money);
  if(coins!==null){
   // GRAPH #5 explicitly has separate original labels for gold COINS/BARS.
-  put('gold-coins',coins%GOLD_COINS_PER_BAR,48,321);
-  put('gold-bars',Math.floor(coins/GOLD_COINS_PER_BAR),48,355);
+  put('gold-coins',coins%GOLD_COINS_PER_BAR,44,321);
+  put('gold-bars',Math.floor(coins/GOLD_COINS_PER_BAR),44,355);
  }
  // Original stores three distinct fame tracks. The left HUD's single
  // prominent value is the largest recorded track, NOT their invented sum.
@@ -39,7 +39,7 @@ export function originalTownHudEntries(slot){
  if(available.length){
   // GRAPH #5 has ONE fame field on the left, not three additional
   // trade/pirate/adventure labels in the right-side economy panel.
-  put('fame-maximum',Math.max(...available),48,256);
+  put('fame-maximum',Math.max(...available),44,256);
  }
 
  const meta=slot.portMeta;

@@ -98,3 +98,23 @@ export function nativeTownWalkPointerDirection(point,session){
  return Math.abs(dx)>=Math.abs(dy)&&dx!==0
   ? (dx<0?"left":"right") : (dy<0?"up":"down");
 }
+
+
+// GRAPH #4's 24x24 source tile playfield and original 32x32 ship art
+// permit one browser pointer input to issue ONE existing helm command.
+// No direct world coordinate, ship heading, money or game-clock mutation.
+export function nativeSeaPointerCommand(point,session){
+ const r=UI_LAYOUT.viewport;
+ if(!validPoint(point)||!session||
+    !Number.isSafeInteger(session.heading)||session.heading<0||session.heading>7||
+    point.x<r.x||point.y<r.y||
+    point.x>=r.x+r.w||point.y>=r.y+r.h)return null;
+ const centerX=r.x+(Math.floor(r.tiles/2)+1)*16;
+ const centerY=r.y+(Math.floor(r.tiles/2)+1)*16;
+ const dx=point.x-centerX,dy=point.y-centerY;
+ if(Math.abs(dx)<16&&Math.abs(dy)<16)return null; // ship sprite
+ const desired=(Math.round(Math.atan2(dx,-dy)/(Math.PI/4))+8)%8;
+ if(desired===session.heading)return Object.freeze({kind:"forward"});
+ const clockwise=(desired-session.heading+8)%8;
+ return Object.freeze({kind:"turn",delta:clockwise<=4?1:-1});
+}

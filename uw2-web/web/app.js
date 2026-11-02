@@ -6,7 +6,7 @@ import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit,
  nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
  nativeModalRowPointerHit,nativeYesNoPointerHit,
- nativeTownWalkPointerDirection} from "./native-canvas-pointer.js";
+ nativeTownWalkPointerDirection,nativeSeaPointerCommand} from "./native-canvas-pointer.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
@@ -773,6 +773,14 @@ canvas.addEventListener("click", event => {
     const b=SYSTEM_UI_LAYOUT.emptySlot;
     if(point.x>=b.x&&point.x<b.x+b.w&&point.y>=b.y&&point.y<b.y+b.h)
       handleSystemKey({key:"Enter",preventDefault(){}});
+  }else if(viewMode==="sea"&&seaRuntime){
+    // Browser pointer reuses exactly one existing keyboard steering/tick
+    // command; the validated voyage transaction remains the only tick owner.
+    const command=nativeSeaPointerCommand(point,seaRuntime.snapshot());
+    if(command===null)return;
+    if(command.kind==="turn")seaRuntime.turn(command.delta);
+    else if(command.kind==="forward")tickSeaWithBankInterest();
+    renderSeaScreen();
   }else if(viewMode==="town"&&townRuntime){
     // Use the same source-backed town/building state machines as the keyboard.
     // Never let a canvas click bypass checkout, debit or departure confirmation.

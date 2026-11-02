@@ -53,6 +53,7 @@ jobs:
           node --check uw2-web/tests/native-opening-original-blit-placement.test.mjs
           node --check uw2-web/tests/native-new-game-hero.test.mjs
           node --check uw2-web/tests/native-canvas-pointer.test.mjs
+          node --check uw2-web/tests/native-sea-pointer.test.mjs
           node --check uw2-web/web/native-save-session.js
           node --check uw2-web/web/native-town-building-exit.js
           node --check uw2-web/tests/native-town-building-exit.test.mjs
@@ -154,6 +155,7 @@ jobs:
           node uw2-web/tests/native-browser-post-opening-fatal.test.mjs
           node uw2-web/tests/native-new-game-hero.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs
+          node uw2-web/tests/native-sea-pointer.test.mjs
           node uw2-web/tests/native-new-game-layout.test.mjs
           node uw2-web/tests/native-game-system-menu.test.mjs
           node uw2-web/tests/native-save-session.test.mjs

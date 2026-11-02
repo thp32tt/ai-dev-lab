@@ -52,6 +52,8 @@ jobs:
           node --check uw2-web/tests/native-game-system-menu.test.mjs
           node --check uw2-web/tests/native-opening-original-blit-placement.test.mjs
           node --check uw2-web/tests/native-new-game-hero.test.mjs
+          node --check uw2-web/tools/original-new-game-init-proof.mjs
+          node --check uw2-web/tests/original-new-game-init-proof.test.mjs
           node --check uw2-web/tests/native-canvas-pointer.test.mjs
           node --check uw2-web/tests/native-sea-pointer.test.mjs
           node --check uw2-web/tests/native-sea-pause.test.mjs
@@ -155,6 +157,7 @@ jobs:
           node uw2-web/tests/native-browser-boot-visibility.test.mjs
           node uw2-web/tests/native-browser-post-opening-fatal.test.mjs
           node uw2-web/tests/native-new-game-hero.test.mjs
+          node uw2-web/tests/original-new-game-init-proof.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs
           node uw2-web/tests/native-sea-pointer.test.mjs
           node uw2-web/tests/native-sea-pause.test.mjs

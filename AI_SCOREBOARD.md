@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 real Canvas sea helm one-turn and source-backed forward tick (2026-11-02 KST)
+
+- **RUN_KEY:** `UW2-SEA-POINTER-GRAPH4-20261102-59381bdf`; **AI 2**; previous confirmed **2459**; one independent live browser gameplay input implementation **+1**; new cumulative **2460**.
+- **Feature:** `thp32tt/ai-dev-lab@uw2-web-port` exact source SHA `59381bdf3c957e5521cca7c920560523788e7351` integrates real browser Canvas pointer steering in native sea GRAPH.DAT #4 384×384 playfield and the source 32×32 ship anchor. Click maps among 8 compass sectors but dispatches only one existing 45-degree `SeaRuntime.turn(±1)` or one existing atomic `tickSeaWithBankInterest()` voyage tick when already aligned; never teleports, fabricates sailing time, changes game rules or bypasses source date/provisions/bank interest transactions. No DOS original asset or save data committed.
+- **Exact SHA/CI:** mandatory UW2 Web Fidelity Static Gate `41402429308` **SUCCESS** for `59381bdf3c957e5521cca7c920560523788e7351`, including 8×8 heading/target sectors, original viewport/ship exclusion, CSS-scale and no-clock-advance turning regression in `native-sea-pointer.test.mjs`.
+- **Real live Firefox proof:** On N100 `192.168.0.48:18082`, deployed only `app.js` and `native-canvas-pointer.js` with pinned old SHA256 leases and backups `uw2-sea-click-backup-20261102-1551`. Deployed SHA256: app `cf75841fc7156777201d2e817627f181274efc9cf3979165f46c5ca6d04275a6`; pointer `759e3d4cf20656d33034eb7456e130fc009748adb1d0c581d283985411dc9f73`. Actual headless Firefox/geckodriver W3C pointer actions: Load Korean original save slot #2 → Danzig native harbor door → sail → real GRAPH #4 mouse click east twice turns heading 0→1→2 with no elapsed ticks/date, third east click performs one source-backed 20-minute tick (ticks 0→1, timeTick 52→53). `FIREFOX_REAL_GRAPH4_POINTER_HELM_PASS`. User Chrome and original DOS full-run differential remain **RUNTIME_VALIDATION=UNTESTED**.
+- **Score:** previous AI 2 2459 + one independently completed exact-CI and real-browser-verified sea pointer helm feature (+1) = cumulative **2460**. CI, deployment, browser verification, docs and retries for this same feature +0 extra; AI 1 separate.
+
 ## AI 2 Model2VR real D3D9 fixed-function world/texture UP source bridge (2026-11-02 KST)
 
 - **RUN_KEY:** `MODEL2VR-D3D9-UP-REAL-MATERIAL-20261102-c91eaf77`; **AI 2**; previous confirmed **2458**; newly implemented independent VR feature **+1**; new cumulative **2459**.

@@ -3,7 +3,7 @@
 // PORTMAP bank index as an actor owner. This is NOT a guessed DOS save format.
 const uint=(n,max)=>Number.isSafeInteger(n)&&n>=0&&n<=max;
 const evidence='SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER';
-function validActors(actors){
+export function validNativeTownActors(actors){
  if(!Array.isArray(actors)||actors.length>8)return false;
  const slots=new Set();
  for(const a of actors){
@@ -23,7 +23,7 @@ export function validNativePortActorMemory(memory){
   const id=Number(key),record=memory[key];
   return uint(id,129)&&String(id)===key&&record&&
     typeof record==='object'&&!Array.isArray(record)&&
-    record.source===evidence&&validActors(record.actors);
+    record.source===evidence&&validNativeTownActors(record.actors);
  });
 }
 function originalCatalogId(previous,portCatalog){
@@ -49,7 +49,7 @@ function originalCatalogId(previous,portCatalog){
  return null;
 }
 function knownCurrentActors(previous){
- if(!validActors(previous?.townActors))return false;
+ if(!validNativeTownActors(previous?.townActors))return false;
  const tag=previous?.arrivalEvidence?.actorStatus;
  return tag==null||tag==='CURRENT_PORT_SOURCE_ACTORS'||
    tag==='KNOWN_PORT_BROWSER_ACTORS';
@@ -57,7 +57,7 @@ function knownCurrentActors(previous){
 export function prepareNativePortActorContinuity(previous,target,portCatalog=null){
  if(!previous||!uint(target?.id,129)||
     !validNativePortActorMemory(previous.portActorMemory)||
-    !validActors(previous.townActors))
+    !validNativeTownActors(previous.townActors))
   throw new Error('native port actor source/memory invalid');
  const from=originalCatalogId(previous,portCatalog);
  const memory=structuredClone(previous.portActorMemory??{});

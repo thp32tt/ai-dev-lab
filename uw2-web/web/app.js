@@ -753,7 +753,7 @@ canvas.addEventListener("click", event => {
     // portrait on the first click. Do not require a second synthetic click.
     newGameHeroCursor=hit;
     newGameHeroNotice="";
-    handleSystemKey({key:"Enter",preventDefault(){});
+    handleSystemKey({key:"Enter",preventDefault(){}});
   }else if(viewMode==="load-select"){
     const hit=nativeLoadSlotPointerHit(point);
     if(hit===null)return;

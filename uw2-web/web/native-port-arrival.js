@@ -1,4 +1,5 @@
 import {canStandAt} from './town.js';
+import {validNativeCheckpointClock} from './native-checkpoint-integrity.js';
 import {prepareNativePortActorContinuity} from './native-port-actor-memory.js';
 import {prepareNativePortEconomyContinuity} from './native-port-economy-history.js';
 // Browser-native port arrival derives coordinates from Korean original
@@ -22,14 +23,12 @@ function nativePortLandingGeometry({port,seaState,previous,portDoors,portAssets}
    return null;
  // All fields are sourced directly from PORT table or the actual sea
  // clock. No synthesized landing port, actor positions or game time.
+ // Use the same original Korean 365-day/72-tick clock contract as
+ // sailing, harbor visits and browser checkpoint recovery. A February
+ // 30 or April 31 arrival would otherwise enter a town that cannot be
+ // saved and cannot advance the clock.
  const time=seaState.dateTime;
- if(!time||!uint(time.year,9999)||time.year<1501||
-    !uint(time.month,12)||time.month<1||
-    !uint(time.day,31)||time.day<1||
-    !uint(time.timeTick,71)||
-    time.hour!==Math.floor(time.timeTick/3)||
-    time.minute!==(time.timeTick%3)*20)
-   return null;
+ if(!validNativeCheckpointClock(time))return null;
  const harbor=portDoors[port.mapId]?.[3];
  if(!harbor?.present||!uint(harbor.x,94)||!uint(harbor.y,93))
    return null;

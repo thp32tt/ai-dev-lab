@@ -58,6 +58,7 @@ import { D2MusicPlayer } from "./music.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
 import { originalTownHudEntries } from "./native-town-hud.js";
+import { nativeSeaDayCount } from "./native-sea-hud.js";
 import { ORIGINAL_SYSTEM_MENU_INDEX, SYSTEM_UI_LAYOUT, originalSaveSlotLine } from "./system-ui.js";
 import { selectWebMusicRoute } from "./music-routing.js";
 import { Uw2BootGate } from "./boot-sequence.js";
@@ -2395,16 +2396,20 @@ function renderSeaScreen() {
   const nearbyPort = findReadyNativePortCall(st);
   const env = st.environment;
   const dirNames = ["북","북동","동","남동","남","남서","서","북서"];
-  drawOriginalDatePanel(st.dateTime, "항해");
+  // GRAPH #4 already contains the printed sea status labels. Do not
+  // overwrite its wind header with an invented in-canvas '항해' label.
+  drawOriginalDatePanel(st.dateTime);
   drawOriginalPanelText(dirNames[st.heading] ?? st.heading, 548, 182, {size:12,bold:true});
   drawOriginalPanelText(`${st.speed?.knots ?? 0}`, 550, 222, {size:13,bold:true});
-  drawOriginalPanelText(`${st.steps}`, 551, 260, {size:12});
+  const seaDays=nativeSeaDayCount(st);
+  if(seaDays!==null)drawOriginalPanelText(`${seaDays}`, 551, 260, {size:12});
   if (env) {
     drawOriginalPanelText(`${FLOW_DIR_NAMES[env.wind.dir]} ${env.wind.speed}`, 500, 105, {size:11});
     drawOriginalPanelText(`${FLOW_DIR_NAMES[env.current.dir]} ${env.current.speed}`, 500, 144, {size:11});
   }
-  drawOriginalPanelText(seaAutoActive ? "AUTO" : "", 503, 282, {size:11,bold:true,color:"#7a260f"});
-  if (nearbyPort) drawOriginalPanelText(nearbyPort.name, 500, 304, {size:11,bold:true});
+  // AUTO and Port Call remain available in the external browser controller
+  // and runtime-status text. GRAPH #4's bottom-right wheel is original art
+  // and must not be covered by made-up overlay text.
   $("runtime-status").textContent = st.lastEvent === "auto-no-net-motion"
     ? "항해 · 자동항해 정지 (선박·해류 합산 이동량 0)"
     : nearbyPort

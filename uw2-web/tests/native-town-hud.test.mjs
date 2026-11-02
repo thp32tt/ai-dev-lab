@@ -12,8 +12,12 @@ const source={
 assert.equal(get(source,'gold-coins'),'5192');
 assert.equal(get(source,'gold-bars'),'59980');
 assert.equal(get(source,'fame-maximum'),'50');
-assert.equal(get(source,'trade-fame'),'교역명성 0');
-assert.equal(get(source,'adventure-fame'),'모험명성 50');
+assert.equal(get(source,'trade-fame'),undefined);
+assert.equal(get(source,'pirate-fame'),undefined);
+assert.equal(get(source,'adventure-fame'),undefined);
+// GRAPH #5 has no three-fame text rows over its original economy panel.
+assert.ok(originalTownHudEntries(source).every(e=>e.x<490||!e.name.includes('fame')));
+assert.equal(get({...source,tradeFame:200,pirateFame:100},'fame-maximum'),'200');
 assert.equal(get(source,'ad-date'),'1522.07.06');
 assert.equal(get(source,'commerce-value'),'750');
 assert.equal(get(source,'industry-value'),'760');
@@ -58,4 +62,4 @@ const town=app.slice(app.indexOf('function renderTownScreen() {'),
 assert.match(town,/drawOriginalSceneFrame\("town"\);[\s\S]*?originalTownHudEntries\(selected\)/);
 assert.match(town,/drawOriginalPanelText\(line\.text,line\.x,line\.y\+14,\{scale:line\.scale\}\)/);
 assert.match(app,/scale: opts\.scale \?\? 1/);
-console.log('UW2 original Korean GRAPH #5 town HUD live date, fame, gold coins/bars, town economy values PASS');
+console.log('UW2 original Korean GRAPH #5 town HUD single original fame, live date/gold/port economy values PASS');

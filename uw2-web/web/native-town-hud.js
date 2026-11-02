@@ -28,17 +28,17 @@ export function originalTownHudEntries(slot){
  // Original stores three distinct fame tracks. The left HUD's single
  // prominent value is the largest recorded track, NOT their invented sum.
  const fame=[
-  ['trade-fame','교역명성',unsigned(slot.tradeFame,65535)],
-  ['pirate-fame','해적명성',unsigned(slot.pirateFame,65535)],
-  ['adventure-fame','모험명성',unsigned(slot.adventureFame,65535)]
+  unsigned(slot.tradeFame,65535),
+  unsigned(slot.pirateFame,65535),
+  unsigned(slot.adventureFame,65535)
  ];
- const available=fame.filter(row=>row[2]!==null);
+ const available=fame.filter(value=>value!==null);
  if(available.length){
-  put('fame-maximum',Math.max(...available.map(row=>row[2])),13,256);
-  available.forEach(([name,label,value],i)=>{
-   put(name,label+' '+value,492,243+i*16,0.75);
-  });
+  // GRAPH #5 has ONE fame field on the left, not three additional
+  // trade/pirate/adventure labels in the right-side economy panel.
+  put('fame-maximum',Math.max(...available),13,256);
  }
+
  const meta=slot.portMeta;
  if(meta&&typeof meta==='object'){
   const fields=[

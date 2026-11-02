@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun verified preexisting Korean PNG/DDS integration plan (2026-11-02 KST)
+
+- **TASK_ID:** `OUTRUN-EXISTING-KOREAN-ASSET-PLAN-20261102-A63EA706`; **AI 2**. New, source-verified standalone integration plan committed to `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928`, commit `a63ea7067a8ec4af81e38f7129e3b98dd5265c59`, document `docs/OUTRUN_EXISTING_KOREAN_ASSET_INTEGRATION_PLAN_20261102.md`, read back from remote successfully.
+- **Evidence:** Direct GitHub/N100 read confirms v3 104 TEST_ONLY DDS, 950 painted ROI + 4 represented duplicates, 104 QA receipts, 955 existing A/B candidate PNG filenames and 954 active ROI rows, SHA-pinned v3 ZIP `84d92c22ff957ebeaa3156165b9ed7ef769802756ddc183d18bd586ff5c1ddf3`. New document specifies source-to-output SHA crosswalk, ImageGen preference over font fallback where validated, source CLEAN, original DDS format/alpha/mip compatibility, two-line/icon/HUD QA, sample-to-104 phased tests, non-destructive rollback and manual deployment. This is a *plan deliverable only*: no new DDS composition, runtime game test, automatic Portainer deployment or release approval claimed.
+- **Score:** previous GitHub-confirmed **2467** + one independently completed, committed and read-back source-verified planning deliverable **(+1)** = cumulative **2468**. Data verification, document readback and same-task follow-ups **+0** additional; AI 1 unchanged.
+
 ## AI 2 UW2 original MAIN Quit Game ending and safe browser session lifecycle (2026-11-02 KST)
 
 - **RUN_KEY:** `UW2-NATIVE-MAIN-QUIT-END-20261102-7fe4eaa7`; **AI 2**; previous GitHub-confirmed **2466** + one independently completed and live-tested browser-native original game Quit feature **(+1)** = cumulative **2467**.

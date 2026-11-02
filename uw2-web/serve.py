@@ -33,6 +33,16 @@ def safe_game_file(name: str) -> Path | None:
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        # Static entry HTML/CSS and ES modules must never survive a GitHub
+        # branch rollout in the browser's stale cache as a mismatched graph.
+        # Original read-only game data already sends no-store independently.
+        path = urlparse(self.path).path.lower()
+        if path == "/" or path.endswith((".html", ".js", ".css")):
+            self.send_header("Cache-Control", "no-store, max-age=0")
+            self.send_header("Pragma", "no-cache")
+        super().end_headers()
+
     def translate_path(self, path: str) -> str:
         parsed = urlparse(path)
         rel = unquote(parsed.path).lstrip("/")

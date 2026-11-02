@@ -1,3 +1,11 @@
+## 2026-11-02 빈 화면 사용자 재현 대응 — 부팅 표시와 브라우저 모듈 캐시 일관성
+
+- 사용자에게 화면 전체가 비어 보이는 장애가 보고되어 **N100 서비스 포트 18082**를 독립적인 Firefox로 점검했다. 서버는 LAN `192.168.0.48:18082`와 loopback 모두 HTTP 200, 서버 측 Firefox의 640×400 Canvas/OPEN 12장면 및 MAIN 시스템 메뉴가 실제로 그려지는 것을 확인했다. 그러나 최초 HTML/Canvas 로딩 시 검정 픽셀만 있는 공백이 발생하고, `style.css`는 `runtime-status`를 `display:none`으로 숨겼으며, 기존 `serve.py`는 정적 HTML/JS/CSS 파일에 **캐시 방지 헤더를 설정하지 않아** 업데이트 전후 모듈 버전 혼합 위험이 있었다. 사용자 Chrome에서의 정확한 원인은 별도 재현 전까지 단정하지 않는다.
+- 실제 배포 진입 HTML `web/index.html`은 모듈 import보다 먼저 `web/boot-visibility.js`를 실행한다. 이 스크립트는 비동기 원본 리소스 읽기 전에 640×400 Canvas에 **'대항해시대 II · 게임 데이터를 불러오는 중'**이라고 즉시 표시하고, 시작 중 import/리소스/미처리 Promise 오류·18초 부팅 미진행 시 게임 화면 위에 원인을 보여 주며 직접 작동하는 **다시 불러오기** 단추를 제공한다. 게임이 정상 실행되면 오버레이를 내리고 원본 프레임 소유권을 원래 OPEN과 MAIN에 넘긴다. 캐릭터·함대·게임 상태를 가짜로 생성하지 않는다.
+- Python `serve.py`는 HTML/JS/CSS와 root 응답에 명시적으로 `Cache-Control: no-store, max-age=0`을 부여한다. 전체 ES 모듈 변경이 구형 브라우저 캐시와 섞이지 않도록 방지하는 목적이며 `/game/` 사용자 저작물 원본 읽기 및 별도 manifest HTTP 동작은 유지한다. 배포 시 구 서버 프로세스를 안전하게 교체해 실제 응답 헤더를 검증해야 한다.
+- `tests/native-browser-boot-visibility.test.mjs`에서 JS 부팅 그림, 실제 모드 전환 시 정상 종료, import 오류 가시화, 18초 정지, 버튼 재로드, 정적 HTTP no-store를 원본 게임 저작물 없이 검증한다. Chrome 사용자 PC 재현과 완전한 새 게임 초기화는 **RUNTIME_VALIDATION=UNTESTED**.
+
+
 # 대항해시대 II 한국어 DOS 원본 → 웹 완전동작 포팅 마스터 계획
 ## 2026-11-02 실제 항구 선단 보급·하역 전체 사전검증 및 적재량 보존
 

@@ -19,6 +19,8 @@ jobs:
       - name: Validate browser module and boot-order syntax
         run: |
           node --check uw2-web/web/app.js
+          node --check uw2-web/web/boot-visibility.js
+          node --check uw2-web/tests/native-browser-boot-visibility.test.mjs
           node --check uw2-web/web/native-sea-voyage-step.js
           node --check uw2-web/web/native-sea-auto.js
           node --check uw2-web/tests/native-sea-auto-port-stop.test.mjs
@@ -137,6 +139,7 @@ jobs:
           node uw2-web/tools/assert-native-web-entry.mjs
           node uw2-web/tests/native-graph-canvas.test.mjs
           node uw2-web/tests/native-save-entry.test.mjs
+          node uw2-web/tests/native-browser-boot-visibility.test.mjs
           node uw2-web/tests/native-new-game-hero.test.mjs
           node uw2-web/tests/native-save-session.test.mjs
           node uw2-web/tests/native-town-movement.test.mjs

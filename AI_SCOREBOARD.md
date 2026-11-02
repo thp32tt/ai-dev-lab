@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original-browser port arrival calendar consistency (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-PORT-ARRIVAL-CALENDAR-20261103-352C06D1`; **AI 2 ChatGPT2**. Previous GitHub-confirmed cumulative **2488** + one new independently implemented and verified Korean-source browser-native port-arrival impossible-date rejection **(+1)** = new cumulative **2489**. CI/remote smoke/deployment/checkpoint/re-report of this same change each **+0**. AI 1 unchanged.
+- **Verified source branch:** `thp32tt/ai-dev-lab@uw2-web-port`; implementation `c19a415372a282d349ce9de83059008cc22de2a9`; exact validation-bearing SHA `352c06d1c8b74963c134443370a5c6355e4cbc26`. Files `uw2-web/web/native-port-arrival.js`, `uw2-web/tests/native-port-arrival.test.mjs`.
+- **Confirmed tests:** GitHub Actions UW2 Web Fidelity Static Gate run **41472930415 SUCCESS** (`synthetic-static`); N100 exact source file deployed via pinned GitHub SHA, SHA256 `9776eb0899f747e92f6d9bce9a512e0aea23ca3d8193fa038721180dcdc00278`; local N100 `native-port-arrival.test.mjs` PASS. Rejects non-existing Korean calendar dates and malformed clock before town construction without mutating original save.
+- **Limits:** no new-game initialization, sea battle, original DOS save write, visual screenshot or in-game browser replay claimed; this is one verified browser-native source-state correctness improvement.
+
 ## AI 2 GitHub-hosted Docker OutRun Korean TEST_ONLY QA automation (2026-11-03 KST)
 
 - **RUN_KEY:** `OUTRUN-GH-DOCKER-AUTOMATED-QA-20261103-F9CAACC0`; **AI 2**. Previous latest GitHub-confirmed cumulative **2487** + one independently implemented and verified **GitHub-hosted Docker Korean DDS QA automation deliverable (+1)** = new cumulative **2488**. The two successful runs, six tests, deterministic repeat, documentation, 3 pre-existing DDS inputs, scheduled-task update and future reruns are **+0** individually. AI 1 unchanged.

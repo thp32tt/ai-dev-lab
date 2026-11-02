@@ -1,6 +1,8 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import {nativeNewGameHeroChoices,nativeNewGameSourceDemo} from "./native-new-game-hero.js";
+import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
+ nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit} from "./native-canvas-pointer.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
 import { advanceNativeSeaAuto, createNativeAutoOriginPortProbe } from "./native-sea-auto.js";
@@ -731,6 +733,37 @@ function handleSystemKey(event) {
   }
   return false;
 }
+
+// Mouse and touch clicks select existing original native menu entries.
+// Convert CSS-scaled Canvas coordinates before hit testing; do not emit a
+// separate virtual key or modify the user's original DOS save.
+canvas.addEventListener("click", event => {
+  if(checkpointInFlight)return;
+  const point=nativeCanvasPointerPoint(event,canvas);
+  if(!point)return;
+  if(viewMode==="system-menu"){
+    const hit=nativeSystemMenuPointerHit(point,
+      menuDefs[ORIGINAL_SYSTEM_MENU_INDEX]?.options?.length??0);
+    if(hit===null)return;
+    systemUi.cursor=hit;
+    handleSystemKey({key:"Enter",preventDefault(){}});
+  }else if(viewMode==="new-game-select"){
+    const hit=nativeNewGameHeroPointerHit(point);
+    if(hit===null)return;
+    if(hit===newGameHeroCursor)
+      handleSystemKey({key:"Enter",preventDefault(){}});
+    else{
+      newGameHeroCursor=hit;
+      newGameHeroNotice="";
+      drawNewGameHeroSelect();
+    }
+  }else if(viewMode==="load-select"){
+    const hit=nativeLoadSlotPointerHit(point);
+    if(hit===null)return;
+    systemUi.slot=hit;
+    handleSystemKey({key:"Enter",preventDefault(){}});
+  }
+});
 
 function drawOriginalDatePanel(date, label = "") {
   if (!date) return;

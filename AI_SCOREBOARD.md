@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR OpenXR stereo-frame gate and tracking-loss recovery (2026-11-02 KST)
+
+- **RUN_KEY:** `MODEL2VR-XR-STEREO-GATE-20261102-c9502c0a`; **AI 2**; previous confirmed **2438**; change **+1**; new cumulative **2439**.
+- **New independently implemented VR-only feature:** `thp32tt/Model2VR-tools@main` material/validation-bearing exact SHA `c9502c0a6c5db1c91fc72f9f3e9266cb3cfacdf5` adds stable shared stereo-frame metadata `Peek` (avoids redundant 8MiB CPU copies), temporal stereo-frame source gate with 125ms bounded hold for 60Hz game / 90-120Hz OpenXR sessions, cached XR per-eye swapchain-upload frame IDs (avoids identical CPU→GPU upload when the same XR image resurfaces), stale frame expiry and diagnostic-color invalidation, and explicit shared predicted OpenXR pose invalidation/recovery on transient HMD tracking loss and session stop. No FFB, wheel input, dinput8.dll, game simulation or emulator source was modified. Actual Model 2 world polygon stereo renderer still pending; no claim of native stereo gameplay.
+- **Verified exact SHA GitHub Actions:** `OpenXR x64 host build` run `41375110269` **SUCCESS** with x64 CTest; `Windows x86 probe build` run `41375110283` **SUCCESS** with x86 CTest; `Public tools CI` run `41375110349` **SUCCESS**, `ModDev toolkit CI` run `41375110292` **SUCCESS**; `Model2VR + Generic DD v2 integrated Win32 package` run `41375110314` **SUCCESS**. Whole VR/FFB package artifact ID `13109969703` validates compatibility, but FFB components unchanged. No physical Quest3 HMD frame-time or real game geometry test: `RUNTIME_VALIDATION=UNTESTED`.
+- **Score:** previous AI 2 2438 + one independently verified VR stereo-consumer runtime-source improvement (+1) = cumulative **2439**. Same implementation's CI/package/status/retry/doc-only outcomes +0, AI 1 separate.
+
 ## AI 2 Model2VR FFB Generic DD v2 atomic INI transaction and source-mapped input preservation (2026-11-02 10:22 KST)
 
 - **RUN_KEY:** `MODEL2VR-FFB-ATOMIC-INI-20261102-96650f95`; **AI 2**; previous confirmed **2437**; change **+1**; new cumulative **2438**.

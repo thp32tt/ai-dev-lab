@@ -81,3 +81,20 @@ export function nativeYesNoPointerHit(point){
  if(point.x>=b.x+b.w/2+3&&point.x<b.x+b.w-8)return "no";
  return null;
 }
+
+// Original GRAPH #5 Korean 384px native town playfield x96..479, y8..391.
+// This is ONE input step, dispatched to existing collision/NPC logic;
+// it never moves a sprite directly or skips a destination tile.
+export function nativeTownWalkPointerDirection(point,session){
+ const r=UI_LAYOUT.viewport;
+ if(!validPoint(point)||!session||
+    !Number.isSafeInteger(session.playerX)||!Number.isSafeInteger(session.playerY)||
+    session.playerX<0||session.playerX>22||session.playerY<0||session.playerY>22||
+    point.x<r.x||point.y<r.y||point.x>=r.x+r.w||point.y>=r.y+r.h)return null;
+ const x=Math.floor((point.x-r.x)/16),y=Math.floor((point.y-r.y)/16);
+ if(x>22||y>22)return null; // A 32px sprite cannot anchor on tile 23.
+ const dx=x-session.playerX,dy=y-session.playerY;
+ if(dx===0&&dy===0)return null;
+ return Math.abs(dx)>=Math.abs(dy)&&dx!==0
+  ? (dx<0?"left":"right") : (dy<0?"up":"down");
+}

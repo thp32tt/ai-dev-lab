@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit,
  nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
- nativeModalRowPointerHit,nativeYesNoPointerHit} from '../web/native-canvas-pointer.js';
+ nativeModalRowPointerHit,nativeYesNoPointerHit,
+ nativeTownWalkPointerDirection} from '../web/native-canvas-pointer.js';
 
 const canvas={width:640,height:400,clientLeft:2,clientTop:2,
  clientWidth:800,clientHeight:500,
@@ -101,4 +102,24 @@ assert.match(app,/ui\.mode==="item-sell-offer"\|\|ui\.mode==="item-sell-counter"
 assert.match(app,/handleBuildingKey\(\{key:hit==="yes"\?"Enter":"Escape",preventDefault\(\)\{\}\}\)/);
 assert.match(app,/viewMode==="load-empty"\)\{/);
 assert.doesNotMatch(app,/nativeYesNoPointerHit\(point\)[\s\S]{0,100}?(?:buyGoods|sellGoods|startSeaFromPort)\(/);
+// GRAPH #5 source native playfield (96,8), 16px tile. Verified hero anchor.
+const townPoint=(x,y)=>({x:96+x*16+8,y:8+y*16+8});
+const sourceTown={playerX:12,playerY:14};
+assert.equal(nativeTownWalkPointerDirection(townPoint(12,14),sourceTown),null);
+assert.equal(nativeTownWalkPointerDirection(townPoint(12,13),sourceTown),"up");
+assert.equal(nativeTownWalkPointerDirection(townPoint(12,15),sourceTown),"down");
+assert.equal(nativeTownWalkPointerDirection(townPoint(11,14),sourceTown),"left");
+assert.equal(nativeTownWalkPointerDirection(townPoint(13,14),sourceTown),"right");
+assert.equal(nativeTownWalkPointerDirection(townPoint(17,15),sourceTown),"right");
+assert.equal(nativeTownWalkPointerDirection(townPoint(11,19),sourceTown),"down");
+assert.equal(nativeTownWalkPointerDirection(townPoint(11,13),sourceTown),"left");
+for(const p of [{x:95.99,y:240},{x:300,y:7.99},{x:480,y:240},
+ {x:300,y:392},{x:96+23*16+8,y:240},{x:300,y:8+23*16+8},
+ {x:NaN,y:240},{x:300,y:Infinity}])
+ assert.equal(nativeTownWalkPointerDirection(p,sourceTown),null);
+for(const bad of [null,{}, {playerX:23,playerY:14},
+ {playerX:12.5,playerY:14},{playerX:12,playerY:-1}])
+ assert.equal(nativeTownWalkPointerDirection(townPoint(12,13),bad),null);
+assert.match(app,/const direction=nativeTownWalkPointerDirection\(point,townRuntime\.snapshot\(\)\);\s*if\(direction!==null\)moveTown\(direction\)/);
+assert.match(app,/const building=townRuntime\.insideBuilding;\s*if\(!building\)\{/);
 console.log('UW2 native pointer: original menu, six heroes, saves, town dialogue, building menus, trade/crew/ship row selection PASS');

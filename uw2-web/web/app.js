@@ -5,7 +5,8 @@ import {originalNewGameSelectorRect} from "./native-new-game-layout.js";
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit,
  nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
- nativeModalRowPointerHit,nativeYesNoPointerHit} from "./native-canvas-pointer.js";
+ nativeModalRowPointerHit,nativeYesNoPointerHit,
+ nativeTownWalkPointerDirection} from "./native-canvas-pointer.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
@@ -783,7 +784,13 @@ canvas.addEventListener("click", event => {
       return;
     }
     const building=townRuntime.insideBuilding;
-    if(!building)return;
+    if(!building){
+      // One original movement command, with native collision, NPC and door
+      // entry preserved. No invented instant-travel or pathfinding state.
+      const direction=nativeTownWalkPointerDirection(point,townRuntime.snapshot());
+      if(direction!==null)moveTown(direction);
+      return;
+    }
     const ui=ensureBuildingUi(building.id);
     if(ui.mode==="sail-confirm"||ui.mode==="item-buy-confirm"||
        ui.mode==="item-sell-offer"||ui.mode==="item-sell-counter"){

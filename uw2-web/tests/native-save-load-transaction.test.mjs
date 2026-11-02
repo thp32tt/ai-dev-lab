@@ -59,11 +59,11 @@ assert.deepEqual(stageNativeTownSave(slot,{
 for(const forged of [
  {...slot,money:slot.money+1},
  {...slot,port:255},
- {...slot,dateTime:{...slot.dateTime,day:13}},
+ {...slot,dateTime:{...slot.dateTime,day:slot.dateTime.day===13?14:13}},
  {...slot,portState:{...slot.portState,mapX:23}},
  {...slot,raw:{...slot.raw,page:0}},
  {...slot,heroId:0},
- {...slot,inventory:[...slot.inventory.slice(0,-1),255]},
+ {...slot,inventory:[...slot.inventory.slice(0,-1),slot.inventory.at(-1)===255?0:255]},
  {...slot,fleet:{...slot.fleet,ships:[]}},
  {...slot,townActors:slot.townActors.map((a,i)=>i===0?{...a,type:99}:a)},
  {...slot,itemDefinitions:slot.itemDefinitions.map((a,i)=>i===0?{...a,price:12345}:a)},

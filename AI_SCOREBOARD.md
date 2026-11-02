@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 browser market whole-fleet and multiple cargo-load preflight (2026-11-02 09:16 KST)
+
+- **Independent verified source change (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact commit **`7a0becd01be631606dbf75834799c7d5c7fa8de5`**. Actual web game `uw2-web/web/market.js` now validates all 1..10 source-shaped ships and optional original fleet count before BUY/SELL, not only the selected ship. Multi-slot original goods quantities must remain backed by that ship's u16 velocity load before spending or receiving money. When another ship is malformed, or an unrelated goods slot would be stranded with insufficient load, purchases/sales fail atomically without altering cash, rates, cargo or the unaffected ship.
+- **Tests and documentation:** Updated shipping `native-market-trade-integrity.test.mjs` with valid second ship, malformed non-target ship, original count mismatch and mixed-slot load cases; updated original-to-web master plan. No original assets or N100 use.
+- **Exact SHA CI:** GitHub Actions `UW2 Web Fidelity Static Gate` run **41366121404 SUCCESS** on the exact implementation SHA `7a0becd01be631606dbf75834799c7d5c7fa8de5`. Original Korean DOS differential, private resource Firefox gameplay and binary DOS save serialization remain **RUNTIME_VALIDATION=UNTESTED**. Same implementation's retry/CI/docs/re-report +0; AI 1 unchanged.
+- **AI 2 score:** previous confirmed **2427** + one distinct verified native market fleet/load integrity feature **(+1)** = new cumulative **2428**.
+
 ## AI 2 QuestCockpitV2 isolated original-game frame/vehicle source cutover (2026-11-02 08:59 KST)
 
 - **RUN_KEY:** `QUEST-COCKPIT-V2-ISOLATED-20261102-a69d7c79`; **AI 2**; previous confirmed **2426**; change **+1**; new cumulative **2427**.

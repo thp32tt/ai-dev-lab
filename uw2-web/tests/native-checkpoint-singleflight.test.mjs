@@ -12,7 +12,8 @@ assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await sav
 assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await loadNativeTownCheckpoint('));
 assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await loadNativeSeaCheckpoint('));
 assert.ok(handler.includes('}finally{\n      checkpointInFlight=false;'));
-assert.match(app,/    checkpointInFlight,\\n    checkpointSlots:[\\s\\S]*?    autoSail:/);
+assert.ok(app.includes('    checkpointInFlight,\n    checkpointSlots:'));
+assert.ok(app.includes('    autoSail: seaAutoActive,'));
 assert.ok(ctrl.includes('checkpointSaveButton.disabled=!!state.checkpointInFlight'));
 assert.ok(ctrl.includes('checkpointLoadButton.disabled=!!state.checkpointInFlight'));
 console.log('UW2 async SHA browser checkpoint Save/Load double-action race guarded: PASS');

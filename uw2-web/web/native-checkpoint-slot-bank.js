@@ -85,3 +85,24 @@ export function resolveNativeCheckpointLoad(storage,activeSlot=null){
  return Object.freeze({slot:lastSlot===null?null:Number(lastSlot),
   kind:legacyKind,storage,source:'LATEST_BROWSER_CHECKPOINT'});
 }
+
+export function availableNativeCheckpointSlots(storage,sourceSlots){
+ if(!storageValid(storage)||!Array.isArray(sourceSlots))
+  return Object.freeze([]);
+ const result=[];
+ for(let slot=0;slot<10;slot++){
+  if(!sourceSlots[slot]||sourceSlots[slot].empty||
+     sourceSlots[slot].unverified)continue;
+  const keys=nativeCheckpointSlotKeys(slot,'town');
+  let mode,record;
+  try{
+   mode=storage.getItem(keys.mode);
+   record=validKind(mode)?storage.getItem(nativeCheckpointSlotKeys(slot,mode).data):null;
+  }catch{return Object.freeze([]);}
+  // Existence only; the real SHA, save identity and world geometry remain
+  // mandatory at restore time. Never claim a record is verified here.
+  if(validKind(mode)&&typeof record==='string'&&record.length>0)
+   result.push(Object.freeze({slot,kind:mode}));
+ }
+ return Object.freeze(result);
+}

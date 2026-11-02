@@ -60,7 +60,20 @@
         <button data-action="track-next">♪ ▶</button>
         <button data-action="save-next">SAVE ▶</button>
         <button class="mini" data-action="checkpoint-save" title="브라우저 전용 임시저장 · 원본 DOS 저장과 별개">웹 임시저장</button>
-        <button class="mini" data-action="checkpoint-load" title="브라우저 전용 체크포인트 이어하기">웹 이어하기</button>
+        <select id="checkpoint-source-slot" aria-label="웹 이어하기 원본 슬롯" title="원본 슬롯별 웹 임시저장 선택. 현재/최근은 이전 동작을 유지합니다.">
+          <option value="">현재/최근</option>
+          <option value="0" disabled>슬롯 1 · 저장 없음</option>
+          <option value="1" disabled>슬롯 2 · 저장 없음</option>
+          <option value="2" disabled>슬롯 3 · 저장 없음</option>
+          <option value="3" disabled>슬롯 4 · 저장 없음</option>
+          <option value="4" disabled>슬롯 5 · 저장 없음</option>
+          <option value="5" disabled>슬롯 6 · 저장 없음</option>
+          <option value="6" disabled>슬롯 7 · 저장 없음</option>
+          <option value="7" disabled>슬롯 8 · 저장 없음</option>
+          <option value="8" disabled>슬롯 9 · 저장 없음</option>
+          <option value="9" disabled>슬롯 10 · 저장 없음</option>
+        </select>
+        <button class="mini" data-action="checkpoint-load" title="원본 DOS 저장 파일과 별개의 웹 이어하기">웹 이어하기</button>
       </div>
     </section>
   </main>

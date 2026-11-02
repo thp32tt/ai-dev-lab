@@ -132,3 +132,20 @@ assert.match(app,/resolveNativeCheckpointLoad\(storage,activeSlot\)/);
 assert.match(app,/recordNativeCheckpointSlot\(storage,result\.index,"town"\)/);
 assert.match(app,/recordNativeCheckpointSlot\(storage,result\.index,"sea"\)/);
 console.log('UW2 original source 10-slot town/sea browser checkpoint separation, legacy migration and source SHA refusal: PASS');
+
+const {availableNativeCheckpointSlots}=await import('../web/native-checkpoint-slot-bank.js');
+const available=availableNativeCheckpointSlots(storage,slots);
+assert.deepEqual(available.map(x=>[x.slot,x.kind]),[[1,'sea'],[2,'sea']]);
+assert.ok(Object.isFrozen(available));
+assert.deepEqual(availableNativeCheckpointSlots(storage,[null,{...ownerA,unverified:true},ownerB]),
+ [{slot:2,kind:'sea'}]);
+assert.deepEqual(availableNativeCheckpointSlots(null,slots),[]);
+const currentApp=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
+const controller=fs.readFileSync(new URL('../web/web-controller.js',import.meta.url),'utf8');
+const ui=fs.readFileSync(new URL('../web/index.html',import.meta.url),'utf8');
+assert.match(currentApp,/availableNativeCheckpointSlots\(window\.localStorage,slots\)/);
+assert.match(currentApp,/requestedSlot=event\.detail\?\.slotIndex/);
+assert.match(currentApp,/const activeSlot=requestedSlot!=null\?requestedSlot/);
+assert.match(controller,/emitAction\(action,\{slotIndex:value===""\?null:Number\(value\)\}\)/);
+assert.match(ui,/id="checkpoint-source-slot"/);
+console.log('UW2 10-slot browser checkpoint explicit restore selector and original-source admission: PASS');

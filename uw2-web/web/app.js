@@ -22,7 +22,7 @@ import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntim
 import {saveNativeSeaCheckpoint,loadNativeSeaCheckpoint,restoreNativeSeaRuntime,
  NATIVE_CHECKPOINT_CHOICE_KEY} from "./native-sea-checkpoint.js";
 import {nativeCheckpointSlotStorage,recordNativeCheckpointSlot,
- resolveNativeCheckpointLoad} from "./native-checkpoint-slot-bank.js";
+ resolveNativeCheckpointLoad,availableNativeCheckpointSlots} from "./native-checkpoint-slot-bank.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -209,6 +209,10 @@ function publishControllerState(extra = {}) {
     mode: viewMode,
     checkpointFeedback,
     checkpointInFlight,
+    checkpointSlots:(()=>{
+      try{return availableNativeCheckpointSlots(window.localStorage,slots);}
+      catch{return [];}
+    })(),
     autoSail: seaAutoActive,
     nearbyPort,
     music: controllerMusicState(),
@@ -2474,8 +2478,15 @@ window.addEventListener("uw2-controller-action", async event => {
         $("runtime-status").textContent=
           checkpointFeedback+" · 원본 DOS 저장 파일 미변경";
       }else{
-        const activeSlot=(selected&&["town","sea","system-menu"].includes(viewMode)
-          &&Number.isSafeInteger(selected.index))?selected.index:null;
+        const requestedSlot=event.detail?.slotIndex;
+        if(requestedSlot!=null&&
+           (!Number.isSafeInteger(requestedSlot)||requestedSlot<0||
+            requestedSlot>9||!slots[requestedSlot]||
+            slots[requestedSlot].empty||slots[requestedSlot].unverified))
+          throw new Error("선택한 원본 저장 슬롯이 유효하지 않습니다.");
+        const activeSlot=requestedSlot!=null?requestedSlot:
+          (selected&&["town","sea","system-menu"].includes(viewMode)
+            &&Number.isSafeInteger(selected.index)?selected.index:null);
         const choice=resolveNativeCheckpointLoad(storage,activeSlot);
         if(!choice)throw new Error(activeSlot===null
           ?"저장된 웹 체크포인트가 없습니다."

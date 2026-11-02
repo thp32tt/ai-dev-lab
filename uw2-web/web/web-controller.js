@@ -12,6 +12,7 @@ const checkpointSaveButton=controller?.querySelector('[data-action="checkpoint-s
 const saveNavButtons=[...controller?.querySelectorAll(
   '[data-action="save-prev"],[data-action="save-next"]')??[]];
 const checkpointLoadButton=controller?.querySelector('[data-action="checkpoint-load"]');
+const checkpointSlotSelect=document.getElementById("checkpoint-source-slot");
 
 function emitKey(key, options = {}) {
   const down = new KeyboardEvent("keydown", {
@@ -24,9 +25,9 @@ function emitKey(key, options = {}) {
   window.dispatchEvent(down);
 }
 
-function emitAction(action) {
+function emitAction(action,extra={}) {
   window.dispatchEvent(new CustomEvent("uw2-controller-action", {
-    detail: { action },
+    detail: { action,...extra },
   }));
 }
 
@@ -59,6 +60,10 @@ function runAction(action) {
     if(!["system-menu","load-select","load-confirm","load-empty","preview"]
        .includes(mode))return;
     changeSave(action==="save-prev"?-1:1);
+  }
+  else if(action==="checkpoint-load") {
+    const value=checkpointSlotSelect?.value??"";
+    emitAction(action,{slotIndex:value===""?null:Number(value)});
   }
   else emitAction(action);
 }
@@ -147,6 +152,19 @@ window.addEventListener("uw2-game-state", event => {
   for(const button of saveNavButtons)
     button.disabled=!saveSelectionAvailable;
 
+  if(checkpointSlotSelect&&Array.isArray(state.checkpointSlots)){
+    const available=new Map(state.checkpointSlots.map(entry=>[String(entry.slot),entry.kind]));
+    for(const option of checkpointSlotSelect.options){
+      if(option.value==="")continue;
+      const kind=available.get(option.value);
+      option.disabled=!kind;
+      option.textContent="슬롯 "+(Number(option.value)+1)+
+        (kind?(kind==="sea"?" · 항해":" · 항구"):" · 저장 없음");
+    }
+    if(checkpointSlotSelect.selectedOptions[0]?.disabled)
+      checkpointSlotSelect.value="";
+    checkpointSlotSelect.disabled=!!state.checkpointInFlight;
+  }
   if(checkpointSaveButton)
     checkpointSaveButton.disabled=!!state.checkpointInFlight||!["town","sea"].includes(state.mode);
   if(checkpointLoadButton)

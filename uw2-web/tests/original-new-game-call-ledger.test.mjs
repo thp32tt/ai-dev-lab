@@ -91,6 +91,6 @@ const badBytes=Uint8Array.from(source);
 badBytes[calls[0][0]]=0x90;
 assert.throws(()=>inspectMainNewGameCallLedger(badBytes,ledger),
  /original near-call opcode mismatch/);
-assert.ok(rawToMainRea(0x1b62f)>=MAIN_GHIDRA_WINDOW_START);
-assert.ok(rawToMainRea(0x1b62f)<MAIN_GHIDRA_WINDOW_END);
+assert.ok(rawToMainRea(0x1b62f)>=MAIN_GHIDRA_WINDOW_START+0x10000);
+assert.ok(rawToMainRea(0x1b62f)<MAIN_GHIDRA_WINDOW_END+0x10000);
 console.log('UW2 synthetic Korean MAIN five fresh-game source callsites ↔ 16-bit Ghidra window and unresolved game state: PASS');

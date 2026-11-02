@@ -9,8 +9,8 @@ import {inspectOriginalNewGameInit,MAIN_NEW_GAME_SOURCE_SHA256}
 
 export const MAIN_MZ_IMAGE_RAW_OFFSET=0x5400;
 export const MAIN_REA_IMAGE_BASE=0x10000;
-export const MAIN_GHIDRA_WINDOW_START=0x20000;
-export const MAIN_GHIDRA_WINDOW_END=0x30000;
+export const MAIN_GHIDRA_WINDOW_START=0x10000;
+export const MAIN_GHIDRA_WINDOW_END=0x20000;
 const MAX_WINDOW=0x50; // bounded evidence only; NOT assumed function sizes
 const within=(n,lo,hi)=>Number.isSafeInteger(n)&&n>=lo&&n<hi;
 export const rawToMainRea=raw=>raw-MAIN_MZ_IMAGE_RAW_OFFSET+MAIN_REA_IMAGE_BASE;
@@ -27,7 +27,11 @@ export function inspectMainNewGameCallLedger(original,ghidra){
    throw new Error('Korean MAIN Ghidra instruction source window invalid');
  const byAddress=new Map();
  for(const instruction of ghidra.instructions){
-  if(!within(instruction?.reaAddress,ghidra.windowStart,ghidra.windowEnd)||
+  // Ghidra exported windowStart/End are image-space offsets; each
+  // instruction reaAddress already includes the canonical loadBase.
+  if(!within(instruction?.reaAddress,
+      ghidra.windowStart+ghidra.loadBase,
+      ghidra.windowEnd+ghidra.loadBase)||
      !within(instruction.length,1,16)||typeof instruction.flow!=='string')
    throw new Error('original Ghidra instruction record malformed');
   if(byAddress.has(instruction.reaAddress))

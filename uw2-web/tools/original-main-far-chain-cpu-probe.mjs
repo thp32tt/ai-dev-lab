@@ -26,7 +26,9 @@ const PARENT_ENTRY=0x1b66a,PARENT_E8=0x1b66b,PARENT_RETURN=0x1b66e;
 const MAP_INIT_RETURN=0x1b4f8;
 const OWNER_FILL_SELECT=0x1b671,OWNER_FILL_BEGIN=0x1b66e;
 const OWNER_FILL_END=0x1b694,OWNER_FILL_LENGTH=0x300;
-const UNVERIFIED_SELECTOR_CALL=0x3a892;
+const TYPE_ONE_SELECTOR_CALL=0x3a892;
+const TYPE_ONE_HELPER_START=0x3a846,TYPE_ONE_HELPER_END=0x3a879;
+const TYPE_ONE_NESTED_UNVERIFIED_CALL=0x3a866;
 const HEADER=0x5400;
 const u16=x=>Number.isSafeInteger(x)&&x>=0&&x<=0xffff;
 const word=(data,i)=>data[i]|(data[i+1]<<8);
@@ -169,9 +171,40 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
  // bounded synthetic zero-entry count follows its actual no-iteration
  // path and never invents the ES-based map-record scan semantics.
  const firstTail=covered(m2,SECOND_CALLEE_RETURN,FIRST_TAIL_END,bytes);
- // The complete source-authenticated selector tail has three genuine
- // RETF exits. One source E8 at 3A892 reaches an unproven downstream
- // helper, so the executor must reject that branch rather than stub it.
+ // Authentic zero-span type-1 selector helper: the original near E8 at
+ // 3A892 enters 3A846, returning by RETF without visiting 3A866 when
+ // the original span count held in DX is exactly zero.
+ expectOpcode(m3,TYPE_ONE_SELECTOR_CALL,bytes,'CALL_NEAR',3);
+ const nestedDisplacement=word(bytes,TYPE_ONE_SELECTOR_CALL+1);
+ const nestedSigned=nestedDisplacement>=0x8000?
+   nestedDisplacement-0x10000:nestedDisplacement;
+ if(bytes[TYPE_ONE_SELECTOR_CALL]!==0xe8||
+    TYPE_ONE_SELECTOR_CALL+3+nestedSigned!==TYPE_ONE_HELPER_START)
+  throw new Error('original type-1 E8 destination changed');
+ const typeOneHelper=new Set();
+ let typeOneReturns=0;
+ for(let raw=TYPE_ONE_HELPER_START;raw<TYPE_ONE_HELPER_END;){
+  const inst=m3.get(rawToMainRea(raw));
+  if(!inst||!Number.isSafeInteger(inst.length)||inst.length<1||
+     raw+inst.length>TYPE_ONE_HELPER_END)
+   throw new Error('original type-1 helper Ghidra boundary incomplete');
+  if(inst.flow==='RETURN')typeOneReturns++;
+  if(inst.flow==='CALL_FAR'||inst.flow==='INTERRUPT'||
+     (inst.flow==='CALL_NEAR'&&
+       (raw!==TYPE_ONE_NESTED_UNVERIFIED_CALL||
+        inst.targetRea!==rawToMainRea(0x3a975))))
+   throw new Error('unverified original type-1 helper call/interrupt');
+  if(Number.isSafeInteger(inst.targetRea)&&
+     raw!==TYPE_ONE_NESTED_UNVERIFIED_CALL&&
+     (inst.targetRea<rawToMainRea(TYPE_ONE_HELPER_START)||
+      inst.targetRea>=rawToMainRea(TYPE_ONE_HELPER_END)||
+      !m3.has(inst.targetRea)))
+   throw new Error('type-1 helper conditional branch escapes source');
+  typeOneHelper.add(raw);raw+=inst.length;
+ }
+ if(typeOneReturns!==1||bytes[TYPE_ONE_HELPER_END-1]!==0xcb||
+    bytes[TYPE_ONE_NESTED_UNVERIFIED_CALL]!==0xe8)
+  throw new Error('original type-1 helper RETF/source changed');
  const tail=new Set();
  let tailReturns=0;
  for(let raw=NEAR_RETURN;raw<SECOND_TAIL_END;){
@@ -182,10 +215,10 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
   if(ins.flow==='RETURN')tailReturns++;
   if(ins.flow==='CALL_FAR'||ins.flow==='INTERRUPT'||
      (ins.flow==='CALL_NEAR'&&
-      (raw!==UNVERIFIED_SELECTOR_CALL||
+      (raw!==TYPE_ONE_SELECTOR_CALL||
        ins.targetRea!==rawToMainRea(0x3a846))))
    throw new Error('original selector contains unproven external control flow');
-  if(Number.isSafeInteger(ins.targetRea)&&raw!==UNVERIFIED_SELECTOR_CALL&&
+  if(Number.isSafeInteger(ins.targetRea)&&raw!==TYPE_ONE_SELECTOR_CALL&&
      (ins.targetRea<rawToMainRea(NEAR_RETURN)||
       ins.targetRea>=rawToMainRea(SECOND_TAIL_END)||
       !m3.has(ins.targetRea)))
@@ -206,6 +239,8 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
    parentReturnIP:0x626e,
    helperSourceStarts:Object.freeze([...helper]),
    secondTailSourceStarts:Object.freeze([...tail]),
+   typeOneHelperSourceStarts:Object.freeze([...typeOneHelper]),
+   verifiedTypeOneHelperBoundaries:typeOneHelper.size,
    firstTailSourceStarts:Object.freeze([...firstTail]),
    verifiedFirstTailBoundaries:firstTail.size,
    verifiedSecondTailBoundaries:tail.size,
@@ -242,10 +277,14 @@ function executeOneFar(cpu,bytes,call,loadSegment){
 }
 export async function probeOriginalMainFarChain(bytes,parts,{
  inputWord=0,recordType=0,recordValue=0x1234,
+ recordSpanLength=0,selectorSideValue=0x1357,
  fillIndex=6,fillSegment=0x9000,loadSegment=0x2000
 }={}){
  if(!u16(inputWord)||!u16(recordValue)||
-    !u16(recordType)||recordType>255||!u16(fillIndex)||
+    !u16(recordType)||recordType>255||
+    !u16(recordSpanLength)||!u16(selectorSideValue)||
+    (recordType===1&&recordSpanLength!==0)||
+    !u16(fillIndex)||
     fillIndex>=20||fillIndex===inputWord||
     !u16(fillSegment)||fillSegment<0x9000||fillSegment>0xf000)
   throw new Error('synthetic original selector input/record must be u16/u8');
@@ -278,7 +317,10 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   const recordOffset=0xbff0+inputWord*7;
   cpu.write8(0x7000,recordOffset,recordType);
   cpu.write16(0x7000,recordOffset+1,recordValue);
+  cpu.write16(0x7000,recordOffset+3,recordSpanLength);
+  cpu.write16(0x7000,recordOffset+5,recordValue);
  }
+ cpu.write16(0x7000,0xbce8,selectorSideValue);
  // Execute the original parent PUSH CS and near E8 instructions first.
  // Parent SS:SP is a declared synthetic test input, but the return
  // address words themselves are produced solely by actual 8086 CPU steps.
@@ -349,15 +391,47 @@ export async function probeOriginalMainFarChain(bytes,parts,{
  // is not validated here and is deliberately not executed.
  const tail=new Set(proof.secondTailSourceStarts.map(raw=>
   physically(loadSegment,raw)));
- let tailSteps=0;
+ const typeOneAllowed=new Set(proof.typeOneHelperSourceStarts.map(raw=>
+  physically(loadSegment,raw)));
+ let typeOneHelperSteps=0,tailSteps=0;
  for(;tailSteps<32;tailSteps++){
   const p=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
   if(cpu.get16('CS')===f2.cs&&cpu.get16('IP')===((f2.ip+5)&65535)&&
      p===physically(loadSegment,SECOND_CALLEE_RETURN))break;
   if(!tail.has(p))
    throw new Error('original selector left verified 8086 tail boundary');
-  if(p===physically(loadSegment,UNVERIFIED_SELECTOR_CALL))
-   throw new Error('original selector unverified E8 callee: stop before mutation');
+  if(p===physically(loadSegment,TYPE_ONE_SELECTOR_CALL)){
+   if(recordType!==1||recordSpanLength!==0)
+    throw new Error('original type-1 selector source branch not admitted');
+   const sourceCS=cpu.get16('CS'),sourceIP=cpu.get16('IP');
+   const sourceSP=cpu.get16('SP');
+   if(cpu.read8(sourceCS,sourceIP)!==0xe8)
+    throw new Error('original type-1 selector E8 guest opcode mutated');
+   cpu.step();tailSteps++;
+   if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+      physically(loadSegment,TYPE_ONE_HELPER_START)||
+      cpu.get16('CS')!==sourceCS||
+      cpu.get16('SP')!==sourceSP-2||
+      cpu.read16(cpu.get16('SS'),sourceSP-2)!==
+       ((sourceIP+3)&65535))
+    throw new Error('original type-1 helper E8 stack/source target diverged');
+   let returned=false;
+   for(let j=0;j<45;j++){
+    const at=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
+    if(at===physically(loadSegment,TYPE_ONE_SELECTOR_CALL+3)&&
+       cpu.get16('CS')===sourceCS&&
+       cpu.get16('IP')===((sourceIP+3)&65535)){
+      returned=true;break;
+    }
+    if(!typeOneAllowed.has(at)||
+       at===physically(loadSegment,TYPE_ONE_NESTED_UNVERIFIED_CALL))
+     throw new Error('original type-1 helper entered unverified nonzero span');
+    cpu.step();tailSteps++;typeOneHelperSteps++;
+   }
+   if(!returned||cpu.get16('SP')!==sourceSP)
+    throw new Error('original type-1 helper failed authentic RETF return');
+   continue;
+  }
   cpu.step();
  }
  if(tailSteps===32||cpu.get16('SP')!==f2.sp||
@@ -365,7 +439,8 @@ export async function probeOriginalMainFarChain(bytes,parts,{
       physically(loadSegment,SECOND_CALLEE_RETURN))
   throw new Error('original nested selector failed authentic FAR return');
  const selectorResult=cpu.get16('AX');
- const expectedResult=inputWord>=20?0:recordType===0?recordValue:0;
+ const expectedResult=inputWord>=20?0:
+   recordType===0?recordValue:recordType===1?selectorSideValue:0;
  if(selectorResult!==expectedResult)
   throw new Error('original selector return AX disagrees with synthetic record');
  // Follow the original 27E32 caller through its epilogue. On a synthetic
@@ -449,7 +524,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
     if(q===physically(loadSegment,OWNER_FILL_SELECT+5)&&
        cpu.get16('CS')===frame.cs&&
        cpu.get16('IP')===((frame.ip+5)&65535))break;
-    if(!selectorAllowed.has(q)||q===physically(loadSegment,UNVERIFIED_SELECTOR_CALL))
+    if(!selectorAllowed.has(q)||q===physically(loadSegment,TYPE_ONE_SELECTOR_CALL))
      throw new Error('original second selector entered unverified source');
     cpu.step();secondSelectionSteps++;
    }
@@ -478,6 +553,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   executedCalleePrefixInstructions:calleeSteps,
   executedIndexHelperInstructions:helperSteps,
   executedSecondCalleeTailInstructions:tailSteps,
+  executedTypeOneHelperInstructions:typeOneHelperSteps,
   executedFirstCalleeTailInstructions:firstTailSteps,
   executedParentCallInstructions:2,
   executedInitializerFinalReturnInstructions:3,
@@ -495,8 +571,11 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   originalInitializerReturnedToRaw:PARENT_RETURN,
   completedBoundedInitializerFunction:true,
   verifiedSecondCalleeTailBoundaries:proof.verifiedSecondTailBoundaries,
+  verifiedTypeOneHelperBoundaries:proof.verifiedTypeOneHelperBoundaries,
   verifiedFirstCalleeTailBoundaries:proof.verifiedFirstTailBoundaries,
   syntheticRecordType:recordType,syntheticRecordValue:recordValue,
+  syntheticRecordSpanLength:recordSpanLength,
+  syntheticSelectorSideValue:selectorSideValue,
   originalSelectorResult:selectorResult,
   syntheticFirstCalleeLoopCount:0,
   ownerFillStoppedAtRaw:OWNER_FILL_END,
@@ -516,14 +595,21 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const results=[];
   for(const inputWord of points)results.push(await probeOriginalMainFarChain(bytes,parts,{inputWord}));
   results.push(await probeOriginalMainFarChain(bytes,parts,{inputWord:7,recordType:2,recordValue:0x5678}));
+  const typeOne=await probeOriginalMainFarChain(bytes,parts,{
+   inputWord:7,recordType:1,recordSpanLength:0,selectorSideValue:0x2468});
+  results.push(typeOne);
+  if(typeOne.originalSelectorResult!==0x2468||
+     typeOne.executedTypeOneHelperInstructions<8)
+   throw new Error('original zero-span type-1 helper not executed');
   let rejectedUnverifiedSelector=false;
-  try{await probeOriginalMainFarChain(bytes,parts,{inputWord:7,recordType:1});}
+  try{await probeOriginalMainFarChain(bytes,parts,{
+   inputWord:7,recordType:1,recordSpanLength:1});}
   catch(error){
-   if(!String(error.message).includes('unverified E8 callee'))throw error;
+   if(!String(error.message).includes('synthetic original selector input'))throw error;
    rejectedUnverifiedSelector=true;
   }
-  if(!rejectedUnverifiedSelector)throw new Error('unverified original E8 selector unexpectedly executed');
-  console.log(JSON.stringify({testedInputs:points.length+2,
+  if(!rejectedUnverifiedSelector)throw new Error('unverified type-1 positive span unexpectedly executed');
+  console.log(JSON.stringify({testedInputs:points.length+3,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
    allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN&&x.ownerFillStoppedAtRaw===OWNER_FILL_END),

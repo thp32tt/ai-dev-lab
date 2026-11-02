@@ -41,6 +41,7 @@ jobs:
           node --check uw2-web/web/native-graph-canvas.js
           node --check uw2-web/web/native-save-entry.js
           node --check uw2-web/web/native-new-game-hero.js
+          node --check uw2-web/tests/native-opening-original-blit-placement.test.mjs
           node --check uw2-web/tests/native-new-game-hero.test.mjs
           node --check uw2-web/web/native-save-session.js
           node --check uw2-web/web/native-town-building-exit.js
@@ -174,6 +175,7 @@ jobs:
           node uw2-web/tests/native-town-view-canvas.test.mjs
           node uw2-web/tests/native-original-file.test.mjs
           node uw2-web/tests/native-opening-canvas-cache.test.mjs
+          node uw2-web/tests/native-opening-original-blit-placement.test.mjs
           node uw2-web/tests/native-web-entry-boundary.test.mjs
           node uw2-web/tests/pinned-dos-resources-mutation.test.mjs
           node uw2-web/tests/boot-sequence.test.mjs

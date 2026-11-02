@@ -762,3 +762,10 @@
 - 사용자에게 보이는 원본 OPEN.EXE 장면 4/12(Catalina) Firefox 캡처에서 **인물 그림이 흰 소개문구 뒤로 새어 나와 이름·설명과 겹치는 실물 화면 결함**을 확인했다. 원인은 브라우저 `web/opening.js`의 `drawCaption`이 원본 `OPGRAPH.LZW` part 13 소개문을 `transparentZero:true`로 출력하는 것이다.
 - 사용자의 한국어 정본 `OPGRAPH.LZW` 실제 10개 part13 레코드의 치수와 16색 인덱스를 읽기 전용으로 확인: **전체 10/10 레코드의 네 모서리가 모두 index0(검정), 검정 픽셀 비율 73~86%**. 이들은 검정 바탕과 글자가 함께 포함된 GRAPH 전체 직사각형이며 눈깜박임처럼 알파 마스크로 쓰는 소형 overlay와 다르다. `drawOpeningCaption`은 원본 검정 바탕(index0)을 불투명하게 캔버스에 올려 뒤쪽 인물 도형이 글자 사이로 비치는 현상을 방지한다. 작은 눈·반짝임 원본 투명 레이어와 오프닝 12장면 순서는 유지한다.
 - 기존 CI `native-opening-canvas-cache.test.mjs`에 index0 검정 RGBA alpha 255 및 비검정 글자 alpha 255의 실제 shipping 렌더러 경로 테스트를 추가했다. 원본 한국어 DOS VGA 원화면의 정확한 caption 배치/팔레트/타이밍과의 바이트 차등은 아직 **RUNTIME_VALIDATION=UNTESTED**이며, 이 수정은 Firefox에서 관찰된 **캡션 뒤 배경 누출 결함 1개**에 대한 브라우저 합성 수리다.
+
+
+## 2026-11-02 한국어 OPEN.EXE 원본 장면 3/4 화면좌표의 실제 Canvas 적용
+
+- 실제 Korean OPEN.EXE SHA `f7ddc1adf699ddfcfe3679496b7bbf08ef53b6a7eb063b17433745914b567e65`에 대한 기존 Ghidra 원본 장면 함수 `FUN_1000_5b4b`(scene 3 Otto), `FUN_1000_5fa2`(scene 4 Catalina) 디컴파일의 `FUN_1000_03ce`에 명시된 **원본 직사각형 좌표**를 화면 렌더링에 반영. 원본 인자의 X/width가 VGA 8px 단위이므로 Otto 464×280 배경은 화면 (88,48)이며, 종전 웹 임의 중앙값 (88,10)으로 인한 **세로 38px 어긋남**을 바로잡았다. Otto 56×24 blink는 (184,104), Catalina 168×168 intro는 (168,56), Catalina 48×24 blink는 (432,120) 원본 인자를 적용했다.
+- 원래 화면 레코드의 실제 w×h와 일치할 때에만 해당 좌표를 사용하고, 그 외 레코드는 명시적 기존 근사 경로를 유지한다. 기존 KOEI 원본 blit 함수가 수행한 alpha/clip/VGA palette, 나머지 story 5~11 scene 배치는 여전히 **미완성/원본 DOS 프레임 차등 UNTESTED**이며 이번 수정만으로 전 오프닝 깨짐 수리 완료를 선언하지 않는다.
+- `native-opening-original-blit-placement.test.mjs`에 원본 16진수 인자→8px Canvas 사각형/640×400 경계·실제 shipping 렌더러 결선 검사 추가, 기존 Fidelity CI에 등록. 실물 원본 자산은 N100 개인 환경에서만 사용하며 저장소에 게시하지 않는다.

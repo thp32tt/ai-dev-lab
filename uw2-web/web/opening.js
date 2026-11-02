@@ -284,6 +284,24 @@ export const KOREAN_OPENING_SCENE_PLAN = Object.freeze([
 
 export const KOREAN_OPENING_UNUSED_RECORDS = Object.freeze([]);
 
+// Verified original Korean OPEN.EXE SCREEN rect arguments. Its 0x03CE
+// routine accepts X/width in 8-pixel text units, Y/height in pixels.
+// Scene 3 FUN_1000_5b4b: (0x0b,0x30,0x3a,0x118) => 88,48,464,280;
+// blink (0x17,0x68,0x07,0x18) => 184,104,56,24.
+// Scene 4 FUN_1000_5fa2: intro (0x15,0x38,0x15,0xa8);
+// eye (0x36,0x78,0x06,0x18). Other guessed scene locations
+// deliberately remain unverified rather than being labeled exact.
+export const KOREAN_OPENING_VERIFIED_BLITS = Object.freeze({
+  3:Object.freeze({
+    main:Object.freeze({x:88,y:48,w:464,h:280}),
+    eye:Object.freeze({x:184,y:104,w:56,h:24})
+  }),
+  4:Object.freeze({
+    intro:Object.freeze({x:168,y:56,w:168,h:168}),
+    eye:Object.freeze({x:432,y:120,w:48,h:24})
+  })
+});
+
 export function drawOpeningCaption(ctx, canvas, opening, record) {
   const copy = getRecord(opening, 13, record);
   const x = Math.max(4, Math.round((canvas.width - copy.width) / 2));
@@ -352,19 +370,30 @@ function drawProfileExact(ctx, canvas, opening, cfg, elapsed, durationMs) {
 
   // OPEN.EXE first animates the small motif/sparkle records, then reveals the
   // large story frame, portrait and eye-blink overlays.
+  const exact=KOREAN_OPENING_VERIFIED_BLITS[cfg.scene]??null;
   if (progress < 0.20 && cfg.intro?.length) {
     const n = cfg.intro[Math.floor(elapsed / 120) % cfg.intro.length];
     const image = getRecord(opening, part, n);
-    placeCentered(ctx, canvas, image, Math.round((canvas.height - image.height) / 2), true);
+    if(exact?.intro && image.width===exact.intro.w &&
+       image.height===exact.intro.h)
+      drawOpeningNative(ctx,image,exact.intro.x,exact.intro.y,
+        {transparentZero:true});
+    else
+      placeCentered(ctx, canvas, image,
+        Math.round((canvas.height - image.height) / 2), true);
     drawCaption(ctx, canvas, opening, cfg.caption);
     return;
   }
 
   const mainRecord = cfg.mainAlt && progress > 0.62 ? cfg.mainAlt : cfg.main;
   const main = getRecord(opening, part, mainRecord);
-  const mainX = Math.round((canvas.width - main.width) / 2);
-  const mainY = Math.max(4, Math.round((300 - main.height) / 2));
-  drawOpeningNative(ctx, main, mainX, mainY);
+  const mainX = exact?.main?.w===main.width&&
+    exact.main.h===main.height ? exact.main.x :
+    Math.round((canvas.width-main.width)/2);
+  const mainY = exact?.main?.w===main.width&&
+    exact.main.h===main.height ? exact.main.y :
+    Math.max(4,Math.round((300-main.height)/2));
+  drawOpeningNative(ctx,main,mainX,mainY);
 
   if (cfg.portrait != null && progress > 0.42) {
     const portrait = getRecord(opening, part, cfg.portrait);
@@ -379,14 +408,15 @@ function drawProfileExact(ctx, canvas, opening, cfg, elapsed, durationMs) {
 
   if (cfg.eye?.length && progress > 0.48) {
     const eye = getRecord(opening, part, cfg.eye[Math.floor(elapsed / 180) % cfg.eye.length]);
-    drawMatchedOverlay(
-      ctx,
-      { x: mainX, y: mainY },
-      main,
-      eye,
-      mainX + Math.round((main.width - eye.width) / 2),
-      mainY + Math.round(main.height * 0.35),
-    );
+    if(exact?.eye&&eye.width===exact.eye.w&&eye.height===exact.eye.h)
+      drawOpeningNative(ctx,eye,exact.eye.x,exact.eye.y,
+        {transparentZero:true});
+    else
+      drawMatchedOverlay(
+        ctx,{x:mainX,y:mainY},main,eye,
+        mainX+Math.round((main.width-eye.width)/2),
+        mainY+Math.round(main.height*0.35)
+      );
   }
 
   if (cfg.extraEyeGroups?.length && progress > 0.55) {
@@ -419,6 +449,7 @@ function drawSeaPanorama(ctx, canvas, opening, elapsed) {
 function drawOtto(ctx, canvas, opening, elapsed, duration) {
   drawProfileExact(ctx, canvas, opening, {
     part: 3,
+    scene: 3,
     caption: 1,
     intro: [5,0,1,2,3,4],
     main: 6,
@@ -429,7 +460,7 @@ function drawOtto(ctx, canvas, opening, elapsed, duration) {
 }
 
 const STORY_CONFIG = Object.freeze({
-  4: { part:4, caption:2, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
+  4: { part:4, scene:4, caption:2, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
   5: { part:5, caption:3, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
   6: { part:6, caption:4, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
   7: { part:7, caption:5, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },

@@ -55,7 +55,9 @@ for(const i of [-1,2,NaN,Infinity,'1',1.5]){
 const bad=player();bad.fleet.ships[0].goods[0].quantity=-1;
 assert.equal(carriedGoodsRows(bad,marketAssets,{shipIndex:0}).length,0);
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.equal((app.match(/carriedGoodsRows\(selected,marketAssets,\{shipIndex:ui.ship\}\)/g)||[]).length,2);
+// One additional read-only source row probe powers Canvas selection; the
+// original render and Enter-to-trade paths remain distinct.
+assert.equal((app.match(/carriedGoodsRows\(selected,marketAssets,\{shipIndex:ui.ship\}\)/g)||[]).length,3);
 assert.match(app,/const shipName=ships\[ui.ship\]\?\.name/);
 assert.doesNotMatch(app,/if \(!selling && \(key === "arrowleft"/);
 assert.doesNotMatch(app,/if \(!selling && \(key === "arrowright"/);

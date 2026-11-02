@@ -3,15 +3,18 @@
 // there is no verified start-date, fleet, inventory, story or starting port yet.
 import {isOriginalSavedHeroOwner} from './native-original-hero-record.js';
 export const NATIVE_NEW_GAME_HERO_COUNT=6;
-export function nativeNewGameHeroChoices(slots=[]){
- if(!Array.isArray(slots))throw new TypeError('original save slots required');
+export function nativeNewGameHeroChoices(slots=[],heroNames=[]){
+ if(!Array.isArray(slots)||!Array.isArray(heroNames))
+  throw new TypeError('original save slots and verified hero names required');
  return Array.from({length:NATIVE_NEW_GAME_HERO_COUNT},(_,id)=>{
   const sources=slots.filter(s=>s&&!s.empty&&!s.unverified&&s.heroId===id&&
    isOriginalSavedHeroOwner(s));
   const saved=sources[0]??null;
   return Object.freeze({
    id,portraitRecord:id,
-   label:saved?.heroName?.trim()||`원본 주인공 ${id+1}`,
+   // Use all ten SHA-pinned person tables, not just occupied owner saves.
+   label:(typeof heroNames[id]==='string'&&heroNames[id].trim())||
+     saved?.heroName?.trim()||`원본 주인공 ${id+1}`,
    sourceSlot:saved?.index??null,
    originalNewGameReady:false,
    originalStartReason:'MAIN_EXE_NEW_GAME_INITIAL_STATE_UNVERIFIED'

@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 original Quest pre-F0 nested player draw coherence (2026-11-02 KST)
+
+- **RUN_KEY:** `QUEST-COCKPIT-V2-ORIGINAL-PREF0-COHERENCE-392F7633-20261102` — ONE new independent source-level player rendering correctness feature (+1). Previous confirmed AI 2 **2480** + new integrated Quest pre-F0 owner **(+1)** = new cumulative **2481**. Previous cockpit W×C, F0 staging, APK rereview, CI/regression, ZIP packaging and repeated status checks **+0**. AI 1 unchanged.
+- **Verified actual work:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2` exact source commit `392f763358e837b2db358f2fb59fbd8f5ceadaaa`. A Quest original ARM64 saved REA crosscheck verified cockpit renderer computing B0/F0 correction before temporarily setting F0=identity and restoring it. Implemented `ScopedPreF0Snapshot` with original player pointer, game-render epoch and XR pose identity; nested original ROB01/ROB02 W×C model draws use pre-identity F0 rather than identity-staged F0, fail closed for mismatched owner/epoch/eye and restore scoped guest matrices. Exact SHA `QuestCockpitV2 Isolated Core Smoke` GitHub Actions run **41446404447 SUCCESS**; actual Windows x86 DLL + x64 OpenXR host + packaged ZIP `VR GitHub General Test Build` run **41446404445 SUCCESS**, artifact ID 13142793277, ZIP SHA256 `f488fa81bfc9c31f247912c19870b70c167b80e4b6d3ffa5e23afc88a1bb3bc3`.
+- **Limit:** Private V2 branch only; v0.01 beta, DX9Ex stable and FFB unchanged. Full Quest render-frame F0 lifetime/LOD0 path, actual game-frame↔XR eye correlation and Quest3 HMD visual parity **NOT VERIFIED**, `RUNTIME_VALIDATION=UNTESTED`. No duplicate score for this feature on any retry, rollout, recheck or report.
+
 ## AI 2 OutRun 2006 two new source-native ImageGen DDS test assets (2026-11-02 KST)
 
 - **RUN_KEY:** `OUTRUN-AB-NATIVE-Q089-Q104-2DDS-20261102-7A2A693A`; **AI 2**. Previous latest GitHub-confirmed cumulative **2479** + one new fully generated and reproducibly verified *two-asset native DDS test batch* **(+1)** = new cumulative **2480**. This is one independent deliverable, not two additive file scores. Rechecks, documentation, archive readback, trial script, existing Q012, existing 8DDS v4 composite, repeat runs and automation update all **+0**. AI 1 unchanged.

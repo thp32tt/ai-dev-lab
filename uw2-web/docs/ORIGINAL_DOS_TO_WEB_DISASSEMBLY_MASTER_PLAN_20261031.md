@@ -1,3 +1,9 @@
+## 2026-11-02 원본 게임 실플레이 ESC 시스템 메뉴·웹 저장·복귀 연결
+
+- 실제 독립 브라우저 항구/항해 중 **ESC로 MAIN의 원본 MENU #56 시스템 메뉴 5개 항목**에 진입하고, ESC로 기존 native 게임 상태/좌표/날짜/선단을 변경하지 않고 복귀. 항해 자동 이동은 시스템 메뉴 진입 전에 정지시키고, 진입/이탈은 20분 원본 게임 틱을 추가하지 않는다. 항구 NPC 대화/건물 내 ESC 우선순위는 원래대로 유지한다.
+- 시스템 메뉴 5번째 Save Data가 과거 no-op이었던 문제를 실제 `uw2-controller-action checkpoint-save`에 연결한다. 사용 중인 `native-town-checkpoint.js` / `native-sea-checkpoint.js`의 원본 SHA·슬롯·함대·맵·WebCrypto 단일 작업 검증을 그대로 사용하며 **원본 DOS KOUKAI2.DAT은 절대로 기록하지 않는다**. 최초 MAIN 메뉴에서 게임이 없다면 거짓 원본 저장 완료 대신 실제 원본 Save Data 미구현 안내를 화면에 출력한다.
+- 웹 전용 출고 게임 이벤트 라우팅 회귀 `native-game-system-menu.test.mjs`가 기본 ESC/대화/건물 우선순위, 항구·바다 복귀, 정확한 web-only 체크포인트 재사용을 검증한다. 실제 원본 DOS Save Data 바이너리 동등성, 6인 신규 게임 생성, 최초 스토리 전개는 아직 `RUNTIME_VALIDATION=UNTESTED`다.
+
 ## 2026-11-02 실제 사용성 긴급 후속 — 오프닝 7초 이상 검정 장면과 명시적 건너뛰기
 
 - 기본 속도 N100 Firefox 실사용 캡처에서 비디오 로딩 자체는 정상(첫 0초 부트 Canvas 2,560/2,560 샘플 비검정, 1초 OPEN 1/12 진행)이나, **원본 OPEN.EXE의 첫 크레딧 몇 장면은 대부분 검정 바탕**이라 3~6초에 9~13/2560 비검정 샘플만 보여 사용자에게 빈 화면처럼 보일 여지가 있었다. 원작 오프닝의 시간/이미지를 임의로 바꾸지 않고, `index.html`에 **'오프닝 건너뛰기 (ESC)'**를 눈에 보이는 화면 우상단 버튼으로 추가한다. `boot-visibility.js`는 `opening` 모드일 때만 이 버튼을 보이고, 클릭은 실제 원본 웹게임 `keydown Escape` 경로로 전달해 기존 검증된 `stopOpening(true) → completeOpening → system-menu`를 실행한다. MAIN 메뉴 진입 후 버튼은 숨긴다.

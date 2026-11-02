@@ -149,6 +149,7 @@ let musicAutostartPending = true;
 let seaAutoTimer = null;
 let seaAutoActive = false;
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
+let systemReturnMode=null; // Remember live native town/sea for ESC menu return.
 let newGameHeroCursor=0;
 let newGameHeroNotice="";
 let systemMenuPending = false;
@@ -564,9 +565,59 @@ function handleNativeNewGameKey(key,event){
   return true;
 }
 
+
+function openNativeGameSystemMenu(){
+  if(checkpointInFlight)return false;
+  const from=viewMode;
+  if(from!=="town"&&from!=="sea")return false;
+  if(from==="town"&&(!townRuntime||townRuntime.talk||townRuntime.insideBuilding))
+    return false;
+  if(from==="sea"&&!seaRuntime)return false;
+  // Menu entry pauses sailing, never generating an additional movement tick.
+  if(from==="sea")stopSeaAuto();
+  systemReturnMode=from;
+  if(!enterSystemMenu(4)){
+    systemReturnMode=null;return false;
+  }
+  return true;
+}
+function resumeNativeGameFromSystemMenu(){
+  const target=systemReturnMode;
+  if(target==="town"&&townRuntime){
+    systemReturnMode=null;
+    viewMode="town";setMusicForMode("town");renderTownScreen();
+    return true;
+  }
+  if(target==="sea"&&seaRuntime){
+    systemReturnMode=null;
+    viewMode="sea";setMusicForMode("sea");renderSeaScreen();
+    return true;
+  }
+  return false;
+}
+function selectNativeWebSaveFromSystemMenu(){
+  if(!resumeNativeGameFromSystemMenu()){
+    drawSystemMenu();
+    const box={x:150,y:246,w:350,h:75};
+    drawSystemWindow(box);
+    drawOriginalTextTop("원본 DOS Save Data는 아직 미구현",box.x+14,box.y+14,
+      {color:"#24160c"});
+    drawOriginalTextTop("항구/항해 중 ESC로 열어 웹 임시저장 이용",box.x+14,box.y+32,
+      {color:"#24160c"});
+    return false;
+  }
+  // Reuse native SHA-bound WebCrypto checkpoint single-flight transaction.
+  // Original user's DOS KOUKAI2.DAT remains strictly read-only.
+  window.dispatchEvent(new CustomEvent("uw2-controller-action",{
+    detail:{action:"checkpoint-save"}
+  }));
+  return true;
+}
+
 function selectLoadedSlot(index) {
   const slot = slots[index];
   if (!slot || slot.empty) return false;
+  systemReturnMode=null;
   selected = openNativeSaveSession(slot);
   if (saveBuffer && selected.raw?.page != null) {
     portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
@@ -582,6 +633,11 @@ function handleSystemKey(event) {
   if (!["system-menu","load-select","load-confirm","load-empty"].includes(viewMode)) return false;
 
   if (viewMode === "system-menu") {
+    if(key==="escape"){
+      event.preventDefault();
+      if(!resumeNativeGameFromSystemMenu())drawSystemMenu();
+      return true;
+    }
     const options = menuDefs[ORIGINAL_SYSTEM_MENU_INDEX]?.options ?? [];
     if (key === "arrowup" || key === "w" || key === "8") {
       event.preventDefault();
@@ -604,6 +660,8 @@ function handleSystemKey(event) {
         drawLoadSlots();
       } else if (systemUi.cursor === 1) {
         enterNativeNewGameSelect();
+      } else if (systemUi.cursor === 4) {
+        selectNativeWebSaveFromSystemMenu();
       } else if (systemUi.cursor === 3) {
         drawSystemBase();
         const q = SYSTEM_UI_LAYOUT.emptySlot;
@@ -2124,6 +2182,11 @@ window.addEventListener("keydown", (event) => {
   if (handleSystemKey(event)) return;
 
   if (viewMode === "sea" && seaRuntime) {
+    if(key==="escape"){
+      event.preventDefault();
+      openNativeGameSystemMenu();
+      return;
+    }
     let handled = true;
     if (key === "enter" || key === "p") {
       event.preventDefault();
@@ -2159,6 +2222,12 @@ window.addEventListener("keydown", (event) => {
 
   if (townRuntime.insideBuilding) {
     handleBuildingKey(event);
+    return;
+  }
+
+  if(key==="escape"){
+    event.preventDefault();
+    openNativeGameSystemMenu();
     return;
   }
 

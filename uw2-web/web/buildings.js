@@ -1,3 +1,4 @@
+import {validNativeFleetRoster} from './native-fleet-roster.js';
 export const RESOURCE_KEYS = Object.freeze(["water","food","lumber","shot"]);
 export const RESOURCE_NAMES = Object.freeze(["물","식량","자재","포탄"]);
 // Browser-native transaction ceilings: the original ship instance fields
@@ -32,8 +33,7 @@ function sourceSupplyPrice(slot,resource){
 }
 function validSupplyFleet(slot){
   const ships=slot?.fleet?.ships;
-  return validSupplySlot(slot)&&Array.isArray(ships)&&
-    ships.length>=1&&ships.length<=10&&
+  return validSupplySlot(slot)&&validNativeFleetRoster(slot?.fleet)&&
     ships.every(ship=>validSupplyShip(ship)&&u16(ship.currentCrew)&&
       u16(ship.navigationPercent)&&ship.navigationPercent<=100);
 }

@@ -137,6 +137,7 @@ function adjustRates(slot,category,total,sign){
 // Trade preflight matches source-shaped Korean save cargo and port market
 // records, before any mutation. This is a browser transaction invariant,
 // not a claim of unknown original DOS trade/arithmetic behavior.
+import {validNativeFleetRoster} from './native-fleet-roster.js';
 const U16=65535;
 const u16=n=>Number.isSafeInteger(n)&&n>=0&&n<=U16;
 function validTradeCargoShip(ship){
@@ -158,7 +159,7 @@ function tradePreflight(slot,marketAssets,shipIndex){
      // A valid target is not enough: corrupted companion ships make the
      // source fleet inconsistent even when the user trades on ship zero.
      !ships.every(validTradeCargoShip)||
-     (Object.hasOwn(fleet,'count')&&fleet.count!==ships.length)||!meta||
+     !validNativeFleetRoster(fleet)||!meta||
      !u16(meta.economy)||!Number.isSafeInteger(meta.marketId)||
      !Array.isArray(marketAssets?.markets)||
      !marketAssets.markets[meta.marketId]||

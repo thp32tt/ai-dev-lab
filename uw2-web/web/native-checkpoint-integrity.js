@@ -1,3 +1,4 @@
+import {validNativeFleetRoster} from './native-fleet-roster.js';
 import {validNativePortEconomyHistory} from './native-port-economy-history.js';
 import {validNativePortActorMemory} from './native-port-actor-memory.js';
 // Shared browser-native checkpoint admission for Korean-source-shaped state.
@@ -78,8 +79,8 @@ export function validateNativeCheckpointSessionEconomy(session,original){
       throw new Error('native checkpoint economy/fleet state invalid');
   }
   const ships=session.fleet?.ships,origShips=original.fleet?.ships;
-  if(!Array.isArray(ships)||!Array.isArray(origShips)||
-     ships.length<1||ships.length>10||origShips.length<1||
+  if(!validNativeFleetRoster(session.fleet)||!Array.isArray(origShips)||
+     origShips.length<1||
      !ships.every((ship,i)=>validSourceShip(ship,origShips[Math.min(i,origShips.length-1)])))
     throw new Error('native checkpoint economy/fleet state invalid');
   // A newly purchased ship can legitimately change ship count, so count

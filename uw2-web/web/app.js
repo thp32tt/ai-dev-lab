@@ -149,6 +149,7 @@ let seaRuntime = null;
 let charAssets = null;
 let windCur = null;
 let portCatalog = [];
+let verifiedReferencePortCatalog = [];
 let buildingUi = null;
 let musicPlayer = null;
 let fontAssets = null;
@@ -625,6 +626,41 @@ function selectNativeWebSaveFromSystemMenu(){
   return true;
 }
 
+// The original Korean MAIN menu #56 option 3 is Quit Game; MESSAGE #958
+// is its source ending line and #957 requests a subsequent key. A browser
+// cannot terminate the containing tab, so the following key returns to its
+// original MAIN selector. Unlike the former fake popup, quit ends the live
+// session and never writes the owner's DOS save or web checkpoint.
+function finishNativeQuitGame(){
+  if(checkpointInFlight)return false;
+  stopSeaAuto();
+  selected=null;
+  townRuntime=null;
+  seaRuntime=null;
+  buildingUi=null;
+  systemReturnMode=null;
+  checkpointFeedback="";
+  portCatalog=verifiedReferencePortCatalog;
+  $("run-button").disabled=true;
+  renderSlots();
+  systemUi={mode:"quit-ended",cursor:3,slot:0,messageId:958};
+  drawSystemBase();
+  const end=SYSTEM_UI_LAYOUT.emptySlot;
+  const box={...end,y:end.y-20,h:end.h+32};
+  drawSystemWindow(box);
+  drawOriginalTextTop(
+    stripUw2MessageControls(messages[958]?.text??"게임을 끝내겠습니다."),
+    box.x+16,box.y+14,{color:"#24160c"});
+  drawOriginalTextTop(
+    stripUw2MessageControls(messages[957]?.text??"끝냈습니다. 아무 키나 눌러 주세요."),
+    box.x+16,box.y+37,{color:"#24160c"});
+  viewMode="quit-ended";
+  setMusicForMode("quit-ended");
+  $("runtime-status").textContent="Quit Game · 원본 저장 파일 유지 · 키를 누르면 메인 메뉴";
+  publishControllerState({systemUi:{...systemUi}});
+  return true;
+}
+
 function selectLoadedSlot(index) {
   const slot = slots[index];
   if (!slot || slot.empty) return false;
@@ -635,6 +671,13 @@ function selectLoadedSlot(index) {
 function handleSystemKey(event) {
   const key = event.key.toLowerCase();
   if(viewMode==="new-game-select")return handleNativeNewGameKey(key,event);
+  if(viewMode==="quit-ended"){
+    if(!["shift","control","alt","meta"].includes(key)){
+      event.preventDefault();
+      enterSystemMenu(0);
+    }
+    return true;
+  }
   if (!["system-menu","load-select","load-confirm","load-empty"].includes(viewMode)) return false;
 
   if (viewMode === "system-menu") {
@@ -668,14 +711,7 @@ function handleSystemKey(event) {
       } else if (systemUi.cursor === 4) {
         selectNativeWebSaveFromSystemMenu();
       } else if (systemUi.cursor === 3) {
-        drawSystemBase();
-        const q = SYSTEM_UI_LAYOUT.emptySlot;
-        drawSystemWindow(q);
-        drawOriginalTextTop(
-          stripUw2MessageControls(messages[958]?.text ?? "게임을 끝내겠습니다."),
-          q.textX, q.textY, { color: "#24160c" }
-        );
-        $("runtime-status").textContent = "Quit Game";
+        finishNativeQuitGame();
       } else {
         drawSystemMenu();
       }
@@ -769,6 +805,11 @@ canvas.addEventListener("click", event => {
     const hit=nativeYesNoPointerHit(point);
     if(hit!==null)
       handleSystemKey({key:hit==="yes"?"Enter":"Escape",preventDefault(){}});
+  }else if(viewMode==="quit-ended"){
+    const b=SYSTEM_UI_LAYOUT.emptySlot;
+    if(point.x>=b.x&&point.x<b.x+b.w&&point.y>=b.y-20&&
+       point.y<b.y+b.h+12)
+      handleSystemKey({key:"Enter",preventDefault(){}});
   }else if(viewMode==="load-empty"){
     // Click only the displayed source empty-slot parchment to dismiss.
     const b=SYSTEM_UI_LAYOUT.emptySlot;
@@ -1089,6 +1130,7 @@ async function loadSaves() {
   saveBuffer = verified.copyBytes().buffer;
   slots = verified.slots;
   originalHeroNames = verified.heroNames;
+  verifiedReferencePortCatalog = verified.portCatalog;
   portCatalog = verified.portCatalog;
   $("save-status").textContent =
     `KOUKAI2.DAT ${fmtBytes(verified.byteLength)} · SHA 확인 · 슬롯당 33,340 bytes`;

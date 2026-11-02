@@ -86,3 +86,40 @@ const app=readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.match(app,/sellGoods\(selected,marketAssets/);
 assert.match(app,/buyGoods\(selected,marketAssets/);
 console.log('UW2 native trade sale and purchase source u16 load/rate/cash atomicity: PASS');
+
+// The browser ships a 1..10 ship source fleet: malformed companion ships
+// must never allow a wallet/rate/cargo change on an otherwise healthy target.
+const fleet=session();
+fleet.fleet.ships.push(structuredClone(fleet.fleet.ships[0]));
+fleet.fleet.ships[1].index=3;
+fleet.fleet.count=2;
+const untouchedSecond=structuredClone(fleet.fleet.ships[1]);
+assert.equal(buyGoods(fleet,marketAssets,0,0,1).quantity,1);
+assert.deepEqual(fleet.fleet.ships[1],untouchedSecond);
+assert.equal(sellGoods(fleet,marketAssets,0,0,1).quantity,1);
+assert.deepEqual(fleet.fleet.ships[1],untouchedSecond);
+for(const damage of [
+ s=>{s.fleet.ships[1].goods[0].quantity=NaN;},
+ s=>{s.fleet.ships[1].goods[0].slot=4;},
+ s=>{s.fleet.ships[1].load=65536;},
+ s=>{s.fleet.count=3;},
+]){
+ const s=session();
+ s.fleet.ships.push(structuredClone(s.fleet.ships[0]));
+ s.fleet.count=2;
+ damage(s);
+ hold(s,x=>buyGoods(x,marketAssets,0,0,1),'invalid-trade-state');
+ hold(s,x=>sellGoods(x,marketAssets,0,0,1),'invalid-trade-state');
+}
+// An underweight ship cannot sell one goods slot while leaving another
+// loaded slot with no backing velocity weight. A healthy multi-slot sale works.
+const mixed=session();
+mixed.fleet.ships[0].goods[1]={slot:1,id:1,quantity:3};
+mixed.fleet.ships[0].load=5;
+hold(mixed,s=>sellGoods(s,marketAssets,0,0,2),'source-load-invalid');
+hold(mixed,s=>buyGoods(s,marketAssets,0,0,1),'source-load-invalid');
+mixed.fleet.ships[0].load=8;
+assert.equal(sellGoods(mixed,marketAssets,0,0,2).quantity,2);
+assert.equal(mixed.fleet.ships[0].load,6);
+assert.equal(mixed.fleet.ships[0].goods[1].quantity,3);
+console.log('UW2 source fleet-wide market preflight and multi-slot load backing: PASS');

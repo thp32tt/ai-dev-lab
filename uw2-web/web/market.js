@@ -149,12 +149,16 @@ function validTradeCargoShip(ship){
 }
 function tradePreflight(slot,marketAssets,shipIndex){
   const meta=slot?.portMeta;
-  const ships=slot?.fleet?.ships;
+  const fleet=slot?.fleet;
+  const ships=fleet?.ships;
   if(!Number.isSafeInteger(slot?.money)||slot.money<0||
      slot.money>GOLD_LIMIT||!Array.isArray(ships)||ships.length<1||
      ships.length>10||!Number.isSafeInteger(shipIndex)||
      shipIndex<0||shipIndex>=ships.length||
-     !validTradeCargoShip(ships[shipIndex])||!meta||
+     // A valid target is not enough: corrupted companion ships make the
+     // source fleet inconsistent even when the user trades on ship zero.
+     !ships.every(validTradeCargoShip)||
+     (Object.hasOwn(fleet,'count')&&fleet.count!==ships.length)||!meta||
      !u16(meta.economy)||!Number.isSafeInteger(meta.marketId)||
      !Array.isArray(marketAssets?.markets)||
      !marketAssets.markets[meta.marketId]||
@@ -162,6 +166,13 @@ function tradePreflight(slot,marketAssets,shipIndex){
      !meta.rates.every(rate=>Number.isSafeInteger(rate)&&rate>=0&&rate<=255))
     return null;
   return ships[shipIndex];
+}
+
+// Load is the source u16 cargo-speed weight mutated by both trade paths.
+// A sale from one slot must not silently underfund cargo still held in
+// other slots. The lower bound uses only known original goods quantities.
+function tradeGoodsLoadBacked(ship){
+  return ship.goods.reduce((n,g)=>n+g.quantity,0)<=ship.load;
 }
 
 export function buyGoods(slot,marketAssets,shipIndex,goodId,requested,{taxFree=false}={}) {
@@ -178,6 +189,8 @@ export function buyGoods(slot,marketAssets,shipIndex,goodId,requested,{taxFree=f
   let cargoSlot=matchingGoodsSlot(ship,goodId);
   if(!cargoSlot) cargoSlot=emptyGoodsSlot(ship);
   if(!cargoSlot) return {quantity:0,cost:0,reason:"no-goods-slot"};
+  if(!tradeGoodsLoadBacked(ship))
+    return {quantity:0,cost:0,reason:"source-load-invalid"};
   const free=shipCargoFree(ship);
   if(!Number.isSafeInteger(free)||free<=0)
     return {quantity:0,cost:0,reason:"no-capacity-or-money"};
@@ -210,7 +223,7 @@ export function sellGoods(slot,marketAssets,shipIndex,goodsSlotIndex,requested) 
     return {quantity:0,revenue:0,reason:"empty"};
   // A source-shaped sale must be backed by the ship's u16 load. The old
   // Math.max(0, load - quantity) could turn malformed goods into gold.
-  if(ship.load<cargo.quantity)
+  if(!tradeGoodsLoadBacked(ship))
     return {quantity:0,revenue:0,reason:"source-load-invalid"};
   const pm=currentPortMarket(slot,marketAssets);
   const item=pm?.sell[cargo.id];

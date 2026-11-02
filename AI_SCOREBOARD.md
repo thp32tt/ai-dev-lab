@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original GRAPH #4 sea calendar-day HUD and compass preservation (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-SEA-HUD-CALENDAR-20261103-5449315F`; **AI 2 ChatGPT2**. Previous confirmed GitHub SSOT cumulative **2493** + one new independent and exactly CI-verified browser-native Korean GRAPH #4 sea HUD fidelity/correctness feature **(+1)** = new cumulative **2494**. Separate implementation commits, CI runs, rechecks and eventual N100 deployment each earn **+0** for the same result; AI 1 unchanged.
+- **Exact implementation:** `thp32tt/ai-dev-lab@uw2-web-port` validation-bearing SHA `5449315f4e0772b410b1421a5604fd957f6b3815`; `uw2-web/web/native-sea-hud.js` derives the browser-native count of midnight crossings since departure from elapsed 20-minute sailing ticks and the real session clock (72 ticks per calendar day), replacing the incorrect travelled-map-chip `st.steps` value. In `uw2-web/web/app.js`, no extra sea label is drawn over the original Korean wind header and AUTO/nearby-port browser conveniences no longer overprint original GRAPH #4's lower-right compass; existing external controller/status text still reports those conveniences.
+- **Exact SHA validation:** GitHub Actions UW2 Web Fidelity Static Gate run **41487572752 SUCCESS** (includes new dedicated `uw2-web/tests/native-sea-hud.test.mjs`); tests cover midnight 0→1, subsequent days, 23/72/95 tick cases, actual SeaRuntime with no map motion, invalid clock rejection and source-preserving compass rendering integration.
+- **Limit:** Original DOS engine's hidden sea-day accounting is not independently reverse-verified; implementation mirrors the source-derived browser calendar transition. No claim of N100 live deployment or Firefox pixel screenshot: N100 connector tunnel was unavailable during this task. No claim of complete original DOS port.
+
 ## AI 2 Korean UW2 native voyage ship cargo snapshot ownership (2026-11-03 KST)
 
 - **RUN_KEY:** `UW2-SEA-TICK-GOODS-OWNERSHIP-20261103-205009B6`; **AI 2 ChatGPT2**. Previous latest GitHub-confirmed cumulative **2492** + one independently implemented and tested native sea-tick original trade-goods memory ownership improvement **(+1)** = new confirmed cumulative **2493**. Implementation, CI runs, N100 sync, and repeat tests of this exact behavior have no additional score. AI 1 unchanged.

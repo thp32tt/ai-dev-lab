@@ -98,4 +98,41 @@ assert.equal(fillCpu.read8(0x9000,0xffff),0x39);
 assert.equal(fillCpu.read8(0x9000,768),0x73);
 for(let i=0;i<768;i++)assert.equal(fillCpu.read8(0x9000,i),0xff);
 
-console.log('UW2 real 8086 two chained FAR CALLs, nested E8/PUSH CS/RETF stack, original hash admission fail-closed source-owned ES 768-byte fill PASS');
+
+// Synthetic type-1 zero-span selector architecture regression. The original
+// owned DOS instructions are NOT embedded; this purpose-built program
+// verifies 8086 near E8 + caller PUSH CS + conditional no-loop RETF, including
+// a strictly unreachable unimplemented interrupt in the nonzero branch.
+const zero=new RealMode8086();
+zero.load(Uint8Array.of(
+ 0x31,0xd2,          // XOR DX,DX (synthetic source count 0)
+ 0x0e,               // PUSH CS
+ 0xe8,0x0b,0x00     // CALL near helper at CS:0111
+),0x500,0x100);
+zero.load(Uint8Array.of(
+ 0x52,               // PUSH DX
+ 0x83,0xfa,0x00,    // CMP DX,0
+ 0x75,0x02,         // JNE forbidden nonzero path
+ 0x5a,               // POP DX
+ 0xcb,               // RETF consumes authentic caller CS
+ 0xcd,0x21          // unreachable DOS interrupt
+),0x500,0x111);
+zero.set16('CS',0x500);zero.set16('IP',0x100);
+zero.set16('SS',0x900);zero.set16('SP',0x2000);
+const originalSP=zero.get16('SP');
+for(let i=0;i<8;i++)zero.step();
+assert.equal(zero.get16('CS'),0x500);
+assert.equal(zero.get16('IP'),0x106);
+assert.equal(zero.get16('SP'),originalSP);
+assert.equal(zero.get16('DX'),0);
+assert.equal(zero.terminated,null);
+// Admission of a nonzero source length is rejected before CPU execution.
+const rejectPositiveSpan=(count)=>{
+ if(!Number.isSafeInteger(count)||count!==0)
+  throw new Error('original type-1 nonzero record span not source-verified');
+};
+assert.throws(()=>rejectPositiveSpan(1),/nonzero record span/);
+assert.throws(()=>rejectPositiveSpan(65535),/nonzero record span/);
+assert.doesNotThrow(()=>rejectPositiveSpan(0));
+
+console.log('UW2 real 8086 two chained FAR CALLs, nested E8/PUSH CS/RETF stack, original hash admission fail-closed source-owned ES 768-byte fill and zero-span type-1 E8/RETF PASS');

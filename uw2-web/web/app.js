@@ -351,6 +351,10 @@ function stopSeaAuto(reason = null) {
 }
 
 function toggleSeaAuto() {
+  // WebCrypto checkpoint Save/Load is an exclusive gameplay transaction.
+  // Do not let the controller re-arm AUTO while its source snapshot is
+  // being authenticated and written/restored.
+  if(checkpointInFlight)return false;
   if (viewMode !== "sea" || !seaRuntime) {
     publishControllerState();
     return false;
@@ -386,6 +390,10 @@ function toggleSeaAuto() {
   seaAutoActive = true;
   publishControllerState();
   seaAutoTimer = setInterval(() => {
+    if(checkpointInFlight){
+      stopSeaAuto();
+      return;
+    }
     if (viewMode !== "sea" || !seaRuntime) {
       stopSeaAuto();
       return;
@@ -968,6 +976,8 @@ function drawOriginalDatePanel(date, label = "") {
 }
 
 function tickSeaWithBankInterest() {
+  if(checkpointInFlight)
+    return {advanced:false,reason:"browser-checkpoint-in-flight"};
   const result=advanceNativeSeaVoyageStep({session:selected,runtime:seaRuntime});
   if(!result.advanced){
     if(seaRuntime)seaRuntime.lastEvent=result.reason;
@@ -2464,6 +2474,12 @@ $("run-button").addEventListener("click", () => {
 window.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
 
+  // A pending asynchronous checkpoint must serialize against every
+  // keyboard command, not just against Save/Load button presses.
+  if(checkpointInFlight){
+    event.preventDefault();
+    return;
+  }
   if (viewMode === "opening") {
     event.preventDefault();
     stopOpening(true);
@@ -2562,6 +2578,10 @@ window.addEventListener("uw2-controller-action", async event => {
     // checkpoint pointer, or Load can read half of a pending Save.
     if(checkpointInFlight)return;
     checkpointInFlight=true;
+    // Synchronously freeze the sailing clock BEFORE the first await.
+    // Without this, the 220ms AUTO timer can change fleet, provisions,
+    // money, date and sea position while SHA-256 checkpointing is pending.
+    if(viewMode==="sea"&&seaAutoActive)stopSeaAuto();
     publishControllerState();
     const dependencies={
       sourceSha256:originalSaveSha256,sourceSlots:slots,

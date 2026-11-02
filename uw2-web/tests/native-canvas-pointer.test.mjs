@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit,
  nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
- nativeModalRowPointerHit} from '../web/native-canvas-pointer.js';
+ nativeModalRowPointerHit,nativeYesNoPointerHit} from '../web/native-canvas-pointer.js';
 
 const canvas={width:640,height:400,clientLeft:2,clientTop:2,
  clientWidth:800,clientHeight:500,
@@ -81,4 +81,24 @@ assert.match(app,/nativeModalRowPointerHit\(point,\{[\s\S]*?rowCount:count,selec
 assert.match(app,/ui\[field\]=hit;\s*renderTownScreen\(\)/);
 assert.match(app,/if\(!field\)return/);
 assert.doesNotMatch(app,/ui\[field\]=hit;\s*handleBuildingKey/);
+// Owner's GRAPH.DAT record #0 (144x56) was decoded from the Korean DOS
+// asset and independently visually verified: LEFT=YES, RIGHT=NO.
+// The source image is NEVER added to the repository or mutated.
+assert.equal(nativeYesNoPointerHit({x:488,y:346}),'yes');
+assert.equal(nativeYesNoPointerHit({x:548.99,y:381.99}),'yes');
+assert.equal(nativeYesNoPointerHit({x:555,y:346}),'no');
+assert.equal(nativeYesNoPointerHit({x:615.99,y:381.99}),'no');
+for(const p of [{x:480,y:360},{x:488,y:345.99},{x:549,y:360},
+ {x:554.99,y:360},{x:616,y:360},{x:550,y:360},
+ {x:600,y:382},{x:600,y:345},{x:700,y:360},
+ {x:NaN,y:360},{x:500,y:Infinity}])
+ assert.equal(nativeYesNoPointerHit(p),null);
+assert.match(app,/viewMode==="load-confirm"\)\{/);
+assert.match(app,/nativeYesNoPointerHit\(point\)/);
+assert.match(app,/handleSystemKey\(\{key:hit==="yes"\?"Enter":"Escape",preventDefault\(\)\{\}\}\)/);
+assert.match(app,/ui\.mode==="sail-confirm"\|\|ui\.mode==="item-buy-confirm"/);
+assert.match(app,/ui\.mode==="item-sell-offer"\|\|ui\.mode==="item-sell-counter"/);
+assert.match(app,/handleBuildingKey\(\{key:hit==="yes"\?"Enter":"Escape",preventDefault\(\)\{\}\}\)/);
+assert.match(app,/viewMode==="load-empty"\)\{/);
+assert.doesNotMatch(app,/nativeYesNoPointerHit\(point\)[\s\S]{0,100}?(?:buyGoods|sellGoods|startSeaFromPort)\(/);
 console.log('UW2 native pointer: original menu, six heroes, saves, town dialogue, building menus, trade/crew/ship row selection PASS');

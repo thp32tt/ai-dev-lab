@@ -5,7 +5,7 @@ import {originalNewGameSelectorRect} from "./native-new-game-layout.js";
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit,
  nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
- nativeModalRowPointerHit} from "./native-canvas-pointer.js";
+ nativeModalRowPointerHit,nativeYesNoPointerHit} from "./native-canvas-pointer.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
@@ -761,6 +761,17 @@ canvas.addEventListener("click", event => {
     if(hit===null)return;
     systemUi.slot=hit;
     handleSystemKey({key:"Enter",preventDefault(){}});
+  }else if(viewMode==="load-confirm"){
+    // The verified source GRAPH #0 says YES left / NO right.
+    // Only the existing load-confirm keyboard route may commit a save.
+    const hit=nativeYesNoPointerHit(point);
+    if(hit!==null)
+      handleSystemKey({key:hit==="yes"?"Enter":"Escape",preventDefault(){}});
+  }else if(viewMode==="load-empty"){
+    // Click only the displayed source empty-slot parchment to dismiss.
+    const b=SYSTEM_UI_LAYOUT.emptySlot;
+    if(point.x>=b.x&&point.x<b.x+b.w&&point.y>=b.y&&point.y<b.y+b.h)
+      handleSystemKey({key:"Enter",preventDefault(){}});
   }else if(viewMode==="town"&&townRuntime){
     // Use the same source-backed town/building state machines as the keyboard.
     // Never let a canvas click bypass checkout, debit or departure confirmation.
@@ -774,6 +785,13 @@ canvas.addEventListener("click", event => {
     const building=townRuntime.insideBuilding;
     if(!building)return;
     const ui=ensureBuildingUi(building.id);
+    if(ui.mode==="sail-confirm"||ui.mode==="item-buy-confirm"||
+       ui.mode==="item-sell-offer"||ui.mode==="item-sell-counter"){
+      const hit=nativeYesNoPointerHit(point);
+      if(hit!==null)
+        handleBuildingKey({key:hit==="yes"?"Enter":"Escape",preventDefault(){}});
+      return;
+    }
     if(ui.mode==="menu"){
       const options=buildingOptions(building.id);
       const hit=nativeBuildingMenuPointerHit(point,options.length||1);

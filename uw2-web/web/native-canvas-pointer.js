@@ -69,3 +69,15 @@ export function nativeModalRowPointerHit(point,{rowCount,selectedIndex=0,title=t
  const row=Math.floor((point.y-firstY)/16);
  return row>=0&&row<visible?start+row:null;
 }
+
+// Verified against the owner's ORIGINAL Korean GRAPH.DAT record #0:
+// 144x56 pixels; visible YES is on the LEFT, NO on the RIGHT.
+// Only the interior of the two drawn choices is actionable, not the frame.
+// The existing keyboard confirmation owns the actual gameplay transaction.
+export function nativeYesNoPointerHit(point){
+ const b=UI_LAYOUT.yesNo;
+ if(!validPoint(point)||point.y<b.y+10||point.y>=b.y+b.h-10)return null;
+ if(point.x>=b.x+8&&point.x<b.x+b.w/2-3)return "yes";
+ if(point.x>=b.x+b.w/2+3&&point.x<b.x+b.w-8)return "no";
+ return null;
+}

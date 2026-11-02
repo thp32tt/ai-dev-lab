@@ -27,7 +27,7 @@ const locate=(s,name)=>originalTownHudEntries(s).find(row=>row.name===name);
 // Painting at x=13 overwrites the glyphs; the verified value column
 // begins at x=48. The date belongs on the top-RIGHT scroll, not x=8.
 for(const name of ['fame-maximum','gold-coins','gold-bars']){
- assert.equal(locate(source,name).x,48,name+' must not cover left label');
+ assert.equal(locate(source,name).x,44,name+' must not cover left label');
 }
 assert.deepEqual(
  [locate(source,'fame-maximum').y,

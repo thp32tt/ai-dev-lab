@@ -13,18 +13,37 @@ export function advanceNativeSeaAuto(runtime,onVoyageTick,portReady=null){
  try{if(portReady)port=portReady(runtime.snapshot());}
  catch{return hold(runtime,'auto-port-probe-unavailable');}
  if(port)return hold(runtime,'auto-port-arrived');
- if(!runtime.hasNetMotion())return hold(runtime,'auto-no-net-motion');
- const result=onVoyageTick();
+ // A failed projection must not run the clock/provision-changing callback.
+ let moving;
+ try{moving=runtime.hasNetMotion();}
+ catch{return hold(runtime,'auto-motion-probe-unavailable');}
+ if(!moving)return hold(runtime,'auto-no-net-motion');
+ const beforeTicks=runtime.ticks;
+ let result;
+ try{result=onVoyageTick();}
+ catch{return hold(runtime,'auto-voyage-tick-unavailable');}
  if(result&&typeof result.then==='function')
-  throw new TypeError('native sea auto voyage tick must be synchronous');
- if(result&&typeof result==='object'&&result.advanced===false){
+  return hold(runtime,'auto-voyage-async-rejected');
+ if(result?.advanced===false){
   const reason=typeof result.reason==='string'?result.reason:'native-voyage-hold';
   return hold(runtime,reason);
  }
- // The atomic voyage path returns a NEW runtime, replacing the live one.
- const next=result?.sea instanceof SeaRuntime?result.sea:runtime;
+ // Only an explicitly accepted, exactly one-tick source-shaped voyage
+ // can start a subsequent interval. No implicit success for undefined,
+ // false, or an arbitrary callback return. The underlying game transaction
+ // owns atomic mutation of the live session, fleet and bank.
+ const next=result?.sea;
+ if(result?.advanced!==true||!(next instanceof SeaRuntime)||
+    next.assets!==runtime.assets||next.windRaw!==runtime.windRaw||
+    next.ticks!==beforeTicks+1)
+  return hold(runtime,'auto-voyage-result-invalid');
  try{if(portReady)port=portReady(next.snapshot());}
- catch{return hold(next,'auto-port-probe-unavailable');}
+ catch{
+  // This tick has already committed. Report it as advanced and STOP,
+  // rather than incorrectly claiming the voyage never happened.
+  next.lastEvent='auto-port-probe-unavailable';
+  return Object.freeze({advanced:true,stopAtProbe:true,reason:'auto-port-probe-unavailable'});
+ }
  if(port){
   next.lastEvent='auto-port-arrived';
   return Object.freeze({advanced:true,stopAtPort:true,reason:'auto-port-arrived'});

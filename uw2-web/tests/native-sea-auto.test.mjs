@@ -39,7 +39,7 @@ assert.equal(velocity.x,0);
 assert.ok(velocity.y<0);
 assert.equal(moving.hasNetMotion(),true);
 const start=moving.snapshot();
-const ok=advanceNativeSeaAuto(moving,()=>{ticks++;moving.tick();});
+const ok=advanceNativeSeaAuto(moving,()=>{ticks++;moving.tick();return {advanced:true,sea:moving};});
 assert.equal(ok.advanced,true);
 assert.equal(ticks,1);
 assert.equal(moving.snapshot().ticks,start.ticks+1);
@@ -77,4 +77,26 @@ assert.ok(app.includes('!advance.advanced||advance.stopAtPort||advance.stopAtCoa
 const refused=advanceNativeSeaAuto(moving,()=>({advanced:false,reason:'native-voyage-clock-invalid'}));
 assert.deepEqual(refused,{advanced:false,reason:'native-voyage-clock-invalid'});
 assert.equal(moving.lastEvent,'native-voyage-clock-invalid');
-console.log('UW2 native browser auto-sail no-net-motion time/provision loop guard: PASS');
+// A missing or fabricated callback result may never report a successful
+// voyage, even if an earlier caller accidentally mutated a draft.
+for(const value of [undefined,null,false,true,{}, {advanced:true}, {advanced:true,sea:{}}]){
+ const rt=makeRuntime(oared);
+ const out=advanceNativeSeaAuto(rt,()=>value);
+ assert.deepEqual(out,{advanced:false,reason:'auto-voyage-result-invalid'});
+ assert.equal(rt.ticks,0);
+}
+{
+ const rt=makeRuntime(oared);
+ const out=advanceNativeSeaAuto(rt,()=>({advanced:true,sea:rt}));
+ assert.deepEqual(out,{advanced:false,reason:'auto-voyage-result-invalid'});
+ assert.equal(rt.ticks,0); // an unadvanced runtime cannot masquerade as a voyage
+}
+{
+ const rt=makeRuntime(oared);
+ assert.deepEqual(advanceNativeSeaAuto(rt,()=>Promise.resolve({advanced:true,sea:rt})),
+  {advanced:false,reason:'auto-voyage-async-rejected'});
+ assert.deepEqual(advanceNativeSeaAuto(rt,()=>{throw Error('failed');}),
+  {advanced:false,reason:'auto-voyage-tick-unavailable'});
+ assert.equal(rt.ticks,0);
+}
+console.log('UW2 native browser auto-sail clock, callback and no-net-motion guards: PASS');

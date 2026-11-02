@@ -27,7 +27,7 @@ assert.equal(calls,1);assert.equal(probes,2);
 assert.equal(moving.ticks,1);assert.equal(moving.lastEvent,'auto-port-arrived');
 const old=make(),newSea=make();newSea.x=105;
 const seen=[];
-const swapped=advanceNativeSeaAuto(old,()=>({advanced:true,sea:newSea}),
+const swapped=advanceNativeSeaAuto(old,()=>{newSea.tick();return {advanced:true,sea:newSea};},
  st=>{seen.push(st.x);return st.x===105?{id:3}:null;});
 assert.equal(swapped.stopAtPort,true);
 assert.deepEqual(seen,[100,105]);
@@ -85,4 +85,25 @@ assert.deepEqual(unknownOrigin({x:100}),origin);
 assert.throws(()=>createNativeAutoOriginPortProbe({
  originPortId:130,portCandidate:candidate,portReady:candidate
 }),/original catalog port/);
-console.log('UW2 source-backed auto-sail port arrival stop before next voyage tick PASS');
+// The transaction has already advanced once when the AFTER-tick port probe
+// fails. The timer must stop and preserve the real 20-minute advancement.
+{
+ const rt=make();let scans=0;
+ const before=rt.snapshot();
+ const outcome=advanceNativeSeaAuto(rt,()=>{
+  rt.tick();return {advanced:true,sea:rt};
+ },()=>{if(++scans===2)throw Error('lost port catalog');return null;});
+ assert.deepEqual(outcome,{advanced:true,stopAtProbe:true,reason:'auto-port-probe-unavailable'});
+ assert.equal(rt.ticks,before.ticks+1);
+ assert.equal(rt.dateTime.timeTick,(before.dateTime.timeTick+1)%72);
+ assert.equal(rt.lastEvent,'auto-port-probe-unavailable');
+ assert.equal(scans,2);
+}
+{
+ const rt=make();
+ const next=make();next.tick();next.windRaw=new Uint8Array([1]);
+ assert.deepEqual(advanceNativeSeaAuto(rt,()=>({advanced:true,sea:next})),
+  {advanced:false,reason:'auto-voyage-result-invalid'});
+}
+assert.ok(app.includes('advance.stopAtProbe'));
+console.log('UW2 source-backed auto-sail port probe and validated tick stop: PASS');

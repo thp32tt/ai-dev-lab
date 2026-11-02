@@ -322,7 +322,7 @@ function toggleSeaAuto() {
     }
     const advance=advanceNativeSeaAuto(
       seaRuntime,tickSeaWithBankInterest,autoPortProbe);
-    if(!advance.advanced||advance.stopAtPort||advance.stopAtCoast){
+    if(!advance.advanced||advance.stopAtPort||advance.stopAtCoast||advance.stopAtProbe){
       stopSeaAuto(advance.reason);
       renderSeaScreen();
       return;

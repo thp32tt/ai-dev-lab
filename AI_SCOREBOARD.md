@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 source-backed town staged transaction commit witness (2026-11-02 09:21 KST)
+
+- **Distinct source gameplay feature (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact commit **`048e0ef6eacca1155cce8f0c748dada2bc6fadb0`**. Introduced small `web/native-town-commit-witness.js` source/session/runtime witness and connected it to the real `prepareNativeTownMovement`/`commitNativeTownMovement` and `prepareNativeTownBuildingExit`/`commitNativeTownBuildingExit` paths. After preparation, changed player position, NPC/viewport/dialogue, date, wallet, bank balance, day flags or runtime/session asset owner causes a fail-closed commit, preventing a stale movement or inn visit from overwriting a newer native game state. The source game resource bytes, map assets and DOM are not copied.
+- **Regression and verification:** Added race-order stale candidate, wallet drift, lodging bank change, and runtime position change assertions in existing shipping native-town movement and building-exit tests. Updated the original-to-web master plan. Exact SHA `048e0ef6eacca1155cce8f0c748dada2bc6fadb0` GitHub Actions `UW2 Web Fidelity Static Gate` run **41366625586 SUCCESS**. Original Korean DOS execution/Firefox with private original assets still **RUNTIME_VALIDATION=UNTESTED**. Test/CI/C6/reports/retry +0; AI1 unchanged.
+- **AI 2 score:** previous confirmed **2430** + one distinct native town stale-commit prevention feature **(+1)** = new cumulative **2431**.
+
 ## AI 2 Model2VR Generic DD v2 single-owner FFB/F11 combined Win32 build (2026-11-02 09:20 KST)
 
 - **RUN_KEY:** `MODEL2VR-GENERIC-DD-FFB-INTEGRATION-20261102-118c4a3d`; **AI 2**; previous confirmed **2429**; change **+1**; new cumulative **2430**; KST **2026-11-02 09:20**.

@@ -25,8 +25,8 @@ assert.equal(classifyNativeSaveEntry({...good,port:255},opts).reason,
  'AT_SEA_COORDINATE_LAYOUT_UNVERIFIED');
 assert.equal(classifyNativeSaveEntry(good,{}).reason,'ORIGINAL_TOWN_ASSETS_UNAVAILABLE');
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.ok(app.includes("classifyNativeSaveEntry(selected, { portAssets, portDoors })"));
-assert.ok(app.includes('nativeSaveHold: entry.reason'));
+assert.ok(app.includes('stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors})'));
+assert.ok(app.includes('nativeSaveHold:stage.reason'));
 assert.ok(!app.includes('new ReaGameRuntime'));
 assert.ok(!app.includes('requestAnimationFrame(renderRuntime)'));
 assert.ok(!app.includes('function renderRuntime()'));

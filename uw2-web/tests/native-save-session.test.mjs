@@ -33,7 +33,7 @@ for(const bad of [
 }
 assert.throws(()=>openNativeSaveSession({index:10,portState:{}}),/validated/);
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.equal((app.match(/openNativeSaveSession\(slot\)/g)||[]).length,2);
+assert.equal((app.match(/openNativeSaveSession\(slot\)/g)||[]).length,1);
 assert.ok(app.includes('syncNativeTownSession(selected,st,portAssets)'));
 assert.ok(!app.includes('selected = slot;'));
 console.log('UW2 native game session copies original save and commits live validated town coordinates: PASS');

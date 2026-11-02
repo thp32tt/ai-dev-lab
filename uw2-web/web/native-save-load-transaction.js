@@ -1,0 +1,36 @@
+// Stage a complete original Korean save -> native browser town transition.
+// No live selected session, port catalog, sea/town runtime, keyboard ownership,
+// or original DOS save bytes are ever changed during this preflight.
+import {openNativeSaveSession} from './native-save-session.js';
+import {classifyNativeSaveEntry} from './native-save-entry.js';
+import {parseKoreanPortTable} from './binary.js';
+import {PortWalkingRuntime} from './town.js';
+
+const hold=reason=>Object.freeze({ready:false,reason});
+export function stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors}={}){
+  // Browser game load must use the already verified, immutable source-copy.
+  if(!(saveBuffer instanceof ArrayBuffer)||
+     saveBuffer.byteLength<333400)
+    return hold('ORIGINAL_SAVE_SOURCE_UNAVAILABLE');
+  try{
+    const session=openNativeSaveSession(slot);
+    const entry=classifyNativeSaveEntry(session,{portAssets,portDoors});
+    if(entry.route!=='town')return hold(entry.reason);
+    const page=session.raw?.page;
+    if(!Number.isSafeInteger(page)||page<0||page>=saveBuffer.byteLength)
+      return hold('ORIGINAL_SAVE_PAGE_UNVERIFIED');
+    const portCatalog=parseKoreanPortTable(saveBuffer,page);
+    if(portCatalog.length!==130)
+      return hold('ORIGINAL_PORT_CATALOG_INCOMPLETE');
+    // Construct the real source-backed town runtime before changing any
+    // currently playable session. Constructor failure leaves it untouched.
+    const town=new PortWalkingRuntime(session,portAssets,portDoors);
+    return Object.freeze({
+      ready:true,session,portCatalog,town,
+      source:'VERIFIED_KOREAN_SAVE_TO_NATIVE_TOWN_STAGED'
+    });
+  }catch{
+    // Do not expose guessed synthetic gameplay or half-loaded live state.
+    return hold('ORIGINAL_SAVE_RUNTIME_PREFLIGHT_FAILED');
+  }
+}

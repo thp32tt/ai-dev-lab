@@ -16,6 +16,6 @@ assert.match(router,/key==="escape"\)\{\s*event.preventDefault\(\);\s*if\(!resum
 const live=section('window.addEventListener("keydown", (event) => {','window.addEventListener("uw2-controller-action", async event => {');
 assert.equal((live.match(/openNativeGameSystemMenu\(\);/g)||[]).length,2);
 assert.ok(live.indexOf('if (townRuntime.insideBuilding)')<live.lastIndexOf('openNativeGameSystemMenu();'));
-assert.match(src,/systemReturnMode=null;\s*selected = openNativeSaveSession\(slot\)/);
+assert.match(src,/selected=stage.session;\s*portCatalog=stage.portCatalog;\s*townRuntime=stage.town;\s*systemReturnMode=null/);
 assert.match(src,/if\(checkpointInFlight\)return false/);
 console.log('UW2 native idle town/sea ESC MAIN menu, resume, browser-only Save Data route: PASS');

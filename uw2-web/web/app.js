@@ -4,6 +4,7 @@ import {nativeNewGameHeroChoices,nativeNewGameSourceDemo} from "./native-new-gam
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit} from "./native-canvas-pointer.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
+import {stageNativeTownSave} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
 import { advanceNativeSeaAuto, createNativeAutoOriginPortProbe } from "./native-sea-auto.js";
 import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
@@ -619,14 +620,8 @@ function selectNativeWebSaveFromSystemMenu(){
 function selectLoadedSlot(index) {
   const slot = slots[index];
   if (!slot || slot.empty) return false;
-  systemReturnMode=null;
-  selected = openNativeSaveSession(slot);
-  if (saveBuffer && selected.raw?.page != null) {
-    portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
-  }
-  renderSlots();
-  renderSelectedPortMap();
-  return startSelectedGame();
+  // Do not destroy the active town/sea session on an invalid original save.
+  return startSelectedGame(slot);
 }
 
 function handleSystemKey(event) {
@@ -2171,30 +2166,36 @@ function renderSeaScreen() {
 }
 $("opening-button").addEventListener("click", startOpeningPlayback);
 
-function startSelectedGame() {
-  if (!bootGate.canShowSystemMenu() || !selected) return false;
-  const entry = classifyNativeSaveEntry(selected, { portAssets, portDoors });
-  if (entry.route !== "town") {
-    // Leave the ORIGINAL system/load screen visible, rather than display
-    // an invented playable "REA runtime" whose frame/money/dialogue never
-    // came from MAIN.EXE. At-sea save coordinates require source proof.
-    stopSeaAuto();
-    systemUi.mode = "load-select";
-    viewMode = "load-select";
+function startSelectedGame(slot=selected) {
+  if (!bootGate.canShowSystemMenu() || !slot) return false;
+  const stage=stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors});
+  if(!stage.ready){
+    // No live session, catalog, town runtime or return target was modified.
+    // The user's ESC -> MAIN -> ESC path can still resume the original game.
+    systemUi.mode="load-select";
+    viewMode="load-select";
     drawLoadSlots();
-    $("runtime-status").textContent =
-      entry.reason === "AT_SEA_COORDINATE_LAYOUT_UNVERIFIED"
-        ? "원본 해상 세이브 좌표·방향 구조 미확인 · 복원 보류"
-        : "원본 저장 데이터/항구 지도 검증 미완료 · 복원 보류";
-    publishControllerState({ nativeSaveHold: entry.reason });
+    $("runtime-status").textContent=
+      stage.reason==="AT_SEA_COORDINATE_LAYOUT_UNVERIFIED"
+        ?"원본 해상 세이브 좌표·방향 구조 미확인 · 복원 보류"
+        :"원본 저장 데이터/항구 런타임 검증 미완료 · 복원 보류";
+    publishControllerState({nativeSaveHold:stage.reason});
     return false;
   }
+  // Only the fully validated, constructed source session can replace live
+  // state. This is the single commit boundary for a Load Data transition.
+  stopSeaAuto();
   stopOpening(false);
-  townRuntime = new PortWalkingRuntime(selected, portAssets, portDoors);
-  viewMode = "town";
+  selected=stage.session;
+  portCatalog=stage.portCatalog;
+  townRuntime=stage.town;
+  systemReturnMode=null;
+  viewMode="town";
+  renderSlots();
+  renderSelectedPortMap();
   setMusicForMode("town");
   publishControllerState();
-  $("pause-button").disabled = true;
+  $("pause-button").disabled=true;
   renderTownScreen();
   return true;
 }

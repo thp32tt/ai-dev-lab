@@ -73,6 +73,8 @@ jobs:
           node --check uw2-web/tests/native-checkpoint-integrity.test.mjs
           node --check uw2-web/web/native-town-checkpoint.js
           node --check uw2-web/web/native-sea-checkpoint.js
+          node --check uw2-web/web/native-checkpoint-slot-bank.js
+          node --check uw2-web/tests/native-checkpoint-slot-bank.test.mjs
           node --check uw2-web/web/native-korean-save-source.js
           node --check uw2-web/tests/native-korean-save-source-original.test.mjs
           node --check uw2-web/tests/native-town-checkpoint-original.test.mjs
@@ -198,6 +200,7 @@ jobs:
           node uw2-web/tests/native-bank-borrow-ceiling.test.mjs
           node uw2-web/tests/native-bank-transaction-integrity.test.mjs
           node uw2-web/tests/native-checkpoint-singleflight.test.mjs
+          node uw2-web/tests/native-checkpoint-slot-bank.test.mjs
           node uw2-web/tests/native-korean-save-source.test.mjs
           node uw2-web/tests/native-port-arrival.test.mjs
           node uw2-web/tests/native-port-call-transaction.test.mjs

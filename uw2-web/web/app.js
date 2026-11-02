@@ -21,6 +21,8 @@ import {readVerifiedKoreanSaveSource} from "./native-korean-save-source.js";
 import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntime} from "./native-town-checkpoint.js";
 import {saveNativeSeaCheckpoint,loadNativeSeaCheckpoint,restoreNativeSeaRuntime,
  NATIVE_CHECKPOINT_CHOICE_KEY} from "./native-sea-checkpoint.js";
+import {nativeCheckpointSlotStorage,recordNativeCheckpointSlot,
+ resolveNativeCheckpointLoad} from "./native-checkpoint-slot-bank.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -2446,20 +2448,25 @@ window.addEventListener("uw2-controller-action", async event => {
         throw new Error("원본 게임 데이터 로딩이 아직 완료되지 않았습니다.");
       const storage=window.localStorage;
       if(action==="checkpoint-save"){
-        if(!selected)throw new Error("선택된 원본 저장 슬롯이 없습니다.");
+        if(!selected||!Number.isSafeInteger(selected.index)||selected.index<0||selected.index>9)
+          throw new Error("선택된 원본 저장 슬롯이 없습니다.");
         if(viewMode==="town"&&townRuntime){
           const result=await saveNativeTownCheckpoint({
-            ...dependencies,storage,session:selected,
-            town:townRuntime.snapshot()
+            ...dependencies,
+            storage:nativeCheckpointSlotStorage(storage,selected.index,"town",{mirrorLatest:true}),
+            session:selected,town:townRuntime.snapshot()
           });
           storage.setItem(NATIVE_CHECKPOINT_CHOICE_KEY,"town");
+          recordNativeCheckpointSlot(storage,result.index,"town");
           checkpointFeedback=`웹 항구 임시저장 완료 · 슬롯 ${result.index+1}`;
         }else if(viewMode==="sea"&&seaRuntime){
           const result=await saveNativeSeaCheckpoint({
-            ...dependencies,storage,session:selected,
-            sea:seaRuntime.snapshot()
+            ...dependencies,
+            storage:nativeCheckpointSlotStorage(storage,selected.index,"sea",{mirrorLatest:true}),
+            session:selected,sea:seaRuntime.snapshot()
           });
           storage.setItem(NATIVE_CHECKPOINT_CHOICE_KEY,"sea");
+          recordNativeCheckpointSlot(storage,result.index,"sea");
           checkpointFeedback=`웹 항해 임시저장 완료 · 슬롯 ${result.index+1}`;
         }else{
           throw new Error("항구 또는 항해 중에만 웹 임시저장할 수 있습니다.");
@@ -2467,12 +2474,15 @@ window.addEventListener("uw2-controller-action", async event => {
         $("runtime-status").textContent=
           checkpointFeedback+" · 원본 DOS 저장 파일 미변경";
       }else{
-        const choice=storage.getItem(NATIVE_CHECKPOINT_CHOICE_KEY);
-        if(choice!==null&&choice!=="town"&&choice!=="sea")
-          throw new Error("웹 체크포인트 종류가 올바르지 않습니다.");
-        if(choice==="sea"){
+        const activeSlot=(selected&&["town","sea","system-menu"].includes(viewMode)
+          &&Number.isSafeInteger(selected.index))?selected.index:null;
+        const choice=resolveNativeCheckpointLoad(storage,activeSlot);
+        if(!choice)throw new Error(activeSlot===null
+          ?"저장된 웹 체크포인트가 없습니다."
+          :`원본 슬롯 ${activeSlot+1}의 웹 체크포인트가 없습니다.`);
+        if(choice.kind==="sea"){
           const restored=await loadNativeSeaCheckpoint({
-            ...dependencies,storage,portCatalogForSlot:sourceCatalogForSlot
+            ...dependencies,storage:choice.storage,portCatalogForSlot:sourceCatalogForSlot
           });
           if(!restored)
             throw new Error("저장된 웹 항해 체크포인트가 없습니다.");
@@ -2491,7 +2501,7 @@ window.addEventListener("uw2-controller-action", async event => {
           checkpointFeedback="웹 항해 이어하기 완료";
         }else{
           const restored=await loadNativeTownCheckpoint({
-            ...dependencies,storage,portCatalogForSlot:sourceCatalogForSlot
+            ...dependencies,storage:choice.storage,portCatalogForSlot:sourceCatalogForSlot
           });
           if(!restored)
             throw new Error("저장된 웹 항구 체크포인트가 없습니다.");

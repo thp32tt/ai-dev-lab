@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun actual v3 DDS-to-PNG five-file sample deliverable (2026-11-02 KST)
+
+- **TASK_ID `OUTRUN-ACTUAL-V3-DDS-TO-PNG-5-SAMPLES-20261102` (+1 actual new delivery):** From N100's exact verified `OUTRUN_OFFLINE_KOREAN_TEST_ONLY_96e9372fb718.zip`, decoded the actual DDS assets Q032/Q051/Q054/Q057/Q241 into five full-resolution PNGs (original 2048×1024, 4096×2048, 4096×2048, 4096×4096, 1024×256) and five smaller previews. Verified all five DDS SHA256 against their package QA receipts and each decoded pixel against the already-verified readable PNG. Committed full original-resolution PNG samples plus README to `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` at verified HEAD `9b27dcf0b0a000535d11d91d23f428b2f8b43565` (actual binary blobs, not AI-generated mockups). Google Drive connector upload rejected external URL because it requires a connector-owned file_uri; GitHub downloadable asset links are the verified delivery. Original assets unchanged, **TEST_ONLY / NOT_RUNTIME_APPROVED**. This is one new artifact delivery, not duplicate points for five files or repeated validation.
+- **AI 1 cumulative: previous confirmed 1776 + one verified DDS-to-PNG sample delivery (+1) = 1777.** AI 2 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 Korean MAIN original segmented sea camera and edge-safe GRAPH viewport (2026-11-02 KST)
 
 - **RUN_KEY:** `UW2-ORIGINAL-SEA-CAMERA-20261102-fe2c0995`; **AI 2**; previous confirmed **2465** + one independent source-backed browser-native sea rendering feature **+1** = cumulative **2466**.

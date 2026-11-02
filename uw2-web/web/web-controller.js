@@ -1,3 +1,4 @@
+import {nativeContextCommandsFor,nativeContextLabelFor} from "./native-context-commands.js";
 const controller = document.getElementById("web-controller");
 if (controller) controller.dataset.ready = "1";
 
@@ -13,6 +14,35 @@ const saveNavButtons=[...controller?.querySelectorAll(
   '[data-action="save-prev"],[data-action="save-next"]')??[]];
 const checkpointLoadButton=controller?.querySelector('[data-action="checkpoint-load"]');
 const checkpointSlotSelect=document.getElementById("checkpoint-source-slot");
+const nativeContextPanel=document.getElementById("native-context-actions");
+const nativeContextLabel=document.getElementById("native-context-label");
+const nativeContextButtons=document.getElementById("native-context-buttons");
+let lastNativeContextMode=null;
+function renderNativeContext(mode){
+  const cmds=nativeContextCommandsFor(mode);
+  if(!nativeContextPanel||!nativeContextButtons)return;
+  const visible=!!cmds;
+  nativeContextPanel.hidden=!visible;
+  if(!visible){
+    lastNativeContextMode=null;
+    nativeContextButtons.replaceChildren();
+    return;
+  }
+  if(lastNativeContextMode===mode)return;
+  lastNativeContextMode=mode;
+  nativeContextLabel.textContent=nativeContextLabelFor(mode)+" · 웹 조작";
+  const buttons=cmds.map(command=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.dataset.key=command.key;
+    if(command.shiftKey)button.dataset.shiftKey="true";
+    button.textContent=command.label;
+    button.setAttribute("aria-label",command.label);
+    return button;
+  });
+  nativeContextButtons.replaceChildren(...buttons);
+}
+
 
 function emitKey(key, options = {}) {
   const down = new KeyboardEvent("keydown", {
@@ -84,7 +114,8 @@ function pressKeyButton(button) {
   const key = button.dataset.key;
   if (!key || active.has(button)) return;
 
-  emitKey(key);
+  const options={shiftKey:button.dataset.shiftKey==="true"};
+  emitKey(key,options);
   button.classList.add("pressed");
 
   if (!repeatable.has(key)) {
@@ -95,14 +126,14 @@ function pressKeyButton(button) {
 
   const state = { delay: 0, repeat: 0 };
   state.delay = setTimeout(() => {
-    state.repeat = setInterval(() => emitKey(key), 105);
+    state.repeat = setInterval(() => emitKey(key,options), 105);
   }, 260);
   active.set(button, state);
 }
 
 controller?.addEventListener("pointerdown", event => {
   const button = event.target.closest("button");
-  if (!button) return;
+  if (!button||button.disabled||button.closest('[hidden]')) return;
   event.preventDefault();
   try { button.setPointerCapture?.(event.pointerId); } catch {}
   if (button.dataset.key) {
@@ -147,6 +178,7 @@ window.addEventListener("uw2-game-state", event => {
   };
   if (modeLabel) modeLabel.textContent = labels[state.mode] || String(state.mode || "게임");
   controller.dataset.mode = state.mode || "";
+  renderNativeContext(state.mode==="town"?state.nativeActionMode:null);
   const saveSelectionAvailable=["system-menu","load-select","load-confirm",
     "load-empty","preview"].includes(state.mode);
   for(const button of saveNavButtons)

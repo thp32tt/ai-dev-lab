@@ -207,6 +207,10 @@ function publishControllerState(extra = {}) {
     : null;
   const detail = {
     mode: viewMode,
+    // The web controller exposes existing native transaction keystrokes
+    // only while that exact source-backed building UI owns the scene.
+    nativeActionMode:viewMode==="town"&&townRuntime?.insideBuilding
+      ? (buildingUi?.mode??null) : null,
     checkpointFeedback,
     checkpointInFlight,
     checkpointSlots:(()=>{

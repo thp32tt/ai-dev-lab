@@ -97,7 +97,14 @@ export function runIsolatedOriginalNearCalls(cpu,{
      call.targetRea!==rawToMainRea(call.targetRaw))
    throw new Error('original near-call source/Ghidra target provenance invalid');
   const rel=call.callRaw-headerBytes;
-  const sourceCS=loadSegment+(rel>>>4),sourceIP=rel&15;
+  const targetRel=call.targetRaw-headerBytes;
+  // Near E8 does not change CS. Both offsets must occupy one proven
+  // 64-KiB segment window. Aligning each source to a separate paragraph
+  // (valid for 9A FAR) would incorrectly wrap a backward E8 target.
+  const windowBase=Math.floor(Math.min(rel,targetRel)/65536)*65536;
+  if(rel-windowBase>65535||targetRel-windowBase>65535)
+   throw new Error('original near CALL spans an unproven code segment');
+  const sourceCS=loadSegment+(windowBase>>>4),sourceIP=rel-windowBase;
   if(!u16(sourceCS))
    throw new Error('original near CALL source outside loaded 8086 segment');
   const source=cpu.physical(sourceCS,sourceIP);

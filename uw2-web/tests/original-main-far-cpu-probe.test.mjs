@@ -75,8 +75,8 @@ cpu.load(Uint8Array.of(0xe8,9,0),0x204,0); // raw 128, target raw 140
 cpu.write8(0x204,12,0xc3);
 const nearEdge=(callRaw,targetRaw)=>({
  role:'SOURCE_AUTHENTICATED_INITIALIZER',
- callRaw,callRea:0x10000+callRaw-64,
- targetRaw,targetRea:0x10000+targetRaw-64,
+ callRaw,callRea:0x10000+callRaw-0x5400,
+ targetRaw,targetRea:0x10000+targetRaw-0x5400,
  status:'GHIDRA_SOURCE_BOUND_WINDOW__CALLEE_SEMANTICS_UNCLASSIFIED',
  observedInstructionCount:3
 });
@@ -86,12 +86,12 @@ const nearResult=runIsolatedOriginalNearCalls(cpu,{
 });
 assert.equal(nearResult.executedOriginalInstructions,2);
 assert.deepEqual(nearResult.calls.map(x=>[x.destinationCS,x.destinationIP]),
- [[0x203,7],[0x204,12]]);
+ [[0x200,55],[0x200,76]]);
 assert.ok(nearResult.calls.every(x=>x.stackWordsPushed===1));
-assert.equal(cpu.get16('CS'),0x204);
-assert.equal(cpu.get16('IP'),12);
+assert.equal(cpu.get16('CS'),0x200);
+assert.equal(cpu.get16('IP'),76);
 assert.equal(cpu.get16('SP'),0xfffc);
-assert.equal(cpu.read16(0x8000,0xfffc),3);
+assert.equal(cpu.read16(0x8000,0xfffc),67);
 assert.ok(Object.isFrozen(nearResult.calls));
 const beforeNear=[cpu.get16('CS'),cpu.get16('IP'),cpu.get16('SP')];
 for(const altered of [

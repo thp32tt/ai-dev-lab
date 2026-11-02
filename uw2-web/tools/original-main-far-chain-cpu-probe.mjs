@@ -21,6 +21,7 @@ const SECOND_CALL=0x27e3d,SECOND_TARGET=0x3a879;
 const NEAR_CALL=0x3a87b,NEAR_TARGET=0x3a566;
 const NEAR_RETURN=0x3a87e,HELPER_END=0x3a584;
 const SECOND_CALLEE_RETURN=0x27e42,SECOND_TAIL_END=0x3a8a8;
+const FIRST_CALLEE_RETURN=0x1b4f6,FIRST_TAIL_END=0x27eca;
 const UNVERIFIED_SELECTOR_CALL=0x3a892;
 const HEADER=0x5400;
 const u16=x=>Number.isSafeInteger(x)&&x>=0&&x<=0xffff;
@@ -119,6 +120,10 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
    physically(loadSegment,SECOND_TARGET)+NEAR_TARGET-SECOND_TARGET)
   throw new Error('original MAIN E8 target is not authenticated');
  const helper=covered(m3,NEAR_TARGET,HELPER_END,bytes);
+ // This original first callee has one authentic RETF at 27EC9. The
+ // bounded synthetic zero-entry count follows its actual no-iteration
+ // path and never invents the ES-based map-record scan semantics.
+ const firstTail=covered(m2,SECOND_CALLEE_RETURN,FIRST_TAIL_END,bytes);
  // The complete source-authenticated selector tail has three genuine
  // RETF exits. One source E8 at 3A892 reaches an unproven downstream
  // helper, so the executor must reject that branch rather than stub it.
@@ -152,6 +157,8 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
  return Object.freeze({first,firstCall,secondCall,near,helper,
    helperSourceStarts:Object.freeze([...helper]),
    secondTailSourceStarts:Object.freeze([...tail]),
+   firstTailSourceStarts:Object.freeze([...firstTail]),
+   verifiedFirstTailBoundaries:firstTail.size,
    verifiedSecondTailBoundaries:tail.size,
    loadSegment,verifiedOriginalHelperStarts:helper.size,
    farCallCount:2,nearCallCount:1,ownerHash:MAIN_NEW_GAME_SOURCE_SHA256});
@@ -200,6 +207,9 @@ export async function probeOriginalMainFarChain(bytes,parts,{
  // Source code and game data are authentic; DOS runtime DS/SS are
  // explicitly test-only, never asserted to be original DOS state.
  cpu.write16(0x7000,0x0c1e,inputWord);
+ // Source DS:C12E loop bound is not yet traced to a live DOS state;
+ // zero is an explicit isolated-input test, NOT a discovered game value.
+ cpu.write16(0x7000,0xc12e,0);
  // Explicit synthetic selector: 7 bytes per entry beginning at BFF0.
  // Source-backed index helper computes BFF0 + input * 7 for 0..19.
  // Never pretend these values came from an original DOS startup state.
@@ -281,22 +291,44 @@ export async function probeOriginalMainFarChain(bytes,parts,{
  const expectedResult=inputWord>=20?0:recordType===0?recordValue:0;
  if(selectorResult!==expectedResult)
   throw new Error('original selector return AX disagrees with synthetic record');
+ // Follow the original 27E32 caller through its epilogue. On a synthetic
+ // zero-entry map loop, the source CMP/JG at 27EBE does not enter the
+ // unknown ES record scanner: it returns by its real RETF at 27EC9.
+ const firstTail=new Set(proof.firstTailSourceStarts.map(raw=>
+  physically(loadSegment,raw)));
+ let firstTailSteps=0;
+ for(;firstTailSteps<96;firstTailSteps++){
+  const p=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
+  if(cpu.get16('CS')===f1.cs&&cpu.get16('IP')===((f1.ip+5)&65535)&&
+     p===physically(loadSegment,FIRST_CALLEE_RETURN))break;
+  if(!firstTail.has(p))
+   throw new Error('first original callee left verified 8086 tail boundary');
+  cpu.step();
+ }
+ if(firstTailSteps===96||cpu.get16('SP')!==f1.sp||
+    cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+      physically(loadSegment,FIRST_CALLEE_RETURN))
+  throw new Error('original first callee failed to RETF to initializer');
  return Object.freeze({
   sourceHash:MAIN_NEW_GAME_SOURCE_SHA256,
   executedInitializerInstructions:init.steps,
   executedCalleePrefixInstructions:calleeSteps,
   executedIndexHelperInstructions:helperSteps,
   executedSecondCalleeTailInstructions:tailSteps,
-  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+tailSteps+2,
+  executedFirstCalleeTailInstructions:firstTailSteps,
+  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+tailSteps+firstTailSteps+2,
   verifiedIndexHelperBoundaries:proof.verifiedOriginalHelperStarts,
   actualChainedFarCalls:2,actualNestedNearCalls:1,
   originalInputWord:inputWord,originalIndexOffset:mapped,
   returnedToRaw:NEAR_RETURN,
   secondCalleeReturnedToRaw:SECOND_CALLEE_RETURN,
+  firstCalleeReturnedToRaw:FIRST_CALLEE_RETURN,
   verifiedSecondCalleeTailBoundaries:proof.verifiedSecondTailBoundaries,
+  verifiedFirstCalleeTailBoundaries:proof.verifiedFirstTailBoundaries,
   syntheticRecordType:recordType,syntheticRecordValue:recordValue,
   originalSelectorResult:selectorResult,
-  stoppedBeforeUnclassifiedFirstCalleeLoop:true,
+  syntheticFirstCalleeLoopCount:0,
+  stoppedBeforeOriginalInitializerFinalReturn:true,
   originalDosRuntimeVerified:false,freshGameReady:false
  });
 }
@@ -319,7 +351,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   console.log(JSON.stringify({testedInputs:points.length+2,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
-   allReturned:results.every(x=>x.secondCalleeReturnedToRaw===SECOND_CALLEE_RETURN),
+   allReturned:results.every(x=>x.firstCalleeReturnedToRaw===FIRST_CALLEE_RETURN),
    results},null,2));
  }catch(e){console.error(e.stack||String(e));process.exitCode=1;}
 }

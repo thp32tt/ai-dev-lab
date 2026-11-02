@@ -428,7 +428,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
      throw new Error('original type-1 helper entered unverified nonzero span');
     cpu.step();tailSteps++;typeOneHelperSteps++;
    }
-   if(!returned||cpu.get16('SP')!==sourceSP)
+   if(!returned||cpu.get16('SP')!==sourceSP+2)
     throw new Error('original type-1 helper failed authentic RETF return');
    continue;
   }

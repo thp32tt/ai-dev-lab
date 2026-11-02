@@ -64,6 +64,7 @@ assert.match(app,/stepTownClickRoute\(\)/);
 assert.match(app,/action==="town-door-go"/);
 assert.match(app,/action==="town-door-stop"/);
 assert.match(app,/Number\.isSafeInteger\(buildingId\)/);
+assert.match(app,/townDoorWalking:Number\.isSafeInteger\(townClickPlan\?\.targetBuildingId\)/);
 assert.match(controller,/emitAction\(action,\{buildingId:id\}\)/);
 assert.match(controller,/renderSourceDoorControls\(state\)/);
 assert.match(html,/id="town-door-panel"[^>]*hidden/);

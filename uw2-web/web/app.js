@@ -265,7 +265,7 @@ function publishControllerState(extra = {}) {
     townSourceDoors:viewMode==="town"&&townRuntime&&!townRuntime.insideBuilding
       ? nativeTownSourceDoorChoices(townRuntime.snapshot(),townRuntime.doors)
       : [],
-    townDoorWalking:!!townClickPlan?.targetBuildingId,
+    townDoorWalking:Number.isSafeInteger(townClickPlan?.targetBuildingId),
     checkpointFeedback,
     checkpointInFlight,
     checkpointSlots:(()=>{

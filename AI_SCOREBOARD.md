@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun actual Q032/Q241 DDS safe pilot package (2026-11-02 KST)
+
+- **TASK_ID:** `OUTRUN-Q032-Q241-VERIFIED-DDS-TEST-PILOT-20261102`; **AI 2**. New independently deliverable source DDS pilot: 2 real previously rendered DDS, receipt and source-hash manifest were separately packaged on N100, CRC verified, SHA256 `63d713551e4018f4f1cc131db230e422ef2ca643d3bffb99a0a8c26c39203633`, 581,991 bytes. Published actual binary via GitHub blob/tree/commit, `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` commit `ccde464d828f2e7be05f6db4a1ac2f7d1b6690f7`; confirmed exact remote file path and byte size by GitHub directory readback. Scope Q032 rank and Q241 loading. Separate local Python package contains safe ZIP hash verification, staging, explicit opt-in apply with backups and fail-closed restore; synthetic stage/install/restore test PASS. Original N100 v3 104-DDS ZIP remains intact and separate. No user-game or Portainer deployment was executed; `TEST_ONLY`, `RUNTIME_VALIDATION=UNTESTED`. **One packaged pilot deliverable +1; source zip preservation, QA receipts, previews, code subcommits and restaging do not add further points.**
+
+## AI 2 OutRun 954 ROI existing A/B PNG mapping for DDS integration (2026-11-02 KST)
+
+- **TASK_ID:** `OUTRUN-AB-954-ROI-CROSSWALK-20261102`; **AI 2**. New independent read-only mapping tool `tools/localization/existing_korean_candidate_audit.py` committed at `debd88731410ae3965cd1d553f8314e026c65c0b`. Executed on real N100 manifest/candidate storage: 1002 manifest rows (954 active/48 retired), 955 A/B PNGs (954 exact individual active ROI candidate matches, 1 unmatched historic Q104 source), ambiguous=0, missing=0. Generated 954-row source SHA/ROI/translation/candidate-location CSV and summary, published GitHub binary blobs `localization/test_packages/ab_preparation_20261102/` at `4f3b4ff4ff3024298afc7011d7f35da6ae57a974`, remote contents verified. All candidate QA remains UNVERIFIED; actual CLEAN/compositing, DDS production, pixel pass, runtime game testing not done. **One independently completed crosswalk/index deliverable +1; rereads, docs, and same-task reruns +0 additional.**
+
+- **Score accounting:** previous latest confirmed **2471** + packaged pilot **(+1)** + 954 ROI source-to-candidate crosswalk **(+1)** = AI 2 cumulative **2473**. AI 1 unchanged. These are separate outputs, not duplicate scoring of one DDS/image. No software runtime PASS claimed.
+
 ## AI 2 UW2 native browser checkpoints independently persisted for 10 original source slots and explicit selector (2026-11-02 KST)
 
 - **RUN_KEY:** `UW2-MULTI-SOURCE-CHECKPOINT-20261102-694312B4`; **AI 2**. Previous GitHub SSOT **2470** + one independent, working browser gameplay save/resume capability **(+1)** = cumulative **2471**. The per-slot storage implementation, explicit resume selector, CI repairs, deployment and browser retests are parts of this ONE feature and are not scored separately. AI 1 unchanged.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간이용권 주말 특가 독립 조사 (2026-11-03 08:44:25 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-03T08:44:25+09:00`; **AI 2 ChatGPT2**; **이전 확정 2509점 + 이번 독립 조회·교차검증 +1점 = 최신 누적 2510점**; 최종 확인 시각 **2026-11-03 08:44:25 KST**. AI 1 점수 변경 없음.
+- **조사 결과:** 2026-11-03 수도권 워터파크·아쿠아리움·놀이공원·동물원·키즈 체험시설의 주말 사용 가능 연간권·시즌권·다회권 신규 최저가, 재판매, 부가혜택·기한 변경 여부 확인. SEA LIFE 코엑스 스마트인피니 판매처 79,000원 싱글 연간권(2026-11-01~2027-10-31 고정, 2026-11-30 정보등록 및 최초 현장 입장 필수, 주말 가능, 36개월 미만 무료, 코엑스 주차 4시간 4,800원)은 11/02 이미 안내한 동일 상품·동일 조건이므로 중복 알림 제외. 공식 레고랜드+코엑스 더블패스 신규 119,000원/재가입 99,000원, 구매일부터 1년, 운영일 주말 가능, 휴장일 제외, 36개월 미만 무료, 기본 무료주차 없음 역시 동일. 서울랜드 5개월 시즌권은 과거 등록 페이지만 확인되고 신규 판매 검증 안 됨. 서울대공원 둘모아 연간권 215,000원 공식 요금 안내는 확인했으나 현재 신규 구매·조건의 확정 증거가 부족해 신규 특가로 단정하지 않음. 웅진플레이도시 11월 예매특가는 1회권 성격이며 연간권/월이용권은 기존 일반요금으로 확인; 아쿠아플라넷 일산·원마운트·롯데월드·키즈시설에서도 새 추천 상품의 판매 조건 미검증. 평일 전용·종료 특가 제외. **신규 추천 알림 없음**.
+- **근거:** https://nseoul.smartinfini.com/?pcode=S3391500&pn=product.view ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://www.legoland.kr/티켓요금할인/연간-이용권/구매-및-혜택/ ; https://www.playdoci.com/ ; https://www.playdoci.com/water/annualpass/information.aspx ; https://grandpark.seoul.go.kr/conts/contsView/ko/S001001001002003.do ; https://onestop.seoulland.co.kr/m/season/seasonTicket/5SEASON . 결제 성공·재고/일부 현장 등록은 테스트하지 않았으며 미확인은 판매 부재를 의미하지 않음.
+
+Updated: 2026-11-03 08:44:25 KST
+
 ## AI 2 original Korean MAIN real INT 67h AH44 EMS map/return (2026-11-03 KST)
 
 - **RUN_KEY:** `UW2-ORIGINAL-MAIN-TYPE1-EMS44-AUTHENTIC-CPU-20261103-8424A407`; **AI 2 ChatGPT2**. Previously confirmed GitHub SSOT cumulative **2508** + one independently implemented source-executed EMS 44h memory-map path **(+1)** = newly confirmed **2509 cumulative AI 2 points**. Previous zero-length type-1 authentic source execution is not rescored. Intermediate source experiment (incorrectly assuming nonnegative count bypasses EMS), same-achievement CI fixes, readback and rechecks all count **+0**. AI 1 unchanged.

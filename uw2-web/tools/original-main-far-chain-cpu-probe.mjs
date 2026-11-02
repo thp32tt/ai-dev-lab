@@ -29,6 +29,7 @@ const OWNER_FILL_END=0x1b694,OWNER_FILL_LENGTH=0x300;
 const TYPE_ONE_SELECTOR_CALL=0x3a892;
 const TYPE_ONE_HELPER_START=0x3a846,TYPE_ONE_HELPER_END=0x3a879;
 const TYPE_ONE_NESTED_UNVERIFIED_CALL=0x3a866;
+const TYPE_ONE_EMS_SERVICE=0x3a983;
 const HEADER=0x5400;
 const u16=x=>Number.isSafeInteger(x)&&x>=0&&x<=0xffff;
 const word=(data,i)=>data[i]|(data[i+1]<<8);
@@ -205,6 +206,19 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
  if(typeOneReturns!==1||bytes[TYPE_ONE_HELPER_END-1]!==0xcb||
     bytes[TYPE_ONE_NESTED_UNVERIFIED_CALL]!==0xe8)
   throw new Error('original type-1 helper RETF/source changed');
+ // Positive record counts enter 3A975 and invoke the owner source's
+ // INT 67h. It is not a source-validated EMS adapter in this harness:
+ // verifying the bytes is NOT permission to synthesize its effects.
+ const emsCall=m3.get(rawToMainRea(TYPE_ONE_EMS_SERVICE));
+ const nested=m3.get(rawToMainRea(TYPE_ONE_NESTED_UNVERIFIED_CALL));
+ const displacement2=word(bytes,TYPE_ONE_NESTED_UNVERIFIED_CALL+1);
+ const signed2=displacement2>=0x8000?displacement2-0x10000:displacement2;
+ if(!emsCall||emsCall.flow!=='INTERRUPT'||emsCall.length!==2||
+    bytes[TYPE_ONE_EMS_SERVICE]!==0xcd||
+    bytes[TYPE_ONE_EMS_SERVICE+1]!==0x67||
+    !nested||nested.flow!=='CALL_NEAR'||nested.length!==3||
+    TYPE_ONE_NESTED_UNVERIFIED_CALL+3+signed2!==0x3a975)
+  throw new Error('original type-1 positive-span INT 67h provenance changed');
  const tail=new Set();
  let tailReturns=0;
  for(let raw=NEAR_RETURN;raw<SECOND_TAIL_END;){
@@ -241,6 +255,7 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
    secondTailSourceStarts:Object.freeze([...tail]),
    typeOneHelperSourceStarts:Object.freeze([...typeOneHelper]),
    verifiedTypeOneHelperBoundaries:typeOneHelper.size,
+   typeOnePositiveSpanRequiresOriginalInt67:true,
    firstTailSourceStarts:Object.freeze([...firstTail]),
    verifiedFirstTailBoundaries:firstTail.size,
    verifiedSecondTailBoundaries:tail.size,
@@ -287,7 +302,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
     !u16(fillIndex)||
     fillIndex>=20||fillIndex===inputWord||
     !u16(fillSegment)||fillSegment<0x9000||fillSegment>0xf000)
-  throw new Error('synthetic original selector input/record must be u16/u8');
+  throw new Error('synthetic original selector input invalid or type-1 nonzero span requires unimplemented INT 67h');
  const proof=verifyOriginalMainFarChain(bytes,parts,{loadSegment});
  const mz=inspectMzForLoad(bytes);
  const cpu=new RealMode8086();
@@ -572,6 +587,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   completedBoundedInitializerFunction:true,
   verifiedSecondCalleeTailBoundaries:proof.verifiedSecondTailBoundaries,
   verifiedTypeOneHelperBoundaries:proof.verifiedTypeOneHelperBoundaries,
+  typeOnePositiveSpanRequiresOriginalInt67:proof.typeOnePositiveSpanRequiresOriginalInt67,
   verifiedFirstCalleeTailBoundaries:proof.verifiedFirstTailBoundaries,
   syntheticRecordType:recordType,syntheticRecordValue:recordValue,
   syntheticRecordSpanLength:recordSpanLength,
@@ -605,7 +621,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   try{await probeOriginalMainFarChain(bytes,parts,{
    inputWord:7,recordType:1,recordSpanLength:1});}
   catch(error){
-   if(!String(error.message).includes('synthetic original selector input'))throw error;
+   if(!String(error.message).includes('unimplemented INT 67h'))throw error;
    rejectedUnverifiedSelector=true;
   }
   if(!rejectedUnverifiedSelector)throw new Error('unverified type-1 positive span unexpectedly executed');

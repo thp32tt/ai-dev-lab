@@ -24,6 +24,8 @@ const SECOND_CALLEE_RETURN=0x27e42,SECOND_TAIL_END=0x3a8a8;
 const FIRST_CALLEE_RETURN=0x1b4f6,FIRST_TAIL_END=0x27eca;
 const PARENT_ENTRY=0x1b66a,PARENT_E8=0x1b66b,PARENT_RETURN=0x1b66e;
 const MAP_INIT_RETURN=0x1b4f8;
+const OWNER_FILL_SELECT=0x1b671,OWNER_FILL_BEGIN=0x1b66e;
+const OWNER_FILL_END=0x1b694,OWNER_FILL_LENGTH=0x300;
 const UNVERIFIED_SELECTOR_CALL=0x3a892;
 const HEADER=0x5400;
 const u16=x=>Number.isSafeInteger(x)&&x>=0&&x<=0xffff;
@@ -124,6 +126,31 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
  const firstCall=callRecord(bytes,mz,m1,
   FIRST_CALL,FIRST_TARGET,loadSegment);
  const secondCall=callRecord(bytes,mz,m2,SECOND_CALL,SECOND_TARGET,loadSegment);
+ const ownerFillCall=callRecord(bytes,mz,m1,OWNER_FILL_SELECT,
+  SECOND_TARGET,loadSegment);
+ // Original parent: DS:[0C16] index -> already authenticated
+ // relocated selector -> returned AX segment -> ES:0000..02FF := FF.
+ const ownerFillStarts=new Set();
+ for(let raw=OWNER_FILL_BEGIN;raw<OWNER_FILL_END;){
+  const inst=m1.get(rawToMainRea(raw));
+  if(!inst||!Number.isSafeInteger(inst.length)||inst.length<1||
+     raw+inst.length>OWNER_FILL_END)
+   throw new Error('original ES-fill owner Ghidra coverage incomplete');
+  if(inst.flow==='CALL_NEAR'||inst.flow==='RETURN'||inst.flow==='INTERRUPT'||
+     (inst.flow==='CALL_FAR'&&raw!==OWNER_FILL_SELECT))
+   throw new Error('original ES-fill owner unexpected control transfer');
+  if(Number.isSafeInteger(inst.targetRea)&&
+     (inst.targetRea<rawToMainRea(OWNER_FILL_BEGIN)||
+      inst.targetRea>=rawToMainRea(OWNER_FILL_END)||
+      !m1.has(inst.targetRea)))
+   throw new Error('original ES-fill loop exits source-authenticated region');
+  ownerFillStarts.add(raw);raw+=inst.length;
+ }
+ if(ownerFillStarts.size<14||bytes[OWNER_FILL_BEGIN]!==0xa1||
+    bytes[0x1b683]!==0x8b||bytes[0x1b686]!==0x26||
+    bytes[0x1b68a]!==0xff||bytes[0x1b68e]!==0x81||
+    bytes[0x1b692]!==0x7c)
+  throw new Error('original ES:768-byte loop source bytes changed');
  for(const [pos,len] of [[0x27e32,1],[0x27e33,2],
    [0x27e35,3],[0x27e38,1],[0x27e39,1],[0x27e3a,3]])
   expectOpcode(m2,pos,bytes,'FALLTHROUGH',len);
@@ -173,6 +200,7 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
  if(half+bytes.length>0x100000)
   throw new Error('original guest image would overlap physical real-mode wrap');
  return Object.freeze({first,firstCall,secondCall,near,helper,
+   ownerFillCall,ownerFillStarts:Object.freeze([...ownerFillStarts]),
    parentSourcePhysical:physically(loadSegment,PARENT_ENTRY),
    parentSourceCS:loadSegment+0x1000,parentSourceIP:0x626a,
    parentReturnIP:0x626e,
@@ -213,10 +241,13 @@ function executeOneFar(cpu,bytes,call,loadSegment){
   destinationIP:cpu.get16('IP')});
 }
 export async function probeOriginalMainFarChain(bytes,parts,{
- inputWord=0,recordType=0,recordValue=0x1234,loadSegment=0x2000
+ inputWord=0,recordType=0,recordValue=0x1234,
+ fillIndex=6,fillSegment=0x9000,loadSegment=0x2000
 }={}){
  if(!u16(inputWord)||!u16(recordValue)||
-    !u16(recordType)||recordType>255)
+    !u16(recordType)||recordType>255||!u16(fillIndex)||
+    fillIndex>=20||fillIndex===inputWord||
+    !u16(fillSegment)||fillSegment<0x9000||fillSegment>0xf000)
   throw new Error('synthetic original selector input/record must be u16/u8');
  const proof=verifyOriginalMainFarChain(bytes,parts,{loadSegment});
  const mz=inspectMzForLoad(bytes);
@@ -231,6 +262,15 @@ export async function probeOriginalMainFarChain(bytes,parts,{
  // Source DS:C12E loop bound is not yet traced to a live DOS state;
  // zero is an explicit isolated-input test, NOT a discovered game value.
  cpu.write16(0x7000,0xc12e,0);
+ // Synthetic private writable segment (no source code overlap).
+ // The selection comes from a different entry than the first callee.
+ cpu.write16(0x7000,0x0c16,fillIndex);
+ cpu.write8(0x7000,0xbff0+7*fillIndex,0);
+ cpu.write16(0x7000,0xbff0+7*fillIndex+1,fillSegment);
+ cpu.write8(fillSegment,0xffff,0x39);
+ for(let i=0;i<OWNER_FILL_LENGTH;i++)
+  cpu.write8(fillSegment,i,0x5a);
+ cpu.write8(fillSegment,OWNER_FILL_LENGTH,0x73);
  // Explicit synthetic selector: 7 bytes per entry beginning at BFF0.
  // Source-backed index helper computes BFF0 + input * 7 for 0..19.
  // Never pretend these values came from an original DOS startup state.
@@ -361,6 +401,77 @@ export async function probeOriginalMainFarChain(bytes,parts,{
     cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
       physically(loadSegment,PARENT_RETURN))
   throw new Error('original initializer failed authentic parent E8/RETF return');
+ // Execute original parent second selector + real 768-byte REP-free
+ // ES-write loop. The original caller's prologue before 1B66A is not
+ // reconstructed, so STOP just before its 1B694 epilogue.
+ const ownerAllowed=new Set(proof.ownerFillStarts.map(raw=>
+  physically(loadSegment,raw)));
+ const nestedAllowed=new Set(proof.helperSourceStarts.map(raw=>
+  physically(loadSegment,raw)));
+ const selectorAllowed=new Set(proof.secondTailSourceStarts.map(raw=>
+  physically(loadSegment,raw)));
+ let followSteps=0,secondSelectionSteps=0,secondIndexSteps=0,
+  ownerSecondCallCount=0;
+ while(followSteps<10000){
+  const p=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
+  if(p===physically(loadSegment,OWNER_FILL_END)&&
+      cpu.get16('CS')===proof.parentSourceCS)break;
+  if(!ownerAllowed.has(p))
+   throw new Error('original parent ES-fill instruction left verified source');
+  if(p===physically(loadSegment,OWNER_FILL_SELECT)){
+   const frame=executeOneFar(cpu,bytes,proof.ownerFillCall,loadSegment);
+   ownerSecondCallCount++;
+   for(const expectedRaw of [SECOND_TARGET,SECOND_TARGET+1,NEAR_CALL]){
+    if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+      physically(loadSegment,expectedRaw))
+     throw new Error('original second selector prologue mismatch');
+    cpu.step();secondSelectionSteps++;
+   }
+   if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+       physically(loadSegment,NEAR_TARGET))
+    throw new Error('source-authenticated second E8 helper not entered');
+   const indexReturnIp=cpu.read16(cpu.get16('SS'),cpu.get16('SP'));
+   const indexReturnCs=cpu.read16(cpu.get16('SS'),cpu.get16('SP')+2);
+   for(let i=0;i<48;i++){
+    const q=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
+    if(q===physically(loadSegment,NEAR_RETURN)&&
+       cpu.get16('CS')===indexReturnCs&&
+       cpu.get16('IP')===indexReturnIp)break;
+    if(!nestedAllowed.has(q))
+     throw new Error('original second selector helper escaped source');
+    cpu.step();secondIndexSteps++;
+   }
+   if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+     physically(loadSegment,NEAR_RETURN))
+    throw new Error('original second selector helper did not return');
+   for(let i=0;i<32;i++){
+    const q=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
+    if(q===physically(loadSegment,OWNER_FILL_SELECT+5)&&
+       cpu.get16('CS')===frame.cs&&
+       cpu.get16('IP')===((frame.ip+5)&65535))break;
+    if(!selectorAllowed.has(q)||q===physically(loadSegment,UNVERIFIED_SELECTOR_CALL))
+     throw new Error('original second selector entered unverified source');
+    cpu.step();secondSelectionSteps++;
+   }
+   if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+      physically(loadSegment,OWNER_FILL_SELECT+5)||
+      cpu.get16('SP')!==frame.sp||
+      cpu.get16('AX')!==fillSegment)
+    throw new Error('original second selector returned wrong segment/stack');
+   continue;
+  }
+  cpu.step();followSteps++;
+ }
+ if(followSteps===10000||ownerSecondCallCount!==1||
+   cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+     physically(loadSegment,OWNER_FILL_END)||
+   cpu.get16('ES')!==fillSegment||
+   cpu.read8(fillSegment,0xffff)!==0x39||
+   cpu.read8(fillSegment,OWNER_FILL_LENGTH)!==0x73||
+   cpu.get16('SI')!==OWNER_FILL_LENGTH||
+   Array.from({length:OWNER_FILL_LENGTH},(_,i)=>
+     cpu.read8(fillSegment,i)).some(v=>v!==255))
+  throw new Error('original 8086 ES 768-byte clear/fill diverged');
  return Object.freeze({
   sourceHash:MAIN_NEW_GAME_SOURCE_SHA256,
   executedInitializerInstructions:init.steps,
@@ -370,7 +481,11 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   executedFirstCalleeTailInstructions:firstTailSteps,
   executedParentCallInstructions:2,
   executedInitializerFinalReturnInstructions:3,
-  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+tailSteps+firstTailSteps+2+2+3,
+  executedParentESFillInstructions:followSteps,
+  executedSecondSelectorInstructions:secondSelectionSteps+secondIndexSteps+1,
+  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+
+    tailSteps+firstTailSteps+2+2+3+followSteps+
+    secondSelectionSteps+secondIndexSteps+1,
   verifiedIndexHelperBoundaries:proof.verifiedOriginalHelperStarts,
   actualChainedFarCalls:2,actualNestedNearCalls:1,
   originalInputWord:inputWord,originalIndexOffset:mapped,
@@ -384,7 +499,11 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   syntheticRecordType:recordType,syntheticRecordValue:recordValue,
   originalSelectorResult:selectorResult,
   syntheticFirstCalleeLoopCount:0,
-  stoppedBeforeUnclassifiedParentContinuation:true,
+  ownerFillStoppedAtRaw:OWNER_FILL_END,
+  ownerFillSegment:fillSegment,
+  ownerFillVerifiedBytes:OWNER_FILL_LENGTH,
+  ownerFillOriginalSelectorCalls:ownerSecondCallCount,
+  stoppedBeforeParentStackEpilogue:true,
   originalDosRuntimeVerified:false,freshGameReady:false
  });
 }
@@ -407,7 +526,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   console.log(JSON.stringify({testedInputs:points.length+2,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
-   allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN),
+   allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN&&x.ownerFillStoppedAtRaw===OWNER_FILL_END),
    results},null,2));
  }catch(e){console.error(e.stack||String(e));process.exitCode=1;}
 }

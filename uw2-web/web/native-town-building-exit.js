@@ -1,6 +1,7 @@
 import {PortWalkingRuntime} from './town.js';
 import {syncNativeTownSession} from './native-save-session.js';
 import {prepareNativeTownTimeTransition} from './native-town-time-transaction.js';
+import {nativeTownCommitWitness} from './native-town-commit-witness.js';
 
 // Browser-native source town exit: stage calendar and PORTMAP/PORTCHIP
 // geometry before committing the view and the original-shaped save copy.
@@ -32,7 +33,9 @@ export function prepareNativeTownBuildingExit({session,runtime,assets,kind,ticks
   const candidate={port:session.port};
   const landing=syncNativeTownSession(candidate,draft.snapshot(),assets);
   if(!landing.updated)return hold(landing.reason);
-  return {allowed:true,session,runtime,kind,
+  const witness=nativeTownCommitWitness(session,runtime);
+  if(witness===null)return hold('native-building-witness-unavailable');
+  return {allowed:true,session,runtime,kind,assets,witness,
    updates:{...time.updates,portState:candidate.portState,
      townActors:candidate.townActors},
    fields:{viewX:draft.viewX,viewY:draft.viewY,
@@ -45,7 +48,10 @@ export function prepareNativeTownBuildingExit({session,runtime,assets,kind,ticks
 }
 export function commitNativeTownBuildingExit(tx){
  if(!tx?.allowed||!tx.session||!tx.runtime||
-    tx.runtime.slot!==tx.session)return false;
+    tx.runtime.slot!==tx.session||
+    tx.runtime.portAssets!==tx.assets||
+    nativeTownCommitWitness(tx.session,tx.runtime)!==tx.witness)
+  return false;
  Object.assign(tx.runtime,tx.fields);
  Object.assign(tx.session,tx.updates);
  return true;

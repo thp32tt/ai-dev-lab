@@ -1,5 +1,6 @@
 import {PortWalkingRuntime} from './town.js';
 import {syncNativeTownSession} from './native-save-session.js';
+import {nativeTownCommitWitness} from './native-town-commit-witness.js';
 
 // Move only a small native town runtime draft (player fields and <=8 actors).
 // Validate against original PORTMAP/PORTCHIP geometry before changing the
@@ -38,12 +39,18 @@ export function prepareNativeTownMovement({session,runtime,assets,direction,rng}
    // Only recognized fields may be committed: never copy a test RNG,
    // source assets, rendered DOM or an untrusted runtime's dynamic hooks.
    const fields=Object.fromEntries(mutable.map(k=>[k,staged[k]]));
+   const witness=nativeTownCommitWitness(session,runtime);
+   if(witness===null)return refuse('native-town-witness-unavailable');
    return {allowed:true,movement,updates,fields,session,runtime,
-     source:'BROWSER_NATIVE_TOWN_MOVE_SOURCE_GEOMETRY_ATOMIC'};
+     assets,witness,source:'BROWSER_NATIVE_TOWN_MOVE_SOURCE_GEOMETRY_ATOMIC'};
  }catch{return refuse('native-town-move-unavailable');}
 }
 export function commitNativeTownMovement(prepared){
- if(!prepared?.allowed||!prepared.session||!prepared.runtime)return false;
+ if(!prepared?.allowed||!prepared.session||!prepared.runtime||
+    prepared.runtime.slot!==prepared.session||
+    prepared.runtime.portAssets!==prepared.assets||
+    nativeTownCommitWitness(prepared.session,prepared.runtime)!==prepared.witness)
+  return false;
  Object.assign(prepared.runtime,prepared.fields);
  Object.assign(prepared.session,prepared.updates);
  return true;

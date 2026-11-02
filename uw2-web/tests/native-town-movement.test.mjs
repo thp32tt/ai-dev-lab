@@ -68,6 +68,26 @@ hold(corrupt,'ORIGINAL_TOWN_GEOMETRY_UNVERIFIED');
 const badActors=setup();
 badActors.runtime.actors={invalid:true};
 hold(badActors,'native-town-owner-invalid');
+// A late keyboard commit cannot rewind a newer native movement/dialogue.
+const race=setup();
+const first=prepareNativeTownMovement({...race,direction:'right',rng:()=>.99});
+const stale=prepareNativeTownMovement({...race,direction:'down',rng:()=>.99});
+assert.equal(first.allowed,true);
+assert.equal(stale.allowed,true);
+assert.equal(commitNativeTownMovement(first),true);
+const committed=structuredClone(race.session);
+const committedView=race.runtime.snapshot();
+assert.equal(commitNativeTownMovement(stale),false);
+assert.deepEqual(race.session,committed);
+assert.deepEqual(race.runtime.snapshot(),committedView);
+const walletRace=setup();
+walletRace.session.money=100;
+const quote=prepareNativeTownMovement({...walletRace,direction:'right',rng:()=>.99});
+assert.equal(quote.allowed,true);
+walletRace.session.money=200; // owner changed after staging
+assert.equal(commitNativeTownMovement(quote),false);
+assert.equal(walletRace.runtime.mapX,22);
+assert.equal(walletRace.session.money,200);
 // The active keyboard movement path must use the staged transaction.
 const app=readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.ok(app.includes('const step=prepareNativeTownMovement({'));

@@ -726,3 +726,10 @@
 - 기존 AUTO는 `SeaRuntime.tick()`의 `coast-block` 충돌 후에도 `advanced:true`로 다음 220ms 자동 틱을 실행할 수 있었다. 해안에 막힌 채 20분 시각·보급품·월이자가 무한 누적될 위험을 차단한다.
 - `web/native-sea-auto.js`에서 사후 기항 탐지 우선순위를 보존한 후 실제 `coast-block` 이벤트에만 `stopAtCoast`를 반환한다. 정상 `accumulate` 상태는 계속 움직이도록 한다. `web/app.js`는 반환값으로 다음 AUTO 반복을 중지한다. 충돌 당시 **정상 커밋된 1개 20분 틱은 되돌리지 않는다**.
 - 기존 Fidelity Actions에서 실행되는 `tests/native-sea-auto.test.mjs`에 원본 형태 2×2 항해 충돌 검사, 날짜 한 틱 증가 및 게임 AUTO 중지 연결 회귀를 추가한다. 원본 DOS 항해 동등성 또는 사용자 원본 자산 Firefox 플레이는 **RUNTIME_VALIDATION=UNTESTED**.
+
+
+## 2026-11-02 항구 보행·건물 퇴장 준비/커밋 간 상태 변경 차단
+
+- 실제 브라우저의 `prepareNativeTownMovement` / `commitNativeTownMovement`, `prepareNativeTownBuildingExit` / `commitNativeTownBuildingExit`는 원본 PORTMAP/PORTCHIP와 달력·NPC 좌표를 검증한 후 상태를 커밋한다. 준비된 오래된 이동/숙박 후보를 다른 게임 상태 변경 이후 그대로 적용하면 최신 위치·NPC·은행잔액·날짜를 덮어쓸 수 있는 문제가 있었다.
+- 새 경량 `native-town-commit-witness.js`는 33KB 저장 원본이나 DOM 대신 준비 시점의 소스 포트/위치/NPC/시간·자금·화면 런타임 스냅샷을 캡처하며, 커밋 시 소유 세션·자산의 동일성과 증거 스냅샷 동일성을 재확인한다. 실패하면 아무 필드도 변경하지 않는다. 한 시점에 하나씩 정상 처리되는 기존 방향키와 숙박 경로는 그대로 유지한다.
+- `native-town-movement.test.mjs`와 `native-town-building-exit.test.mjs`에 두 후보의 역순 커밋, 변경된 자금·은행잔액, 변경된 런타임 위치의 거부와 원본 상태 불변 테스트를 추가했다. 이는 JS/Canvas 네이티브 경로의 신뢰성 보강이며 DOS 원본과 Firefox 실물 게임 검증은 **RUNTIME_VALIDATION=UNTESTED**.

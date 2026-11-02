@@ -69,4 +69,33 @@ assert.equal(full.get16('AX'),0x1234);
 assert.equal(full.read16(0x800,0xffc),0x104);
 assert.equal(full.read16(0x800,0xffe),0x200);
 
-console.log('UW2 real 8086 two chained FAR CALLs, nested E8/PUSH CS/RETF stack, original hash admission fail-closed PASS');
+// Self-contained synthetic 8086 memory ownership regression. The guest
+// performs MOV ES,AX; MOV ES:[BX],FF; INC BX; CMP BX,0300; JL loop.
+// The owner main-game 768-byte effect must never alter adjacent memory.
+const fillCpu=new RealMode8086();
+fillCpu.load(Uint8Array.of(
+ 0xb8,0x00,0x90, // MOV AX,9000
+ 0x8e,0xc0,      // MOV ES,AX
+ 0x31,0xdb,      // XOR BX,BX
+ 0x26,0xc6,0x07,0xff, // MOV byte ptr ES:[BX],0xFF
+ 0x43,           // INC BX
+ 0x81,0xfb,0x00,0x03, // CMP BX,0x0300
+ 0x7c,0xf5      // JL signed loop back to ES:[BX]
+),0x300,0x100);
+fillCpu.set16('CS',0x300);fillCpu.set16('IP',0x100);
+fillCpu.write8(0x9000,0xffff,0x39);
+fillCpu.write8(0x9000,0x300,0x73);
+for(let i=0;i<768;i++)fillCpu.write8(0x9000,i,0x5a);
+let fillSteps=0;
+while(fillCpu.get16('IP')!==0x112&&fillSteps<4000){
+ fillCpu.step();fillSteps++;
+}
+assert.equal(fillCpu.get16('IP'),0x112);
+assert.equal(fillCpu.get16('ES'),0x9000);
+assert.equal(fillCpu.get16('BX'),768);
+assert.equal(fillSteps,2+768*4);
+assert.equal(fillCpu.read8(0x9000,0xffff),0x39);
+assert.equal(fillCpu.read8(0x9000,768),0x73);
+for(let i=0;i<768;i++)assert.equal(fillCpu.read8(0x9000,i),0xff);
+
+console.log('UW2 real 8086 two chained FAR CALLs, nested E8/PUSH CS/RETF stack, original hash admission fail-closed source-owned ES 768-byte fill PASS');

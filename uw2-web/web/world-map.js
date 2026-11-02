@@ -2,6 +2,7 @@ import { decodeLS11 } from "./ls11.js";
 import { UW2_WORLD_PALETTE } from "./koei-image.js";
 import { environmentAt } from "./windcur.js";
 import { fleetSeaSpeed } from "./sea-speed.js";
+import { originalSeaCameraOrigin } from "./native-original-sea-camera.js";
 
 export const WORLD_CELL_W = 1080;
 export const WORLD_CELL_H = 540;
@@ -214,7 +215,15 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
     throw new RangeError('native sea viewport exceeds source game bounds');
   const w=tilesWide*16,h=tilesHigh*16;
   const raster=seaRasterSurfaces(assets,w,h),img=raster.worldImage;
-  const startX=state.x-Math.floor(tilesWide/2), startY=state.y-Math.floor(tilesHigh/2);
+  // The Korean MAIN source camera uses the real 24x24 GRAPH #4 map,
+  // segmented in 720-chip X bands and clamped at polar Y edges.
+  // Keep the legacy centered projection only for synthetic smaller viewports.
+  const sourceCamera=tilesWide===24&&tilesHigh===24
+    ?originalSeaCameraOrigin(state.x,state.y):null;
+  if(tilesWide===24&&tilesHigh===24&&!sourceCamera)
+    throw new RangeError('original sea camera source coordinate outside world');
+  const startX=sourceCamera?.startX??state.x-Math.floor(tilesWide/2);
+  const startY=sourceCamera?.startY??state.y-Math.floor(tilesHigh/2);
   for(let vy=0;vy<tilesHigh;vy++)for(let vx=0;vx<tilesWide;vx++){
     const wx=((startX+vx)%WORLD_CHIP_W+WORLD_CHIP_W)%WORLD_CHIP_W;
     const wy=startY+vy;
@@ -224,7 +233,9 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
       throw new Error('native sea original tile unavailable for index '+id);
     drawTileToImage(img,w,tile,vx*16,vy*16);
   }
-  const sx=dx+Math.floor(tilesWide/2)*16,sy=dy+Math.floor(tilesHigh/2)*16;
+  const shipTileX=sourceCamera?.shipTileX??Math.floor(tilesWide/2);
+  const shipTileY=sourceCamera?.shipTileY??Math.floor(tilesHigh/2);
+  const sx=dx+shipTileX*16,sy=dy+shipTileY*16;
   const ships=assets.seaShips;
   if(!Array.isArray(ships)||!ships.length)
     throw new Error('native sea original ship sprite frames unavailable');
@@ -262,7 +273,14 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
   raster.shipCtx.putImageData(simg,0,0);
   ctx.imageSmoothingEnabled=false;
   ctx.drawImage(raster.worldCanvas,dx,dy);
-  ctx.drawImage(raster.shipCanvas,sx,sy);
+  // A 32px ship anchored on the last world tile may overrun GRAPH #4's
+  // original 384px sea window. Crop the source sprite, not the HUD pixels.
+  const shownW=Math.min(32,w-shipTileX*16);
+  const shownH=Math.min(32,h-shipTileY*16);
+  if(shownW<=0||shownH<=0)throw new RangeError('original sea sprite outside viewport');
+  if(shownW===32&&shownH===32)ctx.drawImage(raster.shipCanvas,sx,sy);
+  else ctx.drawImage(raster.shipCanvas,0,0,shownW,shownH,
+    sx,sy,shownW,shownH);
   return {startX,startY,width:w,height:h};
 }
 

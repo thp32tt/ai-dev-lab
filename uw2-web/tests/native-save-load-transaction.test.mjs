@@ -51,7 +51,7 @@ const staging=start.indexOf('stageNativeTownSave(');
 const guard=start.indexOf('if(!stage.ready)');
 const commit=start.indexOf('selected=stage.session;');
 assert.ok(staging>=0&&guard>staging&&commit>guard);
-assert.match(start,/nativeSaveHold: stage.reason/);
+assert.match(start,/nativeSaveHold:\s*stage\.reason/);
 assert.match(start,/systemReturnMode=null/);
 assert.ok(start.indexOf('stopSeaAuto()')>guard);
 assert.ok(start.indexOf('stopOpening(false)')>guard);

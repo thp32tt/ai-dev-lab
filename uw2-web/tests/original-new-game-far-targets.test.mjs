@@ -96,7 +96,6 @@ const change=(i,mutate)=>{
 const noReloc=change(0,b=>{
  const replacement=0x800;
  const off=28;
- w.call(null,off,replacement); // no mutation: table is edited directly below
  b.writeUInt16LE(replacement,off);
  b.writeUInt16LE(0,off+2);
 });

@@ -64,6 +64,8 @@ jobs:
           node --check uw2-web/tests/native-opening-original-blit-placement.test.mjs
           node --check uw2-web/tests/native-new-game-hero.test.mjs
           node --check uw2-web/tools/original-new-game-init-proof.mjs
+          node --check uw2-web/tools/original-new-game-call-ledger.mjs
+          node --check uw2-web/tests/original-new-game-call-ledger.test.mjs
           node --check uw2-web/tests/original-new-game-init-proof.test.mjs
           node --check uw2-web/web/native-context-commands.js
           node --check uw2-web/tests/native-context-commands.test.mjs
@@ -181,6 +183,7 @@ jobs:
           node uw2-web/tests/native-new-game-hero.test.mjs
           node uw2-web/tests/native-original-hero-roster.test.mjs
           node uw2-web/tests/original-new-game-init-proof.test.mjs
+          node uw2-web/tests/original-new-game-call-ledger.test.mjs
           node uw2-web/tests/native-context-commands.test.mjs
           node uw2-web/tests/native-town-hud.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs

@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 1 user-mandated penalty for unsupported remote-access denial (2026-11-02 KST)
+
+- **TASK_ID `USER-PENALTY-REMOTE-TOOLS-UNVERIFIED-20261102` — user explicitly assigned -10 points.** AI 1 incorrectly claimed GitHub/N100 could not be modified without checking available linked GitHub and N100 access in a prior response. User correction takes priority over automatic scoring; this penalty is recorded exactly once, separate from subsequent recovery work.
+- **AI 1 cumulative: previous confirmed 1784 + user penalty (-10) = 1774.** AI 2 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 native auto-sail real coast collision stop (2026-11-02 09:18 KST)
 
 - **New independent browser gameplay integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact implementation SHA **`a036412e48cca2aa6773d9972276924501e77221`**. `web/native-sea-auto.js` and actual `web/app.js` now stop the repeated 220ms AUTO loop once the genuine world-chip collision path reports `coast-block`, distinguishing an actual shoreline block from benign sub-60-unit speed accumulation. Preserve already-committed first 20-minute game tick and port-arrival precedence; prevent repeated blocked ticks from draining calendar, ship provisions and monthly bank accounting at a fixed shore.

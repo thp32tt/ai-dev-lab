@@ -548,7 +548,7 @@ export class RealMode8086 {
     if(op===0x60||op===0x61||op===0x68||op===0x6a||
        op===0x69||op===0x6b||op===0xc8||op===0xc9){
       if(!this.enable80186Instructions)
-        throw new Error('80186 stack/IMUL/frame instruction requires explicit capability: fail closed');
+        throw new Error('unsupported 8086 opcode '+op.toString(16).padStart(2,'0')+': 80186 stack/IMUL/frame instruction requires explicit capability: fail closed');
       if(op===0x60){ // PUSHA saves SP as it was before the first push.
         const originalSP=this.get16('SP');
         for(const name of ['AX','CX','DX','BX','SP','BP','SI','DI'])

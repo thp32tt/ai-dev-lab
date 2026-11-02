@@ -155,15 +155,20 @@ function getRecord(opening, part, record) {
 
 function sleep(ms, signal) {
   if (ms <= 0) return Promise.resolve();
-  return new Promise((resolve, reject) => {
-    const id = setTimeout(resolve, ms);
-    if (!signal) return;
-    const abort = () => {
+  return new Promise((resolve,reject)=>{
+    if(signal?.aborted){
+      reject(new DOMException("Aborted","AbortError"));return;
+    }
+    // A full 12-scene opening can schedule thousands of frame waits.
+    // Remove completed signal listeners instead of leaking one every frame.
+    const done=()=>{signal?.removeEventListener("abort",abort);resolve();};
+    const id=setTimeout(done,ms);
+    const abort=()=>{
       clearTimeout(id);
-      reject(new DOMException("Aborted", "AbortError"));
+      signal?.removeEventListener("abort",abort);
+      reject(new DOMException("Aborted","AbortError"));
     };
-    if (signal.aborted) abort();
-    else signal.addEventListener("abort", abort, { once: true });
+    signal?.addEventListener("abort",abort,{once:true});
   });
 }
 

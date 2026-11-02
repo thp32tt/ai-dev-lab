@@ -43,7 +43,12 @@ function changeSave(delta) {
 }
 
 function runAction(action) {
-  if (action === "start") document.getElementById("run-button")?.click();
+  if (action === "start") {
+    const mode=controller?.dataset.mode??"";
+    if(["system-menu","new-game-select","load-select","load-confirm"].includes(mode))
+      emitKey("Enter");
+    else document.getElementById("run-button")?.click();
+  }
   else if (action === "opening") document.getElementById("opening-button")?.click();
   else if (action === "save-prev" || action === "save-next") {
     // Hidden source Save Data buttons must not replace an actively running
@@ -131,6 +136,7 @@ window.addEventListener("uw2-game-state", event => {
     sea: "항해",
     runtime: "게임",
     preview: "미리보기",
+    "new-game-select": "새 게임 · 주인공 선택",
   };
   if (modeLabel) modeLabel.textContent = labels[state.mode] || String(state.mode || "게임");
   controller.dataset.mode = state.mode || "";

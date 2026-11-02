@@ -747,3 +747,11 @@
 - 원본 브라우저 게임의 하루 보급품 소비 `consumeDepartureDay`는 기존에 모든 선박의 u16 형식만 검사한 후 각 선박 물/식량을 순서대로 갱신하면서 보급품 10단위의 반납된 적재량을 `Math.max(0,load−released)`로 강제 보정했다. 뒤쪽 선박의 잔여 적재량이 부족해도 앞쪽 선박이 이미 변경된 후 정상 완료로 보고하여 원본 한국어판 저장 상태의 화물 무게를 조용히 손상시킬 수 있었다.
 - 이제 모든 1~10척의 **다음 물·식량 수량과 적재량 차감량을 먼저 계산**하고 하나라도 부족하면 `source-load-invalid`로 전체 출항/자정 보급 처리를 거부한다. 실제 적재량에서 정확하게 차감하는 경우에만 전함대 결과를 적용하며, 10단위 미만 보급품의 유효한 정수 소비는 기존대로 유지한다. 이미 구현된 `prepareNativeHarborDeparture` 및 `advanceNativeSeaVoyageStep`가 이 결과를 복제본에서 검증하므로 실제 웹 장면·시각/은행·보급품 전환은 원자적으로 유지된다.
 - shipping `native-harbor-supply-integrity.test.mjs`, `native-harbor-departure.test.mjs`, `native-sea-voyage-integrity.test.mjs`를 다중 함선·자정·출항 부족·원본 상태 불변·경계 0 사례로 확장했다. 원본 DOS의 선원 소비·기아 규칙을 새로 추정한 것은 아니며, 한국어 DOS 차등과 소유 원본 자산 Firefox 실기는 **RUNTIME_VALIDATION=UNTESTED**.
+
+
+## 2026-11-02 원본 Start New Game 첫 사용자 화면 복구 및 오프닝 재생 대기 안정성
+
+- 실제 `app.js`의 원본 MENU #56의 두 번째 항목 **Start New Game**은 과거 분기 없이 시스템 메뉴를 재출력하는 no-op이었다. 이제 선택 시 별도 **6인 선택 화면**으로 전환되고, 사용자 보유 원본 KAO.LZW 영웅 초상화 0..5 여섯 장을 Canvas에 출력한다. 방향키/WASD/2·4·6·8로 선택, ESC 복귀, Enter 확인 및 웹 패드 START→Enter 이벤트를 연결. 이 화면은 Load Data 메뉴를 다시 표시하는 가짜 기능이 아니다.
+- 원본 `MAIN.EXE`의 진짜 신규 게임 생성(초기 날짜·함대·주인공 초기 능력·첫 항구·시나리오) 규칙은 아직 실물 원본 출처로 확정되지 않았으므로 **절대 6명의 신규 세이브를 임의로 만들지 않는다**. 확인된 동일 주인공 기존 한국어 원본 save slot이 있을 때만 Enter로 저장된 시점부터 실제 항구 런타임을 체험할 수 있다. 화면·상태에 **이것은 Start New Game 초기화가 아닌 기존 저장 시점 체험**임을 표시한다. 시작 자료가 없으면 6인 선택 화면에서 이유를 명시하고 거부한다. 현재 사용자 확인 소스에는 비어 있지 않은 save 2개만 있으므로 6명 전체 신규 게임은 여전히 **HOLD**다.
+- `opening.js`의 오프닝 60Hz 프레임 대기에서 매 프레임 `AbortSignal` listener를 누적한 기존 누수를 제거했다. 완료·취소 시 리스너 정리로 같은 원본 12장면 재생/다시 시작 중 비정상 누적을 방지한다. 이 성능·안정성 수리로 원본 VGA 팔레트/블릿 배치/타이밍이 해결됐다고 주장하지 않는다. **원본 DOS 오프닝 프레임 차등 및 실제 Firefox 시각 검증 RUNTIME_VALIDATION=UNTESTED**.
+- 원본 자산 없는 `native-new-game-hero.test.mjs`를 실제 shipping 진입 코드 결선과 함께 GitHub UW2 Fidelity static gate에 등록했다. 다음 핵심 구현은 original MAIN.EXE의 menu #56 cursor 1에서 호출하는 영웅 초기화 함수 / 6명 초기 state·첫 항구 evidence를 추적하고 UI `HOLD`를 한 명씩 실제 초기 세션으로 전환하는 것이다. 해전/엔딩은 아직 구현되지 않았다.

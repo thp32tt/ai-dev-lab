@@ -1,5 +1,6 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
+import {nativeNewGameHeroChoices,nativeNewGameSourceDemo} from "./native-new-game-hero.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
 import { advanceNativeSeaAuto, createNativeAutoOriginPortProbe } from "./native-sea-auto.js";
@@ -148,6 +149,8 @@ let musicAutostartPending = true;
 let seaAutoTimer = null;
 let seaAutoActive = false;
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
+let newGameHeroCursor=0;
+let newGameHeroNotice="";
 let systemMenuPending = false;
 const bootGate = new Uw2BootGate();
 let gameResourceFailure = null;
@@ -478,6 +481,81 @@ function enterSystemMenu(cursor = 0) {
   return true;
 }
 
+
+function drawNewGameHeroSelect(){
+  // A distinct visible MAIN menu route, not a reused Load Data list.
+  // Six portrait indices come directly from the original KAO source.
+  const heroes=nativeNewGameHeroChoices(slots);
+  drawSystemBase();
+  drawSystemWindow({x:44,y:12,w:552,h:375});
+  drawOriginalTextTop("Start New Game · 주인공 선택",126,24,{color:"#24160c"});
+  for(const hero of heroes){
+    const col=hero.id%3,row=Math.floor(hero.id/3);
+    const x=106+col*165,y=58+row*140;
+    const img=kaoPortraits[hero.portraitRecord];
+    if(img){
+      const thumbnail=document.createElement("canvas");
+      drawIndexedCanvas(thumbnail,img,64,80,1);
+      ctx.imageSmoothingEnabled=false;
+      ctx.drawImage(thumbnail,x,y,64,80);
+    }
+    ctx.lineWidth=hero.id===newGameHeroCursor?3:1;
+    ctx.strokeStyle=hero.id===newGameHeroCursor?"#a43d1e":"#594b35";
+    ctx.strokeRect(x-5,y-5,74,90);
+    drawOriginalTextTop(hero.label.slice(0,20),x-12,y+91,
+      {color:hero.id===newGameHeroCursor?"#a43d1e":"#24160c"});
+    drawOriginalTextTop(hero.sourceSlot===null?"초기 자료 미확인":
+      `원본 저장 ${hero.sourceSlot+1} 있음`,x-12,y+109,{color:"#24160c"});
+  }
+  drawOriginalTextTop("방향키: 선택  Enter: 확인  ESC: 이전",95,345,
+    {color:"#24160c"});
+  viewMode="new-game-select";
+  const hero=heroes[newGameHeroCursor];
+  $("runtime-status").textContent=newGameHeroNotice||
+    (hero.sourceSlot===null
+      ?"새 게임 초기 데이터 미확인 · 이 주인공의 시작은 보류"
+      :"새 게임 초기 데이터 미확인 · Enter는 기존 원본 저장 시점부터 체험");
+  publishControllerState({newGameHero:hero.id,
+    originalNewGameReady:false,sourceSnapshotSlot:hero.sourceSlot});
+}
+function enterNativeNewGameSelect(){
+  newGameHeroCursor=0;newGameHeroNotice="";
+  drawNewGameHeroSelect();
+}
+function handleNativeNewGameKey(key,event){
+  const move={arrowleft:-1,a:-1,"4":-1,arrowright:1,d:1,"6":1,
+    arrowup:-3,w:-3,"8":-3,arrowdown:3,s:3,"2":3};
+  if(Object.hasOwn(move,key)){
+    event.preventDefault();
+    newGameHeroCursor=(newGameHeroCursor+move[key]+6)%6;
+    newGameHeroNotice="";
+    drawNewGameHeroSelect();return true;
+  }
+  if(key==="escape"){
+    event.preventDefault();enterSystemMenu(1);return true;
+  }
+  if(key==="enter"){
+    event.preventDefault();
+    const demo=nativeNewGameSourceDemo(
+      nativeNewGameHeroChoices(slots),newGameHeroCursor,slots);
+    if(demo.allowed){
+      const started=selectLoadedSlot(demo.slotIndex);
+      if(started){
+        $("runtime-status").textContent=
+          "원본 저장 시점 체험 · 실제 Start New Game 초기화는 미구현";
+        publishControllerState({nativeNewGameDemo:true});
+        return true;
+      }
+      newGameHeroNotice="원본 저장 위치 검증 실패 · 다른 주인공을 선택하세요";
+    }else{
+      newGameHeroNotice=
+        "실제 새 게임의 초기 선단·날짜·항구·스토리 미복원 · 시작 보류";
+    }
+    drawNewGameHeroSelect();return true;
+  }
+  return true;
+}
+
 function selectLoadedSlot(index) {
   const slot = slots[index];
   if (!slot || slot.empty) return false;
@@ -492,6 +570,7 @@ function selectLoadedSlot(index) {
 
 function handleSystemKey(event) {
   const key = event.key.toLowerCase();
+  if(viewMode==="new-game-select")return handleNativeNewGameKey(key,event);
   if (!["system-menu","load-select","load-confirm","load-empty"].includes(viewMode)) return false;
 
   if (viewMode === "system-menu") {
@@ -515,6 +594,8 @@ function handleSystemKey(event) {
         const first = slots.findIndex(x => !x.empty);
         systemUi.slot = first >= 0 ? first : 0;
         drawLoadSlots();
+      } else if (systemUi.cursor === 1) {
+        enterNativeNewGameSelect();
       } else if (systemUi.cursor === 3) {
         drawSystemBase();
         const q = SYSTEM_UI_LAYOUT.emptySlot;

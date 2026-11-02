@@ -40,6 +40,8 @@ jobs:
           node --check uw2-web/tests/native-market-purchase-integrity.test.mjs
           node --check uw2-web/web/native-graph-canvas.js
           node --check uw2-web/web/native-save-entry.js
+          node --check uw2-web/web/native-new-game-hero.js
+          node --check uw2-web/tests/native-new-game-hero.test.mjs
           node --check uw2-web/web/native-save-session.js
           node --check uw2-web/web/native-town-building-exit.js
           node --check uw2-web/tests/native-town-building-exit.test.mjs
@@ -134,6 +136,7 @@ jobs:
           node uw2-web/tools/assert-native-web-entry.mjs
           node uw2-web/tests/native-graph-canvas.test.mjs
           node uw2-web/tests/native-save-entry.test.mjs
+          node uw2-web/tests/native-new-game-hero.test.mjs
           node uw2-web/tests/native-save-session.test.mjs
           node uw2-web/tests/native-town-movement.test.mjs
           node uw2-web/tests/native-town-building-exit.test.mjs

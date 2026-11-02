@@ -46,7 +46,7 @@ function changeSave(delta) {
 function runAction(action) {
   if (action === "start") {
     const mode=controller?.dataset.mode??"";
-    if(["system-menu","new-game-select","load-select","load-confirm"].includes(mode))
+    if(["system-menu","new-game-select","load-select","load-confirm","quit-ended"].includes(mode))
       emitKey("Enter");
     else document.getElementById("run-button")?.click();
   }
@@ -138,6 +138,7 @@ window.addEventListener("uw2-game-state", event => {
     runtime: "게임",
     preview: "미리보기",
     "new-game-select": "새 게임 · 주인공 선택",
+    "quit-ended": "게임 종료 · 메인 메뉴로 복귀",
   };
   if (modeLabel) modeLabel.textContent = labels[state.mode] || String(state.mode || "게임");
   controller.dataset.mode = state.mode || "";

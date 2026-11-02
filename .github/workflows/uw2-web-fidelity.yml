@@ -54,6 +54,7 @@ jobs:
           node --check uw2-web/tests/native-original-sea-camera.test.mjs
           node --check uw2-web/tests/native-new-game-layout.test.mjs
           node --check uw2-web/tests/native-game-system-menu.test.mjs
+          node --check uw2-web/tests/native-game-quit.test.mjs
           node --check uw2-web/tests/native-opening-original-blit-placement.test.mjs
           node --check uw2-web/tests/native-new-game-hero.test.mjs
           node --check uw2-web/tools/original-new-game-init-proof.mjs
@@ -168,6 +169,7 @@ jobs:
           node uw2-web/tests/native-sea-pause.test.mjs
           node uw2-web/tests/native-new-game-layout.test.mjs
           node uw2-web/tests/native-game-system-menu.test.mjs
+          node uw2-web/tests/native-game-quit.test.mjs
           node uw2-web/tests/native-save-session.test.mjs
           node uw2-web/tests/native-town-movement.test.mjs
           node uw2-web/tests/native-town-building-exit.test.mjs

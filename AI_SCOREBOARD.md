@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun 2006 OCR-free overlapping ROI automatic DDS recovery (2026-11-02 KST)
+
+- **TASK_ID `OUTRUN-OCRFREE-OVERLAP-AUTOFIX-20261102` — one newly implemented, remote-pushed and validated automation integration (+1):** Existing `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928` GitHub branch HEAD `d059b31bea93b9e41f76c383a74af1c660d82862` (7 files) adds `offline_overlap_resolver.py`, integrates whole-Hangul non-overlapping free-rectangle re-layout into SHA-pinned offline DDS worker, updates Dockerfile, Compose automatic one-source/minute low-priority loop and entrypoint to `--overlap-mode trim` with separate `offline_overlap_v2_test_only` storage, keeps unsafe/unreadable overlaps on HOLD, and includes evidence/9 regression tests. Actual N100 isolated native Q051 smoke: original 18 painted + 46 OVERLAPPING_ROI HOLD → new 47 painted + 17 HOLD, 29 additional Korean ROI layouts, zero outside-ROI pixel edits, exact DDS roundtrip, no source PNG or installed DDS modifications. N100 Python unit regressions 9/9 PASS, entrypoint bash syntax PASS, Compose YAML parser PASS, remote GitHub HEAD and all changed file readbacks verified. Original production manifest and v1 result preserved; **Portainer Rebuild+Redeploy is user-reserved and has NOT been performed by AI**, so unattended v2 running production status is unverified. One feature result only; QA checks and repeated reports +0.
+- **AI 1 cumulative: previous confirmed 1774 + one new verified automation patch (+1) = 1775.** Earlier user-assigned -10 penalty remains in force independently; AI 2 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 source-backed town staged transaction commit witness (2026-11-02 09:21 KST)
 
 - **Distinct source gameplay feature (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact commit **`048e0ef6eacca1155cce8f0c748dada2bc6fadb0`**. Introduced small `web/native-town-commit-witness.js` source/session/runtime witness and connected it to the real `prepareNativeTownMovement`/`commitNativeTownMovement` and `prepareNativeTownBuildingExit`/`commitNativeTownBuildingExit` paths. After preparation, changed player position, NPC/viewport/dialogue, date, wallet, bank balance, day flags or runtime/session asset owner causes a fail-closed commit, preventing a stale movement or inn visit from overwriting a newer native game state. The source game resource bytes, map assets and DOM are not copied.

@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 browser native port-call preflight parity and snapshot ownership (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-PORT-CALL-PREFLIGHT-SNAPSHOT-20261103-060C8875`; **AI 2(ChatGPT2)**. Previous latest GitHub-confirmed cumulative **2491** + one independently implemented and verified browser-native atomic port-call state admission and isolated owned session improvement **(+1)** = new cumulative **2492**. Individual source commits, CI, N100 deployment, original-resource verification, repeat checks and re-report all **+0**. AI 1 unchanged.
+- **Implementation:** `thp32tt/ai-dev-lab@uw2-web-port` final exact SHA `060c88755ed1c1c7156fd62850c41b6bfbca78ae`. `uw2-web/web/native-port-actor-memory.js` exposes the bounded, original-shaped actor validator; `uw2-web/web/native-port-arrival.js` applies actor-memory, town-actor, port-economy and rates validation in the lightweight read-only availability check and deeply isolates newly admitted town-session mutable state from prior sea session. `uw2-web/tests/native-port-arrival.test.mjs` adds invalid actor/economy/port evidence rejection, `native-port-call-transaction.test.mjs` verifies post-arrival fleet/cargo/inventory/bank event changes cannot mutate prior sea state.
+- **Validation:** GitHub Actions UW2 Web Fidelity Static Gate run **41477701201 SUCCESS** for the exact final SHA, N100 installed source from pinned GitHub SHA with backup; local N100 original Korean `native-port-arrival-original.test.mjs` confirms **130/130 ports (100 normal, 30 supply)** and source Danzig landing geometry. N100 regression `native-port-arrival.test.mjs`, `native-port-call-transaction.test.mjs` and synthetic multi-port real module chain `native-multiport-voyage-chain.test.mjs` all PASS.
+- **Runtime boundaries:** Browser-native transition/scene ownership, not completed original DOS engine parity. No claim of actual Firefox post-deployment scene replay, original DOS Save Data write, original battle or complete new-game initialization.
+
 ## AI 2 Daytona USA Quest 3 OpenXR game VR display integration and PID-owned launch (2026-11-03 KST)
 
 - **RUN_KEY:** `MODEL2VR-DAYTONA-QUEST3-OPENXR-PID-20261103-3c0636d3`; prior confirmed AI 2 cumulative **2490** + one new independently implemented game executable PID-specific OpenXR VR display and one-click bundle (+1) = new confirmed cumulative **2491**. AI 1 unchanged. Existing probe logging, previous Daytona trace work, build fixes, artifact packaging, source reviews and reruns +0 additional points.

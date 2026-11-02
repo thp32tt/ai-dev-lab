@@ -1,7 +1,7 @@
 // Stage a complete original Korean save -> native browser town transition.
 // No live selected session, port catalog, sea/town runtime, keyboard ownership,
 // or original DOS save bytes are ever changed during this preflight.
-import {openNativeSaveSession} from './native-save-session.js';
+import {openNativeSaveSession,syncNativeTownSession} from './native-save-session.js';
 import {classifyNativeSaveEntry} from './native-save-entry.js';
 import {parseKoreanPortTable} from './binary.js';
 import {PortWalkingRuntime} from './town.js';
@@ -25,6 +25,11 @@ export function stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors}={}){
     // Construct the real source-backed town runtime before changing any
     // currently playable session. Constructor failure leaves it untouched.
     const town=new PortWalkingRuntime(session,portAssets,portDoors);
+    // Running renderTownScreen immediately synchronizes the source town
+    // coordinates/actors and applies real map collision. Enforce the exact
+    // same invariant before replacing any live game session.
+    const synced=syncNativeTownSession(session,town.snapshot(),portAssets);
+    if(!synced.updated)return hold(synced.reason);
     return Object.freeze({
       ready:true,session,portCatalog,town,
       source:'VERIFIED_KOREAN_SAVE_TO_NATIVE_TOWN_STAGED'

@@ -19,6 +19,17 @@ assert.notEqual(staged.session,slot);
 assert.notEqual(staged.session.portState,slot.portState);
 assert.equal(staged.town.snapshot().mapX,22);
 assert.equal(staged.town.snapshot().mapY,52);
+const blockedAssets={...assets,maps:assets.maps.slice()};
+blockedAssets.maps[39]=Uint8Array.from(assets.maps[39]);
+blockedAssets.maps[39][53*96+22]=200; // Original town walk bound rejects left tile.
+assert.deepEqual(stageNativeTownSave(slot,{
+ saveBuffer:buffer,portAssets:blockedAssets,portDoors:doors
+}),{ready:false,reason:'ORIGINAL_TOWN_GEOMETRY_UNVERIFIED'});
+assert.deepEqual(stageNativeTownSave({...slot,townActors:[
+ {slot:0,x:23,y:50,type:1,active:'yes'}
+]},{
+ saveBuffer:buffer,portAssets:assets,portDoors:doors
+}),{ready:false,reason:'SOURCE_TOWN_ACTORS_UNVERIFIED'});
 staged.session.money=10;
 assert.deepEqual(slot,before);
 assert.equal(Object.isFrozen(staged),true);
@@ -57,4 +68,6 @@ assert.ok(start.indexOf('stopSeaAuto()')>guard);
 assert.ok(start.indexOf('stopOpening(false)')>guard);
 assert.ok(start.indexOf('portCatalog=stage.portCatalog')>guard);
 assert.ok(start.indexOf('townRuntime=stage.town')>guard);
+const preflight=fs.readFileSync(new URL('../web/native-save-load-transaction.js',import.meta.url),'utf8');
+assert.match(preflight,/syncNativeTownSession\(session,town.snapshot\(\),portAssets\)/);
 console.log('UW2 original native Load Data: source preflight success, failure isolation, atomic live-session switch PASS');

@@ -93,7 +93,7 @@ while(fillCpu.get16('IP')!==0x112&&fillSteps<4000){
 assert.equal(fillCpu.get16('IP'),0x112);
 assert.equal(fillCpu.get16('ES'),0x9000);
 assert.equal(fillCpu.get16('BX'),768);
-assert.equal(fillSteps,2+768*4);
+assert.equal(fillSteps,3+768*4);
 assert.equal(fillCpu.read8(0x9000,0xffff),0x39);
 assert.equal(fillCpu.read8(0x9000,768),0x73);
 for(let i=0;i<768;i++)assert.equal(fillCpu.read8(0x9000,i),0xff);

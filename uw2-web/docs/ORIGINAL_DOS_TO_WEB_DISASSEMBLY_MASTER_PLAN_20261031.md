@@ -1,3 +1,10 @@
+## 2026-11-02 원본 6명 주인공 한국어 이름의 브라우저 Start New Game 실출력
+
+- 검증된 한국어판 `KOUKAI2.DAT` (SHA-256 `ab81fcf9a38fa2bd8d3f7dc328287e80f0dcf74b92d3891e511c8fa230aa62e9`)은 빈 슬롯을 포함한 **10개 33,340바이트 페이지 각각에 6명×50바이트 인물 레코드**를 보유한다. 원본 저장 구조 `page + 0x06a9 + 50*heroId`에서 이름 필드 0..12와 13..25를 직접 EUC-KR 디코딩했다. 실제 소유 원본 10페이지 모두 조안 페레로, 카탈리나 에란초, 옷토 스피노라, 에르네스트 로페스, 피에트로 콘티, 알 베자스 순서로 동일함을 확인했다.
+- `web/native-original-hero-roster.js`는 기존 검증된 원본 저장 소스 복사본에서 전 페이지의 이름을 대조해 **인물별 일치할 때만** 텍스트를 반환한다. 깨진 CP949 이름/페이지 불일치에는 원본성을 추정하지 않고 null을 반환하고, 실제 소유 주인공 저장이 있으면 기존 저장 이름, 그마저 없으면 중립적인 `원본 주인공 N` 표기로 폴백한다. `readVerifiedKoreanSaveSource`에 `heroNames`를 추가하고 `nativeNewGameHeroChoices` 및 실제 `app.js`의 GRAPH/KAO Canvas 선택 화면에 연결했다. 선택 가능한 6명 이름은 저장 슬롯 사용 여부와 무관하며, 기존 소스 스냅샷 체험의 슬롯 허가는 변경하지 않는다.
+- `tests/native-original-hero-roster.test.mjs`는 합성 EUC-KR/ASCII 인물 테이블로 10페이지 일치, 변조/무효 이름 부분 격리, 빈 슬롯 6명 표기, 이름의 실제 게임 화면/Enter 결선 및 신규 시작 HOLD를 확인해 필수 Fidelity CI에 추가했다. 실제 N100 원본 Node SHA 검증 **OWNER_SHA_PINNED_SIX_KOREAN_HERO_NAMES_PASS**, N100 :18082 헤드리스 Firefox WebDriver 실제 오프닝→메인→Start New Game→6명 선택과 6개의 서로 다른 한글 표시 Canvas 샘플 및 원본 브라우저 SHA 파싱 **FIREFOX_REAL_NATIVE_SIX_PROTAGONIST_NAMES_PASS**. 오프닝/웹 UI·저장 원본은 정상, 원본 DOS 실제 새 캠페인 6건/엔딩/사용자 PC Chrome 차등은 여전히 **RUNTIME_VALIDATION=UNTESTED**.
+- 이 성과는 **새 게임 6명 원본 이름 실출력**이다. `MAIN.EXE` 최초 게임의 시작 날짜·항구·함대·스토리 계산식 및 원본 DOS 전체 게임 진행을 복원한 것은 아니다.
+
 ## 2026-11-02 한국어판 Start New Game 원본 초기화의 호출·메모리 소유권 정적 증거
 
 - 사용자 소유 `MAIN.EXE` **288,823바이트 / SHA-256 `1718bbbbcdd938dfe44403d9bd5254dfc02d431217dea39ae5fb3fcde1597747`**를 N100에서 원본 바이트 읽기만 하여 검증. 웹 배포 코드는 변경하지 않았고 원본 게임 파일, 원본 인물 기록 및 DOS 저장 데이터는 저장소에 넣지 않았다.

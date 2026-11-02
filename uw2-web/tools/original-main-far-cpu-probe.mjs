@@ -29,7 +29,8 @@ export function runIsolatedRelocatedFarCalls(cpu,{
      edge.sourceLength!==5||!edge.targetBoundaryPresent||
      !Number.isSafeInteger(edge.sourceRaw)||edge.sourceRaw<headerBytes||
      !u16(edge.segmentAddend)||!u16(edge.targetOffset)||
-     !u16(edge.sourceRea)||!u16(edge.targetRea))
+     !Number.isSafeInteger(edge.sourceRea)||edge.sourceRea<0||
+     !Number.isSafeInteger(edge.targetRea)||edge.targetRea<0)
    throw new Error('isolated native far probe requires source-authenticated target');
   const rel=edge.sourceRaw-headerBytes;
   const sourceCS=loadSegment+(rel>>>4),sourceIP=rel&15;

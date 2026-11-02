@@ -8,6 +8,7 @@ import {PortWalkingRuntime} from './town.js';
 
 const hold=reason=>Object.freeze({ready:false,reason});
 export function stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors}={}){
+  if(slot?.unverified)return hold('ORIGINAL_HERO_OR_PORT_RECORD_UNVERIFIED');
   // Browser game load must use the already verified, immutable source-copy.
   if(!(saveBuffer instanceof ArrayBuffer)||
      saveBuffer.byteLength<333400)

@@ -19,6 +19,18 @@ assert.equal(result.portCatalog.length,130);
 assert.equal(result.slots[0].memo,'Save One');
 assert.equal(result.slots[1].empty,true);
 assert.equal(result.slots[0].dateTime.year,1522);
+// A wrong protagonist in an occupied record holds THAT slot; it cannot
+// transform into a wrong protagonist or abort other valid save records.
+const malformed=Uint8Array.from(expected);
+malformed[0x06a8]=255;
+const held=await readVerifiedKoreanSaveSource(malformed,{
+ expectedSha256:sha(malformed),expectedByteLength:malformed.length
+});
+assert.equal(held.slots[0].empty,false);
+assert.equal(held.slots[0].unverified,true);
+assert.equal(held.slots[0].raw,undefined);
+assert.equal(held.slots[1].empty,true);
+assert.equal(held.slots.length,10);
 assert.equal(result.byteLength,333551);
 assert.match(result.fidelity,/DOS_WRITE_UNTESTED/);
 assert.ok(Object.isFrozen(result.slots[0].portState));

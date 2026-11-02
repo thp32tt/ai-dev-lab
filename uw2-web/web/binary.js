@@ -262,6 +262,15 @@ export function parseSaveSlots(arrayBuffer) {
     const slotHeaderFlag = bytes[init + 13];
     const ending = slotHeaderFlag !== 0;
     const heroId = bytes[page + SAVE.HERO_ID];
+    // MAIN.EXE far 0000:5AEE accepts six 0x32-byte person records.
+    // An invalid occupied save must not borrow hero zero's ability data,
+    // or prevent independently valid neighboring slots from loading.
+    // Port catalog IDs are 0..129; 0xFF is the original at-sea marker.
+    if(heroId>=6||(port!==0xff&&port>129)){
+      slots.push({index:i,empty:false,unverified:true,memo,
+        reason:'ORIGINAL_HERO_OR_PORT_RECORD_UNVERIFIED'});
+      continue;
+    }
     const personBase = page + SAVE.PERSON + heroId * SAVE.PERSON_SIZE;
     const fname = decodeCString(bytes, personBase, 13);
     const lname = decodeCString(bytes, personBase + 13, 13);

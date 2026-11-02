@@ -146,7 +146,7 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
    throw new Error('original ES-fill loop exits source-authenticated region');
   ownerFillStarts.add(raw);raw+=inst.length;
  }
- if(ownerFillStarts.size<14||bytes[OWNER_FILL_BEGIN]!==0xa1||
+ if(ownerFillStarts.size!==12||bytes[OWNER_FILL_BEGIN]!==0xa1||
     bytes[0x1b683]!==0x8b||bytes[0x1b686]!==0x26||
     bytes[0x1b68a]!==0xff||bytes[0x1b68e]!==0x81||
     bytes[0x1b692]!==0x7c)

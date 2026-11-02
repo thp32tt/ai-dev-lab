@@ -436,7 +436,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   physically(loadSegment,raw)));
  let emsHelperSteps=0,originalEmsCallCount=0;
  let typeOneHelperSteps=0,tailSteps=0;
- for(;tailSteps<32;tailSteps++){
+ for(;tailSteps<256;tailSteps++){
   const p=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
   if(cpu.get16('CS')===f2.cs&&cpu.get16('IP')===((f2.ip+5)&65535)&&
      p===physically(loadSegment,SECOND_CALLEE_RETURN))break;
@@ -502,7 +502,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   }
   cpu.step();
  }
- if(tailSteps===32||cpu.get16('SP')!==f2.sp||
+ if(tailSteps===256||cpu.get16('SP')!==f2.sp||
     cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
       physically(loadSegment,SECOND_CALLEE_RETURN))
   throw new Error('original nested selector failed authentic FAR return');

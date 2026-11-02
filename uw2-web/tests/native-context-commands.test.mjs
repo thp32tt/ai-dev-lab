@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {nativeContextCommandsFor,nativeContextLabelFor} from '../web/native-context-commands.js';
 // The new browser touch panel only emits existing, audited native keys.
-const expected=['supply','market-buy','market-sell','pub-recruit',
+const expected=['supply','dock-transfer','market-buy','market-sell','pub-recruit',
  'pub-dismiss','pub-treat','bank-deposit','bank-withdraw',
  'bank-borrow','bank-repay','item-buy','item-sell'];
 for(const mode of expected){
@@ -12,7 +12,7 @@ for(const mode of expected){
  assert.ok(commands.some(c=>c.key==='Escape'));
  for(const c of commands){
   assert.ok(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',
-    'Escape','Enter','m','l','u'].includes(c.key),mode+':'+c.key);
+    'Escape','Enter','m','l','u','r'].includes(c.key),mode+':'+c.key);
   assert.equal(typeof c.shiftKey,'boolean');
   assert.ok(Object.isFrozen(c));
  }
@@ -22,7 +22,7 @@ for(const mode of [null,'sail-confirm','item-buy-confirm','sea','menu',
  assert.equal(nativeContextCommandsFor(mode),null);
  assert.equal(nativeContextLabelFor(mode),'');
 }
-for(const mode of ['supply','market-buy','market-sell','pub-recruit','pub-dismiss']){
+for(const mode of ['supply','dock-transfer','market-buy','market-sell','pub-recruit','pub-dismiss']){
  const cmds=nativeContextCommandsFor(mode);
  assert.ok(cmds.some(c=>c.key==='Enter'&&!c.shiftKey&&c.label.includes('1개')));
  assert.ok(cmds.some(c=>c.key==='Enter'&&c.shiftKey&&c.label.includes('10개')));

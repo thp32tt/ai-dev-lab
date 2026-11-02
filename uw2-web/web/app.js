@@ -119,6 +119,7 @@ import {
   lodgeCheckIn,
   buildingVisitTicks,
 } from "./buildings.js";
+import {nativeDockTransferMaximum,transferNativeDockSupply} from "./native-dock-transfer.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("screen");
@@ -932,7 +933,9 @@ canvas.addEventListener("click", event => {
     // Read-only row selection in trade, ship and crew lists. A further
     // explicit Enter from the existing controls is required to transact.
     let count=0,field=null;
-    if(ui.mode==="supply"||ui.mode==="pub-recruit"||ui.mode==="pub-dismiss"){
+    if(ui.mode==="dock-transfer"){
+      count=selected?.fleet?.ships?.length??0;field="ship";
+    }else if(ui.mode==="supply"||ui.mode==="pub-recruit"||ui.mode==="pub-dismiss"){
       count=selected?.fleet?.ships?.length??0;
       field="ship";
     }else if(ui.mode==="market-buy"||ui.mode==="market-sell"){
@@ -1341,6 +1344,7 @@ function ensureBuildingUi(buildingId) {
       cursor: 0,
       ship: 0,
       resource: 0,
+      dockTarget: 1,
       loadMode: true,
       visitTicks: buildingVisitTicks(),
       pubEnthusiasm: buildingId === 1 ? initialPubEnthusiasm(selected) : null,
@@ -1427,6 +1431,23 @@ function drawHarborSupply(ui) {
   }
 }
 
+
+function drawHarborDock(ui){
+ const ships=selected?.fleet?.ships??[];
+ ui.ship=Math.max(0,Math.min(ui.ship??0,Math.max(0,ships.length-1)));
+ ui.dockTarget=Math.max(0,Math.min(ui.dockTarget??0,Math.max(0,ships.length-1)));
+ ui.resource=Math.max(0,Math.min(ui.resource??0,3));
+ const resource=RESOURCE_KEYS[ui.resource];
+ const rows=ships.length?ships.map((ship,i)=>{
+  const stock=resourceUnitsAboard(ship,resource),used=shipCargoUsed(ship);
+  return (i===ui.dockTarget?"→":"  ")+ship.name+" "+stock+" / "+used+"/"+ship.cargo;
+ }):["함선 없음"];
+ const max=nativeDockTransferMaximum(selected,ui.ship,ui.dockTarget,resource);
+ const title="도크 "+RESOURCE_NAMES[ui.resource]+" "+(ui.ship+1)+"→"+(ui.dockTarget+1)+" / 최대 "+max;
+ drawOriginalModalRows(rows,ships.length?ui.ship:-1,title);
+ if(ui.last)drawOriginalPanelText(ui.last.slice(0,40),
+  UI_LAYOUT.dialogue.x+16,UI_LAYOUT.dialogue.y+140,{color:"#8a2d13"});
+}
 
 function drawItemShopTrade(ui, selling = false) {
   const shop=itemShopStock(selected);
@@ -1548,6 +1569,11 @@ function renderBuildingInterface(s) {
   const ui=ensureBuildingUi(s.building.id);
   const options=buildingOptions(s.building.id);
 
+  if(ui.mode==="dock-transfer"){
+    drawHarborDock(ui);
+    $("runtime-status").textContent="도크 · 선단 보급품 함선 간 이송 · 웹 전용";
+    return;
+  }
   if (ui.mode === "supply") {
     drawHarborSupply(ui);
     $("runtime-status").textContent = "항 · 보급 · 원본 적재량/가격 공식 적용";
@@ -1696,9 +1722,9 @@ function runBuildingCommand(ui, buildingId) {
       ui.ship=0; ui.resource=0; ui.loadMode=true; ui.last="";
       return;
     }
-    ui.mode="message";
-    ui.messageId=null;
-    ui.messageText="도크의 보관·취역·교환은 다음 구현 단계에서 원본 선박 예비 레코드와 연결합니다.";
+    // Browser-only source-vessel supply distribution. Original DOS spare
+    // vessel and docking fee logic is not reconstructed; no fake buying.
+    ui.mode="dock-transfer";ui.ship=0;ui.dockTarget=1;ui.resource=0;ui.last="";
     return;
   }
   if (buildingId === 9) {
@@ -2136,6 +2162,30 @@ function handleBuildingKey(event) {
       event.preventDefault(); ui.mode="menu"; renderTownScreen();
     }
     return true;
+  }
+
+  if(ui.mode==="dock-transfer"){
+    const ships=selected?.fleet?.ships??[];
+    const count=ships.length;
+    if(key==="escape"){
+      event.preventDefault();ui.mode="menu";ui.last="";renderTownScreen();return true;
+    }
+    if(key==="arrowup"||key==="w")ui.ship=Math.max(0,ui.ship-1);
+    else if(key==="arrowdown"||key==="s")ui.ship=Math.min(Math.max(0,count-1),ui.ship+1);
+    else if(key==="arrowleft"||key==="a")ui.dockTarget=Math.max(0,ui.dockTarget-1);
+    else if(key==="arrowright"||key==="d")ui.dockTarget=Math.min(Math.max(0,count-1),ui.dockTarget+1);
+    else if(key==="r")ui.resource=(ui.resource+1)%4;
+    else if(key==="enter"||key==="m"){
+      const resource=RESOURCE_KEYS[ui.resource];
+      const q=key==="m"
+        ?nativeDockTransferMaximum(selected,ui.ship,ui.dockTarget,resource)
+        :(event.shiftKey?10:1);
+      const tx=transferNativeDockSupply(selected,ui.ship,ui.dockTarget,resource,q);
+      ui.last=tx.quantity
+        ?RESOURCE_NAMES[ui.resource]+" "+tx.quantity+" 이송 · "+(ui.ship+1)+"→"+(ui.dockTarget+1)
+        :"이송 불가: "+(tx.reason??"unknown");
+    }else return true;
+    event.preventDefault();renderTownScreen();return true;
   }
 
   if (ui.mode === "supply") {

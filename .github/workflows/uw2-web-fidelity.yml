@@ -34,6 +34,8 @@ jobs:
           node --check uw2-web/web/native-fleet-roster.js
           node --check uw2-web/tests/native-fleet-roster-integrity.test.mjs
           node --check uw2-web/web/buildings.js
+          node --check uw2-web/web/native-dock-transfer.js
+          node --check uw2-web/tests/native-dock-transfer.test.mjs
           node --check uw2-web/tests/native-calendar-integrity.test.mjs
           node --check uw2-web/tests/native-harbor-supply-integrity.test.mjs
           node --check uw2-web/web/market.js
@@ -205,6 +207,7 @@ jobs:
           node uw2-web/tests/native-market-trade-integrity.test.mjs
           node uw2-web/tests/native-market-ship-selector.test.mjs
           node uw2-web/tests/native-harbor-supply-integrity.test.mjs
+          node uw2-web/tests/native-dock-transfer.test.mjs
           node uw2-web/tests/native-fleet-roster-integrity.test.mjs
           node uw2-web/tests/native-harbor-departure.test.mjs
           node --test uw2-web/tests/item-shop.test.mjs

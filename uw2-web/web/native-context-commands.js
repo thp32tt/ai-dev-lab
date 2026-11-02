@@ -18,6 +18,11 @@ const supply=Object.freeze([...SHIPS,
  ONE,TEN,MAX,BACK
 ]);
 const crew=Object.freeze([...SHIPS,ONE,TEN,MAX,BACK]);
+const dock=Object.freeze([...SHIPS,
+ arrow('ArrowLeft','받는 함선 이전'),arrow('ArrowRight','받는 함선 다음'),
+ arrow('r','물·식량·자재·포탄 변경'),
+ ONE,TEN,MAX,BACK
+]);
 const bank=Object.freeze([
  arrow('ArrowLeft','100G 감소'),arrow('ArrowRight','100G 증가'),
  arrow('ArrowLeft','1만G 감소',true),arrow('ArrowRight','1만G 증가',true),
@@ -30,7 +35,7 @@ const treat=Object.freeze([
 ]);
 const items=Object.freeze([...ITEMS,arrow('Enter','품목 확인'),BACK]);
 const modeMap=Object.freeze({
- supply, 'market-buy':trade,'market-sell':trade,
+ supply, 'dock-transfer':dock,'market-buy':trade,'market-sell':trade,
  'pub-recruit':crew,'pub-dismiss':crew,'pub-treat':treat,
  'bank-deposit':bank,'bank-withdraw':bank,
  'bank-borrow':bank,'bank-repay':bank,
@@ -42,7 +47,7 @@ export function nativeContextCommandsFor(mode){
 export function nativeContextLabelFor(mode){
  if(!nativeContextCommandsFor(mode))return '';
  const labels={
- supply:'항구 보급·하역','market-buy':'교역품 구입',
+ supply:'항구 보급·하역','dock-transfer':'도크 보급품 이송','market-buy':'교역품 구입',
  'market-sell':'교역품 매각','pub-recruit':'선원 고용',
  'pub-dismiss':'선원 해고','pub-treat':'주점 한턱내기',
  'bank-deposit':'은행 예금','bank-withdraw':'은행 인출',

@@ -1,5 +1,6 @@
 import {parseSaveSlots,parseKoreanPortTable} from './binary.js';
 import {prepareVerifiedOriginalWebFile} from './native-original-file.js';
+import {originalKoreanHeroRoster} from './native-original-hero-roster.js';
 // Exact original Korean reference save used by this port. Different user
 // save versions must provide their OWN verified source evidence, not silently
 // masquerade as the reference. Browser-native, no DOS filesystem emulator.
@@ -33,6 +34,7 @@ export async function readVerifiedKoreanSaveSource(bytes,{
  const original=verifiedBytes.buffer;
  const slots=parseSaveSlots(original);
  const ports=parseKoreanPortTable(original);
+ const heroNames=originalKoreanHeroRoster(verifiedBytes);
  if(slots.length!==10||ports.length!==130||
     slots.some((slot,i)=>slot.index!==i))
    throw new Error('Korean native original save record inventory mismatch');
@@ -40,7 +42,7 @@ export async function readVerifiedKoreanSaveSource(bytes,{
  deepFreezePlain(ports);
  return Object.freeze({
   sourceSha256:asset.sourceSha256,byteLength:asset.byteLength,
-  slots,portCatalog:ports,
+  slots,portCatalog:ports,heroNames,
   copyBytes:asset.copyBytes,
   fidelity:'SHA_PINNED_ORIGINAL_SAVE_PARSED_TO_NATIVE_WEB_STATE__DOS_WRITE_UNTESTED'
  });

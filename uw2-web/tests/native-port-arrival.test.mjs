@@ -90,6 +90,28 @@ for(const input of invalidCases){
  assert.equal(buildNativePortArrival(input),null);
 }
 assert.deepEqual(previous,sourceBeforeInvalid);
+// A controller must not show \"기항 가능\" for a port whose original
+// game-state carry-over would fail at commit. All checks are read-only.
+const invalidContinuity=[
+ {...previous,townActors:[{slot:0,x:255,y:1,type:0,active:true}]},
+ {...previous,townActors:{malformed:true}},
+ {...previous,portActorMemory:{'130':{
+   source:'SOURCE_KOUKAI2_TOWN_ACTORS_CARRIED_IN_BROWSER',actors:[]}}},
+ {...previous,portEconomyHistory:{'0':{
+   source:'SOURCE_KOUKAI2_PORT_ECONOMY_IN_NATIVE_BROWSER',
+   meta:{economy:2,marketId:0,rates:Array(10).fill(300)}}}},
+ {...previous,portMeta:{economy:-1,marketId:0,rates:Array(10).fill(50)}},
+];
+for(const source of invalidContinuity){
+ const before=structuredClone(source);
+ assert.equal(canBuildNativePortArrival({...opts,previous:source}),false);
+ assert.deepEqual(source,before,'preflight must not rewrite source state');
+}
+const invalidMarketPort={...port,meta:{
+ economy:1000,marketId:0,rates:[50,60]
+}};
+assert.equal(canBuildNativePortArrival({...opts,port:invalidMarketPort}),false);
+assert.deepEqual(previous,sourceBeforeInvalid);
 // The read-only readiness gate must not alter the original source game
 // state, unlike the actual arrival's authorized cloned session.
 const original=structuredClone(previous);

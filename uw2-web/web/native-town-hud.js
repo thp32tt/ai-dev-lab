@@ -11,19 +11,22 @@ export function originalTownHudEntries(slot){
  const put=(name,text,x,y,scale=1)=>{
   if(text!==null)out.push(entry(name,text,x,y,scale));
  };
+ // GRAPH #5 original Korean screenshot: date is in the upper-right
+ // scroll (x=480..639). Left status labels begin at x=8, so values
+ // must start to their RIGHT, not print across the original glyphs.
  const date=slot.dateTime;
  if(date&&unsigned(date.year,9999)!==null&&
     unsigned(date.month,12)!==null&&date.month>=1&&
     unsigned(date.day,31)!==null&&date.day>=1){
   put('ad-date',String(date.year).padStart(4,'0')+'.'+
    String(date.month).padStart(2,'0')+'.'+
-   String(date.day).padStart(2,'0'),8,34);
+   String(date.day).padStart(2,'0'),500,18);
  }
  const coins=unsigned(slot.money);
  if(coins!==null){
   // GRAPH #5 explicitly has separate original labels for gold COINS/BARS.
-  put('gold-coins',coins%GOLD_COINS_PER_BAR,13,321);
-  put('gold-bars',Math.floor(coins/GOLD_COINS_PER_BAR),13,355);
+  put('gold-coins',coins%GOLD_COINS_PER_BAR,48,321);
+  put('gold-bars',Math.floor(coins/GOLD_COINS_PER_BAR),48,355);
  }
  // Original stores three distinct fame tracks. The left HUD's single
  // prominent value is the largest recorded track, NOT their invented sum.
@@ -36,7 +39,7 @@ export function originalTownHudEntries(slot){
  if(available.length){
   // GRAPH #5 has ONE fame field on the left, not three additional
   // trade/pirate/adventure labels in the right-side economy panel.
-  put('fame-maximum',Math.max(...available),13,256);
+  put('fame-maximum',Math.max(...available),48,256);
  }
 
  const meta=slot.portMeta;

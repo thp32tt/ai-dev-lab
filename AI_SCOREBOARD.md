@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Korean UW2 native voyage ship cargo snapshot ownership (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-SEA-TICK-GOODS-OWNERSHIP-20261103-205009B6`; **AI 2 ChatGPT2**. Previous latest GitHub-confirmed cumulative **2492** + one independently implemented and tested native sea-tick original trade-goods memory ownership improvement **(+1)** = new confirmed cumulative **2493**. Implementation, CI runs, N100 sync, and repeat tests of this exact behavior have no additional score. AI 1 unchanged.
+- **Implemented:** `thp32tt/ai-dev-lab@uw2-web-port` exact source/validation SHA `205009b664b0e95ed45550bdaa93741448e542cb`; `uw2-web/web/native-sea-voyage-step.js` now duplicates mutable original ship goods slot rows for every atomic 20-minute voyage step in addition to ship records, so subsequent live market transactions cannot mutate previous sea session snapshots. New regression tests in `uw2-web/tests/native-sea-voyage-integrity.test.mjs` cover two consecutive ticks, fleet/SeaRuntime pointer ownership, mutation of multiple ships' goods and preservation of previous source sessions.
+- **Verification:** GitHub Actions UW2 Web Fidelity Static Gate run **41482621418 SUCCESS** for exact final SHA. N100 owner server source installed from pinned GitHub commit and backed up old module. Local Node `native-sea-voyage-integrity.test.mjs` PASS and `native-multiport-voyage-chain.test.mjs` PASS, shipping app module SHA256 `2fcbcca0ba90a323ea82d4abd7141a762194413ee4197abe0bab74f21d81d313`.
+- **Limit:** fixes browser-native state isolation only; not proof of original DOS binary equivalence, full new-game start, sea battle, or live Firefox end-to-end replay.
+
 ## AI 2 UW2 browser native port-call preflight parity and snapshot ownership (2026-11-03 KST)
 
 - **RUN_KEY:** `UW2-PORT-CALL-PREFLIGHT-SNAPSHOT-20261103-060C8875`; **AI 2(ChatGPT2)**. Previous latest GitHub-confirmed cumulative **2491** + one independently implemented and verified browser-native atomic port-call state admission and isolated owned session improvement **(+1)** = new cumulative **2492**. Individual source commits, CI, N100 deployment, original-resource verification, repeat checks and re-report all **+0**. AI 1 unchanged.

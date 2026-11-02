@@ -8,6 +8,7 @@ import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeModalRowPointerHit,nativeYesNoPointerHit,
  nativeTownWalkPointerDirection,nativeSeaPointerCommand} from "./native-canvas-pointer.js";
 import {planNativeTownClickRoute,nativeTownClickRouteNext} from "./native-town-click-route.js";
+import {nativeTownSourceDoorChoices,planNativeTownDoorRoute} from "./native-town-door-route.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
@@ -189,6 +190,26 @@ function startTownClickRoute(point){
  if(townClickPlan)townClickTimer=setInterval(stepTownClickRoute,145);
  return true;
 }
+function startTownBuildingRoute(buildingId){
+ if(viewMode!=="town"||!townRuntime||!selected||
+    townRuntime.insideBuilding||townRuntime.talk||
+    !Number.isSafeInteger(buildingId))return false;
+ const plan=planNativeTownDoorRoute({
+  snapshot:townRuntime.snapshot(),doors:townRuntime.doors,
+  assets:portAssets,buildingId
+ });
+ stopTownClickRoute();
+ if(!plan){
+  publishControllerState({townDoorFeedback:"원본 통행 경로를 확인할 수 없습니다."});
+  return false;
+ }
+ townClickPlan=plan;townClickOwner={runtime:townRuntime,session:selected};
+ stepTownClickRoute();
+ if(townClickPlan)townClickTimer=setInterval(stepTownClickRoute,145);
+ publishControllerState({townDoorFeedback:"원본 건물까지 이동 중 · ESC/중지로 취소"});
+ return true;
+}
+
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
 let systemReturnMode=null; // Remember live native town/sea for ESC menu return.
 let newGameHeroCursor=0;
@@ -241,6 +262,10 @@ function publishControllerState(extra = {}) {
     // only while that exact source-backed building UI owns the scene.
     nativeActionMode:viewMode==="town"&&townRuntime?.insideBuilding
       ? (buildingUi?.mode??null) : null,
+    townSourceDoors:viewMode==="town"&&townRuntime&&!townRuntime.insideBuilding
+      ? nativeTownSourceDoorChoices(townRuntime.snapshot(),townRuntime.doors)
+      : [],
+    townDoorWalking:!!townClickPlan?.targetBuildingId,
     checkpointFeedback,
     checkpointInFlight,
     checkpointSlots:(()=>{
@@ -2462,6 +2487,15 @@ window.addEventListener("uw2-controller-action", async event => {
   const action = event.detail?.action;
   if (action === "controller-ready") {
     publishControllerState();
+    return;
+  }
+  if(action==="town-door-go"){
+    if(viewMode!=="town"||checkpointInFlight||!townRuntime)return;
+    startTownBuildingRoute(event.detail?.buildingId);
+    return;
+  }
+  if(action==="town-door-stop"){
+    stopTownClickRoute();publishControllerState({townDoorFeedback:"이동 취소"});
     return;
   }
   // These commands are explicitly separate from the original DOS Save Data

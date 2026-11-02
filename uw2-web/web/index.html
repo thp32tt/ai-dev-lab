@@ -50,6 +50,14 @@
         </div>
       </div>
 
+      <section id="town-door-panel" class="town-door-panel" hidden aria-label="원본 항구 건물 목적지">
+        <label for="town-door-select">항구 건물</label>
+        <select id="town-door-select" aria-label="원본 건물 목적지"></select>
+        <button id="town-door-go" data-action="town-door-go" type="button">건물로 이동</button>
+        <button id="town-door-stop" data-action="town-door-stop" type="button" disabled>중지</button>
+        <span id="town-door-feedback" role="status" aria-live="polite"></span>
+      </section>
+
       <section id="native-context-actions" class="context-actions" hidden aria-label="항구 거래 보조 조작">
         <strong id="native-context-label"></strong>
         <div id="native-context-buttons" class="context-buttons"></div>

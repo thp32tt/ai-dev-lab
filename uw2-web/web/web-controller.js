@@ -17,6 +17,37 @@ const checkpointSlotSelect=document.getElementById("checkpoint-source-slot");
 const nativeContextPanel=document.getElementById("native-context-actions");
 const nativeContextLabel=document.getElementById("native-context-label");
 const nativeContextButtons=document.getElementById("native-context-buttons");
+const townDoorPanel=document.getElementById("town-door-panel");
+const townDoorSelect=document.getElementById("town-door-select");
+const townDoorGo=document.getElementById("town-door-go");
+const townDoorStop=document.getElementById("town-door-stop");
+const townDoorFeedback=document.getElementById("town-door-feedback");
+let sourceDoorSignature="";
+function renderSourceDoorControls(state){
+ const doors=state.mode==="town"&&Array.isArray(state.townSourceDoors)
+  ?state.townSourceDoors:[];
+ const visible=doors.length>0;
+ if(!townDoorPanel||!townDoorSelect)return;
+ townDoorPanel.hidden=!visible;
+ if(!visible){sourceDoorSignature="";townDoorSelect.replaceChildren();return;}
+ const signature=doors.map(d=>d.id+":"+d.x+":"+d.y+":"+d.name).join("|");
+ if(signature!==sourceDoorSignature){
+  const previous=townDoorSelect.value;
+  townDoorSelect.replaceChildren(...doors.map(d=>{
+   const opt=document.createElement("option");
+   opt.value=String(d.id);
+   opt.textContent=d.name+" ("+d.x+","+d.y+")";
+   return opt;
+  }));
+  if(doors.some(d=>String(d.id)===previous))townDoorSelect.value=previous;
+  sourceDoorSignature=signature;
+ }
+ if(townDoorGo)townDoorGo.textContent=state.townDoorWalking?"경로 변경":"건물로 이동";
+ if(townDoorStop)townDoorStop.disabled=!state.townDoorWalking;
+ if(townDoorFeedback&&typeof state.townDoorFeedback==="string")
+  townDoorFeedback.textContent=state.townDoorFeedback.slice(0,120);
+}
+
 let lastNativeContextMode=null;
 function renderNativeContext(mode){
   const cmds=nativeContextCommandsFor(mode);
@@ -100,6 +131,12 @@ function runAction(action) {
   else if(action==="checkpoint-load") {
     const value=checkpointSlotSelect?.value??"";
     emitAction(action,{slotIndex:value===""?null:Number(value)});
+  }
+  else if(action==="town-door-go"){
+    const id=Number(townDoorSelect?.value);
+    if(!townDoorSelect||!Number.isInteger(id)||id<0||id>11||
+       ![...townDoorSelect.options].some(o=>o.value===String(id)))return;
+    emitAction(action,{buildingId:id});
   }
   else emitAction(action);
 }
@@ -185,6 +222,7 @@ window.addEventListener("uw2-game-state", event => {
   if (modeLabel) modeLabel.textContent = labels[state.mode] || String(state.mode || "게임");
   controller.dataset.mode = state.mode || "";
   renderNativeContext(state.mode==="town"?state.nativeActionMode:null);
+  renderSourceDoorControls(state);
   const saveSelectionAvailable=["system-menu","load-select","load-confirm",
     "load-empty","preview"].includes(state.mode);
   for(const button of saveNavButtons)

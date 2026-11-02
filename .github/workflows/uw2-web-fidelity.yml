@@ -43,6 +43,7 @@ jobs:
           node --check uw2-web/tests/native-market-purchase-integrity.test.mjs
           node --check uw2-web/web/native-graph-canvas.js
           node --check uw2-web/web/native-save-entry.js
+          node --check uw2-web/web/native-original-source-admission.js
           node --check uw2-web/web/native-save-load-transaction.js
           node --check uw2-web/tests/native-save-load-transaction.test.mjs
           node --check uw2-web/web/native-new-game-hero.js

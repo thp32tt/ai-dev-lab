@@ -4,6 +4,7 @@
 import {openNativeSaveSession,syncNativeTownSession} from './native-save-session.js';
 import {classifyNativeSaveEntry} from './native-save-entry.js';
 import {parseKoreanPortTable} from './binary.js';
+import {admitOriginalKoreanSaveSlot} from './native-original-source-admission.js';
 import {PortWalkingRuntime} from './town.js';
 
 const hold=reason=>Object.freeze({ready:false,reason});
@@ -14,7 +15,9 @@ export function stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors}={}){
      saveBuffer.byteLength<333400)
     return hold('ORIGINAL_SAVE_SOURCE_UNAVAILABLE');
   try{
-    const session=openNativeSaveSession(slot);
+    const sourceAdmission=admitOriginalKoreanSaveSlot(slot,saveBuffer);
+    if(!sourceAdmission.allowed)return hold(sourceAdmission.reason);
+    const session=openNativeSaveSession(sourceAdmission.slot);
     const entry=classifyNativeSaveEntry(session,{portAssets,portDoors});
     if(entry.route!=='town')return hold(entry.reason);
     const page=session.raw?.page;

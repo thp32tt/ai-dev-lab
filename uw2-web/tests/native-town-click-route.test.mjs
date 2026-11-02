@@ -22,12 +22,12 @@ while(true){
 }
 assert.equal(count,5);assert.equal(s.portState.mapX,25);assert.equal(s.portState.mapY,54);
 // No direct teleport, no walk across non-passable chips.
-const wall=assets();for(let x=24;x<=26;x++)wall.maps[53*96+x]=230;
+const wall=assets();for(let x=24;x<=26;x++)wall.maps[53*96+x]=255;
 const other=session(),rt=new PortWalkingRuntime(other,wall,[[]]);
 const around=planNativeTownClickRoute({point:point(17,14),snapshot:rt.snapshot(),assets:wall});
 assert.ok(around&&around.moves.length>=7,JSON.stringify(around));
 for(const hop of around.moves)assert.equal(canStandAt(wall,0,hop.x,hop.y),true);
-wall.maps[55*96+27]=230;wall.maps[55*96+28]=230;
+wall.maps[55*96+27]=255;wall.maps[55*96+28]=255;
 assert.equal(planNativeTownClickRoute({point:point(17,16),snapshot:rt.snapshot(),assets:wall}),null);
 const npc=session();npc.townActors=[{slot:1,x:23,y:52,type:1,active:true}];
 const npcRt=new PortWalkingRuntime(npc,a,[[]]);

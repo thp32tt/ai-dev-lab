@@ -66,6 +66,8 @@ jobs:
           node --check uw2-web/tests/native-korean-save-source-original.test.mjs
           node --check uw2-web/tests/native-town-checkpoint-original.test.mjs
           node --check uw2-web/tests/native-sea-checkpoint-original.test.mjs
+          python3 -m py_compile uw2-web/serve.py
+          python3 uw2-web/tests/serve-path-safety.py
           python3 -m py_compile uw2-web/tests/native-browser-checkpoint-firefox.py
           node --check uw2-web/tests/native-save-session-original.test.mjs
           node --check uw2-web/web/native-town-time-transaction.js

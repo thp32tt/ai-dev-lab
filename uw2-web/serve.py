@@ -44,13 +44,22 @@ class Handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def translate_path(self, path: str) -> str:
+        # SimpleHTTPRequestHandler expects a filesystem path from here.
+        # Never allow an encoded '..' segment or a symlink to resolve
+        # outside the one public WEB directory: the original DOS executables,
+        # saves and analysis files live in adjacent PRIVATE directories.
         parsed = urlparse(path)
         rel = unquote(parsed.path).lstrip("/")
-        if rel.startswith("api/") or rel.startswith("game/"):
-            return str(WEB / "__not_a_static_file__")
+        missing = WEB / "__not_a_static_file__"
+        if rel == "api" or rel == "game" or rel.startswith(("api/", "game/")):
+            return str(missing)
         if not rel:
             rel = "index.html"
-        return str((WEB / rel).resolve())
+        root = WEB.resolve()
+        target = (root / rel).resolve()
+        if not target.is_relative_to(root):
+            return str(missing)
+        return str(target)
 
     def do_GET(self):
         parsed = urlparse(self.path)

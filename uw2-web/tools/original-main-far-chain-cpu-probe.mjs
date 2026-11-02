@@ -20,6 +20,8 @@ const FIRST_CALL=0x1b4f1,FIRST_TARGET=0x27e32;
 const SECOND_CALL=0x27e3d,SECOND_TARGET=0x3a879;
 const NEAR_CALL=0x3a87b,NEAR_TARGET=0x3a566;
 const NEAR_RETURN=0x3a87e,HELPER_END=0x3a584;
+const SECOND_CALLEE_RETURN=0x27e42,SECOND_TAIL_END=0x3a8a8;
+const UNVERIFIED_SELECTOR_CALL=0x3a892;
 const HEADER=0x5400;
 const u16=x=>Number.isSafeInteger(x)&&x>=0&&x<=0xffff;
 const word=(data,i)=>data[i]|(data[i+1]<<8);
@@ -117,11 +119,40 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
    physically(loadSegment,SECOND_TARGET)+NEAR_TARGET-SECOND_TARGET)
   throw new Error('original MAIN E8 target is not authenticated');
  const helper=covered(m3,NEAR_TARGET,HELPER_END,bytes);
+ // The complete source-authenticated selector tail has three genuine
+ // RETF exits. One source E8 at 3A892 reaches an unproven downstream
+ // helper, so the executor must reject that branch rather than stub it.
+ const tail=new Set();
+ let tailReturns=0;
+ for(let raw=NEAR_RETURN;raw<SECOND_TAIL_END;){
+  const ins=m3.get(rawToMainRea(raw));
+  if(!ins||!Number.isSafeInteger(ins.length)||ins.length<1||
+     raw+ins.length>SECOND_TAIL_END)
+   throw new Error('original second-callee tail instruction boundary missing');
+  if(ins.flow==='RETURN')tailReturns++;
+  if(ins.flow==='CALL_FAR'||ins.flow==='INTERRUPT'||
+     (ins.flow==='CALL_NEAR'&&
+      (raw!==UNVERIFIED_SELECTOR_CALL||
+       ins.targetRea!==rawToMainRea(0x3a846))))
+   throw new Error('original selector contains unproven external control flow');
+  if(Number.isSafeInteger(ins.targetRea)&&raw!==UNVERIFIED_SELECTOR_CALL&&
+     (ins.targetRea<rawToMainRea(NEAR_RETURN)||
+      ins.targetRea>=rawToMainRea(SECOND_TAIL_END)||
+      !m3.has(ins.targetRea)))
+   throw new Error('original selector branch leaves verified region');
+  tail.add(raw);
+  raw+=ins.length;
+ }
+ if(tailReturns!==3||bytes[0x3a899]!==0xcb||
+    bytes[0x3a8a3]!==0xcb||bytes[0x3a8a7]!==0xcb)
+  throw new Error('original selector three far-return sites changed');
  const half=loadSegment*16;
  if(half+bytes.length>0x100000)
   throw new Error('original guest image would overlap physical real-mode wrap');
  return Object.freeze({first,firstCall,secondCall,near,helper,
    helperSourceStarts:Object.freeze([...helper]),
+   secondTailSourceStarts:Object.freeze([...tail]),
+   verifiedSecondTailBoundaries:tail.size,
    loadSegment,verifiedOriginalHelperStarts:helper.size,
    farCallCount:2,nearCallCount:1,ownerHash:MAIN_NEW_GAME_SOURCE_SHA256});
 }
@@ -154,10 +185,11 @@ function executeOneFar(cpu,bytes,call,loadSegment){
   destinationIP:cpu.get16('IP')});
 }
 export async function probeOriginalMainFarChain(bytes,parts,{
- inputWord=0,loadSegment=0x2000
+ inputWord=0,recordType=0,recordValue=0x1234,loadSegment=0x2000
 }={}){
- if(!u16(inputWord))
-  throw new Error('synthetic DS:0C1E caller input must be u16');
+ if(!u16(inputWord)||!u16(recordValue)||
+    !u16(recordType)||recordType>255)
+  throw new Error('synthetic original selector input/record must be u16/u8');
  const proof=verifyOriginalMainFarChain(bytes,parts,{loadSegment});
  const mz=inspectMzForLoad(bytes);
  const cpu=new RealMode8086();
@@ -168,6 +200,14 @@ export async function probeOriginalMainFarChain(bytes,parts,{
  // Source code and game data are authentic; DOS runtime DS/SS are
  // explicitly test-only, never asserted to be original DOS state.
  cpu.write16(0x7000,0x0c1e,inputWord);
+ // Explicit synthetic selector: 7 bytes per entry beginning at BFF0.
+ // Source-backed index helper computes BFF0 + input * 7 for 0..19.
+ // Never pretend these values came from an original DOS startup state.
+ if(inputWord<20){
+  const recordOffset=0xbff0+inputWord*7;
+  cpu.write8(0x7000,recordOffset,recordType);
+  cpu.write16(0x7000,recordOffset+1,recordValue);
+ }
  const init=executeMainInitSourcePrefix(cpu,bytes,proof.first);
  assertAt(cpu,proof.first.startCS,proof.first.startIP+
   FIRST_CALL-0x1b49b,0x7ffc,'original initializer failed to reach 1st FAR');
@@ -216,17 +256,47 @@ export async function probeOriginalMainFarChain(bytes,parts,{
  const expected=inputWord<20?0xbff0+inputWord*7:0;
  if(mapped!==expected)
   throw new Error('original guest index helper diverged from its verified computation');
+ // Continue the *actual* selector from 3A87E until one of its authentic
+ // RETF instructions returns into the original first callee at 27E42.
+ // For record-type 1 the source calls another E8 at 3A892; the target
+ // is not validated here and is deliberately not executed.
+ const tail=new Set(proof.secondTailSourceStarts.map(raw=>
+  physically(loadSegment,raw)));
+ let tailSteps=0;
+ for(;tailSteps<32;tailSteps++){
+  const p=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
+  if(cpu.get16('CS')===f2.cs&&cpu.get16('IP')===((f2.ip+5)&65535)&&
+     p===physically(loadSegment,SECOND_CALLEE_RETURN))break;
+  if(!tail.has(p))
+   throw new Error('original selector left verified 8086 tail boundary');
+  if(p===physically(loadSegment,UNVERIFIED_SELECTOR_CALL))
+   throw new Error('original selector unverified E8 callee: stop before mutation');
+  cpu.step();
+ }
+ if(tailSteps===32||cpu.get16('SP')!==f2.sp||
+    cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+      physically(loadSegment,SECOND_CALLEE_RETURN))
+  throw new Error('original nested selector failed authentic FAR return');
+ const selectorResult=cpu.get16('AX');
+ const expectedResult=inputWord>=20?0:recordType===0?recordValue:0;
+ if(selectorResult!==expectedResult)
+  throw new Error('original selector return AX disagrees with synthetic record');
  return Object.freeze({
   sourceHash:MAIN_NEW_GAME_SOURCE_SHA256,
   executedInitializerInstructions:init.steps,
   executedCalleePrefixInstructions:calleeSteps,
   executedIndexHelperInstructions:helperSteps,
-  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+2,
+  executedSecondCalleeTailInstructions:tailSteps,
+  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+tailSteps+2,
   verifiedIndexHelperBoundaries:proof.verifiedOriginalHelperStarts,
   actualChainedFarCalls:2,actualNestedNearCalls:1,
   originalInputWord:inputWord,originalIndexOffset:mapped,
   returnedToRaw:NEAR_RETURN,
-  stoppedBeforeUnclassifiedSecondCalleeBody:true,
+  secondCalleeReturnedToRaw:SECOND_CALLEE_RETURN,
+  verifiedSecondCalleeTailBoundaries:proof.verifiedSecondTailBoundaries,
+  syntheticRecordType:recordType,syntheticRecordValue:recordValue,
+  originalSelectorResult:selectorResult,
+  stoppedBeforeUnclassifiedFirstCalleeLoop:true,
   originalDosRuntimeVerified:false,freshGameReady:false
  });
 }
@@ -238,6 +308,18 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const points=[0,1,2,7,18,19,20,65535];
   const results=[];
   for(const inputWord of points)results.push(await probeOriginalMainFarChain(bytes,parts,{inputWord}));
-  console.log(JSON.stringify({testedInputs:points.length,guestInstructions:results.reduce((s,x)=>s+x.executedOriginalGuestInstructions,0),allReturned:results.every(x=>x.returnedToRaw===NEAR_RETURN),results},null,2));
+  results.push(await probeOriginalMainFarChain(bytes,parts,{inputWord:7,recordType:2,recordValue:0x5678}));
+  let rejectedUnverifiedSelector=false;
+  try{await probeOriginalMainFarChain(bytes,parts,{inputWord:7,recordType:1});}
+  catch(error){
+   if(!String(error.message).includes('unverified E8 callee'))throw error;
+   rejectedUnverifiedSelector=true;
+  }
+  if(!rejectedUnverifiedSelector)throw new Error('unverified original E8 selector unexpectedly executed');
+  console.log(JSON.stringify({testedInputs:points.length+2,
+   completedSelectorCases:results.length,rejectedUnverifiedSelector,
+   guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
+   allReturned:results.every(x=>x.secondCalleeReturnedToRaw===SECOND_CALLEE_RETURN),
+   results},null,2));
  }catch(e){console.error(e.stack||String(e));process.exitCode=1;}
 }

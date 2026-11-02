@@ -155,6 +155,14 @@ let systemMenuPending = false;
 const bootGate = new Uw2BootGate();
 let gameResourceFailure = null;
 
+// Error events go to the bootstrap watchdog, which is loaded before this ES
+// module graph. Keep original data failures visible even during OPEN playback.
+function reportOriginalBootFailure(phase, error) {
+  window.dispatchEvent(new CustomEvent("uw2-boot-failure", {
+    detail: { phase, message: String(error?.message ?? error) },
+  }));
+}
+
 const fidelityParams = new URLSearchParams(location.search);
 const allowApproximateMusic = fidelityParams.get("musicApprox") === "1";
 const allowApproximateOpening = fidelityParams.get("openingApprox") !== "0";
@@ -973,6 +981,9 @@ function drawOpeningTitleHold(reason = "complete") {
       height: openingTitle.height,
     },
   }, null, 2);
+  // Prevent stale "opening" controller mode and lingering ESC skip button
+  // while the source title is waiting for MAIN's resources to finish.
+  publishControllerState();
 }
 
 function completeOpening(reason = "complete") {
@@ -1024,6 +1035,7 @@ function startOpeningPlayback() {
     bootGate.failOpening();
     $("runtime-status").textContent = "오프닝 재생 오류: " + err.message;
     $("debug").textContent = err.stack || String(err);
+    reportOriginalBootFailure("OPEN 재생", err);
   });
 }
 
@@ -2322,6 +2334,7 @@ const openingBoot = loadOpeningGraphics().then(() => {
   bootGate.failOpening();
   $("opening-status").textContent = "오프닝 로드 오류: " + err.message;
   $("debug").textContent = err.stack || String(err);
+  reportOriginalBootFailure("OPEN 원본 그래픽", err);
 });
 
 const gameBoot = Promise.allSettled([
@@ -2342,6 +2355,7 @@ const gameBoot = Promise.allSettled([
       failed.map(r => r.reason?.message ?? String(r.reason)).join("; ");
     bootGate.failGameResources();
     if (viewMode !== "opening") $("runtime-status").textContent = gameResourceFailure;
+    reportOriginalBootFailure("MAIN 원본 리소스", new Error(gameResourceFailure));
     return; // Do not treat rejected original data as MAIN.EXE boot readiness.
   }
   if (bootGate.settleGameResources()) enterSystemMenu(0);

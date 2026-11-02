@@ -62,6 +62,14 @@
   window.addEventListener("unhandledrejection",event=>{
     if(!ready)showError("리소스/초기화 오류: "+(event.reason?.message||String(event.reason)));
   });
+  // A partially rendered intro is NOT proof that MAIN.EXE has loaded. The
+  // app reports known fatal original-file errors explicitly: unlike a generic
+  // window error, those remain fatal after the opening canvas first appeared.
+  window.addEventListener("uw2-boot-failure",event=>{
+    const phase=String(event.detail?.phase||"원본 데이터").slice(0,48);
+    const message=String(event.detail?.message||"알 수 없는 오류");
+    showError(phase+": "+message,true);
+  });
   // Surface hard failures even if the app swallowed resource loading errors.
   const watchdog=setInterval(()=>{
     // Opening may start before other original files finish loading. Keep

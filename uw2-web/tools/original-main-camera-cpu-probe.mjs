@@ -29,7 +29,7 @@ export function executeBoundedGuestSubroutine(cpu,{
   !Number.isSafeInteger(sourcePhysical)||sourcePhysical<0||
   !Number.isSafeInteger(endPhysical)||endPhysical<=sourcePhysical||
   endPhysical>cpu.memory.length||!(starts instanceof Set)||
-  starts.size<2||!Number.isSafeInteger(maxSteps)||maxSteps<1||
+  starts.size<1||!Number.isSafeInteger(maxSteps)||maxSteps<1||
   maxSteps>1024||cpu.physical(startCS,startIP)!==sourcePhysical)
   throw new Error('bounded 8086 source, entry and synthetic return stack required');
  const validStarts=new Set();

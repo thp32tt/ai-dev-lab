@@ -69,15 +69,27 @@ const invalidCases=[
  {...opts,port:{...port,x:99999}},
  {...opts,seaState:{dateTime:{...time,timeTick:72}}},
  {...opts,seaState:{dateTime:{...time,timeTick:49,hour:5}}},
+ // The browser's original fixed 365-day calendar excludes impossible
+ // months/days even when the numeric ranges 1..31 appear valid.
+ {...opts,seaState:{dateTime:{...time,month:2,day:30}}},
+ {...opts,seaState:{dateTime:{...time,month:2,day:29}}},
+ {...opts,seaState:{dateTime:{...time,month:4,day:31}}},
+ {...opts,seaState:{dateTime:{...time,year:1500}}},
+ {...opts,seaState:{dateTime:{...time,month:0}}},
+ {...opts,seaState:{dateTime:{...time,minute:21}}},
  {...opts,portDoors:[]},
  {...opts,portDoors:[[null,null,null,{id:3,present:true,x:95,y:51}]]},
  {...opts,portDoors:[[null,null,null,{id:3,present:true,x:22,y:94}]]},
  {...opts,portAssets:{...assets,walkBounds:[[0,0,0,0]]}}
 ];
+// Rejection cannot mutate a live source-slot session before or after
+// port-call preflight; both interfaces must fail closed.
+const sourceBeforeInvalid=structuredClone(previous);
 for(const input of invalidCases){
  assert.equal(canBuildNativePortArrival(input),false);
  assert.equal(buildNativePortArrival(input),null);
 }
+assert.deepEqual(previous,sourceBeforeInvalid);
 // The read-only readiness gate must not alter the original source game
 // state, unlike the actual arrival's authorized cloned session.
 const original=structuredClone(previous);

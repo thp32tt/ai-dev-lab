@@ -45,6 +45,27 @@ result.town.actors[0].x=99;
 assert.equal(actors[0].x,4);
 assert.deepEqual(session,saved);
 assert.deepEqual(opts.runtime.snapshot(),beforeSea);
+// After successful arrival the old sea runtime is no longer the owner of
+// live gameplay memory. Purchases and fleet changes in the new town must
+// not retroactively mutate the earlier sea snapshot or original save.
+assert.notStrictEqual(result.session.fleet,session.fleet);
+assert.notStrictEqual(result.session.fleet.ships[0],session.fleet.ships[0]);
+result.session.fleet.ships[0].water=42;
+result.session.fleet.ships[0].goods[0].quantity=7;
+assert.equal(session.fleet.ships[0].water,200);
+assert.equal(session.fleet.ships[0].goods[0].quantity,0);
+assert.equal(opts.runtime.fleet.ships[0].water,200);
+assert.equal(result.town.slot.fleet.ships[0].water,42);
+const sourceWithInventory={...session,inventory:[1,255],
+ lastBankInterest:{interest:30,date:{...date}}};
+const isolated=prepareNativePortCall({...opts,session:sourceWithInventory,
+ runtime:seaFor(sourceWithInventory)});
+assert.equal(isolated.allowed,true);
+isolated.session.inventory[0]=9;
+isolated.session.lastBankInterest.date.day=7;
+assert.deepEqual(sourceWithInventory.inventory,[1,255]);
+assert.equal(sourceWithInventory.lastBankInterest.date.day,6);
+
 
 // All admission and constructor failures must preserve the caller state.
 function fails(overrides={},reason){

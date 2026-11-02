@@ -40,6 +40,8 @@ export function inspectMainNewGameCallLedger(original,ghidra){
  }
  // A plausible raw byte sequence without the independently recovered
  // instruction boundary MUST NOT be declared an original 8086 call.
+ const sortedTargets=witness.calls.map(c=>rawToMainRea(c.to))
+  .sort((a,b)=>a-b);
  const calls=witness.calls.map(({at,to,role})=>{
   const rea=rawToMainRea(at),targetRea=rawToMainRea(to);
   const inst=byAddress.get(rea);
@@ -50,8 +52,13 @@ export function inspectMainNewGameCallLedger(original,ghidra){
    throw new Error('new-game initializer entry absent from Ghidra instruction ledger');
   // Expose bounded local instructions only. Unresolved branch targets and
   // external ownership are deliberately reported, not reinterpreted.
+  // Never attribute instructions at the NEXT independently proven
+  // initializer entry to the preceding function just because the bounded
+  // evidence window straddles that second entry.
+  const nextEntry=sortedTargets.find(addr=>addr>targetRea);
+  const end=Math.min(targetRea+MAX_WINDOW,nextEntry??Infinity);
   const window=[...byAddress.values()]
-   .filter(x=>x.reaAddress>=targetRea&&x.reaAddress<targetRea+MAX_WINDOW)
+   .filter(x=>x.reaAddress>=targetRea&&x.reaAddress<end)
    .sort((a,b)=>a.reaAddress-b.reaAddress);
   const directCalls=window.filter(x=>x.flow==='CALL_NEAR'||
     x.flow==='CALL_FAR').map(x=>Object.freeze({

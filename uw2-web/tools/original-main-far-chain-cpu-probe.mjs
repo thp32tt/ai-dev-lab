@@ -206,9 +206,8 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
  if(typeOneReturns!==1||bytes[TYPE_ONE_HELPER_END-1]!==0xcb||
     bytes[TYPE_ONE_NESTED_UNVERIFIED_CALL]!==0xe8)
   throw new Error('original type-1 helper RETF/source changed');
- // A signed-negative 16-bit span can branch into 3A975 and invoke the owner's
- // INT 67h. Positive signed counts take the zero-iteration source path.
- // It is not a source-validated EMS adapter in this harness:
+ // Positive record counts enter 3A975 and invoke the owner source's
+ // INT 67h. It is not a source-validated EMS adapter in this harness:
  // verifying the bytes is NOT permission to synthesize its effects.
  const emsCall=m3.get(rawToMainRea(TYPE_ONE_EMS_SERVICE));
  const nested=m3.get(rawToMainRea(TYPE_ONE_NESTED_UNVERIFIED_CALL));
@@ -256,7 +255,7 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
    secondTailSourceStarts:Object.freeze([...tail]),
    typeOneHelperSourceStarts:Object.freeze([...typeOneHelper]),
    verifiedTypeOneHelperBoundaries:typeOneHelper.size,
-   typeOneSignedNegativeSpanMayReachOriginalInt67:true,
+   typeOnePositiveSpanRequiresOriginalInt67:true,
    firstTailSourceStarts:Object.freeze([...firstTail]),
    verifiedFirstTailBoundaries:firstTail.size,
    verifiedSecondTailBoundaries:tail.size,
@@ -299,11 +298,11 @@ export async function probeOriginalMainFarChain(bytes,parts,{
  if(!u16(inputWord)||!u16(recordValue)||
     !u16(recordType)||recordType>255||
     !u16(recordSpanLength)||!u16(selectorSideValue)||
-    (recordType===1&&recordSpanLength>0x7fff)||
+    (recordType===1&&recordSpanLength!==0)||
     !u16(fillIndex)||
     fillIndex>=20||fillIndex===inputWord||
     !u16(fillSegment)||fillSegment<0x9000||fillSegment>0xf000)
-  throw new Error('synthetic original selector input invalid or signed-negative span requires unimplemented INT 67h');
+  throw new Error('synthetic original selector input invalid or type-1 nonzero span requires unimplemented INT 67h');
  const proof=verifyOriginalMainFarChain(bytes,parts,{loadSegment});
  const mz=inspectMzForLoad(bytes);
  const cpu=new RealMode8086();
@@ -417,7 +416,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   if(!tail.has(p))
    throw new Error('original selector left verified 8086 tail boundary');
   if(p===physically(loadSegment,TYPE_ONE_SELECTOR_CALL)){
-   if(recordType!==1||recordSpanLength>0x7fff)
+   if(recordType!==1||recordSpanLength!==0)
     throw new Error('original type-1 selector source branch not admitted');
    const sourceCS=cpu.get16('CS'),sourceIP=cpu.get16('IP');
    const sourceSP=cpu.get16('SP');
@@ -588,7 +587,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   completedBoundedInitializerFunction:true,
   verifiedSecondCalleeTailBoundaries:proof.verifiedSecondTailBoundaries,
   verifiedTypeOneHelperBoundaries:proof.verifiedTypeOneHelperBoundaries,
-  typeOneSignedNegativeSpanMayReachOriginalInt67:proof.typeOneSignedNegativeSpanMayReachOriginalInt67,
+  typeOnePositiveSpanRequiresOriginalInt67:proof.typeOnePositiveSpanRequiresOriginalInt67,
   verifiedFirstCalleeTailBoundaries:proof.verifiedFirstTailBoundaries,
   syntheticRecordType:recordType,syntheticRecordValue:recordValue,
   syntheticRecordSpanLength:recordSpanLength,
@@ -615,26 +614,18 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const typeOne=await probeOriginalMainFarChain(bytes,parts,{
    inputWord:7,recordType:1,recordSpanLength:0,selectorSideValue:0x2468});
   results.push(typeOne);
-  for(const recordSpanLength of [1,2,0x7fff]){
-   const positive=await probeOriginalMainFarChain(bytes,parts,{
-    inputWord:7,recordType:1,recordSpanLength,selectorSideValue:0x2468});
-   results.push(positive);
-   if(positive.originalSelectorResult!==0x2468||
-      positive.executedTypeOneHelperInstructions<8)
-    throw new Error('original source positive-span type-1 helper diverged');
-  }
   if(typeOne.originalSelectorResult!==0x2468||
      typeOne.executedTypeOneHelperInstructions<8)
    throw new Error('original zero-span type-1 helper not executed');
   let rejectedUnverifiedSelector=false;
   try{await probeOriginalMainFarChain(bytes,parts,{
-   inputWord:7,recordType:1,recordSpanLength:0x8000});}
+   inputWord:7,recordType:1,recordSpanLength:1});}
   catch(error){
    if(!String(error.message).includes('unimplemented INT 67h'))throw error;
    rejectedUnverifiedSelector=true;
   }
-  if(!rejectedUnverifiedSelector)throw new Error('unverified signed-negative type-1 span unexpectedly executed');
-  console.log(JSON.stringify({testedInputs:points.length+6,
+  if(!rejectedUnverifiedSelector)throw new Error('unverified type-1 positive span unexpectedly executed');
+  console.log(JSON.stringify({testedInputs:points.length+3,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
    allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN&&x.ownerFillStoppedAtRaw===OWNER_FILL_END),

@@ -29,7 +29,8 @@ const controller=fs.readFileSync(new URL('../web/web-controller.js',import.meta.
 assert.match(app,/systemUi\.cursor === 1\) \{\s*enterNativeNewGameSelect\(\)/);
 assert.match(app,/viewMode==="new-game-select"/);
 assert.match(app,/nativeNewGameSourceDemo\(/);
-assert.match(app,/drawIndexedCanvas\(thumbnail,img,64,80,1\)/);
+assert.match(app,/drawIndexedCanvas\(thumbnail,img,box.w,box.h,1\)/);
+assert.match(app,/originalNewGameSelectorRect\(hero.id\)/);
 assert.match(app,/selectLoadedSlot\(demo\.slotIndex\)/);
 assert.match(app,/실제 Start New Game 초기화는 미구현/);
 assert.match(controller,/new-game-select/);

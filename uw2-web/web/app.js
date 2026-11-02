@@ -1,6 +1,7 @@
 import { parseOffsetTextTable, parseMenuTable, parseSaveSlots, parseKoreanPortTable, stripMenuControls, stripUw2MessageControls } from "./binary.js";
 import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import {nativeNewGameHeroChoices,nativeNewGameSourceDemo} from "./native-new-game-hero.js";
+import {originalNewGameSelectorRect} from "./native-new-game-layout.js";
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit} from "./native-canvas-pointer.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
@@ -501,25 +502,28 @@ function drawNewGameHeroSelect(){
   drawSystemBase();
   drawSystemWindow({x:44,y:12,w:552,h:375});
   drawOriginalTextTop("Start New Game · 주인공 선택",126,24,{color:"#24160c"});
+  // The original Korean selector is NOT a 3x2 grid. All six hit-boxes
+  // derive from MAIN.EXE DS:AB6E and the 64x80 selector extent.
   for(const hero of heroes){
-    const col=hero.id%3,row=Math.floor(hero.id/3);
-    const x=106+col*165,y=58+row*140;
+    const box=originalNewGameSelectorRect(hero.id);
     const img=kaoPortraits[hero.portraitRecord];
     if(img){
       const thumbnail=document.createElement("canvas");
-      drawIndexedCanvas(thumbnail,img,64,80,1);
+      drawIndexedCanvas(thumbnail,img,box.w,box.h,1);
       ctx.imageSmoothingEnabled=false;
-      ctx.drawImage(thumbnail,x,y,64,80);
+      ctx.drawImage(thumbnail,box.x,box.y,box.w,box.h);
     }
     ctx.lineWidth=hero.id===newGameHeroCursor?3:1;
     ctx.strokeStyle=hero.id===newGameHeroCursor?"#a43d1e":"#594b35";
-    ctx.strokeRect(x-5,y-5,74,90);
-    drawOriginalTextTop(hero.label.slice(0,20),x-12,y+91,
-      {color:hero.id===newGameHeroCursor?"#a43d1e":"#24160c"});
-    drawOriginalTextTop(hero.sourceSlot===null?"초기 자료 미확인":
-      `원본 저장 ${hero.sourceSlot+1} 있음`,x-12,y+109,{color:"#24160c"});
+    ctx.strokeRect(box.x,box.y,box.w,box.h);
   }
-  drawOriginalTextTop("방향키: 선택  Enter: 확인  ESC: 이전",95,345,
+  const active=heroes[newGameHeroCursor];
+  // Text belongs outside the source rectangles: the original UI uses
+  // those precise areas to select characters, not save preview rows.
+  drawOriginalTextTop(active.label.slice(0,18),56,366,
+    {color:"#24160c"});
+  drawOriginalTextTop(active.sourceSlot===null?"새 게임 초기 상태 미복원":
+    `원본 저장 ${active.sourceSlot+1} · 저장 시점 체험`,328,366,
     {color:"#24160c"});
   viewMode="new-game-select";
   const hero=heroes[newGameHeroCursor];

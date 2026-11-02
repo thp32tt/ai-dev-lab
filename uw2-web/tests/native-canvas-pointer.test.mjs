@@ -20,13 +20,18 @@ assert.equal(nativeSystemMenuPointerHit({x:220,y:135}),null);
 for(let i=0;i<10;i++)
  assert.equal(nativeLoadSlotPointerHit({x:300,y:96+i*16+8}),i);
 assert.equal(nativeLoadSlotPointerHit({x:300,y:256}),null);
+const points=[[56,184],[104,280],[184,56],[280,80],[328,256],[512,168]];
 for(let id=0;id<6;id++){
- const col=id%3,row=Math.floor(id/3);
- assert.equal(nativeNewGameHeroPointerHit({x:110+col*165,y:70+row*140}),id);
- assert.equal(nativeNewGameHeroPointerHit({x:110+col*165,y:175+row*140}),id);
+ const [x,y]=points[id];
+ assert.equal(nativeNewGameHeroPointerHit({x,y}),id);
+ assert.equal(nativeNewGameHeroPointerHit({x:x+63.99,y:y+79.99}),id);
+ // Selector regions are exactly original 64x80; labels do not add a hit area.
+ assert.notEqual(nativeNewGameHeroPointerHit({x:x+64,y:y+79}),id);
+ assert.notEqual(nativeNewGameHeroPointerHit({x:x+63,y:y+80}),id);
 }
 assert.equal(nativeNewGameHeroPointerHit({x:10,y:20}),null);
 assert.equal(nativeNewGameHeroPointerHit({x:110,y:360}),null);
+assert.equal(nativeNewGameHeroPointerHit({x:106,y:58}),null);
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.match(app,/from "\.\/native-canvas-pointer\.js"/);
 assert.match(app,/canvas\.addEventListener\("click",\s*event\s*=>/);

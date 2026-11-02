@@ -1,6 +1,7 @@
 // Browser-only pointer hit testing for the already rendered native menu UI.
 // Original game assets, save bytes and DOS program state are never modified.
 import {SYSTEM_UI_LAYOUT} from './system-ui.js';
+import {originalNewGameSelectorHit} from './native-new-game-layout.js';
 
 export function nativeCanvasPointerPoint(event,canvas){
   if(!event||!canvas||typeof canvas.getBoundingClientRect!=='function')
@@ -35,13 +36,5 @@ export function nativeLoadSlotPointerHit(point){
 }
 
 export function nativeNewGameHeroPointerHit(point){
-  if(!point)return null;
-  // Rectangles are the existing portrait/label regions in drawNewGameHeroSelect.
-  for(let id=0;id<6;id++){
-    const col=id%3,row=Math.floor(id/3);
-    const x=94+col*165,y=53+row*140;
-    if(point.x>=x&&point.x<x+115&&point.y>=y&&point.y<y+130)
-      return id;
-  }
-  return null;
+  return originalNewGameSelectorHit(point);
 }

@@ -124,6 +124,8 @@ jobs:
           node --check uw2-web/web/boot-sequence.js
           node --check uw2-web/web/koei-exit-flow.js
           node --check uw2-web/web/realmode-8086.js
+          node --check uw2-web/web/ems-int67-map44.js
+          node --check uw2-web/tests/ems-int67-map44.test.mjs
           node --check uw2-web/tests/realmode-80186-stack-arithmetic.test.mjs
           node --check uw2-web/web/mz-loader.js
           node --check uw2-web/web/dos-int21.js
@@ -199,6 +201,7 @@ jobs:
           node uw2-web/tests/original-main-camera-cpu-probe.test.mjs
           node uw2-web/tests/original-main-map-init-cpu-probe.test.mjs
           node uw2-web/tests/original-main-far-chain-cpu-probe.test.mjs
+          node uw2-web/tests/ems-int67-map44.test.mjs
           node uw2-web/tests/native-context-commands.test.mjs
           node uw2-web/tests/native-town-hud.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs

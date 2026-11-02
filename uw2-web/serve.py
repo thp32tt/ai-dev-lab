@@ -53,6 +53,10 @@ class Handler(SimpleHTTPRequestHandler):
         missing = WEB / "__not_a_static_file__"
         if rel == "api" or rel == "game" or rel.startswith(("api/", "game/")):
             return str(missing)
+        # Even when the normalized destination would end up inside WEB,
+        # a parent segment is never part of a public resource URL.
+        if ".." in Path(rel).parts:
+            return str(missing)
         if not rel:
             rel = "index.html"
         root = WEB.resolve()

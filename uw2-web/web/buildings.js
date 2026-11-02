@@ -173,16 +173,22 @@ export function consumeDepartureDay(slot) {
   if(!validSupplyFleet(slot))
     return {consumed:false,reason:'invalid-supply-state'};
   const ships=slot.fleet.ships;
-  for (const ship of ships) {
-    const crew = ship.currentCrew;
-    const beforeWaterUnits = Math.floor((ship.water ?? 0) / 10);
-    const beforeFoodUnits = Math.floor((ship.food ?? 0) / 10);
-    ship.water = Math.max(0, (ship.water ?? 0) - crew);
-    ship.food = Math.max(0, (ship.food ?? 0) - crew);
-    const afterWaterUnits = Math.floor(ship.water / 10);
-    const afterFoodUnits = Math.floor(ship.food / 10);
-    const released = (beforeWaterUnits-afterWaterUnits)+(beforeFoodUnits-afterFoodUnits);
-    adjustSpeedLoad(ship, -released);
+  // Time advancement consumes supplies from ALL source ships. Stage every
+  // vessel's u16 debit first; otherwise the legacy clamped speed-load may
+  // erase source-accounting corruption and partially charge earlier ships.
+  const next=ships.map(ship=>{
+    const water=Math.max(0,ship.water-ship.currentCrew);
+    const food=Math.max(0,ship.food-ship.currentCrew);
+    const released=Math.floor(ship.water/10)-Math.floor(water/10)+
+                   Math.floor(ship.food/10)-Math.floor(food/10);
+    return {water,food,released};
+  });
+  if(next.some((n,i)=>ships[i].load<n.released))
+    return {consumed:false,reason:'source-load-invalid'};
+  for(let i=0;i<ships.length;i++){
+    ships[i].water=next[i].water;
+    ships[i].food=next[i].food;
+    ships[i].load-=next[i].released; // proved nonnegative, no silent clamp
   }
   return {consumed:true};
 }

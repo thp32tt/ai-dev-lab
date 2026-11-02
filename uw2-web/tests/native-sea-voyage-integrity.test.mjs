@@ -75,6 +75,7 @@ blocked(p=>{
  p.runtime.assets={cells,quad:world.quad};
 },'native-voyage-state-invalid');
 blocked(p=>{p.session.fleet.ships[1].water=Infinity;},'native-voyage-state-invalid');
+blocked(p=>{p.session.fleet.ships[1].load=0;},'native-voyage-provision-invalid');
 blocked(p=>{p.session.bankBalance=1_000_001;},'native-voyage-state-invalid');
 blocked(p=>{p.session.dayFlags=256;},'native-voyage-state-invalid');
 {

@@ -78,6 +78,8 @@ assert.equal(rejected(()=>{}, {cells:new Uint8Array(1080*540).fill(15),
  quad:new Uint8Array(1024)}),'source-sea-unavailable');
 assert.equal(rejected(s=>{s.fleet.ships[1].currentCrew=Infinity;}),
  'invalid-supply-state');
+assert.equal(rejected(s=>{s.fleet.ships[1].load=0;}),
+ 'departure-provision-invalid');
 assert.equal(rejected(s=>{for(const sh of s.fleet.ships)sh.water=0;}),
  'no-provisions');
 for(const v of [0,1,5,-1,NaN,Infinity,2.5,'2'])

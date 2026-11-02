@@ -740,3 +740,10 @@
 - 실제 브라우저 항해의 속도 식(`fleetSeaSpeed` 40 이하 + `WINDCUR` 해류 7 이하)과 게임 60분할 칩 이동 계산에서 정상 `accX/accY`는 각 축의 **정수 0~59**이고, 현재 함선 좌표는 원본 WORLDMAP/DATA1 해도에서 2×2 통행 가능해야 한다. 이전에는 브라우저 임시저장 복원에서 ±10억까지의 임의 누산값을 허용하고 `native-sea-voyage-step.js`에서도 유한한 실수만 확인해 원본 외부의 잘못된 상태가 항해 중 이동·시간 진행을 계속할 수 있었다.
 - 공유 `web/native-sea-motion.js`에 검증기를 두고, 실제 `advanceNativeSeaVoyageStep`의 처리 전 상태와 `native-sea-checkpoint.js`의 저장·불러오기·런타임 복원 모두 **같은 원본 해도 통행성/60단위 잔여량** 조건을 사용하도록 통합했다. 이미 유효한 실제 원본 항해 동작의 속도식·방향·시간/보급 계산은 바꾸지 않는다.
 - 기존 shipping CI의 `tests/native-sea-voyage-integrity.test.mjs`, `tests/native-sea-checkpoint.test.mjs`에 음수/60 이상/소수 누산값, 통과할 수 없는 원본 2×2 칩, SHA 체크섬을 다시 계산해도 유효하지 않은 저장값, 정상 저장·복원 보존을 포함했다. 이 구현은 **네이티브 브라우저 출항·저장 안전성**이며 원작 DOS와의 이동량 차등, 사용자 소유 리소스 Firefox 실기는 **RUNTIME_VALIDATION=UNTESTED**.
+
+
+## 2026-11-02 실제 출항 및 자정 보급품 소비의 전함대 적재량 원자성
+
+- 원본 브라우저 게임의 하루 보급품 소비 `consumeDepartureDay`는 기존에 모든 선박의 u16 형식만 검사한 후 각 선박 물/식량을 순서대로 갱신하면서 보급품 10단위의 반납된 적재량을 `Math.max(0,load−released)`로 강제 보정했다. 뒤쪽 선박의 잔여 적재량이 부족해도 앞쪽 선박이 이미 변경된 후 정상 완료로 보고하여 원본 한국어판 저장 상태의 화물 무게를 조용히 손상시킬 수 있었다.
+- 이제 모든 1~10척의 **다음 물·식량 수량과 적재량 차감량을 먼저 계산**하고 하나라도 부족하면 `source-load-invalid`로 전체 출항/자정 보급 처리를 거부한다. 실제 적재량에서 정확하게 차감하는 경우에만 전함대 결과를 적용하며, 10단위 미만 보급품의 유효한 정수 소비는 기존대로 유지한다. 이미 구현된 `prepareNativeHarborDeparture` 및 `advanceNativeSeaVoyageStep`가 이 결과를 복제본에서 검증하므로 실제 웹 장면·시각/은행·보급품 전환은 원자적으로 유지된다.
+- shipping `native-harbor-supply-integrity.test.mjs`, `native-harbor-departure.test.mjs`, `native-sea-voyage-integrity.test.mjs`를 다중 함선·자정·출항 부족·원본 상태 불변·경계 0 사례로 확장했다. 원본 DOS의 선원 소비·기아 규칙을 새로 추정한 것은 아니며, 한국어 DOS 차등과 소유 원본 자산 Firefox 실기는 **RUNTIME_VALIDATION=UNTESTED**.

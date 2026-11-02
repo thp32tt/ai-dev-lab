@@ -139,6 +139,29 @@ assert.equal(unloadSupply(exactUnload,0,'food',1).quantity,1);
 assert.equal(exactUnload.fleet.ships[0].load,0);
 assert.equal(exactUnload.fleet.ships[0].food,0);
 
+// A source u16 load deficit must fail the WHOLE day's provision charge
+// before mutating earlier ships or silently saturating a later load to 0.
+const missingDailyLoad=makeSlot();
+missingDailyLoad.fleet.ships.push({...makeShip(),index:1,
+ goods:makeShip().goods.map(g=>({...g})),load:0});
+const midnightBefore=structuredClone(missingDailyLoad);
+assert.deepEqual(consumeDepartureDay(missingDailyLoad),
+ {consumed:false,reason:'source-load-invalid'});
+assert.deepEqual(missingDailyLoad,midnightBefore);
+missingDailyLoad.fleet.ships[1].load=2;
+const firstAfter=structuredClone(missingDailyLoad.fleet.ships[0]);
+assert.deepEqual(consumeDepartureDay(missingDailyLoad),{consumed:true});
+assert.equal(missingDailyLoad.fleet.ships[0].load,firstAfter.load-2);
+assert.equal(missingDailyLoad.fleet.ships[1].load,0);
+assert.equal(missingDailyLoad.fleet.ships[0].water,firstAfter.water-5);
+assert.equal(missingDailyLoad.fleet.ships[1].food,5);
+const noWholeUnits=makeSlot();
+noWholeUnits.fleet.ships[0].water=5;
+noWholeUnits.fleet.ships[0].food=5;
+noWholeUnits.fleet.ships[0].load=0;
+assert.deepEqual(consumeDepartureDay(noWholeUnits),{consumed:true});
+assert.deepEqual([noWholeUnits.fleet.ships[0].water,
+ noWholeUnits.fleet.ships[0].food,noWholeUnits.fleet.ships[0].load],[0,0,0]);
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 for(const needle of [
  'loadSupply(selected,ui.ship,resource,q)',

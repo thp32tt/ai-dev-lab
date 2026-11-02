@@ -95,4 +95,35 @@ blocked(p=>{p.session.dayFlags=256;},'native-voyage-state-invalid');
  assert.equal(a.sea.ticks,1);
  assert.equal(a.session.dateTime.timeTick,2);
 }
+// Native voyage ticks must never share editable trade-good rows between
+// successive sea snapshots. This is exercised by the actual 5-slot source
+// ship shape; the next town trade may update these goods after Port Call.
+{
+ const origin=make(date(1522,7,6,1));
+ const originalGoods=structuredClone(origin.session.fleet.ships[0].goods);
+ const first=voyage(origin);
+ assert.equal(first.advanced,true);
+ assert.notStrictEqual(first.session.fleet.ships[0].goods,
+   origin.session.fleet.ships[0].goods);
+ assert.notStrictEqual(first.session.fleet.ships[0].goods[0],
+   origin.session.fleet.ships[0].goods[0]);
+ const second=voyage({session:first.session,runtime:first.sea});
+ assert.equal(second.advanced,true);
+ assert.notStrictEqual(second.session.fleet.ships[0].goods[0],
+   first.session.fleet.ships[0].goods[0]);
+ assert.strictEqual(second.sea.fleet,second.session.fleet);
+ // Simulate a subsequent original-shaped port-market purchase/sale on the
+ // new session, not a retroactive modification of old sea states.
+ second.session.fleet.ships[0].goods[0].id=4;
+ second.session.fleet.ships[0].goods[0].quantity=9;
+ second.session.fleet.ships[1].goods[1].id=3;
+ second.session.fleet.ships[1].goods[1].quantity=7;
+ assert.deepEqual(first.session.fleet.ships[0].goods,originalGoods);
+ assert.deepEqual(origin.session.fleet.ships[0].goods,originalGoods);
+ assert.equal(first.session.fleet.ships[1].goods[1].quantity,0);
+ assert.equal(origin.session.fleet.ships[1].goods[1].quantity,0);
+ assert.deepEqual(origin.session.dateTime,date(1522,7,6,1));
+ assert.equal(first.session.dateTime.timeTick,2);
+ assert.equal(second.session.dateTime.timeTick,3);
+}
 console.log('UW2 sea time, source fleet, daily provision and bank interest atomicity: PASS');

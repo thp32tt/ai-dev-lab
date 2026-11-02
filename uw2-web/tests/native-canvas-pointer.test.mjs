@@ -13,7 +13,7 @@ assert.equal(nativeCanvasPointerPoint({clientX:NaN,clientY:150},canvas),null);
 assert.equal(nativeCanvasPointerPoint({},canvas),null);
 for(let i=0;i<5;i++)
  assert.equal(nativeSystemMenuPointerHit({x:220,y:48+i*16+8},5),i);
-assert.equal(nativeSystemMenuPointerHit({x:220,y:48+16+8},1),1);
+assert.equal(nativeSystemMenuPointerHit({x:220,y:48+16+8},2),1);
 assert.equal(nativeSystemMenuPointerHit({x:220,y:48+16+8},1),null);
 assert.equal(nativeSystemMenuPointerHit({x:100,y:72}),null);
 assert.equal(nativeSystemMenuPointerHit({x:220,y:135}),null);

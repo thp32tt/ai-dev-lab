@@ -52,6 +52,28 @@ const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.ok(app.includes('if (!seaRuntime.hasNetMotion()) {'));
 assert.ok(app.includes('seaRuntime,tickSeaWithBankInterest,autoPortProbe'));
 assert.ok(app.includes('stopSeaAuto(advance.reason)'));
+// The actual source-shaped world map blocks northward progress at a land
+// tile. AUTO must stop after the first collision tick, not spend another day
+// or another ship provision on each subsequent interval.
+const blockedCells=new Uint8Array(cells.length);
+blockedCells[(99>>1)*1080+(100>>1)]=15; // north of (100,100)
+const coast=new SeaRuntime({cells:blockedCells,quad},{x:100,y:100},null,7,oared,dateTime);
+coast.accY=-1; // cross the native 60-subunit northward boundary
+const coastStart=coast.snapshot();
+let coastCalls=0;
+const hit=advanceNativeSeaAuto(coast,()=>{
+ coastCalls++;
+ const moved=coast.tick();
+ return {advanced:true,moved,sea:coast};
+});
+assert.deepEqual(hit,{advanced:true,stopAtCoast:true,reason:'auto-coast-block'});
+assert.equal(coastCalls,1);
+assert.equal(coast.x,coastStart.x);
+assert.equal(coast.y,coastStart.y);
+assert.equal(coast.ticks,coastStart.ticks+1);
+assert.equal(coast.lastEvent,'auto-coast-block');
+assert.notDeepEqual(coast.dateTime,coastStart.dateTime);
+assert.ok(app.includes('!advance.advanced||advance.stopAtPort||advance.stopAtCoast'));
 const refused=advanceNativeSeaAuto(moving,()=>({advanced:false,reason:'native-voyage-clock-invalid'}));
 assert.deepEqual(refused,{advanced:false,reason:'native-voyage-clock-invalid'});
 assert.equal(moving.lastEvent,'native-voyage-clock-invalid');

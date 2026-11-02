@@ -29,6 +29,14 @@ export function advanceNativeSeaAuto(runtime,onVoyageTick,portReady=null){
   next.lastEvent='auto-port-arrived';
   return Object.freeze({advanced:true,stopAtPort:true,reason:'auto-port-arrived'});
  }
+ // The native 60-subunit integrator marks a crossed world tile blocked
+ // by land as coast-block, not the ordinary low-speed accumulate event.
+ // The first atomic voyage tick has already committed; stop the timer
+ // before charging another 20-minute interval at the same coast.
+ if(next.lastEvent==='coast-block'){
+  next.lastEvent='auto-coast-block';
+  return Object.freeze({advanced:true,stopAtCoast:true,reason:'auto-coast-block'});
+ }
  return Object.freeze({advanced:true,reason:next.lastEvent});
 }
 

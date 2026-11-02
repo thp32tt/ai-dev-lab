@@ -1,7 +1,9 @@
 import {canStandAt} from './town.js';
 import {validNativeCheckpointClock} from './native-checkpoint-integrity.js';
-import {prepareNativePortActorContinuity} from './native-port-actor-memory.js';
-import {prepareNativePortEconomyContinuity} from './native-port-economy-history.js';
+import {prepareNativePortActorContinuity,validNativePortActorMemory,
+ validNativeTownActors} from './native-port-actor-memory.js';
+import {prepareNativePortEconomyContinuity,validNativePortEconomyHistory,
+ validNativePortEconomyMeta} from './native-port-economy-history.js';
 // Browser-native port arrival derives coordinates from Korean original
 // ZA_DAT.DAT door #3, CHIP_NO/PORTMAP/PORTCHIP collision tiles and the
 // KOUKAI2.DAT 130-port source directory. It is NOT a DOS emulator and
@@ -42,8 +44,28 @@ function nativePortLandingGeometry({port,seaState,previous,portDoors,portAssets}
  return {time,mapX,mapY,viewX,viewY};
 }
 
+// This runs while the controller draws and while auto-sail probes ports.
+// Check only bounded source-shaped data; NEVER clone the entire save or
+// mutate the economy in a read-only availability query. The actual Port
+// Call still performs its own atomic full-stage construction/validation.
+function validNativePortLandingContinuity(previous,port){
+ if(!validNativeTownActors(previous?.townActors)||
+    !validNativePortActorMemory(previous?.portActorMemory)||
+    !validNativePortEconomyHistory(previous?.portEconomyHistory))
+   return false;
+ const id=previous.portCatalogId??previous.port;
+ if(Number.isSafeInteger(id)&&id>=0&&id<100&&
+    previous.port===id&&previous.portMeta!=null&&
+    !validNativePortEconomyMeta(previous.portMeta))
+   return false;
+ const cached=port.id<100
+   ?previous.portEconomyHistory?.[String(port.id)]?.meta:null;
+ const destination=cached??port.meta??null;
+ return destination==null||validNativePortEconomyMeta(destination);
+}
 export function canBuildNativePortArrival(args={}){
- return nativePortLandingGeometry(args)!==null;
+ if(!nativePortLandingGeometry(args))return false;
+ return validNativePortLandingContinuity(args.previous,args.port);
 }
 
 export function buildNativePortArrival(args={}){
@@ -55,8 +77,13 @@ export function buildNativePortArrival(args={}){
  // overwriting the active town with a new port. Unknown ports stay empty.
  const actors=prepareNativePortActorContinuity(previous,port,args.portCatalog);
  const economy=prepareNativePortEconomyContinuity(previous,port);
+ // A successful sea->town transaction must not retain writable nested
+ // references into the prior sea snapshot (fleet ships, cargo, inventory,
+ // mutable bank/event records). Rare port calls may clone the whole source
+ // session; per-20-minute sea ticks use their own low-allocation path.
+ const carried=structuredClone(previous);
  return {
-  ...previous,
+  ...carried,
   port:port.mapId,
   portCatalogId:port.id,
   portName:port.name,

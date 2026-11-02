@@ -1,3 +1,9 @@
+## 2026-11-02 해상 웹 AUTO·PAUSE·수동 조타 전환 안전성
+
+- 실제 브라우저 UI의 PAUSE가 해상에서 AUTO 토글을 호출하여, 자동항해가 꺼져 있을 때 오히려 220ms 반복 이동을 시작하던 회귀를 차단했다. 해상 PAUSE는 AUTO가 실행 중일 때만 동기적으로 타이머를 정지하며, 비활성 상태의 PAUSE는 시계·보급·자금·함대·방향을 변경하지 않는다. 웹 컨트롤러는 해상 AUTO OFF에서 PAUSE를 비활성화하고 AUTO 버튼은 명시적인 켜기/끄기를 계속 소유한다.
+- 실제 GRAPH #4 Canvas 클릭과 방향키/A·D·W/4·6·8 등 수동 조타·한 틱 이동이 입력되면 먼저 브라우저 AUTO 타이머를 중지하여 다음 자동 20분 틱이 중복 발생하지 않도록 했다. 이후 기존 SeaRuntime.turn 또는 원본 데이터 기반 advanceNativeSeaVoyageStep 트랜잭션을 정확히 한 번만 호출한다. 항구 기항·출항·충돌·원본 캔버스 아트/저장 파일은 변경하지 않는다.
+- `tests/native-sea-pause.test.mjs`는 실제 shipping PAUSE 이벤트 본문을 실행해 AUTO OFF 무동작 / AUTO ON 정지 / 비해상 기존 버튼 동작을 검증하고 수동 마우스·키보드의 AUTO 정지 순서와 G 명시적 AUTO 경로를 확인한다. `UW2 Web Fidelity Static Gate`의 필수 테스트에 추가했다. 원본 DOS 자동항해 원작 규칙, 실제 사용자 PC Chrome 및 사용자 소유 DOS 원본 전 게임 실기는 **RUNTIME_VALIDATION=UNTESTED**.
+
 ## 2026-11-02 원본 게임 실플레이 ESC 시스템 메뉴·웹 저장·복귀 연결
 
 - 실제 독립 브라우저 항구/항해 중 **ESC로 MAIN의 원본 MENU #56 시스템 메뉴 5개 항목**에 진입하고, ESC로 기존 native 게임 상태/좌표/날짜/선단을 변경하지 않고 복귀. 항해 자동 이동은 시스템 메뉴 진입 전에 정지시키고, 진입/이탈은 20분 원본 게임 틱을 추가하지 않는다. 항구 NPC 대화/건물 내 ESC 우선순위는 원래대로 유지한다.

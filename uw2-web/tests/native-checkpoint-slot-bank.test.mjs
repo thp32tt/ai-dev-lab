@@ -113,7 +113,7 @@ assert.throws(()=>nativeCheckpointSlotStorage(storage,1,'town').setItem('other',
 assert.throws(()=>resolveNativeCheckpointLoad(storage,10),/active original source slot invalid/);
 map.set(nativeCheckpointSlotKeys(2,'town').mode,'unknown');
 assert.throws(()=>resolveNativeCheckpointLoad(storage,2),/per-slot checkpoint mode corrupted/);
-map.delete(nativeCheckpointSlotKeys(2,'town').mode);
+map.set(nativeCheckpointSlotKeys(2,'town').mode,'sea');
 map.set(NATIVE_CHECKPOINT_LATEST_SLOT_KEY,'02');
 assert.throws(()=>resolveNativeCheckpointLoad(storage,null),/source slot marker corrupted/);
 map.set(NATIVE_CHECKPOINT_LATEST_SLOT_KEY,'2');

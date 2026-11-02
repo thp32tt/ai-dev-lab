@@ -7,11 +7,12 @@ const server=fs.readFileSync(new URL('../serve.py',import.meta.url),'utf8');
 assert.match(index,/<script src="\.\/boot-visibility\.js"><\/script>\s*<script type="module" src="\.\/app\.js"/);
 assert.match(index,/id="boot-recovery"/);
 assert.match(index,/id="boot-retry"/);
+assert.match(index,/id="boot-skip"/);
 assert.match(server,/path\.endswith\(\("\.html", "\.js", "\.css"\)\)/);
 assert.match(server,/Cache-Control", "no-store, max-age=0"/);
 function runBoot(){
  const handlers=new Map(),elements=new Map();
- for(const name of ['screen','boot-recovery','boot-diagnostic','boot-retry','controller-mode','runtime-status']){
+ for(const name of ['screen','boot-recovery','boot-diagnostic','boot-retry','boot-skip','controller-mode','runtime-status']){
    elements.set(name,{id:name,textContent:name==='runtime-status'?'게임 데이터 로딩 중…':'',
      style:{display:'none'},listeners:new Map(),addEventListener(t,fn){this.listeners.set(t,fn)}});
  }
@@ -40,8 +41,11 @@ const ok=runBoot();
 assert.ok(ok.drawn.find(x=>x[0]==='fillText'&&x[1]==='대항해시대 II'));
 assert.equal(ok.diagnostics().ready,false);
 ok.handlers.get('uw2-game-state')({detail:{mode:'opening'}});
+assert.equal(ok.elements.get('boot-skip').style.display,'block');
 assert.equal(ok.diagnostics().ready,true);
 assert.equal(ok.elements.get('boot-recovery').style.display,'none');
+ok.handlers.get('uw2-game-state')({detail:{mode:'system-menu'}});
+assert.equal(ok.elements.get('boot-skip').style.display,'none');
 ok.handlers.get('error')({message:'late sound error'});
 assert.equal(ok.diagnostics().failed,false);
 const error=runBoot();
@@ -51,6 +55,12 @@ assert.equal(error.elements.get('boot-recovery').style.display,'flex');
 assert.match(error.elements.get('boot-diagnostic').textContent,/Failed to fetch/);
 error.elements.get('boot-retry').listeners.get('click')();
 assert.equal(error.reloads,1);
+const late=runBoot();
+late.handlers.get('uw2-game-state')({detail:{mode:'opening'}});
+late.elements.get('runtime-status').textContent='게임 데이터 일부 로드 오류: 원본 리소스 누락';
+late.tick();
+assert.equal(late.diagnostics().failed,true);
+assert.equal(late.elements.get('boot-recovery').style.display,'flex');
 const hang=runBoot();hang.timeout();
 assert.equal(hang.diagnostics().failed,true);
 assert.match(hang.diagnostics().message,/화면이 시작되지 않았습니다/);

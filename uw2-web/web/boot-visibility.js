@@ -7,12 +7,14 @@
   const overlay=document.getElementById("boot-recovery");
   const diagnostic=document.getElementById("boot-diagnostic");
   const retry=document.getElementById("boot-retry");
+  const skip=document.getElementById("boot-skip");
+  let mode="loading";
   let ready=false;
   let failed=false;
   let errorText="";
   const status=()=>document.getElementById("runtime-status")?.textContent??"";
-  function showError(reason){
-    if(ready)return;
+  function showError(reason,force=false){
+    if(ready&&!force)return;
     failed=true;
     errorText=String(reason||"게임 실행을 시작하지 못했습니다.").slice(0,240);
     if(diagnostic)diagnostic.textContent=errorText;
@@ -37,9 +39,15 @@
     }
   }catch(error){showError("Canvas 초기화 실패: "+error.message);}
   retry?.addEventListener("click",()=>location.reload());
+  skip?.addEventListener("click",()=>{
+    window.dispatchEvent(new KeyboardEvent("keydown",{
+      key:"Escape",bubbles:true,cancelable:true
+    }));
+  });
   window.addEventListener("uw2-game-state",event=>{
     if(failed)return;
-    const mode=event.detail?.mode;
+    mode=event.detail?.mode??mode;
+    if(skip)skip.style.display=mode==="opening"?"block":"none";
     if(mode && mode!=="loading" && mode!=="opening-title"){
       ready=true;
       if(overlay)overlay.style.display="none";
@@ -56,11 +64,15 @@
   });
   // Surface hard failures even if the app swallowed resource loading errors.
   const watchdog=setInterval(()=>{
-    if(ready){clearInterval(watchdog);return;}
+    // Opening may start before other original files finish loading. Keep
+    // watching fatal resource errors until MAIN's real menu has appeared.
+    if(!["loading","opening","opening-title","system-pending"].includes(mode)){
+      clearInterval(watchdog);return;
+    }
     const text=status();
     if(/오류|실패|불가/.test(text)){
       clearInterval(watchdog);
-      showError(text);
+      showError(text,true);
     }
   },1200);
   setTimeout(()=>{

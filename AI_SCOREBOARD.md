@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 two new source-native ImageGen DDS test assets (2026-11-02 KST)
+
+- **RUN_KEY:** `OUTRUN-AB-NATIVE-Q089-Q104-2DDS-20261102-7A2A693A`; **AI 2**. Previous latest GitHub-confirmed cumulative **2479** + one new fully generated and reproducibly verified *two-asset native DDS test batch* **(+1)** = new cumulative **2480**. This is one independent deliverable, not two additive file scores. Rechecks, documentation, archive readback, trial script, existing Q012, existing 8DDS v4 composite, repeat runs and automation update all **+0**. AI 1 unchanged.
+- **Actual result:** OutRun 2006 `Q089 Game Over → 게임 오버`, `Q104 OutRun Mode → 아웃런 모드`: reused A/B generated Korean PNG; preserved each original 512×64 BGRA32 1-mip DDS header and pixel masks, FLIP-Y storage orientation, exact source/hash-bound clean boxes, protection outside original text region, and decode roundtrip. N100 independent deterministic rerun produced the same ZIP SHA256 `79fd62e8205632371b31d002643d2565a0eee753412a46aa5e4ff7f5e6aa08fc` (56,742 bytes). The completed ZIP is committed to `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928`, binary-package commit `7a2a693a7420b81e9dcbea46cf2fe7ccee23ee86`, builder commit `e26cb1b5bff8c6eec172ef81ae19cabd67d7e630`, and record commit `4e7480e5985f0ec015c66b155dd88c4f97c59acb`. Download from GitHub at that commit, then SHA-readback from GitHub **PASS**.
+- **Boundary:** `TEST_ONLY_NOT_RUNTIME_APPROVED`, actual game installation/gameplay and independent C1/C3 approval **UNTESTED**; Q055/Q241 original/source mismatch remain HOLD; original DDS and running game unmodified; no Docker redeploy. This +1 is for a new, verifiable game texture artifact, **not** game release or new feature acceptance.
+
 ## AI 2 UW2 original Korean harbor Dock real-fleet inter-ship native supply transfer (2026-11-02 KST)
 
 - **RUN_KEY:** `UW2-DOCK-REAL-FLEET-SUPPLY-20261102-677448AB`; **AI 2**. Latest GitHub-confirmed cumulative **2478** + one independent browser gameplay Dock transfer implementation **(+1)** = new cumulative **2479**. This is ONE capability across four source supply categories and two/three/fleet ship selection; implementation, controller buttons, node tests, exact CI, deploy, real Firefox retest, HTTP hash checks and score readback add **+0**. AI 1 unchanged.

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {RealMode8086} from '../web/realmode-8086.js';
 import {loadVerifiedMz} from '../web/mz-loader.js';
-import {runIsolatedRelocatedFarCalls,probeOriginalMainFarCallCpu}
+import {runIsolatedRelocatedFarCalls,runIsolatedOriginalNearCalls,probeOriginalMainFarCallCpu}
  from '../tools/original-main-far-cpu-probe.mjs';
 
 // Synthetic, independently constructed 16-bit MZ image with TWO distinct
@@ -66,5 +66,44 @@ assert.throws(()=>runIsolatedRelocatedFarCalls(cpu,{
 }),/source-authenticated target/);
 assert.deepEqual([cpu.get16('CS'),cpu.get16('IP'),cpu.get16('SP')],
  [before.cs,before.ip,before.sp]);
+// Execute real E8 CPU instructions at two independently located synthetic
+// callsites, each verified against a separately provided target boundary.
+// A near call retains CS and pushes exactly one return IP word.
+const nearSource=Uint8Array.of(0xe8,4,0,0x90,0x90,0x90,0x90,0xc3);
+cpu.load(nearSource,0x203,0); // raw 112 (image +48), target raw 119
+cpu.load(Uint8Array.of(0xe8,9,0),0x204,0); // raw 128, target raw 140
+cpu.write8(0x204,12,0xc3);
+const nearEdge=(callRaw,targetRaw)=>({
+ role:'SOURCE_AUTHENTICATED_INITIALIZER',
+ callRaw,callRea:0x10000+callRaw-64,
+ targetRaw,targetRea:0x10000+targetRaw-64,
+ status:'GHIDRA_SOURCE_BOUND_WINDOW__CALLEE_SEMANTICS_UNCLASSIFIED',
+ observedInstructionCount:3
+});
+const nearCalls=[nearEdge(112,119),nearEdge(128,140)];
+const nearResult=runIsolatedOriginalNearCalls(cpu,{
+ loadSegment:0x200,headerBytes:64,calls:nearCalls
+});
+assert.equal(nearResult.executedOriginalInstructions,2);
+assert.deepEqual(nearResult.calls.map(x=>[x.destinationCS,x.destinationIP]),
+ [[0x203,7],[0x204,12]]);
+assert.ok(nearResult.calls.every(x=>x.stackWordsPushed===1));
+assert.equal(cpu.get16('CS'),0x204);
+assert.equal(cpu.get16('IP'),12);
+assert.equal(cpu.get16('SP'),0xfffc);
+assert.equal(cpu.read16(0x8000,0xfffc),3);
+assert.ok(Object.isFrozen(nearResult.calls));
+const beforeNear=[cpu.get16('CS'),cpu.get16('IP'),cpu.get16('SP')];
+for(const altered of [
+ [{...nearCalls[0],targetRaw:120},nearCalls[1]],
+ [nearCalls[0],{...nearCalls[1],callRea:0}],
+ [nearCalls[0],{...nearCalls[1],status:'UNKNOWN'}]
+]){
+ assert.throws(()=>runIsolatedOriginalNearCalls(cpu,{
+  loadSegment:0x200,headerBytes:64,calls:altered
+ }),/target|provenance|source/i);
+ assert.deepEqual([cpu.get16('CS'),cpu.get16('IP'),cpu.get16('SP')],
+  beforeNear,'full preflight must not execute partial evidence');
+}
 await assert.rejects(probeOriginalMainFarCallCpu(b,[]),/original MAIN SHA-256 mismatch|Korean original MAIN SHA-256 mismatch/);
-console.log('UW2 8086 actual relocated 9A source instruction isolated CPU/stacks and fail-closed provenance: PASS (synthetic)');
+console.log('UW2 8086 original E8 and relocated 9A source instructions isolated CPU/stacks and fail-closed provenance: PASS (synthetic)');

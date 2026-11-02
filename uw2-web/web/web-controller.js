@@ -5,6 +5,7 @@ const modeLabel = document.getElementById("controller-mode");
 const musicLabel = document.getElementById("controller-music");
 const checkpointLabel=document.getElementById("checkpoint-feedback");
 const autoButton = controller?.querySelector('[data-action="auto-sail"]');
+const pauseButton = controller?.querySelector('[data-action="pause"]');
 const soundButton = controller?.querySelector('[data-action="sound"]');
 const portButton = controller?.querySelector('[data-key="p"]');
 const checkpointSaveButton=controller?.querySelector('[data-action="checkpoint-save"]');
@@ -149,6 +150,9 @@ window.addEventListener("uw2-game-state", event => {
     checkpointSaveButton.disabled=!!state.checkpointInFlight||!["town","sea"].includes(state.mode);
   if(checkpointLoadButton)
     checkpointLoadButton.disabled=!!state.checkpointInFlight||state.mode==="loading"||state.mode==="opening";
+  // Sea has no background time progression except AUTO; a stopped
+  // voyage cannot be "resumed" accidentally through the PAUSE control.
+  if(pauseButton) pauseButton.disabled=state.mode==="sea"&&!state.autoSail;
   if (autoButton) {
     const on = !!state.autoSail;
     autoButton.classList.toggle("latched", on);

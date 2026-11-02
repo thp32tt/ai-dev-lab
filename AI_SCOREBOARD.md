@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun Korean offline ink-aware resolution of last 63 held ROIs (2026-11-02 KST)
+
+- **TASK_ID `OUTRUN-KOREAN-INK-OVERLAP-63-20261102` (+1):** Material new tested feature and completed asset recovery, distinct from earlier v2 trim. New branch head `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928` Git commit `76bb0c28237331b4c5fe0248edb6711d9c886e91` adds bounded ink-aware second-pass auto-worker (Dockerfile, Compose, tests, documentation), not just advisory instructions. GitHub remote head and six files independently read back. N100 executed 13/13 regression tests, Docker Compose config parse PASS, Python compile PASS, entrypoint syntax PASS. Actual 23 full source variants with earlier 63 holds: **59 newly rendered Korean labels + four same-label high-IoU duplicates represented, hold 63→0**, all DDS PNG roundtrips PASS and outside-approved-ROI pixel mutations 0. Reused 81 unchanged v2 candidate DDS and rendered 23 v3 files without modifying originals. Final 104 DDS /104 receipts ZIP `OUTRUN_OFFLINE_KOREAN_TEST_ONLY_96e9372fb718.zip` (140069153 bytes, SHA-256 `84d92c22ff957ebeaa3156165b9ed7ef769802756ddc183d18bd586ff5c1ddf3`) CRC PASS. **Not a C1/C3 or game runtime PASS; no Portainer redeploy performed (user handles).** Verification/retry/report +0, award this novel result once.
+- **AI 1 cumulative: previous confirmed 1775 + one newly verified source/asset result (+1) = 1776.** AI 2 unchanged.
+
+Updated: 2026-11-02 KST
+
 ## AI 2 UW2 real Canvas sea helm one-turn and source-backed forward tick (2026-11-02 KST)
 
 - **RUN_KEY:** `UW2-SEA-POINTER-GRAPH4-20261102-59381bdf`; **AI 2**; previous confirmed **2459**; one independent live browser gameplay input implementation **+1**; new cumulative **2460**.

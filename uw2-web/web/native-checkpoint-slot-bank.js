@@ -15,6 +15,7 @@ export function nativeCheckpointSlotKeys(slot,kind){
   throw new RangeError('original source checkpoint slot/kind must be 0..9, town or sea');
  return Object.freeze({
   data:`${PREFIX}-${slot}-${kind}`,
+  backup:`${PREFIX}-${slot}-${kind}-previous`,
   mode:`${PREFIX}-${slot}-mode`
  });
 }
@@ -24,21 +25,28 @@ const storageValid=storage=>storage&&
 // The existing town/sea checkpoint modules retain all original checksum,
 // source-SHA and game-state validation. An exact-key adapter changes ONLY
 // which browser-local record those modules read or write.
-export function nativeCheckpointSlotStorage(storage,slot,kind,{mirrorLatest=false}={}){
- if(!storageValid(storage)||typeof mirrorLatest!=='boolean')
-  throw new TypeError('browser checkpoint storage and explicit mirror flag required');
+export function nativeCheckpointSlotStorage(storage,slot,kind,{mirrorLatest=false,generation='current'}={}){
+ if(!storageValid(storage)||typeof mirrorLatest!=='boolean'||
+    !['current','previous'].includes(generation)||
+    (generation==='previous'&&mirrorLatest))
+  throw new TypeError('browser checkpoint storage, valid generation and mirror flag required');
  const keys=nativeCheckpointSlotKeys(slot,kind);
  const originalKey=dataKey(kind);
  return Object.freeze({
   getItem:key=>{
    if(key!==originalKey)throw new Error('scoped browser checkpoint key mismatch');
-   return storage.getItem(keys.data);
+   return storage.getItem(generation==='previous'?keys.backup:keys.data);
   },
   setItem:(key,value)=>{
-   if(key!==originalKey||typeof value!=='string')
+   if(key!==originalKey||typeof value!=='string'||generation!=='current')
     throw new Error('scoped browser checkpoint write key/value invalid');
-   // Write the owned slot first; only then mirror the newest record to
-   // the historical global key for MAIN-screen continue compatibility.
+   // Preserve the previously committed generation BEFORE replacing it.
+   // Save modules have already validated the new original-source snapshot,
+   // and still check size, SHA and source identity on every load. Keep
+   // the old record intact when a browser quota exception interrupts this.
+   const previous=storage.getItem(keys.data);
+   if(typeof previous==='string'&&previous.length&&previous!==value)
+    storage.setItem(keys.backup,previous);
    storage.setItem(keys.data,value);
    if(mirrorLatest)storage.setItem(originalKey,value);
   }
@@ -97,7 +105,10 @@ export function availableNativeCheckpointSlots(storage,sourceSlots){
   let mode,record;
   try{
    mode=storage.getItem(keys.mode);
-   record=validKind(mode)?storage.getItem(nativeCheckpointSlotKeys(slot,mode).data):null;
+   if(validKind(mode)){
+    const owned=nativeCheckpointSlotKeys(slot,mode);
+    record=storage.getItem(owned.data)??storage.getItem(owned.backup);
+   }else record=null;
   }catch{return Object.freeze([]);}
   // Existence only; the real SHA, save identity and world geometry remain
   // mandatory at restore time. Never claim a record is verified here.
@@ -105,4 +116,48 @@ export function availableNativeCheckpointSlots(storage,sourceSlots){
    result.push(Object.freeze({slot,kind:mode}));
  }
  return Object.freeze(result);
+}
+
+/**
+ * Restore a browser checkpoint only after the existing SHA-256, source
+ * identity, economy, world-geometry and clock verification in its original
+ * loader succeeds. Never treat a JSON-valid/length-valid backup as verified.
+ *
+ * A MAIN-screen global Continue record may be stale or interrupted; its
+ * pinned latest original-slot record is checked before the older generation.
+ * Legacy single-record saves retain their original behavior.
+ */
+export async function loadNativeCheckpointWithRecovery({storage,choice,load}={}){
+ if(!storageValid(storage)||!choice||!validKind(choice.kind)||
+    !(choice.slot===null||validSlot(choice.slot))||
+    typeof load!=='function'||!choice.storage)
+  throw new TypeError('original-source checkpoint loader and choice required');
+ let primaryError=null;
+ const verified=async(value,source)=>{
+  if(value===null)return null;
+  if(!value||!value.session||
+     (choice.slot!==null&&value.session.index!==choice.slot))
+   throw new Error('browser checkpoint source slot identity invalid');
+  return {...value,checkpointRecovery:source};
+ };
+ try{
+  const current=await verified(await load(choice.storage),null);
+  if(current)return current;
+ }catch(error){primaryError=error;}
+ if(choice.slot!==null){
+  const generations=choice.source==='LATEST_BROWSER_CHECKPOINT'
+   ?['current','previous']:choice.source==='SCOPED_ORIGINAL_SOURCE_SLOT'
+   ?['previous']:[];
+  for(const generation of generations){
+   try{
+    const candidate=nativeCheckpointSlotStorage(
+     storage,choice.slot,choice.kind,{generation});
+    const recovered=await verified(await load(candidate),
+     generation==='current'?'SCOPED_SOURCE_VERIFIED':'PREVIOUS_SOURCE_VERIFIED');
+    if(recovered)return recovered;
+   }catch{/* Never bypass source checks or overwrite a corrupted record. */}
+  }
+ }
+ if(primaryError)throw primaryError;
+ return null;
 }

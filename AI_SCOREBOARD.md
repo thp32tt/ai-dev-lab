@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR Generic DD v2 single-owner FFB/F11 combined Win32 build (2026-11-02 09:20 KST)
+
+- **RUN_KEY:** `MODEL2VR-GENERIC-DD-FFB-INTEGRATION-20261102-118c4a3d`; **AI 2**; previous confirmed **2429**; change **+1**; new cumulative **2430**; KST **2026-11-02 09:20**.
+- **New independently verified material result:** `thp32tt/Model2VR-tools@main` exact SHA `118c4a3d54bb633ca13f0e56e41590589d506949` combines the already approved MIT Model2VR Win32 loader/probe/F11 configuration companion with the separately GPLv3-licensed Generic DD v2 plugin source SHA `b562a8ee79b6b7b4b0d46fbc6e9bdb24d6132d86` via reproducible Windows workflow. Newly implemented tested safe installer (reject existing dinput8.dll/FFBPlugin.ini collisions, backup on explicit override), source/GUI/SDL2 subfolders and preservation of source licensing, settings GUI entry point, foreground-scoped F11 (does not globally steal keys), archive traversal/INI/profile/idempotence tests. The FFB plugin remains sole wheel torque owner; the VR runtime does not create a second backend.
+- **Exact source SHA CI PASS:** combined Win32 Generic DD FFB + Model2VR built artifact `Model2VR-GenericDDv2-F11-Win32` ID `13107017910` in run `41366340153` **SUCCESS**, Windows x86 CTest run `41366340192` **SUCCESS**, Public tools CI `41366340163` **SUCCESS**, ModDev toolkit CI `41366340117` **SUCCESS**. Source branch main exact-SHA readback confirmed. Physical wheel and Quest 3 headset runtime `UNTESTED` (this is not in-HMD OpenXR menu).
+- **Score:** previous AI 2 2429 + one independent CI-verified VR/FFB combined package integration **(+1)** = cumulative **2430**. Prior companion UI alone, subsequent packaging/verification repeats and docs-only changes are not separately credited. AI 1 unchanged.
+
 ## AI 1 user-mandated penalty for unsupported remote-access denial (2026-11-02 KST)
 
 - **TASK_ID `USER-PENALTY-REMOTE-TOOLS-UNVERIFIED-20261102` — user explicitly assigned -10 points.** AI 1 incorrectly claimed GitHub/N100 could not be modified without checking available linked GitHub and N100 access in a prior response. User correction takes priority over automatic scoring; this penalty is recorded exactly once, separate from subsequent recovery work.

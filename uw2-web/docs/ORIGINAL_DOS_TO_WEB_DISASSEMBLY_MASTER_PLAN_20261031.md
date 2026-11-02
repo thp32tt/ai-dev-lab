@@ -1,3 +1,11 @@
+## 2026-11-02 MAIN #56 Quit Game 실제 세션 종료·메뉴 재진입
+
+- 사용자 원본 한국어판 `MENU.DAT` SHA-256 `32042e809e09399c7a433517e2bf70980af40734f5ab1fc0a2ac632a1ccc9461`의 메뉴 #56 옵션3은 **Ｑｕｉｔ Ｇａｍｅ**이며, `MESSAGE.DAT` SHA-256 `7003f3224195b791ff226999bd55c01e5ee95398aaedfbf1fa8f2ac8edcb6a2d`의 #958은 실제 종료 문구, #957은 **아무 키나 누르라는 종료 후 안내**이다. 실제 웹 코드는 이전까지 #958 문구만 그리고 상태를 변경하지 않아 활성 게임과 메뉴가 그대로 남았다.
+- shipping `app.js` `finishNativeQuitGame`은 체크포인트 저장 중에는 모든 작업을 거절하고, 정상 종료에서는 AUTO 타이머 중지→`selected`/`townRuntime`/`seaRuntime`/`buildingUi`/`systemReturnMode` 정리→원본 검증 포트 카탈로그로 복귀→실제 #958/#957 메시지 표시→`quit-ended` 모드로 전환한다. 원본 DOS 저장 파일 또는 웹 임시저장/체크포인트는 **읽기·수정·삭제하지 않는다**. 브라우저가 DOS 프로세스 자체를 종료할 수는 없으므로, 다음 키 입력(혹은 원본 창의 Canvas 클릭)을 메인 메뉴로 복귀시키는 웹 브라우저용 실행기 처리로 구분한다. 방향키·Enter·ESC·웹 컨트롤러 START 모두 대응한다.
+- 필수 `tests/native-game-quit.test.mjs`는 **실제 shipping 종료 함수 본문을 실행**하여 저장 중 무동작, 실세션 폐기, 포트 카탈로그 복귀, 출처 메시지 2개 렌더링, 종료 UI 게시, 체크포인트/원본 저장 작업 부재를 확인한다. Github UW2 Fidelity Static Gate에 추가했다.
+- N100 :18082 실제 Firefox WebDriver 결과: 오프닝→MAIN→Quit Game→원본 창 Canvas 클릭 복귀 **FIREFOX_ORIGINAL_QUIT_FROM_MAIN_PASS**; 한국어판 단치히 원본 저장 슬롯 #2 항구 복원→ESC→Quit Game→다시 동일 슬롯을 열어 날짜 동일 **FIREFOX_ORIGINAL_QUIT_FROM_LIVE_TOWN_PASS**; 원본 선단 출항→AUTO 1틱→ESC→타이머 정지 후 종료→0.6초 동안 유령 이동 없음→MAIN 재진입 **FIREFOX_ORIGINAL_QUIT_FROM_ACTIVE_SEA_AUTO_PASS**; 전체 `FIREFOX_REAL_MAIN_QUIT_END_RETURN_TOWN_SEA_SOURCE_SAVE_PASS`. 실제 사용자 PC Chrome과 원본 DOS 종료 후 OS/재시작 차등은 여전히 **RUNTIME_VALIDATION=UNTESTED**.
+- 별도 신규 포팅 진전은 **원본 시스템 메뉴의 Quit Game이 실제 브라우저 게임 세션과 상태 수명을 종료하는 기능**이며, 기존 자동항해·저장/불러오기·대화·항구·해양 계산 규칙은 재정의하지 않는다.
+
 ## 2026-11-02 항해 GRAPH #4 원본 MAIN 카메라 구간·극지 경계 복원
 
 - 사용자 한국어 `MAIN.EXE` SHA256 `1718bbbbcdd938dfe44403d9bd5254dfc02d431217dea39ae5fb3fcde1597747`의 실제 raw `0x1B5C9..0x1B627`을 i8086로 재해석: `DS:C6DA` 포인터에 있는 16비트 위치 X는 `0x2D0=720`칩 단위로 나눈 구간 시작을 계산하고, X-11을 해당 구간의 `[base,base+0x2B8=base+696]`에 제한하여 `DS:0F92`로 저장. Y-11은 `[0,0x420=1056]`으로 제한해 `DS:0F94`에 저장. 720칩/가시 24칩/세계 2160×1080칩 계약은 기존 `world-map.js` 및 `GRAPH.DAT #4`에서 입증한 384×384 픽셀 해양 플레이 필드와 일치.

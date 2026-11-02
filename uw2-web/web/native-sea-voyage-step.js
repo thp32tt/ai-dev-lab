@@ -1,4 +1,5 @@
 import {SeaRuntime} from './world-map.js';
+import {validNativeSeaMotion} from './native-sea-motion.js';
 import {advanceDateTicks,consumeDepartureDay,validNativeVoyageFleet} from './buildings.js';
 import {rolloverPubDailyRecruitment} from './pub.js';
 import {applyBankInterestCrossings} from './bank.js';
@@ -19,8 +20,7 @@ export function advanceNativeSeaVoyageStep({session,runtime}={}){
    !int(session.dayFlags,0,255)||!validNativeVoyageFleet(session)||
    !int(runtime.heading,0,7)||!int(runtime.steps,0,1_000_000_000)||
    !int(runtime.ticks,0,1_000_000_000)||
-   !int(runtime.x,0,2159)||!int(runtime.y,0,1079)||
-   !Number.isFinite(runtime.accX)||!Number.isFinite(runtime.accY))
+   !validNativeSeaMotion(runtime,runtime.assets))
   return hold('native-voyage-state-invalid');
  const expected={...runtime.dateTime};
  if(!advanceDateTicks(expected,1))return hold('native-voyage-clock-invalid');

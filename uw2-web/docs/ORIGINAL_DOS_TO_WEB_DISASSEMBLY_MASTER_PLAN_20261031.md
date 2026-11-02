@@ -733,3 +733,10 @@
 - 실제 브라우저의 `prepareNativeTownMovement` / `commitNativeTownMovement`, `prepareNativeTownBuildingExit` / `commitNativeTownBuildingExit`는 원본 PORTMAP/PORTCHIP와 달력·NPC 좌표를 검증한 후 상태를 커밋한다. 준비된 오래된 이동/숙박 후보를 다른 게임 상태 변경 이후 그대로 적용하면 최신 위치·NPC·은행잔액·날짜를 덮어쓸 수 있는 문제가 있었다.
 - 새 경량 `native-town-commit-witness.js`는 33KB 저장 원본이나 DOM 대신 준비 시점의 소스 포트/위치/NPC/시간·자금·화면 런타임 스냅샷을 캡처하며, 커밋 시 소유 세션·자산의 동일성과 증거 스냅샷 동일성을 재확인한다. 실패하면 아무 필드도 변경하지 않는다. 한 시점에 하나씩 정상 처리되는 기존 방향키와 숙박 경로는 그대로 유지한다.
 - `native-town-movement.test.mjs`와 `native-town-building-exit.test.mjs`에 두 후보의 역순 커밋, 변경된 자금·은행잔액, 변경된 런타임 위치의 거부와 원본 상태 불변 테스트를 추가했다. 이는 JS/Canvas 네이티브 경로의 신뢰성 보강이며 DOS 원본과 Firefox 실물 게임 검증은 **RUNTIME_VALIDATION=UNTESTED**.
+
+
+## 2026-11-02 원본 해상 이동 60단위 누산값과 웹 체크포인트 일관성
+
+- 실제 브라우저 항해의 속도 식(`fleetSeaSpeed` 40 이하 + `WINDCUR` 해류 7 이하)과 게임 60분할 칩 이동 계산에서 정상 `accX/accY`는 각 축의 **정수 0~59**이고, 현재 함선 좌표는 원본 WORLDMAP/DATA1 해도에서 2×2 통행 가능해야 한다. 이전에는 브라우저 임시저장 복원에서 ±10억까지의 임의 누산값을 허용하고 `native-sea-voyage-step.js`에서도 유한한 실수만 확인해 원본 외부의 잘못된 상태가 항해 중 이동·시간 진행을 계속할 수 있었다.
+- 공유 `web/native-sea-motion.js`에 검증기를 두고, 실제 `advanceNativeSeaVoyageStep`의 처리 전 상태와 `native-sea-checkpoint.js`의 저장·불러오기·런타임 복원 모두 **같은 원본 해도 통행성/60단위 잔여량** 조건을 사용하도록 통합했다. 이미 유효한 실제 원본 항해 동작의 속도식·방향·시간/보급 계산은 바꾸지 않는다.
+- 기존 shipping CI의 `tests/native-sea-voyage-integrity.test.mjs`, `tests/native-sea-checkpoint.test.mjs`에 음수/60 이상/소수 누산값, 통과할 수 없는 원본 2×2 칩, SHA 체크섬을 다시 계산해도 유효하지 않은 저장값, 정상 저장·복원 보존을 포함했다. 이 구현은 **네이티브 브라우저 출항·저장 안전성**이며 원작 DOS와의 이동량 차등, 사용자 소유 리소스 Firefox 실기는 **RUNTIME_VALIDATION=UNTESTED**.

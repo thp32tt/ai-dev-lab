@@ -5,6 +5,8 @@ import {saveNativeSeaCheckpoint,loadNativeSeaCheckpoint,
  NATIVE_SEA_CHECKPOINT_KEY,NATIVE_CHECKPOINT_CHOICE_KEY}
  from '../web/native-sea-checkpoint.js';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {validNativeSeaMotion} from '../web/native-sea-motion.js';
 const cells=new Uint8Array(1080*540),quad=new Uint8Array(1024);
 const assets={cells,quad};
 const sourceSha256='b'.repeat(64);
@@ -54,6 +56,35 @@ const record=JSON.parse(saved);record.payload.sea.heading=9;
 map.set(NATIVE_SEA_CHECKPOINT_KEY,JSON.stringify(record));
 await assert.rejects(loadNativeSeaCheckpoint(deps),/checksum mismatch/);
 map.set(NATIVE_SEA_CHECKPOINT_KEY,saved);
+assert.equal(validNativeSeaMotion(sea,assets),true);
+for(const value of [-1,60,1.5,1000000000]){
+ const malformed={...sea,accX:value};
+ assert.equal(validNativeSeaMotion(malformed,assets),false);
+ assert.throws(()=>validateNativeSeaCheckpoint({
+  version:1,kind:'native-sea',sourceSha256,session,sea:malformed
+ },deps),/position\/tick\/clock/);
+ assert.throws(()=>restoreNativeSeaRuntime({
+  session,sea:malformed,worldAssets:assets
+ }),/source invalid/);
+ // A locally recomputed SHA is not original-game provenance: the loader
+ // must reject a source-invalid motion even after checksum recomputation.
+ const forged=JSON.parse(saved);
+ forged.payload.sea.accX=value;
+ forged.checksum=createHash('sha256')
+   .update(JSON.stringify(forged.payload)).digest('hex');
+ map.set(NATIVE_SEA_CHECKPOINT_KEY,JSON.stringify(forged));
+ await assert.rejects(loadNativeSeaCheckpoint(deps),/position\/tick\/clock/);
+}
+map.set(NATIVE_SEA_CHECKPOINT_KEY,saved);
+const landWorld={cells:new Uint8Array(cells),quad};
+landWorld.cells[(sea.y>>1)*1080+(sea.x>>1)]=15;
+assert.equal(validNativeSeaMotion(sea,landWorld),false);
+assert.throws(()=>restoreNativeSeaRuntime({
+ session,sea,worldAssets:landWorld
+}),/source invalid/);
+assert.throws(()=>validateNativeSeaCheckpoint({
+ version:1,kind:'native-sea',sourceSha256,session,sea
+},{...deps,worldAssets:landWorld}),/position\/tick\/clock/);
 assert.throws(()=>validateNativeSeaCheckpoint({
  version:1,kind:'native-sea',sourceSha256,session,
  sea:{...sea,x:9999}},deps),/position\/tick\/clock/);

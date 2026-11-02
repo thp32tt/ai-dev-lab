@@ -66,6 +66,14 @@ const blocked=(mutate,reason)=>{
 blocked(p=>{p.session.dateTime.day=2;},'native-voyage-state-invalid');
 blocked(p=>{p.runtime.month=9;},'native-voyage-state-invalid');
 blocked(p=>{p.runtime.accX=Infinity;},'native-voyage-state-invalid');
+blocked(p=>{p.runtime.accX=60;},'native-voyage-state-invalid');
+blocked(p=>{p.runtime.accY=-1;},'native-voyage-state-invalid');
+blocked(p=>{p.runtime.accY=0.25;},'native-voyage-state-invalid');
+blocked(p=>{
+ const cells=new Uint8Array(world.cells);
+ cells[50*1080+50]=15;
+ p.runtime.assets={cells,quad:world.quad};
+},'native-voyage-state-invalid');
 blocked(p=>{p.session.fleet.ships[1].water=Infinity;},'native-voyage-state-invalid');
 blocked(p=>{p.session.bankBalance=1_000_001;},'native-voyage-state-invalid');
 blocked(p=>{p.session.dayFlags=256;},'native-voyage-state-invalid');

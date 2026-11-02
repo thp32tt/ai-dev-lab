@@ -1,4 +1,5 @@
-import {SeaRuntime,canFleetStand,WORLD_CHIP_W,WORLD_CHIP_H} from './world-map.js';
+import {SeaRuntime} from './world-map.js';
+import {validNativeSeaMotion} from './native-sea-motion.js';
 import {validateNativeCheckpointSessionEconomy,validNativeCheckpointClock} from './native-checkpoint-integrity.js';
 // Independent JS/Web Canvas runtime checkpoint, NOT a DOS save-state,
 // DOS/8086 emulator serialization or reverse-engineered port=FF record.
@@ -37,19 +38,15 @@ export function validateNativeSeaCheckpoint(payload,{
     port.y!==session.portWorld.y||port.nation!==session.portWorld.nation||
     port.name!==session.portName)
   throw new Error('native sea checkpoint original port provenance invalid');
- if(!sea||!int(sea.x,0,WORLD_CHIP_W-1)||
-    !int(sea.y,0,WORLD_CHIP_H-2)||
+ if(!sea||!validNativeSeaMotion(sea,worldAssets)||
     !int(sea.heading,0,7)||!int(sea.steps,0,1000000000)||
     !int(sea.ticks,0,1000000000)||
-    !int(sea.accX,-1000000000,1000000000)||
-    !int(sea.accY,-1000000000,1000000000)||
     !int(sea.month,1,12)||!timeValid(sea.dateTime)||
     sea.month!==sea.dateTime.month||
     !timeValid(session.dateTime)||
     JSON.stringify(session.dateTime)!==JSON.stringify(sea.dateTime)||
     typeof sea.lastEvent!=='string'||sea.lastEvent.length>64||
-    sea.flagshipOared!==session.fleet.ships[0].oared||
-    !canFleetStand(worldAssets,sea.x,sea.y))
+    sea.flagshipOared!==session.fleet.ships[0].oared)
   throw new Error('native sea checkpoint position/tick/clock/source invalid');
  return {session:structuredClone(session),sea:structuredClone(sea)};
 }
@@ -97,11 +94,9 @@ export async function loadNativeSeaCheckpoint({storage,sourceSha256,sourceSlots,
 }
 export function restoreNativeSeaRuntime({sea,session,worldAssets,windCur}){
  // Validate before constructing new runtime. No actual game is mutated.
- if(!sea||!session||!worldAssets||!canFleetStand(worldAssets,sea.x,sea.y)||
+ if(!sea||!session||!validNativeSeaMotion(sea,worldAssets)||
     !int(sea.heading,0,7)||!int(sea.steps,0,1000000000)||
     !int(sea.ticks,0,1000000000)||
-    !int(sea.accX,-1000000000,1000000000)||
-    !int(sea.accY,-1000000000,1000000000)||
     !timeValid(sea.dateTime)||sea.month!==sea.dateTime.month)
   throw new Error('native sea runtime checkpoint source invalid');
  const runtime=new SeaRuntime(worldAssets,{x:sea.x,y:sea.y},

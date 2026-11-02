@@ -22,6 +22,8 @@ jobs:
           node --check uw2-web/web/boot-visibility.js
           node --check uw2-web/tests/native-browser-boot-visibility.test.mjs
           node --check uw2-web/tests/native-browser-post-opening-fatal.test.mjs
+          node --check uw2-web/web/native-sea-hud.js
+          node --check uw2-web/tests/native-sea-hud.test.mjs
           node --check uw2-web/web/native-sea-voyage-step.js
           node --check uw2-web/web/native-sea-auto.js
           node --check uw2-web/tests/native-sea-auto-port-stop.test.mjs
@@ -198,6 +200,7 @@ jobs:
           node uw2-web/tests/native-sea-auto.test.mjs
           node uw2-web/tests/native-sea-auto-port-stop.test.mjs
           node uw2-web/tests/native-sea-voyage-integrity.test.mjs
+          node uw2-web/tests/native-sea-hud.test.mjs
           node uw2-web/tests/native-pub-daily-rollover.test.mjs
           node uw2-web/tests/native-calendar-integrity.test.mjs
           node uw2-web/tests/native-town-time-transaction.test.mjs

@@ -9,8 +9,8 @@ const handler=app.slice(start,end);
 assert.ok(handler.includes('if(checkpointInFlight)return;'));
 assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await saveNativeTownCheckpoint('));
 assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await saveNativeSeaCheckpoint('));
-assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await loadNativeTownCheckpoint('));
-assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await loadNativeSeaCheckpoint('));
+assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await loadNativeCheckpointWithRecovery('));
+assert.ok(handler.indexOf('checkpointInFlight=true;')<handler.indexOf('await loadNativeCheckpointWithRecovery('));
 assert.ok(handler.includes('}finally{\n      checkpointInFlight=false;'));
 assert.ok(app.includes('    checkpointInFlight,\n    checkpointSlots:'));
 assert.ok(app.includes('    autoSail: seaAutoActive,'));
@@ -24,8 +24,8 @@ const stop=handler.indexOf('if(viewMode==="sea"&&seaAutoActive)stopSeaAuto();');
 const firstAwait=Math.min(...[
  handler.indexOf('await saveNativeTownCheckpoint('),
  handler.indexOf('await saveNativeSeaCheckpoint('),
- handler.indexOf('await loadNativeSeaCheckpoint('),
- handler.indexOf('await loadNativeTownCheckpoint(')
+ handler.indexOf('await loadNativeCheckpointWithRecovery('),
+ handler.indexOf('await loadNativeCheckpointWithRecovery(')
 ].filter(i=>i>=0));
 assert.ok(freeze>=0 && stop>freeze && firstAwait>stop,
  'Stop AUTO synchronously before any WebCrypto Save/Load await');

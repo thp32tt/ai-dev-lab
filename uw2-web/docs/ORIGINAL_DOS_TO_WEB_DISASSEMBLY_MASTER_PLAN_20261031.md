@@ -755,3 +755,10 @@
 - 원본 `MAIN.EXE`의 진짜 신규 게임 생성(초기 날짜·함대·주인공 초기 능력·첫 항구·시나리오) 규칙은 아직 실물 원본 출처로 확정되지 않았으므로 **절대 6명의 신규 세이브를 임의로 만들지 않는다**. 확인된 동일 주인공 기존 한국어 원본 save slot이 있을 때만 Enter로 저장된 시점부터 실제 항구 런타임을 체험할 수 있다. 화면·상태에 **이것은 Start New Game 초기화가 아닌 기존 저장 시점 체험**임을 표시한다. 시작 자료가 없으면 6인 선택 화면에서 이유를 명시하고 거부한다. 현재 사용자 확인 소스에는 비어 있지 않은 save 2개만 있으므로 6명 전체 신규 게임은 여전히 **HOLD**다.
 - `opening.js`의 오프닝 60Hz 프레임 대기에서 매 프레임 `AbortSignal` listener를 누적한 기존 누수를 제거했다. 완료·취소 시 리스너 정리로 같은 원본 12장면 재생/다시 시작 중 비정상 누적을 방지한다. 이 성능·안정성 수리로 원본 VGA 팔레트/블릿 배치/타이밍이 해결됐다고 주장하지 않는다. **원본 DOS 오프닝 프레임 차등 및 실제 Firefox 시각 검증 RUNTIME_VALIDATION=UNTESTED**.
 - 원본 자산 없는 `native-new-game-hero.test.mjs`를 실제 shipping 진입 코드 결선과 함께 GitHub UW2 Fidelity static gate에 등록했다. 다음 핵심 구현은 original MAIN.EXE의 menu #56 cursor 1에서 호출하는 영웅 초기화 함수 / 6명 초기 state·첫 항구 evidence를 추적하고 UI `HOLD`를 한 명씩 실제 초기 세션으로 전환하는 것이다. 해전/엔딩은 아직 구현되지 않았다.
+
+
+## 2026-11-02 오프닝 실제 Firefox 인물 소개 캡션 검정 배경 합성 복구
+
+- 사용자에게 보이는 원본 OPEN.EXE 장면 4/12(Catalina) Firefox 캡처에서 **인물 그림이 흰 소개문구 뒤로 새어 나와 이름·설명과 겹치는 실물 화면 결함**을 확인했다. 원인은 브라우저 `web/opening.js`의 `drawCaption`이 원본 `OPGRAPH.LZW` part 13 소개문을 `transparentZero:true`로 출력하는 것이다.
+- 사용자의 한국어 정본 `OPGRAPH.LZW` 실제 10개 part13 레코드의 치수와 16색 인덱스를 읽기 전용으로 확인: **전체 10/10 레코드의 네 모서리가 모두 index0(검정), 검정 픽셀 비율 73~86%**. 이들은 검정 바탕과 글자가 함께 포함된 GRAPH 전체 직사각형이며 눈깜박임처럼 알파 마스크로 쓰는 소형 overlay와 다르다. `drawOpeningCaption`은 원본 검정 바탕(index0)을 불투명하게 캔버스에 올려 뒤쪽 인물 도형이 글자 사이로 비치는 현상을 방지한다. 작은 눈·반짝임 원본 투명 레이어와 오프닝 12장면 순서는 유지한다.
+- 기존 CI `native-opening-canvas-cache.test.mjs`에 index0 검정 RGBA alpha 255 및 비검정 글자 alpha 255의 실제 shipping 렌더러 경로 테스트를 추가했다. 원본 한국어 DOS VGA 원화면의 정확한 caption 배치/팔레트/타이밍과의 바이트 차등은 아직 **RUNTIME_VALIDATION=UNTESTED**이며, 이 수정은 Firefox에서 관찰된 **캡션 뒤 배경 누출 결함 1개**에 대한 브라우저 합성 수리다.

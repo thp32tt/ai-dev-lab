@@ -284,12 +284,19 @@ export const KOREAN_OPENING_SCENE_PLAN = Object.freeze([
 
 export const KOREAN_OPENING_UNUSED_RECORDS = Object.freeze([]);
 
-function drawCaption(ctx, canvas, opening, record) {
+export function drawOpeningCaption(ctx, canvas, opening, record) {
   const copy = getRecord(opening, 13, record);
   const x = Math.max(4, Math.round((canvas.width - copy.width) / 2));
   const y = Math.max(4, canvas.height - copy.height - 6);
-  drawOpeningNative(ctx, copy, x, y, { transparentZero: true });
+  // OPGRAPH part 13 is a full GRAPH rectangle, not an index-zero
+  // transparency-masked sprite. The Korean source's black background is
+  // intentionally stored as color index 0 (all caption corners are zero).
+  // Making index 0 transparent leaked the underlying scene through letters
+  // and produced illegible double imagery. Opaque rectangle blit preserves
+  // the original image's own black pixels and foreground indices.
+  return drawOpeningNative(ctx, copy, x, y, { transparentZero:false });
 }
+const drawCaption=drawOpeningCaption;
 
 function pixelMatchPosition(base, overlay) {
   if (!base || !overlay || overlay.width > base.width || overlay.height > base.height) return null;

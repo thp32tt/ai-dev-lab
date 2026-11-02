@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {drawOpeningNative,drawOpeningFit,UW2_OPENING_PALETTE}
+import {drawOpeningNative,drawOpeningFit,drawOpeningCaption,UW2_OPENING_PALETTE}
  from '../web/opening.js';
 const originalDoc=globalThis.document,originalImageData=globalThis.ImageData;
 const canvas=[];let created=0;
@@ -7,7 +7,7 @@ globalThis.document={
  createElement:kind=>{
   assert.equal(kind,'canvas');created++;
   const c={width:0,height:0,ctx:{
-   imageSmoothingEnabled:true,putImageData(){this.puts=(this.puts??0)+1;}
+   imageSmoothingEnabled:true,putImageData(frame){this.puts=(this.puts??0)+1;this.lastFrame=frame;}
   },getContext(type){assert.equal(type,'2d');return this.ctx;}};
   canvas.push(c);return c;
  }
@@ -55,6 +55,18 @@ try{
  assert.equal(created,6); // different decoded verified source identity
  assert.equal(target.imageSmoothingEnabled,false);
  assert.equal(images.length,11);
+ // The ten original OPGRAPH story-caption records have black index-0
+ // corners. Caption background must be opaque, unlike mask-backed eye sprites.
+ const caption={width:4,height:2,indices:Uint8Array.of(0,3,0,4,0,0,5,0)};
+ const opening={parts:Array.from({length:14},()=>({records:[]}))};
+ opening.parts[13].records[2]=caption;
+ assert.deepEqual(drawOpeningCaption(target,{width:640,height:400},opening,2),
+   {dx:318,dy:392,dw:4,dh:2});
+ const frame=images.at(-1).src.ctx.lastFrame.data;
+ assert.deepEqual([...frame.slice(0,4)],[0,0,0,255],
+   'source index-zero caption background is opaque black');
+ assert.equal(frame[7],255,'nonblack caption foreground remains opaque');
+ assert.equal(images.length,12);
 }finally{
  if(originalDoc===undefined)delete globalThis.document;else globalThis.document=originalDoc;
  if(originalImageData===undefined)delete globalThis.ImageData;else globalThis.ImageData=originalImageData;

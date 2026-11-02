@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native AUTO voyage result / post-tick port probe correctness (2026-11-02 KST)
+
+- **One independent native-browser auto-sail reliability repair (+1):** Actual shipping `uw2-web/web/native-sea-auto.js` now rejects absent/async/forged one-tick callbacks and mismatched original sea-source runtime rather than reporting a successful sail. A post-commit port-catalog probe failure correctly reports `advanced:true,stopAtProbe:true` and stops the live AUTO timer via `web/app.js`, preserving the already elapsed 20-minute native voyage rather than asserting that no voyage occurred. Missing source/callback projections fail closed; neither the original DOS source assets nor KOUKAI2 save bytes change.
+- **Verified exact SHA:** `thp32tt/ai-dev-lab@uw2-web-port` **`63d2bd8a851c1af6ca6c1a3fd022ea4e57496309`**; mandatory **UW2 Web Fidelity Static Gate GitHub Actions 41396238845 SUCCESS** at the exact same SHA. Existing `native-sea-auto.test.mjs` and `native-sea-auto-port-stop.test.mjs` expanded with false-positive callback, one-tick, source ownership, and committed-aftertick probe-failure regressions. Original Korean DOS differential and live asset-backed Firefox replay remain **RUNTIME_VALIDATION=UNTESTED**.
+- **AI 2 score:** previous confirmed **2452** + independently delivered AUTO state correctness repair **(+1)** = cumulative **2453**. Tests, CI, repeat verification, deployment or reporting of this same feature earn **+0**. AI 1 remains separate.
+
+
 ## AI 2 UW2 source GRAPH #0 YES/NO native Canvas confirmations (2026-11-02 KST)
 
 - **One independently completed original-asset-grounded browser interaction (+1):** Directly decoded owner's Korean DOS `GRAPH.DAT` picture record **#0, 144×56**. Actual pixel inspection proves left half is **YES**, right half **NO**. Shipped strict interior-only original-coordinate `nativeYesNoPointerHit` and actual `app.js` routes for Load Data confirmation, harbor departure, item-shop purchase, first item sale offer (NO correctly goes to already-existing counter-offer), and final item sale counter-offer. All commands reuse existing keyboard-confirm source/state guards, not fictional original DOS mouse events. Empty-save slot popup dismisses on original popup click. Border/outside clicks ignored. Original assets and DOS save remain read-only.

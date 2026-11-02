@@ -120,6 +120,7 @@ const canvas = $("screen");
 const ctx = canvas.getContext("2d");
 
 let slots = [];
+let originalHeroNames = []; // Source-pinned six-person roster, not new-game state.
 let selected = null;
 let menus = [];
 let menuDefs = [];
@@ -501,7 +502,7 @@ function enterSystemMenu(cursor = 0) {
 function drawNewGameHeroSelect(){
   // A distinct visible MAIN menu route, not a reused Load Data list.
   // Six portrait indices come directly from the original KAO source.
-  const heroes=nativeNewGameHeroChoices(slots);
+  const heroes=nativeNewGameHeroChoices(slots,originalHeroNames);
   drawSystemBase();
   drawSystemWindow({x:44,y:12,w:552,h:375});
   drawOriginalTextTop("Start New Game · 주인공 선택",126,24,{color:"#24160c"});
@@ -556,7 +557,7 @@ function handleNativeNewGameKey(key,event){
   if(key==="enter"){
     event.preventDefault();
     const demo=nativeNewGameSourceDemo(
-      nativeNewGameHeroChoices(slots),newGameHeroCursor,slots);
+      nativeNewGameHeroChoices(slots,originalHeroNames),newGameHeroCursor,slots);
     if(demo.allowed){
       const started=selectLoadedSlot(demo.slotIndex);
       if(started){
@@ -1087,6 +1088,7 @@ async function loadSaves() {
   originalSaveSha256 = verified.sourceSha256;
   saveBuffer = verified.copyBytes().buffer;
   slots = verified.slots;
+  originalHeroNames = verified.heroNames;
   portCatalog = verified.portCatalog;
   $("save-status").textContent =
     `KOUKAI2.DAT ${fmtBytes(verified.byteLength)} · SHA 확인 · 슬롯당 33,340 bytes`;

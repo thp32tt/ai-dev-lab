@@ -66,6 +66,8 @@ jobs:
           node --check uw2-web/tools/original-new-game-init-proof.mjs
           node --check uw2-web/tools/original-new-game-call-ledger.mjs
           node --check uw2-web/tools/original-new-game-far-targets.mjs
+          node --check uw2-web/tools/original-main-far-cpu-probe.mjs
+          node --check uw2-web/tests/original-main-far-cpu-probe.test.mjs
           node --check uw2-web/tests/original-new-game-far-targets.test.mjs
           node --check uw2-web/tests/original-new-game-call-ledger.test.mjs
           node --check uw2-web/tests/original-new-game-init-proof.test.mjs
@@ -187,6 +189,7 @@ jobs:
           node uw2-web/tests/original-new-game-init-proof.test.mjs
           node uw2-web/tests/original-new-game-call-ledger.test.mjs
           node uw2-web/tests/original-new-game-far-targets.test.mjs
+          node uw2-web/tests/original-main-far-cpu-probe.test.mjs
           node uw2-web/tests/native-context-commands.test.mjs
           node uw2-web/tests/native-town-hud.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs

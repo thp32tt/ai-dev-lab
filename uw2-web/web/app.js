@@ -24,7 +24,8 @@ import {saveNativeTownCheckpoint,loadNativeTownCheckpoint,resumeNativeTownRuntim
 import {saveNativeSeaCheckpoint,loadNativeSeaCheckpoint,restoreNativeSeaRuntime,
  NATIVE_CHECKPOINT_CHOICE_KEY} from "./native-sea-checkpoint.js";
 import {nativeCheckpointSlotStorage,recordNativeCheckpointSlot,
- resolveNativeCheckpointLoad,availableNativeCheckpointSlots} from "./native-checkpoint-slot-bank.js";
+ resolveNativeCheckpointLoad,availableNativeCheckpointSlots,
+ loadNativeCheckpointWithRecovery} from "./native-checkpoint-slot-bank.js";
 import { decodeLS11 } from "./ls11.js";
 import { decodePlanarIndexed, drawIndexedCanvas } from "./koei-image.js";
 import { decodePortAssets, renderPortMapToCanvas, renderPortViewport, renderTownView } from "./port-map.js";
@@ -2640,8 +2641,12 @@ window.addEventListener("uw2-controller-action", async event => {
           ?"저장된 웹 체크포인트가 없습니다."
           :`원본 슬롯 ${activeSlot+1}의 웹 체크포인트가 없습니다.`);
         if(choice.kind==="sea"){
-          const restored=await loadNativeSeaCheckpoint({
-            ...dependencies,storage:choice.storage,portCatalogForSlot:sourceCatalogForSlot
+          const restored=await loadNativeCheckpointWithRecovery({
+            storage,choice,
+            load:checkpointStorage=>loadNativeSeaCheckpoint({
+              ...dependencies,storage:checkpointStorage,
+              portCatalogForSlot:sourceCatalogForSlot
+            })
           });
           if(!restored)
             throw new Error("저장된 웹 항해 체크포인트가 없습니다.");
@@ -2657,10 +2662,16 @@ window.addEventListener("uw2-controller-action", async event => {
           viewMode="sea";
           setMusicForMode("sea");
           renderSeaScreen();
-          checkpointFeedback="웹 항해 이어하기 완료";
+          checkpointFeedback=restored.checkpointRecovery
+            ?"웹 항해 이전 정상 저장본 복구 완료 · 최신 기록 무결성 오류"
+            :"웹 항해 이어하기 완료";
         }else{
-          const restored=await loadNativeTownCheckpoint({
-            ...dependencies,storage:choice.storage,portCatalogForSlot:sourceCatalogForSlot
+          const restored=await loadNativeCheckpointWithRecovery({
+            storage,choice,
+            load:checkpointStorage=>loadNativeTownCheckpoint({
+              ...dependencies,storage:checkpointStorage,
+              portCatalogForSlot:sourceCatalogForSlot
+            })
           });
           if(!restored)
             throw new Error("저장된 웹 항구 체크포인트가 없습니다.");
@@ -2682,7 +2693,9 @@ window.addEventListener("uw2-controller-action", async event => {
           viewMode="town";
           setMusicForMode("town");
           renderTownScreen();
-          checkpointFeedback="웹 항구 이어하기 완료";
+          checkpointFeedback=restored.checkpointRecovery
+            ?"웹 항구 이전 정상 저장본 복구 완료 · 최신 기록 무결성 오류"
+            :"웹 항구 이어하기 완료";
         }
         $("runtime-status").textContent=
           checkpointFeedback+" · 원본 DOS 저장 파일과 별개";

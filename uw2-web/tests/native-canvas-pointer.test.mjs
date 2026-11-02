@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
- nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit} from '../web/native-canvas-pointer.js';
+ nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit,
+ nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
+ nativeModalRowPointerHit} from '../web/native-canvas-pointer.js';
 
 const canvas={width:640,height:400,clientLeft:2,clientTop:2,
  clientWidth:800,clientHeight:500,
@@ -41,4 +43,42 @@ assert.match(app,/nativeNewGameHeroPointerHit\(point\)/);
 assert.match(app,/newGameHeroCursor=hit;\s*newGameHeroNotice="";\s*handleSystemKey\(\{key:"Enter",preventDefault\(\)\{\}\}\)/);
 assert.doesNotMatch(app,/if\(hit===newGameHeroCursor\)/);
 assert.match(app,/nativeLoadSlotPointerHit\(point\)/);
-console.log('UW2 native pointer scaled canvas / original menu / six heroes / 10 save rows PASS');
+// GRAPH #22 origin is (104,136), 368x152. Menu text baselines
+// are y+30+i*16; titled scrollable rows start at y+46.
+assert.equal(nativeDialoguePointerInside({x:104,y:136}),true);
+assert.equal(nativeDialoguePointerInside({x:471.9,y:287.9}),true);
+assert.equal(nativeDialoguePointerInside({x:472,y:160}),false);
+assert.equal(nativeDialoguePointerInside({x:300,y:288}),false);
+assert.equal(nativeDialoguePointerInside({x:NaN,y:160}),false);
+for(let i=0;i<6;i++)
+ assert.equal(nativeBuildingMenuPointerHit({x:180,y:150+i*16+8},6),i);
+assert.equal(nativeBuildingMenuPointerHit({x:180,y:150+5*16+8},3),null);
+assert.equal(nativeBuildingMenuPointerHit({x:180,y:150+6*16+8},8),null);
+assert.equal(nativeBuildingMenuPointerHit({x:115,y:156},4),null);
+assert.equal(nativeBuildingMenuPointerHit({x:180,y:149},4),null);
+assert.equal(nativeBuildingMenuPointerHit({x:180,y:165.999},1),0);
+assert.equal(nativeBuildingMenuPointerHit({x:180,y:166},1),null);
+assert.equal(nativeBuildingMenuPointerHit({x:180,y:158},0),null);
+for(let i=0;i<7;i++)
+ assert.equal(nativeModalRowPointerHit({x:200,y:166+i*16+8},
+   {rowCount:12,selectedIndex:9,title:true}),i+3);
+assert.equal(nativeModalRowPointerHit({x:200,y:166+7*16+8},
+ {rowCount:12,selectedIndex:9,title:true}),null);
+assert.equal(nativeModalRowPointerHit({x:200,y:166+6*16+8},
+ {rowCount:5,selectedIndex:0,title:true}),null);
+assert.equal(nativeModalRowPointerHit({x:200,y:150+8},
+ {rowCount:3,selectedIndex:1,title:false}),0);
+assert.equal(nativeModalRowPointerHit({x:115,y:172},
+ {rowCount:5,selectedIndex:1,title:true}),null);
+assert.equal(nativeModalRowPointerHit({x:200,y:174},
+ {rowCount:0,selectedIndex:0,title:true}),null);
+assert.equal(nativeModalRowPointerHit({x:200,y:174},
+ {rowCount:5,selectedIndex:Infinity,title:true}),null);
+assert.match(app,/nativeBuildingMenuPointerHit\(point,options\.length\|\|1\)/);
+assert.match(app,/ui\.cursor=hit;\s*handleBuildingKey\(\{key:"Enter",preventDefault\(\)\{\}\}\)/);
+assert.match(app,/townRuntime\.dismissTalk\(\);\s*renderTownScreen\(\)/);
+assert.match(app,/nativeModalRowPointerHit\(point,\{[\s\S]*?rowCount:count,selectedIndex:ui\[field\],title:true/);
+assert.match(app,/ui\[field\]=hit;\s*renderTownScreen\(\)/);
+assert.match(app,/if\(!field\)return/);
+assert.doesNotMatch(app,/ui\[field\]=hit;\s*handleBuildingKey/);
+console.log('UW2 native pointer: original menu, six heroes, saves, town dialogue, building menus, trade/crew/ship row selection PASS');

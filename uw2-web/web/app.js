@@ -3,7 +3,9 @@ import { classifyNativeSaveEntry } from "./native-save-entry.js";
 import {nativeNewGameHeroChoices,nativeNewGameSourceDemo} from "./native-new-game-hero.js";
 import {originalNewGameSelectorRect} from "./native-new-game-layout.js";
 import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
- nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit} from "./native-canvas-pointer.js";
+ nativeLoadSlotPointerHit,nativeNewGameHeroPointerHit,
+ nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
+ nativeModalRowPointerHit} from "./native-canvas-pointer.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
@@ -759,6 +761,56 @@ canvas.addEventListener("click", event => {
     if(hit===null)return;
     systemUi.slot=hit;
     handleSystemKey({key:"Enter",preventDefault(){}});
+  }else if(viewMode==="town"&&townRuntime){
+    // Use the same source-backed town/building state machines as the keyboard.
+    // Never let a canvas click bypass checkout, debit or departure confirmation.
+    if(townRuntime.talk){
+      if(nativeDialoguePointerInside(point)){
+        townRuntime.dismissTalk();
+        renderTownScreen();
+      }
+      return;
+    }
+    const building=townRuntime.insideBuilding;
+    if(!building)return;
+    const ui=ensureBuildingUi(building.id);
+    if(ui.mode==="menu"){
+      const options=buildingOptions(building.id);
+      const hit=nativeBuildingMenuPointerHit(point,options.length||1);
+      if(hit===null)return;
+      ui.cursor=hit;
+      handleBuildingKey({key:"Enter",preventDefault(){}});
+      return;
+    }
+    if(ui.mode==="message"||ui.mode==="support"||ui.mode==="market-rates"){
+      if(nativeDialoguePointerInside(point))
+        handleBuildingKey({key:"Enter",preventDefault(){}});
+      return;
+    }
+    // Read-only row selection in trade, ship and crew lists. A further
+    // explicit Enter from the existing controls is required to transact.
+    let count=0,field=null;
+    if(ui.mode==="supply"||ui.mode==="pub-recruit"||ui.mode==="pub-dismiss"){
+      count=selected?.fleet?.ships?.length??0;
+      field="ship";
+    }else if(ui.mode==="market-buy"||ui.mode==="market-sell"){
+      count=ui.mode==="market-buy"
+        ?(currentPortMarket(selected,marketAssets)?.buy?.length??0)
+        :carriedGoodsRows(selected,marketAssets,{shipIndex:ui.ship}).length;
+      field="item";
+    }else if(ui.mode==="item-buy"||ui.mode==="item-sell"){
+      const stock=itemShopStock(selected);
+      if(stock.mode==="closed")return;
+      count=ui.mode==="item-buy"?stock.items.length:carriedItems(selected).length;
+      field="item";
+    }
+    if(!field)return;
+    const hit=nativeModalRowPointerHit(point,{
+      rowCount:count,selectedIndex:ui[field],title:true
+    });
+    if(hit===null)return;
+    ui[field]=hit;
+    renderTownScreen();
   }
 });
 

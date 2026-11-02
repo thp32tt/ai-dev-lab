@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native fleet manifest consistency for real browser trade, supply, sea and checkpoints (2026-11-02 KST)
+
+- **RUN_KEY:** `UW2-FLEET-ROSTER-20261102-5B63B219`; **AI 2**; previous GitHub-confirmed **2469** + one independent source-shaped browser gameplay integrity improvement **(+1)** = cumulative **2470**.
+- **Exact source and CI:** `thp32tt/ai-dev-lab@uw2-web-port` `5b63b21944e1ca9253d6c47573431d5bf47cf417`; `UW2 Web Fidelity Static Gate` [41424351325](https://github.com/thp32tt/ai-dev-lab/actions/runs/41424351325) **SUCCESS**. Verified exact SHA, one feature only; CI and readback not separately scored.
+- **Implementation:** New shared `web/native-fleet-roster.js` enforces the original Korean source-shaped fleet's optional index summary (`count===ships.length`) and summed crew (`totalCrew===sum(ship.currentCrew)`) if those summary properties exist, plus `currentCrew<=maxCrew` where source-shaped capacity is present. Integrated into actual shipping browser `buildings.js` supply/harbor/departure/day provisions, `market.js` buy/sell transaction preflight, and `native-checkpoint-integrity.js` for town/sea checkpoint admission. Invalid companion ship or mismatched fleet summaries cannot mutate a valid target ship or proceed to a voyage/checkpoint. Preserves compatibility with minimal legacy synthetic fixtures missing summary fields. New mandatory `tests/native-fleet-roster-integrity.test.mjs` exercises real shipping functions with valid and divergent 2-ship fleets, no partial mutation and previous behavior. No original save bytes or game assets changed.
+- **Evidence boundary:** Code/CI synthetic static gate **PASS**, not original DOS speed, original trade/departure rule, user PC Chrome, or N100 deployed browser runtime. **RUNTIME_VALIDATION=UNTESTED** for real Korean original DOS differential and live user gameplay; production not deployed. Previous AI 2 **2469** + unique feature **+1** = **2470**. AI 1 unaffected.
+
 ## AI 2 UW2 80186 opt-in stack, signed multiply and stack frame execution primitives (2026-11-02 KST)
 
 - **RUN_KEY:** `UW2-80186-ISA-20261102-AADFF479`; **AI 2**. Previous GitHub SSOT **2468** + one newly implemented and exact-SHA CI-verified independent native guest CPU compatibility feature **(+1)** = cumulative **2469**.

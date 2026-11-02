@@ -91,7 +91,7 @@ export function executeMainInitSourcePrefix(cpu,bytes,proof,{
  cpu.set16('CS',proof.startCS);cpu.set16('IP',proof.startIP);
  cpu.set16('FLAGS',0x202);
  cpu.write16(ds,0x0f9a,0);
- // The caller owns DS:0x0D73..0x0F8E memory and may prefill it.
+ // The caller owns DS:0x0D74..0x0F8F memory and may prefill it.
  let steps=0;
  for(;steps<maxSteps;steps++){
   const pos=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
@@ -106,7 +106,7 @@ export function executeMainInitSourcePrefix(cpu,bytes,proof,{
     cpu.get16('SP')!==sp-4)
   throw new Error('original initializer failed to reach unresolved FAR boundary');
  const count=cpu.read16(ds,0x0f9a);
- const output=Uint8Array.from({length:540},(_,i)=>cpu.read8(ds,0x0d73+i));
+ const output=Uint8Array.from({length:540},(_,i)=>cpu.read8(ds,0x0d74+i));
  return Object.freeze({steps,stoppedAtRaw:ORIGINAL_INIT_FAR_CALL,
    seededBytes:540,sourceCounter:count,output,
    completeNewGame:false,unresolvedOriginalFarCall:true});
@@ -125,12 +125,12 @@ export async function probeOriginalMainInitPrefix(bytes,ghidra,{
    Math.ceil((mz.ss*16+mz.sp)/16)),
   expectedSha256:MAIN_NEW_GAME_SOURCE_SHA256
  });
- for(let i=0;i<540;i++)cpu.write8(0x7000,0x0d73+i,fill);
- cpu.write8(0x7000,0x0d72,0x7e);
- cpu.write8(0x7000,0x0f8f,0x6b);
+ for(let i=0;i<540;i++)cpu.write8(0x7000,0x0d74+i,fill);
+ cpu.write8(0x7000,0x0d73,0x7e);
+ cpu.write8(0x7000,0x0f90,0x6b);
  const r=executeMainInitSourcePrefix(cpu,bytes,proof);
- if(cpu.read8(0x7000,0x0d72)!==0x7e||
-    cpu.read8(0x7000,0x0f8f)!==0x6b)
+ if(cpu.read8(0x7000,0x0d73)!==0x7e||
+    cpu.read8(0x7000,0x0f90)!==0x6b)
   throw new Error('original prefix corrupted guard bytes');
  if(!r.output.some(v=>v!==0)||r.sourceCounter<1)
   throw new Error('original source did not execute its region bitfield');

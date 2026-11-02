@@ -7,6 +7,7 @@ import {saveNativeSeaCheckpoint,loadNativeSeaCheckpoint,
  NATIVE_SEA_CHECKPOINT_KEY,NATIVE_CHECKPOINT_CHOICE_KEY} from '../web/native-sea-checkpoint.js';
 import {nativeCheckpointSlotStorage,recordNativeCheckpointSlot,
  resolveNativeCheckpointLoad,nativeCheckpointSlotKeys,
+ loadNativeCheckpointWithRecovery,
  NATIVE_CHECKPOINT_LATEST_SLOT_KEY} from '../web/native-checkpoint-slot-bank.js';
 
 const sourceSha256='d'.repeat(64);
@@ -149,3 +150,99 @@ assert.match(currentApp,/const activeSlot=requestedSlot!=null\?requestedSlot/);
 assert.match(controller,/emitAction\(action,\{slotIndex:value===""\?null:Number\(value\)\}\)/);
 assert.match(ui,/id="checkpoint-source-slot"/);
 console.log('UW2 10-slot browser checkpoint explicit restore selector and original-source admission: PASS');
+
+
+/* Browser progress recovery is independent of DOS KOUKAI2.DAT.
+ * Verify both checksum and original Korean source identity for BOTH
+ * generations. Never silently load another hero or a fabricated record.
+ */
+for(const kind of ['town','sea']){
+ const saved=new Map();
+ const st={
+  getItem:key=>saved.get(key)??null,
+  setItem:(key,value)=>saved.set(key,value)
+ };
+ const write=async(amount)=>{
+  const session=structuredClone(ownerA);session.money=amount;
+  if(kind==='town'){
+   await saveNativeTownCheckpoint({...deps,
+    storage:nativeCheckpointSlotStorage(st,ownerA.index,kind,{mirrorLatest:true}),
+    session,town:town(ownerA)});
+  }else{
+   await saveNativeSeaCheckpoint({...deps,
+    storage:nativeCheckpointSlotStorage(st,ownerA.index,kind,{mirrorLatest:true}),
+    session,sea:sea(ownerA)});
+  }
+  st.setItem(NATIVE_CHECKPOINT_CHOICE_KEY,kind);
+  recordNativeCheckpointSlot(st,ownerA.index,kind);
+ };
+ const load=storage=>kind==='town'
+  ?loadNativeTownCheckpoint({...deps,storage})
+  :loadNativeSeaCheckpoint({...deps,storage});
+ await write(1700);
+ const keys=nativeCheckpointSlotKeys(ownerA.index,kind);
+ assert.equal(saved.has(keys.backup),false);
+ await write(1800);
+ assert.equal(JSON.parse(saved.get(keys.backup)).payload.session.money,1700);
+ assert.equal(JSON.parse(saved.get(keys.data)).payload.session.money,1800);
+ const choice=resolveNativeCheckpointLoad(st,ownerA.index);
+ let restored=await loadNativeCheckpointWithRecovery({storage:st,choice,load});
+ assert.equal(restored.session.money,1800);
+ assert.equal(restored.checkpointRecovery,null);
+ // An interrupted/invalid newest generation cannot destroy last good.
+ const latest=saved.get(keys.data);
+ saved.set(keys.data,'truncated during browser storage write');
+ restored=await loadNativeCheckpointWithRecovery({storage:st,choice,load});
+ assert.equal(restored.session.money,1700);
+ assert.equal(restored.checkpointRecovery,'PREVIOUS_SOURCE_VERIFIED');
+ assert.equal(saved.get(keys.data),'truncated during browser storage write',
+  'recovery is read-only; no unvalidated overwrite');
+ // Even a checksum-recalculated but wrong original owner must not load.
+ const wrong=JSON.parse(saved.get(keys.backup));
+ wrong.payload.session.heroId=ownerB.heroId;
+ wrong.checksum=createHash('sha256')
+  .update(JSON.stringify(wrong.payload)).digest('hex');
+ saved.set(keys.backup,JSON.stringify(wrong));
+ await assert.rejects(
+  loadNativeCheckpointWithRecovery({storage:st,choice,load}),
+  /checkpoint/);
+ saved.set(keys.backup,latest);
+ // MAIN Continue may use an old singleton global marker. Verify that a
+ // source-scoped current record wins over a corrupted global mirror.
+ saved.set(keys.data,latest);
+ saved.set(kind==='town'?NATIVE_TOWN_CHECKPOINT_KEY:NATIVE_SEA_CHECKPOINT_KEY,'bad mirror');
+ const mainChoice=resolveNativeCheckpointLoad(st);
+ restored=await loadNativeCheckpointWithRecovery({storage:st,choice:mainChoice,load});
+ assert.equal(restored.session.money,1800);
+ assert.equal(restored.checkpointRecovery,'SCOPED_SOURCE_VERIFIED');
+ // If current is absent, last valid record is still listed to allow UI
+ // restore. Empty/corrupt bytes themselves are NOT reported as validated.
+ saved.delete(keys.data);
+ const {availableNativeCheckpointSlots}=await import('../web/native-checkpoint-slot-bank.js');
+ assert.deepEqual(availableNativeCheckpointSlots(st,slots).map(x=>x.slot),[1]);
+ restored=await loadNativeCheckpointWithRecovery({
+  storage:st,choice:resolveNativeCheckpointLoad(st,ownerA.index),load
+ });
+ assert.equal(restored.session.money,1800);
+ // Simulate quota refusal at the active-key write. Previous data must
+ // remain unchanged, and a failed Save must never advance the slot mode.
+ saved.set(keys.data,latest);
+ const quotaStorage={
+  getItem:key=>saved.get(key)??null,
+  setItem:(key,value)=>{
+   if(key===keys.data)throw new Error('QuotaExceededError');
+   saved.set(key,value);
+  }
+ };
+ const failedSession=structuredClone(ownerA);failedSession.money=1900;
+ await assert.rejects(kind==='town'
+   ?saveNativeTownCheckpoint({...deps,
+      storage:nativeCheckpointSlotStorage(quotaStorage,ownerA.index,kind),
+      session:failedSession,town:town(ownerA)})
+   :saveNativeSeaCheckpoint({...deps,
+      storage:nativeCheckpointSlotStorage(quotaStorage,ownerA.index,kind),
+      session:failedSession,sea:sea(ownerA)}),/QuotaExceededError/);
+ assert.equal(JSON.parse(saved.get(keys.data)).payload.session.money,1800);
+ assert.equal(saved.get(keys.mode),kind);
+}
+console.log('UW2 browser checkpoint dual-generation SHA/source-verified town+sea recovery and quota refusal: PASS');

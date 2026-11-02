@@ -299,6 +299,26 @@ export const KOREAN_OPENING_VERIFIED_BLITS = Object.freeze({
   4:Object.freeze({
     intro:Object.freeze({x:168,y:56,w:168,h:168}),
     eye:Object.freeze({x:432,y:120,w:48,h:24})
+  }),
+  // FUN_1000_67c5 / FUN_1000_6bd5 small blink source rectangles.
+  6:Object.freeze({eye:Object.freeze({x:376,y:128,w:48,h:16})}),
+  7:Object.freeze({eye:Object.freeze({x:200,y:88,w:48,h:16})}),
+  // FUN_1000_6ff2 scene8 uses THREE separate sprite locations.
+  8:Object.freeze({
+    eye:Object.freeze({x:344,y:120,w:48,h:16}),
+    extraEyes:Object.freeze([
+      Object.freeze({x:368,y:192,w:48,h:24}),
+      Object.freeze({x:440,y:112,w:48,h:16})
+    ])
+  }),
+  // FUN_1000_73d3 and FUN_1000_75f1 source rect operands.
+  9:Object.freeze({
+    intro:Object.freeze({x:216,y:72,w:72,h:40}),
+    eye:Object.freeze({x:136,y:200,w:80,h:48})
+  }),
+  10:Object.freeze({
+    intro:Object.freeze({x:336,y:136,w:32,h:32}),
+    eye:Object.freeze({x:368,y:120,w:48,h:16})
   })
 });
 
@@ -423,14 +443,15 @@ function drawProfileExact(ctx, canvas, opening, cfg, elapsed, durationMs) {
     for (let g = 0; g < cfg.extraEyeGroups.length; g++) {
       const group = cfg.extraEyeGroups[g];
       const eye = getRecord(opening, part, group[Math.floor(elapsed / 210 + g) % group.length]);
-      drawMatchedOverlay(
-        ctx,
-        { x: mainX, y: mainY },
-        main,
-        eye,
-        mainX + 30 + g * 90,
-        mainY + 70 + g * 28,
-      );
+      const exactEye=exact?.extraEyes?.[g];
+      if(exactEye&&eye.width===exactEye.w&&eye.height===exactEye.h)
+        drawOpeningNative(ctx,eye,exactEye.x,exactEye.y,
+          {transparentZero:true});
+      else
+        drawMatchedOverlay(
+          ctx,{x:mainX,y:mainY},main,eye,
+          mainX+30+g*90,mainY+70+g*28
+        );
     }
   }
 
@@ -462,13 +483,13 @@ function drawOtto(ctx, canvas, opening, elapsed, duration) {
 const STORY_CONFIG = Object.freeze({
   4: { part:4, scene:4, caption:2, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
   5: { part:5, caption:3, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
-  6: { part:6, caption:4, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
-  7: { part:7, caption:5, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
+  6: { part:6, scene:6, caption:4, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
+  7: { part:7, scene:7, caption:5, intro:[0,1,2], main:3, mainAlt:4, eye:[5,6,7] },
   8: {
-    part:8, caption:6, intro:[0,1,2,3,4], main:5,
+    part:8, scene:8, caption:6, intro:[0,1,2,3,4], main:5,
     eye:[6,7,8], extraEyeGroups:[[9,10,11],[12,13,14]],
   },
-  9: { part:9, caption:7, intro:[0,1,2,3,4], main:10, eye:[5,6,7,8,9] },
+  9: { part:9, scene:9, caption:7, intro:[0,1,2,3,4], main:10, eye:[5,6,7,8,9] },
 });
 
 function drawJoao(ctx, canvas, opening, elapsed, durationMs) {
@@ -477,7 +498,11 @@ function drawJoao(ctx, canvas, opening, elapsed, durationMs) {
 
   if (p < 0.20) {
     const star = getRecord(opening, 3, Math.floor(elapsed / 120) % 5);
-    placeCentered(ctx, canvas, star, 100, true);
+    const sourceIntro=KOREAN_OPENING_VERIFIED_BLITS[10].intro;
+    if(star.width===sourceIntro.w&&star.height===sourceIntro.h)
+      drawOpeningNative(ctx,star,sourceIntro.x,sourceIntro.y,
+        {transparentZero:true});
+    else placeCentered(ctx,canvas,star,100,true);
     drawCaption(ctx, canvas, opening, 8);
     return;
   }
@@ -489,7 +514,11 @@ function drawJoao(ctx, canvas, opening, elapsed, durationMs) {
     drawOpeningNative(ctx, main, x, y);
     if (p < 0.56) {
       const eye = getRecord(opening, 10, 1 + (Math.floor(elapsed / 190) % 3));
-      drawMatchedOverlay(ctx, {x,y}, main, eye, x + 80, y + 50);
+      const sourceEye=KOREAN_OPENING_VERIFIED_BLITS[10].eye;
+      if(eye.width===sourceEye.w&&eye.height===sourceEye.h)
+        drawOpeningNative(ctx,eye,sourceEye.x,sourceEye.y,
+          {transparentZero:true});
+      else drawMatchedOverlay(ctx,{x,y},main,eye,x+80,y+50);
     }
     drawCaption(ctx, canvas, opening, 8);
     return;

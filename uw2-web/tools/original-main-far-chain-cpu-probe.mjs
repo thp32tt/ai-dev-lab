@@ -22,6 +22,8 @@ const NEAR_CALL=0x3a87b,NEAR_TARGET=0x3a566;
 const NEAR_RETURN=0x3a87e,HELPER_END=0x3a584;
 const SECOND_CALLEE_RETURN=0x27e42,SECOND_TAIL_END=0x3a8a8;
 const FIRST_CALLEE_RETURN=0x1b4f6,FIRST_TAIL_END=0x27eca;
+const PARENT_ENTRY=0x1b66a,PARENT_E8=0x1b66b,PARENT_RETURN=0x1b66e;
+const MAP_INIT_RETURN=0x1b4f8;
 const UNVERIFIED_SELECTOR_CALL=0x3a892;
 const HEADER=0x5400;
 const u16=x=>Number.isSafeInteger(x)&&x>=0&&x<=0xffff;
@@ -102,8 +104,24 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
   throw new Error('original MAIN relocations unexpectedly changed');
  const m2=indexPart(parts[1],0x20000,0x30000);
  const m3=indexPart(parts[2],0x30000,0x40000);
- const firstCall=callRecord(bytes,mz,
-  new Map(parts[0].instructions.map(i=>[i.reaAddress,i])),
+ const m1=new Map(parts[0].instructions.map(i=>[i.reaAddress,i]));
+ // Original parent CALL is PUSH CS; E8, and its callee uses RETF.
+ // This exact pairing allows a true source-produced far return frame,
+ // rather than placing guessed return words on the synthetic SS stack.
+ expectOpcode(m1,PARENT_ENTRY,bytes,'FALLTHROUGH',1);
+ const parentNear=expectOpcode(m1,PARENT_E8,bytes,'CALL_NEAR',3);
+ const displacement=word(bytes,PARENT_E8+1);
+ const signed=displacement>=0x8000?displacement-0x10000:displacement;
+ if(bytes[PARENT_ENTRY]!==0x0e||bytes[PARENT_E8]!==0xe8||
+    PARENT_E8+3+signed!==0x1b49b||
+    parentNear.targetRea!==rawToMainRea(0x1b49b))
+  throw new Error('original parent PUSH CS/E8 does not target MAIN initializer');
+ for(const [pos,opcode] of [[0x1b4f6,0x5e],[0x1b4f7,0x5f],[MAP_INIT_RETURN,0xcb]]){
+  expectOpcode(m1,pos,bytes,pos===MAP_INIT_RETURN?'RETURN':'FALLTHROUGH',1);
+  if(bytes[pos]!==opcode)
+   throw new Error('original initializer final POP/RETF changed');
+ }
+ const firstCall=callRecord(bytes,mz,m1,
   FIRST_CALL,FIRST_TARGET,loadSegment);
  const secondCall=callRecord(bytes,mz,m2,SECOND_CALL,SECOND_TARGET,loadSegment);
  for(const [pos,len] of [[0x27e32,1],[0x27e33,2],
@@ -155,6 +173,9 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
  if(half+bytes.length>0x100000)
   throw new Error('original guest image would overlap physical real-mode wrap');
  return Object.freeze({first,firstCall,secondCall,near,helper,
+   parentSourcePhysical:physically(loadSegment,PARENT_ENTRY),
+   parentSourceCS:loadSegment+0x1000,parentSourceIP:0x626a,
+   parentReturnIP:0x626e,
    helperSourceStarts:Object.freeze([...helper]),
    secondTailSourceStarts:Object.freeze([...tail]),
    firstTailSourceStarts:Object.freeze([...firstTail]),
@@ -218,6 +239,22 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   cpu.write8(0x7000,recordOffset,recordType);
   cpu.write16(0x7000,recordOffset+1,recordValue);
  }
+ // Execute the original parent PUSH CS and near E8 instructions first.
+ // Parent SS:SP is a declared synthetic test input, but the return
+ // address words themselves are produced solely by actual 8086 CPU steps.
+ cpu.set16('CS',proof.parentSourceCS);cpu.set16('IP',proof.parentSourceIP);
+ cpu.set16('SS',0x8000);cpu.set16('SP',0x8004);
+ cpu.set16('FLAGS',0x202);
+ if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+    proof.parentSourcePhysical)
+  throw new Error('original parent call physical source mismatch');
+ cpu.step();cpu.step();
+ if(cpu.get16('CS')!==proof.first.startCS||
+    cpu.get16('IP')!==proof.first.startIP||
+    cpu.get16('SP')!==0x8000||
+    cpu.read16(0x8000,0x8000)!==proof.parentReturnIP||
+    cpu.read16(0x8000,0x8002)!==proof.parentSourceCS)
+  throw new Error('original parent 8086 PUSH CS / E8 stack diverged');
  const init=executeMainInitSourcePrefix(cpu,bytes,proof.first);
  assertAt(cpu,proof.first.startCS,proof.first.startIP+
   FIRST_CALL-0x1b49b,0x7ffc,'original initializer failed to reach 1st FAR');
@@ -309,6 +346,21 @@ export async function probeOriginalMainFarChain(bytes,parts,{
     cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
       physically(loadSegment,FIRST_CALLEE_RETURN))
   throw new Error('original first callee failed to RETF to initializer');
+ // The last three original bytes of the initializer are POP SI, POP DI,
+ // RETF; return through the actual PUSH CS/E8 parent frame above.
+ for(const [pos,opcode] of [[0x1b4f6,0x5e],[0x1b4f7,0x5f],[MAP_INIT_RETURN,0xcb]]){
+  if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+      physically(loadSegment,pos)||
+     cpu.read8(cpu.get16('CS'),cpu.get16('IP'))!==opcode)
+   throw new Error('original initializer return path was not reached');
+  cpu.step();
+ }
+ if(cpu.get16('CS')!==proof.parentSourceCS||
+    cpu.get16('IP')!==proof.parentReturnIP||
+    cpu.get16('SP')!==0x8004||
+    cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+      physically(loadSegment,PARENT_RETURN))
+  throw new Error('original initializer failed authentic parent E8/RETF return');
  return Object.freeze({
   sourceHash:MAIN_NEW_GAME_SOURCE_SHA256,
   executedInitializerInstructions:init.steps,
@@ -316,19 +368,23 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   executedIndexHelperInstructions:helperSteps,
   executedSecondCalleeTailInstructions:tailSteps,
   executedFirstCalleeTailInstructions:firstTailSteps,
-  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+tailSteps+firstTailSteps+2,
+  executedParentCallInstructions:2,
+  executedInitializerFinalReturnInstructions:3,
+  executedOriginalGuestInstructions:init.steps+calleeSteps+helperSteps+tailSteps+firstTailSteps+2+2+3,
   verifiedIndexHelperBoundaries:proof.verifiedOriginalHelperStarts,
   actualChainedFarCalls:2,actualNestedNearCalls:1,
   originalInputWord:inputWord,originalIndexOffset:mapped,
   returnedToRaw:NEAR_RETURN,
   secondCalleeReturnedToRaw:SECOND_CALLEE_RETURN,
   firstCalleeReturnedToRaw:FIRST_CALLEE_RETURN,
+  originalInitializerReturnedToRaw:PARENT_RETURN,
+  completedBoundedInitializerFunction:true,
   verifiedSecondCalleeTailBoundaries:proof.verifiedSecondTailBoundaries,
   verifiedFirstCalleeTailBoundaries:proof.verifiedFirstTailBoundaries,
   syntheticRecordType:recordType,syntheticRecordValue:recordValue,
   originalSelectorResult:selectorResult,
   syntheticFirstCalleeLoopCount:0,
-  stoppedBeforeOriginalInitializerFinalReturn:true,
+  stoppedBeforeUnclassifiedParentContinuation:true,
   originalDosRuntimeVerified:false,freshGameReady:false
  });
 }
@@ -351,7 +407,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   console.log(JSON.stringify({testedInputs:points.length+2,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
-   allReturned:results.every(x=>x.firstCalleeReturnedToRaw===FIRST_CALLEE_RETURN),
+   allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN),
    results},null,2));
  }catch(e){console.error(e.stack||String(e));process.exitCode=1;}
 }

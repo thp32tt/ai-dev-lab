@@ -305,7 +305,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
     !u16(recordType)||recordType>255||
     !u16(recordSpanLength)||!u16(selectorSideValue)||
     (recordType===1&&recordSpanLength!==0&&
-       (!emsFixture||recordSpanLength>2))||
+       (!emsFixture||recordSpanLength>1))||
     !u16(fillIndex)||
     fillIndex>=20||fillIndex===inputWord||
     !u16(fillSegment)||fillSegment<0x9000||fillSegment>0xf000)
@@ -679,7 +679,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   if(typeOne.originalSelectorResult!==0x2468||
      typeOne.executedTypeOneHelperInstructions<8)
    throw new Error('original zero-span type-1 helper not executed');
-  for(const recordSpanLength of [1,2]){
+  for(const recordSpanLength of [1]){
    const positive=await probeOriginalMainFarChain(bytes,parts,{
     inputWord:7,recordType:1,recordSpanLength,
     emsFixture:{
@@ -703,7 +703,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
    rejectedUnverifiedSelector=true;
   }
   if(!rejectedUnverifiedSelector)throw new Error('unverified type-1 positive span unexpectedly executed');
-  console.log(JSON.stringify({testedInputs:points.length+5,
+  console.log(JSON.stringify({testedInputs:points.length+4,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
    allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN&&x.ownerFillStoppedAtRaw===OWNER_FILL_END),

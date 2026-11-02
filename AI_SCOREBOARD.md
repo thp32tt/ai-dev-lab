@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 native auto-sail real coast collision stop (2026-11-02 09:18 KST)
+
+- **New independent browser gameplay integration (+1):** `thp32tt/ai-dev-lab@uw2-web-port` exact implementation SHA **`a036412e48cca2aa6773d9972276924501e77221`**. `web/native-sea-auto.js` and actual `web/app.js` now stop the repeated 220ms AUTO loop once the genuine world-chip collision path reports `coast-block`, distinguishing an actual shoreline block from benign sub-60-unit speed accumulation. Preserve already-committed first 20-minute game tick and port-arrival precedence; prevent repeated blocked ticks from draining calendar, ship provisions and monthly bank accounting at a fixed shore.
+- **Verification:** Updated source-shaped world 2x2 impassable-cell regression and original browser AUTO stop callsite test in `native-sea-auto.test.mjs`, with master-plan update. Exact SHA `a036412e48cca2aa6773d9972276924501e77221` GitHub Actions `UW2 Web Fidelity Static Gate` run **41366396605 SUCCESS**. Browser private original asset Firefox runtime and original Korean DOS differential are **RUNTIME_VALIDATION=UNTESTED**. Same-task retry/C6/docs/validation +0, AI1 unchanged.
+- **AI 2 score:** previous confirmed **2428** + one independently verified auto-sail coast-stop feature **(+1)** = new cumulative **2429**.
+
 ## AI 2 QuestCockpitV2 actual mode-1 PCVR seat preview, signed original game hooks and test ZIP (2026-11-02 09:18 KST)
 
 - **RUN_KEY:** `QUEST-COCKPIT-V2-MODE1-PLAYABLE-PREVIEW-20261102-7610fabe`; **AI 2**; previous confirmed **2428**; change **+1**; cumulative **2429**.

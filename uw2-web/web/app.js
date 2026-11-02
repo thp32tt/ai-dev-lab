@@ -778,6 +778,9 @@ canvas.addEventListener("click", event => {
     // command; the validated voyage transaction remains the only tick owner.
     const command=nativeSeaPointerCommand(point,seaRuntime.snapshot());
     if(command===null)return;
+    // Manual Canvas command takes exclusive control before the next AUTO tick.
+    // No 20-minute voyage is charged by stopping the browser-only timer.
+    if(seaAutoActive)stopSeaAuto("auto-manual");
     if(command.kind==="turn")seaRuntime.turn(command.delta);
     else if(command.kind==="forward")tickSeaWithBankInterest();
     renderSeaScreen();
@@ -2319,6 +2322,11 @@ window.addEventListener("keydown", (event) => {
       toggleSeaAuto();
       return;
     }
+    // A real keyboard helm command cancels browser AUTO first. The single
+    // manual forward command remains the only possible voyage tick this turn.
+    const manualSeaKey=["arrowleft","a","4","arrowright","d","6",
+      "arrowup","w","8"," "].includes(key);
+    if(manualSeaKey&&seaAutoActive)stopSeaAuto("auto-manual");
     if (key === "arrowleft" || key === "a" || key === "4") seaRuntime.turn(-1);
     else if (key === "arrowright" || key === "d" || key === "6") seaRuntime.turn(1);
     else if (key === "arrowup" || key === "w" || key === "8" || key === " ") tickSeaWithBankInterest();
@@ -2481,8 +2489,11 @@ window.addEventListener("uw2-controller-action", async event => {
     return;
   }
   if (action === "pause") {
-    if (viewMode === "sea") toggleSeaAuto();
-    else $("pause-button").click();
+    // PAUSE is stop-only at sea; the old toggle accidentally STARTED AUTO
+    // on an idle vessel, advancing date, provisions and bank interest.
+    if (viewMode === "sea") {
+      if(seaAutoActive){stopSeaAuto("auto-paused");renderSeaScreen();}
+    } else $("pause-button").click();
     return;
   }
   if (!musicPlayer?.songCount) {

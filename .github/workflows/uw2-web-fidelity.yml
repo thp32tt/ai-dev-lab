@@ -69,6 +69,8 @@ jobs:
           node --check uw2-web/tools/original-main-far-cpu-probe.mjs
           node --check uw2-web/tools/original-main-camera-cpu-probe.mjs
           node --check uw2-web/tools/original-main-map-init-cpu-probe.mjs
+          node --check uw2-web/tools/original-main-far-chain-cpu-probe.mjs
+          node --check uw2-web/tests/original-main-far-chain-cpu-probe.test.mjs
           node --check uw2-web/tests/original-main-map-init-cpu-probe.test.mjs
           node --check uw2-web/tests/original-main-camera-cpu-probe.test.mjs
           node --check uw2-web/tests/original-main-far-cpu-probe.test.mjs
@@ -196,6 +198,7 @@ jobs:
           node uw2-web/tests/original-main-far-cpu-probe.test.mjs
           node uw2-web/tests/original-main-camera-cpu-probe.test.mjs
           node uw2-web/tests/original-main-map-init-cpu-probe.test.mjs
+          node uw2-web/tests/original-main-far-chain-cpu-probe.test.mjs
           node uw2-web/tests/native-context-commands.test.mjs
           node uw2-web/tests/native-town-hud.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs

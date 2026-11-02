@@ -37,4 +37,36 @@ cpu.step(); // MOV AX,1234
 cpu.step(); // authentic RETF, pops near return IP then caller-pushed CS
 assert.deepEqual([cpu.get16('CS'),cpu.get16('IP'),cpu.get16('SP')],[0x400,0x304,0xff8]);
 assert.equal(cpu.get16('AX'),0x1234);
+
+// Independent synthetic parent-to-parent-return instruction sequence.
+// Parent PUSH CS/E8 creates real return words, then a nested FAR/FAR/E8
+// visits two callees and returns through three genuine RETF instructions.
+// No original commercial bytes or inferred DOS state are copied into CI.
+const full=new RealMode8086();
+full.load(Uint8Array.of(0x0e,0xe8,0x0c,0x00),0x200,0x100);
+full.load(Uint8Array.of(
+ 0x57,0x56,0x9a,0x20,0x02,0x00,0x03,0x5e,0x5f,0xcb
+),0x200,0x110);
+full.load(Uint8Array.of(
+ 0x55,0x8b,0xec,0x9a,0x30,0x03,0x00,0x04,
+ 0x8b,0xe5,0x5d,0xcb
+),0x300,0x220);
+full.load(Uint8Array.of(0x56,0x0e,0xe8,0x0b,0x00,0x5e,0xcb),0x400,0x330);
+full.load(Uint8Array.of(0xb8,0x34,0x12,0xcb),0x400,0x340);
+full.set16('CS',0x200);full.set16('IP',0x100);
+full.set16('SS',0x800);full.set16('SP',0x1000);
+let completed=false;
+for(let steps=0;steps<40;steps++){
+ if(full.get16('CS')===0x200&&full.get16('IP')===0x104){
+  assert.equal(steps,21);
+  completed=true;break;
+ }
+ full.step();
+}
+assert.equal(completed,true,'synthetic nested original-shaped caller return must finish');
+assert.equal(full.get16('SP'),0x1000);
+assert.equal(full.get16('AX'),0x1234);
+assert.equal(full.read16(0x800,0xffc),0x104);
+assert.equal(full.read16(0x800,0xffe),0x200);
+
 console.log('UW2 real 8086 two chained FAR CALLs, nested E8/PUSH CS/RETF stack, original hash admission fail-closed PASS');

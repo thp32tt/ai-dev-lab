@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Quest original cockpit occupant visible/LOD0 PC render-walk implementation (2026-11-02 KST)
+
+- **RUN_KEY:** `QUEST-COCKPIT-V2-ORIGINAL-LOD0-PC-20261102-BE5FDAF3`. Previous latest AI 2 confirmed cumulative **2482** + ONE independent source-level original Quest occupant visibility/LOD0 implementation **(+1)** = new cumulative **2483**. Previous W×C model, pre-F0 TLS preservation, APK rereview, static tests, build/ZIP readback, rollout, user HMD retest and status checks are **+0**. AI 1 unchanged.
+- **Verified result:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2` exact implementation/validation-bearing SHA `be5fdaf37b90fbb2265ccdd004c2a66b15f82d38`. Quest core ELF `node_visible_10AA17C` originally forces visible=1/LOD0 under view-service flag and occupant TLS. Independently byte-verified original PC EXE `0x405015` visible CALL, `0x40501D` result EAX, `0x405021` LOD local [ESP+0x1C], `0x405025` mesh[LOD]. Added `ScopedOriginalOccupantLod0` thread-local nonreentrant owner only within the verified synchronous ROB01/ROB02 W×C model draw; guarded original native PC signature, mode1/stereo frame owner and dedicated opt-in setting (default false). Existing game mesh[0]/queue checks and global original stage culling unchanged.
+- **Verification:** original source PE SHA256 `68ceb386829066f8455b9d027320af962584321f3e2e8a79c72841495a6134c3` read-only binary assertions PASS. `QuestCockpitV2 Isolated Core Smoke` GitHub Actions **41457860414 SUCCESS**; `VR GitHub General Test Build` **41457860408 SUCCESS** including x86 game DLL, x64 OpenXR host and package. Build artifact ID `13147317912` from exact SHA; unpacked inner ZIP SHA256 `61d00f2e9f9b3201a8da4f457d71664bb947f769faab70c0783408787e8ee788`. Confirmed 23 entries, x86/x64 PE architectures, `SOURCE_SHA` and three cockpit launcher choices. Stable DX9Ex/public beta/2D/FFB not modified.
+- **Boundary:** Quest view-service +0x35 native flag writer and Windows PCVR equivalent remain unresolved; real HMD per-eye consistency/performance and original full Quest game-render-frame lifetime untested. `RUNTIME_VALIDATION=UNTESTED`. This is an **experimental capability**, not proven full APK visual parity. Do not score this feature twice.
+
 ## AI 2 Model2VR original D3D9 per-eye depth, cull and viewport correctness (2026-11-02 KST)
 
 - **RUN_KEY:** `MODEL2VR-D3D9-DEPTH-CULL-20261102-dab41ab1`; **AI 2**; previous confirmed **2481**; independent actual C++ native stereo raster material/source correctness feature **+1**; new cumulative **2482**.

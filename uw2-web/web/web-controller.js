@@ -22,6 +22,12 @@ function renderNativeContext(mode){
   const cmds=nativeContextCommandsFor(mode);
   if(!nativeContextPanel||!nativeContextButtons)return;
   const visible=!!cmds;
+  // A pointer held while exiting the room must not leave a detached
+  // context button repeating an Arrow key in another game mode.
+  if(!visible||lastNativeContextMode!==mode){
+    for(const button of nativeContextButtons.querySelectorAll("button"))
+      clearPress(button);
+  }
   nativeContextPanel.hidden=!visible;
   if(!visible){
     lastNativeContextMode=null;

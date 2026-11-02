@@ -40,6 +40,7 @@ const html=fs.readFileSync(new URL('../web/index.html',import.meta.url),'utf8');
 const css=fs.readFileSync(new URL('../web/style.css',import.meta.url),'utf8');
 assert.match(app,/nativeActionMode:viewMode==="town"&&townRuntime\?\.insideBuilding/);
 assert.match(controller,/renderNativeContext\(state\.mode==="town"\?state\.nativeActionMode:null\)/);
+assert.match(controller,/for\(const button of nativeContextButtons\.querySelectorAll\("button"\)\)\s*clearPress\(button\)/);
 assert.match(controller,/const options=\{shiftKey:button\.dataset\.shiftKey==="true"\}/);
 assert.match(controller,/emitKey\(key,options\)/);
 assert.match(controller,/setInterval\(\(\) => emitKey\(key,options\), 105\)/);

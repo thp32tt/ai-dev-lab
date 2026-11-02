@@ -47,6 +47,8 @@ jobs:
           node --check uw2-web/web/native-save-load-transaction.js
           node --check uw2-web/tests/native-save-load-transaction.test.mjs
           node --check uw2-web/web/native-new-game-hero.js
+          node --check uw2-web/web/native-original-hero-roster.js
+          node --check uw2-web/tests/native-original-hero-roster.test.mjs
           node --check uw2-web/web/native-new-game-layout.js
           node --check uw2-web/tests/native-new-game-layout.test.mjs
           node --check uw2-web/tests/native-game-system-menu.test.mjs
@@ -157,6 +159,7 @@ jobs:
           node uw2-web/tests/native-browser-boot-visibility.test.mjs
           node uw2-web/tests/native-browser-post-opening-fatal.test.mjs
           node uw2-web/tests/native-new-game-hero.test.mjs
+          node uw2-web/tests/native-original-hero-roster.test.mjs
           node uw2-web/tests/original-new-game-init-proof.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs
           node uw2-web/tests/native-sea-pointer.test.mjs

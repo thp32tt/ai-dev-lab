@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 import {RealMode8086} from '../web/realmode-8086.js';
+import {installExplicitEms44} from '../web/ems-int67-map44.js';
 import {inspectMzForLoad,loadVerifiedMz} from '../web/mz-loader.js';
 import {MAIN_NEW_GAME_SOURCE_SHA256} from './original-new-game-init-proof.mjs';
 import {rawToMainRea} from './original-new-game-call-ledger.mjs';
@@ -30,6 +31,7 @@ const TYPE_ONE_SELECTOR_CALL=0x3a892;
 const TYPE_ONE_HELPER_START=0x3a846,TYPE_ONE_HELPER_END=0x3a879;
 const TYPE_ONE_NESTED_UNVERIFIED_CALL=0x3a866;
 const TYPE_ONE_EMS_SERVICE=0x3a983;
+const TYPE_ONE_EMS_ENTRY=0x3a975,TYPE_ONE_EMS_END=0x3a98b;
 const HEADER=0x5400;
 const u16=x=>Number.isSafeInteger(x)&&x>=0&&x<=0xffff;
 const word=(data,i)=>data[i]|(data[i+1]<<8);
@@ -219,6 +221,9 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
     !nested||nested.flow!=='CALL_NEAR'||nested.length!==3||
     TYPE_ONE_NESTED_UNVERIFIED_CALL+3+signed2!==0x3a975)
   throw new Error('original type-1 positive-span INT 67h provenance changed');
+ const emsHelper=covered(m3,TYPE_ONE_EMS_ENTRY,TYPE_ONE_EMS_END,bytes);
+ if(emsHelper.size!==11||!emsHelper.has(TYPE_ONE_EMS_SERVICE))
+  throw new Error('original EMS AH44 source helper Ghidra coverage changed');
  const tail=new Set();
  let tailReturns=0;
  for(let raw=NEAR_RETURN;raw<SECOND_TAIL_END;){
@@ -254,6 +259,7 @@ export function verifyOriginalMainFarChain(bytes,parts,{loadSegment=0x2000}={}){
    helperSourceStarts:Object.freeze([...helper]),
    secondTailSourceStarts:Object.freeze([...tail]),
    typeOneHelperSourceStarts:Object.freeze([...typeOneHelper]),
+   emsHelperSourceStarts:Object.freeze([...emsHelper]),
    verifiedTypeOneHelperBoundaries:typeOneHelper.size,
    typeOnePositiveSpanRequiresOriginalInt67:true,
    firstTailSourceStarts:Object.freeze([...firstTail]),
@@ -293,16 +299,17 @@ function executeOneFar(cpu,bytes,call,loadSegment){
 export async function probeOriginalMainFarChain(bytes,parts,{
  inputWord=0,recordType=0,recordValue=0x1234,
  recordSpanLength=0,selectorSideValue=0x1357,
- fillIndex=6,fillSegment=0x9000,loadSegment=0x2000
+ emsFixture=null,fillIndex=6,fillSegment=0x9000,loadSegment=0x2000
 }={}){
  if(!u16(inputWord)||!u16(recordValue)||
     !u16(recordType)||recordType>255||
     !u16(recordSpanLength)||!u16(selectorSideValue)||
-    (recordType===1&&recordSpanLength!==0)||
+    (recordType===1&&recordSpanLength!==0&&
+       (!emsFixture||recordSpanLength>2))||
     !u16(fillIndex)||
     fillIndex>=20||fillIndex===inputWord||
     !u16(fillSegment)||fillSegment<0x9000||fillSegment>0xf000)
-  throw new Error('synthetic original selector input invalid or type-1 nonzero span requires unimplemented INT 67h');
+  throw new Error('synthetic original selector input invalid or positive span requires explicit bounded EMS INT 67h');
  const proof=verifyOriginalMainFarChain(bytes,parts,{loadSegment});
  const mz=inspectMzForLoad(bytes);
  const cpu=new RealMode8086();
@@ -336,6 +343,23 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   cpu.write16(0x7000,recordOffset+5,recordValue);
  }
  cpu.write16(0x7000,0xbce8,selectorSideValue);
+ // Opt-in, explicitly owned test-only EMS allocation. The original
+ // game's EMM handle and physical slots are NOT inferred or invented.
+ let emsDevice=null;
+ if(recordType===1&&recordSpanLength!==0){
+  if(!emsFixture||!Array.isArray(emsFixture.pages)||
+     !Array.isArray(emsFixture.physicalSlots)||
+     emsFixture.physicalSlots.length<recordSpanLength||
+     emsFixture.physicalSlots.some(v=>!Number.isInteger(v)||v<0||v>3)||
+     emsFixture.frameSegment!==0xc000)
+   throw new Error('explicit original type-1 EMS page fixture missing');
+  emsDevice=installExplicitEms44(cpu,{
+   handle:recordValue,frameSegment:emsFixture.frameSegment,
+   pages:emsFixture.pages
+  });
+  for(let i=0;i<emsFixture.physicalSlots.length;i++)
+   cpu.write16(0x7000,0xbfe2+i*4,emsFixture.physicalSlots[i]);
+ }
  // Execute the original parent PUSH CS and near E8 instructions first.
  // Parent SS:SP is a declared synthetic test input, but the return
  // address words themselves are produced solely by actual 8086 CPU steps.
@@ -408,6 +432,9 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   physically(loadSegment,raw)));
  const typeOneAllowed=new Set(proof.typeOneHelperSourceStarts.map(raw=>
   physically(loadSegment,raw)));
+ const emsHelperAllowed=new Set(proof.emsHelperSourceStarts.map(raw=>
+  physically(loadSegment,raw)));
+ let emsHelperSteps=0,originalEmsCallCount=0;
  let typeOneHelperSteps=0,tailSteps=0;
  for(;tailSteps<32;tailSteps++){
   const p=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
@@ -416,7 +443,7 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   if(!tail.has(p))
    throw new Error('original selector left verified 8086 tail boundary');
   if(p===physically(loadSegment,TYPE_ONE_SELECTOR_CALL)){
-   if(recordType!==1||recordSpanLength!==0)
+   if(recordType!==1||recordSpanLength>2)
     throw new Error('original type-1 selector source branch not admitted');
    const sourceCS=cpu.get16('CS'),sourceIP=cpu.get16('IP');
    const sourceSP=cpu.get16('SP');
@@ -438,9 +465,35 @@ export async function probeOriginalMainFarChain(bytes,parts,{
        cpu.get16('IP')===((sourceIP+3)&65535)){
       returned=true;break;
     }
-    if(!typeOneAllowed.has(at)||
-       at===physically(loadSegment,TYPE_ONE_NESTED_UNVERIFIED_CALL))
-     throw new Error('original type-1 helper entered unverified nonzero span');
+    if(at===physically(loadSegment,TYPE_ONE_NESTED_UNVERIFIED_CALL)){
+     if(!emsDevice||originalEmsCallCount>=4)
+      throw new Error('original type-1 EMS source attempted without bounded page owner');
+     if(cpu.read8(cpu.get16('CS'),cpu.get16('IP'))!==0xe8)
+      throw new Error('original type-1 EMS helper E8 opcode mutated');
+     const emsCS=cpu.get16('CS'),emsReturn=(cpu.get16('IP')+3)&65535,
+       emsStack=cpu.get16('SP');
+     cpu.step();tailSteps++;typeOneHelperSteps++;
+     originalEmsCallCount++;
+     if(cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
+        physically(loadSegment,TYPE_ONE_EMS_ENTRY))
+      throw new Error('original EMS 44 helper target changed');
+     let returnedFromEms=false;
+     for(let k=0;k<40;k++){
+      const inEms=cpu.physical(cpu.get16('CS'),cpu.get16('IP'));
+      if(inEms===physically(loadSegment,TYPE_ONE_NESTED_UNVERIFIED_CALL+3)&&
+         cpu.get16('CS')===emsCS&&cpu.get16('IP')===emsReturn){
+       returnedFromEms=true;break;
+      }
+      if(!emsHelperAllowed.has(inEms))
+       throw new Error('source-backed EMS function escaped original verified bytes');
+      cpu.step();emsHelperSteps++;tailSteps++;typeOneHelperSteps++;
+     }
+     if(!returnedFromEms||cpu.get16('SP')!==emsStack+2)
+      throw new Error('original EMS AH44 helper failed architectural RETF');
+     continue;
+    }
+    if(!typeOneAllowed.has(at))
+     throw new Error('original type-1 helper escaped original source bytes');
     cpu.step();tailSteps++;typeOneHelperSteps++;
    }
    if(!returned||cpu.get16('SP')!==sourceSP+2)
@@ -569,6 +622,9 @@ export async function probeOriginalMainFarChain(bytes,parts,{
   executedIndexHelperInstructions:helperSteps,
   executedSecondCalleeTailInstructions:tailSteps,
   executedTypeOneHelperInstructions:typeOneHelperSteps,
+  executedSourceEmsHelperInstructions:emsHelperSteps,
+  sourceEms44Calls:originalEmsCallCount,
+  emsMappedPages:emsDevice?.snapshot().physicalToLogical??null,
   executedFirstCalleeTailInstructions:firstTailSteps,
   executedParentCallInstructions:2,
   executedInitializerFinalReturnInstructions:3,
@@ -617,15 +673,27 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   if(typeOne.originalSelectorResult!==0x2468||
      typeOne.executedTypeOneHelperInstructions<8)
    throw new Error('original zero-span type-1 helper not executed');
+  const positive=await probeOriginalMainFarChain(bytes,parts,{
+   inputWord:7,recordType:1,recordSpanLength:1,
+   emsFixture:{
+    frameSegment:0xc000,
+    pages:Array.from({length:3},()=>new Uint8Array(0x4000)),
+    physicalSlots:[0,1,2]
+   }
+  });
+  results.push(positive);
+  if(positive.sourceEms44Calls<1||
+     positive.executedSourceEmsHelperInstructions<8)
+   throw new Error('source-backed type-1 positive span did not map EMS');
   let rejectedUnverifiedSelector=false;
   try{await probeOriginalMainFarChain(bytes,parts,{
    inputWord:7,recordType:1,recordSpanLength:1});}
   catch(error){
-   if(!String(error.message).includes('unimplemented INT 67h'))throw error;
+   if(!String(error.message).includes('explicit bounded EMS INT 67h'))throw error;
    rejectedUnverifiedSelector=true;
   }
   if(!rejectedUnverifiedSelector)throw new Error('unverified type-1 positive span unexpectedly executed');
-  console.log(JSON.stringify({testedInputs:points.length+3,
+  console.log(JSON.stringify({testedInputs:points.length+4,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
    allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN&&x.ownerFillStoppedAtRaw===OWNER_FILL_END),

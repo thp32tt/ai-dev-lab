@@ -28,7 +28,14 @@ export function advanceNativeSeaVoyageStep({session,runtime}={}){
  // Clone only source-shaped mutable gameplay fields, not 33KB original
  // save-page bytes, immutable asset banks or the entire world map.
  const next={...session,dateTime:{...session.dateTime},
-   fleet:{...session.fleet,ships:session.fleet.ships.map(sh=>({...sh}))}};
+   fleet:{...session.fleet,ships:session.fleet.ships.map(sh=>({
+     ...sh,
+     // The 5 original Korean cargo slots are mutable trade state. A
+     // shallow ship copy aliases the previous sea tick's goods records:
+     // later purchases after arrival would rewrite earlier sessions.
+     // Keep the bounded u16 goods rows independently owned per tick.
+     goods:sh.goods.map(g=>({...g}))
+   }))}};
  let sea,moved;
  try{
    sea=new SeaRuntime(runtime.assets,{x:runtime.x,y:runtime.y},

@@ -56,6 +56,7 @@ import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 import { D2MusicPlayer } from "./music.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
+import { originalTownHudEntries } from "./native-town-hud.js";
 import { ORIGINAL_SYSTEM_MENU_INDEX, SYSTEM_UI_LAYOUT, originalSaveSlotLine } from "./system-ui.js";
 import { selectWebMusicRoute } from "./music-routing.js";
 import { Uw2BootGate } from "./boot-sequence.js";
@@ -430,11 +431,12 @@ function drawOriginalPanelText(text, x, y, opts = {}) {
     return drawUw2Text(ctx, fontAssets, String(text ?? ""), x, y - 14, {
       color: opts.color ?? "#2b1a0e",
       lineHeight: opts.lineHeight ?? 18,
+      scale: opts.scale ?? 1,
     });
   }
   ctx.save();
   ctx.fillStyle = opts.color ?? "#2b1a0e";
-  ctx.font = `${opts.bold ? "bold " : ""}${opts.size ?? 15}px "Malgun Gothic", sans-serif`;
+  ctx.font = `${opts.bold ? "bold " : ""}${(opts.size ?? 15)*(opts.scale ?? 1)}px "Malgun Gothic", sans-serif`;
   ctx.textBaseline = "alphabetic";
   ctx.fillText(String(text ?? ""), x, y);
   ctx.restore();
@@ -2201,6 +2203,11 @@ function renderTownScreen() {
     return;
   }
   drawOriginalSceneFrame("town");
+  // These original GRAPH #5 margin labels are baked into GRAPH.DAT. Fill
+  // only their empty value locations from the CURRENT mutable web session.
+  // Draw on every town repaint, including transactions and building visits.
+  for(const line of originalTownHudEntries(selected))
+    drawOriginalPanelText(line.text,line.x,line.y+14,{scale:line.scale});
 
   if (st.building) {
     const chipBank = portAssets.chipNo?.[st.portId];

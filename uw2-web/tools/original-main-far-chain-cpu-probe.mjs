@@ -506,6 +506,12 @@ export async function probeOriginalMainFarChain(bytes,parts,{
     cpu.physical(cpu.get16('CS'),cpu.get16('IP'))!==
       physically(loadSegment,SECOND_CALLEE_RETURN))
   throw new Error('original nested selector failed authentic FAR return');
+ if(emsDevice){
+  const events=emsDevice.events();
+  if(events.length!==originalEmsCallCount||
+     events.some(event=>event.status!==0))
+   throw new Error('original EMS AH44 call did not map all owned pages');
+ }
  const selectorResult=cpu.get16('AX');
  const expectedResult=inputWord>=20?0:
    recordType===0?recordValue:recordType===1?selectorSideValue:0;
@@ -673,18 +679,22 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   if(typeOne.originalSelectorResult!==0x2468||
      typeOne.executedTypeOneHelperInstructions<8)
    throw new Error('original zero-span type-1 helper not executed');
-  const positive=await probeOriginalMainFarChain(bytes,parts,{
-   inputWord:7,recordType:1,recordSpanLength:1,
-   emsFixture:{
-    frameSegment:0xc000,
-    pages:Array.from({length:3},()=>new Uint8Array(0x4000)),
-    physicalSlots:[0,1,2]
-   }
-  });
-  results.push(positive);
-  if(positive.sourceEms44Calls<1||
-     positive.executedSourceEmsHelperInstructions<8)
-   throw new Error('source-backed type-1 positive span did not map EMS');
+  for(const recordSpanLength of [1,2]){
+   const positive=await probeOriginalMainFarChain(bytes,parts,{
+    inputWord:7,recordType:1,recordSpanLength,
+    emsFixture:{
+     frameSegment:0xc000,
+     pages:Array.from({length:3},(_,i)=>
+      Uint8Array.from({length:0x4000},(_,j)=>(i+j)&255)),
+     physicalSlots:[0,1,2]
+    }
+   });
+   results.push(positive);
+   if(positive.sourceEms44Calls<1||
+      positive.executedSourceEmsHelperInstructions<8||
+      positive.emsMappedPages[0]!==0)
+    throw new Error('source-backed type-1 positive span did not map expected EMS page');
+  }
   let rejectedUnverifiedSelector=false;
   try{await probeOriginalMainFarChain(bytes,parts,{
    inputWord:7,recordType:1,recordSpanLength:1});}
@@ -693,7 +703,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
    rejectedUnverifiedSelector=true;
   }
   if(!rejectedUnverifiedSelector)throw new Error('unverified type-1 positive span unexpectedly executed');
-  console.log(JSON.stringify({testedInputs:points.length+4,
+  console.log(JSON.stringify({testedInputs:points.length+5,
    completedSelectorCases:results.length,rejectedUnverifiedSelector,
    guestInstructions:results.reduce((sum,x)=>sum+x.executedOriginalGuestInstructions,0),
    allReturned:results.every(x=>x.originalInitializerReturnedToRaw===PARENT_RETURN&&x.ownerFillStoppedAtRaw===OWNER_FILL_END),

@@ -120,6 +120,6 @@ for(const p of [{x:95.99,y:240},{x:300,y:7.99},{x:480,y:240},
 for(const bad of [null,{}, {playerX:23,playerY:14},
  {playerX:12.5,playerY:14},{playerX:12,playerY:-1}])
  assert.equal(nativeTownWalkPointerDirection(townPoint(12,13),bad),null);
-assert.match(app,/const direction=nativeTownWalkPointerDirection\(point,townRuntime\.snapshot\(\)\);\s*if\(direction!==null\)moveTown\(direction\)/);
+assert.match(app,/startTownClickRoute\(point\)/);
 assert.match(app,/const building=townRuntime\.insideBuilding;\s*if\(!building\)\{/);
 console.log('UW2 native pointer: original menu, six heroes, saves, town dialogue, building menus, trade/crew/ship row selection PASS');

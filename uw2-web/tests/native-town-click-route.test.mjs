@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {PortWalkingRuntime,canStandAt} from '../web/town.js';
+import {prepareNativeTownMovement,commitNativeTownMovement} from '../web/native-town-movement.js';
+import {nativeTownClickDestination,planNativeTownClickRoute,nativeTownClickRouteNext} from '../web/native-town-click-route.js';
+const assets=()=>({maps:[new Uint8Array(96*96)],chipNo:Uint8Array.of(0),walkBounds:[[0,100,200,250]]});
+const session=()=>({port:0,portName:'source',portState:{viewX:10,viewY:38,playerX:12,playerY:14,mapX:22,mapY:52},townActors:[]});
+const point=(x,y)=>({x:96+16*x+8,y:8+16*y+8});
+const s=session(),a=assets(),runtime=new PortWalkingRuntime(s,a,[[]]);
+assert.deepEqual(nativeTownClickDestination(point(15,16),runtime.snapshot()),{x:25,y:54});
+const plan=planNativeTownClickRoute({point:point(15,16),snapshot:runtime.snapshot(),assets:a});
+assert.equal(plan.moves.length,5);
+let count=0;
+while(true){
+ const next=nativeTownClickRouteNext(plan,count,runtime.snapshot());if(!next)break;
+ const tx=prepareNativeTownMovement({session:s,runtime,assets:a,direction:next.direction,rng:()=>.99});
+ assert.equal(tx.allowed,true,tx.reason);
+ assert.equal(tx.movement.moved,true);
+ assert.equal(commitNativeTownMovement(tx),true);
+ assert.deepEqual({x:runtime.mapX,y:runtime.mapY},{x:next.x,y:next.y});
+ count++;
+}
+assert.equal(count,5);assert.equal(s.portState.mapX,25);assert.equal(s.portState.mapY,54);
+// No direct teleport, no walk across non-passable chips.
+const wall=assets();for(let x=24;x<=26;x++)wall.maps[53*96+x]=230;
+const other=session(),rt=new PortWalkingRuntime(other,wall,[[]]);
+const around=planNativeTownClickRoute({point:point(17,14),snapshot:rt.snapshot(),assets:wall});
+assert.ok(around&&around.moves.length>=7,JSON.stringify(around));
+for(const hop of around.moves)assert.equal(canStandAt(wall,0,hop.x,hop.y),true);
+wall.maps[55*96+27]=230;wall.maps[55*96+28]=230;
+assert.equal(planNativeTownClickRoute({point:point(17,16),snapshot:rt.snapshot(),assets:wall}),null);
+const npc=session();npc.townActors=[{slot:1,x:23,y:52,type:1,active:true}];
+const npcRt=new PortWalkingRuntime(npc,a,[[]]);
+const safe=planNativeTownClickRoute({point:point(16,14),snapshot:npcRt.snapshot(),assets:a});
+assert.ok(safe&&safe.moves.every(p=>!(Math.abs(p.x-23)<=1&&Math.abs(p.y-52)<=1)));
+assert.equal(planNativeTownClickRoute({point:point(13,14),snapshot:npcRt.snapshot(),assets:a}),null);
+assert.equal(nativeTownClickRouteNext(plan,1,{...rt.snapshot(),mapX:99}),null);
+assert.equal(nativeTownClickRouteNext(plan,1,{...rt.snapshot(),talk:{messageId:10}}),null);
+assert.equal(nativeTownClickRouteNext(plan,1,{...rt.snapshot(),building:{id:8}}),null);
+for(const bad of [{x:95,y:90},{x:480,y:80},{x:Infinity,y:120},null])
+ assert.equal(nativeTownClickDestination(bad,runtime.snapshot()),null);
+assert.equal(planNativeTownClickRoute({point:point(14,14),snapshot:{...runtime.snapshot(),mapX:999},assets:a}),null);
+assert.equal(planNativeTownClickRoute({point:point(15,16),snapshot:rt.snapshot(),assets:a,maxSteps:2}),null);
+const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
+assert.match(app,/startTownClickRoute\(point\)/);
+assert.match(app,/const movement=moveTown\(next\.direction\)/);
+assert.match(app,/if\(!\["shift","control","alt","meta"\]\.includes\(key\)\)stopTownClickRoute\(\)/);
+assert.match(app,/if\(action==="checkpoint-save"\|\|action==="checkpoint-load"\)\{\s*stopTownClickRoute\(\)/);
+assert.doesNotMatch(app,/townRuntime\.move\(direction\)/);
+console.log('UW2 native original PORTMAP click-to-walk source atomic multi-tile collision/NPC STOP PASS');

@@ -7,6 +7,7 @@ import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeDialoguePointerInside,nativeBuildingMenuPointerHit,
  nativeModalRowPointerHit,nativeYesNoPointerHit,
  nativeTownWalkPointerDirection,nativeSeaPointerCommand} from "./native-canvas-pointer.js";
+import {planNativeTownClickRoute,nativeTownClickRouteNext} from "./native-town-click-route.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
@@ -159,6 +160,34 @@ let musicMode = null;
 let musicAutostartPending = true;
 let seaAutoTimer = null;
 let seaAutoActive = false;
+let townClickTimer=null,townClickPlan=null,townClickIndex=0,townClickOwner=null;
+function stopTownClickRoute(){
+ if(townClickTimer!==null)clearInterval(townClickTimer);
+ townClickTimer=null;townClickPlan=null;townClickIndex=0;townClickOwner=null;
+}
+function stepTownClickRoute(){
+ if(viewMode!=="town"||!townClickPlan||!townRuntime||
+    !selected||checkpointInFlight||townClickOwner?.runtime!==townRuntime||
+    townClickOwner?.session!==selected){stopTownClickRoute();return;}
+ const next=nativeTownClickRouteNext(townClickPlan,townClickIndex,townRuntime.snapshot());
+ if(!next){stopTownClickRoute();return;}
+ const movement=moveTown(next.direction),after=townRuntime.snapshot();
+ if(!movement?.moved||after.mapX!==next.x||after.mapY!==next.y||
+    after.building||after.talk||viewMode!=="town"){stopTownClickRoute();return;}
+ townClickIndex++;
+ if(townClickIndex>=townClickPlan.moves.length)stopTownClickRoute();
+}
+function startTownClickRoute(point){
+ if(viewMode!=="town"||!townRuntime||!selected||townRuntime.insideBuilding||
+    townRuntime.talk)return false;
+ const plan=planNativeTownClickRoute({point,snapshot:townRuntime.snapshot(),assets:portAssets});
+ stopTownClickRoute();
+ if(!plan)return false;
+ townClickPlan=plan;townClickOwner={runtime:townRuntime,session:selected};
+ stepTownClickRoute();
+ if(townClickPlan)townClickTimer=setInterval(stepTownClickRoute,145);
+ return true;
+}
 let systemUi = { mode: "system-menu", cursor: 0, slot: 0, messageId: null };
 let systemReturnMode=null; // Remember live native town/sea for ESC menu return.
 let newGameHeroCursor=0;
@@ -848,10 +877,8 @@ canvas.addEventListener("click", event => {
     }
     const building=townRuntime.insideBuilding;
     if(!building){
-      // One original movement command, with native collision, NPC and door
-      // entry preserved. No invented instant-travel or pathfinding state.
-      const direction=nativeTownWalkPointerDirection(point,townRuntime.snapshot());
-      if(direction!==null)moveTown(direction);
+      // Click-to-walk issues only the existing atomic original town steps.
+      startTownClickRoute(point);
       return;
     }
     const ui=ensureBuildingUi(building.id);
@@ -2216,17 +2243,16 @@ function renderTownScreen() {
   publishControllerState();
 }
 function moveTown(direction) {
-  if (!townRuntime || viewMode !== "town") return;
-  const step=prepareNativeTownMovement({
-    session:selected,runtime:townRuntime,assets:portAssets,direction
-  });
-  if(!step.allowed){
-    $("runtime-status").textContent="항구 이동 보류: "+step.reason;
-    publishControllerState({nativeTownHold:step.reason});
-    return;
-  }
-  commitNativeTownMovement(step);
-  renderTownScreen();
+ if(!townRuntime||viewMode!=="town")return null;
+ const step=prepareNativeTownMovement({
+  session:selected,runtime:townRuntime,assets:portAssets,direction
+ });
+ if(!step.allowed){
+  $("runtime-status").textContent="항구 이동 보류: "+step.reason;
+  publishControllerState({nativeTownHold:step.reason});return null;
+ }
+ if(!commitNativeTownMovement(step))return null;
+ renderTownScreen();return step.movement;
 }
 
 function startSeaFromPort(visitTicks) {
@@ -2393,6 +2419,7 @@ window.addEventListener("keydown", (event) => {
   }
 
   if (viewMode !== "town" || !townRuntime) return;
+  if(!["shift","control","alt","meta"].includes(key))stopTownClickRoute();
 
   if (townRuntime.talk) {
     if (!["shift","control","alt","meta"].includes(key)) {
@@ -2433,6 +2460,7 @@ window.addEventListener("uw2-controller-action", async event => {
   // These commands are explicitly separate from the original DOS Save Data
   // menu. Only an idle source-verified native town can be checkpointed.
   if(action==="checkpoint-save"||action==="checkpoint-load"){
+    stopTownClickRoute();
     // Two asynchronous WebCrypto reads/writes must NEVER race each other.
     // Otherwise a slow older Save can overwrite the newest active-mode
     // checkpoint pointer, or Load can read half of a pending Save.

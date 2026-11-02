@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 80186 opt-in stack, signed multiply and stack frame execution primitives (2026-11-02 KST)
+
+- **RUN_KEY:** `UW2-80186-ISA-20261102-AADFF479`; **AI 2**. Previous GitHub SSOT **2468** + one newly implemented and exact-SHA CI-verified independent native guest CPU compatibility feature **(+1)** = cumulative **2469**.
+- **Source and exact CI:** `thp32tt/ai-dev-lab@uw2-web-port` source/tests/gate original material SHA `4154a9bc28905da12f77493e8dd79053351bdbde`, final validation SHA `aadff479558b475cad50df9851c29bf32fcf7437`; UW2 Web Fidelity Static Gate [41420108875](https://github.com/thp32tt/ai-dev-lab/actions/runs/41420108875) **SUCCESS**. Initial CI [41420006596](https://github.com/thp32tt/ai-dev-lab/actions/runs/41420006596) **FAILURE** on a legacy expected error string, fixed in the final commit without weakening original fail-closed behavior. One independent achievement, not two.
+- **Concrete code:** `uw2-web/web/realmode-8086.js` now exposes independently opt-in `enable80186Instructions`; accurate 80186 `PUSHA/POPA` including original-SP capture and discarded saved-SP, `PUSH imm16` / signed `PUSH imm8`, signed immediate `IMUL r16,r/m16,imm16|imm8` with CF/OF and other flags preserved, nested `ENTER` with 5-bit nesting and `LEAVE` with SS:SP/BP wrap. Existing 8086 default and `enable80186Shifts` remain separate, old unsupported 8086 error text preserved. `tests/realmode-80186-stack-arithmetic.test.mjs` covers operand values, stacking order, signed overflow, nested frames, disabled semantics and capability isolation; mandatory workflow gate executes these synthetic tests.
+- **Boundary:** This upgrades **optional guest CPU compatibility**, not the shipping native Canvas JavaScript game loop. No claimed original DOS full-run, original 6-hero new-campaign initialization, measured original instruction trace, N100 production deployment or user PC validation. **RUNTIME_VALIDATION=UNTESTED** for original DOS/browser campaign parity. Correct preexisting CI and same-feature test repair **+0** beyond this single point; AI 1 unchanged.
+
 ## AI 2 OutRun verified preexisting Korean PNG/DDS integration plan (2026-11-02 KST)
 
 - **TASK_ID:** `OUTRUN-EXISTING-KOREAN-ASSET-PLAN-20261102-A63EA706`; **AI 2**. New, source-verified standalone integration plan committed to `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928`, commit `a63ea7067a8ec4af81e38f7129e3b98dd5265c59`, document `docs/OUTRUN_EXISTING_KOREAN_ASSET_INTEGRATION_PLAN_20261102.md`, read back from remote successfully.

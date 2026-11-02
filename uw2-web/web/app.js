@@ -749,13 +749,11 @@ canvas.addEventListener("click", event => {
   }else if(viewMode==="new-game-select"){
     const hit=nativeNewGameHeroPointerHit(point);
     if(hit===null)return;
-    if(hit===newGameHeroCursor)
-      handleSystemKey({key:"Enter",preventDefault(){}});
-    else{
-      newGameHeroCursor=hit;
-      newGameHeroNotice="";
-      drawNewGameHeroSelect();
-    }
+    // The original MAIN.EXE six-rectangle selector commits the selected
+    // portrait on the first click. Do not require a second synthetic click.
+    newGameHeroCursor=hit;
+    newGameHeroNotice="";
+    handleSystemKey({key:"Enter",preventDefault(){});
   }else if(viewMode==="load-select"){
     const hit=nativeLoadSlotPointerHit(point);
     if(hit===null)return;

@@ -38,5 +38,7 @@ assert.match(app,/canvas\.addEventListener\("click",\s*event\s*=>/);
 assert.match(app,/nativeSystemMenuPointerHit\(point,\s*menuDefs\[ORIGINAL_SYSTEM_MENU_INDEX\]\?\.options\?\.length/);
 assert.match(app,/handleSystemKey\(\{key:"Enter",preventDefault\(\)\{\}\}\)/);
 assert.match(app,/nativeNewGameHeroPointerHit\(point\)/);
+assert.match(app,/newGameHeroCursor=hit;\s*newGameHeroNotice="";\s*handleSystemKey\(\{key:"Enter",preventDefault\(\)\{\}\}\)/);
+assert.doesNotMatch(app,/if\(hit===newGameHeroCursor\)/);
 assert.match(app,/nativeLoadSlotPointerHit\(point\)/);
 console.log('UW2 native pointer scaled canvas / original menu / six heroes / 10 save rows PASS');

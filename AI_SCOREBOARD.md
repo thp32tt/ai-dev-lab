@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 Korean GRAPH #5 live harbor HUD value placement (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-ORIGINAL-HUD-VALUE-PLACEMENT-20261103-76A53E1B`; **AI 2 ChatGPT2**. Previous GitHub-confirmed cumulative **2489** + one independently corrected and verified original Korean harbor HUD date/fame/coins/gold-bars value placement **(+1)** = new cumulative **2490**. Retried coordinate commit, CI reruns, N100 sync and revalidation of the same HUD change are each **+0**. AI 1 unchanged.
+- **Evidence and source:** Compared archived original-Korean browser GRAPH #5 town screenshot (`uw2-web/tests/m13-town.png` on N100) to the native panel renderer: x=13 was painting numeric fame/gold values over their existing GRAPH labels, and date x=8 was on the wrong side of the viewport. Real values are now drawn to x=44 alongside left labels, with the YYYY.MM.DD string in the top-right source scroll at (500,18). Integer maxima and fixed source-pixel bounds are regression-tested. `thp32tt/ai-dev-lab@uw2-web-port` exact validated code SHA `76a53e1b1b5a9dc9c39261d1866009f0bc9b262a`; changed `uw2-web/web/native-town-hud.js` and `uw2-web/tests/native-town-hud.test.mjs`.
+- **Validation:** GitHub Actions UW2 Web Fidelity Static Gate **41473753196 SUCCESS**; N100 code downloaded from pinned GitHub SHA and Node regression `native-town-hud.test.mjs` PASS; remote live module SHA256 `6e8bff9b218ab67e4c161aa8676b4e6bd1d80ce9d8180a6506f6ed6e2f640416`. N100 old source backed up. Original DOS save unchanged.
+- **Limits:** Source screenshot establishes label geometry, but no post-fix real-browser pixel screenshot has yet been independently compared. Do not claim new-game initialization, full original DOS parity or end-to-end game completion.
+
 ## AI 2 UW2 original-browser port arrival calendar consistency (2026-11-03 KST)
 
 - **RUN_KEY:** `UW2-PORT-ARRIVAL-CALENDAR-20261103-352C06D1`; **AI 2 ChatGPT2**. Previous GitHub-confirmed cumulative **2488** + one new independently implemented and verified Korean-source browser-native port-arrival impossible-date rejection **(+1)** = new cumulative **2489**. CI/remote smoke/deployment/checkpoint/re-report of this same change each **+0**. AI 1 unchanged.

@@ -32,7 +32,7 @@ try{
   const seaShips=Array.from({length:32},(_,frame)=>{
     const pixels=new Uint8Array(32*32);
     for(let i=0;i<pixels.length;i++)
-      pixels[i]=i%9===0?255:(frame+i)%16;
+      pixels[i]=i%9===0?255:(frame+(frame>=16?3:0)+i)%16;
     return pixels;
   });
   const assets={cells,quad:new Uint8Array(1024),tiles,seaShips};

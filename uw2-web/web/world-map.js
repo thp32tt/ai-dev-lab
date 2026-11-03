@@ -134,6 +134,10 @@ export function decodeWorldAssets(worldBuffer,data1Buffer){
   const chunk11 = d.decoded[11].data;
   const tiles=decodeWorldTiles(chunk11);
   const seaShips=decodeSourceSeaShipFrames(chunk11);
+  // Source-authenticated Korean DATA1[11] contains exactly sixteen
+  // 0x400-byte blocks, each holding two 32x32 planar ship poses.
+  if(seaShips.length!==32)
+    throw new Error('Korean DATA1 original ship atlas requires 32 planar frames');
   return {cells,quad,tiles,seaShips};
 }
 

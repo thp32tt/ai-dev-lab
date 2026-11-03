@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 Quest cockpit original driver/passenger repair, native seat and full glass-clear switch (2026-11-03 KST)
+
+- **RUN_KEY:** `OUTRUN-QUEST-COCKPIT-ROLE-SEAT-GLASS-CLEAR-20261103-E819B7C7` — **AI 2 ChatGPT2**. GitHub SSOT prior confirmed **2523 + one independently implemented original ROB01/ROB02 cockpit visibility + native seat alignment and glass-clear test package milestone (+1) = 2524 cumulative AI 2 points**. One integrated deliverable; branch retries, CI syntax fixes, compiled test reruns, HMD future validation and existing glass-alpha hook are not separately scored. AI 1 unchanged.
+- **Implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2` exact SHA `e819b7c72985677fa3b8a4051f3a7211fa54a85c`. Original PC player event 362 driver suppressed only during native cockpit mode1 racing, exact 363 passenger retains original animated PC robot model with scoped forced-visible LOD0; GOAL original. Native game 30×36 per-model seat camera preserved instead of B0 double transform; bounded F11 back/down/right seat adjustment. New F11 `QuestCockpitV2GlassHidden` strictly in existing owner-verified transient PMT material path (RGBA zero, exact restore). Normal cockpit verbose logs disabled; explicit diagnostic launcher retained. Stable focus/release untouched.
+- **Verification:** `QuestCockpitV2 Isolated Core Smoke` run `41653480862` SUCCESS, Windows `VR GitHub General Test Build` run `41653480878` **SUCCESS** for same exact SHA (Win32 DLL, x64 host, ZIP artifact `13238602762` uploaded). User HMD feedback on PREVIOUS SHA demonstrated both original ROB362/ROB363 owners and 1.7GB telemetry burden. NEW HMD visual fixes `RUNTIME_VALIDATION=UNTESTED`. Full physical windshield removal and sky flicker fix NOT claimed; the latter remains under analysis.
+- **Score formula:** previous 2523 + this independently built feature +1 = **2524**.
+
+
 ## AI 2 OutRun 2006 Quest cockpit LIVE glass REA hook / F11 controls (2026-11-03 KST)
 
 - **RUN_KEY:** `OUTRUN-QUEST-COCKPIT-LIVE-GLASS-F11-HOOK-20261103-C45865CB` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2522 + one independent actual scoped runtime glass tint/F11 feature with exact Windows DLL+host test ZIP and passing smoke (+1) = 2523 cumulative AI 2 points**. Same task's code fixes, CI retries, offline PMT editor, QA status rechecks and Quest3 follow-up do NOT earn duplicate points. AI 1 unchanged.

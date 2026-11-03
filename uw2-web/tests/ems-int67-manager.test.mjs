@@ -1,0 +1,68 @@
+import assert from 'node:assert/strict';
+import {RealMode8086} from '../web/realmode-8086.js';
+import {installManagedEmsOriginalServices as make,
+ MANAGED_EMS_PAGE_BYTES as SIZE,MANAGED_EMS_STATUS as STATUS}
+ from '../web/ems-int67-manager.js';
+const cpu=new RealMode8086();
+assert.throws(()=>make(cpu,{frameSegment:0xc000,totalPages:6}),/explicitly reserved/);
+cpu.write8(0xc000,0,0x99);
+assert.throws(()=>make(cpu,{frameSegment:0xc000,totalPages:6,frameReserved:true}),/not empty/);
+cpu.write8(0xc000,0,0);
+const ems=make(cpu,{frameSegment:0xc000,totalPages:6,frameReserved:true});
+assert.throws(()=>make(cpu,{frameSegment:0xc000,totalPages:6,frameReserved:true}),/already has an owner/);
+const issue=(ax,{bx=0,dx=0,es=0,di=0}={})=>{
+ cpu.load(Uint8Array.of(0xcd,0x67),0x200,0x100);
+ cpu.set16('CS',0x200);cpu.set16('IP',0x100);
+ cpu.set16('AX',ax);cpu.set16('BX',bx);cpu.set16('DX',dx);
+ cpu.set16('ES',es);cpu.set16('DI',di);
+ const sp=cpu.get16('SP');
+ cpu.step();
+ assert.equal(cpu.get16('CS'),0x200);
+ assert.equal(cpu.get16('IP'),0x102);
+ assert.equal(cpu.get16('SP'),sp);
+ return {ah:cpu.get8('AH'),bx:cpu.get16('BX'),dx:cpu.get16('DX'),cx:cpu.get16('CX')};
+};
+assert.equal(SIZE,16384);
+assert.equal(issue(0x4000).ah,0);
+assert.deepEqual(issue(0x4100),{ah:0,bx:0xc000,dx:0,cx:0});
+assert.deepEqual(issue(0x4200),{ah:0,bx:6,dx:6,cx:0});
+const a=issue(0x4300,{bx:2});assert.equal(a.ah,0);
+const b=issue(0x4300,{bx:4});assert.equal(b.ah,0);
+assert.notEqual(a.dx,b.dx);
+assert.equal(issue(0x4300,{bx:1}).ah,STATUS.OUT_OF_FREE);
+assert.equal(issue(0x4300,{bx:7}).ah,STATUS.OUT_OF_TOTAL);
+assert.equal(issue(0x4200).bx,0);
+assert.equal(issue(0x4400,{dx:a.dx,bx:0}).ah,0);
+const p=0xc0000;
+cpu.memory[p+31]=0x81;
+assert.equal(issue(0x4400,{dx:a.dx,bx:1}).ah,0);
+assert.equal(ems.pageCopy(a.dx,0)[31],0x81);
+assert.equal(cpu.memory[p+31],0);
+cpu.memory[p+19]=0x47;
+assert.equal(issue(0x4400,{dx:a.dx,bx:0}).ah,0);
+assert.equal(cpu.memory[p+31],0x81);
+assert.equal(ems.pageCopy(a.dx,1)[19],0x47);
+assert.equal(issue(0x4401,{dx:b.dx,bx:0}).ah,0);
+assert.equal(issue(0x4402,{dx:a.dx,bx:0}).ah,STATUS.OK);
+assert.throws(()=>issue(0x4403,{dx:a.dx,bx:0}),/alias/);
+assert.equal(issue(0x4404,{dx:a.dx,bx:0}).ah,STATUS.INVALID_PHYSICAL);
+assert.equal(issue(0x4403,{dx:a.dx,bx:2}).ah,STATUS.INVALID_LOGICAL);
+assert.equal(issue(0x4403,{dx:0x7777,bx:0}).ah,STATUS.INVALID_HANDLE);
+assert.equal(issue(0x5801).cx,4);
+assert.equal(issue(0x5800,{es:0x6000,di:0x100}).cx,4);
+for(let i=0;i<4;i++){
+ assert.equal(cpu.read16(0x6000,0x100+4*i),0xc000+i*0x400);
+ assert.equal(cpu.read16(0x6000,0x102+4*i),i);
+}
+assert.throws(()=>issue(0x5802),/unimplemented EMS AH58/);
+assert.throws(()=>issue(0x4700),/unimplemented EMS INT67/);
+assert.equal(issue(0x4500,{dx:a.dx}).ah,0);
+assert.equal(issue(0x4500,{dx:a.dx}).ah,STATUS.INVALID_HANDLE);
+assert.equal(ems.snapshot().freePages,2);
+assert.equal(issue(0x4500,{dx:b.dx}).ah,0);
+assert.equal(ems.snapshot().freePages,6);
+ems.close();
+assert.ok(cpu.memory.subarray(p,p+4*SIZE).every(x=>x===0));
+assert.throws(()=>issue(0x4000),/no installed vector/);
+assert.throws(()=>ems.close(),/already closed/);
+console.log('UW2 owned EMS: original MAIN AH40/41/42/43/44/45/58 lifecycle, 16KiB swap persistence, frame checks, fail-closed statuses PASS');

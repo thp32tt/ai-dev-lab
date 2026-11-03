@@ -7,12 +7,11 @@ import {attachBrowserBiosKeyboard} from './browser-bios-keyboard.js';
 import {createGuestOriginalExecutionSession} from './guest-original-execution-session.js';
 import {supplyPinnedGuestDosIvtVector} from './guest-dos-ivt-await.js';
 import {installManagedEmsOriginalServices} from './ems-int67-manager.js';
-import {installDosInt21} from './dos-int21.js';
 
 export function createBrowserOriginalGuestBridge({
   cpu,target,maxQueuedKeys=64,maxTotalSteps=1000000,
   pauseOnMissingDosIvt=false,pauseOnMissingGuestInterrupt=false,
-  ems,dos
+  ems
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original browser guest bridge requires staged RealMode8086');
@@ -23,22 +22,10 @@ export function createBrowserOriginalGuestBridge({
   // empty 64-KiB EMS frame; never infer a manager from free-looking RAM.
   // Bind before a DOM listener, and relinquish exact ownership if any
   // later keyboard/session setup fails.
-  let emsBinding=null,dosHandler=null,binding=null,session;
+  let emsBinding=null,binding=null,session;
   try{
     if(ems!==undefined)
       emsBinding=installManagedEmsOriginalServices(cpu,ems);
-    if(dos!==undefined){
-      if(!dos||typeof dos!=='object'||Array.isArray(dos))
-        throw new TypeError('explicit DOS INT21 provider must be an option object');
-      // installDosInt21 owns precisely this interrupt. Retain its handler
-      // identity so a later unrelated guest/vector owner cannot be removed.
-      if(cpu.interruptAdapters.has(0x21)||cpu.interruptVectors.has(0x21))
-        throw new Error('INT21 DOS owner collision: fail closed');
-      installDosInt21(cpu,dos);
-      dosHandler=cpu.interruptAdapters.get(0x21);
-      if(typeof dosHandler!=='function')
-        throw new Error('DOS INT21 installed without an owned handler');
-    }
     const queue=createBiosKeyboardQueue({maxQueuedKeys});
     binding=attachBrowserBiosKeyboard({target,keyboardQueue:queue});
     session=createGuestOriginalExecutionSession(cpu,{
@@ -46,24 +33,22 @@ export function createBrowserOriginalGuestBridge({
       pauseOnMissingDosIvt,pauseOnMissingGuestInterrupt
     });
     // Queue remains local to this session, never shared with another CPU.
-    return createOwnedBridge({cpu,binding,session,queue,emsBinding,dosHandler});
+    return createOwnedBridge({cpu,binding,session,queue,emsBinding});
   }catch(error){
     binding?.detach();
-    if(dosHandler)cpu.removeInterruptAdapter(0x21,dosHandler);
     emsBinding?.close();
     throw error;
   }
 }
 // The owned EMS 67h device and the BIOS 16h/DOM keyboard bindings share
 // exactly the same terminal/fault/manual-release lifetime.
-function createOwnedBridge({cpu,binding,session,queue,emsBinding,dosHandler}){
+function createOwnedBridge({cpu,binding,session,queue,emsBinding}){
   let detached=false,provisioning=false;
   const detach=()=>{
     if(provisioning)throw new Error('cannot detach while DOS IVT SHA verification is pending');
     if(!detached){
       session.releaseKeyboardAdapter();
       binding.detach();
-      if(dosHandler)cpu.removeInterruptAdapter(0x21,dosHandler);
       emsBinding?.close();
       detached=true;
     }
@@ -105,7 +90,6 @@ function createOwnedBridge({cpu,binding,session,queue,emsBinding,dosHandler}){
       queue:queue.snapshot(),
       ems:emsBinding&&!detached?emsBinding.snapshot():null,
       emsExplicitlyProvisioned:!!emsBinding,
-      dosInt21ExplicitlyProvisioned:!!dosHandler,
       detached,provisioning,
       fidelity:'EXPLICIT_TRUSTED_BROWSER_KEYS_TO_STAGED_GUEST_CPU_ONLY__ORIGINAL_DOS_UNTESTED'
     })

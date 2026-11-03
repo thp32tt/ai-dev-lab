@@ -868,6 +868,19 @@ const seaHold=createNativeSeaHold({onRepeat:point=>{
   }else return false;
   renderSeaScreen();return true;
 }});
+let seaPortHoverMarker=null;
+canvas.addEventListener("pointermove",event=>{
+  const point=nativeCanvasPointerPoint(event,canvas),marker=seaPortHoverMarker;
+  const hovering=viewMode==="sea"&&!checkpointInFlight&&!!point&&!!marker&&
+    point.x>=marker.tapX&&point.x<marker.tapRight&&
+    point.y>=marker.tapY&&point.y<marker.tapBottom;
+  canvas.style.cursor=hovering?"pointer":"default";
+  if(hovering)canvas.title=marker.portName+" · 클릭하여 기항";
+  else canvas.removeAttribute("title");
+});
+canvas.addEventListener("pointerleave",()=>{
+  canvas.style.cursor="default";canvas.removeAttribute("title");
+});
 canvas.addEventListener("pointerdown",event=>{
   if(viewMode!=="sea"||!seaRuntime||checkpointInFlight||
      event.isPrimary===false||event.button!==0)return;
@@ -2430,6 +2443,10 @@ function callNearbyPort() {
   }
   // Commit the proven port session and fully constructed town together.
   stopSeaAuto();
+  // The sea harbor hover target must not survive a completed scene switch.
+  seaPortHoverMarker=null;
+  canvas.style.cursor="default";
+  canvas.removeAttribute("title");
   selected=prepared.session;
   townRuntime=prepared.town;
   viewMode = "town";
@@ -2446,6 +2463,11 @@ function renderSeaScreen() {
   renderSeaView(ctx, worldAssets, st, UI_VIEW_X, UI_VIEW_Y, UI_LAYOUT.viewport.tiles, UI_LAYOUT.viewport.tiles);
   const nearbyPort = findReadyNativePortCall(st);
   const marker=nativeReadySeaPortMarker(st,nearbyPort);
+  seaPortHoverMarker=marker;
+  if(!marker){
+    canvas.style.cursor="default";
+    canvas.removeAttribute("title");
+  }
   if(marker){
     // Browser-only 16x16 golden outline on the existing original map tile.
     // Does not paint over the underlying port sprite or GRAPH #4 HUD.

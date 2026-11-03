@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {nativeReadySeaPortMarker,nativeReadySeaPortPointerHit}
- from '../web/native-sea-port-pointer.js';
+import {nativeReadySeaPortMarker,nativeReadySeaPortPointerHit,
+ nativeSeaPortMarkerContains} from '../web/native-sea-port-pointer.js';
 import {findPortCallTarget,SeaRuntime} from '../web/world-map.js';
 import {prepareNativePortCall} from '../web/native-port-call-transaction.js';
 
@@ -18,6 +18,12 @@ assert.deepEqual(marker,{
  tapX:300,tapY:212,tapRight:324,tapBottom:236
 });
 assert.equal(nativeReadySeaPortPointerHit({x:312,y:225},state,ready),true);
+for(const point of [{x:300,y:212},{x:312,y:225},{x:323.99,y:235.99},
+ {x:324,y:228},{x:200,y:100},null,{x:NaN,y:224}]){
+ assert.equal(nativeSeaPortMarkerContains(point,marker),
+  nativeReadySeaPortPointerHit(point,state,ready),
+  'hover and click must have identical source tile tap hitbox');
+}
 assert.equal(nativeReadySeaPortPointerHit({x:323.99,y:235.99},state,ready),true);
 assert.equal(nativeReadySeaPortPointerHit({x:324,y:228},state,ready),false);
 assert.equal(nativeReadySeaPortPointerHit({x:250,y:160},state,ready),false);
@@ -25,6 +31,9 @@ assert.equal(nativeReadySeaPortPointerHit({x:313,y:227},state,null),false);
 assert.equal(nativeReadySeaPortMarker(state,{...ready,dx:1}),null);
 assert.equal(nativeReadySeaPortMarker(state,{...ready,approach:'UNKNOWN'}),null);
 assert.equal(nativeReadySeaPortMarker(state,{...ready,id:130}),null);
+assert.equal(nativeReadySeaPortMarker(state,{...ready,name:''}),null);
+assert.equal(nativeReadySeaPortMarker(state,{...ready,name:null}),null);
+assert.equal(nativeSeaPortMarkerContains({x:312,y:225},null),false);
 // World camera 720-chip segment boundary: a wrapped port can be in
 // the original call ring but outside the 24x24 visible window.
 const seamState={x:2159,y:238},wrapped={...port,x:0,y:240};
@@ -86,6 +95,9 @@ assert.deepEqual({x:sea.x,y:sea.y},beforePos);
 
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.match(app,/nativeReadySeaPortMarker\(st,nearbyPort\)/);
+assert.match(app,/nativeSeaPortMarkerContains\(point,seaPortHoverMarker\)/);
+assert.match(app,/canvas\.style\.cursor=hovering\?"pointer":"default"/);
+assert.match(app,/seaPortHoverMarker=null;\s*canvas\.style\.cursor="default"/);
 assert.match(app,/nativeReadySeaPortPointerHit\(point,st,nearbyPort\)/);
 assert.match(app,/if\(nativeReadySeaPortPointerHit\(point,st,nearbyPort\)\)\{/);
 assert.match(app,/callNearbyPort\(\);\s*return;/);

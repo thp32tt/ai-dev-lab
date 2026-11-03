@@ -18,6 +18,7 @@ export function nativeReadySeaPortMarker(seaState,readyPort){
     readyPort.x<0||readyPort.x>=WORLD_CHIP_W||
     readyPort.y<0||readyPort.y>=WORLD_CHIP_H||
     !Number.isSafeInteger(readyPort.id)||readyPort.id<0||readyPort.id>129||
+    typeof readyPort.name!=='string'||!readyPort.name.trim()||
     !admissible.has(readyPort.approach))return null;
 
  // A caller is allowed to highlight only a unique nearby harbor returned
@@ -46,9 +47,11 @@ export function nativeReadySeaPortMarker(seaState,readyPort){
   tapBottom:Math.min(viewport.y+viewport.h,y+20)
  });
 }
-export function nativeReadySeaPortPointerHit(point,seaState,readyPort){
- if(!point||!Number.isFinite(point.x)||!Number.isFinite(point.y))return false;
- const marker=nativeReadySeaPortMarker(seaState,readyPort);
- return !!marker&&point.x>=marker.tapX&&point.x<marker.tapRight&&
+export function nativeSeaPortMarkerContains(point,marker){
+ return !!marker&&!!point&&Number.isFinite(point.x)&&Number.isFinite(point.y)&&
+   point.x>=marker.tapX&&point.x<marker.tapRight&&
    point.y>=marker.tapY&&point.y<marker.tapBottom;
+}
+export function nativeReadySeaPortPointerHit(point,seaState,readyPort){
+ return nativeSeaPortMarkerContains(point,nativeReadySeaPortMarker(seaState,readyPort));
 }

@@ -9,7 +9,8 @@ import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeTownWalkPointerDirection,nativeSeaPointerCommand} from "./native-canvas-pointer.js";
 import {planNativeTownClickRoute,nativeTownClickRouteNext} from "./native-town-click-route.js";
 import {createNativeSeaHold} from "./native-sea-hold.js";
-import {nativeReadySeaPortMarker,nativeReadySeaPortPointerHit} from "./native-sea-port-pointer.js";
+import {nativeReadySeaPortMarker,nativeReadySeaPortPointerHit,
+  nativeSeaPortMarkerContains} from "./native-sea-port-pointer.js";
 import {nativeTownSourceDoorChoices,planNativeTownDoorRoute} from "./native-town-door-route.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
@@ -870,10 +871,9 @@ const seaHold=createNativeSeaHold({onRepeat:point=>{
 }});
 let seaPortHoverMarker=null;
 canvas.addEventListener("pointermove",event=>{
-  const point=nativeCanvasPointerPoint(event,canvas),marker=seaPortHoverMarker;
-  const hovering=viewMode==="sea"&&!checkpointInFlight&&!!point&&!!marker&&
-    point.x>=marker.tapX&&point.x<marker.tapRight&&
-    point.y>=marker.tapY&&point.y<marker.tapBottom;
+  const point=nativeCanvasPointerPoint(event,canvas);
+  const hovering=viewMode==="sea"&&!checkpointInFlight&&
+    nativeSeaPortMarkerContains(point,seaPortHoverMarker);
   canvas.style.cursor=hovering?"pointer":"default";
   if(hovering)canvas.title=marker.portName+" · 클릭하여 기항";
   else canvas.removeAttribute("title");

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 Quest cockpit LIVE glass REA hook / F11 controls (2026-11-03 KST)
+
+- **RUN_KEY:** `OUTRUN-QUEST-COCKPIT-LIVE-GLASS-F11-HOOK-20261103-C45865CB` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2522 + one independent actual scoped runtime glass tint/F11 feature with exact Windows DLL+host test ZIP and passing smoke (+1) = 2523 cumulative AI 2 points**. Same task's code fixes, CI retries, offline PMT editor, QA status rechecks and Quest3 follow-up do NOT earn duplicate points. AI 1 unchanged.
+- **Implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2` exact SHA `c45865cb8133978e807502d956a4596ea20c9793`. REA/PC source-correlated original `0x404901 -> 0x408C80` material transient-alpha hook + paired `0x404907` restore. Only player native mode1 callback or exact tracked queue owner and strict dark tint/blend/unique color predicates. F11 `QuestCockpitV2GlassEnabled` and `QuestCockpitV2GlassBrightness` are live; physical PMT/EXE disk files untouched. Previous file-editor launcher explicitly excluded from packaged ZIP.
+- **Verification:** GitHub Actions `VR GitHub General Test Build` run `41626877810` **SUCCESS**, including Win32 `dinput8.dll`, x64 `outrun-vr-host.exe`, package and artifact `13226656540`; `QuestCockpitV2 Isolated Core Smoke` exact-SHA run `41626877826` **SUCCESS**. Windows PowerShell syntax, original reversible PMT regression, core source contract PASS. `RUNTIME_VALIDATION=UNTESTED`; player PMT polygon identity and visible Quest3 window pixels NOT claimed.
+- **Boundary:** This +1 is for a distinct, fully compiled, packaged runtime hook feature, not proof of working HMD window tint or all vehicle types. AI 2 score formula: 2522 + (+1) = 2523.
+
+
 ## AI 2 OutRun 2006 104-HD-DDS SHA-exact GitHub source completion pipeline (2026-11-03 KST)
 
 - **RUN_KEY:** `OUTRUN-HD104-SHA-SOURCE-COMPLETION-20261103-6D6EC29E` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2521 + one independently completed 104-active-HD-DDS exact-source synchronization and automated completion pipeline milestone (+1) = 2522 cumulative AI 2 points**. The same pipeline's later candidate imports, retries, status rechecks, repeated Action runs and future TEST_ONLY rebuilds are +0 unless they produce a separate independently completed user-visible deliverable. AI 1 unchanged.

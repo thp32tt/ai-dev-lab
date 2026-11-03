@@ -11,7 +11,8 @@ const source=Uint8Array.of(
  0xb4,0x30,0xcd,0x21,       // actual MAIN entry DOS AH30
  0x3c,0x02,0x73,0x02,       // original-shaped DOS v2+ guard
  0xeb,0x0d,                // forbidden old DOS alternative
- 0xb8,0x00,0x49,           // add test op to ensure register dependency
+ 0xb8,0x00,0x49,           // move AX before memory resize
+ 0xbb,0x11,0x11,           // restore BX explicitly after AH30 serial fields
  0xb4,0x4a,0xcd,0x21,      // original MAIN AH4A resize callback
  0xb8,0x00,0x4c,0xcd,0x21 // DOS exit releases ownership
 );

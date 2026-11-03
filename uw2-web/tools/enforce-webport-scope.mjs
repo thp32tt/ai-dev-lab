@@ -67,7 +67,7 @@ export function changedPathsFromGit(before,after){
  if(typeof base!=='string'||!/^[0-9a-f]{40}$/.test(base)||base==='0'.repeat(40))
   base=execFileSync('git',['rev-parse','HEAD^'],{encoding:'utf8'}).trim();
  const diff=execFileSync('git',['diff','--no-renames','--name-only','--diff-filter=ACDMRT',base,after],{encoding:'utf8'});
- return diff.split(/\\r?\\n/).filter(Boolean);
+ return diff.split(/\r?\n/).filter(Boolean);
 }
 if(process.argv[1]&&fileURLToPath(import.meta.url)===process.argv[1]){
  try{

@@ -2867,7 +2867,13 @@ const gameBoot = Promise.allSettled([
   loadWorldSupport(),
   loadCharacterSupport(),
   loadFontSupport(),
-  loadMusicSupport(),
+  // Audio is optional to the original save/scene boot. A decoder or
+  // autoplay failure must never hold MAIN or discard playable resources.
+  loadMusicSupport().catch(err=>{
+    musicPlayer=null;
+    publishControllerState({musicLoadError:String(err?.message??err)});
+    return null;
+  }),
 ]).then(results => {
   const failed = results.filter(r => r.status === "rejected");
   if (failed.length) {

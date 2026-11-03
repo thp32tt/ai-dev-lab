@@ -9,6 +9,10 @@ bytes.set([0xf2,0x47,0xf8,0xf4,0x69,0xfd,0xf0,0,
 bytes.set([0xf8,0xf0,0x1a,0x21,12,11,0xff],156);
 bytes.set([0x00,24,0,0x11,12,10,0xff],180);
 bytes.set([0x2a,24,12,0xff],204);
+const oneByteTail=Uint8Array.from(bytes);
+oneByteTail[204+3]=0; // remove channel-end marker
+oneByteTail[203]=0x36; // outside last channel; never parsed
+assert.equal(decodeNativeD2OpeningEvents(bytes).length,4);
 const channels=decodeNativeD2OpeningEvents(bytes);
 assert.equal(channels.length,4);
 assert.deepEqual(channels[0].notes.map(n=>[n.pitch,n.startTick]),

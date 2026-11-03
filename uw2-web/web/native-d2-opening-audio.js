@@ -28,7 +28,13 @@ export function decodeNativeD2OpeningEvents(value){
     continue;
    }
    if(op>=0x70)continue; // original shortcut/control: not guessed
-   if(p+1>=end)throw new Error('D2 note truncated');
+   if(p+1>=end){
+    // Original opening channel 3 ends with one trailing partial
+    // instruction immediately before the next song table offset.
+    // It is not a new playable note, so stop at the verified boundary.
+    if(channel===first.channelOffsets.length-1&&p===end)break;
+    throw new Error('D2 note truncated');
+   }
    const duration=b[p++],gate=b[p++];
    if(duration<1||duration>192||gate>duration+5)throw new Error('D2 note duration/gate invalid');
    if(op!==0)notes.push(Object.freeze({

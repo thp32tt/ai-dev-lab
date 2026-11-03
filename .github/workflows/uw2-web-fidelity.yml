@@ -13,9 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Enforce browser-only game development policy
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          node uw2-web/tools/enforce-webport-scope.mjs
+          node uw2-web/tests/enforce-webport-scope.test.mjs
       - name: Validate browser module and boot-order syntax
         run: |
           node --check uw2-web/web/app.js

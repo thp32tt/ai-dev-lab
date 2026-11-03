@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 browser-native Korean ship artwork and sea-sprite reconstruction (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-NATIVE-OPGRAPH-DATA1-SHIP-ART-FIX-20261103-92CFBF3D` — **AI 2 ChatGPT2**. Previous confirmed cumulative **2516 + one independently integrated and real-browser-tested UW2 source graphics/gameplay correction (+1) = 2517 cumulative AI 2 points**. The same defect's intermediate 8-direction fix, code/CI retries, N100 deployment, browser retest and reporting add **+0** separately. AI 1 unchanged.
+- **Source:** `thp32tt/ai-dev-lab@uw2-web-port` exact head `92cfbf3d28e2997d39c5eb1e1fba1b36b0f7c0b6`; browser-native `uw2-web/web/opening.js` repairs Korean OPGRAPH opening sea ship duplication and retains the verified boarding scene background; `uw2-web/web/world-map.js` now decodes actual Korean DATA1[11] **32 independent 32×32 four-plane VGA sprite frames** from 16 original source blocks, rather than misreading a second image as a nibble mask. Native ship class, 8 compass headings and 2 movement poses are source-selected, with tests enforcing the precise 32-frame atlas and transparency.
+- **Verification:** exact-head GitHub Actions UW2 Web Fidelity Static Gate run `41578493219` **SUCCESS**. N100 original-owner DATA1/WORLDMAP/WINDCUR/KOUKAI2 `OWNER_ORIGINAL_WEB_NATIVE_SEA_CANVAS_PIXEL_PARITY` PASS for 32 frames; Firefox read-only real owner browser route opening -> source save slot2 Danzig -> depart -> at-sea ship heading 0 to 1, frame 16 to 18, `FIREFOX_REAL_OWNER_SEA_SHIP_DIRECTION_PASS`. Native OPGRAPH verified scene2/scene11 screen art reconstructed and browser screenshots inspected. Live N100 web source file readback matches GitHub head; backups retained; original files/saves untouched.
+- **Limits:** This is original resource to native web decoder / Canvas and actual Firefox proof; independent original DOS VGA frame-perfect comparison and complete game runtime remain unverified. No emulator/CPU research credited.
+
 ## AI 2 DX11 Focus-first exact verified hybrid build (2026-11-03 KST)
 
 - **RUN_KEY:** `OUTRUN-DX11-FOCUS-HYBRID-20261103-82A11E17` — **AI 2 ChatGPT2**. GitHub latest SSOT previous cumulative **2515 + one independent DX11 Focus-first dual-runtime source and validated packaged implementation +1 = 2516 cumulative AI 2 points**. This is separate from earlier release hotfix and Daytona work; retries, extra SHA inspection, artifact download, future same-release/HMD tests add +0. AI 1 unchanged.

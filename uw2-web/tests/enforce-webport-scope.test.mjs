@@ -28,7 +28,7 @@ assert.throws(()=>checkWebPortChangeSet([
 ]),/non-native browser runtime/);
 assert.throws(()=>checkWebPortChangeSet([
  web,test,'uw2-web/web/new8086.js'
-]),/non-native browser runtime/);
+]),/emulator disguised/);
 assert.throws(()=>checkWebPortChangeSet([
  'uw2-web/web/guest-execution-renamed.js',test,web
 ]),/emulator\/CPU/);

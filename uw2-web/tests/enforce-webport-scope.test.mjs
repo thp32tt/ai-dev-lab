@@ -31,10 +31,10 @@ assert.throws(()=>checkWebPortChangeSet([
 ]),/non-native browser runtime/);
 assert.throws(()=>checkWebPortChangeSet([
  'uw2-web/web/guest-execution-renamed.js',test,web
-]),/emulator\\/CPU/);
+]),/emulator\/CPU/);
 assert.throws(()=>checkWebPortChangeSet([
  'uw2-web/tools/novel-cpu-probe.js',test,web
-]),/emulator\\/CPU/);
+]),/emulator\/CPU/);
 assert.throws(()=>checkWebPortSourcePatch([
  "function execute8086(cpu) { return cpu.run(); }"
 ]),/emulator execution/);

@@ -15,7 +15,7 @@ const FROZEN_TOOL=/^uw2-web\/tools\/(?:original-(?:main|open|koei|dos|fm|p[0-9])
 // Only known, browser-playable surface files can count as shipping gameplay.
 // New independent gameplay modules must use the native-* prefix; generic names
 // such as cpu-runner.js cannot bypass a blacklist just by being renamed.
-const BROWSER_RUNTIME=/^uw2-web\\/web\\/(?:native-[a-z0-9-]+\\.js|(?:app|bank|binary|boot-sequence|boot-visibility|buildings|char|font|graph-format|item-shop|kao|koei-image|ls11|market|music|music-routing|opening|opgraph-korean-evidence|opgraph-original-archive|port-map|pub|reverse-evidence|runtime|sea-speed|system-ui|town|ui-layout|web-controller|windcur|world-map)\\.js|index\\.html|style\\.css)$/i;
+const BROWSER_RUNTIME=/^uw2-web\/web\/(?:native-[a-z0-9-]+\.js|(?:app|bank|binary|boot-sequence|boot-visibility|buildings|char|font|graph-format|item-shop|kao|koei-image|ls11|market|music|music-routing|opening|opgraph-korean-evidence|opgraph-original-archive|port-map|pub|reverse-evidence|runtime|sea-speed|system-ui|town|ui-layout|web-controller|windcur|world-map)\.js|index\.html|style\.css)$/i;
 const FROZEN_TEST=/^uw2-web\/tests\/(?:original-(?:main|open|koei|dos|fm).*(?:cpu|probe|ems|far)|(?:guest|dos|bios|ems|vga|pic|pit|opl|realmode|mz-loader|p[013]-).*|.*(?:cpu-probe|int67|8086)).*\.test\.mjs$/i;
 export function checkWebPortChangeSet(paths){
  if(!Array.isArray(paths)||paths.some(p=>typeof p!=='string'))
@@ -47,7 +47,7 @@ export function checkWebPortSourcePatch(addedLines){
  const joined=addedLines.join('\n');
  // Defense in depth only: explicit emulator execution entrypoints are blocked,
  // but no static checker can prove semantic fidelity of arbitrary JavaScript.
- const banned=/(?:\\b(?:class|function|const|let)\\s+\\w*(?:8086|80186|cpuEmulat|dosInt|emsInt|biosInt|vgaPort|guestExecut|mzLoad)\\w*|\\b(?:import|from)\\s*['"][^'"]*(?:realmode-|dos-int|ems-int|bios-int|guest-|browser-original-|vga-|pinned-dos-)|\\b(?:executeGuestCpu|execute8086|runDosInterrupt|dispatchInt21|dispatchInt67)\\s*\\()/i;
+ const banned=/(?:\b(?:class|function|const|let)\s+\w*(?:8086|80186|cpuEmulat|dosInt|emsInt|biosInt|vgaPort|guestExecut|mzLoad)\w*|\b(?:import|from)\s*['"][^'"]*(?:realmode-|dos-int|ems-int|bios-int|guest-|browser-original-|vga-|pinned-dos-)|\b(?:executeGuestCpu|execute8086|runDosInterrupt|dispatchInt21|dispatchInt67)\s*\()/i;
  if(banned.test(joined))throw new Error('UW2 WEB ONLY: emulator execution expansion hidden in browser gameplay source');
  return {mode:'NO_EMULATOR_ENTRYPOINT',lines:addedLines.length};
 }
@@ -56,7 +56,7 @@ export function addedSourceLinesFromGit(before,after,paths){
  if(!changed.length)return [];
  const base=(typeof before==='string'&&/^[0-9a-f]{40}$/.test(before)&&before!=='0'.repeat(40))?before:'HEAD^';
  const patch=execFileSync('git',['diff','--no-renames','--unified=0',base,after,'--',...changed],{encoding:'utf8',maxBuffer:8*1024*1024});
- return patch.split(/\\r?\\n/).filter(line=>line.startsWith('+')&&!line.startsWith('+++')).map(line=>line.slice(1));
+ return patch.split(/\r?\n/).filter(line=>line.startsWith('+')&&!line.startsWith('+++')).map(line=>line.slice(1));
 }
 export function changedPathsFromGit(before,after){
  if(typeof after!=='string'||!/^[0-9a-f]{40}$/.test(after))

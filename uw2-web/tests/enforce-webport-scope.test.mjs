@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {checkWebPortChangeSet} from '../tools/enforce-webport-scope.mjs';
+import {checkWebPortChangeSet,checkWebPortSourcePatch} from '../tools/enforce-webport-scope.mjs';
 const web='uw2-web/web/app.js',test='uw2-web/tests/native-sea-hold.test.mjs';
 assert.equal(checkWebPortChangeSet([web,test]).mode,'GAMEPLAY_AND_TEST');
 assert.equal(checkWebPortChangeSet([
@@ -22,6 +22,28 @@ assert.throws(()=>checkWebPortChangeSet([web]),/gameplay requires associated/);
 assert.throws(()=>checkWebPortChangeSet([
  'uw2-web/tools/original-inventory.mjs',test]),/playable web game source/);
 assert.throws(()=>checkWebPortChangeSet(['uw2-web/docs/new-doc.md']),/playable web game source/);
+
+assert.throws(()=>checkWebPortChangeSet([
+ web,test,'uw2-web/web/cpu-runner.js'
+]),/non-native browser runtime/);
+assert.throws(()=>checkWebPortChangeSet([
+ web,test,'uw2-web/web/new8086.js'
+]),/non-native browser runtime/);
+assert.throws(()=>checkWebPortChangeSet([
+ 'uw2-web/web/guest-execution-renamed.js',test,web
+]),/emulator\\/CPU/);
+assert.throws(()=>checkWebPortChangeSet([
+ 'uw2-web/tools/novel-cpu-probe.js',test,web
+]),/emulator\\/CPU/);
+assert.throws(()=>checkWebPortSourcePatch([
+ "function execute8086(cpu) { return cpu.run(); }"
+]),/emulator execution/);
+assert.throws(()=>checkWebPortSourcePatch([
+ "import { step } from './realmode-8086.js';"
+]),/emulator execution/);
+assert.equal(checkWebPortSourcePatch([
+ "function sailShip() { tickSeaWithBankInterest(); }"
+]).mode,'NO_EMULATOR_ENTRYPOINT');
 const agent=fs.readFileSync(new URL('../AGENTS.md',import.meta.url),'utf8');
 const plan=fs.readFileSync(new URL('../docs/ORIGINAL_DOS_TO_WEB_DISASSEMBLY_MASTER_PLAN_20261031.md',import.meta.url),'utf8');
 const readme=fs.readFileSync(new URL('../README.md',import.meta.url),'utf8');

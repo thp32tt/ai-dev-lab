@@ -159,6 +159,8 @@ jobs:
           node --check uw2-web/tests/p3-browser-open-original.test.mjs
           node --check uw2-web/tests/p3-original-native-graph-browser-original.test.mjs
           node --check uw2-web/tests/native-sea-view-original.test.mjs
+          node --check uw2-web/tests/native-sea-ship-direction.test.mjs
+          node --check uw2-web/web/world-map.js
           node --check uw2-web/tests/native-town-view-original.test.mjs
           node --check uw2-web/tests/native-char-canvas-original.test.mjs
           node --check uw2-web/tests/native-port-arrival-original.test.mjs
@@ -276,6 +278,7 @@ jobs:
           node uw2-web/tests/native-port-call-recovery.test.mjs
           node uw2-web/tests/native-town-message-source.test.mjs
           node uw2-web/tests/native-sea-view-canvas.test.mjs
+          node uw2-web/tests/native-sea-ship-direction.test.mjs
           node uw2-web/tests/native-original-sea-camera.test.mjs
           node uw2-web/tests/native-char-canvas-cache.test.mjs
           node uw2-web/tests/native-town-view-canvas.test.mjs

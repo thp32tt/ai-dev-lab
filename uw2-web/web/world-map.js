@@ -205,6 +205,23 @@ function seaRasterSurfaces(assets,w,h){
   return entry;
 }
 
+// Korean DATA1[11] supplies eight compass directions per ship class:
+// original frames 0..7 for oared ships and 8..15 for sailing ships.
+// The old four-way / steps-parity selector flickered between headings.
+export function sourceSeaShipSpriteFrame(state,frameCount){
+  if(!state||!Number.isInteger(state.heading)||!Number.isSafeInteger(frameCount)||
+     frameCount<1)throw new Error('native source sea ship direction/frames invalid');
+  let bank=0;
+  if(frameCount>=16){
+    if(typeof state.flagshipOared!=='boolean')
+      throw new Error('native sea 16-frame ship rendering needs verified flagship oar class');
+    bank=state.flagshipOared?0:8;
+  }
+  const frame=bank+(state.heading&7);
+  if(frame>=frameCount)throw new Error('native sea original ship direction frame unavailable');
+  return frame;
+}
+
 export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHigh=23){
   if(!assets||!assets.cells||!assets.quad||!Array.isArray(assets.tiles)||
      !state||!Number.isInteger(state.x)||!Number.isInteger(state.y)||
@@ -239,20 +256,8 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
   const ships=assets.seaShips;
   if(!Array.isArray(ships)||!ships.length)
     throw new Error('native sea original ship sprite frames unavailable');
-  const facingMap=[0,1,1,1,2,3,3,3];
-  // Korean DATA1 graphic bank: 0..7 oar / 8..15 sail. The old
-  // ships.length>=16 shortcut unconditionally drew sail graphics, even
-  // for an original oared flagship. The native game's parsed Ship3 model
-  // supplies the existing source-backed oared class.
-  let set=0;
-  if(ships.length>=16){
-    if(typeof state.flagshipOared!=='boolean')
-      throw new Error('native sea 16-frame ship rendering needs verified flagship oar class');
-    set=state.flagshipOared?0:1;
-  }
-  const frame=set*8+facingMap[state.heading&7]*2+(state.steps&1);
-  if(frame<0||frame>=ships.length)
-    throw new Error('native sea original ship direction frame unavailable');
+  // Movement steps advance the game, never the source ship's compass sprite.
+  const frame=sourceSeaShipSpriteFrame(state,ships.length);
   const sp=ships[frame];
   if(!(sp instanceof Uint8Array)||sp.length!==32*32)
     throw new Error('native sea original ship frame missing');

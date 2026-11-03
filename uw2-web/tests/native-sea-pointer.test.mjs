@@ -38,7 +38,7 @@ assert.equal(sea.heading,1);
 assert.equal(sea.ticks,before.ticks);
 assert.deepEqual(sea.dateTime,before.dateTime);
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
-assert.match(app,/else if\(viewMode==="sea"&&seaRuntime\)\{[\s\S]*?nativeSeaPointerCommand\(point,seaRuntime\.snapshot\(\)\)/);
+assert.match(app,/else if\(viewMode==="sea"&&seaRuntime\)\{[\s\S]*?const st=seaRuntime\.snapshot\(\),nearbyPort=findReadyNativePortCall\(st\);[\s\S]*?nativeSeaPointerCommand\(point,st\)/);
 assert.match(app,/if\(command\.kind==="turn"\)seaRuntime\.turn\(command\.delta\)/);
 assert.match(app,/else if\(command\.kind==="forward"\)tickSeaWithBankInterest\(\)/);
 assert.doesNotMatch(app,/if\(command\.kind==="forward"\)seaRuntime\.tick\(\)/);

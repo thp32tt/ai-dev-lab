@@ -6,36 +6,51 @@ import {createBiosKeyboardQueue} from './bios-keyboard-queue.js';
 import {attachBrowserBiosKeyboard} from './browser-bios-keyboard.js';
 import {createGuestOriginalExecutionSession} from './guest-original-execution-session.js';
 import {supplyPinnedGuestDosIvtVector} from './guest-dos-ivt-await.js';
+import {installManagedEmsOriginalServices} from './ems-int67-manager.js';
 
 export function createBrowserOriginalGuestBridge({
   cpu,target,maxQueuedKeys=64,maxTotalSteps=1000000,
-  pauseOnMissingDosIvt=false,pauseOnMissingGuestInterrupt=false
+  pauseOnMissingDosIvt=false,pauseOnMissingGuestInterrupt=false,
+  ems
 }={}){
   if(!(cpu instanceof RealMode8086))
     throw new TypeError('original browser guest bridge requires staged RealMode8086');
   if(!target||typeof target.addEventListener!=='function'||
      typeof target.removeEventListener!=='function')
     throw new TypeError('original browser guest bridge requires explicit event target');
-  const queue=createBiosKeyboardQueue({maxQueuedKeys});
-  const binding=attachBrowserBiosKeyboard({target,keyboardQueue:queue});
-  let session;
+  // The caller has already staged the guest and explicitly reserved an
+  // empty 64-KiB EMS frame; never infer a manager from free-looking RAM.
+  // Bind before a DOM listener, and relinquish exact ownership if any
+  // later keyboard/session setup fails.
+  let emsBinding=null,binding=null,session;
   try{
-    // A pre-existing INT16 owner is an error. Never displace it, and remove
-    // our browser listener on failed assembly rather than leave a key sink.
+    if(ems!==undefined)
+      emsBinding=installManagedEmsOriginalServices(cpu,ems);
+    const queue=createBiosKeyboardQueue({maxQueuedKeys});
+    binding=attachBrowserBiosKeyboard({target,keyboardQueue:queue});
     session=createGuestOriginalExecutionSession(cpu,{
       keyboardQueue:queue,maxTotalSteps,
       pauseOnMissingDosIvt,pauseOnMissingGuestInterrupt
     });
+    // Queue remains local to this session, never shared with another CPU.
+    return createOwnedBridge({cpu,binding,session,queue,emsBinding});
   }catch(error){
-    binding.detach();
+    binding?.detach();
+    emsBinding?.close();
     throw error;
   }
+}
+// The owned EMS 67h device and the BIOS 16h/DOM keyboard bindings share
+// exactly the same terminal/fault/manual-release lifetime.
+function createOwnedBridge({cpu,binding,session,queue,emsBinding}){
   let detached=false,provisioning=false;
   const detach=()=>{
     if(provisioning)throw new Error('cannot detach while DOS IVT SHA verification is pending');
     if(!detached){
       session.releaseKeyboardAdapter();
-      binding.detach();detached=true;
+      binding.detach();
+      emsBinding?.close();
+      detached=true;
     }
   };
   const runSlice=steps=>{
@@ -73,6 +88,8 @@ export function createBrowserOriginalGuestBridge({
       execution:session.snapshot(),
       keyboard:binding.snapshot(),
       queue:queue.snapshot(),
+      ems:emsBinding&&!detached?emsBinding.snapshot():null,
+      emsExplicitlyProvisioned:!!emsBinding,
       detached,provisioning,
       fidelity:'EXPLICIT_TRUSTED_BROWSER_KEYS_TO_STAGED_GUEST_CPU_ONLY__ORIGINAL_DOS_UNTESTED'
     })

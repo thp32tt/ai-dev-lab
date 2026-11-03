@@ -341,6 +341,7 @@ jobs:
           node uw2-web/tests/guest-dos-ivt-await.test.mjs
           node uw2-web/tests/guest-external-interrupt-await.test.mjs
           node uw2-web/tests/browser-original-guest-bridge.test.mjs
+          node uw2-web/tests/browser-original-guest-ems.test.mjs
           node uw2-web/tests/browser-original-source-wait.test.mjs
           node uw2-web/tests/browser-dos-child-bridge.test.mjs
           node uw2-web/tests/browser-dos-child-irq0.test.mjs

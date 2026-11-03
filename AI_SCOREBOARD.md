@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 original Quest VR 30-profile seat source applied on PC cockpit with full Windows package (2026-11-04 KST)
+
+- **RUN_KEY:** `OUTRUN-QUEST-VR-SEAT-PROFILE-PC-IMPLEMENT-20261104-743061FC` — **AI 2 ChatGPT2**. Previous confirmed **2528** + new independent real PCVR implementation validated by exact-source 30-profile C++17 regression + clean Win32 game DLL/x64 OpenXR host build and artifact (+1) = **2529 cumulative AI 2 points**. This awards implementation, not the previous original-APK REA research or any retry of that research. Any future same-feature HMD retest/repackaging alone is +0. AI1 score unchanged.
+- **Source repo:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2`, material SHA `743061fce7fa3bdc1a1f7415eb3d36cbd2ec914f`. Implemented original guest PE 30 x 296 profile lookup from `0x5B0CB8` record area and `0x5B2F68` pointer table (XYZ +0x4C/+0x50/+0x54), strict pointer and float validation, native 30x36 mode1-vs-VR-profile local difference applied once to smoothed native camera yaw, preserve original game camera, no raw B0, no game disk patch. F11 live A/B `VR.QuestCockpitV2NativeSeatProfile` and user optional additive tuning, dedicated launcher automatically ON in isolated experiment, default global cockpit OFF.
+- **Exact SHA GitHub Actions:** `QuestCockpitV2 Isolated Core Smoke` run `41669839083` SUCCESS, `VR GitHub General Test Build` run `41669839013` SUCCESS (Windows Win32 game DLL, x64 XR host, ZIP packaged and uploaded), artifact ID `13249245687` name `OutRun2-VR-GITHUB-GENERAL-743061fce7fa3bdc1a1f7415eb3d36cbd2ec914f`; branch HEAD readback exact source SHA. `Build` run `41669839273` separately FAILED from unrelated already-missing `docs/reverse/LINDBERGH_FFB_MAP.md` in consolidated wheel FFB verifier, not claimed green. `QUEST3_RUNTIME_VISUAL_VALIDATION=UNTESTED`. No publicly released beta overwrite.
+- **Formula:** **2528 + 1 = 2529**.
+
+
 ## AI 2 OutRun Quest APK original VR driver-seat 30-profile XYZ/pose source REA verified (2026-11-04 KST)
 
 - **RUN_KEY:** `OUTRUN-QUEST-VR-SEAT-PROFILE-REA-20261104-CAE8CD70` — **AI 2 ChatGPT2**. SSOT preceding confirmed **2527 + one newly verified independent original Quest VR seat-coordinate producer/consumer REA discovery and 30-profile numeric mapping (+1) = 2528 cumulative AI 2 points**. This is a **research milestone only**, not a patched seat, not HMD-tested; future source implementation/CI must be new independent work to qualify. Same REA rerun/republication gets +0. AI1 unchanged.

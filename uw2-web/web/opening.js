@@ -426,20 +426,17 @@ function drawProfileExact(ctx, canvas, opening, cfg, elapsed, durationMs) {
     }
   }
 
-  if (cfg.eye?.length && progress > 0.48) {
+  // No invented eye rectangle if the original Korean scene coordinates
+  // are unverified: guessed matching produced face fragments at wrong X/Y.
+  if (exact?.eye && cfg.eye?.length && progress > 0.48) {
     const eye = getRecord(opening, part, cfg.eye[Math.floor(elapsed / 180) % cfg.eye.length]);
     if(exact?.eye&&eye.width===exact.eye.w&&eye.height===exact.eye.h)
       drawOpeningNative(ctx,eye,exact.eye.x,exact.eye.y,
         {transparentZero:true});
-    else
-      drawMatchedOverlay(
-        ctx,{x:mainX,y:mainY},main,eye,
-        mainX+Math.round((main.width-eye.width)/2),
-        mainY+Math.round(main.height*0.35)
-      );
+    // A mismatched source rectangle is not rendered at a guessed position.
   }
 
-  if (cfg.extraEyeGroups?.length && progress > 0.55) {
+  if (exact?.extraEyes?.length && cfg.extraEyeGroups?.length && progress > 0.55) {
     for (let g = 0; g < cfg.extraEyeGroups.length; g++) {
       const group = cfg.extraEyeGroups[g];
       const eye = getRecord(opening, part, group[Math.floor(elapsed / 210 + g) % group.length]);
@@ -447,63 +444,44 @@ function drawProfileExact(ctx, canvas, opening, cfg, elapsed, durationMs) {
       if(exactEye&&eye.width===exactEye.w&&eye.height===exactEye.h)
         drawOpeningNative(ctx,eye,exactEye.x,exactEye.y,
           {transparentZero:true});
-      else
-        drawMatchedOverlay(
-          ctx,{x:mainX,y:mainY},main,eye,
-          mainX+30+g*90,mainY+70+g*28
-        );
+      // Source rectangles outside the verified size are held back.
     }
   }
 
   drawCaption(ctx, canvas, opening, cfg.caption);
 }
 
-// Korean OPGRAPH part 2 contains TWO time-alternative 320x200 bow pictures,
-// not left/right halves of a single 640px image. Rendering both in one frame
-// duplicates the ship and creates a visibly broken hull seam.
-export function planKoreanOpeningShipArt(opening, scene, elapsed, width=640, height=400,
-  durationMs=1000) {
-  if(!Number.isFinite(elapsed)||elapsed<0||!Number.isFinite(durationMs)||
-     durationMs<=0||!Number.isInteger(width)||!Number.isInteger(height)||
-     width<320||height<200)
-    throw new RangeError('opening ship picture requires bounded frame dimensions/time');
-  if(scene===2){
-    const frame=Math.floor(elapsed/700)&1;
-    const panorama=getRecord(opening,1,frame);
-    const bow=getRecord(opening,2,frame);
-    if(panorama.width!==width||panorama.height!==height/2||
-       bow.width!==width/2||bow.height!==height/2)
-      throw new Error('verified Korean opening ship artwork dimensions mismatch');
-    return Object.freeze({
-      caption:0,
-      layers:Object.freeze([
-        Object.freeze({image:panorama,x:0,y:0,transparentZero:false}),
-        Object.freeze({image:bow,x:Math.round((width-bow.width)/2),
-          y:panorama.height,transparentZero:false})
-      ])
-    });
-  }
-  if(scene===11){
-    // The ship scene follows the full-width part 11 record displayed at
-    // the end of scene 10. Redraw that source picture on each frame rather
-    // than clearing it away and leaving the lower ship floating on black.
-    const backdrop=getRecord(opening,11,0);
-    const boarding=getRecord(opening,12,0);
-    if(backdrop.width!==width||backdrop.height!==height/2||
-       boarding.width>width||boarding.height!==height/2)
-      throw new Error('verified Korean boarding ship artwork dimensions mismatch');
-    const progress=Math.min(1,elapsed/durationMs);
-    const x=Math.round(width+((width-boarding.width)/2-width)*
-      Math.min(1,progress*2.2));
-    return Object.freeze({
-      caption:9,
-      layers:Object.freeze([
-        Object.freeze({image:backdrop,x:0,y:0,transparentZero:false}),
-        Object.freeze({image:boarding,x,y:backdrop.height,transparentZero:true})
-      ])
-    });
-  }
-  throw new RangeError('opening ship art planner supports original scenes 2/11');
+// OPGRAPH part1 640x200 panoramas and part2 320x200 bow closeups
+// are DIFFERENT cinematic shots. The earlier code stacked them at y=0/200,
+// making a visually broken double-hull 640x400 collage. This conservative
+// browser storyboard shows each verified source picture at its native size
+// in a centered shot; exact OPEN.EXE transition timing remains UNVERIFIED.
+export function planKoreanOpeningShipArt(opening,scene,elapsed,width=640,height=400,
+ durationMs=1000){
+ if(!Number.isFinite(elapsed)||elapsed<0||!Number.isFinite(durationMs)||
+    durationMs<=0||!Number.isSafeInteger(width)||!Number.isSafeInteger(height)||
+    width<320||height<200)throw new RangeError('opening ship picture requires bounded frame dimensions/time');
+ const p=Math.min(1,elapsed/durationMs);
+ let image,caption;
+ if(scene===2){
+   const frame=Math.floor(elapsed/700)&1;
+   image=getRecord(opening,p<0.6?1:2,frame);
+   caption=0;
+   if(image.width!==(p<0.6?width:width/2)||image.height!==height/2)
+    throw new Error('verified Korean opening ship artwork dimensions mismatch');
+ }else if(scene===11){
+   image=getRecord(opening,p<0.56?11:12,0);
+   caption=9;
+   if(image.width!==(p<0.56?width:256)||image.height!==height/2)
+    throw new Error('verified Korean boarding ship artwork dimensions mismatch');
+ }else throw new RangeError('opening ship art planner supports original scenes 2/11');
+ return Object.freeze({
+  caption,
+  layers:Object.freeze([Object.freeze({image,
+   x:Math.round((width-image.width)/2),
+   y:Math.round((height-image.height)/2),
+   transparentZero:false})])
+ });
 }
 
 function drawSeaPanorama(ctx, canvas, opening, elapsed) {
@@ -575,12 +553,13 @@ function drawJoao(ctx, canvas, opening, elapsed, durationMs) {
   // Scene 10 itself preloads and displays the first boarding frames before
   // scene 11 continues with part12 record0.
   if (p < 0.86) {
-    drawOpeningNative(ctx, getRecord(opening, 11, 1), 0, 0);
-    const b = getRecord(opening, 12, 1);
-    drawOpeningNative(ctx, b, Math.round((canvas.width - b.width) / 2), 200, { transparentZero:true });
+    // A panorama and a smaller 256x200 boarding detail must not be
+    // stacked into an unrelated two-story ship composite.
+    const image=getRecord(opening,p<0.79?11:12,1);
+    placeCentered(ctx,canvas,image,null,false);
   } else {
-    drawOpeningNative(ctx, getRecord(opening, 11, 0), 0, 0);
-    drawCaption(ctx, canvas, opening, 9);
+    placeCentered(ctx,canvas,getRecord(opening,11,0),null,false);
+    drawCaption(ctx,canvas,opening,9);
   }
 }
 

@@ -275,7 +275,9 @@ window.addEventListener("uw2-game-state", event => {
     if (!music?.loaded) musicLabel.textContent = "BGM 준비";
     else if (!music?.rendered) musicLabel.textContent = "BGM 생성 필요";
     else musicLabel.textContent =
-      (music.playing ? "♪" : "×") + " FM " + (music.track + 1) + "/" + music.songCount;
+      (music.playing ? "♪" : "×") +
+      (music.fidelity==="D2_SOURCE_EVENTS_SYNTH_APPROX_NOT_FMDRV"?" D2 임시합성 ":" FM ") +
+      (music.track+1)+"/"+music.songCount;
   }
   if (soundButton) {
     const on = !!music?.playing;

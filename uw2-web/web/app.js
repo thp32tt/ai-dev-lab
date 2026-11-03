@@ -59,6 +59,9 @@ import {
 import { decodeKoreanChar, drawHeroSprite, drawFolkSprite, folkFrameIndex } from "./char.js";
 import { parseWindCur, FLOW_DIR_NAMES } from "./windcur.js";
 import { D2MusicPlayer } from "./music.js";
+import {NativeD2OpeningPlayer} from "./native-d2-opening-audio.js";
+import {sha256Hex} from "./native-sha256.js";
+import {UW2_EVIDENCE_FILES} from "./reverse-evidence.js";
 import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
 import { originalTownHudEntries } from "./native-town-hud.js";
@@ -294,6 +297,9 @@ function publishControllerState(extra = {}) {
     fleet: selected?.fleet ? structuredClone(selected.fleet) : null,
     lastSeaProvisionDate: selected?.lastSeaProvisionDate ?? null,
   });
+  const prompt=$("opening-audio-enable");
+  if(prompt)prompt.hidden=!(viewMode==="opening"&&musicPlayer?.rendered&&
+    musicPlayer?.supported&&!musicPlayer?.playing);
   window.dispatchEvent(new CustomEvent("uw2-game-state", { detail }));
 }
 
@@ -329,14 +335,23 @@ async function loadMusicSupport() {
     const res = await fetch("./generated/music/manifest.json", { cache: "no-store" });
     if (res.ok) manifest = await res.json();
   } catch {}
-  musicPlayer = new D2MusicPlayer({ volume: 0.65, manifest });
-  const parsed = musicPlayer.load(buf);
-  setMusicForMode(viewMode, true);
+  if(Array.isArray(manifest?.tracks)&&manifest.tracks.length){
+    musicPlayer=new D2MusicPlayer({volume:0.65,manifest});
+  }else{
+    // Pre-rendered audio was never deployed to N100. Use ONLY SHA-verified
+    // owner's D2 notes, in a clearly marked browser FM approximation.
+    const sourceHash=await sha256Hex(new Uint8Array(buf));
+    if(sourceHash!==UW2_EVIDENCE_FILES.d2.sha256)
+      throw new Error("원본 D2.MML SHA-256 불일치 · 추측 음악 재생 차단");
+    musicPlayer=new NativeD2OpeningPlayer({volume:0.65});
+  }
+  const parsed=musicPlayer.load(buf);
+  setMusicForMode(viewMode,true);
   return parsed;
 }
 function tryAutostartMusic(event) {
   if (!musicAutostartPending || !musicPlayer?.songCount) return;
-  if (event?.target?.closest?.("[data-action=\"sound\"]")) return;
+  if (event?.target?.closest?.('[data-action="sound"],#opening-audio-enable')) return;
   const route = selectWebMusicRoute(viewMode, allowApproximateMusic);
   if (route.track === null) return;
   musicAutostartPending = false;
@@ -2503,6 +2518,14 @@ function renderSeaScreen() {
   }, null, 2);
 }
 $("opening-button").addEventListener("click", startOpeningPlayback);
+$("opening-audio-enable").addEventListener("click",()=>{
+  if(viewMode!=="opening"||!musicPlayer?.rendered)return;
+  musicAutostartPending=false;
+  musicPlayer.play(0).then(publishControllerState).catch(err=>{
+    $("runtime-status").textContent="오프닝 BGM 활성화 오류: "+err.message;
+    publishControllerState();
+  });
+});
 
 function startSelectedGame(slot=selected) {
   if (!bootGate.canShowSystemMenu() || !slot) return false;

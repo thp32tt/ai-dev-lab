@@ -195,6 +195,8 @@ jobs:
           node --check uw2-web/web/opgraph-original-archive.js
           node --check uw2-web/web/opgraph-korean-evidence.js
           node --check uw2-web/web/opening.js
+          node --check uw2-web/web/native-d2-opening-audio.js
+          node --check uw2-web/tests/native-d2-opening-audio.test.mjs
           node --check uw2-web/tests/opening-ship-scenes.test.mjs
           node --check uw2-web/web/bios-int16.js
           node --check uw2-web/web/bios-keyboard-queue.js
@@ -360,6 +362,7 @@ jobs:
           node uw2-web/tests/pinned-dos-resources.test.mjs
           node uw2-web/tests/opgraph-original-archive.test.mjs
           node uw2-web/tests/opening-ship-scenes.test.mjs
+          node uw2-web/tests/native-d2-opening-audio.test.mjs
           node uw2-web/tests/opening-verified-archive.test.mjs
           node uw2-web/tests/dos-int21-drive.test.mjs
           node uw2-web/tests/dos-int21-allocate.test.mjs

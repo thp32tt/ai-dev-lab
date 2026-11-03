@@ -7,19 +7,19 @@ import {prepareNativePortCall} from '../web/native-port-call-transaction.js';
 
 // Exact GRAPH #4 source camera: ship at (286,238), catalog port at
 // (288,240) is within the existing 2-chip recovery admission and lands
-// on native Canvas tile (x312,y224) with a bounded tap target.
+// on native Canvas tile (x304,y216), centered at (312,224).
 const state={x:286,y:238,heading:0};
 const port={id:39,mapId:39,name:'port39',nation:3,x:288,y:240};
 const ready=findPortCallTarget(state,[port]);
 assert.equal(ready.approach,'NATIVE_SOURCE_NEAREST_SEA_2CHIP_RECOVERY');
 const marker=nativeReadySeaPortMarker(state,ready);
 assert.deepEqual(marker,{
- x:312,y:224,w:16,h:16,portId:39,portName:'port39',
- tapX:308,tapY:220,tapRight:332,tapBottom:244
+ x:304,y:216,w:16,h:16,portId:39,portName:'port39',
+ tapX:300,tapY:212,tapRight:324,tapBottom:236
 });
 assert.equal(nativeReadySeaPortPointerHit({x:312,y:225},state,ready),true);
-assert.equal(nativeReadySeaPortPointerHit({x:331.99,y:243.99},state,ready),true);
-assert.equal(nativeReadySeaPortPointerHit({x:332,y:228},state,ready),false);
+assert.equal(nativeReadySeaPortPointerHit({x:323.99,y:235.99},state,ready),true);
+assert.equal(nativeReadySeaPortPointerHit({x:324,y:228},state,ready),false);
 assert.equal(nativeReadySeaPortPointerHit({x:250,y:160},state,ready),false);
 assert.equal(nativeReadySeaPortPointerHit({x:313,y:227},state,null),false);
 assert.equal(nativeReadySeaPortMarker(state,{...ready,dx:1}),null);
@@ -37,7 +37,7 @@ const edgeState={x:719,y:1079},edgePort={
  ...port,x:718,y:1077,name:'edge'
 };
 const edgeReady=findPortCallTarget(edgeState,[edgePort]);
-assert.equal(edgeReady.approach,'SOURCE_RING_4X4');
+assert.equal(edgeReady.approach,'NATIVE_SOURCE_NEAREST_SEA_2CHIP_RECOVERY');
 const edgeMarker=nativeReadySeaPortMarker(edgeState,edgeReady);
 assert.equal(edgeMarker.x,96+(718-696)*16);
 assert.equal(edgeMarker.y,8+(1077-1056)*16);

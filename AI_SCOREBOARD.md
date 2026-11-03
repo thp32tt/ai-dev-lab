@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun A/B DDS 30-minute GitHub watchdog and N100 15-minute low-load dispatcher (2026-11-04 KST)
+
+- **RUN_KEY:** `OUTRUN-AB-DDS-30MIN-WATCHDOG-N100-15MIN-20261104-AC1B413B` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2529** + one independently delivered 30-minute GitHub SHA-aware DDS dispatch watchdog with successful live CI and corrected low-load Portainer controller target plus 7/7 controller tests (+1) = **2530 cumulative AI 2 points**. Same pipeline retries, confirmation, or Portainer redeployment are +0. AI 1 unchanged.
+- **GitHub watchdog:** `thp32tt/OutRun2006Tweaks@master` commit `ac1b413b35cb7c49657e5481643344e059520c25`, `.github/workflows/outrun-ab-multi-atlas-watchdog.yml`. Every 30 minutes compare actual Korean asset branch SHA with existing successful/pending multi-atlas Actions; dispatch only missing/failed and bounded retries. First push CI run `41731803599` SUCCESS with `Decision: UP_TO_DATE` (no expensive redundant DDS rebuild).
+- **N100 Portainer light controller:** `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928` commit `0af13aa734a33d08798aa9e7c4db4d025253db0f`. Correct workflow target `outrun-ab-multi-atlas.yml`, SHA dedup, 15-minute poll (900 seconds), only API reads/optional workflow dispatch; no N100 DDS encoding. GitHub Actions `41731759970` SUCCESS, seven Python unit tests + self-test. **N100 container redeployment not yet verified**; without `OUTRUN_GITHUB_ACTIONS_TOKEN`, Docker observes only, while GitHub watchdog continues independently.
+- **Boundary:** This +1 is for a new verified orchestration/monitoring implementation, not for 919 HOLD ROI conversions, C1/C3 approval, final game-ready DDS pack, or future rechecks. Static DDS result remains 11 DDS/35 translated ROI TEST_ONLY until distinct production evidence shows otherwise.
+- **Formula:** **2529 + 1 = 2530**.
+
 ## AI 2 original Quest VR 30-profile seat source applied on PC cockpit with full Windows package (2026-11-04 KST)
 
 - **RUN_KEY:** `OUTRUN-QUEST-VR-SEAT-PROFILE-PC-IMPLEMENT-20261104-743061FC` — **AI 2 ChatGPT2**. Previous confirmed **2528** + new independent real PCVR implementation validated by exact-source 30-profile C++17 regression + clean Win32 game DLL/x64 OpenXR host build and artifact (+1) = **2529 cumulative AI 2 points**. This awards implementation, not the previous original-APK REA research or any retry of that research. Any future same-feature HMD retest/repackaging alone is +0. AI1 score unchanged.

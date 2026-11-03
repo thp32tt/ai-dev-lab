@@ -63,6 +63,7 @@ import { parseUw2Fonts, drawUw2Text } from "./font.js";
 import { UI_LAYOUT, UI_GRAPH_RECORD, buildingGraphRecordForPort } from "./ui-layout.js";
 import { originalTownHudEntries } from "./native-town-hud.js";
 import { nativeSeaDayCount } from "./native-sea-hud.js";
+import {paintNativeSeaDateHeader} from "./native-sea-date-header.js";
 import { ORIGINAL_SYSTEM_MENU_INDEX, SYSTEM_UI_LAYOUT, originalSaveSlotLine } from "./system-ui.js";
 import { selectWebMusicRoute } from "./music-routing.js";
 import { Uw2BootGate } from "./boot-sequence.js";
@@ -1021,13 +1022,6 @@ canvas.addEventListener("click", event => {
     renderTownScreen();
   }
 });
-
-function drawOriginalDatePanel(date, label = "") {
-  if (!date) return;
-  drawOriginalPanelText(`${date.year}.${date.month}.${date.day}`, 505, 26, {size:12,bold:true});
-  drawOriginalPanelText(`${String(date.hour).padStart(2,"0")}:${String(date.minute).padStart(2,"0")}`, 555, 45, {size:11});
-  if (label) drawOriginalPanelText(label, 500, 65, {size:11,bold:true});
-}
 
 function tickSeaWithBankInterest() {
   if(checkpointInFlight)
@@ -2481,7 +2475,10 @@ function renderSeaScreen() {
   const dirNames = ["북","북동","동","남동","남","남서","서","북서"];
   // GRAPH #4 already contains the printed sea status labels. Do not
   // overwrite its wind header with an invented in-canvas '항해' label.
-  drawOriginalDatePanel(st.dateTime);
+  // Source GRAPH #4 has preprinted month/date ink at the top-right.
+  // Clear ONLY that writable scroll interior before drawing one native
+  // date-time line; avoid the overlapping two-line pre-fix layout.
+  paintNativeSeaDateHeader(ctx,fontAssets,st.dateTime);
   drawOriginalPanelText(dirNames[st.heading] ?? st.heading, 548, 182, {size:12,bold:true});
   drawOriginalPanelText(`${st.speed?.knots ?? 0}`, 550, 222, {size:13,bold:true});
   const seaDays=nativeSeaDayCount(st);

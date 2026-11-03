@@ -53,6 +53,8 @@ const seaRenderer=app.slice(app.indexOf('function renderSeaScreen() {'),
  app.indexOf('$(\"opening-button\").addEventListener'));
 assert.ok(seaRenderer.includes('const seaDays=nativeSeaDayCount(st);'));
 assert.match(seaRenderer,/if\(seaDays!==null\)drawOriginalPanelText/);
+assert.match(seaRenderer,/paintNativeSeaDateHeader\(ctx,fontAssets,st\.dateTime\)/);
+assert.doesNotMatch(seaRenderer,/drawOriginalDatePanel/);
 assert.doesNotMatch(seaRenderer,/drawOriginalPanelText\(\x60\$\{st\.steps\}/);
 assert.doesNotMatch(seaRenderer,/drawOriginalDatePanel\(st\.dateTime,\s*"항해"\)/);
 assert.doesNotMatch(seaRenderer,/drawOriginalPanelText\(seaAutoActive\s*\?/);

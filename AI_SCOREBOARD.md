@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Daytona Model 2 VR Wizard runtime safety and HMD evidence gate (2026-11-03 KST)
+
+- **RUN_KEY:** `DAYTONA-MODEL2-WIZARD-RUNTIME-20261103` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2514 + one independently integrated actual Daytona Model 2 VR runtime safety/health/bug-capture feature +1 = 2515 cumulative AI 2 points**. The same PR's safe-mode working-directory repair, source tests, multiple CI runs, release-bundle assembly and duplicate status reports are part of that single achievement and score +0 separately. AI 1 unchanged.
+- **Source/merge:** `thp32tt/Model2VR-tools` PR #3 squash-merged to `main`, merge SHA `407899c9686f566ae15890ffbbc127dbde4d6193`, exact CI-validation head `020c5b07d07cc966c63a4ee74f79be18e12fc60a`.
+- **Verification:** Daytona native Win32 game producer + Win64 OpenXR host build and CTest + final bundled ZIP GitHub Actions run `41566784949` **SUCCESS**; artifact `DaytonaUSA-NativeStereo-Quest3-Win32-Win64` ID `13199781893`.
+- **Delivered:** optional local flag to bypass injection and launch unmodified emulator with original working directory; OpenXR paired GameStereo/Diagnostic/Stale/TrackingLost state transitions; one-key F9 local diagnostic capture; native/host tests and six living Wizard workflow documents. Existing game simulation, Draw injection source and original MOZA R3/Generic DD FFB backend unchanged.
+- **Runtime limitations:** Quest 3/VDXR user gameplay **RUNTIME_VALIDATION=UNTESTED**; original game's physical 6DoF camera and UI treatment remain unimplemented. The achievement is verified runtime instrumentation and safety integration, not completion of actual 6DoF VR.
+
 ## AI 2 OutRun VR numeric-tag release and existing-client compatibility hotfix (2026-11-03 KST)
 
 - **RUN_KEY:** `OUTRUN-VR-RELEASE-HOTFIX-20261103-5D68D900` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2513 + one independent actually published OutRun VR release / existing-user compatibility hotfix +1 = 2514 cumulative AI 2 points**. Earlier source changes, build CI, alternative public tag, repeated asset hash validation, runtime rechecks or other same-release maintenance are +0. AI 1 unchanged.

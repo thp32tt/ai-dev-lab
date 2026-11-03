@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 SHA-exact original DDS restoration for A/B localization (2026-11-03 KST)
+
+- **RUN_KEY:** `OUTRUN-Q046-Q047-EXACT-DDS-RESTORE-20261103-34D3F1A4` — **AI 2 ChatGPT**. GitHub SSOT previous confirmed **2518 + one independently completed byte-exact two-DDS restoration (+1) = 2519 cumulative AI 2 points**. Discovery/previous tests/status checking and subsequent rechecks of these same restored DDS are +0. AI 1 unchanged.
+- **Result:** Original HD source PNG Q046 AA04D779 and Q047 AD720950 retrieved from user's known source set; independent Google Drive 108-source manifest and N100 original PNG SHA256 matched. Both PNGs imported exactly to `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` at `0fe6ba5f6e30680aa5d59fb49cacbcbcc93aeffc`. GitHub-hosted Python reconstruction produced original DDS SHA256 `1a01e19b2749acdd275d10ff6e82bcb525d6621fd9118fb0c1fa5997c4c1dfa5` (Q046, 2048x2048) and `141e1f0773b82a8eca6ff49cd93d637221b96211566541f97de9ef4fc454d26f` (Q047, 4096x1024), both matching original 2026-10-13 manifests exactly. GitHub Actions run `41593291553` SUCCESS, source DDS committed and remotely verified under `localization/graphics/hd_source/OR2-HD-GUI-v0.25.10a/` at commit `34d3f1a4d4ee4d6a19757d8565e4768b06328f54`.
+- **Boundary:** This scores the one recovery deliverable (two restored original HD DDS), not new translated art or complete localization. GitHub A/B multi-atlas workflow dispatched separately; QA/game runtime approval remain pending. No Docker on GitHub and no N100 image/texture processing; N100 only byte transfer and SHA reads.
+
 ## AI 2 UW2 original sea date/time HUD source overlap fix (2026-11-03 KST)
 
 - **RUN_KEY:** `UW2-NATIVE-SEA-DATE-SCROLL-20261103-886A6049` — **AI 2 ChatGPT2**. Previous confirmed cumulative **2517 + one independently delivered UW2 browser-native GRAPH #4 source-bound sea date/time HUD visual feature (+1) = 2518 cumulative AI 2 points**. The same feature's CI repair, screenshot inspection, N100 deployment, Firefox regression, source readback and report are **+0** additional. AI 1 unchanged.

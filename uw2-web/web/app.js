@@ -8,6 +8,7 @@ import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeModalRowPointerHit,nativeYesNoPointerHit,
  nativeTownWalkPointerDirection,nativeSeaPointerCommand} from "./native-canvas-pointer.js";
 import {planNativeTownClickRoute,nativeTownClickRouteNext} from "./native-town-click-route.js";
+import {createNativeSeaHold} from "./native-sea-hold.js";
 import {nativeTownSourceDoorChoices,planNativeTownDoorRoute} from "./native-town-door-route.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
@@ -853,7 +854,34 @@ function handleSystemKey(event) {
 // Mouse and touch clicks select existing original native menu entries.
 // Convert CSS-scaled Canvas coordinates before hit testing; do not emit a
 // separate virtual key or modify the user's original DOS save.
+// Sea press/hold reuses the existing atomic voyage and helm controls.
+const seaHold=createNativeSeaHold({onRepeat:point=>{
+  if(viewMode!=="sea"||!seaRuntime||!selected||checkpointInFlight)return false;
+  const command=nativeSeaPointerCommand(point,seaRuntime.snapshot());
+  if(!command)return false;
+  if(seaAutoActive)stopSeaAuto("auto-manual");
+  if(command.kind==="turn")seaRuntime.turn(command.delta);
+  else if(command.kind==="forward"){
+    const result=tickSeaWithBankInterest();
+    if(!result.advanced){renderSeaScreen();return false;}
+  }else return false;
+  renderSeaScreen();return true;
+}});
+canvas.addEventListener("pointerdown",event=>{
+  if(viewMode!=="sea"||!seaRuntime||checkpointInFlight||
+     event.isPrimary===false||event.button!==0)return;
+  const point=nativeCanvasPointerPoint(event,canvas);
+  if(point&&nativeSeaPointerCommand(point,seaRuntime.snapshot()))
+    seaHold.begin(event.pointerId,point);
+});
+window.addEventListener("pointerup",event=>seaHold.release(event.pointerId));
+window.addEventListener("pointercancel",()=>seaHold.cancel());
+window.addEventListener("blur",()=>seaHold.cancel());
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)seaHold.cancel();
+});
 canvas.addEventListener("click", event => {
+  if(seaHold.consumeClick())return;
   if(checkpointInFlight)return;
   const point=nativeCanvasPointerPoint(event,canvas);
   if(!point)return;

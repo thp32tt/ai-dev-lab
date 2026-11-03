@@ -82,6 +82,8 @@ jobs:
           node --check uw2-web/web/native-town-hud.js
           node --check uw2-web/tests/native-town-hud.test.mjs
           node --check uw2-web/tests/native-canvas-pointer.test.mjs
+          node --check uw2-web/web/native-sea-hold.js
+          node --check uw2-web/tests/native-sea-hold.test.mjs
           node --check uw2-web/tests/native-sea-pointer.test.mjs
           node --check uw2-web/tests/native-sea-pause.test.mjs
           node --check uw2-web/web/native-save-session.js
@@ -213,6 +215,7 @@ jobs:
           node uw2-web/tests/native-context-commands.test.mjs
           node uw2-web/tests/native-town-hud.test.mjs
           node uw2-web/tests/native-canvas-pointer.test.mjs
+          node uw2-web/tests/native-sea-hold.test.mjs
           node uw2-web/tests/native-sea-pointer.test.mjs
           node uw2-web/tests/native-sea-pause.test.mjs
           node uw2-web/tests/native-new-game-layout.test.mjs

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 Quest original seat-table gating + player-glass reflection shader suppression (2026-11-03 KST)
+
+- **RUN_KEY:** `OUTRUN-QUEST-GLASS-REFLECTION-ORIGINAL-SEAT-20261103-17278584` — **AI 2 ChatGPT2**. GitHub SSOT preceding confirmed **2525 + one independent implemented Quest/PC per-car seat baseline and targeted glass reflection removal feature with a verified Windows test build (+1) = 2526 cumulative AI 2 points**. This is one new integrated feature. No duplicate points for intermediate code fixes, previous glass tint feature, same-SHA CI, or future Quest3 runtime retest. AI1 unchanged.
+- **Implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2` exact `17278584e6d391996b42bd9e5ab78bba22c5f6eb`. Original Quest 119275C per-car 30x36 seat anchors corroborated with PC live 0x818BB0 table: verify model index and record before optional seat calibration; remove previously ungrounded .35 back/.18 down defaults and launcher overrides stale settings to 0 without duplicating car B0 or OpenXR head pose. Quest conditional runtime override captured XYZ is not proven and NOT fabricated. F11 `QuestCockpitV2GlassReflectionOff=true` new player- and material-scoped transient PMT mode4/5 cube-reflection disable, env texture layer flags disable and specular/emissive zero, with complete original bytes restored after 408C80, other car/world reflections untouched. F11 GlassHidden continues separate zero-RGBA mode.
+- **Verification:** exact-SHA QuestCockpitV2 Isolated Core Smoke `41655969159` **SUCCESS**; VR GitHub General Test Build `41655969116` **SUCCESS**, compiling Win32 game DLL and x64 OpenXR host and packaging artifact `13240341576`. `RUNTIME_VALIDATION=UNTESTED`: HMD seat alignment and reflection-only mesh/passes remain unverified; original PC's own camera already reads the original per-model table, so do NOT claim an otherwise nonexistent new Quest seat vector or proven full APK parity.
+- **Score formula:** 2525 + 1 = **2526**.
+
+
 ## AI 2 Daytona USA Quest 3 no-silent-2D startup gate, persistent logs and direct BAT package (2026-11-03 KST)
 
 - **RUN_KEY:** `MODEL2VR-DAYTONA-NO-SILENT-2D-DIRECT-BAT-20261103-C226DC5A` — **AI 2 ChatGPT2**. GitHub SSOT prior confirmed **2524 + one independently implemented Daytona VR startup/diagnostic usability milestone (+1) = 2525 cumulative AI 2 points**. Intermediate commits, compile/test-string repairs, repeated CI runs and future HMD retesting are the same achievement and receive +0. AI 1 unchanged.

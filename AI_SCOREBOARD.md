@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 native web D2 opening music and single-shot OPGRAPH animation (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-NATIVE-D2-OPENING-AUDIO-OPGRAPH-CINEMATIC-20261103-8B4887BD` — **AI 2 ChatGPT2**. Previous confirmed cumulative **2519 + one integrated, real-browser-proven independent UW2 opening audio + artwork feature (+1) = 2520 cumulative AI 2 points**. The same feature's intermediate commit, CI repair, original-owner inspection, deployment and Firefox rechecks are +0 separately. AI 1 unchanged.
+- **Source:** `thp32tt/ai-dev-lab@uw2-web-port` exact head `8b4887bd140b864242d729e5e4bd5679cd87de7e`. Shipping `web/native-d2-opening-audio.js` parses the owner's SHA-256-verified original `D2.MML` opening song-0 4-channel note/duration/gate triples as a **clearly labelled approximate native browser WebAudio synth**, never DOS/8086/FMDRV execution, with click-to-unlock, BGM pause/resume and nonopening music refused. Shipping `web/app.js` makes optional BGM failures nonfatal to gameplay resources. Source `web/opening.js` replaces disjoint panorama/bow and boarding 640x400 collage with separately centered original OPGRAPH shots; removes guessed eye overlays on scenes lacking proven geometry. `web/index.html` provides the visible opening-sound button, controller labels sound's approximate fidelity.
+- **Verification:** exact SHA UW2 Web Fidelity Static Gate run `41598892213` SUCCESS. N100 original Korean D2 owner file browser decoder outputs channel source-note counts 25/67/4/23; original-owner OPGRAPH scene2/scene11 screenshot/one layer PASS. Actual N100 LAN HTTP Firefox real click activated `web-audio:running`, audio time advanced by 0.70s, BGM pause/resume passed and graphical opening boot + natural exit/main menu passed. Full source file readback matches GitHub HEAD, original files/saves untouched, backups retained.
+- **Limitations:** No audio will autoplay before user gesture by default; synthesized D2 note playback is not identical to original YM3812/FMDRV timbre/timing, and animation source-shot timing / full original VGA frame parity remain not proven.
+
 ## AI 2 OutRun 2006 SHA-exact original DDS restoration for A/B localization (2026-11-03 KST)
 
 - **RUN_KEY:** `OUTRUN-Q046-Q047-EXACT-DDS-RESTORE-20261103-34D3F1A4` — **AI 2 ChatGPT**. GitHub SSOT previous confirmed **2518 + one independently completed byte-exact two-DDS restoration (+1) = 2519 cumulative AI 2 points**. Discovery/previous tests/status checking and subsequent rechecks of these same restored DDS are +0. AI 1 unchanged.

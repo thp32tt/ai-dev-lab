@@ -11,7 +11,7 @@ import {prepareNativePortCall} from '../web/native-port-call-transaction.js';
 const state={x:286,y:238,heading:0};
 const port={id:39,mapId:39,name:'port39',nation:3,x:288,y:240};
 const ready=findPortCallTarget(state,[port]);
-assert.equal(ready.approach,'NATIVE_SOURCE_NEAREST_SEA_2CHIP_RECOVERY');
+assert.equal(ready.approach,'SOURCE_RING_4X4');
 const marker=nativeReadySeaPortMarker(state,ready);
 assert.deepEqual(marker,{
  x:304,y:216,w:16,h:16,portId:39,portName:'port39',

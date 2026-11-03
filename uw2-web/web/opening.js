@@ -458,13 +458,61 @@ function drawProfileExact(ctx, canvas, opening, cfg, elapsed, durationMs) {
   drawCaption(ctx, canvas, opening, cfg.caption);
 }
 
+// Korean OPGRAPH part 2 contains TWO time-alternative 320x200 bow pictures,
+// not left/right halves of a single 640px image. Rendering both in one frame
+// duplicates the ship and creates a visibly broken hull seam.
+export function planKoreanOpeningShipArt(opening, scene, elapsed, width=640, height=400,
+  durationMs=1000) {
+  if(!Number.isFinite(elapsed)||elapsed<0||!Number.isFinite(durationMs)||
+     durationMs<=0||!Number.isInteger(width)||!Number.isInteger(height)||
+     width<320||height<200)
+    throw new RangeError('opening ship picture requires bounded frame dimensions/time');
+  if(scene===2){
+    const frame=Math.floor(elapsed/700)&1;
+    const panorama=getRecord(opening,1,frame);
+    const bow=getRecord(opening,2,frame);
+    if(panorama.width!==width||panorama.height!==height/2||
+       bow.width!==width/2||bow.height!==height/2)
+      throw new Error('verified Korean opening ship artwork dimensions mismatch');
+    return Object.freeze({
+      caption:0,
+      layers:Object.freeze([
+        Object.freeze({image:panorama,x:0,y:0,transparentZero:false}),
+        Object.freeze({image:bow,x:Math.round((width-bow.width)/2),
+          y:panorama.height,transparentZero:false})
+      ])
+    });
+  }
+  if(scene===11){
+    // The ship scene follows the full-width part 11 record displayed at
+    // the end of scene 10. Redraw that source picture on each frame rather
+    // than clearing it away and leaving the lower ship floating on black.
+    const backdrop=getRecord(opening,11,0);
+    const boarding=getRecord(opening,12,0);
+    if(backdrop.width!==width||backdrop.height!==height/2||
+       boarding.width>width||boarding.height!==height/2)
+      throw new Error('verified Korean boarding ship artwork dimensions mismatch');
+    const progress=Math.min(1,elapsed/durationMs);
+    const x=Math.round(width+((width-boarding.width)/2-width)*
+      Math.min(1,progress*2.2));
+    return Object.freeze({
+      caption:9,
+      layers:Object.freeze([
+        Object.freeze({image:backdrop,x:0,y:0,transparentZero:false}),
+        Object.freeze({image:boarding,x,y:backdrop.height,transparentZero:true})
+      ])
+    });
+  }
+  throw new RangeError('opening ship art planner supports original scenes 2/11');
+}
+
 function drawSeaPanorama(ctx, canvas, opening, elapsed) {
   clear(ctx, canvas);
-  const frame = Math.floor(elapsed / 700) & 1;
-  drawOpeningNative(ctx, getRecord(opening, 1, frame), 0, 0);
-  drawOpeningNative(ctx, getRecord(opening, 2, frame), frame ? 320 : 0, 200);
-  drawOpeningNative(ctx, getRecord(opening, 2, frame ^ 1), frame ? 0 : 320, 200);
-  drawCaption(ctx, canvas, opening, 0);
+  const plan=planKoreanOpeningShipArt(opening,2,elapsed,canvas.width,canvas.height);
+  for(const layer of plan.layers)
+    drawOpeningNative(ctx,layer.image,layer.x,layer.y,
+      {transparentZero:layer.transparentZero});
+  drawCaption(ctx,canvas,opening,plan.caption);
 }
 
 function drawOtto(ctx, canvas, opening, elapsed, duration) {
@@ -538,15 +586,12 @@ function drawJoao(ctx, canvas, opening, elapsed, durationMs) {
 
 function drawBoardingClose(ctx, canvas, opening, elapsed, durationMs) {
   clear(ctx, canvas);
-  const image = getRecord(opening, 12, 0);
-  const p = Math.min(1, elapsed / Math.max(1, durationMs));
-  // OPEN.EXE alternates/copies the 256x200 boarding image through two work
-  // buffers. A small horizontal approach preserves that visible motion without
-  // inventing extra OPGRAPH records.
-  const startX = canvas.width;
-  const endX = Math.round((canvas.width - image.width) / 2);
-  const x = Math.round(startX + (endX - startX) * Math.min(1, p * 2.2));
-  drawOpeningNative(ctx, image, x, 100);
+  const plan=planKoreanOpeningShipArt(opening,11,elapsed,canvas.width,
+    canvas.height,durationMs);
+  for(const layer of plan.layers)
+    drawOpeningNative(ctx,layer.image,layer.x,layer.y,
+      {transparentZero:layer.transparentZero});
+  drawCaption(ctx,canvas,opening,plan.caption);
 }
 
 export class KoreanOpeningPlayer {

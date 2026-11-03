@@ -23,4 +23,6 @@ assert.equal(sourceSeaShipSpriteFrame({heading:4,steps:1},8),4);
 assert.throws(()=>sourceSeaShipSpriteFrame({heading:0,steps:0},32),/oar class/);
 assert.throws(()=>sourceSeaShipSpriteFrame({heading:7,steps:0},7),/frame unavailable/);
 assert.throws(()=>sourceSeaShipSpriteFrame(null,32),/direction\/frames invalid/);
+assert.throws(()=>sourceSeaShipSpriteFrame({
+ heading:0,steps:-1,flagshipOared:false},32),/direction\/frames invalid/);
 console.log('UW2 original ship 32 planar compass/pose frames, no incorrect nibble-mask: PASS');

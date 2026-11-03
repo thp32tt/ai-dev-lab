@@ -222,7 +222,7 @@ function seaRasterSurfaces(assets,w,h){
 // phases. Oared = 0..15, sail = 16..31. 16-frame fixtures remain
 // admitted only for legacy synthetic Canvas source-shape regressions.
 export function sourceSeaShipSpriteFrame(state,frameCount){
-  if(!state||!Number.isInteger(state.heading)||!Number.isInteger(state.steps)||
+  if(!state||!Number.isInteger(state.heading)||!Number.isSafeInteger(state.steps)||state.steps<0||
      !Number.isSafeInteger(frameCount)||frameCount<1)
     throw new Error('native source sea ship direction/frames invalid');
   let frame;

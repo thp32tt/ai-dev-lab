@@ -76,7 +76,7 @@ try{
  const spriteOar=assets.seaShips[0];
  for(let i=0;i<1024;i++){
   const idx=spriteOar[i];
-  expectedSprite.set(idx===255?[0,0,0,0]:[...UW2_WORLD_PALETTE[idx],255],i*4);
+  expectedSprite.set(idx===0||idx===255?[0,0,0,0]:[...UW2_WORLD_PALETTE[idx],255],i*4);
  }
  assert.deepEqual(draw[3].data,expectedSprite);
  assert.deepEqual(draw[2].data,expected);

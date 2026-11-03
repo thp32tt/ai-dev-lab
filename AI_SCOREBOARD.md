@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간이용권 특가 정기 조사 (2026-11-04 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-04T08:44:05+09:00` — AI 2 ChatGPT2.
+- **Previous confirmed AI 2:** 2532; **change:** +1; **new cumulative AI 2:** **2533**. Last checked 2026-11-04T08:44:05+09:00. AI 1 unchanged.
+- **Result:** Fresh web search of Seoul/Gyeonggi weekend-usable annual/season/multi-visit passes. No independently confirmed new/relisted offer or better condition compared with 2026-11-03. Previously notified SEA LIFE COEX 79,000 KRW November pass (2026-11-01 to 2027-10-31, registration/first visit by 2026-11-30) not repeated; current checkout availability not independently confirmed. Other venues' new deals also unverified. Official Aqua Planet Ilsan site confirms general admission and 3-hour parking (extra hour for eligible shops), not a new pass sale. No fabricated availability or deadlines.
+- **Scoring:** One independent daily lookup and comparison (+1) per automation instruction; repeat checks of same RUN_KEY +0. GitHub SSOT updated only after latest blob SHA read.
+
+
 ## AI 2 OutRun cockpit stereo hold and original passenger correction (2026-11-04 KST)
 
 - **Independent RUN_KEY A:** `OUTRUN-COCKPIT-DIRECTGPU-DEFERRED-STEREO-HOLD-20261104-832F57EF` — DirectGPU-only deferred frame no longer pre-publishes a mono fallback over the last safe stereo frame. Actual renderer change `832f57ef4985adf555389c97f2567427fd2b82f3`, focused 8-case C++17 regression and original stereo renderer source CI guard. **+1**.

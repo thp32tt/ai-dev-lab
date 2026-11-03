@@ -1,4 +1,5 @@
 import {SeaRuntime} from './world-map.js';
+import {sha256Hex} from './native-sha256.js';
 import {validNativeSeaMotion} from './native-sea-motion.js';
 import {validateNativeCheckpointSessionEconomy,validNativeCheckpointClock} from './native-checkpoint-integrity.js';
 // Independent JS/Web Canvas runtime checkpoint, NOT a DOS save-state,
@@ -8,9 +9,7 @@ export const NATIVE_CHECKPOINT_CHOICE_KEY='uw2-web-native-checkpoint-choice-v1';
 const MAX=256*1024;
 const int=(x,a,b)=>Number.isSafeInteger(x)&&x>=a&&x<=b;
 const timeValid=validNativeCheckpointClock;
-const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
-const sha=async text=>hex(await globalThis.crypto.subtle.digest(
- 'SHA-256',new TextEncoder().encode(text)));
+const sha=async text=>sha256Hex(new TextEncoder().encode(text));
 export function validateNativeSeaCheckpoint(payload,{
  sourceSha256,sourceSlots,worldAssets,portCatalog
 }={}){

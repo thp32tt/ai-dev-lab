@@ -1,7 +1,7 @@
 // Browser-native, SHA-pinned original game-file reader.
-// This module is a direct Uint8Array -> WebCrypto -> isolated bytes bridge.
+// This module verifies exact original SHA-256 on secure and LAN HTTP browsers.
 // No DOS pathname, virtual disk, guest CPU or emulation is used.
-const hex=b=>Array.from(b,n=>n.toString(16).padStart(2,'0')).join('');
+import {sha256Hex} from './native-sha256.js';
 export async function prepareVerifiedOriginalWebFile(source,{
   expectedSha256,maxBytes=64*1024*1024
 }={}){
@@ -13,12 +13,9 @@ export async function prepareVerifiedOriginalWebFile(source,{
     throw new RangeError('native web original asset exceeds declared size cap');
   if(typeof expectedSha256!=='string'||!/^[0-9a-f]{64}$/.test(expectedSha256))
     throw new Error('native web original asset requires exact SHA256 fingerprint');
-  if(!globalThis.crypto?.subtle?.digest)
-    throw new Error('native web source fingerprint unavailable: fail closed');
   // Copy BEFORE the await; digest and final pixel decode use one snapshot.
   const stable=Uint8Array.from(source);
-  const actual=hex(new Uint8Array(await globalThis.crypto.subtle.digest(
-    'SHA-256',stable)));
+  const actual=await sha256Hex(stable);
   if(actual!==expectedSha256)
     throw new Error('native original web asset SHA-256 mismatch: fail closed');
   return Object.freeze({

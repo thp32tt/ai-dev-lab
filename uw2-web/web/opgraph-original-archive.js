@@ -3,6 +3,7 @@
 // This is the existing JS format decoder, NOT a claim that ORIGINAL OPEN.EXE
 // native unpacker/video output has passed byte- or frame-parity validation.
 import {prepareVerifiedOriginalWebFile} from './native-original-file.js';
+import {sha256Hex} from './native-sha256.js';
 import {inspectLS11,decodeLS11} from './ls11.js';
 import {readGraphOffsets} from './graph-format.js';
 
@@ -76,8 +77,7 @@ export async function prepareOriginalOpgraphArchive(original,{
       throw new Error('OPGRAPH decoded GRAPH record table is empty');
     const bytes=Uint8Array.from(entry.data);
     if(expectedDecodedSha256!==undefined){
-      const digest=Array.from(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',bytes)),
-        b=>b.toString(16).padStart(2,'0')).join('');
+      const digest=await sha256Hex(bytes);
       if(digest!==expectedDecodedSha256[index])
         throw new Error('OPGRAPH decoded part SHA-256 mismatch at index '+index+': fail closed');
     }

@@ -1,4 +1,5 @@
 import {canStandAt} from './town.js';
+import {sha256Hex} from './native-sha256.js';
 import {validateNativeCheckpointSessionEconomy,validNativeCheckpointClock} from './native-checkpoint-integrity.js';
 
 // NOT the original DOS "Save Data" command. A browser-only checkpoint of an
@@ -8,10 +9,7 @@ export const NATIVE_TOWN_CHECKPOINT_KEY='uw2-web-native-town-checkpoint-v1';
 export const NATIVE_TOWN_CHECKPOINT_VERSION=1;
 const MAX_CHECKPOINT_BYTES=256*1024;
 const number=(x,min,max)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
-const hash=async text=>{
- const digest=await globalThis.crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
- return [...new Uint8Array(digest)].map(v=>v.toString(16).padStart(2,'0')).join('');
-};
+const hash=async text=>sha256Hex(new TextEncoder().encode(text));
 const normalizedClone=value=>{
  const text=JSON.stringify(value);
  if(typeof text!=='string'||text.length>MAX_CHECKPOINT_BYTES)

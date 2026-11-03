@@ -133,6 +133,8 @@ jobs:
           node --check uw2-web/tests/native-port-economy-history.test.mjs
           node --check uw2-web/tests/native-multiport-voyage-chain.test.mjs
           node --check uw2-web/tests/native-port-actor-memory.test.mjs
+          node --check uw2-web/web/native-sha256.js
+          node --check uw2-web/tests/native-sha256.test.mjs
           node --check uw2-web/web/native-original-file.js
           node --check uw2-web/tools/assert-native-web-entry.mjs
           node --check uw2-web/web/boot-sequence.js
@@ -276,6 +278,7 @@ jobs:
           node uw2-web/tests/native-original-sea-camera.test.mjs
           node uw2-web/tests/native-char-canvas-cache.test.mjs
           node uw2-web/tests/native-town-view-canvas.test.mjs
+          node uw2-web/tests/native-sha256.test.mjs
           node uw2-web/tests/native-original-file.test.mjs
           node uw2-web/tests/native-opening-canvas-cache.test.mjs
           node uw2-web/tests/native-opening-original-blit-placement.test.mjs

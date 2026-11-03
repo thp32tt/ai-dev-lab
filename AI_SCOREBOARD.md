@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Quest APK original VR driver-seat 30-profile XYZ/pose source REA verified (2026-11-04 KST)
+
+- **RUN_KEY:** `OUTRUN-QUEST-VR-SEAT-PROFILE-REA-20261104-CAE8CD70` — **AI 2 ChatGPT2**. SSOT preceding confirmed **2527 + one newly verified independent original Quest VR seat-coordinate producer/consumer REA discovery and 30-profile numeric mapping (+1) = 2528 cumulative AI 2 points**. This is a **research milestone only**, not a patched seat, not HMD-tested; future source implementation/CI must be new independent work to qualify. Same REA rerun/republication gets +0. AI1 unchanged.
+- **Verified new binary chain:** native Quest ELF `liboutrun_quest_core.so` SHA256 `fa0f9db9b744515a9a1439741bc9806ad007470b621b88d22a0b8bcbced6120b6`, `android_main` capture `sp+0x350`, `run_game::$_2` `0x2E13AC` getter original guest profile table `0x5B2F68[0..29]` x floats at each profile `+0x4C/0x50/0x54`, native writes at `0x2E1598/0x2E1650/0x2E16C4`, native Y/Z +0.32,+0.55 from original ELF PT_LOAD `0x1722C8`, run_game::$_5 to camera override `0x2E3664`, native view1 consumer `0x1192794`, XR view-matrix composer `0x2E1BB8..0x2E1BF0` offsets -0.32,-0.55 and angle correction +0.04. This second *30 profile* coordinate table differs from the earlier 15-unique PC mode1 camera table.
+- **PC guest numeric mapping:** canonical original retail PE `68ceb386829066f8455b9d027320af962584321f3e2e8a79c72841495a6134c3` has 30 profile pointers at `0x5B2F68`, stride0x128 records, full 30 XYZ extracted (for index0 -0.353,0.627,-0.390 vs original view1 -0.353,0.990,-0.345). `QUEST_GUEST_RUNTIME_BYTES=UNTESTED`, `HMD_RECONSTRUCTION=UNTESTED`. The coordinates are verified ORIGINAL PC guest profile data selected by ORIGINAL Quest APK code; actual live Quest guest RAM identity not yet captured.
+- **GitHub research artifact:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2` commit `cae8cd70fff628766eee85498bbf8b832e0b74c2`, `docs/research/QUEST_APK_REA_NATIVE_VR_SEAT_PROFILE_XYZ_20261104.md`, full 30 profile table + native consumer and composition chain. `SOURCE_PATCH=NONE`, `CI=NOT_RUN` (documentation only), stable focus/VR release untouched. This milestone does not claim the currently running VR cockpit has corrected seat coordinates.
+- **Score formula:** previous **2527** + **1** = **2528**.
+
+
 ## AI 2 Daytona USA VDXR explicit typed OpenXR D3D11 RTV fix (2026-11-03 KST)
 
 - **RUN_KEY:** `MODEL2VR-DAYTONA-VDXR-EXPLICIT-RTV-20261103-B9A22639` — **AI 2 ChatGPT2**. GitHub SSOT prior confirmed **2526 + one independent implemented VDXR/OpenXR D3D11 swapchain render-target compatibility fix with verified Win32+Win64 package (+1) = 2527 cumulative AI 2 points**. Same symptom reproduction, static-test adjustment, CI/package reruns and future Quest3 visual retest are +0. AI 1 unchanged.

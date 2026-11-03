@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun cockpit stereo hold and original passenger correction (2026-11-04 KST)
+
+- **Independent RUN_KEY A:** `OUTRUN-COCKPIT-DIRECTGPU-DEFERRED-STEREO-HOLD-20261104-832F57EF` — DirectGPU-only deferred frame no longer pre-publishes a mono fallback over the last safe stereo frame. Actual renderer change `832f57ef4985adf555389c97f2567427fd2b82f3`, focused 8-case C++17 regression and original stereo renderer source CI guard. **+1**.
+- **Independent RUN_KEY B:** `OUTRUN-COCKPIT-PASSENGER-WXC-SCOPED-LOD0-20261104-949DC8CC` — Exact PC passenger ROB02/363 now stays inside the original Quest W×C correction and scoped visible LOD0 lifetime, instead of exiting early into the uncorrected render path. Original driver ROB01/362 suppression and GOAL safety preserved. Source `949dc8cc86a81961f62be6053080bdff06a586ba`, C++17 occupant regression. **+1**.
+- **Exact verified integration:** Source validation-bearing SHA `cbf035bd72d8bfd13080ed5c50822e45cef32457`, QuestCockpitV2 Isolated Core Smoke run `41739107720` SUCCESS; VR GitHub General Test Build Win32 DLL + x64 host package run `41739107842` SUCCESS (artifact `13281180874`). Later docs-only and UI marker CI repair are follow-up bookkeeping, **+0**. Windows legacy Build workflow had a stale FFB UI marker and is under separate repair; the successful full VR game/host package is the verification for this score.
+- **Runtime boundary:** HMD `RUNTIME_VALIDATION=UNTESTED`; sky visual flicker and passenger actual visibility not confirmed in headset. This score credits independently integrated, CI-validated code paths, NOT a verified Quest 3 visual fix or future retests. AI 1 unchanged.
+- **Score calculation:** **2530 + 1 + 1 = 2532 cumulative AI 2 points**.
+
 ## AI 2 OutRun A/B DDS 30-minute GitHub watchdog and N100 15-minute low-load dispatcher (2026-11-04 KST)
 
 - **RUN_KEY:** `OUTRUN-AB-DDS-30MIN-WATCHDOG-N100-15MIN-20261104-AC1B413B` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2529** + one independently delivered 30-minute GitHub SHA-aware DDS dispatch watchdog with successful live CI and corrected low-load Portainer controller target plus 7/7 controller tests (+1) = **2530 cumulative AI 2 points**. Same pipeline retries, confirmation, or Portainer redeployment are +0. AI 1 unchanged.

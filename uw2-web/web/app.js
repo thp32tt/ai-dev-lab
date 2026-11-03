@@ -9,6 +9,7 @@ import {nativeCanvasPointerPoint,nativeSystemMenuPointerHit,
  nativeTownWalkPointerDirection,nativeSeaPointerCommand} from "./native-canvas-pointer.js";
 import {planNativeTownClickRoute,nativeTownClickRouteNext} from "./native-town-click-route.js";
 import {createNativeSeaHold} from "./native-sea-hold.js";
+import {nativeReadySeaPortMarker,nativeReadySeaPortPointerHit} from "./native-sea-port-pointer.js";
 import {nativeTownSourceDoorChoices,planNativeTownDoorRoute} from "./native-town-door-route.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
 import {stageNativeTownSave} from "./native-save-load-transaction.js";
@@ -871,7 +872,11 @@ canvas.addEventListener("pointerdown",event=>{
   if(viewMode!=="sea"||!seaRuntime||checkpointInFlight||
      event.isPrimary===false||event.button!==0)return;
   const point=nativeCanvasPointerPoint(event,canvas);
-  if(point&&nativeSeaPointerCommand(point,seaRuntime.snapshot()))
+  if(!point)return;
+  const st=seaRuntime.snapshot(),nearbyPort=findReadyNativePortCall(st);
+  // A harbor marker is a scene transition, not a sea helm hold gesture.
+  if(nativeReadySeaPortPointerHit(point,st,nearbyPort)){seaHold.cancel();return;}
+  if(nativeSeaPointerCommand(point,st))
     seaHold.begin(event.pointerId,point);
 });
 window.addEventListener("pointerup",event=>seaHold.release(event.pointerId));
@@ -921,9 +926,16 @@ canvas.addEventListener("click", event => {
     if(point.x>=b.x&&point.x<b.x+b.w&&point.y>=b.y&&point.y<b.y+b.h)
       handleSystemKey({key:"Enter",preventDefault(){}});
   }else if(viewMode==="sea"&&seaRuntime){
-    // Browser pointer reuses exactly one existing keyboard steering/tick
-    // command; the validated voyage transaction remains the only tick owner.
-    const command=nativeSeaPointerCommand(point,seaRuntime.snapshot());
+    const st=seaRuntime.snapshot(),nearbyPort=findReadyNativePortCall(st);
+    // Clicking the actually visible source-catalog harbor uses the same
+    // existing P-key atomic port arrival, never a guessed map teleport.
+    if(nativeReadySeaPortPointerHit(point,st,nearbyPort)){
+      seaHold.cancel();
+      callNearbyPort();
+      return;
+    }
+    // Other sea clicks retain the existing single helm/tick transaction.
+    const command=nativeSeaPointerCommand(point,st);
     if(command===null)return;
     // Manual Canvas command takes exclusive control before the next AUTO tick.
     // No 20-minute voyage is charged by stopping the browser-only timer.
@@ -2433,6 +2445,16 @@ function renderSeaScreen() {
   drawOriginalSceneFrame("sea");
   renderSeaView(ctx, worldAssets, st, UI_VIEW_X, UI_VIEW_Y, UI_LAYOUT.viewport.tiles, UI_LAYOUT.viewport.tiles);
   const nearbyPort = findReadyNativePortCall(st);
+  const marker=nativeReadySeaPortMarker(st,nearbyPort);
+  if(marker){
+    // Browser-only 16x16 golden outline on the existing original map tile.
+    // Does not paint over the underlying port sprite or GRAPH #4 HUD.
+    ctx.save();
+    ctx.strokeStyle="rgba(248,217,122,0.95)";
+    ctx.lineWidth=1;
+    ctx.strokeRect(marker.x+0.5,marker.y+0.5,marker.w-1,marker.h-1);
+    ctx.restore();
+  }
   const env = st.environment;
   const dirNames = ["북","북동","동","남동","남","남서","서","북서"];
   // GRAPH #4 already contains the printed sea status labels. Do not

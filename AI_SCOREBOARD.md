@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun VR numeric-tag release and existing-client compatibility hotfix (2026-11-03 KST)
+
+- **RUN_KEY:** `OUTRUN-VR-RELEASE-HOTFIX-20261103-5D68D900` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2513 + one independent actually published OutRun VR release / existing-user compatibility hotfix +1 = 2514 cumulative AI 2 points**. Earlier source changes, build CI, alternative public tag, repeated asset hash validation, runtime rechecks or other same-release maintenance are +0. AI 1 unchanged.
+- **Release and CI:** `thp32tt/OutRun2006Tweaks@vr-d3d9ex-focus` exact release build SHA `5d68d900deeccc003c4c8bf0e5eb46614eaa3302`; GitHub Actions run `41558852910` **SUCCESS**, including game Win32 DLL, OpenXR x64 host, release assembly, publishing and post-upload asset verification. New numeric prerelease `v0.01` (release ID `432157658`) and earlier `vr-v0.01-beta` (release ID `430744974`, retained legacy download link) both serve the SAME corrected ZIP.
+- **Binary proof:** `OutRun2_VR_v0.01_Beta.zip` both assets size 2,982,508 bytes and digest `sha256:66e6b8cfdea6bbe28d45778d9663466ba0d212c0e6027b518ec3800db9f50959`. Both beta releases marked prerelease; `/releases/latest` still returns numeric `v0.2` for old clients, preventing the historical nonnumeric-tag unhandled `std::stoi` crash. Release source entirely removes background release-check worker; previous 2D VR-hook isolation and Windows exception-filter API hardening included.
+- **Scope:** Completed release/build/asset verification; Quest 3 / Windows real-game runtime **UNTESTED** for this new binary. Same release's republishing, CI and recovery verification do not score twice.
+
 ## AI 2 web-playable sea long-press navigation, not DOS emulation (2026-11-03 KST)
 
 - **RUN_KEY:** `UW2-WEB-SEA-HOLD-20261103-8F2C04F8`. **AI 2 ChatGPT2**. Confirmed GitHub SSOT previous cumulative **2512 + independently playable native WEB hold-steer-and-sail feature +1 = 2513 cumulative AI 2 points**. Existing earlier confirmed achievements are preserved. DOS-implementation exploratory work reverted without rescoring. All testing, same feature's UI integration, CI and score readback are the **same single achievement**, +0 additional. AI 1 unchanged.

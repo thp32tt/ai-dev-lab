@@ -41,7 +41,8 @@ const pTurn=pointer.indexOf('seaRuntime.turn(command.delta)');
 const pTick=pointer.indexOf('tickSeaWithBankInterest()');
 assert.ok(pStop>=0&&pStop<pTurn&&pStop<pTick,
  'Canvas manual command must suspend AUTO before one turn/tick');
-assert.match(pointer,/nativeSeaPointerCommand\(point,seaRuntime\.snapshot\(\)\)/);
+assert.match(pointer,/const st=seaRuntime\.snapshot\(\),nearbyPort=findReadyNativePortCall\(st\)/);
+assert.match(pointer,/nativeSeaPointerCommand\(point,st\)/);
 assert.match(pointer,/command\.kind==="turn"/);
 assert.match(pointer,/command\.kind==="forward"/);
 

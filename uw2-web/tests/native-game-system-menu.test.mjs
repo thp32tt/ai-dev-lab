@@ -10,7 +10,7 @@ assert.match(menu,/target==="town"&&townRuntime/);
 assert.match(menu,/target==="sea"&&seaRuntime/);
 assert.match(menu,/detail:\{action:"checkpoint-save"\}/);
 assert.match(menu,/원본 DOS Save Data는 아직 미구현/);
-const router=section('function handleSystemKey(event) {','function drawOriginalDatePanel');
+const router=section('function handleSystemKey(event) {','function tickSeaWithBankInterest()');
 assert.match(router,/systemUi.cursor === 4\) \{\s*selectNativeWebSaveFromSystemMenu/);
 assert.match(router,/key==="escape"\)\{\s*event.preventDefault\(\);\s*if\(!resumeNativeGameFromSystemMenu/);
 const live=section('window.addEventListener("keydown", (event) => {','window.addEventListener("uw2-controller-action", async event => {');

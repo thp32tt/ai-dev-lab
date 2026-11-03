@@ -44,4 +44,8 @@ assert.deepEqual(calls.find(c=>c[0]==='fillText').slice(1),
  ['1522.7.6 17:20',block.textX,block.textY,block.textW]);
 assert.deepEqual(calls.at(-1),['restore']);
 assert.equal(painted.text,layout.text);
+// The stamped source scroll must not appear on the black/no-asset fallback.
+const appSource=(await import('node:fs')).readFileSync(
+ new URL('../web/app.js',import.meta.url),'utf8');
+assert.match(appSource,/if\(uiGraph\?\.sea\) paintNativeSeaDateHeader\(ctx,fontAssets,st\.dateTime\)/);
 console.log('UW2 original GRAPH #4 top scroll date+time text fits single source parchment row PASS');

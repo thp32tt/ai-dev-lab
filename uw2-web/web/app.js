@@ -2478,7 +2478,8 @@ function renderSeaScreen() {
   // Source GRAPH #4 has preprinted month/date ink at the top-right.
   // Clear ONLY that writable scroll interior before drawing one native
   // date-time line; avoid the overlapping two-line pre-fix layout.
-  paintNativeSeaDateHeader(ctx,fontAssets,st.dateTime);
+  // No GRAPH #4 asset means no scroll interior to clear or write onto.
+  if(uiGraph?.sea) paintNativeSeaDateHeader(ctx,fontAssets,st.dateTime);
   drawOriginalPanelText(dirNames[st.heading] ?? st.heading, 548, 182, {size:12,bold:true});
   drawOriginalPanelText(`${st.speed?.knots ?? 0}`, 550, 222, {size:13,bold:true});
   const seaDays=nativeSeaDayCount(st);

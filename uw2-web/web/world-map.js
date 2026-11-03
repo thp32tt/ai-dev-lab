@@ -71,23 +71,31 @@ function decodeWorldChunk(chunk, band, cells) {
   }
 }
 
-function decodeSeaShips(raw) {
-  const first = 0x4000;
-  if (raw.length <= first) return [];
-  const count = Math.floor((raw.length - first) / 0x400);
-  const frames = [];
-  for (let k = 0; k < count; k++) {
-    const o = first + k * 0x400;
-    const px = new Uint8Array(32 * 32);
-    px.fill(255);
-    for (let i = 0; i < 0x200; i++) {
-      const b = raw[o + i], m = raw[o + 0x200 + i];
-      const y = Math.floor((i * 2) / 32), x = (i * 2) % 32;
-      const hi = b >> 4, lo = b & 15, mh = m >> 4, ml = m & 15;
-      if (mh !== 0xF) px[y * 32 + x] = hi;
-      if (ml !== 0xF) px[y * 32 + x + 1] = lo;
+// DATA1 part 11 after its 16 KiB tile atlas contains 16 source blocks
+// of 0x400 bytes. Each block holds TWO independent 0x200-byte frames,
+// not a nibble-packed color plane and mask. Each frame is a 32x32 VGA
+// image stored in four bitplanes interleaved by scanline (4 bytes/plane).
+export function decodeSourceSeaShipFrames(raw) {
+  const first=0x4000;
+  if(!(raw instanceof Uint8Array))throw new TypeError('sea ship source requires bytes');
+  if(raw.length<=first)return [];
+  const remainder=raw.length-first;
+  if(remainder%0x400!==0)
+    throw new Error('original ship graphic bank truncated');
+  const frames=[];
+  for(let block=0;block<remainder/0x400;block++){
+    for(let pose=0;pose<2;pose++){
+      const off=first+block*0x400+pose*0x200;
+      const pixels=new Uint8Array(32*32);
+      for(let y=0;y<32;y++)for(let plane=0;plane<4;plane++){
+        for(let byte=0;byte<4;byte++){
+          const bits=raw[off+y*16+plane*4+byte];
+          for(let bit=0;bit<8;bit++)
+            pixels[y*32+byte*8+bit]|=((bits>>(7-bit))&1)<<plane;
+        }
+      }
+      frames.push(pixels);
     }
-    frames.push(px);
   }
   return frames;
 }
@@ -125,7 +133,7 @@ export function decodeWorldAssets(worldBuffer,data1Buffer){
   if(quad.length!==1024) throw new Error(`DATA1[18] ${quad.length}, expected 1024`);
   const chunk11 = d.decoded[11].data;
   const tiles=decodeWorldTiles(chunk11);
-  const seaShips=decodeSeaShips(chunk11);
+  const seaShips=decodeSourceSeaShipFrames(chunk11);
   return {cells,quad,tiles,seaShips};
 }
 
@@ -205,19 +213,24 @@ function seaRasterSurfaces(assets,w,h){
   return entry;
 }
 
-// Korean DATA1[11] supplies eight compass directions per ship class:
-// original frames 0..7 for oared ships and 8..15 for sailing ships.
-// The old four-way / steps-parity selector flickered between headings.
+// Original Korean DATA1[11]: 16 0x400-byte blocks = 32 planar frames.
+// Each ship class owns eight directions, each with two subtle movement
+// phases. Oared = 0..15, sail = 16..31. 16-frame fixtures remain
+// admitted only for legacy synthetic Canvas source-shape regressions.
 export function sourceSeaShipSpriteFrame(state,frameCount){
-  if(!state||!Number.isInteger(state.heading)||!Number.isSafeInteger(frameCount)||
-     frameCount<1)throw new Error('native source sea ship direction/frames invalid');
-  let bank=0;
-  if(frameCount>=16){
+  if(!state||!Number.isInteger(state.heading)||!Number.isInteger(state.steps)||
+     !Number.isSafeInteger(frameCount)||frameCount<1)
+    throw new Error('native source sea ship direction/frames invalid');
+  let frame;
+  if(frameCount>=32){
+    if(typeof state.flagshipOared!=='boolean')
+      throw new Error('native sea 32-frame ship rendering needs verified flagship oar class');
+    frame=(state.flagshipOared?0:16)+(state.heading&7)*2+(state.steps&1);
+  }else if(frameCount>=16){
     if(typeof state.flagshipOared!=='boolean')
       throw new Error('native sea 16-frame ship rendering needs verified flagship oar class');
-    bank=state.flagshipOared?0:8;
-  }
-  const frame=bank+(state.heading&7);
+    frame=(state.flagshipOared?0:8)+(state.heading&7);
+  }else frame=state.heading&7;
   if(frame>=frameCount)throw new Error('native sea original ship direction frame unavailable');
   return frame;
 }
@@ -256,7 +269,7 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
   const ships=assets.seaShips;
   if(!Array.isArray(ships)||!ships.length)
     throw new Error('native sea original ship sprite frames unavailable');
-  // Movement steps advance the game, never the source ship's compass sprite.
+  // Exact source compass index and original two-pose movement animation.
   const frame=sourceSeaShipSpriteFrame(state,ships.length);
   const sp=ships[frame];
   if(!(sp instanceof Uint8Array)||sp.length!==32*32)
@@ -264,7 +277,9 @@ export function renderSeaView(ctx,assets,state,dx=16,dy=16,tilesWide=23,tilesHig
   const simg=raster.shipImage;
   for(let i=0;i<sp.length;i++){
     const ci=sp[i],p=i*4;
-    if(ci===255){
+    // Original planar index zero is the transparent background around
+    // the source 32x32 hull. Keep 255 for isolated synthetic fixtures.
+    if(ci===0||ci===255){
       simg.data[p]=0;simg.data[p+1]=0;simg.data[p+2]=0;simg.data[p+3]=0;
       continue;
     }

@@ -18,6 +18,8 @@ const assets=decodeWorldAssets(ab(read("WORLDMAP.LZW")),ab(read("DATA1.LZW")));
 assert.equal(assets.cells.length,WORLD_CELL_W*WORLD_CELL_H);
 assert.equal(assets.tiles.length,128);
 assert.equal(assets.quad.length,1024);
+assert.equal(assets.seaShips.length,32);
+assert.ok(assets.seaShips.every(x=>x.length===1024));
 
 for(const slot of slots.filter(s=>!s.empty&&s.portWorld)){
   assert.ok(slot.portWorld.x>0&&slot.portWorld.x<WORLD_CHIP_W);

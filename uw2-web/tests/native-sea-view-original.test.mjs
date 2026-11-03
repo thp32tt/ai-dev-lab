@@ -60,11 +60,12 @@ try{
   }
  }
  assert.deepEqual(actual,expected);
- const spriteFrame=assets.seaShips[8];
+ assert.equal(assets.seaShips.length,32);
+ const spriteFrame=assets.seaShips[16];
  const expectedSprite=new Uint8ClampedArray(4096);
  for(let i=0;i<1024;i++){
   const idx=spriteFrame[i];
-  expectedSprite.set(idx===255?[0,0,0,0]:[...UW2_WORLD_PALETTE[idx],255],i*4);
+  expectedSprite.set(idx===0||idx===255?[0,0,0,0]:[...UW2_WORLD_PALETTE[idx],255],i*4);
  }
  assert.deepEqual(draw[1].data,expectedSprite);
  // Change to source-backed oared classification for the same ship indices;

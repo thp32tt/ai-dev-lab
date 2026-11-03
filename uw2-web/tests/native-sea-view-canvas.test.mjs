@@ -29,7 +29,7 @@ try{
       t[y*16+x]=(id+x+y)&15;
     return t;
   });
-  const seaShips=Array.from({length:16},(_,frame)=>{
+  const seaShips=Array.from({length:32},(_,frame)=>{
     const pixels=new Uint8Array(32*32);
     for(let i=0;i<pixels.length;i++)
       pixels[i]=i%9===0?255:(frame+i)%16;
@@ -63,22 +63,21 @@ try{
   // Derive expected physical world tile IDs independently of the pixel
   // draw function, including the polar land sentinel.
   assert.deepEqual(draws[0].bytes,expected);
-  const ship=seaShips[8]; // 16 frames -> sail set1, heading north, parity0.
+  const ship=seaShips[16]; // 32 original planar frames -> sail bank, north pose0.
   const shipExpected=new Uint8ClampedArray(32*32*4);
   for(let i=0;i<ship.length;i++){
-    const c=ship[i]===255?null:UW2_WORLD_PALETTE[ship[i]];
+    const c=ship[i]===0||ship[i]===255?null:UW2_WORLD_PALETTE[ship[i]];
     shipExpected.set(c?[...c,255]:[0,0,0,0],i*4);
   }
   assert.deepEqual(draws[1].bytes,shipExpected);
-  // Original oared flagship must use the 0..7 sprite bank rather than the
-  // previous hard-coded 8..15 sail bank. The geometry stays the same.
+  // Original oared flagship uses frames 0..15, sail uses 16..31.
   const oarState={...state,flagshipOared:true};
   renderSeaView(target,assets,oarState,9,11,3,3);
   assert.equal(draws.length,4);
   const oaredFrame=new Uint8ClampedArray(32*32*4);
   for(let i=0;i<seaShips[0].length;i++){
     const v=seaShips[0][i];
-    oaredFrame.set(v===255?[0,0,0,0]:[...UW2_WORLD_PALETTE[v],255],i*4);
+    oaredFrame.set(v===0||v===255?[0,0,0,0]:[...UW2_WORLD_PALETTE[v],255],i*4);
   }
   assert.deepEqual(draws[3].bytes,oaredFrame);
   assert.notDeepEqual(draws[1].bytes,draws[3].bytes);
@@ -87,7 +86,7 @@ try{
   assert.equal(draws.length,4); // incomplete metadata leaves target untouched
   // Each later frame repaints reused surfaces instead of creating new DOM
   // canvases or leaking the last frame's pixels.
-  seaShips[8][0]=3;
+  seaShips[16][0]=3;
   state.steps=2;
   renderSeaView(target,assets,state,9,11,3,3);
   assert.equal(made.length,2);

@@ -44,6 +44,15 @@ assert.throws(()=>checkWebPortSourcePatch([
 assert.equal(checkWebPortSourcePatch([
  "function sailShip() { tickSeaWithBankInterest(); }"
 ]).mode,'NO_EMULATOR_ENTRYPOINT');
+assert.throws(()=>checkWebPortChangeSet([
+ web,test,'uw2-web/web/native-8086.js'
+]),/emulator disguised/);
+assert.throws(()=>checkWebPortChangeSet([
+ web,test,'uw2-web/web/native-guest-executor.js'
+]),/emulator disguised/);
+assert.throws(()=>checkWebPortChangeSet([
+ web,test,'uw2-web/tools/safe-gameprobe.js'
+]),/automatic tools\/probes/);
 const agent=fs.readFileSync(new URL('../AGENTS.md',import.meta.url),'utf8');
 const plan=fs.readFileSync(new URL('../docs/ORIGINAL_DOS_TO_WEB_DISASSEMBLY_MASTER_PLAN_20261031.md',import.meta.url),'utf8');
 const readme=fs.readFileSync(new URL('../README.md',import.meta.url),'utf8');

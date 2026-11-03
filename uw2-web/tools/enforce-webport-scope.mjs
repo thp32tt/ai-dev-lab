@@ -28,6 +28,12 @@ export function checkWebPortChangeSet(paths){
   FROZEN_TOOL.test(p)||FROZEN_TEST.test(p));
  if(frozen.length)
   throw new Error('UW2 WEB ONLY: emulator/CPU/DOS/EMS source or test changes forbidden: '+frozen.join(', '));
+ const unrelatedToolChanges=relevant.filter(p=>p.startsWith('uw2-web/tools/')&&!POLICY_ONLY.has(p));
+ if(unrelatedToolChanges.length)
+  throw new Error('UW2 WEB ONLY: automatic tools/probes modification forbidden: '+unrelatedToolChanges.join(', '));
+ const suspiciousNames=relevant.filter(p=>/\/(?:native-)?[^/]*(?:8086|80186|cpu-emulat|dos-emulat|guest-exec|int21|int67|bios-int)[^/]*\.(?:js|mjs)$/i.test(p));
+ if(suspiciousNames.length)
+  throw new Error('UW2 WEB ONLY: emulator disguised in native file name forbidden: '+suspiciousNames.join(', '));
  const change=relevant.filter(p=>!POLICY_ONLY.has(p));
  const invalidWeb=change.filter(p=>p.startsWith('uw2-web/web/')&&!BROWSER_RUNTIME.test(p));
  if(invalidWeb.length)throw new Error('UW2 WEB ONLY: unknown/non-native browser runtime file forbidden: '+invalidWeb.join(', '));

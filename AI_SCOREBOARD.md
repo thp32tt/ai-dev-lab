@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 Focus-first exact verified hybrid build (2026-11-03 KST)
+
+- **RUN_KEY:** `OUTRUN-DX11-FOCUS-HYBRID-20261103-82A11E17` — **AI 2 ChatGPT2**. GitHub latest SSOT previous cumulative **2515 + one independent DX11 Focus-first dual-runtime source and validated packaged implementation +1 = 2516 cumulative AI 2 points**. This is separate from earlier release hotfix and Daytona work; retries, extra SHA inspection, artifact download, future same-release/HMD tests add +0. AI 1 unchanged.
+- **Code:** `thp32tt/OutRun2006Tweaks@vr-dx11-native-r71` target SHA `82a11e170dd7b98492122642fc51d0107d18f40f`. Updated Focus-derived conservative ini/2D+VR selector and dedicated DX11 first-game-frame launcher, explicit Focus binary restoration and experimental DX11 switchers, integration docs and GitHub workflow `.github/workflows/dx11-focus-baseline-package.yml`. Existing `src/vr/d3d11` backend preserved and separate, without pretending its thousands of diverged changes were merged.
+- **Build/packaging:** Exact-SHA GitHub Actions run `41576463559` **SUCCESS**: verified published Focus v0.01 ZIP SHA256 `66e6b8cfdea6bbe28d45778d9663466ba0d212c0e6027b518ec3800db9f50959` and source `5d68d900deeccc003c4c8bf0e5eb46614eaa3302`; compiled experimental DX11 native Win32 dinput8.dll and x64 OpenXR host, then uploaded Focus-default / DX11-opt-in hybrid artifact ID `13204585405`. Exact package ZIP SHA256 `1b276d374f23bb9d2ac341c6091fb943032533599dee0c1547b2af51218554ba`; verified both separate PE architecture pairs and Focus default binary byte identity to packaged Focus_Base directory.
+- **Scope:** This is a Focus-first **runtime/package integration** and verified independent DX11 compilation, not full C++ renderer source-base convergence or proven DX11 gameplay. DX11 Quest 3 HMD runtime validation **UNTESTED**; no user-PC install or public release change. Same result is scored once only.
+
 ## AI 2 Daytona Model 2 VR Wizard runtime safety and HMD evidence gate (2026-11-03 KST)
 
 - **RUN_KEY:** `DAYTONA-MODEL2-WIZARD-RUNTIME-20261103` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2514 + one independently integrated actual Daytona Model 2 VR runtime safety/health/bug-capture feature +1 = 2515 cumulative AI 2 points**. The same PR's safe-mode working-directory repair, source tests, multiple CI runs, release-bundle assembly and duplicate status reports are part of that single achievement and score +0 separately. AI 1 unchanged.

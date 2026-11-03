@@ -20,7 +20,7 @@ for(const p of [
 assert.throws(()=>checkWebPortChangeSet([test]),/playable web game source/);
 assert.throws(()=>checkWebPortChangeSet([web]),/gameplay requires associated/);
 assert.throws(()=>checkWebPortChangeSet([
- 'uw2-web/tools/original-inventory.mjs',test]),/playable web game source/);
+ 'uw2-web/tools/original-inventory.mjs',test]),/automatic tools\/probes/);
 assert.throws(()=>checkWebPortChangeSet(['uw2-web/docs/new-doc.md']),/playable web game source/);
 
 assert.throws(()=>checkWebPortChangeSet([

@@ -186,6 +186,7 @@ jobs:
           node --check uw2-web/web/browser-dos-child-bridge.js
           node --check uw2-web/web/browser-original-open-session.js
           node --check uw2-web/web/browser-original-main-session.js
+          node --check uw2-web/tests/browser-original-guest-dos-ems.test.mjs
           node --check uw2-web/tests/browser-original-main-session.test.mjs
           node --check uw2-web/web/dos-readonly-files.js
           node --check uw2-web/web/dos-original-files.js
@@ -344,6 +345,7 @@ jobs:
           node uw2-web/tests/guest-external-interrupt-await.test.mjs
           node uw2-web/tests/browser-original-guest-bridge.test.mjs
           node uw2-web/tests/browser-original-guest-ems.test.mjs
+          node uw2-web/tests/browser-original-guest-dos-ems.test.mjs
           node uw2-web/tests/browser-original-source-wait.test.mjs
           node uw2-web/tests/browser-dos-child-bridge.test.mjs
           node uw2-web/tests/browser-dos-child-irq0.test.mjs

@@ -15,7 +15,7 @@ const shaHex=bytes=>Array.from(bytes,
 export async function createBrowserOriginalMainSession({
  cpu,original,target,allocationParagraphs,
  pspSegment=0x1ff0,loadSegment=0x2000,initialPsp,initialIvt,
- ems,maxTotalSteps=1000000,maxQueuedKeys=64,
+ ems,dos,maxTotalSteps=1000000,maxQueuedKeys=64,
  pauseOnMissingDosIvt=false,pauseOnMissingGuestInterrupt=false
 }={}){
  if(!(cpu instanceof RealMode8086))
@@ -45,6 +45,9 @@ export async function createBrowserOriginalMainSession({
  if(ems!==undefined&&(initialIvt.knownVectors.includes(0x67)||
     cpu.interruptVectors.has(0x67)||cpu.interruptAdapters.has(0x67)))
   throw new Error('browser MAIN INT67 EMS owner conflict');
+ if(dos!==undefined&&(initialIvt.knownVectors.includes(0x21)||
+    cpu.interruptVectors.has(0x21)||cpu.interruptAdapters.has(0x21)))
+  throw new Error('browser MAIN INT21 DOS owner conflict');
  // Hash and MZ relocation must consume precisely one stable input copy.
  const source=Uint8Array.from(original);
  const digest=shaHex(new Uint8Array(
@@ -66,7 +69,7 @@ export async function createBrowserOriginalMainSession({
  });
  const bridge=createBrowserOriginalGuestBridge({
   cpu,target,maxQueuedKeys,maxTotalSteps,
-  pauseOnMissingDosIvt,pauseOnMissingGuestInterrupt,ems
+  pauseOnMissingDosIvt,pauseOnMissingGuestInterrupt,ems,dos
  });
  const status=()=>bridge.snapshot();
  return Object.freeze({

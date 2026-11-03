@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 UW2 original sea date/time HUD source overlap fix (2026-11-03 KST)
+
+- **RUN_KEY:** `UW2-NATIVE-SEA-DATE-SCROLL-20261103-886A6049` — **AI 2 ChatGPT2**. Previous confirmed cumulative **2517 + one independently delivered UW2 browser-native GRAPH #4 source-bound sea date/time HUD visual feature (+1) = 2518 cumulative AI 2 points**. The same feature's CI repair, screenshot inspection, N100 deployment, Firefox regression, source readback and report are **+0** additional. AI 1 unchanged.
+- **Implementation:** `thp32tt/ai-dev-lab@uw2-web-port` exact source HEAD `886a60490c28a84c2f0b3436efcaf9aaf7097658`. Original `GRAPH.DAT` #4 scroll has existing fixed top-right source ink; prior `drawOriginalDatePanel` drew two rows through it. Shipping `web/app.js` now uses `web/native-sea-date-header.js` for a bounded, source-palette (243,227,211) single-line year.month.day / hour:minute header with real Korean browser font metrics, clipped 121×20px source scroll interior, verified source-clock validation, no fabricated scroll on missing GRAPH asset.
+- **Proof:** GitHub Actions exact-head run `41592537687` **SUCCESS**: web-only scope, syntax, boot and fidelity regression. Source UI/layout tests `native-sea-date-header.test.mjs`, `native-sea-hud.test.mjs` and native game menu regression passed; N100 original GRAPH #4 bitmap inspected, deployed `app.js` and `native-sea-date-header.js` GitHub readback exact. Actual Firefox boot → source save slot2 → Danzig harbor → depart → turn, live visual screenshot shows `1522.7.6 17:40` readable in ONE scroll line, no previous fixed-label overlap.
+- **Boundary:** Browser-native Korean original GRAPH pixels and UI verified; full DOS VGA source comparison, player cross-device verification and full-game completion still pending.
+
 ## AI 2 UW2 browser-native Korean ship artwork and sea-sprite reconstruction (2026-11-03 KST)
 
 - **RUN_KEY:** `UW2-NATIVE-OPGRAPH-DATA1-SHIP-ART-FIX-20261103-92CFBF3D` — **AI 2 ChatGPT2**. Previous confirmed cumulative **2516 + one independently integrated and real-browser-tested UW2 source graphics/gameplay correction (+1) = 2517 cumulative AI 2 points**. The same defect's intermediate 8-direction fix, code/CI retries, N100 deployment, browser retest and reporting add **+0** separately. AI 1 unchanged.

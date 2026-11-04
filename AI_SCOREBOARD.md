@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original D3D9 same-Draw Z/cull and binocular reverse-depth source (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-D3D9-SAME-DRAW-REVERSE-Z-20261104-EF3E65B5`. This is ONE independent Model2VR native x86 D3D9 source-state/Win64 OpenXR stereo depth fidelity achievement; intermediate material commits, causal static CI test repair, and documentation are the SAME achievement, +0 extra. AI 1 unchanged.
+- **Validated exact source SHA:** `thp32tt/Model2VR-tools@ef3e65b5563ee3b1b988ff04ff3103534e697618` on `main`. Original C++ feature `746f9bb3d7d7a8009c68d80b3f86243db57a28ad`; same-Draw Z/cull source capture `42de8b6ddac31161bdbc015af8263682d1996dcf`; UP/VB offline source continuity `a4d13660f7f73214bc22929a0115cc2bf5ad4eba`; regression tests `a46b9a60c7214552819431ff4e14e178a3036cca`; causal legacy guard test repair `ef3e65b5563ee3b1b988ff04ff3103534e697618`. One feature, +1 only.
+- **Actual implementation:** Original `D3DRS_ZFUNC` `ZENABLE` `ZWRITEENABLE` `CULLMODE` observed under the exact same original Draw witness and Present. The verified-world source ABI preserves legacy 0/1/2 and extends exact `EQUAL`/`GREATER`/`GREATEREQUAL`/`NOTEQUAL` (3..6) through both independent stereo float-quantized Z rasters. UP/VB reports reject inconsistent Present/raster source joins. Does not fabricate game-world proof or modify original game Draw, input, simulation, FFB, OutRun or web port.
+- **Four exact-SHA GitHub Actions SUCCESS:** Public tools `41835505135`; ModDev toolkit `41835504926`; Windows x86 probe `41835505004`; Daytona Win32 game producer + Win64 OpenXR release `41835504947`. Intermediate failing legacy check and its repair are not separate credits.
+- **RUNTIME_VALIDATION=UNTESTED.** The original Daytona race gameplay CPU projector / D3D9 caller / A-B matrix branch and camera axes/units remain without authenticated private runtime sample; no Quest 3/VDXR binocular hardware test claimed.
+- **Score calculation:** AI 2 2563 + one new independently verified material source achievement +1 = **2564 cumulative AI 2 points**. All duplicate CI/retries/docs/status checks +0.
+
 ## AI 2 OutRun DX11 authentic W=0 FVF triangle source GPU clipping correction (2026-11-04 KST)
 
 - **RUN_KEY:** `CONVERSION-DX11-01229-AUTHENTIC-W0-FVF-TRIANGLE-GPU-CAPTURE-4734B17A` / **TASK_ID:** `CONVERSION-DX11-01229`. ONE independent gameplay native GPU source defect repair, not repeated credits for causal CI/C6. **AI 2 previous confirmed 2562 + one independent implementation achievement +1 = 2563 cumulative AI 2 points.** AI 1 unchanged.

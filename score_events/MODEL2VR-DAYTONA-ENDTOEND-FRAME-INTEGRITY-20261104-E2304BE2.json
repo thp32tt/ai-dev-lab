@@ -1,0 +1,27 @@
+{
+  "run_key": "MODEL2VR-DAYTONA-ENDTOEND-FRAME-INTEGRITY-20261104-E2304BE2",
+  "ai": "AI 2 ChatGPT2",
+  "date_kst": "2026-11-04",
+  "repo": "thp32tt/Model2VR-tools",
+  "validation_bearing_sha": "e2304be2386614cd8e7eeaf5088f0fd8a92475e5",
+  "source_commits": [
+    "bbff2144d27ed60498f199945a1110dfd1c23f26",
+    "6689c92fab860c218d112b2f0d1613cc7876c9d5",
+    "0db5d76d09009dd3f12faf4f5094a43d4006cac3",
+    "e2304be2386614cd8e7eeaf5088f0fd8a92475e5"
+  ],
+  "docs_head": "064faee93c9422ab92a3e342cc7cdf9aa549c352",
+  "workflows": [
+    41765243394,
+    41765243309,
+    41765243301,
+    41765243406,
+    41765243310
+  ],
+  "artifact_id": 13292357154,
+  "previous_confirmed": 2540,
+  "delta": 1,
+  "new_confirmed": 2541,
+  "runtime_validation": "UNTESTED",
+  "duplicate_policy": "One connected frame lifecycle result; source commits/CI/package/docs/retries/HMD checks +0; AI1 unchanged"
+}

@@ -96,17 +96,17 @@ assert.deepEqual({x:sea.x,y:sea.y},beforePos);
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 assert.match(app,/nativeReadySeaPortMarker\(st,nearbyPort\)/);
 assert.match(app,/nativeSeaPortMarkerContains\(point,seaPortHoverMarker\)/);
-assert.match(app,/canvas\\.style\\.cursor=hovering\\?"pointer":"default"/);
+assert.ok(app.includes('canvas.style.cursor=hovering?"pointer":"default"'));
 const hover=app.slice(app.indexOf('canvas.addEventListener("pointermove"'),
  app.indexOf('canvas.addEventListener("pointerleave"'));
-assert.match(hover,/seaPortHoverMarker\\.portName\\+" · 클릭하여 기항"/);
-assert.doesNotMatch(hover,/(?:^|[^A-Za-z])marker\\.portName/);
+assert.ok(hover.includes('seaPortHoverMarker.portName+" · 클릭하여 기항"'));
+assert.equal(hover.includes('canvas.title=marker.portName'),false);
 const inputLoss=app.slice(app.indexOf('function suspendNativeSeaControls('),
  app.indexOf('canvas.addEventListener("click"'));
-assert.match(inputLoss,/if\\(seaAutoActive\\)\\{/);
-assert.match(inputLoss,/stopSeaAuto\\(reason\\)/);
-assert.match(inputLoss,/suspendNativeSeaControls\\("auto-focus-lost"\\)/);
-assert.match(inputLoss,/suspendNativeSeaControls\\("auto-tab-hidden"\\)/);
+assert.ok(inputLoss.includes('if(seaAutoActive){'));
+assert.ok(inputLoss.includes('stopSeaAuto(reason)'));
+assert.ok(inputLoss.includes('suspendNativeSeaControls("auto-focus-lost")'));
+assert.ok(inputLoss.includes('suspendNativeSeaControls("auto-tab-hidden")'));
 assert.match(app,/seaPortHoverMarker=null;\s*canvas\.style\.cursor="default"/);
 assert.match(app,/nativeReadySeaPortPointerHit\(point,st,nearbyPort\)/);
 assert.match(app,/if\(nativeReadySeaPortPointerHit\(point,st,nearbyPort\)\)\{/);

@@ -111,11 +111,14 @@ for(const lock of [{liveTown:{}},{liveSea:{}},{checkpointInFlight:true},
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 const sidebar=app.slice(app.indexOf('function renderSlots() {'),
  app.indexOf('async function loadPortraits() {'));
-assert.match(sidebar,/btn\\.disabled = !previewAdmission\\(\\)/);
-assert.match(sidebar,/if\\(!previewAdmission\\(\\)\\)return;\\s*selected = openNativeSaveSession\\(slot\\)/);
+assert.ok(sidebar.includes('btn.disabled = !previewAdmission()'));
+assert.ok(sidebar.includes('if(!previewAdmission())return;'));
+assert.ok(sidebar.includes('selected = openNativeSaveSession(slot)'));
+assert.ok(sidebar.indexOf('if(!previewAdmission())return;')<
+ sidebar.indexOf('selected = openNativeSaveSession(slot)'));
 const diagnosticRun=app.slice(app.indexOf('$("run-button").addEventListener("click"'),
  app.indexOf('window.addEventListener("keydown"'));
-assert.match(diagnosticRun,/canPreviewNativeOriginalSaveSlot\\(slots\\[selected\\?\\.index\\]/);
+assert.ok(diagnosticRun.includes('canPreviewNativeOriginalSaveSlot(slots[selected?.index]'));
 assert.ok(diagnosticRun.indexOf('canPreviewNativeOriginalSaveSlot')<
  diagnosticRun.indexOf('startSelectedGame()'));
 

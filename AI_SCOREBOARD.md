@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original CPU source-to-D3D9 draw revalidation (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-PROJECTOR-DRAW-RECHECK-20261104-6096BF19`, AI 2 (ChatGPT2). **Previous confirmed cumulative 2554 + one new source-and-CI-verified Model2 VR achievement +1 = 2555 cumulative AI 2 points**. AI 1 unchanged.
+- **Exact material-source validation SHA:** `thp32tt/Model2VR-tools@6096bf19091e53896f77216eff0fa2db8e7e491b`. Connected material commits `e54740f`, `acb79db`, `8e3fbcd`, `bd1af7a`, `b9180fc`, `6096bf1` are ONE integrated achievement. Source state snapshots, read-only original CPU->GPU Draw provenance checks, fixed-function color/alpha fidelity, source depth/MRT/primary-D3D9 owner guard, same-witness offline source-caller evidence and Windows x86/x64 OpenXR producer/host regression are one unit. Bookkeeping docs commit `72aff4c` and later retests are +0.
+- **Exact-SHA CI:** Public tools `41809347791` SUCCESS; ModDev `41809347839` SUCCESS; Windows x86/CTest `41809347786` SUCCESS; Daytona native stereo Win32 game producer + Win64 OpenXR host and experimental ZIP `41809347817` SUCCESS. No repeated exact-SHA CI.
+- **Runtime truth:** `RUNTIME_VALIDATION=UNTESTED`; source/build/transport verified, but authentic Daytona race-world Draw authentication, camera calibration, gameplay world/HUD ownership and Quest 3 VDXR native stereo are not proven. Private reverse-analysis remains private; OutRun/UW2 unchanged.
+- **Scoring calculation:** **AI 2 previous 2554 + new independent connected achievement +1 = cumulative 2555**. Further retries, documentation, packaging, ongoing task rollover or restating this result score +0.
+
 ## AI 2 Model2VR original CPU matrix/command/Draw-pass and binocular texture source fidelity (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-MATRIX-COMMAND-RT-PALETTE-20261104-7E784B33` — AI 2 ChatGPT2. **Previous confirmed cumulative 2553 + one new connected original x86 D3D9-to-x64 OpenXR source milestone +1 = 2554 cumulative AI 2 points.** Eight connected implementation commits, matrix/geometry/draw-pass reports, palette+texture formats, regression fixture repair, CI and documentation count as ONE result; AI 1 unchanged; follow-up CI/docs/retries +0.

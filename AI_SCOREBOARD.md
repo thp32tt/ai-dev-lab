@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Model 2 native CPU projector ↔ D3D9 Draw camera-source correspondence (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-CAMERA-CPU-D3D9-JOIN-20261104-5D7C5828` — **AI 2 ChatGPT2**. Previous independently confirmed AI2 cumulative **2546** plus one coherent new Model2 VR CPU-to-original-D3D9 draw source implementation **+1** = **2547 cumulative AI 2 points**. The three material commits, Python analyzer/report, C++ tests and CI results are ONE milestone. Source repair/retest/checkpoint/reports/rollover receive +0. AI 1 unchanged.
+- **Source:** `thp32tt/Model2VR-tools@main` actual material commits `4418c42fbabc078cf9d07fee3c6b3f377c5d597d`, `342b39e5b2d73734d970a87f5e70530ec47f36e4`, exact final validation-bearing SHA `5d7c58288642fa0781630d7fa95514806d7f42d1`. Same-thread, same-original-Present-epoch bounded CPU pre/post ProjectVertexToScreen projection ring, actual original D3D9 XYZRHW UP and Daytona 32-byte shader-UP clip-viewport candidate joins, distinct triangle-source ambiguity rejection, original GPU Draw -> CPU projector caller topology with unique witness IDs and per-frame summary. Source only; no executable patches, FFB changes, or extra emulation frames.
+- **Exact-SHA GitHub Actions:** Public tools CI `41780248238` SUCCESS; ModDev toolkit CI `41780248391` SUCCESS; Windows x86 probe build `41780248214` SUCCESS; Daytona Win32 native stereo producer + Win64 OpenXR host release `41780248207` SUCCESS. The previous connected commits had their own successful CI but are NOT additional rewards.
+- **Limits:** Correlation candidate is not proven original world/HUD classification, calibrated game camera axes/game-units-per-meter, or HMD 6DoF visual fidelity. **RUNTIME_VALIDATION=UNTESTED** until original Daytona + Quest 3/VDXR. No modifications to OutRun, webport or private reverse-analysis data. No duplicate source-SHA CI re-run.
+- **Formula:** **2546 + 1 = 2547**.
+
 ## AI 2 GitHub HD QA → ChatGPT A/B ImageGen → independent C1 → strict DDS reassembly pipeline (2026-11-04 KST)
 
 - **RUN_KEY:** `OUTRUN-HD-QA-GITHUB-AB-C1-PORTAINER-PIPELINE-20261104-707263A0` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2545** + one new independently implemented/CI-verified end-to-end QA rework orchestration milestone **+1** = **2546 cumulative AI 2 points**. Prior strict HD QA engine `OUTRUN-HD-STRICT-SOURCE-CLEAN-QA-REBUILD-20261104-CDD4D66B` was already awarded, so it is NOT rescored. All intermediate commits, retries, report refreshes, Portainer redeploy and same-feature rechecks are +0. AI 1 unchanged.

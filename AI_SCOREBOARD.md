@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Model 2 VR C-lane dedicated ChatGPT project routing (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2-C-LANE-SEPARATE-CHATGPT-PROJECT-20261104` — independently developed and statically tested one-time migration from UW2 C lane to Daytona USA / Sega Model 2 OpenXR VR C lane. Original OutRun A and frozen DXVK B remain isolated. UW2 automated dispatch is disabled in Compose; UW2 prior source/history retained.
+- **Implementation:** `thp32tt/OutRun2006Tweaks@chat-controller-downloads` uses `MODEL2_AUTODEV_ENABLED=true` / `UW2_WEB_PORT_ENABLED=false`; C routes to `thp32tt/Model2VR-tools@main` and mandatory user-created distinct ChatGPT project home `MODEL2_PROJECT_URL`. Per-slot ChatGPT ID allowlist prevents old OutRun project fallback, wrong-project sends and cross-project persisted chats. C loop uses one initial context bootstrap, then short follow-up at >=30min, never interrupts busy generation; keeps source-first 20min+ target without idle time padding. Model2 master plan `thp32tt/Model2VR-tools@main:docs/automation/MODEL2_VR_AUTODEV_MASTER_PLAN.md` created at `a41840fa6c052405f5aded580b70536c8bc3c336`.
+- **Verification:** N100 lightweight static combined controller syntax PASS; 6 Model2 project separation tests, 16 existing UW2 loop regressions and 3 DX11 C6 parser regressions all PASS (25/25); GitHub controller test commit `7ff31d9cd9008c041ad8d9c0ed53d6a6b752cba5`. `MODEL2_PROJECT_URL` is not yet available and live Portainer controller still runs 2026-10-31 v5 with UW2. This is a verified source/controller feature, **NOT a claim of successful live Model2 automation, runtime launch or VR/HMD game validation**. The user must create a separate ChatGPT Project, set its actual home URL and redeploy. Later status checks, redeploy, source rechecks or retries of same feature +0. AI1 separate.
+- **Score:** previous confirmed AI 2 `2533` + independently integrated and tested dedicated Model2 controller mode `+1` = new cumulative AI 2 **2534**.
+
+
 ## AI 2 수도권 연간이용권 특가 정기 조사 (2026-11-04 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-04T08:44:05+09:00` — AI 2 ChatGPT2.

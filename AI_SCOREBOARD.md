@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun DX11 authentic W=0 FVF triangle source GPU clipping correction (2026-11-04 KST)
+
+- **RUN_KEY:** `CONVERSION-DX11-01229-AUTHENTIC-W0-FVF-TRIANGLE-GPU-CAPTURE-4734B17A` / **TASK_ID:** `CONVERSION-DX11-01229`. ONE independent gameplay native GPU source defect repair, not repeated credits for causal CI/C6. **AI 2 previous confirmed 2562 + one independent implementation achievement +1 = 2563 cumulative AI 2 points.** AI 1 unchanged.
+- **Validated exact SHA:** `thp32tt/OutRun2006Tweaks@4734b17abf8720accb743a4214cdcd9da07a6a7d` on `vr-dx11-native-r71`. Original C++ source+test implementation `3c0d36510cd918b0b4fabc821f78eff58ef744d9`; causal test/legacy policy/gate repairs `5080eae43bcaf4b6fe1bdf474b0be0d578a0a0d2`, `7ad1849170537b5c1b05362846125e6e68ab657b`, `3af256e383dfacaa115aa1653d27434a728453e1`, `4734b17abf8720accb743a4214cdcd9da07a6a7d` are the SAME task, +0 extra.
+- **Actual implementation:** Native real-game FVF GPU PRE/POST RGB capture now accepts authentic finite nonzero-XYZ W=0 triangles by homogeneous eye clipping, matching existing game FVF point polygon translation; rejects projectively undefined all-zero source, incomplete original triangle IA, and false line/point-to-triangle CPU geometry. Retains actual native D3D11 Draw/DrawIndexed, original D3D9 game draw/present/input/FFB, DX9Ex fallback, and DXVK freeze. Changed C++ production `src/vr/d3d11/native_game_raw_fvf_clip_capture.hpp`, positive/negative regression fixtures `tests/native_raw_fvf_user_clip_capture_test.cpp` and `tests/native_raw_dual_tile_test.cpp`; no invented GPU RGB data.
+- **Five required exact-SHA CI SUCCESS:** DX11 Fast `41831768893`; Backend Conversion `41831768914`; Windows Build `41831777901`; OpenXR architecture `41831777873`; HUD Inspector `41831777878`. Optional Native Transport WARP `41831768827` SUCCESS. Previous failed intermediate SHAs were repaired under this same task, not scored separately. CI skip applies only to bookkeeping, not validation-bearing source SHA.
+- **RUNTIME_VALIDATION=UNTESTED.** No matching OutRun game executable desktop GPU/published menu/vehicle/race RGB evidence or Quest 3 + VDXR binocular gameplay optics/performance test occurred. Native full frame and real HMD success are NOT claimed.
+- **Score calculation:** AI 2 2562 + independent exact-SHA implementation +1 = 2563; C6/checkpoint/CI/test-repair/retry/status +0.
+
 ## AI 2 Model2VR authentic D3D9 blend/mipmap/textureless x86-to-OpenXR binocular source continuity (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-ORIGINAL-D3D9-BLEND-MIP-SOURCE-20261104-B3F43F17`. ONE independent connected and exact-SHA-CI-verified real original D3D9 material/source integration achievement. **AI 2 previous confirmed 2561 + one new genuine source achievement +1 = 2562 cumulative AI 2 points.** AI 1 unchanged. Source commits, test repair, CI, docs/readback and retries are +0 additional score.

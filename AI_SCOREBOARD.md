@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original D3D9 blending, source alpha and CPU matrix-identity fidelity (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-D3D9-BLEND-MATRIX-ALPHA-20261104-594BDE6D` — AI 2 ChatGPT2. **Previous independently confirmed cumulative 2552 + one new source-connected verified D3D9 alpha/material and CPU-projector matrix provenance milestone +1 = 2553 cumulative AI 2 points.** Original blend fidelity, new authentic texture formats, depth LEQUAL repair, projector matrix-consistency guards, tests, CTest and documentation form ONE result. OutRun, UW2 and AI 1 are unchanged; retries, follow-up CI and bookkeeping +0.
+- **Exact validated implementation SHA:** `thp32tt/Model2VR-tools@594bde6dbf14b5969065f4441870e028bc7276c0`. Source commits `b3638ed`, `0783f5d`, `27af40a`, `22a71c4`, `867299c`, `b6f5209`, `508e845`, `62e76fd`, `594bde6`; master-plan documentation `b100e6e` is **[skip ci], +0**.
+- **Original x86 D3D9 to 64-bit OpenXR stereo path:** Exact supported original alpha blend-factor state and RGBA composition, alpha-test after perspective-correct diffuse/texel sampling, float-quantized LEQUAL Z, genuine CPU-lockable RGB332/RGB24/X4R4G4B4/A8/A4L4 textures, MIRRORONCE address, same-thread/same-Present CPU projector active-matrix identity -> original D3D9 source Draw geometry, reject mixed matrices -> independently clipped/rasterized eyes -> existing pose-tagged x86 GameStereo IPC -> Win64 OpenXR host. Only independently authenticated world draws are eligible; arbitrary HUD/unknown Draws are NEVER promoted.
+- **Exact SHA GitHub Actions all SUCCESS:** [Public tools](https://github.com/thp32tt/Model2VR-tools/actions/runs/41801976433), [ModDev toolkit](https://github.com/thp32tt/Model2VR-tools/actions/runs/41801976620), [Windows x86 probe + tests](https://github.com/thp32tt/Model2VR-tools/actions/runs/41801976599), [Daytona Win32 producer + Win64 OpenXR release package](https://github.com/thp32tt/Model2VR-tools/actions/runs/41801976673). Earlier failing intermediate same-result CTest repaired, not additional work credit.
+- **Runtime boundary:** `RUNTIME_VALIDATION=UNTESTED`: original Daytona gameplay world/HUD Draw caller, camera matrix A/B semantics, game units/axes, Quest 3+VDXR actual two-eye display and frame rate still require private original emulator evidence and hardware test. Private REA traces and ROMs are not in public repo.
+- **Score formula:** **2552 + 1 = 2553**.
+
 ## AI 2 Model2VR original D3D9 diffuse/modulated source + VB/IB native stereo fidelity (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-MATERIAL-VB-TOPOLOGY-20261104-459E73B2` — AI 2 ChatGPT2. **Previous confirmed cumulative 2551 + one new independent connected D3D9 world-material and VB/IB source-to-binocular-OpenXR implementation +1 = 2552 cumulative AI 2 points.** Multiple source commits, regression repairs, CI jobs and docs together count ONCE. AI 1 score is unchanged.

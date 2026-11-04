@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Korean HD source-clean-final strict QA DDS regeneration policy/engine (2026-11-04 KST)
+
+- **RUN_KEY:** `OUTRUN-HD-STRICT-SOURCE-CLEAN-QA-REBUILD-20261104-CDD4D66B` — **AI 2 ChatGPT2**. GitHub latest confirmed **2544 + 1 = 2545 cumulative AI 2 points**. One independently implemented, GitHub-tested strict quality gate engine responding to user's failed DDS/JPG visual review; not multiple credits for intermediate commits, CI retry, workflow rerun, or future QA results. AI 1 unchanged.
+- **Code:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` new `tools/localization/hd_strict_qa.py` and `test_hd_strict_qa.py`; production pipeline `github_ab_imagegen_atlas_batch.py` now routes all A/B to the strict engine and new `OUTRUN_AB_HD_STRICT_CLEAN_TEST_ONLY.zip`. Exact HD source/plan SHA, alpha-only CLEAN (non-isolatable plate HOLD), original per-line native effect bbox ceiling (no upscale), original line count, candidate edge guard, pixel-exact protected area, decoded DDS RGBA roundtrip, SOURCE/CLEAN/FINAL view evidence, no-font fallback.
+- **Verified:** GitHub Actions fast strict QA `41775150366` **SUCCESS**; legacy 13 tests + new strict 8 tests = **21/21 PASS**. Implementation commits `beee4b20`, `a1268670`, `9c1f2fb2`, `2ab605b8`, `b8689582`, `7cc64b3d`, `cdd4d66b`, procedure `83c2faf5`. Pre-existing 11/35 and 60/200 DDS outputs are disqualified by user feedback and **are not newly scored**.
+- **Not scored:** Whole 954-ROI full DDS rebuild in GitHub Action `41775134423` was still running at this checkpoint; independently verified C1/C3 visual QA and game runtime are UNTESTED, RELEASE NOT APPROVED. Same work's build completion/retest, score updates and retries receive +0 unless separate new proven functionality occurs.
+- **Formula:** **2544 + 1 = 2545**.
+
 ## AI 2 Model 2 Daytona offscreen-first stereo source color/Z coverage (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-DAYTONA-OFFSCREEN-Z-COVERAGE-20261104-03D45C4F` — **AI 2 ChatGPT2**, **one** independent original D3D9 native eye-source integration achievement (**+1**). Offscreen-first initialization, source DS provenance, full color coverage, Z-clear readiness and their CI/test repairs are **one coherent feature**, not individually rewarded events.

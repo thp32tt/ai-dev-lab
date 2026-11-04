@@ -913,16 +913,22 @@ window.addEventListener("pointercancel",()=>seaHold.cancel());
 // Browser backgrounding must never spend another in-game day or consume
 // provisions while the player is away. Cancel the held pointer and stop
 // automatic sailing before another queued 220ms timer tick can run.
-function suspendNativeSeaControls(reason){
+function suspendNativeBrowserControls(reason){
   seaHold.cancel();
+  // The town's click-to-walk and building navigation use a separate 145ms
+  // interval; they must not keep moving the player in a hidden tab either.
+  const townWasWalking=townClickPlan!==null;
+  stopTownClickRoute();
+  if(townWasWalking&&viewMode==="town")
+    publishControllerState({townDoorFeedback:"화면 이탈로 도보 이동 중지"});
   if(seaAutoActive){
     stopSeaAuto(reason);
     if(viewMode==="sea")renderSeaScreen();
   }
 }
-window.addEventListener("blur",()=>suspendNativeSeaControls("auto-focus-lost"));
+window.addEventListener("blur",()=>suspendNativeBrowserControls("auto-focus-lost"));
 document.addEventListener("visibilitychange",()=>{
-  if(document.hidden)suspendNativeSeaControls("auto-tab-hidden");
+  if(document.hidden)suspendNativeBrowserControls("auto-tab-hidden");
 });
 canvas.addEventListener("click", event => {
   if(seaHold.consumeClick())return;

@@ -101,12 +101,16 @@ const hover=app.slice(app.indexOf('canvas.addEventListener("pointermove"'),
  app.indexOf('canvas.addEventListener("pointerleave"'));
 assert.ok(hover.includes('seaPortHoverMarker.portName+" · 클릭하여 기항"'));
 assert.equal(hover.includes('canvas.title=marker.portName'),false);
-const inputLoss=app.slice(app.indexOf('function suspendNativeSeaControls('),
+const inputLoss=app.slice(app.indexOf('function suspendNativeBrowserControls('),
  app.indexOf('canvas.addEventListener("click"'));
 assert.ok(inputLoss.includes('if(seaAutoActive){'));
 assert.ok(inputLoss.includes('stopSeaAuto(reason)'));
-assert.ok(inputLoss.includes('suspendNativeSeaControls("auto-focus-lost")'));
-assert.ok(inputLoss.includes('suspendNativeSeaControls("auto-tab-hidden")'));
+assert.ok(inputLoss.includes('stopTownClickRoute()'));
+assert.ok(inputLoss.includes('townWasWalking&&viewMode==="town"'));
+assert.ok(inputLoss.indexOf('stopTownClickRoute()')<
+ inputLoss.indexOf('if(seaAutoActive)'));
+assert.ok(inputLoss.includes('suspendNativeBrowserControls("auto-focus-lost")'));
+assert.ok(inputLoss.includes('suspendNativeBrowserControls("auto-tab-hidden")'));
 assert.match(app,/seaPortHoverMarker=null;\s*canvas\.style\.cursor="default"/);
 assert.match(app,/nativeReadySeaPortPointerHit\(point,st,nearbyPort\)/);
 assert.match(app,/if\(nativeReadySeaPortPointerHit\(point,st,nearbyPort\)\)\{/);

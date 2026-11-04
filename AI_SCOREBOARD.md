@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Daytona original D3D9 failed-Draw HRESULT atomic CPU-world eye revocation (2026-11-05 KST)
+
+- **RUN_KEY:** `MODEL2VR-ORIGINAL-D3D9-FAILED-DRAW-HRESULT-20261105-9C7DC453`. ONE independently validated authentic original D3D9 HRESULT-to-CPU-world binocular atomicity milestone; its connected patches, tests, CI repairs, docs, and ZIP are not separate score events. No OutRun/DX11/UW2 changes; AI 1 unchanged.
+- **Exact validated source SHA:** `thp32tt/Model2VR-tools@9c7dc453567d16c09825e0bc18929769a145d1f3`. Same-SHA Public `41903863828` SUCCESS, ModDev `41903863655` SUCCESS, Windows x86 probe and CTest `41903863753` SUCCESS, Daytona original Win32 game + Win64 OpenXR host + final ZIP `41903863747` SUCCESS. Native ZIP artifact `13359776764` (`DaytonaUSA-NativeStereo-Quest3-Win32-Win64`). Docs-only follow-up `0584a9f87d61c6d9d1e39c40cd31b0d2af21d443` [skip ci] does not change exact source.
+- **Original-game implementation:** Real 32-bit original `IDirect3DDevice9` four COM Draw families (DP, DIP, DPUP, DIPUP), including a secondary hooked device, preserve their single physical original Draw HRESULT, then fail-closed the SAME render-thread active or original-Present-armed separately verified CPU-world left/right pair on failed Draw. Original source frame cannot be reopened on same Present; bounded rejection log contains method family, HRESULT, original-EXE-relative caller RVA only. Valid Draw never grants Daytona race-world/HUD proof. Preserve the once-only game simulation, original Present, FFB, GPU-eye experimental replay, real mono fallback and existing Win32→Win64 pose-tagged OpenXR transport. New C++ HRESULT/epoch regression and Python source-call invariants pass.
+- **Unproven gates:** Exact private Daytona race gameplay-vs-HUD/sky/mirror original CPU caller and command/pass ownership, original camera axes and game units per meter, Quest 3/VDXR visual/perf still require authentic runtime proof. `RUNTIME_VALIDATION=UNTESTED`. Keep ROM/executable/REA data private, not in public source.
+- **AI 2 calculation:** previous confirmed **2577** + **1** newly exact-SHA-verified integrated original Draw HRESULT milestone = **2578 cumulative AI 2 points**. Same RUN_KEY retry/readback/test/release/status is **+0**.
+
+
 ## AI 2 Daytona real D3D9 projector large-batch eye source and native-only OpenXR RGB truth (2026-11-05 KST)
 
 - **RUN_KEY:** `MODEL2VR-ORIGINAL-D3D9-64TRI-NATIVE-SOURCE-RGB-20261105-D37CFCB1`. This is ONE new independent, exact-source-SHA-verified real x86 D3D9 source-to-x64 native-eye integration milestone. Its linked source commits, CI/test repairs, workflow dependency, documentation and ZIP packaging are NOT individual achievements. AI 1 score unchanged; OutRun and UW2 untouched.

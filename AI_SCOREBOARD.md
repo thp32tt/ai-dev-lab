@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Daytona USA OpenXR/D3D9 full startup static hardening (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-DAYTONA-STATIC-STARTUP-HARDENING-20261104-338BAC19` — **AI 2 ChatGPT2**. GitHub SSOT prior confirmed **2534 + one independent integrated Daytona VR startup/runtime-survival hardening milestone (+1) = 2535 cumulative AI 2 points**. Intermediate compile/test repairs, repeated CI runs, package regeneration and future Quest 3 runtime retest are +0. AI 1 unchanged.
+- **Implementation:** `thp32tt/Model2VR-tools@main` exact validation-bearing SHA `338bac1936b719191eacfc56009940cc6578dc68`. The x64 host uses OpenXR SDK 1.1.65, explicit typed D3D11 RTVs for typeless OpenXR/VDXR swapchain resources, logs runtime/system/GPU/session state and validates adapter feature level/RGBA8 render-target support. A real Windows D3D11 WARP contract test executes TYPELESS R8G8B8A8 resource -> typed UNORM RTV -> UpdateSubresource -> staging readback and exact pixel comparison. The Win32 Daytona eye renderer preserves the original active D3D9 depth format rather than a partial whitelist and supports multisampled original backbuffers by matching eye RT/depth MSAA then resolving with StretchRect before GetRenderTargetData. D3D9 startup flushes surface/hook outcome immediately. The loader remains alive for the complete emulator session and terminates the emulator if the OpenXR host exits first, preventing post-startup silent 2D fallback.
+- **Verification:** exact-SHA Daytona native stereo workflow `41744586690` **SUCCESS**: game-win32 SUCCESS, xr-win64 SUCCESS (including `daytona_d3d11_typeless_openxr_upload_x64`), bundle SUCCESS. Public tools CI `41744586616` **SUCCESS**. Final artifact id `13283570228`, artifact digest SHA-256 `de532a648ed0647b78d130ef493003a1b81e8209f0a60dabc143aba8cc691c6e`; extracted user-ready ZIP SHA-256 `e823d77c5f373d447c4919bee9520da09c05434439d05a0ec7519c918b85b56b`.
+- **Runtime boundary:** static/API/CI validation is complete for these paths, but actual Quest 3 + Virtual Desktop/VDXR execution of this exact SHA remains **RUNTIME_VALIDATION=UNTESTED** until the user runs the package. Do not claim in-headset success yet.
+- **Score calculation:** **2534 + 1 = 2535 cumulative AI 2 points**.
+
 ## AI 2 Model 2 VR C-lane dedicated ChatGPT project routing (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2-C-LANE-SEPARATE-CHATGPT-PROJECT-20261104` — independently developed and statically tested one-time migration from UW2 C lane to Daytona USA / Sega Model 2 OpenXR VR C lane. Original OutRun A and frozen DXVK B remain isolated. UW2 automated dispatch is disabled in Compose; UW2 prior source/history retained.

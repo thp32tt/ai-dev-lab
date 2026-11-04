@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun HD DDS 104 SHA-pinned orientation recovery + coarse ROI guard (2026-11-04 KST)
+
+- **RUN_KEY:** `OUTRUN-HD-104PIN-ROI-CONTAINMENT-20261104-DEF93547` — **AI 2 ChatGPT2**. GitHub SSOT prior confirmed **2535** + independent implemented and safety-tested source-plan orientation recovery / protected ROI containment guard (+1) = **2536 cumulative AI 2 points**. No repeat points for future status checks, re-run, or fixing subsequent unrelated ROI issues. AI 1 unchanged.
+- **Source:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` commits `8a4a83596c0325f8b9e1badc71b573d74c9ff1e9` and `def935478703567a13282cbf89c00a0ce31074c6`. The DDS engine now uses all 104 exact-sha-pinned original source-plan orientations, rejects missing/conflicting SHA instead of guessing, holds coarse ROI boxes containing multiple other text boxes without blocking independent inner text, and enforces full per-ROI HOLD accounting; both original source DDS and A/B PNG remain untouched.
+- **Verification:** GitHub fast multi-atlas safety CI run `41751498388` SUCCESS. New full build `41751781192` was still IN_PROGRESS at this scoring checkpoint; **no claim** that final DDS/translated ROI count increased, no C1/C3 visual approval, no game runtime validation or RELEASE. Earlier full run `41751493875` failed because the new plan was initially excluded from sparse checkout; the final workflow includes it. Source-only changes are distinct from previously scored 30-minute dispatcher milestone.
+- **Formula:** **2535 + 1 = 2536**.
+
 ## AI 2 Daytona USA OpenXR/D3D9 full startup static hardening (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-DAYTONA-STATIC-STARTUP-HARDENING-20261104-338BAC19` — **AI 2 ChatGPT2**. GitHub SSOT prior confirmed **2534 + one independent integrated Daytona VR startup/runtime-survival hardening milestone (+1) = 2535 cumulative AI 2 points**. Intermediate compile/test repairs, repeated CI runs, package regeneration and future Quest 3 runtime retest are +0. AI 1 unchanged.

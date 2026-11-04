@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 original Model 2 D3D9 TEX0 source-to-OpenXR binocular material path (2026-11-04 KST)
+
+- **RUN_KEY:** \`MODEL2VR-ORIGINAL-D3D9-TEX0-DIFFUSE-20261104-DDE4C406\`. One independently completed source-layout/lighting/material milestone: **AI 2 previous confirmed 2558 + one newly source-and-exact-CI-verified achievement +1 = 2559 cumulative AI 2 points.** AI 1 unchanged.
+- **Exact source-bearing validation SHA:** \`thp32tt/Model2VR-tools@dde4c406297e8071ffc03e75482d5fdecbd05c8f\`. Five integrated source/test commits \`f87b057\`, \`06f384b\`, \`276f379\`, \`dd96307\`, \`dde4c40\` constitute ONE material result, not five separate events. Master-plan docs-only commit \`1d5fade852367054bd1f2da51618bdeaf6760e66\` \`[skip ci]\` is bookkeeping +0.
+- **Implemented:** original untextured FVF \`XYZ/TEX0\` and CPU-projected \`XYZRHW/TEX0\` packed \`DIFFUSE\` source layout through explicitly authenticated D3D9 UP/indexed-UP/VB/IB to both pose-tagged RGBA/depth eyes; RGB and alpha must both use original stage0 DIFFUSE/CURRENT when UV is missing, otherwise reject. Original XYZRHW lighting-state equivalence; inert disabled stage1 texture; unused sampler state bypass; original source UP bounds/packed D3DCOLOR fixes; exact same-Draw FVF/lighting/Present diagnostic reporting and synthetic original packed-color eye tests. Original CPU-world proof and matrix calibration remain mandatory; no automatic HUD/unknown classification, simulation/FFB replay or unauthorized binary mutation.
+- **Exact SHA CI 4/4 SUCCESS:** Public tools \`41819285754\`; ModDev toolkit \`41819285940\`; Windows x86 probe build/CTest \`41819285557\`; Daytona Win32 game-producer, Win64 Quest OpenXR host and stereo release package \`41819285740\`. Artifact \`DaytonaUSA-NativeStereo-Quest3-Win32-Win64\` (\`13316580612\`). Earlier intermediate SHA builds and repeated result reporting are not additional points.
+- **RUNTIME_VALIDATION=UNTESTED:** authentic Daytona world pass identity/CPU projector matrix A/B and gameplay geometry command, physical axis/scale calibration, HMD eye images/performance still require a user's private original run. Proprietary REA/ROM data only in private Model2VR-analysis-private; OutRun/web port were not changed in this Model2VR task.
+- **Score formula:** **AI 2 previous 2558 + new +1 = cumulative 2559**, once for this independent source feature.
+
 ## AI 2 Dino 246 GTS v13 textured cockpit original PMT/XPR integration (2026-11-04 KST)
 
 - **RUN_KEY:** `OUTRUN-DINO246-V13-TEXTURED-20261104-595D59B0`; one distinct original Dino cockpit VR textured PMT implementation milestone. **AI 2 previous confirmed 2557 + one new source-and-CI-verified accomplishment +1 = 2558 cumulative AI 2 points.** AI 1 unchanged.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 original Daytona physical Draw order across all four D3D9 families (2026-11-05 KST)
+
+- **RUN_KEY:** `MODEL2VR-ORIGINAL-FOUR-DRAW-PHYSICAL-PHASE-20261105-D7153ADA`. This is ONE independently completed feature; both connected source and CI-contract repair commits `915de26d07ad977f3e9b4e139330c51bbb9e88f6` and `d7153ada9a44318a4de31df660e36e0c0bb65264` are part of the SAME result. Re-tests, docs, package, scoreboard readback and rollover earn **+0**.
+- **Exact source validation SHA:** `thp32tt/Model2VR-tools@d7153ada9a44318a4de31df660e36e0c0bb65264`. Public tools GitHub Actions `41922517594` SUCCESS; ModDev toolkit `41922517348` SUCCESS; Windows x86 original probe `41922517139` SUCCESS; Daytona Win32 original producer + Win64 OpenXR native ZIP `41922517129` SUCCESS (game-win32, xr-win64 and bundle). Matched native stereo test ZIP artifact `13367078078`, expires 2026-11-18 UTC. This is compile/test/package verification, not HMD runtime success.
+- **Actual native source:** each physical primary-device original D3D9 DrawPrimitive / DrawIndexedPrimitive / DrawPrimitiveUP / DrawIndexedPrimitiveUP now advances the same per-Present ordinal, including UNSAMPLED Draws; each sampled witness binds its pre-call original Present frame, physical all-family Draw ordinal, original caller/family and unchanged COM HRESULT. Original physical Present/Reset closes the epoch. The PRIVATE offline UP analyzer rejects wrong frame/caller/family, duplicate ordinals and incomplete legacy phase evidence, and outputs bounded per-source real Draw ordinal ranges. Existing original FFB/game simulation, real COM drawing, GPU-eye replay and original mono fallback are unchanged.
+- **Strict source gate:** ordinal/world ordering is evidence only, never an auto-authorized Daytona gameplay 6DoF World3D source or HUD classifier. Original race-vs-title/sky/mirror caller and camera axes/units per meter still need independent PRIVATE runtime authentication. Quest 3/VDXR real gameplay `RUNTIME_VALIDATION=UNTESTED`. OutRun, DX11 and UW2 repositories not modified. AI 1 score unchanged.
+- **AI 2 calculation:** previously confirmed **2580** + independent exact-SHA verified source phase feature **+1** = **2581 cumulative AI 2 points**.
+
+
 ## AI 2 Daytona original UP/IndexedUP Draw+Present authentic-source outcome and private diagnostic package (2026-11-05 KST)
 
 - **RUN_KEY:** `MODEL2VR-ORIGINAL-UP-PHYSICAL-COM-PRESENT-20261105-C7515E73`. This is ONE independently verified source-development milestone. Connected implementation and correction/package commits `73de497e26b653ffaa52e053537248625e43ead9`, `42915c6f1881111ac3772a26e184650dc4d273e3`, `c7515e73441ba1efff9d92b874e118edf2e24213` count as ONE achievement, not three. CI reruns, docs, ZIP, scorebook and future rollover/readback are +0.

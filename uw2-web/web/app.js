@@ -591,6 +591,9 @@ function enterSystemMenu(cursor = 0) {
   systemMenuPending = false;
   systemUi = { mode: "system-menu", cursor, slot: 0, messageId: null };
   drawSystemMenu();
+  // Source save slots loaded during the intro were correctly disabled;
+  // re-admit their read-only diagnostics only after MAIN is truly ready.
+  renderSlots();
   setMusicForMode("system-menu");
   return true;
 }
@@ -1238,7 +1241,8 @@ function renderSlots() {
     // Hidden diagnostic save slots must never replace the active town/sea
     // session or bypass an asynchronous browser checkpoint transaction.
     const previewAdmission=()=>canPreviewNativeOriginalSaveSlot(slot,{
-      liveTown:townRuntime,liveSea:seaRuntime,checkpointInFlight
+      liveTown:townRuntime,liveSea:seaRuntime,checkpointInFlight,
+      bootReady:bootGate.canShowSystemMenu()
     });
     btn.disabled = !previewAdmission();
     btn.textContent = slot.empty
@@ -2589,7 +2593,8 @@ $("run-button").addEventListener("click", () => {
   // The diagnostic Run control must not change a running game behind its
   // source-backed MAIN Load Data menu, even via a scripted DOM click.
   if(!canPreviewNativeOriginalSaveSlot(slots[selected?.index],{
-    liveTown:townRuntime,liveSea:seaRuntime,checkpointInFlight
+    liveTown:townRuntime,liveSea:seaRuntime,checkpointInFlight,
+    bootReady:bootGate.canShowSystemMenu()
   }))return;
   startSelectedGame();
 });

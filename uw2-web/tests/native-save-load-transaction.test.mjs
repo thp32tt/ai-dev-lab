@@ -105,6 +105,7 @@ assert.equal(canPreviewNativeOriginalSaveSlot({...slot,empty:true}),false);
 assert.equal(canPreviewNativeOriginalSaveSlot({...slot,unverified:true}),false);
 assert.equal(canPreviewNativeOriginalSaveSlot(null),false);
 for(const lock of [{liveTown:{}},{liveSea:{}},{checkpointInFlight:true},
+ {bootReady:false},
  {liveTown:{},liveSea:{},checkpointInFlight:true}]){
  assert.equal(canPreviewNativeOriginalSaveSlot(slot,lock),false);
 }
@@ -112,12 +113,17 @@ const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
 const sidebar=app.slice(app.indexOf('function renderSlots() {'),
  app.indexOf('async function loadPortraits() {'));
 assert.ok(sidebar.includes('btn.disabled = !previewAdmission()'));
+assert.ok(sidebar.includes('bootReady:bootGate.canShowSystemMenu()'));
+const menuEntry=app.slice(app.indexOf('function enterSystemMenu(cursor = 0) {'),
+ app.indexOf('function drawNewGameHeroSelect(){'));
+assert.ok(menuEntry.indexOf('drawSystemMenu()')<menuEntry.indexOf('renderSlots()'));
+assert.ok(menuEntry.includes('renderSlots()'));
 assert.ok(sidebar.includes('if(!previewAdmission())return;'));
 assert.ok(sidebar.includes('selected = openNativeSaveSession(slot)'));
 assert.ok(sidebar.indexOf('if(!previewAdmission())return;')<
  sidebar.indexOf('selected = openNativeSaveSession(slot)'));
 const diagnosticRun=app.slice(app.indexOf('$("run-button").addEventListener("click"'),
- app.indexOf('window.addEventListener("keydown"'));
+ app.indexOf('window.addEventListener("keydown", (event) => {'));
 assert.ok(diagnosticRun.includes('canPreviewNativeOriginalSaveSlot(slots[selected?.index]'));
 assert.ok(diagnosticRun.indexOf('canPreviewNativeOriginalSaveSlot')<
  diagnosticRun.indexOf('startSelectedGame()'));

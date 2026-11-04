@@ -49,8 +49,8 @@ export function stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors}={}){
 // runtime still owned the scene, breaking source/session checkpoint parity.
 // MAIN Load Data retains its separate staged and atomic switch path.
 export function canPreviewNativeOriginalSaveSlot(slot,{
- liveTown=null,liveSea=null,checkpointInFlight=false
+ liveTown=null,liveSea=null,checkpointInFlight=false,bootReady=true
 }={}){
  return !!slot&&!slot.empty&&!slot.unverified&&
-   !liveTown&&!liveSea&&!checkpointInFlight;
+   bootReady===true&&!liveTown&&!liveSea&&!checkpointInFlight;
 }

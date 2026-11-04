@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 DX11 authentic source eye-crossing FVF line GPU capture repair (2026-11-04 KST)
+
+- **RUN_KEY:** `CONVERSION-DX11-01228-AUTHENTIC-EYE-CROSSING-STROKE-AFBC679C` / **TASK_ID:** `CONVERSION-DX11-01228`. Unique source defect repair: **AI 2 previous confirmed 2559 + 1 independently implemented and five-gate source-verified achievement = 2560 cumulative AI 2 points.** AI 1 unchanged.
+- **Exact validation-bearing material SHA:** `thp32tt/OutRun2006Tweaks@afbc679cc555d0f6d1d7948b3af6d8ba0eb09d0c` on `vr-dx11-native-r71`. Real C++ source and regression in `src/vr/d3d11/native_game_raw_fvf_stroke_sampling.hpp` and `tests/native_raw_fvf_stroke_capture_test.cpp`. No separate score for C6, retry, CI wait, test change, or checkpoint.
+- **Fix:** authentic original-game WVP FVF line segments crossing W=0 or negative W now undergo bounded homogeneous eye, XY/Z, user-plane, viewport/scissor clipping for real D3D11 GPU PRE/POST color capture hints; reject invalid all-zero homogeneous vertices, unauthentic W=0 standalone points and unpaired LINELIST IA. Original D3D9 Draw/input/FFB, native GPU pixel identity and DX9Ex fallback retained.
+- **Required exact-SHA GitHub Actions SUCCESS:** DX11 Fast 41821993373; Backend Conversion 41821993294; Windows Build 41821993369; OpenXR architecture 41821993468; HUD Inspector 41822003359.
+- **RUNTIME_VALIDATION=UNTESTED.** No matching-binary native menu/car/race desktop pixels or Quest3/VDXR session; full DX11 renderer and stereo native gameplay output remain incomplete. This is build-verified source behavior only.
+
 ## AI 2 original D3D9 RGBA color-write mask to native OpenXR eyes (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-D3D9-COLORWRITE-20261104-B37EA4D3`. ONE independently completed source state/eye-integrity milestone. **AI 2 previous confirmed 2559 + new source-and-exact-CI-verified achievement +1 = 2560 cumulative AI 2 points.** AI 1 unchanged.

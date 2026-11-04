@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original D3D9 stage0 DIFFUSE/CURRENT to native OpenXR eyes (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-D3D9-STAGE0-DIFFUSE-CURRENT-20261104-F617E874` — one new independently integrated original D3D9 fixed-function RGB/alpha source-to-binocular-eye rendering milestone. **AI 2 previous confirmed 2556 + one source-and-exact-CI-verified achievement +1 = 2557 cumulative AI 2 points.** AI 1 unchanged.
+- **Exact source validation SHA:** `thp32tt/Model2VR-tools@f617e874c13de889a2b0bbdc931b89cc3bbeb92d`. Original x86 D3D9 RGB and alpha independent stage0 TEXTURE, DIFFUSE/CURRENT and MODULATE operations now feed the already authenticated CPU world geometry, calibrated two-eye perspective/color/alpha clipping, source RGBA depth/blend raster, x86 pose-tagged IPC and Win64 OpenXR host. Added backward-compatible material-source ABI; fixed implicit opaque-white diffuse without vertex color, no-texture pure diffuse original Draw, unused sampler/UV restrictions, source alpha on disabled blending and stage0 RESULTARG=CURRENT requirement. Real original Draw witness/Present/FVF/matrix material reporting and synthetic C++/Python regression were expanded. All source/test commits `ca5d3f9`, `1e6b4d0`, `6fc3168`, `be4470c`, `26b960e`, `e3e79e6`, `a25ed5f`, `a344fee`, `3bec136`, `442b334`, `1e46bb0`, `e9074aa`, `d0a8bee`, `634ddaa`, `fbddd5c`, `077b1ea`, `8021a65`, `211e335`, `56159c3`, `f617e87` form ONE milestone; intermediate fixture repair and later docs/CI, retry/report +0. Master-plan docs-only `d893644` [skip ci] also +0.
+- **Exact SHA `f617e874` GitHub CI 4/4 SUCCESS:** Public tools `41816447572`, ModDev toolkit `41816447499`, Windows x86 probe build + CTest `41816447573`, Daytona Win32 game-producer and Win64 OpenXR host/package `41816447766`. Three matching original producer/host/release artifacts published, including DaytonaUSA-NativeStereo-Quest3-Win32-Win64.
+- **RUNTIME_VALIDATION=UNTESTED:** authentic Daytona race-world Draw ownership, active branch A/B matrix, source camera axes/units, menu/HUD isolation and Quest 3/VDXR HMD visual 3D/performance still require the user's private original game trace and hardware test; no such evidence was invented. Original emulator/FFB/input are not replayed, private REA/ROM retained solely in `thp32tt/Model2VR-analysis-private`; OutRun/UW2 untouched.
+- **Score formula:** **AI 2 previous 2556 + new 1 = cumulative 2557**. No per-commit/CI/docs duplicate scores.
+
+
 ## AI 2 Model2VR projected original D3D9 material to native binocular OpenXR source integration (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-PROJECTED-MATERIAL-SOURCE-20261104-2CC2E904`. AI 2 (ChatGPT2), one new and CI-verified connected original projected D3D9 source/material + same-Draw probe/analysis + x86-to-x64 OpenXR fidelity milestone. **Previous confirmed cumulative 2555 + this distinct verified achievement +1 = 2556 cumulative AI 2 points**. AI 1 unchanged.

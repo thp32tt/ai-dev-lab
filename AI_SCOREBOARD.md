@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR projected original D3D9 material to native binocular OpenXR source integration (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-PROJECTED-MATERIAL-SOURCE-20261104-2CC2E904`. AI 2 (ChatGPT2), one new and CI-verified connected original projected D3D9 source/material + same-Draw probe/analysis + x86-to-x64 OpenXR fidelity milestone. **Previous confirmed cumulative 2555 + this distinct verified achievement +1 = 2556 cumulative AI 2 points**. AI 1 unchanged.
+- **Exact source validation SHA:** `thp32tt/Model2VR-tools@2cc2e90440e3185195ef6bf2ac2e0f5d7ed9bec6`. Original projected XYZRHW TEX1 / optional packed DIFFUSE/SPECULAR FVF decode and exact UV stride, native D3D9 MODULATE vertex color+alpha through authenticated world bridge into independently rasterized eyes, fail-closed specular state, real Draw same-witness stage evidence, VB/IB and UP source/Present offline classification, and regression coverage. Connected commits `6cd0fe8`, `64a1d09`, `feff192`, `69ff191`, `9dcd134`, `3a96d49`, `c36faac`, `0b35bb2`, `5a79061`, `573a658`, `3b6fc54`, `5332199`, `2cc2e90` count ONCE. Master plan docs-only [skip ci] `3a04246`, CI/test reruns or reports +0.
+- **Exact-SHA GitHub Actions SUCCESS (4/4):** Public tools `41812703796`, ModDev `41812703773`, Windows x86 probe build+CTest `41812703806`, Daytona Win32 game producer + Win64 OpenXR host/stereo bundle `41812703780`. Tests verify source and transport, not real-game world Draw or Quest runtime.
+- **RUNTIME_VALIDATION=UNTESTED.** Genuine race-world Draw caller, source camera axes/units, original game HUD/world classification, Quest 3 VDXR HMD pixel/output performance and gameplay visual verification remain unproven. Private original code/REA/ROM remains in `thp32tt/Model2VR-analysis-private`. OutRun/UW2 and AI 1 untouched.
+- **Score:** **AI 2 previous 2555 + new achievement +1 = cumulative 2556**. Future retry, report, validation or docs +0.
+
+
 ## AI 2 Model2VR original CPU source-to-D3D9 draw revalidation (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-PROJECTOR-DRAW-RECHECK-20261104-6096BF19`, AI 2 (ChatGPT2). **Previous confirmed cumulative 2554 + one new source-and-CI-verified Model2 VR achievement +1 = 2555 cumulative AI 2 points**. AI 1 unchanged.

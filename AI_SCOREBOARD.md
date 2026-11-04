@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 original x86 D3D9 exact alpha-test to independently clipped Win64 OpenXR eyes (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-D3D9-EXACT-ALPHA-STEREO-20261104-622D20F5`. One newly implemented original D3D9 ALPHAFUNC/ALPHAREF, real-Draw stage/provenance and binocular material fidelity milestone. The many source/test/CI corrections below are one indivisible achievement, not repeated points. AI 1 unchanged.
+- **Validated source-bearing SHA:** `thp32tt/Model2VR-tools@622d20f5a6607c7f2d6155837cd7559e6208f06f` on `main`; exact-SHA Windows x86 probe build `41845269200` SUCCESS, Python public tools `41845269140` SUCCESS, original Daytona Win32 stereo + Win64 OpenXR host + bundle `41845268991` SUCCESS (all 3 jobs), resulting native stereo archive artifact `13331360993`. Subsequent regression/parser hardening is part of the SAME milestone (latest Python verification-bearing `50fa5a28e4994a8f5b56fd3d6285eacc337b349b`; Public `41845668049` and ModDev `41845668019` SUCCESS).
+- **Implementation:** Actual 32-bit D3D9 source `ALPHATESTENABLE`/`ALPHAFUNC`/`ALPHAREF` read from the real primary device; new sentinel cutoff 256 opts in to exact 8-bit NEVER/LESS/EQUAL/LESS_EQUAL/GREATER/NOT_EQUAL/GREATER_EQUAL/ALWAYS comparisons. Verified-world UP, indexed UP, VB/IB and list/strip/fan triangle paths preserve original alpha testing before independent-eye depth/color/blend into existing pose-tagged source-frame IPC and x64 OpenXR renderer. 0..255 cutoff and old external material ABI remain binary compatible; source rejects mismatched shader/material and unauthenticated world/HUD. Same original Draw + FVF/stride alpha evidence is captured and correlated with UP/VB source and conflicting duplicates fail closed. No original game draw is duplicated; no FFB/OutRun/UW2 changes.
+- **RUNTIME_VALIDATION=UNTESTED.** The actual Daytona world caller, current game-camera A/B/geometry source and axes/units, world/HUD classification and Quest 3 runtime/stereo optics are not authenticated or tested. HMD success is NOT claimed; no private game/REA/ROM assets are in public repo.
+- **AI 2 score:** Previous confirmed **2565 + new independently exact-source-CI-validated material milestone +1 = 2566 cumulative points**. Test repairs, retries, docs, artifact/readback and repeated reporting under this RUN_KEY are +0.
+
 ## AI 2 Model2VR original D3D9 Gouraud/fill and exact x86 GameStereo-to-x64 OpenXR pose provenance (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-D3D9-VERTEX-FILL-POSE-20261104-15B3993C`. ONE independently implemented source fidelity/eye-pose continuity milestone, not a point per material commit, Python/CTest repair, repeated CI, package or documentation. AI 1 unchanged.

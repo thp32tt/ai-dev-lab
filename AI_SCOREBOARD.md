@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original CPU matrix/command/Draw-pass and binocular texture source fidelity (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-MATRIX-COMMAND-RT-PALETTE-20261104-7E784B33` — AI 2 ChatGPT2. **Previous confirmed cumulative 2553 + one new connected original x86 D3D9-to-x64 OpenXR source milestone +1 = 2554 cumulative AI 2 points.** Eight connected implementation commits, matrix/geometry/draw-pass reports, palette+texture formats, regression fixture repair, CI and documentation count as ONE result; AI 1 unchanged; follow-up CI/docs/retries +0.
+- **Exact material-source validation SHA:** `thp32tt/Model2VR-tools@7e784b33381297e1f57f9027435624dec401beab`. Connected source commits `4785e9d`, `90edd45`, `20b1600`, `68e46e4`, `a99fd8f`, `1e35ae5`, `1696cd1`, `7e784b3`; report `8c7731b`, Python fixture correction `4b997cb`, docs [skip ci] `b45417d` are same achievement.
+- **Implemented:** Read-only original CPU ProjectVertexToScreen active-matrix content fingerprint and before/after mutation gate; same-thread same-Present original CPU geometry-command/matrix matching against D3D9 UP, shader-UP, VB/IB Draw candidates; original RT/main/aux, viewport, depth, scissor evidence per actual Draw witness. Original CPU-lockable A8B8G8R8/X8B8G8R8, 10:10:10:2, A8R3G3B2, P8/A8P8/palette-alpha textures feed already present independently rasterized two eyes with pose-tagged x86 GameStereo IPC and Win64 OpenXR host, behind strict separately verified world-pass admission.
+- **Exact material-SHA 5/5 Actions SUCCESS:** Public `41805443322`, ModDev `41805443253`, Win32 x86+CTest `41805443364`, Daytona Win32 producer+Win64 OpenXR release ZIP `41805443270`, Generic DD integrated package `41805443434`. Exact report-test correction SHA `4b997cb743cc69d586aecfc0208ccbcec6bdf823` 3/3 Actions SUCCESS: Public `41805647631`, ModDev `41805647857`, Win32 x86 `41805647498`. Earlier test failure at `8c7731b` repaired; no double score.
+- **RUNTIME_VALIDATION=UNTESTED.** Real Daytona world/HUD geometry Draw caller, camera branch A/B, game axes/units and Quest 3+VDXR stereoscopic visuals/120fps unverified. Private REA/ROM remains in `Model2VR-analysis-private`; original game HRESULT, tick and FFB preserved. No OutRun/UW2 changes.
+- **Score formula:** 2553 + 1 = 2554.
+
 ## AI 2 Model2VR original D3D9 blending, source alpha and CPU matrix-identity fidelity (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-D3D9-BLEND-MATRIX-ALPHA-20261104-594BDE6D` — AI 2 ChatGPT2. **Previous independently confirmed cumulative 2552 + one new source-connected verified D3D9 alpha/material and CPU-projector matrix provenance milestone +1 = 2553 cumulative AI 2 points.** Original blend fidelity, new authentic texture formats, depth LEQUAL repair, projector matrix-consistency guards, tests, CTest and documentation form ONE result. OutRun, UW2 and AI 1 are unchanged; retries, follow-up CI and bookkeeping +0.

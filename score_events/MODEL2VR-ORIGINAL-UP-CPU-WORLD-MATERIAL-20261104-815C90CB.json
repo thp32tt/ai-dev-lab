@@ -1,0 +1,33 @@
+{
+  "run_key": "MODEL2VR-ORIGINAL-UP-CPU-WORLD-MATERIAL-20261104-815C90CB",
+  "ai": "AI 2 ChatGPT2",
+  "date_kst": "2026-11-04",
+  "repo": "thp32tt/Model2VR-tools",
+  "validation_bearing_sha": "815c90cbe941ec38b8a94d0c5eaeb97a939990e9",
+  "source_commits": [
+    "c0a635c9729f3538e967a115ef89ca375031281a",
+    "8bc02d03322486f6d5156c7d9abad2ef9c44c9cb",
+    "eb100d60bb3f1ed112d17fb3dd932599e3c87d89",
+    "5722b772a62250f3a3fcbd109151fdff3289cde1",
+    "50153eb9e665b7780f92bb8161d7b7299841cec5",
+    "3662dabac673effad31db7811f26e1a0521bfaa6",
+    "815c90cbe941ec38b8a94d0c5eaeb97a939990e9"
+  ],
+  "source_followup_pending": [
+    "6156291f8d481a0b69a4723db3d8ea6f70984d65",
+    "ddcf37b5522f66c7f2e651187ba59404186661b9",
+    "0e32f5a96d7fd442a834716831a1ee88c71ffafb"
+  ],
+  "ci_runs_success": [
+    41786822197,
+    41786822063,
+    41786822128,
+    41786822360,
+    41786822033
+  ],
+  "previous_confirmed": 2548,
+  "delta": 1,
+  "new_confirmed": 2549,
+  "runtime_validation": "UNTESTED",
+  "deduplication": "Connected original D3D9 UP -> independently verified CPU-world material -> x86 stereo -> x64 XR one milestone only. No score for code fixes/CI/doc/rollover. AI 1 unchanged."
+}

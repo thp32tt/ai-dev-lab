@@ -1,0 +1,25 @@
+{
+  "run_key": "MODEL2VR-PROJECTED-VB-IB-PRESENT-JOIN-20261104-2160EB85",
+  "actor": "AI 2 ChatGPT2",
+  "date_kst": "2026-11-04",
+  "previous_confirmed_score": 2549,
+  "delta": 1,
+  "confirmed_score": 2550,
+  "repo": "thp32tt/Model2VR-tools",
+  "source_sha": "2160eb8599efb61215a28ca9111ce5cc790ff802",
+  "material_commits": [
+    "bfd45a7b00461671dd9177525fa5999cb5790e33",
+    "67645c0d94f6430e0cf85e4fa095bca04af588ea",
+    "3fdc682ea29a9de9f1adc02f02e36ab44a2f0e0c",
+    "2160eb8599efb61215a28ca9111ce5cc790ff802"
+  ],
+  "ci_run_ids": [
+    41789948529,
+    41789948541,
+    41789948548,
+    41789948533
+  ],
+  "result": "ALL_4_EXACT_SHA_SUCCESS",
+  "hmd_runtime_validation": "UNTESTED",
+  "duplicate_award_policy": "one connected VB/IB source-to-CPU projector/Present milestone only"
+}

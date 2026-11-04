@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 original D3D9 independent RGB/alpha blend → OpenXR binocular world material (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-D3D9-SPLIT-ALPHA-WORLD-20261104-BFB09FD0`. ONE newly implemented world-material feature, not a score per C++ bridge/API, source recorder, Python report, CI, or regression repair. AI 1 remains separate and unchanged.
+- **Exact independently validated source SHA:** `thp32tt/Model2VR-tools@bfb09fd01f4c9d06ae9e8c184a2f7c3b03caff8f` on `main`. Same-source Windows x86 original probe/CTest `41849628144` SUCCESS, public Python `41849628274` SUCCESS, ModDev toolkit `41849627964` SUCCESS, Daytona real-source Win32 stereo producer plus Win64 OpenXR host and packaging workflow `41849628086` SUCCESS. All four workflow runs passed at that exact SHA.
+- **Actual source integration:** Original D3D9 world-only UP/projected-UP/indexed-UP/stream0 VB/IB triangle list/strip/fan adapters now read `D3DRS_SRCBLENDALPHA`, `DESTBLENDALPHA`, `BLENDOPALPHA` only when original `SEPARATEALPHABLENDENABLE` and RGB blending require it. Independent source alpha ADD factors preserve source/destination 8-bit alpha into independently clipped left/right RGBA/depth and the existing pose-tagged x86 GameStereo IPC → Win64 OpenXR host. New strict additive export keeps previous ABI. Original Draw/Present, CPU/game/FFB run once. Both-eye source alpha, source mask, old alpha-compare and unchanged binocular RGB coverage are covered by C++/Python tests.
+- **Same achievement follow-up:** Later material handling for alpha-masked inert split states, original same-Draw alpha witness and projected material report repair through source SHA `672e010bdae8aaa94822928838cafb606a8be0e2` extends this SAME integration; it earns +0 and must pass its own exact-source CI before claims about that later SHA. Docs/CI/retry/packaging never score again.
+- **RUNTIME_VALIDATION=UNTESTED.** Authentic Daytona gameplay-world caller/camera A-B matrix/geometry command, game units-to-meters and Quest 3/VDXR race stereoscopy remain unverified; no HMD gameplay success claimed. Private original EXE/REA/ROM/trace evidence remains only `thp32tt/Model2VR-analysis-private`. OutRun/web-port untouched.
+- **Score calculation:** Previous confirmed **2567 + one newly exact-SHA-CI-verified independent split-alpha native-world feature +1 = 2568 cumulative AI 2 points**.
+
 ## AI 2 N100 SSH-independent async archiver migration (2026-11-04 KST)
 
 - **RUN_KEY:** `N100-ARCHIVER-DETACHED-20261104-82660830`. One distinct operational achievement: migrated a currently running N100 foreground archiver into a server-owned async job without leaving duplicates; monitoring/reports/retries of this same async execution are +0.

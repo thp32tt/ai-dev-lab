@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Model 2 Daytona offscreen-first stereo source color/Z coverage (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-DAYTONA-OFFSCREEN-Z-COVERAGE-20261104-03D45C4F` — **AI 2 ChatGPT2**, **one** independent original D3D9 native eye-source integration achievement (**+1**). Offscreen-first initialization, source DS provenance, full color coverage, Z-clear readiness and their CI/test repairs are **one coherent feature**, not individually rewarded events.
+- **Source:** `thp32tt/Model2VR-tools` exact source / CI validation-bearing SHA `03d45c4f90146c4a66f820f51d17d14b9e716a9b`. Material commits `e7527937` (actual full-size offscreen RT/DS bootstrap and physical-backbuffer depth identity), `114d9e4a` (per-source Z initialization truth), `01762b3e` (full-color viewport/clear coverage, independent Z-only readiness, preserve genuine original Z). Same-feature regression maintenance `86bc725e`, `b06e5038`, `03d45c4f` receive **+0** additional. Docs-only main checkpoint `fc128e185fb3186dd302807b731389c11ed15bcc` [skip ci] receives **+0**. Original emulator, ROM, private REA, OutRun and UW2 webport untouched; gameplay Draw/Present executes once, default 2D mode and separate FFB preserved.
+- **Exact SHA CI:** Public tools `41774272337` **SUCCESS**, ModDev toolkit `41774272319` **SUCCESS**, Windows x86 producer/probe `41774272306` **SUCCESS**, Daytona x86 game + Win64 OpenXR host + native stereo release ZIP `41774272287` **SUCCESS**, all same source SHA. **RUNTIME_VALIDATION=UNTESTED:** no original Daytona emulator + Quest 3/VDXR visual confirmation, no authenticated original-world camera/units integration, and shader-UP source-X shift still experimental (not headset-calibrated 6DoF).
+- **Score:** previous confirmed AI 2 **2543 + 1 = 2544 cumulative AI 2 points**. This connected functionality is credited **once**; reruns, subsequent tests/fixes, ZIP delivery, future playtest, bookkeeping and rollover are **+0**. AI 1 unchanged.
+
 ## AI 2 Model 2 verified world-camera 6DoF / source OpenXR pose synchronization (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-VERIFIED-CAMERA-POSE-SYNC-20261104-2BEBE720` — **AI 2 ChatGPT2**, **one** independent connected camera/pose provenance feature in the optional authenticated Model 2 CPU-world native stereo renderer (**+1**); **five material commits count as one achievement**, not separate scores. Old Daytona D3D9 Draw/Present/surface transport features and their exact-SHA CI receive **+0**.

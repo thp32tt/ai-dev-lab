@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 GitHub HD QA → ChatGPT A/B ImageGen → independent C1 → strict DDS reassembly pipeline (2026-11-04 KST)
+
+- **RUN_KEY:** `OUTRUN-HD-QA-GITHUB-AB-C1-PORTAINER-PIPELINE-20261104-707263A0` — **AI 2 ChatGPT2**. GitHub SSOT previous confirmed **2545** + one new independently implemented/CI-verified end-to-end QA rework orchestration milestone **+1** = **2546 cumulative AI 2 points**. Prior strict HD QA engine `OUTRUN-HD-STRICT-SOURCE-CLEAN-QA-REBUILD-20261104-CDD4D66B` was already awarded, so it is NOT rescored. All intermediate commits, retries, report refreshes, Portainer redeploy and same-feature rechecks are +0. AI 1 unchanged.
+- **GitHub asset:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928`. Added verified original-source workqueue `tools/localization/hd_rework_queue.py`, SHA-verified queue publisher `publish_hd_rework_queue.py`, idempotent refill `hd_qa_queue_refill.py`, and C1-provisional receipt-to-TEST_ONLY DDS input guards. 30/30 fast tests on Actions `41779189748` SUCCESS (13 legacy + 8 strict HD + 5 queue + 4 SHA-guarded C1 overrides).
+- **Queue branch:** `korean-localization-qa-queue-20261104` isolated from asset DDS branch, with `latest.json` and later `last_report.json`, per-ticket SHA-verified HD source PNG proof, immutable claim state and generated candidate. Queue seeded but real strict QA report was not yet published at scoring checkpoint.
+- **Master workflow:** `.github/workflows/outrun-hd-qa-refill.yml` 30-minute GitHub-only queue refill; first run `41779041294` SUCCESS with deliberate `HOLD_STRICT_REPORT_NOT_AVAILABLE` (not falsely reporting a generated task).
+- **Portainer branch:** `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928`, new opt-in `chat-rework` Compose service with isolated noVNC/Playwright A/B/C1 browser, existing proven ChatGPT upload/export helpers, GitHub exact task/candidate SHA status and provisional C1 receipts; legacy 96MiB GitHub watcher retained. Browser CI `41779628527` SUCCESS, light controller CI `41779628614` SUCCESS. Browser must be enabled by user Portainer deploy, supplied GitHub Contents read/write token and VNC password, and manually logged into ChatGPT. **No actual browser ImageGen success or C1 approval claimed.**
+- **Boundary:** Existing 60 DDS/200 ROI are user-rejected; new strict DDS full rebuild `41778858739` in progress at checkpoint; no new final localization count, no image-quality signoff, no completed 954 ROI, no C3/game runtime PASS, and no automatic release approval.
+- **Formula:** **2545 + 1 = 2546**.
+
 ## AI 2 OutRun Korean HD source-clean-final strict QA DDS regeneration policy/engine (2026-11-04 KST)
 
 - **RUN_KEY:** `OUTRUN-HD-STRICT-SOURCE-CLEAN-QA-REBUILD-20261104-CDD4D66B` — **AI 2 ChatGPT2**. GitHub latest confirmed **2544 + 1 = 2545 cumulative AI 2 points**. One independently implemented, GitHub-tested strict quality gate engine responding to user's failed DDS/JPG visual review; not multiple credits for intermediate commits, CI retry, workflow rerun, or future QA results. AI 1 unchanged.

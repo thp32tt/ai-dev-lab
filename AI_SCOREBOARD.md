@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original D3D9 diffuse/modulated source + VB/IB native stereo fidelity (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-MATERIAL-VB-TOPOLOGY-20261104-459E73B2` — AI 2 ChatGPT2. **Previous confirmed cumulative 2551 + one new independent connected D3D9 world-material and VB/IB source-to-binocular-OpenXR implementation +1 = 2552 cumulative AI 2 points.** Multiple source commits, regression repairs, CI jobs and docs together count ONCE. AI 1 score is unchanged.
+- **Exact source validation SHA:** `thp32tt/Model2VR-tools@459e73b2de674af1cc9d8e345511412fff6b0ff9`. Material commits `914abcc`, `93f1818`, `dbb9dce`, `89827c0`, `7a51485`, `4379fcb`, `fe63b64`, `b4b463a`, `459e73b` form one cohesive source-fidelity result. No bonus points for the older failing intermediate SHA or its repair; docs-only `5935df3` +0.
+- **Actual x86 -> x64 source chain:** Real CPU-lockable original D3D9 FVF XYZ+TEX1 per-vertex diffuse A8R8G8B8 -> independently clipped eyes with perspective-correct color/alpha MODULATE; strict COLOROP/ALPHAOP material gate, sampler CLAMP/WRAP/MIRROR and L8/A8L8 original textures. Actual VB/IB DrawPrimitive/DrawIndexedPrimitive triangle-list/strip/fan source order/indices and source CPU-projector candidate joins -> explicit authenticated CPU-world adapter -> separately rasterized two eyes -> pose-tagged GameStereo IPC -> Win64 OpenXR host. Unknown-world/HUD source never auto-classified. Original game Draw/FFB/input executes once.
+- **Exact SHA GitHub Actions SUCCESS (four workflows):** Public tools `41797377751`, ModDev toolkit `41797377590`, Win32 D3D9 probe `41797377666`, Win32 Daytona producer + Win64 Quest OpenXR release `41797377730`. `RUNTIME_VALIDATION=UNTESTED`: original Daytona race-world camera/pass/axis/units and Quest3+VDXR stereo visual output still need private evidence and hardware testing; do not claim 6DoF gameplay completion. OutRun and UW2 untouched.
+- **Score formula:** **2551 + 1 = 2552**.
+
+
 ## AI 2 Model2VR actual indexed-UP plus original UP strip/fan to verified native OpenXR source bridge (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-INDEXED-UP-STRIP-FAN-20261104-B810EED5` — **AI 2 ChatGPT2**. Previous confirmed cumulative **2550** + **one new cohesive and exact-SHA CI-verified original DrawIndexedPrimitiveUP MinVertexIndex/triangle strip/fan source -> authenticated CPU-world stereo bridge achievement +1** = **2551 cumulative AI 2 points**. Eight connected source commits and later tests, reports, documentation, ZIP packages or same-SHA checks are ONE result; AI 1 unchanged.

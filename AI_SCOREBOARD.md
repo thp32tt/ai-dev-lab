@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Dino 246 GTS v13 textured cockpit original PMT/XPR integration (2026-11-04 KST)
+
+- **RUN_KEY:** `OUTRUN-DINO246-V13-TEXTURED-20261104-595D59B0`; one distinct original Dino cockpit VR textured PMT implementation milestone. **AI 2 previous confirmed 2557 + one new source-and-CI-verified accomplishment +1 = 2558 cumulative AI 2 points.** AI 1 unchanged.
+- **Material commit SHA:** `thp32tt/OutRun2006Tweaks@test/dino-cockpit-v13-textured-20261104` at `595d59b056d7488e488a58db5219b19adfd082cd` (isolated test branch; stable release/feature branches untouched). Adds two new Poly Haven CC0 brown/black leather BC1/DXT1 mipmapped DDS textures, relocates all original XPR/vertex/index pointers while retaining 41 original DDS resources and 17 model objects, and binds texture slots 41/42 to six new cabin material groups. Previous v12 geometry/installation tool is one build context, not separately counted. Original vehicle assets are not included in GitHub.
+- **Verification:** GitHub Windows standalone installer and complete existing QuestCockpitV2 VR test bundle `41818852015` **SUCCESS** on exact source SHA, artifact `13315004168`; offline independent original PMT structural test **PASS** (17 objects, 43 DDS textures, 79,007 GPU index checks, 26 original GPU buffers byte-exact after relocation, two DDS image decodes), actual v12→v13 upgrade and byte-exact original restore **PASS**. Modified PMT SHA256 on original APK test asset `83199d4f62519d8c0d77ed9944926d279832a1f9ee78cf04963d6218211e15ad`.
+- **Runtime boundary:** `RUNTIME_VALIDATION=UNTESTED`; no claim of actual user's PC game PMT loader/Quest 3 stereo rendering or performance. This is only one scoring event; CI, ZIP, readback, repeat installs and later runtime rechecks +0 unless a genuinely new independent achievement is completed. Calculation: **2557 + 1 = 2558**.
+
 ## AI 2 Model2VR original D3D9 stage0 DIFFUSE/CURRENT to native OpenXR eyes (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-D3D9-STAGE0-DIFFUSE-CURRENT-20261104-F617E874` — one new independently integrated original D3D9 fixed-function RGB/alpha source-to-binocular-eye rendering milestone. **AI 2 previous confirmed 2556 + one source-and-exact-CI-verified achievement +1 = 2557 cumulative AI 2 points.** AI 1 unchanged.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 original D3D9 RGBA color-write mask to native OpenXR eyes (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-D3D9-COLORWRITE-20261104-B37EA4D3`. ONE independently completed source state/eye-integrity milestone. **AI 2 previous confirmed 2559 + new source-and-exact-CI-verified achievement +1 = 2560 cumulative AI 2 points.** AI 1 unchanged.
+- **Exact source validation SHA:** `thp32tt/Model2VR-tools@b37ea4d30fe301b2dbb8e13364dae69058ab3be1`. Connected material/test commits `b8a26dc`, `6d4bda8`, `a0bd763`, `2b21d60`, `76f86a4`, `16dbf96`, `2b03d3f`, `ba46bd2`, `c6c2034`, `92650ba`, `bc4babe`, `15be4c2`, `b37ea4d` are ONE source feature. Docs-only `f17bf0af4cb39d9722ec33365d2a41b50bf11b52` [skip ci], CI fixes/readback/retries are +0.
+- **New actual implementation:** Original x86 D3D9 `COLORWRITEENABLE0` mask 0..15 survives original source draw/state decode and new explicitly-authenticated world-only ABI, clipped left/right source RGB/alpha blending, depth and x86 pose-tagged OpenXR IPC. Correct partial destination color/alpha retention. Source mask0 keeps Z-only without eye pixel coverage; alpha-only left/right differences cannot certify native RGB stereo. Genuine original Draw witness+FVF/stride+next Present correlation added to both UP and VB source evidence, offline reports and regressions. Previous exported APIs, original game Draw/FFB/input tick and unknown HUD mono fallback remain unchanged.
+- **Exact SHA 4/4 GitHub CI SUCCESS:** Public tools `41822782743`; ModDev toolkit `41822782785`; Win32 probe/native CTest `41822782806`; Daytona Win32 producer + Win64 OpenXR host and ZIP packaging `41822782651`. Build/run artifacts are not HMD proof.
+- **RUNTIME_VALIDATION=UNTESTED:** original Daytona gameplay-world caller/matrix A/B, original camera axes, meters per source unit, world/HUD classification and real Quest 3/VDXR images/performance remain unproven. Original ROM/REA/private traces retained only in `thp32tt/Model2VR-analysis-private`; OutRun and web port not modified.
+- **Score formula:** **AI 2 previous 2559 + new +1 = 2560 cumulative AI 2 points.**
+
 ## AI 2 original Model 2 D3D9 TEX0 source-to-OpenXR binocular material path (2026-11-04 KST)
 
 - **RUN_KEY:** \`MODEL2VR-ORIGINAL-D3D9-TEX0-DIFFUSE-20261104-DDE4C406\`. One independently completed source-layout/lighting/material milestone: **AI 2 previous confirmed 2558 + one newly source-and-exact-CI-verified achievement +1 = 2559 cumulative AI 2 points.** AI 1 unchanged.

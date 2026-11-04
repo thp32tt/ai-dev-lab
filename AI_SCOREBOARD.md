@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model 2 original D3D9 CPU-world eye-frame Present integration (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-CPU-PRESENT-INTEGRITY-20261104-BE773B8F` — **AI 2 ChatGPT2**. Previous confirmed AI 2 cumulative **2547** + **one independently completed, six-source-commit CPU-world source-to-OpenXR original-Present integration milestone +1** = **2548 cumulative AI 2 points**. Multiple connected commits, repairs, retests, runs, reports, and this bookkeeping are ONE result, not six rewards. AI 1 unchanged.
+- **Source:** `thp32tt/Model2VR-tools@main` material commits `a5855616489d23329492471f820a82fc5c8a315a`, `e6650104dcde48d43cbc74898a440bbac7efa40c`, `defb5611cc9af288c12a7c73c809e62828eca23c`, `f32e711f85e3c7c7c98df89e1b86fb08de028bd7`, `822afca4f0afbadd0e0eb7fe7063e09dba6ac71a`, validation-bearing latest source `be773b8f4309035bc7223e857bad17284439a774`.
+- **Material integration:** CPU ProjectVertexToScreen to real D3D9 UP/DIPUP multiple-triangle bounded original-draw joins; nested x86 original projector pointer preservation; verified CPU-world OpenXR eye-frame opt-in staging, exact source D3D9 Present-frame ID + HRESULT + thread + GPU-path exclusivity gate, Reset discard; x86/x64 IPC producer-health failure propagation and bounded JSON/Markdown source provenance report. Only an independently authenticated real game-world adapter may supply world proof and calibrated camera; unknown, HUD, mirrors/aux remain unproven and do NOT automatically trigger CPU-world mode. Original gameplay simulation, inputs, FFB and 2D fallback are not touched.
+- **Exact-SHA GitHub CI:** source integration `822afca4` Public tools `41783889638`, ModDev `41783889470`, Win32 probe `41783889486`, Daytona Win32 + Win64 OpenXR test ZIP `41783889471`: all SUCCESS. Latest analyzer `be773b8` Public tools `41784133673`, ModDev `41784133630`, Win32 probe `41784133648`: all SUCCESS. Earlier connected commits had their own pass but are +0.
+- **Runtime:** **RUNTIME_VALIDATION=UNTESTED**. No authentic Daytona + Quest3/VDXR camera axes, units-per-meter, original-game world/HUD proof or runtime HMD validation claimed; no original proprietary/private content in the public source repository. No OutRun or UW2 changes.
+- **Formula:** **2547 + 1 = 2548**.
+
 ## AI 2 Model 2 native CPU projector ↔ D3D9 Draw camera-source correspondence (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-CAMERA-CPU-D3D9-JOIN-20261104-5D7C5828` — **AI 2 ChatGPT2**. Previous independently confirmed AI2 cumulative **2546** plus one coherent new Model2 VR CPU-to-original-D3D9 draw source implementation **+1** = **2547 cumulative AI 2 points**. The three material commits, Python analyzer/report, C++ tests and CI results are ONE milestone. Source repair/retest/checkpoint/reports/rollover receive +0. AI 1 unchanged.

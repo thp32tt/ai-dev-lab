@@ -1,0 +1,29 @@
+{
+  "run_key": "MODEL2VR-CPU-PRESENT-INTEGRITY-20261104-BE773B8F",
+  "ai": "AI 2 ChatGPT2",
+  "date_kst": "2026-11-04",
+  "repo": "thp32tt/Model2VR-tools",
+  "validation_bearing_sha": "be773b8f4309035bc7223e857bad17284439a774",
+  "source_commits": [
+    "a5855616489d23329492471f820a82fc5c8a315a",
+    "e6650104dcde48d43cbc74898a440bbac7efa40c",
+    "defb5611cc9af288c12a7c73c809e62828eca23c",
+    "f32e711f85e3c7c7c98df89e1b86fb08de028bd7",
+    "822afca4f0afbadd0e0eb7fe7063e09dba6ac71a",
+    "be773b8f4309035bc7223e857bad17284439a774"
+  ],
+  "workflows": [
+    41783889638,
+    41783889470,
+    41783889486,
+    41783889471,
+    41784133673,
+    41784133630,
+    41784133648
+  ],
+  "previous_confirmed": 2547,
+  "delta": 1,
+  "new_confirmed": 2548,
+  "runtime_validation": "UNTESTED",
+  "duplicate_policy": "One coherent new CPU-to-original-D3D9-Present-to-OpenXR integration; six commits, CI, reports, retests/rollover +0 each; AI1 unchanged"
+}

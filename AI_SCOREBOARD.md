@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun QuestCockpitV2 signed F11 seat correction and bounded sky-eye diagnostics (2026-11-04 KST)
+
+- **RUN_KEY:** `QUEST-COCKPIT-V2-F11-SKY-20261104-402F8892`. ONE independent user-verified defect repair and source diagnostic milestone for this task. The seat source, synthetic test failure repair, sky evidence instrumentation, CI rerun, Windows binary packaging and docs are ONE achievement, not separate scores. AI 1 unchanged.
+- **Exact validated software SHA:** `thp32tt/OutRun2006Tweaks@402f88929d47dd9b03088209307d2a65b5cb6dbc` on `vr-quest-cockpit-v2`. Isolated core smoke run `41851286899` **SUCCESS**, Windows Win32 DLL build `41851287046` **SUCCESS**, Win32 game DLL/x64 OpenXR host and unified general test bundle run `41851287045` **SUCCESS**. Follow-up workflow-only packaging inclusion `131b787d8c2fdc3d0666dbd94d120f1c6facc090` changes no game source and is +0.
+- **Actual source change:** F11 vertical and longitudinal seat controls now allow signed offsets; negative SeatDown lifts the too-low native-profile eye, default -0.38; positive SeatBack shifts toward the rear, and the cockpit test launcher no longer pins offsets to zero at every restart. Added an opt-in bounded original sky-like stereo/eye-state diagnostic aggregated per 90 Presents without per-draw trace or GPU render-state modification. Original game EXE, vehicle models, public stable focus branch, and released mod unchanged.
+- **RUNTIME_VALIDATION=UNTESTED for repaired controls.** Prior Quest3 user feedback verified the failure of the previous build; the new result has no HMD re-test. Vehicle-body tremble involves original B0×F0 and independent camera interpolation, not yet causally isolated. Sky flashing also not yet resolved; user's launch had SkyGlowFactor=0 and the new probe distinguishes stereo/sky-like draw failures without claiming exact 4521C0 ownership. No false claim of headset visual parity.
+- **Score calculation:** AI 2 previous confirmed **2568 + one independently verified source repair/diagnostics milestone +1 = 2569 cumulative AI 2 points**. Rechecking or repackaging this RUN_KEY is +0.
+
 ## AI 2 original D3D9 independent RGB/alpha blend → OpenXR binocular world material (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-D3D9-SPLIT-ALPHA-WORLD-20261104-BFB09FD0`. ONE newly implemented world-material feature, not a score per C++ bridge/API, source recorder, Python report, CI, or regression repair. AI 1 remains separate and unchanged.

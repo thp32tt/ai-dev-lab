@@ -1,0 +1,19 @@
+{
+  "run_key": "MODEL2VR-DAYTONA-D3D9-SURFACE-PARITY-20261104-4BAED7AF",
+  "ai": "AI 2 ChatGPT2",
+  "date_kst": "2026-11-04",
+  "repo": "thp32tt/Model2VR-tools",
+  "validation_sha": "4baed7afed7508b8584ce9518b9d36c38b72c7d5",
+  "workflows": [
+    41761917195,
+    41761917065,
+    41761917040,
+    41761917152
+  ],
+  "artifact_id": 13291201269,
+  "previous_confirmed": 2539,
+  "delta": 1,
+  "new_confirmed": 2540,
+  "runtime_validation": "UNTESTED",
+  "duplicate_policy": "All same-feature commits, retry, CI and packaging +0; AI1 unchanged."
+}

@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Daytona D3D9 native original-surface update fidelity (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-DAYTONA-D3D9-SURFACE-PARITY-20261104-4BAED7AF` — **AI 2 ChatGPT2**. One independent integrated Model2 VR source feature: original D3D9 backbuffer transfers `StretchRect`, `ColorFill` and `UpdateSurface` now mirror to both OpenXR-bound x86 GPU eye buffers. This is separate from the earlier per-triangle shader-UP and x86/x64 producer-health integration; do not award extra points for individual commits, test repairs, reruns, packaging or status checks.
+- **Implementation:** `thp32tt/Model2VR-tools@main` exact final validation SHA `4baed7afed7508b8584ce9518b9d36c38b72c7d5`; feature commits `419f0bcd`, `33a486fd`, and causal Python test maintenance commits `e4bf38f4`, `4baed7af`. Original game's GPU calls and HRESULTs remain unchanged; native producer mirrors only successful backbuffer-destination operations with guarded source/rectangle/point provenance, no self-blit, no uninitialized first partial target. Frame-local surface transfer counters are separate from four original draw-family diagnostics. The combined Win32 and Win64 native source tests cover target bounds, hook wiring and pose re-admission. No ROM/emulator/private REA or OutRun/UW2 files were modified.
+- **Exact-SHA verification:** Public tools CI `41761917195` **SUCCESS**, ModDev toolkit CI `41761917065` **SUCCESS**, Windows Win32 probe build `41761917040` **SUCCESS**, Daytona Win32 producer + Win64 OpenXR host + native CTests + Windows ZIP bundle `41761917152` **SUCCESS**, package artifact `13291201269`. Actual Daytona gameplay and Quest 3 stereo accuracy **RUNTIME_VALIDATION=UNTESTED**. Source/CI results are not HMD calibration or runtime evidence.
+- **Score:** previous confirmed AI 2 **2539 + 1 = 2540 cumulative AI 2 points**. The three API hooks are one coherent achievement scored exactly once; same-feature retries and further inspection +0. AI 1 remains separate and unchanged.
+
 ## AI 2 Model2 Daytona per-triangle GPU stereo and x86/x64 producer-health channel (2026-11-04 KST)
 
 - **RUN_KEY:** `MODEL2VR-DAYTONA-PRODUCER-HEALTH-TRIANGLE-SAFE-20261104-36EEA745` — **AI 2 ChatGPT2**. One new independent source-integrated renderer/host production milestone on the Daytona C lane, separate from prior four-family GPU replay `MODEL2VR-DAYTONA-FOUR-D3D9-DRAW-FAMILIES-NATIVE-EYES-20261104-5DD5EED9`. Same TASK/feature revisions, intermediate CI, packaging, status rechecks, HMD retests and rollover score **+0**. AI 1 is separate and unchanged.

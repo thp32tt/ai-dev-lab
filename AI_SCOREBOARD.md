@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original D3D9 source-pose to actual Present safety (2026-11-05 KST)
+
+- **RUN_KEY:** `MODEL2VR-ORIGINAL-D3D9-POSE-COMMIT-20261105-F6C6ABF4`. ONE independent original-game stereo source-timing correctness achievement, not one point per header, C++ bridge, test, CI, workflow, ZIP, retry or later source readback; AI 1 is separate.
+- **Exact source-bearing SHA:** `thp32tt/Model2VR-tools@f6c6abf4298e2d98aceba7057d34415221d046a7`. Public tools CI `41874190391` SUCCESS. Same-source Daytona original Win32 x86 probe/CTest and Win64 OpenXR host native test/build plus release ZIP `41874190281` SUCCESS (all three jobs). Test archive artifact `13346965478`.
+- **Material change:** Original game GPU two-eye redrawing and verified CPU-world eye generation now store the *original* OpenXR source pose QPC timestamp and exact pose sequence. Before original Present, and again after its real HRESULT, a newer valid tracked HMD pose cannot revive old eye imagery: original latched pose older than 125ms, mismatched/rolled-back tags, untracked or swapped eyes fail closed. CPU verified-world source reports `PoseExpired` rather than misleading IPC failure. New shared Win32/Win64 native tests and source-contract Python regression. One original Draw/Present, no extra emulator tick, no FFB edits.
+- **Runtime boundary:** RUNTIME_VALIDATION=UNTESTED on Quest 3/VDXR. This is precise eye-image/pose synchronization; no original Daytona race-world Draw caller, camera axes, game-units/meter or HUD/scene proof has been fabricated. Private source evidence stays in `Model2VR-analysis-private`. OutRun and web-port untouched.
+- **AI2 score:** previous confirmed **2572 + one new exact-source-CI-verified stereo source-pose-to-Present achievement +1 = 2573 cumulative AI 2 points**. Follow-up checks, packaging and the same RUN_KEY earn +0.
+
 ## AI 2 OutRun 2006 Quest APK original 30-seat camera + XrRig yaw-origin stereo pose port (2026-11-05 KST)
 
 - **RUN_KEY:** `QUEST-COCKPIT-APK-EXACT-XR-POSE-20261105-6AC9B707`. One independent material source milestone for original Quest APK camera and OpenXR pose interoperability, not a point per commit/CI/build/retry/package. Separate AI 1 remains unchanged.

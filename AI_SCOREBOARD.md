@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun existing A/B deterministic salvage-first automation (2026-11-05 KST)
+
+- **RUN_KEY:** `OUTRUN-KOR-EXISTING-AB-SALVAGE-FIRST-20261105-2B03CEC5`. One new connected localization automation feature. Existing high-quality A/B PNG pixels are now reused before any ImageGen fallback: transparent edge padding, alpha-component line reflow, source-neighbor edge proof, native-HD bbox downscale/centering, protected-pixel checks, and fallback-only queue classification are one +1 feature. Follow-up fixes/tests/docs/retries receive +0.
+- **Validation-bearing OutRun SHA:** `thp32tt/OutRun2006Tweaks@2b03cec5060548d78fd27919cdfa0d5f50b24540`; fast safety workflow `41937825798` completed **SUCCESS** at that exact SHA. The 954-ROI full multi-atlas run `41937825713` was still in progress at scoring time, so this score does not claim full DDS/game validation.
+- **Automation:** task `6ae873f373dc8191a80c1bfa86245a25` updated to require existing A/B deterministic salvage first and ImageGen only after salvage failure; RELEASE/game runtime remains unapproved/UNTESTED.
+- **AI 2 score calculation:** previous confirmed **2585** + this independently verified automation feature **+1** = **2586 cumulative AI 2 points**.
+
+
 ## AI 2 authentic physical D3D9 Draw-to-CPU world OpenXR source dispatch (2026-11-05 KST)
 
 - **RUN_KEY:** `MODEL2VR-AUTHENTICATED-PHYSICAL-DRAW-CPU-WORLD-AUTO-20261105-8F64E3D8`. One connected independently implemented native source feature. Original real Win32 D3D9 four-family Draw-to-CPU-world material `55bddec739087b8107328925f5605171a847346e`, original physical all-family ordinal and tracked scene binding `5b324b2808078bc3b3703848985eff33b544add2`, and same-feature owner-thread source ordinal repair `8f64e3d8394ccf9fb8348de8ae6d439736b80af8` are **ONE +1**. Source corrections, tests, CI/package, docs, readback and rollover receive **+0**, no duplicate credit.

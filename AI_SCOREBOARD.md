@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Daytona original D3D9 physical VB/IB Draw + Present source-evidence integrity (2026-11-05 KST)
+
+- **RUN_KEY:** `MODEL2VR-ORIGINAL-D3D9-VB-DRAW-PRESENT-PHYSICAL-20261105-1C8F290A`. ONE independent original Daytona physical COM Draw/Present source-outcome correlation and fail-closed private world-caller candidate milestone. Related material commits `5a7f0a2a13bbfe4edd8853910c8f00e8615e8b62` and `1c8f290a68217640e00eefa8df55a9b1089d9db1` are ONE achievement; tests, CI, documentation, package and subsequent readback/rollover are +0, never separately scored.
+- **Exactly verified source SHA:** `thp32tt/Model2VR-tools@1c8f290a68217640e00eefa8df55a9b1089d9db1`. Same-SHA Public tools `41913103410` SUCCESS, ModDev `41913103391` SUCCESS, Windows x86 original probe and native CTest `41913103485` SUCCESS, Daytona original Win32 producer + Win64 OpenXR host and matched ZIP `41913103434` SUCCESS. Native test artifact `13363676649` (`DaytonaUSA-NativeStereo-Quest3-Win32-Win64`; expiry 2026-11-18 UTC).
+- **Original-source functionality:** Sampled real 32-bit primary-device original `DrawPrimitive` / `DrawIndexedPrimitive` VB/IB source witness IDs now bind the unchanged actual original COM HRESULT, in-EXE caller RVA, Draw family and authentic next physical original Present. Matching primary-device physical original Present HRESULT is captured on sampled source frames. New Python source report and private cross-phase race candidate gate exclude failed original Draw, failed physical Present, missing, duplicated, wrong-frame or wrong-caller evidence from source-accepted race-world shortlist. This does NOT automatically authenticate the original Daytona race world or issue VR proof flags; real original Draw/Present, simulation, FFB, GPU backup, mono fallback and Win32→Win64 OpenXR IPC remain once-only/unmodified.
+- **Still unproven:** Original race-vs-menu/HUD/sky/mirror pass ownership, private independently captured original CPU projector/geometry/matrix context, camera axes and units-per-meter, Quest 3/VDXR real binocular image and performance. `RUNTIME_VALIDATION=UNTESTED`. No private ROM/EXE/REA/traces in public repo; no OutRun/DX11/UW2 modifications.
+- **AI 2 calculation:** previous confirmed **2578** + **1** independently exact-SHA-validated new source achievement = **2579 cumulative AI 2 points**. Existing 2578 milestone and all same-RUN_KEY retries/readbacks receive +0; AI 1 score unchanged.
+
+
 ## AI 2 Daytona original D3D9 failed-Draw HRESULT atomic CPU-world eye revocation (2026-11-05 KST)
 
 - **RUN_KEY:** `MODEL2VR-ORIGINAL-D3D9-FAILED-DRAW-HRESULT-20261105-9C7DC453`. ONE independently validated authentic original D3D9 HRESULT-to-CPU-world binocular atomicity milestone; its connected patches, tests, CI repairs, docs, and ZIP are not separate score events. No OutRun/DX11/UW2 changes; AI 1 unchanged.

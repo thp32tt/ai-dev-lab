@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original D3D9 no-op scissor, exact RGB-alpha triangle edge and depth source fidelity (2026-11-04 KST)
+
+- **RUN_KEY:** `MODEL2VR-ORIGINAL-D3D9-SCISSOR-TOPLEFT-DEPTH-20261104-D90B962A`. One NEW independent source-and-exact-CI-verified Daytona/Model2VR material-path interoperability achievement, not four points for four source commits. **AI 2 previous confirmed 2560 + this distinct new achievement +1 = 2561 cumulative AI 2 points.** AI 1 unchanged. Other previously scored DX11 and Model2VR color-mask results are not counted again.
+- **Exact validated material SHA:** `thp32tt/Model2VR-tools@d90b962ab1dc5fc50d4794d34713cca436e0ffa5`. Connected source/regression commits `ac9bb4da1144260216930be571cb79d5c2e77c5a`, `b77b57c382ff939b182662997eb61fa52e2fee60`, `5f188a15359840ab8030381b3eee1c1b1ee964eb` and `d90b962ab1dc5fc50d4794d34713cca436e0ffa5` are ONE source milestone. Later docs-only `2a43c7eace929b0e522a453a7d8b5cdefab67c2d` is [skip ci] bookkeeping +0.
+- **Implemented:** source actual D3D9 full-backbuffer scissor admissible only when exact original GetScissorRect proves a no-op rectangle; unknown/partial/noncanonical/aux rejected. x86 original Draw same-witness scissor, full RT/depth and upcoming Present diagnostic evidence connected to CPU projector state offline, never auto-authorizing race world. Stereo left/right CPU eye triangles now use winding-independent top-left edge ownership for common diagonals, removing double-alpha blending seams; opaque strict LESS depth quantizes to stored float; source D3DCMP_ALWAYS honors ZWRITEENABLE. Original Draw/game tick/input/FFB preserved exactly once and unknown world/HUD fallback remains unmodified.
+- **Exact-source-SHA 4/4 GitHub Actions SUCCESS:** Public tools `41826603311`; ModDev toolkit `41826603572`; Win32 x86 probe build and native CTest `41826603338`; Daytona original Win32 producer and Win64 OpenXR host/package `41826603742`. This is source/build validation, NOT Quest HMD proof. No repeated CI checks or extra score for the same SHA.
+- **RUNTIME_VALIDATION=UNTESTED.** Real Daytona race-world Draw ownership/matrix/geometry command, game camera axes/meters per source unit, source world/HUD classification and Quest 3/VDXR binocular gameplay images/performance are unproven. Private ROM/REA/executable/traces stay exclusively in `thp32tt/Model2VR-analysis-private`. OutRun and webport were not modified.
+- **Score calculation:** **AI 2 previous 2560 + one new achievement +1 = cumulative 2561**; C6, retry, CI, docs and rereport +0.
+
 ## AI 2 DX11 authentic source eye-crossing FVF line GPU capture repair (2026-11-04 KST)
 
 - **RUN_KEY:** `CONVERSION-DX11-01228-AUTHENTIC-EYE-CROSSING-STROKE-AFBC679C` / **TASK_ID:** `CONVERSION-DX11-01228`. Unique source defect repair: **AI 2 previous confirmed 2559 + 1 independently implemented and five-gate source-verified achievement = 2560 cumulative AI 2 points.** AI 1 unchanged.

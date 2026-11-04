@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 Quest APK original 30-seat camera + XrRig yaw-origin stereo pose port (2026-11-05 KST)
+
+- **RUN_KEY:** `QUEST-COCKPIT-APK-EXACT-XR-POSE-20261105-6AC9B707`. One independent material source milestone for original Quest APK camera and OpenXR pose interoperability, not a point per commit/CI/build/retry/package. Separate AI 1 remains unchanged.
+- **Exact validated runtime source SHA:** `thp32tt/OutRun2006Tweaks@6ac9b7076c217f5b71c6c4aed1bd8e852f0ddd60`, branch `vr-quest-cockpit-v2`. GitHub Actions native C++17 pose regression run `41867308373` **SUCCESS** on source ancestor `46d8868e121c87dfa8210192c179e1261e6e3d5c` (final runtime commit only added binocular source pose publication); Windows x86 Release build `41867696162` **SUCCESS**, same-SHA general x86 DLL + x64 OpenXR host packaging run `41867696044` **SUCCESS**. Documentation-only followup commit `47aa8e5c3f8d92bdbf20fd4f811678adbcb206ce` [skip ci] has no new runtime code.
+- **Actual source integration:** Original Quest ARM64 `run_game::$_2` 0x2E17F4..0x2E1808 captured guest 30-car input adds Y+0.32, Z+0.55 **before** original mode1 camera swing/blend/ground; no manual F11 guessing when `QuestCockpitV2ApkNativeCamera=true`. Separate original `XrRig::locate` ARM64 0x2D69C8..0x2D6C08 recentered yaw origin from `xrLocateSpace`, inverse-origin `compose` with two `xrLocateViews` eyes; new C++17 native math module plus live mode1 runtime latching into original world fixed/shader WVP and matching Frame.v2 per-eye OpenXR source. Shader compensates existing head inverse to prevent twice-applied motion. Original +/-0.32/0.55 and +0.04 **virtual-wheel/controller pivot** in 0x2E1B.. are not inappropriately added to headset eye view.
+- **Not a HMD visual acceptance:** RUNTIME_VALIDATION=UNTESTED for this new SHA; compiler and source math success do not prove bit-for-bit Quest cockpit optics. Exact Quest eligibility/selector, game-world scale and user hardware comparison still required. Glass/reflection correction, original EXE/game assets, stable branch, and public beta release are not modified.
+- **Score:** AI 2 previous SSOT **2571 + new independently verified Quest original XR camera source implementation +1 = 2572 cumulative AI 2 points**. This is ONE achievement; any further retry/package/log/status earn +0.
+
 ## AI 2 Model2VR original x86 D3D9 game backbuffer → x64 OpenXR mono quad safety bridge (2026-11-05 KST)
 
 - **RUN_KEY:** `MODEL2VR-ORIGINAL-GAME-MONO-QUAD-20261105-A814398D`. One independent connected source-engineering milestone, not a point per source commit, regression repair, original pixel format, diagnostics, CI, ZIP or repeated validation. AI 1 remains independent.

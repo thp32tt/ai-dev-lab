@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 mandatory 60-minute fresh-chat recovery for Model2 C and DX11 A (2026-11-04 KST)
+
+- **RUN_KEY:** `AI2-MODEL2-DX11-HARD-HOURLY-ROLLOVER-20261104` — newly integrated hourly frozen-answer recovery for OutRun VR Docker controller on `thp32tt/OutRun2006Tweaks@chat-controller-downloads`. Model2 C always abandons its old independent-project conversation at **60 minutes after chat creation**, regardless of assistant busy/partial/missing response; ordinary 30m continuations do not reset the chat-age deadline. New window uses a short GitHub HEAD + master-plan source-grounded assignment, saves previous URL, and uses a durable send-retry latch to prevent runaway tabs or duplicate sends. Separate Model2 project scope guard remains mandatory.
+- **DX11 A:** Mandatory **60m** fresh chat for `WAIT_CHAT` unconfirmed owners, checked *before* any potentially hanging assistant UI probe and independent of :30 schedule; old Playwright tab close is bounded, remote GitHub checkpoint preferred with local-only fallback, and unfinished TASK_ID/event evidence preserved to avoid duplicate production/score. Terminal exact-SHA C6 still requires independent GitHub gate; no premature PASS, no new TASK_ID for an unfinished job.
+- **Validation:** Combined Python controller syntax PASS; synthetic Model2 11/11, DX11 hourly 7/7, legacy UW2 16/16, DX11 annotated C6 3/3 = **37/37 PASS**, including busy reply, 59m boundary, normal 30m continuation not postponing 60m rotation, failed send retry without tab storm, missing remote checkpoint and hung old tab close. Controller code final commit `8c31a2b6792788db658a421f4463afd183d1d8be`; Compose `354a247b38b4c95db780212f45b11c3a124cac8c`; master plan `thp32tt/Model2VR-tools@main` commit `799f1ba5101c78e333d14893eec7dbc42b3b0c4e`. Source validated, but **Portainer v8 deployment/live browser and game runtime not yet verified**; no claims of guaranteed send under unavailable login, rate limiting or browser-wide failure.
+- **Score:** previous confirmed AI 2 **2536 + 1 = 2537 cumulative AI 2 points**. Same controller feature retries, status rechecks, live redeploy and score re-report +0; AI 1 kept separate.
+
+
 ## AI 2 OutRun HD DDS 104 SHA-pinned orientation recovery + coarse ROI guard (2026-11-04 KST)
 
 - **RUN_KEY:** `OUTRUN-HD-104PIN-ROI-CONTAINMENT-20261104-DEF93547` — **AI 2 ChatGPT2**. GitHub SSOT prior confirmed **2535** + independent implemented and safety-tested source-plan orientation recovery / protected ROI containment guard (+1) = **2536 cumulative AI 2 points**. No repeat points for future status checks, re-run, or fixing subsequent unrelated ROI issues. AI 1 unchanged.

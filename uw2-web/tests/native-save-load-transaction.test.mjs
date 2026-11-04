@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {parseSaveSlots} from '../web/binary.js';
 import {admitOriginalKoreanSaveSlot} from '../web/native-original-source-admission.js';
-import {stageNativeTownSave} from '../web/native-save-load-transaction.js';
+import {stageNativeTownSave,canPreviewNativeOriginalSaveSlot} from '../web/native-save-load-transaction.js';
 
 // A completely source-backed synthetic Korean page: no fixture field is
 // invented independently of the bytes accepted by the production parser.
@@ -98,7 +98,27 @@ for(const [input,opts,reason] of [
  assert.deepEqual(stageNativeTownSave(input,opts),{ready:false,reason});
  assert.deepEqual(input,sourceSnapshot);
 }
+// A live voyage, a live town, and a pending WebCrypto save each forbid
+// hidden sidebar selection from silently replacing the original slot.
+assert.equal(canPreviewNativeOriginalSaveSlot(slot),true);
+assert.equal(canPreviewNativeOriginalSaveSlot({...slot,empty:true}),false);
+assert.equal(canPreviewNativeOriginalSaveSlot({...slot,unverified:true}),false);
+assert.equal(canPreviewNativeOriginalSaveSlot(null),false);
+for(const lock of [{liveTown:{}},{liveSea:{}},{checkpointInFlight:true},
+ {liveTown:{},liveSea:{},checkpointInFlight:true}]){
+ assert.equal(canPreviewNativeOriginalSaveSlot(slot,lock),false);
+}
 const app=fs.readFileSync(new URL('../web/app.js',import.meta.url),'utf8');
+const sidebar=app.slice(app.indexOf('function renderSlots() {'),
+ app.indexOf('async function loadPortraits() {'));
+assert.match(sidebar,/btn\\.disabled = !previewAdmission\\(\\)/);
+assert.match(sidebar,/if\\(!previewAdmission\\(\\)\\)return;\\s*selected = openNativeSaveSession\\(slot\\)/);
+const diagnosticRun=app.slice(app.indexOf('$("run-button").addEventListener("click"'),
+ app.indexOf('window.addEventListener("keydown"'));
+assert.match(diagnosticRun,/canPreviewNativeOriginalSaveSlot\\(slots\\[selected\\?\\.index\\]/);
+assert.ok(diagnosticRun.indexOf('canPreviewNativeOriginalSaveSlot')<
+ diagnosticRun.indexOf('startSelectedGame()'));
+
 const selector=app.slice(app.indexOf('function selectLoadedSlot(index) {'),
  app.indexOf('function handleSystemKey(event) {'));
 assert.match(selector,/return startSelectedGame\(slot\)/);

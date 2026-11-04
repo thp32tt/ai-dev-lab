@@ -13,7 +13,7 @@ import {nativeReadySeaPortMarker,nativeReadySeaPortPointerHit,
   nativeSeaPortMarkerContains} from "./native-sea-port-pointer.js";
 import {nativeTownSourceDoorChoices,planNativeTownDoorRoute} from "./native-town-door-route.js";
 import { canBuildNativePortArrival } from "./native-port-arrival.js";
-import {stageNativeTownSave} from "./native-save-load-transaction.js";
+import {stageNativeTownSave,canPreviewNativeOriginalSaveSlot} from "./native-save-load-transaction.js";
 import { prepareNativePortCall } from "./native-port-call-transaction.js";
 import { advanceNativeSeaAuto, createNativeAutoOriginPortProbe } from "./native-sea-auto.js";
 import { advanceNativeSeaVoyageStep } from "./native-sea-voyage-step.js";
@@ -891,7 +891,7 @@ canvas.addEventListener("pointermove",event=>{
   const hovering=viewMode==="sea"&&!checkpointInFlight&&
     nativeSeaPortMarkerContains(point,seaPortHoverMarker);
   canvas.style.cursor=hovering?"pointer":"default";
-  if(hovering)canvas.title=marker.portName+" · 클릭하여 기항";
+  if(hovering)canvas.title=seaPortHoverMarker.portName+" · 클릭하여 기항";
   else canvas.removeAttribute("title");
 });
 canvas.addEventListener("pointerleave",()=>{
@@ -910,9 +910,19 @@ canvas.addEventListener("pointerdown",event=>{
 });
 window.addEventListener("pointerup",event=>seaHold.release(event.pointerId));
 window.addEventListener("pointercancel",()=>seaHold.cancel());
-window.addEventListener("blur",()=>seaHold.cancel());
+// Browser backgrounding must never spend another in-game day or consume
+// provisions while the player is away. Cancel the held pointer and stop
+// automatic sailing before another queued 220ms timer tick can run.
+function suspendNativeSeaControls(reason){
+  seaHold.cancel();
+  if(seaAutoActive){
+    stopSeaAuto(reason);
+    if(viewMode==="sea")renderSeaScreen();
+  }
+}
+window.addEventListener("blur",()=>suspendNativeSeaControls("auto-focus-lost"));
 document.addEventListener("visibilitychange",()=>{
-  if(document.hidden)seaHold.cancel();
+  if(document.hidden)suspendNativeSeaControls("auto-tab-hidden");
 });
 canvas.addEventListener("click", event => {
   if(seaHold.consumeClick())return;
@@ -1219,11 +1229,19 @@ function renderSlots() {
     const btn = document.createElement("button");
     btn.className = "slot" + (slot.empty ? " empty" : "") +
       (selected?.index === slot.index ? " selected" : "");
-    btn.disabled = slot.empty;
+    // Hidden diagnostic save slots must never replace the active town/sea
+    // session or bypass an asynchronous browser checkpoint transaction.
+    const previewAdmission=()=>canPreviewNativeOriginalSaveSlot(slot,{
+      liveTown:townRuntime,liveSea:seaRuntime,checkpointInFlight
+    });
+    btn.disabled = !previewAdmission();
     btn.textContent = slot.empty
       ? `${slot.index + 1}. No data`
       : `${slot.index + 1}. ${slot.memo} · ${slot.portName} · ${slot.heroName} · ${slot.money.toLocaleString()} G${slot.ending ? " · END" : ""}`;
     btn.addEventListener("click", () => {
+      // Recheck at event dispatch: a stale queued click must not corrupt
+      // a newly started game after this sidebar was rendered.
+      if(!previewAdmission())return;
       selected = openNativeSaveSession(slot);
       if (saveBuffer && selected?.raw?.page != null) {
         portCatalog = parseKoreanPortTable(saveBuffer, selected.raw.page);
@@ -2562,6 +2580,11 @@ function startSelectedGame(slot=selected) {
 }
 
 $("run-button").addEventListener("click", () => {
+  // The diagnostic Run control must not change a running game behind its
+  // source-backed MAIN Load Data menu, even via a scripted DOM click.
+  if(!canPreviewNativeOriginalSaveSlot(slots[selected?.index],{
+    liveTown:townRuntime,liveSea:seaRuntime,checkpointInFlight
+  }))return;
   startSelectedGame();
 });
 

@@ -43,3 +43,14 @@ export function stageNativeTownSave(slot,{saveBuffer,portAssets,portDoors}={}){
     return hold('ORIGINAL_SAVE_RUNTIME_PREFLIGHT_FAILED');
   }
 }
+
+// Sidebar inspection is not a game-state transaction. Its old handler
+// replaced selected with a different original save while a live town/sea
+// runtime still owned the scene, breaking source/session checkpoint parity.
+// MAIN Load Data retains its separate staged and atomic switch path.
+export function canPreviewNativeOriginalSaveSlot(slot,{
+ liveTown=null,liveSea=null,checkpointInFlight=false
+}={}){
+ return !!slot&&!slot.empty&&!slot.unverified&&
+   !liveTown&&!liveSea&&!checkpointInFlight;
+}

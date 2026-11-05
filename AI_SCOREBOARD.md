@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 original standalone D3D9 Surface creation -> source-safe independent OpenXR eyes (2026-11-05 KST)
+
+- **RUN_KEY:** `MODEL2VR-ORIGINAL-STANDALONE-SURFACE-CREATION-20261105-139AD806`. ONE genuinely new source capability distinct from the already-scored pre-binding texture and VB/IB creation: original EXE-owned primary Device9 `CreateRenderTarget` (28), `CreateDepthStencilSurface` (29), and `CreateOffscreenPlainSurface` (36) now forward authentic COM exactly once, retain HRESULT and returned Surface and attach existing `LockRect/UnlockRect/GetDC/ReleaseDC` provenance **before first use**. True CPU/GDI writes revoke speculative physical-Present CPU/GPU stereo eyes; unknown hook coverage, missing successful output and outstanding writable mappings fail closed without altering original game mono, input, steering, FFB or emulator startup XR 2D screen.
+- **Implementation and strict checks:** `thp32tt/Model2VR-tools@139ad8068940181c58947008154726d0a1ae946b` (related source and test commits are ONE achievement); new genuine COM failure IDs 65..67 propagated through native Win32 CPU-world/Win64 OpenXR rejection and local read-only PRIVATE CSV evidence auditor. Source-only native/CI test and aggregate create counts; no game ROM, pixels, Surface pointers, original geometry, private captures, or sensitive reverse analysis stored in the public repo.
+- **Exact-source GitHub Actions 4/4 SUCCESS:** Public tools `42017550794`; ModDev toolkit `42017550762`; Windows x86 probe `42017550869`; Daytona genuine Win32 producer + Win64 OpenXR host/bundle `42017550727`. Tests, sequential integration commits, CI, ZIP and documentation earn **+0 separately**. OutRun/webport untouched.
+- **AI 2 cumulative:** previous confirmed GitHub SSOT **2615 + one newly completed independent original Surface creation capability +1 = 2616 points**. AI 1 separate.
+- **Runtime truth:** `RUNTIME_VALIDATION=UNTESTED`, `world_pass_proof=NOT_ESTABLISHED`; two independent PRIVATE racing A/B traces and real Quest3+VDXR game-axis/eye validation still required. No unproven World3D promotion.
+
 ## AI 2 original FVF clipped POINTLIST source → bounded multi-window D3D11 GPU Draw (2026-11-05 KST)
 
 - **RUN_KEY:** `CONVERSION-DX11-01251`. ONE genuinely new original game source-owned multi-GPU-Draw capability compared with the prior completed FVF polygon clipping work. Authentic D3D9 FVF triangle/POINTLIST CPU-expanded native output above 6144 vertices is atomically preflighted and issued through bounded triangle-aligned native D3D11 GPU windows, retaining source geometry ordering, UV, strict original index validation, clip-plane fallback and default DX9Ex game rendering/FFB.

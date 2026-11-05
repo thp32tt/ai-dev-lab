@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 original Model 2 emulator pre-game Win32 screen in OpenXR cinema (2026-11-05 KST)
+
+- **RUN_KEY:** `MODEL2VR-PREGAME-EMULATOR-WINDOW-XR-QUAD-20261105-426657A6`. ONE connected new emulator pre-game display milestone, not multiple points for the capture precursor, OpenXR binding, failed first static test, repair, CI or package. AI 1 independent.
+- **Exact validated Model2VR source:** `thp32tt/Model2VR-tools@426657a602d5ef26172fca61c90e4e9aeb0e2b57`. Original window/ROM-dialog GDI capture precursor `7a2950a9570885b22b0f05dca57e1ac99ebd8970`; actual World-Fixed OpenXR compositor, per-source upload token and stereo/mono precedence integration `a51ec55ca7497452d3e33308eee24d3dce15fc01`; static regression correction `426657a602d5ef26172fca61c90e4e9aeb0e2b57` are ONE feature only.
+- **Implemented path:** original Windows menu/ROM selection HWND is selected by actual emulator PID, periodically captured at 10fps into RGBA 1024x1024 with aspect-preserving letterbox, delivered to the Win64 OpenXR HMD as a world-fixed both-eye 2D quad while source gameplay is absent; real original-game mono uses the same quad, and a fresh game stereo pair takes priority in per-eye projection. No ROM/EXE/game asset altered, no FFB/input replay, menu pixels/logs remain local.
+- **Exact-SHA CI 4/4 SUCCESS:** Public tools `41938738756`, ModDev toolkit `41938738934`, Windows x86 probe `41938738915`, and Daytona game Win32 producer + OpenXR Win64 host + release bundle `41938738887` including game-win32/xr-win64/bundle all SUCCESS. Matched downloadable combined test artifact `13375321927` (expires 2026-11-19 UTC). `RUNTIME_VALIDATION=UNTESTED`: no witnessed Quest3/VDXR emulator-menu or live Daytona stereo playback; Win32 desktop controls remain the emulator's own.
+- **Score:** previous confirmed AI 2 **2587 + one independently exact-SHA-verified new function +1 = 2588 cumulative AI 2 points**. Older World3D CPU source and previous original D3D9 milestones not revalidated or rescored.
+
 ## AI 2 OutRun Quest cockpit LOCAL-space XR reprojection and sky rotation-only repair (2026-11-05 KST)
 
 - **RUN_KEY:** `QUEST-CAMERA-REVIEW-LOCAL-SPACE-SKY-20261105-8A28FE3A`. ONE independently source-proven repair milestone responding to an additional APK parity audit. No multiple credits for the offset-source regression, corrective follow-up, tests, docs, package or build. AI 1 unchanged.

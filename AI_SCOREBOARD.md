@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun 2006 HD source-pixel-exact overlap classification + translated ROI containment (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-ROI-PIXEL-PROVEN-SAFETY-20261106-2AD91226`. ONE new independent fail-closed OutRun source safety repair; two linked code/test commits and documentation form ONE outcome, not multiple scored tasks. Earlier original DDS/A-B import and the 250 test-only painted baseline are NOT newly scored.
+- **Exact GitHub implementation:** `thp32tt/OutRun2006Tweaks@059f326bf924e2782e31620756812ebc742a6881` adds actual alpha intersection proof so broad ROI metadata box overlap alone cannot incorrectly declare shared native ink; it also rejects ANY newly translated alpha pixel reaching another non-coarse label ROI, including not-yet-processed/held candidates. `2ad912267fdc1e987fd0e24fa833ee358bb67c99` adds two synthetic regression tests (empty shared source padding and translated intrusion HOLD). Existing same-pixel overlap HOLD tests retained. GitHub-native CPU, no N100 image processing, no fonts, no ImageGen regeneration.
+- **Exact GitHub Actions:** `OutRun A/B Multi-Atlas Fast Safety Unit Tests` run **42123678819**, head SHA **2ad912267fdc1e987fd0e24fa833ee358bb67c99**, **SUCCESS**. Full HD multi-atlas run **42123678870** was still running when scoring: any 250→N ROI count increase is **NOT** claimed, no runtime pass or release. QA dashboard remains TEST_ONLY; `release_approved=false`, `runtime_validation=UNTESTED`. The complete follow-on atlas run/QA counts, report refresh, docs or repeat CI checks score **+0** for this RUN_KEY.
+- **AI 1 account-wide calculation:** previous confirmed **1666** + one newly implemented and exact-SHA-CI-verified source safety outcome **+1** = **1667 cumulative AI 1**. AI 2 remains independently **2638**, not merged or changed.
+
 ## AI 2 original auxiliary RT0 source quarantine → physical Present Win64 OpenXR fail-closed (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-AUXILIARY-RT0-FAILCLOSED-20261106-768DF7C3`. One NEW distinct original Daytona x86 D3D9 safety defect fixed; not the prior scored MRT enumeration (`2f4a3fdf`) or RT/Depth physical COM lifetime (`cb73bfe7`). No duplicate points for tests, docs, packaging or old successful SHA.

@@ -1,0 +1,20 @@
+{
+  "RUN_KEY": "MODEL2VR-ORIGINAL-PROCESS-RUN-NONCE-20261106-57AF1809",
+  "actor": "AI2_CHATGPT2",
+  "date_kst": "2026-11-06",
+  "source_repo": "thp32tt/Model2VR-tools",
+  "source_sha": "57af18090d086318a3c99e1faf8e17dbbe773890",
+  "prior_confirmed_score": 2633,
+  "delta": 1,
+  "new_cumulative_score": 2634,
+  "feature": "Native original Win32 D3D9 Present CSPRNG process-run identity with 7-session PRIVATE fail-closed race/control provenance",
+  "exact_ci": {
+    "public": 42092615125,
+    "moddev": 42092614995,
+    "native_x86_code_identical": 42092520051,
+    "daytona_win32_win64_bundle": 42092614679
+  },
+  "runtime_validation": "UNTESTED",
+  "world_pass_proof": "NOT_ESTABLISHED",
+  "duplicate_policy": "ONE integrated source milestone; same code corrections, CI retries, release checks do not add score"
+}

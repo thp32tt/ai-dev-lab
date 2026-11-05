@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 original auxiliary RT0 source quarantine → physical Present Win64 OpenXR fail-closed (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-AUXILIARY-RT0-FAILCLOSED-20261106-768DF7C3`. One NEW distinct original Daytona x86 D3D9 safety defect fixed; not the prior scored MRT enumeration (`2f4a3fdf`) or RT/Depth physical COM lifetime (`cb73bfe7`). No duplicate points for tests, docs, packaging or old successful SHA.
+- **Material source SHA:** `thp32tt/Model2VR-tools@768df7c34af2ca558e074dcfd158b2e0f6b9496f`; exact real original `OriginalPhysicalTargetDrawCoverage` rejects auxiliary RT0 BEFORE candidate CPU eye work, tags offscreen Draw `kAuxiliarySource=4096`, and rejects the whole genuine physical Present's speculative CPU/GPU eyes even when offscreen and backbuffer Draws share the same Present. Original game COM Draw/Present/HRESULT, mono, menu/HUD, ROM, input/FFB unchanged. PRIVATE scene-source reporting and 7-session World3D triage cannot accept auxiliary RT0 as direct-eye gameplay proof.
+- **Six connected implementation/test files** in one material commit. Native all-four-family mixed-target tests and Python private-source/multi-session negative controls implemented. No original game reverse bytes or private reports added to public Git; OutRun and web-port repositories untouched.
+- **Exact SHA GitHub Actions 4/4 SUCCESS:** Public tools **42120575613**, ModDev toolkit **42120575564**, native Windows x86 probe/CTest **42120575525**, Daytona Win32 game producer + independent Quest Win64 OpenXR host + matched bundle **42120575521** (game-win32/xr-win64/bundle each SUCCESS). Artifact `DaytonaUSA-NativeStereo-Quest3-Win32-Win64` ID **13459285447**, expires 2026-11-19T22:21:49Z.
+- **Remaining blocker:** no authentic PRIVATE original race A/B and title/menu/sky/HUD/aux captures in this task, no CPU projector ↔ same physical original gameplay Draw/RT0/depth camera-world proof, and no Quest3/VDXR HMD runtime axes/meters/IPD or two-eye gameplay test. **RUNTIME_VALIDATION=UNTESTED; world_pass_proof=NOT_ESTABLISHED; native World3D auto-enable OFF.**
+- **AI2 permanent score calculation:** previous confirmed **2637** + this ONE new CI-verified independent original-source safety outcome **+1** = **2638 cumulative AI2**. AI1 remains independent. Exact same-feature retry/test/report/CI recheck is **+0**.
+
 ## AI 2 original unsampled Win32 D3D9 MRT1-3 live-source proof → Win64 OpenXR safe-eye gate (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-UNSAMPLED-MRT-20261106-2F4A3FDF`. ONE NEW independent implemented original real-device MRT read-only source capability; the prior successful RT0/Depth Set COM lifetime `cb73bfe7`, Scene/Draw, exact caller and process nonce features are separate older achievements and are NOT scored again.

@@ -1,0 +1,21 @@
+{
+  "RUN_KEY": "MODEL2VR-ORIGINAL-SCENE-OWNED-FOURFAMILY-PRESENT-20261106-A347C0A7",
+  "AI": "AI2_ChatGPT2",
+  "date_kst": "2026-11-06",
+  "previous_confirmed_score": 2634,
+  "delta": 1,
+  "new_cumulative_score": 2635,
+  "source_repo": "thp32tt/Model2VR-tools",
+  "validation_sha": "a347c0a74bd38ec3bff3d35981b2d7f35fda44ab",
+  "original_source_feature": "Physical post-COM scene-owned four-family Draw to Present source integrity with CPU/GPU Win64 OpenXR rejection and private evidence audit",
+  "exact_source_ci": {
+    "public": 42098353925,
+    "moddev": 42098353731,
+    "windows_x86": 42098353959,
+    "game_win32_xr_win64_bundle": 42098353844
+  },
+  "artifact_id": 13449530890,
+  "runtime_validation": "UNTESTED",
+  "world_pass_proof": "NOT_ESTABLISHED",
+  "duplicates": "+0 for feature repairs, retries, previous process nonce and HMD rechecks"
+}

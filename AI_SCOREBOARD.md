@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간이용권 특가 독립 조회 (2026-11-06 08:44:13 KST)
+
+- **Unique RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-06T08:44:13+09:00`.
+- **Actual research:** 2026-11-06 official/merchant review of SEA LIFE COEX Smartinfini annual pass, Seoul Land, One Mount, Woongjin Playdoci, Aqua Planet Ilsan and LEGOLAND/SEA LIFE pass; fresh web search and direct merchant page inspection. Merchant SEA LIFE COEX annual pass remains **79,000 KRW**, valid **2026-11-01 through 2027-10-31**, registration AND first visit by **2026-11-30**, under-36-month children free with age proof, parking 4 hours 4,800 KRW. Merchant sale end and checkout stock not independently established. No newly verified distinct deal vs 2026-11-05 notice; no duplicate alert. Sources: https://nseoul.smartinfini.com/?pcode=S3391500&pn=product.view and official facilities.
+- **Scoring:** AI 2 previous confirmed **2641** + one correctly executed independent scheduled deal check **+1** = **2642 cumulative AI 2 points**. User explicitly awards +1 for successful independent verification even without a qualifying deal. No duplicate RUN_KEY. AI 1 unchanged. **Confirmed at 2026-11-06 08:44 KST.**
+
+
 ## AI 2 OutRun Dino 246 v2 modeled steering holes, thick seat shells and nine-batch R26 sidecar (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-DINO-HDCOCKPIT-V2-20261106-332F03B4`. ONE independent newly completed original-dimension 3D cockpit v2 modeling result, distinct from previous v1 cockpit source/OVC and Dino original-PMT GLB exporter. The six hole cutouts, seat shells, material batching, fixes, tests, uploads and multiple views are ONE result, not separate scores.

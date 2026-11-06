@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 original Model2VR canted binocular midpoint recenter and quaternion sign continuity (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-CPU-WORLD-CANTED-CENTER-ORIENTATION-20261106-68A1C348`. ONE new independent source capability, not one event per patch, failing intermediate CI, regression, released ZIP, or docs note.
+- **Final EXACT material source/test SHA:** `thp32tt/Model2VR-tools@68a1c34846bf91bb424e50bd29cedbff166f1b80`. Changes in `src/vr/model2_head_recenter.hpp` and `tests/model2_head_recenter_test.cpp` replace left-eye-only headset orientation capture by an aligned, normalized left+right OpenXR quaternion mean, while retaining actual binocular center POSITION and per-eye FOV/IPD. Each eye's `q/-q` equivalent orientation is normalized to the captured central hemisphere before relative eye-pose publication. Native tests cover 8-degree eye cant in both directions, 1-metre head translation, same-LOCAL source quaternion flip and LOCAL epoch restart flip; source World3D render policy, authentic original game Draw/FFB, x64 host pose IPC ABI and safe mono fallback remain unchanged.
+- **Connected fixes count ONCE:** initial material `07b8db9f6baf64fec2b30c3538f2409d67da7d03` exposed a sign-ambiguity regression failure; correction `4f8a0667c66b0e5be8093a6e6bd38266356b88a6` and same-epoch regression `68a1c34846bf91bb424e50bd29cedbff166f1b80` are the SAME physical OpenXR center-recenter improvement. No retry or prior successful SHA has been re-scored.
+- **Exact SHA Windows/CI 4/4 SUCCESS:** Public tools `42225449661`; ModDev toolkit `42225449701`; Windows x86 native build and full CTest `42225449649`; Daytona native original Win32 game producer + independent Win64 OpenXR host + release bundle `42225449577` (`game-win32`, `xr-win64`, `bundle` all SUCCESS). These verify source and test behavior, NOT actual Quest 3 HMD.
+- **Physical provenance boundary:** `world_pass_proof=NOT_ESTABLISHED`, `RUNTIME_VALIDATION=UNTESTED`; no new live seven-process original Daytona CPU projector ↔ original GPU Draw/Present physical proof or game axis/metres/IPD runtime calibration. World3D remains AUTO-OFF, unknown HUD/menu/sky/aux stays original mono; OutRun and web-port untouched.
+- **AI 2 permanent cumulative calculation:** **previous confirmed 2670 + ONE new independent exact-SHA verified CPU-world binocular reference-frame feature (+1) = 2671 cumulative AI2 points**. AI1 independently unchanged.
+
+
 ## AI 2 OutRun Dino external cockpit OVC3 normal/ORM Shader Model 3 runtime (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-DINO-OVC3-PBR-NORMAL-ORM-SM3-20261106-BF6588CD`. One new independent OutRun 2006 external cockpit material pipeline capability, scored once; multiple source commits, tests, documentation, retries and later headset checks do not earn duplicate points.

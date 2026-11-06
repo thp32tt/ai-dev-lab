@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 original Model2 CPU World3D recenter rejects stale/duplicate OpenXR pose sequence (2026-11-07 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-CPU-RECENTER-POSE-SEQUENCE-20261107-30078283`. One independently verified native recenter source-provenance fix; regression fixtures, CI jobs, packaging, docs, previous successful commits and retries are not separate achievements.
+- **EXACT material source+test SHA:** `thp32tt/Model2VR-tools@300782831e0442041958acc2d6ccbecf962329a6`. `src/vr/model2_head_recenter.hpp` now retains the last successfully accepted OpenXR pose sequence and rejects older/equal samples even if their LOCAL epoch and physical 6DoF rig are plausible or a new LOCAL epoch is claimed. Rejection preserves the previously emitted CPU camera, anchor, accepted pose-sequence high-water and LOCAL epoch; only a newly increasing coherent sample can rebase. `Reset()` explicitly starts a new source-consumer lifetime. No change to original Daytona EXE/ROM/FFB, IPC ABI, Win32 physical D3D9 hooks, Win64 XR host, OutRun or web port.
+- **Native C++ regressions:** `tests/model2_head_recenter_test.cpp` covers duplicate modified-eyes, out-of-order same-epoch source, old sequence pretending to be a future LOCAL generation, no-poison recovery and explicit reset; `tests/model2_reference_space_source_chain_test.cpp` checks the genuine Win64-publisher contract to direct Win32 CPU-world recenter against same-LOCAL delayed samples. Synthetic native contract tests, NOT proof of actual physical Daytona gameplay or Quest3.
+- **EXACT SAME-SHA CI 4/4 SUCCESS:** Public tools `42247405150`, ModDev toolkit `42247405026`, Windows x86 probe native build/CTest `42247405065`, Daytona original Win32 game producer + independent Win64 OpenXR Quest host + user bundle `42247405143`; game-win32/xr-win64/bundle each SUCCESS.
+- **Still unproven:** seven independently process-nonced user-PC PRIVATE original Daytona x86 `race_a/race_b/title/menu/sky/hud/aux` captures, same physical CPU projector-to-D3D9 Draw/RT/depth/Scene/Present lineage, real world axes/metres-per-unit and Quest3/VDXR tracked binocular calibration. `world_pass_proof=NOT_ESTABLISHED`, `RUNTIME_VALIDATION=UNTESTED`, original native World3D AUTO-OFF and honest mono fallback. AI1 unchanged.
+- **AI 2 permanent cumulative calculation:** **previous confirmed 2676 + one newly exact-SHA CI-verified independent source capability (+1) = cumulative 2677 AI2 points**. No duplicate score for any previously passed commit.
+
 ## AI 2 original Daytona known nonzero OpenXR LOCAL source from native CPU World3D to physical Present (2026-11-07 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-KNOWN-LOCAL-ORIGIN-CPU-PRESENT-20261107-D276E781`. ONE independent genuine source-provenance capability, not extra points for multiple entrypoints, a failed intermediate CI, test correction, package, docs or prior successful commits.

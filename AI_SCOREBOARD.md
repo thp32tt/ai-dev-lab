@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 original Daytona private comparator receipt promotion (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-PRIVATE-COMPARE-RECEIPT-PROMOTION-20261106-503DF25E`. ONE independent source function, and all test/CI/docs/retry commits counted together once.
+- **Source:** `thp32tt/Model2VR-tools@503df25ed9a7be03810f367e5f23c7d042089d51`; genuine original x86 PRIVATE seven-session comparison result now requires fresh GUID-pending JSON, validated candidate-only schema, race/control counts, World3D OFF and uncalibrated Quest state, fail quarantine, final original CSV/report SHA-256 recheck, candidate SHA-256 in staged manifest, then active publication. No user original Daytona/ROM/Quest3 runtime proof; World3D remains OFF.
+- **Exact SHA CI 4/4 SUCCESS:** Public 42206437235, ModDev 42206437269, Windows original x86 42206437230, Daytona original Win32 game + independent Win64 OpenXR + bundle 42206437236; artifact DaytonaUSA-NativeStereo-Quest3-Win32-Win64 13497295481. OutRun/web port untouched.
+- **AI2 cumulative:** **previous confirmed 2666 + ONE new verified feature +1 = 2667**. AI1 independent. No duplicate for earlier SHA/tests/docs.
+
+
 ## AI 1 OutRun HD QA-safe workflow-run wakeup and actual latest-SHA DDS resume (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-GITHUB-EVENT-SAFETY-CONTROLLER-20261106-961ADBC9`. One independent new controller wakeup/production-unblock milestone. GitHub file update, trigger run, new DDS dispatch, QA polling and retries are one accomplishment, not separate scoring events.

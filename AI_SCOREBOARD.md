@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Dino external cockpit OVC3 normal/ORM Shader Model 3 runtime (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-DINO-OVC3-PBR-NORMAL-ORM-SM3-20261106-BF6588CD`. One new independent OutRun 2006 external cockpit material pipeline capability, scored once; multiple source commits, tests, documentation, retries and later headset checks do not earn duplicate points.
+- **Real implementation:** `thp32tt/OutRun2006Tweaks@feature/dino-external-pbr-runtime-v1-20261106` extends the active R26 D3D9 sidecar renderer with bounded `OVRCABH3` normal/ORM textures and roughness/metallic factors, SM3 tangent-space normal mapping + GGX direct-light shader, per-eye camera/view/projection, per-device reset cleanup and fixed-function fallbacks. A read-only OVC2->OVC3 PNG/DDS packer and fail-closed malformed-material tests are included. Original OVC1/2 and game assets remain unchanged.
+- **Exact source/test SHA:** `bf6588cd1d4340557cdaabe3d0b8e36df3b22b6e`; GitHub Actions run `42225048932`, all 3/3 SUCCESS (`portable-parser`, `win32-shader` real `vs_3_0` / `ps_3_0` D3DCompile, `win32-r26` x86 game DLL). Later docs-only branch HEAD `02e6db5f60d6714469446a5292b975d8c13b883d` has no material changes.
+- **Validation boundary:** Static, native shader-compilation and Windows x86 DLL build success only. The real headset cockpit normal/PBR appearance, original game light adaptation, and VR frame timing/crash behavior remain `RUNTIME_VALIDATION=UNTESTED`. No unrelated OutRun VR branches, original EXE/PMT, Model2VR or web port touched.
+- **AI 2 permanent calculation:** **previous confirmed 2670 + one NEW independently verified source capability +1 = 2671 cumulative AI 2 points**. AI 1 unchanged.
+
 ## AI 2 Daytona seven-stage original PRIVATE archive exclusive single-writer receipt safety (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-PRIVATE-SESSION-SINGLE-WRITER-20261106-F98C592D`. One independent newly implemented original-game PRIVATE source collection integrity capability. Initial material commit `fece1671a053ecc4899c168ab0b5bf7133bacd5a`, Windows fixture corrections `9bcd5d90`, `0d7329c9`, regression anchoring `97ac785a`, and final exact-SHA checked source `f98c592d2b186fa450a800dcdf86695e6e005659` constitute ONE result; repairs, test jobs, retries, docs and release bundle do not earn individual points.

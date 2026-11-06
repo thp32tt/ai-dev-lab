@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Dino PBR original-game copy-run compatibility and isolated model restore (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-DINO-PBR-COPYRUN-PRECHECK-RESTORE-20261106-BD9F78A8`. ONE independent installation/rollback safety accomplishment, separate from the previously scored OVC3 PBR shader pipeline. The same script repair, synthetic verification, retry, docs and CI gates are not separately counted again.
+- **Actual material source/test exact SHA:** `thp32tt/OutRun2006Tweaks@bd9f78a8845ee004859d0bccbccecf3e773a53c4`, development branch `feature/dino-external-pbr-runtime-v1-20261106`. Rebuilt malformed inherited `QuestCockpit-CopyRun.ps1` (unclosed regex and duplicated tail), restored exact source/host marker checks, introduced explicit PBR-only launcher and `Dino246_Cockpit_LHD_v15_PBR.ovc` independent filename with process-only opt-in. Validates signed material SHA preflight, guards existing sidecar conflicts before modifying game directory, preserves original OVC2 and original EXE/PMT/XPR, and supports saved DLL/host/model rollback.
+- **Real Windows synthetic end-to-end integration test:** `tools/tests/test_dino_pbr_copyrun.ps1` parses the actual PowerShell installer/restorer, verifies synthetic Win32 and x64 PE machine headers/source identity, tests `-Mode PBR -VerifyOnly` positive/negative missing/mismatched SHA, rejects a conflicting existing model before backup/installation, runs the full copy-run against a **fake** game EXE with stub selector/runner to verify opt-in launch and environment cleanup, then confirms restore recovers previous user DLL+host, preserves stable OVC2 and removes newly installed PBR sidecar.
+- **Exact-source GitHub Actions 4/4 SUCCESS:** `42236591707` jobs `portable-parser`, `win32-script-compat`, `win32-shader` and `win32-r26` (actual R26 x86 DLL + same-checkout x64 OpenXR host and paired artifact). Later docs-only HEAD `4160b32871ef6baf5cc3c5818a110276d37328ba` is not counted or re-tested.
+- **Honest boundary:** No actual OutRun 2006 exe race/menu/exit cycle, physical Quest 3 runtime nor visual/frame-time verification; original native car callback precedes external draw so known duplicate interior/steering remains **UNRESOLVED**. Only the isolated feature branch was modified, not main/release/Model2VR/webport. `RUNTIME_VALIDATION=UNTESTED`.
+- **AI 2 permanent calculation:** **previous confirmed 2673 + one new independently verified copy-run/rollback safety capability +1 = 2674 cumulative AI2 points**. AI 1 unchanged; no repeated PBR-shader credit.
+
 ## AI 2 Model2VR original CPU game-frame OpenXR LOCAL epoch monotonic latch (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-CPU-LOCAL-LATCH-EPOCH-20261106-6FDF9DB6`. ONE independent newly verified source capability, NOT separate points for added regression cases, documentation, testing reruns, prior commits or package artifact.

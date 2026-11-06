@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR original CPU game-frame OpenXR LOCAL epoch monotonic latch (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-CPU-LOCAL-LATCH-EPOCH-20261106-6FDF9DB6`. ONE independent newly verified source capability, NOT separate points for added regression cases, documentation, testing reruns, prior commits or package artifact.
+- **EXACT material source and native regression SHA:** `thp32tt/Model2VR-tools@6fdf9db67ebbe0cd9372e2e265bad3625ad3b388`. `src/vr/model2_frame_latch.hpp` now maintains the highest successfully admitted OpenXR LOCAL source epoch for a coherent original x86 CPU game-frame pose. After a nonzero tracked LOCAL generation is admitted, a higher-sequence delayed packet from an older/zero/legacy epoch fails closed and revokes the previously latched eye pair; invalid prospective new-epoch input never advances the high-water mark. Valid same/new epochs can recover without consuming a game frame/pose sequence on rejection. Only an explicit consumer Reset clears the origin high-water. The new state does not change the x86/x64 IPC ABI, original physical D3D9 Draw/Present, game simulation or FFB.
+- **Tests:** `tests/model2_frame_latch_test.cpp` exercises the delayed old/zero epochs, accepted newer generation, invalid-newer rig non-mutation, recovery and explicit Reset. `tests/model2_reference_space_source_chain_test.cpp` exercises the connected original x86 LOCAL recenter ↔ Win64 published pose ↔ CPU game-frame latch, including late old LOCAL packets with greater pose sequences than the previously accepted real epoch. No real Daytona EXE/ROM, physical Quest 3/VDXR runtime or actual seven independent original game sessions were run.
+- **SAME SHA required GitHub Actions 4/4 SUCCESS:** Public tools `42233452077`; ModDev toolkit `42233451919`; Windows x86 original native probe full CTest `42233452089`; Daytona genuine Win32 producer + independent Win64 OpenXR host + combined release bundle `42233451965` (game-win32, xr-win64, bundle jobs each SUCCESS).
+- **Still unproven:** Original Daytona PRIVATE seven unique physical process-nonced x86 race_a/race_b/title/menu/sky/hud/aux capture, real original CPU projector-to-same-D3D9 Draw/Scene/RT/depth/Present identity, game-world axes and units-per-meter, Quest3+VDXR actual tracked IPD/6DoF. `world_pass_proof=NOT_ESTABLISHED`, `RUNTIME_VALIDATION=UNTESTED`, native World3D auto-enable OFF; fallback truthful mono. No OutRun/web port changes.
+- **AI2 cumulative calculation:** **previous confirmed 2672 + one new independent exact-SHA tested feature (+1) = 2673 cumulative AI2 points**. AI1 unchanged. Same-work retries/docs/CI/artifacts +0.
+
+
 ## AI 2 Model2VR CPU-world direct binocular rig fail-closed at latch and projection (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-CPU-BINOCULAR-RIG-DIRECT-GATE-20261106-8BF86ADE`. One new independent source safety capability, not one point per changed file, test, workflow, docs, artifact, retry or repeated verification.

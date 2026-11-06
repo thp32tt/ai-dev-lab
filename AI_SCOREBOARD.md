@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun HD native BC3 readable Hangul RGB guard against translucent matte (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-BC3-READABLE-INK-MATTE-GUARD-20261106-6EA99491`. ONE new completed source-level repair + regression suite; both implementation and test commits, CI reruns, QA polling, future deterministic DDS rebuild or reporting are ONE achievement, not separately scored.
+- **Implementation:** `thp32tt/OutRun2006Tweaks@6ea99491595ec15e1c44685e685a8ee4c69e0d04`, asset branch `korean-localization-recovery-20260928`. The BC3 RGB endpoint optimizer now prioritizes visible Korean letter ink (alpha >=16) over arbitrary matte colors in sub-16 alpha antialias pixels, falling back to faint ink only when a 4x4 block has no readable ink. No source atlas deletion, guessed coordinates, font redraw, new ImageGen, altered DDS format or relaxed per-channel color error limit.
+- **Exact SHA CI:** GitHub Actions `42200189562` (A/B Multi-Atlas Fast Safety Unit Tests) **SUCCESS** on `6ea99491595ec15e1c44685e685a8ee4c69e0d04`. Regression `test_transparent_matte_outlier_does_not_recolor_readable_hangul` checks all readable pixels against the existing 55/channel threshold despite an alpha=1 cyan outlier, including alpha-stroke survival. Full multi-atlas run at this SHA, 85 BC3 color-loss HOLD recovery delta, independent C1/C3 QA and game runtime are **NOT YET ESTABLISHED**, so translated ROI 252/954, 48 DDS and 702 HOLD remain the last separately checked pre-change report; no new ROI count or release is claimed.
+- **Ledger arithmetic correction (NOT extra scored work):** the last non-regressed AI 1 cumulative was **1777** after the 2026-11-02 five-DDS-to-PNG sample event. Three individually recorded and separately verified 2026-11-06 AI 1 source/QA-controller milestones were wrongly chained from 1666/1667/1668 rather than 1777. Their already-awarded +3 restores the correct prior confirmed **1777 + 3 = 1780**; this normalization is **+0 new work** and retains the user-assigned historical -10 penalty already reflected in 1777.
+- **AI 1 cumulative:** **previous corrected confirmed 1780 + ONE independent exact-SHA-CI-verified BC3 source safety result +1 = 1781 cumulative AI 1 points**. AI 2 remains independent; latest separately confirmed AI 2 was 2665 when verified, no change here. No reuse/retry/double scoring.
+
+
 ## AI 2 original Daytona PRIVATE comparison timeout candidate quarantine (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-COMPARE-TIMEOUT-CANDIDATE-20261106-872F82A6`. One independent actual collector fail-closed capability; CI, docs, prior successes and follow-up verification do not earn extra points.

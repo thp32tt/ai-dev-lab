@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Dino native player-car display suppression after external sidecar draw (2026-11-07 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-DINO-EXCLUSIVE-ORIGINAL-PLAYER-DISPLAY-20261107-CB8077B5`. One new independent actual native-player-car display suppression capability, separate from previous OVC3 PBR rendering and copy-run/restore work. The new source, regression coverage, docs, builds, later rechecks and runtime status reports count as ONE achievement, no duplication.
+- **Source and compatibility behavior:** `thp32tt/OutRun2006Tweaks@cb8077b555868f75dea510d8d0a9651a0dca164a` on `feature/dino-external-pbr-runtime-v1-20261106`. `src/hooks_graphics.cpp` now calls `DrawPreparedDinoFitV6` BEFORE original retail `0x49F3E0` player display; the original callback, including delayed native PMT draw queue, is bypassed **only if** the external model actually submitted successfully and D3D9 stateblock restoration succeeded with exact active race/mode1, player identity, native frame and OpenXR eye pose. On missing/invalid OVC1/2/3, device/shader failure, invalid scene/pose/epoch or failed draw, the original entire player display runs unchanged. Other cars, menu/goal/start, game EXE/PMT/XPR, input/physics and other branches untouched. Visual-car-only effects such as the native model shadow may be lost while replacement is active.
+- **Exact-source required CI:** `42288454087` all 4/4 jobs SUCCESS: `portable-parser` includes new `tests/test_dino_original_car_gate.cpp` and source-order contract, `win32-script-compat`, `win32-shader`, `win32-r26` building real Win32 R26 game DLL plus matching x64 OpenXR host. Final docs-only branch HEAD `63e4a0ab1d1a073e3270fa1e18b126014fa75cc0` did not alter checked source.
+- **Truth boundary:** `RUNTIME_VALIDATION=UNTESTED`. No original game/HMD process was run; visible duplicate steering/body elimination, passenger/shadows/reflections, exit/menu crash and per-eye frame-time remain unconfirmed. This is validated native-source implementation, NOT proven full original-game parity.
+- **AI 2 permanent formula:** **previous confirmed 2686 + one NEW independent exact-SHA CI-tested source capability +1 = 2687 cumulative AI2 points**. AI 1 unaffected; retry/docs/CI/source-status duplicate reports +0.
+
 ## AI 2 original Daytona seven PRIVATE sessions semantic candidate replay (2026-11-07 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-PRIVATE-SEMANTIC-CANDIDATE-REPLAY-20261107-2BF4A3C7`. One independently new source-evidence capability, not re-awarding old original capture/nonce/manifest hash, Win64 publisher, Native Draw/Present source tickets, retries or package.

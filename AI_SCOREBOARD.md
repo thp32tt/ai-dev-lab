@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Model2VR CPU-world direct binocular rig fail-closed at latch and projection (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-CPU-BINOCULAR-RIG-DIRECT-GATE-20261106-8BF86ADE`. One new independent source safety capability, not one point per changed file, test, workflow, docs, artifact, retry or repeated verification.
+- **Material source/test EXACT SHA:** `thp32tt/Model2VR-tools@8bf86ade82fd36e155bc52317df628540a9e4b6c`. `src/vr/model2_frame_latch.hpp` and `src/vr/model2_cpu_stereo.hpp` now directly require `pose::CheckStereoRigGeometry` for the entire paired OpenXR eye rig. A caller bypassing the original Win64 pose publication guard cannot latch or project duplicated mono eyes, left/right-swapped eyes, divergent eye rotations or unrelated FOVs as independently physical CPU World3D stereo. Failed frame-latch refresh revokes the old latched snapshot. Legitimate 8-degree canted left/right optics continue to pass. Native tests extend `tests/model2_cpu_stereo_test.cpp` and `tests/model2_frame_latch_test.cpp`.
+- **Exactly matched SHA CI 4/4 SUCCESS:** Public tools `42229103546`; ModDev toolkit `42229103473`; Windows original x86 probe build and native CTest `42229103617`; Daytona original Win32 producer plus separately built Win64 OpenXR host and release bundle `42229103525` (game-win32, xr-win64 and bundle SUCCESS). No real Daytona original game, ROM or Quest 3/VDXR session was executed in CI.
+- **Physical proof boundary:** Actual seven independent PRIVATE original x86 Daytona race_a/race_b/title/menu/sky/hud/aux runs, same-physical-Present CPU projector → real D3D9 Draw/RT/depth ownership, camera axes/metres-per-unit, Quest3 IPD and tracked 6DoF are still not established. `world_pass_proof=NOT_ESTABLISHED`, `RUNTIME_VALIDATION=UNTESTED`, World3D AUTO-OFF. Original game/FFB/ROM and OutRun/web port untouched.
+- **AI 2 permanent cumulative:** **previous confirmed 2671 + one new exactly verified independent source function (+1) = 2672 cumulative AI2 points**. AI1 unchanged; same SHA rerun and docs-only work +0.
+
+
 ## AI 2 original Model2VR canted binocular midpoint recenter and quaternion sign continuity (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-CPU-WORLD-CANTED-CENTER-ORIENTATION-20261106-68A1C348`. ONE new independent source capability, not one event per patch, failing intermediate CI, regression, released ZIP, or docs note.

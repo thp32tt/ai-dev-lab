@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 original Daytona x86 raw CSV in-flight preflight mutation fail-fast (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-INFLIGHT-CSV-PREFLIGHT-20261106-3F97A4A0`. ONE new independently implemented source-level fail-closed feature, distinct from earlier post-seven-stage archive SHA checking. Intermediate tests, packaging and docs count +0.
+- **Genuine source gap fixed:** `Collect-Daytona-Original-Evidence.ps1` pinned an original x86 CSV's SHA-256 before Python per-stage physical Draw/Scene/Present audit, but did not re-hash immediately afterward. An original private CSV changed while the Python audit ran could be promoted as a valid cached stage and the operator prompted for more expensive genuine sessions until the end-of-seven integrity gate rejected it.
+- **Actual code SHA:** `thp32tt/Model2VR-tools@3f97a4a04a544f2a5e732f5be2e46b6b9f03c1d3` adds shared immediate post-audit SHA-256 source gate in both new original capture and `-ResumeSessionFolder` paths before nonce source promotion, preserving private stage diagnostics and failing before the next game run on changed/unreadable evidence. No original game EXE, ROM, physical D3D9 hook/Draw/Present, FFB/input or Win64 OpenXR pose/rendering altered; World3D auto-enable remains OFF.
+- **Actual connected Windows mock regression:** `tests/test_daytona_private_capture_bundle.py` and the Daytona Windows native CI execute the real PowerShell collector with a synthetic Python audit that rewrites the archived race_a CSV before returning fake nonce; both new and resumed stage paths must fail immediately without any live PRIVATE_SOURCE, candidate/manifest or race_b collection. This does not establish an authentic original Daytona game/Quest3 runtime.
+- **Exact new SHA CI 4/4 SUCCESS:** Public tools `42209645106`, ModDev `42209645315`, Windows x86 probe `42209645041`, Daytona Win32 original producer + independent Win64 OpenXR host + bundle `42209645237` (game-win32/xr-win64/bundle all SUCCESS). Combined artifact `DaytonaUSA-NativeStereo-Quest3-Win32-Win64` id `13498273413` expires `2026-11-20T11:23:45Z`. Real original seven nonced sessions, HMD stereo/IPD and World3D proof outstanding.
+- **AI2 cumulative:** **previous confirmed 2667 + ONE new exact-SHA CI-success source capability +1 = 2668 AI2**. AI1 independently tracked; previous 2667 PRIVATE comparison RUN_KEY, tests, CI repeat and docs receive +0.
+
+
 ## AI 2 original Daytona private comparator receipt promotion (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-PRIVATE-COMPARE-RECEIPT-PROMOTION-20261106-503DF25E`. ONE independent source function, and all test/CI/docs/retry commits counted together once.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun HD QA-safe workflow-run wakeup and actual latest-SHA DDS resume (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-GITHUB-EVENT-SAFETY-CONTROLLER-20261106-961ADBC9`. One independent new controller wakeup/production-unblock milestone. GitHub file update, trigger run, new DDS dispatch, QA polling and retries are one accomplishment, not separate scoring events.
+- **Verified source change:** `thp32tt/OutRun2006Tweaks@961adbc9f4136921bfd7c5482866ecdde29556a3` updates default-branch `.github/workflows/outrun-hd-korean-auto-controller.yml`: a SUCCESS `workflow_run` for the named A/B Fast Safety test on the original asset branch can now wake the existing SHA/artifact-gated controller. An explicit same-repository/branch/conclusion guard rejects untrusted or unrelated workflows. The 30-minute scheduled controller remains as fallback; source-SHA dedup, active-job wait and at-most-one-failed-run retry remain unchanged. The added `workflow_run` event itself has not yet been independently triggered; do not claim that pathway tested until another actual A/B safety-test success.
+- **Actual unblock/CI evidence:** the new master push workflow run `42209671167` concluded SUCCESS with 15/15 source controller tests and emitted `DISPATCH_ACCEPTED_BY_GITHUB` for latest exact asset SHA `6ea99491595ec15e1c44685e685a8ee4c69e0d04` at 2026-11-06T11:21:49Z. GitHub independently created A/B full multi-atlas run `42209692212` for that exact asset SHA, initially IN_PROGRESS. The last successful full DDS run `42146031832` was at old SHA `462f16af`; this is a real newly resumed build, NOT proof of finished DDS or improved HOLD count. No N100 heavy build or Portainer redeploy.
+- **Conservative QA gate:** last reported 954 ROI, 252 TEST_ONLY across 48 DDS, 702 HOLD, `release_approved=false`, `runtime_validation=UNTESTED`. No C1/C3 or game PASS, no final install/release. Subsequent DDS run result, QA deltas, workflow_run-path validation and routine repeat status checks earn +0 for this RUN_KEY.
+- **AI 1 cumulative:** previous confirmed **1781** + **one newly implemented and successful live-resume controller capability (+1)** = **1782 cumulative AI 1 points**. AI 2 unaffected.
+
+
 ## AI 2 original Daytona PRIVATE fresh per-stage source reports on resumed x86 captures (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-PREFLIGHT-OUTPUT-FRESHNESS-20261106-95B69013`. Exactly ONE independent source-level fail-closed functionality. Previous successful collector changes, intermediate corrections, CI, artifacts, documentation and repeat checks earn +0.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 original Daytona physical D3D9 GPU Draw tracking-to-Present integrity (2026-11-07 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-GPU-DRAW-TRACKED-20261107-623F77F7`. One independent tracked-at-Draw provenance correction, not another score for the earlier positive-XrTime / LOCAL epoch / CPU-world admission improvements or for CI/docs/packaging.
+- **Actual original-game native C++ source+tests:** `thp32tt/Model2VR-tools@623f77f7181b1162fad27f3c8a6ab91d3e9379b5`. Original D3D9 speculative GPU-eye replay now requires fully TRACKED six-DoF HMD source plus positive predicted XrTime and nonzero LOCAL epoch **at the original Draw**, not merely a valid last-known sample. Source tickets retain the original Draw view flags, pose sequence, QPC, XrTime and LOCAL epoch; physical original D3D9 Present rejects source pixels from an untracked Draw even if a later fresh same-epoch latest pose is tracked. Both original GPU-eye and separately proved CPU-world paths pass the original source flags; 7 native code/test files changed with headless failure/recovery regressions. The actual original game's 2D mono fallback, rendering/tick, input/FFB and x86/x64 IPC ABI are unchanged; OutRun and web-port unmodified.
+- **EXACT-SHA four required GitHub Actions SUCCESS:** Public `42275260698`; ModDev `42275260746`; Windows x86 full build+CTest `42275260828`; genuine Daytona game-win32 + independent xr-win64 + bundle `42275260753` (three jobs SUCCESS). User package `DaytonaUSA-NativeStereo-Quest3-Win32-Win64` artifact **13531234983**, expires 2026-11-20T18:59:17Z. No HMD/physical original game was exercised by CI.
+- **Unfinished original world proof:** PRIVATE seven process-nonced real Daytona x86 race_a/race_b/title/menu/sky/hud/aux captures + same-Present CPU projector/matrix/geometry GPU Draw/RT/depth authentication and axes/units-per-meter calibration still required. `world_pass_proof=NOT_ESTABLISHED`, `RUNTIME_VALIDATION=UNTESTED`, original CPU World3D AUTO-OFF; private original game content remains on operator PC. AI1 unaffected.
+- **AI2 permanent cumulative:** previous confirmed **2682 + one newly distinct, same-SHA verified original source capability (+1) = 2683 AI2 points**. No duplicate points for retry, old success, test, note, ZIP or re-verification.
+
 ## AI 2 genuine original Daytona Draw→physical D3D9 Present predicted XrTime ticket integrity (2026-11-07 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-DRAW-PRESENT-XRTIME-TICKET-20261107-B39FC9A3` — ONE distinct native source-ticket integrity capability. This is NOT a recheck of earlier positive predicted time admission, CPU frame-latch/head-recenter monotonicity or host-local epoch validation.

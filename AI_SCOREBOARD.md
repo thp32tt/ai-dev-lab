@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 original Daytona PRIVATE comparison timeout candidate quarantine (2026-11-06 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-COMPARE-TIMEOUT-CANDIDATE-20261106-872F82A6`. One independent actual collector fail-closed capability; CI, docs, prior successes and follow-up verification do not earn extra points.
+- **Unfinished defect fixed:** after seven original Win32 x86 source preflights, the final Python race-vs-controls comparison could create `PRIVATE_WORLD_CANDIDATES.json` and then hang or fail to launch. `Invoke-PrivateAudit` throwing on timeout bypassed the existing post-compare integrity and candidate quarantine block, so an unverified live candidate filename could survive. No original physical scene evidence was fabricated or granted.
+- **Actual source:** `thp32tt/Model2VR-tools@872f82a69fd012ca979fd19aa0c098b4dbc26ef3` catches comparison process exceptions, always rechecks cached private CSV/report SHA-256 and quarantines any partial candidate as `PRIVATE_FAILED_COMPARE_*` before failing closed with the comparator error; final `PRIVATE_MANIFEST.json` stays absent. Original EXE, emulator/ROM, x86 D3D9 rendering/FFB/input and independent Win64 OpenXR host unchanged.
+- **Windows-native regression:** isolated synthetic Python preflights produce seven distinct nonces; the comparator writes a test-only candidate JSON and then sleeps 30 seconds under the collector's two-second audit timeout. Actual PowerShell collection must reject the timeout, move the partial candidate to PRIVATE_FAILED_COMPARE_*, preserve seven private CSVs and publish no success manifest. Additional static Python test checks catch/quarantine ordering; no real original Daytona frames or Quest3 headset were executed.
+- **Exact source SHA 4/4 CI SUCCESS:** Public `42198283896`, ModDev `42198283838`, Windows x86 probe `42198283883`, Daytona native original Win32 producer + independent Win64 XR host/bundle `42198283900` all SUCCESS on `872f82a69fd012ca979fd19aa0c098b4dbc26ef3`. Daytona jobs game-win32, xr-win64 and bundle SUCCESS. Matching package `DaytonaUSA-NativeStereo-Quest3-Win32-Win64` artifact ID `13492508444`, expires 2026-11-20T09:54:17Z.
+- **Proof limits:** seven genuinely distinct authorized Daytona original Windows game processes, same-physical-present CPU ProjectVertexToScreen↔D3D9 GPU Draw/Scene/RT/depth provenance, world units/axes and Quest 3/VDXR binocular pose/IPD are not yet independently proven: `world_pass_proof=NOT_ESTABLISHED`, `RUNTIME_VALIDATION=UNTESTED`, World3D auto-enable OFF. OutRun/web-port untouched; AI1 separately tracked.
+- **AI 2 cumulative:** **previous confirmed 2664 + one newly verified independent source outcome +1 = 2665 points**. No double counting of intermediate source/test/CI/docs or previous SHA checks.
+
 ## AI 2 original Daytona private Python audit subprocess bounded and deadlock-free (2026-11-06 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-PRIVATE-AUDIT-NONBLOCKING-20261106-BCE40BC9`. One independent original-game evidence-collection reliability capability, not extra points for synthetic tests/CI/docs or any previously successful commits.

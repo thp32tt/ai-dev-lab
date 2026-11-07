@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Sega Model 2 original Win32 standalone physical CSV full read lease (2026-11-08 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-DIRECT-SOURCE-LEASE-20261108-2D352ACC`. Distinct direct-entrypoint source-integrity protection for `tools/model2_draw_source_report.py`, not a repeat of the already completed seven-session `model2_world_pass_evidence.py` Windows read lease, source CSV framing, audit sequence/QPC, standalone report stdout privacy, previous commits, retries, or any OutRun achievement.
+- **Actual material source+test SHA:** `thp32tt/Model2VR-tools@2d352acc6d2e710ca4a192f5765edd83a3ee383c`. Direct report CLI resolves original x86 source once and retains a Win32 `CreateFileW(GENERIC_READ, FILE_SHARE_READ)` handle from source audit through failure-atomic PRIVATE JSON publication or redacted terminal output, refusing a still-running native `GENERIC_WRITE/FILE_SHARE_READ` logger and any subsequent write/delete open until release. It does not modify source bytes. Synthetic cross-platform lease lifecycle + real Windows handle writer/reopen tests in `tests/test_model2_original_csv_event_order.py`; same-feature CRLF fixture fix earns +0 separately.
+- **Exact-SHA mandatory GitHub Actions 4/4 SUCCESS:** Public tools `42384288944`; ModDev toolkit `42384288924`; Windows x86 probe `42384288887`; Daytona original game Win32 + separate Quest OpenXR Win64 + combined bundle `42384288922` (inner game-win32/xr-win64/bundle 3/3 SUCCESS). Synthetic build/tests only; authentic original Daytona gameplay/PRIVATE physical captures and Quest 3+VDXR live runtime remain untested. World3D AUTO-OFF, `world_pass_proof=NOT_ESTABLISHED`, `hmd_runtime_validation=UNTESTED`, original mono fallback.
+- **AI2 once-only permanent calculation:** previous confirmed **2727 + this one distinct fully source+CI-verified direct source-integrity capability (+1) = cumulative 2728 AI2 points**. Rechecks, source fix retries, docs, ZIP, unrelated OutRun, and AI1 receive no additional award.
+
 ## AI 2 OutRun Ferrari 365 Daytona independently editable glTF PBR model v5 (2026-11-07 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-DAYTONA365-EDITABLE-PBR-V5-20261107-C7240BE7`. New independent source-registered editable cockpit model/PBR rework; previous v4 OVC geometry, re-renders, docs-only packaging and retry are excluded.

@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari Daytona 365 GTS/4 genuine Blender v8.5 geometry/UV/PBR and real preview (2026-11-08 KST)
+
+- **Unique RUN_KEY:** `DAYTONA365-V85-REAL-BLENDER-GEOMETRY-UV-PBR-PREVIEW-20261108-BAC28640`. ONE integrated source-backed automobile modeling achievement; intermediate Blender script bug fixes, multiple source commits, static CI rechecks, one render and package creation count as **one** result, not separate scores.
+- **Exact GitHub model script/verification branch source:** `thp32tt/OutRun2006Tweaks@a90de9da40389fcb3bb9a4c065f2cd62a86b5d08` on `feature/daytona365-blender-v8-20261108`. Exact-head Daytona v8 source contract GitHub Actions `42397228040` **SUCCESS**. This is not a game/runtime validation.
+- **Real Blender proof:** official Blender 4.5.15 opens private SHA-256-pinned v8.4 source, saves distinct 6,440,350-byte editable v8.5 blend SHA-256 `bac28640d88c745b5f276b1ecb5c2ae730e54660fb9526432aeb8c09be390ef8`; fresh-open verifier PASS for 101 mesh / 53 curve objects, four corrected seat-shell rear-thickness Y, four active metric UVs, linked packed BaseColor/normal/ORM green roughness/height, curved steering cowl and five-station tapered console while source gauge/wheel/shifter retained.
+- **Actual render and evidence:** Cycles CPU 480x320/4 samples light preview SHA-256 `3124bad4835bc0a64c785b9545ca3e9a45766ff0407bb9477dc38f188bc1ab92`, original PMT versus rendered preview comparison SHA-256 `338d8820c0fca15bc0df00045916ac1e58cbf77dca9c1bd071873eb655a627d0`; private v8.5 editable ZIP SHA-256 `62cd78be0d182b14274bacf75df577cee73776d00e67b44a936afbe4f0a81f08`, ZIP verified. Assets stay on N100 except public comparison PNG; no source PMT/OVC uploaded.
+- **Truth boundary:** `RENDER_VALIDATION=PREVIEW_ONLY`, `FULL_RESOLUTION_CYCLES=UNTESTED`, `OVC_GAME_RUNTIME=UNTESTED`, `QUEST3=UNTESTED`. A reference original 960x640 real render was downsampled; sample settings differ and no photometric match claimed.
+- **AI2 unique one-time score calculation:** previous confirmed **2735 + one new independently implemented and Blender/render verified v8.5 integrated result (+1) = cumulative 2736 AI2 points**. All further duplicate retests, documentation, CI results, retry, or score reports = +0. AI1 independent.
+
+
 ## AI 2 Model 2 native Win64 final xrEndFrame gate + reverse tracked pose to actual original Win32 x86 D3D9 Draw (2026-11-08 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-FINAL-XR-END-GATE-REV-POSE-20261108-4289DB51`. ONE new independent continuation achievement beyond prior initial x86->x64 Present/PID handoff. This fixes the last, *post-swapchain-upload* original game source validity gap and adds the missing opposite Win64 OpenXR tracked-pose -> real Win32 original D3D9 reader process integration. Source iterations `b6a399b9`, `a572f91d`, `5e1c387a`, `0d26901a`, `c603a666`, `139800ef`, `9acc802e`, `a53b7156` and final `4289db51` together are ONE result; bug fixes/retries +0.

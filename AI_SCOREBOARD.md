@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 original Win32 tracked pose pinned to live Win64 XR publisher process (2026-11-08 KST)
+
+- **Unique RUN_KEY:** `MODEL2VR-ORIGINAL-XR-POSE-PUBLISHER-PROCESS-LEASE-20261108-2AA7E85F`. A distinct actual x64-to-x86 pose-source lifetime safety feature, not the previously scored reverse pose transfer, 125-ms QPC freshness check, or opposite x86-source-to-x64 process lease.
+- **Exact newly verified source and real native test SHA:** `thp32tt/Model2VR-tools@2aa7e85f70e99ec3b40a1842590cecf43ba74039`. Production `src/common/stereo_pose_ipc.h` now pins the real mapped Win64 pose publisher's Windows kernel process HANDLE in the original x86 reader, checks its live state at mapping open, both Read/ReadTracked paths and after seqlock/QPC validation, and closes the pinned handle safely. Terminated x64 XR publisher cannot supply a formerly valid 6DoF game Draw pose while QPC is still within 125 ms. The existing wire ABI, original game loop, FFB and fallback remain unchanged. `tests/stereo_pose_ipc_test.cpp` launches a real separate Windows publisher process and verifies the original-side reader rejects its retained shared pose immediately after publisher exit, using a live-publisher positive case.
+- **Exact-SHA GitHub Actions 5/5 SUCCESS:** Public tools `42397128438`; ModDev toolkit `42397128425`; original Win32 x86 probe build/CTest `42397128410`; independent Win64 OpenXR host build `42397128411`; combined Daytona original Win32 producer + Win64 XR host + real cross-architecture integration + bundle `42397128432` (all four inner jobs SUCCESS). These are synthetic/native process/build tests, NOT original Daytona gameplay or Quest 3+VDXR proof.
+- **Physical-blocker status unchanged:** seven genuine PRIVATE source sessions (race_a/race_b/title/menu/sky/hud/aux), authentic CPU projector/matrix/geometry ↔ same original physical D3D9 Draw/RT0/depth/Scene/Present, game camera axes/metres-per-unit, Quest3+VDXR real 6DoF/IPD remain unproven. `world_pass_proof=NOT_ESTABLISHED`; `RUNTIME_VALIDATION=UNTESTED`, CPU World3D AUTO-OFF, actual original mono cinema fallback. No PRIVATE original data, OutRun or web port edited.
+- **AI2 permanent one-time calculation:** previous **2736 + new independently verified original x86 XR publisher-death source gate (+1) = cumulative 2737 AI2 points**. Earlier commits, CI reruns, docs/packages and retries +0. AI1 remains separate.
+
+
 ## AI 2 Ferrari Daytona 365 GTS/4 genuine Blender v8.5 geometry/UV/PBR and real preview (2026-11-08 KST)
 
 - **Unique RUN_KEY:** `DAYTONA365-V85-REAL-BLENDER-GEOMETRY-UV-PBR-PREVIEW-20261108-BAC28640`. ONE integrated source-backed automobile modeling achievement; intermediate Blender script bug fixes, multiple source commits, static CI rechecks, one render and package creation count as **one** result, not separate scores.

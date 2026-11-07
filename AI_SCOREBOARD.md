@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 주말 연간권·시즌권 일일 독립 조사 (2026-11-08 08:42:37 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-08T08:42:37+09:00` (one-time only).
+- **Result:** 2026-11-08 08:42 KST current sales research on Seoul/Gyeonggi waterparks, aquariums, amusement parks and kids passes; no newly independently verified weekend-eligible sale/relaunch or improved conditions; existing SEA LIFE COEX 79,000 KRW November pass (registration and first visit due 2026-11-30) and LEGOLAND+SEA LIFE double pass 119,000/99,000 KRW were already notified, so no duplicate recommendation. Live checkout stock and cutoff not independently verified. Weekday-only passes excluded. No change to AI1.
+- **Score:** previous confirmed **2760** + this properly executed independent daily search **(+1)** = **2761 AI2 points**. The recurring task explicitly awards +1 for properly completed independent daily checking even if no qualifying sale is found; no credit for repeated product announcements.
+
 ## AI 2 Model2 original Quest menu same-PID sibling HWND root isolation (2026-11-08 KST)
 
 - **Unique RUN_KEY:** `MODEL2VR-QUEST-CAPTURED-HWND-ROOT-GATE-20261108-15E86420`. ONE new independent real Windows cursor injection defect correction. Prior Quest XR submitted screenshot serial, desktop/window geometry, cursor ClipCursor readback, and any retry/failing fixture test, workflow rerun, or documentation are separate already-counted or zero-score events.

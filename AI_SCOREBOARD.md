@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Daytona365 genuine photo-mesh v4 original-game sidecar improvement (2026-11-07 KST)
+
+- **Unique new RUN_KEY:** `OUTRUN-DAYTONA365-V4-PHOTO-3D-SWITCH-STITCH-20261107-E963AB45`. One independent physical original-game Daytona cockpit 3D mesh improvement; earlier v2/v3 success/builds and this work's retries/reports are not scored separately.
+- **Actual material source / verified commit:** `thp32tt/OutRun2006Tweaks@e963ab45769fff4a4936a44b4c1ed2d6c0ab81e8` (`feature/daytona365-photo-geometry-v4-20261107`). Added photo-registered four vertical mechanical slider frames/caps, three physical lower toggle controls; removed inaccurate previous placeholder ring switches. Added 288 physical double-stitch segments following eight real PMT-anchored curved black leather seat bands. Actual new sidecar geometry: 16 groups, 5,642 vertices, 7,086 triangles, 7 fixed-function DDS materials; no duplicate wheel, Dino changes, original game PMT modifications or external PC shell alterations in GitHub.
+- **Exact-source GitHub CI 2/2 SUCCESS:** Win32 `Build` run `42375592769`; Daytona v4 source-free geometric/UV/CRC regression run `42375592783`. Independently executed N100 original-PMT asset builder + actual production `dino_external_sidecar.hpp` C++ OVRCABH2 parser with precise geometry counts, scoped kind=2 admission and CRC corruption rejection. Private game-side `Daytona365_Cockpit_R26_v2.ovc` SHA-256 `6b7b8c0544702c80d41beb220d7ae0db576ddf2bc16c35f6e0cf783085ba8694`; original-geometry-preserving native PMT photo repaint SHA-256 `0c1ab64bc8648d87cb44359bafdde3ba3e2e93e77b470b32886234bde083477d`. The source-native asset is not uploaded publicly; staged/restore private ZIP on N100.
+- **Truth boundary:** No actual Quest 3 PCVR test, driver seat visually verified geometry, original Daytona `car_kind_11==2` reading, real GPU frame timing or guaranteed final target quality; `RUNTIME_VALIDATION=UNTESTED`. Normal/roughness files remain offline for the current D3D9 fixed-function path.
+- **AI 2 permanent score calculation:** previous confirmed **2721 + distinct new v4 source/verified geometry achievement (+1) = cumulative 2722 AI2 points**. Do not double-add for packaging, same source test repetition, model redraw, retry or subsequent progress reports. AI1 unaffected.
+
 ## AI 2 OutRun Quest cockpit original mode1 camera-table initialization gate (2026-11-07 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-QUEST-MODE1-LIVE-ROM-SEAT-INIT-20261107-9D84C714`. One new independent original-game seat-memory initialization safety improvement, not a retry or duplicate of previous Quest HMD eye admission/restore fixes.

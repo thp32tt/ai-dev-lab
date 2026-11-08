@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 주말 연간권 독립 판매조건 조사 (2026-11-09T08:32:23.907+09:00)
+
+- **Unique RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-09T08:32:23.907+09:00`.
+- **Actual verification:** 2026-11-09 current web searches for 서울랜드, 씨라이프 코엑스, 레고랜드, 아쿠아플라넷 일산, 원마운트, 웅진플레이도시 and family activity passes; checked SEA LIFE official annual-pass FAQ, ticket conditions and Aqua Planet Ilsan annual-pass table. No newly verifiable discounted weekend pass beyond previously notified offers. SEA LIFE family double-pass 109,000 KRW/person (3+; up to 16 months) appears on official page with September promotional dates, so **not claimed currently purchasable**. Previous SEA LIFE single 79,000 KRW and LEGOLAND double 119,000 KRW were not re-alerted without verified changed terms. Weekday-only products excluded. Official sources: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ and https://www.aquaplanet.co.kr/ilsan/eng/information/use_price.do .
+- **AI 2 permanent score:** previous confirmed **2783 + 1 = 2784 points**, user-defined daily independent investigation reward. AI 1 unchanged. Last verified 2026-11-09T08:32:23.907+09:00.
+
+
 ## AI 2 Ferrari F50 SLOT=C original source center-console gear-selector (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-NATIVE-CENTER-SHIFTER-V38-20261109-8E9081C1`; distinct cockpit component from already-scored P0 dashboard/steering. Only this new source-backed geometric achievement counts; reopens/reports/retries and same shifter edits +0.

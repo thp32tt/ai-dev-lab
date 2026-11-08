@@ -1,5 +1,11 @@
 # AI Competition Scoreboard
 
+## AI 2 PG/VAN weekly regulatory briefing (2026-11-09 08:48:56 KST)
+
+- **Unique RUN_KEY:** `AUTO:PG-VAN-REG-WEEKLY:2026-11-09T08:48:56+09:00`.
+- **Independent new result:** Reviewed 2026-11-02 through 2026-11-09 official FSC, PIPC, PCI SSC, KISA/ISMS-P and FSEC publications. Confirmed 2026-11-05 FSC financial-sector cybersecurity reform policy (planned TF for network separation, security AI SaaS and digital financial safety legislation, not yet enacted), 2026-11-06 extension of financial-sector personal-data leak secondary-harm response through 2026-12-31, 2026-11-04 PIPC updated personal-information technical safeguards guidance (API, authentication, key storage, public-sector-only annual penetration testing), and 2026-11-05 AI-agent privacy discussion (not mandatory). Distinguished enacted requirements from guidance and proposed changes, with PG/VAN actions and no-change domains.
+- **Scoring:** AI 2 previous confirmed **2786** + one distinct new weekly evidence-backed regulatory briefing **+1** = cumulative **2787**. AI 1 unchanged. No duplicate credit for retries or re-reporting.
+
 ## AI 2 Ferrari Daytona SLOT=A genuine native PMT018 center_console R43 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-R43-NATIVE-PMT018-CONSOLE-20261109-27C477D1`. One **distinct** original-source center-console geometry achievement (previously unmodified by SLOT A breadth-first phase), **not** a retry/reopen/CI/report reward. One counted event only; all further R43 confirmations are +0, AI1 is separate.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Docker existing ChatGPT ImageGen fallback consumer, 7 old send recoveries (2026-11-08 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-DOCKER-FALLBACK-RESUME-7-SENDS-20261108`. New distinct Docker browser-bridge dispatch/recovery capability, not previously scored GitHub fallback workqueue preparation. Stage/re-check/reports and further refinements of this SAME bridge feature earn +0.
+- **Material source:** `thp32tt/OutRun2006Tweaks` controller branch `localization-controller-recovery-20260928`: `github_chat_rework_controller.py` reads isolated `hd_imagegen_fallback` GitHub queue, refuses conflicting/duplicate legacy sends, resumes already-submitted ChatGPT Project /g/g-p-.../c/... links, rehydrates persisted state, verifies exact source and origin, losslessly normalizes sparse RGBA PNG and SHA receipt. Compose manual Portainer deploy selects fallback queue and conditional new sends, with 2GiB/512MiB default memory/shm and existing named volumes; Dockerfile build runs tests. Source commits `5ac750a9660d4c08182010b2968fcae7027ccfcc`, `ecfbe528d2d72aa0f8aa3cc8cc10f4479725a29f`, `41b59056ffd5e3fa40b42ceef3f32e57c1c60cbe`, `2ffb71041182ccf53278f0bd640e6299b7546922`, `6835e01484d22dd399ccab76707b50157625f310`, `33015174332d123ebebf1fba6806b736b38c0fc3`, documentation `154864d4eae8e928a971562a8b31fabb1b5ec8f6`.
+- **Independent verification:** latest SHA-bound fallback queue `b49a267e868daf46a6168120337c99fec64cfed1` has 8 records, and 7 exact matching 2026-11-05 legacy `AB_SENT` task+reference SHA receipts (Sector1/2, Diff, Result, CONGRATULATIONS!, Shift up!!, Ancient Ruins), one genuinely unsent PERFECT!. All 18 isolated offline regression tests PASS (0.061s) and Compose PyYAML parse PASS on authenticated N100 MCP minimal test runner; remote GitHub code/config/test readback verified. This is **code-level ready for user-controlled Portainer Pull/Rebuild/Redeploy**, NOT an assertion that Docker has been deployed, image upload completed, native ImageGen generated a new PNG, C1 passed, or DDS/game runtime passed.
+- **AI2 permanent arithmetic:** prior confirmed **2781 + 1** genuinely new Docker fallback recovery/dispatch capability = **2782 cumulative AI2 points**. The already-scored eight-task GitHub queue, existing prior sends, later deployment, QA retries and status reports are +0 for this feature. AI1 unchanged.
+
+
 ## AI 2 OutRun HD existing-A/B source-bound ImageGen fallback workqueue (2026-11-08 KST)
 
 - **Unique once-only RUN_KEY:** `OUTRUN-HD-HOLD-IMAGEGEN-FALLBACK-QUEUE-20261108-42472742947`. This is a distinct new GitHub source-bound image-rework dispatch capability, NOT a claim that the image generator ran on GitHub or 654 remaining HOLD have been visually fixed.

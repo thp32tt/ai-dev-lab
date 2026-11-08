@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F50 SLOT=C second native PMT center-console subpart — gear-selector SHAFT (2026-11-09 KST)
+
+- **Distinct one-time RUN_KEY:** `FERRARI16-SLOTC-F50-CENTER-CONSOLE-NATIVE-SHAFT-V39-20261109-724DF8BC`. This is **not** the earlier v38 knob achievement: different authentic PMT object `object20_group00_material001_a0`, independently reprofiled original gear-shifter *shaft*, with v38 knob physically unchanged. This new independent source-geometry accomplishment is scored once only; reruns, audits, same-file source commits, photos, reports and subsequent console iterations are +0. AI1 not mixed.
+- **Real source and material geometry:** F50 read-only game `obj_plcar_f50_pmt.sz` SHA256 `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab`, original PMT import .blend SHA `d82b3d024a812126da5b38c56572cfc326fbe3d1b5c0ddf8cad4cbd855119d31`, accepted v38 prior blend SHA `8e9081c15a071e2b2edde4f44dc529470ac08d9f34a8e4516a93b8926e933ec2`. Actual existing PMT shaft 12v/6f triangular cross-section reprofiled into circular shaft with preserved three original side-panel topology provenance: **108v/150f, 108 moved vertices, max 2.1878 mm**. Original existing shifter knob and 40 other original source meshes untouched: 41 unchanged source-mesh fingerprints, unchanged UV/material/matrix and cameras. No new modeled car/objects/textures/game output.
+- **Private actual Blender result:** new original source-derived `F50_OriginalPMT_CenterConsole_Shaft_v39.blend` SHA `724df8bcd079299e8781726b25888243dbdcab7368d7d758f81ba8236666072f` (1,544,197 bytes) saved at N100, independently fresh-process reopened in official Blender 4.5.15 LTS, v39→v38→v39 source comparison PASS and matching actual before/after Workbench renders. Genuine F50 metal shifter photo used privately: `REF12_1995_ferrari_f50_transmission_2_1c36328e4.jpg` SHA `c3c72ecf754d5c764450c8e90b7a8f7faaf0214503ea18c1c0a9c3f4ce215022`.
+- **GitHub actual code/evidence:** `thp32tt/OutRun2006Tweaks@f67d0f1bde0ac3b4a74d0777ea6d85278d8a6405`, doc commit `1031f28e7e93d2b561cd6cfc2da13d8ba9c1fa2b`, slot-C workpack `03511fe62238d7b06b294e4ca8b30951e1f4ab4d`, queue `76a770e437af5938190607257558484b1649cbca`.
+- **Gate:** center_console 2/2 **COVERED_PARTIAL_QA** only for original knob and shaft, original H-pattern gate/plate/full tunnel **BLOCKED_UNIDENTIFIED_NATIVE_SOURCE**. F50 ACTIVE, next `driver_controls`. 24h car complete/7-view game-eye QA NOT PASS. No CI, game runtime or full-vehicle acceptance asserted.
+- **AI2 permanent arithmetic:** **previous confirmed 2784 + independent new F50 original PMT shaft achievement +1 = cumulative 2785 points**. AI1 unchanged.
+
 ## AI 2 수도권 주말 연간권 독립 판매조건 조사 (2026-11-09T08:32:23.907+09:00)
 
 - **Unique RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-09T08:32:23.907+09:00`.

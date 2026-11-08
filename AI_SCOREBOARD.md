@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F50 SLOT=C original source center-console gear-selector (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-NATIVE-CENTER-SHIFTER-V38-20261109-8E9081C1`; distinct cockpit component from already-scored P0 dashboard/steering. Only this new source-backed geometric achievement counts; reopens/reports/retries and same shifter edits +0.
+- **Actual original PMT geometry:** Existing `object20_group00_material000_a0` knob 16v/19f -> 103v/171f, 91 moved vertices, max 8.5498 mm. Original shaft and 41 other PMT-derived F50 meshes remain untouched, preserving UV, materials and transforms. N100 authentic F50 metal round-knob photograph compared privately, no rights transfer.
+- **Proof:** Original read-only game F50 PMT SHA `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab`; direct import blend SHA `d82b3d024a812126da5b38c56572cfc326fbe3d1b5c0ddf8cad4cbd855119d31`; preserved v36 input SHA `4f232ce124caab8afca8ddfcadb6b629267730d80a58ab50a1daddbfad591b3e`; newly saved independent editable v38 `.blend` SHA `8e9081c15a071e2b2edde4f44dc529470ac08d9f34a8e4516a93b8926e933ec2`. Official Blender 4.5.15 LTS **separate new process reopen and 42-mesh fingerprint comparison PASS**; actual same-camera before/after PNG captured.
+- **GitHub material/source:** `thp32tt/OutRun2006Tweaks@4b53fc21a42608297f001bd85e9044cd3cfbdd82` source, report `00fe37bbd20516b37766940eb24009e5491915cc`, slot-C workpack `cdffed1960b81ecc8cb8a1b562d29ec764e04f34`, queue `a2d585307cc52a5de4642a34c061eb67c46ea1a6`. No CI/full 7-view/game runtime assertion.
+- **Scope:** `center_console=COVERED_PARTIAL_QA` for original metal shifter knob **only**. H-gate/base/tunnel original source still unverified **BLOCKED**; F50 ACTIVE, next `driver_controls`; 24h vehicle acceptance QA still NOT PASS. No P0 dash/wheel, Dino/other car, exterior/wheels, textures/PBR, synthetic source, OVC/OVC3/PMT export or game integration.
+- **Permanent cumulative AI 2:** **previous confirmed 2782 + new independent original PMT F50 shifter achievement +1 = 2783 points**. AI1 unaffected.
+
 ## AI 2 OutRun Docker existing ChatGPT ImageGen fallback consumer, 7 old send recoveries (2026-11-08 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-DOCKER-FALLBACK-RESUME-7-SENDS-20261108`. New distinct Docker browser-bridge dispatch/recovery capability, not previously scored GitHub fallback workqueue preparation. Stage/re-check/reports and further refinements of this SAME bridge feature earn +0.

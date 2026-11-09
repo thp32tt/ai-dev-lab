@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari 360 Spider SLOT=A original PMT Blender source bootstrap (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTA-360SPIDER-NATIVE-PMT-BASELINE-20261110-B4F1D071`. New one-shot original-game PMT-to-editable-Blender source import and independent reopen for newly active SLOT=A Ferrari 360 Spider. Distinct from previous Daytona/F50 geometry edits; retries, metadata readbacks and any future center-console work do not duplicate this score.
+- **Verified source:** Original protected N100 `obj_plcar_360sp_pmt.sz` SHA256 `a4b56d6e3ed126bcf2b2c88f149c4daeac124f96b6de2518e88436f618f076e6`, original size 442239 bytes; actual `tools/car_modeling/workspace_guard.py bootstrap-source` PASS.
+- **New original-derived editable material artifact:** `thp32tt/imsi1@8d7adc150b574e34cd171aa0cc9f25a4c83a795b` under `artifacts/slot_A/360spider/source_bootstrap/`; 28 original PMT objects yielded 75 actual Blender source-native meshes, 12424 original vertices and 11789 original triangles, including preserved FVF 0x212 dual UV. Per-source mesh and source-normal/UV SHA256 fingerprints, PMT IDs and import script committed. Blender 4.5.15 LTS real file save and independent separate-process reopen PASS; .blend SHA256 `b4f1d071119693172bbf786809da62dce8acb0c84e52d9779a6b1a996654ce57`; Git blob SHA1 `718bb404e9fe944c4946f6406297f1aea7be4149` matches local binary.
+- **Status boundary:** Workpack `SOURCE_VERIFIED`, bootstrap closed, next `center_console`; geometry source remains unchanged, windshield/front-glass/A-pillars protected. This is source preparation, **NOT geometry improvement and NOT vehicle QA PASS**. Private game PMT/photo packages not public.
+- **AI 2 permanent cumulative score:** previous confirmed **2798** + **1** distinct successful source import/bootstrap achievement = cumulative **2799** points. AI 1 unchanged. Same RUN_KEY / recheck / retry / reporting = **+0**.
+
+
 ## AI 2 Ferrari F50 SLOT=C original PMT011 instrument-cluster v44 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-NATIVE-PMT011-INSTRUMENT-V44-20261109-1FF620C4`. Distinct source-native F50 instrument cluster geometry; not a repeat of F50 visible seat, Daytona SLOT A, prior dashboard/steering micro-polish, CI, retry or report.

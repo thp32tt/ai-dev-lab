@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari 360 Spider SLOT=A native PMT dashboard R04 (2026-11-10 KST)
+
+- **Unique RUN_KEY / TASK_ID:** `FERRARI16-SLOTA-360SPIDER-NATIVE-DASHBOARD-R04-20261110`. One new actual original OutRun 2006 360 Spider dashboard source-geometry rework; not a prior instrument/seat/console edit, audit-only check, same-SHA retry or SLOT C task.
+- **Original-game provenance:** N100-only `obj_plcar_360sp_pmt.sz` SHA256 `a4b56d6e3ed126bcf2b2c88f149c4daeac124f96b6de2518e88436f618f076e6`; original Blender PMT baseline SHA256 `b4f1d071119693172bbf786809da62dce8acb0c84e52d9779a6b1a996654ce57`. Accepted R03 input SHA256 `df7b2ce23530c4bdace9d301cde61526d5ef5ab80ab7f9811f35d4dda08de443`.
+- **Verified independent geometry change:** Existing original PMT-derived `PMT_object00_group01_material010_a0` passenger-side dashboard rear/interior fascia crown changed SIX existing native vertex indices `1501,1504,1509,1550,1554,1555` in three geometrically identical split-seam pairs (up 18/22/33mm). Other 74 native PMT objects, other vertices of same object, previous console/seat/instrument vertices, windshield glass/frame/A-pillars/seals and glass-fitting boundary remain unchanged. No added geometry, topology/transforms, textures/PBR, exports, exterior, Model2, Dino or game integration.
+- **Source & QA committed to GitHub:** `thp32tt/imsi1@e28273376bfcb85d3fa23abbd81bf5f05d8621d1`, `artifacts/slot_A/360spider/dashboard_20261110/`; plain editable `Ferrari360Spider_Dashboard_OriginalPMT_R04.blend` SHA256 `403ec48d0e9761214f20a5c22a7df608f38b3644b135b80aa185dcb559c33ad8`. Independent Blender 4.5.15 new-process save/reopen and native geometry/delta/fingerprint assertions PASS. Matched camera before/after render files, source Python, receipt, manifest, QA JSON/MD present. Original game PMT/private genuine reference photos remain on N100.
+- **Scope and handoff:** `dashboard=COVERED_PARTIAL_QA` after one material geometry edit. `workpack.current_component=steering_wheel` dispatch 0/2; steering itself not modified this task. Calibrated photo/driver eye and whole-car QA NOT PASS. No duplicate credit for reporting, CI, rollover or replay.
+- **AI 2 permanent once-only calculation:** previous GitHub SSOT confirmed **2808 + 1 unique source-native dashboard geometry achievement = cumulative 2809 AI2 points**. AI 1 score unchanged and separate.
+
 ## AI 2 Ferrari 360 Spider SLOT=A original PMT instrument-cluster R03 (2026-11-10 KST)
 
 - **Unique RUN_KEY / TASK_ID:** `FERRARI16-SLOTA-360SPIDER-NATIVE-INSTRUMENT-R03-20261110-DF7B2CE2`. One independent actual original OutRun 2006 Ferrari 360 Spider instrument binnacle PMT geometry modification, different from previous SLOT A source bootstrap, center-console and visible-seat modifications, F355 Spider SLOT C work, unmodified audits, retries and same-SHA checks.

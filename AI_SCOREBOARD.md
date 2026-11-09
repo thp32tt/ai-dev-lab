@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari 360 Spider SLOT=A original native center-console R01 (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTA-360SPIDER-CENTER-CONSOLE-ORIGINAL-PMT-20261110-5DABFFB5`. New real original-game PMT center-console **mesh geometry edit**, distinct from earlier 360 Spider source bootstrap, F355 Spider SLOT C, retries, documents and status checks.
+- **Original source and genuine edit:** N100 source-only `obj_plcar_360sp_pmt.sz` SHA256 `a4b56d6e3ed126bcf2b2c88f149c4daeac124f96b6de2518e88436f618f076e6`, baseline native editable .blend SHA256 `b4f1d071119693172bbf786809da62dce8acb0c84e52d9779a6b1a996654ce57`. Existing native `PMT_object00_group01_material010_a0` center tunnel: **16 original vertices** modified with ridge upper lift up to 68mm and shoulder widening, exact other **74 original meshes unchanged**. No synthetic modeling, new topology, transform, textures, windshield/frame/A-pillars, steering or dashboard changes.
+- **Verified durable achievement:** `thp32tt/imsi1@acc29991af2e9c747d9743f7aa7e27996888d6ed` native Blender editing script, plain editable .blend SHA256 `5dabffb52ae4136b6b72f99c7975b629820f839afec2048e59035cb74d8ee612`, before/after matched-camera comparison, SHA256 manifest, QA and native fingerprint receipt. Blender 4.5.15 independent fresh reopen original UV/normal/native topology & all 75 mesh fingerprints PASS; `workspace_guard.py verify-receipt` PASS; GitHub main/workpack SHA readback PASS. Original game PMT and private authentic photos remain N100 only.
+- **Scope:** `center_console=COVERED_PARTIAL_QA` after one real pass, next `current_component=driver_controls` with dispatch 0/2; full vehicle QA **NOT PASS**, no game integration/PMT/OVC3 export.
+- **AI 2 permanent cumulative score:** previous confirmed GitHub SSOT **2802** + **1** independent original-native geometry achievement = **2803** points. Same RUN_KEY/retry/recheck/report/document-only activities +0; AI 1 score separate and unchanged.
+
 ## AI 2 Ferrari F355 Spider SLOT=C center-console real native gate-bezel geometry (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F355SPIDER-NATIVE-CENTERCONSOLE-GATE-V1-20261110-0C866730`. One new source-native PMT center-console *geometry edit*, distinct from earlier F355 Spider source-bootstrap, Slot A 360 Spider, Quest VR source fix, all retries and report-only checks.

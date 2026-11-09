@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari public temporary modeling workspace migration (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI-PUBLIC-TEMP-WORKSPACE-MIGRATION-20261109-9B7AFE6B-A90D161C`. Distinct automation-infrastructure achievement only; no duplicate score for Daytona R45, F50 v41/v42 geometry, retries, uploads or status checks.
+- **Result:** Created and initialized public temporary workspace `thp32tt/imsi1@main`; migrated Ferrari16 queue/strategy/master plan and A/C workpacks; seeded F50 v41 as a plaintext editable `.blend` and Daytona R45 as plaintext transport chunks with manifest/reassembly SHA verification because the connector single-blob transport limit rejected the 7.9MB file.
+- **Controller change:** `thp32tt/OutRun2006Tweaks@chat-controller-downloads` now targets `thp32tt/imsi1@main`, retires AES/Secret/encrypted-input requirements, permits plaintext derived Blender/scripts/QA/renders while keeping raw PMT packages and private photos off-repo, and allows N100 Blender fallback when source files are only available there. Final controller source HEAD `9b7afe6b692ad89d14aeb341b862dac2935a2858`; assembled source syntax validation `PY_COMPILE_OK`.
+- **Workspace proof:** `thp32tt/imsi1@a90d161cd9fe42f9e1d3d2cf28e8ef3b216d4364`; queue records current A Daytona R45 SHA `224131c7adc928d5d6f0377d030d5a350c59b8664c13303a2731d6dfc6e9a722` and C F50 v41 SHA `016645f5fea43ef75c8e80479f49baaff2d3aa8d1647a058f732ac69080da08d`.
+- **AI 2 scoring:** previous confirmed **2792** + one distinct verified automation/workspace migration **+1** = cumulative **2793**. AI 1 unchanged; future redeploy/status rechecks of this same migration are +0.
+
+
 ## AI 2 F50 SLOT=C public-hosted PMT031 inner_door v42 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-HOSTED-INNERDOOR-V42-20261109-42546429232`. New original-source inner-door native geometry edit v42; different verified material geometry than prior F50 v40, not an additional score for missing key, retry, CI, render or status report.

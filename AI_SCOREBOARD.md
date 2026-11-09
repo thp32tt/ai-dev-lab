@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F50 SLOT=C original PMT000 windshield_frame v41 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-WINDSHIELD-PMT000-V41-20261109-016645F5`. One distinct original-game Ferrari F50 windshield upper-frame/A-pillar geometry achievement. The driver_controls BLOCKED, repeated audits, independent reopen, renders and status reports are +0. AI1 unaffected.
+- **Scope:** `active_by_slot.C=f50`; driver_controls remains `BLOCKED_UNIDENTIFIED_NATIVE_STALK_PEDAL` with no fabricated pedal/stalk. Breadth-first windshield_frame is `COVERED_PARTIAL_QA`; next `visible_seat`. 24-hour vehicle window unchanged; full car QA NOT PASS.
+- **Original PMT/source:** native read-only resource SHA256 `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab`; original imported .blend SHA256 `d82b3d024a812126da5b38c56572cfc326fbe3d1b5c0ddf8cad4cbd855119d31`. Native `object00_group00_material000_a0` original frame 68v/56f, 13 pre-existing vertices moved up to **21mm**, no new mesh or faces. All other 41 native PMT meshes (including glass, held steering/dash, door, shifter) geometry/UV/material/transforms unchanged.
+- **Private proof:** v40 editable input SHA `03b96b1eb2293c151c60133919380055fa8393372b0acbf18045edf25faa949a` -> new v41 independent `.blend` SHA `016645f5fea43ef75c8e80479f49baaff2d3aa8d1647a058f732ac69080da08d`. Official Blender 4.5.15 LTS independent v41->v40->v41 reopen **PASS**. Private genuine F50 cockpit photo, same-camera before/after model images, receipt and audit preserved on N100; not uploaded publicly.
+- **GitHub evidence:** `thp32tt/OutRun2006Tweaks@feature/ferrari16-geometry-rework-20261108` source `3693c9fc68b570b5e41e7a06156bebc19475efb8`, report `a42e7b9e6a5b77f3bdfdad515ddc1958306cb409`, C-only workpack `22bfb84d9b8136403d03f33dae0912d431a552da`, queue `1d44fe843b2f2ccdc9bc71271469d0b496b3f409`. No other slot, Model2, Dino, exterior, PMT/OVC export, installation, texture or PBR change.
+- **AI 2 scoring:** previous confirmed **2790** + distinct source-backed windshield geometry **+1** = cumulative **2791**.
+
+
 ## AI 2 Daytona SLOT=A source-native PMT005 inner_door R45 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-R45-NATIVE-PMT005-INNER-DOOR-20261109-224131C7`. One independent source-backed Daytona inner door geometry accomplishment, not previous R43 center console or R44 driver switch housing. Audits, fresh reopen, tests, reports, rollovers and retries of the same geometry are **+0**. AI 1 unaffected.

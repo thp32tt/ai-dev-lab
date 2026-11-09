@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간권·시즌권 판매조건 독립 점검 (2026-11-10 08:30:50 KST)
+
+- **Unique RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-10T08:30:50.633+09:00`.
+- **Scope:** 수도권 워터파크, 아쿠아리움, 놀이공원 및 키즈시설의 2026-11-10 현재 주말 사용 가능 연간권·시즌권·다회권 신규·재판매 검색. 웹 검색 결과는 무관한 행사 다수였으며 새로운 구매가능 가격·등록기한·주말조건의 교차 검증에 실패. 기존 씨라이프 코엑스 79,000원(11/30 등록·첫방문 마감), 레고랜드+씨라이프 119,000원/99,000원은 이전 안내 조건으로만 취급하고 반복 알림하지 않음. 신규 추천 상품 확정 없음; 미검증 조건을 확정 사실로 제시하지 않음.
+- **Scoring:** 독립 실조회와 검증 및 중복 배제 수행으로 사용자 지정 자동작업 정상 수행 +1. **AI 2 previous confirmed 2811 + 1 = cumulative 2812 points**. AI 1 unchanged. This RUN_KEY once only; retry/readback +0.
+
+
 ## AI 2 Ferrari F355 Spider SLOT=C original PMT22 steering-wheel geometry (2026-11-10 KST)
 
 - **Unique RUN_KEY:** FERRARI16-SLOTC-F355SPIDER-STEERING-WHEEL-NATIVE-PMT22-V1-20261110-354B2D8B. One new native F355 Spider original-game steering-wheel geometry update, distinct from prior dashboard, instrument, seat, console, SLOT A, readbacks, retries, CI and docs.

@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 F50 SLOT=C source-native PMT023 visible_seat v43 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-VISIBLE-SEAT-PMT023-V43-20261109-A1F64D8F`; distinct newly verified source-native F50 bucket-seat frame geometry, not a re-score for previous F50 inner_door, rejected windshield v41, prior dashboard/wheel, retry, CI, render or re-report.
+- **Source/provenance:** F50 original PMT SHA256 `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab`; original imported .blend SHA256 `d82b3d024a812126da5b38c56572cfc326fbe3d1b5c0ddf8cad4cbd855119d31`; accepted v40 baseline SHA256 `03b96b1eb2293c151c60133919380055fa8393372b0acbf18045edf25faa949a` (NOT rejected windshield v41).
+- **Distinct geometry:** Native original `object00_group01_material023_a0` genuine mirrored original 64-vertex bucket-seat shell components, 118 existing vertices sculpted (max 23.2682 mm), 41 other source meshes unchanged. Photo reference held privately on N100; photo matching only qualitative.
+- **Proof:** Official Blender 4.5.15 LTS actual save plus fresh independent reopen PASS; new editable v43 .blend SHA256 `a1f64d8f2f7e540978cfb9ae41c58dde2732f6a83c0a537c8860dee09f3768c7`. Plain 6-part reassembly SHA PASS, 105,649 different pixels in matched seat-only before/after renders. `thp32tt/imsi1@742136ae6966b2488eb9fe27935e4638ef890325` committed source script, manifest, parts, QA and previews. No encryption/Secret, game exports or new textures.
+- **Scope:** `visible_seat=COVERED_PARTIAL_QA`, NOT whole-car QA PASS; next `instrument_cluster`, F50 remains assigned; all windshield/front glass/A-pillar, dashboard/steering, exterior, Dino and Model2 unchanged.
+- **AI 2 score:** previous confirmed **2793** + one verified independent visible seat geometry achievement **+1** = cumulative **2794**; AI 1 unchanged. Same work retry/rechecks +0.
+
+
 ## AI 2 Ferrari public temporary modeling workspace migration (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI-PUBLIC-TEMP-WORKSPACE-MIGRATION-20261109-9B7AFE6B-A90D161C`. Distinct automation-infrastructure achievement only; no duplicate score for Daytona R45, F50 v41/v42 geometry, retries, uploads or status checks.

@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari Daytona SLOT=A real PMT016 driver_controls R44 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-R44-NATIVE-PMT016-DRIVER-CONTROLS-20261109-638F6936`. One distinct original-game PMT016-derived driver's four-slider/three-toggle control-panel geometry improvement. Not the previous R43 center_console work; no retry, independent reopen, CI, audit or status re-report receives extra points. AI 1 unchanged.
+- **Source and result:** Original `obj_plcar_dayts_pmt.sz` SHA256 `f393ba5c706453a4d3f71604f25cd1631594152380856462fb0a504143ba6abe`, original import SHA256 `92c82ee5c4e0631195cb314e0d8e2f56a78a6a58da3c809c46b1da0f9d2c71a3`. Original PMT016 10 native anchors verified. 70 pre-existing source-derived control housing vertices actually changed, up to 14mm, without new mesh/face/material, 112 unrelated meshes unchanged (including held dashboard/wheel). Private R43 input SHA `27c477d18b3737e08b02276bb50a7c5afb21c97fae14ec7fff9e24f7536ef877` -> separately saved R44 `.blend` SHA `638f69369f9ff9d074221320f38f4e137675a911d05939470f6cd24bec73040d`. Official Blender 4.5.15 LTS independent reopen verified.
+- **Public record:** `thp32tt/OutRun2006Tweaks@feature/ferrari16-geometry-rework-20261108`, source `b43347f41e617aa05b3c44df8c559b993ebd46fa`, QA report `7fc88f58a998c5b12399ddbd9d232b9d9feecdf8`, workpack `e7924558fe1a9aebf8ecc6de9c4f79af4ce1350c`, queue `23fd494ec50bb5bcdce7fd542247ddd7817c3405`. Real N100 private original/source/photo remain unpublished. Driver-controls region `COVERED_PARTIAL_QA` with pedals/stalks BLOCKED for source attribution; whole-car QA **NOT PASS**, next region inner_door. No car advance.
+- **Scoring:** AI 2 previous confirmed **2787** + distinct new real source-backed geometry **+1** = cumulative **2788**. No duplicate point for verification/reports.
+
 ## AI 2 PG/VAN weekly regulatory briefing (2026-11-09 08:48:56 KST)
 
 - **Unique RUN_KEY:** `AUTO:PG-VAN-REG-WEEKLY:2026-11-09T08:48:56+09:00`.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 F50 SLOT=C public-hosted PMT031 inner_door v42 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-HOSTED-INNERDOOR-V42-20261109-42546429232`. New original-source inner-door native geometry edit v42; different verified material geometry than prior F50 v40, not an additional score for missing key, retry, CI, render or status report.
+- **Proof:** actual Ferrari F50 original PMT `object00_group01_material031_a0` (66 original vertices / 40 faces); hosted bounded modification of 10 existing door upper rail vertices in only one source-native mesh; 41 non-target original PMT meshes unchanged. Official Blender 4.5.15 LTS on GitHub Ubuntu saved v42 .blend and independent fresh Blender process reopen PASS. BEFORE/AFTER Workbench images actually rendered.
+- **Origin SHA256:** original game PMT `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab`; immutable original import .blend `d82b3d024a812126da5b38c56572cfc326fbe3d1b5c0ddf8cad4cbd855119d31`; last input v41 .blend `016645f5fea43ef75c8e80479f49baaff2d3aa8d1647a058f732ac69080da08d`.
+- **Source & evidence:** `thp32tt/OutRun2006Tweaks@760218d81f9d0101569ea8db0d43a7637f549d2e`; exact hosted Actions run `42546429232` SUCCESS (SLOT A skipped), output AES-GCM ciphertext artifact `13642534956` (SHA256 `0fd3e4d95f883d798764ea8d341953349b09f75c0d629246f514849fd3e7f0c3`). Output .blend SHA recorded in encrypted private receipt, no plaintext publicly uploaded. Coverage/report checkpoint `4ffca29917d3a8cab358cd7b2b22a6d820a45c3f`.
+- **Scope:** `active_by_slot.C=f50` original cockpit inner_door only, workpack `COVERED_PARTIAL_QA`, 2/2 source edit budget, next `visible_seat`. Final F50 whole-car QA NOT_PASS. No dashboard/steering, outside model, textures, exports, game integration, N100 render, Model2 or Dino changes.
+- **AI 2 scoring:** previous confirmed **2791** + one newly verified independent PMT031 geometry achievement **+1** = cumulative **2792**. AI 1 unchanged; retries/rechecks +0.
+
 ## AI 2 Ferrari F50 SLOT=C original PMT000 windshield_frame v41 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-WINDSHIELD-PMT000-V41-20261109-016645F5`. One distinct original-game Ferrari F50 windshield upper-frame/A-pillar geometry achievement. The driver_controls BLOCKED, repeated audits, independent reopen, renders and status reports are +0. AI1 unaffected.

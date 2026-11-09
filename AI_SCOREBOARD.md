@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun HD Korean HOLD classification and restart-safe A/B/C1 recovery (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-HOLD-TRIAGE-RECOVERY-20261110-09BEE758-BB68F10D`. One integrated independent fail-closed localization automation recovery achievement; do not rescore any subsequent retry, queue count, tests, re-run, redeploy or status report.
+- **Source**: `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` commits `479251b2bc9c56ede255f40a08ac9fe6b40025e5` and `09bee758a61704e4a0646182f0a43ea33b790287`; exact GitHub safety Actions run `42655362346` **SUCCESS**. Mixed source-alpha/background HOLDs now route to source CLEAN/segmentation evidence rather than futile text-only ImageGen, while six literal downscale failures stay image rework. The prior 654 HOLD count remains unchanged until a full source SHA-pinned DDS rerun and independent QA.
+- **Recovery and CI**: `localization-controller-recovery-20260928` commits `700862a939eee4406ea5c216bc51a0437fdbf765`, `eb1df3bd93ecaa98ae88e13df3e2fedf9da32a16`, `bb68f10d690336fcd21321281eda81ad063b2595`. New strict SHA-bound `AB_SENT`/`C1_READY`/`C1_SENT` GitHub remote state recovery on container restart, no duplicate ImageGen requests; fixed real chat image rescue module sparse-checkout and browser-profile CI contract. Exact GitHub protocol Actions `42655767279` **SUCCESS**. Existing 8 A/B sent requests are NOT claimed as generated/exported or C1-approved.
+- **Evidence and boundaries**: Analysis recorded at `docs/OUTRUN_HD_HOLD_CAUSE_AND_RECOVERY_20261110.md` commit `eccd52a024673a346517067b22e2baa919792a44`; 954 ROI, 300 previous TEST_ONLY painted, 654 HOLD (463 overlap, 95 bounds, 36 coarse, 37 mixed alpha, 17 BC3, 6 scale), 58 DDS last verified. No N100 heavy batch, no container redeploy, no new Korean PNG, no game QA; `release_approved=false`, `runtime_validation=UNTESTED`. Exact full DDS rerun `42655471313` was IN_PROGRESS when credited and receives no additional point by itself.
+- **AI 1 permanent cumulative score:** previous confirmed **1783** + **1** distinct implemented and GitHub exact-SHA-tested HOLD recovery capability = **1784 AI 1 points**. AI 2 unchanged and separate.
+
 ## AI 2 Ferrari 360 Spider SLOT=A original native center-console R01 (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTA-360SPIDER-CENTER-CONSOLE-ORIGINAL-PMT-20261110-5DABFFB5`. New real original-game PMT center-console **mesh geometry edit**, distinct from earlier 360 Spider source bootstrap, F355 Spider SLOT C, retries, documents and status checks.

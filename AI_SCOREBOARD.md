@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F355 Spider SLOT=C center-console real native gate-bezel geometry (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTC-F355SPIDER-NATIVE-CENTERCONSOLE-GATE-V1-20261110-0C866730`. One new source-native PMT center-console *geometry edit*, distinct from earlier F355 Spider source-bootstrap, Slot A 360 Spider, Quest VR source fix, all retries and report-only checks.
+- **Original native mesh:** Existing source-derived `PMT_F355SPIDER_object00_group01_material023_a0` (20 vertices, 10 triangles) from exact N100 protected `obj_plcar_f355sp_pmt.sz` SHA256 `d9af341653ef44371e8df2efc4024af92d7ca03665acef04a4c3c65200bb7b11`; immutable baseline import SHA256 `4fa9bdc314c5e30ab890adcff160377436540646588a36f1c4c1649c5df7186e`.
+- **Real new geometry:** Repositioned all 20 existing gated-console bezel vertices to widen perimeter 22%, lengthen 15%, raise top rim ~1mm; max existing vertex displacement **10.836mm**, 10 original triangles/UVs/source materials preserved. All other **95 original PMT-derived mesh fingerprints identical**, no windshield/front-glass/A-pillars, dashboard, wheel, exterior, synthetic object, PBR or game export.
+- **QA/evidence:** `thp32tt/imsi1@21b75a43e0718eed53bf972e84483c36407bb316` includes native Blender authoring script, standalone editable .blend, object fingerprint receipt and same-camera BEFORE/AFTER Blender Workbench renders. Exact output .blend SHA256 `0c8667304fb6c527f54dd79557604e46a02270dee5a05ce37281c181db1d66f3`, Blender 4.5.15 separate-process independent reopen PASS, `workspace_guard.py verify-receipt` PASS, remote workpack + receipt HEAD readback PASS. N100 private F355 Spider transmission photo was a proportional design guide; **real-world exact dimensional match is NOT claimed**. PMT/photos remain private.
+- **Stage:** `center_console=COVERED_PARTIAL_QA` with one verified source edit; `current_component=driver_controls`, migration SHA updated, original import SHA unchanged; whole-car QA remains NOT PASS.
+- **AI 2 permanent cumulative score:** previous GitHub SSOT confirmed **2801** + **1** new independent PMT center-console actual geometry achievement = cumulative **2802** points. Same RUN_KEY, retries, rereads, renders or status checks +0; AI 1 remains separate.
+
 ## AI 2 OutRun Quest cockpit field-feedback F0 default and APK-derived seat calibration (2026-11-10 KST)
 
 - **One-time independent RUN_KEY:** `OUTRUN-QUEST-F0-NATIVE-SEAT-CAL-SKY-PROBE-20261110-36D1DEF6`. Newly integrated ORIGINAL Quest cockpit HMD-feedback fix, not a duplicate of previous 9d84c714 original 30-seat table-initialization gate and not an award for the sky probe or a retry.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari Daytona SLOT=A original PMT017 visible-seat R46 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-NATIVE-PMT017-VISIBLE-SEAT-R46-20261109`. New independent native PMT seat mesh geometry achievement; not a duplicate R45 inner-door, F50 slot C seat, retry, screenshot, CI or status report.
+- **Direct original source:** Daytona PMT SHA256 `f393ba5c706453a4d3f71604f25cd1631594152380856462fb0a504143ba6abe`; imported original editable .blend SHA256 `92c82ee5c4e0631195cb314e0d8e2f56a78a6a58da3c809c46b1da0f9d2c71a3`. Edited original native PMT mesh `object00_group01_material017_a0`: 82 of 184 existing seat vertices (left 42, right 40), max 12.5 mm; original 300 faces preserved, other 30 original-import meshes unchanged.
+- **Proof:** Independent Blender 4.5.15 LTS actual save and fresh reopen PASS; source-native editable .blend SHA256 `e84c723111f8409686ee2d4e953c021212a76055bcb24ba0aad8138ebae828a4`; matched-camera Workbench comparison 55,026 changed RGB>3 pixels; genuine seat photos held privately on N100; no synthetic meshes, textures, PBR, exports, windshield, wheel or dashboard edits. Plaintext .blend, script, QA and SHA manifest committed at `thp32tt/imsi1@92bcb9c3d3a7238f28093caca34d7a91d470b76a`.
+- **Scope:** `visible_seat=COVERED_PARTIAL_QA`; accepted integrated Daytona R45 SHA256 `224131c7adc928d5d6f0377d030d5a350c59b8664c13303a2731d6dfc6e9a722` untouched, independent native seat source NOT merged into full cockpit, final vehicle QA NOT PASS. Next `instrument_cluster`. Slot C/F50, Dino, Model2 untouched.
+- **AI 2 score:** previous confirmed **2795** + distinct verified native original PMT017 seat-geometry achievement **+1** = cumulative **2796**. Same TASK_ID/retry/report/readback +0; AI 1 unchanged.
+
+
 ## AI 2 Ferrari imsi1 native dispatch and receipt fail-closed guard (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-IMSI1-NATIVE-DISPATCH-GUARD-20261109-4717BFAB`. A new independent automation safety feature, distinct from Ferrari workspace migration, F50 visible-seat geometry, retry or render. No mesh authoring, game export or final vehicle QA credit.

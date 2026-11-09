@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F355 Spider SLOT=C original PMT22 steering-wheel geometry (2026-11-10 KST)
+
+- **Unique RUN_KEY:** FERRARI16-SLOTC-F355SPIDER-STEERING-WHEEL-NATIVE-PMT22-V1-20261110-354B2D8B. One new native F355 Spider original-game steering-wheel geometry update, distinct from prior dashboard, instrument, seat, console, SLOT A, readbacks, retries, CI and docs.
+- **Source and actual native geometry:** N100 original PMT obj_plcar_f355sp_pmt.sz SHA256 d9af341653ef44371e8df2efc4024af92d7ca03665acef04a4c3c65200bb7b11; original PMT import Blender SHA256 4fa9bdc314c5e30ab890adcff160377436540646588a36f1c4c1649c5df7186e; accepted dashboard input SHA256 8734757c3bac3938c8313214720c7d9e9b5d42fdb7095001de9fd90471d93c0d. Physically reshaped **53 pre-existing source PMT vertices** only inside PMT_F355SPIDER_object22_group00_material001_a0 lower spokes and lower airbag-pad silhouette toward private actual F355 Spider steering-wheel photo. Max displacement 26.91mm; other 95 PMT meshes including original badge, glass/frame/A-pillars, dashboard, exterior unchanged. All original mesh topology, UVs, normals, transforms preserved. No new materials/PBR, original PMT/photos upload, game exports or conversion.
+- **Durable GitHub evidence:** thp32tt/imsi1@1c6b549fb19aa903389fe45c5e7b58ba9866934e; artifacts/slot_C/f355spider/steering_wheel_v1/. Plain editable source Blender F355Spider_OriginalPMT_Steering_ThreeSpoke_v1.blend SHA256 354b2d8b67839cdabdaf838d596771750f6fb8d9919fd023a4dae2c24df52518; independent Blender 4.5.15 separate-process reopen PASS, native object fingerprint invariant PASS, strict workspace_guard.verify_receipt PASS. Original-photo comparison qualitative only, and driver-eye registration pending.
+- **Boundary:** steering_wheel=COVERED_PARTIAL_QA; workpack current_component advanced to cross_cockpit_qa dispatch 0/2, car remains F355 Spider 24-hour assigned. Whole-car QA NOT PASS. No credit for same SHA, recaps, retry, CI or rollover; AI 1 separately unchanged.
+- **AI 2 permanent unique-result calculation:** previous GitHub SSOT **2810 + 1 new native PMT22 steering-wheel geometry achievement = cumulative 2811 AI2 points**.
+
+
 ## AI 2 Ferrari F355 Spider SLOT=C genuine original PMT019 dashboard center fascia (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F355SPIDER-DASHBOARD-NATIVE-PMT019-V1-20261110-8734757C`. One new materially distinct actual original OutRun 2006 F355 Spider dashboard geometry first pass, separate from earlier native instrument, seat, console, SLOT A 360 Spider/dashboard and readback or retries.

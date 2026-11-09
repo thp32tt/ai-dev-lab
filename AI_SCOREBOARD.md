@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F50 SLOT=C original PMT011 instrument-cluster v44 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-NATIVE-PMT011-INSTRUMENT-V44-20261109-1FF620C4`. Distinct source-native F50 instrument cluster geometry; not a repeat of F50 visible seat, Daytona SLOT A, prior dashboard/steering micro-polish, CI, retry or report.
+- **Verified public artifact:** `thp32tt/imsi1@ead6722d43a25cf689a1407f1d48a184507e5df7` in `artifacts/slot_C/f50/instrument_cluster_v44`. Original native F50 PMT SHA256 `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab`; original-import Blender SHA256 `d82b3d024a812126da5b38c56572cfc326fbe3d1b5c0ddf8cad4cbd855119d31`.
+- **Actual source mesh edit:** `PMT_F50_object00_group01_material011_a0`, **40 original existing vertices** changed up to **12.5953 mm**; 109 vertices/119 faces retained, **other 41 source-native meshes identical**. Protected windshield, A-pillars, rest of dashboard, wheel, exterior, textures/PBR, Dino and Model2 not edited; no new object or PMT/OVC export.
+- **Evidence:** Official Blender 4.5.15 LTS saved real source-derived editable v44 .blend, independent fresh reopen and full inventory fingerprint guard PASS. SHA256 `1ff620c4ede9a265b66440105c16cd318f4e9e3761ec2754d13866f0b7d7507e` confirmed by exact GitHub remote download. Plaintext partNN reassembly SHA PASS; matched Workbench before/after evidence. Real-photo reference stays private on N100.
+- **QA scope:** instrument_cluster=`COVERED_PARTIAL_QA`, NOT whole-car QA PASS. Next dashboard is P0_POLISH_HOLD, real driver-eye and seven-view final QA outstanding.
+- **AI 2 permanent cumulative score:** previous confirmed **2797** + **1** independently verified source-native F50 PMT geometry achievement = **2798** points. No retry/readback duplicate; AI 1 unchanged.
+
 ## AI 2 Ferrari Daytona SLOT=A original PMT015 instrument-cluster R47 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-NATIVE-PMT015-INSTRUMENT-R47-20261109`. New original-source-native gauge-bezel geometry, distinct from prior Daytona R46 seat, R45 door, repeated wheel/dashboard tuning, retries, re-renders, CI or reporting.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari Daytona SLOT=A original PMT015 instrument-cluster R47 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-NATIVE-PMT015-INSTRUMENT-R47-20261109`. New original-source-native gauge-bezel geometry, distinct from prior Daytona R46 seat, R45 door, repeated wheel/dashboard tuning, retries, re-renders, CI or reporting.
+- **Real artifact:** `thp32tt/imsi1@9d9cb4f56989dcd997a6020cf3a09864ea09d333` on `main`, under `artifacts/slot_A/daytona365/R47_instrument_cluster`. Native original PMT SHA256 `f393ba5c706453a4d3f71604f25cd1631594152380856462fb0a504143ba6abe`, original Blender import SHA256 `92c82ee5c4e0631195cb314e0d8e2f56a78a6a58da3c809c46b1da0f9d2c71a3`.
+- **Actual mesh change:** original existing `object00_group01_material015_a0` gauge bezel components anchor 229 and 253; exactly **20 genuine original vertices** repositioned, up to **7.5mm** toward driver. Same topology, UVs/materials; other **29 original PMT-native meshes unchanged**. Gauge face, dashboard elsewhere, wheel, glass/A-pillars not edited. Real reference photos retained only on N100.
+- **Verification:** Blender 4.5.15 LTS source-native .blend SAVE and independent fresh REOPEN PASS, source fingerprint postflight guard PASS. Output plain editable .blend SHA256 `7367034bf9900e380f0f61d8d89c19322e8d22207dcba6c5124bf8f572803c28`; matched-camera actual Blender Workbench before/after comparison 13,120 pixels RGB>3. No encryption, textures/PBR, new objects, PMT/OVC conversion or game integration.
+- **Scope:** instrument_cluster=`COVERED_PARTIAL_QA`, **NOT** whole-car QA PASS. Accepted R45 integrated scene SHA256 `224131c7adc928d5d6f0377d030d5a350c59b8664c13303a2731d6dfc6e9a722` unchanged; R47 standalone native source not merged. Next `dashboard` P0_POLISH_HOLD; no repeated wheel/dashboard micro-polishing. Dino/Model2/F50 unchanged by this task.
+- **AI 2 permanent cumulative score:** previous confirmed **2796** + **1** independently verified native geometry achievement = **2797** points. Reverification, same TASK_ID/retry/rollover/report +0, AI 1 unchanged.
+
 ## AI 2 Ferrari Daytona SLOT=A original PMT017 visible-seat R46 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-NATIVE-PMT017-VISIBLE-SEAT-R46-20261109`. New independent native PMT seat mesh geometry achievement; not a duplicate R45 inner-door, F50 slot C seat, retry, screenshot, CI or status report.

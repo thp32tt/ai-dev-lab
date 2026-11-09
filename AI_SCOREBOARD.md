@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari imsi1 native dispatch and receipt fail-closed guard (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-IMSI1-NATIVE-DISPATCH-GUARD-20261109-4717BFAB`. A new independent automation safety feature, distinct from Ferrari workspace migration, F50 visible-seat geometry, retry or render. No mesh authoring, game export or final vehicle QA credit.
+- **Implementation:** `thp32tt/imsi1@4717bfab1d56c99cc78bb77a16a3d9eef5cd65bc`, `tools/car_modeling/workspace_guard.py`, unit regressions, mandatory preflight/postflight usage in strategy and GitHub Actions `ferrari-workspace-guard.yml`. Fail-closed slot-to-car binding, 2-dispatch cap, protected windshield/front-glass regions, automatic wheel/dashboard repeat prevention, source-native receipt/fingerprint isolation and independent-reopen claim checks.
+- **Verification:** 13 local Python regression tests PASS; exact-HEAD GitHub Actions run `42556362067` SUCCESS; predecessor first-run `42556095518` SUCCESS. Receipt CI audits stored metadata; actual .blend SHA checking requires optional `--output-blend` on the runtime and does not confer whole-car QA PASS.
+- **AI 2 score:** previous confirmed **2794** + one distinct source/governance gate achievement **+1** = cumulative **2795**. Same RUN_KEY/redeploy/reports +0; AI 1 unchanged.
+
+
 ## AI 2 F50 SLOT=C source-native PMT023 visible_seat v43 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-VISIBLE-SEAT-PMT023-V43-20261109-A1F64D8F`; distinct newly verified source-native F50 bucket-seat frame geometry, not a re-score for previous F50 inner_door, rejected windshield v41, prior dashboard/wheel, retry, CI, render or re-report.

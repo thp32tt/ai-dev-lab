@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F355 Spider SLOT=C original PMT Blender source bootstrap (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTC-F355SPIDER-NATIVE-PMT-BASELINE-20261110-4FA9BDC3`. New independent one-shot original OutRun 2006 F355 Spider PMT-to-Blender editable baseline; not the concurrent 360 Spider SLOT A source import, prior F50 work, a retry or a report.
+- **Protected original proof:** N100 source `obj_plcar_f355sp_pmt.sz`, SHA256 `d9af341653ef44371e8df2efc4024af92d7ca03665acef04a4c3c65200bb7b11`, 365750 bytes. `tools/car_modeling/workspace_guard.py bootstrap-source` PASS on exact original file.
+- **New source artifact:** `thp32tt/imsi1@e5813dcdea88fd26bd5f368585b9c0332a58aec5`; 30 native PMT objects, 96 source-derived Blender mesh objects, 13354 native vertices and 11681 triangles with per-object original IDs, UV/native normals and mesh fingerprints. Official Blender 4.5.15 LTS real save + independent separate-process reopen PASS; immutable editable baseline .blend SHA256 `4fa9bdc314c5e30ab890adcff160377436540646588a36f1c4c1649c5df7186e`. Exact remote workpack/receipt readback PASS.
+- **Boundary:** Source-only SOURCE_VERIFIED; source_bootstrap closed, next center_console. Zero source geometry edits, no synthetic car, no windshield/front-glass/A-pillar edits, no private photos or PMT package published, no whole-vehicle QA PASS.
+- **AI 2 permanent cumulative score:** previous confirmed **2799** + **1** independent verified Ferrari F355 Spider original-source Blender bootstrap achievement = cumulative **2800** points. No duplicate credit for same RUN_KEY, rebuild, reopen, retry or report; AI 1 unchanged.
+
 ## AI 2 Ferrari 360 Spider SLOT=A original PMT Blender source bootstrap (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTA-360SPIDER-NATIVE-PMT-BASELINE-20261110-B4F1D071`. New one-shot original-game PMT-to-editable-Blender source import and independent reopen for newly active SLOT=A Ferrari 360 Spider. Distinct from previous Daytona/F50 geometry edits; retries, metadata readbacks and any future center-console work do not duplicate this score.

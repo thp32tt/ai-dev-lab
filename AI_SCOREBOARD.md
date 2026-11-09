@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Daytona SLOT=A source-native PMT005 inner_door R45 (2026-11-09 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-SLOTA-DAYTONA-R45-NATIVE-PMT005-INNER-DOOR-20261109-224131C7`. One independent source-backed Daytona inner door geometry accomplishment, not previous R43 center console or R44 driver switch housing. Audits, fresh reopen, tests, reports, rollovers and retries of the same geometry are **+0**. AI 1 unaffected.
+- **Original game provenance:** read-only Daytona `obj_plcar_dayts_pmt.sz` SHA256 `f393ba5c706453a4d3f71604f25cd1631594152380856462fb0a504143ba6abe`, official original source import `.blend` SHA256 `92c82ee5c4e0631195cb314e0d8e2f56a78a6a58da3c809c46b1da0f9d2c71a3`, source-native `object00_group01_material005_a0` 7 actual door leading-edge points; existing `V5_L_LEATHER_SCULPTED_DOOR` 41/465 vertices modified max **15.851132mm**, 840 faces unchanged, no created mesh; 112 other meshes protected unchanged, including dashboard/steering. Authentic private LHD Daytona cabin photo used for reference.
+- **Private source result:** R44 input `.blend` SHA `638f69369f9ff9d074221320f38f4e137675a911d05939470f6cd24bec73040d` -> independent R45 `.blend` SHA `224131c7adc928d5d6f0377d030d5a350c59b8664c13303a2731d6dfc6e9a722` (7,901,536 bytes). Official Blender 4.5.15 LTS save/independent reopen PASS with all protected signatures invariant. No PMT/OVC/OVC3/game changes, no other slot edits.
+- **Public source/proof:** `thp32tt/OutRun2006Tweaks@feature/ferrari16-geometry-rework-20261108` source commit `4ebbeb8342d0fe8ebca18d7c830a6be2ac6cee02`, report `310c031a958de4fcdc93fafd24f47ea1bf3e2595`, SLOT A workpack `1c56b1bea3bf9983b92734b9b328a4291b40ba75`, queue `66e72f7271b5d3d8458993cb701bfbdfec22d518`. `inner_door=COVERED_PARTIAL_QA` only, car QA NOT PASS, next `windshield_frame` while original 24h assignment remains.
+- **AI 2 scoring:** previous confirmed **2789** + new distinct source-derived inner-door geometry **+1** = cumulative **2790**.
+
 ## AI 2 Ferrari F50 SLOT=C source-native inner_door v40 (2026-11-09 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-SLOTC-F50-DRIVER-CONTROLS-BLOCKED-INNER-DOOR-V40-20261109-03B96B1E`. One genuinely new F50 original-game PMT door-shoulder geometry achievement, distinct from previously counted center-console shifter knob v38 and shaft v39; no point for source discovery, blocked driver_controls, prior wheel/dash edits, save/reopen, audit, report or retry. AI1 unchanged.

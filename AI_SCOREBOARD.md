@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Quest cockpit programmable-sky fallback eye-orientation parity (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-SKY-FALLBACK-EYE-CANT-20261110-5DC5A159`. Count this new sky-rendering correction once; retries, later HMD confirmation, packaging/status checks and the same functional code's documentation follow-ups are +0.
+- **Root cause isolated:** exact original race-sky owner `0x4521C0` renders two 0x90-byte sky layers. In the PC VR fallback path, fixed-function WorldSky already preserved each OpenXR eye orientation/cant with zero eye translation, while programmable WorldSky removed head translation but omitted the per-eye orientation. During the intentional first-frame native-seat gate/fallback this could make the two original sky layers disagree before the native Quest eye pair becomes ready, matching the reported faint second sky layer / start-of-race flicker mechanism.
+- **Implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-eye-pair-20261110` commit `7b38302ed5096f91a4cc9144c8c306d9b645ca61` makes programmable WorldSky fallback retain `stereo.eyeOrientation[eye]` while forcing zero positional eye offset, matching the fixed-function rotation-only path. Commit `5dc5a159ea8b6aa44987fcbcc801189d390f8503` additionally latches `LatchedHeadInverse` once per programmable stereo pair and reuses it for both eyes, removing duplicate hot-path queries and guaranteeing the same head basis across the pair.
+- **Verification:** exact functional SHA `5dc5a159ea8b6aa44987fcbcc801189d390f8503` GitHub Actions Build run `42772991517` completed **SUCCESS** including Win32 Release binary/payload verification; OutRun EXE HUD Inspector CI run `42772991229` completed **SUCCESS** for both `build-hud-inspector` and `static-exe-analysis`. Quest3 optical result remains **UNTESTED**; no claim that the visible flicker is already confirmed fixed.
+- **Scoring:** **AI 2 previous confirmed 2813 + this distinct verified sky-renderer achievement +1 = cumulative 2814 points**. AI 1 unchanged.
+
+
 ## AI 2 Quest cockpit native stereo-eye pair atomicity and launcher hardening (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-NATIVE-EYE-PAIR-20261110-F42CCF4E`. Count this new renderer/launcher achievement once; retries, later HMD confirmation, CI reruns and status readbacks are +0.

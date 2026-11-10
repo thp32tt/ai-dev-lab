@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 1 OutRun HD six user-manual source-native DDS mechanical placements success (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-MANUAL-6-NATIVE-ROI-VERIFIED-20261110-42810293258`. ONE distinct new working asset-integration result, compared with the earlier manual reference ZIP, candidate-only QA and shadow-source code milestone. No duplicate per PNG, commit, test or rerun.
+- **Actual GitHub binary import:** User 381232-byte SHA-256 `67522bd1ef6195362355b9e2c489a6418a823d1efe116a6f010f653e80001102` ZIP transferred directly through connected Google Drive to `thp32tt/OutRun2006Tweaks@korean-localization-qa-queue-20261104`, source branch commit `31f2c50026a84ce68899e755c1ac7fcb668e22df`, blob `6c6854431a71d1709b2bec8f41ff92172348496a`. Original A/B source PNGs unchanged. New `hd_manual_user_import.py` verifies ZIP SHA, each source ROI/translation and output PNG SHA before staging in the runner.
+- **Proof of native DDS work:** `hd_manual_user_fast_qa.py` `OutRun Manual HD Six ROI Fast Preview QA` [run 42810293258](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/42810293258) **SUCCESS**, all **6/6 exact original-HD source DDS ROI placements mechanically succeeded**: Q046 PAUSE MENU, Q101 Steering Wheel, Q193 OUTRUN SHOWROOM, Q205 Switch & Xbox SORRY! and Q226 STAGE; zero source SHA/missing errors. The first pass was 5/6 due to physical atlas edge; unique source-owned STAGE child uses 2px proportional inset, without erasing adjacent GOALS or OUTRUN2. Strict regression tests [run 42810250891](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/42810250891) **SUCCESS**.
+- **User-approved cosmetic tolerance:** source/candidate alpha <=8 ignored, minimal BC3 quantization tolerances widened, protected sprite pixels remain guarded. Native full 954 ROI GitHub build `42810744957` was IN_PROGRESS when checked; no unverified claim of count increase beyond last 301 TEST_ONLY / 653 HOLD / 58 DDS. Full build and release get +0 independently, never score retries, CI reports or the six ROI individually. `release_approved=false`, `runtime_validation=UNTESTED`.
+- **AI 1 score:** previous confirmed **1786** + **1** unique actual source-native user image integration capability = **1787 AI 1 points**. AI 2 remains separate, unchanged.
+
 ## AI 2 Quest cockpit Present-atomic native eye mode (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-PRESENT-ATOMIC-EYE-MODE-20261110-15212757`. Count this renderer consistency correction once; diagnostic follow-ups, HMD confirmation, CI reruns and documentation are +0.

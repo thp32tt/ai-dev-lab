@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Quest cockpit native stereo-eye pair atomicity and launcher hardening (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-NATIVE-EYE-PAIR-20261110-F42CCF4E`. Count this new renderer/launcher achievement once; retries, later HMD confirmation, CI reruns and status readbacks are +0.
+- **APK parity finding:** the owned Quest ARM64 `XrRig::locate` accepts a frame only when `xrLocateViews` returns exactly two valid eyes. The PC QuestCockpitV2 renderer previously queried the native eye inverse independently inside each eye loop, allowing a theoretical native/fallback split within one stereo draw if readiness changed between eye queries.
+- **Implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-eye-pair-20261110` commits `aa56ed6ffb0b28dae4f0f1d260a58ef0521865ad` and `f42ccf4e3d606cf7880bdffd0c689e220bbb569f` add one validated native stereo-pair snapshot and consume both matrices from the same latched pose generation in fixed-function and programmable paths. Per-eye repeated camera/game-state readiness checks are removed from that hot path. Subsequent same-achievement launcher commits keep the user-verified F0 render scope enabled in the main launcher, resolve the runner from installed-root or source-tree locations, and add the missing F0 parameter-contract check; they receive no additional points.
+- **Verification:** GitHub Actions exact code SHA `f42ccf4e3d606cf7880bdffd0c689e220bbb569f` Build run `42769622372` completed **SUCCESS**, including Win32 Release build, payload verification and binary upload. OutRun EXE HUD Inspector CI run `42769622562` also completed **SUCCESS** for both build-hud-inspector and static-exe-analysis. Quest3 visual confirmation of sky flicker and turning behavior remains explicitly UNTESTED; no unverified visual PASS is claimed.
+- **Scoring:** **AI 2 previous confirmed 2812 + this distinct verified renderer achievement +1 = cumulative 2813 points**. AI 1 unchanged.
+
+
 ## AI 1 OutRun HD manual 38-PNG candidate QA and strict one-line shadow source repair (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-USER38-PIXELSAFE-5CANDIDATES-SHADOW-20261110-48328CCA`. One NEW integrated user-submitted candidate QA + verified source-alpha band fix, different from prior manual **original-English** reference ZIP and 654-HOLD geometric triage; retries, download/Library readback, CI reruns, and later DDS build receive +0.

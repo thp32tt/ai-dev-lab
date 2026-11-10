@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun HD tiny-alpha QA bypass verified (2026-11-11 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-COSMETIC-ALPHA15-20261111-7B7AE116`. One distinct new functional QA-tolerance improvement; no credit for retries, automated rebuilds, duplicate workflow executions, re-reporting, or unchanged HOLD rows.
+- **Actual source changes:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` commits `598989456041ae124641538d9dbe3077434f2e14`, `b1d5fa09a90ccc2be419d9cba1ba68d4580d3338`, `7b7ae11642fa17d0a76be871d680284c0b246d70` consistently raise the native source/candidate microscopic alpha threshold from <=8 to <=15/255 and prove alpha 15 vs 16 boundary in tests; existing A/B lettering and original HD DDS are used, source alpha>=16 and protected non-ROI source pixels remain protected. No fabricated C1/C3/game PASS.
+- **Exact evidence:** GitHub Actions `OutRun A/B Multi-Atlas Fast Safety Unit Tests` [run 42914005174](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/42914005174) completed SUCCESS at functional SHA `b1d5fa09a90ccc2be419d9cba1ba68d4580d3338`; last commit only adds correct full-native workflow change triggers. Native full DDS workflow run `42914091020` was in progress when credit was recorded; 954 ROI output improvement and game runtime remain **UNVERIFIED**. The separate scheduled HOLD queue missing-checkout repair `f33edd0d70b44463ab8962867fbb2213c3f8b626` was in CI and does not receive an additional point.
+- **AI 2 score calculation:** previous confirmed **2815** + **1** unique verified QA code improvement = **2816 AI 2 cumulative points**. AI 1 unchanged **1787**.
+
 ## AI 1 OutRun HD six user-manual source-native DDS mechanical placements success (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-MANUAL-6-NATIVE-ROI-VERIFIED-20261110-42810293258`. ONE distinct new working asset-integration result, compared with the earlier manual reference ZIP, candidate-only QA and shadow-source code milestone. No duplicate per PNG, commit, test or rerun.

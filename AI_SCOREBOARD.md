@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Quest cockpit Present-atomic native eye mode (2026-11-10 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-PRESENT-ATOMIC-EYE-MODE-20261110-15212757`. Count this renderer consistency correction once; diagnostic follow-ups, HMD confirmation, CI reruns and documentation are +0.
+- **Independent achievement:** fixed-function and programmable world/sky paths previously resolved Quest native-eye availability independently. If native-seat readiness changed between original sky-layer draws inside one Present, one layer could remain fallback while a later layer switched native. Commit `15212757892041327eef69e15bf8f016237b304a` adds a Present-epoch latch so the first resolution freezes native-vs-fallback and both-eye matrices for all later world draws in the same Present, matching Quest `XrRig::locate` frame-level two-eye commitment.
+- **Verification:** exact functional SHA `15212757892041327eef69e15bf8f016237b304a`: Build run `42778366054` **SUCCESS**, QuestCockpitV2 Isolated Core Smoke `42778365723` **SUCCESS**, OutRun EXE HUD Inspector CI `42778365724` **SUCCESS**. Quest3 optical result remains **UNTESTED**.
+- **Scoring:** **AI 2 previous confirmed 2814 + this distinct verified renderer achievement +1 = cumulative 2815 points**. AI 1 unchanged.
+
+
 ## AI 2 Quest cockpit programmable-sky fallback eye-orientation parity (2026-11-10 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-SKY-FALLBACK-EYE-CANT-20261110-5DC5A159`. Count this new sky-rendering correction once; retries, later HMD confirmation, packaging/status checks and the same functional code's documentation follow-ups are +0.

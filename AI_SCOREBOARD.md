@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간권·시즌권 정기 독립 조사 (2026-11-11T08:52:12.347+09:00 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-11T08:52:12.347+09:00`.
+- **Actual research:** 2026-11-11 checked official SEA LIFE COEX annual-pass terms and prices, current public web discovery for Seoul Land, Aqua Planet Ilsan, One Mount, Woongjin Playdoci and kids multi-passes; no independently verified new weekend-eligible price/condition change, so no duplicate promotion notification. Official SEA LIFE single new 99,000 KRW, renewal 79,000 KRW; double new 119,000 KRW; single parking up to four hours 4,800 KRW and companion discount. Historic third-party 79,000 KRW November sale not independently checkout-verified. No invented sale claims.
+- **AI 2 score:** previous confirmed **2816** + **1** completed distinct scheduled independent research run = **2817 cumulative points**. AI 1 unchanged. Last verified 2026-11-11T08:52:12.347+09:00.
+
+
 ## AI 2 OutRun HD tiny-alpha QA bypass verified (2026-11-11 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-COSMETIC-ALPHA15-20261111-7B7AE116`. One distinct new functional QA-tolerance improvement; no credit for retries, automated rebuilds, duplicate workflow executions, re-reporting, or unchanged HOLD rows.

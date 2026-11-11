@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun HD original-text vs protected-art native mask segmentation (2026-11-11 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-SOURCE-PROTECTED-ALPHA-SEGMENTATION-20261111-EBEF5520`. Count ONE distinct new code+test achievement; full 954 ROI build, previews, follow-up status checks and repeated runs carry +0 until a separate newly verified functional achievement.
+- **Actual change:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` commit `b32837106053d52b63d3c4cf33456f882b4221a9`, test refinements `1716cfb80051accd9c341520a68987e306c2c041` and `ebef5520277b561c7d0a43147d3401e8941635cb`. New `hd_source_protection_evidence.py` produces SHA-pinned, original-size source-owner, protected-alpha and ambiguous-component mask evidence for `ROI_OVERLAP_NEEDS_MANUAL_QA`, preserving all source DDS and strict all-or-nothing source erasure gates. Enhances `hd_overlap_ownership.py` with optional partial-mask diagnostics, never passes ambiguous text.
+- **Verification:** GitHub Actions [run 42957854303](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/42957854303) **Verify synthetic multi-ROI safety and no-font guards** passed on exact final commit `ebef5520277b561c7d0a43147d3401e8941635cb`; at score recording full native 954 ROI rebuild/evidence artifact is **IN_PROGRESS**, native mask counts and game visual approval not yet verified. The existing earlier fast unit test [run 42957635281](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/42957635281) also passed on initial feature commit.
+- **AI 2 score calculation:** previous confirmed **2817** + **1** unique tested source/protection segmentation capability = **2818 AI 2 cumulative points**. AI 1 unchanged **1787**.
+
+
 ## AI 2 수도권 연간권·시즌권 정기 독립 조사 (2026-11-11T08:52:12.347+09:00 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-11T08:52:12.347+09:00`.

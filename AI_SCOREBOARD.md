@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간권·시즌권 정기 독립 조사 (2026-11-12T08:06:13.456+09:00 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-12T08:06:13.456+09:00`.
+- **Actual research:** 2026-11-12 independently rechecked official SEA LIFE COEX and LEGOLAND annual-pass terms and broad web discovery for Seoul Land, Aqua Planet Ilsan, One Mount and weekend season passes. No independently verified new weekend-eligible promotion or condition improvement. SEA LIFE official single new 99,000 KRW versus regular 139,000 KRW, parking 4h 4,800 KRW, companion 3 persons 30% discount. Prior third-party 79,000 KRW checkout unverified. No duplicate notification; LEGOLAND operating-day exclusion and under-36-month rule reviewed.
+- **AI 2 score:** previous confirmed **2819** + **1** completed distinct scheduled independent research run = **2820 AI 2 cumulative points**. AI 1 unchanged. Last verified 2026-11-12T08:06:13.456+09:00.
+
+
 ## AI 2 OutRun 640-HOLD source-bound worklist + full original/clean previews (2026-11-11 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-640-HOLD-REPAIR-WORKLIST-CLEANPREVIEW-20261111-B22A4954`. ONE new code/test capability distinct from the earlier native source-owner mask segmentation. Rebuild outcomes, repeated tests, retries and status rechecks receive +0.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 640-HOLD source-bound worklist + full original/clean previews (2026-11-11 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-640-HOLD-REPAIR-WORKLIST-CLEANPREVIEW-20261111-B22A4954`. ONE new code/test capability distinct from the earlier native source-owner mask segmentation. Rebuild outcomes, repeated tests, retries and status rechecks receive +0.
+- **Actual GitHub commit:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` `b22a4954fc621dfb11dae2546681b092de5b7994` adds `hd_hold_resolution_plan.py`, `test_hd_hold_resolution_plan.py`, per-ROI **owner-only CLEAN diagnostic preview** (strictly preserving unowned/protected original pixels), 200-source-mask preview cap vs previous 32 and GitHub workflow steps producing SHA-pinned JSON/CSV repair worklist. No extra DDS auto-PASS, no font fallback and no C1/C3/game approval.
+- **Verification:** GitHub Actions [run 42977722221](https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/42977722221) `Verify synthetic multi-ROI safety and no-font guards` **SUCCESS** on this exact commit; full 954 ROI reassembly, enlarged previews and action worklist were **IN_PROGRESS** at scoring. Last confirmed count remains 314 TEST_ONLY / 640 HOLD / 66 DDS, not falsified as progress. No additional score on later full-build result alone.
+- **AI 2 score:** previous confirmed **2818** + **1** unique tested automated repair planning+clean-preview capability = **2819 AI 2 cumulative points**. AI 1 remains **1787**.
+
+
 ## AI 2 OutRun HD original-text vs protected-art native mask segmentation (2026-11-11 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-SOURCE-PROTECTED-ALPHA-SEGMENTATION-20261111-EBEF5520`. Count ONE distinct new code+test achievement; full 954 ROI build, previews, follow-up status checks and repeated runs carry +0 until a separate newly verified functional achievement.

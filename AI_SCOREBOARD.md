@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun HD source-owner automatic Korean PNG pixel editor (2026-11-12 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-SOURCE-OWNER-AUTO-EDIT-20261112-114PNG-97PREVIEW`; one distinct automatic image-editing capability. CI reruns and repeated source-image outputs do not score again.
+- **GitHub implementation:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` `9c74f0e26985fa7a0300740d9ae8a2806ccc45f7`, editor `hd_hold_auto_edit.py`, synthetic tests, integrated HD pipeline; lightweight synthetic PASS run `43185621402`, source-mask reuse workflow commit `bb992bff48861e462642326e26ba9498764b8e06`.
+- **Verified real PNG outputs:** GitHub Actions run `43185778845`, artifact `13928068484`; 150 source-owned HOLD candidates processed, **114 truly rewritten transparent Korean PNGs**, **97 owner-only CLEAN+Korean composite preview PNGs**; 17 edited but protected-art collision HOLD, 36 unsafe-edit HOLD. All remain TEST_ONLY, original 640 HOLD unmodified, no C1/C3/game runtime or release PASS.
+- **AI 2 score:** previous confirmed **2821** + **1** new tested automatic pixel-image editing achievement = **2822 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun original-HD alpha source edge coordinate proposal CI (2026-11-12 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-EDGE-NATIVE-COMPONENT-PROPOSALS-20261112-43DC8001`. One distinct source-bound proposed-coordinate generation capability; future rechecks, native rebuilds, workflow retries, and same edge-task outputs get +0.

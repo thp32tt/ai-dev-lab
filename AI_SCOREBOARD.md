@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun original-HD alpha source edge coordinate proposal CI (2026-11-12 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-EDGE-NATIVE-COMPONENT-PROPOSALS-20261112-43DC8001`. One distinct source-bound proposed-coordinate generation capability; future rechecks, native rebuilds, workflow retries, and same edge-task outputs get +0.
+- **GitHub verified commits:** `thp32tt/OutRun2006Tweaks@korean-localization-recovery-20260928` `43dc80013d28ca0263b294ad8b5ed5f3252af2c7`; new `hd_source_edge_rebind.py`, its synthetic tests and native-HD CPU workflow integration.
+- **Independent execution evidence:** GitHub Actions run `43169137555` passed the complete synthetic multi-ROI safety/no-font test step (including source-edge tests). At scoring time the full native-DDS assembly and 92-edge source-proposal generation are still running; no ROI was marked approved, no game runtime validation or release claimed.
+- **AI 2 score:** previous confirmed **2820** + **1** unique GitHub-committed, CI-tested source-bound diagnostic capability = **2821 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 수도권 연간권·시즌권 정기 독립 조사 (2026-11-12T08:06:13.456+09:00 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-12T08:06:13.456+09:00`.

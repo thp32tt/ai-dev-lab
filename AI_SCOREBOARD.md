@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간권·시즌권 정기 독립 조사 (2026-11-13T08:19:50+09:00 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-13T08:19:50+09:00`.
+- **Actual research:** 2026-11-13 independently searched current Seoul/Gyeonggi/Incheon weekend-eligible annual/season/multi-passes including Seoul Land, Aqua Planet Ilsan, SEA LIFE COEX, LEGOLAND and waterparks. Fresh broad search did not provide verified new sale/price/terms; excluded unrelated results and duplicate older offers. Prior SEA LIFE COEX third-party 79,000 KRW offer has Nov 30 registration/first-entry deadline according to earlier checked terms, but checkout and current terms were not independently confirmed this run. No fabricated current availability or new deal notification.
+- **AI 2 score:** previous confirmed **2822** + **1** completed distinct scheduled research run = **2823 AI 2 cumulative points**. AI 1 unchanged. Last checked 2026-11-13T08:19:50+09:00.
+
+
 ## AI 2 OutRun HD source-owner automatic Korean PNG pixel editor (2026-11-12 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-SOURCE-OWNER-AUTO-EDIT-20261112-114PNG-97PREVIEW`; one distinct automatic image-editing capability. CI reruns and repeated source-image outputs do not score again.

@@ -3,11 +3,11 @@
 ## AI 2 v0.02 persistent cockpit seat settings + F11 reset (2026-11-14 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-V002-PERSISTENT-F11-SEAT-20261114-D926D30A`. One new independently implemented and CI-validated cockpit configuration capability; the same v0.02 asset replacement, later runtime confirmation and repeated release checks score +0.
-- **Actual implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-v0.02-release` exact final `d926d30a88381c1d93bad18c8907594f9a98c0c7`. Public launcher no longer command-line-forces SeatBack/SeatDown/SeatRight, so F11 changes can persist to `OutRun2006Tweaks.user.ini`. Shipped/C++ defaults are `SeatBack=-0.08`, `SeatDown=+0.8`, `SeatRight=0.0`.
+- **Actual implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-v0.02-release` exact final `12d1ca4b85e758947f99cb2db42f7a10832b6288`. Public launcher no longer command-line-forces SeatBack/SeatDown/SeatRight, so F11 changes can persist to `OutRun2006Tweaks.user.ini`. Shipped/C++ defaults are `SeatBack=-0.08`, `SeatDown=+0.08`, `SeatRight=0.0`.
 - **F11 controls:** Settings > VR now exposes `Save Cockpit View` and `Reset Cockpit View`. Reset restores the v0.02 release defaults and persists them immediately. Generic slider edits continue to auto-save after release.
-- **Release update:** v0.02 release notes are bilingual Korean/English and describe the new 0.8 seat baseline plus persistence/reset behavior. GitHub tag/release and public ZIP were retargeted/replaced to exact SHA `d926d30a...`.
-- **Verified CI:** QuestCockpitV2 Isolated Core Smoke `43461061914` SUCCESS; Win32 Release Build `43461061933` SUCCESS; full VR GitHub General Test Build/release `43461061723` SUCCESS. Public asset `OutRun2_VR_v0.02_Beta_Cockpit.zip` final asset id `744329998`.
-- **AI 2 score:** previous confirmed **2827** + **1** distinct persistent cockpit/F11 reset capability = **2828 AI 2 cumulative points**. AI 1 unchanged.
+- **Release update:** v0.02 release notes are bilingual Korean/English and describe the corrected 0.08 seat baseline plus persistence/reset behavior. GitHub tag/release and public ZIP were retargeted/replaced to exact SHA `12d1ca4b...`.
+- **Verified CI:** QuestCockpitV2 Isolated Core Smoke `43467386940` SUCCESS; Win32 Release Build `43467386924` SUCCESS; full VR GitHub General Test Build/release `43467387017` SUCCESS. Public asset `OutRun2_VR_v0.02_Beta_Cockpit.zip` final asset id `744447516`.
+- **AI 2 score:** previous confirmed **2827** + **1** distinct persistent cockpit/F11 reset capability = **2828 AI 2 cumulative points**. AI 1 unchanged. Correction from 0.8 to 0.08 is the same capability/release correction and scores +0.
 
 ## AI 2 OutRun 2006 VR v0.02 cockpit public prerelease (2026-11-14 KST)
 

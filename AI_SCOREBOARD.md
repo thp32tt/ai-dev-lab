@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 QuestCockpitV2 startup crash-capture hardening (2026-11-14 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-CRASH-RECOVERY-20261114-E8558AEA`. One new independently source-verified startup-failure/exception-capture hardening achievement; further retries, unchanged rebuilds, and user runtime rechecks score +0.
+- **Actual source implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-crash-hardening-20261113` `e8558aea19f6553c26123b7595f8f4ed131bbd7d`, based exactly on `3151cbd8e3bd2d741a167e28b911380c83f1dc9b`. Startup INI access and CrashDumps creation use nonthrowing filesystem error-code paths, crash handler starts before settings parsing, missing standard log does not prevent archive, error-safe log copying, invalid minidumps rejected, and MEM_IMAGE AllocationBase used for fault ownership rather than EXE-base inequality. New regression checker runs in CI.
+- **Verified CI:** QuestCockpitV2 isolated smoke `43448097062` PASS, Windows Win32 Release `43448336360` SUCCESS, Win32 game DLL + x64 host + COPY-RUN/package validation `43448336185` SUCCESS. CopyRun artifact `14049726977`, general artifact `14049880785`; regression evidence GitHub Issue #13 comment `6856940419`.
+- **Limits:** user-reported startup crash root cause and Quest 3 runtime are not reproduced or resolved; this is confirmed crash-risk/capture safety work, NOT a global crash fix. Production release/master not changed. DllMain loader-lock risk remains for separate safe design.
+- **AI 2 score:** previous confirmed **2824** + **1** unique CI-validated startup safety and crash-evidence improvement = **2825 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun HD edit-first HOLD repair + source-style ImageGen bridge (2026-11-13 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-EDIT-FIRST-REGEN-20261113-43370973131`. One new multi-stage code/test/workflow capability; retries, reposting existing output and later unchanged queue checks earn +0.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun 2006 VR v0.02 cockpit public prerelease (2026-11-14 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-V002-PUBLIC-RELEASE-20261114-3EA192DD`. One new independently CI-validated public-release integration/delivery achievement. It does not rescore the previously credited crash-hardening or deterministic-sky/seat changes; retries, asset replacement of the same final SHA, download/status rechecks and later field confirmation receive +0.
+- **Published source:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-v0.02-release` exact final commit/tag `3ea192ddc96ebb90db82c486fea96d3d78b58cae`, GitHub prerelease tag `v0.02`.
+- **Release integration:** public VR launcher fixes the field-tested cockpit profile including F0 render scope, Quest native seat/camera path, `SeatBack=-0.08`, `SeatDown=+0.05`, stable glass/passenger/diagnostic overrides and direct-EXE 2D+FFB separation. The release combines the already-scored exact-sky stabilization with the already-scored crash-safety code, plus an additional nonthrowing user-settings INI access guard.
+- **Verified delivery:** Windows Build run `43454388161` SUCCESS and full VR GitHub General Test Build/release run `43454388140` SUCCESS. Public asset `OutRun2_VR_v0.02_Beta_Cockpit.zip` was built/validated without PowerShell scripts; release/tag and asset were retargeted/replaced to the exact final SHA. Release id `444404052`; final release asset id `744195142`.
+- **Limits:** vehicle vibration removal and acceptable turn behavior were field-confirmed before release. The new exact-sky deterministic change is source/CI validated but complete startup sky-flicker removal still awaits Quest 3 visual confirmation. This remains a prerelease/beta.
+- **AI 2 score:** previous confirmed **2826** + **1** distinct verified v0.02 public-release integration and publication = **2827 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 QuestCockpitV2 deterministic startup sky basis + seat baseline (2026-11-14 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-EXACT-SKY-STABLE-SEAT-20261114-42FDDACB`. One new independently source/field-evidence-driven and CI-validated VR cockpit rendering improvement; retries, unchanged rebuilds, packaging rechecks, and subsequent confirmation of the same fix score +0.

@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 QuestCockpitV2 deterministic startup sky basis + seat baseline (2026-11-14 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-EXACT-SKY-STABLE-SEAT-20261114-42FDDACB`. One new independently source/field-evidence-driven and CI-validated VR cockpit rendering improvement; retries, unchanged rebuilds, packaging rechecks, and subsequent confirmation of the same fix score +0.
+- **Quest 3 field evidence:** two uploaded sessions from exact source `3151cbd8e3bd2d741a167e28b911380c83f1dc9b` had `QuestCockpitV2F0RenderScope=true`; user reports body vibration is gone and remaining turn feel is acceptable. Sky probe recorded `shaderSkyMixedEyes=0` but repeated exact 0x4521C0 programmable-sky native/fallback mode switches (startup transition after first fallback sky and additional later switch windows), matching the remaining startup faint double-sky flicker symptom.
+- **Actual implementation:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-eye-pair-20261110` final `42fddacb00b8c1cb1813885dcf66c52d971305cb`. Exact original 0x4521C0 programmable sky now stays on one deterministic rotation-only fallback basis; non-sky programmable world draws still retain Quest native eye-pair use. Release-parity seat calibration changes `SeatDown=-0.05` to `SeatDown=+0.05` (positive is downward), preserving `SeatBack=-0.08`, F0 ON and the accepted camera/yaw path.
+- **Verified CI/package:** QuestCockpitV2 isolated core smoke `43449777925` SUCCESS; Win32 Release Build `43449915361` SUCCESS; full VR GitHub General Test Build `43449915435` SUCCESS. COPY-RUN artifact `14051515460`; general artifact `14051885172`.
+- **Limits:** deterministic exact-sky mode-switch removal is source/CI verified but Quest 3 visual confirmation on the new artifact is still required; do not claim startup sky flicker fully resolved until the next HMD log/visual test. Production/stable branch not merged.
+- **AI 2 score:** previous confirmed **2825** + **1** unique CI-validated deterministic exact-sky/seat-baseline improvement = **2826 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 QuestCockpitV2 startup crash-capture hardening (2026-11-14 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-CRASH-RECOVERY-20261114-E8558AEA`. One new independently source-verified startup-failure/exception-capture hardening achievement; further retries, unchanged rebuilds, and user runtime rechecks score +0.

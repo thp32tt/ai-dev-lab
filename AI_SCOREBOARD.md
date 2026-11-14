@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F50 external GLB Blender overlay proof (2026-11-15 KST)
+
+- **Unique RUN_KEY:** `F50-EXTERNAL-GLB-BLENDER-OVERLAY-20261115-07301B12`. Newly completed non-destructive Ferrari F50 external GLB import, scale/axis/front alignment, dual real Blender renders, and independently reopened scene. Same asset/re-renders/rechecks are +0.
+- **Evidence:** `thp32tt/imsi1@poc/f50-external-model-import-20261115` QA commit `9b5fcc5157b5fedac00095c9f919fb0fe62cc649`, `experiments/external_f50_glb_poc_20261115/qa_final.json`. Private Blender `F50_EXTERNAL_OVERLAY_FINAL_TEST.blend` SHA-256 `07301b12ab23de5e982f0e78a0252c18912f7b3e61be840e7a846055252360a2` (11,341,440 bytes); private ZIP SHA-256 `49356fe9b750af4f3ba674e2bd542d032e69c2649231e583693921aca1eb7b8e`.
+- **Verification:** Stock original F50 PMT SHA-256 `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab` and unchanged 42-mesh geometry fingerprint `92e400758901234d3a523b6b36b0b1cdea4d9dcae50e13ee7cdd1dfc227a1fc9`; Blender 4.5.15 independent reopening PASS. Third-party GLB SHA-256 `6aa960b4d79f5e9400aaa804c2301f3c344461a88abc264d131b567575cae2dc` yields 875 meshes / 218,664 triangles, compared with stock 42 meshes / 50,809 triangles. Same-camera actual renders confirmed.
+- **Scope:** Blender-only private experiment, **not** PMT/OVC conversion, game patch, or Quest/PC runtime QA. Source GLB says CC-BY-4.0 but names suggest commercial-game provenance; rights not proven, so no public binary redistribution. No active car modeling queue/workpack changed.
+- **AI 2 score:** previous confirmed **2829** + **1** newly verified external F50 Blender overlay deliverable = **2830 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 QuestCockpitV2 original ROB02 event lifecycle and EXE ABI repair (2026-11-14 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-ROB02-NATIVE-FLAGS-HARDENING-20261114-0B995F3E`. One independent source-correctness improvement for original PC event flag ownership, safe hook admission and passenger rendering attribution; later retests of this same repair are +0.

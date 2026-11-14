@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간이용권 정기 조사 (2026-11-15T08:51:51+09:00)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-15T08:51:51+09:00`
+- **AI 2 score:** previous confirmed **2830** + **1** completed independent current pass review = **2831 AI 2 cumulative points**. AI 1 unchanged.
+- **검증:** 2026-11-15 수도권 연간권·시즌권·다회권 최신 검색. 씨라이프 코엑스 공식 연간권의 주말/365일·주차/동반혜택 확인. 신규 최저가 또는 주말 이용 가능 재판매 조건은 확정하지 못해 중복 알림 제외. 서울랜드 11/30 BC카드 21,900원은 1회권이므로 연간권 알림 대상에서 제외. 36개월 미만 및 등록 마감이 검증되지 않은 상품은 추천 제외.
+- **최종 확인 시각:** 2026-11-15T08:51:51+09:00 (KST). Source: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://dealsite.co.kr/articles/171966
+
+
 ## AI 2 Ferrari F50 external GLB Blender overlay proof (2026-11-15 KST)
 
 - **Unique RUN_KEY:** `F50-EXTERNAL-GLB-BLENDER-OVERLAY-20261115-07301B12`. Newly completed non-destructive Ferrari F50 external GLB import, scale/axis/front alignment, dual real Blender renders, and independently reopened scene. Same asset/re-renders/rechecks are +0.

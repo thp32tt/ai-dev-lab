@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 QuestCockpitV2 original ROB02 event lifecycle and EXE ABI repair (2026-11-14 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-ROB02-NATIVE-FLAGS-HARDENING-20261114-0B995F3E`. One independent source-correctness improvement for original PC event flag ownership, safe hook admission and passenger rendering attribution; later retests of this same repair are +0.
+- **Exact verified source:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-passenger-always-20261114` commit `0b995f3ee76bb9a5d8428e82e49a34d13095636c`. The prior cockpit passenger implementation incorrectly read event activity from `sEventWork::field_0`, whereas canonical EXE `68ceb386829066f8455b9d027320af962584321f3e2e8a79c72841495a6134c3` uses an independent event byte flag table `0x79FB48[eventId]`. The corrected hook consults real pending/live/teardown flags; validates canonical 440110 machine-code signature and cdecl callback ABI; refuses a closing event, invalid six-entry character selector index and stale renderer work tokens; preserves original ROB02 init/ctrl/display/destroy.
+- **Native binary evidence:** Exact original PC 440110 signature and 0x39 passenger callback table (init 4885A0, ctrl 489A90, disp 4879B0, destroy 487980) re-read from EXE and checked by live Windows CI after downloading canonical EXE.
+- **Verified CI:** exact final SHA C++ isolated smoke `43592223156` SUCCESS and Win32 Release Build `43592223141` SUCCESS. HUD Inspector `43592169724` SUCCESS and full VR game+OpenXR host test build `43592169706` SUCCESS on source-identical preceding commit `caa5b9fc35` (only C++/Python regression tests changed afterward). Original EXE ABI verification also passed `43591956679` SUCCESS.
+- **Limitations:** Quest 3 visual display and always-visible GPU submission not proven; the game's original car display condition, model existence, culling, stereo still require user HMD runtime evidence. Public release v0.02 unchanged.
+- **AI 2 score:** previous confirmed **2828** + **1** newly confirmed distinct native event-lifecycle and ABI correctness repair = **2829 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 v0.02 persistent cockpit seat settings + F11 reset (2026-11-14 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-V002-PERSISTENT-F11-SEAT-20261114-D926D30A`. One new independently implemented and CI-validated cockpit configuration capability; the same v0.02 asset replacement, later runtime confirmation and repeated release checks score +0.

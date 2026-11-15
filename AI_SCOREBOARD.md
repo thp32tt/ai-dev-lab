@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F50 HQ V2 full-detail/textures, stereo-aligned direct test build (2026-11-16 KST)
+
+- **Unique RUN_KEY:** `F50-HQ-V2-ORIGINAL-TRIS-PBR-GLASS-LIFT-20261116-4D20C1ED`. Count this NEW independent high-quality F50 implementation, successful CI and user-installable private V2 ZIP once; subsequent packaging rechecks, Drive download, same SHA retry, user test, report and rollover are +0.
+- **Source and CI:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-f50-hq-20261116` exact source SHA `4b70606aa235709dd4c5d5a4876f427b320bb0e0`. GitHub Actions build `43742484186` SUCCESS, Win32 game DLL, x64 OpenXR host, QuestCockpitV2 smoke `43742484055` SUCCESS, HUD inspector `43742484037` SUCCESS.
+- **New F50 model:** `OVRCABH3`, all original 218,664 triangles (195,104 optimized indexed vertices), 20 material groups including 6,026 glass triangles, 22 unique original source images and nine corresponding normal-map materials, intact source 32..512 px textures (no fake upscale). New binary 20,025,525 bytes, SHA256 `52cd180f8743ae9fd7e7e4e68a39aca49ec943e29c1cf7bc0d39239cb7b66799`. Blender static export, CRC/DDS/mip/indices verification, real C++ `DinoSidecar::Parse` acceptance PASS, and no source .blend/stock PMT/EXE modifications.
+- **Runtime changes:** source glass `F50_GLASS_*` alpha blend with Z-write off, opaque first; default `F50ExternalLift=0.22` local-vehicle-up offset and native-frame synchronized limited vertical visual jitter filter `F50ExternalStabilize=true`, both eyes share the same native frame. Visual-only; no vehicle physics changes. F50 sidecar remains static without stock wheel/steering animation. Quest 3 live runtime and ground clearance are USER TEST PENDING, not a pass.
+- **Private full install:** `OutRun2006_F50_HQ_V2_DIRECT_INSTALL_4b70606aa235_20261116.zip` 8,760,951 bytes SHA256 `4d20c1edff372d2ea43005021c8cd7e340e5897ba2cd8e79ec55951aa2a07b82`, CI SHA/asset hashes and ZIP contents checked, no converter, install + backup/restore. Uploaded and read back on connected Google Drive `https://drive.google.com/open?id=1XKY7fGBN03_00LpkH6naX-a8CJdzipEj`. Third-party model provenance remains unverified, so no public-repository binary upload.
+- **AI 2 score:** previous confirmed **2836** + one independent high-quality F50 V2 result **+1** = **2837 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari F50 latest QuestCockpitV2 direct-install private test package (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `F50-DIRECT-INSTALL-LATEST-QUEST-COPYRUN-20261116-4D8BDC53`. One new converter-free private installation/test deliverable on the latest QuestCockpitV2 line; rebuilds, re-downloads, package rechecks and user runtime feedback for the same package are +0 unless they produce a distinct implementation.

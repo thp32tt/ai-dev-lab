@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun HD ChatGPT Images UI + verified pre-send HOLD recovery (2026-11-15 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-IMAGEGEN-UI-RETRY-20261115-43725021533`. One distinct source-verified browser workflow repair. Reruns, renewed status checks, deployment confirmation of the same fix and unchanged outputs are +0.
+- **Actual code:** `thp32tt/OutRun2006Tweaks@localization-controller-recovery-20260928` exact HEAD `67af0a0dc9ef96453e3d5f65955a400c3dd80a50`: updated `controller_png_attach.py` for current More > Images UI and selected composer chip; `github_chat_rework_controller.py` now schedules 15min bounded retries ONLY for source-exact proven pre-send `HOLD_IMAGE_TOOL_NOT_VERIFIED` without any saved send/candidate receipt; never retries `AB_SENT`, ambiguous `AB_CLAIMED` or unrelated HOLD. Read-only stale source chat refresh gated by exact saved URL and 30min cooldown; never re-sends user message.
+- **Independent GitHub Actions:** `OutRun HD Chat ImageGen UI and Recovery Safety CI` run `43725021533` PASS: existing **48** tests plus new **7** tests, total **55**, including More/Images selection, pre-send retry identity and cool-down, preserved AB_SENT receipts, and bounded read-only assistant collection. Workflow HEAD on `master` `edb96f2f70031f46522e26bc6d9d32fb08c1632c`. Official current UI reference: https://help.openai.com/en/articles/11084440-images-in-chatgpt .
+- **Limitations:** GitHub CPU-only test success, not live ChatGPT authenticated browser or actual ImageGen confirmation. N100 Docker socket access blocked for connected user; new controller source requires Portainer re-build/re-deploy of existing `outrun-chat-qa-rework`, retaining named volumes and login. The original 954 ROI, 314 TEST_ONLY and 640 HOLD counts remain; C1/C3, DDS/game runtime and release approval UNTESTED.
+- **AI 2 score:** previous confirmed **2833** + **1** verified distinct implementation with independent full CI = **2834 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun Car Importer v0.1 verified Windows standalone safe preview (2026-11-15 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-CAR-IMPORTER-V01-SAFE-BLENDER-WINDOWS-20261115-DADACF52`. One new software deliverable for this importer task, including all v0.1 build retries and packaging fixes as a single scoring event; subsequent source reviews, re-downloads, re-links, CI reruns or finish reports receive +0.

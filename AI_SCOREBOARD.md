@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간권·시즌권 정기 조사 (2026-11-16 08:33:04 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-16T08:33:04+09:00`.
+- **Result:** 2026-11-16 independent official/public search for 수도권 weekend-valid annual/season/multi-visit passes. SEA LIFE COEX official annual pass/family double pass, Aqua Planet Ilsan published annual pricing, Seoul city kids-cafe money, Seoul Land annual information, and other regional offers checked. No independently verified newly opened or improved eligible offer versus prior notifications; no duplicate user notification. COEX family pass 109,000 KRW/person (3+), max 16 months, previously reported; promotional free LEGOLAND parking only for purchases by 2026-09-22, not current. Aqua Planet Ilsan English 100,000 KRW weekend annual listing conflicts with previously observed Korean price; live checkout unconfirmed. Seoul kids-cafe money 20% discount exists but fresh inventory unconfirmed. Sources: https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/annual-pass/ ; https://www.aquaplanet.co.kr/ilsan/eng/information/use_price.do ; https://scpm.seoul.go.kr/seoul-policy/evt0309 .
+- **AI 2 score:** previous confirmed **2838** + correctly performed new independent daily survey **+1** = **2839 cumulative points**. AI 1 unchanged. Final check: 2026-11-16 KST.
+
+
 ## AI 2 Ferrari16 external-GLB HQ no-LOD batch-converter tooling (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXTERNAL-GLB-HQ-BATCH-CONVERTER-20261116-65D1B05E`. One NEW, genuinely implemented and CI-proven shared converter, not 15 converted external cars. Do not score repeated audits, doc/ZIP/Drive uploads, reruns or runtime reports separately.

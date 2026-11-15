@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun Car Importer v0.1 verified Windows standalone safe preview (2026-11-15 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-CAR-IMPORTER-V01-SAFE-BLENDER-WINDOWS-20261115-DADACF52`. One new software deliverable for this importer task, including all v0.1 build retries and packaging fixes as a single scoring event; subsequent source reviews, re-downloads, re-links, CI reruns or finish reports receive +0.
+- **GitHub SSOT:** `thp32tt/OutRun2006Tweaks@feature/standalone-car-importer-v01-20261115` final source commit `bf8ecc1c63587173a1d0db597b29b08113b3c671`, draft PR `https://github.com/thp32tt/OutRun2006Tweaks/pull/152`. Independent workflow `43724079961` **SUCCESS**: Linux and Windows 15/15 unit tests, Windows PyInstaller onefile EXE build, and headless EXE selftest of real embedded Blender helper and profile, all pass.
+- **Actual private F50 QA:** user-supplied externally sourced 16,324,176-byte GLB (SHA-256 `6aa960b4d79f5e9400aaa804c2301f3c344461a88abc264d131b567575cae2dc`) -> 875 imported meshes, 218,664 triangles, Blender 4.5.15 normalized staged GLB (12,062,744 bytes) and .blend (11,342,913 bytes), independently reopened PASS; original OutRun game F50 PMT SHA-256 `10daa1312b6cff0267b38b4c440c6007c68b470a225ca15f0c324876fd80aeab` retained. No third-party model/game binary redistributed.
+- **Safety/finalization:** GUI/CLI with GLB structural/license warnings and source checks, guarded backup/backup-verification; stage output forced outside installed game tree into empty folder; Blender file auto-execution disabled; game-native install intentionally BLOCKED because PMT/OVC serializer and PC/Quest runtime QA are still unimplemented. No claims of one-click in-game conversion.
+- **Deliverable:** exact Windows ZIP SHA-256 `9b7d8006b3763b04c3ee09d5247e7012d1556da32b23948c13cf9ff5695b5680`, 11,303,044 bytes, contains EXE and README, uploaded/replaced in Google Drive `https://drive.google.com/file/d/1mtqIYgtP5JI-BAchcHupoShQVrQoaHH6/view?usp=drivesdk`. Exact GitHub artifact 14165533146.
+- **AI 2 score:** previous confirmed **2832** + **1** completed distinct safe preview importer and Windows distribution = **2833 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari F50 driver-eye comparison published to connected Google Drive (2026-11-15 KST)
 
 - **Unique RUN_KEY:** `F50-COCKPIT-DRIVEEYE-GDRIVE-GALLERY-20261115-1JO2FGLI`. One newly requested and finished deliverable: real original OutRun F50 PMT versus externally imported F50 cockpit comparison, both viewed from the same driver-eye position and horizontal field of view and published to the user's connected Drive as a 3-slide gallery.

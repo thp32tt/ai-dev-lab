@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F50 driver-eye comparison published to connected Google Drive (2026-11-15 KST)
+
+- **Unique RUN_KEY:** `F50-COCKPIT-DRIVEEYE-GDRIVE-GALLERY-20261115-1JO2FGLI`. One newly requested and finished deliverable: real original OutRun F50 PMT versus externally imported F50 cockpit comparison, both viewed from the same driver-eye position and horizontal field of view and published to the user's connected Drive as a 3-slide gallery.
+- **Evidence:** Original model and third-party imported model were independently rendered using Blender 4.5.15 LTS at 1280x720, camera eye (-0.355, 0.765, 0.180) in aligned native coordinates, looking toward -Z, horizontal FOV 83.97°. Camera-blocking glass/exterior meshes were hidden for inspection in both views. The native source displayed limited cockpit details; external source showed steering wheel, dash, vents and controls. Source original PMT was not modified and this is NOT actual Quest 3 gameplay footage.
+- **Source proof:** `thp32tt/imsi1@poc/f50-external-model-import-20261115` preview commit `e2e89862b7d461b42ceda975245ea03f7053783a`, original image SHA-256 `ce145c0df9a009f231f63d6f793882bcb65e9c15650c9dbeb904b95c9bd30d64`, external image SHA-256 `39e30bdb372057003fdbe61c5356da89125ec23494acdf300c55e1b9fc3742f5`.
+- **Delivered native Drive file:** `https://docs.google.com/presentation/d/1Jo2fGlihZrV-yVUTuYpcHoepDUqzhA3MgTVqWK4JFow/edit?usp=drivesdk`; connector write/readback verified three Slides pages, first side-by-side with two embedded images and captions, second original image, third external image; moved to new `ChatGPT` folder ID `1Bl1_cZ2NueAnaoX5UaDgaODeCjuQxtka`. No third-party binary model was uploaded to Drive.
+- **Score boundary:** New driver-eye asset review and Google Drive gallery delivery is distinct from the prior `F50-EXTERNAL-GLB-BLENDER-OVERLAY-20261115-07301B12` modeling/import proof. Same gallery's later retests, re-links, re-renders or reiteration receive +0.
+- **AI 2 score:** previous confirmed **2831** + **1** new independently delivered Google Drive cockpit-view comparison = **2832 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 수도권 연간이용권 정기 조사 (2026-11-15T08:51:51+09:00)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-15T08:51:51+09:00`

@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 PG/VAN regulatory weekly briefing (2026-11-16 08:53:33 KST)
+
+- **RUN_KEY:** `AUTO:PG-VAN-REG-WEEKLY:2026-11-16T08:53:33+09:00`
+- **Result:** New independent 2026-11-09 through 2026-11-16 KST official-source PG/VAN briefing. PCI SSC 2026-11-10 new TPSP information supplement (PCI DSS 12.8/12.9, annual status monitoring, responsibility matrix, nested TPSPs; no new mandatory PCI DSS revision); PIPC 2026-11-12 Samyang four-company enforcement (retired migration file server externally reachable, missing encryption, retention and written outsourcing controls), and eight MVNO enforcement (unlawful resident ID processing, unencrypted payment data, retention, permissions, outsourcing); 2026-11-09 AI/privacy policy forum (discussion, not binding regulation). Confirmed no newly enacted cross-sector PCI DSS v4.0.1, ISMS-P or electronic financial supervisory regulation from examined primary listings. Practical action list and source dates provided. Sources: https://blog.pcisecuritystandards.org/pci-ssc-publishes-new-guidance-on-understanding-pci-dss-third-party-service-providers ; https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&nttId=12647 ; https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&nttId=12648 ; https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&nttId=12629 .
+- **AI 2 score:** previous confirmed **2839** + independently completed weekly regulatory review **+1** = **2840 cumulative points**. AI 1 unchanged. Final confirmation: 2026-11-16 08:53:33 KST.
+
+
 ## AI 2 수도권 연간권·시즌권 정기 조사 (2026-11-16 08:33:04 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-16T08:33:04+09:00`.

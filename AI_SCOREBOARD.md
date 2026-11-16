@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Blender 5.2.4 LTS + KN5 Tools 2.0.3 native import environment (2026-11-16 KST)
+
+- **Unique RUN_KEY:** BLENDER52-KN5TOOLS203-SIDEBYSIDE-QA-20261116-74C5BCD5. One distinct verified Ferrari Assetto Corsa KN5 import toolchain installation; repeated searches, setup checks, same binaries or status reports are not counted again.
+- **User request fulfilled:** Installed official Blender 5.2.4 LTS alongside 4.5.15 without modifying previous Blender or shared user profile. N100 executable /home/chatgpt-runner/work_handoff/blender_5_2_4_official_cache/blender-5.2.4-linux-x64/blender; official SHA256 2fd14c50987426897ba60237ee996edf2b4151f4b1a72a460ca20be58c1d2d86; --version PASS; headless Blender API PASS.
+- **Official addon:** KN5 Tools v2.0.3 from Blender Extensions API, SHA256 74c5bcd5760cbc22af0e2c6b956ddeed10a77d8ca50511f93aceae29aefe9196, zip CRC and manifest PASS, official extension install-file --enable PASS within isolated HOME; Blender imported bl_ext.user_default.kn5_blender_tools and registered bpy.ops.import_scene.assetto_corsa_kn5.get_rna_type() PASS.
+- **Evidence:** thp32tt/OutRun2006Tweaks branch research/ferrari13-official-source-catalog-20261116, doc docs/research/ferrari-blender52-kn5-installed-qa-20261116.md, commit 5c4c4217ca0d5240511ff983815a045aa62013dd; N100 QA work_handoff/blender_5_2_4_official_cache/INSTALL_VALIDATION.json and KN5_EXTENSION_QA.json.
+- **Limits:** Actual Ferrari KN5 import not yet executed: 0 new cars converted or tested. Existing OVC3 sidecar MaxTriangles=2000000, MaxVertices=1000000 and GPU budget=112MiB independently remain; toolchain installation does not prove a 2.284M-triangle F430 can render.
+- **AI 2 score:** previous confirmed **2841** + new independently verified Blender5/KN5 operational toolchain **+1** = **2842 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 QuestCockpitV2 3-car actually converted external models + direct-install test (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `FERRARI3-F40-GTO-ACTUAL-MODEL-OVC-QUEST-DIRECT-INSTALL-20261116-5E7255B5`. One new independent achievement (actual downloadable Ferrari F40 and 288 GTO models converted, new F40/GTO VR runtime support plus verified installer); rechecks or subsequent downloads/runs are +0. Not 15 cars.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun HD 7 real source-owner native DDS test pass + anti-stall repair (2026-11-16 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-SOURCE-OWNER-STRICT-7DDS-20261116-43817711636`. One distinct verifiable strict multi-ROI native DDS output milestone. The earlier 8 isolated BC3 canary checks, staging of same PNGs, repeated CI runs and eventual repeated verification of these same 7 are not separately scored.
+- **Real work:** 8 original A/B Korean PNGs from exact original DDS SHA and verified protected source-owner components were imported from asset branch `korean-localization-recovery-20260928`. Full strict assembler of **5 original HD source atlases** yielded **7 native DDS TEST_ONLY painted Korean ROIs**, **1 held for `QA_SOURCE_NOT_ISOLATED_ALPHA_TEXT`**, with original source DDS header/protected pixels checked and no C1/C3 or installed game approval. GitHub Actions `43816586444` passed.
+- **Actual deliverable:** rerun `43817711636` passed and uploaded artifact `14202783137`, containing **4 original-format TEST_ONLY native DDS** and exact SHA + per-ROI status report for those 7 painted edits; URL `https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/43817711636/artifacts/14202783137`. This is a machine-only test package, not a finished game patch.
+- **Anti-stall fixes:** main full DDS workflow `63268601a729f3baba055e8a7e046ad0d9c96f4a` no longer asserts the historical 640 HOLD count; it derives counts from actual strict QA. ImageGen HOLD auto-editor now selects latest successful native-source QA artifact rather than replaying stale 2026-11-12 data, uses dynamic 954 counts and safely skips EDGE-only records without source-owner masks; regression tests and Actions `43818719373` passed. Main full native audit `43817042524` was still in progress at this score entry; official HOLD reduction is **NOT YET VERIFIED**, old official source report: **640 HOLDS**.
+- **AI 2 score:** previous confirmed **2847** + **1** distinct strict DDS artifact achievement = **2848 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Sonic-TV OR2006Sprites original DDS -> JPG tachometer comparison (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `OR2006SPRITES-TACHOMETER-DDS-JPG-PREVIEW-20261116-43813893670`. Independent user-requested visual asset delivery: 31 actual source DDS files decoded to JPEG (10 regular HD tachometer dials, 20 alternate Real Life dial+needle sheets, 1 shared needle) and 3 correct comparison JPGs, no conversion failures. This conversion/delivery is scored once; later re-packaging, inspection, reinstall, visual rechecks and retry = +0.

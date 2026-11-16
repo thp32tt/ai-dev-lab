@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 cockpit passenger original PC car-render gate bypass (2026-11-17 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-ROB02-NATIVE-CAR-GATE-20261117-6888D425`. One distinct new native-render functional patch. Not scored for same-code retries, preliminary diagnostic commits, static reruns or additional packaging.
+- **Field evidence:** user diagnostic ZIP `OutRun2_VR_ANALYZE_UNIFIED_LOCAL_CURRENT_FOCUS_CORRECTNESS_20261116T153439259Z-cb737397.zip` declared installed DLL `1cef74c1`; native ROB02 event remained live (flags 0x02), while mode-1 physical `514E60` callback count stopped increasing during racing despite F11 FollowCamera0=true. Original 0x4879B0 display wrapper's proven `car->flags_4 & 0xC000 == 0x4000` eligibility was found in `r4dius/outrun2-decomp/src/platform/race_robots.cpp`. **Original car flags were not captured in the uploaded session**, so the gate explanation remains a source-supported hypothesis, not user-HMD proof.
+- **New implementation:** on exact original 4879B0 signature, hook only live, exact ROB02 passenger in active racing camera 1, Follow Camera 0 mode, and only when original car flag gate is closed; directly invoke original 487880 common robot draw under thread-local recursion guard. Original camera 0, driver/NPC, Remove mode and GOAL remain delegated to original code. No native event synthesis, car-flag or work-memory mutation. Record opt-in native gate/bypass counters and flags in bounded diagnostics.
+- **Exact source:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-passenger-native-gate-20261117` commit `6888d425e432536f64151ee76a9cd6c911dcafc6`; primary new source implementation `90738b139cf9e4f22b4229ca0904adf5bae22e5f`.
+- **Validation:** 256-case constexpr native gate policy truth table; isolated Quest cockpit smoke run `43899510821` **SUCCESS**, Windows Win32 Release Build `43899510813` **SUCCESS**, exact-source clean Win32 + x64 OpenXR host plus copy-run ZIP `43899510819` **SUCCESS**. User-copy test artifact `14241586306`, general artifact `14241397568`. **HMD passenger actually visible=UNTESTED**. v0.03 public release intentionally untouched.
+- **AI 2 score:** previous confirmed **2852** + one new native car-gate drawing implementation with exact-source CI and test package **+1** = **2853 AI 2 cumulative points**. AI 1 unaffected.
+
+
 ## AI 2 Quest cockpit passenger GOAL/nested-render correctness repairs + ten-path regression (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-PASSENGER-GOAL-NESTED-20261116-3F2530D1`. One newly verified functional bugfix achievement addressing two previously unhandled original render conditions; ten static review passes, reruns, debug reviews and packaging of the same repair are NOT scored separately.

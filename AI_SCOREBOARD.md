@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 OutRun HOLD queue unblock + large-source-reference bridge repair (2026-11-16 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HOLD-QUEUE-UNBLOCK-LARGEREF-BRIDGE-20261116-43818719373`. One distinct localization automation repair; repeated reruns, redeploys, later queue polling and re-reporting of the same fixes are +0.
+- **Verified pipeline repair:** master workflow sparse checkout now includes `hd_bc3_source_owner_import.py` (commit `5940fd50f4d02bf8eefd5a8f7a38f7bcdcf66063`), removing the prior `ModuleNotFoundError`; Rework Queue run `43819864180` attempt 2 completed **SUCCESS**.
+- **Large-reference blocker removed:** HOLD retry input cap was aligned to the 4 MiB publisher policy, publisher exact-readback now follows Git blob SHA when GitHub Contents returns `encoding=none` (asset commit `94c229abbaf844368c0839b533f5e6014a3cddb7`), and the browser controller has the matching Git-blob source-reference reader with regression test (controller commits `4ec0c25829783e2c7097245e72ff91a68a4e74f2`, `75659ae8c33e25ed966e441885da14366c556ff8`). GitHub's current Contents API documents the >1 MiB `encoding=none` behavior; candidate-output 650 KiB gate remains unchanged.
+- **Measured result:** HOLD Edit First rerun `43818719373`, job `133147160020`, **SUCCESS**. Source-reference-too-large failures dropped from **5 to 0** while the higher-yield protected-pixel-safe salvage remained **7 repaired previews**; an experimental recenter change that regressed 7→6 was reverted before this result. Two unclaimed tasks were preserved; official source report still says **640 HOLDS**, so no unverified total-HOLD reduction is claimed here.
+- **Next gate:** current queue has 8 tasks: six exact pre-send HOLD receipts eligible for the controller's safe retry path and two tasks with no state file. Browser worker redeploy/runtime processing is separate and not scored again for these same repairs.
+- **AI 2 score:** previous confirmed **2849** + this distinct verified HOLD automation unblock **+1** = **2850 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari16 NativeHQ full-model completion (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-NATIVEHQ-BLEND-GLB-COMPLETE-20261116-C2439D42`. One distinct 16-car modeling achievement: every Ferrari catalog car was rebuilt from its verified reconstructed native OBJ into a Blender 5.2.4 LTS NativeHQ model with preserved UV/materials, no decimation/topology deletion, angle-limited 2-segment bevels, smooth shading and weighted normals where supported, then exported to embedded GLB.

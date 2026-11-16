@@ -1,5 +1,14 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari16 NativeHQ full-model completion (2026-11-16 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-NATIVEHQ-BLEND-GLB-COMPLETE-20261116-C2439D42`. One distinct 16-car modeling achievement: every Ferrari catalog car was rebuilt from its verified reconstructed native OBJ into a Blender 5.2.4 LTS NativeHQ model with preserved UV/materials, no decimation/topology deletion, angle-limited 2-segment bevels, smooth shading and weighted normals where supported, then exported to embedded GLB.
+- **Cars completed:** 250 GTO, 288 GTO, 328 GTS, 360 Spider, 512 BB, 550 Barchetta, 575 Superamerica, 365 GTS/4 Daytona, Dino 246 GTS, Enzo, F355 Spider, F40, F430 Coupe, F430 Spider, F50, Testarossa — **16/16**.
+- **Independent QA:** all 16 .blend files reopened in a fresh Blender session and all 16 exported GLBs were re-imported successfully; result **16/16 PASS**. No empty mesh output. N100 package `Ferrari16_NativeHQ_v1_20261116.zip` is 24,657,334 bytes, SHA256 `43daba2ddc5df09dd02b477ab091e97f9b5fd17d2837fdb738f85fbc0bd1dc2e`.
+- **GitHub evidence:** `thp32tt/OutRun2006Tweaks@vr-external-dashboard-v4-20261116`. Manifest commit `cbb2f445d4cc1d1cabdbc36ef124849ec2d7fd38`; reopen QA commit `1997f26d45b4c39e33a97e6e19b74f058b8efb9c`; reproducible Blender batch commit `c2439d422d9d815dad15b9ebcc5b299f7f4e99ee`.
+- **Scope boundary:** this scores the completed native-geometry HQ modeling baseline and reproducible Blend/GLB outputs. It does not claim that every car has a separately hand-calibrated live dashboard needle or that every 16-car model has been Quest 3 live-tested; those are separate future achievements and must not be double-counted here.
+- **AI 2 score:** previous confirmed **2848** + new Ferrari16 NativeHQ full-model completion **+1** = **2849 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun HD 7 real source-owner native DDS test pass + anti-stall repair (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-SOURCE-OWNER-STRICT-7DDS-20261116-43817711636`. One distinct verifiable strict multi-ROI native DDS output milestone. The earlier 8 isolated BC3 canary checks, staging of same PNGs, repeated CI runs and eventual repeated verification of these same 7 are not separately scored.

@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 QuestCockpitV2 camera-0 passenger follow / remove F11 controls (2026-11-16 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-PASSENGER-CAMERA0-FOLLOW-REMOVE-20261116-D0CE8A8D`. One independently implemented and CI-tested user-requested cockpit passenger-mode feature; repeated tests, release packaging, retries, diagnostics and field follow-up for the same implementation are +0.
+- **Exact source:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-passenger-follow-camera0-20261116` commit `d0ce8a8d7fe9e3ccde193f45d4baf309666d2398`. F11 now shows two mutually-exclusive checkboxes `Passenger: Follow Camera 0` (default checked) and `Passenger: Remove`. They share the existing saved `QuestCockpitV2PassengerVisible` bool, preserving prior user INI compatibility and live persistence. The prior native ROB02 event-creation detour was **removed**; Follow uses only the game's original active ROB02/0x16B and scoped LOD0 for cockpit. Remove suppresses the exact, live original passenger drawing before the camera-mode and native-frame early returns, affecting both camera 0 and cockpit while leaving simulation/event work/driver/NPCs intact. No new character models or unsafe guest memory writes.
+- **Validation:** C++ isolated Quest cockpit smoke `43849558632` SUCCESS and final SHA Windows Win32 Release Build `43849558627` SUCCESS. Full VR game DLL + x64 OpenXR host/ZIP `43849521574` SUCCESS on source-identical commit `3ea7471e757f0ebc19c2caac47af2182a2aee6b5` (final subsequent change only renamed CI steps/added trigger). Full VR test ZIP artifact `14216823339`, cockpit COPY-RUN artifact `14217267002`. Existing v0.02 release untouched.
+- **Runtime limitation:** HMD camera-0/cockpit visual parity, 4879B0 original car-state display gate, and actual left/right eye output have not been Quest 3-tested; CI success does not prove visual presentation.
+- **AI 2 score:** previous confirmed **2850** + one independently implemented and CI-tested passenger-mode capability **+1** = **2851 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun HOLD queue unblock + large-source-reference bridge repair (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HOLD-QUEUE-UNBLOCK-LARGEREF-BRIDGE-20261116-43818719373`. One distinct localization automation repair; repeated reruns, redeploys, later queue polling and re-reporting of the same fixes are +0.

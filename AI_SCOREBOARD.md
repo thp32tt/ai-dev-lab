@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 Quest cockpit passenger GOAL/nested-render correctness repairs + ten-path regression (2026-11-16 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-PASSENGER-GOAL-NESTED-20261116-3F2530D1`. One newly verified functional bugfix achievement addressing two previously unhandled original render conditions; ten static review passes, reruns, debug reviews and packaging of the same repair are NOT scored separately.
+- **Defect 1, GOAL/scene-effect guest safety:** original `IsPlayableCarGameplay()` also includes `STATE_GOAL`, so the existing Remove condition could suppress native passenger graphics during the goal scene. Now admission uses the existing race-only mode (`STATE_GAME` or `STATE_START` progress 65) AND `!InSceneEffect()`; goal and transition effects defer to the original renderer.
+- **Defect 2, nested draw:** the former early `OriginalRobotCorrectionActive()` return bypassed passenger removal when a native ROB02 draw nested under original W*C correction. The exact live ROB02 mode-1 gate now executes before the correction recursion fast-path; other nested draws still forward without reapplying W*C.
+- **Camera0 invariant:** `cam_mode_34A != 1` forwards through the original callback before passenger ownership checks, and both F11 modes leave camera 0 untouched. No synthetic event, event flag mutation or NPC/driver suppression added.
+- **Verified source:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-passenger-follow-camera0-20261116` exact HEAD `3f2530d13c8b06bbc1508edb4ad529f694546618`. Executable 10 distinct path checker `tools/verify_quest_cockpit_passenger_ten_paths.py` prints PASS [01/10] through PASS [10/10] in CI logs. Additional 64-case Boolean exhaustive C++ smoke guards camera 0 and cockpit Remove policy.
+- **Exact-SHA CI:** QuestCockpitV2 isolated smoke `43883648536` **SUCCESS**, Win32 Release Build `43883648496` **SUCCESS**, full VR game Win32 + OpenXR host + packaged test ZIP `43883649024` **SUCCESS**. COPY-RUN artifact `14232319767`, general VR test ZIP artifact `14232499612`.
+- **Runtime scope:** static proof, C++ smoke and successful build only. Quest3 HMD visuals, player passenger mesh, culling and stereo still unverified in actual gameplay. Public v0.02 remains unchanged.
+- **AI 2 score:** previous confirmed **2851** + distinct goal/nested-render functional safety repairs **+1** = **2852 AI 2 cumulative points**. No other score for review or build repetitions. AI 1 unchanged.
+
 ## AI 2 QuestCockpitV2 camera-0 passenger follow / remove F11 controls (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-PASSENGER-CAMERA0-FOLLOW-REMOVE-20261116-D0CE8A8D`. One independently implemented and CI-tested user-requested cockpit passenger-mode feature; repeated tests, release packaging, retries, diagnostics and field follow-up for the same implementation are +0.

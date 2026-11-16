@@ -1,5 +1,18 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari all-ID installed-only source-ready VR runtime + private test package (2026-11-16 KST)
+
+- **Unique RUN_KEY:** FERRARI-ALLID-SOURCE-READY-RUNTIME-CI-20261116-A7BF9994. Distinct achievement from the prior 3-car PBR/ground package: the fail-closed external-car runtime is expanded to the verified retail player-car ID range 0..29 with fixed per-ID sidecar routing, generic measured floor clearance, tests, exact Windows/OpenXR builds, and a private all-ID source-ready test package. Rechecks, Drive copies, or later use of the same loader must not score again.
+- **GitHub runtime:** thp32tt/OutRun2006Tweaks branch `vr-quest-cockpit-v2-external-installed-only-allcar-source-ready-20261116`. Exact runtime binary source `2f69840b684a32f9656e2074689ca33789f8e8b3`; runtime verification commit `259ba6b526a64fb13f3dad6f87c860f9da49861d`. Retail ID mapping is derived from `r4dius/outrun2-decomp@e1e1c592b802a6f3f7020a676abd3ba1be479e62` `VehicleMenuModels[car_id] -> VehicleResourcePaths[model]`.
+- **Implemented routing:** IDs 0..29 only, expected player identity required, cockpit/gameplay/stereo/device gates retained. Existing F50, 288 GTO IDs 7/22 and F40 IDs 11/26 keep their existing filenames; every other supported ID uses fixed `ExternalCars/car_id_XX.ovc`. Missing/invalid OVC, parser/CRC/DDS/PBR/GPU failure or invalid static bounds falls back to the original game car; no arbitrary path or directory scan.
+- **Ground behavior:** generic IDs no longer inherit F50 requested +0.22m. They use requested 0m plus validated model minimum local Y and 0.035m static clearance; the existing three converted cars retain prior configured lift behavior. This remains a static local-space guard, not terrain/suspension collision.
+- **CI proof:** VR GitHub General Test Build run `43791201495` SUCCESS for Win32 DLL + x64 OpenXR host + packaged copy-run launcher/fault-injection verification; Build run `43791217292` SUCCESS at verification commit; Ferrari External Installed-Only Floor Guard Unit CI `43791217150` SUCCESS; HUD Inspector `43791201562` SUCCESS; QuestCockpitV2 isolated smoke `43791201553` SUCCESS.
+- **Converter/source-ready tooling:** audited GLB->OVRCABH3 converter, registry and Korean README are carried on the source-ready branch under `tools/car_importer/ferrari16_hq_batch/`. Exact other-game candidate research was performed, but public availability is not treated as redistribution permission.
+- **Private test ZIP:** `OutRun2006_Ferrari_ALL_SOURCE_READY_2f69840b_20261116.zip`, **12,851,417 bytes**, SHA256 `a7bf99946d6d78e7ecddd5aa3917ea6c07585e324243f6602295be220576a7d9`. Private Google Drive file ID `1bFviotCUAswtk44HfKya8kl8qKtrvaoW`; raw Drive readback size and SHA match. Package evidence commit `5d22558133856b6458180070a2bf382384094a19`.
+- **Rights/asset limit:** newly bundled third-party Ferrari meshes = **0**. Recent desirable 360 Spider / 550 Barchetta permissions prohibit cross-game conversion; several other exact candidates have unclear/upstream game-model provenance. Quest 3 physical rendering/dynamic road-contact QA for future generic OVCs remains pending.
+- **AI 2 score:** previous confirmed **2843** + new all-ID installed-only runtime, generic floor policy, CI and source-ready private package **+1** = **2844 AI 2 cumulative points**. AI 1 unchanged.
+
+
 ## AI 2 Ferrari3 installed-only and PBR/ground fail-closed VR test build (2026-11-16 KST)
 
 - **Unique RUN_KEY:** FERRARI3-INSTALLED-ONLY-PBR-GROUND-FLOOR-NATIVE-CI-20261116-2B96D484. One newly verified runtime safeguard and Windows-built private three-car test package, not 13 additional converted Ferrari source models. No further score for repeated checks, package ZIP/Drive copies, or same runtime achievement.

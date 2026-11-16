@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F355 Spider OVRCABH4 live-dashboard sidecar verifier PASS (2026-11-17 KST)
+
+- **Unique RUN_KEY:** `F355-OVRCABH4-DASHBOARD-SIDECAR-20261117-9429BCA6`. This scores the distinct dashboard-sidecar integration achievement only. The earlier GTA5 external full-car GLB/reopen achievement remains separately scored; later Quest 3 live visual calibration or retries do not double-count this sidecar.
+- **Dashboard implementation:** preserved the GTA5 runtime dial faces and added independent `F355_SPEED_NEEDLE` / `F355_RPM_NEEDLE` meshes at the verified large-gauge pivots. Final node axis is `[0,0,-1]`; speed input `0..320 km/h`, RPM input `0..10000`, both `-135..+135 deg`.
+- **Alignment:** four actual GTA wheel child transforms were fitted to the reconstructed original OutRun F355 PMT wheel centers, yielding uniform scale `0.9813018122729475` and translation `[0, 0.630896449028058, 0.3200860824374927]`. This replaces unsafe dashboard-only whole-car alignment.
+- **Pre-conversion correctness:** five imported normal-map strengths were clamped 3.0→2.0 to the native converter safety range; three NPOT textures were upscaled only (no texture downscale) to power-of-two dimensions; no mesh decimation.
+- **OVRCABH4 result:** strict audit **PASS**, conversion **PASS**, verifier **PASS**. 381,456 vertices / 444,977 triangles / 42 groups / 41 materials / 2 dashboard bindings; GPU payload 98,435,936 bytes. Sidecar SHA256 `9429bca61dbbd8dcef401690d3a4f33dfc9ca2138c97641b70c32c154ede578b`. GitHub evidence `thp32tt/OutRun2006Tweaks@vr-external-dashboard-v4-20261116` commit `bc5be1ec6897a6e6aa4fb87e78fd8afdde876201`.
+- **Scope boundary:** verifier-complete private personal conversion, not yet Quest 3/OutRun live-render confirmed. Public redistribution rights are not claimed.
+- **AI 2 score:** previous confirmed **2855** + this distinct verified OVRCABH4 dashboard-sidecar integration **+1** = **2856 AI 2 cumulative points**. AI 1 unchanged.
+
+
 ## AI 2 수도권 연간이용권 모니터링 (2026-11-17 08:22 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-17T08:22:07+09:00`

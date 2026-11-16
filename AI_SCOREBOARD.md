@@ -1,5 +1,15 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari F355 Spider GTA5 external full-car GLB + Blender reopen (2026-11-17 KST)
+
+- **Unique RUN_KEY:** `F355-GTA5-EXTERNAL-GLB-BLENDER-REOPEN-20261117-F31F6D97`. One distinct external-model conversion achievement; later dashboard needle binding, sweep calibration, OVRCABH4 packaging, Quest 3 runtime testing, or retries of this same GLB are separate work and must not double-count this conversion.
+- **Actual external source:** GTA5/FiveM F355 Spider archive 62,970,783 bytes, SHA256 `37948adda656fc5935ef5ede748f034cc2fa4bc01b9ec392a7ad3858afcef99d`; extracted `f355s.yft` 11,489,603 bytes and `f355s.ytd` 13,053,420 bytes. Linux-native parsing/conversion uses pinned `rage-formats@f31f11b137ac14884ff5ea5d8209755f6cd03e9b` and `rage-render@9d7977a011cbe8808f1adb62f32363effffe9a50`.
+- **Converted result:** custom Linux YFT/YTD -> GLB converter source `ec9d24f88eaf3719a353e90b9d7ace14f2bd3ddb`, binary `925c8b47c1fea565dde1c70ee24d6d8a199d0793`; output 17,880,068 bytes, SHA256 `f31f6d97108565624114fecb168b8dbed7246170ff5d19ecd7eedcc8e3955361`, 445,093 triangles / 142 geometries. Accidental source YTD trailing-space name was preserved and aliased so `script_rt_dials_race` resolves instead of being dropped.
+- **Independent Blender QA:** Blender 5.2.4 LTS fresh GLB import **PASS**; 366,054 vertices / 444,971 polygons / 40 materials / 49 embedded images. Bounds approximately 1.95m x 4.33m x 1.14m. GitHub evidence `thp32tt/OutRun2006Tweaks@vr-external-dashboard-v4-20261116` commit `8787d92f7f6b7519619ca42dc403ce23cc2dfccb`.
+- **Scope boundary:** this is a verified external full-car GLB baseline, not yet a finished in-game car. Dashboard needle mesh identification/binding and sweep calibration remain pending; OutRun/Quest3 live rendering is untested.
+- **AI 2 score:** previous confirmed **2853** + new independently converted/reopened F355 external full-car baseline **+1** = **2854 AI 2 cumulative points**. AI 1 unchanged.
+
+
 ## AI 2 cockpit passenger original PC car-render gate bypass (2026-11-17 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-ROB02-NATIVE-CAR-GATE-20261117-6888D425`. One distinct new native-render functional patch. Not scored for same-code retries, preliminary diagnostic commits, static reruns or additional packaging.

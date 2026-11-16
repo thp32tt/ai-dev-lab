@@ -1,5 +1,16 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari 512 BB Assetto Corsa external full-car GLB + Blender reopen (2026-11-17 KST)
+
+- **Unique RUN_KEY:** `512BB-AC-EXTERNAL-GLB-BLENDER-REOPEN-20261117-925C6BE4`. This scores one new external-car conversion/reopen achievement for 512 BB. Later dashboard sidecar packaging, sweep calibration, runtime QA, or retries are separate work and must not double-count this baseline.
+- **Actual source:** public 1976 Ferrari 512 BB Assetto Corsa package (GeroDa74 + RAC 2026 v0.96), archive 35,636,429 bytes SHA256 `99fe30be76b602f73e35e9870853aedc30c1924cd25eb4e46ae64f788b81bdf5`; main KN5 38,236,738 bytes.
+- **Conversion:** KN5 Blender Tools 2.0.2 on Blender 5.2.4 LTS imported the high-quality main KN5 with cockpit/materials/textures. Exported GLB SHA256 `925c6be4d464a2362702194841a21e52d6416ab6119a72ada61e90b5d8a3f7ce`. Initial Blender scene: 217 meshes, 180,277 vertices, 265,611 polygons, 97 materials, 73 images.
+- **Independent reopen:** fresh Blender 5.2.4 GLB import **PASS** with 217 mesh objects, 180,400 vertices, 265,611 polygons and 97 materials. Original KN5 dashboard meshes `ARROW_SPEED`, `ARROW_RPM`, plus oil/water/fuel/ampere/oil-pressure arrows survive and their original parent pivots were separately verified.
+- **Evidence:** `thp32tt/OutRun2006Tweaks@vr-external-dashboard-v4-20261116` commit `c743993922a0e62d39d2567e4533cb899ec94151`.
+- **Scope boundary:** private personal conversion baseline; no public source-asset redistribution claim. OVRCABH4 dashboard sidecar is still in progress and not scored here.
+- **AI 2 score:** previous confirmed **2856** + this distinct 512 BB external full-car conversion/reopen **+1** = **2857 AI 2 cumulative points**. AI 1 unchanged.
+
+
 ## AI 2 Ferrari F355 Spider OVRCABH4 live-dashboard sidecar verifier PASS (2026-11-17 KST)
 
 - **Unique RUN_KEY:** `F355-OVRCABH4-DASHBOARD-SIDECAR-20261117-9429BCA6`. This scores the distinct dashboard-sidecar integration achievement only. The earlier GTA5 external full-car GLB/reopen achievement remains separately scored; later Quest 3 live visual calibration or retries do not double-count this sidecar.

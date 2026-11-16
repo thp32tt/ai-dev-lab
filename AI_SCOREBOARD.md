@@ -1,5 +1,13 @@
 # AI Competition Scoreboard
 
+## AI 2 Sonic-TV OR2006Sprites original DDS -> JPG tachometer comparison (2026-11-16 KST)
+
+- **Unique RUN_KEY:** `OR2006SPRITES-TACHOMETER-DDS-JPG-PREVIEW-20261116-43813893670`. Independent user-requested visual asset delivery: 31 actual source DDS files decoded to JPEG (10 regular HD tachometer dials, 20 alternate Real Life dial+needle sheets, 1 shared needle) and 3 correct comparison JPGs, no conversion failures. This conversion/delivery is scored once; later re-packaging, inspection, reinstall, visual rechecks and retry = +0.
+- **Source:** `Sonic-TV/OR2006Sprites@main` under `Remakes and Reskins/UI/Tachometers`, including Darillone's alternate real-life gauge directory and shared needle. Source DDS 1024x1024, 64x512 or 128x1024, preserved per-file provenance in manifest.json. These are 2D UI sprite textures, not validated 3D cockpit instrument materials.
+- **GitHub Actions evidence:** `thp32tt/ai-dev-lab` temporary branch `artifacts/or2006-tachometer-jpg-20261116`, exporter source commit `88ffb5fafa15228c59c538a44849b12db88a9ca8`, workflow commit `30c29315208fb8cb72fa0b8490735b18f03b420a`, run `43813893670` **SUCCESS**, artifact `14201596686` (34 files), conversions **31** / failures **0**. A local re-composed, correct 10-car side-by-side sheet supersedes auto-generated first-image-per-car (some first alternates were needles).
+- **Deliverables:** user-visible chat sandbox ZIP `OR2006Sprites_Tachometers_JPG_20261116_FINAL.zip` (36 entries, ZIP CRC OK) and `OR2006_Tachometer_Comparison_All.jpg` plus Part1/Part2. No changes to game, VR runtime, installed DDS or third-party repository. Personal preview only, no redistribution permission assumed.
+- **AI 2 score:** previous confirmed **2846** + distinct validated DDS-to-JPG preview delivery **+1** = **2847 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun external dashboard V4 + F40 needle split (2026-11-16 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-FERRARI16-DASHBOARD-V4-F40-NEEDLE-20261116-1E20F1FE`. One distinct achievement: external-car sidecar/runtime/converter gained live speed/RPM/gear dashboard bindings for the full retail car-ID routing, with stereo-native-frame telemetry latching and a verified F40 speed/RPM needle geometry split. Rechecks, CI reruns, later per-car calibration, and reuse of this same V4 runtime receive +0.

@@ -1,5 +1,12 @@
 # AI Competition Scoreboard
 
+## AI 2 수도권 연간이용권 모니터링 (2026-11-17 08:22 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-17T08:22:07+09:00`
+- **Review:** Checked official SEA LIFE COEX annual pass (single 99,000 KRW; double 119,000 KRW), historical 79,000 KRW flash sale expired October 31, AQUA PLANET Ilsan weekend annual 100,000 KRW / Brick combo 120,000 KRW (English price conflicts with previously observed Korean listing), LEGOLAND family 109,000 KRW offer expired September 22, and Seoul Land November card discount is single-entry only. No newly verified eligible changed/reopened weekend multi-use offer; no duplicate notification. Current checkout and infant/registration conditions not fully independently verified for all options.
+- **Scoring:** AI 2 previous confirmed **2854** + independently completed scheduled verification **+1** = **2855**. AI 1 unchanged.
+
+
 ## AI 2 Ferrari F355 Spider GTA5 external full-car GLB + Blender reopen (2026-11-17 KST)
 
 - **Unique RUN_KEY:** `F355-GTA5-EXTERNAL-GLB-BLENDER-REOPEN-20261117-F31F6D97`. One distinct external-model conversion achievement; later dashboard needle binding, sweep calibration, OVRCABH4 packaging, Quest 3 runtime testing, or retries of this same GLB are separate work and must not double-count this conversion.

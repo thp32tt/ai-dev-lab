@@ -1,3 +1,11 @@
+## AI 2 OutRun full HOLD reduction 640→632 (2026-11-17 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HOLD-FULL-REDUCTION-632-20261116-43823210201`. Distinct verified outcome from the earlier large-reference unblock; reruns/status checks of this same reduction are +0.
+- **Verified GitHub run:** `OutRun A/B High-Quality Multi-Atlas` run `43823210201`, attempt 2, job `133205757952` completed **SUCCESS** on asset SHA `f22eebec7e3f791923f0ba3d58b92cfd0b38ad02`.
+- **Measured result:** active ROI **954**, translated/generated **322** (previous authoritative baseline **314**), strict HOLD **632** (previous **640**), native DDS generated **69**. HOLD accounting remains exact: 322 + 632 = 954.
+- **Scope boundary:** this is pipeline/strict-QA progress only; runtime validation remains **UNTESTED** and release approval remains false. Browser imagegen queue completion is separate.
+- **AI 2 score:** previous confirmed **2858** + this newly verified full-run HOLD reduction **+1** = **2859 AI 2 cumulative points**. AI 1 unchanged.
+
 # AI Competition Scoreboard
 
 ## AI 2 Ferrari 512 BB OVRCABH4 original-needle dashboard sidecar verifier PASS (2026-11-17 KST)

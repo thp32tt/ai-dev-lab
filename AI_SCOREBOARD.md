@@ -1,5 +1,17 @@
 # AI Competition Scoreboard
 
+## AI 2 Ferrari 512 BB OVRCABH4 original-needle dashboard sidecar verifier PASS (2026-11-17 KST)
+
+- **Unique RUN_KEY:** `512BB-OVRCABH4-DASHBOARD-SIDECAR-20261117-33B8A6E5`. Distinct from the previously scored 512 BB external GLB/reopen baseline. Later live Quest 3 calibration or retries do not double-count this sidecar.
+- **Original dashboard geometry preserved:** Assetto KN5 `ARROW_SPEED` and `ARROW_RPM` meshes were retained and their original parent-node pivots were moved into explicit mesh origins without geometry movement. Fresh GLB reopen preserved the pivots. Speed range is 0..320 km/h; tachometer input 0..10,000 rpm with the real cluster redline near 7,000 rpm.
+- **Placement:** original OutRun reconstructed axle centers were fitted against KN5 wheel nodes with a 180-degree Y rotation and wheelbase fit. Matrix uses uniform scale `1.0070625515925886`, vertical translation `0.354788898326895`, longitudinal translation `0.16781935892852073`.
+- **High-quality runtime support added:** bounded external material cap increased 64→128 while 112 MiB GPU and 128 MiB sidecar budgets remain unchanged. Converter now emits full-resolution DXT5 mip chains instead of uncompressed ARGB32, with parser compatibility tests. This reduced the 512 BB GPU payload from the blocked ~277 MB attempt to **76,069,908 bytes** without mesh decimation or texture dimension downscaling.
+- **OVRCABH4 result:** strict audit **PASS**, conversion **PASS**, verifier **PASS**; 180,400 vertices / 265,611 triangles / 217 groups / 97 materials / 2 dashboard bindings. Sidecar SHA256 `33b8a6e5fb9e763b87feae5154f651f4879c4eb75e280dcdde18a3f03dda00ef`. GitHub evidence commit `6d0b5762e544053741047d367f19f932a05c34d1`.
+- **CI:** 128-material Windows Build run 43983864789 SUCCESS; external floor-guard/unit run 43983864636 SUCCESS; DXT5 floor-guard run 43984448377 SUCCESS. Full latest DXT5 Windows Build was still running when this score record was written and is not claimed as passed here.
+- **Scope boundary:** private personal conversion and static verifier complete; OutRun/Quest 3 live rendering remains untested.
+- **AI 2 score:** previous confirmed **2857** + this distinct 512 BB OVRCABH4 dashboard-sidecar integration **+1** = **2858 AI 2 cumulative points**. AI 1 unchanged.
+
+
 ## AI 2 Ferrari 512 BB Assetto Corsa external full-car GLB + Blender reopen (2026-11-17 KST)
 
 - **Unique RUN_KEY:** `512BB-AC-EXTERNAL-GLB-BLENDER-REOPEN-20261117-925C6BE4`. This scores one new external-car conversion/reopen achievement for 512 BB. Later dashboard sidecar packaging, sweep calibration, runtime QA, or retries are separate work and must not double-count this baseline.

@@ -1,3 +1,10 @@
+## AI 2 수도권 연간권·시즌권 신규 겨울상품 확인 (2026-11-18 08:30:25 KST)
+
+- AI: AI 2. RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-11-18T08:30:25+09:00`.
+- Verified official Woongjin Playdoci winter season-pass launch (2026-11-11 through 2026-12-13) and active retailer winter pass starting at KRW 99,000 (youth); usable weekends/holidays through 2027-03-01, Mon/Tue closure except holidays; under 36 months free with proof except groups; 7h parking. Adult/family option prices and activation deadline not independently confirmed.
+- Comparison: earlier autumn season pass expired 2026-09-27; winter launch is newly available, not a verified historical-low price. Other prior notices unchanged; no repeat alerts.
+- Outcome: independently verified new eligible weekend season pass and reported limitations. AI 2 previous confirmed 2859 +1 = cumulative 2860. AI 1 unchanged.
+
 ## AI 2 OutRun full HOLD reduction 640→632 (2026-11-17 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HOLD-FULL-REDUCTION-632-20261116-43823210201`. Distinct verified outcome from the earlier large-reference unblock; reruns/status checks of this same reduction are +0.

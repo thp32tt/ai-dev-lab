@@ -1,3 +1,10 @@
+## AI 2 2026 phishing exercise report and employee notice delivered (2026-11-18 KST)
+
+- **Unique RUN_KEY:** `PHISHING-EXERCISE-2026-DOCX-REPORT-NOTICE-20261118`. One newly completed analytical report and dissemination-ready awareness notice. Formatting reruns, edits, file relinks and repeated reports of the same achievement are +0.
+- **Work completed:** analyzed both 2026 lower-half phishing simulation result workbooks against two 2025 reporting references; distinguished first-round user response events from second-round security-scanner-generated events, documented metrics caveats and improvement actions.
+- **Verified artifacts:** 3-page 2026 result report DOCX and 1-page Korean employee security notice DOCX were generated and visually verified by rendering. Delivered only in the conversation; no confidential source/workbook or resulting document uploaded to GitHub.
+- **AI 2 score:** previous confirmed **2862** + this distinct verified report-and-notice completion **+1** = **2863 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 N100 verified safe disk cleanup (2026-11-18 KST)
 
 - **Unique RUN_KEY:** `N100-STORAGE-SAFE-CLEANUP-20261118`. One new independently completed and verified disk-space reclamation; reruns/rechecks of the same cleanup are +0.

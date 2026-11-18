@@ -1,3 +1,13 @@
+## AI 2 Ferrari 575 Superamerica exact OVRCABH4 and one-UV source repair (2026-11-18 KST)
+
+- **Unique RUN_KEY:** `FERRARI575-EXACT-UVFIX-OVRCABH4-20261118`. One independent new verified exact-car OVC4 conversion; not a re-score of the prior 16-car loader or older donor. All reruns/rechecks and future game QA for the same asset are +0.
+- **Real exact source:** Assetto Garage 575 Superamerica GLB 4,899,840 bytes original SHA256 `765e89af297a5823aa751c89835c1de97a75e6eac1e746dd38c17b8b629f46a4`; 78 meshes, 30 materials, 43 embedded images. One malformed UV in COCKPIT_HR_SUB0 was corrected via wrap-phase-preserving offset [638.5,-20721]→[11.5,-8], no mesh/topology/normal/texture alteration; repaired source SHA256 `c4536032e93fc03fe68c9c88079234aaabaa414aa63f9df277378be6ed47040a`.
+- **OVRCABH4 verified:** 51,444 triangles, 56,323 vertices, 78 groups, 30 materials, 16 normal-map materials; 7,157,035 bytes SHA256 `0e902c45f1131c7438b57b515973e874efb9c014fb31bbb2030ea3ac4f68463d`, strict source audit, converter and independent parser PASS.
+- **Private optional artifact:** `Ferrari_575_Superamerica_Exact_OVC4_OPTIONAL_PRIVATE_20261118.zip` 8,950,325 bytes SHA256 `084ed6d6acca828deab00f910b5c95811f968c488c556e0c2e35a7cc294723e7`. Explicit opt-in to replace a higher-triangle 575M donor, SHA-gated backup installer. Not publicly uploaded.
+- **Quality boundary:** 51k exact variant vs current 200k-triangle donor; **do not auto-install**. Neither Quest3 gameplay nor in-game visuals passed. Public third-party redistribution rights unverified. 328 GTS/F430 Spider exact high-quality source gaps and Testarossa Spider variant identity remain tracked.
+- **GitHub evidence:** `thp32tt/OutRun2006Tweaks@vr-ferrari16-v4-integrated-20261118` files `tools/car_importer/ferrari16_hq_batch/superamerica_exact_private_20261118.json` and `docs/research/FERRARI16_EXACT_VARIANT_AUDIT_20261118.md` commit `50c909a0cc0a3fad5bcc6f54322486ed61a501e5`.
+- **AI 2 score:** previous confirmed **2864** + newly verified exact Superamerica OVC4 source repair and conversion **+1** = **2865 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari16 V4 integrated native cockpit and private upgrade package (2026-11-18 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-V4-INTEGRATED-PRIVATE-DELTA-20261118`. One newly completed integrated runtime + private installer delivery. The three underlying external model conversions were previously scored and are **not** scored again. Retry/rollover/rechecks of this same integrated package are +0.

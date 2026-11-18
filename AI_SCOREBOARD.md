@@ -1,3 +1,12 @@
+## AI 2 N100 verified safe disk cleanup (2026-11-18 KST)
+
+- **Unique RUN_KEY:** `N100-STORAGE-SAFE-CLEANUP-20261118`. One new independently completed and verified disk-space reclamation; reruns/rechecks of the same cleanup are +0.
+- **Scope:** N100 authorized home directory `/home/chatgpt-runner` only. Preserved Docker data/volumes, game assets, APKs, source Git repos, active tools and diagnostics.
+- **Cleaned:** six download archives whose extracted Ghidra/JDK/Blender installations were checked present; npm `.npm/_cacache` download cache; and 31 files (555,512,374 logical bytes) in `tmp/final_install_path_sim/ExternalCars` independently byte-compared as identical to the retained final `ferrari16_external_dashboard_final_20261116/QUEST_APK_COPYRUN_PAYLOAD/model/ExternalCars`. All deletes returned success.
+- **Conservative accounting:** inspected cleanup candidates total about **3.037 GB** (mixed allocated and logical sizes, not an exact exclusive block estimate). Filesystem user-available space observed **13,550,559,232 → 23,912,632,320 bytes**, but concurrent writes/deletions may also contribute; do not attribute that full increase solely to this cleanup.
+- **Boundary:** `/var/lib/docker` and other paths outside authorized home root were not audited/modified. Test runner audit scripts were also removed after verification.
+- **AI 2 score:** previous confirmed **2861** + this independently verified safe storage cleanup **+1** = **2862 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun browser liveness watchdog + Chromium relaunch (2026-11-18 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-BROWSER-WATCHDOG-20261118`. Distinct from prior HOLD-count and queue-unblock work; later redeploy/status checks of this same watchdog are +0.

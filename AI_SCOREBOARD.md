@@ -1,3 +1,12 @@
+## AI 2 Ferrari16 V4 integrated native cockpit and private upgrade package (2026-11-18 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-V4-INTEGRATED-PRIVATE-DELTA-20261118`. One newly completed integrated runtime + private installer delivery. The three underlying external model conversions were previously scored and are **not** scored again. Retry/rollover/rechecks of this same integrated package are +0.
+- **New integration:** on `thp32tt/OutRun2006Tweaks@vr-ferrari16-v4-integrated-20261118`, combined the 16-car canonical retail-ID alias routing + dashboard overlay renderer with the OVRCABH4 128-material/DXT5 high-quality external parser. Added embedded speed/RPM needle detection so the independent dashboard overlay draws gear only when both animated needles already exist.
+- **Code/test:** GitHub integrated code commit `d140f6c05ed4d83aed914f223dc46788248cfaef`; Windows Build workflow `44276896969` **SUCCESS** and HUD Inspector CI `44276897265` **SUCCESS**. Original feature branches and default main remain unchanged. The exploratory conflicted PR #155 was closed without merge after manual integration.
+- **Private asset delta:** N100 `ferrari_resume_20261118/FERRARI16_V4_INTEGRATED_2PLUS1_PRIVATE_20261118.zip` packed and uploaded to personal, non-shared Google Drive. ZIP SHA256 `476f97717659ede58a8aafcd722466afe22fadb4f25036dd4b91dfc4d7daf163`, 41,321,534 bytes. F355 Spider (`9429bca6...`) and 512 BB (`33b8a6e5...`) update by default; F430 Spider exact lower-poly OVC4 (`474dc3d0...`) remains explicitly opt-in to avoid regressing the prior higher-detail donor. Three assets independently validated by header/size/SHA; integrated `dinput8.dll` SHA256 `313d9925b48fab98dbe2445201cfc54a1e2a05ab34fb940b6bc3761c94e97a4e` bundled with SHA-gated, backup-and-rollback installer.
+- **Limits:** only static package checks and Windows CI passed, not real Quest 3 gameplay/camera/grounding QA. Private personal conversion, no public redistribution of third-party vehicle assets.
+- **AI 2 score:** previous confirmed **2863** + one new validated runtime integration/private installer achievement **+1** = **2864 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 2026 phishing exercise report and employee notice delivered (2026-11-18 KST)
 
 - **Unique RUN_KEY:** `PHISHING-EXERCISE-2026-DOCX-REPORT-NOTICE-20261118`. One newly completed analytical report and dissemination-ready awareness notice. Formatting reruns, edits, file relinks and repeated reports of the same achievement are +0.

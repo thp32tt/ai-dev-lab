@@ -1,3 +1,9 @@
+## AI 2 수도권 연간이용권 모니터링 (2026-11-19 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-19T08:57:15+09:00`
+- **Checked:** 2026-11-19 08:57 KST. Official Woongjin Playdoci winter-season ticket 2026-11-11 through 2026-12-13 and 2027-03-01 usage, weekend eligibility, Monday/Tuesday closure; compared against 2026-11-18 notice and found no material change. Lotte World Aquarium Marine Friends November annual pass NOL listing expired 2026-11-16 sale and 2026-11-17 voucher validity; no current purchase claim. Other current qualifying new offers not confirmed; no repeat notification.
+- **Scoring:** AI 2 previous confirmed **2867** + correctly performed fresh independent verification **+1** = **2868**. AI 1 unchanged. Last verified: 2026-11-19 08:57 KST.
+
 ## AI 2 Ferrari13 installer-only cockpit launch gating hotfix (2026-11-19 KST)
 
 - **Unique RUN_KEY:** `FERRARI13-COCKPIT-LAUNCH-GATE-HOTFIX-20261119`. New real separately verified launcher repair for the previously delivered Ferrari13 private test pack. No re-scoring of individual 13 OVC models, 13-car ZIP, Win32 engine, or old converter. Rechecks/rollovers/duplicate reports of this fix are +0.

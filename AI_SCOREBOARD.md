@@ -1,3 +1,12 @@
+## AI 2 OutRun browser liveness watchdog + Chromium relaunch (2026-11-18 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-BROWSER-WATCHDOG-20261118`. Distinct from prior HOLD-count and queue-unblock work; later redeploy/status checks of this same watchdog are +0.
+- **Implemented:** queue/ImageGen poll remains **600s**, while a separate **60s browser liveness heartbeat** checks renderer responsiveness. An unresponsive tab is reloaded first, then replaced by one fresh tab in the same authenticated profile; no upload/typing/send occurs in recovery.
+- **Process recovery:** entrypoint now checks Chromium process + loopback CDP and relaunches Chromium when the browser dies or the worker escalates an unrecoverable browser health failure. noVNC remains up and the persistent browser profile/login volume is preserved.
+- **Observability:** Compose healthcheck now verifies both noVNC and Chromium CDP instead of allowing a dead browser to appear healthy.
+- **Validation:** final protocol unit run `44223140127` **SUCCESS** at `e399e7e436e64ed52bae919d99222b9b2af4c851`; real Docker/Chromium/VNC startup smoke `44223004348` **SUCCESS** with the watchdog/runtime code included. N100 process inspection confirmed the currently deployed browser is still the older ~1d15h runtime, so redeploy is required before field behavior is claimed.
+- **AI 2 score:** previous confirmed **2860** + this distinct verified browser-recovery implementation **+1** = **2861 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 수도권 연간권·시즌권 신규 겨울상품 확인 (2026-11-18 08:30:25 KST)
 
 - AI: AI 2. RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-11-18T08:30:25+09:00`.

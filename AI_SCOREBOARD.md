@@ -1,3 +1,12 @@
+## AI 2 Ferrari13 installer-only cockpit launch gating hotfix (2026-11-19 KST)
+
+- **Unique RUN_KEY:** `FERRARI13-COCKPIT-LAUNCH-GATE-HOTFIX-20261119`. New real separately verified launcher repair for the previously delivered Ferrari13 private test pack. No re-scoring of individual 13 OVC models, 13-car ZIP, Win32 engine, or old converter. Rechecks/rollovers/duplicate reports of this fix are +0.
+- **Reproduced integration defect:** Earlier `INSTALL_FERRARI13.cmd` installed files but did not launch the game; distributed default `OutRun2006Tweaks.ini` had `QuestCockpitV2Enabled=false`. Known-good VR runner requires explicit command-line activation and `OUTRUN_VR_LAUNCH=1` release DllMain gate. User's watchdog and host v3 logs reached stereo frame 6518/failure=0 after gameplay began, so transport was live but cockpit camera activation was not proven.
+- **New software artifact:** `RUN_FERRARI13_COCKPIT.ps1/.cmd` with no-launch verifier, SHA-gates the actual integrated V4 `dinput8.dll` and Quest V2 host, checks all 13 bodies+13 overlays, prevents concurrent game/host; launches original game EXE with `-VR.Enabled=true -VR.Stereo=true -VR.QuestCockpitV2Enabled=true -VR.ExternalFerrariTest=true` plus native Quest cockpit seat settings, inherited `OUTRUN_VR_LAUNCH=1`. Does not touch user's INI, EXE, PMTs or installed asset files.
+- **Private hotfix:** `FERRARI13_COCKPIT_LAUNCH_HOTFIX_20261119.zip`, **3844 bytes**, SHA256 `98a2331fc17eddadcc65094b2dab0ef328c1721444d8de0108917c44bc82f4c9`, 4/4 ZIP entries CRC PASS, stored on owner-only Google Drive. No third-party asset redistributing.
+- **CI:** `thp32tt/OutRun2006Tweaks@vr-ferrari16-v4-integrated-20261118`, Windows PowerShell 5.1 script syntax, required env/flags, dummy EXE + missing DLL fail-closed smoke run **44353494412 SUCCESS**, commit `6f9a09c4b9d4609bb0902c20a1ed95916d97790d`, documentation `docs/research/FERRARI13_COCKPIT_LAUNCH_FIX_20261119.md`. User's actual Quest3 in-game test still pending.
+- **AI 2 score:** previous confirmed **2866** + one newly validated cockpit-launch activation hotfix delivery **+1** = **2867 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari13 exact-source private standalone test bundle and full read-only QA (2026-11-18 KST)
 
 - **Unique RUN_KEY:** `FERRARI13-EXACT-PRIVATE-OVC-COCKPIT-STANDALONE-20261118`. This is one new verified 13-car self-contained private test package, not a re-score of previously converted F355/512/F430 or the integrated native V4 DLL itself. All subsequent rechecks/reports/rebuild retries of the same package are +0.

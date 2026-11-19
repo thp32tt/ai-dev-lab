@@ -1,3 +1,9 @@
+## AI 2 수도권 연간이용권 모니터링 (2026-11-20 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-20T08:45:07+09:00`
+- **Checked:** 2026-11-20 08:45 KST. Searched current Seoul/Gyeonggi/Incheon annual/season/multi-use ticket offers and compared with November 19 and November 18 alerts. Woongjin Playdoci winter season ticket still 99,000 KRW starting at youth tier, weekend eligible, through 2027-03-01, sale through 2026-12-13, no newly changed conditions. Lotte World Aquarium Marine Friends November listing ended sale 2026-11-16, voucher 2026-11-17. Aquaplanet Ilsan 2026-11-20 through 2026-12-31 special offer is a single admission ticket, sale deadline 2026-11-22, excluded from annual/multi-use scope. No newly verified qualifying offer; no duplicate user notification. Sources: https://www.playdoci.com/index.aspx/ ; https://nolbal.com/content/detail/46726 ; https://leisure-web.yanolja.com/leisure/10385406 ; https://leisure-web.yanolja.com/leisure/10381181 .
+- **Scoring:** AI 2 previous confirmed **2873** + correctly completed fresh monitoring **+1** = **2874** cumulative points. AI 1 unchanged. Last verified: 2026-11-20 08:45 KST.
+
 ## AI 2 OutRun slow-UI ImageGen/result-recovery repair (2026-11-19 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-SLOW-UI-RECOVERY-20261119`. Distinct from the prior browser-death watchdog and resource tuning; later redeploy/status checks of this same UI recovery are +0.

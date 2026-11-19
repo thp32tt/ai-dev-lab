@@ -5,7 +5,7 @@
 - **Verified source artifact:** aligned GLB 3,409,652 bytes SHA256 f3f4b19ec9750f85ac1a46fc0a9b950c9bb65521028b53d4ab052954ab07d9c8; Blender checkpoint SHA256 83c705c0ec7e8d821ae30d21df31dcdd1ac4b04a9aef001ba40a098e43c7b127.
 - **OVRCABH4 result:** strict source audit, converter and independent second-pass parser all PASS; 66,391 triangles / 55,533 vertices / 44 groups / 12 materials / 4,153,332 bytes, output SHA256 a4608bd0d9c8a4743cddd17a0306276fb10aa24628c5817ce0e2bced67058dd1.
 - **Quality boundary:** exact 328 candidate is lower-detail than the current 139,216-triangle 308/QV donor, so it is optional/private and not promoted as the default. No Quest3/game runtime PASS is claimed. Third-party redistribution permission was not independently verified; no model binary committed publicly.
-- **GitHub evidence:** thp32tt/OutRun2006Tweaks@vr-ferrari16-v4-integrated-20261118, final audit commit 95c1ca46d9b705c3f941a8fd4e6fb351a42323c1, report docs/research/FERRARI3_REMAINING_EXACT_SWEEP_20261119.md, evidence tools/car_importer/ferrari16_hq_batch/remaining3_exact_sweep_20261119.json.
+- **GitHub evidence:** thp32tt/OutRun2006Tweaks@vr-ferrari16-v4-integrated-20261118, final audit commit 5d2be84920262e1c66d8c5e5f563953f2dc015bb, report docs/research/FERRARI3_REMAINING_EXACT_SWEEP_20261119.md, evidence tools/car_importer/ferrari16_hq_batch/remaining3_exact_sweep_20261119.json.
 - **AI 2 score:** previous confirmed **2869** + this distinct new exact 328 GTS OVC4 conversion **+1** = **2870 AI 2 cumulative points**. AI 1 unchanged.
 
 ## AI 2 OutRun browser resource tuning from measured cgroup pressure (2026-11-19 KST)

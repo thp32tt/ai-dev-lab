@@ -1,3 +1,12 @@
+## AI 2 OutRun browser resource tuning from measured cgroup pressure (2026-11-19 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-BROWSER-RESOURCE-TUNE-20261119`. Distinct from the prior browser watchdog implementation; future redeploy/status checks of the same tuning are +0.
+- **Measured N100 runtime evidence:** browser worker cgroup at 2 GiB showed memory.current ~1.52 GiB plus ~0.76 GiB swap, `memory.events max=35882`, no OOM kill; CPU quota was exactly 1 CPU (`cpu.max 100000 100000`) with `nr_throttled=353791` and ~72,023 seconds accumulated throttled time. Host still had ~9.4 GiB available RAM.
+- **Change:** bounded browser worker defaults raised from 2 GiB / 1.0 CPU to **3 GiB / 1.5 CPU**. Queue/ImageGen poll remains 600 seconds; browser watchdog behavior unchanged.
+- **Validation:** Portainer light config run `44472337634` SUCCESS, chat protocol run `44472453055` SUCCESS, real Docker/Chromium/VNC startup smoke run `44472331362` SUCCESS. Final branch includes resource/test updates through `ae9acc330c1f7b97e1dfacc6acf4360418b5e723`.
+- **Scope boundary:** new resource limits require Portainer stack redeploy before N100 runtime cgroup values change; no claim of improved live latency before redeploy measurement.
+- **AI 2 score:** previous confirmed **2868** + this distinct measured-and-validated resource tuning **+1** = **2869 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 수도권 연간이용권 모니터링 (2026-11-19 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-19T08:57:15+09:00`

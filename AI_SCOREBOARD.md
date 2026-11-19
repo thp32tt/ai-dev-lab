@@ -1,3 +1,13 @@
+## AI 2 Ferrari16 latest-normal-base runtime rebuild PASS (2026-11-19 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-NORMAL-BASE-REBUILD-20261119-E8158447`. Distinct recovery architecture: rebuilt the Ferrari external runtime on the current known-good Quest cockpit branch instead of continuing the broken custom Ferrari launch fork; retries/repackaging/Quest3 retests of this same rebuild are +0.
+- **Normal-base lineage:** new branch `thp32tt/OutRun2006Tweaks@vr-ferrari16-v4-rebased-normal-20261119` contains the current `vr-quest-cockpit-v2-guest-sky-lock-20261119` baseline as ancestry and was verified **ahead 31 / behind 0**. Latest passenger/sky fixes and protected VR host/stereo core remain intact.
+- **Integration change:** only isolated external-car loader/PBR/dashboard/ground/pose modules and a bounded player-cockpit draw seam were ported. The old Ferrari13 direct EXE launcher path was discarded; the new launcher uses the existing `CORRECTNESS + QuestCockpitV2ReleaseParity + QuestCockpitV2 + F0` runner and adds only Ferrari opt-in flags.
+- **Verified defect repair:** Windows integration initially exposed a missing `vr/state/state_block_tracker.hpp` dependency in the rebased hook; the safe state-recording gate was retained and the dependency restored rather than weakening the gate. Stale F50 gate test was also corrected to the verified retail IDs 2/17.
+- **CI/build:** Ferrari Normal-Path CI run **44475250891 SUCCESS** (portable external-car tests, normal-path contract, protected VR-core no-drift). Windows x86 Build run **44475250864 SUCCESS**, source commit `e81584478520926c301e7457fd78d543c4af8d79`; binary artifact `outrun2006tweaks-e81584478520926c301e7457fd78d543c4af8d79`.
+- **Test runtime:** generated local small overlay package `FERRARI_NORMAL_REBASE_TEST_20261119.zip`, 2,583,264 bytes, SHA256 `b02b2b61ab45ac62c347499753d7ac81547051016ce5a003f8800e43f10218af`; bundled dinput8.dll SHA256 `05ab4ae5fe36146dbadabf7a776afa4add522e02db2ffabd5f2db863c783f5a0`. It backs up the working normal DLL/runner, patches only Ferrari options into the normal runner, and reuses already-installed OVC assets. Quest3 physical gameplay PASS is **not** claimed yet.
+- **AI 2 score:** previous confirmed **2870** + this distinct latest-normal-base rebuild with dedicated CI and Windows build **+1** = **2871 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari 328 GTS exact private OVRCABH4 conversion PASS (2026-11-19 KST)
 
 - **Unique RUN_KEY:** FERRARI328-EXACT-PRIVATE-OVC4-20261119-A4608BD0. First verified exact Ferrari 328 GTS external full-car OVC4 candidate; later repackaging, source rechecks or Quest3 retests of this same asset are +0.

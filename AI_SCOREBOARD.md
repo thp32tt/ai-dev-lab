@@ -1,3 +1,13 @@
+## AI 2 Ferrari16 D3D9 reset-lifecycle safety fix PASS (2026-11-19 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-D3D9-RESET-LIFECYCLE-20261119`. Distinct from the prior latest-normal-base rebuild; later repackaging, Quest3 retest or re-reporting of this same reset fix is +0.
+- **Confirmed integration defect:** Ferrari external body/dashboard GPU resources allocate D3D9 `D3DPOOL_DEFAULT` VB/IB/textures but were only released on gameplay->menu transition, not before the real game `Reset/ResetEx`. Microsoft D3D9 reset contract requires DEFAULT-pool resources to be released before Reset. The normal stereo renderer already released its own resources, but the external Ferrari owner was not connected to that lifecycle.
+- **Fix:** added neutral `src/vr/state/game_reset_events.hpp`; existing `OutRunVRRenderer::NotifyGameReset()` now publishes a synchronous pre-reset event. Ferrari `QuestCockpitV2NativeFrameProbe` registers a callback that releases `GlobalGpu` and `GlobalDashboardGpu`, resets the external pose filter, and disarms gameplay state before the underlying Reset/ResetEx. Stereo renderer/host ownership remains unchanged.
+- **Validation:** reset event unit test added. Ferrari Normal-Path CI run **44485996797 SUCCESS** proves callback wiring, pre-reset ordering, normal-path contract and protected VR-core no-drift. Windows x86 builds **44485679488 SUCCESS** and **44485705426 SUCCESS** both passed Build, binary verification and artifact upload with the reset-safe source.
+- **Additional review finding:** external PBR VS uses c0/c4/c8 world/view/projection while generic programmable stereo classification is based on the game's verified c64 WVP lineage. Therefore PBR true-stereo parity is not yet proven; fixed-function A/B remains the recommended first physical Quest3 test. This finding is not scored separately.
+- **Private test artifact:** `FERRARI_NORMAL_REBASE_RESET_SAFE_20261119.zip`, 2,577,521 bytes, SHA256 `3b92815184a01ddfbe16ad1ed977f6d5a43d4efa4bf0965973f53cb6969642f3`; bundled reset-safe `dinput8.dll` SHA256 `e57a13be196c4df21de10c24b1bbb11b845192ef6f00f3a5ba3160104638d518`. Quest3 physical PASS is not claimed yet.
+- **AI 2 score:** previous confirmed **2871** + this distinct verified D3D9 reset-lifecycle repair **+1** = **2872 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari16 latest-normal-base runtime rebuild PASS (2026-11-19 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-NORMAL-BASE-REBUILD-20261119-E8158447`. Distinct recovery architecture: rebuilt the Ferrari external runtime on the current known-good Quest cockpit branch instead of continuing the broken custom Ferrari launch fork; retries/repackaging/Quest3 retests of this same rebuild are +0.

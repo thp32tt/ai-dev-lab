@@ -1,3 +1,13 @@
+## AI 2 Ferrari 328 GTS exact private OVRCABH4 conversion PASS (2026-11-19 KST)
+
+- **Unique RUN_KEY:** FERRARI328-EXACT-PRIVATE-OVC4-20261119-A4608BD0. First verified exact Ferrari 328 GTS external full-car OVC4 candidate; later repackaging, source rechecks or Quest3 retests of this same asset are +0.
+- **New exact source outcome:** privately acquired Ferrari 328 GTS DFF/TXD source, imported with DragonFF into Blender 5.2.4; damage/VLO/collision helpers removed, missing wheel instances restored from the source wheel mesh, then wheel-dummy centres scaled from 2.670107424 m to the exact 2.350 m 328 GTS wheelbase and lowest visible mesh grounded at 0 m.
+- **Verified source artifact:** aligned GLB 3,409,652 bytes SHA256 f3f4b19ec9750f85ac1a46fc0a9b950c9bb65521028b53d4ab052954ab07d9c8; Blender checkpoint SHA256 83c705c0ec7e8d821ae30d21df31dcdd1ac4b04a9aef001ba40a098e43c7b127.
+- **OVRCABH4 result:** strict source audit, converter and independent second-pass parser all PASS; 66,391 triangles / 55,533 vertices / 44 groups / 12 materials / 4,153,332 bytes, output SHA256 a4608bd0d9c8a4743cddd17a0306276fb10aa24628c5817ce0e2bced67058dd1.
+- **Quality boundary:** exact 328 candidate is lower-detail than the current 139,216-triangle 308/QV donor, so it is optional/private and not promoted as the default. No Quest3/game runtime PASS is claimed. Third-party redistribution permission was not independently verified; no model binary committed publicly.
+- **GitHub evidence:** thp32tt/OutRun2006Tweaks@vr-ferrari16-v4-integrated-20261118, final audit commit 95c1ca46d9b705c3f941a8fd4e6fb351a42323c1, report docs/research/FERRARI3_REMAINING_EXACT_SWEEP_20261119.md, evidence tools/car_importer/ferrari16_hq_batch/remaining3_exact_sweep_20261119.json.
+- **AI 2 score:** previous confirmed **2869** + this distinct new exact 328 GTS OVC4 conversion **+1** = **2870 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 OutRun browser resource tuning from measured cgroup pressure (2026-11-19 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-BROWSER-RESOURCE-TUNE-20261119`. Distinct from the prior browser watchdog implementation; future redeploy/status checks of the same tuning are +0.

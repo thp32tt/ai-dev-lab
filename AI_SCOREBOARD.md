@@ -1,3 +1,13 @@
+## AI 2 OutRun slow-UI ImageGen/result-recovery repair (2026-11-19 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-SLOW-UI-RECOVERY-20261119`. Distinct from the prior browser-death watchdog and resource tuning; later redeploy/status checks of this same UI recovery are +0.
+- **Confirmed blockers:** live QA queue repeatedly showed `IMAGE_TOOL_MENU_MISSING` (including 100+ retries) and persisted `AB_SENT` chats stuck at `CHAT_USER_TURNS_NOT_RENDERED`.
+- **Repair:** Image tool popover now allows bounded hydration, supports current selected composer state and exact allow-listed menu labels; result collection waits for lazy user-turn hydration and performs bounded exact-chat read-only refresh. A responsive-but-wedged producer tab now escalates reload -> fresh same-profile tab before recording another pre-send retry. No duplicate-send path was added.
+- **Resource follow-up:** browser CPU ceiling increased from 1.5 to **2.0 cores** while memory stays 3 GiB; 600-second production poll and 60-second liveness watchdog remain unchanged.
+- **Validation:** forced-fresh protocol run `44488359093` SUCCESS, A/B preflight `44488358923` SUCCESS, final protocol/resource run `44488419307` SUCCESS, Portainer config run `44488407430` SUCCESS, real Docker+Chromium+VNC smoke `44488395565` SUCCESS, ROI queue smoke `44488395516` SUCCESS.
+- **Scope boundary:** official localization result remains 322 translated / 632 HOLD until the new controller is redeployed and new candidate outputs are imported into a fresh full Multi-Atlas run.
+- **AI 2 score:** previous confirmed **2872** + this distinct verified slow-UI recovery implementation **+1** = **2873 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari16 D3D9 reset-lifecycle safety fix PASS (2026-11-19 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-D3D9-RESET-LIFECYCLE-20261119`. Distinct from the prior latest-normal-base rebuild; later repackaging, Quest3 retest or re-reporting of this same reset fix is +0.

@@ -1,3 +1,14 @@
+## AI 2 Quest cockpit ROB02 render-gate + GPU-pipeline diagnostic PASS (2026-11-20 KST)
+
+- **Unique RUN_KEY:** `QUEST-COCKPIT-ROB02-GPU-LADDER-20261120-91BB016C`. Distinct from the 2026-11-17 original `0x4879B0` car-display gate recovery; retries, repackaging, HMD retests, or repeated reporting of this same work are +0.
+- **Source-grounded finding:** canonical PC `rob_disp 0x514C30` independently rejects ROB02 before PMT submission unless `EvWorkRobot+4` has bit `0x8000`, and when `0x08` is set also requires `0x04`. The normal passenger path usually retains `0x800C`, so this is a bounded render fail-safe rather than a claim that the gate was the sole visual root cause.
+- **Functional repair:** exact live ROB02 Follow-mode rendering now temporarily opens only those native display bits during the synchronous original `514E60` call and restores the complete original word byte-for-byte via RAII. Camera 0, ROB01, NPCs, simulation/event lifetime and GOAL/result paths are not persistently modified.
+- **New diagnostic proof:** exact passenger scope now traces the final D3D9 `DrawIndexedPrimitive` receipt (`VR PASSENGER NATIVE DIP`) after the existing `405890 -> 404700` physical PMT receipt, and the session analyzer classifies the ladder `ROB02 native lock -> physical PMT -> D3D9 DIP`. Sky transition/tag/draw/coherent-basis counters are emitted in the same test report without mutating the original two-record sky cross-fade.
+- **Final source:** `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-passenger-rob-gate-20261120` head `91bb016ceefc76cfcada26fc2818f5c43767dbb4`. An intermediate analyzer insertion defect was detected during diff review and repaired from the clean parent before packaging.
+- **Validation:** VR GitHub General Test Build **44645671133 SUCCESS** (including 10-path passenger static gate, PowerShell syntax/helpers, Win32 DLL + x64 host, COPY-RUN packaging); HUD Inspector CI **44645671132 SUCCESS**; Win32 Release Build **44645671139 SUCCESS** including original Quest passenger-hook ABI verification. COPY-RUN artifact SHA256 digest `0ed683456531e6f723b560a99f10fb311b195b9b9ec672ab2a6bfed9456770f4`.
+- **Scope boundary:** Quest 3 HMD confirmation is still pending; no claim is made yet that the passenger is visually restored or that the remaining first-stage sky symptom is eliminated.
+- **AI 2 score:** previous confirmed **2874** + this distinct verified render-gate/diagnostic implementation **+1** = **2875 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 수도권 연간이용권 모니터링 (2026-11-20 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-20T08:45:07+09:00`

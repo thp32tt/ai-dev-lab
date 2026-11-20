@@ -5,7 +5,8 @@
 - **Repair:** strict HD assembly now (1) partitions shared source alpha from exclusive solid-glyph owner seeds while keeping identical/no-seed ambiguity held, (2) separates low-alpha shadow/AA bridges from protected solid ink, and (3) auto-rebinds isolated connected source text across an ROI edge only within a bounded 96px native-source window that cannot enter another ROI.
 - **Safety:** protected-art/native-DDS gates remain active; no release approval is synthesized. Local regression: overlap 9/9 and strict QA 26/26. GitHub fast safety workflow **44767911268 SUCCESS** on final source head `b158c51d94adc58a1167205e5925bae535931c10`.
 - **Scope boundary:** the full 954-ROI Multi-Atlas rebuild was running at score time; this score is for the distinct verified engine/geometry repair, not a claim that all HOLDs are already cleared.
-- **AI 2 score:** previous confirmed **2876** + this distinct verified localization geometry repair **+1** = **2877 AI 2 cumulative points**. AI 1 unchanged.
+- **Score reconciliation:** the immediately preceding Ferrari 575 hybrid event already established AI2 cumulative **2879** (commit 8469fb91), so the earlier 2876 baseline mistakenly rolled back a different workflow's achievements; correction is a ledger repair, **not another score event**.
+- **AI 2 score:** previous confirmed **2879** + this distinct verified localization geometry repair **+1** = **2880 AI 2 cumulative points**. AI 1 unchanged.
 
 ## AI 2 Ferrari 575 Superamerica exact + HQ gauge hybrid new OVC4 PASS (2026-11-21 KST)
 

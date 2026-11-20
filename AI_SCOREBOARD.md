@@ -1,3 +1,14 @@
+## AI 2 OutRun v0.03 final-test release launcher hardening PASS (2026-11-20 KST)
+
+- **Unique RUN_KEY:** `QUEST-V003-FINAL-TEST-LAUNCHER-HARDEN-20261120-8D3D81D9`. Distinct from the earlier ROB02 render-gate/GPU diagnostic work; later HMD retests, release publication, repackaging, or repeated reporting of this same release hardening are +0.
+- **New release-layer defect found:** public `Start-OutRun.cmd` had a blank physical line immediately after a caret-continued `-VR.QuestCockpitV2GlassReflectionOff=true ^` line. In Windows cmd.exe this can break the continued launch command and detach later VR arguments from the intended `start OR2006C2C.exe` invocation.
+- **Fix:** removed the blank continuation break and added a reusable launcher verifier that fails on caret trailing whitespace or caret followed by blank/EOF. The check covers normal cockpit launchers plus `Start-OutRun.cmd`, `Start-OutRun-VR.cmd`, and passenger diagnostic launcher.
+- **Release-candidate safety:** new branch `thp32tt/OutRun2006Tweaks@vr-quest-cockpit-v2-final-test-20261120`, source `8d3d81d99c74436e5b86bee6998141a0c4bec747`, builds the exact v0.03 release ZIP layout on the final-test branch while the GitHub release publication step remains restricted to `vr-quest-cockpit-v2-v0.03-release` and was SKIPPED.
+- **Validation:** QuestCockpitV2 Isolated Core Smoke **44740077999 SUCCESS**; normal Win32 Release Build **44740077967 SUCCESS** including launcher verifier and original passenger-hook ABI; final General Test Build **44740078001 SUCCESS** including Win32 game DLL, x64 OpenXR host, COPY-RUN packaging and exact v0.03 release-candidate packaging.
+- **Final artifacts:** exact release candidate `OutRun2-VR-v0.03-FINAL-TEST-8d3d81d99c74436e5b86bee6998141a0c4bec747` digest SHA256 `68f15dc237e69654951e532366f8ad3b90e6b969a14d75968b5cc9f83bf93b0b`; same-SHA COPY-RUN diagnostic digest SHA256 `e363583106a218da258facc54b8197262b193c698999d44b7d9a64db1b938768`.
+- **Scope boundary:** Quest 3 visual confirmation of passenger visibility and first-stage sky behavior is still pending. Public v0.03 was not published by this task.
+- **AI 2 score:** previous confirmed **2875** + this distinct verified final-release launcher/package hardening **+1** = **2876 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Quest cockpit ROB02 render-gate + GPU-pipeline diagnostic PASS (2026-11-20 KST)
 
 - **Unique RUN_KEY:** `QUEST-COCKPIT-ROB02-GPU-LADDER-20261120-91BB016C`. Distinct from the 2026-11-17 original `0x4879B0` car-display gate recovery; retries, repackaging, HMD retests, or repeated reporting of this same work are +0.

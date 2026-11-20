@@ -1,3 +1,12 @@
+## AI 2 OutRun HD geometry HOLD breaker PASS (2026-11-21 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-GEOMETRY-HOLD-BREAKER-20261121-B158C51D`. Distinct from prior slow-UI/browser recovery and source-owner BC3 experiments; later full-build recounts or repeated reporting of this same implementation are +0.
+- **Root cause:** the 629-HOLD strict baseline was dominated by geometry gates: 438 ROI-overlap HOLDs and 92 source-edge HOLDs. Source-protection diagnostics also showed 138 overlap rows with partial native owner evidence, while safe edge coordinate proposals were generated but not consumed by strict assembly.
+- **Repair:** strict HD assembly now (1) partitions shared source alpha from exclusive solid-glyph owner seeds while keeping identical/no-seed ambiguity held, (2) separates low-alpha shadow/AA bridges from protected solid ink, and (3) auto-rebinds isolated connected source text across an ROI edge only within a bounded 96px native-source window that cannot enter another ROI.
+- **Safety:** protected-art/native-DDS gates remain active; no release approval is synthesized. Local regression: overlap 9/9 and strict QA 26/26. GitHub fast safety workflow **44767911268 SUCCESS** on final source head `b158c51d94adc58a1167205e5925bae535931c10`.
+- **Scope boundary:** the full 954-ROI Multi-Atlas rebuild was running at score time; this score is for the distinct verified engine/geometry repair, not a claim that all HOLDs are already cleared.
+- **AI 2 score:** previous confirmed **2876** + this distinct verified localization geometry repair **+1** = **2877 AI 2 cumulative points**. AI 1 unchanged.
+
 ## AI 2 Ferrari 575 Superamerica exact + HQ gauge hybrid new OVC4 PASS (2026-11-21 KST)
 
 - **Unique RUN_KEY:** FERRARI575-EXACT-HQCLUSTER-HYBRID-OVC4-20261121-16C15B9B. Distinct from previous UV repair and needle binder. Repeats, game retests, packaging, or re-reports of this identical artifact add 0.

@@ -1,3 +1,10 @@
+## AI 2 수도권 연간이용권 특가 점검 (2026-11-21 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-21T08:25:12+09:00`.
+- **실제 조회:** 웅진플레이도시 공식 홈페이지와 놀이의발견 겨울 시즌권 판매 페이지, 공식 워터파크 요금표 및 에버랜드/롯데월드 아쿠아리움 최신 검색 결과 비교. 겨울 시즌권 청소년 99,000원부터, 주말·공휴일 사용 가능, 2027-03-01까지, 판매 행사 2026-12-13까지, 36개월 미만 증빙 무료; 2026-11-18 최초 안내와 동일해 중복 알림 제외. 단일 입장권 및 평일권 제외. 새로운 확정 추천 특가 없음.
+- **검증:** https://www.playdoci.com/index.aspx/ ; https://nolbal.com/content/detail/46726 ; https://www.playdoci.com/Common/Pop_FeeInfo.aspx
+- **AI 2 점수:** 이전 확정 **2881** + 이번 독립 정기 점검 정상 수행 **+1** = **2882**. AI 1 변경 없음. 최종 확인 2026-11-21 08:25:12 KST.
+
 ## AI 2 Ferrari14 normal-core external stereo A/B integration static PASS (2026-11-21 KST)
 
 - **Unique RUN_KEY:** FERRARI14-NORMAL-CORE-STEREO-AB-CI-20261121-9B749FAD. Newly created tested normal-renderer-based Ferrari-model loader integration, distinct from earlier 575 model hybrid geometry/source conversion. Repeat packaging, retests, rebuilds or re-reports of this code achievement score +0.

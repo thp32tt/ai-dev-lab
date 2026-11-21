@@ -1,3 +1,12 @@
+## AI 2 Ferrari14 external receipt overcount stock-body overlay guard FIX (2026-11-21 KST)
+
+- **Unique RUN_KEY:** FERRARI14-50TRACE-OVERDRAW-GUARD-20261121-27531C21. New independently tested defensive renderer bug fix; re-runs, packaging, readback and future HMD checks of this single code result receive +0.
+- **Actual source bug:** ChooseOriginalCarRoute previously treated submittedMeshes > expectedMeshes as OriginalFallback even when sidecar triangles had been rasterized. That contradicted the no-double-draw invariant and could render the original player car on top of an already-submitted external vehicle during anomalous receipt accounting.
+- **Correction:** On an eligible draw, zero submitted meshes still yield original fallback; any nonzero submission with zero expected or submitted > expected now yields ExternalPartial, preventing unsafe stock-body double rendering in the same frame. Original VR stereo core and normal host unchanged. Code commit thp32tt/OutRun2006Tweaks@vr-ferrari14-stereo-recovery-normal-20261121:27531c2137ef776960745e84772f42eeb86e53ff.
+- **Real verification:** New C++ trace file tests/ferrari14_trace_50_test.cpp exercised 50 distinct paths for selected Ferrari IDs, preparation conditions, stereo pose/epoch, mesh receipts, model floor, gauge latch, GPU retry; strict g++ C++17 compile PASS, 50 independent full-suite runs (50 per run) = 2,500/2,500 assertions PASS. Ferrari normal-stereo CI https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/44873835187 SUCCESS; Win32 Release Build https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/44873835207 SUCCESS. New x86 DLL SHA256 4105326e624d624477d2d03736f2efd22d7f9aeb76bc4c0785afcb5f81acc065. New 11-entry private test ZIP CRC PASS and 54 static packaging checks, SHA256 016d5e95750afa7d405a0ec3cfff213fc0f9cf2e76850d080fe4bdec85e5e52b; no private third-party vehicle or original commercial game files included.
+- **Scope limitation:** This corrects a previously unsafe defensive branch, but its occurrence in the user's prior black-car stereo/25fps session is NOT established; no Quest3 HMD PASS claimed.
+- **AI 2 score:** previous confirmed **2882** + **+1** new distinct source defect fix with reproducible CI and Windows Build proof = **2883 AI 2 cumulative points**. AI1 unchanged.
+
 ## AI 2 수도권 연간이용권 특가 점검 (2026-11-21 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-21T08:25:12+09:00`.

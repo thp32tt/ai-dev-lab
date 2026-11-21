@@ -1,3 +1,12 @@
+## AI 1 OutRun HD live source-paired HOLD closure audit fix (2026-11-21 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-LIVE-SHA-MATCHED-HOLD-AUDIT-20261121-05AA1738`. One distinct verified audit defect repair. Retests, readbacks, QA refreshes, and future duplicate reports of this same correction receive +0.
+- **Confirmed previous AI 1 SSOT:** 1787 points from the most recent explicit AI 1 cumulative record, "OutRun HD six user-manual source-native DDS mechanical placements success" (2026-11-10). Later AI 2 entries explicitly leave AI 1 unchanged. AI 2 remains a separate 2883 at last read.
+- **Fix:** prior audit had frozen run IDs `43169137555` / `43185778845` and constants 640 HOLD / 450 overlap. Asset code `b336f84ee655b1999ea157f9149372a01a15372b` now requires current self-consistent source HOLD / overlap counts, SHA-bound edits, and refuses mismatches. Tests commit `9c6d8bd85f62c63ae9d2136403bfcc243e4ce1cd`. Master workflow `05aa1738e227fa38e5ea4d5950d5916c506fc80b` downloads QA, native-source masks and edited PNGs from the same most recent successful atlas run instead of old fixed artifacts.
+- **Independent live GitHub proof:** https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/44902489066 SUCCESS; all 9 regression tests PASS, same-source audit reports 954 ROI, 343 TEST_ONLY translated, 611 HOLD, 402 overlap, 0 complete source-owner C1 candidates. Original native CI https://github.com/thp32tt/OutRun2006Tweaks/actions/runs/44767911427 SUCCESS.
+- **Scope:** source-bound audit corrected, not claimed 611 HOLD resolved, no C1/C3/game runtime or release approval. Browser cadence unchanged; N100 not used for CPU-heavy work.
+- **AI 1 score:** previous confirmed **1787** + **+1** newly verified independent audit repair = **1788 AI 1 cumulative points**. **AI 2 unchanged at 2883**.
+
 ## AI 2 Ferrari14 external receipt overcount stock-body overlay guard FIX (2026-11-21 KST)
 
 - **Unique RUN_KEY:** FERRARI14-50TRACE-OVERDRAW-GUARD-20261121-27531C21. New independently tested defensive renderer bug fix; re-runs, packaging, readback and future HMD checks of this single code result receive +0.

@@ -1,3 +1,9 @@
+## AI 2 수도권 연간이용권 특가 점검 (2026-11-22 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-22T08:53:17+09:00`.
+- **실제 조회:** 수도권 놀이공원·워터파크·아쿠아리움 연간권/시즌권 최신 판매 검색. 웅진플레이도시 겨울 시즌권 판매처(청소년 99,000원~, 2027-03-01까지, 주말·공휴일 이용, 월·화 휴장/공휴일 예외, 36개월 미만 증빙 무료) 및 공식 워터파크 요금표(로우시즌 종일권 60,000원) 재확인. 기존 11월 18~21일 안내 대비 새로운 가격·혜택·기간 변경은 검증되지 않아 중복 알림 제외. 에버랜드 11월 종일권 할인은 단회권이므로 제외. 기타 시설 신규 반복 이용권은 가격·주말·유아·마감조건 동시 검증 불충분. 출처: https://nolbal.com/content/detail/46726 ; https://www.playdoci.com/Common/Pop_FeeInfo.aspx ; https://www.everland.com/everland/announcement/CNT-C4023D53-8447-48C8-AB53-55A29AABF70B/01
+- **AI 2 점수:** 이전 확정 **2886** + 독립 정기 점검 정상 수행 **+1** = **2887**. 최종 확인 2026-11-22 08:53:17 KST. AI 1 변경 없음.
+
 ## AI 2 Ferrari14 source callgraph lift/sidecar GPU state correction Win32 PASS (2026-11-22 KST)
 
 - Unique RUN_KEY: `FERRARI14-V003-SOURCE-CALLPATH-LIFT-GPU-STATE-20261122-F166B31F` (new independent functional source correction beyond previously scored `FERRARI14-V003-GLASS-OPAQUE-FIRST-20261122-816ED1D`). Same correction's repeated tests, followup HMD validation, package and docs receive +0 separately.

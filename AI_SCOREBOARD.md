@@ -1,3 +1,12 @@
+## AI 2 Ferrari16 PBR binocular normal-map shader integration CI PASS (2026-11-23 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-PBR-BINOCULAR-NORMAL-MAPS-CI-20261123-35228869`. New independently tested source/CI feature; retries, HMD reconfirmations, packaging, releases and additional checks of this SAME work add +0.
+- **Source:** `thp32tt/OutRun2006Tweaks@fix/ferrari16-pbr-stereo-20261123` SHA `35228869cdacc806544731d551f620d955d12995`; untouched stable v0.03.
+- **New source functionality:** PBR shader one-DIP identity, R7 physical L/R c4 View, c8 Projection and PS c1 eye/ORM constants with restoration and fail-closed nonworld/mono path, R33 lower-owner fence; inverse-transpose normal matrix VS c12-c14 for scaled/mirrored geometry, per-car normal/ORM DDS asset-vs-GPU logging and PBR trace launcher.
+- **Verification:** exact source/portable Ferrari16 and 30-game-ID regressions, synthetic OVC CRC/layout, eye/normal math and release protection PASS; Windows actual PBR `vs_3_0`/`ps_3_0` HLSL compile PASS at workflow `45079382248`. Initial physical PBR bridge Win32 Release build PASS `45078844821` at earlier source SHA `e81d0a2db0ac2cb85a8e7e3456416cf8f208dfe9`; latest full Win32 Build pending, not claimed PASS.
+- **Limit:** no Quest 3, all 16 private OVC assets, map channel parity, frame timing or stock-body-only native callback proof; no runtime release claim.
+- **AI 2 score:** previous confirmed **2887** + independent source/CI PBR stereo material pipeline achievement **+1** = **2888** cumulative. AI 1 unchanged at 1790.
+
 ## AI 1 OutRun HD coverage-first 104-DDS/954-ROI automated pipeline CI improvement (2026-11-22 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-COVERAGE-FIRST-104DDS-954ROI-PIPELINE-20261122-5DB581FF`. One NEW tested completion-first pipeline capability, distinct from earlier strict 611-HOLD queue recovery. This entire workflow, implementation, test refinements, retries, packaging and any subsequent completion of the SAME 954-ROI generated artifact are ONE score event; do not score separately again just for its rebuild/reverification.

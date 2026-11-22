@@ -1,3 +1,10 @@
+## AI 2 수도권 연간이용권 특가 독립 점검 (2026-11-23 08:27 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-23T08:27:04+09:00`.
+- **조사:** 2026-11-23 KST, 수도권 연간권·시즌권·다회권 최신 판매정보 검색. 웅진플레이도시 겨울 시즌권 청소년 99,000원부터, 주말·공휴일 이용, 2027-03-01까지, 36개월 미만 증빙 무료, 월·화 휴장(공휴일 예외) 재확인. 2026-12-13 판매 마감은 기존 공지이며 이번 검색에서 독립 확인 제한. 11월 18일 최초 안내와 동일해 중복 알림 제외. 롯데월드 아쿠아리움 11월 마린프렌즈 특가 11월 16일 판매 종료·11월 17일 등록기한 경과. 신규 추천 상품 확정 없음. 평일전용 및 1회권 제외.
+- **근거:** https://nolbal.com/content/detail/46726 ; https://leisure-web.yanolja.com/leisure/10381181 ; https://www.everland.com/everland/announcement/CNT-C4023D53-8447-48C8-AB53-55A29AABF70B/01 .
+- **점수:** AI 2 이전 확정 **2888** + 정상 독립 점검 **+1** = **2889** 누적. AI 1 점수 변경 없음. 최종 확인 2026-11-23 08:27 KST.
+
 ## AI 2 Ferrari16 PBR binocular normal-map shader integration CI PASS (2026-11-23 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-PBR-BINOCULAR-NORMAL-MAPS-CI-20261123-35228869`. New independently tested source/CI feature; retries, HMD reconfirmations, packaging, releases and additional checks of this SAME work add +0.

@@ -1,3 +1,12 @@
+## AI 2 Ferrari16 invalid-normal recovery and strict PBR OVC diagnosis (2026-11-23 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-INVALID-NORMAL-REPAIR-PBR-AUDIT-20261123-41A7D848`. One new independent model-asset normal corruption and diagnostics correction, NOT a duplicate of earlier `FERRARI16-PBR-BINOCULAR-NORMAL-MAPS-CI-20261123-35228869` (which introduced physical binocular PBR eye constants/inverse-transpose transform). Repeated tests, build confirmation, cleanup, device testing, retry and reporting of THIS result are +0.
+- **Source:** `thp32tt/OutRun2006Tweaks@fix/ferrari16-pbr-stereo-20261123` source commits `95a8e0f19e9366f611256c8d1f137a3e7812c830`, `6de96b968190fa6d56371005e3bdfffdb3b2e0ca`; validation HEAD `41a7d848c433f59be41ee282fe6f8e4ecfdd368f`. Stable v0.03 release branch untouched.
+- **Distinct new functionality:** PBR OVC worker reconstructs zero-length imported vertex normals from indexed triangle geometry without altering valid normals, source UVs/indices/positions, with test cases for standard/reversed/mixed/degenerate triangles; HLSL falls back on face normals for still-unresolvable degenerate geometry. Bounded per-car source normal repair counts, reasoned OVC parse/floor/DDSTexture/PBR-shader failure logging, and opt-in `--require-pbr-maps` all-16-vehicle OVC preflight with synthetic missing-map vs complete-map rejection/admission.
+- **CI completed:** GitHub Ferrari16 All-Car Sidecar Regression run `45084178996`, both portable 16-car/30-retail+normal repair/strict map integrity job and Windows D3DCompiler actual `vs_3_0`/`ps_3_0` HLSL job **PASS** on validation HEAD. Full Win32 game DLL build `45084179049` IN PROGRESS as recorded; no claim it passed, nor private OVC16/Quest3 physical-eye/120fps validation.
+- **Scope/unresolved:** Native player-callback entire-body suppression and material glass classification still not resolved. No production release or actual all-16 normal-map asset acceptance claimed.
+- **Score:** AI 2 previous confirmed **2889** + one independently validated new source/CI corruption repair achievement **+1** = **2890** cumulative. AI 1 unchanged.
+
 ## AI 2 수도권 연간이용권 특가 독립 점검 (2026-11-23 08:27 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-23T08:27:04+09:00`.

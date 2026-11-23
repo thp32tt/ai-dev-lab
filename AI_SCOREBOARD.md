@@ -1,3 +1,11 @@
+## AI 2 EXT16-009 partial-UV and PBR normal/ORM full-mip strict verification repair (2026-11-24 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-009-PARTIAL-UV-TBN-FULLMIP-SOURCE-CI-20261124-90498ACA`. Exactly **one** new independent implementation with tests and exact-source CI; no additional points for the separately audited sixteen historical OVC assets, repeated CI, queue record transition, or follow-up hardware.
+- **Material source implementation:** `thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123` commit `90498aca5dea571ef98a076f3e9799928fe021dd`. Real defect: one UV-good triangle made a shared opaque material pass even when other triangles had unusable normal-map TBN; added per-triangle fail-closed PBR classification and full-mipmap normal/ORM DDS admission, plus CRC-valid partial-UV and mip-loss negative fixtures. No protected v0.03 or third-party asset modified.
+- **Exact source CI SUCCESS:** Ferrari16 multicar C++/Python + Windows HLSL `45290876714`; Windows Win32 game DLL Build `45290876801`; isolated Windows x86 game DLL+x64 OpenXR host/package/backup/rollback `45290876709`. Each run head SHA is the same `90498aca5dea571ef98a076f3e9799928fe021dd`. Patched Python self-test PASS on N100. User Quest3 remains **UNTESTED**.
+- **Private actual asset boundary:** 2026-11-16 historical archive 16/16 OVC SHA matched that archive's manifest, but 0/16 pass the new strict PBR/UV gate; current licensed 2026-11-24 sources absent, so EXT16-009 is **BLOCKED/WAIT_INPUT**, not falsely COMPLETE_STATIC. Source code fix qualifies independently, not model acceptance.
+- **AI 2 score:** previous confirmed **2895** + one new source bug fix and same-source CI **+1** = cumulative **2896**. AI 1 unchanged.
+
 ## AI 2 수도권 연간권·시즌권 독립 조회 (2026-11-24 08:12 KST)
 
 - **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-24T08:12:13+09:00`.

@@ -1,3 +1,10 @@
+## AI 2 EXT16-005 independent OVC blank-mesh reject and isolated private package source fix (2026-11-24 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-005-OVC-DEGENERATE-ISOLATED-STATIC-CI-20261124-CE983B6F`. ONE independently implemented and source-CI-tested achievement. No separate score for package build runs, CI retries, test refinements, evidence updates, hardware verification, or task rollover.
+- **Actual source and regressions:** `thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123`: `6c6b0b494e9e2fdbd54d40f85b94d03c5e7808e6` adds native x86 OVC4 rejection for CRC-valid all-zero-area meshes plus 16 canonical positive/negative parser regressions; `dfb6e15a087a233d0e39abac822593ea195d35ac` prevents all four direct test launchers from terminating the working v0.03 host, with isolation negative tests; `ce983b6fe4149c28e04cf0f8b56deb3a812e438a` aligns Python OVC preflight with native blank-mesh policy and adds a synthetic CRC-valid negative test.
+- **Exact-SHA source CI:** `ce983b6fe4149c28e04cf0f8b56deb3a812e438a` Ferrari16 portable all-car/fallback, Python preflight and Windows PBR HLSL compile, workflow `45211645347` **SUCCESS**. Windows x86 DLL/x64 OpenXR same-source ZIP packaging is a separate acceptance gate, not a new scored outcome. HMD/VDXR remains **UNTESTED** and 16 real private OVC/source rights/material QA not physically validated.
+- **AI 2 score:** previous confirmed **2893** + one new independently verified implementation **+1** = cumulative **2894**. AI 1 unchanged.
+
 ## AI 2 EXT16-004 independent dashboard and exterior glass renderer correction (2026-11-24 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-004-DASHBOARD-GLASS-CI-20261124-9C902C8B`. One genuinely new implemented/tested renderer task. No separate points for two component commits, CI retries, review, documentation, Windows build repeats, rollover, or future Quest3 QA.

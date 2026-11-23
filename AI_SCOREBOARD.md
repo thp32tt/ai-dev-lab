@@ -1,3 +1,12 @@
+## AI 2 EXT16-003 new dashboard fail-closed and exact-source provenance quality gate (2026-11-23 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-003-DASHBOARD-EXACT-SOURCE-GATES-20261123-7F9317BA`. ONE new actual material source correction and related independent quality gate; do not separately score CI retries, review, documentation, rollover, physical QA or next work item.
+- **Scope:** Ferrari16 optional external-only branch `automation/ferrari16-external-20261123`; protected v0.03 unchanged. Material fixes at `1f92f6df8627c6fc5174466436abf009ccc46474` and `7f9317ba49ba4852954e3d23c4ae6bb239254473`; resulting queue/evidence head `85886b79260f6b951d7791256b0a791016a4b673`.
+- **Independent code defect fixed:** OVC preflight previously returned entire-car PASS when a separately installed dashboard overlay had a bad CRC/parse failure. New code makes full-car FAIL, preserves earlier body errors and missing-body/absent-overlay semantics. Positive/negative synthetic regression in `tests/ferrari16_overlay_status_test.py`.
+- **New conversion gate:** Owner-private, offline `exact_variant_quality_gate.py` blocks unproved 328 GTS/575 Superamerica/F430 Spider/1986 Testarossa Spider body and roof identities, unlicensed/unchecked source GLB and OVC4 SHA, missing comparison screenshots, silent triangle loss or texture downscale, PBR material/normal/UV defects. Synthetic positive/negative fixtures. No third-party models uploaded or promoted.
+- **Exact-SHA source CI:** Ferrari16 multicar + Windows D3DCompiler HLSL **SUCCESS** run `45196925338` at material SHA `7f9317ba49ba4852954e3d23c4ae6bb239254473`; preceding overlay-fix CI `45196207199` SUCCESS. Win32 Build and x64 host final exact-SHA pairing not certified; no installed four-car private rights/asset proof; Quest3 physical stereo `UNTESTED`. Thus EXT16-003 status `BLOCKED`, queue next `EXT16-004`.
+- **AI 2 score:** previous confirmed **2891** + **+1** independently committed/tested material result = cumulative **2892**. AI 1 unchanged; no speculative points for remaining missing assets or hardware.
+
 ## AI 2 Ferrari16 physically proven no-raster PBR fallback fix and regression (2026-11-23 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-PBR-PRE-DIP-STOCK-FALLBACK-20261123-8A087777`. One new independent missing-original-vehicle correction, separate from prior binocular PBR shader support and imported normal repair. All associated source adjustments, CI script corrections, retries, source-identical builds, documentation, later game tests and reports count as ONE achievement; do not rescore it.

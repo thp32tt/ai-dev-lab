@@ -1,3 +1,10 @@
+## AI 2 수도권 연간권·시즌권 독립 조회 (2026-11-24 08:12 KST)
+
+- **RUN_KEY:** `AUTO:CAPITAL-ANNUAL-PASS:2026-11-24T08:12:13+09:00`.
+- **조회:** 웅진플레이도시 공식 2026 겨울 시즌권 판매기간 2026-11-11~12-13 재확인, 놀이의발견 청소년 개인권 99,000원부터(표시 정상가 320,000원, 69% 할인), 이용 2027-03-01까지, 주말·공휴일 가능, 월·화 휴장(공휴일 정상), 36개월 미만 증빙 무료(단체 제외), 당일 사용 가능. 기존 11월 18~23일과 동일해 중복 알림 제외. 씨라이프 코엑스 과거 79,000원 행사는 10월 종료, 현재 99,000원 정가형 기존 안내 대비 신규 개선 없음. 서울랜드/기타 수도권 반복권 신규 추천 조건은 확정하지 못함. 평일 전용·단회권 제외.
+- **출처:** https://www.playdoci.com/ ; https://nolbal.com/content/detail/46726 ; https://www.visitsealife.com/coex-seoul/tickets-passes/book-tickets/promotions/annual-pass-promotion/ ; https://www.fnnews.com/news/202610161026119781
+- **점수:** AI 2 이전 확정 **2894** + 이번 정상 독립 검색·검증 **+1** = **2895**. 최종 확인 2026-11-24 08:12 KST. AI 1 변경 없음.
+
 ## AI 2 EXT16-005 independent OVC blank-mesh reject and isolated private package source fix (2026-11-24 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-005-OVC-DEGENERATE-ISOLATED-STATIC-CI-20261124-CE983B6F`. ONE independently implemented and source-CI-tested achievement. No separate score for package build runs, CI retries, test refinements, evidence updates, hardware verification, or task rollover.

@@ -1,3 +1,11 @@
+## AI 2 EXT16-010 binocular eye-centre and protected v0.03 parity regression repair (2026-11-24 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-010-PHYSICAL-EYE-CENTRE-V003-PARITY-20261124-823B7EC`. One independent source fix plus regression suite and exact-source Windows build; multiple commits, CI recheck, queue advancement and Quest3 hardware wait are NOT additional scoring events.
+- **Source fix:** `thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123` exact validated material SHA `823b7ec3154ba7894b6cbb88c66d45b50a859a5a`. Previously projection-only or canted view orientation without left-right camera-centre separation could be certified as external-car stereo. Corrected rigid D3D9 row-vector view eye-centre proof, near-zero baseline/non-affine rejection, added positive/negative portable C++ cases and source parity checker for protected v0.03 menu/theatre/fullscreen launch, OpenXR host, eye RT/depth and stock fallback, 12 adversarial mutation tests and Windows CRLF normalization.
+- **Identical-SHA GitHub Actions SUCCESS:** Ferrari16 all-car C++/Python + Windows HLSL `45299906781`; Windows x86 game Build `45299906900`; Windows x86 DLL + x64 OpenXR host + SHA ZIP readback + isolated install/tamper/rollback `45299906805`. All three head SHA `823b7ec3154ba7894b6cbb88c66d45b50a859a5a`. Queue bookkeeping commit `6060d985399fa3c39bf80e5ed1ec2ea6d9e4a87c` changes status to COMPLETE_STATIC; not re-scored.
+- **Scope and safety:** Normal protected v0.03 untouched. EXT16-007 atomic GPU paired color/depth staging and actual external 16-car materials/rights not repaired or certified here; current renderer stays fail-closed stock only. Physical Quest3/VDXR visual stereo, menu focus, p95 and FPS `WAITING_USER_HMD`/`UNTESTED` — no runtime performance claim. AI 1 score unchanged.
+- **AI 2 score:** previous confirmed **2896** + independent completed source bug fix with exact-source CI **+1** = cumulative **2897**.
+
 ## AI 2 EXT16-009 partial-UV and PBR normal/ORM full-mip strict verification repair (2026-11-24 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-009-PARTIAL-UV-TBN-FULLMIP-SOURCE-CI-20261124-90498ACA`. Exactly **one** new independent implementation with tests and exact-source CI; no additional points for the separately audited sixteen historical OVC assets, repeated CI, queue record transition, or follow-up hardware.

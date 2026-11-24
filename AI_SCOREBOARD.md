@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 DDS 2D resource validation (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-DDS-2D-RESOURCE-20261125-7D117432`; cycle EXT16-011-ITER25-DDS-2D-RESOURCE-CONTRACT. One independent source defect; CI scope correction, retry and queue evidence not separately scored.
+- **Material source:** thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123 SHA `7d117432d44b03697baa04a098ef5a718a330002`. Native and Python DDS parsers reject cube/face, volume, depth flag and multi-slice declarations before 2D upload, with 16 canonical slots x 3 map roles x 8 positive/negative cases per parser. Exact prior R30 helper blob pins preserve stereo guard.
+- **Exact SHA CI:** all three push workflows SUCCESS: multicar and Windows HLSL 45460732735, Win32 build 45460732444, x86 DLL+x64 host isolated package 45460732466. Verified during iteration 26; no duplicate score.
+- **Limits:** synthetic fixtures only, no licensed private asset or Quest3 runtime validation; external atomic raster fence remains closed; v0.03 unchanged. EXT16-011 remains ACTIVE.
+- **AI 2 calculation:** previous confirmed **2899** + one distinct verified fix **+1** = cumulative **2900**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R7 fail-closed OVC preparation regression fix (2026-11-24 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-011-R7-OVC-PREPARATION-FENCE-20261124-F5058DE7`, independent cycle `EXT16-011-20261124-1531-R7-OVC-PREPARATION-FAILCLOSE`. One distinct material code defect; rerun, source SHA test correction, queue docs and continuous task rollover not separately scored.

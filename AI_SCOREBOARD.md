@@ -1,3 +1,19 @@
+## AI 2 EXT16-011 physical VR launch isolation (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER34-PHYSICAL-VR-LAUNCH-POLICY`. Delayed credit for distinct source fix, not for repeat CI inspection.
+- **Source:** `0cdd25535f9550b4325bd11d6783a0409a7ac2fe` isolates four launchers from inherited host render scale and persisted HMD-less/stereo settings; regression tests.
+- **Exact SHA CI:** all three observed applicable push workflows SUCCESS: multicar/HLSL 45506550817, x86 Build 45506552168, x86/x64 package 45506550897.
+- **Limits:** HMD/runtime and actual assets UNTESTED; does not establish user's observed symptom root cause; EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2908** + independent verified fix **+1** = cumulative **2909**. AI 1 unchanged.
+
+## AI 2 EXT16-011 complete retail wrapper ABI guard (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER33-RETAIL-FULL-WRAPPER-ABI`. Delayed credit for distinct source fix, not for repeat CI inspection.
+- **Source:** `09cf633777496fb72caa067c7815973e714fc86b` full 27-byte retail wrapper and readable follow-up RET attestation plus positive/negative tests.
+- **Exact SHA CI:** all four SUCCESS: sidecar/HLSL 45501773859, Win32 Build 45501773857, x86/x64 package 45501773888, HUD Inspector 45501773979.
+- **Limits:** external atomic staging fence remains closed; HMD/runtime and actual assets UNTESTED; EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2907** + independent verified fix **+1** = cumulative **2908**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R30 speculative UP stream restoration (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-011-R30-SPECULATIVE-UP-20261125-329DDBE9`; iteration 32. One independent source defect, not recheck or R13 compilation repair.

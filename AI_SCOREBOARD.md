@@ -1,3 +1,27 @@
+## AI 2 EXT16-011 R30 speculative UP stream restoration (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-R30-SPECULATIVE-UP-20261125-329DDBE9`; iteration 32. One independent source defect, not recheck or R13 compilation repair.
+- **Source:** thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123 SHA `329ddbe9e8c4135d88cc953b8f66542f001d17d9`. Snapshot native VB/offset/stride, restore them before pre-raster fallback, apply UP NULL side effect only after physical draw attempt; 128 synthetic cases.
+- **Exact SHA CI:** all four SUCCESS: sidecar/HLSL 45496877258, Win32 Build 45496876961, x86/x64 package 45496876805, HUD Inspector 45496876701. R13 compile repair not independently scored.
+- **Limits:** external raster fence remains closed; actual HMD and 16 private models UNTESTED; EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2906** + one independent verified fix **+1** = cumulative **2907**. AI 1 unchanged.
+
+## AI 2 EXT16-011 R7 clear receipt ownership (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-R7-DEPTH-CLEAR-20261125-8A0D3B0E`; iteration 31. One independent source fix credited only after integration repair and passing CI; no score for failed original CI, guard adjustment or retry.
+- **Source:** `8a0d3b0e3fd839ada0029fe9b3a4cc00f3b94ac1` (R7 invalidate old clear receipt when left surface changes/retirement), scope pin `7c5ba56609f5aa7ac4c0151c3cd02dc49f0dad4a` initially failed Win32 due to missed R13 ResetEx stale variable references. Final integrated validation SHA `329ddbe9e8c4135d88cc953b8f66542f001d17d9` includes exactly the R13 migration and original R7 fix/tests.
+- **Exact SHA CI:** final integrated source all four SUCCESS: 45496877258, 45496876961, 45496876805, 45496876701; 48 synthetic slot/clear-flag combinations.
+- **Limits:** external raster remains fenced, Quest3 UNTESTED, no actual GPU fault injection or private model validation.
+- **AI 2 calculation:** previous confirmed **2905** + one independent verified fix **+1** = cumulative **2906**. AI 1 unchanged.
+
+## AI 2 EXT16-011 dashboard gear coverage (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-DASHBOARD-GEAR-20261125-BAE4CA8A`; iteration 30. One independent source defect; delayed CI reconciliation is not separate recheck score.
+- **Source:** `bae4ca8ae807671fec7677cda905b4fb20a94b7b`. Per-gear coverage suppresses duplicate current gear only when body complete; 4096 synthetic combinations and malformed mask tests.
+- **Exact SHA CI:** all four SUCCESS: sidecar/HLSL 45486751846, Win32 Build 45486752147, x86/x64 package 45486751902, HUD Inspector 45486751927.
+- **Limits:** no real asset or Quest3 validation; external atomic fence closed; EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2904** + one independent verified fix **+1** = cumulative **2905**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 GPU state capture retry (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-011-STATEBLOCK-RETRY-20261125-BC83FF56`; iteration 29. One distinct pre-raster resource/retry defect; no duplicate verification score.

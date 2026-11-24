@@ -1,3 +1,19 @@
+## AI 2 EXT16-011 GLB vertex values (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-GLB-VERTEX-20261125-74224448`; iteration 28. One distinct source validation fix, not a recheck score.
+- **Source:** thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123 SHA `74224448638577d67426169017606c5aeb33685b`. Actual float POSITION/NORMAL/UV inspection for source and converted GLB, bounded strided reads, reject nonfinite values and zero-length normals; four exact-slot synthetic positive/negative tests.
+- **Exact SHA CI:** all three SUCCESS: multicar and HLSL 45476417327, Win32 build 45476416912, x86/x64 package 45476416922.
+- **Limits:** no real asset promotion or Quest3 validation; runtime UNTESTED; EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2902** + one independent verified fix **+1** = cumulative **2903**. AI 1 unchanged.
+
+## AI 2 EXT16-011 rollback manifest contract (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-ROLLBACK-20261125-F48176AD`; iteration 27. One independent rollback defect, not a repeat CI check score.
+- **Source:** thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123 SHA `f48176adfe7a9fc7042a4c754306354b0bcbb6f0`. Fixed exact launcher allowlist and hashes before removal, independently bind backup DLL/host hashes to isolation marker; eight native Windows negative fixtures.
+- **Exact SHA CI:** all three SUCCESS: multicar and HLSL 45471033269, Win32 build 45471033423, x86/x64 package 45471033719; native rollback job 138718715870 SUCCESS.
+- **Limits:** synthetic isolated install only; no real game/Quest3 runtime or private assets. EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2901** + one independent verified fix **+1** = cumulative **2902**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 glass texture routing state (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-011-GLASS-TEXTURE-ROUTING-20261125-5B561A24`; iteration 26. One distinct material state isolation fix, not a repeated verification score.

@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 GPU state capture retry (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-STATEBLOCK-RETRY-20261125-BC83FF56`; iteration 29. One distinct pre-raster resource/retry defect; no duplicate verification score.
+- **Source:** thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123 SHA `bc83ff56a915ca9095c396f9e8063f3685d1bd0b`. Check device/frame/pose before resource upload, release failed stateblock output, bound create/capture retry to 120 callbacks; 16-slot mock tests.
+- **Exact SHA CI:** all three SUCCESS: multicar and HLSL 45481791604, Win32 build 45481791683, x86/x64 package 45481791769.
+- **Limits:** external raster remains fenced, actual FPS and Quest3 UNTESTED; EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2903** + one independent verified fix **+1** = cumulative **2904**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 GLB vertex values (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-011-GLB-VERTEX-20261125-74224448`; iteration 28. One distinct source validation fix, not a recheck score.

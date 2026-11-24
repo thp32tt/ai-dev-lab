@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 glass texture routing state (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `FERRARI16-EXT16-011-GLASS-TEXTURE-ROUTING-20261125-5B561A24`; iteration 26. One distinct material state isolation fix, not a repeated verification score.
+- **Source:** thp32tt/OutRun2006Tweaks@automation/ferrari16-external-20261123 SHA `5b561a24caa49f8daceafd1aeb0e119e246c5cfd`. Reset stage-0 RESULTARG to CURRENT and interpolation WRAP0/1/2 to zero before external draws, abort on setter failure, preserve captured-state Apply and atomic fence. 1280 synthetic state outcomes including 1024 rejected failure cases.
+- **Exact SHA CI:** all three push workflows SUCCESS: multicar and HLSL 45465748157, Win32 build 45465747978, x86/x64 package 45465747985. Verified in iteration 27.
+- **Limits:** no actual Quest3 or private 16-car validation. Existing stock callback and v0.03 preserved; external whole-car staging remains absent. EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2900** + one distinct verified fix **+1** = cumulative **2901**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 DDS 2D resource validation (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `FERRARI16-EXT16-011-DDS-2D-RESOURCE-20261125-7D117432`; cycle EXT16-011-ITER25-DDS-2D-RESOURCE-CONTRACT. One independent source defect; CI scope correction, retry and queue evidence not separately scored.

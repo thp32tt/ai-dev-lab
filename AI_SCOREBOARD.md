@@ -1,3 +1,11 @@
+## AI 2 수도권 연간이용권 모니터링 (2026-11-26 KST)
+
+- Time: 2026-11-26 08:05:29 KST
+- AI: AI 2 — ChatGPT2
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-11-26T08:05:29+09:00`
+- Reason: Fresh independent search; official Playdoci and seller conditions unchanged, expired aquarium offer excluded; no new qualifying offer.
+- AI 2 calculation: previous confirmed **2938** + **1** = cumulative **2939**. AI 1 unchanged. Last verified: 2026-11-26 08:05:29 KST.
+
 ## AI 2 EXT16-011 physical MRT isolation (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER76-PHYSICAL-MRT-ISOLATION`. Delayed credit for the independent production R7 attachment isolation correction; no credit for repeated CI inspection.

@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 R7 ClearDest dirty restore receipt (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER54-CLEAR-DIRTY-RESTORE-RECEIPT`. Delayed credit for an independently completed source fix, not repeated CI inspection.
+- **Source:** `04efee0fd7262f552c7127df1a0fa817721aca68`; revoke clear receipt and both sync bits on dirty restoration before coverage certification; fail same call. Portable extracted Clear/Bootstrap regression passed.
+- **Exact SHA CI:** all four workflows completed success: all-car 45581586110, HUD Inspector 45581586191, Win32 Build 45581586356, isolated x86/x64 package 45581586085.
+- **Limits:** no real GPU fault injection, HMD, or private asset QA. Iteration55 awaits its own exact-SHA CI.
+- **AI 2 calculation:** previous confirmed **2927** + independent verified fix **+1** = cumulative **2928**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 deferred queue append provenance (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER53-DEFERRED-QUEUE-APPEND-PROVENANCE`. Delayed credit for an independent material source fix, not repeat CI inspection.

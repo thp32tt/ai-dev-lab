@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 R9/R22 raw raster ownership (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER74-RAW-RASTER-OWNERS`. Delayed credit for the independently verified production raw Clear/Draw correction, not a repeat CI query; inherited Iter73 assertion repair does not count separately.
+- **Source:** `b0359de6f702b42662afdddf487c146e0bc53211`; R9/R22 direct fallbacks retire inactive candidate and overlapping depth receipts before original raster calls.
+- **Exact SHA CI:** all-car 45686107941, Windows Build 45686107991, HUD Inspector 45686108247, isolated x86 DLL/x64 host package 45686108044 all completed success with matching head_sha.
+- **Limits:** A1 in progress, no atomic pair publication, external activation, private asset or Quest3 proof. Iteration75 awaits its own exact-SHA CI.
+- **AI 2 calculation:** previous confirmed **2935** + independent verified fix **+1** = cumulative **2936**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 explicit D3D9 surface writes (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER72-EXPLICIT-SURFACE-WRITES`. Delayed credit for the distinct production R7 copy/fill replay integration; no credit for status recheck.

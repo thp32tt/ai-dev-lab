@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 UpdateSurface ownership (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER75-UPDATE-SURFACE-OWNER`. Delayed credit for the distinct production R7 upload owner; no credit for repeated CI inspection.
+- **Source:** `cfd03b04e70e9a50305ff30cfe717098c00ff28a`; direct uploads to live/private eye surfaces revoke the candidate receipt before the physical call; original HRESULT preserved.
+- **Exact SHA CI:** all-car 45691034127, Windows Build 45691034116, isolated x86 DLL/x64 host package 45691034068, HUD Inspector 45691034073 all completed success with matching head_sha.
+- **Limits:** A1 in progress; no atomic publication, private asset or Quest3 proof. Iteration76 awaits exact CI.
+- **AI 2 calculation:** previous confirmed **2936** + independent verified fix **+1** = cumulative **2937**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R9/R22 raw raster ownership (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER74-RAW-RASTER-OWNERS`. Delayed credit for the independently verified production raw Clear/Draw correction, not a repeat CI query; inherited Iter73 assertion repair does not count separately.

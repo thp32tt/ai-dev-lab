@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 physical MRT isolation (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER76-PHYSICAL-MRT-ISOLATION`. Delayed credit for the independent production R7 attachment isolation correction; no credit for repeated CI inspection.
+- **Source:** `c61b9ffcab1dc8e5a88abc19efe9f354eb013674`; validates actual auxiliary RT bindings before candidate raster, caches device limit, rejects ambiguous bindings and releases COM refs.
+- **Exact SHA CI:** all-car 45695790337, HUD Inspector 45695790325, Windows Build 45695790389, isolated x86 DLL/x64 host package 45695790345 all completed success with matching head_sha.
+- **Limits:** A1 in progress; no atomic publication, private asset or Quest3 proof; candidate performance unmeasured. Iteration77 awaits exact CI.
+- **AI 2 calculation:** previous confirmed **2937** + independent verified fix **+1** = cumulative **2938**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 UpdateSurface ownership (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER75-UPDATE-SURFACE-OWNER`. Delayed credit for the distinct production R7 upload owner; no credit for repeated CI inspection.

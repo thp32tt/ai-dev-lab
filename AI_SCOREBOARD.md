@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 deferred glass live callback veto (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER50-DEFERRED-GLASS-LIVE-CALLBACK-VETO`. Delayed credit for independently completed source fix; no repeat score.
+- **Source:** `3589b6da66ddcead2679b7310cc06bdfdf482624`; reject deferred player token lookup during live rejected callback, with positive/negative owner regression and production guard.
+- **Exact SHA CI:** all four workflows success: all-car 45564940208, HUD Inspector 45564940233, Win32 Build 45564940266, isolated x86/x64 package 45564940204.
+- **Limits:** no retail register trace, HMD or private asset claim. Iteration51 pending its own CI.
+- **AI 2 calculation:** previous confirmed **2924** + independent verified fix **+1** = cumulative **2925**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R30 rejected descriptor cache (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER49-R30-REJECTED-DESCRIPTOR-CACHE`. Delayed credit for independently completed source fix; no repeat score.

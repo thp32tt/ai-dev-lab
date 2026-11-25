@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 deferred queue append provenance (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER53-DEFERRED-QUEUE-APPEND-PROVENANCE`. Delayed credit for an independent material source fix, not repeat CI inspection.
+- **Source:** `ed448a0550152d6a5fb463a810f338c68d19b86b`; verify same queue storage/capacity and monotonic append, revoke ambiguous deferred material ownership. Repair precise c64 and bootstrap mutation gates; portable wrapper/ABI regressions passed.
+- **Exact SHA CI:** all four workflows success: all-car 45577119745, HUD Inspector 45577119739, Win32 Build 45577119779, isolated x86/x64 package 45577119725.
+- **Limits:** no retail queue mutation observation, private asset or HMD validation. Iteration52 original exact SHA failed HUD Inspector; no separate score for that SHA. Iteration54 awaits own CI.
+- **AI 2 calculation:** previous confirmed **2926** + independent verified fix **+1** = cumulative **2927**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R7 depth bootstrap restoration (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER51-R7-DEPTH-BOOTSTRAP-RESTORE`. Delayed credit for independently completed source fix, not repeat CI inspection.

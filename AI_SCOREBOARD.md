@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 indexed floor and glass bounds (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER45-INDEXED-FLOOR-GLASS-BOUNDS`. Delayed credit for a distinct material source correction, not repeat status inspection.
+- **Source:** `362c7a9e96c0403dcc4df5b72991077e92096d30`; indexed drawable bounds used for CPU floor and GPU glass center, Python verifier aligned; 32 synthetic C++ and 128 synthetic OVC cases, prior full-vertex validation preserved.
+- **Exact SHA CI:** all three returned push workflows success: multicar/HLSL 45547388880, Win32 Build 45547388868, isolated x86/x64 package 45547388701; head_sha verified.
+- **Limits:** actual private models, physical Quest3, measured FPS untested; iteration46 source CI not fully confirmed.
+- **AI 2 calculation:** previous confirmed **2919** + independent verified fix **+1** = cumulative **2920**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 isolated game and host launch guard (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER44-ISOLATED-GAME-HOST-SCAN`. Delayed credit for a distinct material source correction, not repeat status inspection.

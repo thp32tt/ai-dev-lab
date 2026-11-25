@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 GLB material sampler parity (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER48-GLB-MATERIAL-SAMPLER-PARITY`. Delayed credit for independently completed source fix, not repeat inspection.
+- **Source:** `fc06c9600516acae94a88eb4fcde4f0d2e0e58dc`; GLB material signature includes finite/range/type-checked core factors, normal/occlusion strength and per-used-texture sampler wrapping/filter semantics. 84 added synthetic cases; eight old/new counterexamples documented in the project queue.
+- **Exact SHA CI:** Win32 Build 45557552725, isolated x86/x64 package 45557552814, all-car regression 45557552679 all completed success; exact head_sha verified.
+- **Limits:** no private model QA, final OVC/DDS equivalence or Quest3 runtime claim. Iteration49 pending its own full exact-SHA CI; no credit for that yet.
+- **AI 2 calculation:** previous confirmed **2922** + independent verified fix **+1** = cumulative **2923**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 hardlink overwrite isolation (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER47-HARDLINK-OVERWRITE-ISOLATION`. Delayed credit for independent source fix, not repeated CI inspection.

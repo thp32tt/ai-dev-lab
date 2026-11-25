@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 explicit D3D9 surface writes (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER72-EXPLICIT-SURFACE-WRITES`. Delayed credit for the distinct production R7 copy/fill replay integration; no credit for status recheck.
+- **Source:** `ac7a853b19712342c1379252e367f97bf63811ba`; isolated eye color copy/fill, failure receipt retirement, exact R9/R23 whitelist repair.
+- **Exact SHA CI:** all-car 45676234827, Windows Build 45676234799, HUD Inspector 45676234726, isolated x86 DLL/x64 host package 45676234775 all completed success with matching head_sha.
+- **Limits:** A1 in progress; no atomic publication, private asset or physical Quest3 proof. Iteration73 awaits CI.
+- **AI 2 calculation:** previous confirmed **2934** + independent verified fix **+1** = cumulative **2935**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 internal R7 UP owner replay (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER68-INTERNAL-R7-UP-OWNER`. Delayed credit for independent internal entrypoint integration, including inherited iteration67 regression assertion repair; no duplicate credit for retries/status.

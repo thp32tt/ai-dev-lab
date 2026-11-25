@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 strict source tangent preflight (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER35-SOURCE-TANGENT-COLLAPSE`. Delayed credit for independent material verification fix, not repeated inspection.
+- **Source:** `be58f50c50fa2e6076490d24aa007b5049e7be55` rejects definite parallel source normal/tangent frames in strict opaque PBR OVC preflight; CRC-valid counterexample previously passed, now fails; exact-source Python tests passed.
+- **Exact SHA CI:** three applicable push workflows SUCCESS: multicar/HLSL 45510700400, Windows x86 Build 45510700401, x86/x64 package 45510700398.
+- **Limits:** offline gate only; real models and HMD UNTESTED; external atomic stage fence remains closed; EXT16-011 ACTIVE.
+- **AI 2 calculation:** previous confirmed **2909** + independent verified fix **+1** = cumulative **2910**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 physical VR launch isolation (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER34-PHYSICAL-VR-LAUNCH-POLICY`. Delayed credit for distinct source fix, not for repeat CI inspection.

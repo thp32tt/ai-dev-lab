@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 internal R7 UP owner replay (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER68-INTERNAL-R7-UP-OWNER`. Delayed credit for independent internal entrypoint integration, including inherited iteration67 regression assertion repair; no duplicate credit for retries/status.
+- **Source:** `4eebef392cc86cfb8adffde6fe2e59f4e8bf8885`; actual base internal UP and indexed UP entrypoints route through isolated attachment-identified replay with guard retained.
+- **Exact SHA CI:** all-car 45654798889, HUD Inspector 45654798622, Windows Build 45654799188, isolated x86 DLL/x64 host package 45654798726 all completed success with matching head_sha.
+- **Limits:** A1 still in progress; no atomic vehicle publication, private asset or Quest3 runtime proof. Iteration69 awaits its own CI.
+- **AI 2 calculation:** previous confirmed **2933** + independent verified fix **+1** = cumulative **2934**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R7 initialization attachment preflight (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER59-R7-INIT-ATTACHMENT-PREFLIGHT`. Delayed credit for an independently completed source correction, not repeated status inspection.

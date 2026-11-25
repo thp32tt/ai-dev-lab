@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 PBR ambiguous bitangent orientation (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER56-PBR-AMBIGUOUS-BITANGENT`. Delayed credit for an independent shader correction, not repeated CI inspection.
+- **Source:** `598b991f0a0859a5137c81d8c9c0fdf128ac3727`; reject degenerate signed TBN orientation before normal-map sampling, preserve ordinary and mirrored UV behavior. 864 synthetic basis cases and exact-blob Python tests passed.
+- **Exact SHA CI:** all-car 45591067823 including HLSL; Win32 Build 45591067454; isolated x86 DLL/x64 host build, install and rollback 45591067497 all success, exact head_sha and jobs verified.
+- **Limits:** no physical Quest3 or private asset validation; iteration57 awaits its own exact SHA Windows CI.
+- **AI 2 calculation:** previous confirmed **2929** + independent verified fix **+1** = cumulative **2930**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 strict PBR mixed-sign collinear normals (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER55-MIXED-SIGN-COLLINEAR-NORMALS`. Delayed credit for independent material admission fix, not repeated CI inspection.

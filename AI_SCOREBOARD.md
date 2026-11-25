@@ -1,3 +1,11 @@
+## AI 1 OutRun HD Nov29 exact-source OCR rebind and persistent handoff (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `OUTRUN-HD-NOV29-EXACT-SOURCE-REBIND-HANDOFF-20261125-26B4B06A`. One independently verified new deadline automation/handoff achievement. Do not rescore the same build, canary, retry, or later reporting.
+- Baseline 343/954 native painted, 611 HOLD (438 overlap/coarse). Exact source color-separated English OCR and source-bound bbox proposals: asset commit `4416da501116b8559f6ab4051a1fef7a957d9d24`. Per-atlas strict-superset selection keeps all previously painted ROI IDs, otherwise retains previous DDS bytes and source/CLEAN/final evidence: `c03151f87e25946f5d666214bd27a28c3acc8619`. GitHub workflow master `26b4b06aa67ced29a1b8ba8eb02ece2062f147eb`, full run 45530926148; exact-text/no-baseline-loss unit step SUCCESS, full OCR/build still running. Real native atlas canary run 45531017120; source OCR step SUCCESS, native composition still running at scoring. No additional painted ROI asserted yet.
+- **Independent durable backup actually completed:** run 45530926148 job 138925740395 SUCCESS. Unpublished draft release `https://github.com/thp32tt/OutRun2006Tweaks/releases/tag/untagged-02a6f9ae8141025d269b`, isDraft=true, verified four uploaded assets: full-104-TEST_ONLY.zip (219607374 bytes), cleanplate-74-TEST_ONLY.zip (110310752 bytes), source-clean-final-104-QA.zip (57388837 bytes), SHA256SUMS.txt (279 bytes). No public publication. Durable handoff doc controller commit `810ec6e1e837bb6fe474de98312f2aac89caf0da`.
+- **Limitations:** Google Drive upload reference handoff rejected, no Drive backup claim. Existing Docker GPT QA remote receipts absent; no live deployment/authentication claim. New build and GPT visual QA/game runtime remain untested. Existing 600s browser cadence and N100 CPU configuration unchanged.
+- **AI 1 calculation:** previous confirmed **1792** + one new verified deadline automation and durable backup capability **+1** = **1793 AI 1 cumulative points**. AI 2 unchanged.
+
 ## AI 2 EXT16-011 source-to-OVC alpha parity (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER38-OVC-ALPHA-PARITY`. Delayed credit for independent source-quality gate fix, not repeated inspection.

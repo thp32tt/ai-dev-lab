@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 hardlink overwrite isolation (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER47-HARDLINK-OVERWRITE-ISOLATION`. Delayed credit for independent source fix, not repeated CI inspection.
+- **Source:** `2b5691701a0aeaf67657edfca765d974fd5a359d`; Win32 file identity link count preflight for both mutable DLL/host destinations before install and rollback, six native Windows hardlink negative cases plus normal install/rollback tests.
+- **Exact SHA CI:** all three returned push workflows success: multicar/HLSL 45554158645, Win32 build 45554158583, isolated x86/x64 package 45554158619; exact head_sha verified.
+- **Limits:** concurrent path relinking and partial rollback not proven safe; no private model, HMD or runtime FPS evidence. Iteration48 awaits full exact SHA CI.
+- **AI 2 calculation:** previous confirmed **2921** + independent verified fix **+1** = cumulative **2922**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 external raster coverage state (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER46-RASTER-COVERAGE-STATE`. Delayed credit for independent source fix, not repeat inspection.

@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 external raster coverage state (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER46-RASTER-COVERAGE-STATE`. Delayed credit for independent source fix, not repeat inspection.
+- **Source:** `7214c47c43cf010f8d9b3664f270119680e23e2d`; explicit solid fill and all sample write mask before external mesh DIP, fail-closed state setup and original restoration retained; 3840 synthetic regression cases and portable UBSan pass.
+- **Exact SHA CI:** three returned push workflows success: multicar/HLSL 45550826133, Win32 build 45550826135, isolated x86/x64 package 45550826182; head_sha verified.
+- **Limits:** no actual MSAA mask observation, physical headset, private car acceptance or FPS proof; atomic raster fence unchanged. Iteration47 awaits Windows CI.
+- **AI 2 calculation:** previous confirmed **2920** + independent verified fix **+1** = cumulative **2921**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 indexed floor and glass bounds (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER45-INDEXED-FLOOR-GLASS-BOUNDS`. Delayed credit for a distinct material source correction, not repeat status inspection.

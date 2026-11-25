@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 GLB selected-scene mesh provenance (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER58-GLB-SCENE-MESH-PROVENANCE`. Delayed credit for an independent exact-variant admission correction, not repeat CI inspection.
+- **Source:** `8fb5bb9de5f6c000efd7355ca673c7043a9b316d`; selected-scene reachability and one-instance-per-mesh provenance gate. 8 positive and 72 negative new fixtures recorded.
+- **Exact SHA CI:** all-car 45600447063, Win32 Build 45600447070, isolated package 45600447196 all completed success with matching head_sha.
+- **Limits:** no private asset or physical Quest3 QA. Iteration59 awaits its own exact SHA CI; no duplicate score.
+- **AI 2 calculation:** previous confirmed **2931** + independent verified fix **+1** = cumulative **2932**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 PE section overlap admission (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER57-PE-SECTION-OVERLAP`. Delayed credit for an independent package-integrity fix, not repeated CI inspection.

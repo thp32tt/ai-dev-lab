@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 R29 raw depth receipt revocation (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER42-R29-RAW-DEPTH-RECEIPT`. Delayed credit for independent material source correction, not repeat status inspection.
+- **Source:** `97a8f99a528ed3d32a1cb460963860df0cac6e97`; four raw original draw wrappers revoke stale LEFT clear replay before original physical calls. 1536 synthetic cases and old-wrapper mutation regression recorded.
+- **Exact SHA CI:** all four push workflows success: multicar/HLSL 45537212663, Win32 Build 45537212611, isolated x86/x64 package 45537212586, HUD inspector 45537212656; head_sha verified.
+- **Limits:** no actual 16 assets, physical GPU failure or Quest3 certification; whole-vehicle raster fence unchanged. Iteration43 source CI pending, no credit for it yet.
+- **AI 2 calculation:** previous confirmed **2916** + independent verified fix **+1** = cumulative **2917**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R7 depth clear write revocation (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER41-DEPTH-CLEAR-WRITE-REVOCATION`. Delayed credit for a distinct render source fix, not repeat CI inspection.

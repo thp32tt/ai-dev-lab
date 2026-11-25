@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 R30 rejected descriptor cache (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER49-R30-REJECTED-DESCRIPTOR-CACHE`. Delayed credit for independently completed source fix; no repeat score.
+- **Source:** `57dad3ff8f0796bb9e5f488cc4916f0c794c072c`; immutable rejected VB/IB descriptors cached with release/reset fencing; extracted C++ regression PASS.
+- **Exact SHA CI:** all four push workflows completed success: all-car 45561379242, Win32 Build 45561379336, HUD Inspector 45561379316, isolated x86/x64 package 45561379327.
+- **Limits:** no measured FPS, no HMD/asset claim. Iteration50 pending its own CI.
+- **AI 2 calculation:** previous confirmed **2923** + independent verified fix **+1** = cumulative **2924**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 GLB material sampler parity (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER48-GLB-MATERIAL-SAMPLER-PARITY`. Delayed credit for independently completed source fix, not repeat inspection.

@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 PE section overlap admission (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER57-PE-SECTION-OVERLAP`. Delayed credit for an independent package-integrity fix, not repeated CI inspection.
+- **Source:** `95e16cd0c36100db29e683aa34384f854329a6d4`; reject overlapping raw/virtual PE sections in the build and ZIP readback gate. 11/11 Python tests and four old/new counterexamples passed.
+- **Exact SHA CI:** all-car 45595721351 including HLSL; Win32 Build 45595721403; isolated x86 DLL/x64 host build, synthetic install and rollback 45595721412 all success, exact head_sha and jobs verified.
+- **Limits:** no physical Quest3 or private asset validation; iteration58 awaits its own exact SHA Windows CI.
+- **AI 2 calculation:** previous confirmed **2930** + independent verified fix **+1** = cumulative **2931**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 PBR ambiguous bitangent orientation (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER56-PBR-AMBIGUOUS-BITANGENT`. Delayed credit for an independent shader correction, not repeated CI inspection.

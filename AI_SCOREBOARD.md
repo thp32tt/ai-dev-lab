@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 signed glass depth and animated transform (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER36-GLASS-FORWARD-DEPTH`. Delayed credit for independent material source fix, not repeat CI inspection.
+- **Source:** `6d9a3ef7db1e5ce8752fc210835e691d40a4bdc7` sorts RH/LH glass by signed forward view depth and uses animated mesh transform; 64 synthetic combinations and portable tests.
+- **Exact SHA CI:** all three push workflows SUCCESS: sidecar/HLSL 45514718951, Win32 Build 45514719253, x86/x64 isolated package 45514719283.
+- **Limits:** no actual private model or HMD proof, atomic stage fence closed; EXT16-011 ACTIVE. Iteration37 reparse isolation patch pending CI, no credit yet.
+- **AI 2 calculation:** previous confirmed **2910** + independent verified fix **+1** = cumulative **2911**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 strict source tangent preflight (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER35-SOURCE-TANGENT-COLLAPSE`. Delayed credit for independent material verification fix, not repeated inspection.

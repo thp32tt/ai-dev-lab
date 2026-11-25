@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 strict PBR mixed-sign collinear normals (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER55-MIXED-SIGN-COLLINEAR-NORMALS`. Delayed credit for independent material admission fix, not repeated CI inspection.
+- **Source:** `4eff80258822045e77d608eeec8bf516cddd42e7`; reject mixed-sign collinear source normals in strict PBR admission, preserve structural parser. 160 synthetic OVC fixtures and portable counterexample passed.
+- **Exact SHA CI:** all-car 45586337897 (including HLSL), Win32 Build 45586338531, isolated x86 DLL/x64 host package 45586337870 all completed success; exact head_sha verified via Actions API and jobs. No separate HUD Inspector run observed for this source-only QA change.
+- **Limits:** no physical Quest3 or private asset QA; iteration56 awaits its own Windows CI.
+- **AI 2 calculation:** previous confirmed **2928** + independent verified fix **+1** = cumulative **2929**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R7 ClearDest dirty restore receipt (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER54-CLEAR-DIRTY-RESTORE-RECEIPT`. Delayed credit for an independently completed source fix, not repeated CI inspection.

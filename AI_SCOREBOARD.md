@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 Windows reparse isolation (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER37-REPARSE-ISOLATION`. Delayed credit for independent isolation source fix, not repeat CI inspection.
+- **Source:** `9fe048df24076ab9be49cbab289b1e6de2ce30d1` rejects reparse paths and ancestors during isolated prepare/install/restore; native Windows positive and junction negative fixtures.
+- **Exact SHA CI:** three push workflows SUCCESS: sidecar/HLSL 45518849137, Win32 Build 45518848920, x86/x64 isolated package 45518848790.
+- **Limits:** hard-link/TOCTOU and full transaction proof remain open, no private assets/HMD proof. Iteration38 alpha draw-pass quality gate still awaiting full exact-SHA CI; no credit yet.
+- **AI 2 calculation:** previous confirmed **2911** + independent verified fix **+1** = cumulative **2912**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 signed glass depth and animated transform (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER36-GLASS-FORWARD-DEPTH`. Delayed credit for independent material source fix, not repeat CI inspection.

@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 R7 depth clear write revocation (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER41-DEPTH-CLEAR-WRITE-REVOCATION`. Delayed credit for a distinct render source fix, not repeat CI inspection.
+- **Source:** `75d2c79dc57e538e6bd3474a187e5c8599991dac` revokes stale depth/stencil full-clear replay receipts before possible LEFT writes and clears, 384 synthetic cases passed.
+- **Exact SHA CI:** all four push workflows success: multicar/HLSL 45533607232, Win32 Build 45533607222, isolated x86/x64 package 45533607186, HUD inspector 45533607175.
+- **Limits:** no private assets, GPU failure injection, measured FPS or Quest3 validation. External whole-car raster fence retained; iteration42 raw boundary patch awaits exact-SHA CI.
+- **AI 2 calculation:** previous confirmed **2915** + independent verified fix **+1** = cumulative **2916**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 dashboard float32 parity (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER40-DASHBOARD-FLOAT32-PARITY`. Delayed credit for independent verifier correction, not repeat CI inspection.

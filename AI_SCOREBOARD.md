@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 retail glass callback owner scope (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER43-RETAIL-GLASS-CALLBACK-SCOPE`. Delayed credit for distinct material source correction, not repeat status inspection.
+- **Source:** `9a5266e7694768805c594b56e752b6bd58e254b5`; replace depth-only immediate player glass ownership with native-epoch and callback-scoped RAII admission; reject ambiguous nested outer queue capture; original wrapper preserved. Positive/negative scope regressions included.
+- **Exact SHA CI:** all four push workflows success: multicar/HLSL 45540751010, Win32 Build 45540750918, isolated x86/x64 package 45540750890, HUD inspector 45540751011; head_sha verified.
+- **Limits:** no actual per-car assets or Quest3 certification; whole-vehicle raster fence unchanged. Iteration44 source CI pending, no credit for it yet.
+- **AI 2 calculation:** previous confirmed **2917** + independent verified fix **+1** = cumulative **2918**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 R29 raw depth receipt revocation (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER42-R29-RAW-DEPTH-RECEIPT`. Delayed credit for independent material source correction, not repeat status inspection.

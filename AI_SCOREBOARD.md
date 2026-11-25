@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 R7 depth bootstrap restoration (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER51-R7-DEPTH-BOOTSTRAP-RESTORE`. Delayed credit for independently completed source fix, not repeat CI inspection.
+- **Source:** `f5f1f65fe4403d331898899ea250ffa07d2f1955`; distinguish dirty restoration, revoke clear receipt and prevent same-call raw fallback in R7 and R29; extracted C++ fault injection passed.
+- **Exact SHA CI:** all four workflows success: all-car 45569014395, HUD Inspector 45569014276, Win32 Build 45569014401, isolated x86/x64 package 45569014291.
+- **Limits:** no real GPU or HMD validation; iteration52 upper bridge patch awaits its own CI.
+- **AI 2 calculation:** previous confirmed **2925** + independent verified fix **+1** = cumulative **2926**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 deferred glass live callback veto (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER50-DEFERRED-GLASS-LIVE-CALLBACK-VETO`. Delayed credit for independently completed source fix; no repeat score.

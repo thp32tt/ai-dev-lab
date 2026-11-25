@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 source-to-OVC alpha parity (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER38-OVC-ALPHA-PARITY`. Delayed credit for independent source-quality gate fix, not repeated inspection.
+- **Source:** `a1b54b4c44a078f20fce388cba0fc2c2d0bb8b61` verifies GLB BLEND versus OVC tagged transparent triangle totals, rejects unsupported MASK, four exact slot regression fixtures; five exact-source Python tests passed.
+- **Exact SHA CI:** all three push workflows SUCCESS: sidecar/HLSL 45522542846, Win32 Build 45522542898, x86/x64 package 45522542956.
+- **Limits:** aggregate alpha counts are not per-face fidelity, actual private assets and HMD UNTESTED; EXT16-011 ACTIVE. Iteration39 runtime preflight optimization pending exact-SHA CI.
+- **AI 2 calculation:** previous confirmed **2912** + independent verified fix **+1** = cumulative **2913**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 Windows reparse isolation (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER37-REPARSE-ISOLATION`. Delayed credit for independent isolation source fix, not repeat CI inspection.

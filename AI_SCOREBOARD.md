@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 R7 initialization attachment preflight (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER59-R7-INIT-ATTACHMENT-PREFLIGHT`. Delayed credit for an independently completed source correction, not repeated status inspection.
+- **Source:** `38bd044a137cdd08f270442f9531cc8377a0465c`; capture original RT/depth/viewport before stereo resource retirement/allocation; exact extracted mock positive/negative/retry regression passed.
+- **Exact SHA CI:** all-car 45605418311, Win32 Build 45605418203, HUD Inspector 45605418171, isolated x86 DLL/x64 host package 45605417973 all success with matching head_sha.
+- **Limits:** no measured FPS, private asset or physical Quest3 QA. Iteration60 awaits own CI.
+- **AI 2 calculation:** previous confirmed **2932** + independent verified fix **+1** = cumulative **2933**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 GLB selected-scene mesh provenance (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER58-GLB-SCENE-MESH-PROVENANCE`. Delayed credit for an independent exact-variant admission correction, not repeat CI inspection.

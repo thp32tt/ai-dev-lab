@@ -1,3 +1,19 @@
+## AI 2 EXT16-011 dashboard float32 parity (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER40-DASHBOARD-FLOAT32-PARITY`. Delayed credit for independent verifier correction, not repeat CI inspection.
+- **Source:** `48de3cd1700b5a917d0ff9e1f8d0240da780a2c5` matches native float32 dashboard needle bounds and sequential accumulation; 256 CRC-valid synthetic cases, old verifier rejection reproduced, native C++ crosscheck passed.
+- **Exact SHA CI:** all three push workflows success: multicar/HLSL 45530019293, Win32 Build 45530019275, isolated x86/x64 package 45530019291.
+- **Limits:** offline verifier only; actual private models and Quest3 untested; no runtime performance or stereo completion claim. Iteration41 pending CI.
+- **AI 2 calculation:** previous confirmed **2914** + independent verified fix **+1** = cumulative **2915**. AI 1 unchanged.
+
+## AI 2 EXT16-011 fixed sprite candidate preflight (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER39-FIXED-SPRITE-PREFLIGHT`. Delayed credit for independent source fix, not repeat CI inspection. Previous local-only ledger attempt was not published.
+- **Source:** `334133503b34186c8a971c6dc857e19901fee341` rejects unowned fixed-function sprite candidates before stateful R29 checks; 4096 synthetic cases passed.
+- **Exact SHA CI:** all four recorded workflows success: multicar/HLSL 45526479493, Win32 Build 45526479617, isolated x86/x64 package 45526479510, HUD inspector 45526479718.
+- **Limits:** no measured GPU performance or physical HMD/asset validation; EXT16-011 remains ACTIVE.
+- **AI 2 calculation:** previous confirmed **2913** + independent verified fix **+1** = cumulative **2914**. AI 1 unchanged.
+
 ## AI 1 OutRun HD Nov29 exact-source OCR rebind and persistent handoff (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `OUTRUN-HD-NOV29-EXACT-SOURCE-REBIND-HANDOFF-20261125-26B4B06A`. One independently verified new deadline automation/handoff achievement. Do not rescore the same build, canary, retry, or later reporting.

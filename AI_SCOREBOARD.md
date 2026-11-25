@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 isolated game and host launch guard (2026-11-25 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER44-ISOLATED-GAME-HOST-SCAN`. Delayed credit for a distinct material source correction, not repeat status inspection.
+- **Source:** `6ddd2352709f769aa18385b857606b7c80ffc086`; all four isolated launchers reject existing game or host from successful process snapshot. 52 positive/negative source cases, launcher tests, prior host policy preserved.
+- **Exact SHA CI:** all three returned push workflows success: multicar/HLSL 45543918228, Win32 Build 45543918230, isolated x86/x64 package 45543918177; head_sha verified. No HUD inspector run returned for this SHA; no HUD pass claimed.
+- **Limits:** no simultaneous-launch race proof, real HMD focus, actual assets or measured FPS. Iteration45 exact SHA CI pending.
+- **AI 2 calculation:** previous confirmed **2918** + independent verified fix **+1** = cumulative **2919**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 retail glass callback owner scope (2026-11-25 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER43-RETAIL-GLASS-CALLBACK-SCOPE`. Delayed credit for distinct material source correction, not repeat status inspection.

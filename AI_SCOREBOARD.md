@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 physical Present boundary (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER90-PHYSICAL-PRESENT-BOUNDARY`. Delayed credit for independent production candidate boundary fix, not repeated CI inspection.
+- **Source:** `dffdae552af517f1d354242c6d3e07e2b2c3de6d`; invalidate in-flight private raster across same-epoch physical PresentEx and swap-chain boundary while restoring still-owned live attachments.
+- **Exact SHA CI:** all-car 45749727915, HUD 45749727823, isolated x86 DLL/x64 host package 45749727833, Windows Build 45749727931 all completed success with matching head_sha.
+- **Limits:** A1 in progress; no atomic publication, external activation or Quest3 proof. Iteration91 awaits exact CI.
+- **AI 2 calculation:** previous confirmed **2941** + independent verified fix **+1** = cumulative **2942**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 eye and resource generation receipt (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER89-EYE-GENERATION-RECEIPT`. Delayed credit for the independent production R7 candidate ownership correction, not repeat CI inspection.

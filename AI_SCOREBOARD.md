@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 eye and resource generation receipt (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER89-EYE-GENERATION-RECEIPT`. Delayed credit for the independent production R7 candidate ownership correction, not repeat CI inspection.
+- **Source:** `c2387a72fee0561673330d481f1b46fb38090512`; paired live color/depth identity, resource generation, reset retirement during raster, rejection of stale attachment restore.
+- **Exact SHA CI:** HUD 45746266555, Windows Build 45746266485, all-car 45746266532, isolated x86 DLL/x64 host package 45746266488 all completed success with matching head_sha.
+- **Limits:** A1 in progress; no atomic publication, external activation or Quest3 evidence. Iteration90 awaits exact CI.
+- **AI 2 calculation:** previous confirmed **2940** + independent verified fix **+1** = cumulative **2941**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 host/frame reset ownership (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER88-HOST-FRAME-RESET`. Delayed credit for the distinct production R7/R13 ResetEx lifecycle correction implemented in iteration88; repeated CI inspection itself scores zero.

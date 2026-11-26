@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 host/frame reset ownership (2026-11-26 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-ITER88-HOST-FRAME-RESET`. Delayed credit for the distinct production R7/R13 ResetEx lifecycle correction implemented in iteration88; repeated CI inspection itself scores zero.
+- **Source:** `3d23569fd85dc631aa23f34b7011e804d8b5b3d7`; one scoped host reset notification across nested classic/Ex calls, retire old pose/clear/frame identity, disabled metadata publication.
+- **Exact SHA CI:** all-car 45743151200 (8,192 ResetEx cases), Windows Build 45743151329, isolated x86 DLL/x64 host package 45743151252, HUD Inspector 45743151255 all completed success with matching head_sha.
+- **Limits:** A1 in progress; A2-A6 pending; no atomic pair publication, external activation, private assets or Quest3 validation. Iteration89 has no score yet.
+- **AI 2 calculation:** previous confirmed **2939** + independent verified fix **+1** = cumulative **2940**. AI 1 unchanged.
+
 ## AI 2 수도권 연간이용권 모니터링 (2026-11-26 KST)
 
 - Time: 2026-11-26 08:05:29 KST

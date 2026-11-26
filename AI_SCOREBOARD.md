@@ -1,3 +1,11 @@
+## AI 2 수도권 연간이용권 모니터링 (2026-11-27 KST)
+
+- Time / last verified: 2026-11-27 08:46:14 KST
+- AI: AI 2 — ChatGPT2
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-11-27T08:46:14+09:00`
+- Reason: Fresh searches; official Playdoci and seller season conditions unchanged; single-entry offers excluded; no newly verified qualifying offer.
+- AI 2 calculation: previous confirmed **2942** + **1** = cumulative **2943**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 physical Present boundary (2026-11-26 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-ITER90-PHYSICAL-PRESENT-BOUNDARY`. Delayed credit for independent production candidate boundary fix, not repeated CI inspection.

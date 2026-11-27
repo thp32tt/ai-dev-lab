@@ -1,3 +1,10 @@
+## AI 2 EXT16 current external asset restoration and AO (2026-11-27 KST)
+
+- **Unique RUN_KEY:** `EXT16-20261127-EXTERNAL-ASSET-RESTORE-AO-CRC`. One new verified asset/source correction batch. No repeat credit for earlier CI or old research bake.
+- **Evidence:** 15 actual external bodies native-parser PASS; 278 missing opaque ORM maps created with 275 non-neutral AO maps; independently verified source mesh/albedo/normal/authored ORM/dashboard byte preservation for all 15. Two gear-only private diagnostic overlays parsed with gear mask 127. 328 exact asset missing; 81 missing opaque ORM slots remain.
+- **Source:** `b42042504cbe8a74d3b448f2b27e9b1c7cb0f699` CRC optimization exact CI all-car 45922939583, Build 45922939538, package 45922939623 SUCCESS. Asset audit recorded at `0119dd13b2e68d2c04e1ae7df680f010a310df8c`; final CI and Quest3 untested.
+- **AI 2 calculation:** previous confirmed **2946** + independent verified achievement **+1** = cumulative **2947**. AI 1 unchanged.
+
 ## AI 2 EXT16-011 selected asset and raw raster admission (2026-11-27 KST)
 
 - **Unique RUN_KEY:** `EXT16-011-20261127-ASSET-SEED-RAW-ORM`. One independently verified source correction batch; no extra credit for compile-only repair, status queries, or later pending commits.

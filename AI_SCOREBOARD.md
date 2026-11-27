@@ -1,3 +1,9 @@
+## AI 2 수도권 연간이용권 점검 (2026-11-28 08:09:58 KST)
+
+- RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-11-28T08:09:58+09:00`
+- AI 2: previous confirmed **2948** + **1** = cumulative **2949**.
+- Final check: 2026-11-28 08:09:58 KST. Fresh official and vendor search; existing Woongjin offer unchanged, no new verified qualifying offer. AI 1 unchanged.
+
 ## AI 2 EXT16 F40 lossless compact model and index-width optimization (2026-11-27 KST)
 
 - **Unique RUN_KEY:** `EXT16-20261127-F40-COMPACT-INDEX-VERTEX`. Credit the previous independent source/asset correction only after its final exact-SHA CI; no repeat credit for subsequent verification or the new native UV atlas batch.

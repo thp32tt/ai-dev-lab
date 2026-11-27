@@ -1,3 +1,11 @@
+## AI 2 EXT16-011 selected asset and raw raster admission (2026-11-27 KST)
+
+- **Unique RUN_KEY:** `EXT16-011-20261127-ASSET-SEED-RAW-ORM`. One independently verified source correction batch; no extra credit for compile-only repair, status queries, or later pending commits.
+- **Source:** `0a3cc8588c05ad3deeb455701ecd1901af9748db`. Candidate seed bound to current car/device/camera and dashboard coverage; prohibit asset upload during isolated stage; preserve proven independent raw raster and unify mapped/unmapped ORM lighting.
+- **Exact SHA CI:** all-car 45921368630, HUD 45921368511, Build 45921368483, isolated package 45921368565 all completed success.
+- **Limits:** final audit HEAD and further corrections await their own exact CI; actual Quest3, 120fps and whole-car asset quality not proven.
+- **AI 2 calculation:** previous confirmed **2945** + independent verified source correction **+1** = cumulative **2946**. AI 1 unchanged.
+
 ## AI 2 N100 webtoon archive cleanup (2026-11-27 KST)
 
 - Unique RUN_KEY: `N100-CLEANUP-20261127-WEBTOON-DOWNLOADS`.

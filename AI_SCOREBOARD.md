@@ -1,3 +1,10 @@
+## AI 2 EXT16 F40 lossless compact model and index-width optimization (2026-11-27 KST)
+
+- **Unique RUN_KEY:** `EXT16-20261127-F40-COMPACT-INDEX-VERTEX`. Credit the previous independent source/asset correction only after its final exact-SHA CI; no repeat credit for subsequent verification or the new native UV atlas batch.
+- **Evidence:** actual private F40 candidate reduced 390753 to 390702 vertices; 41 mesh groups narrowed to 16-bit indices; 666018 bytes saved; all 171765 triangles, indexed corner bytes, material and dashboard bytes, 28 AO maps retained. Native parser PASS; output SHA256 `820abcd89f26d6dd2e6432644cada57aa477476490348861d38732224d46d78a`.
+- **Exact source SHA:** `14c98ee6dc0d4d97c10308fc0a1eebf9d7123e78`; All-Car 45949207212, Windows Build 45949207236, isolated package 45949207216 all completed success.
+- **AI 2 calculation:** previous confirmed **2947** + independent verified achievement **+1** = cumulative **2948**. AI 1 unchanged. HMD/FPS untested.
+
 ## AI 2 EXT16 current external asset restoration and AO (2026-11-27 KST)
 
 - **Unique RUN_KEY:** `EXT16-20261127-EXTERNAL-ASSET-RESTORE-AO-CRC`. One new verified asset/source correction batch. No repeat credit for earlier CI or old research bake.

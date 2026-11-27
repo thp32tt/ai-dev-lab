@@ -1,3 +1,9 @@
+## AI 2 N100 webtoon archive cleanup (2026-11-27 KST)
+
+- Unique RUN_KEY: `N100-CLEANUP-20261127-WEBTOON-DOWNLOADS`.
+- User explicitly requested additional deletion. Deleted `work/webtoon-batch-archiver/downloads` (4,303,040,512 allocated bytes); retained scripts and metadata. Verified directory removal and 31,033,802,752 available bytes after cleanup.
+- AI 2 calculation: previous confirmed **2944** + **1** = cumulative **2945**. AI 1 unchanged.
+
 ## AI 2 N100 verified obsolete data cleanup (2026-11-27 KST)
 
 - Unique RUN_KEY: `N100-CLEANUP-20261127-USER-TURN-CLONE`.

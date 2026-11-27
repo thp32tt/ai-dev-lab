@@ -1,3 +1,10 @@
+## AI 2 N100 verified obsolete data cleanup (2026-11-27 KST)
+
+- Unique RUN_KEY: `N100-CLEANUP-20261127-USER-TURN-CLONE`.
+- Deleted old clean GitHub clone `work/user_turn_check_20261022_1445` (9,725,652,992 allocated bytes) and re-downloadable pip wheels (71,774,208 allocated bytes). Verified remote ancestor, no local changes or ignored files, and successful deletion. Preserved active source and dirty worktrees.
+- Available disk space after cleanup: 24,300,474,368 bytes. No Docker volume deletion or service restart.
+- AI 2 calculation: previous confirmed **2943** + **1** = cumulative **2944**. AI 1 unchanged.
+
 ## AI 2 수도권 연간이용권 모니터링 (2026-11-27 KST)
 
 - Time / last verified: 2026-11-27 08:46:14 KST

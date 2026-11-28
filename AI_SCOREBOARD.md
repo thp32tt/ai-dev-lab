@@ -1,3 +1,10 @@
+## AI 2 EXT16 native connected UV/AO recovery (2026-11-28 KST)
+
+- **Unique RUN_KEY:** `EXT16-20261127-F40-NATIVE-CONNECTED-UV-AO`. Independent prior completed native C++ conversion and immutable texture/Reset correction batch, now exact-SHA verified. No duplicate credit for compact-index batch or this hour's MRT patch.
+- **Evidence:** F40 368887 vertices, 171765 unchanged triangles, 28/28 nonneutral AO maps, 515295 indexed position/normal corners verified, original glass and material data preserved; UV 2.14 s and bake 5.19 s on N100. Output SHA256 `242b01c229f15c833aeb1acf6f28f376ef738899daede40e7c956a83db745a5c`. HMD/FPS untested.
+- **Exact SHA:** `52bb32f5c90d3d0c58388187810e316f522448b3`; all-car 45950582608, Windows Build 45950582568, isolated package 45950582635 completed success.
+- **AI 2 calculation:** previous confirmed **2949** + independent verified achievement **+1** = cumulative **2950**. AI 1 unchanged.
+
 ## AI 2 수도권 연간이용권 점검 (2026-11-28 08:09:58 KST)
 
 - RUN_KEY: `AUTO:CAPITAL-ANNUAL-PASS:2026-11-28T08:09:58+09:00`

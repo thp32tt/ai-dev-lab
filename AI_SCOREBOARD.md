@@ -1,3 +1,10 @@
+## AI 2 EXT16 disjoint offscreen MRT replay ownership (2026-11-28 KST)
+
+- **Unique RUN_KEY:** `EXT16-20261128-DISJOINT-OFFSCREEN-MRT`. One previously uncredited source correction now exact-SHA verified. No credit for polling or the current retry/omission work until its own gate passes.
+- **Evidence:** independent auxiliary MRT raster preserves the private candidate only after actual attachment disjointness proof; live/private attachment alias still rejected. Exact source SHA `84e4dacf10d24e56b81b98b74676c62659c54a68`.
+- **Exact CI:** Build 46114685935, all-car regression 46114685863, EXE HUD inspector 46114685857, isolated package 46114685896 all completed success. HMD/FPS untested.
+- **AI 2 calculation:** previous confirmed **2950** + independent verified achievement **+1** = cumulative **2951**. AI 1 unchanged.
+
 ## AI 2 EXT16 native connected UV/AO recovery (2026-11-28 KST)
 
 - **Unique RUN_KEY:** `EXT16-20261127-F40-NATIVE-CONNECTED-UV-AO`. Independent prior completed native C++ conversion and immutable texture/Reset correction batch, now exact-SHA verified. No duplicate credit for compact-index batch or this hour's MRT patch.
